@@ -1,5 +1,15 @@
 # Inventory Value (IV) Report — Coverage Matrix
 
+> **CONSOLIDATION UPDATE 2026-07-28 (user-authorized, pushed to TestRail):** the suite was
+> consolidated to **68 active IV cases**. Every case ID below still resolves:
+> a merged-away ID's coverage now lives in its SURVIVOR (mapping below); cut cases' assertions
+> were either duplicates of a survivor or dropped by the usefulness/sense audit. Detail:
+> `consolidation-backup-2026-07-28/MANIFEST.md` + `quality-audit-2026-07-28/MERGE-PLAN.md`.
+>
+> Merged-away → survivor: IV-NAV-04 → IV-FLT-02; IV-DATE-07 → IV-NAV-06; IV-LOC-05 → IV-NAV-06; IV-SCOPE-03 → IV-SCOPE-01; IV-SCOPE-04 → IV-SCOPE-01; IV-TOT-04 → IV-TOT-02; IV-EXP-08 → IV-EXP-09; IV-VIS-03 → IV-TOT-01.
+> Cut (retired, body kept locally): IV-TOT-05 (duplicate of merged no-data case).
+
+
 > **Report Suite project — per-report coverage doc (authored 2026-07-22, spec revision `_1`,
 > latest change-log entry 2026-07-21 — server-side data model per Milan's review).**
 > Source spec: `build/report-suite/specs/inventory-value.md` (verbatim-structured).

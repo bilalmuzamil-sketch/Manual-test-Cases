@@ -1,5 +1,7 @@
 # Report Suite - spec-relevance reconciliation change list (2026-07-28, video-promotion update)
 
+> **PUSH EXECUTED 2026-07-28 (user authorization "Push ALL"):** every APPLIED-LOCALLY row below is now LIVE in TestRail (70 update_case incl. the 9 sense-check wording repairs + 41 merge survivors; add_case SBC-EXP-16 = **C38856**; delete_case ×57 = SBC-EXP-13 C30171 + 6 audit cuts + 50 merged-away members). All HTTP 200 + verified; run R359 untouched (515 → 458 tests by case deletion only). **Final active suite = 459.** Audit: `testrail-execution-log-2026-07-28.md`; manifest: `testrail-push-manifest-2026-07-28.md` (EXECUTED).
+
 **USER RULING 2026-07-28:** Chris Ward's kickoff video is AUTHENTIC and AUTHORITATIVE product intent (created for Chris Amani, company Vice President) and is NEWER than the six Confluence specs (specs last updated 2026-07-21) - by last-update-wins the **video overrides the spec where they conflict**. The previously PENDING-CHRIS rows are promoted and **applied as LOCAL case edits** (audit log `video-promotion-edit-log-2026-07-28.md`; applier `apply_video_promotion_2026-07-28.py`).
 
 **516 cases** (515 in TestRail + 1 newly authored). **NO TestRail writes this pass** (Rule 6) - this change-list remains the approval gate: the push needs explicit permission (update_case for the edits, add_case for SBC-EXP-16, delete_case for the retire-proposed row). Run R359 untouched.

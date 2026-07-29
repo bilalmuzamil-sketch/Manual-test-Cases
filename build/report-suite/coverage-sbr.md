@@ -1,5 +1,15 @@
 # SBR (Sales By Representative) — Coverage Matrix
 
+> **CONSOLIDATION UPDATE 2026-07-28 (user-authorized, pushed to TestRail):** the suite was
+> consolidated to **109 active SBR cases**. Every case ID below still resolves:
+> a merged-away ID's coverage now lives in its SURVIVOR (mapping below); cut cases' assertions
+> were either duplicates of a survivor or dropped by the usefulness/sense audit. Detail:
+> `consolidation-backup-2026-07-28/MANIFEST.md` + `quality-audit-2026-07-28/MERGE-PLAN.md`.
+>
+> Merged-away → survivor: SBR-NAV-02 → SBR-NAV-01; SBR-DATE-03 → SBR-PERS-04; SBR-LOC-02 → SBR-PERS-04; SBR-TYPE-01 → SBR-TYPE-02; SBR-TYPE-03 → SBR-STAT-04; SBR-STAT-03 → SBR-STAT-04; SBR-ROW-04 → SBR-ROW-02; SBR-BADGE-03 → SBR-BADGE-01; SBR-CALC-04 → SBR-CALC-02; SBR-TOT-04 → SBR-TOT-01; SBR-LINK-02 → SBR-LINK-01; SBR-DEACT-01 → SBR-DEACT-07; SBR-UNAS-03 → SBR-UNAS-02; SBR-COL-02 → SBR-COL-01; SBR-COL-06 → SBR-COL-01; SBR-STATE-02 → SBR-STATE-01.
+> Cut (retired, body kept locally): SBR-SORT-06 (no-op sort assertion); SBR-EXP-09 (px font-tier minutiae).
+
+
 > Report Suite project — SBR report. Coverage doc authored 2026-07-22 from
 > `specs/sbr-sales-by-representative.md` (spec revision `_1`, change log through 2026-07-21).
 > SPEC-ONLY authoring (no designs yet). **127 cases / 23 sections**, all `viu_status: VIU-Pending`.

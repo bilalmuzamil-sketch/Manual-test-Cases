@@ -1,5 +1,14 @@
 # Technician Utilization (TU) — Coverage Matrix
 
+> **CONSOLIDATION UPDATE 2026-07-28 (user-authorized, pushed to TestRail):** the suite was
+> consolidated to **57 active TU cases**. Every case ID below still resolves:
+> a merged-away ID's coverage now lives in its SURVIVOR (mapping below); cut cases' assertions
+> were either duplicates of a survivor or dropped by the usefulness/sense audit. Detail:
+> `consolidation-backup-2026-07-28/MANIFEST.md` + `quality-audit-2026-07-28/MERGE-PLAN.md`.
+>
+> Merged-away → survivor: TU-HRS-01 → TU-HRS-02; TU-TECH-05 → TU-NAV-08.
+
+
 > Report Suite project — per-report coverage doc. Spec source:
 > `build/report-suite/specs/technician-utilization.md` (revision `_1`, ingested
 > 2026-07-22; latest change-log entry 2026-07-16 — All-Time removed, 366-day cap,

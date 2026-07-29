@@ -1,5 +1,15 @@
 # Parts Velocity (PV) — Coverage Matrix
 
+> **CONSOLIDATION UPDATE 2026-07-28 (user-authorized, pushed to TestRail):** the suite was
+> consolidated to **67 active PV cases**. Every case ID below still resolves:
+> a merged-away ID's coverage now lives in its SURVIVOR (mapping below); cut cases' assertions
+> were either duplicates of a survivor or dropped by the usefulness/sense audit. Detail:
+> `consolidation-backup-2026-07-28/MANIFEST.md` + `quality-audit-2026-07-28/MERGE-PLAN.md`.
+>
+> Merged-away → survivor: PV-FILT-02 → PV-FILT-01; PV-EXP-09 → PV-EXP-10.
+> Cut (retired, body kept locally): PV-COL-07 (stale-schema seeding not manual-testable).
+
+
 > Report Suite project — per-report coverage doc. Spec source:
 > `build/report-suite/specs/parts-velocity.md` (revision `_1`, ingested 2026-07-22;
 > latest change-log entry 2026-07-16 — server-side data model per Milan's review).

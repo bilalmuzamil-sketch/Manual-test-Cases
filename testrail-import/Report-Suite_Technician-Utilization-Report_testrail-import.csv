@@ -33,18 +33,21 @@ First visit defaults to the This Month preset and the user's active location,TU 
 4. This matches the Timesheet Activities report's single-time-zone grouping.",specs/technician-utilization.md S1-R7; S1 context notes,,
 A user without the timesheet-reports permission does not see the report in the navigation,TU — Access & Display,Negative,High,1. You are signed in as a user whose role lacks the permission that controls the Timesheet Activities report.,"1. Open the reports navigation.
 2. Look for Technician Utilization under Performance.",1. The Technician Utilization report does NOT appear in the navigation.,specs/technician-utilization.md S1-N1,,
-The standard no-data message shows when no technician clocked time in scope,TU — Access & Display,Negative,Medium,"1. A date range exists in which no technician clocked any time at the selected location(s), or a selectable location has no clocked time for the range.","1. Select that empty date range (or the empty location) and let the report load.
-2. Read the message in the data area and look for the Summary row.","1. Instead of rows, the data area shows exactly: ""Empty bays, endless possibilities. Get Going!"" (the application's standard reports no-data label).
+Standard no-data message when no time in scope or all technicians cleared,TU — Access & Display,Negative,Medium,"1. A date range exists in which no technician clocked any time at the selected location(s), or a selectable location has no clocked time for the range.
+2. For the cleared-filter check: the report can also be loaded with rows showing.","1. Select that empty date range (or the empty location) and let the report load.
+2. Read the message in the data area and look for the Summary row.
+3. Separately, with rows loaded, use ""Clear all"" in the Filter by Technician filter and re-read the data area and the Summary row.","1. Instead of rows, the data area shows exactly: ""Empty bays, endless possibilities. Get Going!"" (the application's standard reports no-data label).
 2. The Summary row is hidden.
-3. The same message is used whether the cause is genuinely no data or a cleared technician filter - this version does not use distinct copy for the two.",specs/technician-utilization.md S1-N2; S9-N2; §7,,
-Column headers appear in the fixed order ending with Est. Lost Labor,TU — Hours & Utilization,Functional,High,1. You are on the Technician Utilization report with rows loaded.,1. Read the column headers left to right.,"1. The headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor.",specs/technician-utilization.md S2-R1,,
-"Total, WO, and Internal Hours show the range's clocked hours in two decimals with no thousands separator",TU — Hours & Utilization,Functional,Critical,"1. A technician with known clocked time in the range: some clocked to work orders and some to an internal, non-billable activity (e.g. shop cleanup or a staff meeting).
-2. Part of the internal time was clocked at a location with NO default labor rate configured (for the completeness check).","1. Read the technician's Total Hours, WO Hours, and Internal Hours.
-2. Compare against the known clock records.
-3. Check the number format on a value over 100 hours.","1. Total Hours = all time the technician was clocked in for the range.
-2. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.
-3. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.
-4. Hours show two decimal places with NO thousands separator (e.g. ""107.70""), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 → 0.01).",specs/technician-utilization.md S2-R2; S2-R3; S2-R4; S2-R5; §3,,
+3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter.",specs/technician-utilization.md S1-N2; S9-N2; S5-N1; S3-N1; §7,,
+"Headers in fixed order; Total, WO and Internal Hours show clocked hours (2 dp)",TU — Hours & Utilization,Functional,Critical,"1. A technician with known clocked time in the range: some clocked to work orders and some to an internal, non-billable activity (e.g. shop cleanup or a staff meeting).
+2. Part of the internal time was clocked at a location with NO default labor rate configured (for the completeness check).","1. Read the column headers left to right.
+2. Read the technician's Total Hours, WO Hours, and Internal Hours.
+3. Compare against the known clock records.
+4. Check the number format on a value over 100 hours.","1. The headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor.
+2. Total Hours = all time the technician was clocked in for the range.
+3. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.
+4. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.
+5. Hours show two decimal places with NO thousands separator (e.g. ""107.70""), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 → 0.01).",specs/technician-utilization.md S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3,,
 "Utilization % is WO hours over total hours computed from unrounded values, shown to one decimal with round-half-up",TU — Hours & Utilization,Functional,Critical,1. A technician whose unrounded WO and total hours produce a checkable percentage - ideally one landing on a rounding tie (e.g. computing to 66.65%).,"1. Compute the expected value by hand: work-order hours ÷ total clocked hours × 100, from the UNROUNDED hours.
 2. Read the technician's Utilization % and compare.","1. Utilization % = work-order hours as a percentage of total clocked hours, computed from the unrounded hours (not from the already-rounded displays).
 2. It shows one decimal place followed by a percent sign, rounded round-half-up (66.65% → 66.7%).",specs/technician-utilization.md S2-R6; S2-R7; §3,,
@@ -113,10 +116,10 @@ Sorting reorders only the technician rows - the Summary stays at the bottom and 
 2. It stays visible at the bottom while the rows scroll.
 3. It uses the same number formats as the technician rows.
 4. Its values carry NO label prefix such as ""TOTAL:"" or ""AVG:"".",specs/technician-utilization.md S3-R1; S3-R2; S3-R6; S3-R7; S8-R5,,
-"Summary hours total the visible technicians from unrounded values - eye-summing the rows may differ by a cent, and all-selected equals shop totals",TU — Summary,Functional,High,1. Several technicians with known clocked hours are visible (all selected in the technician filter).,"1. Read the Summary Total Hours, WO Hours, and Internal Hours.
+Summary totals visible technicians from unrounded hours; 0.01 drift expected,TU — Summary,Functional,High,1. Several technicians with known clocked hours are visible (all selected in the technician filter).,"1. Read the Summary Total Hours, WO Hours, and Internal Hours.
 2. Hand-sum the DISPLAYED per-row values and compare with the Summary.
 3. Compare the Summary against the known shop totals for the full range at the selected location(s).","1. Each Summary hours value is the total of that column across the VISIBLE technicians, computed from unrounded hours and rounded once for display (round-half-up).
-2. Eye-summing the displayed rows MAY differ from the displayed Summary by a cent - this is expected in a compute-from-unrounded report, not a defect.
+2. Eye-summing the displayed rows MAY differ from the displayed Summary by 0.01 — one unit in the last decimal (these values are HOURS, not money) — expected in a compute-from-unrounded report, not a defect.
 3. With every technician selected, the Summary row equals the shop totals for the full date range at the selected location(s).",specs/technician-utilization.md S3-R3; §3 context note; S5-E1,,
 "Summary Utilization % is the weighted rate, not the average of the per-technician percentages",TU — Summary,Functional,High,1. Two visible technicians with deliberately skewed hours - e.g. tech A: 1.00 total / 1.00 WO (100%); tech B: 9.00 total / 0.00 WO (0.0%) - so the weighted and averaged results differ clearly.,"1. Compute the weighted rate: summed WO hours ÷ summed clocked hours × 100 (10% in the example).
 2. Compute the naive average of the two row percentages (50% in the example).
@@ -180,9 +183,6 @@ Previously deselected technicians stay deselected when the user returns to the r
 3. Check the two technicians' selection state and the other technicians'.","1. The two deselected technicians are STILL deselected on return - the deselected set is what persists (saved in this browser, not on the account).
 2. All other technicians - including any who appear for the first time - are selected.
 3. The saved date range and location selection are restored alongside (per S1-R8).",specs/technician-utilization.md S5-R10; S1-R8; §3,,
-Clearing all technicians shows the no-data message and hides the Summary row,TU — Technician Filter,Negative,Medium,1. You are on the Technician Utilization report with rows loaded.,"1. In the Filter by Technician filter, use ""Clear all"" so every currently-listed technician is deselected.
-2. Read the data area and look for the Summary row.","1. The report shows the no-data message: ""Empty bays, endless possibilities. Get Going!"" (the same standard label as the genuinely-no-data case - no distinct copy in this version).
-2. The Summary row is hidden (no technician rows are visible).",specs/technician-utilization.md S5-N1; S3-N1; §7,,
 "Total Hours is a real link with a non-color affordance and keyboard access, while the Summary's Total Hours is not a link",TU — Deep Links,Functional,High,1. You are on the Technician Utilization report with technician rows and the Summary row visible.,"1. Look at a technician row's Total Hours value.
 2. Tab to it with the keyboard and check the focus indicator; press Enter.
 3. Go back and look at the Summary row's Total Hours value.","1. Every technician row's Total Hours is rendered as a link (every rendered row has clocked time > 0, so the link always applies).
@@ -193,10 +193,10 @@ Clearing all technicians shows the no-data message and hides the Summary row,TU 
 3. Read the technician filter and the date range on the opened report.","1. The Timesheet Activities report opens in the SAME browser tab.
 2. It is already filtered to that technician.
 3. It uses the same date range that was active on the Technician Utilization report.",specs/technician-utilization.md S6-R2; S6-R3; S6-R4,,
-"For the same range and single active location with closed records, Total Hours reconciles to the Timesheet Activities total to the cent",TU — Deep Links,Functional,Critical,"1. A technician has only CLOSED (clocked-out) records in the range - no open clock.
+"Same range, single location, closed records: Total Hours matches Timesheet",TU — Deep Links,Functional,Critical,"1. A technician has only CLOSED (clocked-out) records in the range - no open clock.
 2. The report's location filter holds exactly ONE location, and it is the user's currently active shop.","1. Read the technician's Total Hours on the Technician Utilization report (two decimals).
 2. Click the Total Hours link and read the same technician's total on the opened Timesheet Activities report.
-3. Compare the two to the cent.","1. The two totals MATCH to the cent (two decimals) - both reports read the same clock records and round the same way (round-half-up, from unrounded values).
+3. Compare the two, to two decimals.","1. The two totals MATCH exactly, to two decimals (these values are hours, not money) - both reports read the same clock records and round the same way (round-half-up, from unrounded values).
 2. Under this exact scope (same range, same single location, closed records) a mismatch IS a defect.
 3. The two documented scope differences (open clocks, multi-location drill-through) are covered by separate cases and are NOT defects.",specs/technician-utilization.md S1-R9; §2; §5 Assumptions,,
 Reconciliation exception (a): an open clock is snapshotted at each report's own load instant - a difference of the elapsed time is expected,TU — Deep Links,Functional,Medium,"1. A technician is still clocked in (an open, not-yet-clocked-out record) inside the range.","1. Load the Technician Utilization report and read the technician's Total Hours; watch whether the value ticks on screen.

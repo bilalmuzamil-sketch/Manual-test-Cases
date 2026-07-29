@@ -148,9 +148,14 @@ def joinlines(lst):
 
 
 def load_cases():
+    """Load all authored cases, EXCLUDING Retired ones (2026-07-28 consolidation:
+    merged-away members / cuts / the Print retire keep their bodies in cases/*.json
+    marked viu_status 'Retired ...' and are excluded from every deliverable —
+    same convention as the Fees & Discounts / Simple Flow generators)."""
     cases = []
     for f in sorted(glob.glob(os.path.join(CASES_DIR, "cases-*.json"))):
-        cases += json.load(open(f))
+        cases += [c for c in json.load(open(f))
+                  if not str(c.get("viu_status", "")).startswith("Retired")]
     return cases
 
 

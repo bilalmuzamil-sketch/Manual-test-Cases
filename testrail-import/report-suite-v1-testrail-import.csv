@@ -1,13 +1,12 @@
 Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
-Sales By Customer appears in the Reports navigation and opens the report,SBC — Access & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+Sales By Customer appears in Reports navigation and opens with correct titles,SBC — Access & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Your role has the Sales By Customer report View permission.","1. Open the Reports area from the main navigation.
 2. Look through the Reports left-side navigation for the report entry.
-3. Click the ""Sales By Customer"" entry.","1. ""Sales By Customer"" is listed in the Reports left-side navigation.
-2. Clicking it opens the Sales By Customer report in the main content area.",specs/sbc-sales-by-customer.md Story 1 S1-R1,,
-Page title and browser tab title read Sales By Customer,SBC — Access & Navigation,Functional,Medium,"1. You are signed in with the Sales By Customer report View permission.
-2. You have opened the Sales By Customer report.","1. Read the page title shown at the top of the report.
-2. Read the browser tab's title.","1. The page title reads ""Sales By Customer.""
-2. The browser tab title reads ""Sales By Customer - Report | ShopView"".",specs/sbc-sales-by-customer.md Story 1 S1-R3; S1-R4,,
+3. Click the ""Sales By Customer"" entry.
+4. Read the page title at the top of the report and the browser tab's title.","1. ""Sales By Customer"" is listed in the Reports left-side navigation.
+2. Clicking it opens the Sales By Customer report in the main content area.
+3. The page title reads ""Sales By Customer.""
+4. The browser tab title reads ""Sales By Customer - Report | ShopView"".",specs/sbc-sales-by-customer.md Story 1 S1-R1; S1-R3; S1-R4,,
 A user with the dedicated Sales By Customer View permission can see and open the report,SBC — Permissions,Functional,Critical,"1. A test user exists whose role has the dedicated Sales By Customer report View permission (create a ZZAUTOTEST custom role if needed).
 2. You are signed in as that user.","1. Open the Reports area.
 2. Click ""Sales By Customer"" in the left-side navigation.","1. The ""Sales By Customer"" entry is visible in the Reports navigation.
@@ -23,11 +22,11 @@ Opening an invoice you lack permission for shows the standard access-denied stat
 2. Look at the destination page.
 3. Press the browser back button.","1. The destination page shows the application's standard access-denied state.
 2. Pressing back returns you to the Sales By Customer report.",specs/sbc-sales-by-customer.md Story 9 S9-N2,,
-Location access is enforced: the report never includes data from a location the user cannot access,SBC — Permissions,Negative,High,"1. The organization has at least two locations, each with invoices in the chosen date range (seed ZZAUTOTEST data if needed).
+Location access enforced: no data from a location the user cannot access,SBC — Permissions,Negative,High,"1. The organization has at least two locations, each with invoices in the chosen date range (seed ZZAUTOTEST data if needed).
 2. A non-administrator test user is assigned to only ONE of the locations.
 3. An administrator account is also available.","1. Sign in as the administrator, open the report, and open the location filter — note the locations listed.
 2. Sign in as the non-administrator, open the report, and open the location filter — note the locations listed.
-3. As the non-administrator, attempt to request a location you are not assigned to (for example by editing the page link if the location is carried there, or any other means available).
+3. As the non-administrator, attempt to request a location you are not assigned to by these routes: (a) edit the page link (URL) if the location selection is carried there, and open the edited link; (b) restore a saved view stored while an extra location was assigned (set that saved view up first if practical).
 4. Check the report data.","1. The administrator's filter lists every location in the organization.
 2. The non-administrator's filter lists only the locations assigned to them.
 3. A requested location the user does not have access to is ignored — the report does NOT widen to the whole organization.
@@ -36,9 +35,6 @@ Date range picker offers eleven options in the specified order,SBC — Date Rang
 2. Open it and read the options from top to bottom.","1. A date range picker is visible in the report toolbar.
 2. It offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
 3. There is no ""All Time"" option.",specs/sbc-sales-by-customer.md Story 2 S2-R1; S2-R2,,
-Date range defaults to This Month when nothing is saved and no range is in the page link,SBC — Date Range Filter,Functional,High,"1. Your browser has no saved view for this report (first visit, or clear the browser's site data first).
-2. You open the report by its plain address with no date range in the page link.","1. Open the Sales By Customer report.
-2. Read the date range picker's current value.","1. The date range picker shows ""This Month.""",specs/sbc-sales-by-customer.md Story 2 S2-R5,,
 Custom range opens a start/end date dialog and cannot exceed a 366-day span,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Open the date range picker and choose ""Custom.""
 2. In the dialog that opens, pick a start and end date less than 366 days apart and apply.
 3. Open ""Custom"" again and try to pick a start and end date MORE than 366 days apart.","1. Choosing ""Custom"" opens a date-picker dialog for a start and end date.
@@ -48,27 +44,21 @@ Changing the date range writes the chosen value to the page link for sharing and
 2. Look at the browser's address bar.
 3. Copy the page link, open it in a fresh browser profile with no saved view for this report, and check the date range.","1. The chosen date range value is written into the page link.
 2. Opening that link in a browser with no saved view for this report restores the sender's date range.",specs/sbc-sales-by-customer.md Story 2 S2-R6; S2-R9 (context),,
-Product Type dropdown offers exactly three options with Parts & Service as the default,SBC — Product Type Filter,Functional,High,1. You are on the Sales By Customer report with no saved view (first visit or cleared browser storage).,"1. Find the ""Product Type"" dropdown in the report toolbar.
-2. Read its current value before touching it.
-3. Open it and read the options in order.","1. A ""Product Type"" dropdown is visible in the report toolbar.
-2. The default selection on first load is ""Parts & Service.""
-3. It offers exactly three options, in this order: ""Parts & Service,"" ""Parts only,"" ""Service only.""",specs/sbc-sales-by-customer.md Story 3 S3-R1; S3-R2; S3-R3,,
-Service only shows only invoices starting with S; Parts only shows only invoices starting with P,SBC — Product Type Filter,Functional,High,"1. You are on the Sales By Customer report.
-2. The date range contains at least one service invoice (number starting with S) and one parts invoice (number starting with P) — seed ZZAUTOTEST data if needed.","1. Set Product Type to ""Service only,"" expand a customer down to invoice rows, and read the invoice numbers.
-2. Set Product Type to ""Parts only"" and read the invoice numbers again.","1. Under ""Service only,"" every invoice shown has a number starting with S; parts invoices are gone and all counts/totals reflect only S invoices.
-2. Under ""Parts only,"" every invoice shown has a number starting with P; service invoices are gone and all counts/totals reflect only P invoices.
-3. The whole invoice is classified by its number prefix — there is no per-line-item split.",specs/sbc-sales-by-customer.md Story 3 S3-R5; S3-R6,,
-Parts & Service applies no product-type filter,SBC — Product Type Filter,Functional,Medium,1. You are on the Sales By Customer report with both S and P invoices in the date range.,"1. Set Product Type to ""Parts only"" and note the visible customers/totals.
-2. Set Product Type back to ""Parts & Service.""","1. With ""Parts & Service"" selected, no product-type filter is applied — both S and P invoices are included again and counts/totals cover both.",specs/sbc-sales-by-customer.md Story 3 S3-R4,,
+Product Type: three options with Parts & Service default; S/P prefix filtering,SBC — Product Type Filter,Functional,High,"1. You are on the Sales By Customer report with no saved view (first visit or cleared browser storage), so the first-load default can be read.
+2. The date range contains at least one service invoice (number starting with S) and one parts invoice (number starting with P) — seed ZZAUTOTEST data if needed.","1. Find the ""Product Type"" dropdown in the report toolbar; read its value before touching it, then open it and read the options in order.
+2. Set Product Type to ""Service only,"" expand a customer down to invoice rows, and read the invoice numbers.
+3. Set Product Type to ""Parts only"" and read the invoice numbers again.
+4. Set Product Type back to ""Parts & Service.""","1. The dropdown offers exactly three options, in this order: ""Parts & Service,"" ""Parts only,"" ""Service only"" — with ""Parts & Service"" selected by default on first load.
+2. Under ""Service only,"" every invoice shown has a number starting with S; parts invoices are gone and all counts/totals reflect only S invoices.
+3. Under ""Parts only,"" every invoice shown has a number starting with P; service invoices are gone and all counts/totals reflect only P invoices.
+4. With ""Parts & Service"" selected, no product-type filter is applied — both S and P invoices are included and counts/totals cover both.
+5. The whole invoice is classified by its number prefix — there is no per-line-item split.",specs/sbc-sales-by-customer.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6,,
 "Location filter is the rightmost filter, lists accessible locations, and pins All locations to the top",SBC — Location Filter,Functional,High,1. You are on the Sales By Customer report as a user with access to two or more locations.,"1. Look at the report toolbar's filters from left to right.
 2. Open the location filter and read its options.
 3. Click the ""All locations"" option, then click it again.","1. The location filter is the rightmost filter in the toolbar.
 2. It lists the locations the signed-in user has access to.
 3. An ""All locations"" option is pinned to the top.
 4. Activating ""All locations"" selects every listed location at once; activating it again clears them all at once.",specs/sbc-sales-by-customer.md Story 4 S4-R1; S4-R2; S4-R3,,
-Location filter defaults to the user's active location on first load,SBC — Location Filter,Functional,High,"1. Your browser has no saved view for this report.
-2. You are working in a known active location (check the application's location switcher).","1. Open the Sales By Customer report.
-2. Read the location filter's current selection.",1. The filter defaults to the single location you are currently working in (your active location) — not all locations.,specs/sbc-sales-by-customer.md Story 4 S4-R4,,
 Selecting locations scopes the data; All locations covers every accessible one,SBC — Location Filter,Functional,High,"1. At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed).
 2. You are on the Sales By Customer report.","1. Select only location A in the location filter and note the customers/totals.
 2. Select locations A and B together and note the change.
@@ -89,17 +79,21 @@ Selecting locations scopes the data; All locations covers every accessible one,S
 3. Click one listed customer to select it and look at its row in the dropdown.","1. As you type, customers whose names contain the typed text appear in the list — matching is case-insensitive and matches anywhere in the name (a ""contains"" match, not starts-with).
 2. The list is scoped to the active date range, Product Type, and location.
 3. A selected customer is shown with a checkmark.",specs/sbc-sales-by-customer.md Story 18 S18-R2,,
-Pinned control toggles between All customers and Clear all with the matching action,SBC — Customer Filter,Functional,High,1. You are on the Sales By Customer report with several customers in the current results.,"1. Open the Customer filter while it is in the all-customers state and read the pinned control at the top of the dropdown.
-2. Activate it.
+Pinned control toggles All customers and Clear all; clearing shows empty state,SBC — Customer Filter,Functional,High,1. You are on the Sales By Customer report with several customers in the current results.,"1. Open the Customer filter while it is in the all-customers state and read the pinned control at the top of the dropdown.
+2. Activate it (""Clear all"") and read the table body, the totals row, and the filter's collapsed label.
 3. Read the pinned control again and activate it once more.","1. In the all-customers state the pinned control reads ""Clear all""; activating it clears the selection to an empty set.
 2. When the filter is NOT in the all-customers state the pinned control reads ""All customers""; activating it puts the filter back in the all-customers state.
-3. The control is pinned to the top of the dropdown in both states.",specs/sbc-sales-by-customer.md Story 18 S18-R3,,
+3. The control is pinned to the top of the dropdown in both states.
+4. After ""Clear all"": the report shows the empty-state message ""No sales data found for the selected filters."", the totals row shows zeros, and the collapsed label reads ""None.""",specs/sbc-sales-by-customer.md Story 18 S18-R3; S18-N1; S17-E1,,
 First load starts in the all-customers state and the report shows every customer,SBC — Customer Filter,Functional,High,"1. Your browser has no saved view for this report.
-2. Several customers have invoices in the default date range.","1. Open the Sales By Customer report.
+2. Several customers have invoices in the default date range.
+3. A customer exists that has invoices ONLY in a wider date range than the current one (seed a ZZAUTOTEST invoice dated last month if needed).","1. Open the Sales By Customer report.
 2. Read the Customer filter's collapsed label.
-3. Check the customer rows shown.","1. The Customer filter's collapsed label reads ""All customers.""
+3. Check the customer rows shown.
+4. Widen the date range so the customer with no matching invoices now has one; re-check the label and the rows.","1. The Customer filter's collapsed label reads ""All customers.""
 2. The report shows every customer matching the other active filters.
-3. The all-customers state is an explicit state — while it is active, any customer that appears later (new data) is included automatically.",specs/sbc-sales-by-customer.md Story 18 S18-R4; S18-R5,,
+3. The all-customers state is an explicit state — while it is active, any customer that appears later (new data) is included automatically.
+4. After the filter change the filter stays in the all-customers state (label still ""All customers"") and every customer matching the new filters is included — including the newly-appearing one, with no manual re-selection.",specs/sbc-sales-by-customer.md Story 18 S18-R4; S18-R5; S18-R9; S18-E1,,
 "Collapsed label reads None, the customer's name, or N selected, and shows the query text while typing",SBC — Customer Filter,Functional,Medium,1. You are on the Sales By Customer report with at least three customers in the current results.,"1. Open the Customer filter and use ""Clear all"" to empty the selection; read the collapsed label.
 2. Select exactly one customer; read the collapsed label.
 3. Select a second and third customer; read the collapsed label.
@@ -112,15 +106,6 @@ Changing the customer selection narrows the table to the selected customers and 
 3. Read the table rows and the totals row.","1. The report shows only the two selected customers.
 2. The table refreshes as a fresh first page of results.
 3. The totals row updates to cover only the selected customers' matching invoices.",specs/sbc-sales-by-customer.md Story 18 S18-R5; S18-R11,,
-Clearing every customer shows the empty state with a zero totals row,SBC — Customer Filter,Negative,Medium,1. You are on the Sales By Customer report with data on screen.,"1. Open the Customer filter and activate ""Clear all"" so no customer is selected.
-2. Read the table body and the totals row.","1. The report shows the empty-state message ""No sales data found for the selected filters.""
-2. The totals row shows zeros.
-3. The Customer filter's collapsed label reads ""None.""",specs/sbc-sales-by-customer.md Story 18 S18-N1; S17-E1,,
-"In the all-customers state a filter change keeps every customer included, including newly-appearing ones",SBC — Customer Filter,Functional,Medium,"1. You are on the report in the all-customers state.
-2. A customer exists that has invoices ONLY in a wider date range than the current one (seed a ZZAUTOTEST invoice dated last month if needed).","1. With the current (narrow) date range, confirm that customer is not shown.
-2. Widen the date range so that customer's invoice now matches.
-3. Check the table and the Customer filter label.","1. The filter stays in the all-customers state (label still ""All customers"").
-2. Every customer matching the new filters is included — including the newly-present customer, without any manual re-selection.",specs/sbc-sales-by-customer.md Story 18 S18-R4; S18-R9; S18-E1,,
 "A subset selection reconciles on a filter change: kept if present, dropped if absent, new customers not auto-added",SBC — Customer Filter,Functional,Medium,"1. You are on the report with three customers A, B, C where: A has invoices in both this month and last month; B has invoices only in this month; C has invoices only in last month (seed ZZAUTOTEST data as needed).
 2. Date range is This Month; you have selected exactly customers A and B in the Customer filter.","1. Change the date range to Last Month.
 2. Read the table rows and the Customer filter selection.","1. Customer A (still present in the new results) stays selected and is shown.
@@ -137,12 +122,16 @@ Each customer gets one summary row with its name followed by the invoice count i
 A customer with no matching invoices in the current view is not shown,SBC — Tree & Rows,Negative,High,"1. A customer exists whose invoices all fall OUTSIDE the current date range (seed if needed).
 2. You are on the Sales By Customer report.","1. Set a date range that contains none of that customer's invoices.
 2. Look for the customer in the table.",1. The customer is not shown — there are no zero-value placeholder rows.,specs/sbc-sales-by-customer.md Story 7 S7-N1,,
-"Expanding a customer reveals its asset rows with vehicle icon, label, count, rolled-up columns and indentation",SBC — Tree & Rows,Functional,Critical,1. A customer in the current view has invoices on at least two different vehicles (seed ZZAUTOTEST work orders on two assets if needed).,"1. Click the chevron control on that customer's summary row.
-2. Read the rows that appear beneath the summary row.","1. The customer's asset rows appear beneath the summary row — one row per vehicle the customer's invoices were done on.
+Expanding a customer reveals asset rows; chevrons toggle and are independent,SBC — Tree & Rows,Functional,Critical,"1. A customer in the current view has invoices on at least two different vehicles (seed ZZAUTOTEST work orders on two assets if needed).
+2. At least two customers with assets are in the current view.","1. Click the chevron control on customer A's summary row and read the rows that appear beneath it.
+2. Expand one of customer A's assets, then expand customer B.
+3. Click customer A's chevron again and check customer B.","1. The customer's asset rows appear beneath the summary row — one row per vehicle the customer's invoices were done on.
 2. Each asset row shows a vehicle icon, the asset label, and the asset's invoice count in parentheses.
 3. Each asset row shows the same financial columns as the customer row, rolled up for that asset.
 4. The Date cell is blank on asset rows.
-5. Asset rows are indented one level under the customer.",specs/sbc-sales-by-customer.md Story 8 S8-R1; S8-R2; S8-R5; S8-R5a; S8-R5b; S8-R5c,,
+5. Asset rows are indented one level under the customer.
+6. Each chevron toggles back to collapsed on a second activation.
+7. Collapsing customer A does not affect customer B's expansion; each asset's expansion state is likewise independent.",specs/sbc-sales-by-customer.md Story 8 S8-R1; S8-R2; S8-R5; S8-R5a; S8-R5b; S8-R5c; S8-R15,,
 "Expanding an asset reveals its invoice detail rows with number link, date and per-invoice columns",SBC — Tree & Rows,Functional,Critical,1. You have expanded a customer and can see its asset rows.,"1. Click the chevron on an asset row.
 2. Read the invoice detail rows that appear.","1. The invoice detail rows for that asset appear, indented one level deeper than the asset row.
 2. Each detail row shows the invoice number (as a link), the invoice date, and the per-invoice Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, and Subtotal.
@@ -155,21 +144,17 @@ A customer with no matching invoices in the current view is not shown,SBC — Tr
 2. Click a financial column header to change the table sort, and re-read the asset rows.","1. The customer's real asset rows are ordered A→Z by their label, case-insensitive.
 2. The no-vehicle work collects under a single row labeled ""Parts Sales,"" always sorted last among that customer's assets.
 3. Changing the column sort does not change the asset order — assets stay A→Z with ""Parts Sales"" last.",specs/sbc-sales-by-customer.md Story 8 S8-R6; S8-R6a; Story 10 S10-R6,,
-Chevrons toggle closed on a second click and every customer's and asset's expansion is independent,SBC — Tree & Rows,Functional,Medium,1. At least two customers with assets are in the current view.,"1. Expand customer A, then expand one of its assets.
-2. Expand customer B.
-3. Click customer A's chevron again.
-4. Check customer B.","1. Each chevron toggles back to collapsed on a second activation.
-2. Collapsing customer A does not affect customer B's expansion.
-3. Each asset's expansion state is likewise independent.",specs/sbc-sales-by-customer.md Story 8 S8-R15,,
 "Header-row chevron expands or collapses every customer on the current page, with matching icon and tooltip",SBC — Tree & Rows,Functional,Medium,1. Several customers are visible on the current page.,"1. Hover the chevron in the table header row and read the tooltip.
 2. Click it and watch the customer rows.
 3. Hover it again and read the tooltip, then click it again.","1. With at least one visible customer collapsed, the header chevron shows the ""expand"" icon and its tooltip reads ""Expand all.""
 2. Clicking it expands every customer on the current page in one action — it acts on the currently visible customers only, not the whole result set.
 3. With all visible customers expanded, the icon switches to ""collapse"" and the tooltip reads ""Collapse all""; clicking collapses them all.",specs/sbc-sales-by-customer.md Story 8 S8-R16; S8-R17; S8-R18; S8-R19,,
-"Any change that reloads customer rows collapses all expansion, but typing in the Customer filter does not",SBC — Tree & Rows,Functional,Medium,1. You are on the report with at least one customer expanded down to invoice rows.,"1. With rows expanded, open the Customer filter and TYPE a search query (do not change the selection); watch the expanded rows.
+Reload-causing changes collapse expansion; Customer filter typing does not,SBC — Tree & Rows,Functional,Medium,"1. You are on the report with at least one customer expanded down to invoice rows.
+2. Enough customers exist to fill more than one page of results (seed ZZAUTOTEST customers if needed).","1. With rows expanded, open the Customer filter and TYPE a search query (do not change the selection); watch the expanded rows.
 2. Now change the date range (or Product Type, location, Customer selection, or sort).
-3. Look at the previously expanded rows.","1. Typing in the Customer filter's type-ahead only narrows the dropdown list — the expanded table rows stay expanded.
-2. A change that re-fetches customer rows (date range, Product Type, location, Customer selection, or sort) collapses all expanded rows.",specs/sbc-sales-by-customer.md Story 8 S8-R20; S8-R21,,
+3. Look at the previously expanded rows, the loading state, and the set of customers on the page.","1. Typing in the Customer filter's type-ahead only narrows the dropdown list — the expanded table rows stay expanded.
+2. A change that re-fetches customer rows (date range, Product Type, location, Customer selection, or sort) collapses all expanded rows.
+3. While the re-fetch is in flight the table shows the standard loading state; when it clears, the page shows the first page of the newly ordered set — the customers on the page can change.",specs/sbc-sales-by-customer.md Story 8 S8-R20; S8-R21; Story 10 S10-R8a; S10-R8b; S10-R8c,,
 "Edge: a single-invoice asset can still be expanded, and a customer with only no-vehicle work shows a single Parts Sales row",SBC — Tree & Rows,Functional,Medium,1. Customer A has an asset with exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the current view (seed ZZAUTOTEST data).,"1. Expand customer A and click the chevron of the single-invoice asset.
 2. Expand customer B and read its asset rows.","1. The single-invoice asset expands and shows exactly one invoice detail row.
 2. Customer B shows a single ""Parts Sales"" row and no vehicle rows.",specs/sbc-sales-by-customer.md Story 8 S8-E1; S8-E2,,
@@ -187,11 +172,11 @@ Chevrons toggle closed on a second click and every customer's and asset's expans
 2. A cell with no value for its row (for example the Date cell on a customer or asset row) is left blank and keeps its column position; no value moves into another column.
 3. The Date cell on the customer summary row is blank.
 4. Every cell on a customer summary row uses font-weight 600, except the Subtotal cell which uses font-weight 700.",specs/sbc-sales-by-customer.md Story 7 S7-R8; S7-R9; S7-R10; S7-R15; S7-R16,,
-Asset label = year make model plus the serial number as the identifier,SBC — Asset Labels,Functional,High,"1. One customer has ZZAUTOTEST assets with invoices in range: (a) one with a serial number recorded, (b) one with no serial number.",1. Expand the customer and read each asset row's label.,"1. Every label starts with the vehicle's year, make, and model.
+"Asset label = year make model + serial number, with missing-data fallbacks",SBC — Asset Labels,Functional,High,"1. One customer has ZZAUTOTEST assets with invoices in range: (a) one with a serial number recorded, (b) one with no serial number, (c) one with a VIN but no year, make, or model, (d) one with no year, make, model, or VIN (blank the fields as far as the asset form allows).",1. Expand the customer and read each asset row's label.,"1. Labels for assets that have them start with the vehicle's year, make, and model.
 2. Asset (a) shows its SERIAL NUMBER after the year/make/model as the identifier.
-3. For asset (b) (no serial number), note what the label shows instead — what stands in when the serial number is missing is confirmed in the build (the older wording used the unit number, then the plate, then the last 8 of the VIN).","SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8 — identifier OVERRIDDEN to serial number by kickoff video P24 29:54-30:46, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
-"An asset with no year, make or model is labeled with the VIN on its own",SBC — Asset Labels,Functional,Medium,"1. A ZZAUTOTEST asset exists with a VIN but no year, make, or model, and has an invoice in range.",1. Expand the owning customer and read that asset row's label.,"1. The label is the VIN on its own (no year/make/model base, no ""VIN …"" suffix form).",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R9),,
-"An asset with no year, make, model or VIN is labeled Unknown Asset",SBC — Asset Labels,Functional,Medium,"1. A ZZAUTOTEST asset exists with no year, make, model, or VIN, and has an invoice in range (if the app's asset form forces a value, blank the fields as far as it allows).",1. Expand the owning customer and read that asset row's label.,"1. The label reads ""Unknown Asset.""",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R10),,
+3. For asset (b) (no serial number), note what the label shows instead — what stands in when the serial number is missing is confirmed in the build (the older wording used the unit number, then the plate, then the last 8 of the VIN).
+4. Asset (c) (no year/make/model) is labeled with the VIN on its own.
+5. Asset (d) (no year/make/model/VIN) is labeled ""Unknown Asset.""","SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8 — identifier OVERRIDDEN to serial number by kickoff video P24 29:54-30:46, user ruling 2026-07-28; S8-R9; S8-R10 fallback rules kept)",,
 Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads,SBC — Asset Labels,Functional,Medium,"1. One customer has TWO ZZAUTOTEST assets whose labels come out identical (same year/make/model and same identifier situation), each with an invoice in range.","1. Expand the customer and read the two asset labels.
 2. Note which asset carries "" (#1)"" and which "" (#2)"".
 3. Reload the page and expand again.","1. The duplicate labels are suffixed "" (#1)"" and "" (#2)"" (and so on for more duplicates).
@@ -215,10 +200,13 @@ Clicking an invoice deleted or reversed after the report loaded shows the standa
 2. In another tab/session, that invoice is deleted or reversed AFTER the report loaded (do not refresh the report).","1. Back in the report (unrefreshed), click that invoice's number link.
 2. Read the destination page, then press the browser back button.","1. The destination page shows the application's standard ""not found"" state.
 2. Pressing back returns you to the report.",specs/sbc-sales-by-customer.md Story 9 S9-N1,,
-Every column is sortable except the chevron column; text sorts alphabetically and numbers by value,SBC — Sorting,Functional,High,1. Several customers with differing values are in the current view.,"1. Click each column header in turn (Customer, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal) and watch the order change.
+"All columns sortable except chevron; text alphabetical, numbers by value",SBC — Sorting,Functional,High,"1. Several customers with differing values are in the current view.
+2. A customer with multiple assets and invoices is in the view.","1. Click each column header in turn (Customer, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal) and watch the order change.
 2. Try clicking the chevron column's header position.
-3. Compare a text sort (Customer) and a numeric sort (Subtotal) against the values.","1. Every column is sortable except the chevron column.
-2. Text columns sort alphabetically; numeric columns sort by value (not as text).",specs/sbc-sales-by-customer.md Story 10 S10-R1; S10-R2,,
+3. Compare a text sort (Customer) and a numeric sort (Subtotal) against the values.
+4. Sort by Subtotal descending, expand a customer and an asset, and read the asset and invoice order.","1. Every column is sortable except the chevron column.
+2. Text columns sort alphabetically; numeric columns sort by value (not as text).
+3. Sorting reorders only the customer summary rows — asset rows keep their own order (A→Z with ""Parts Sales"" last) and invoice rows keep their order under their asset.",specs/sbc-sales-by-customer.md Story 10 S10-R1; S10-R2; S10-R6,,
 Default sort is Customer name ascending case-insensitive; clicking a header replaces it,SBC — Sorting,Functional,High,"1. No saved view exists (first visit or cleared storage).
 2. Customer names with mixed upper/lower-case first letters exist in the view (seed ZZAUTOTEST names like ""acme test"" and ""Best Test"").","1. Open the report and read the customer order.
 2. Click the Subtotal header and read the order again.","1. On first load, rows are ordered by Customer name, ascending, case-insensitive (a lower-case ""acme"" sorts by letter, not after all capitals).
@@ -229,16 +217,6 @@ Missing values sort to the bottom ascending and to the top descending; a Margin 
 Sorting by Date orders customers by their most recent invoice date even though the Date cell is blank on customer rows,SBC — Sorting,Functional,Medium,1. Two customers exist whose most recent invoice dates differ clearly (seed ZZAUTOTEST invoices on different dates).,"1. Click the Date column header.
 2. Compare the customer order with each customer's most recent invoice date (expand to check the invoice dates).","1. Customer rows order by each customer's most recent invoice date in the current view.
 2. The Date cells on customer rows stay blank — the sort still works.",specs/sbc-sales-by-customer.md Story 10 S10-R5,,
-Sorting reorders only the customer summary rows; asset and invoice ordering is untouched,SBC — Sorting,Functional,Medium,1. A customer with multiple assets and invoices is in the view.,"1. Sort by Subtotal descending.
-2. Expand a customer and an asset; read the asset order and the invoice order.","1. Only the customer summary rows are reordered by the sort.
-2. Asset rows keep their own order (A→Z with ""Parts Sales"" last) and invoice rows keep their order under their asset.",specs/sbc-sales-by-customer.md Story 10 S10-R6,,
-"Changing the sort shows the loading state, collapses expanded rows, and can change which customers are on the page",SBC — Sorting,Functional,Medium,"1. Enough customers exist to fill more than one page of results (seed ZZAUTOTEST customers if needed).
-2. At least one customer is expanded.","1. Click a column header to change the sort and watch the table.
-2. When the new order arrives, check the previously expanded rows and the set of customers on the page.","1. While the re-fetch is in flight the table shows the standard loading state; it clears when the re-ordered page arrives.
-2. All previously expanded customer rows are collapsed (assets/invoices re-fetch lazily on the next expand).
-3. The page shows the first page of the newly ordered full set — the customers on the page can change.",specs/sbc-sales-by-customer.md Story 10 S10-R8a; S10-R8b; S10-R8c,,
-With no customer rows the sort headers are still present and produce no visible change,SBC — Sorting,Negative,Low,1. The current filters produce no matching customers (the empty state is showing).,1. Click several column headers.,"1. The sort controls on the headers are still present.
-2. Clicking them produces no visible change (the empty state remains).",specs/sbc-sales-by-customer.md Story 10 S10-N1,,
 Financial columns appear in the specified order and Subtotal/Margin follow the spec's composition rules,SBC — Totals & Calculations,Functional,Critical,"1. A ZZAUTOTEST invoice exists with known labor, parts, and shop-supply amounts and known costs, in the current range.","1. Read the column headers left to right.
 2. Expand down to that invoice's detail row and read its values.
 3. Recalculate Subtotal and Margin by hand from the known amounts.","1. The financial columns appear in this order: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin % — with Subtotal as the rightmost column.
@@ -283,23 +261,23 @@ Invoice subtotals sum exactly to their asset row and asset subtotals sum exactly
 2. Hovering it shows the tooltip ""Column Selection.""
 3. The panel lists nine toggles, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %.
 4. With no saved selection, all nine toggleable columns default to visible.",specs/sbc-sales-by-customer.md Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7,,
-"A toggle hides the column's header and cells together; Customer, Subtotal and the chevron column are never in the list",SBC — Column Selector,Functional,High,1. You are on the report with data and the column selector open.,"1. Turn the ""Shop Supplies"" toggle off, then on again, watching the table.
-2. Read the toggle list for Customer, Subtotal, or a chevron entry.","1. Turning a toggle off hides that column's header and all its body cells together; turning it on restores both together.
-2. The Customer and Subtotal columns and the chevron control column do NOT appear in the toggle list and are always present.",specs/sbc-sales-by-customer.md Story 13 S13-R5; S13-R6,,
-"Hiding all nine toggleable columns is allowed and the table still shows Customer, Subtotal and the totals Subtotal",SBC — Column Selector,Negative,Medium,1. You are on the report with data.,"1. Open the column selector and turn all nine toggles off.
-2. Read the table.","1. All nine columns can be hidden — nothing blocks the last toggle.
-2. The table still renders the Customer and Subtotal columns.
-3. The totals row still shows its Subtotal.",specs/sbc-sales-by-customer.md Story 13 S13-N1,,
+"Column toggles hide header+cells; Customer, Subtotal and chevron never in list",SBC — Column Selector,Functional,High,1. You are on the report with data and the column selector open.,"1. Turn the ""Shop Supplies"" toggle off, then on again, watching the table.
+2. Read the toggle list for Customer, Subtotal, or a chevron entry.
+3. Turn all nine toggles off and read the table.","1. Turning a toggle off hides that column's header and all its body cells together; turning it on restores both together.
+2. The Customer and Subtotal columns and the chevron control column do NOT appear in the toggle list and are always present.
+3. All nine columns can be hidden — nothing blocks the last toggle; the table still renders the Customer and Subtotal columns and the totals row still shows its Subtotal.",specs/sbc-sales-by-customer.md Story 13 S13-R5; S13-R6; S13-N1,,
 The overflow menu holds only Download (CSV) and Download (PDF) — no Print item,SBC — Exports,Functional,High,1. You are on the Sales By Customer report.,"1. Find the overflow menu in the toolbar's action area and note its position.
 2. Open it and read the items in order.
 3. Look around the toolbar for any separate always-visible export buttons.","1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.
 2. The menu items read, in order: ""Download (CSV)"", ""Download (PDF)"" — and there is NO ""Print"" item anywhere in the menu.
 3. There are no separate always-visible export buttons — all exports live behind this one menu.","SV-8612; SV-8613 (specs/sbc-sales-by-customer.md S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — the 'Print' third menu item REMOVED per kickoff video P25 31:14, overriding Story 16 / SV-8614, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
-CSV download is a plain .csv file named by the active date range per the filename map,SBC — Exports,Functional,High,1. You are on the report with data.,"1. Set the range to This Month and choose ""Download (CSV)""; note the downloaded filename.
+CSV and PDF downloads are named by the active date range per the filename map,SBC — Exports,Functional,High,1. You are on the report with data.,"1. Set the range to This Month and choose ""Download (CSV)""; note the downloaded filename.
 2. Repeat for at least Today, Last Quarter, and a Custom range.
-3. Open a downloaded file in a text editor and in a spreadsheet.","1. The filename follows the range map: Today → sales-by-customer-today.csv; Yesterday → sales-by-customer-yesterday.csv; This Week → sales-by-customer-this_week.csv; Last Week → sales-by-customer-last_week.csv; This Month → sales-by-customer-this_month.csv; Last Month → sales-by-customer-last_month.csv; This Year → sales-by-customer-this_year.csv; Last Year → sales-by-customer-last_year.csv; This Quarter → sales-by-customer-this_quarter.csv; Last Quarter → sales-by-customer-last_quarter.csv; Custom → sales-by-customer-custom.csv.
+3. Open a downloaded file in a text editor and in a spreadsheet.
+4. Repeat steps 1-2 choosing ""Download (PDF)"" and note the filenames.","1. The filename follows the range map: Today → sales-by-customer-today.csv; Yesterday → sales-by-customer-yesterday.csv; This Week → sales-by-customer-this_week.csv; Last Week → sales-by-customer-last_week.csv; This Month → sales-by-customer-this_month.csv; Last Month → sales-by-customer-last_month.csv; This Year → sales-by-customer-this_year.csv; Last Year → sales-by-customer-last_year.csv; This Quarter → sales-by-customer-this_quarter.csv; Last Quarter → sales-by-customer-last_quarter.csv; Custom → sales-by-customer-custom.csv.
 2. For Custom the literal word ""custom"" is used — the actual start/end dates are not in the filename.
-3. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet — not an .xlsx workbook and not a JSON file.",specs/sbc-sales-by-customer.md Story 14 S14-R4; S14-R5,,
+3. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet — not an .xlsx workbook and not a JSON file.
+4. The PDF download follows the same range-to-filename map with a .pdf extension — for example, sales-by-customer-this_month.pdf, sales-by-customer-custom.pdf.",specs/sbc-sales-by-customer.md Story 14 S14-R4; S14-R5; Story 15 S15-R4,,
 "CSV has twelve columns in exact order, is flat (customer then invoice rows), and follows the blank-cell rules",SBC — Exports,Functional,High,1. You have downloaded the CSV for a view with at least one customer with several invoices.,"1. Read the header row.
 2. Read a customer row and an invoice row.
 3. Look for any asset-level rows.","1. The CSV has twelve columns in this exact order: Customer, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.
@@ -317,13 +295,13 @@ CSV download is a plain .csv file named by the active date range per the filenam
 3. Compare each file's contents against the on-screen rows.","1. Each export contains exactly the customers matching the active filters — the selected customers, within the active date range, Product Type, and location — in the active sort order.
 2. When every customer is selected, the export contains the full set of customers under those filters.
 3. The chosen date range and Product Type are reflected in both exports.",specs/sbc-sales-by-customer.md Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7,,
-CSV action shows a loading state while exporting and a CSV export failed toast on failure,SBC — Exports,Negative,Medium,1. You are on the report with a large enough data set that the export takes a visible moment.,"1. Choose ""Download (CSV)"" and immediately look at the menu action.
-2. To provoke a failure, disconnect the network (or use browser dev tools offline mode) and choose ""Download (CSV)"" again.","1. While the export is in progress, the menu's CSV action shows a loading state and is non-interactive.
-2. If the export fails, an error toast is shown: ""CSV export failed."" (dismissed by the user).",specs/sbc-sales-by-customer.md Story 14 S14-E1; S14-N1; §7,,
-PDF download uses the same range-based filename map with a .pdf extension,SBC — Exports,Functional,Medium,1. You are on the report with data.,"1. Set the range to This Month and choose ""Download (PDF)""; note the filename.
-2. Repeat for one other preset and a Custom range.","1. The file follows the same range-to-filename map as the CSV, with a .pdf extension — for example, sales-by-customer-this_month.pdf, sales-by-customer-custom.pdf.",specs/sbc-sales-by-customer.md Story 15 S15-R4,,
-PDF page is A4 landscape with 25px margins and a footer with the ShopView label and page numbers,SBC — Exports,Functional,Medium,1. You have downloaded the PDF for a view with enough rows to span more than one page.,"1. Open the PDF and check the page setup.
-2. Read the footer on each page.","1. The PDF is A4 landscape with 25px margins on all sides, using the application's standard font.
+CSV and PDF actions show a loading state and their own export failed toast,SBC — Exports,Negative,Medium,1. You are on the report with a large enough data set that the export takes a visible moment.,"1. Choose ""Download (CSV)"" and immediately look at the menu action.
+2. To provoke a failure, disconnect the network (or use browser dev tools offline mode) and choose ""Download (CSV)"" again.
+3. Repeat both checks for ""Download (PDF)"".","1. While an export is in progress, that menu action shows a loading state and is non-interactive (CSV and PDF alike).
+2. If the CSV export fails, an error toast is shown: ""CSV export failed."" (dismissed by the user).
+3. If the PDF export fails, the toast reads ""PDF export failed."" — identical behavior, different wording.",specs/sbc-sales-by-customer.md Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7,,
+"PDF page: A4 landscape, uniform margins, ShopView footer and page numbers",SBC — Exports,Functional,Medium,1. You have downloaded the PDF for a view with enough rows to span more than one page.,"1. Open the PDF and check the page setup.
+2. Read the footer on each page.","1. The PDF is A4 landscape using the application's standard font; the page margins look uniform on all sides. (The spec's exact 25px margin needs a PDF inspector — check the number only if you have one; otherwise uniform margins pass.)
 2. The footer has a centered ""Software Powered by ShopView"" label and a right-aligned page number ""Page X of Y.""",specs/sbc-sales-by-customer.md Story 15 S15-R5; S15-R6,,
 "PDF header shows the title, organization, date range in Mon D, YYYY form and the Product Type line; location is not shown",SBC — Exports,Functional,Medium,"1. You have downloaded the PDF with a known date range, Product Type, and a specific location selected.","1. Read the header's text block top to bottom.
 2. Look for any mention of the selected location.","1. The header is two columns: a text block on the left (70% width) and the organization logo on the right (30% width).
@@ -343,17 +321,6 @@ PDF body matches the CSV's twelve flat columns with on-screen date/dash/bold rul
 4. Margin % shows an em dash when the row's Subtotal is zero or below.
 5. The Subtotal column is bold — header, every row, and the totals row.
 6. Inv. Hrs uses the same signs and coloring as on screen, with green rendered as #21ba45 and red as #c10015.",specs/sbc-sales-by-customer.md Story 15 S15-R16; S15-R17; S15-R18; S15-R19; S15-R20; S15-R21,,
-PDF action shows a loading state while exporting and a PDF export failed toast on failure,SBC — Exports,Negative,Medium,1. You are on the report with data.,"1. Choose ""Download (PDF)"" and immediately look at the menu action.
-2. Provoke a failure (offline mode) and choose ""Download (PDF)"" again.","1. While the export is in progress, the menu's PDF action shows a loading state and is non-interactive.
-2. If the export fails, an error toast is shown: ""PDF export failed."" (dismissed by the user).",specs/sbc-sales-by-customer.md Story 15 S15-E1; S15-N1; §7,,
-"Print fetches the report PDF and opens the native print dialog in the current tab, disabled while the table is first loading",SBC — Exports,Functional,Medium,1. You are on the report with data fully loaded.,"1. Open the overflow menu and choose ""Print""; watch the action and the browser.
-2. Cancel the print dialog and check the page behind it.
-3. Reload the report and try to activate Print while the table is still in its initial loading state.
-4. Provoke a failure (offline mode) and choose Print again.","1. Print fetches the report's PDF (same content as the PDF download) and then opens the browser's native print dialog in the current tab — no new browser tab is opened.
-2. The page behind the print dialog is unchanged.
-3. The Print action shows a loading state while the PDF is fetched and is non-interactive during that time.
-4. Print is disabled while the report table is still in its initial loading state.
-5. If the PDF request fails, an error toast is shown: ""PDF generation failed.""",specs/sbc-sales-by-customer.md Story 16 S16-R3; S16-R3a; S16-R3b; S16-R3c; S16-R4; S16-R5; S16-N1; §7,,
 "An export over 10,000 data rows is refused with the too-large toast",SBC — Exports,Negative,High,"1. A filter combination exists whose customer rows plus invoice rows exceed 10,000 (widest range, all locations, all customers). If the environment cannot reach 10,000 rows even fully widened, record the max reachable and mark Blocked-Env with reason.","1. With the over-cap filter set, choose ""Download (CSV)"".
 2. Choose ""Download (PDF)"".
 3. Narrow the filters below the cap and re-try one export.","1. For both CSV and PDF: no file is generated and no download starts.
@@ -386,13 +353,15 @@ A saved value that is no longer valid is discarded and that setting falls back t
 The saved view is specific to this report and does not affect any other report,SBC — Saved View & Persistence,Functional,Medium,1. You have set a distinctive saved view on Sales By Customer (for example Last Year + Parts only).,"1. Open another report in the Reports suite and read its filters.
 2. Return to Sales By Customer.","1. The other report keeps its own defaults/saved view — the Sales By Customer settings do not leak into it.
 2. Sales By Customer still restores its own saved view.",specs/sbc-sales-by-customer.md Story 6 S6-R7,,
-With no saved view every setting uses its own default,SBC — Saved View & Persistence,Functional,Medium,1. Clear the browser's site data for the application (or use a fresh browser profile).,"1. Open the Sales By Customer report.
-2. Read every filter, the sort, and the visible columns.","1. Date range = This Month.
+With no saved view every setting uses its own default,SBC — Saved View & Persistence,Functional,Medium,"1. Clear the browser's site data for the application (or use a fresh browser profile).
+2. You open the report by its plain address with no date range in the page link.
+3. You are working in a known active location (check the application's location switcher).","1. Open the Sales By Customer report.
+2. Read every filter, the sort, and the visible columns.","1. Date range = This Month (nothing saved and no range in the page link).
 2. Product Type = ""Parts & Service.""
-3. Location = your active location.
+3. Location = the single location you are currently working in (your active location) — not all locations.
 4. Customer filter = all customers selected (label ""All customers"").
 5. Sort = Customer name ascending.
-6. All nine toggleable columns visible.",specs/sbc-sales-by-customer.md Story 6 S6-N1,,
+6. All nine toggleable columns visible.",specs/sbc-sales-by-customer.md Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4,,
 "When both a saved view and a page-link range exist, the saved view wins and the link value is ignored",SBC — Saved View & Persistence,Functional,Medium,"1. You have a saved view with a known date range (for example Last Month).
 2. You have a page link carrying a DIFFERENT date range (for example This Year), captured earlier.","1. Open the report using the link with the different range.
 2. Read the date range picker.","1. The saved view is applied (Last Month) and the link value is ignored.
@@ -401,21 +370,18 @@ Customer filter restore: the all-customers state restores as all (including new 
 2. Scenario B: leave the report with two specific customers selected, then remove one of those customers' matching data (or shift the range so one no longer matches).","1. Scenario A: return to the report and check the filter state and rows.
 2. Scenario B: return to the report and check the selection and rows.","1. Scenario A: the filter restores to the all-customers state and the report shows every present customer — including the customer that appeared since the state was saved.
 2. Scenario B: still-present saved ids are re-selected; a saved id no longer present is dropped (a stale saved id never forces an empty view); a customer that appeared since the set was saved is NOT auto-selected.",specs/sbc-sales-by-customer.md Story 18 S18-R8,,
-No matching data shows the empty-state message in the table body while the toolbar stays interactive,SBC — Empty & Edge States,Functional,High,1. You are on the report with data on screen.,"1. Set a date range that contains no invoices (for example a Custom range over a quiet week far back).
+Empty state shows in the table body; toolbar interactive; kept selection returns,SBC — Empty & Edge States,Functional,High,1. You are on the report with data on screen.,"1. Set a date range that contains no invoices (for example a Custom range over a quiet week far back).
 2. Read the table body and try each toolbar control.
 3. Also provoke the empty state via Product Type and via a location with no data, and re-check.
-4. Look at the table header row's chevron.","1. The table body shows the message ""No sales data found for the selected filters."" where customer rows would appear — not in the toolbar, the totals row, or a modal.
+4. Look at the table header row's chevron.
+5. Narrow the Customer filter to specific customers, change the date range so none of them have data, read the table and the filter, then change the range back.","1. The table body shows the message ""No sales data found for the selected filters."" where customer rows would appear — not in the toolbar, the totals row, or a modal.
 2. The toolbar stays visible and interactive (all filters including the Customer filter, and the action controls), so you can adjust filters without leaving the page.
 3. The same empty state appears whichever filter caused it (date range, Product Type, or location).
-4. The header-row chevron is hidden when the table has no visible rows.",specs/sbc-sales-by-customer.md Story 17 S17-R1; S17-R2; S17-R3; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1,,
+4. The header-row chevron is hidden when the table has no visible rows.
+5. With a narrowed customer selection and no data, the empty state shows but the selection is KEPT (not cleared) — when the filters change back, the selected customers reappear.",specs/sbc-sales-by-customer.md Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1,,
 The empty-state message never appears while the table is still loading,SBC — Empty & Edge States,Negative,Medium,1. You are on the report; a slow network helps (throttle via browser dev tools if needed).,"1. Change a filter and watch the table area during the load.
 2. Watch what appears once loading finishes with zero customers.","1. While the table is loading, the empty-state message is NOT shown (the loading state is shown instead).
 2. The message appears only after the table finishes its initial loading and shows zero customers.",specs/sbc-sales-by-customer.md Story 17 S17-N1,,
-A narrowed customer selection with no data shows the empty state but the selection is kept and the customers reappear,SBC — Empty & Edge States,Functional,Medium,1. The Customer filter is narrowed to specific customers who have data in the current range but none in an adjacent range.,"1. Change the date range so that none of the selected customers have data.
-2. Read the table and the Customer filter.
-3. Change the range back.","1. The empty-state message is shown.
-2. The Customer filter selection is kept (not cleared).
-3. When the filters change back to a range where the selected customers have data, they reappear.",specs/sbc-sales-by-customer.md Story 17 S17-E1,,
 A failed data fetch shows the fetching-error toast which auto-fades after 5 seconds,SBC — Empty & Edge States,Negative,Medium,1. You can interrupt the network (browser dev tools offline mode).,"1. Go offline, then open the report (or change a filter to force a re-fetch).
 2. Read the toast and time how long it stays.","1. An error toast is shown: ""An error occurred while fetching the report data.""
 2. The toast auto-fades after 5 seconds.",specs/sbc-sales-by-customer.md §7 User Feedback Summary,,
@@ -472,16 +438,14 @@ Customer rows are server-paginated and the totals row is server-computed over th
 "Exports are generated on the server and the 10,000-row cap is counted server-side before any file is produced",SBC — API,Functional,Medium,1. The browser's network panel is open; an over-cap filter combination is available if the environment allows.,"1. Trigger ""Download (CSV)"" and ""Download (PDF)"" and observe where the file content comes from.
 2. If an over-cap set is available, trigger an export and observe the server's refusal.","1. The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort — not assembled from the rows already loaded in the browser.
 2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download — the count the cap checks is the count the file would contain, against the same filters and sort as the screen.",specs/sbc-sales-by-customer.md Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22; Story 16 S16-R6,,
-Sales By Representative appears at the bottom of the Performance group and opens the report,SBR — Access & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You can see the other reports in the Performance group.
-3. You know (or note down) the current order of the Reports navigation entries before checking.","1. Open the Reports area and read the Performance group of the left-side navigation top to bottom.
-2. Compare the rest of the navigation entries with their order before this report was added.
-3. Click the ""Sales By Representative"" entry.","1. ""Sales By Representative"" appears in the Performance group, at the BOTTOM of the group — the label is the full word ""Representative,"" not a ""Rep"" shorthand.
-2. The addition is additive: no existing entry is moved, replaced, or reordered, and the relative order of every other navigation entry is unchanged.
-3. Selecting the entry opens the report in the main content area.",specs/sbr-sales-by-representative.md Story 1 S1-R1; S1-R2; S1-R3; S1-R4,,
-Page title and browser tab title read Sales By Representative,SBR — Access & Navigation,Functional,Medium,1. You have opened the Sales By Representative report.,"1. Read the page title at the top of the report.
-2. Read the browser tab's title.","1. The page title reads ""Sales By Representative"".
-2. The browser tab title reads ""Sales By Representative - Report | ShopView"".",specs/sbr-sales-by-representative.md Story 1 S1-R5; S1-R6,,
+Sales By Representative at the bottom of Performance group; titles correct,SBR — Access & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You can see the other reports in the Performance group.","1. Open the Reports area and read the Performance group of the left-side navigation top to bottom.
+2. Click the ""Sales By Representative"" entry.
+3. Read the page title at the top of the report and the browser tab's title.","1. ""Sales By Representative"" appears in the Performance group, at the BOTTOM of the group — the label is the full word ""Representative,"" not a ""Rep"" shorthand.
+2. The rest of the navigation matches the previous release: no existing entry is moved, replaced, or reordered — if you can compare against production or an earlier build, the only difference is the added entry.
+3. Selecting the entry opens the report in the main content area.
+4. The page title reads ""Sales By Representative"".
+5. The browser tab title reads ""Sales By Representative - Report | ShopView"".",specs/sbr-sales-by-representative.md Story 1 S1-R1; S1-R2; S1-R3; S1-R4; S1-R5; S1-R6,,
 The navigation entry's padding fits the full Sales By Representative label without crowding or truncation,SBR — Access & Navigation,Functional,Medium,1. You are on the Reports navigation with the entry visible.,"1. Look closely at the ""Sales By Representative"" entry's label against the entry's left and right edges.
 2. Compare its padding with the neighbouring entries.","1. The full ""Sales By Representative"" label renders without crowding against the entry's edges and without truncation.
 2. The label is not shortened to fit — the fix is the entry's horizontal padding, not the name.",specs/sbr-sales-by-representative.md Story 1 S1-R7; §1 naming note,,
@@ -501,28 +465,20 @@ Date range picker is in the toolbar and offers the standard presets plus Custom,
 Custom range uses the date-picker dialog and holds the user to a 366-day maximum span,SBR — Date Range Filter,Functional,Medium,1. You are on the Sales By Representative report.,"1. Pick ""Custom"" and select a start and end date within 366 days; apply.
 2. Pick ""Custom"" again and try to select a start-to-end span of more than 366 days (start and end dates inclusive).","1. A custom range within the cap applies normally via the date-picker dialog.
 2. A custom selection whose span exceeds 366 days is not accepted — the picker holds you to a range of 366 days or fewer.",specs/sbr-sales-by-representative.md Story 2 S2-R3; S2-R6,,
-Date range defaults to This Month and changing it re-fetches the report with a loading indicator,SBR — Date Range Filter,Functional,High,1. Your browser has no remembered settings for this report (first visit or cleared storage).,"1. Open the report and read the date range picker.
-2. Change the range to Last Month and watch the table.","1. On first load the date range defaults to ""This Month.""
-2. Changing the range re-fetches and re-renders the report; the standard loading indicator (centered spinner over the data area) shows during the fetch.",specs/sbr-sales-by-representative.md Story 2 S2-R4; S2-R7; Story 16 S16-R4,,
 "An invoice is placed in the range by its own invoice date with inclusive endpoints, and the range shows in both PDF headers",SBR — Date Range Filter,Functional,Medium,"1. ZZAUTOTEST invoices exist dated exactly ON the start date and exactly ON the end date of a custom range, plus one dated just outside it.","1. Set a custom range whose start and end dates equal those two invoice dates.
 2. Check which invoices appear (expand the owning rep).
 3. Download both PDFs (Summary and Expanded View) and read their header strips.","1. The invoices dated on the start and end dates are INCLUDED (inclusive endpoints); the invoice outside the range is excluded.
 2. The date used is the invoice's own date — the value shown in the Date column.
 3. The chosen date range is reflected in both PDF exports' header strips.",specs/sbr-sales-by-representative.md Story 2 S2-R5; S2-R8; §3,,
-Product Type dropdown offers exactly three options with Parts & Service as the default,SBR — Product Type Filter,Functional,High,1. You are on the report with no remembered settings.,"1. Find the ""Product Type"" dropdown in the toolbar and read its default value.
-2. Open it and read the options.","1. A ""Product Type"" dropdown is visible in the toolbar.
-2. It offers exactly three options: ""Parts & Service,"" ""Parts only,"" ""Service only.""
-3. ""Parts & Service"" is the default on first load.",specs/sbr-sales-by-representative.md Story 3 S3-R1; S3-R2; S3-R3,,
-"Parts only includes only P invoices, Service only includes only S invoices, and Parts & Service applies no filter",SBR — Product Type Filter,Functional,High,1. A rep has both a P (parts) and an S (service) invoice in the range (seed ZZAUTOTEST data via the WO Sales Rep field).,"1. Select ""Parts only,"" expand the rep, and read the invoice numbers.
-2. Select ""Service only"" and read them again.
-3. Select ""Parts & Service.""","1. ""Parts only"" includes only invoices whose number starts with P.
-2. ""Service only"" includes only invoices whose number starts with S.
-3. ""Parts & Service"" applies no product-type filter — both appear again.
-4. Each change re-fetches and re-renders the report.",specs/sbr-sales-by-representative.md Story 3 S3-R4; S3-R5; S3-R6; S3-R7,,
-Product Type is part of the contributor gate: a rep with no matching invoice disappears and every metric narrows,SBR — Product Type Filter,Functional,High,1. Rep A has ONLY service invoices in range; rep B has both types (seed ZZAUTOTEST data).,"1. Select ""Parts only.""
-2. Look for rep A's row.
-3. Read rep B's (N) count, summary totals, detail rows, and the grand Totals indicator.","1. Rep A disappears — a rep appears only with at least one matching invoice after this filter.
-2. Rep B's summary totals, invoice detail rows, the grand Totals indicator, and the (N) count all reflect only the matching (P) invoices.",specs/sbr-sales-by-representative.md Story 3 S3-R8; S3-N1,,
+"Product Type: three options, Parts & Service default, each option filters right",SBR — Product Type Filter,Functional,High,"1. A rep has both a P (parts) and an S (service) invoice in the range (seed ZZAUTOTEST data via the WO Sales Rep field).
+2. No remembered settings for this report (first visit or cleared storage), so the default can be read.","1. Find the ""Product Type"" dropdown in the toolbar; read its default value, then open it and read the options.
+2. Select ""Parts only,"" expand the rep, and read the invoice numbers.
+3. Select ""Service only"" and read them again.
+4. Select ""Parts & Service.""","1. The dropdown offers exactly three options: ""Parts & Service,"" ""Parts only,"" ""Service only"" — with ""Parts & Service"" as the default on first load.
+2. ""Parts only"" includes only invoices whose number starts with P.
+3. ""Service only"" includes only invoices whose number starts with S.
+4. ""Parts & Service"" applies no product-type filter — both appear again.
+5. Each change re-fetches and re-renders the report.",specs/sbr-sales-by-representative.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7,,
 Invoice Status dropdown offers exactly four options with All Statuses as the default,SBR — Invoice Status Filter,Functional,High,1. You are on the report with no remembered settings.,"1. Find the ""Invoice Status"" dropdown in the toolbar and read its default value.
 2. Open it and read the options.
 3. Change the selection and watch the table.","1. An ""Invoice Status"" dropdown is visible in the toolbar.
@@ -535,20 +491,18 @@ Invoice Status dropdown offers exactly four options with All Statuses as the def
 2. ""Partially Paid"" includes the partially-paid AND the prepaid-with-a-balance-owed invoices.
 3. ""Unpaid"" includes only the unpaid invoice.
 4. The filter matches on the mapped display value, the same mapping the status badge uses — prepaid is the only state whose display value depends on the balance owed.",specs/sbr-sales-by-representative.md Story 4 S4-R4; §3 payment-status mapping,,
-Invoice Status is part of the contributor gate and narrows every metric,SBR — Invoice Status Filter,Functional,High,1. Rep A has only Paid invoices in range; rep B has a mix (seed ZZAUTOTEST data).,"1. Filter to ""Unpaid.""
-2. Look for rep A; read rep B's count, totals, detail rows, and the grand Totals indicator.","1. Rep A disappears (no matching invoice).
-2. Rep B's summary totals, detail rows, grand Totals, and (N) count reflect only the Unpaid invoices.",specs/sbr-sales-by-representative.md Story 4 S4-R6; S4-N1,,
-Filters compose: only invoices matching ALL active filters contribute anywhere,SBR — Invoice Status Filter,Functional,High,"1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location — plus one invoice matching all four.","1. Set all four filters (a range, ""Parts only,"" ""Paid,"" one location).
-2. Read the rep rows, counts, detail rows, and the grand Totals indicator.","1. Only the invoice matching ALL active filters contributes — every metric reflects the intersection.
-2. A rep appears only if at least one invoice matches all of them.
-3. Each invoice failing any single filter contributes nothing anywhere.",specs/sbr-sales-by-representative.md Story 4 S4-R7,,
+Filters compose: a rep appears only with an invoice matching ALL active filters,SBR — Invoice Status Filter,Functional,High,"1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location — plus one invoice matching all four.
+2. For the per-filter legs: rep A has only service invoices and rep B both types; rep C has only Paid invoices and rep D a mix (seed ZZAUTOTEST data).","1. Set all four filters (a range, ""Parts only,"" ""Paid,"" one location) and read the rep rows, counts, detail rows, and the grand Totals indicator.
+2. Product Type leg: select ""Parts only""; look for rep A and read rep B's (N) count, summary totals, detail rows, and the grand Totals indicator.
+3. Invoice Status leg: filter to ""Unpaid""; look for rep C and read rep D's figures.","1. Only invoices matching ALL active filters contribute — every metric reflects the intersection; an invoice failing any single filter contributes nothing anywhere.
+2. A rep appears only if at least one invoice matches all active filters.
+3. Parts-only leg: rep A disappears; rep B's summary totals, detail rows, grand Totals, and (N) count reflect only the matching (P) invoices.
+4. Unpaid leg: rep C disappears; rep D's figures reflect only the Unpaid invoices.",specs/sbr-sales-by-representative.md Story 4 S4-R7; S4-R6; S4-N1; Story 3 S3-R8; S3-N1,,
 "Money columns always show invoiced amounts, never the outstanding balance",SBR — Invoice Status Filter,Functional,Medium,1. A partially-paid ZZAUTOTEST invoice exists with a known full Subtotal and a known partial payment.,"1. Filter to ""Partially Paid,"" expand the owning rep, and read that invoice's money columns.","1. The invoice shows its FULL invoiced amounts (its full Subtotal) — payments are not netted out.
 2. Filtering to ""Unpaid"" or ""Partially Paid"" changes which invoices are included, never the amounts shown.",specs/sbr-sales-by-representative.md Story 4 S4-R8,,
 "Location filter is the rightmost toolbar control, a multi-select with an All Locations option",SBR — Location Filter,Functional,High,1. You are on the report as a user with access to two or more locations.,"1. Look at the toolbar controls left to right.
 2. Open the location filter and read its options.","1. The location filter is the rightmost control in the toolbar.
 2. It is a multi-select listing the locations the user has access to, plus an ""All Locations"" option.",specs/sbr-sales-by-representative.md Story 21 S21-R1; Story 18 S18-R7.2,,
-Location filter defaults to the user's currently active location only,SBR — Location Filter,Functional,High,"1. Your browser has no remembered settings for this report.
-2. You are working in a known active location (the application's location switcher).",1. Open the report and read the location filter's selection.,1. The filter defaults to the currently active location only — the default view is scoped to the one location you are working in.,specs/sbr-sales-by-representative.md Story 21 S21-R2,,
 Location selection cascades; an inaccessible location's data is never included,SBR — Location Filter,Functional,High,"1. Rep A has invoices only at location X; rep B at locations X and Y (seed ZZAUTOTEST data).
 2. The signed-in user has access to X and Y but not to a third location Z which also has data.","1. Select only location Y.
 2. Look for rep A; read rep B's count, totals, and detail rows.
@@ -566,12 +520,14 @@ Contributors only: a rep row appears if and only if the rep has at least one non
 2. Reps B and C do not appear — there are no blank placeholder rows, and a reversed invoice never satisfies the contributor gate.
 3. The number of contributing invoices shows in parentheses after the rep's name, in a smaller, subdued grey font — e.g., Mary Smith (12) — and is always at least 1.
 4. A staff member with no matching invoice does not appear regardless of toggle state or historical activity.",specs/sbr-sales-by-representative.md Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions,,
-"Row layout: 12 columns in order, chevron plus rep name in the Date cell, blank identifier cells, bold summary vs regular detail rows",SBR — Rep Rows & Tree,Functional,High,1. You are on the report with at least one rep expanded.,"1. Read the column headers left to right.
+"Row layout: 12 columns in order, blanks in position, bold summary rows",SBR — Rep Rows & Tree,Functional,High,1. You are on the report with at least one rep expanded.,"1. Read the column headers left to right.
 2. Read a rep summary row cell by cell.
-3. Compare the font weight of a summary row and a detail row.","1. The columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (12 columns).
+3. Compare the font weight of a summary row and a detail row.
+4. Look for any cell whose content has shifted into a neighbouring column or wrapped; check the desktop Totals row's leading cells.","1. The columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (12 columns).
 2. On a rep summary row the Date cell holds the chevron control followed by the rep's display name (""First Last""); the date value is intentionally blank.
 3. The Invoice, Customer, and Status cells are blank on summary rows; the metric cells carry the rep's totals across all matching invoices.
-4. Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) — row type is distinguished by font weight, not background color.",specs/sbr-sales-by-representative.md Story 5 S5-R2; S5-R3; S5-R6; S5-R8; Story 6 S6-R4; Story 18 S18-R4,,
+4. Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) — row type is distinguished by font weight, not background color.
+5. Every row renders exactly the report's column count with blanks in position — a cell with nothing to show is blank, never shifted or wrapped (a drifted row is a defect). The grand Totals indicator is exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row.",specs/sbr-sales-by-representative.md Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a,,
 "A toggled-off or deleted contributor still appears with credit intact, tagged (Inactive), named from the latest invoice snapshot when deleted",SBR — Rep Rows & Tree,Functional,High,"1. Rep A has matching invoices; you then turn rep A's sales-rep toggle OFF (restore afterwards).
 2. If a rep whose staff record was DELETED but who has invoices in range exists (or can be produced), note it for step 3.","1. Refresh the report and find rep A's row.
 2. Read the name, tag, metrics, and position in the A→Z order; try expanding the row.
@@ -579,11 +535,6 @@ Contributors only: a rep row appears if and only if the rep has at least one non
 2. The tag is display-only: metrics, A→Z position, and expandability are unchanged; a rep whose toggle is on shows no tag.
 3. For a deleted staff record, the display name and sort position come from the denormalized rep-name snapshot on the rep's most recent matching invoice (by invoice date, ties by invoice number), so the row still shows a historical name and sorts correctly.
 4. The grand Totals stay reconciled to the period's invoices — no revenue silently disappears.",specs/sbr-sales-by-representative.md Story 5 S5-R9; §3 Key Decisions; §4 Snapshot,,
-Column alignment is a hard invariant: every row renders exactly the report's column count with blanks in position,SBR — Rep Rows & Tree,Functional,Medium,1. You are on the report with a rep expanded and the grand Totals row visible.,"1. Compare a summary row and a detail row column by column against the headers.
-2. Look for any cell whose content has shifted into a neighbouring column or wrapped.
-3. Look at the desktop Totals row's leading cells.","1. Every rep summary row and every invoice detail row renders exactly the report's column count in the declared left-to-right order.
-2. A cell with nothing to show is rendered blank in its position — never shifted or wrapped; a drifted row is a defect.
-3. Both forms of the grand Totals indicator are exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row.",specs/sbr-sales-by-representative.md Story 5 S5-R10; S5-N2; Story 18 S18-R6a,,
 Expanding a rep loads its invoices on demand with a brief row-level loading indicator and full detail-row contents,SBR — Rep Rows & Tree,Functional,Critical,1. A rep with several matching invoices is on the report.,"1. Click the chevron in the rep's Date cell and watch the row.
 2. Read a detail row left to right.","1. The rep's matching invoices appear as detail rows beneath the summary row; a brief row-level loading indicator shows while they load on the first expand.
 2. Each detail row shows, left to right: the invoice's date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Inv. Hrs and the money columns.
@@ -606,34 +557,31 @@ Detail rows order newest first with a numeric invoice-number tie-break where P s
 2. Date ties break by invoice number ascending by the numeric portion after the P/S prefix — numeric, not alphabetical, so S999 precedes S1000.
 3. If both the date and the numeric portion tie (e.g., P100 and S100 same day), P (Parts) sorts before S (Service).
 4. This order is independent of the rep-row column sort (which reorders summary rows only).",specs/sbr-sales-by-representative.md Story 6 S6-R9; Story 11 S11-R2,,
-Status column sits between Customer and Inv. Hrs and every detail row shows the mapped badge text,SBR — Payment Status Badge,Functional,High,"1. Invoices exist covering paid, overpaid, prepaid (zero balance), prepaid (balance owed), partially paid, and unpaid.
+Status badge between Customer and Inv. Hrs; every detail row shows mapped text,SBR — Payment Status Badge,Functional,High,"1. Invoices exist covering paid, overpaid, prepaid (zero balance), prepaid (balance owed), partially paid, and unpaid.
 2. The owning rep is expanded.","1. Locate the Status column relative to its neighbours.
-2. Read the badge on each seeded invoice's detail row.","1. The Status column sits between the Customer column and the Inv. Hrs column.
+2. Read the badge on each seeded invoice's detail row.
+3. Look at a badge's vertical position in its cell, read the Status cell on a rep summary row, and check the status is readable from the badge text alone.","1. The Status column sits between the Customer column and the Inv. Hrs column.
 2. Every detail row renders a small colored badge reading ""Paid,"" ""Partially Paid,"" or ""Unpaid"" — badge rendering is unconditional on detail rows.
-3. The mapping matches §3: paid → Paid; overpaid → Paid; prepaid with zero balance → Paid; prepaid with a balance owed → Partially Paid; partially_paid → Partially Paid; unpaid → Unpaid.",specs/sbr-sales-by-representative.md Story 8 S8-R1; S8-R2; S8-N1; §3 payment-status mapping,,
+3. The mapping matches §3: paid → Paid; overpaid → Paid; prepaid with zero balance → Paid; prepaid with a balance owed → Partially Paid; partially_paid → Partially Paid; unpaid → Unpaid.
+4. Badges are vertically centered in their cells; on rep summary rows the Status cell is blank; the badge's text is the accessible label — status is never conveyed by color alone.",specs/sbr-sales-by-representative.md Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6,,
 Badge colors use the application's canonical payment-status tokens in both light and dark mode,SBR — Payment Status Badge,Functional,Medium,1. Detail rows with all three badge values are visible; you can switch to dark mode.,"1. Read the color treatment of each badge in light mode and compare with the badges on the application's invoice list.
 2. Switch to dark mode and compare again.","1. Paid = dark teal text on light teal; Partially Paid = dark orange on light orange; Unpaid = dark red on light red.
 2. The badges use the same canonical payment-status color tokens as the invoice list, consistent app-wide.
 3. The treatment stays legible and consistent in both light and dark mode.",specs/sbr-sales-by-representative.md Story 8 S8-R3; Story 18 S18-R8,,
-"Badges are vertically centered, blank on summary rows, and carry their text as the accessible label",SBR — Payment Status Badge,Functional,Medium,1. A rep is expanded with badges visible.,"1. Look at a badge's vertical position within its cell.
-2. Read the Status cell on a rep summary row.
-3. Check that the status is readable from the badge text alone (not only its color).","1. The badge is vertically centered within its cell.
-2. On rep summary rows the Status cell is blank.
-3. The badge's text (""Paid""/""Partially Paid""/""Unpaid"") is the accessible label — status is never conveyed by color alone.",specs/sbr-sales-by-representative.md Story 8 S8-R4; S8-R5; S8-R6; Story 18 S18-R6,,
 "Inv. Hrs heading is verbatim and the value is hours invoiced minus hours worked, rounded half-up to one decimal",SBR — Inv. Hrs & Calculations,Functional,High,"1. A ZZAUTOTEST work order exists with known billed labor-line hours and known technician clocked (timesheet) hours, invoiced under a rep.","1. Read the column heading.
 2. Expand the rep and read the invoice's Inv. Hrs value; recalculate by hand.","1. The column heading reads ""Inv. Hrs"" (verbatim, including the period after ""Inv"").
 2. The value equals the billed labor hours minus the technician clocked hours, rounded half-up to one decimal.",specs/sbr-sales-by-representative.md Story 9 S9-R1; S9-R2; §3,,
-"Inv. Hrs shows +green, -red, or 0.0 default on every row type, with rollups computed from unrounded deltas",SBR — Inv. Hrs & Calculations,Functional,High,"1. Invoices exist under one rep with a positive, a negative, and a break-even labor delta (seed ZZAUTOTEST data).","1. Read the three detail rows' Inv. Hrs values and colors.
+"Inv. Hrs: +green, -red, 0.0 default on every row; rollups from unrounded deltas",SBR — Inv. Hrs & Calculations,Functional,High,"1. Invoices exist under one rep with a positive, a negative, and a break-even labor delta (seed ZZAUTOTEST data).
+2. If producible, an invoice whose delta is tiny (e.g., +0.04) and one with a small negative delta (e.g., -0.5) also exist.","1. Read the three detail rows' Inv. Hrs values and colors.
 2. Read the rep summary row's and the Totals row's Inv. Hrs.
-3. Recalculate the rollup as the rounded sum of the unrounded per-invoice deltas.","1. Positive values show a leading + in green (e.g., +1.5); negative values a leading - in red (e.g., -1.5); zero/break-even shows 0.0 in the default text color.
+3. Recalculate the rollup as the rounded sum of the unrounded per-invoice deltas.
+4. Read the tiny-delta and small-negative invoices' Inv. Hrs.","1. Positive values show a leading + in green (e.g., +1.5); negative values a leading - in red (e.g., -1.5); zero/break-even shows 0.0 in the default text color.
 2. The same calculation, label, format, and coloring apply to rep summary rows, invoice detail rows, and the totals row.
-3. The rep-summary/totals value equals round(sum of unrounded per-invoice deltas).",specs/sbr-sales-by-representative.md Story 9 S9-R3; S9-R4; S9-R5; S9-R6,,
+3. The rep-summary/totals value equals round(sum of unrounded per-invoice deltas).
+4. A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green; negative values always use an explicit minus and one decimal (e.g., -0.5).",specs/sbr-sales-by-representative.md Story 9 S9-R3; S9-R4; S9-R5; S9-R6; S9-E1; S9-E2,,
 "No-labor-no-time invoices show 0.0 but clocked-yet-unbilled work shows its negative delta, never suppressed",SBR — Inv. Hrs & Calculations,Negative,High,"1. A parts-only invoice with no labor and no clocked time exists, AND an invoice whose work order has clocked technician hours but no billed labor line (seed ZZAUTOTEST data).","1. Read the parts-only invoice's Inv. Hrs cell.
 2. Read the clocked-but-unbilled invoice's Inv. Hrs cell.","1. The invoice with neither billed labor hours nor clocked hours shows Inv. Hrs 0.0 in the default color — never blank, ""N/A,"" or ""—"".
 2. The invoice with clocked hours but no billed labor line shows the resulting NEGATIVE delta in red (e.g., -3.0) — the worked-but-unbilled signal is not suppressed to 0.0.",specs/sbr-sales-by-representative.md Story 9 S9-N1,,
-"Edge: a delta that rounds to zero shows 0.0 in the default color, and negatives always use an explicit minus with one decimal",SBR — Inv. Hrs & Calculations,Functional,Medium,"1. If producible, an invoice whose delta is tiny (e.g., +0.04) and one with a small negative delta (e.g., -0.5) exist.","1. Read the tiny-delta invoice's Inv. Hrs.
-2. Read the small-negative invoice's Inv. Hrs.","1. A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green.
-2. Negative values always use an explicit minus and one decimal (e.g., -0.5).",specs/sbr-sales-by-representative.md Story 9 S9-E1; S9-E2,,
 "Margin % renders to one decimal with a % sign, shows an em dash when Subtotal is zero or below, and is recomputed on every rollup",SBR — Inv. Hrs & Calculations,Functional,High,"1. A rep has two invoices with clearly different Margin % values; if producible, a row with Subtotal ≤ 0 also exists.","1. Read Margin % on both detail rows and on the rep's summary row; recompute the summary value as (total Margin ÷ total Subtotal) × 100.
 2. Read the Subtotal ≤ 0 row's Margin % cell.
 3. If a negative-margin row exists, read its format.","1. Margin % = Margin ÷ Subtotal × 100, to one decimal with a trailing % — e.g., 45.2%; a negative renders -8.4% (leading minus, no parentheses, no + on positives).
@@ -647,15 +595,18 @@ Badge colors use the application's canonical payment-status tokens in both light
 "Negative dollar values render in accounting parentheses on screen, in money columns only",SBR — Inv. Hrs & Calculations,Functional,Medium,"1. A row with a negative money value exists (e.g., a net credit/return invoice, or a negative Labor Margin from cost exceeding billed labor — seed ZZAUTOTEST data).","1. Read the negative money cell.
 2. Read a negative Inv. Hrs cell and a negative Margin % cell for comparison.","1. Negative dollar values render in accounting-convention parentheses — ($1,234.56) — on screen, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Subtotal).
 2. Inv. Hrs (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses.",specs/sbr-sales-by-representative.md §3 Key Decisions (accounting parentheses),,
-Half-up rounding applies at each stated precision and a totals cell may differ from the eye-summed rows by one last-decimal unit — expected,SBR — Inv. Hrs & Calculations,Functional,Medium,1. Several invoices with odd cent/decimal values sit under one rep (seed ZZAUTOTEST data with values like $10.005).,"1. Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells.","1. All displayed values round half-up (away from zero) at their stated precision — money to cents; Inv. Hrs and Margin % to one decimal.
+Half-up rounding at each precision; totals may differ by one last-decimal unit,SBR — Inv. Hrs & Calculations,Functional,Medium,"1. Several invoices whose money values come from calculations that produce fractions of a cent sit under one rep — seed ZZAUTOTEST invoices whose amounts come from hours × rate or percentage-based lines that do not land on a whole cent (money fields themselves only take two decimals, so the sub-cent amounts must come from the math, not be typed in).","1. Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells.","1. All displayed values round half-up (away from zero) at their stated precision — money to cents; Inv. Hrs and Margin % to one decimal.
 2. Rolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.
 3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect.",specs/sbr-sales-by-representative.md §3 rounding rule,,
-"Subtotal is the rightmost column, pinned to the right edge, bold everywhere, on the row's own background",SBR — Subtotal & Totals,Functional,High,"1. You are on the report with data, narrow enough to force horizontal scrolling.","1. Confirm nothing renders to the right of Subtotal on any row type.
+"Subtotal: rightmost, pinned right, bold everywhere; header row sticky on scroll",SBR — Subtotal & Totals,Functional,High,"1. You are on the report with data, narrow enough to force horizontal scrolling.
+2. Enough rows exist to also force vertical scrolling.","1. Confirm nothing renders to the right of Subtotal on any row type.
 2. Scroll horizontally and watch the Subtotal column on summary and detail rows.
-3. Inspect the Subtotal weight on the header, a summary row, a detail row, and the Totals indicator; check the pinned cell's background.","1. Subtotal is the rightmost column on every row type.
+3. Inspect the Subtotal weight on the header, a summary row, a detail row, and the Totals indicator; check the pinned cell's background.
+4. Scroll down through the rows and watch the header row; scroll right and watch the Subtotal header cell.","1. Subtotal is the rightmost column on every row type.
 2. On screen it is pinned to the right edge and stays visible during horizontal scroll on every rep summary and invoice detail row.
 3. Subtotal values are bold across the header, every summary row, every detail row, and the grand Totals indicator.
-4. The pinned column matches the row's background color (white on body rows) — not a contrasting strip.",specs/sbr-sales-by-representative.md Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-N1; Story 18 S18-R7.5,,
+4. The pinned column matches the row's background color (white on body rows) — not a contrasting strip.
+5. The column-header row stays stuck to the top during vertical scroll; the Subtotal header cell stays visible in BOTH axes (top while scrolling down, pinned right while scrolling sideways).",specs/sbr-sales-by-representative.md Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5,,
 "Desktop Totals row merges the four identifier columns, aggregates every metric over the full filtered set, and sticks to the bottom",SBR — Subtotal & Totals,Functional,High,1. Desktop viewport (1024px or wider); several reps with known amounts are on the report; at least one rep is left collapsed.,"1. Scroll the table and find the Totals row.
 2. Read its first cell and the per-metric cells.
 3. Compare its values against the sum over ALL matching invoices (including collapsed/unloaded reps).
@@ -670,9 +621,6 @@ Mobile shows a simplified external totals bar below the table with Totals left a
 2. It does not scroll horizontally — it is always fully visible across.
 3. During vertical page scroll it sits after the table in normal flow (not pinned to the viewport bottom).
 4. It uses the white card surface with a thin top border.",specs/sbr-sales-by-representative.md Story 10 S10-R5 (mobile); Story 17 S17-R4,,
-The column-header row is sticky to the top during vertical scroll and the Subtotal header is sticky in both axes,SBR — Subtotal & Totals,Functional,Medium,1. Enough rows exist to force vertical scrolling; the window is narrow enough to also force horizontal scrolling.,"1. Scroll down through the rows and watch the header row.
-2. Scroll right and watch the Subtotal header cell.","1. The column-header row stays stuck to the top during vertical scroll.
-2. The Subtotal header cell stays visible in BOTH axes — stuck to the top while scrolling down and pinned right while scrolling sideways.",specs/sbr-sales-by-representative.md Story 10 S10-R6,,
 All eight financial columns are sortable; the identifier columns are not and the Date header carries the chevron instead,SBR — Sorting,Functional,High,1. Several reps with differing values are on the report.,"1. Click each financial column header in turn: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
 2. Click the Date, Invoice, Customer, and Status headers.","1. Each financial column responds to a header click and reorders the rep rows.
 2. The identifier columns (Date, Invoice, Customer, Status) do not respond to header clicks.
@@ -693,11 +641,11 @@ Sorting reorders rep summary rows only; detail rows stay under their rep and the
 Equal sorted values keep the A to Z order as tie-break and an em-dash Margin % sorts as zero,SBR — Sorting,Functional,Medium,"1. Two reps have equal values in a sortable column; if producible, one rep shows ""—"" in Margin % (seed ZZAUTOTEST data).","1. Sort by the column where the two reps tie and read their relative order.
 2. Sort by Margin % ascending and locate the ""—"" rep.","1. Reps with equal values in the sorted column retain the default A→Z order between them.
 2. A Margin % cell rendered ""—"" (undefined) sorts as zero.",specs/sbr-sales-by-representative.md Story 11 S11-R7,,
-With only one rep row the sort affordances are present but produce no observable change,SBR — Sorting,Negative,Low,1. Filters are set so exactly one rep row is visible.,1. Click several financial column headers.,"1. The sort affordances are present and the direction indicator updates, but the single row's position does not change.",specs/sbr-sales-by-representative.md Story 11 S11-N1,,
-Invoice number on a detail row navigates the current tab to the underlying work order or parts sale,SBR — Links & Navigation,Functional,High,1. A rep row is expanded with at least one S and one P invoice visible.,"1. Click a service invoice's number link and note the destination and tab.
-2. Go back, then click a parts invoice's number link.","1. Each invoice number is a clickable link.
-2. Activating it navigates the CURRENT tab to the underlying invoice (work order or parts sale) — never a new tab.",specs/sbr-sales-by-representative.md Story 12 S12-R1; S12-R2,,
-Customer name on a detail row navigates the current tab to the customer's record,SBR — Links & Navigation,Functional,High,1. A rep row is expanded with detail rows visible.,1. Click the customer name on a detail row.,1. The customer name is a clickable link that navigates the current tab to the customer's record.,specs/sbr-sales-by-representative.md Story 12 S12-R3,,
+Detail-row invoice number and customer name links navigate in the current tab,SBR — Links & Navigation,Functional,High,1. A rep row is expanded with at least one S and one P invoice visible.,"1. Click a service invoice's number link and note the destination and tab.
+2. Go back, then click a parts invoice's number link.
+3. Click the customer name on a detail row.","1. Each invoice number is a clickable link.
+2. Activating it navigates the CURRENT tab to the underlying invoice (work order or parts sale) — never a new tab.
+3. The customer name is likewise a clickable link that navigates the current tab to the customer's record.",specs/sbr-sales-by-representative.md Story 12 S12-R1; S12-R2; S12-R3,,
 "Browser back from a drilldown restores ALL report state including expansion and scroll, without a full reload",SBR — Links & Navigation,Functional,High,"1. Non-default filters are set (date range, product type, invoice status, location, Show Unassigned on), two reps are expanded, and the table is scrolled partway down.","1. Click an invoice link, then press the browser back button; check every piece of state.
 2. Repeat via a customer-name link.
 3. Watch whether the report performs a full reload on back.","1. Back returns to the report with ALL state intact — date range, product type, invoice status, location, Show Unassigned, every rep's expansion state, and scroll position — exactly as they were.
@@ -712,7 +660,6 @@ Customer name on a detail row navigates the current tab to the customer's record
 An unavailable invoice or customer destination shows the standard not-found/access-denied state and back still returns,SBR — Links & Navigation,Negative,Medium,"1. The report is open with detail rows visible; in another session the target invoice is reversed/deleted (and, for the customer leg, a customer record is made unavailable if the app allows).","1. Without refreshing, click the now-unavailable invoice's link; read the destination, then press back.
 2. If producible, repeat for an unavailable customer record.","1. The tab navigates to the application's standard not-found/access-denied state.
 2. Pressing back still returns to the report.",specs/sbr-sales-by-representative.md Story 12 S12-N1; S12-N2,,
-Deactivating a sales rep with no customer assignments applies silently with no dialog,SBR — Staff Deactivation,Functional,Medium,1. A ZZAUTOTEST staff member is active with the sales-rep toggle ON and NO customers assigned to them as sales rep.,1. Edit the staff member in staff administration and toggle their active status off.,1. The deactivation applies silently — no warning dialog is shown.,specs/sbr-sales-by-representative.md Story 13 S13-R2,,
 "Deactivating a rep with assignments opens the Deactivate dialog with the counted, pluralized headline and reassurance line, trapping focus",SBR — Staff Deactivation,Functional,High,"1. ZZAUTOTEST rep ""A"" is active, toggle on, and assigned as sales rep to exactly 1 customer; ZZAUTOTEST rep ""B"" likewise to 3 customers.","1. Toggle rep B's active status off and read the dialog before confirming anything.
 2. Press Tab repeatedly and watch where focus goes; dismiss and watch where focus returns.
 3. Repeat step 1 for rep A (1 customer) and read the headline's noun.","1. A warning dialog titled ""Deactivate {Staff Name}?"" opens BEFORE any change is applied; the deactivation does not commit until confirmed.
@@ -744,10 +691,12 @@ Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not,S
 3. Open the report and find the rep's row.","1. The sales-rep toggle state is unchanged by the deactivation flow.
 2. In the Sales Rep Assignments CSV the rep's customers show ""Rep is active?"" = ""No"" — that column is driven by staff-active status, not the toggle.
 3. In the report the rep still appears with credit intact; the ""(Inactive)"" marker appears only if the sales-rep TOGGLE is off (a separate flag from staff-active status).",specs/sbr-sales-by-representative.md Story 13 S13-R11; Story 15 S15-R6; Story 5 S5-R9,,
-"No dialog when the toggle is off, when the member is already inactive, or on reactivation — assignments resurface immediately",SBR — Staff Deactivation,Negative,Medium,1. ZZAUTOTEST staff member X is active WITHOUT the sales-rep toggle; ZZAUTOTEST rep Y (with assignments) is currently inactive.,"1. Deactivate X and watch for a dialog.
-2. Reactivate rep Y via the standard toggle and watch for a dialog; check Y's customer assignments afterwards.","1. For a staff member without the sales-rep toggle, the precondition check is skipped and no warning is shown.
+"No dialog: toggle off, no assignments, already inactive, or reactivation",SBR — Staff Deactivation,Negative,Medium,1. ZZAUTOTEST staff member X is active WITHOUT the sales-rep toggle; ZZAUTOTEST rep Y (with assignments) is currently inactive; ZZAUTOTEST rep Z is active with the sales-rep toggle ON and NO customers assigned.,"1. Deactivate X and watch for a dialog.
+2. Reactivate rep Y via the standard toggle and watch for a dialog; check Y's customer assignments afterwards.
+3. Deactivate rep Z (sales-rep toggle on, no assignments) and watch for a dialog.","1. For a staff member without the sales-rep toggle, the precondition check is skipped and no warning is shown.
 2. Reactivation never shows the warning dialog (the flow does not apply to an already-inactive member).
-3. After reactivation the assignments re-surface immediately with no extra action.",specs/sbr-sales-by-representative.md Story 13 S13-N2; S13-N3; S13-E3,,
+3. After reactivation the assignments re-surface immediately with no extra action.
+4. Deactivating a sales rep with NO customer assignments applies silently — no warning dialog.",specs/sbr-sales-by-representative.md Story 13 S13-R2; S13-N2; S13-N3; S13-E3,,
 "A server-side deactivation failure shows the canonical error toast, leaves the status unchanged, and clears the input on the next open",SBR — Staff Deactivation,Negative,Medium,1. The Deactivate dialog is open for a rep with assignments; you can force the request to fail (go offline just before submitting).,"1. Type YES, force the failure condition, and submit.
 2. Read the toast; check the staff member's active status.
 3. Dismiss, re-open the dialog, and look at the confirmation input.","1. An error toast is shown: ""Ooooops! An error occured"" with the caption ""For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance."" — it persists 120 seconds or until dismissed.
@@ -760,26 +709,25 @@ Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not,S
 "Show Unassigned sits between the column selector and the date picker, is off by default, and while off unassigned invoices contribute nothing",SBR — Show Unassigned,Functional,High,1. No remembered settings; at least one matching invoice with NO assigned rep exists (seed via a WO with no Sales Rep whose customer also has no rep).,"1. Find the ""Show Unassigned"" toggle in the toolbar and note its position and default state.
 2. With it off, look for an Unassigned row and check the grand Totals against the rep rows only.","1. A ""Show Unassigned"" toggle sits between the column selector and the date range picker; it is OFF by default.
 2. While off, invoices with no assigned rep contribute to nothing — no row, and not counted in any total.",specs/sbr-sales-by-representative.md Story 22 S22-R1; S22-R2; Story 18 S18-R7.2,,
-Turning Show Unassigned on adds a single Unassigned row pinned to the top and recomputes the grand Totals,SBR — Show Unassigned,Functional,High,1. Matching unassigned invoices exist; the grand Totals with the toggle off are noted.,"1. Turn ""Show Unassigned"" on and read the new row and its position.
+Show Unassigned adds one top-pinned Unassigned row that acts like a rep row,SBR — Show Unassigned,Functional,High,1. Matching unassigned invoices exist; the grand Totals with the toggle off are noted.,"1. Turn ""Show Unassigned"" on and read the new row and its position.
 2. Read the grand Totals indicator.
-3. Turn the toggle off again.","1. A single summary row labeled ""Unassigned"" (verbatim) rolls up every matching invoice that has no assigned rep, respecting all other active filters.
+3. Read the Unassigned row's columns and (N) count, click its chevron, and look for any ""(Inactive)"" tag.
+4. Turn the toggle off again.","1. A single summary row labeled ""Unassigned"" (verbatim) rolls up every matching invoice that has no assigned rep, respecting all other active filters.
 2. The row is pinned to the TOP of the table, above the A→Z reps, and stays pinned regardless of sort.
-3. Toggling re-renders the report and recomputes the grand Totals to include or exclude the Unassigned row accordingly.",specs/sbr-sales-by-representative.md Story 22 S22-R3; S22-R4; S22-R6,,
-"The Unassigned row behaves like a rep row — count, expandable, in the Totals — and never carries an (Inactive) tag",SBR — Show Unassigned,Functional,Medium,1. Show Unassigned is on with a populated Unassigned row.,"1. Read the Unassigned row's columns and (N) count.
-2. Click its chevron.
-3. Look for any ""(Inactive)"" tag.","1. The Unassigned row shows the same metric columns and the (N) count like any rep summary row.
-2. It is expandable to its contributing invoices.
-3. It is included in the grand Totals indicator.
-4. It never carries an ""(Inactive)"" tag.",specs/sbr-sales-by-representative.md Story 22 S22-R5; Story 6 S6-R1,,
+3. Toggling re-renders the report and recomputes the grand Totals to include or exclude the Unassigned row accordingly.
+4. The Unassigned row shows the same metric columns and (N) count as any rep summary row, is expandable to its contributing invoices, is included in the grand Totals, and never carries an ""(Inactive)"" tag.",specs/sbr-sales-by-representative.md Story 22 S22-R3; S22-R4; S22-R5; S22-R6; Story 6 S6-R1,,
 "No empty Unassigned row is ever rendered, and toggling off while expanded removes the row which returns collapsed",SBR — Show Unassigned,Negative,Medium,"1. Scenario A: a filter set with NO matching unassigned invoices (but some rep rows).
 2. Scenario B: the Unassigned row is populated and expanded.","1. Scenario A: turn Show Unassigned on and look for the row; then narrow so no reps match either and read the table.
 2. Scenario B: with the Unassigned row expanded, turn the toggle off, then back on.","1. With the toggle on but no matching unassigned invoices, no Unassigned row is shown — an empty Unassigned row is never rendered; with no rep rows either, the empty state applies.
 2. Turning the toggle off removes the expanded row; turning it back on renders it collapsed.",specs/sbr-sales-by-representative.md Story 22 S22-N1; Story 6 S6-N2,,
-"Column selector opens a dropdown of the seven metric columns with toggle switches, all visible on first visit",SBR — Column Selector,Functional,High,1. No remembered column preference exists (first visit or cleared storage).,"1. Click the column selector button in the toolbar.
+Column selector: seven metric toggles; five always-on columns cannot be hidden,SBR — Column Selector,Functional,High,1. No remembered column preference exists (first visit or cleared storage).,"1. Click the column selector button in the toolbar.
 2. Read the toggle list.
-3. Check the table's visible columns.","1. The dropdown lists the seven toggleable metric columns, each with a toggle switch: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %.
-2. On first visit all seven metric columns are visible.",specs/sbr-sales-by-representative.md Story 20 S20-R1; S20-R2; S20-R6,,
-The five always-visible columns do not appear in the dropdown and cannot be hidden,SBR — Column Selector,Functional,Medium,1. The column selector dropdown is open.,"1. Look for Date, Invoice, Customer, Status, or Subtotal in the toggle list.","1. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.",specs/sbr-sales-by-representative.md Story 20 S20-R3,,
+3. Check the table's visible columns.
+4. Look for Date, Invoice, Customer, Status, or Subtotal in the toggle list.
+5. Hide all seven metric columns and read the table and the grand Totals indicator.","1. The dropdown lists the seven toggleable metric columns, each with a toggle switch: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %.
+2. On first visit all seven metric columns are visible.
+3. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.
+4. With all seven metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state.",specs/sbr-sales-by-representative.md Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1,,
 "Toggling a column applies immediately across summary rows, detail rows and the grand Totals at once",SBR — Column Selector,Functional,Medium,1. A rep is expanded and the Totals indicator is visible.,"1. Toggle ""Parts Margin"" off and immediately check the summary rows, detail rows, and the Totals row.
 2. Toggle it back on.","1. The toggle takes effect immediately — no confirm step.
 2. Hiding a metric column removes it from rep summary rows, invoice detail rows, and the grand Totals indicator simultaneously; showing restores it everywhere at once.",specs/sbr-sales-by-representative.md Story 20 S20-R4; S20-R7,,
@@ -788,9 +736,6 @@ Column visibility never affects the exports — all four downloads always includ
 Hiding the active sort column keeps the sort; showing it again reveals the sort indicator,SBR — Column Selector,Functional,Medium,"1. The report is sorted by a metric column (e.g., Margin descending).","1. Hide that column via the column selector and read the row order.
 2. Show the column again and look at its header.","1. Hiding the active sort column does not clear the sort — rows stay ordered by the now-hidden metric until another sort is chosen or the A→Z default is restored.
 2. Showing the column again reveals the sort indicator on it.",specs/sbr-sales-by-representative.md Story 20 S20-R9,,
-With all seven metric columns hidden the five always-on columns and the grand Totals still render — not an empty state,SBR — Column Selector,Negative,Medium,1. You are on the report with data.,"1. Hide all seven metric columns.
-2. Read the table and the grand Totals indicator.","1. The table still renders the five always-on columns (Date, Invoice, Customer, Status, Subtotal) and the grand Totals indicator.
-2. No empty or error state is shown.",specs/sbr-sales-by-representative.md Story 20 S20-N1,,
 All filter and view settings are remembered per browser and restored before the first data fetch on the next visit,SBR — Persistence,Functional,Critical,1. You are on the report in a browser you can revisit.,"1. Set a custom date range, ""Parts only,"" ""Paid,"" a specific location set, Show Unassigned on, hide two metric columns, and sort by Margin descending.
 2. Leave the report and return; also try a full page reload.
 3. Watch what data loads first.","1. Every setting is restored: date range (including the custom start/end), product type, invoice status, location, Show Unassigned, column visibility, and the active column sort (column + direction).
@@ -802,8 +747,9 @@ Restoration is defensive: a stale saved value falls back to its default and neve
 2. Read the location filter, the data, and watch for any error.","1. The no-longer-valid location falls back to the default (your active location) rather than being sent to the server.
 2. No error occurs — a stale saved setting can never cause an error or an invalid request.
 3. Per the spec the same applies to a range or sort column that no longer exists and to a hidden-but-sorted column.",specs/sbr-sales-by-representative.md Story 23 S23-R3,,
-First visit or cleared browser storage yields the full set of defaults with no server-side profile,SBR — Persistence,Functional,Medium,"1. You have distinctive saved settings, then clear the browser's site data (or use a fresh profile).",1. Open the report and read every setting.,"1. Date range = This Month; Product Type = ""Parts & Service""; Invoice Status = ""All Statuses""; Location = your active location; Show Unassigned = off; all seven metric columns visible; sort = the A→Z default.
-2. Clearing browser storage fully returns the report to first-visit defaults — no server-side profile brings the old settings back.",specs/sbr-sales-by-representative.md Story 23 S23-R4; S23-N1,,
+First visit or cleared storage yields all defaults; no server-side profile,SBR — Persistence,Functional,Medium,"1. You have distinctive saved settings, then clear the browser's site data (or use a fresh profile).
+2. You are working in a known active location (the application's location switcher).",1. Open the report and read every setting.,"1. Date range = This Month; Product Type = ""Parts & Service""; Invoice Status = ""All Statuses""; Location = your currently active location only (the one location you are working in); Show Unassigned = off; all seven metric columns visible; sort = the A→Z default.
+2. Clearing browser storage fully returns the report to first-visit defaults — no server-side profile brings the old settings back.",specs/sbr-sales-by-representative.md Story 23 S23-R4; S23-N1; Story 2 S2-R4; Story 21 S21-R2,,
 "The A to Z default is its own saved value: restoring a state with no financial sort returns to A to Z, not an arbitrary column",SBR — Persistence,Functional,Medium,1. You have never clicked a financial column header in this browser session/profile (the report is in the A→Z default).,"1. Change a few filters (no sort click), leave the report, and return.
 2. Read the row order and the headers.","1. The report restores to the A→Z default order by rep display name.
 2. No financial column shows a sort indicator — the saved ""no financial sort"" state restores as A→Z, not as an arbitrary column.",specs/sbr-sales-by-representative.md Story 23 S23-R5; Story 11 S11-R4,,
@@ -852,15 +798,11 @@ Expanded View PDF truncates invoice numbers longer than 18 characters; on screen
 3. Read the rep names in both PDFs.","1. Negative dollar values render in accounting parentheses — for example ($1,234.56) — in both PDFs, with no extra color treatment.
 2. The on-screen (N) invoice count does NOT appear next to any rep name in either PDF.
 3. The ""(Inactive)"" tag DOES render on toggled-off contributors' names in both PDFs; other rep names render plainly.",specs/sbr-sales-by-representative.md Story 14 S14-R9; S14-R10,,
-"PDF body font size adapts to the longest positive dollar value on the four-tier scale, with fixed column widths",SBR — Exports,Functional,Medium,"1. You can produce (or seed) filtered views whose LONGEST formatted positive dollar value — checked across every value in the document, including the totals row — falls in different length brackets (for example, $1,234.56 = 9 characters vs $1,000,000.00 = 13 characters).","1. Download the Summary PDF for a view whose longest positive dollar value is 9 characters or fewer; note the body text size.
+PDF body font steps down as the longest dollar value grows; no overflow,SBR — Exports,Functional,Medium,"1. You can produce (or seed) filtered views whose LONGEST formatted positive dollar value — checked across every value in the document, including the totals row — falls in different length brackets (for example, $1,234.56 = 9 characters vs $1,000,000.00 = 13 characters).","1. Download the Summary PDF for a view whose longest positive dollar value is 9 characters or fewer; note the body text size (a relative comparison across files is enough).
 2. Repeat for views whose longest positive value is 10, 11, and 12-or-more characters (as far as seedable).
-3. In each file, check whether any value overflows or wraps its column.","1. The body font follows the tier scale by the longest formatted positive dollar value in the document (totals included): 9 characters or fewer → 11px; 10 characters → 10px; 11 characters → 9px; 12 or more → 8px. 8px is the floor and 11px the ceiling.
-2. Column widths are fixed for the worst case regardless of tier — the layout never breaks and no value overflows.
+3. In each file, check whether any value overflows or wraps its column.","1. As the longest positive dollar value in the document grows past each length bracket, the PDF body text visibly steps DOWN in size — the relative step-downs are the pass criterion for this manual test.
+2. Column widths are fixed for the worst case regardless of tier — the layout never breaks and no value overflows or wraps its column.
 3. Both PDF formats adapt the same way.",specs/sbr-sales-by-representative.md Story 14 S14-R12; S14-R13,,
-Font tier edge rules: a longer negative shifts one tier smaller (clamped at 8px); a document with no positive dollar value stays at 11px,SBR — Exports,Functional,Low,"1. You can produce a view where a negative value's parenthesized rendering is LONGER than the largest positive value, and (separately) a view with no positive dollar value at all (for example, the empty export or an all-negative result).","1. Download a PDF for the view whose longest value is a parenthesized negative longer than any positive; note the body size against the positive value's own tier.
-2. Download a PDF for a view with zero matching invoices (or all-negative values); note the body size.","1. When a negative's parenthesized rendering is longer than the largest positive, the base tier shifts ONE step smaller than the positive value's tier, clamped at the 8px floor (already-8px stays 8px).
-2. With no positive dollar value in the document, the base tier is the 11px ceiling and the negative shift does not apply — the tier stays 11px.
-3. In all cases the fixed column widths prevent overflow.",specs/sbr-sales-by-representative.md Story 14 S14-R14; S14-R12 (no-positive rule),,
 "Summary CSV: filename, UTF-8 BOM, verbatim headers in order, one row per rep, and the # Invoices / # Customers counts",SBR — Exports,Functional,High,1. You are on the report with at least two reps showing; one rep has invoices for the same customer more than once (to check de-duplication).,"1. Choose ""Download Summary (CSV)"" from the ⋯ menu and note the saved file's name.
 2. Open the file in a text editor and read the header row.
 3. Count the data rows against the on-screen rep rows and compare their order.
@@ -933,15 +875,14 @@ Assignments export failure and nothing-to-export paths use the Export dialog's o
 2. Read the dialog warning and inspect any downloaded file.
 3. Force a generation failure and read the toast.","1. With zero assigned customers, the CSV downloads with a header row and no data rows, and the dialog shows its empty-export warning: ""There is no data to export for the selected report.""
 2. On a generation failure, an error toast reads ""An error occurred while exporting the report. Please try again."" and auto-fades after 5 seconds.",specs/sbr-sales-by-representative.md Story 15 S15-R11; S15-N2; §7,,
-"The empty state shows ""No sales activity matches the current filters."" with no grand Totals — including when no rep was ever credited","SBR — Loading, Empty & Error States",Functional,High,1. You are on the report.,"1. Apply a filter set that matches no invoices for any rep (for example, a date range with no activity), with Show Unassigned OFF or with no matching unassigned invoices either.
+"Empty state: verbatim message, no grand Totals, toolbar stays interactive","SBR — Loading, Empty & Error States",Functional,High,1. You are on the report.,"1. Apply a filter set that matches no invoices for any rep (for example, a date range with no activity), with Show Unassigned OFF or with no matching unassigned invoices either.
 2. Read the data area and look for the grand Totals indicator.
-3. If checkable: view an organization/location state where NO staff member has ever been credited with an invoice, and compare the message.","1. The table shows no data rows and the empty-state message ""No sales activity matches the current filters.""
+3. If checkable: view an organization/location state where NO staff member has ever been credited with an invoice, and compare the message.
+4. Look at the toolbar, then change the date range to a period WITH activity.","1. The table shows no data rows and the empty-state message ""No sales activity matches the current filters.""
 2. The grand Totals indicator is NOT shown.
 3. The same message appears when no staff member has ever been credited — there is no separate ""no reps configured"" message; the report is contributor-driven.
-4. Whenever at least one rep row (or the Unassigned row) IS in the result set, the rep list renders and no empty/error message shows.",specs/sbr-sales-by-representative.md Story 16 S16-R1; S16-R2; S16-N1; §7,,
-The toolbar stays visible and interactive in the empty state,"SBR — Loading, Empty & Error States",Functional,Medium,1. The report is showing its empty state (no matching invoices).,"1. Look at the toolbar.
-2. Change the date range to a period WITH activity.","1. In the empty state, the toolbar — the filters, the column selector, and the ⋯ exports — stays visible and interactive.
-2. Widening the date range from the empty state re-fetches and renders the matching reps normally.",specs/sbr-sales-by-representative.md Story 16 S16-R3,,
+4. Whenever at least one rep row (or the Unassigned row) IS in the result set, the rep list renders and no empty/error message shows.
+5. In the empty state the toolbar — filters, column selector, and the ⋯ exports — stays visible and interactive; widening the range re-fetches and renders the matching reps normally.",specs/sbr-sales-by-representative.md Story 16 S16-R1; S16-R2; S16-R3; S16-N1; §7,,
 "Loading shows a centered spinner over the data area, hides the Totals, keeps the toolbar interactive, and never flashes a blank table","SBR — Loading, Empty & Error States",Functional,Medium,1. You are on the report with data showing (use a slow/throttled connection if available to make the loading state observable).,"1. Reload the report and watch the data area during the initial load.
 2. Change a filter and watch the data area during the re-fetch.
 3. While loading, try to interact with the toolbar.","1. On the initial load and on every filter-triggered re-fetch, the table shows the standard reports loading indicator — a centered spinner over the data area.
@@ -1088,19 +1029,16 @@ A user with Reports access but without Inventory Reports → View sees the entry
 3. If any export control is reachable, try to export.","1. The Parts Velocity navigation entry is still visible (the entry follows Reports-section access, not the report permission).
 2. On opening the report, the standard access-denied state is shown instead of data.
 3. The export is likewise denied - no file downloads.",specs/parts-velocity.md S1-N2; S1-R4,,
-"Type filter is single-select, first in the filter row, with options Both, Inventory, Catalogue (default Both)",PV — Filters,Functional,High,"1. You are on the Parts Velocity report with data loaded.
-2. This is a first visit (no saved view), so the first-visit defaults apply.","1. Look at the first control in the filter row of the toolbar.
+"Type filter: single-select, first in row, three options, default Both; reloads",PV — Filters,Functional,High,"1. You are on the Parts Velocity report with data loaded.
+2. This is a first visit (no saved view), so the first-visit defaults apply.
+3. Both inventory parts and special-order (catalogue) parts have sales activity in the selected date range.","1. Look at the first control in the filter row of the toolbar.
 2. Open the Type filter and read its options.
-3. Note which option is selected by default.","1. The Type filter is the first control in the filter row.
+3. Note which option is selected by default.
+4. Select each Type option in turn and watch the table.","1. The Type filter is the first control in the filter row.
 2. It is single-select and offers exactly three choices: Both, Inventory, and a choice for special-order catalog parts that were never put into stock. (That third choice's exact on-screen label is confirmed in the build — the spec calls it ""Catalogue"" and a rename is being considered.)
 3. On a first visit the default is Both.
-4. Both is an explicit selection returning inventory and special-order rows together - a deliberate filter value, not the absence of a filter.","SV-8642 (specs/parts-velocity.md S2-R1 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28: update per latest info now, correct at the live build check later)",,
-Selecting a Type value immediately reloads the data limited to that type,PV — Filters,Functional,High,"1. You are on the Parts Velocity report with data loaded.
-2. Both inventory parts and catalogue (special-order) parts have sales activity in the selected date range, so both types appear under Both.","1. With Type = Both, note that the Type column shows both Inventory and Catalogue rows.
-2. Select Type = Inventory.
-3. Select Type = Catalogue.","1. Each selection immediately reloads the report data (no separate Apply step).
-2. With Inventory selected, every row's Type column reads Inventory.
-3. With Catalogue selected, every row's Type column reads Catalogue.",specs/parts-velocity.md S2-R1; S3-R5,,
+4. Both is an explicit selection returning inventory and special-order rows together - a deliberate filter value, not the absence of a filter.
+5. Each selection immediately reloads the report limited to that type (no separate Apply step) — under Inventory every row's Type column reads Inventory; under the special-order (catalogue) choice every row shows that type; under Both, rows of both kinds appear.",SV-8642 (specs/parts-velocity.md S2-R1; S3-R5 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28),,
 Date range selector offers exactly the eleven bounded options and no All Time,PV — Filters,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the date range selector and read every option.
 2. Select a non-custom option (for example Last Month).","1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
 2. There is NO 'All Time' option - the report always operates over a bounded date window (deliberate, per the spec's Out of Scope).
@@ -1262,8 +1200,6 @@ A different user signing in on the same browser inherits the saved view,PV — C
 2. User 2 can open the report.","1. Sign out user 1 and sign in user 2 on the SAME browser.
 2. Open the Parts Velocity report.","1. User 2 sees user 1's saved view (Type = Catalogue, Last Quarter, the saved columns and sort).
 2. This is by design: storage is per browser, not tied to the account - there is no per-account separation.",specs/parts-velocity.md S4-R6,,
-A saved view with a stale schema version is ignored and the current defaults load,PV — Columns & Remembered View,Negative,Low,1. The browser holds a saved view whose stored schema version does not match the current version of the report's saved format (seed by editing the stored value's version marker in browser storage).,1. Open the Parts Velocity report with the stale-version saved view in place.,"1. The stale view is ignored entirely.
-2. The report loads the current defaults: This Year, Both, the active location, the 14-column default set, Demand descending.",specs/parts-velocity.md S4-N1,,
 All 20 columns can be hidden; the empty selection is not restored and an export then contains no data columns,PV — Columns & Remembered View,Functional,Low,1. You are on the Parts Velocity report with data loaded.,"1. In the column picker, switch OFF all 20 columns.
 2. Trigger a CSV export while zero columns are enabled.
 3. Leave the report and return to it.","1. The picker enforces no minimum - all 20 columns can be switched off, leaving a grid with no data columns for the rest of the session.
@@ -1416,20 +1352,18 @@ CSV: named velocity-report.csv with full untruncated text values and Last Sale a
 3. In the PDF, read a non-null Last Sale value.","1. A null value renders as — (em-dash) in BOTH the CSV and the PDF, in every nullable field: Unit Cost, Sell Price, Margin %, On Hand, Turns / Yr, Last Sale, Min, Max.
 2. Revenue, Margin, and the count metrics are never null in the exports either ($0.00 / 0.00 / 0).
 3. In the PDF, Last Sale renders as 'N days' (e.g. 42 days).",specs/parts-velocity.md S6-R7; S6-R8; S3-R9,,
-"Export alignment: Type centered, text columns left-aligned, numeric and money columns right-aligned",PV — Exports,Functional,Low,1. You are on the Parts Velocity report with data loaded and several columns of each kind visible.,"1. Download the PDF and look at the alignment of each column.
-2. Open the CSV in a spreadsheet tool and check the produced alignment/formatting where applicable.","1. In the exports, the Type column is CENTERED.
-2. The text columns (Part #, Description, Category, Vendor) are left-aligned.
-3. EVERY numeric and money column is right-aligned.
-4. This is a deliberate export-only treatment - the on-screen table is all-left-aligned; the difference is documented, not a defect.",SV-8646 (specs/parts-velocity.md S6-R10; S3-R8),,
-Successful downloads show the exact success toasts with uppercase (CSV)/(PDF),PV — Exports,Functional,Medium,1. You are on the Parts Velocity report with data loaded.,"1. Download the CSV and read the toast.
-2. Download the PDF and read the toast.","1. On CSV success, a success toast reads exactly: ""Velocity report exported (CSV)"" and auto-fades.
-2. On PDF success, it reads exactly: ""Velocity report exported (PDF)"" and auto-fades.
-3. The success toasts use UPPERCASE (CSV)/(PDF) - the failure toasts use lowercase; that casing mix is the shipped wording, documented as-is (not a bug).",specs/parts-velocity.md S6-R9; §7 (casing note),,
-"A failed export shows the server message when available, otherwise the exact fallback error toast with lowercase (csv)/(pdf)",PV — Exports,Negative,Medium,"1. You are on the Parts Velocity report with data loaded.
-2. You can force an export failure (e.g. drop the network connection just before triggering the download, or induce a server error).","1. Trigger a CSV export under the failure condition and read the toast.
-2. Trigger a PDF export under the failure condition and read the toast.","1. An error toast is shown on failure.
-2. When the server provides a message, that server message is shown.
-3. Otherwise the toast reads exactly: ""Failed to export velocity report (csv)"" or ""Failed to export velocity report (pdf)"" - lowercase (csv)/(pdf), per the documented shipped casing.",specs/parts-velocity.md S6-N1; §7,,
+"PDF export alignment: Type centered, text left, numeric and money right",PV — Exports,Functional,Low,1. You are on the Parts Velocity report with data loaded and several columns of each kind visible.,"1. Download the PDF and look at the alignment of each column.
+2. Download the CSV and open it in a plain text editor to confirm it is plain comma-separated values (a CSV file carries no alignment of its own).","1. In the PDF, the Type column is CENTERED.
+2. In the PDF, the text columns (Part #, Description, Category, Vendor) are left-aligned.
+3. In the PDF, EVERY numeric and money column is right-aligned.
+4. This is a deliberate export-only treatment - the on-screen table is all-left-aligned; the difference is documented, not a defect.
+5. The CSV is plain data — the alignment assertions apply to the PDF only; how a spreadsheet displays the CSV is not part of this test.",SV-8646 (specs/parts-velocity.md S6-R10; S3-R8),,
+Export toasts: exact success texts; server or fallback error text on failure,PV — Exports,Negative,Medium,"1. You are on the Parts Velocity report with data loaded.
+2. You can force an export failure (e.g. drop the network connection just before triggering the download, or induce a server error).","1. Download the CSV and the PDF normally and read each toast.
+2. Trigger a CSV export under the failure condition and read the toast.
+3. Trigger a PDF export under the failure condition and read the toast.","1. On success the toasts read exactly ""Velocity report exported (CSV)"" / ""Velocity report exported (PDF)"" and auto-fade — UPPERCASE (CSV)/(PDF).
+2. An error toast is shown on failure; when the server provides a message, that server message is shown.
+3. Otherwise the failure toast reads exactly: ""Failed to export velocity report (csv)"" or ""Failed to export velocity report (pdf)"" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",specs/parts-velocity.md S6-R9; S6-N1; §7 (casing note),,
 The report uses the standard two-tone layout: white card surfaces on a soft blue-grey backdrop with an edge-to-edge table,PV — Visual Conformance,Functional,Low,"1. You are on the Parts Velocity report with data loaded, in light mode.","1. Look at the page background, the toolbar, and the table surfaces.
 2. Look at the card corners and the table's horizontal extent.","1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).
 2. There is NO card border-radius - the table runs edge to edge.
@@ -1497,18 +1431,21 @@ First visit defaults to the This Month preset and the user's active location,TU 
 4. This matches the Timesheet Activities report's single-time-zone grouping.",specs/technician-utilization.md S1-R7; S1 context notes,,
 A user without the timesheet-reports permission does not see the report in the navigation,TU — Access & Display,Negative,High,1. You are signed in as a user whose role lacks the permission that controls the Timesheet Activities report.,"1. Open the reports navigation.
 2. Look for Technician Utilization under Performance.",1. The Technician Utilization report does NOT appear in the navigation.,specs/technician-utilization.md S1-N1,,
-The standard no-data message shows when no technician clocked time in scope,TU — Access & Display,Negative,Medium,"1. A date range exists in which no technician clocked any time at the selected location(s), or a selectable location has no clocked time for the range.","1. Select that empty date range (or the empty location) and let the report load.
-2. Read the message in the data area and look for the Summary row.","1. Instead of rows, the data area shows exactly: ""Empty bays, endless possibilities. Get Going!"" (the application's standard reports no-data label).
+Standard no-data message when no time in scope or all technicians cleared,TU — Access & Display,Negative,Medium,"1. A date range exists in which no technician clocked any time at the selected location(s), or a selectable location has no clocked time for the range.
+2. For the cleared-filter check: the report can also be loaded with rows showing.","1. Select that empty date range (or the empty location) and let the report load.
+2. Read the message in the data area and look for the Summary row.
+3. Separately, with rows loaded, use ""Clear all"" in the Filter by Technician filter and re-read the data area and the Summary row.","1. Instead of rows, the data area shows exactly: ""Empty bays, endless possibilities. Get Going!"" (the application's standard reports no-data label).
 2. The Summary row is hidden.
-3. The same message is used whether the cause is genuinely no data or a cleared technician filter - this version does not use distinct copy for the two.",specs/technician-utilization.md S1-N2; S9-N2; §7,,
-Column headers appear in the fixed order ending with Est. Lost Labor,TU — Hours & Utilization,Functional,High,1. You are on the Technician Utilization report with rows loaded.,1. Read the column headers left to right.,"1. The headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor.",specs/technician-utilization.md S2-R1,,
-"Total, WO, and Internal Hours show the range's clocked hours in two decimals with no thousands separator",TU — Hours & Utilization,Functional,Critical,"1. A technician with known clocked time in the range: some clocked to work orders and some to an internal, non-billable activity (e.g. shop cleanup or a staff meeting).
-2. Part of the internal time was clocked at a location with NO default labor rate configured (for the completeness check).","1. Read the technician's Total Hours, WO Hours, and Internal Hours.
-2. Compare against the known clock records.
-3. Check the number format on a value over 100 hours.","1. Total Hours = all time the technician was clocked in for the range.
-2. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.
-3. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.
-4. Hours show two decimal places with NO thousands separator (e.g. ""107.70""), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 → 0.01).",specs/technician-utilization.md S2-R2; S2-R3; S2-R4; S2-R5; §3,,
+3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter.",specs/technician-utilization.md S1-N2; S9-N2; S5-N1; S3-N1; §7,,
+"Headers in fixed order; Total, WO and Internal Hours show clocked hours (2 dp)",TU — Hours & Utilization,Functional,Critical,"1. A technician with known clocked time in the range: some clocked to work orders and some to an internal, non-billable activity (e.g. shop cleanup or a staff meeting).
+2. Part of the internal time was clocked at a location with NO default labor rate configured (for the completeness check).","1. Read the column headers left to right.
+2. Read the technician's Total Hours, WO Hours, and Internal Hours.
+3. Compare against the known clock records.
+4. Check the number format on a value over 100 hours.","1. The headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor.
+2. Total Hours = all time the technician was clocked in for the range.
+3. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.
+4. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.
+5. Hours show two decimal places with NO thousands separator (e.g. ""107.70""), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 → 0.01).",specs/technician-utilization.md S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3,,
 "Utilization % is WO hours over total hours computed from unrounded values, shown to one decimal with round-half-up",TU — Hours & Utilization,Functional,Critical,1. A technician whose unrounded WO and total hours produce a checkable percentage - ideally one landing on a rounding tie (e.g. computing to 66.65%).,"1. Compute the expected value by hand: work-order hours ÷ total clocked hours × 100, from the UNROUNDED hours.
 2. Read the technician's Utilization % and compare.","1. Utilization % = work-order hours as a percentage of total clocked hours, computed from the unrounded hours (not from the already-rounded displays).
 2. It shows one decimal place followed by a percent sign, rounded round-half-up (66.65% → 66.7%).",specs/technician-utilization.md S2-R6; S2-R7; §3,,
@@ -1577,10 +1514,10 @@ Sorting reorders only the technician rows - the Summary stays at the bottom and 
 2. It stays visible at the bottom while the rows scroll.
 3. It uses the same number formats as the technician rows.
 4. Its values carry NO label prefix such as ""TOTAL:"" or ""AVG:"".",specs/technician-utilization.md S3-R1; S3-R2; S3-R6; S3-R7; S8-R5,,
-"Summary hours total the visible technicians from unrounded values - eye-summing the rows may differ by a cent, and all-selected equals shop totals",TU — Summary,Functional,High,1. Several technicians with known clocked hours are visible (all selected in the technician filter).,"1. Read the Summary Total Hours, WO Hours, and Internal Hours.
+Summary totals visible technicians from unrounded hours; 0.01 drift expected,TU — Summary,Functional,High,1. Several technicians with known clocked hours are visible (all selected in the technician filter).,"1. Read the Summary Total Hours, WO Hours, and Internal Hours.
 2. Hand-sum the DISPLAYED per-row values and compare with the Summary.
 3. Compare the Summary against the known shop totals for the full range at the selected location(s).","1. Each Summary hours value is the total of that column across the VISIBLE technicians, computed from unrounded hours and rounded once for display (round-half-up).
-2. Eye-summing the displayed rows MAY differ from the displayed Summary by a cent - this is expected in a compute-from-unrounded report, not a defect.
+2. Eye-summing the displayed rows MAY differ from the displayed Summary by 0.01 — one unit in the last decimal (these values are HOURS, not money) — expected in a compute-from-unrounded report, not a defect.
 3. With every technician selected, the Summary row equals the shop totals for the full date range at the selected location(s).",specs/technician-utilization.md S3-R3; §3 context note; S5-E1,,
 "Summary Utilization % is the weighted rate, not the average of the per-technician percentages",TU — Summary,Functional,High,1. Two visible technicians with deliberately skewed hours - e.g. tech A: 1.00 total / 1.00 WO (100%); tech B: 9.00 total / 0.00 WO (0.0%) - so the weighted and averaged results differ clearly.,"1. Compute the weighted rate: summed WO hours ÷ summed clocked hours × 100 (10% in the example).
 2. Compute the naive average of the two row percentages (50% in the example).
@@ -1644,9 +1581,6 @@ Previously deselected technicians stay deselected when the user returns to the r
 3. Check the two technicians' selection state and the other technicians'.","1. The two deselected technicians are STILL deselected on return - the deselected set is what persists (saved in this browser, not on the account).
 2. All other technicians - including any who appear for the first time - are selected.
 3. The saved date range and location selection are restored alongside (per S1-R8).",specs/technician-utilization.md S5-R10; S1-R8; §3,,
-Clearing all technicians shows the no-data message and hides the Summary row,TU — Technician Filter,Negative,Medium,1. You are on the Technician Utilization report with rows loaded.,"1. In the Filter by Technician filter, use ""Clear all"" so every currently-listed technician is deselected.
-2. Read the data area and look for the Summary row.","1. The report shows the no-data message: ""Empty bays, endless possibilities. Get Going!"" (the same standard label as the genuinely-no-data case - no distinct copy in this version).
-2. The Summary row is hidden (no technician rows are visible).",specs/technician-utilization.md S5-N1; S3-N1; §7,,
 "Total Hours is a real link with a non-color affordance and keyboard access, while the Summary's Total Hours is not a link",TU — Deep Links,Functional,High,1. You are on the Technician Utilization report with technician rows and the Summary row visible.,"1. Look at a technician row's Total Hours value.
 2. Tab to it with the keyboard and check the focus indicator; press Enter.
 3. Go back and look at the Summary row's Total Hours value.","1. Every technician row's Total Hours is rendered as a link (every rendered row has clocked time > 0, so the link always applies).
@@ -1657,10 +1591,10 @@ Clearing all technicians shows the no-data message and hides the Summary row,TU 
 3. Read the technician filter and the date range on the opened report.","1. The Timesheet Activities report opens in the SAME browser tab.
 2. It is already filtered to that technician.
 3. It uses the same date range that was active on the Technician Utilization report.",specs/technician-utilization.md S6-R2; S6-R3; S6-R4,,
-"For the same range and single active location with closed records, Total Hours reconciles to the Timesheet Activities total to the cent",TU — Deep Links,Functional,Critical,"1. A technician has only CLOSED (clocked-out) records in the range - no open clock.
+"Same range, single location, closed records: Total Hours matches Timesheet",TU — Deep Links,Functional,Critical,"1. A technician has only CLOSED (clocked-out) records in the range - no open clock.
 2. The report's location filter holds exactly ONE location, and it is the user's currently active shop.","1. Read the technician's Total Hours on the Technician Utilization report (two decimals).
 2. Click the Total Hours link and read the same technician's total on the opened Timesheet Activities report.
-3. Compare the two to the cent.","1. The two totals MATCH to the cent (two decimals) - both reports read the same clock records and round the same way (round-half-up, from unrounded values).
+3. Compare the two, to two decimals.","1. The two totals MATCH exactly, to two decimals (these values are hours, not money) - both reports read the same clock records and round the same way (round-half-up, from unrounded values).
 2. Under this exact scope (same range, same single location, closed records) a mismatch IS a defect.
 3. The two documented scope differences (open clocks, multi-location drill-through) are covered by separate cases and are NOT defects.",specs/technician-utilization.md S1-R9; §2; §5 Assumptions,,
 Reconciliation exception (a): an open clock is snapshotted at each report's own load instant - a difference of the elapsed time is expected,TU — Deep Links,Functional,Medium,"1. A technician is still clocked in (an open, not-yet-clocked-out record) inside the range.","1. Load the Technician Utilization report and read the technician's Total Hours; watch whether the value ticks on screen.
@@ -1768,8 +1702,10 @@ The Location filter is hidden for a user with access to only one location,TU —
 Work In Progress appears in the reports navigation under the Performance group,WIP — Tabs,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Your role has the permission that grants access to Work In Progress reports.","1. Open the reports navigation.
 2. Look inside the Performance group of reports.
-3. Click the ""Work In Progress"" entry.","1. The reports navigation lists a report labeled ""Work In Progress"" under the Performance group.
-2. Clicking it opens the Work In Progress report.",specs/wip-work-in-progress.md Story 1 S1-R1,,
+3. Click the ""Work In Progress"" entry.
+4. Read the browser tab's page title.","1. The reports navigation lists a report labeled ""Work In Progress"" under the Performance group.
+2. Clicking it opens the Work In Progress report.
+3. The browser page title is exactly ""Work In Progress - Report | ShopView"" — a plain hyphen with one space on each side.",specs/wip-work-in-progress.md Story 1 S1-R1; S1-R5,,
 "The report opens with four tabs in a fixed order and ""Approved - partially completed"" selected by default",WIP — Tabs,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have not visited the report before in this browser (no saved active-tab setting).","1. Open the Work In Progress report.
 2. Read the tab labels from left to right.
@@ -1783,9 +1719,6 @@ Work In Progress appears in the reports navigation under the Performance group,W
 3. Count the rows shown in each tab and compare to that tab's label.","1. Each tab's label shows the count of work orders currently in that tab, in parentheses — for example, ""Completed (22)"".
 2. The count matches the number of work-order rows actually listed in that tab.
 3. A tab with no work orders shows ""(0)"".",specs/wip-work-in-progress.md Story 1 S1-R4; Story 2 S2-N2 (count portion),,
-"The browser page title reads ""Work In Progress - Report | ShopView""",WIP — Tabs,Functional,Medium,1. You are signed in to the ShopView App on a desktop browser.,"1. Open the Work In Progress report.
-2. Read the browser tab's page title.","1. The browser page title is exactly ""Work In Progress - Report | ShopView"".
-2. The separator is a plain hyphen with one space on each side (not a dash of another kind).",specs/wip-work-in-progress.md Story 1 S1-R5,,
 "There is no Trend / over-time tab or chart — expected in this version, do not file as a defect",WIP — Tabs,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open.","1. Look through the report's tabs, toolbar, and menus for any trend, history, or over-time view.
 2. Confirm the report only shows the floor as it stands right now.","1. Only the four progress tabs exist — there is no Trend tab and no chart of work-in-progress dollars over time.
@@ -1811,34 +1744,24 @@ Work In Progress appears in the reports navigation under the Performance group,W
 2. Change the location selection and watch the data area again.","1. While the report is loading, the data area shows the standard reports loading indicator.
 2. The existing rows are replaced only when the new data returns (the table does not go blank and stay blank mid-load).
 3. Both a date-range change and a location change reload the report's rows.",specs/wip-work-in-progress.md Story 2 S2-R5; S2-R6,,
-"When no work order qualifies, every tab shows ""Empty bays, endless possibilities. Get Going!"" and no Totals row",WIP — Scope & Loading,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. The Work In Progress report is open.","1. Set the date range and location so that no open work order qualifies (for example, a Custom range over dates with no work orders created).
-2. Open each of the four tabs and read the data area.","1. Each tab shows the standard reports no-data message ""Empty bays, endless possibilities. Get Going!"" in place of rows.
+No qualifying work orders: every tab shows the no-data message and no Totals,WIP — Scope & Loading,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Work In Progress report is open.
+3. Separately, a state can be produced where some tabs have work orders but at least one tab (for example, Completed) has none.","1. Set the date range and location so that no open work order qualifies (for example, a Custom range over dates with no work orders created).
+2. Open each of the four tabs and read the data area.
+3. Then, with work orders in some tabs only, open the empty tab and a populated tab.","1. Each tab shows the standard reports no-data message ""Empty bays, endless possibilities. Get Going!"" in place of rows.
 2. No tab shows a Totals row.
-3. Every tab label count reads ""(0)"".",specs/wip-work-in-progress.md Story 2 S2-N1; §7 User Feedback Summary,,
-A single empty tab shows the no-data message while the other tabs still show their rows,WIP — Scope & Loading,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. Open work orders exist in some tabs, but at least one tab (for example, Completed) has no work orders for the current date range and location.","1. Open the Work In Progress report.
-2. Open the empty tab and read its data area.
-3. Open a populated tab and confirm its rows are still shown.","1. The empty tab shows the no-data message ""Empty bays, endless possibilities. Get Going!"" and no Totals row.
-2. The populated tabs still show their rows normally.
-3. The empty tab's label count reads ""(0)"".",specs/wip-work-in-progress.md Story 2 S2-N2,,
-An Estimate work order lands in the Estimates tab and a Complete work order lands in the Completed tab,WIP — Tab Placement,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. Two ZZAUTOTEST service work orders exist within the current date range and location: one in Estimate status and one in Complete status.","1. Open the Work In Progress report.
-2. Look for the Estimate work order in each tab.
-3. Look for the Complete work order in each tab.","1. The Estimate work order appears in the ""Estimates"" tab and nowhere else.
-2. The Complete work order appears in the ""Completed"" tab and nowhere else.",specs/wip-work-in-progress.md Story 3 S3-R1; S3-R2,,
-"In Progress and Review work orders land in the ""Approved - partially completed"" tab",WIP — Tab Placement,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. Two ZZAUTOTEST service work orders exist within the current date range and location: one in In Progress status and one in Review status.","1. Open the Work In Progress report.
-2. Look for the In Progress work order in each tab.
-3. Look for the Review work order in each tab.","1. Both work orders appear in the ""Approved - partially completed"" tab and nowhere else.",specs/wip-work-in-progress.md Story 3 S3-R3,,
-"An Approved work order with clocked time or a received part lands in ""Approved - partially completed""",WIP — Tab Placement,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. Two ZZAUTOTEST service work orders in Approved status exist within the current date range and location: one where a technician has clocked time to the job, and one where a part has been received for it (and no time clocked).","1. Open the Work In Progress report.
-2. Look for the Approved work order with clocked time in each tab.
-3. Look for the Approved work order with a received part in each tab.","1. The Approved work order with clocked labor time appears in the ""Approved - partially completed"" tab.
-2. The Approved work order with a received part (and no clocked time) also appears in the ""Approved - partially completed"" tab — either kind of started work counts.",specs/wip-work-in-progress.md Story 3 S3-R4 (started branch + context note),,
-"An Approved work order with no clocked time and no received part lands in ""Approved - not started""",WIP — Tab Placement,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. A ZZAUTOTEST service work order in Approved status exists within the current date range and location, with no labor time clocked and no part received against it.","1. Open the Work In Progress report.
-2. Look for the seeded Approved work order in each tab.","1. The work order appears in the ""Approved - not started"" tab and nowhere else.",specs/wip-work-in-progress.md Story 3 S3-R4 (not-started branch),,
+3. Every tab label count reads ""(0)"".
+4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a ""(0)"" count while the populated tabs still show their rows normally.",specs/wip-work-in-progress.md Story 2 S2-N1; S2-N2; §7 User Feedback Summary,,
+"Status-to-tab mapping: Estimate, Complete, In Progress and Review work orders",WIP — Tab Placement,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. Four ZZAUTOTEST service work orders exist within the current date range and location: one in Estimate status, one in Complete status, one in In Progress status, and one in Review status.","1. Open the Work In Progress report.
+2. Look for each seeded work order in each tab.","1. The Estimate work order appears in the ""Estimates"" tab and nowhere else.
+2. The Complete work order appears in the ""Completed"" tab and nowhere else.
+3. The In Progress and Review work orders appear in the ""Approved - partially completed"" tab and nowhere else.",specs/wip-work-in-progress.md Story 3 S3-R1; S3-R2; S3-R3,,
+Approved started-boundary: time or part received vs neither decides the tab,WIP — Tab Placement,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. Three ZZAUTOTEST service work orders in Approved status exist within the current date range and location: one where a technician has clocked time, one where a part has been received (and no time clocked), and one with neither.","1. Open the Work In Progress report.
+2. Look for each of the three Approved work orders in each tab.","1. The Approved work order with clocked labor time appears in the ""Approved - partially completed"" tab.
+2. The Approved work order with a received part (and no clocked time) also appears in the ""Approved - partially completed"" tab — either kind of started work counts.
+3. The Approved work order with no clocked time and no received part appears in the ""Approved - not started"" tab and nowhere else.",specs/wip-work-in-progress.md Story 3 S3-R4 (started + not-started branches + context note),,
 "With every column turned on, the columns appear in the fixed left-to-right order with the specified alignment",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.
 3. Every column is turned on in the column-selection control.","1. Read the column headers from left to right.
@@ -1996,11 +1919,6 @@ Total Remaining equals Not Started plus Started — Remaining,WIP — Summary St
 3. Check whether the Estimates amount is included in Total Earned or Total Remaining (their component sums should not contain it).","1. The Estimates figure equals the total quoted value of the jobs in the Estimates tab.
 2. It is shown in a muted style.
 3. The Estimates figure is excluded from Total Earned and from Total Remaining.",specs/wip-work-in-progress.md Story 5 S5-R8; S5-R9,,
-"Changing the advisor, customer, or asset filter recomputes every summary figure immediately, with no reload",WIP — Summary Strip,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. The report shows jobs for at least two different advisors, customers, and assets.","1. Note all seven summary figures.
-2. Select one advisor in the Advisor filter and watch the strip.
-3. Clear it, then select one customer; then clear and select one asset.","1. After each filter change, every summary figure recomputes immediately from the jobs still visible, with no page reload and no loading indicator.
-2. The recomputed figures reflect only the jobs that pass the filter (across all four tabs together).",specs/wip-work-in-progress.md Story 5 S5-R11; §3 Key Decisions (strip recomputes from visible jobs),,
 "Each summary figure's information icon reveals its plain-language explanation, verbatim per the spec",WIP — Summary Strip,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with the summary strip visible.","1. Hover (or focus, or tap) the small information icon next to each of the seven summary figures, one at a time.
 2. Read each revealed explanation and compare it word-for-word to the expected text.","1. Total Earned — ""Work you have already done but have not billed yet — the money waiting to be collected.""
@@ -2024,14 +1942,6 @@ Total Remaining equals Not Started plus Started — Remaining,WIP — Summary St
 3. Add up the jobs' Inv. Hrs values and compare to the Totals row's Inv. Hrs cell, including its sign and color.","1. The Totals row sums each visible money column across the tab's visible jobs, to the cent.
 2. The Totals row's Inv. Hrs shows the sum of the visible jobs' Inv. Hrs, in the same signed one-decimal format (""+2.0"" / ""-14.0"" / ""0.0"").
 3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row.",specs/wip-work-in-progress.md Story 6 S6-R2; S6-R3,,
-"The Totals row recomputes whenever the advisor, customer, or asset filter changes",WIP — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. A tab shows jobs for at least two advisors (or customers, or assets).","1. Note the tab's Totals row values.
-2. Select one advisor in the Advisor filter.
-3. Read the Totals row again; repeat with a customer and an asset selection.","1. After each filter change, the Totals row recomputes to sum only the jobs still visible in the tab.
-2. The recompute happens on screen with no reload.",specs/wip-work-in-progress.md Story 6 S6-R6; Story 7 S7-R12,,
-A tab with no visible jobs shows no Totals row,WIP — Totals Row,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. At least one tab has no work orders (or can be emptied via the advisor/customer/asset filters).","1. Open a tab that has no visible jobs (or filter until a tab is empty).
-2. Look at the bottom of the tab's data area.",1. The empty tab shows no Totals row (only the no-data message).,specs/wip-work-in-progress.md Story 6 S6-N1,,
 The Advisor filter is a multi-select of the advisors present in the loaded jobs and narrows rows on screen only,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs for at least two different advisors.","1. Open the Advisor filter in the toolbar and read its options.
 2. Select one advisor and watch the rows.
@@ -2078,12 +1988,12 @@ The Advisor filter is a multi-select of the advisors present in the loaded jobs 
 3. If possible, revisit the report after your saved location selection has been made invalid (for example, access to a saved location was removed).","1. Only the locations the user can access are offered — a location the user cannot access is never included in the scope.
 2. If the selection resolves to none, the report falls back to the user's currently active location rather than showing everything or erroring.
 3. A saved selection that no longer resolves also falls back to the active location.",specs/wip-work-in-progress.md Story 7 S7-R11; Story 8 S8-R8,,
-"Advisor, customer, and asset filters combine with AND, feed the strip and Totals rows, and an empty combination shows the no-data message",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+"Advisor, customer and asset filters AND together and recompute strip and Totals",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows several jobs with a known mix of advisors, customers, and assets.","1. Select an advisor, then also a customer that advisor has a job for, then also an asset from one of those jobs — checking the rows after each step.
 2. Read the summary strip and the active tab's Totals row after the three selections.
 3. Change one selection so that NO job passes all three filters.","1. A job must pass all three filters to remain visible (the filters combine with AND).
-2. The summary strip and each tab's Totals row recompute from the still-visible jobs after every change.
-3. When the combination leaves no visible jobs, every tab shows the no-data message ""Empty bays, endless possibilities. Get Going!"" and no Totals row.",specs/wip-work-in-progress.md Story 7 S7-R12; S7-N1,,
+2. The summary strip and each tab's Totals row recompute immediately from the still-visible jobs after every advisor, customer, or asset change — on screen, with no page reload.
+3. When the combination leaves no visible jobs, every tab shows the no-data message ""Empty bays, endless possibilities. Get Going!"" and no Totals row.",specs/wip-work-in-progress.md Story 7 S7-R12; S7-N1; Story 5 S5-R11; Story 6 S6-R6; §3 Key Decisions,,
 "The column-selection icon button (tooltip ""Column Selection"") toggles columns, and Total is not offered and cannot be turned off",WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
 2. Open the control and toggle a column off, then on again, watching the table.
@@ -2239,41 +2149,28 @@ On a first visit the report defaults to the current calendar month and the user'
 2. Read the date-range control's value.
 3. Read the Location filter's selection.","1. The date range defaults to the current calendar month.
 2. The location defaults to the user's currently active location.",specs/inventory-value.md Story 1 S1-R3; Story 7 S7-R2,,
-"Changing the date, location, Category, Vendor, part search, or sort reloads the rows from the server with the standard loading indicator",IV — Access & Display,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. The Inventory Value report is open with rows loaded.","1. Change the date range and watch the data area.
-2. Change the location selection, then the Category filter, then the Vendor filter.
-3. Type in the part search, then click a column header to change the sort — watching the data area each time.","1. Each change — date range, location, Category, Vendor, part search, sort — reloads the report's rows from the server.
-2. While loading, the data area shows the standard reports loading indicator.
-3. Existing rows are replaced only when the new data returns.",specs/inventory-value.md Story 1 S1-R4; S1-R5; S1-R7,,
 "The report is server-paginated: one page of rows at a time, and any filter/search/sort change returns to the first page",IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed).","1. Open the Inventory Value report and find the pagination control.
 2. Move to page 2 (and further) and watch the rows.
 3. From a later page, change a server-side filter (for example select a Category), then check which page is shown.
 4. Repeat from a later page with a part search and with a sort change.","1. The server returns one page of rows at a time; the user moves through pages with the reports suite's standard pagination control.
 2. Changing any server-side filter (Date, Location, Category, Vendor), the part search, or the sort returns the FIRST page of the new result set.",specs/inventory-value.md Story 1 S1-R8; §2 Scale and data model,,
-"When no in-stock part exists for the selected location(s) on the resolved date, the no-data message shows instead of rows",IV — Access & Display,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. A location you can access holds no in-stock parts (or the filters can be set so nothing qualifies).","1. Scope the report to the empty location (or filter so nothing qualifies).
-2. Read the data area.","1. The report shows the standard reports no-data message ""Empty bays, endless possibilities. Get Going!"" instead of rows.
-2. No totals row is shown.",specs/inventory-value.md Story 1 S1-N2; Story 12; §7 User Feedback Summary,,
-A part appears only when it is not a core charge AND its on-hand quantity is greater than zero,IV — Row Scope,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. ZZAUTOTEST parts exist at your active location: a normal part with positive on-hand quantity, and (for the negative side) a core-charge part and a zero-quantity part.","1. Open the Inventory Value report scoped to the location.
+"No qualifying parts, day or location: the no-data message shows and no totals",IV — Access & Display,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Three causes can be produced: (a) a location you can access holds no in-stock parts, (b) a past range ends entirely before nightly recording began (or its covered dates were pruned by retention), (c) the filters can be set so nothing qualifies.","1. Scope the report to the empty location and read the data area.
+2. Select a Custom range ending before nightly recording began and read the data area and the bottom of the report.
+3. Set the filters so nothing qualifies and re-read.","1. In every case the report shows the standard reports no-data message ""Empty bays, endless possibilities. Get Going!"" instead of rows.
+2. No totals row is shown in any of the cases.",specs/inventory-value.md Story 1 S1-N2; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary,,
+A part appears only if not a core charge and on-hand quantity is above zero,IV — Row Scope,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. ZZAUTOTEST parts exist at your active location: a normal part with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity.","1. Open the Inventory Value report scoped to the location.
 2. Look for the normal in-stock part.
-3. Look for the core-charge part and the zero-quantity part.","1. The normal, positive-quantity, non-core part appears as one row.
-2. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed.",specs/inventory-value.md Story 2 S2-R1; S2-R2; §3 Key Decisions,,
+3. Search for the core-charge part, the zero-quantity part, and the negative-quantity part by part number; check the totals row.","1. The normal, positive-quantity, non-core part appears as one row.
+2. The core-charge part is never listed — even with a positive quantity — and its value is not counted in the totals row.
+3. The zero-quantity and negative-quantity parts are not listed — only quantities greater than zero are valued.
+4. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed.",specs/inventory-value.md Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions,,
 "A part stocked at two selected locations appears as two rows (one per location), not merged — expected, do not file",IV — Row Scope,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. The same ZZAUTOTEST part is in stock (positive quantity) at two of those locations.","1. Open the Inventory Value report and select both locations in the Location filter.
 2. Search for the part and count its rows.","1. The part appears twice — one row per location, each with that location's own quantity and values.
 2. The rows are NOT merged into one combined row; this is the documented v1 behavior.",specs/inventory-value.md Story 2 S2-R3; §2 Known Limitations (v1),,
-"A core-charge part is never shown, regardless of its quantity",IV — Row Scope,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. A core-charge part with a positive on-hand quantity exists at the selected location.","1. Open the Inventory Value report scoped to that location.
-2. Search for the core-charge part by its part number.
-3. Check the totals row for its value.","1. The core-charge part is not listed, even though its quantity is positive.
-2. Its value is not counted in the totals row.",specs/inventory-value.md Story 2 S2-N1,,
-A part with zero or negative on-hand quantity is never shown,IV — Row Scope,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. A part with exactly zero on-hand quantity exists at the selected location, and (if producible) one with a negative on-hand quantity.","1. Open the Inventory Value report scoped to that location.
-2. Search for the zero-quantity part by its part number.
-3. Search for the negative-quantity part if one exists.","1. The zero-quantity part is not listed.
-2. The negative-quantity part is not listed either — only quantities greater than zero are valued.",specs/inventory-value.md Story 2 S2-N2,,
 There is no dead-stock exclusion — long-sitting stock still contributes to the on-hand value,IV — Row Scope,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A part with positive, non-core stock exists that has had no movement for a long time (or the oldest-stocked part at the location is known).","1. Open the Inventory Value report scoped to the location.
 2. Search for the long-sitting part.","1. The long-sitting part appears and its value is counted — every part currently holding positive, non-core stock contributes to the on-hand value, however long it has sat.",specs/inventory-value.md Story 2 context note (no dead-stock exclusion),,
@@ -2338,19 +2235,25 @@ Total Sell is quantity × Unit Sell and Total Cost is quantity × Unit Cost,IV �
 3. Read the Vendor cell of the part with no vendor.","1. Category shows the part's category name; Vendor shows the part's vendor name.
 2. A part with no category shows an em dash (""—"") in its Category cell.
 3. A part with no vendor shows an em dash (""—"") in its Vendor cell.",specs/inventory-value.md Story 3 S3-R14; S3-E1; S3-E2,,
-"The totals row is labeled ""Total"" in the Part # cell, leaves the per-unit and identity cells blank, and pins its bold Total Cost far right",IV — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. The Inventory Value report is open with rows loaded and all columns turned on.","1. Look at the row at the bottom of the report.
+"Totals row: Total label, blank identity/per-unit cells, pinned bold Total Cost",IV — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open with rows loaded and all columns turned on.
+3. The page shows more rows than fit on the screen.","1. Look at the row at the bottom of the report.
 2. Read its Part # cell, its Description/Category/Vendor cells, and its Unit Cost/Unit Sell cells.
-3. Look at its Total Cost cell and compare the number formats to the data rows.","1. A totals row is shown at the bottom, with the literal label ""Total"" in the Part # column's cell.
+3. Look at its Total Cost cell and compare the number formats to the data rows.
+4. Scroll the rows up and down and watch the totals row.","1. A totals row is shown at the bottom, with the literal label ""Total"" in the Part # column's cell.
 2. The Description, Category, and Vendor cells are blank; the Unit Cost and Unit Sell cells are blank (a per-unit price has no meaningful sum).
-3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows.",specs/inventory-value.md Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7,,
-"The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost over the FULL filtered set on the server, not just the visible page",IV — Totals Row,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows.
+4. The totals row stays visible at the bottom while the rows scroll.",specs/inventory-value.md Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5,,
+"Totals row sums the FULL filtered set on the server, not just the visible page",IV — Totals Row,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current filtered set spans more than one page (more rows than one page shows).
-3. The Margin and Total Sell columns are turned on.","1. Note the totals row's Qty on Hand, Margin, Total Sell, and Total Cost on page 1.
+3. The Margin and Total Sell columns are turned on.
+4. The report shows parts across at least two categories and two vendors.","1. Note the totals row's Qty on Hand, Margin, Total Sell, and Total Cost on page 1.
 2. Move to page 2 and read the totals row again.
-3. Cross-check the Total Cost total against a known seeded subset (filter down to a handful of ZZAUTOTEST parts whose values you can sum by hand).","1. The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost across the FULL filtered result set — every qualifying row for the current Date, Location, Category, Vendor, and part-search selection, not only the rows on the visible page.
+3. Cross-check the Total Cost total against a known seeded subset (filter down to a handful of ZZAUTOTEST parts whose values you can sum by hand).
+4. Select one Category and read the totals row; clear it, select one Vendor; clear it, type a part search matching a subset — reading the totals row each time (from a later page too if the set spans pages).","1. The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost across the FULL filtered result set — every qualifying row for the current Date, Location, Category, Vendor, and part-search selection, not only the rows on the visible page.
 2. The totals are identical on every page (they do not change as you page).
-3. The hand-summed subset matches the server-computed totals to the cent.",specs/inventory-value.md Story 4 S4-R2; §2 Scale and data model; §4 Terminology (Filtered set),,
+3. The hand-summed subset matches the server-computed totals to the cent.
+4. After each filter change the totals row recomputes on the server over the full filtered set, independent of which page is shown.",specs/inventory-value.md Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set),,
 "The totals-row Margin % is recomputed from the totals (total Margin ÷ total Total Sell), not the average of the row percentages",IV — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The filtered set contains parts with clearly different Margin % values (so a recomputed figure differs from a simple average).
 3. The Margin and Total Sell columns are turned on.","1. Read the totals row's Margin, Total Sell, and Margin %.
@@ -2358,15 +2261,6 @@ Total Sell is quantity × Unit Sell and Total Cost is quantity × Unit Cost,IV �
 3. Also compute the plain average of the row Margin % values and confirm the shown figure is NOT that.","1. The totals-row Margin % equals total Margin ÷ total Total Sell × 100 (to one decimal place with a percent sign).
 2. It is NOT the average of the row percentages.
 3. It shows ""—"" when the total Total Sell is zero or negative.",specs/inventory-value.md Story 4 S4-R3,,
-"Applying the Category filter, the Vendor filter, or the part search recomputes the totals on the server to match the filtered set",IV — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. The report shows parts across at least two categories and two vendors.","1. Note the totals row, then select one Category and read the totals row again.
-2. Clear it, select one Vendor, and read the totals row.
-3. Clear it, type a part search that matches a subset, and read the totals row.
-4. If the filtered set spans pages, check the totals from a later page too.","1. After each change, the totals row recomputes on the server over the full filtered set to match the filtered result.
-2. The recomputed totals are independent of which page is currently shown.",specs/inventory-value.md Story 4 S4-R8; Story 6 S6-R6,,
-"When no parts qualify, no totals row is shown",IV — Totals Row,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. The filters can be set so that no part qualifies (for example, a part search matching nothing).","1. Apply a filter or search that leaves no qualifying part.
-2. Look at the bottom of the data area.",1. The no-data message shows instead of rows and NO totals row is shown.,specs/inventory-value.md Story 4 S4-N1; Story 1 S1-N2,,
 "The date-range control offers the standard presets plus Custom and does not offer ""All Time"" — expected, do not file",IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Open the date-range control in the toolbar.
 2. Read every option offered.","1. The control offers the standard presets: ""Today"", ""Yesterday"", ""This Week"", ""Last Week"", ""This Month"", ""Last Month"", ""This Year"", ""Last Year"", ""This Quarter"", ""Last Quarter"", and ""Custom"".
@@ -2399,10 +2293,6 @@ For a past date the report replays the closest recorded day on or before the end
 4. Watch the data area when the range is applied.","1. A Custom range lets the user pick a start and end date, and the report values as of the picked end date.
 2. A future end date cannot be chosen — the end date is capped at today.
 3. Changing the date range reloads the report (the loading indicator shows and the rows re-fetch).",specs/inventory-value.md Story 5 S5-R7; S5-R8,,
-"When no recorded day exists on or before the end of the selected range, the report shows the no-data message and no totals row",IV — As-of Date & Snapshots,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. The date nightly recording began is known, and a past range exists that ends entirely BEFORE it (or whose only covered dates have been pruned by retention).","1. Select a Custom range ending before nightly recording began.
-2. Read the data area and the bottom of the report.","1. The report shows the no-data message ""Empty bays, endless possibilities. Get Going!"" instead of rows.
-2. No totals row is shown.",specs/inventory-value.md Story 5 S5-N1; §7 User Feedback Summary,,
 "History accrues forward only — a date before the first nightly recording cannot be reconstructed — expected, do not file",IV — As-of Date & Snapshots,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The date nightly recording began at this organization is known.","1. Select a range ending before the first nightly recording.
 2. Read what the report shows.","1. The report shows the empty state — there is no way to reconstruct inventory value for a date before recording began, because there is no historical backfill.
@@ -2413,11 +2303,13 @@ The Category and Vendor filters are multi-selects that reload the report to only
 3. Clear the Category filter, open the filter labeled ""Vendor"", and select one vendor; then add a second.","1. The toolbar has a Category filter labeled ""Category"" and a Vendor filter labeled ""Vendor"", each allowing one or more selections.
 2. Selecting one or more categories reloads the report to show only parts in the selected categories.
 3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors.",specs/inventory-value.md Story 6 S6-R1; S6-R2; S6-R3; S6-R4,,
-"The Category filter, Vendor filter, and part search apply server-side — each change re-queries and returns the first page",IV — Filters & Part Search,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+"Category, Vendor and part search are server-side; each change returns page 1",IV — Filters & Part Search,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The unfiltered result set spans multiple pages, and matching parts for a category/vendor/search exist BEYOND page 1.","1. From page 2 (or later), select a Category and check which page shows and which rows are listed.
 2. Repeat with a Vendor selection.
-3. Repeat with a part search.","1. Each change re-queries the server and returns the first page of the new result set.
-2. The filtering covers the ENTIRE data set — matching parts that were on later pages appear — not just a narrowing of the rows on the current page.",specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R8,,
+3. Repeat with a part search.
+4. Also change the date range, the location selection, and the sort — watching the data area each time.","1. Each change re-queries the server and returns the first page of the new result set.
+2. The filtering covers the ENTIRE data set — matching parts that were on later pages appear — not just a narrowing of the rows on the current page.
+3. Every change — date range, location, Category, Vendor, part search, sort — reloads the rows from the server; while loading the standard reports loading indicator shows, and existing rows are replaced only when the new data returns.",specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8,,
 "With no category or vendor selected all parts show, and an empty part search applies no narrowing",IV — Filters & Part Search,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report has been filtered by category, vendor, and a part search.","1. Clear the Category selection and check the rows.
 2. Clear the Vendor selection and check the rows.
@@ -2457,9 +2349,6 @@ The Location filter is hidden for a user with access to only one location,IV —
 2. You are signed in as that user on a desktop browser.","1. Open the Inventory Value report and look for the Location filter in the toolbar.
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's stock.
 2. For the user with access to two or more locations the Location filter IS shown.","SV-8674 (specs/inventory-value.md Story 7 S7-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
-"When the selected location(s) hold no in-stock parts on the resolved date, the no-data message shows",IV — Location Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. A location you can access holds no in-stock (positive-quantity, non-core) parts.","1. Scope the Location filter to only the empty location.
-2. Read the data area.","1. The report shows the no-data message ""Empty bays, endless possibilities. Get Going!"" instead of rows, and no totals row.",specs/inventory-value.md Story 7 S7-N2; §7 User Feedback Summary,,
 "The column-selection icon button (tooltip ""Column Selection"") toggles columns, and Total Cost cannot be turned off",IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
 2. Open the control and toggle a column off, then on again, watching the table.
@@ -2476,11 +2365,10 @@ Toggling columns never reorders them — the fixed order is kept with Total Cost
 3. Reload the browser page and check again.
 4. If practical, open the report in a different browser (or private window) and read its settings.","1. On return and after a reload, the report restores the saved date range, category selection, vendor selection, part search text, location selection, column selection, and sort.
 2. In a different browser the report shows the defaults instead — persistence is per browser, not tied to the user's account.",specs/inventory-value.md Story 8 S8-R5 (+ context note); Story 9 S9-R5,,
-"Restore is defensive: an invalid saved value falls back to its default, and a saved category or vendor no longer present is dropped",IV — Column Selection & Persistence,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+Defensive restore: a stale saved category or vendor is dropped on load,IV — Column Selection & Persistence,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report has saved settings in this browser, including a category or vendor selection that can be made stale (for example, the last in-stock part of a saved category is consumed so the category disappears from the data).","1. Make the saved category or vendor no longer present in the data.
-2. Open the Inventory Value report.","1. The report loads normally — a saved value that is no longer valid falls back to that setting's default rather than breaking the view.
-2. The saved category or vendor no longer present in the data is dropped from the selection.
-3. All other saved settings are still restored.",specs/inventory-value.md Story 8 S8-R6,,
+2. Open the Inventory Value report.","1. The report loads normally — the saved category or vendor that is no longer present in the data is dropped from the selection instead of breaking the view (the defensive-restore rule applied to the path these steps drive).
+2. All other saved settings are still restored.",specs/inventory-value.md Story 8 S8-R6,,
 "On first load and after any reload, rows are sorted by Total Cost, highest first, applied by the server",IV — Sorting,Functional,High,"1. You are signed in to the ShopView App on a desktop browser that has no saved sort for this report (fresh visit).
 2. In-stock parts with a spread of Total Cost values exist, spanning more than one page.","1. Open the Inventory Value report without clicking any header.
 2. Read the Total Cost values from the top row down, across page 1 and page 2.","1. The rows are sorted by Total Cost, highest first (descending).
@@ -2543,14 +2431,13 @@ An over-cap filtered set produces no file and shows the too-large-to-export mess
 3. Request ""Download (CSV)"" and read what happens.","1. Neither the PDF nor the CSV is produced.
 2. The user sees the message: ""This report is too large to export. Narrow the date range or filters, then try again."" (a blocking notification; no file).
 3. After narrowing the filters below the cap, the download works again.",specs/inventory-value.md Story 10 S10-R12; §7 User Feedback Summary,,
-"A successful download shows the format-specific success notification, verbatim",IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. The Inventory Value report is open with rows loaded (under the export cap).","1. Download the PDF and read the notification.
-2. Download the CSV and read the notification.","1. The PDF download shows a success notification: ""Inventory Value report exported (PDF)"".
-2. The CSV download shows a success notification: ""Inventory Value report exported (CSV)"".",specs/inventory-value.md Story 10 S10-R13; §7 User Feedback Summary,,
-"A failed download shows the format-specific error notification, verbatim",IV — Exports,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. A download failure can be simulated (for example, disconnect the network just before requesting the download).","1. Simulate a failure and request the PDF download; read the notification.
-2. Repeat for the CSV download.","1. The failed PDF download shows an error notification: ""Failed to export inventory value report (pdf)"".
-2. The failed CSV download shows an error notification: ""Failed to export inventory value report (csv)"".",specs/inventory-value.md Story 10 S10-R14; §7 User Feedback Summary,,
+Download notifications: verbatim success and failure texts per format,IV — Exports,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open with rows loaded (under the export cap).
+3. A download failure can be simulated (for example, disconnect the network just before requesting the download).","1. Download the PDF and the CSV normally and read each notification.
+2. Simulate a failure and request the PDF download; read the notification.
+3. Repeat the failure for the CSV download.","1. Success notifications read verbatim: ""Inventory Value report exported (PDF)"" and ""Inventory Value report exported (CSV)"".
+2. Failure notifications read verbatim: ""Failed to export inventory value report (pdf)"" and ""Failed to export inventory value report (csv)"".
+3. The lower-case ""(pdf)""/""(csv)"" on failure vs the upper-case success ones is the documented spec wording — expected, not a bug.",specs/inventory-value.md Story 10 S10-R13; S10-R14; §7 User Feedback Summary,,
 The report uses an all-white table with no alternating row shading on the standard soft blue-grey report backdrop,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with several rows.","1. Look at the column headers and the data cells.
 2. Compare the background of consecutive rows.
@@ -2560,9 +2447,6 @@ The report uses an all-white table with no alternating row shading on the standa
 2. The Inventory Value report is open.","1. Look at the toolbar's action cluster and read the order of its controls.
 2. Read the toolbar filters from left to right.","1. In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.
 2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).",specs/inventory-value.md Story 12 S12-R2; S12-R3,,
-The totals row stays visible at the bottom while the user scrolls the rows,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. The page shows more rows than fit on the screen.","1. Scroll the rows up and down.
-2. Watch the totals row.",1. The totals row stays visible at the bottom while the rows scroll.,specs/inventory-value.md Story 12 S12-R5,,
 "Long Description, Category, and Vendor values truncate with an ellipsis and show the full value on hover; the Part # is never truncated",IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A ZZAUTOTEST part exists with a very long description (and, if possible, long category/vendor names) and a long part number.","1. Narrow the browser window (or turn on more columns) so the text columns overflow.
 2. Read the long Description, Category, and Vendor cells and hover each.

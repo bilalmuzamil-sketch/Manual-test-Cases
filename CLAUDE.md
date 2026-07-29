@@ -828,7 +828,13 @@ deliver the 7-tab management report.
    **CANONICAL STATE DOC (read first for resume):** `build/report-suite/PROJECT-STATE.md`
    — single authoritative snapshot (per-report spec inventory + readiness snapshot,
    TestRail structure, open questions OQ-1..7, how-to-resume).
-   **STATUS: CASES AUTHORED + ADVERSARIALLY REVIEWED CLEAN 2026-07-22 — 515
+   **STATUS 2026-07-28 (LATEST): AUTHORIZED FULL TESTRAIL PUSH EXECUTED ("Push ALL") — 459
+   ACTIVE cases (515 − 57 deletes + SBC-EXP-16 = C38856; video edits + 9 sense-check repairs +
+   41-group merge consolidation all live, 70 update / 1 add / 57 delete, ALL 200 + verified, 0
+   failures; run R359 515→458 documented, never written; live count under group 4281 = 459 ==
+   id-map). Resume = PROJECT-STATE.md §0 UPDATE 2026-07-28-B; audit =
+   reconciliation-2026-07-28/testrail-execution-log-2026-07-28.md.**
+   **Prior STATUS: CASES AUTHORED + ADVERSARIALLY REVIEWED CLEAN 2026-07-22 — 515
    cases / 89 sections / 6 reports; import ready; NEXT = user import → C-id
    map → VIU.** (SBC 99 / SBR 127 / PV 70 / TU 59 / WIP 83 / IV 77; spec-only,
    all VIU-Pending; coverage 6/6 complete, every bullet mapped in

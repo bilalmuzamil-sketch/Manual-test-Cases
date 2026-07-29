@@ -1,5 +1,16 @@
 # SBC (Sales By Customer) — Coverage Matrix
 
+> **CONSOLIDATION UPDATE 2026-07-28 (user-authorized, pushed to TestRail):** the suite was
+> consolidated to **82 active SBC cases**. Every case ID below still resolves:
+> a merged-away ID's coverage now lives in its SURVIVOR (mapping below); cut cases' assertions
+> were either duplicates of a survivor or dropped by the usefulness/sense audit. Detail:
+> `consolidation-backup-2026-07-28/MANIFEST.md` + `quality-audit-2026-07-28/MERGE-PLAN.md`.
+>
+> Merged-away → survivor: SBC-NAV-02 → SBC-NAV-01; SBC-DATE-02 → SBC-PERS-05; SBC-LOC-02 → SBC-PERS-05; SBC-TYPE-01 → SBC-TYPE-02; SBC-TYPE-03 → SBC-TYPE-02; SBC-CUST-08 → SBC-CUST-04; SBC-CUST-07 → SBC-CUST-03; SBC-TREE-07 → SBC-TREE-03; SBC-LBL-02 → SBC-LBL-01; SBC-LBL-03 → SBC-LBL-01; SBC-SORT-05 → SBC-SORT-01; SBC-SORT-06 → SBC-TREE-09; SBC-COL-03 → SBC-COL-02; SBC-EXP-07 → SBC-EXP-02; SBC-EXP-12 → SBC-EXP-06; SBC-EMPTY-03 → SBC-EMPTY-01.
+> Cut (retired, body kept locally): SBC-SORT-07 (no-op sort assertion); SBC-EXP-13 (Print removed from SBC (video P25)).
+> Added 2026-07-28: SBC-EXP-16 = C38856 (compressed/summary download, video P21).
+
+
 > Report Suite project — SBC report. Authored 2026-07-22 from
 > `specs/sbc-sales-by-customer.md` (spec revision `_2`, change log through 2026-07-21).
 > SPEC-ONLY authoring (no designs yet). **99 cases / 18 sections**, all `viu_status: VIU-Pending`.

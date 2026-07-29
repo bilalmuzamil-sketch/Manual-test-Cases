@@ -1,5 +1,15 @@
 # WIP (Work In Progress) Report — Coverage Matrix
 
+> **CONSOLIDATION UPDATE 2026-07-28 (user-authorized, pushed to TestRail):** the suite was
+> consolidated to **76 active WIP cases**. Every case ID below still resolves:
+> a merged-away ID's coverage now lives in its SURVIVOR (mapping below); cut cases' assertions
+> were either duplicates of a survivor or dropped by the usefulness/sense audit. Detail:
+> `consolidation-backup-2026-07-28/MANIFEST.md` + `quality-audit-2026-07-28/MERGE-PLAN.md`.
+>
+> Merged-away → survivor: WIP-TAB-04 → WIP-TAB-01; WIP-SCOPE-06 → WIP-SCOPE-05; WIP-PLACE-02 → WIP-PLACE-01; WIP-PLACE-04 → WIP-PLACE-03; WIP-SUM-06 → WIP-FLT-08; WIP-TOT-03 → WIP-FLT-08.
+> Cut (retired, body kept locally): WIP-TOT-04 (duplicate of merged empty-state case).
+
+
 > **Report Suite project — per-report coverage doc (authored 2026-07-22, spec revision `_1`,
 > latest change-log entry 2026-07-21).**
 > Source spec: `build/report-suite/specs/wip-work-in-progress.md` (verbatim-structured).

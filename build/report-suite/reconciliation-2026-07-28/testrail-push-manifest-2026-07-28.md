@@ -1,4 +1,6 @@
-# Report Suite — TestRail push manifest (2026-07-28) — **EXECUTION PENDING**
+# Report Suite — TestRail push manifest (2026-07-28) — **EXECUTED 2026-07-28**
+
+> **EXECUTED:** all 70 update_case + 1 add_case (SBC-EXP-16 = **C38856**) + 57 delete_case ran HTTP 200 and verified (re-GET MATCH / verified gone), 0 failures, 0 HELD groups. Live post-push count under group 4281 = **459**. Run R359: 515 → 458 tests (documented only, never written). Per-case audit: `testrail-execution-log-2026-07-28.md`.
 
 **Authorization:** explicit user Rule-6 authorization 2026-07-28 ("Push ALL") — the full bundle: video-driven edits + SBC-EXP-16 add + SBC-EXP-13 retire + the 9 sense-check wording repairs + the 41-group/6-cut merge consolidation. Scope = TestRail **group 4281 (Reports Suite)** sections 4282–4376 ONLY; every touched case is inside C30096–C30610 (verified twice below) except the one NEW case. **NO run writes** — run R359 is documented (test count before/after) but never written to.
 

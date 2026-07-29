@@ -4,7 +4,9 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-28** (VIDEO PROMOTED TO AUTHORITATIVE — 27 local case edits + 1 new case
+Last updated: **2026-07-28, second update** (FULL TESTRAIL PUSH EXECUTED — see §0 first block:
+459 active cases live, SBC-EXP-16 = C38856, 57 deletions, R359 515→458 documented. Earlier same
+day: VIDEO PROMOTED TO AUTHORITATIVE — 27 local case edits + 1 new case
 SBC-EXP-16 + 1 retire-proposed SBC-EXP-13; backups in `video-promotion-backup-2026-07-28/`;
 spec-watch `SPEC-WATCH-2026-07-28.md` deadline 2026-08-04; see §0 first block. Prior 2026-07-22:
 CASES IMPORTED + C-IDs MAPPED READ-ONLY — all
@@ -21,8 +23,32 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
-**UPDATE 2026-07-28 (LATEST — VIDEO PROMOTED TO AUTHORITATIVE; LOCAL EDITS APPLIED; NO TestRail
-writes).** USER RULING 2026-07-28: Chris Ward's kickoff video is AUTHENTIC + AUTHORITATIVE product
+**UPDATE 2026-07-28-B (LATEST — AUTHORIZED FULL TESTRAIL PUSH EXECUTED, "Push ALL" user ruling
+2026-07-28).** The whole staged bundle is now LIVE in TestRail (group 4281 ONLY): **70 update_case**
+(24 video-promotion edits still active + the 9 sense-check FIX-WORDING repairs + the 41 merge
+survivors — one final body per case, deduplicated) + **1 add_case: SBC-EXP-16 = C38856** (section
+4300 "SBC — Exports", atmstatus 3 / automation_type 0) + **57 delete_case** (SBC-EXP-13 C30171
+Print retire + 6 usefulness/sense-audit CUTs [C30148, C30246, C30284, C30357, C30497, C30560] +
+50 merged-away members). ALL HTTP 200, ALL verified (re-GET MATCH on title/preconds/steps/expected/
+refs; deletes verified gone), **0 failures, 0 HELD merge groups**. **NEW TALLY: 459 ACTIVE cases**
+(515 − 57 + 1), live-verified: exactly 459 cases under group 4281 (96 sections, C30096–C38856),
+id-map 459/459 C-ids populated (== live set). **Run R359 (Nebojsa/Viktoria, NOT ours, never written
+to): 515 tests before → 458 after** (case deletions removed their tests; C38856 not in the run).
+Deliverables regenerated over 459 (unified import + 6 splits, header byte-identical, 0 VIU/flag
+words, 0 internal-id leaks, no dup titles, 29 API cases all in "— API" sections; per-report
+SBC 82 / SBR 109 / PV 67 / TU 57 / WIP 76 / IV 68). gen_import.py now EXCLUDES Retired bodies
+(kept in cases/*.json marked "Retired 2026-07-28 …" — never lost). Merge/consolidation detail +
+what each survivor gained: `consolidation-backup-2026-07-28/MANIFEST.md` (106 pre-edit bodies).
+Authoritative live recovery set: `testrail-pre-push-snapshot-2026-07-28/` (127 pre-push live bodies
++ R359 pre-push counts). Manifest (EXECUTED header): `reconciliation-2026-07-28/
+testrail-push-manifest-2026-07-28.md`; per-case audit: `reconciliation-2026-07-28/
+testrail-execution-log-2026-07-28.md`; executor scripts archived in the same folder. Refs note:
+SBC-EXP-01 C30159 + SBR-LOC-03 C30215 carry condensed refs in TestRail (length cap) — full text in
+local spec_ref/import. Survivor priorities/types deliberately unchanged. NEXT = live VIU on the QA
+branch when it exists + Chris's spec ratification watch (SPEC-WATCH deadline 2026-08-04).
+
+**PRIOR UPDATE 2026-07-28-A (VIDEO PROMOTED TO AUTHORITATIVE; LOCAL EDITS APPLIED; superseded by
+-B for the tally and the push status).** USER RULING 2026-07-28: Chris Ward's kickoff video is AUTHENTIC + AUTHORITATIVE product
 intent (made for Chris Amani, company VP) and NEWER than the six specs (last updated 2026-07-21) —
 by last-update-wins the **video overrides the spec where they conflict**. Applied LOCALLY (cases/
 *.json only): **27 cases edited** (20 tester-facing + 7 notes/refs-only — P24 serial-number

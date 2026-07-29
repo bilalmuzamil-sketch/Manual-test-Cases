@@ -4,6 +4,8 @@
 **Source snapshot:** `build/report-suite/cases/*.json` at git SHA `ddf8c16b1c271b12459838f6c9e51a34078087bf` (working tree clean for this folder at snapshot time).
 **Status: PROPOSAL ONLY — nothing has been edited.** No case JSON was touched, no TestRail writes were made (Standing Rule 6). The user can approve the whole plan, per-group, or reject it.
 
+> **EXECUTED 2026-07-28 (user authorization "Push ALL"):** all 41 merge groups + all 6 cuts were applied locally AND pushed to TestRail (survivor update_case ×41 within the 70-update bundle; member/cut delete_case, all verified) — 0 groups HELD. See `../reconciliation-2026-07-28/testrail-execution-log-2026-07-28.md` + `../consolidation-backup-2026-07-28/MANIFEST.md`. WEAK-KEEPs kept as planned.
+
 ## What this plan does
 
 - **41 merge groups** absorb **50 member cases** into their named survivors (the survivor gains the members' steps/expected lines as a step table — no coverage is lost).

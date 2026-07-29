@@ -31,19 +31,16 @@ A user with Reports access but without Inventory Reports → View sees the entry
 3. If any export control is reachable, try to export.","1. The Parts Velocity navigation entry is still visible (the entry follows Reports-section access, not the report permission).
 2. On opening the report, the standard access-denied state is shown instead of data.
 3. The export is likewise denied - no file downloads.",specs/parts-velocity.md S1-N2; S1-R4,,
-"Type filter is single-select, first in the filter row, with options Both, Inventory, Catalogue (default Both)",PV — Filters,Functional,High,"1. You are on the Parts Velocity report with data loaded.
-2. This is a first visit (no saved view), so the first-visit defaults apply.","1. Look at the first control in the filter row of the toolbar.
+"Type filter: single-select, first in row, three options, default Both; reloads",PV — Filters,Functional,High,"1. You are on the Parts Velocity report with data loaded.
+2. This is a first visit (no saved view), so the first-visit defaults apply.
+3. Both inventory parts and special-order (catalogue) parts have sales activity in the selected date range.","1. Look at the first control in the filter row of the toolbar.
 2. Open the Type filter and read its options.
-3. Note which option is selected by default.","1. The Type filter is the first control in the filter row.
+3. Note which option is selected by default.
+4. Select each Type option in turn and watch the table.","1. The Type filter is the first control in the filter row.
 2. It is single-select and offers exactly three choices: Both, Inventory, and a choice for special-order catalog parts that were never put into stock. (That third choice's exact on-screen label is confirmed in the build — the spec calls it ""Catalogue"" and a rename is being considered.)
 3. On a first visit the default is Both.
-4. Both is an explicit selection returning inventory and special-order rows together - a deliberate filter value, not the absence of a filter.","SV-8642 (specs/parts-velocity.md S2-R1 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28: update per latest info now, correct at the live build check later)",,
-Selecting a Type value immediately reloads the data limited to that type,PV — Filters,Functional,High,"1. You are on the Parts Velocity report with data loaded.
-2. Both inventory parts and catalogue (special-order) parts have sales activity in the selected date range, so both types appear under Both.","1. With Type = Both, note that the Type column shows both Inventory and Catalogue rows.
-2. Select Type = Inventory.
-3. Select Type = Catalogue.","1. Each selection immediately reloads the report data (no separate Apply step).
-2. With Inventory selected, every row's Type column reads Inventory.
-3. With Catalogue selected, every row's Type column reads Catalogue.",specs/parts-velocity.md S2-R1; S3-R5,,
+4. Both is an explicit selection returning inventory and special-order rows together - a deliberate filter value, not the absence of a filter.
+5. Each selection immediately reloads the report limited to that type (no separate Apply step) — under Inventory every row's Type column reads Inventory; under the special-order (catalogue) choice every row shows that type; under Both, rows of both kinds appear.",SV-8642 (specs/parts-velocity.md S2-R1; S3-R5 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28),,
 Date range selector offers exactly the eleven bounded options and no All Time,PV — Filters,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the date range selector and read every option.
 2. Select a non-custom option (for example Last Month).","1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
 2. There is NO 'All Time' option - the report always operates over a bounded date window (deliberate, per the spec's Out of Scope).
@@ -205,8 +202,6 @@ A different user signing in on the same browser inherits the saved view,PV — C
 2. User 2 can open the report.","1. Sign out user 1 and sign in user 2 on the SAME browser.
 2. Open the Parts Velocity report.","1. User 2 sees user 1's saved view (Type = Catalogue, Last Quarter, the saved columns and sort).
 2. This is by design: storage is per browser, not tied to the account - there is no per-account separation.",specs/parts-velocity.md S4-R6,,
-A saved view with a stale schema version is ignored and the current defaults load,PV — Columns & Remembered View,Negative,Low,1. The browser holds a saved view whose stored schema version does not match the current version of the report's saved format (seed by editing the stored value's version marker in browser storage).,1. Open the Parts Velocity report with the stale-version saved view in place.,"1. The stale view is ignored entirely.
-2. The report loads the current defaults: This Year, Both, the active location, the 14-column default set, Demand descending.",specs/parts-velocity.md S4-N1,,
 All 20 columns can be hidden; the empty selection is not restored and an export then contains no data columns,PV — Columns & Remembered View,Functional,Low,1. You are on the Parts Velocity report with data loaded.,"1. In the column picker, switch OFF all 20 columns.
 2. Trigger a CSV export while zero columns are enabled.
 3. Leave the report and return to it.","1. The picker enforces no minimum - all 20 columns can be switched off, leaving a grid with no data columns for the rest of the session.
@@ -359,20 +354,18 @@ CSV: named velocity-report.csv with full untruncated text values and Last Sale a
 3. In the PDF, read a non-null Last Sale value.","1. A null value renders as — (em-dash) in BOTH the CSV and the PDF, in every nullable field: Unit Cost, Sell Price, Margin %, On Hand, Turns / Yr, Last Sale, Min, Max.
 2. Revenue, Margin, and the count metrics are never null in the exports either ($0.00 / 0.00 / 0).
 3. In the PDF, Last Sale renders as 'N days' (e.g. 42 days).",specs/parts-velocity.md S6-R7; S6-R8; S3-R9,,
-"Export alignment: Type centered, text columns left-aligned, numeric and money columns right-aligned",PV — Exports,Functional,Low,1. You are on the Parts Velocity report with data loaded and several columns of each kind visible.,"1. Download the PDF and look at the alignment of each column.
-2. Open the CSV in a spreadsheet tool and check the produced alignment/formatting where applicable.","1. In the exports, the Type column is CENTERED.
-2. The text columns (Part #, Description, Category, Vendor) are left-aligned.
-3. EVERY numeric and money column is right-aligned.
-4. This is a deliberate export-only treatment - the on-screen table is all-left-aligned; the difference is documented, not a defect.",SV-8646 (specs/parts-velocity.md S6-R10; S3-R8),,
-Successful downloads show the exact success toasts with uppercase (CSV)/(PDF),PV — Exports,Functional,Medium,1. You are on the Parts Velocity report with data loaded.,"1. Download the CSV and read the toast.
-2. Download the PDF and read the toast.","1. On CSV success, a success toast reads exactly: ""Velocity report exported (CSV)"" and auto-fades.
-2. On PDF success, it reads exactly: ""Velocity report exported (PDF)"" and auto-fades.
-3. The success toasts use UPPERCASE (CSV)/(PDF) - the failure toasts use lowercase; that casing mix is the shipped wording, documented as-is (not a bug).",specs/parts-velocity.md S6-R9; §7 (casing note),,
-"A failed export shows the server message when available, otherwise the exact fallback error toast with lowercase (csv)/(pdf)",PV — Exports,Negative,Medium,"1. You are on the Parts Velocity report with data loaded.
-2. You can force an export failure (e.g. drop the network connection just before triggering the download, or induce a server error).","1. Trigger a CSV export under the failure condition and read the toast.
-2. Trigger a PDF export under the failure condition and read the toast.","1. An error toast is shown on failure.
-2. When the server provides a message, that server message is shown.
-3. Otherwise the toast reads exactly: ""Failed to export velocity report (csv)"" or ""Failed to export velocity report (pdf)"" - lowercase (csv)/(pdf), per the documented shipped casing.",specs/parts-velocity.md S6-N1; §7,,
+"PDF export alignment: Type centered, text left, numeric and money right",PV — Exports,Functional,Low,1. You are on the Parts Velocity report with data loaded and several columns of each kind visible.,"1. Download the PDF and look at the alignment of each column.
+2. Download the CSV and open it in a plain text editor to confirm it is plain comma-separated values (a CSV file carries no alignment of its own).","1. In the PDF, the Type column is CENTERED.
+2. In the PDF, the text columns (Part #, Description, Category, Vendor) are left-aligned.
+3. In the PDF, EVERY numeric and money column is right-aligned.
+4. This is a deliberate export-only treatment - the on-screen table is all-left-aligned; the difference is documented, not a defect.
+5. The CSV is plain data — the alignment assertions apply to the PDF only; how a spreadsheet displays the CSV is not part of this test.",SV-8646 (specs/parts-velocity.md S6-R10; S3-R8),,
+Export toasts: exact success texts; server or fallback error text on failure,PV — Exports,Negative,Medium,"1. You are on the Parts Velocity report with data loaded.
+2. You can force an export failure (e.g. drop the network connection just before triggering the download, or induce a server error).","1. Download the CSV and the PDF normally and read each toast.
+2. Trigger a CSV export under the failure condition and read the toast.
+3. Trigger a PDF export under the failure condition and read the toast.","1. On success the toasts read exactly ""Velocity report exported (CSV)"" / ""Velocity report exported (PDF)"" and auto-fade — UPPERCASE (CSV)/(PDF).
+2. An error toast is shown on failure; when the server provides a message, that server message is shown.
+3. Otherwise the failure toast reads exactly: ""Failed to export velocity report (csv)"" or ""Failed to export velocity report (pdf)"" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",specs/parts-velocity.md S6-R9; S6-N1; §7 (casing note),,
 The report uses the standard two-tone layout: white card surfaces on a soft blue-grey backdrop with an edge-to-edge table,PV — Visual Conformance,Functional,Low,"1. You are on the Parts Velocity report with data loaded, in light mode.","1. Look at the page background, the toolbar, and the table surfaces.
 2. Look at the card corners and the table's horizontal extent.","1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).
 2. There is NO card border-radius - the table runs edge to edge.
