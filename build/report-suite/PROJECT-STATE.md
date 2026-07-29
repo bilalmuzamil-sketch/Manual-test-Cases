@@ -23,6 +23,31 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
+**SESSION CHECKPOINT 2026-07-28 (pre-limit) — COLD-RESUME ANCHOR (read this first on resume).**
+- **PUSH ALL EXECUTED + VERIFIED BY EXECUTOR** (commits 93723bf / 98debf5 / ba0c043): **70
+  update_case + 1 add_case (SBC-EXP-16 = C38856) + 57 delete_case**, all HTTP 200 + re-GET
+  verified. **Suite now 459 ACTIVE, live == local**; run R359 = 458 tests (deletions only —
+  NO run writes, R359 is Nebojsa/Viktoria's, never ours). Recovery sets:
+  `testrail-pre-push-snapshot-2026-07-28/` + `consolidation-backup-2026-07-28/` +
+  `video-promotion-backup-2026-07-28/`.
+- **INDEPENDENT POST-PUSH VERIFICATION was IN-FLIGHT at checkpoint** (a background read-only
+  worker running 7 checks vs live TestRail; output =
+  `reconciliation-2026-07-28/POST-PUSH-VERIFICATION-2026-07-28.md`). **If that file is absent or
+  incomplete on resume, RE-RUN the verification:** (1) live count under group 4281 == 459 ==
+  id-map == import; (2) all 57 manifest deletes gone; (3) C38856 correct; (4) 12 live-vs-local
+  spot-checks; (5) other groups untouched (Schedule 4254 / Filters 4110 / F&D 3894); (6) R359 ==
+  458 with zero results added; (7) import hygiene.
+- **THE THREE-DIMENSION AUDIT GATE (Rule 28) is live**; audit deliverables in
+  `quality-audit-2026-07-28/` incl. `EXEC-NOTE-for-Stefan.md` (ready to send).
+- **OPEN THREADS:** (a) SPEC-WATCH deadline **2026-08-04** — remind the user if Chris Ward
+  hasn't ratified the video items into the 6 specs (`SPEC-WATCH-2026-07-28.md`); (b) Q2
+  permission-discrepancy note ready to send
+  (`chris-answers-2026-07-28/Q2-permission-discrepancy-for-Chris-dev.md`); (c) Chris's condensed
+  PRD-companion video pending → delta pass on arrival; (d) LIVE VIU pending QA branch (ask
+  Chris/user; fresh staging cookies needed); (e) suggest the user give Nebojsa/Viktoria a
+  heads-up that R359 went 515→458 due to consolidation; (f) **NO further TestRail writes
+  authorized — the Push-ALL authorization is CONSUMED.**
+
 **UPDATE 2026-07-28-B (LATEST — AUTHORIZED FULL TESTRAIL PUSH EXECUTED, "Push ALL" user ruling
 2026-07-28).** The whole staged bundle is now LIVE in TestRail (group 4281 ONLY): **70 update_case**
 (24 video-promotion edits still active + the 9 sense-check FIX-WORDING repairs + the 41 merge
