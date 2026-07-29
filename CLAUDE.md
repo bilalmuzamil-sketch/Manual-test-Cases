@@ -64,6 +64,12 @@
 >   final gate of every authoring pass per Standing Rule 28:
 >   build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md — canonical example
 >   build/report-suite/quality-audit-2026-07-28/.
+> - **QA QUALITY PIPELINE EXPLAINER (the presentable "how do we ensure the test cases are
+>   good?" doc the QA lead presents): build/QA-QUALITY-PIPELINE-EXPLAINER.md — the 9-step
+>   quality pipeline in plain language (source ingestion → traceability → build-accurate
+>   wording → coverage matrix → adversarial review → Ruthless Usefulness Audit → spec-change
+>   reconciliation → VIU → the tester Blocked-revisit loop), each step cross-referenced to its
+>   internal process doc.**
 > - Keep the books current: After each task, append ONLY success-proven learnings
 >   (working navigation paths, action recipes, endpoints, the specific unblock that
 >   worked) to build/APP-ACTIONS-PLAYBOOK.md; update build/TESTING-RUNBOOK.md when the
@@ -1578,6 +1584,16 @@ regression / bug-fix re-testing.
   characters; put the full detail in Steps/Expected/Preconditions, never rely on a long
   title. Applies to all future authoring and to any long title when a case is next
   touched. (User instruction 2026-07-27.)
+- **Blocked-revisit loop (standing, all projects):** tester-marked-**Blocked** cases are a
+  standing intake queue — if a case seems off/confusing/wrong during execution the manual
+  tester marks it Blocked (never skips, never guesses); EVERY Blocked case then gets a manual
+  revisit (re-checked against the current spec + live build) and a logged, authorized TestRail
+  correction (reword / fix expectation / merge / retire). Part of the permanent quality
+  pipeline — presentable overview doc = build/QA-QUALITY-PIPELINE-EXPLAINER.md; runtime
+  counterpart section in build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md. (QA lead's standing
+  instruction 2026-07-29: "the last fool proof process is that the manual tester marks the test
+  cases which seems off to him/her as Blocked and we revisit those blocked tests manually to
+  see what needs to be changed there.")
 
 ## Persistence note
 Secrets are **ephemeral** (`/tmp`, re-supply per environment). Everything else

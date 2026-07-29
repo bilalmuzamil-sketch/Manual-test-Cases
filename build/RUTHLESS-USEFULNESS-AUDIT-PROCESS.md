@@ -302,6 +302,24 @@ probe endpoints, ZZAUTOTEST tags, clean up after) rather than leaving the verdic
   cases — `USEFULNESS-AUDIT-2026-07-28.md` + `SENSE-CHECK-2026-07-28.md` +
   `per-case-verdicts.csv` with both verdict sets + `gen_verdicts.py`/`gen_sense_verdicts.py`).
 
+## Post-delivery loop — tester feedback via Blocked (the audit's runtime counterpart)
+The audit is the pre-delivery gate; this loop is its runtime counterpart, and it is a STANDING
+convention (QA lead's instruction 2026-07-29, verbatim: *"the last fool proof process is that the
+manual tester marks the test cases which seems off to him/her as Blocked and we revisit those
+blocked tests manually to see what needs to be changed there."*):
+- **The tester's rule:** during execution, if a case seems off / confusing / wrong to the manual
+  tester, they mark it **Blocked** — never skip it, never guess at the intent.
+- **Our rule:** tester-marked-Blocked cases are a **standing intake queue**. EVERY Blocked case is
+  revisited MANUALLY — re-checked against the CURRENT spec (Rule 23) and the LIVE build (Rules
+  12/13/22) — and fixed: reword (Rules 7/9), correct the expectation, MERGE, or RETIRE.
+- **Every fix is a logged TestRail update:** explicit user authorization first (Rule 6), per-case
+  audit log, re-GET verification, refs preserved (Rule 20), deliverables regenerated. Execution
+  runs are never written without permission.
+- The revisit reuses this audit's verdict vocabulary (a Blocked case is in effect a field-reported
+  FIX-WORDING / NONSENSE / MERGE / CUT candidate) — so the suite **permanently self-corrects**.
+- The presentable overview of the full quality pipeline (this loop = step 9) is
+  `build/QA-QUALITY-PIPELINE-EXPLAINER.md`.
+
 **How to call it:** *"Run the Ruthless Usefulness Audit on [project]"* (or just "slop check
 [project]" / "sense-check [project]"). It also runs automatically — all three dimensions together
 — as the final gate of every authoring pass — Standing Rule 28.
