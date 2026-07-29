@@ -32,6 +32,30 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
+**SESSION CHECKPOINT 2026-07-29 (pre-limit #2) — COLD-RESUME ANCHOR (read this first on resume).**
+- **Suite = 460 active** (459 live in TestRail + wave-2 pending). Chris answer A APPLIED LOCALLY
+  (commit 858479d). **PENDING: a 4-case wave-2 TestRail push queue AWAITING USER "push"
+  AUTHORIZATION: WIP-COL-05 C30470, WIP-FLT-03 C30500, WIP-SORT-03 C30485, WIP-EXP-07 C30516**
+  (VIN → Unit # → plate chain per Chris 2026-07-29; the manifest = the "Push queue — wave 2"
+  section of `chris-update-2026-07-29/ChangeList-2026-07-29.md`; condense refs to the 250-char
+  cap at push time; run R359 untouched — never write to it).
+- **VIN chain = durable cross-report standard** (VIN → Unit # → plate; recorded in CLAUDE.md);
+  the VIN-vs-serial terminology caution is ACTIVE (build label stays "VIN"; non-vehicle assets
+  effectively show the serial number — plain tester note where the label is read).
+- **SV-8721 side project FULLY CLOSED** (staging + prod verified; Jira comment 74275 upgraded
+  with 4 inline screenshots; production recipes recorded in build/APP-ACTIONS-PLAYBOOK.md §K).
+- **SPEC-WATCH:** Chris's spec changelog expected imminently — his edit was NOT hand-reviewed, so
+  the re-diff must confirm the WIP identifier text too; deadline **2026-08-04**
+  (`build/report-suite/SPEC-WATCH-2026-07-28.md`).
+- **QA-QUALITY-PIPELINE-EXPLAINER.md + Blocked-revisit standing loop:** check whether the
+  explainer worker's files landed (expected: build/QA-QUALITY-PIPELINE-EXPLAINER.md +
+  build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md + PROCESS-CATALOG.md + CLAUDE.md updates — committed
+  b3d241c as of this checkpoint); if absent/incomplete on resume, re-create per the user's
+  2026-07-29 instruction (the 9-step pipeline doc ending with the tester-Blocked manual-revisit
+  loop; instruction quoted in the session transcript).
+- **Awaiting:** user "push" authorization for wave-2; Chris's spec changelog + companion video;
+  the QA branch/env for live VIU.
+
 **UPDATE 2026-07-29-C (LATEST — CHRIS ANSWERED THE WIP-IDENTIFIER QUESTION: "A is the correct
 answer"; applied LOCALLY, NO TestRail writes; read this first).**
 - **Answer = A (verbatim, user-relayed):** the Work In Progress report **ALSO uses VIN, falling
