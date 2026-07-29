@@ -71,7 +71,8 @@ Location selection cascades; an inaccessible location's data is never included,S
 4. With ""All Locations"" active, look at how the rows tell you which location they belong to.","1. With only Y selected, rep A disappears (no matching invoice at Y); rep B's metrics reflect only Y invoices — an invoice's location is that of its originating work order / parts sale.
 2. Changing the selection re-fetches and re-renders scoped to the chosen set.
 3. ""All Locations"" means all locations the user can access — location Z's data is never included.
-4. With ""All Locations"" active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)","SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
+4. With ""All Locations"" active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)
+5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).","SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins)",,
 The Location filter is hidden for a user with access to only one location,SBR — Location Filter,Negative,Low,1. You are signed in as a user assigned to exactly one location.,"1. Open the report and look for the Location filter in the toolbar.
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
 2. For the user with access to two or more locations the Location filter IS shown.","SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
@@ -318,7 +319,7 @@ The ⋯ overflow menu lists exactly four download actions,SBR — Exports,Functi
 2. You are on the Sales By Representative report.","1. Find the ⋯ (three-dot) button in the report toolbar — it is the first control in the toolbar's action cluster.
 2. Click it and read the menu entries top to bottom.","1. The menu lists exactly four actions: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", ""Download Summary (CSV)"", and ""Download Expanded View (CSV)"".
 2. No other entries appear in the menu.",specs/sbr-sales-by-representative.md Story 14 S14-R1; Story 17 S17-R3 (position),,
-All four downloads respect the active filters and the full result set — not the on-screen expansion — in the currently-active order,SBR — Exports,Functional,Critical,"1. You are on the report with several reps showing.
+"All four downloads respect filters, full result set, and active order",SBR — Exports,Functional,Critical,"1. You are on the report with several reps showing.
 2. Set a specific date range, Product Type, Invoice Status, and a location selection; turn Show Unassigned on.
 3. Sort by a financial column (for example, click the Subtotal header).
 4. Leave at least one rep collapsed (do not expand it).","1. Download all four files from the ⋯ menu.
@@ -326,7 +327,8 @@ All four downloads respect the active filters and the full result set — not th
 3. Check where the Unassigned row sits in each file.","1. Every file contains only the reps/invoices matching ALL the active filters (date range, product type, invoice status, location, Show Unassigned).
 2. The files reflect the FULL result set for those filters — a collapsed (never-expanded) rep's invoices still appear in the Expanded View files; on-screen expansion state does not matter.
 3. Rep rows appear in the report's currently-active order — the active column sort if one is set, otherwise the A→Z default.
-4. The Unassigned row (Show Unassigned on) is pinned first, ahead of the sorted reps.",specs/sbr-sales-by-representative.md Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4,,
+4. The Unassigned row (Show Unassigned on) is pinned first, ahead of the sorted reps.
+5. Every file (all four downloads, PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).","SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",,
 "Summary PDF: A4 header strip, one rolled-up row per rep, bold Subtotal, colored Inv. Hrs, and a recomputed grand totals row",SBR — Exports,Functional,Critical,"1. You are on the report with at least two reps showing, one of them a toggled-off (""(Inactive)"") contributor if one can be arranged.
 2. A date range is selected.","1. Choose ""Download Summary (PDF)"" from the ⋯ menu and open the file.
 2. Read the top of the first page, the column headers, one rep row, and the last row.

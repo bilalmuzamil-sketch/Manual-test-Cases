@@ -1,0 +1,25 @@
+{
+ "id": "PV-EXP-02",
+ "area": "PV — Exports",
+ "title": "Both exports reflect the filters and search active at the time of export",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+ "preconditions": [
+  "1. You are on the Parts Velocity report with data loaded across types, categories, and locations."
+ ],
+ "steps": [
+  "1. Set a distinctive filter mix: Type = Inventory, a single category, a short date range, and a search string.",
+  "2. Download the CSV and open it.",
+  "3. Download the PDF and open it."
+ ],
+ "expected": [
+  "1. Both files contain only the rows matching the date range, type, category, vendor, bin, location, and search active at export time - not a full unfiltered dump.",
+  "2. The exported rows match what the on-screen grid was showing."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/parts-velocity.md S6-R2; §3 Key Decisions",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

@@ -29,7 +29,7 @@ SBC-TREE-10,C30130,"Edge: a single-invoice asset can still be expanded, and a cu
 SBC-TREE-11,C30131,"A service (S) invoice with no vehicle also lands in the Parts Sales bucket — absence of a vehicle decides, not the prefix",SBC — Tree & Rows
 SBC-TREE-12,C30132,"Reversed and voided invoices are excluded from every row, count and total under every Product Type",SBC — Tree & Rows
 SBC-TREE-13,C30133,"Every row type renders the same columns in the same order, blank cells keep their position, and summary rows use the specified font weights",SBC — Tree & Rows
-SBC-LBL-01,C30134,"Asset label = year make model + serial number, with missing-data fallbacks",SBC — Asset Labels
+SBC-LBL-01,C30134,"Asset identified by VIN, falling back to Unit #, then plate",SBC — Asset Labels
 SBC-LBL-04,C30137,Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads,SBC — Asset Labels
 SBC-LINK-01,C30138,"Invoice number opens in the same tab: S invoices to the work order Finance tab, P invoices to the part sale Part Requests tab",SBC — Invoice Links & Navigation
 SBC-LINK-02,C30139,"Browser back from an invoice returns to the report with filters, sort and columns restored and rows collapsed",SBC — Invoice Links & Navigation
@@ -48,19 +48,19 @@ SBC-CALC-06,C30154,"Subtotal is the rightmost column, pinned during horizontal s
 SBC-CALC-07,C30155,"The totals row covers the full filtered set of customers, not only the customers on the current page",SBC — Totals & Calculations
 SBC-COL-01,C30156,"Column selector is a separate toolbar button with the Column Selection tooltip and nine toggles in order, all on by default",SBC — Column Selector
 SBC-COL-02,C30157,"Column toggles hide header+cells; Customer, Subtotal and chevron never in list",SBC — Column Selector
-SBC-EXP-01,C30159,The overflow menu holds only Download (CSV) and Download (PDF) — no Print item,SBC — Exports
+SBC-EXP-01,C30159,The overflow menu holds exactly the four download items - no Print,SBC — Exports
 SBC-EXP-02,C30160,CSV and PDF downloads are named by the active date range per the filename map,SBC — Exports
-SBC-EXP-03,C30161,"CSV has twelve columns in exact order, is flat (customer then invoice rows), and follows the blank-cell rules",SBC — Exports
+SBC-EXP-03,C30161,"Expanded View CSV: column order, blank-cell rules, and the Locations line",SBC — Exports
 SBC-EXP-04,C30162,"CSV value formats: Margin % plain number, dates mm-dd-yyyy, currency plain numbers, no color",SBC — Exports
 SBC-EXP-05,C30163,"CSV and PDF contain exactly the customers matching the active filters and sort, including the Customer filter selection",SBC — Exports
 SBC-EXP-06,C30164,CSV and PDF actions show a loading state and their own export failed toast,SBC — Exports
 SBC-EXP-08,C30166,"PDF page: A4 landscape, uniform margins, ShopView footer and page numbers",SBC — Exports
-SBC-EXP-09,C30167,"PDF header shows the title, organization, date range in Mon D, YYYY form and the Product Type line; location is not shown",SBC — Exports
+SBC-EXP-09,C30167,"PDF header: title, organization, date range, Product Type and Locations lines",SBC — Exports
 SBC-EXP-10,C30168,"PDF logo is embedded, scales without distortion, and falls back from the uploaded logo to the ShopView logo to none",SBC — Exports
-SBC-EXP-11,C30169,PDF body matches the CSV's twelve flat columns with on-screen date/dash/bold rules and exact Inv. Hrs colors,SBC — Exports
+SBC-EXP-11,C30169,Expanded View PDF body matches the CSV's columns and on-screen rules,SBC — Exports
 SBC-EXP-14,C30172,"An export over 10,000 data rows is refused with the too-large toast",SBC — Exports
 SBC-EXP-15,C30173,"Exporting with no matching customers still downloads a file with headers and a zero totals row, with no warning",SBC — Exports
-SBC-EXP-16,C38856,The download menu also offers a compressed (summary) version of the report,SBC — Exports
+SBC-EXP-16,C38856,Summary and Expanded View downloads exist for both PDF and CSV,SBC — Exports
 SBC-PERS-01,C30174,"Filters, sort and visible columns are saved and restored on the next visit, shown immediately without a default flash",SBC — Saved View & Persistence
 SBC-PERS-02,C30175,"Type-ahead search text, expansion state and scroll position are not saved; a reload clears all expansion",SBC — Saved View & Persistence
 SBC-PERS-03,C30176,A saved value that is no longer valid is discarded and that setting falls back to its default,SBC — Saved View & Persistence
@@ -147,7 +147,7 @@ SBR-PERS-03,C30273,Restoration is defensive: a stale saved value falls back to i
 SBR-PERS-04,C30274,First visit or cleared storage yields all defaults; no server-side profile,SBR — Persistence
 SBR-PERS-05,C30275,"The A to Z default is its own saved value: restoring a state with no financial sort returns to A to Z, not an arbitrary column",SBR — Persistence
 SBR-EXP-01,C30276,The ⋯ overflow menu lists exactly four download actions,SBR — Exports
-SBR-EXP-02,C30277,All four downloads respect the active filters and the full result set — not the on-screen expansion — in the currently-active order,SBR — Exports
+SBR-EXP-02,C30277,"All four downloads respect filters, full result set, and active order",SBR — Exports
 SBR-EXP-03,C30278,"Summary PDF: A4 header strip, one rolled-up row per rep, bold Subtotal, colored Inv. Hrs, and a recomputed grand totals row",SBR — Exports
 SBR-EXP-04,C30279,"Expanded View PDF: one page-block per rep with its own header strip, per-invoice table, per-rep totals row, and no grand totals",SBR — Exports
 SBR-EXP-05,C30280,Expanded View PDF truncates invoice numbers longer than 18 characters; on screen they are never truncated,SBR — Exports
@@ -245,7 +245,7 @@ PV-EXP-01,C30375,The overflow button opens an export menu with Download (PDF) an
 PV-EXP-02,C30376,Both exports reflect the filters and search active at the time of export,PV — Exports
 PV-EXP-03,C30377,"Exports include only the enabled columns, in the canonical on-screen order",PV — Exports
 PV-EXP-04,C30378,"Exports reflect the active sort - including Min/Max sorts, the default Demand order, and identical null placement",PV — Exports
-PV-EXP-05,C30379,"PDF: named velocity-report.pdf, A3 landscape, titled Parts Velocity, with 18-character text truncation but Part # untruncated",PV — Exports
+PV-EXP-05,C30379,"PDF: filename, A3 landscape, title, text truncation, and the shop logo",PV — Exports
 PV-EXP-06,C30380,CSV: named velocity-report.csv with full untruncated text values and Last Sale as a raw integer,PV — Exports
 PV-EXP-07,C30381,"Null values render as an em-dash in both exports, and Last Sale renders as 'N days' in the PDF",PV — Exports
 PV-EXP-08,C30382,"PDF export alignment: Type centered, text left, numeric and money right",PV — Exports
@@ -282,7 +282,7 @@ TU-SUM-01,C30414,"A pinned Summary row labeled Summary sits at the bottom, stays
 TU-SUM-02,C30415,Summary totals visible technicians from unrounded hours; 0.01 drift expected,TU — Summary
 TU-SUM-03,C30416,"Summary Utilization % is the weighted rate, not the average of the per-technician percentages",TU — Summary
 TU-SUM-04,C30417,"Summary Est. Lost Labor sums the rated contributions only, and shows an em-dash only when every visible technician is an em-dash",TU — Summary
-TU-DAY-01,C30418,Each technician row has an accessible expand/collapse control named for its next action,TU — Per-Day Breakdown
+TU-DAY-01,C30418,Each technician row has an accessible expand/collapse control,TU — Per-Day Breakdown
 TU-DAY-02,C30419,"Expanding shows one row per clocked day in date order, loaded on demand, with days pooled across selected locations",TU — Per-Day Breakdown
 TU-DAY-03,C30420,"Day rows use the same columns and formats as technician rows, including a per-day per-location Est. Lost Labor",TU — Per-Day Breakdown
 TU-DAY-04,C30421,A single control in the table header expands or collapses all technician rows with the correct accessible names,TU — Per-Day Breakdown
@@ -300,16 +300,17 @@ TU-LINK-06,C30433,A day row's Total Hours links to Timesheet Activities for that
 TU-EXP-01,C30434,The three-dot menu sits leftmost in the toolbar's action cluster and holds the three verbatim download options,TU — Exports
 TU-EXP-02,C30435,"The Summary PDF holds the technician rows plus the Summary, and the Expanded PDF adds every per-day breakdown",TU — Exports
 TU-EXP-03,C30436,"The CSV is always summary-level, quotes comma-containing values, and downloads with the lower-case filename",TU — Exports
-TU-EXP-04,C30437,"Every download covers only the selected technicians, the selected locations, and the active date range",TU — Exports
+TU-EXP-04,C30437,"Downloads cover only selected technicians, locations, and date range",TU — Exports
 TU-EXP-05,C30438,"Downloads keep the on-screen column order and number formats but always order rows Technician A to Z, ignoring the on-screen sort",TU — Exports
 TU-EXP-06,C30439,"The shop logo shows at the top of both PDF views when set, no logo shows when unset, and the CSV never includes it",TU — Exports
 TU-EXP-07,C30440,Choosing a download with no technician selected is a silent no-op - no file and no message,TU — Exports
 TU-EXP-08,C30441,A starting download shows the Download started notification and a failed download shows Failed to download report,TU — Exports
 TU-LOC-01,C30442,The Location filter is the rightmost multi-select; All Locations = select-all,TU — Location Filter
-TU-LOC-02,C30443,"Changing the location selection reloads the report with hours pooled into one row per technician, never beyond accessible locations",TU — Location Filter
+TU-LOC-02,C30443,Location changes reload with hours pooled into one row per technician,TU — Location Filter
 TU-LOC-03,C30444,The saved location selection restores defensively - inaccessible locations are dropped and an empty remainder falls back to the active location,TU — Location Filter
 TU-LOC-04,C30445,Deselecting every location falls back to the active location instead of showing nothing,TU — Location Filter
 TU-LOC-05,C30446,The Location filter is hidden for a user with access to only one location,TU — Location Filter
+TU-COL-01,,A column selector lets the user choose which columns show,TU — Visual & Accessibility
 TU-VIS-01,C30447,"All-white table with no alternating row shading, and the toolbar controls run in the specified left-to-right order",TU — Visual & Accessibility
 TU-VIS-02,C30448,"Dark mode keeps every report element legible, with the info icon at 3:1 contrast and the link affordance intact in both modes",TU — Visual & Accessibility
 TU-API-01,C30449,"The per-day breakdown is fetched from the backend on demand when a row is expanded, not shipped with the initial payload",TU — API
@@ -359,7 +360,7 @@ WIP-FLT-02,C30499,"The Customer filter is a searchable type-ahead multi-select r
 WIP-FLT-03,C30500,"Asset filter type-ahead matches serial number or VIN, ""All assets"" when empty",WIP — Filters
 WIP-FLT-04,C30501,"The date-range control offers the standard presets plus Custom, defaults to ""This Week"", and does not offer ""All Time""",WIP — Filters
 WIP-FLT-05,C30502,"The date range filters by the work order's created date, reloads the report on change, and a Custom range is capped at 366 days",WIP — Filters
-WIP-FLT-06,C30503,"The Location filter (rightmost) is a multi-select with an ""All locations"" / ""Clear all"" toggle, defaults to the active location, and reloads on change",WIP — Filters
+WIP-FLT-06,C30503,"Location filter: rightmost multi-select with All locations, reloads on change",WIP — Filters
 WIP-FLT-07,C30504,"The location scope never includes an inaccessible location, and an empty selection falls back to the user's active location",WIP — Filters
 WIP-FLT-08,C30505,"Advisor, customer and asset filters AND together and recompute strip and Totals",WIP — Filters
 WIP-PERS-01,C30506,"The column-selection icon button (tooltip ""Column Selection"") toggles columns, and Total is not offered and cannot be turned off",WIP — Column Selection & Persistence
@@ -367,7 +368,7 @@ WIP-PERS-02,C30507,"Toggling columns never reorders them (Total always last), an
 WIP-PERS-03,C30508,"The report remembers the date range, filter selections, location, columns, and active tab per browser and restores them on return",WIP — Column Selection & Persistence
 WIP-PERS-04,C30509,A saved setting that is no longer valid falls back to its default instead of breaking the view,WIP — Column Selection & Persistence
 WIP-EXP-01,C30510,"A three-dot toolbar menu holds ""Download (PDF)"" and ""Download (CSV)""",WIP — Exports
-WIP-EXP-02,C30511,"Downloads contain only the shown columns in screen order, honor all filters, and include the tab's Totals row",WIP — Exports
+WIP-EXP-02,C30511,"Downloads keep shown columns, honor filters, include the tab's Totals row",WIP — Exports
 WIP-EXP-03,C30512,"Downloaded money and Inv. Hrs values keep the on-screen formats, and CSV values containing commas are double-quoted",WIP — Exports
 WIP-EXP-04,C30513,The Inv. Hrs green/red coloring appears on screen and in the PDF only — the CSV is monochrome,WIP — Exports
 WIP-EXP-05,C30514,Days Open in a download is frozen at the moment the file is generated (and can be one day higher than the screen),WIP — Exports
@@ -437,7 +438,7 @@ IV-SORT-02,C30584,"Header clicks sort ascending then descending with no third st
 IV-SORT-03,C30585,"Money and numeric columns sort by value; text columns sort as text, case-insensitively",IV — Sorting
 IV-SORT-04,C30586,Sorting reorders only the data rows — the totals row stays at the bottom — and the chosen sort is remembered per browser,IV — Sorting
 IV-EXP-01,C30587,"A three-dot toolbar menu holds ""Download (PDF)"" and ""Download (CSV)""",IV — Exports
-IV-EXP-02,C30588,"Downloads contain the shown columns in screen order (Total Cost last), honor all filters and the sort, and include a ""Totals"" row matching the full-set totals",IV — Exports
+IV-EXP-02,C30588,"Downloads keep shown columns and order, honor filters, and include Totals",IV — Exports
 IV-EXP-03,C30589,"Export number formats: two-decimal money, one-decimal Margin % (""—"" when undefined); CSV money as plain numbers, PDF with on-screen currency formatting",IV — Exports
 IV-EXP-04,C30590,"The PDF header shows the report name, organization, selected period, and an ""as of"" line; the shop logo shows when set and the CSV never has one",IV — Exports
 IV-EXP-05,C30591,"The downloaded files are named ""inventory-value-report.pdf"" and ""inventory-value-report.csv""",IV — Exports

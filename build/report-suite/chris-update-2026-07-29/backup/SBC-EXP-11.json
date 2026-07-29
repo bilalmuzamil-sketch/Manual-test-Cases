@@ -1,0 +1,28 @@
+{
+ "id": "SBC-EXP-11",
+ "area": "SBC — Exports",
+ "title": "PDF body matches the CSV's twelve flat columns with on-screen date/dash/bold rules and exact Inv. Hrs colors",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Sales By Customer report View permission.",
+ "preconditions": [
+  "1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal ≤ 0 row."
+ ],
+ "steps": [
+  "1. Read the body table's columns and row structure.",
+  "2. Check a date cell, a customer row's Date cell, a Margin % dash, the Subtotal column weight, and the Inv. Hrs colors (use a color picker on the PDF if available)."
+ ],
+ "expected": [
+  "1. The body table has twelve columns in the same exact order and labels as the CSV, and is flat — Customer then Invoice rows, no asset layer.",
+  "2. Body dates show as \"Mon DD YYYY\" — for example, \"May 14 2026.\"",
+  "3. The Date cell is blank on customer rows, matching the screen.",
+  "4. Margin % shows an em dash when the row's Subtotal is zero or below.",
+  "5. The Subtotal column is bold — header, every row, and the totals row.",
+  "6. Inv. Hrs uses the same signs and coloring as on screen, with green rendered as #21ba45 and red as #c10015."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbc-sales-by-customer.md Story 15 S15-R16; S15-R17; S15-R18; S15-R19; S15-R20; S15-R21",
+ "viu_status": "VIU-Pending",
+ "notes": "Color extends to the PDF but never the CSV (§3 Key Decision).",
+ "api_related": false
+}

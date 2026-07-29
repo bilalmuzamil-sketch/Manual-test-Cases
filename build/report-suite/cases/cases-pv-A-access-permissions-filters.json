@@ -167,7 +167,7 @@
   "preconditions": [
    "1. You are on the Parts Velocity report with data loaded.",
    "2. This is a first visit (no saved view), so the first-visit defaults apply.",
-   "3. Both inventory parts and special-order (catalogue) parts have sales activity in the selected date range."
+   "3. Both inventory parts and special-order parts (the \"Special Order\" type) have sales activity in the selected date range."
   ],
   "steps": [
    "1. Look at the first control in the filter row of the toolbar.",
@@ -177,15 +177,15 @@
   ],
   "expected": [
    "1. The Type filter is the first control in the filter row.",
-   "2. It is single-select and offers exactly three choices: Both, Inventory, and a choice for special-order catalog parts that were never put into stock. (That third choice's exact on-screen label is confirmed in the build — the spec calls it \"Catalogue\" and a rename is being considered.)",
+   "2. It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock).",
    "3. On a first visit the default is Both.",
-   "4. Both is an explicit selection returning inventory and special-order rows together - a deliberate filter value, not the absence of a filter.",
-   "5. Each selection immediately reloads the report limited to that type (no separate Apply step) — under Inventory every row's Type column reads Inventory; under the special-order (catalogue) choice every row shows that type; under Both, rows of both kinds appear."
+   "4. Both is an explicit selection returning inventory and Special Order rows together - a deliberate filter value, not the absence of a filter.",
+   "5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R1; S3-R5 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28)",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R1; S3-R5 - 'Catalogue' RENAMED to the exact label 'Special Order' [Type filter, Type column, export] per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins), confirming kickoff video P31)",
   "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm the exact filter control label ('Type' is the spec's name for it) and the option labels as shipped. P31 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): Chris is leaning to rename 'Catalogue' toward the special-order-parts meaning — video 43:49 'maybe we do rename it. Because you're absolutely right. Things in inventory have a catalogue item' + 44:12 'we'll have to truncate that down somehow, because that'll get a little big for a column.' Possible labels: 'Catalogue' (current spec S2-R1) OR a short special-order-parts name (not yet chosen — do NOT invent it, Rule 9). The MEANING is fixed: special-order catalog parts never put into inventory stock. Seeding for the reload leg: at least one invoiced sale of an inventory part AND at least one vendor-sourced (catalogue) part request on an invoiced/paid work order in the window. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-PV-TYPE): absorbed PV-FILT-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "notes": "RENAME CONFIRMED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'The part type \"Catalogue\" is renamed to \"Special Order\" (the Type filter, the Type column, and the export)... No data changes - splay/label only.' The label is now spec-stated (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. VIU-confirm the filter control's own name ('Type' is the spec's name). Seeding for the reload leg: at least one invoiced sale of an inventory part AND at least one vendor-sourced (Special Order) part request on an invoiced/paid work order in the window. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-PV-TYPE): absorbed PV-FILT-02. TITLE unchanged (already label-neutral). NOTE: the same rename on the Parts Sales report's dropdown is OUT of this suite's scope (different feature) - recorded as an FYI in the change-list, no case here.",
   "api_related": false
  },
  {
@@ -389,21 +389,21 @@
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
   "preconditions": [
    "1. You are on the Parts Velocity report with data loaded.",
-   "2. Catalogue rows are present under Type = Both (a catalogue part has in-window activity)."
+   "2. Special Order rows are present under Type = Both (a Special Order part has in-window activity)."
   ],
   "steps": [
    "1. With Type = Both, select any bin in the Bin filter.",
-   "2. Look for special-order (catalogue) rows in the result.",
-   "3. Set the Type filter to the special-order (catalogue) choice while the Bin filter is still active."
+   "2. Look for Special Order rows in the result.",
+   "3. Set the Type filter to Special Order while the Bin filter is still active."
   ],
   "expected": [
-   "1. With any Bin filter active, ALL special-order (catalogue) rows are excluded (they have no bin location).",
-   "2. The special-order (catalogue) choice combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect."
+   "1. With any Bin filter active, ALL Special Order rows are excluded (they have no bin location).",
+   "2. Special Order combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R8 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28: update per latest info now, correct at the live build check later)",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R8 - 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins), confirming kickoff video P31)",
   "viu_status": "VIU-Pending",
-  "notes": "Expected-behavior case: the empty result here is correct per spec. P31 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): the Type choice's on-screen label may be renamed from 'Catalogue' to a short special-order-parts name — label VIU-confirm, meaning unchanged. TITLE TRIMMED 2026-07-29 (user-authorized): was 96 chars, over the no more than 80 concise-title rule; meaning unchanged.",
+  "notes": "Expected-behavior case: the empty result here is correct per spec. RENAME CONFIRMED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) - label now spec-stated (VIU-confirm hedge removed); still to be sighted live at VIU per Rule 12. TITLE TRIMMED 2026-07-29 (user-authorized): was 96 chars, over the no-more-than-80 concise-title rule; meaning unchanged.",
   "api_related": false
  },
  {
@@ -430,12 +430,13 @@
    "3. The list holds the locations the signed-in user has access to, plus an 'All Locations' option.",
    "4. Each selection reloads the data scoped to the chosen set; 'All Locations' means all locations the user can ACCESS, never beyond - a location the user cannot access is never included.",
    "5. The location scope cascades through every metric like the other filters.",
-   "6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)"
+   "6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)",
+   "7. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins)",
   "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm the exact 'All Locations' label. Seeding: needs a user with two accessible locations and in-window activity at both (heavy multi-location seeding). VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): per-row location identifier in All-Locations view — the current spec has NO explicit Location column in the 20-column set (S4-R4), though inventory rows are per-location (S3-R1a). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9).",
+  "notes": "VIU-confirm the exact 'All Locations' label. Seeding: needs a user with two accessible locations and in-window activity at both (heavy multi-location seeding). VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): per-row location identifier in All-Locations view — the current spec has NO explicit Location column in the 20-column set (S4-R4), though inventory rows are per-location (S3-R1a). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9). SCOPE-INDICATOR added 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now shows which location(s) it's scoped to... on screen') - distinct from the per-row location label (video P10), which stays. Spec anchor pending the updated spec changelog.",
   "api_related": false
  },
  {

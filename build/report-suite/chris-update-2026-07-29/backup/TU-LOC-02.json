@@ -1,0 +1,29 @@
+{
+ "id": "TU-LOC-02",
+ "area": "TU — Location Filter",
+ "title": "Changing the location selection reloads the report with hours pooled into one row per technician, never beyond accessible locations",
+ "priority": "Critical",
+ "type": "Functional",
+ "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to at least two locations.",
+ "preconditions": [
+  "1. A technician has clocked time at TWO accessible locations in the range.",
+  "2. You are on the Technician Utilization report."
+ ],
+ "steps": [
+  "1. Select only location A and read the technician's hours.",
+  "2. Add location B to the selection and watch the report.",
+  "3. Count the technician's rows and compare the hours against A + B.",
+  "4. Expand the technician and check the day rows on a day with time at both locations."
+ ],
+ "expected": [
+  "1. Selecting one, several, or all locations RELOADS the report scoped to that set (unlike the technician filter, which is on-screen only).",
+  "2. All metrics (technician rows, per-day rows, and the Summary) reflect only clock records at the selected location(s).",
+  "3. The technician's hours are POOLED across the selected locations into ONE row (one row per technician, not one per location); per-day rows pool the same way.",
+  "4. Scoping never goes beyond the user's accessible locations - a location the user cannot access is never included."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/technician-utilization.md S9-R3; S9-R4; S9-R5",
+ "viu_status": "VIU-Pending",
+ "notes": "HEAVY SEEDING: one technician with clock records at two locations in one window.",
+ "api_related": false
+}

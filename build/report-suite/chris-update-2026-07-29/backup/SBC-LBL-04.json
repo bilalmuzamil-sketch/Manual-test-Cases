@@ -1,0 +1,25 @@
+{
+ "id": "SBC-LBL-04",
+ "area": "SBC — Asset Labels",
+ "title": "Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
+ "preconditions": [
+  "1. One customer has TWO ZZAUTOTEST assets whose labels come out identical (same year/make/model and same identifier situation), each with an invoice in range."
+ ],
+ "steps": [
+  "1. Expand the customer and read the two asset labels.",
+  "2. Note which asset carries \" (#1)\" and which \" (#2)\".",
+  "3. Reload the page and expand again."
+ ],
+ "expected": [
+  "1. The duplicate labels are suffixed \" (#1)\" and \" (#2)\" (and so on for more duplicates).",
+  "2. The numbering is fixed and repeatable — after a reload the same vehicle keeps the same number."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R11)",
+ "viu_status": "VIU-Pending",
+ "notes": "Video P24 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the asset identifier is now the SERIAL NUMBER — duplicate labels should become rarer (serials are unique), but the (#1)/(#2) rule (S8-R11) itself is not overridden; seed the duplicate-label state accordingly and re-confirm in the build. Title shortened to fit (case touched this pass).",
+ "api_related": false
+}

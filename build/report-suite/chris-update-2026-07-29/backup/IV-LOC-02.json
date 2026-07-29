@@ -1,0 +1,26 @@
+{
+ "id": "IV-LOC-02",
+ "area": "IV — Location Filter",
+ "title": "Selecting one, several, or all locations reloads the report scoped to that set",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "A user with access to at least two locations and the inventory-reports permission.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.",
+  "2. In-stock parts exist at both locations."
+ ],
+ "steps": [
+  "1. With one location selected, note the rows and totals.",
+  "2. Add the second location and watch the data area.",
+  "3. Use \"All locations\", then narrow back to one."
+ ],
+ "expected": [
+  "1. Each selection change reloads the report scoped to the selected set.",
+  "2. With both locations selected, parts from both appear (one row per part per location) and the totals cover both."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "specs/inventory-value.md Story 7 S7-R3",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

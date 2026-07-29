@@ -1,0 +1,27 @@
+{
+ "id": "TU-EXP-04",
+ "area": "TU — Exports",
+ "title": "Every download covers only the selected technicians, the selected locations, and the active date range",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+ "preconditions": [
+  "1. Several technicians are listed and the user has access to more than one location."
+ ],
+ "steps": [
+  "1. Deselect one technician, select a specific location set, and set a distinctive date range.",
+  "2. Download the Summary PDF, the Expanded PDF, and the CSV.",
+  "3. Check each file's technicians, the data scope, and the covered range.",
+  "4. Re-select all technicians and download once more."
+ ],
+ "expected": [
+  "1. Every download includes ONLY the technicians currently selected in the technician filter - the deselected technician is absent from all three files.",
+  "2. Every download covers the location(s) currently selected in the location filter and the date range currently active on the report.",
+  "3. With every technician selected, the download covers all technicians for the range at the selected location(s)."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/technician-utilization.md S7-R8; S7-R9; S7-E1; S9-R8",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

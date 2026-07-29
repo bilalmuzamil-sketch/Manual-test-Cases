@@ -1,0 +1,32 @@
+{
+ "id": "PV-FILT-10",
+ "area": "PV — Filters",
+ "title": "Location filter is rightmost, defaults to the active location, accessible-only",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4); user with access to more than one location.",
+ "preconditions": [
+  "1. You are signed in as a user with access to at least two locations.",
+  "2. You are on the Parts Velocity report on a first visit (no saved view)."
+ ],
+ "steps": [
+  "1. Look at the rightmost control in the filter row.",
+  "2. Note which location is selected by default and compare it to the location selected in the application's global location switcher.",
+  "3. Open the filter and read the list of locations.",
+  "4. Select a second location, then select the 'All Locations' option.",
+  "5. With 'All Locations' active, look at how the rows tell you which location they belong to."
+ ],
+ "expected": [
+  "1. The Location filter is the rightmost control in the filter row and is multi-select.",
+  "2. On a first visit it defaults to the user's currently active location (the one in the global location switcher).",
+  "3. The list holds the locations the signed-in user has access to, plus an 'All Locations' option.",
+  "4. Each selection reloads the data scoped to the chosen set; 'All Locations' means all locations the user can ACCESS, never beyond - a location the user cannot access is never included.",
+  "5. The location scope cascades through every metric like the other filters.",
+  "6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)"
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+ "viu_status": "VIU-Pending",
+ "notes": "VIU-confirm the exact 'All Locations' label. Seeding: needs a user with two accessible locations and in-window activity at both (heavy multi-location seeding). VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): per-row location identifier in All-Locations view — the current spec has NO explicit Location column in the 20-column set (S4-R4), though inventory rows are per-location (S3-R1a). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9).",
+ "api_related": false
+}

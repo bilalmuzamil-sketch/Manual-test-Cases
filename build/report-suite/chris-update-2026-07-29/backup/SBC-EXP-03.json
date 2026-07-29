@@ -1,0 +1,28 @@
+{
+ "id": "SBC-EXP-03",
+ "area": "SBC — Exports",
+ "title": "CSV has twelve columns in exact order, is flat (customer then invoice rows), and follows the blank-cell rules",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Sales By Customer report View permission.",
+ "preconditions": [
+  "1. You have downloaded the CSV for a view with at least one customer with several invoices."
+ ],
+ "steps": [
+  "1. Read the header row.",
+  "2. Read a customer row and an invoice row.",
+  "3. Look for any asset-level rows."
+ ],
+ "expected": [
+  "1. The CSV has twelve columns in this exact order: Customer, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.",
+  "2. On customer rows the Invoice # and Date cells are blank.",
+  "3. On invoice rows the Customer cell is blank and the Invoice # and Date cells are filled.",
+  "4. Customer names are plain — the \"(N)\" invoice count is not included.",
+  "5. The CSV is flat — Customer then Invoice rows; the on-screen asset layer is NOT represented (this is per spec, not a defect)."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbc-sales-by-customer.md Story 14 S14-R6; S14-R7; S14-R8; S14-R9; S14-R10 (context note)",
+ "viu_status": "VIU-Pending",
+ "notes": "KNOWN-LIMITATION ENCODING: no asset layer in the CSV is by design (S14-R10 context note) — do not file it as a gap.",
+ "api_related": false
+}

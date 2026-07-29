@@ -1,0 +1,26 @@
+{
+ "id": "SBC-EXP-16",
+ "area": "SBC — Exports",
+ "title": "The download menu also offers a compressed (summary) version of the report",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Sales By Customer report View permission.",
+ "preconditions": [
+  "1. You are on the Sales By Customer report with at least one customer and several invoices in the chosen date range."
+ ],
+ "steps": [
+  "1. Open the download (overflow) menu and read the options.",
+  "2. Download the compressed (summary) version and open the file.",
+  "3. Download the expanded (full, nested) version and compare the two files."
+ ],
+ "expected": [
+  "1. Besides the existing expanded (nested) download, the menu offers a compressed (summary) download option. (The exact menu wording is confirmed in the build.)",
+  "2. The compressed file gives one summary line per customer, without the per-invoice detail rows. (The exact file shape is confirmed in the build once the spec update lands.)",
+  "3. The expanded download still contains the full nested detail, and both files reflect exactly the filtered data shown on screen."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "SV-8582 (EPIC-LEVEL, stated explicitly: no child story exists yet for the SBC compressed download — kickoff video P21 32:10-33:03 + 48:39, user ruling 2026-07-28; overrides the current spec's single flat export, S14-R6; S14-R10; S15-R16)",
+ "viu_status": "VIU-Pending",
+ "notes": "VIDEO-AUTHORITATIVE ADD (P21, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)), NEW — no C-ID yet (needs authorized add_case). Video: Parth 32:10 'in sales by customer, we don't want to include option to download as a expanded view?' -> Chris 32:43 'You know what? That's actually a good callout. Let's, let's add that.' + 48:39 'we're gonna have to add to SVC, Sales by Customer, like you said, the CompressedView, that was a great idea.' OVERRIDDEN spec state: SBC exports are a single FLAT shape (S14-R6/S14-R10 CSV, S15-R16 PDF) with no Summary-vs-Expanded split. Compressed-file shape modeled on the other reports' Summary downloads but unpinned until Chris's spec update — flagged, not invented (Rule 9).",
+ "api_related": false
+}

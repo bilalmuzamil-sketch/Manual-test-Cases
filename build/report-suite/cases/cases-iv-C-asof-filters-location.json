@@ -1,475 +1,476 @@
 [
-  {
-    "id": "IV-DATE-01",
-    "area": "IV — As-of Date & Snapshots",
-    "title": "The date-range control offers the standard presets plus Custom and does not offer \"All Time\" — expected, do not file",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The Inventory Value report is open."
-    ],
-    "steps": [
-      "1. Open the date-range control in the toolbar.",
-      "2. Read every option offered."
-    ],
-    "expected": [
-      "1. The control offers the standard presets: \"Today\", \"Yesterday\", \"This Week\", \"Last Week\", \"This Month\", \"Last Month\", \"This Year\", \"Last Year\", \"This Quarter\", \"Last Quarter\", and \"Custom\".",
-      "2. \"All Time\" is NOT offered — because the report is valued as of a single date, an All-Time option would be meaningless; its absence is the documented v1 behavior."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 5 S5-R1; §2 Known Limitations (v1)",
-    "viu_status": "VIU-Pending",
-    "notes": "DOCUMENTED LIMITATION — DO NOT FILE. The missing \"All Time\" option is a deliberate v1 boundary.",
-    "api_related": false
-  },
-  {
-    "id": "IV-DATE-02",
-    "area": "IV — As-of Date & Snapshots",
-    "title": "The report values inventory as of the END of the selected range — the date is an as-of anchor, not a created-date filter",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. Nightly snapshots exist for past dates at the selected location (recording has been running).",
-      "3. A part exists that was ALREADY in stock before the selected range started."
-    ],
-    "steps": [
-      "1. Select a past range (for example \"Last Month\").",
-      "2. Check which date the displayed values represent.",
-      "3. Look for the part that was stocked before the range started."
-    ],
-    "expected": [
-      "1. The report values inventory as of the END of the selected range.",
-      "2. The date control is an \"as of\" anchor, not a created-date filter — narrowing it does not select \"parts added in that range\"; it shows the whole shelf as it stood on that date, so the part stocked before the range still appears."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 5 S5-R2 (+ context note)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "IV-DATE-03",
-    "area": "IV — As-of Date & Snapshots",
-    "title": "When the selected window reaches today and today has not been recorded yet, the report values the current live stock",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. Today's nightly snapshot has not yet been recorded (the normal daytime state).",
-      "3. A ZZAUTOTEST part's on-hand quantity was changed TODAY (after last night's capture)."
-    ],
-    "steps": [
-      "1. Select a range that reaches today (for example \"This Month\" or \"Today\").",
-      "2. Find the part whose quantity changed today and read its row."
-    ],
-    "expected": [
-      "1. The report values the current live stock — the values represent today.",
-      "2. The part's row reflects today's changed quantity (not yesterday's snapshot), proving the live fallback is in use."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 5 S5-R3; §3 Key Decisions (live fallback for today)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "IV-DATE-04",
-    "area": "IV — As-of Date & Snapshots",
-    "title": "For a past date the report replays the closest recorded day on or before the end of the selected range",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. Nightly snapshots exist for past dates, and a ZZAUTOTEST part's quantity is known to have DIFFERED on a past recorded day from its quantity today."
-    ],
-    "steps": [
-      "1. Select a Custom range ending on the past recorded day.",
-      "2. Find the part and read its quantity and values.",
-      "3. Compare them to what the part held on that recorded day (not today)."
-    ],
-    "expected": [
-      "1. The report replays the closest recorded day on or before the end of the selected range.",
-      "2. The part's row shows the quantity and values recorded for that day, not today's live stock."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 5 S5-R4; §2 Relationship to nightly history",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "IV-DATE-05",
-    "area": "IV — As-of Date & Snapshots",
-    "title": "An \"As of\" indicator names the day actually shown when it is earlier than the date asked for, and is hidden when they match",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. A past date exists that has NO snapshot of its own but has an earlier recorded day before it (for example, a gap day, or a date in the thinned monthly-retention band)."
-    ],
-    "steps": [
-      "1. Select a Custom range ending on the gap date (a date with no snapshot of its own).",
-      "2. Look for an \"As of\" indicator and read which day it names.",
-      "3. Then select a range ending on a day that IS recorded (or today with live values) and look for the indicator again."
-    ],
-    "expected": [
-      "1. When the displayed day is an earlier recorded day than the date asked for, the report shows an \"As of\" indicator naming the day actually shown.",
-      "2. When the displayed day matches the date asked for (the common current-view case), the \"As of\" indicator is not shown — the date control already communicates the date."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 5 S5-R5; S5-R6",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU-confirm the indicator's exact on-screen wording — the spec pins \"As of \" plus the day but not the full label format.",
-    "api_related": false
-  },
-  {
-    "id": "IV-DATE-06",
-    "area": "IV — As-of Date & Snapshots",
-    "title": "A Custom range lets the user pick start and end dates, values as of the picked end date, is capped at today, and reloads on change",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The Inventory Value report is open."
-    ],
-    "steps": [
-      "1. Open the date-range control and choose \"Custom\".",
-      "2. Pick a start and an end date in the past and apply.",
-      "3. Try to pick an end date in the future.",
-      "4. Watch the data area when the range is applied."
-    ],
-    "expected": [
-      "1. A Custom range lets the user pick a start and end date, and the report values as of the picked end date.",
-      "2. A future end date cannot be chosen — the end date is capped at today.",
-      "3. Changing the date range reloads the report (the loading indicator shows and the rows re-fetch)."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 5 S5-R7; S5-R8",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU-confirm how the today-cap is enforced (disabled future dates vs an error).",
-    "api_related": false
-  },
-  {
-    "id": "IV-DATE-07",
-    "area": "IV — As-of Date & Snapshots",
-    "title": "When no recorded day exists on or before the end of the selected range, the report shows the no-data message and no totals row",
-    "priority": "High",
-    "type": "Negative",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The date nightly recording began is known, and a past range exists that ends entirely BEFORE it (or whose only covered dates have been pruned by retention)."
-    ],
-    "steps": [
-      "1. Select a Custom range ending before nightly recording began.",
-      "2. Read the data area and the bottom of the report."
-    ],
-    "expected": [
-      "1. The report shows the no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows.",
-      "2. No totals row is shown."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 5 S5-N1; §7 User Feedback Summary",
-    "viu_status": "Retired 2026-07-28 (merged into IV-NAV-06 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "IV-DATE-08",
-    "area": "IV — As-of Date & Snapshots",
-    "title": "History accrues forward only — a date before the first nightly recording cannot be reconstructed — expected, do not file",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The date nightly recording began at this organization is known."
-    ],
-    "steps": [
-      "1. Select a range ending before the first nightly recording.",
-      "2. Read what the report shows."
-    ],
-    "expected": [
-      "1. The report shows the empty state — there is no way to reconstruct inventory value for a date before recording began, because there is no historical backfill.",
-      "2. This forward-capture-only behavior is the documented v1 boundary, not a defect."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope",
-    "viu_status": "VIU-Pending",
-    "notes": "DOCUMENTED LIMITATION — DO NOT FILE. Forward-capture history only; no backfill exists.",
-    "api_related": false
-  },
-  {
-    "id": "IV-FLT-01",
-    "area": "IV — Filters & Part Search",
-    "title": "The Category and Vendor filters are multi-selects that reload the report to only the matching parts",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. In-stock parts exist across at least two categories and two vendors."
-    ],
-    "steps": [
-      "1. Open the filter labeled \"Category\" and select one category; watch the data area.",
-      "2. Add a second category to the selection.",
-      "3. Clear the Category filter, open the filter labeled \"Vendor\", and select one vendor; then add a second."
-    ],
-    "expected": [
-      "1. The toolbar has a Category filter labeled \"Category\" and a Vendor filter labeled \"Vendor\", each allowing one or more selections.",
-      "2. Selecting one or more categories reloads the report to show only parts in the selected categories.",
-      "3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 6 S6-R1; S6-R2; S6-R3; S6-R4",
-    "viu_status": "VIU-Pending",
-    "notes": "KNOWN-DELTA WATCH: the 2026-07-21 spec change moved these filters server-side (they were \"on-screen only\" in the earlier draft). If the build still narrows only the current page client-side, record it as a build deviation from the current spec.",
-    "api_related": false
-  },
-  {
-    "id": "IV-FLT-02",
-    "area": "IV — Filters & Part Search",
-    "title": "Category, Vendor and part search are server-side; each change returns page 1",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The unfiltered result set spans multiple pages, and matching parts for a category/vendor/search exist BEYOND page 1."
-    ],
-    "steps": [
-      "1. From page 2 (or later), select a Category and check which page shows and which rows are listed.",
-      "2. Repeat with a Vendor selection.",
-      "3. Repeat with a part search.",
-      "4. Also change the date range, the location selection, and the sort — watching the data area each time."
-    ],
-    "expected": [
-      "1. Each change re-queries the server and returns the first page of the new result set.",
-      "2. The filtering covers the ENTIRE data set — matching parts that were on later pages appear — not just a narrowing of the rows on the current page.",
-      "3. Every change — date range, location, Category, Vendor, part search, sort — reloads the rows from the server; while loading the standard reports loading indicator shows, and existing rows are replaced only when the new data returns."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8",
-    "viu_status": "VIU-Pending",
-    "notes": "Every filter on this report is server-side (Story 6 context note) — only the column selection is client-side. VIU-confirm the loading indicator's appearance. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-RELOAD): absorbed IV-NAV-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
-    "api_related": false
-  },
-  {
-    "id": "IV-FLT-03",
-    "area": "IV — Filters & Part Search",
-    "title": "With no category or vendor selected all parts show, and an empty part search applies no narrowing",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The report has been filtered by category, vendor, and a part search."
-    ],
-    "steps": [
-      "1. Clear the Category selection and check the rows.",
-      "2. Clear the Vendor selection and check the rows.",
-      "3. Empty the part search and check the rows."
-    ],
-    "expected": [
-      "1. With no category selected, parts of all categories are shown.",
-      "2. With no vendor selected, parts of all vendors are shown.",
-      "3. With the part search empty, no search narrowing is applied."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 6 S6-R7",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "IV-FLT-04",
-    "area": "IV — Filters & Part Search",
-    "title": "The part search is a page-local toolbar field matching part number OR description, case-insensitively, on the server",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. In-stock parts exist whose part numbers and descriptions you know (including a description containing a distinctive word)."
-    ],
-    "steps": [
-      "1. Find the part search input in the report's own toolbar (not the application's global search bar).",
-      "2. Type part of a part number and read the results.",
-      "3. Clear it and type part of a description, in a DIFFERENT letter case than the stored text.",
-      "4. Type text matching nothing."
-    ],
-    "expected": [
-      "1. The search field is page-local, in the report's own toolbar — it is not the application's global search bar (the same toolbar-search pattern used elsewhere in the reports suite).",
-      "2. The report narrows to parts whose part number OR description contains the entered text.",
-      "3. Matching is case-insensitive.",
-      "4. The search applies server-side (whole data set, first page returned); a no-match search shows the no-data message."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 6 S6-R8; S6-R5",
-    "viu_status": "VIU-Pending",
-    "notes": "Parts Velocity is the spec's named sibling for this same search pattern. VIU-confirm the search field's placeholder/label text (unpinned).",
-    "api_related": false
-  },
-  {
-    "id": "IV-FLT-05",
-    "area": "IV — Filters & Part Search",
-    "title": "Date range, Location, Category, Vendor, and the part search combine with AND",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. In-stock parts exist with a known mix of categories and vendors, so a combined filter isolates a known subset."
-    ],
-    "steps": [
-      "1. Select a Category, then also a Vendor that only some of those category parts have.",
-      "2. Add a part search matching only one of the remaining parts.",
-      "3. Check the rows and the totals row after each step."
-    ],
-    "expected": [
-      "1. A part must satisfy EVERY active filter and the search to appear — the Date range, Location, Category, Vendor, and part search combine with AND.",
-      "2. The totals row matches the combined filtered set after each step."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 6 S6-R9",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "IV-LOC-01",
-    "area": "IV — Location Filter",
-    "title": "The Location filter is a rightmost multi-select with an All locations toggle",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A user with access to at least two locations and the inventory-reports permission.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.",
-      "2. This browser has never saved settings for this report (fresh visit)."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report and find the filter labeled \"Location\".",
-      "2. Read its position in the toolbar and its default selection.",
-      "3. Open it and read its options and its toggle.",
-      "4. Select every accessible location (\"All locations\") and look at how the rows tell you which location they belong to."
-    ],
-    "expected": [
-      "1. The toolbar has a location filter labeled \"Location\" — a multi-select and the rightmost filter — listing the locations the signed-in user has access to, with an \"All locations\" / \"Clear all\" toggle.",
-      "2. On a first visit it defaults to the user's currently active location.",
-      "3. With \"All locations\" active you can tell which location each row's stock belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)"
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
-    "viu_status": "VIU-Pending",
-    "notes": "VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 41:09-41:20: 'how do I know which is for shop A and which is for shop B? ... we should probably add that in there.' The current spec has NO Location identifier column (one row per part per location, S2-R3, but no Location column in S3-R1). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9). Title shortened to fit.",
-    "api_related": false
-  },
-  {
-    "id": "IV-LOC-02",
-    "area": "IV — Location Filter",
-    "title": "Selecting one, several, or all locations reloads the report scoped to that set",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "A user with access to at least two locations and the inventory-reports permission.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.",
-      "2. In-stock parts exist at both locations."
-    ],
-    "steps": [
-      "1. With one location selected, note the rows and totals.",
-      "2. Add the second location and watch the data area.",
-      "3. Use \"All locations\", then narrow back to one."
-    ],
-    "expected": [
-      "1. Each selection change reloads the report scoped to the selected set.",
-      "2. With both locations selected, parts from both appear (one row per part per location) and the totals cover both."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 7 S7-R3",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "IV-LOC-03",
-    "area": "IV — Location Filter",
-    "title": "Scoping never includes an inaccessible location, and a selection resolving to none falls back to the user's active location",
-    "priority": "High",
-    "type": "Negative",
-    "permissions_required": "A user with access to some, but not all, locations, and the inventory-reports permission.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.",
-      "2. The Inventory Value report is open."
-    ],
-    "steps": [
-      "1. Open the Location filter and read the locations offered.",
-      "2. Use \"Clear all\" so the selection resolves to no location, and watch what the report loads."
-    ],
-    "expected": [
-      "1. Only the locations the user has access to are offered — a location the user cannot access is never included in the scope.",
-      "2. If the requested location set resolves to none the user can access, the report falls back to the user's currently active location."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 7 S7-R4; S7-R5",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "IV-LOC-04",
-    "area": "IV — Location Filter",
-    "title": "The Location filter is hidden for a user with access to only one location",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "A user with access to exactly one location and the inventory-reports permission.",
-    "preconditions": [
-      "1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward).",
-      "2. You are signed in as that user on a desktop browser."
-    ],
-    "steps": [
-      "1. Open the Inventory Value report and look for the Location filter in the toolbar.",
-      "2. Then sign in as a user with access to two or more locations and look again."
-    ],
-    "expected": [
-      "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's stock.",
-      "2. For the user with access to two or more locations the Location filter IS shown."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
-    "viu_status": "VIU-Pending",
-    "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S7-N1): 'A user with access to only one location still sees the filter with a single selectable location.'",
-    "api_related": false
-  },
-  {
-    "id": "IV-LOC-05",
-    "area": "IV — Location Filter",
-    "title": "When the selected location(s) hold no in-stock parts on the resolved date, the no-data message shows",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "A user with access to at least two locations and the inventory-reports permission.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. A location you can access holds no in-stock (positive-quantity, non-core) parts."
-    ],
-    "steps": [
-      "1. Scope the Location filter to only the empty location.",
-      "2. Read the data area."
-    ],
-    "expected": [
-      "1. The report shows the no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows, and no totals row."
-    ],
-    "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 7 S7-N2; §7 User Feedback Summary",
-    "viu_status": "Retired 2026-07-28 (merged into IV-NAV-06 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "",
-    "api_related": false
-  }
+ {
+  "id": "IV-DATE-01",
+  "area": "IV — As-of Date & Snapshots",
+  "title": "The date-range control offers the standard presets plus Custom and does not offer \"All Time\" — expected, do not file",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Inventory Value report is open."
+  ],
+  "steps": [
+   "1. Open the date-range control in the toolbar.",
+   "2. Read every option offered."
+  ],
+  "expected": [
+   "1. The control offers the standard presets: \"Today\", \"Yesterday\", \"This Week\", \"Last Week\", \"This Month\", \"Last Month\", \"This Year\", \"Last Year\", \"This Quarter\", \"Last Quarter\", and \"Custom\".",
+   "2. \"All Time\" is NOT offered — because the report is valued as of a single date, an All-Time option would be meaningless; its absence is the documented v1 behavior."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 5 S5-R1; §2 Known Limitations (v1)",
+  "viu_status": "VIU-Pending",
+  "notes": "DOCUMENTED LIMITATION — DO NOT FILE. The missing \"All Time\" option is a deliberate v1 boundary.",
+  "api_related": false
+ },
+ {
+  "id": "IV-DATE-02",
+  "area": "IV — As-of Date & Snapshots",
+  "title": "The report values inventory as of the END of the selected range — the date is an as-of anchor, not a created-date filter",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Nightly snapshots exist for past dates at the selected location (recording has been running).",
+   "3. A part exists that was ALREADY in stock before the selected range started."
+  ],
+  "steps": [
+   "1. Select a past range (for example \"Last Month\").",
+   "2. Check which date the displayed values represent.",
+   "3. Look for the part that was stocked before the range started."
+  ],
+  "expected": [
+   "1. The report values inventory as of the END of the selected range.",
+   "2. The date control is an \"as of\" anchor, not a created-date filter — narrowing it does not select \"parts added in that range\"; it shows the whole shelf as it stood on that date, so the part stocked before the range still appears."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 5 S5-R2 (+ context note)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-DATE-03",
+  "area": "IV — As-of Date & Snapshots",
+  "title": "When the selected window reaches today and today has not been recorded yet, the report values the current live stock",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Today's nightly snapshot has not yet been recorded (the normal daytime state).",
+   "3. A ZZAUTOTEST part's on-hand quantity was changed TODAY (after last night's capture)."
+  ],
+  "steps": [
+   "1. Select a range that reaches today (for example \"This Month\" or \"Today\").",
+   "2. Find the part whose quantity changed today and read its row."
+  ],
+  "expected": [
+   "1. The report values the current live stock — the values represent today.",
+   "2. The part's row reflects today's changed quantity (not yesterday's snapshot), proving the live fallback is in use."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 5 S5-R3; §3 Key Decisions (live fallback for today)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-DATE-04",
+  "area": "IV — As-of Date & Snapshots",
+  "title": "For a past date the report replays the closest recorded day on or before the end of the selected range",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Nightly snapshots exist for past dates, and a ZZAUTOTEST part's quantity is known to have DIFFERED on a past recorded day from its quantity today."
+  ],
+  "steps": [
+   "1. Select a Custom range ending on the past recorded day.",
+   "2. Find the part and read its quantity and values.",
+   "3. Compare them to what the part held on that recorded day (not today)."
+  ],
+  "expected": [
+   "1. The report replays the closest recorded day on or before the end of the selected range.",
+   "2. The part's row shows the quantity and values recorded for that day, not today's live stock."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 5 S5-R4; §2 Relationship to nightly history",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-DATE-05",
+  "area": "IV — As-of Date & Snapshots",
+  "title": "An \"As of\" indicator names the day actually shown when it is earlier than the date asked for, and is hidden when they match",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A past date exists that has NO snapshot of its own but has an earlier recorded day before it (for example, a gap day, or a date in the thinned monthly-retention band)."
+  ],
+  "steps": [
+   "1. Select a Custom range ending on the gap date (a date with no snapshot of its own).",
+   "2. Look for an \"As of\" indicator and read which day it names.",
+   "3. Then select a range ending on a day that IS recorded (or today with live values) and look for the indicator again."
+  ],
+  "expected": [
+   "1. When the displayed day is an earlier recorded day than the date asked for, the report shows an \"As of\" indicator naming the day actually shown.",
+   "2. When the displayed day matches the date asked for (the common current-view case), the \"As of\" indicator is not shown — the date control already communicates the date."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 5 S5-R5; S5-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU-confirm the indicator's exact on-screen wording — the spec pins \"As of \" plus the day but not the full label format.",
+  "api_related": false
+ },
+ {
+  "id": "IV-DATE-06",
+  "area": "IV — As-of Date & Snapshots",
+  "title": "A Custom range lets the user pick start and end dates, values as of the picked end date, is capped at today, and reloads on change",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Inventory Value report is open."
+  ],
+  "steps": [
+   "1. Open the date-range control and choose \"Custom\".",
+   "2. Pick a start and an end date in the past and apply.",
+   "3. Try to pick an end date in the future.",
+   "4. Watch the data area when the range is applied."
+  ],
+  "expected": [
+   "1. A Custom range lets the user pick a start and end date, and the report values as of the picked end date.",
+   "2. A future end date cannot be chosen — the end date is capped at today.",
+   "3. Changing the date range reloads the report (the loading indicator shows and the rows re-fetch)."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 5 S5-R7; S5-R8",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU-confirm how the today-cap is enforced (disabled future dates vs an error).",
+  "api_related": false
+ },
+ {
+  "id": "IV-DATE-07",
+  "area": "IV — As-of Date & Snapshots",
+  "title": "When no recorded day exists on or before the end of the selected range, the report shows the no-data message and no totals row",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The date nightly recording began is known, and a past range exists that ends entirely BEFORE it (or whose only covered dates have been pruned by retention)."
+  ],
+  "steps": [
+   "1. Select a Custom range ending before nightly recording began.",
+   "2. Read the data area and the bottom of the report."
+  ],
+  "expected": [
+   "1. The report shows the no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows.",
+   "2. No totals row is shown."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 5 S5-N1; §7 User Feedback Summary",
+  "viu_status": "Retired 2026-07-28 (merged into IV-NAV-06 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-DATE-08",
+  "area": "IV — As-of Date & Snapshots",
+  "title": "History accrues forward only — a date before the first nightly recording cannot be reconstructed — expected, do not file",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The date nightly recording began at this organization is known."
+  ],
+  "steps": [
+   "1. Select a range ending before the first nightly recording.",
+   "2. Read what the report shows."
+  ],
+  "expected": [
+   "1. The report shows the empty state — there is no way to reconstruct inventory value for a date before recording began, because there is no historical backfill.",
+   "2. This forward-capture-only behavior is the documented v1 boundary, not a defect."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope",
+  "viu_status": "VIU-Pending",
+  "notes": "DOCUMENTED LIMITATION — DO NOT FILE. Forward-capture history only; no backfill exists.",
+  "api_related": false
+ },
+ {
+  "id": "IV-FLT-01",
+  "area": "IV — Filters & Part Search",
+  "title": "The Category and Vendor filters are multi-selects that reload the report to only the matching parts",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. In-stock parts exist across at least two categories and two vendors."
+  ],
+  "steps": [
+   "1. Open the filter labeled \"Category\" and select one category; watch the data area.",
+   "2. Add a second category to the selection.",
+   "3. Clear the Category filter, open the filter labeled \"Vendor\", and select one vendor; then add a second."
+  ],
+  "expected": [
+   "1. The toolbar has a Category filter labeled \"Category\" and a Vendor filter labeled \"Vendor\", each allowing one or more selections.",
+   "2. Selecting one or more categories reloads the report to show only parts in the selected categories.",
+   "3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 6 S6-R1; S6-R2; S6-R3; S6-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "KNOWN-DELTA WATCH: the 2026-07-21 spec change moved these filters server-side (they were \"on-screen only\" in the earlier draft). If the build still narrows only the current page client-side, record it as a build deviation from the current spec.",
+  "api_related": false
+ },
+ {
+  "id": "IV-FLT-02",
+  "area": "IV — Filters & Part Search",
+  "title": "Category, Vendor and part search are server-side; each change returns page 1",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The unfiltered result set spans multiple pages, and matching parts for a category/vendor/search exist BEYOND page 1."
+  ],
+  "steps": [
+   "1. From page 2 (or later), select a Category and check which page shows and which rows are listed.",
+   "2. Repeat with a Vendor selection.",
+   "3. Repeat with a part search.",
+   "4. Also change the date range, the location selection, and the sort — watching the data area each time."
+  ],
+  "expected": [
+   "1. Each change re-queries the server and returns the first page of the new result set.",
+   "2. The filtering covers the ENTIRE data set — matching parts that were on later pages appear — not just a narrowing of the rows on the current page.",
+   "3. Every change — date range, location, Category, Vendor, part search, sort — reloads the rows from the server; while loading the standard reports loading indicator shows, and existing rows are replaced only when the new data returns."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8",
+  "viu_status": "VIU-Pending",
+  "notes": "Every filter on this report is server-side (Story 6 context note) — only the column selection is client-side. VIU-confirm the loading indicator's appearance. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-RELOAD): absorbed IV-NAV-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "api_related": false
+ },
+ {
+  "id": "IV-FLT-03",
+  "area": "IV — Filters & Part Search",
+  "title": "With no category or vendor selected all parts show, and an empty part search applies no narrowing",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The report has been filtered by category, vendor, and a part search."
+  ],
+  "steps": [
+   "1. Clear the Category selection and check the rows.",
+   "2. Clear the Vendor selection and check the rows.",
+   "3. Empty the part search and check the rows."
+  ],
+  "expected": [
+   "1. With no category selected, parts of all categories are shown.",
+   "2. With no vendor selected, parts of all vendors are shown.",
+   "3. With the part search empty, no search narrowing is applied."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 6 S6-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-FLT-04",
+  "area": "IV — Filters & Part Search",
+  "title": "The part search is a page-local toolbar field matching part number OR description, case-insensitively, on the server",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. In-stock parts exist whose part numbers and descriptions you know (including a description containing a distinctive word)."
+  ],
+  "steps": [
+   "1. Find the part search input in the report's own toolbar (not the application's global search bar).",
+   "2. Type part of a part number and read the results.",
+   "3. Clear it and type part of a description, in a DIFFERENT letter case than the stored text.",
+   "4. Type text matching nothing."
+  ],
+  "expected": [
+   "1. The search field is page-local, in the report's own toolbar — it is not the application's global search bar (the same toolbar-search pattern used elsewhere in the reports suite).",
+   "2. The report narrows to parts whose part number OR description contains the entered text.",
+   "3. Matching is case-insensitive.",
+   "4. The search applies server-side (whole data set, first page returned); a no-match search shows the no-data message."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 6 S6-R8; S6-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "Parts Velocity is the spec's named sibling for this same search pattern. VIU-confirm the search field's placeholder/label text (unpinned).",
+  "api_related": false
+ },
+ {
+  "id": "IV-FLT-05",
+  "area": "IV — Filters & Part Search",
+  "title": "Date range, Location, Category, Vendor, and the part search combine with AND",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. In-stock parts exist with a known mix of categories and vendors, so a combined filter isolates a known subset."
+  ],
+  "steps": [
+   "1. Select a Category, then also a Vendor that only some of those category parts have.",
+   "2. Add a part search matching only one of the remaining parts.",
+   "3. Check the rows and the totals row after each step."
+  ],
+  "expected": [
+   "1. A part must satisfy EVERY active filter and the search to appear — the Date range, Location, Category, Vendor, and part search combine with AND.",
+   "2. The totals row matches the combined filtered set after each step."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 6 S6-R9",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-LOC-01",
+  "area": "IV — Location Filter",
+  "title": "The Location filter is a rightmost multi-select with an All locations toggle",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with access to at least two locations and the inventory-reports permission.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.",
+   "2. This browser has never saved settings for this report (fresh visit)."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report and find the filter labeled \"Location\".",
+   "2. Read its position in the toolbar and its default selection.",
+   "3. Open it and read its options and its toggle.",
+   "4. Select every accessible location (\"All locations\") and look at how the rows tell you which location they belong to."
+  ],
+  "expected": [
+   "1. The toolbar has a location filter labeled \"Location\" — a multi-select and the rightmost filter — listing the locations the signed-in user has access to, with an \"All locations\" / \"Clear all\" toggle.",
+   "2. On a first visit it defaults to the user's currently active location.",
+   "3. With \"All locations\" active you can tell which location each row's stock belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)"
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+  "viu_status": "VIU-Pending",
+  "notes": "VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 41:09-41:20: 'how do I know which is for shop A and which is for shop B? ... we should probably add that in there.' The current spec has NO Location identifier column (one row per part per location, S2-R3, but no Location column in S3-R1). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9). Title shortened to fit.",
+  "api_related": false
+ },
+ {
+  "id": "IV-LOC-02",
+  "area": "IV — Location Filter",
+  "title": "Selecting one, several, or all locations reloads the report scoped to that set",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with access to at least two locations and the inventory-reports permission.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.",
+   "2. In-stock parts exist at both locations."
+  ],
+  "steps": [
+   "1. With one location selected, note the rows and totals.",
+   "2. Add the second location and watch the data area.",
+   "3. Use \"All locations\", then narrow back to one."
+  ],
+  "expected": [
+   "1. Each selection change reloads the report scoped to the selected set.",
+   "2. With both locations selected, parts from both appear (one row per part per location) and the totals cover both.",
+   "3. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build)."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "viu_status": "VIU-Pending",
+  "notes": "SCOPE-INDICATOR added 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now shows which location(s) it's scoped to... on screen') - distinct from the per-row location label (video P10), which stays. Spec anchor pending the updated spec changelog.",
+  "api_related": false
+ },
+ {
+  "id": "IV-LOC-03",
+  "area": "IV — Location Filter",
+  "title": "Scoping never includes an inaccessible location, and a selection resolving to none falls back to the user's active location",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A user with access to some, but not all, locations, and the inventory-reports permission.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.",
+   "2. The Inventory Value report is open."
+  ],
+  "steps": [
+   "1. Open the Location filter and read the locations offered.",
+   "2. Use \"Clear all\" so the selection resolves to no location, and watch what the report loads."
+  ],
+  "expected": [
+   "1. Only the locations the user has access to are offered — a location the user cannot access is never included in the scope.",
+   "2. If the requested location set resolves to none the user can access, the report falls back to the user's currently active location."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 7 S7-R4; S7-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-LOC-04",
+  "area": "IV — Location Filter",
+  "title": "The Location filter is hidden for a user with access to only one location",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with access to exactly one location and the inventory-reports permission.",
+  "preconditions": [
+   "1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward).",
+   "2. You are signed in as that user on a desktop browser."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report and look for the Location filter in the toolbar.",
+   "2. Then sign in as a user with access to two or more locations and look again."
+  ],
+  "expected": [
+   "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's stock.",
+   "2. For the user with access to two or more locations the Location filter IS shown."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+  "viu_status": "VIU-Pending",
+  "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S7-N1): 'A user with access to only one location still sees the filter with a single selectable location.'",
+  "api_related": false
+ },
+ {
+  "id": "IV-LOC-05",
+  "area": "IV — Location Filter",
+  "title": "When the selected location(s) hold no in-stock parts on the resolved date, the no-data message shows",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A user with access to at least two locations and the inventory-reports permission.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A location you can access holds no in-stock (positive-quantity, non-core) parts."
+  ],
+  "steps": [
+   "1. Scope the Location filter to only the empty location.",
+   "2. Read the data area."
+  ],
+  "expected": [
+   "1. The report shows the no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows, and no totals row."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 7 S7-N2; §7 User Feedback Summary",
+  "viu_status": "Retired 2026-07-28 (merged into IV-NAV-06 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ }
 ]

@@ -1,0 +1,30 @@
+{
+ "id": "SBR-EXP-02",
+ "area": "SBR — Exports",
+ "title": "All four downloads respect the active filters and the full result set — not the on-screen expansion — in the currently-active order",
+ "priority": "Critical",
+ "type": "Functional",
+ "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+ "preconditions": [
+  "1. You are on the report with several reps showing.",
+  "2. Set a specific date range, Product Type, Invoice Status, and a location selection; turn Show Unassigned on.",
+  "3. Sort by a financial column (for example, click the Subtotal header).",
+  "4. Leave at least one rep collapsed (do not expand it)."
+ ],
+ "steps": [
+  "1. Download all four files from the ⋯ menu.",
+  "2. Compare each file's rows against the on-screen result: which reps appear, which invoices are included, and the row order.",
+  "3. Check where the Unassigned row sits in each file."
+ ],
+ "expected": [
+  "1. Every file contains only the reps/invoices matching ALL the active filters (date range, product type, invoice status, location, Show Unassigned).",
+  "2. The files reflect the FULL result set for those filters — a collapsed (never-expanded) rep's invoices still appear in the Expanded View files; on-screen expansion state does not matter.",
+  "3. Rep rows appear in the report's currently-active order — the active column sort if one is set, otherwise the A→Z default.",
+  "4. The Unassigned row (Show Unassigned on) is pinned first, ahead of the sorted reps."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4",
+ "viu_status": "VIU-Pending",
+ "notes": "BUILD-DELTA: all four exports are server-generated against the active filters + sort (2026-07-16 change log; spec ahead of code by design) — record a deviation if the build still exports from loaded screen data.",
+ "api_related": false
+}

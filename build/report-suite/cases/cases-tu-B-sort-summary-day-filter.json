@@ -238,7 +238,7 @@
  {
   "id": "TU-DAY-01",
   "area": "TU — Per-Day Breakdown",
-  "title": "Each technician row has an accessible expand/collapse control named for its next action",
+  "title": "Each technician row has an accessible expand/collapse control",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -256,9 +256,9 @@
    "3. The control is keyboard-focusable, toggles on Enter and Space, and exposes its expanded/collapsed state to assistive technology."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S4-R1; S8-R12",
+  "spec_ref": "SV-8651 (specs/technician-utilization.md S4-R1; S8-R12)",
   "viu_status": "VIU-Pending",
-  "notes": "REPAIRED 2026-07-29 (user-authorized): the 2026-07-22 import swallowed the angle-bracket name placeholder as an HTML tag, so the live case read \"Expand 's daily breakdown\"; wording rewritten in plain words with no angle brackets (TestRail swallows angle-bracket placeholders as HTML - never use them in case text). The spec's printed strings interpolate the technician's name before the apostrophe - VIU-confirm the exact rendered name with a real technician name.",
+  "notes": "REPAIRED 2026-07-29 (user-authorized): the 2026-07-22 import swallowed the angle-bracket name placeholder as an HTML tag, so the live case read \"Expand 's daily breakdown\"; wording rewritten in plain words with no angle brackets (TestRail swallows angle-bracket placeholders as HTML - never use them in case text). The spec's printed strings interpolate the technician's name before the apostrophe - VIU-confirm the exact rendered name with a real technician name. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 87 chars; meaning unchanged; awaiting push authorization.",
   "api_related": false
  },
  {

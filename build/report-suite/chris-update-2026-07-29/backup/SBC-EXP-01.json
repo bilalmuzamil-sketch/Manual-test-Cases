@@ -1,0 +1,26 @@
+{
+ "id": "SBC-EXP-01",
+ "area": "SBC — Exports",
+ "title": "The overflow menu holds only Download (CSV) and Download (PDF) — no Print item",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Sales By Customer report View permission.",
+ "preconditions": [
+  "1. You are on the Sales By Customer report."
+ ],
+ "steps": [
+  "1. Find the overflow menu in the toolbar's action area and note its position.",
+  "2. Open it and read the items in order.",
+  "3. Look around the toolbar for any separate always-visible export buttons."
+ ],
+ "expected": [
+  "1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.",
+  "2. The menu items read, in order: \"Download (CSV)\", \"Download (PDF)\" — and there is NO \"Print\" item anywhere in the menu.",
+  "3. There are no separate always-visible export buttons — all exports live behind this one menu."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "SV-8612; SV-8613 (specs/sbc-sales-by-customer.md S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — the 'Print' third menu item REMOVED per kickoff video P25 31:14, overriding Story 16 / SV-8614, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+ "viu_status": "VIU-Pending",
+ "notes": "VIDEO-AUTHORITATIVE (P25, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 31:14: 'Like, print here, this should not exist. I'm going to make sure. That's cut out of the spec.' OVERRIDDEN spec wording: S14-R1 menu order 'Download (CSV)', 'Download (PDF)', 'Print' (Print third) + Story 16 S16-R1..R6 (Print the report). Exports are PDF + CSV downloads only.",
+ "api_related": false
+}

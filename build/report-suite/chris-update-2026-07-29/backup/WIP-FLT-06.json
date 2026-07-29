@@ -1,0 +1,29 @@
+{
+ "id": "WIP-FLT-06",
+ "area": "WIP — Filters",
+ "title": "The Location filter (rightmost) is a multi-select with an \"All locations\" / \"Clear all\" toggle, defaults to the active location, and reloads on change",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "A user with access to at least two locations and the Work In Progress reports permission.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.",
+  "2. This browser has never saved settings for this report (fresh visit).",
+  "3. Open work orders exist at two different locations."
+ ],
+ "steps": [
+  "1. Open the Work In Progress report and read the Location filter's position and default value.",
+  "2. Open the Location filter and read its options and its toggle.",
+  "3. Select a second location and watch the data area.",
+  "4. Use \"All locations\", then \"Clear all\"."
+ ],
+ "expected": [
+  "1. The Location filter is the rightmost toolbar filter, a multi-select listing the locations the signed-in user can access, with an \"All locations\" / \"Clear all\" toggle.",
+  "2. On a first visit it defaults to the user's currently active location.",
+  "3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear)."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R9; S7-R10",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

@@ -129,11 +129,11 @@ Summary totals visible technicians from unrounded hours; 0.01 drift expected,TU 
 2. Use the technician filter to leave ONLY ""—"" technicians visible and read the Summary Est. Lost Labor.","1. The Summary Est. Lost Labor is computed like a row but over all visible technicians' internal hours: rate × internal hours per contributing rated location, summed at full precision and rounded once.
 2. A visible technician whose value is ""—"" contributes NOTHING to the sum - so the Summary understates true lost labor whenever any visible technician is ""—"" or partially valued (documented, expected).
 3. The Summary shows ""—"" only when EVERY visible technician's Est. Lost Labor is ""—"".",specs/technician-utilization.md S3-R5,,
-Each technician row has an accessible expand/collapse control named for its next action,TU — Per-Day Breakdown,Functional,Medium,1. You are on the Technician Utilization report with rows loaded.,"1. Find the expand control on a technician row and read its accessible name (accessibility tree or screen reader).
+Each technician row has an accessible expand/collapse control,TU — Per-Day Breakdown,Functional,Medium,1. You are on the Technician Utilization report with rows loaded.,"1. Find the expand control on a technician row and read its accessible name (accessibility tree or screen reader).
 2. Activate it with the keyboard (Enter, then again with Space) and re-read the name and exposed state.
 3. Collapse the row again.","1. Each technician row has a control to expand and collapse it.
-2. Its accessible name reflects the NEXT action, scoped to that technician: ""Expand <technician>'s daily breakdown"" when collapsed, ""Collapse <technician>'s daily breakdown"" when expanded.
-3. The control is keyboard-focusable, toggles on Enter and Space, and exposes its expanded/collapsed state to assistive technology.",specs/technician-utilization.md S4-R1; S8-R12,,
+2. Its accessible name reflects the NEXT action, scoped to that technician: when collapsed it reads Expand, then that technician's name, then daily breakdown (for example: Expand John Smith's daily breakdown); when expanded it reads Collapse, then the same name and words.
+3. The control is keyboard-focusable, toggles on Enter and Space, and exposes its expanded/collapsed state to assistive technology.",SV-8651 (specs/technician-utilization.md S4-R1; S8-R12),,
 "Expanding shows one row per clocked day in date order, loaded on demand, with days pooled across selected locations",TU — Per-Day Breakdown,Functional,High,"1. A technician clocked time on several (but not all) days of the range - including, for the pooling check, time at two selected locations on the same day.
 2. Browser devtools (network tab) are open for the on-demand check.","1. Expand the technician's row and watch the network traffic.
 2. Read the day rows top to bottom.
@@ -226,12 +226,13 @@ The three-dot menu sits leftmost in the toolbar's action cluster and holds the t
 3. Check for any day rows in the file.","1. The file downloads as ""technician-utilization.csv"" (lower-case as shipped, unlike the Title-Case PDFs).
 2. The CSV shows the technician rows and the Summary row - always this summary-level content; it does NOT vary by the summary/expanded choice (no day rows).
 3. Any value containing a comma (e.g. ""$1,234.50"") is wrapped in double quotes per standard CSV escaping, so the columns parse correctly.",specs/technician-utilization.md S7-R7; S7-R10; S7-R12,,
-"Every download covers only the selected technicians, the selected locations, and the active date range",TU — Exports,Functional,High,1. Several technicians are listed and the user has access to more than one location.,"1. Deselect one technician, select a specific location set, and set a distinctive date range.
+"Downloads cover only selected technicians, locations, and date range",TU — Exports,Functional,High,1. Several technicians are listed and the user has access to more than one location.,"1. Deselect one technician, select a specific location set, and set a distinctive date range.
 2. Download the Summary PDF, the Expanded PDF, and the CSV.
 3. Check each file's technicians, the data scope, and the covered range.
 4. Re-select all technicians and download once more.","1. Every download includes ONLY the technicians currently selected in the technician filter - the deselected technician is absent from all three files.
 2. Every download covers the location(s) currently selected in the location filter and the date range currently active on the report.
-3. With every technician selected, the download covers all technicians for the range at the selected location(s).",specs/technician-utilization.md S7-R8; S7-R9; S7-E1; S9-R8,,
+3. With every technician selected, the download covers all technicians for the range at the selected location(s).
+4. Every download (each PDF and the CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).","SV-8654 (specs/technician-utilization.md S7-R8; S7-R9; S7-E1; S9-R8 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",,
 "Downloads keep the on-screen column order and number formats but always order rows Technician A to Z, ignoring the on-screen sort",TU — Exports,Functional,Medium,"1. Rows exist including a ""—"" Est. Lost Labor value.
 2. The on-screen rows are sorted by something OTHER than Technician A to Z (e.g. Est. Lost Labor descending).","1. With the non-default sort applied, download the CSV and a PDF.
 2. Read each file's column order, number formats, and the ""—"" cell.
@@ -258,14 +259,15 @@ The Location filter is the rightmost multi-select; All Locations = select-all,TU
 2. It lists the locations the signed-in user has access to, plus an ""All Locations"" option.
 3. ""All Locations"" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations.
 4. With all locations selected you can tell which location the shown data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build; this report pools each technician's hours into one row, so the marking may take a different form here.)","SV-8656 (specs/technician-utilization.md S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
-"Changing the location selection reloads the report with hours pooled into one row per technician, never beyond accessible locations",TU — Location Filter,Functional,Critical,"1. A technician has clocked time at TWO accessible locations in the range.
+Location changes reload with hours pooled into one row per technician,TU — Location Filter,Functional,Critical,"1. A technician has clocked time at TWO accessible locations in the range.
 2. You are on the Technician Utilization report.","1. Select only location A and read the technician's hours.
 2. Add location B to the selection and watch the report.
 3. Count the technician's rows and compare the hours against A + B.
 4. Expand the technician and check the day rows on a day with time at both locations.","1. Selecting one, several, or all locations RELOADS the report scoped to that set (unlike the technician filter, which is on-screen only).
 2. All metrics (technician rows, per-day rows, and the Summary) reflect only clock records at the selected location(s).
 3. The technician's hours are POOLED across the selected locations into ONE row (one row per technician, not one per location); per-day rows pool the same way.
-4. Scoping never goes beyond the user's accessible locations - a location the user cannot access is never included.",specs/technician-utilization.md S9-R3; S9-R4; S9-R5,,
+4. Scoping never goes beyond the user's accessible locations - a location the user cannot access is never included.
+5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).","SV-8656 (specs/technician-utilization.md S9-R3; S9-R4; S9-R5 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",,
 The saved location selection restores defensively - inaccessible locations are dropped and an empty remainder falls back to the active location,TU — Location Filter,Negative,Medium,1. The user saved a location selection that includes a location their access to was later removed.,"1. Return to the Technician Utilization report and read the restored location selection.
 2. Repeat with a saved selection consisting ONLY of now-inaccessible locations.","1. Any saved location the user can no longer access is DROPPED from the restored selection; the remaining accessible locations restore normally.
 2. If the remaining set is empty, the report falls back to the user's currently active location (the first-visit default).
@@ -277,6 +279,11 @@ The Location filter is hidden for a user with access to only one location,TU —
 2. You are on the Technician Utilization report.","1. Look for the Location filter in the toolbar.
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
 2. For the user with access to two or more locations the Location filter IS shown.","SV-8656 (specs/technician-utilization.md S9-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
+A column selector lets the user choose which columns show,TU — Visual & Accessibility,Functional,Medium,1. You are on the Technician Utilization report with rows loaded.,"1. Find the column selector control in the toolbar (on the other reports it is a separate button next to the download menu).
+2. Open it and read the list of column toggles.
+3. Turn one column off, then back on, watching the table.","1. The report has a column selector control, styled and placed like the other reports in the suite (this control was just added - the exact placement, tooltip, and list of toggleable columns are confirmed from the updated spec and the build).
+2. Turning a toggle off hides that column (header and cells); turning it back on restores the column to its usual place in the order.
+3. The change applies immediately with no reload - that is the suite convention on the other reports; confirm it holds here.","SV-8655 (specs/technician-utilization.md Story 8 Visual Conformance and Accessibility - column selector ADDED per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ['Column selector added for visual/natural conformance']; no spec anchor yet - confirm from the updated spec changelog)",,
 "All-white table with no alternating row shading, and the toolbar controls run in the specified left-to-right order",TU — Visual & Accessibility,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded, in light mode.","1. Look at the column headers and the data rows' backgrounds.
 2. Read the toolbar controls left to right.
 3. Look for the expand/collapse-all control's position.","1. The report uses an all-white table: white column headers and white data cells, with NO alternating row shading.

@@ -204,7 +204,8 @@ The Location filter is a rightmost multi-select with an All locations toggle,IV 
 2. In-stock parts exist at both locations.","1. With one location selected, note the rows and totals.
 2. Add the second location and watch the data area.
 3. Use ""All locations"", then narrow back to one.","1. Each selection change reloads the report scoped to the selected set.
-2. With both locations selected, parts from both appear (one row per part per location) and the totals cover both.",specs/inventory-value.md Story 7 S7-R3,,
+2. With both locations selected, parts from both appear (one row per part per location) and the totals cover both.
+3. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).","SV-8674 (specs/inventory-value.md Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",,
 "Scoping never includes an inaccessible location, and a selection resolving to none falls back to the user's active location",IV — Location Filter,Negative,High,"1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.
 2. The Inventory Value report is open.","1. Open the Location filter and read the locations offered.
 2. Use ""Clear all"" so the selection resolves to no location, and watch what the report loads.","1. Only the locations the user has access to are offered — a location the user cannot access is never included in the scope.
@@ -258,14 +259,15 @@ Sorting reorders only the data rows — the totals row stays at the bottom — a
 2. Read the menu options.
 3. Choose ""Download (PDF)"", then repeat with ""Download (CSV)"".","1. The menu holds an option labeled ""Download (PDF)"" and an option labeled ""Download (CSV)"".
 2. Each option downloads a file of the current view in the chosen format.",specs/inventory-value.md Story 10 S10-R1; S10-R2,,
-"Downloads contain the shown columns in screen order (Total Cost last), honor all filters and the sort, and include a ""Totals"" row matching the full-set totals",IV — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+"Downloads keep shown columns and order, honor filters, and include Totals",IV — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report is open with a non-default column selection, a Category or Vendor filter, a part search, and a non-default sort applied.","1. Download the current view as a CSV and open it.
 2. Compare its columns and their order to the screen.
 3. Compare its rows to the current filters, search, and sort.
 4. Compare its totals row to the on-screen totals row.
 5. Repeat the checks in the PDF.","1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.
 2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.
-3. Both downloads include a totals row labeled ""Totals"" matching the on-screen totals (the full-filtered-set totals).",specs/inventory-value.md Story 10 S10-R3; S10-R4; S10-R5; S10-R6,,
+3. Both downloads include a totals row labeled ""Totals"" matching the on-screen totals (the full-filtered-set totals).
+4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).","SV-8677 (specs/inventory-value.md Story 10 S10-R3; S10-R4; S10-R5; S10-R6 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",,
 "Export number formats: two-decimal money, one-decimal Margin % (""—"" when undefined); CSV money as plain numbers, PDF with on-screen currency formatting",IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (""—"").","1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.
 2. Download the PDF and read the same values.","1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows ""—"".

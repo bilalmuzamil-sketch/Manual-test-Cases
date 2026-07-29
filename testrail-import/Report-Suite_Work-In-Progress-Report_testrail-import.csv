@@ -274,14 +274,15 @@ The Advisor filter is a multi-select of the advisors present in the loaded jobs 
 3. Open ""Custom"" and try to pick a start and end date more than 366 days apart.","1. Each preset (or Custom) filters the report to work orders whose CREATED date falls within the selected range — an open work order created outside the range is not listed.
 2. Changing the range reloads the report (the loading indicator shows).
 3. A Custom range is capped at a 366-day maximum span from start to end — a longer span cannot be applied.",specs/wip-work-in-progress.md Story 7 S7-R7; S7-R8,,
-"The Location filter (rightmost) is a multi-select with an ""All locations"" / ""Clear all"" toggle, defaults to the active location, and reloads on change",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
+"Location filter: rightmost multi-select with All locations, reloads on change",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. This browser has never saved settings for this report (fresh visit).
 3. Open work orders exist at two different locations.","1. Open the Work In Progress report and read the Location filter's position and default value.
 2. Open the Location filter and read its options and its toggle.
 3. Select a second location and watch the data area.
 4. Use ""All locations"", then ""Clear all"".","1. The Location filter is the rightmost toolbar filter, a multi-select listing the locations the signed-in user can access, with an ""All locations"" / ""Clear all"" toggle.
 2. On a first visit it defaults to the user's currently active location.
-3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).",specs/wip-work-in-progress.md Story 7 S7-R9; S7-R10,,
+3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).
+4. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).","SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R9; S7-R10 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",,
 "The location scope never includes an inaccessible location, and an empty selection falls back to the user's active location",WIP — Filters,Negative,High,"1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.
 2. The Work In Progress report is open.","1. Open the Location filter and read the locations offered.
 2. Use ""Clear all"" so the selection resolves to no location, and watch what the report loads.
@@ -321,14 +322,15 @@ A saved setting that is no longer valid falls back to its default instead of bre
 2. Read the menu options.
 3. Choose ""Download (PDF)"", then repeat with ""Download (CSV)"".","1. The menu holds the download options ""Download (PDF)"" and ""Download (CSV)"".
 2. Each option downloads a file of the current tab in the chosen format.",specs/wip-work-in-progress.md Story 9 S9-R1,,
-"Downloads contain only the shown columns in screen order, honor all filters, and include the tab's Totals row",WIP — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+"Downloads keep shown columns, honor filters, include the tab's Totals row",WIP — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report is open with a non-default column selection (for example, Inv. Hrs on and Advisor off), a chosen date range and location, and an advisor/customer/asset filter applied that hides some rows.","1. Download the current tab as a CSV and open it.
 2. Compare its columns to the screen's visible columns and order.
 3. Compare its rows to the jobs left visible by the filters.
 4. Compare its Totals row to the on-screen Totals row.
 5. Repeat the same checks in the PDF.","1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.
 2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.
-3. Both downloads include a Totals row matching the on-screen Totals row for the tab.",specs/wip-work-in-progress.md Story 9 S9-R2; S9-R3; S9-R4,,
+3. Both downloads include a Totals row matching the on-screen Totals row for the tab.
+4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).","SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R2; S9-R3; S9-R4 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",,
 "Downloaded money and Inv. Hrs values keep the on-screen formats, and CSV values containing commas are double-quoted",WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current tab includes money values over $1,000 and, if producible, a negative value; the Inv. Hrs column is on.","1. Download the current tab as a CSV and open it in a plain-text editor.
 2. Read a money value over one thousand dollars and check its quoting.

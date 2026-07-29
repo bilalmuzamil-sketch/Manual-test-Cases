@@ -244,3 +244,14 @@ Service/Parts two-type WO model (PV-CALC-05, PV-CALC-15).
   (video P30: pagination stands on every page).
 - Detail: reconciliation-2026-07-28/video-promotion-edit-log-2026-07-28.md; watch:
   ../SPEC-WATCH-2026-07-28.md (deadline 2026-08-04).
+
+## Addendum 2026-07-29 — Chris Ward group-message deltas (LOCAL only, awaiting push)
+Source: `chris-update-2026-07-29/chris-message-2026-07-29.md` (newest, last-update-wins). All-reports:
+"Locations:" line in every CSV+PDF export + on-screen location-scope indicator (covered by extending
+this report's existing export + location-scoping cases — no new cases needed) + same logo treatment
+(only PV lacked coverage → PV-EXP-05 extended). Per-report deltas mapped in
+`chris-update-2026-07-29/ChangeList-2026-07-29.md`: SBC = VIN→Unit #→plate identifier (SBC-LBL-01/04)
++ Summary/Expanded exports, four menu items (SBC-EXP-01/03/09/11/16); PV = "Special Order" rename
+confirmed (PV-FILT-01/09, PV-ROW-05, PV-EXP-08); TU = NEW column-selector case TU-COL-01 (no C-ID
+yet); WIP = identifier stays serial, VIN-or-serial question queued for Chris; SBR/IV = the all-reports
+items only. Spec changelog expected ~2026-07-30 — re-verify then.

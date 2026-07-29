@@ -1,0 +1,29 @@
+{
+ "id": "WIP-EXP-02",
+ "area": "WIP — Exports",
+ "title": "Downloads contain only the shown columns in screen order, honor all filters, and include the tab's Totals row",
+ "priority": "Critical",
+ "type": "Functional",
+ "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. The report is open with a non-default column selection (for example, Inv. Hrs on and Advisor off), a chosen date range and location, and an advisor/customer/asset filter applied that hides some rows."
+ ],
+ "steps": [
+  "1. Download the current tab as a CSV and open it.",
+  "2. Compare its columns to the screen's visible columns and order.",
+  "3. Compare its rows to the jobs left visible by the filters.",
+  "4. Compare its Totals row to the on-screen Totals row.",
+  "5. Repeat the same checks in the PDF."
+ ],
+ "expected": [
+  "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.",
+  "2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.",
+  "3. Both downloads include a Totals row matching the on-screen Totals row for the tab."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "specs/wip-work-in-progress.md Story 9 S9-R2; S9-R3; S9-R4",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

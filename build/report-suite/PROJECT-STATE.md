@@ -4,7 +4,10 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-28, second update** (FULL TESTRAIL PUSH EXECUTED — see §0 first block:
+Last updated: **2026-07-29** (3 authorized TestRail fixes executed + Chris Ward group-message
+delta pass applied LOCALLY — 460 active authored [459 in TestRail + new TU-COL-01]; push queue =
+`chris-update-2026-07-29/ChangeList-2026-07-29.md`; see §0 first block). Prior 2026-07-28, second
+update (FULL TESTRAIL PUSH EXECUTED — see §0 second block:
 459 active cases live, SBC-EXP-16 = C38856, 57 deletions, R359 515→458 documented. Earlier same
 day: VIDEO PROMOTED TO AUTHORITATIVE — 27 local case edits + 1 new case
 SBC-EXP-16 + 1 retire-proposed SBC-EXP-13; backups in `video-promotion-backup-2026-07-28/`;
@@ -22,6 +25,44 @@ import REGENERATED post-review.)
 ---
 
 ## 0. STATUS
+
+**UPDATE 2026-07-29 (LATEST — AUTHORIZED 3-CASE FIX + CHRIS-MESSAGE DELTA PASS; read this first).**
+- **Part 1 — 3 user-authorized TestRail fixes EXECUTED** (the exact 3 drifts flagged in the
+  2026-07-28 checkpoint; explicit authorization 2026-07-29; NOTHING else written, R359 untouched):
+  **TU-DAY-01 C30418** import angle-bracket artifact repaired (live read "Expand 's daily
+  breakdown"; rewritten plain, no angle brackets), **PV-API-02 C30389** title 100→71, **PV-FILT-09
+  C30336** title 96→77 — all HTTP 200 + re-GET MATCH; pre-op live snapshots in
+  `testrail-pre-push-snapshot-2026-07-28/*.pre-authorized-fix-2026-07-29.json`; audit =
+  execution log § "AUTHORIZED FIXES 2026-07-29". Angle-bracket sweep of ALL bodies: TU-DAY-01 was
+  the ONLY one. Gotcha recorded in APP-ACTIONS-PLAYBOOK §J (TestRail swallows `<placeholders>`).
+- **Part 2 — Chris Ward group message (8:53 AM 2026-07-29) INGESTED + applied LOCALLY (NO TestRail
+  writes; Rule 6):** verbatim message + ingest = `chris-update-2026-07-29/` (backups in `backup/` +
+  MANIFEST). Message = NEWEST source (last-update-wins over the video AND the specs); Chris is
+  updating all six specs with changelogs, **spec changelog + companion video expected ~2026-07-30**;
+  summary written by his assistant "pending a human-eye-pass" → verify vs the real changelog on
+  arrival. Deltas applied: **SBC identifier re-ruled to VIN → Unit # → plate** (supersedes the
+  video's serial ruling FOR SBC ONLY — SBC-LBL-01 C30134 + SBC-LBL-04 C30137; **WIP stays serial,
+  VIN-or-serial question QUEUED for Chris**, WIP-COL-05 C30470/WIP-FLT-03 C30500/WIP-SORT-03 C30485
+  untouched); **SBC exports = Summary + Expanded for BOTH PDF and CSV, four exact menu items**
+  (SBC-EXP-01 C30159, SBC-EXP-16 C38856, SBC-EXP-03 C30161, SBC-EXP-11 C30169 — the old
+  no-asset-layer rule superseded); **"Locations:" line in every CSV+PDF + on-screen scope
+  indicator, all 6 reports** (12 existing cases extended, no new cases needed: SBC-EXP-09 C30167
+  [old "location not shown" REVERSED] + the 5 other export cases + the 6 location-scoping cases);
+  **"Catalogue" → exact label "Special Order" CONFIRMED** (PV-FILT-01 C30328, PV-FILT-09 C30336,
+  PV-ROW-05 C30345, PV-EXP-08 C30382; Parts Sales dropdown rename = out of scope, FYI only);
+  **TU column selector ADDED → 1 NEW case TU-COL-01** (no C-ID yet, refs SV-8655 + the message);
+  **same logo treatment** (only PV lacked coverage → PV-EXP-05 C30379 extended). Also: 8 touched
+  overlong titles trimmed locally + 11 story tickets backfilled into touched cases' refs (Rule 20).
+  **NEW TALLY: 460 ACTIVE authored (459 in TestRail + TU-COL-01).** Deliverables regenerated over
+  460 (import + 6 splits header byte-identical, hygiene clean; id-map 459 C-ids re-merged +
+  TU-COL-01 blank; coverage addenda ×6). **Change-list / push-approval gate =
+  `chris-update-2026-07-29/ChangeList-2026-07-29.md` + `.xlsx` (pending push: 24 update_case + 1
+  add_case).** Rule-28 three-dimension audit on all 26 touched: 26 KEEP / 26 SENSIBLE / 26
+  genuine+layman. SPEC-WATCH updated (ratification IN PROGRESS; deadline 2026-08-04 stands).
+- **FILTERS CROSS-SQUAD (Chris message, second part):** Branko + Milos's app-wide Filters project
+  WILL cross over with the report filters; build to spec for now but EXPECT the filter portion to
+  change once something workable is on staging (Branko/Milos to sweep our report filters; Chris
+  awaiting their response). Re-reconcile the filter cases when that sweep lands.
 
 **SESSION CHECKPOINT 2026-07-28 (pre-limit) — COLD-RESUME ANCHOR (read this first on resume).**
 - **COMPLETION PASS DONE 2026-07-29:** the 2 manifest-omitted Chris Q1=B Esc cases **SBR-DEACT-04 =

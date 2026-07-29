@@ -1,0 +1,26 @@
+{
+ "id": "SBC-EXP-09",
+ "area": "SBC — Exports",
+ "title": "PDF header shows the title, organization, date range in Mon D, YYYY form and the Product Type line; location is not shown",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Sales By Customer report View permission.",
+ "preconditions": [
+  "1. You have downloaded the PDF with a known date range, Product Type, and a specific location selected."
+ ],
+ "steps": [
+  "1. Read the header's text block top to bottom.",
+  "2. Look for any mention of the selected location."
+ ],
+ "expected": [
+  "1. The header is two columns: a text block on the left (70% width) and the organization logo on the right (30% width).",
+  "2. The text block shows, in order: the report title \"Sales By Customer Report\"; the organization name; the date range; and the filter summary line \"Product Type: {value}\" where value is \"Parts & Service,\" \"Parts only,\" or \"Service only.\"",
+  "3. The header date range shows start and end in the format \"Mon D, YYYY,\" joined by an em dash — for example, \"May 1, 2026 — May 31, 2026\" — and always shows both dates (every range is bounded).",
+  "4. The location filter is NOT shown in the header; it scopes the data only."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbc-sales-by-customer.md Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11",
+ "viu_status": "VIU-Pending",
+ "notes": "KNOWN-LIMITATION ENCODING: the header uses \"Mon D, YYYY\" while body Date cells use \"Mon DD YYYY\" — the difference is intentional per the S15-R9 context note; do not file it as an inconsistency.",
+ "api_related": false
+}

@@ -17,6 +17,36 @@ Spec state as of 2026-07-28 for every item = NOT ratified (see
 **Backup location for ALL items:** `build/report-suite/video-promotion-backup-2026-07-28/`
 (verbatim pre-edit bodies + MANIFEST.md).
 
+## ⚡ UPDATE 2026-07-29 — Chris ratification IN PROGRESS (group message, Chris Ward 8:53 AM 2026-07-29)
+
+Chris announced he is actively editing the specs now: "This will slightly change all specs with an
+appropriately updated changelog" — **spec changelog expected ~2026-07-30** (spilled from 2026-07-29
+night; "high priority in my mind"). The companion visualization video spills to the same night.
+Verbatim message + ingest: `chris-update-2026-07-29/chris-message-2026-07-29.md`; local case edits:
+`chris-update-2026-07-29/` (backups in `backup/`). **CAVEAT: the message's change summary was
+written by Chris's assistant and is "pending a human-eye-pass" — when the real spec changelog
+lands, RE-RUN the spec capture+diff (`spec-current-2026-07-28/` method) and VERIFY the assistant
+summary against the actual changelog before treating any item as final.**
+
+Message-level effect on the watch items (message = spec-INTENT confirmed; spec TEXT still pending):
+- **#1 serial identifier — SUPERSEDED for SBC:** assets identified by **VIN (falls back Unit #,
+  then plate)**, not serial (SBC-LBL-01 C30134 re-edited). **WIP identifier now AMBIGUOUS — VIN or
+  serial? The message scopes VIN to SBC only; WIP-COL-05 C30470 / WIP-FLT-03 C30500 / WIP-SORT-03
+  C30485 stay on the video's serial ruling. QUESTION QUEUED for Chris — confirm from his spec
+  changelog** (plain question text in `chris-update-2026-07-29/ChangeList-2026-07-29.md`).
+- **#2 SBC Print removed — CONFIRMED** by the message ("The Print option is removed.").
+- **#3 SBC compressed download — CONFIRMED + EXTENDED:** Summary AND Expanded versions for BOTH
+  PDF and CSV, four exact menu items (SBC-EXP-16 C38856 + SBC-EXP-01 C30159 reshaped).
+- **#7 Catalogue rename — CONFIRMED with the exact label "Special Order"** (Type filter, Type
+  column, export; PV-FILT-01/09, PV-ROW-05, PV-EXP-08 updated). The matching Parts Sales dropdown
+  rename is OUT of this suite's scope (FYI only).
+- **NEW watch items from the message:** (a) "Locations:" line in every CSV+PDF + on-screen scope
+  indicator, all 6 reports; (b) same logo treatment all reports (PV-EXP-05 C30379 extended — PV had
+  no logo coverage); (c) TU column selector added (NEW case TU-COL-01, no C-ID yet); (d) SBR
+  spec gets a padding-issue flag (purely visual, no case).
+- **DEADLINE 2026-08-04 STANDS** — if the promised spec changelog has NOT landed by then, remind
+  the user (the recovery option now includes `chris-update-2026-07-29/backup/`).
+
 ## Watch checklist
 
 | # | In spec? (re-check) | Item (video anchor) | What to look for in the spec | Affected cases (internal + C-id) |

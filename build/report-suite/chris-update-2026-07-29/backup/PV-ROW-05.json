@@ -1,0 +1,26 @@
+{
+ "id": "PV-ROW-05",
+ "area": "PV — Row Model",
+ "title": "Sticky header, all-left alignment on screen, and plain-text Type values",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+ "preconditions": [
+  "1. You are on the Parts Velocity report with enough rows to scroll the table body vertically."
+ ],
+ "steps": [
+  "1. Scroll the table body down and watch the header row.",
+  "2. Read the Type column values.",
+  "3. Look at the alignment of every header label and cell, including numeric and money columns."
+ ],
+ "expected": [
+  "1. The header row is sticky - it stays visible while the body scrolls.",
+  "2. The Type column shows each row's kind as plain text (no badge or chip styling): Inventory, or the special-order catalogue kind. (The special-order kind's exact on-screen word is confirmed in the build — the spec says \"Catalogue\", a rename is being considered, and it must stay short enough for a column.)",
+  "3. ALL columns - header and cell data, including numbers and money - are left-aligned on screen. (The exports right-align numerics instead: a deliberate export-only difference, see PV-EXP-08.)"
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "SV-8643 (specs/parts-velocity.md S3-R4; S3-R5; S3-R8 — Type value 'Catalogue' rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28: update per latest info now, correct at the live build check later)",
+ "viu_status": "VIU-Pending",
+ "notes": "P31 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): video 43:49 'maybe we do rename it' + 44:12 'we'll have to truncate that down somehow, because that'll get a little big for a column.' Possible labels: 'Catalogue' (current spec) OR a short special-order-parts name — VIU-confirm, do not invent (Rule 9).",
+ "api_related": false
+}

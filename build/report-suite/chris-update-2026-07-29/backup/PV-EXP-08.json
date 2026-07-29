@@ -1,0 +1,27 @@
+{
+ "id": "PV-EXP-08",
+ "area": "PV — Exports",
+ "title": "PDF export alignment: Type centered, text left, numeric and money right",
+ "priority": "Low",
+ "type": "Functional",
+ "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+ "preconditions": [
+  "1. You are on the Parts Velocity report with data loaded and several columns of each kind visible."
+ ],
+ "steps": [
+  "1. Download the PDF and look at the alignment of each column.",
+  "2. Download the CSV and open it in a plain text editor to confirm it is plain comma-separated values (a CSV file carries no alignment of its own)."
+ ],
+ "expected": [
+  "1. In the PDF, the Type column is CENTERED.",
+  "2. In the PDF, the text columns (Part #, Description, Category, Vendor) are left-aligned.",
+  "3. In the PDF, EVERY numeric and money column is right-aligned.",
+  "4. This is a deliberate export-only treatment - the on-screen table is all-left-aligned; the difference is documented, not a defect.",
+  "5. The CSV is plain data — the alignment assertions apply to the PDF only; how a spreadsheet displays the CSV is not part of this test."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R10; S3-R8)",
+ "viu_status": "VIU-Pending",
+ "notes": "Expected-behavior case (deliberate screen-vs-export difference). P31 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): the Type column's VALUES may be renamed from 'Catalogue' (video P31) — the centered-alignment rule is unaffected; check the exported value text at VIU. FIX-WORDING repair 2026-07-28 (sense-check): alignment assertions scoped to the PDF — a CSV carries no alignment.",
+ "api_related": false
+}
