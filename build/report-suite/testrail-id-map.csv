@@ -203,7 +203,7 @@ PV-FILT-05,C30332,Category and Vendor multi-select filters limit the table to ma
 PV-FILT-06,C30333,"Toolbar search matches part number or description, case-insensitively, and is page-specific",PV — Filters
 PV-FILT-07,C30334,All active filters combine with AND logic,PV — Filters
 PV-FILT-08,C30335,Bin multi-select filter limits the table to inventory parts stocked in the selected bins,PV — Filters
-PV-FILT-09,C30336,Any Bin filter excludes all catalogue rows - Type Catalogue plus a Bin filter is empty by design,PV — Filters
+PV-FILT-09,C30336,Bin filter excludes special-order rows; Bin plus that Type is empty by design,PV — Filters
 PV-FILT-10,C30337,"Location filter is rightmost, defaults to the active location, accessible-only",PV — Filters
 PV-FILT-11,C30338,Empty state shows the standard no-data message when no parts match the filters,PV — Filters
 PV-FILT-12,C30339,"Parts with no category, vendor, or bin assigned are excluded when that filter is active",PV — Filters
@@ -254,7 +254,7 @@ PV-VIS-01,C30385,The report uses the standard two-tone layout: white card surfac
 PV-VIS-02,C30386,"Toolbar and table detail styling: paddings, white header with 1px top border, white body cells, 2rem edge padding",PV — Visual Conformance
 PV-VIS-03,C30387,Dark mode is supported and the grey info icon keeps at least 3:1 contrast in both modes,PV — Visual Conformance
 PV-API-01,C30388,The report is server-paginated - the backend returns one page of rows at a time,PV — API
-PV-API-02,C30389,Every filter or search change re-queries the server and returns the first page of the new result set,PV — API
+PV-API-02,C30389,Each filter or search change re-queries the server and returns page one,PV — API
 PV-API-03,C30390,Header-click sorting re-queries the server with nulls first on ascending and last on descending as a server sort semantic,PV — API
 PV-API-04,C30391,The backend denies both the report data and the export to a user without Inventory Reports → View,PV — API
 TU-NAV-01,C30392,"Technician Utilization sits under Performance, below existing report links",TU — Access & Display

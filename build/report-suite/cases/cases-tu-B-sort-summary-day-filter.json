@@ -1,505 +1,505 @@
 [
-  {
-    "id": "TU-SORT-01",
-    "area": "TU — Sorting",
-    "title": "On load the rows are sorted by Technician A to Z with the ascending indicator and correct aria-sort exposure",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with several technician rows loaded."
-    ],
-    "steps": [
-      "1. Let the report load without clicking any header and read the Technician column top to bottom.",
-      "2. Look at the Technician header's sort indicator.",
-      "3. Inspect the headers in the accessibility tree."
-    ],
-    "expected": [
-      "1. The technician rows are sorted by Technician name, A to Z.",
-      "2. The Technician header shows the ascending sort indicator.",
-      "3. The active sort header exposes its state to assistive technology (aria-sort = ascending on the Technician header; none on the others)."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S2-R12; S8-R8; S8-R10",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "TU-SORT-02",
-    "area": "TU — Sorting",
-    "title": "All six columns sort on screen: ascending first, toggling with no third state, and Technician's first click goes descending",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with several rows loaded, including two technicians with the same value in one column."
-    ],
-    "steps": [
-      "1. Click the Technician header (the active sort on load).",
-      "2. Click the Total Hours header, then click it again, then keep clicking.",
-      "3. Repeat one click on each remaining header (WO Hours, Internal Hours, Utilization %, Est. Lost Labor).",
-      "4. Watch the network activity / loading indicator while sorting.",
-      "5. Find two technicians tied in the sorted column and note their order."
-    ],
-    "expected": [
-      "1. Because Technician-ascending is the active sort on load, the FIRST click on the Technician header sorts it DESCENDING (Z to A).",
-      "2. Clicking a column that is not the active sort sorts it ascending; clicking the active column again toggles to descending; further clicks only ever toggle ascending↔descending - there is NO third 'cleared' state.",
-      "3. All six columns are sortable.",
-      "4. Sorting is applied on screen to the loaded rows - NO reload/server request happens.",
-      "5. Technicians tied in the sorted column are ordered by Technician name A to Z; two technicians sharing the same display name keep a stable order between renders."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S2-R13; S2-R14",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "TU-SORT-03",
-    "area": "TU — Sorting",
-    "title": "A data reload resets the sort to Technician A to Z, and sort is never persisted across visits",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with rows loaded."
-    ],
-    "steps": [
-      "1. Sort by Est. Lost Labor descending.",
-      "2. Change the date range (a reload) and read the row order.",
-      "3. Sort by Total Hours, leave the report, and come back."
-    ],
-    "expected": [
-      "1. After the reload, the rows are back to Technician name A to Z (the sort reset).",
-      "2. On the return visit, the sort is again Technician A to Z - sort is NOT persisted (unlike the date range, technician selection, and location selection, which are)."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S2-R15; §3",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "TU-SORT-04",
-    "area": "TU — Sorting",
-    "title": "Sorting reorders only the technician rows - the Summary stays at the bottom and day rows stay under their technician in date order",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with several rows loaded and at least one technician row expanded to its day rows."
-    ],
-    "steps": [
-      "1. Sort by WO Hours descending.",
-      "2. Look at the Summary row's position.",
-      "3. Look at the expanded technician's day rows."
-    ],
-    "expected": [
-      "1. Only the technician rows reorder.",
-      "2. The Summary row stays pinned at the bottom.",
-      "3. Each technician's expanded day rows stay under that technician, still in date order (earliest to latest) - they do not re-sort by the clicked column."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S2-R16",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "TU-SORT-05",
-    "area": "TU — Sorting",
-    "title": "Sorting by Est. Lost Labor keeps the em-dash rows at the bottom in both directions, while $0.00 sorts as zero",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. Rows exist with: a normal Est. Lost Labor value, a \"$0.00\" value, and at least two \"—\" values (no rate configured)."
-    ],
-    "steps": [
-      "1. Sort by Est. Lost Labor ascending and read the bottom rows.",
-      "2. Sort by Est. Lost Labor descending and read the bottom rows.",
-      "3. Note where the \"$0.00\" row lands in each direction, and the order of the \"—\" rows among themselves."
-    ],
-    "expected": [
-      "1. Rows whose Est. Lost Labor is \"—\" sort to the BOTTOM in BOTH ascending and descending order - they are never floated to the top by reversing direction.",
-      "2. Among themselves, the \"—\" rows are ordered by Technician name A to Z.",
-      "3. A \"$0.00\" value is a number, not \"—\" - it sorts as zero (lowest ascending, above only the — group)."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S2-R17",
-    "viu_status": "VIU-Pending",
-    "notes": "Seeding: needs both an unrated-location technician (—) and a zero-internal or $0-rate technician ($0.00) in one view.",
-    "api_related": false
-  },
-  {
-    "id": "TU-SUM-01",
-    "area": "TU — Summary",
-    "title": "A pinned Summary row labeled Summary sits at the bottom, stays visible on scroll, and uses the row formats with no prefix",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with enough rows to scroll."
-    ],
-    "steps": [
-      "1. Look at the bottom of the report.",
-      "2. Scroll the technician rows and watch the Summary row.",
-      "3. Read the Summary row's label and its values' formats."
-    ],
-    "expected": [
-      "1. A Summary row is pinned to the bottom of the report, labeled \"Summary\".",
-      "2. It stays visible at the bottom while the rows scroll.",
-      "3. It uses the same number formats as the technician rows.",
-      "4. Its values carry NO label prefix such as \"TOTAL:\" or \"AVG:\"."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S3-R1; S3-R2; S3-R6; S3-R7; S8-R5",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "TU-SUM-02",
-    "area": "TU — Summary",
-    "title": "Summary totals visible technicians from unrounded hours; 0.01 drift expected",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. Several technicians with known clocked hours are visible (all selected in the technician filter)."
-    ],
-    "steps": [
-      "1. Read the Summary Total Hours, WO Hours, and Internal Hours.",
-      "2. Hand-sum the DISPLAYED per-row values and compare with the Summary.",
-      "3. Compare the Summary against the known shop totals for the full range at the selected location(s)."
-    ],
-    "expected": [
-      "1. Each Summary hours value is the total of that column across the VISIBLE technicians, computed from unrounded hours and rounded once for display (round-half-up).",
-      "2. Eye-summing the displayed rows MAY differ from the displayed Summary by 0.01 — one unit in the last decimal (these values are HOURS, not money) — expected in a compute-from-unrounded report, not a defect.",
-      "3. With every technician selected, the Summary row equals the shop totals for the full date range at the selected location(s)."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S3-R3; §3 context note; S5-E1",
-    "viu_status": "VIU-Pending",
-    "notes": "'Visible technicians' = the technicians currently selected in the technician filter, not the rows scrolled into view (S3 context note). FIX-WORDING repair 2026-07-28 (sense-check): 'differ by a cent' corrected — the values are hours, so the tolerance is 0.01 (one unit in the last decimal).",
-    "api_related": false
-  },
-  {
-    "id": "TU-SUM-03",
-    "area": "TU — Summary",
-    "title": "Summary Utilization % is the weighted rate, not the average of the per-technician percentages",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. Two visible technicians with deliberately skewed hours - e.g. tech A: 1.00 total / 1.00 WO (100%); tech B: 9.00 total / 0.00 WO (0.0%) - so the weighted and averaged results differ clearly."
-    ],
-    "steps": [
-      "1. Compute the weighted rate: summed WO hours ÷ summed clocked hours × 100 (10% in the example).",
-      "2. Compute the naive average of the two row percentages (50% in the example).",
-      "3. Read the Summary Utilization %."
-    ],
-    "expected": [
-      "1. The Summary Utilization % shows the WEIGHTED rate - the visible technicians' total work-order hours as a percentage of their total clocked hours, from unrounded hours (10.0% in the example).",
-      "2. It is NOT the average of the per-technician percentages (not 50.0%)."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S3-R4",
-    "viu_status": "VIU-Pending",
-    "notes": "Seeding: two ZZAUTOTEST technicians with the skewed clock records above.",
-    "api_related": false
-  },
-  {
-    "id": "TU-SUM-04",
-    "area": "TU — Summary",
-    "title": "Summary Est. Lost Labor sums the rated contributions only, and shows an em-dash only when every visible technician is an em-dash",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. Visible technicians include: one with a normal Est. Lost Labor, one showing \"—\" (no rate anywhere), and (if possible) one partially valued (S2-E4)."
-    ],
-    "steps": [
-      "1. Read the Summary Est. Lost Labor and compare against the sum of the visible rows' valued (rated-location) contributions.",
-      "2. Use the technician filter to leave ONLY \"—\" technicians visible and read the Summary Est. Lost Labor."
-    ],
-    "expected": [
-      "1. The Summary Est. Lost Labor is computed like a row but over all visible technicians' internal hours: rate × internal hours per contributing rated location, summed at full precision and rounded once.",
-      "2. A visible technician whose value is \"—\" contributes NOTHING to the sum - so the Summary understates true lost labor whenever any visible technician is \"—\" or partially valued (documented, expected).",
-      "3. The Summary shows \"—\" only when EVERY visible technician's Est. Lost Labor is \"—\"."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S3-R5",
-    "viu_status": "VIU-Pending",
-    "notes": "HEAVY SEEDING: rated, unrated, and mixed-location technicians in one view.",
-    "api_related": false
-  },
-  {
-    "id": "TU-DAY-01",
-    "area": "TU — Per-Day Breakdown",
-    "title": "Each technician row has an accessible expand/collapse control named for its next action",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with rows loaded."
-    ],
-    "steps": [
-      "1. Find the expand control on a technician row and read its accessible name (accessibility tree or screen reader).",
-      "2. Activate it with the keyboard (Enter, then again with Space) and re-read the name and exposed state.",
-      "3. Collapse the row again."
-    ],
-    "expected": [
-      "1. Each technician row has a control to expand and collapse it.",
-      "2. Its accessible name reflects the NEXT action, scoped to that technician: \"Expand <technician>'s daily breakdown\" when collapsed, \"Collapse <technician>'s daily breakdown\" when expanded.",
-      "3. The control is keyboard-focusable, toggles on Enter and Space, and exposes its expanded/collapsed state to assistive technology."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S4-R1; S8-R12",
-    "viu_status": "VIU-Pending",
-    "notes": "The spec's printed strings read \"Expand 's daily breakdown\" (the technician's name is interpolated before the apostrophe) - VIU-confirm the exact rendered name with a real technician name.",
-    "api_related": false
-  },
-  {
-    "id": "TU-DAY-02",
-    "area": "TU — Per-Day Breakdown",
-    "title": "Expanding shows one row per clocked day in date order, loaded on demand, with days pooled across selected locations",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. A technician clocked time on several (but not all) days of the range - including, for the pooling check, time at two selected locations on the same day.",
-      "2. Browser devtools (network tab) are open for the on-demand check."
-    ],
-    "steps": [
-      "1. Expand the technician's row and watch the network traffic.",
-      "2. Read the day rows top to bottom.",
-      "3. Look for rows on days the technician did not clock time.",
-      "4. On the double-location day, count the rows for that date."
-    ],
-    "expected": [
-      "1. One row appears for each day the technician clocked time in the range, in date order from earliest to latest.",
-      "2. The day rows are fetched ON EXPAND (on demand) - they are not shipped with the initial report payload.",
-      "3. A day with no clocked time has NO row.",
-      "4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S4-R2; S4-N1; S9-R4",
-    "viu_status": "VIU-Pending",
-    "notes": "KNOWN-DELTA WATCH: lazy on-expand loading came in the 2026-07-16 spec round - the build may still ship day rows with the initial payload. The backend-observable half is TU-API-01.",
-    "api_related": false
-  },
-  {
-    "id": "TU-DAY-03",
-    "area": "TU — Per-Day Breakdown",
-    "title": "Day rows use the same columns and formats as technician rows, including a per-day per-location Est. Lost Labor",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. A technician with known per-day clock records (work-order + internal) is expanded."
-    ],
-    "steps": [
-      "1. Read one day row's Total Hours, WO Hours, Internal Hours, Utilization %, and Est. Lost Labor.",
-      "2. Compare each against that single day's clock records.",
-      "3. Check the number formats against the technician-row formats."
-    ],
-    "expected": [
-      "1. Each day row shows the same columns, in the same formats, as the technician row - with that day's values.",
-      "2. The day's Est. Lost Labor is valued per location exactly like a technician row (that location's default labor rate × that day's internal hours there).",
-      "3. Hours 2dp / Utilization one decimal + % / dollars with commas - all identical to the row formats, computed from unrounded values and rounded once."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S4-R3; S2-R8; §3",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "TU-DAY-04",
-    "area": "TU — Per-Day Breakdown",
-    "title": "A single control in the table header expands or collapses all technician rows with the correct accessible names",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with several technician rows loaded."
-    ],
-    "steps": [
-      "1. Find the expand/collapse-all control in the table's header row (in the Technician column) and read its accessible name.",
-      "2. With all rows collapsed, activate it.",
-      "3. Collapse ONE row manually, then activate the control again.",
-      "4. With every row expanded, activate it once more."
-    ],
-    "expected": [
-      "1. The control lives in the table's header row (Technician column) - NOT in the toolbar action cluster.",
-      "2. If ANY row is collapsed, activating it expands ALL rows; only when EVERY row is already expanded does it collapse all rows (so step 3's activation re-expands the one collapsed row).",
-      "3. Its accessible name reflects the next action: \"Expand all technicians\" when it will expand, \"Collapse all technicians\" when every row is already expanded.",
-      "4. It is keyboard-focusable, toggles on Enter/Space, and exposes its state to assistive technology."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S4-R4; S8-R12; S8-R3",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "TU-DAY-05",
-    "area": "TU — Per-Day Breakdown",
-    "title": "Expansion state is view-only: it resets on any reload and fresh visit, and the technician filter does not disturb it",
-    "priority": "Low",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with several rows loaded."
-    ],
-    "steps": [
-      "1. Expand two technician rows, then change the date range.",
-      "2. Expand two rows again, leave the report, and come back.",
-      "3. Expand one technician's row, then deselect and re-select a DIFFERENT technician in the technician filter."
-    ],
-    "expected": [
-      "1. After the reload (date-range or location change), all rows are collapsed - expansion state resets.",
-      "2. On a fresh visit, all rows start collapsed - expansion is never persisted.",
-      "3. Deselecting and re-selecting a technician (an on-screen operation) does NOT change the expansion state of the other rows - the expanded row stays expanded."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S4-R5",
-    "viu_status": "VIU-Pending",
-    "notes": "Nothing is lost by the reset because day rows load on expand (S4-R2).",
-    "api_related": false
-  },
-  {
-    "id": "TU-TECH-01",
-    "area": "TU — Technician Filter",
-    "title": "The Filter by Technician multi-select starts with every technician selected on a first visit",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report on a first visit (no saved settings), with several technicians in the range."
-    ],
-    "steps": [
-      "1. Find the toolbar filter labeled \"Filter by Technician\" and open it.",
-      "2. Check the selection state of every listed technician.",
-      "3. Try selecting more than one change at once (multi-select)."
-    ],
-    "expected": [
-      "1. The toolbar has a filter labeled \"Filter by Technician\" that allows selecting more than one technician.",
-      "2. On the first visit, EVERY technician is selected.",
-      "3. All technicians' rows are shown."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S5-R1; S5-R2",
-    "viu_status": "VIU-Pending",
-    "notes": "Filter label pinned verbatim in S5-R1.",
-    "api_related": false
-  },
-  {
-    "id": "TU-TECH-02",
-    "area": "TU — Technician Filter",
-    "title": "Deselecting a technician hides the row and recalculates the Summary on screen without reloading; re-selecting restores it",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. Several technician rows are visible and the Summary row shows their totals.",
-      "2. Browser devtools (network tab) are open."
-    ],
-    "steps": [
-      "1. Note the Summary values, then deselect one technician in the Filter by Technician filter.",
-      "2. Watch the network traffic and the Summary row.",
-      "3. Re-select the technician."
-    ],
-    "expected": [
-      "1. The deselected technician's row is hidden.",
-      "2. The Summary row recalculates over the technicians that remain visible.",
-      "3. NO reload happens - the technician filter works on screen only and does not change the date range or re-query the server.",
-      "4. Re-selecting the technician shows the row again (and the Summary recalculates back)."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S5-R3; S5-R4; S5-R5; §3; S5 context note",
-    "viu_status": "VIU-Pending",
-    "notes": "The on-screen-only vs server split is also asserted backend-side in TU-API-02.",
-    "api_related": false
-  },
-  {
-    "id": "TU-TECH-03",
-    "area": "TU — Technician Filter",
-    "title": "Select all and Clear all controls work, and the deselected-set model keeps newly-appearing technicians selected",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. Several technicians are in the current range; a different range exists in which an ADDITIONAL technician (not listed in the current range) has clocked time."
-    ],
-    "steps": [
-      "1. In the Filter by Technician filter, use the control labeled \"Clear all\".",
-      "2. Use the control labeled \"Select all\".",
-      "3. Deselect one technician, then change the date range to the one containing the additional technician.",
-      "4. Use \"Clear all\" again, then switch to the range where the additional technician newly appears."
-    ],
-    "expected": [
-      "1. \"Clear all\" sets every currently-listed technician to deselected; \"Select all\" selects all technicians at once.",
-      "2. Selection is tracked as the set of DESELECTED technicians: a technician you have not deselected is selected by default.",
-      "3. After step 3, your deselected technician STAYS deselected across the range change, while the newly-appearing technician is SELECTED (never explicitly deselected).",
-      "4. After step 4, the newly-appearing technician is selected even though you had cleared all - \"Clear all\" only deselected the technicians listed at the time."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S5-R6; S5-R7; S5-R8; S5-R9",
-    "viu_status": "VIU-Pending",
-    "notes": "Control labels pinned verbatim (\"Select all\" / \"Clear all\").",
-    "api_related": false
-  },
-  {
-    "id": "TU-TECH-04",
-    "area": "TU — Technician Filter",
-    "title": "Previously deselected technicians stay deselected when the user returns to the report",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with several technicians listed."
-    ],
-    "steps": [
-      "1. Deselect two technicians.",
-      "2. Leave the report (navigate elsewhere), then return; also try a full page reload.",
-      "3. Check the two technicians' selection state and the other technicians'."
-    ],
-    "expected": [
-      "1. The two deselected technicians are STILL deselected on return - the deselected set is what persists (saved in this browser, not on the account).",
-      "2. All other technicians - including any who appear for the first time - are selected.",
-      "3. The saved date range and location selection are restored alongside (per S1-R8)."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S5-R10; S1-R8; §3",
-    "viu_status": "VIU-Pending",
-    "notes": "Persistence is per browser only - it does not follow the user to another browser or device (§3 context note).",
-    "api_related": false
-  },
-  {
-    "id": "TU-TECH-05",
-    "area": "TU — Technician Filter",
-    "title": "Clearing all technicians shows the no-data message and hides the Summary row",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-    "preconditions": [
-      "1. You are on the Technician Utilization report with rows loaded."
-    ],
-    "steps": [
-      "1. In the Filter by Technician filter, use \"Clear all\" so every currently-listed technician is deselected.",
-      "2. Read the data area and look for the Summary row."
-    ],
-    "expected": [
-      "1. The report shows the no-data message: \"Empty bays, endless possibilities. Get Going!\" (the same standard label as the genuinely-no-data case - no distinct copy in this version).",
-      "2. The Summary row is hidden (no technician rows are visible)."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-    "spec_ref": "specs/technician-utilization.md S5-N1; S3-N1; §7",
-    "viu_status": "Retired 2026-07-28 (merged into TU-NAV-08 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "",
-    "api_related": false
-  }
+ {
+  "id": "TU-SORT-01",
+  "area": "TU — Sorting",
+  "title": "On load the rows are sorted by Technician A to Z with the ascending indicator and correct aria-sort exposure",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with several technician rows loaded."
+  ],
+  "steps": [
+   "1. Let the report load without clicking any header and read the Technician column top to bottom.",
+   "2. Look at the Technician header's sort indicator.",
+   "3. Inspect the headers in the accessibility tree."
+  ],
+  "expected": [
+   "1. The technician rows are sorted by Technician name, A to Z.",
+   "2. The Technician header shows the ascending sort indicator.",
+   "3. The active sort header exposes its state to assistive technology (aria-sort = ascending on the Technician header; none on the others)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-R12; S8-R8; S8-R10",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "TU-SORT-02",
+  "area": "TU — Sorting",
+  "title": "All six columns sort on screen: ascending first, toggling with no third state, and Technician's first click goes descending",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with several rows loaded, including two technicians with the same value in one column."
+  ],
+  "steps": [
+   "1. Click the Technician header (the active sort on load).",
+   "2. Click the Total Hours header, then click it again, then keep clicking.",
+   "3. Repeat one click on each remaining header (WO Hours, Internal Hours, Utilization %, Est. Lost Labor).",
+   "4. Watch the network activity / loading indicator while sorting.",
+   "5. Find two technicians tied in the sorted column and note their order."
+  ],
+  "expected": [
+   "1. Because Technician-ascending is the active sort on load, the FIRST click on the Technician header sorts it DESCENDING (Z to A).",
+   "2. Clicking a column that is not the active sort sorts it ascending; clicking the active column again toggles to descending; further clicks only ever toggle ascending↔descending - there is NO third 'cleared' state.",
+   "3. All six columns are sortable.",
+   "4. Sorting is applied on screen to the loaded rows - NO reload/server request happens.",
+   "5. Technicians tied in the sorted column are ordered by Technician name A to Z; two technicians sharing the same display name keep a stable order between renders."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-R13; S2-R14",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "TU-SORT-03",
+  "area": "TU — Sorting",
+  "title": "A data reload resets the sort to Technician A to Z, and sort is never persisted across visits",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with rows loaded."
+  ],
+  "steps": [
+   "1. Sort by Est. Lost Labor descending.",
+   "2. Change the date range (a reload) and read the row order.",
+   "3. Sort by Total Hours, leave the report, and come back."
+  ],
+  "expected": [
+   "1. After the reload, the rows are back to Technician name A to Z (the sort reset).",
+   "2. On the return visit, the sort is again Technician A to Z - sort is NOT persisted (unlike the date range, technician selection, and location selection, which are)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-R15; §3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "TU-SORT-04",
+  "area": "TU — Sorting",
+  "title": "Sorting reorders only the technician rows - the Summary stays at the bottom and day rows stay under their technician in date order",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with several rows loaded and at least one technician row expanded to its day rows."
+  ],
+  "steps": [
+   "1. Sort by WO Hours descending.",
+   "2. Look at the Summary row's position.",
+   "3. Look at the expanded technician's day rows."
+  ],
+  "expected": [
+   "1. Only the technician rows reorder.",
+   "2. The Summary row stays pinned at the bottom.",
+   "3. Each technician's expanded day rows stay under that technician, still in date order (earliest to latest) - they do not re-sort by the clicked column."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-R16",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "TU-SORT-05",
+  "area": "TU — Sorting",
+  "title": "Sorting by Est. Lost Labor keeps the em-dash rows at the bottom in both directions, while $0.00 sorts as zero",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. Rows exist with: a normal Est. Lost Labor value, a \"$0.00\" value, and at least two \"—\" values (no rate configured)."
+  ],
+  "steps": [
+   "1. Sort by Est. Lost Labor ascending and read the bottom rows.",
+   "2. Sort by Est. Lost Labor descending and read the bottom rows.",
+   "3. Note where the \"$0.00\" row lands in each direction, and the order of the \"—\" rows among themselves."
+  ],
+  "expected": [
+   "1. Rows whose Est. Lost Labor is \"—\" sort to the BOTTOM in BOTH ascending and descending order - they are never floated to the top by reversing direction.",
+   "2. Among themselves, the \"—\" rows are ordered by Technician name A to Z.",
+   "3. A \"$0.00\" value is a number, not \"—\" - it sorts as zero (lowest ascending, above only the — group)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-R17",
+  "viu_status": "VIU-Pending",
+  "notes": "Seeding: needs both an unrated-location technician (—) and a zero-internal or $0-rate technician ($0.00) in one view.",
+  "api_related": false
+ },
+ {
+  "id": "TU-SUM-01",
+  "area": "TU — Summary",
+  "title": "A pinned Summary row labeled Summary sits at the bottom, stays visible on scroll, and uses the row formats with no prefix",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with enough rows to scroll."
+  ],
+  "steps": [
+   "1. Look at the bottom of the report.",
+   "2. Scroll the technician rows and watch the Summary row.",
+   "3. Read the Summary row's label and its values' formats."
+  ],
+  "expected": [
+   "1. A Summary row is pinned to the bottom of the report, labeled \"Summary\".",
+   "2. It stays visible at the bottom while the rows scroll.",
+   "3. It uses the same number formats as the technician rows.",
+   "4. Its values carry NO label prefix such as \"TOTAL:\" or \"AVG:\"."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S3-R1; S3-R2; S3-R6; S3-R7; S8-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "TU-SUM-02",
+  "area": "TU — Summary",
+  "title": "Summary totals visible technicians from unrounded hours; 0.01 drift expected",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. Several technicians with known clocked hours are visible (all selected in the technician filter)."
+  ],
+  "steps": [
+   "1. Read the Summary Total Hours, WO Hours, and Internal Hours.",
+   "2. Hand-sum the DISPLAYED per-row values and compare with the Summary.",
+   "3. Compare the Summary against the known shop totals for the full range at the selected location(s)."
+  ],
+  "expected": [
+   "1. Each Summary hours value is the total of that column across the VISIBLE technicians, computed from unrounded hours and rounded once for display (round-half-up).",
+   "2. Eye-summing the displayed rows MAY differ from the displayed Summary by 0.01 — one unit in the last decimal (these values are HOURS, not money) — expected in a compute-from-unrounded report, not a defect.",
+   "3. With every technician selected, the Summary row equals the shop totals for the full date range at the selected location(s)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S3-R3; §3 context note; S5-E1",
+  "viu_status": "VIU-Pending",
+  "notes": "'Visible technicians' = the technicians currently selected in the technician filter, not the rows scrolled into view (S3 context note). FIX-WORDING repair 2026-07-28 (sense-check): 'differ by a cent' corrected — the values are hours, so the tolerance is 0.01 (one unit in the last decimal).",
+  "api_related": false
+ },
+ {
+  "id": "TU-SUM-03",
+  "area": "TU — Summary",
+  "title": "Summary Utilization % is the weighted rate, not the average of the per-technician percentages",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. Two visible technicians with deliberately skewed hours - e.g. tech A: 1.00 total / 1.00 WO (100%); tech B: 9.00 total / 0.00 WO (0.0%) - so the weighted and averaged results differ clearly."
+  ],
+  "steps": [
+   "1. Compute the weighted rate: summed WO hours ÷ summed clocked hours × 100 (10% in the example).",
+   "2. Compute the naive average of the two row percentages (50% in the example).",
+   "3. Read the Summary Utilization %."
+  ],
+  "expected": [
+   "1. The Summary Utilization % shows the WEIGHTED rate - the visible technicians' total work-order hours as a percentage of their total clocked hours, from unrounded hours (10.0% in the example).",
+   "2. It is NOT the average of the per-technician percentages (not 50.0%)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S3-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "Seeding: two ZZAUTOTEST technicians with the skewed clock records above.",
+  "api_related": false
+ },
+ {
+  "id": "TU-SUM-04",
+  "area": "TU — Summary",
+  "title": "Summary Est. Lost Labor sums the rated contributions only, and shows an em-dash only when every visible technician is an em-dash",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. Visible technicians include: one with a normal Est. Lost Labor, one showing \"—\" (no rate anywhere), and (if possible) one partially valued (S2-E4)."
+  ],
+  "steps": [
+   "1. Read the Summary Est. Lost Labor and compare against the sum of the visible rows' valued (rated-location) contributions.",
+   "2. Use the technician filter to leave ONLY \"—\" technicians visible and read the Summary Est. Lost Labor."
+  ],
+  "expected": [
+   "1. The Summary Est. Lost Labor is computed like a row but over all visible technicians' internal hours: rate × internal hours per contributing rated location, summed at full precision and rounded once.",
+   "2. A visible technician whose value is \"—\" contributes NOTHING to the sum - so the Summary understates true lost labor whenever any visible technician is \"—\" or partially valued (documented, expected).",
+   "3. The Summary shows \"—\" only when EVERY visible technician's Est. Lost Labor is \"—\"."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S3-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "HEAVY SEEDING: rated, unrated, and mixed-location technicians in one view.",
+  "api_related": false
+ },
+ {
+  "id": "TU-DAY-01",
+  "area": "TU — Per-Day Breakdown",
+  "title": "Each technician row has an accessible expand/collapse control named for its next action",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with rows loaded."
+  ],
+  "steps": [
+   "1. Find the expand control on a technician row and read its accessible name (accessibility tree or screen reader).",
+   "2. Activate it with the keyboard (Enter, then again with Space) and re-read the name and exposed state.",
+   "3. Collapse the row again."
+  ],
+  "expected": [
+   "1. Each technician row has a control to expand and collapse it.",
+   "2. Its accessible name reflects the NEXT action, scoped to that technician: when collapsed it reads Expand, then that technician's name, then daily breakdown (for example: Expand John Smith's daily breakdown); when expanded it reads Collapse, then the same name and words.",
+   "3. The control is keyboard-focusable, toggles on Enter and Space, and exposes its expanded/collapsed state to assistive technology."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S4-R1; S8-R12",
+  "viu_status": "VIU-Pending",
+  "notes": "REPAIRED 2026-07-29 (user-authorized): the 2026-07-22 import swallowed the angle-bracket name placeholder as an HTML tag, so the live case read \"Expand 's daily breakdown\"; wording rewritten in plain words with no angle brackets (TestRail swallows angle-bracket placeholders as HTML - never use them in case text). The spec's printed strings interpolate the technician's name before the apostrophe - VIU-confirm the exact rendered name with a real technician name.",
+  "api_related": false
+ },
+ {
+  "id": "TU-DAY-02",
+  "area": "TU — Per-Day Breakdown",
+  "title": "Expanding shows one row per clocked day in date order, loaded on demand, with days pooled across selected locations",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. A technician clocked time on several (but not all) days of the range - including, for the pooling check, time at two selected locations on the same day.",
+   "2. Browser devtools (network tab) are open for the on-demand check."
+  ],
+  "steps": [
+   "1. Expand the technician's row and watch the network traffic.",
+   "2. Read the day rows top to bottom.",
+   "3. Look for rows on days the technician did not clock time.",
+   "4. On the double-location day, count the rows for that date."
+  ],
+  "expected": [
+   "1. One row appears for each day the technician clocked time in the range, in date order from earliest to latest.",
+   "2. The day rows are fetched ON EXPAND (on demand) - they are not shipped with the initial report payload.",
+   "3. A day with no clocked time has NO row.",
+   "4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S4-R2; S4-N1; S9-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "KNOWN-DELTA WATCH: lazy on-expand loading came in the 2026-07-16 spec round - the build may still ship day rows with the initial payload. The backend-observable half is TU-API-01.",
+  "api_related": false
+ },
+ {
+  "id": "TU-DAY-03",
+  "area": "TU — Per-Day Breakdown",
+  "title": "Day rows use the same columns and formats as technician rows, including a per-day per-location Est. Lost Labor",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. A technician with known per-day clock records (work-order + internal) is expanded."
+  ],
+  "steps": [
+   "1. Read one day row's Total Hours, WO Hours, Internal Hours, Utilization %, and Est. Lost Labor.",
+   "2. Compare each against that single day's clock records.",
+   "3. Check the number formats against the technician-row formats."
+  ],
+  "expected": [
+   "1. Each day row shows the same columns, in the same formats, as the technician row - with that day's values.",
+   "2. The day's Est. Lost Labor is valued per location exactly like a technician row (that location's default labor rate × that day's internal hours there).",
+   "3. Hours 2dp / Utilization one decimal + % / dollars with commas - all identical to the row formats, computed from unrounded values and rounded once."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S4-R3; S2-R8; §3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "TU-DAY-04",
+  "area": "TU — Per-Day Breakdown",
+  "title": "A single control in the table header expands or collapses all technician rows with the correct accessible names",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with several technician rows loaded."
+  ],
+  "steps": [
+   "1. Find the expand/collapse-all control in the table's header row (in the Technician column) and read its accessible name.",
+   "2. With all rows collapsed, activate it.",
+   "3. Collapse ONE row manually, then activate the control again.",
+   "4. With every row expanded, activate it once more."
+  ],
+  "expected": [
+   "1. The control lives in the table's header row (Technician column) - NOT in the toolbar action cluster.",
+   "2. If ANY row is collapsed, activating it expands ALL rows; only when EVERY row is already expanded does it collapse all rows (so step 3's activation re-expands the one collapsed row).",
+   "3. Its accessible name reflects the next action: \"Expand all technicians\" when it will expand, \"Collapse all technicians\" when every row is already expanded.",
+   "4. It is keyboard-focusable, toggles on Enter/Space, and exposes its state to assistive technology."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S4-R4; S8-R12; S8-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "TU-DAY-05",
+  "area": "TU — Per-Day Breakdown",
+  "title": "Expansion state is view-only: it resets on any reload and fresh visit, and the technician filter does not disturb it",
+  "priority": "Low",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with several rows loaded."
+  ],
+  "steps": [
+   "1. Expand two technician rows, then change the date range.",
+   "2. Expand two rows again, leave the report, and come back.",
+   "3. Expand one technician's row, then deselect and re-select a DIFFERENT technician in the technician filter."
+  ],
+  "expected": [
+   "1. After the reload (date-range or location change), all rows are collapsed - expansion state resets.",
+   "2. On a fresh visit, all rows start collapsed - expansion is never persisted.",
+   "3. Deselecting and re-selecting a technician (an on-screen operation) does NOT change the expansion state of the other rows - the expanded row stays expanded."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S4-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "Nothing is lost by the reset because day rows load on expand (S4-R2).",
+  "api_related": false
+ },
+ {
+  "id": "TU-TECH-01",
+  "area": "TU — Technician Filter",
+  "title": "The Filter by Technician multi-select starts with every technician selected on a first visit",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report on a first visit (no saved settings), with several technicians in the range."
+  ],
+  "steps": [
+   "1. Find the toolbar filter labeled \"Filter by Technician\" and open it.",
+   "2. Check the selection state of every listed technician.",
+   "3. Try selecting more than one change at once (multi-select)."
+  ],
+  "expected": [
+   "1. The toolbar has a filter labeled \"Filter by Technician\" that allows selecting more than one technician.",
+   "2. On the first visit, EVERY technician is selected.",
+   "3. All technicians' rows are shown."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S5-R1; S5-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "Filter label pinned verbatim in S5-R1.",
+  "api_related": false
+ },
+ {
+  "id": "TU-TECH-02",
+  "area": "TU — Technician Filter",
+  "title": "Deselecting a technician hides the row and recalculates the Summary on screen without reloading; re-selecting restores it",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. Several technician rows are visible and the Summary row shows their totals.",
+   "2. Browser devtools (network tab) are open."
+  ],
+  "steps": [
+   "1. Note the Summary values, then deselect one technician in the Filter by Technician filter.",
+   "2. Watch the network traffic and the Summary row.",
+   "3. Re-select the technician."
+  ],
+  "expected": [
+   "1. The deselected technician's row is hidden.",
+   "2. The Summary row recalculates over the technicians that remain visible.",
+   "3. NO reload happens - the technician filter works on screen only and does not change the date range or re-query the server.",
+   "4. Re-selecting the technician shows the row again (and the Summary recalculates back)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S5-R3; S5-R4; S5-R5; §3; S5 context note",
+  "viu_status": "VIU-Pending",
+  "notes": "The on-screen-only vs server split is also asserted backend-side in TU-API-02.",
+  "api_related": false
+ },
+ {
+  "id": "TU-TECH-03",
+  "area": "TU — Technician Filter",
+  "title": "Select all and Clear all controls work, and the deselected-set model keeps newly-appearing technicians selected",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. Several technicians are in the current range; a different range exists in which an ADDITIONAL technician (not listed in the current range) has clocked time."
+  ],
+  "steps": [
+   "1. In the Filter by Technician filter, use the control labeled \"Clear all\".",
+   "2. Use the control labeled \"Select all\".",
+   "3. Deselect one technician, then change the date range to the one containing the additional technician.",
+   "4. Use \"Clear all\" again, then switch to the range where the additional technician newly appears."
+  ],
+  "expected": [
+   "1. \"Clear all\" sets every currently-listed technician to deselected; \"Select all\" selects all technicians at once.",
+   "2. Selection is tracked as the set of DESELECTED technicians: a technician you have not deselected is selected by default.",
+   "3. After step 3, your deselected technician STAYS deselected across the range change, while the newly-appearing technician is SELECTED (never explicitly deselected).",
+   "4. After step 4, the newly-appearing technician is selected even though you had cleared all - \"Clear all\" only deselected the technicians listed at the time."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S5-R6; S5-R7; S5-R8; S5-R9",
+  "viu_status": "VIU-Pending",
+  "notes": "Control labels pinned verbatim (\"Select all\" / \"Clear all\").",
+  "api_related": false
+ },
+ {
+  "id": "TU-TECH-04",
+  "area": "TU — Technician Filter",
+  "title": "Previously deselected technicians stay deselected when the user returns to the report",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with several technicians listed."
+  ],
+  "steps": [
+   "1. Deselect two technicians.",
+   "2. Leave the report (navigate elsewhere), then return; also try a full page reload.",
+   "3. Check the two technicians' selection state and the other technicians'."
+  ],
+  "expected": [
+   "1. The two deselected technicians are STILL deselected on return - the deselected set is what persists (saved in this browser, not on the account).",
+   "2. All other technicians - including any who appear for the first time - are selected.",
+   "3. The saved date range and location selection are restored alongside (per S1-R8)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S5-R10; S1-R8; §3",
+  "viu_status": "VIU-Pending",
+  "notes": "Persistence is per browser only - it does not follow the user to another browser or device (§3 context note).",
+  "api_related": false
+ },
+ {
+  "id": "TU-TECH-05",
+  "area": "TU — Technician Filter",
+  "title": "Clearing all technicians shows the no-data message and hides the Summary row",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with rows loaded."
+  ],
+  "steps": [
+   "1. In the Filter by Technician filter, use \"Clear all\" so every currently-listed technician is deselected.",
+   "2. Read the data area and look for the Summary row."
+  ],
+  "expected": [
+   "1. The report shows the no-data message: \"Empty bays, endless possibilities. Get Going!\" (the same standard label as the genuinely-no-data case - no distinct copy in this version).",
+   "2. The Summary row is hidden (no technician rows are visible)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S5-N1; S3-N1; §7",
+  "viu_status": "Retired 2026-07-28 (merged into TU-NAV-08 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ }
 ]

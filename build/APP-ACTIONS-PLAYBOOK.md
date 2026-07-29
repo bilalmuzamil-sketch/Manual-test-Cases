@@ -261,6 +261,11 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 - **Known runs — do NOT write without permission:** Custom Roles run **312**, section **3527**;
   Simple Flow / F&D / Schedule / Report Suite run **325** (and R359 Reports). Section IDs per project
   in CLAUDE.md.
+- **TestRail swallows angle-bracket `<placeholders>` as HTML — never use `<` `>` in case text; write
+  plain words instead** (e.g. "Expand, then the technician's name" — not an angle-bracket
+  placeholder). Confirmed live 2026-07-29: TU-DAY-01/C30418's expected result imported 2026-07-22 as
+  "Expand 's daily breakdown" — the placeholder was eaten as an HTML tag. Sweep any import/push
+  payload for `<` before sending.
 
 ## Jira/Confluence access
 - Live browser login (headless Chromium via a fresh MITM bridge → id.atlassian.com email+password →

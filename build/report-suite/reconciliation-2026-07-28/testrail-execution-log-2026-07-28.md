@@ -179,3 +179,32 @@ never written to).
 57 delete_case, all HTTP 200 + verified, 0 failures. Suite = 459 ACTIVE.** ISSUE-1 is RESOLVED;
 remaining known live drifts (NOT in the authorized scope, AWAITING user authorization): TU-DAY-01
 C30418 (import placeholder artifact) + 2 overlong titles PV-API-02 C30389 / PV-FILT-09 C30336.
+
+---
+
+## AUTHORIZED FIXES 2026-07-29 (explicit user authorization 2026-07-29 — exactly 3 update_case)
+
+The three "remaining known live drifts" flagged above were authorized and executed 2026-07-29.
+Executor: `exec_authorized_fixes_2026-07-29.py`; machine-readable result:
+`testrail-execution-result-authorized-fixes-2026-07-29.json`. Pre-op live snapshots (get_case
+first, completion-pass convention): `testrail-pre-push-snapshot-2026-07-28/
+C30418_TU-DAY-01.pre-authorized-fix-2026-07-29.json` + `C30389_PV-API-02.pre-authorized-fix-2026-07-29.json`
++ `C30336_PV-FILT-09.pre-authorized-fix-2026-07-29.json`. NO other case touched; NO run writes
+(R359 untouched).
+
+| # | Op | Internal ID | C-id | Link | What changed | HTTP | Re-GET verify |
+|---|---|---|---|---|---|---|---|
+| 131 | update_case | TU-DAY-01 | C30418 | https://shopview.testrail.io/index.php?/cases/view/30418 | Import artifact repaired: live expected #2 read "Expand 's daily breakdown" (the angle-bracket name placeholder was swallowed as an HTML tag at the 2026-07-22 import — confirmed in the pre-op snapshot). Rewritten plain, no angle brackets: "…when collapsed it reads Expand, then that technician's name, then daily breakdown (for example: Expand John Smith's daily breakdown); when expanded it reads Collapse, then the same name and words." Title/refs unchanged. | 200 | MATCH (title/preconds/steps/expected/refs) |
+| 132 | update_case | PV-API-02 | C30389 | https://shopview.testrail.io/index.php?/cases/view/30389 | Title 100→71 chars: "Each filter or search change re-queries the server and returns page one". Body/refs unchanged. | 200 | MATCH |
+| 133 | update_case | PV-FILT-09 | C30336 | https://shopview.testrail.io/index.php?/cases/view/30336 | Title 96→77 chars: "Bin filter excludes special-order rows; Bin plus that Type is empty by design". Body/refs unchanged. | 200 | MATCH |
+
+**Angle-bracket sweep (part of the authorization):** ALL 459 active local bodies (plus retired
+bodies) grepped for "<" in title/preconditions/steps/expected → **0 other occurrences**; a
+second sweep for the swallowed-remnant pattern (a bare " 's " with the name eaten) → 0 hits.
+TU-DAY-01 was the ONLY case with the artifact. **Follow-up candidate found (NOT pushed, needs
+authorization): TU-DAY-01's own title is 87 chars** ("Each technician row has an accessible
+expand/collapse control named for its next action") — over the ≤80 concise-title rule; pushed
+UNCHANGED this pass (only the placeholder repair was authorized for that case).
+
+Gotcha captured to `build/APP-ACTIONS-PLAYBOOK.md` §J (Rule 27): TestRail swallows angle-bracket
+placeholders as HTML — never use "<"/">" in case text; write plain words instead.
