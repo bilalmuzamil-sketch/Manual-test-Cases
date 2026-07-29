@@ -101,6 +101,24 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 - **fe-permissions read:** `GET /api/auth/me/fe-permissions` → `{data:{fe_permissions:[<codes>],
   view_mode, cross_toggles}}` (array of code STRINGS, not a bool map). quick-login is stateful on the
   shared PHPSESSID → probe roles strictly SEQUENTIALLY.
+- **PRODUCTION access (`app.shopview.com` / `api.shopview.com`) — proven 2026-07-29 (SV-8721 prod
+  verification):** real login `POST /api/login {username, password}` → 200 + set-cookie `PHPSESSID`
+  (session is PHPSESSID-only, NO SSO / no cf_clearance needed via the agent proxy; quick-login 500s on
+  prod). **A fresh login for the SAME user EXPIRES the previous PHPSESSID** (old session → 409 "Session
+  has expired") — log in ONCE per run and reuse that session for API + browser + cleanup. Prod test org
+  = `72b2cc90-6964-4429-a207-76e55f946936`; workplaces via `GET /api/staff/my-workplaces` — **Trucks
+  Hill 2 = `b617914c-16e9-4485-8e8b-193cd86aa416` (Africa/Accra, HAS canned lines — use it for WO
+  seeding)**; QA Testing = `8badadec-0344-4bc3-b668-7beaedfefa8d` (Africa/Abidjan, NO canned lines).
+  Same-as-staging on prod (all confirmed live): `iam/change-location`, `work-orders/create`
+  (is_vehicle_here required), `part/make-request`, `perform-request-status-action {action:'order'}`,
+  `inventory/orders/{id}` (incl. the `*_decimal` fields), `work-orders/delete` (deleting the WO also
+  removes its un-received PO). **DIFFERENT on prod:** `POST /api/work-orders/lines/create
+  {canned_line_id,…}` → 400 "Labor or fixed prices must be set" even with a fixed-price canned line —
+  use **`POST /api/work-orders/{id}/lines/create-from-canned-line {canned_line_id, status:'authorized'}`
+  → 201** instead. Chromium boot2-style hydration works on prod: PHPSESSID cookie on `.shopview.com` +
+  localStorage `user` = `{data:<login-response data>}` (has `token`/`role`/`details`) +
+  `fe_permissions_wrapper` = fe-permissions `data`; Playwright pointed straight at `$HTTPS_PROXY`
+  worked (no bridge needed). Credentials/cookies in `/tmp` only.
 
 ## B. Environment / location
 - **Org ID (staging, shared):** `d55bc308-...` (shared across Custom Roles + Simple Flow + F&D staging).
