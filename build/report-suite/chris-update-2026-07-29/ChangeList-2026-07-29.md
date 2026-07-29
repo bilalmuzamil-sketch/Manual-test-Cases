@@ -1,6 +1,8 @@
-# Report Suite — Chris-update change-list (2026-07-29)
+# Report Suite — Chris-update change-list (2026-07-29) — **EXECUTED 2026-07-29**
 
-**Source:** `chris-message-2026-07-29.md` (verbatim; Chris Ward group message 8:53 AM 2026-07-29 — NEWEST source, last-update-wins over the kickoff video and the current six specs). **All Part-2 edits are LOCAL ONLY** — backups in `backup/` (+ MANIFEST.md); this change-list is the approval gate for the eventual authorized TestRail push (**24 update_case + 1 add_case**). The 3 TESTRAIL-PUSHED rows were a separate explicit authorization (2026-07-29), already executed + re-GET verified.
+**STATUS: EXECUTED.** The push queue below was pushed to TestRail 2026-07-29 under explicit user authorization — **24 update_case + 1 add_case (TU-COL-01 = C38859, section 4348 "TU — Visual & Accessibility"), 25/25 HTTP 200 + re-GET MATCH, 0 failures; live count under group 4281 = 460 == id-map; R359 untouched, no deletes.** Audit: `../reconciliation-2026-07-28/testrail-execution-log-2026-07-28.md` § "CHRIS-UPDATE PUSH 2026-07-29"; executor `exec_chris_push_2026-07-29.py`; pre-push snapshots in `pre-push-snapshot/`. All APPLIED-LOCALLY / NEW-CASE rows below are now LIVE (refs condensed to the TestRail cap where noted; full text stays in local spec_ref).
+
+**Source:** `chris-message-2026-07-29.md` (verbatim; Chris Ward group message 8:53 AM 2026-07-29 — NEWEST source, last-update-wins over the kickoff video and the current six specs). **All Part-2 edits were LOCAL ONLY at authoring time** — backups in `backup/` (+ MANIFEST.md); this change-list was the approval gate for the authorized TestRail push (**24 update_case + 1 add_case**). The 3 TESTRAIL-PUSHED rows were a separate explicit authorization (2026-07-29), already executed + re-GET verified.
 
 **Suite count:** 459 active in TestRail + 1 new authored locally (TU-COL-01) = **460 active authored**.
 
@@ -42,7 +44,7 @@
 | (watch - SBC exports) | - | — | SBC | Summary/Expanded split side-effect | FYI | The SBC export FILENAME map (SBC-EXP-02 C30160) and the 10,000-row cap wording may shift once the four-way menu is spec'd - not edited now; watch the spec changelog. |
 | (watch - all specs) | - | — | - | Chris message caveat | FYI | The message's change summary was written by Chris's ASSISTANT, 'pending a human-eye-pass'. When the real spec changelog lands (~2026-07-30), re-run the spec capture + diff and verify every item above against it before the push. SPEC-WATCH deadline 2026-08-04 stands. |
 
-## Push queue (awaiting authorization — NOTHING pushed from Part 2)
+## Push queue (EXECUTED 2026-07-29 — 25/25 HTTP 200 + re-GET MATCH; TU-COL-01 = C38859)
 
 - **24 × update_case:** SBC-LBL-01 C30134, SBC-LBL-04 C30137, SBC-EXP-01 C30159, SBC-EXP-16 C38856, SBC-EXP-03 C30161, SBC-EXP-11 C30169, SBC-EXP-09 C30167, SBR-EXP-02 C30277, PV-EXP-02 C30376, TU-EXP-04 C30437, IV-EXP-02 C30588, WIP-EXP-02 C30511, SBC-LOC-03 C30111, SBR-LOC-03 C30215, PV-FILT-10 C30337, TU-LOC-02 C30443, IV-LOC-02 C30575, WIP-FLT-06 C30503, PV-FILT-01 C30328, PV-FILT-09 C30336, PV-ROW-05 C30345, PV-EXP-08 C30382, PV-EXP-05 C30379, TU-DAY-01 C30418 (local title trim + refs ticket).
 - **1 × add_case:** TU-COL-01 (section TU — Visual & Accessibility; custom_atmstatus:3 + custom_automation_type:0).

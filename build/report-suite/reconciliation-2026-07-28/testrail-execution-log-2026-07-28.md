@@ -208,3 +208,42 @@ UNCHANGED this pass (only the placeholder repair was authorized for that case).
 
 Gotcha captured to `build/APP-ACTIONS-PLAYBOOK.md` §J (Rule 27): TestRail swallows angle-bracket
 placeholders as HTML — never use "<"/">" in case text; write plain words instead.
+
+---
+
+## CHRIS-UPDATE PUSH 2026-07-29 (explicit user authorization 2026-07-29)
+
+**Scope: EXACTLY the ChangeList-2026-07-29.md push queue — 24 update_case + 1 add_case (TU-COL-01). Result: 25/25 HTTP 200, 25/25 re-GET verified MATCH (title/preconds/steps/expected/refs; add also section + atm fields), 0 failures. NOTHING else written — no deletes, no section writes, no run writes (R359 untouched). Live count under group 4281 after the push = 460 == id-map.**
+
+Executor: `chris-update-2026-07-29/exec_chris_push_2026-07-29.py`; machine result: `chris-update-2026-07-29/testrail-execution-result-2026-07-29.json`. Pre-op live snapshots of all 24 update targets: `chris-update-2026-07-29/pre-push-snapshot/C<cid>_<iid>.pre-chris-push-2026-07-29.json`. **Refs-cap convention applied (same as SBC-EXP-01/SBR-LOC-03 on 2026-07-28):** 14 cases' combined ticket+anchor refs exceeded the TestRail 250-char cap and were CONDENSED at push (ticket + spec anchor + 'Chris Ward msg 2026-07-29 [last-update-wins]' kept); the full text stays in the local `spec_ref` / import References. **TU-COL-01 = C38859** (section 4348 "TU — Visual & Accessibility", resolved live from sibling TU-VIS-01 C30447).
+
+| # | Op | Internal ID | C-id | Link | What changed | HTTP | Re-GET verify |
+|---|---|---|---|---|---|---|---|
+| 134 | update_case | SBC-LBL-01 | C30134 | https://shopview.testrail.io/index.php?/cases/view/30134 | Asset identifier re-ruled: VIN, falling back to Unit #, then plate (supersedes the video's serial ruling for SBC). | 200 | MATCH (2026-07-29 09:32:28Z) |
+| 135 | update_case | SBC-LBL-04 | C30137 | https://shopview.testrail.io/index.php?/cases/view/30137 | Notes-only: duplicate-label seeding context moved from serial to the VIN chain; (#1)/(#2) rule unchanged. | 200 | MATCH (2026-07-29 09:32:30Z) |
+| 136 | update_case | SBC-EXP-01 | C30159 | https://shopview.testrail.io/index.php?/cases/view/30159 | Menu = the four exact items (Download Summary/Expanded View, PDF and CSV); still NO Print. Refs condensed to cap. | 200 | MATCH (2026-07-29 09:32:31Z) |
+| 137 | update_case | SBC-EXP-16 | C38856 | https://shopview.testrail.io/index.php?/cases/view/38856 | Reshaped to the Summary/Expanded split: Summary = one row per customer; Expanded = Customer→Asset→Invoice; both PDF+CSV. | 200 | MATCH (2026-07-29 09:32:33Z) |
+| 138 | update_case | SBC-EXP-03 | C30161 | https://shopview.testrail.io/index.php?/cases/view/30161 | Scoped to the Expanded View CSV; 'no asset layer by design' note removed; 'Locations:' line expectation added. | 200 | MATCH (2026-07-29 09:32:35Z) |
+| 139 | update_case | SBC-EXP-11 | C30169 | https://shopview.testrail.io/index.php?/cases/view/30169 | Scoped to the Expanded View PDF body with the Customer/Asset/Invoice breakdown; formatting rules kept. | 200 | MATCH (2026-07-29 09:32:36Z) |
+| 140 | update_case | SBC-EXP-09 | C30167 | https://shopview.testrail.io/index.php?/cases/view/30167 | REVERSED: 'location NOT shown in the header' replaced by a 'Locations:' line in the PDF header. | 200 | MATCH (2026-07-29 09:32:38Z) |
+| 141 | update_case | SBR-EXP-02 | C30277 | https://shopview.testrail.io/index.php?/cases/view/30277 | 'Locations:' line in every one of the four downloads; long title trimmed. | 200 | MATCH (2026-07-29 09:32:39Z) |
+| 142 | update_case | PV-EXP-02 | C30376 | https://shopview.testrail.io/index.php?/cases/view/30376 | 'Locations:' line in each export (PDF and CSV). | 200 | MATCH (2026-07-29 09:32:41Z) |
+| 143 | update_case | TU-EXP-04 | C30437 | https://shopview.testrail.io/index.php?/cases/view/30437 | 'Locations:' line in every download; long title trimmed. | 200 | MATCH (2026-07-29 09:32:43Z) |
+| 144 | update_case | IV-EXP-02 | C30588 | https://shopview.testrail.io/index.php?/cases/view/30588 | 'Locations:' line in each download; long title trimmed. | 200 | MATCH (2026-07-29 09:32:44Z) |
+| 145 | update_case | WIP-EXP-02 | C30511 | https://shopview.testrail.io/index.php?/cases/view/30511 | 'Locations:' line in each download; long title trimmed. | 200 | MATCH (2026-07-29 09:32:46Z) |
+| 146 | update_case | SBC-LOC-03 | C30111 | https://shopview.testrail.io/index.php?/cases/view/30111 | On-screen location-scope indicator expectation added (distinct from the per-row location label). | 200 | MATCH (2026-07-29 09:32:47Z) |
+| 147 | update_case | SBR-LOC-03 | C30215 | https://shopview.testrail.io/index.php?/cases/view/30215 | On-screen scope-indicator expectation added. | 200 | MATCH (2026-07-29 09:32:49Z) |
+| 148 | update_case | PV-FILT-10 | C30337 | https://shopview.testrail.io/index.php?/cases/view/30337 | On-screen scope-indicator expectation added. | 200 | MATCH (2026-07-29 09:32:51Z) |
+| 149 | update_case | TU-LOC-02 | C30443 | https://shopview.testrail.io/index.php?/cases/view/30443 | On-screen scope-indicator expectation added; long title trimmed. | 200 | MATCH (2026-07-29 09:32:52Z) |
+| 150 | update_case | IV-LOC-02 | C30575 | https://shopview.testrail.io/index.php?/cases/view/30575 | On-screen scope-indicator expectation added. | 200 | MATCH (2026-07-29 09:32:54Z) |
+| 151 | update_case | WIP-FLT-06 | C30503 | https://shopview.testrail.io/index.php?/cases/view/30503 | On-screen scope-indicator expectation added; long title trimmed. | 200 | MATCH (2026-07-29 09:32:55Z) |
+| 152 | update_case | PV-FILT-01 | C30328 | https://shopview.testrail.io/index.php?/cases/view/30328 | Type filter options read exactly: Both, Inventory, Special Order; rename hedge removed. | 200 | MATCH (2026-07-29 09:32:57Z) |
+| 153 | update_case | PV-FILT-09 | C30336 | https://shopview.testrail.io/index.php?/cases/view/30336 | Body wording moved to the exact 'Special Order' label (title was already pushed in the authorized fix). | 200 | MATCH (2026-07-29 09:32:58Z) |
+| 154 | update_case | PV-ROW-05 | C30345 | https://shopview.testrail.io/index.php?/cases/view/30345 | Type column values read exactly 'Inventory' or 'Special Order'; hedge removed. | 200 | MATCH (2026-07-29 09:32:59Z) |
+| 155 | update_case | PV-EXP-08 | C30382 | https://shopview.testrail.io/index.php?/cases/view/30382 | Notes-only: exported Type values read 'Special Order'; alignment rule unaffected. | 200 | MATCH (2026-07-29 09:33:01Z) |
+| 156 | update_case | PV-EXP-05 | C30379 | https://shopview.testrail.io/index.php?/cases/view/30379 | Same-logo-treatment expectation added (PV was the only report with no logo coverage); long title trimmed. | 200 | MATCH (2026-07-29 09:33:03Z) |
+| 157 | update_case | TU-DAY-01 | C30418 | https://shopview.testrail.io/index.php?/cases/view/30418 | Local title trim 87→61 chars + story ticket SV-8651 added to refs (the placeholder repair was already live). | 200 | MATCH (2026-07-29 09:33:04Z) |
+| 158 | add_case | TU-COL-01 | C38859 | https://shopview.testrail.io/index.php?/cases/view/38859 | NEW case: a column selector lets the user choose which columns show (reverses the video-era no-selector state; column list/defaults unpinned until the spec changelog). Section 4348 TU — Visual & Accessibility; custom_atmstatus:3 + custom_automation_type:0. | 200 | MATCH (2026-07-29 09:33:08Z) |
+
+**Post-push reconciliation:** id-map TU-COL-01 = C38859 (460/460 rows, 0 blank C-ids); import + 6 per-report splits + coverage addenda regenerated over 460 (header byte-identical to the other project imports 7/7 files; 0 VIU words, 0 feature-flag words, 0 internal-id leaks, 0 duplicate section+title pairs; 29 API cases all in "— API" sections; splits row-set == unified). Push authorization CONSUMED; VIU-time corrections come later per the user.
+

@@ -4,9 +4,11 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-29** (3 authorized TestRail fixes executed + Chris Ward group-message
-delta pass applied LOCALLY — 460 active authored [459 in TestRail + new TU-COL-01]; push queue =
-`chris-update-2026-07-29/ChangeList-2026-07-29.md`; see §0 first block). Prior 2026-07-28, second
+Last updated: **2026-07-29, second update** (AUTHORIZED CHRIS-UPDATE PUSH EXECUTED — 24 update_case
++ 1 add_case [TU-COL-01 = C38859], 25/25 HTTP 200 + re-GET MATCH; **460 active LIVE in TestRail ==
+460 local**; see §0 LATEST block). Earlier same day: 3 authorized TestRail fixes executed + Chris
+Ward group-message delta pass applied LOCALLY (change-list =
+`chris-update-2026-07-29/ChangeList-2026-07-29.md`, now EXECUTED; see §0 second block). Prior 2026-07-28, second
 update (FULL TESTRAIL PUSH EXECUTED — see §0 second block:
 459 active cases live, SBC-EXP-16 = C38856, 57 deletions, R359 515→458 documented. Earlier same
 day: VIDEO PROMOTED TO AUTHORITATIVE — 27 local case edits + 1 new case
@@ -26,7 +28,32 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
-**UPDATE 2026-07-29 (LATEST — AUTHORIZED 3-CASE FIX + CHRIS-MESSAGE DELTA PASS; read this first).**
+**UPDATE 2026-07-29-B (LATEST — AUTHORIZED CHRIS-UPDATE PUSH EXECUTED; read this first).**
+- **The Chris-update push queue is EXECUTED (explicit user authorization 2026-07-29): exactly
+  24 update_case + 1 add_case per `chris-update-2026-07-29/ChangeList-2026-07-29.md`, NOTHING
+  else.** All 25 ops HTTP 200 + re-GET verified MATCH (title/preconds/steps/expected/refs; the
+  add also section + atm fields), 0 failures. **TU-COL-01 = C38859** (section 4348 "TU — Visual
+  & Accessibility"; custom_atmstatus:3 + custom_automation_type:0). No deletes, no section
+  writes, no run writes — **R359 untouched**; only group 4281 touched.
+- **Live count under group 4281 = 460 == id-map (460/460 rows, 0 blank C-ids).** Deliverables
+  regenerated over 460: unified import + 6 per-report splits (header byte-identical 7/7; 0 VIU
+  words, 0 feature-flag words, 0 internal-id leaks, 0 dup section+title; 29 API cases all in
+  "— API" sections; splits row-set == unified) + coverage addenda ×6 updated to C38859.
+- **Refs-cap convention applied** (same as SBC-EXP-01/SBR-LOC-03 on 2026-07-28): 14 of the 25
+  refs condensed to the TestRail 250-char cap at push; full ticket+anchor text stays in local
+  `spec_ref` / import References.
+- Audit: execution log § "CHRIS-UPDATE PUSH 2026-07-29" (ops 134–158) in
+  `reconciliation-2026-07-28/testrail-execution-log-2026-07-28.md`; executor
+  `chris-update-2026-07-29/exec_chris_push_2026-07-29.py`; pre-push live snapshots of all 24
+  update targets in `chris-update-2026-07-29/pre-push-snapshot/`; change-list header = EXECUTED.
+- **Push authorization CONSUMED.** Open threads: **VIU-time corrections expected later per the
+  user ruling** (label/placement hedges in the pushed bodies get confirmed live at VIU);
+  **WIP identifier question (VIN vs serial) still PENDING with Chris** (WIP-COL-05 C30470 /
+  WIP-FLT-03 C30500 / WIP-SORT-03 C30485 untouched, on serial); **SPEC-WATCH unchanged** —
+  Chris's spec changelog + companion video expected ~2026-07-30, reminder deadline 2026-08-04
+  stands (`SPEC-WATCH-2026-07-28.md`); filters cross-squad sweep (Branko/Milos) still to land.
+
+**UPDATE 2026-07-29 (second block — AUTHORIZED 3-CASE FIX + CHRIS-MESSAGE DELTA PASS).**
 - **Part 1 — 3 user-authorized TestRail fixes EXECUTED** (the exact 3 drifts flagged in the
   2026-07-28 checkpoint; explicit authorization 2026-07-29; NOTHING else written, R359 untouched):
   **TU-DAY-01 C30418** import angle-bracket artifact repaired (live read "Expand 's daily
@@ -50,14 +77,14 @@ import REGENERATED post-review.)
   [old "location not shown" REVERSED] + the 5 other export cases + the 6 location-scoping cases);
   **"Catalogue" → exact label "Special Order" CONFIRMED** (PV-FILT-01 C30328, PV-FILT-09 C30336,
   PV-ROW-05 C30345, PV-EXP-08 C30382; Parts Sales dropdown rename = out of scope, FYI only);
-  **TU column selector ADDED → 1 NEW case TU-COL-01** (no C-ID yet, refs SV-8655 + the message);
+  **TU column selector ADDED → 1 NEW case TU-COL-01** (now C38859 per the 2026-07-29-B push; refs SV-8655 + the message);
   **same logo treatment** (only PV lacked coverage → PV-EXP-05 C30379 extended). Also: 8 touched
   overlong titles trimmed locally + 11 story tickets backfilled into touched cases' refs (Rule 20).
   **NEW TALLY: 460 ACTIVE authored (459 in TestRail + TU-COL-01).** Deliverables regenerated over
   460 (import + 6 splits header byte-identical, hygiene clean; id-map 459 C-ids re-merged +
   TU-COL-01 blank; coverage addenda ×6). **Change-list / push-approval gate =
-  `chris-update-2026-07-29/ChangeList-2026-07-29.md` + `.xlsx` (pending push: 24 update_case + 1
-  add_case).** Rule-28 three-dimension audit on all 26 touched: 26 KEEP / 26 SENSIBLE / 26
+  `chris-update-2026-07-29/ChangeList-2026-07-29.md` + `.xlsx` (EXECUTED 2026-07-29-B: 24
+  update_case + 1 add_case, TU-COL-01 = C38859).** Rule-28 three-dimension audit on all 26 touched: 26 KEEP / 26 SENSIBLE / 26
   genuine+layman. SPEC-WATCH updated (ratification IN PROGRESS; deadline 2026-08-04 stands).
 - **FILTERS CROSS-SQUAD (Chris message, second part):** Branko + Milos's app-wide Filters project
   WILL cross over with the report filters; build to spec for now but EXPECT the filter portion to
