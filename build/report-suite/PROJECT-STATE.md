@@ -39,6 +39,15 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
+**LATEST 2026-07-29 (session complete — state-save):** wave-2 pushed (commit e2201e2; see UPDATE
+2026-07-29-D), leadership process doc delivered (commit 75ad986:
+`build/Test-Case-Creation-and-Refinement-Process_2026-07-29.docx` + simple guide commit 3e18b3e),
+QA meeting notes ingested (`build/meetings/Daily-QA-Meetup-2026-07-29-notes.md`),
+execution-discipline convention recorded. **Awaiting:** Chris spec changelog (re-diff incl. WIP
+VIN text; SPEC-WATCH 2026-08-04), companion video, QA branch for VIU. **NEW active thread
+2026-07-29: Simple Flow sell-price bug investigation** (Fabian/founder concern — sell stays 0
+when cost changes on the Receive Parts screen; coverage check in progress).
+
 **SESSION CHECKPOINT 2026-07-29 (pre-limit #2) — COLD-RESUME ANCHOR (read this first on resume).**
 - **Suite = 460 active** (459 live in TestRail + wave-2 pending). Chris answer A APPLIED LOCALLY
   (commit 858479d). **PENDING: a 4-case wave-2 TestRail push queue AWAITING USER "push"
