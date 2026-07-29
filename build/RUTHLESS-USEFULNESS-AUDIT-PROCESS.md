@@ -317,6 +317,14 @@ blocked tests manually to see what needs to be changed there."*):
   runs are never written without permission.
 - The revisit reuses this audit's verdict vocabulary (a Blocked case is in effect a field-reported
   FIX-WORDING / NONSENSE / MERGE / CUT candidate) — so the suite **permanently self-corrects**.
+- **Refinements (QA lead, 2026-07-29):** (a) cases found COMPLETELY IRRELEVANT on revisit are
+  removed — given the pre-delivery gates, expect these to be **no more than 1% of the suite**;
+  (b) where only a SLIGHT change is needed (expected behavior / steps of reproduction / title),
+  **the QA owns that fix directly** and updates the case; (c) test-case work is only ONE PART of
+  a feature squad's success — QAs also do a **deeper dive** into each feature, actively trying to
+  **break it** and finding/reporting **regressions**; (d) those edge-case and regression tickets
+  are later **converted into test cases** too, so the suite grows from real findings, not just
+  from specs.
 - The presentable overview of the full quality pipeline (this loop = step 9) is
   `build/QA-QUALITY-PIPELINE-EXPLAINER.md`.
 

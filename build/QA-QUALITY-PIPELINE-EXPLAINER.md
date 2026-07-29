@@ -35,6 +35,10 @@ screen names as they actually appear in the application** — captured from the 
 invented or paraphrased. The language is deliberately plain: a brand-new, non-technical manual
 tester can execute any case without asking questions. If an on-screen label cannot be confirmed
 from the build yet, we **flag it** for live confirmation — we never invent it.
+**Lifecycle note:** the first version of every case is deliberately **spec-based and marked
+"pending live verification"** — the best possible paper version (fully traceable, quality-gated),
+never claimed final before the feature can be seen live. The FINAL version is locked at step 8
+(VIU), when every word is checked against the real build.
 *Internal reference: `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` (Standing Rules 7/9).*
 
 ## 4. Coverage matrix — both directions, every requirement
@@ -94,8 +98,15 @@ states: **Verified** (observed working), **Deviation** (observed differing — w
 spec/ticket wording it deviates from cited verbatim), or **Blocked** (with the concrete reason
 stated). If the required data state doesn't exist, we seed it ourselves and observe — a case is
 never left unverified for lack of data.
-*Internal reference: `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` (Standing Rules
-10/12/13/14/25).*
+**Lifecycle note:** VIU is where the spec-based draft (step 3) becomes the **FINAL version** —
+wording, steps, and expected behaviors locked as 100% accurate. VIU is not a single check: two
+companion processes run with it — the **build-accurate wording pass** (exact on-screen words
+corrected into every case, word-for-word) and the **spec-relevance reconciliation** (the WHOLE
+suite re-checked against the CURRENT spec: obsolete cases retired, drifted cases corrected, gaps
+filled). So a test case has two lives: a spec-based draft that passes every paper quality gate,
+and a final, live-verified version whose every word has been checked against the real product.
+*Internal reference: `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` +
+`build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md` (Standing Rules 10/12/13/14/25).*
 
 ## 9. The final fool-proof loop — tester feedback via Blocked
 
@@ -105,9 +116,31 @@ Blocked case is then revisited manually**: re-checked against the current spec a
 build, and fixed — reworded, expectation corrected, merged, or retired — with a logged TestRail
 update. This closes the loop with the people actually running the cases, so the suite
 **permanently self-corrects** in the field.
+
+**Refinements (QA lead, 2026-07-29):**
+- **≤1% expectation:** cases found COMPLETELY IRRELEVANT on revisit are removed — and, given the
+  gates above, these should be **no more than 1% of the suite**.
+- **QA owns slight fixes directly:** where only a SLIGHT change is needed — in the **expected
+  behavior**, the **steps of reproduction**, or the **title** — **the QA owns that fix directly**
+  and updates the case.
+- **The QA deeper-dive duty:** it has been clarified to the QA team that working on the test
+  cases is only ONE PART of making a feature squad successful — QAs also do a **DEEPER DIVE**
+  into each feature, actively attempting to **BREAK it**, finding **REGRESSIONS**, and reporting
+  them.
+- **Findings become cases:** those edge-case tickets and regression tickets are later
+  **CONVERTED INTO TEST CASES** too — so the suite continuously grows from real findings, not
+  just from specs.
+
 *This step is the QA lead's standing instruction (2026-07-29, verbatim): "the last fool proof
 process is that the manual tester marks the test cases which seems off to him/her as Blocked
-and we revisit those blocked tests manually to see what needs to be changed there."*
+and we revisit those blocked tests manually to see what needs to be changed there." The
+refinements above are the QA lead's 2026-07-29 follow-up instruction (as relayed): cases found
+completely irrelevant are removed and "should be NO MORE THAN 1% of the suite"; where only a
+slight change is needed "in the expected behavior, the steps of reproduction, or the title —
+the QA owns that fix directly"; "working on the test cases is only ONE PART of making a feature
+squad successful: QAs also do a DEEPER DIVE into each feature, actively attempting to BREAK it,
+finding REGRESSIONS, and reporting them"; and "those edge-case tickets and regression tickets
+are later CONVERTED INTO TEST CASES too."*
 *Internal reference: the post-delivery loop section of
 `build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md` (Standing Rule 6 governs the logged corrections).*
 

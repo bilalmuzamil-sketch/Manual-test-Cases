@@ -1593,7 +1593,14 @@ regression / bug-fix re-testing.
   counterpart section in build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md. (QA lead's standing
   instruction 2026-07-29: "the last fool proof process is that the manual tester marks the test
   cases which seems off to him/her as Blocked and we revisit those blocked tests manually to
-  see what needs to be changed there.")
+  see what needs to be changed there.") **Refinements (QA lead 2026-07-29):**
+  completely-irrelevant cases found on revisit are removed and should be ≤1% of the suite;
+  slight fixes (expected behavior / steps of reproduction / title) are owned and applied
+  directly by the QA; QAs also owe each feature a deeper dive — actively trying to break it and
+  finding/reporting regressions (test-case work is only ONE part of squad success); those
+  edge-case/regression tickets are later converted into test cases, so the suite grows from
+  real findings. Layman-facing guide =
+  build/How-We-Ensure-Test-Case-Quality_Simple-Guide_2026-07-29.docx (+ .md twin).
 
 ## Persistence note
 Secrets are **ephemeral** (`/tmp`, re-supply per environment). Everything else
