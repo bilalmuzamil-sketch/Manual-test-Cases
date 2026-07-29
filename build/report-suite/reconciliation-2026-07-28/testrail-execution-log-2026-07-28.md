@@ -247,3 +247,20 @@ Executor: `chris-update-2026-07-29/exec_chris_push_2026-07-29.py`; machine resul
 
 **Post-push reconciliation:** id-map TU-COL-01 = C38859 (460/460 rows, 0 blank C-ids); import + 6 per-report splits + coverage addenda regenerated over 460 (header byte-identical to the other project imports 7/7 files; 0 VIU words, 0 feature-flag words, 0 internal-id leaks, 0 duplicate section+title pairs; 29 API cases all in "— API" sections; splits row-set == unified). Push authorization CONSUMED; VIU-time corrections come later per the user.
 
+
+---
+
+## WAVE-2 PUSH 2026-07-29 (explicit user authorization "Push" 2026-07-29)
+
+**Scope: EXACTLY the ChangeList-2026-07-29.md "Push queue — wave 2" — 4 update_case (the WIP asset-identifier VIN-chain edits per Chris Ward's answer A). Result: 4/4 HTTP 200, 4/4 re-GET verified MATCH (title/preconds/steps/expected/refs), 0 failures. NOTHING else written — no adds, no deletes, no section writes, no run writes (R359 untouched). Live count under group 4281 after the push = 460 == id-map.**
+
+Executor: `chris-update-2026-07-29/exec_wave2_push_2026-07-29.py`; machine result: `chris-update-2026-07-29/testrail-execution-result-wave2-2026-07-29.json`. Pre-op live snapshots of all 4 update targets: `chris-update-2026-07-29/pre-push-snapshot/C<cid>_<iid>.pre-wave2-push-2026-07-29.json`. **Refs-cap convention applied (same as wave 1):** all 4 combined ticket+anchor refs exceeded the TestRail 250-char cap and were CONDENSED at push (ticket + spec anchor + 'Chris Ward answer A 2026-07-29 [last-update-wins]' kept); the full text stays in the local `spec_ref` / import References. SBC-LBL-01 C30134 = notes-only (local metadata field, NOT pushed — its pushed fields already carry the VIN chain from wave 1).
+
+| # | Op | Internal ID | C-id | Link | What changed | HTTP | Re-GET verify |
+|---|---|---|---|---|---|---|---|
+| 159 | update_case | WIP-COL-05 | C30470 | https://shopview.testrail.io/index.php?/cases/view/30470 | Asset cell re-ruled from the video's serial number to VIN, falling back to Unit #, then plate (mirrors SBC-LBL-01); second-line rendering unpinned (confirm in the build); plain tester VIN-terminology note added (non-vehicle assets = serial number). | 200 | MATCH (2026-07-29 12:33:48Z) |
+| 160 | update_case | WIP-FLT-03 | C30500 | https://shopview.testrail.io/index.php?/cases/view/30500 | Asset filter options + type-ahead matching re-ruled to the VIN chain (exact option text / matched fields confirmed in the build); same tester VIN-terminology note added. | 200 | MATCH (2026-07-29 12:33:50Z) |
+| 161 | update_case | WIP-SORT-03 | C30485 | https://shopview.testrail.io/index.php?/cases/view/30485 | Asset column sort key re-ruled from serial number to the identifier the cell shows (VIN, falling back to Unit #, then plate). | 200 | MATCH (2026-07-29 12:33:51Z) |
+| 162 | update_case | WIP-EXP-07 | C30516 | https://shopview.testrail.io/index.php?/cases/view/30516 | Serial-remnant flip: the Unit/Branch export-header caveat's expected #4 now says the on-screen Asset cell identifies the asset by its VIN (falling back to Unit #, then plate); the caveat itself (export header text unpinned, record — don't file) unchanged. | 200 | MATCH (2026-07-29 12:33:53Z) |
+
+**Post-push state:** suite 460 active under group 4281, all current with Chris's rulings; wave-2 push authorization CONSUMED.

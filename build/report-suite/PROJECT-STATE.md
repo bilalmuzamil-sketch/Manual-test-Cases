@@ -4,7 +4,14 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-29, third update** (CHRIS ANSWERED THE WIP-IDENTIFIER QUESTION = **A**:
+Last updated: **2026-07-29, fourth update** (WAVE-2 PUSH EXECUTED — the 4 WIP VIN-chain
+update_case [WIP-COL-05 C30470 / WIP-FLT-03 C30500 / WIP-SORT-03 C30485 / WIP-EXP-07 C30516]
+pushed under explicit user authorization "Push", 4/4 HTTP 200 + re-GET MATCH, live count under
+group 4281 = 460 == id-map, R359 untouched; **suite 460 active, ALL current with Chris's
+rulings; wave-2 authorization CONSUMED**; audit =
+`reconciliation-2026-07-28/testrail-execution-log-2026-07-28.md` § "WAVE-2 PUSH 2026-07-29";
+see §0 UPDATE 2026-07-29-D). Prior same day, third update (CHRIS ANSWERED THE WIP-IDENTIFIER
+QUESTION = **A**:
 WIP also uses the **VIN → Unit # → plate** chain — the chain is now the STANDARD for all reports
 and all future work; 3 WIP cases + the WIP-EXP-07 caveat flipped LOCALLY, wave-2 push queue = 4
 update_case awaiting authorization; see §0 UPDATE 2026-07-29-C). Earlier same day: AUTHORIZED
@@ -53,10 +60,22 @@ import REGENERATED post-review.)
   b3d241c as of this checkpoint); if absent/incomplete on resume, re-create per the user's
   2026-07-29 instruction (the 9-step pipeline doc ending with the tester-Blocked manual-revisit
   loop; instruction quoted in the session transcript).
-- **Awaiting:** user "push" authorization for wave-2; Chris's spec changelog + companion video;
-  the QA branch/env for live VIU.
+- **Awaiting:** Chris's spec changelog + companion video; the QA branch/env for live VIU.
+  (Wave-2 push authorization was granted + CONSUMED 2026-07-29 — see UPDATE 2026-07-29-D.)
 
-**UPDATE 2026-07-29-C (LATEST — CHRIS ANSWERED THE WIP-IDENTIFIER QUESTION: "A is the correct
+**UPDATE 2026-07-29-D (LATEST — WAVE-2 PUSH EXECUTED):** the wave-2 queue is LIVE — exactly 4
+update_case (WIP-COL-05 C30470, WIP-FLT-03 C30500, WIP-SORT-03 C30485, WIP-EXP-07 C30516; the
+VIN → Unit # → plate chain edits per Chris's answer A), executed under explicit user
+authorization "Push" 2026-07-29, **4/4 HTTP 200 + re-GET byte-verified MATCH, 0 failures;
+NOTHING else written** (no adds/deletes/section/run writes; R359 untouched); refs condensed to
+the 250-char cap at push (full text stays in local spec_ref); pre-push live snapshots saved
+(`chris-update-2026-07-29/pre-push-snapshot/*.pre-wave2-push-2026-07-29.json`); live count under
+group 4281 = **460 == id-map — suite 460 active, ALL current; wave-2 authorization CONSUMED.**
+Executor `chris-update-2026-07-29/exec_wave2_push_2026-07-29.py`; audit
+`reconciliation-2026-07-28/testrail-execution-log-2026-07-28.md` § "WAVE-2 PUSH 2026-07-29";
+ChangeList wave-2 header = EXECUTED.
+
+**UPDATE 2026-07-29-C (CHRIS ANSWERED THE WIP-IDENTIFIER QUESTION: "A is the correct
 answer"; applied LOCALLY, NO TestRail writes; read this first).**
 - **Answer = A (verbatim, user-relayed):** the Work In Progress report **ALSO uses VIN, falling
   back to Unit #, then plate** — same chain as Sales By Customer. Verbatim answer + his two
