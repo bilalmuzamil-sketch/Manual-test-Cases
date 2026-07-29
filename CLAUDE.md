@@ -1593,7 +1593,18 @@ regression / bug-fix re-testing.
   counterpart section in build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md. (QA lead's standing
   instruction 2026-07-29: "the last fool proof process is that the manual tester marks the test
   cases which seems off to him/her as Blocked and we revisit those blocked tests manually to
-  see what needs to be changed there.") **Refinements (QA lead 2026-07-29):**
+  see what needs to be changed there.")
+- **Execution discipline + tickets→cases (standing, all projects; Daily QA Meetup 2026-07-29,
+  source build/meetings/Daily-QA-Meetup-2026-07-29-notes.md):** test-case execution and
+  creative break-the-feature testing are TWO SEPARATE activities — QAs run the cases as
+  written (Blocked for anything off), and SEPARATELY deep-dive each feature with "creative,
+  imaginative testing … to attempt to break the features" + hunt regressions; those findings
+  are NEVER mixed into the test-case run — they are reported as TICKETS ("Create tickets for
+  any edge cases or scenarios that break features during manual creative testing"), findings
+  consolidated in a dedicated regression/edge-case section, and those tickets are LATER
+  CONVERTED INTO test cases — the suite grows from real findings. General leadership-facing
+  doc: build/Test-Case-Creation-and-Refinement-Process_2026-07-29.docx/.md (no project names,
+  anonymized numbers). **Refinements (QA lead 2026-07-29):**
   completely-irrelevant cases found on revisit are removed and should be ≤1% of the suite;
   slight fixes (expected behavior / steps of reproduction / title) are owned and applied
   directly by the QA; QAs also owe each feature a deeper dive — actively trying to break it and

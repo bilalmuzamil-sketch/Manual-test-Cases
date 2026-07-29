@@ -131,6 +131,24 @@ update. This closes the loop with the people actually running the cases, so the 
   **CONVERTED INTO TEST CASES** too — so the suite continuously grows from real findings, not
   just from specs.
 
+**Execution discipline (Daily QA Meetup, 2026-07-29 — source:
+`build/meetings/Daily-QA-Meetup-2026-07-29-notes.md`):**
+- **Don't mix the two modes.** Running the test cases as written is ONE part of the job;
+  creative break-the-feature testing is done SEPARATELY from the test-case run — never
+  improvised into it — so run results stay clean and comparable. Per the meeting notes:
+  "while test cases cover intended feature functionality, edge cases require creative,
+  imaginative testing by QA to attempt to break the features."
+- **Findings go to TICKETS, not into the run.** "When testers successfully break a feature,
+  they should report it via a new ticket" — the standing action item: "Create tickets for
+  any edge cases or scenarios that break features during manual creative testing."
+- **Tickets become future test cases.** Per the aligned decision: "Findings from edge case
+  and exploratory testing will be consolidated into a separate, dedicated section
+  specifically for regression and edge case documentation" — each such ticket is later
+  converted into a structured test case there, so the suite grows from real findings.
+- **Blocked/edit/delete protocol (same meeting):** irrelevant case → mark Blocked; minor
+  conflict (button placement, expected-behavior discrepancy) → the tester edits and saves it;
+  if the edit makes it a duplicate → delete; if it makes a new unique scenario → retain.
+
 *This step is the QA lead's standing instruction (2026-07-29, verbatim): "the last fool proof
 process is that the manual tester marks the test cases which seems off to him/her as Blocked
 and we revisit those blocked tests manually to see what needs to be changed there." The
