@@ -1384,6 +1384,9 @@ regression / bug-fix re-testing.
 ## Durable key facts (detail → runbook)
 - **Staging topology:** `app.staging.shopview.com` = SPA frontend;
   `api.staging.shopview.com` = Symfony JSON backend.
+- **PRODUCTION access & fix-verification (app.shopview.com, prod test org 72b2cc90…):** see
+  build/APP-ACTIONS-PLAYBOOK.md **§K "PRODUCTION access & fix-verification"** (proven 2026-07-29,
+  SV-8721) — prod login/session gotchas, canned-line workplace, 5-decimal recipe, Jira evidence method.
 - **Auth:** DEV `POST /api/quick-login {key:'admin'|'tech'}` (gated by valid
   session cookies). Prefer quick-login SSO over raw-cookie API (raw can 409).
 - **Session cookie lifetime:** staging cookies last **~24 HOURS** — they expire

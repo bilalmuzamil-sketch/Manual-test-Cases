@@ -1,7 +1,10 @@
-# SV-8721 — Jira comment ADDENDUM (tax/total leg) — DRAFT, not posted
+# SV-8721 — Jira comment ADDENDUM (tax/total leg) — ✅ FOLDED INTO COMMENT 74275 (2026-07-29), NOT posted separately
 
-One-line addendum to append to the already-posted Production verification comment
-(the user decides whether/when to post):
+This addendum was folded into the main Production verification comment 74275 via an
+in-place edit on 2026-07-29 (new section "2b) Tax and grand Total", 4th screenshot
+PROD-R3-tax-total.png = attachment id 59142, intro + Verdict strengthened). See
+JIRA-COMMENT-PROD-SV-8721.md for the live comment text. Original draft kept below
+for the record:
 
 ---
 
