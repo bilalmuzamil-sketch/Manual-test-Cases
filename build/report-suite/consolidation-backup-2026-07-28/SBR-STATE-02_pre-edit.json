@@ -1,0 +1,24 @@
+{
+  "id": "SBR-STATE-02",
+  "area": "SBR — Loading, Empty & Error States",
+  "title": "The toolbar stays visible and interactive in the empty state",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+    "1. The report is showing its empty state (no matching invoices)."
+  ],
+  "steps": [
+    "1. Look at the toolbar.",
+    "2. Change the date range to a period WITH activity."
+  ],
+  "expected": [
+    "1. In the empty state, the toolbar — the filters, the column selector, and the ⋯ exports — stays visible and interactive.",
+    "2. Widening the date range from the empty state re-fetches and renders the matching reps normally."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 16 S16-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

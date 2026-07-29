@@ -1,0 +1,23 @@
+{
+  "id": "SBR-PERS-04",
+  "area": "SBR — Persistence",
+  "title": "First visit or cleared browser storage yields the full set of defaults with no server-side profile",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. You have distinctive saved settings, then clear the browser's site data (or use a fresh profile)."
+  ],
+  "steps": [
+    "1. Open the report and read every setting."
+  ],
+  "expected": [
+    "1. Date range = This Month; Product Type = \"Parts & Service\"; Invoice Status = \"All Statuses\"; Location = your active location; Show Unassigned = off; all seven metric columns visible; sort = the A→Z default.",
+    "2. Clearing browser storage fully returns the report to first-visit defaults — no server-side profile brings the old settings back."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 23 S23-R4; S23-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

@@ -1,0 +1,27 @@
+{
+  "id": "SBC-TREE-03",
+  "area": "SBC — Tree & Rows",
+  "title": "Expanding a customer reveals its asset rows with vehicle icon, label, count, rolled-up columns and indentation",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. A customer in the current view has invoices on at least two different vehicles (seed ZZAUTOTEST work orders on two assets if needed)."
+  ],
+  "steps": [
+    "1. Click the chevron control on that customer's summary row.",
+    "2. Read the rows that appear beneath the summary row."
+  ],
+  "expected": [
+    "1. The customer's asset rows appear beneath the summary row — one row per vehicle the customer's invoices were done on.",
+    "2. Each asset row shows a vehicle icon, the asset label, and the asset's invoice count in parentheses.",
+    "3. Each asset row shows the same financial columns as the customer row, rolled up for that asset.",
+    "4. The Date cell is blank on asset rows.",
+    "5. Asset rows are indented one level under the customer."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R1; S8-R2; S8-R5; S8-R5a; S8-R5b; S8-R5c",
+  "viu_status": "VIU-Pending",
+  "notes": "Exact vehicle icon appearance is VIU-confirm (spec pins an icon exists, not its glyph).",
+  "api_related": false
+}

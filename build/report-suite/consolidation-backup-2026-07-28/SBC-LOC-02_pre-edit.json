@@ -1,0 +1,24 @@
+{
+  "id": "SBC-LOC-02",
+  "area": "SBC — Location Filter",
+  "title": "Location filter defaults to the user's active location on first load",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission; user with access to at least two locations.",
+  "preconditions": [
+    "1. Your browser has no saved view for this report.",
+    "2. You are working in a known active location (check the application's location switcher)."
+  ],
+  "steps": [
+    "1. Open the Sales By Customer report.",
+    "2. Read the location filter's current selection."
+  ],
+  "expected": [
+    "1. The filter defaults to the single location you are currently working in (your active location) — not all locations."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 4 S4-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

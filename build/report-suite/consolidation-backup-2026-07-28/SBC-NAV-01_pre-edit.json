@@ -1,0 +1,26 @@
+{
+  "id": "SBC-NAV-01",
+  "area": "SBC — Access & Navigation",
+  "title": "Sales By Customer appears in the Reports navigation and opens the report",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission (dedicated per S1-R2 — exact permission name in the roles screen is VIU-confirm).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. Your role has the Sales By Customer report View permission."
+  ],
+  "steps": [
+    "1. Open the Reports area from the main navigation.",
+    "2. Look through the Reports left-side navigation for the report entry.",
+    "3. Click the \"Sales By Customer\" entry."
+  ],
+  "expected": [
+    "1. \"Sales By Customer\" is listed in the Reports left-side navigation.",
+    "2. Clicking it opens the Sales By Customer report in the main content area."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 1 S1-R1",
+  "viu_status": "VIU-Pending",
+  "notes": "The spec does not name a navigation group for this report (unlike SBR's Performance group) — VIU-confirm where in the Reports navigation the entry sits.",
+  "api_related": false
+}

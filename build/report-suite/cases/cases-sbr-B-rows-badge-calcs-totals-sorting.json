@@ -1,766 +1,776 @@
 [
- {
-  "id": "SBR-ROW-01",
-  "area": "SBR — Rep Rows & Tree",
-  "title": "Contributors only: a rep row appears if and only if the rep has at least one non-reversed invoice matching all active filters",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Rep A has invoices in the current filtered view; rep B (sales-rep toggle on) has NONE; rep C has only a reversed invoice (seed ZZAUTOTEST data)."
-  ],
-  "steps": [
-   "1. Open the report and read the summary rows.",
-   "2. Look for reps B and C.",
-   "3. Read the count in parentheses after rep A's name."
-  ],
-  "expected": [
-   "1. Rep A occupies exactly one summary row.",
-   "2. Reps B and C do not appear — there are no blank placeholder rows, and a reversed invoice never satisfies the contributor gate.",
-   "3. The number of contributing invoices shows in parentheses after the rep's name, in a smaller, subdued grey font — e.g., Mary Smith (12) — and is always at least 1.",
-   "4. A staff member with no matching invoice does not appear regardless of toggle state or historical activity."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions",
-  "viu_status": "VIU-Pending",
-  "notes": "BUILD-DELTA (spec ahead of code by design): the change log notes the current handler seeds ALL toggle reps with tiered sort — contributors-only + plain A→Z is the committed target; expect a deviation until the build catches up.",
-  "api_related": false
- },
- {
-  "id": "SBR-ROW-02",
-  "area": "SBR — Rep Rows & Tree",
-  "title": "Row layout: 12 columns in order, chevron plus rep name in the Date cell, blank identifier cells, bold summary vs regular detail rows",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. You are on the report with at least one rep expanded."
-  ],
-  "steps": [
-   "1. Read the column headers left to right.",
-   "2. Read a rep summary row cell by cell.",
-   "3. Compare the font weight of a summary row and a detail row."
-  ],
-  "expected": [
-   "1. The columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (12 columns).",
-   "2. On a rep summary row the Date cell holds the chevron control followed by the rep's display name (\"First Last\"); the date value is intentionally blank.",
-   "3. The Invoice, Customer, and Status cells are blank on summary rows; the metric cells carry the rep's totals across all matching invoices.",
-   "4. Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) — row type is distinguished by font weight, not background color."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 5 S5-R2; S5-R3; S5-R6; S5-R8; Story 6 S6-R4; Story 18 S18-R4",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-ROW-03",
-  "area": "SBR — Rep Rows & Tree",
-  "title": "A toggled-off or deleted contributor still appears with credit intact, tagged (Inactive), named from the latest invoice snapshot when deleted",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access plus staff administration for seeding.",
-  "preconditions": [
-   "1. Rep A has matching invoices; you then turn rep A's sales-rep toggle OFF (restore afterwards).",
-   "2. If a rep whose staff record was DELETED but who has invoices in range exists (or can be produced), note it for step 3."
-  ],
-  "steps": [
-   "1. Refresh the report and find rep A's row.",
-   "2. Read the name, tag, metrics, and position in the A→Z order; try expanding the row.",
-   "3. If a deleted-rep contributor exists, read that row's name and sort position."
-  ],
-  "expected": [
-   "1. Rep A still appears with credit intact; the name is followed by a subdued \"(Inactive)\" tag — e.g., Mary Smith (Inactive) (12) — in the same muted grey as the count.",
-   "2. The tag is display-only: metrics, A→Z position, and expandability are unchanged; a rep whose toggle is on shows no tag.",
-   "3. For a deleted staff record, the display name and sort position come from the denormalized rep-name snapshot on the rep's most recent matching invoice (by invoice date, ties by invoice number), so the row still shows a historical name and sorts correctly.",
-   "4. The grand Totals stay reconciled to the period's invoices — no revenue silently disappears."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 5 S5-R9; §3 Key Decisions; §4 Snapshot",
-  "viu_status": "VIU-Pending",
-  "notes": "Deleting a staff record may not be self-serviceable — attempt seeding first (Standing Rule 14); if truly not producible, verify the toggle-off path fully and mark the deleted-record leg Blocked-Env with reason.",
-  "api_related": false
- },
- {
-  "id": "SBR-ROW-04",
-  "area": "SBR — Rep Rows & Tree",
-  "title": "Column alignment is a hard invariant: every row renders exactly the report's column count with blanks in position",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. You are on the report with a rep expanded and the grand Totals row visible."
-  ],
-  "steps": [
-   "1. Compare a summary row and a detail row column by column against the headers.",
-   "2. Look for any cell whose content has shifted into a neighbouring column or wrapped.",
-   "3. Look at the desktop Totals row's leading cells."
-  ],
-  "expected": [
-   "1. Every rep summary row and every invoice detail row renders exactly the report's column count in the declared left-to-right order.",
-   "2. A cell with nothing to show is rendered blank in its position — never shifted or wrapped; a drifted row is a defect.",
-   "3. Both forms of the grand Totals indicator are exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 5 S5-R10; S5-N2; Story 18 S18-R6a",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-TREE-05",
-  "area": "SBR — Rep Rows & Tree",
-  "title": "Expanding a rep loads its invoices on demand with a brief row-level loading indicator and full detail-row contents",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. A rep with several matching invoices is on the report."
-  ],
-  "steps": [
-   "1. Click the chevron in the rep's Date cell and watch the row.",
-   "2. Read a detail row left to right."
-  ],
-  "expected": [
-   "1. The rep's matching invoices appear as detail rows beneath the summary row; a brief row-level loading indicator shows while they load on the first expand.",
-   "2. Each detail row shows, left to right: the invoice's date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Inv. Hrs and the money columns.",
-   "3. A rep with a single matching invoice can still be expanded — one detail row is shown."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R1; S6-R2; S6-R3; S6-E1",
-  "viu_status": "VIU-Pending",
-  "notes": "The lazy server-fetch itself is covered by SBR-API-01. Per-rep detail page size is a tech-plan tuning value, not fixed by the spec — record what is observed. BUILD-DELTA: lazy drill-down is the 2026-07-16 committed target.",
-  "api_related": false
- },
- {
-  "id": "SBR-TREE-06",
-  "area": "SBR — Rep Rows & Tree",
-  "title": "Header chevron expands every visible rep in one action and its glyph tracks the expand/collapse state",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Several reps are on the report, all collapsed."
-  ],
-  "steps": [
-   "1. Look at the header-row chevron's glyph.",
-   "2. Click it; watch the rep rows and the glyph.",
-   "3. Click it again."
-  ],
-  "expected": [
-   "1. With at least one rep collapsed the header chevron shows the \"expand\" glyph.",
-   "2. Clicking expands every visible rep in one action; with every rep expanded the glyph switches to \"collapse.\"",
-   "3. A second activation collapses them all."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R5; S6-R6",
-  "viu_status": "VIU-Pending",
-  "notes": "The bound on how many reps expand-all opens at once is a tech-plan tuning value (S6-R2 context note) — record the observed behavior.",
-  "api_related": false
- },
- {
-  "id": "SBR-TREE-07",
-  "area": "SBR — Rep Rows & Tree",
-  "title": "Each invoice appears under exactly one rep or the Unassigned row, never more than one",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. A known ZZAUTOTEST invoice set exists across two reps plus at least one unassigned invoice; Show Unassigned is on."
-  ],
-  "steps": [
-   "1. Expand every rep and the Unassigned row.",
-   "2. Search the expanded rows for each seeded invoice number."
-  ],
-  "expected": [
-   "1. Every invoice appears under exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never under two rows.",
-   "2. The sum of all (N) counts equals the number of matching invoices."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R7; §3 Key Decisions",
-  "viu_status": "VIU-Pending",
-  "notes": "BUILD-DELTA: the shipped schema stores separate parts-side and service-side reps; the single-rep model is the committed target — a double-credited invoice at VIU is the known schema delta, record it as a deviation against spec.",
-  "api_related": false
- },
- {
-  "id": "SBR-TREE-08",
-  "area": "SBR — Rep Rows & Tree",
-  "title": "Expansion survives filter and sort changes within the session, resets on reload, and a removed rep returns collapsed",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Two reps are on the report; one of them stops matching under a stricter filter you can apply and re-remove."
-  ],
-  "steps": [
-   "1. Expand both reps, then change the sort and a filter that keeps both matching; check the expansion.",
-   "2. Apply the stricter filter that removes rep B, then remove it again; check rep B.",
-   "3. Reload the page and check all rows."
-  ],
-  "expected": [
-   "1. Expanded state is preserved across filter and sort changes within the same session.",
-   "2. When a filter change removes a rep, the rep and its expansion state are gone; when a later change brings the rep back, the row renders collapsed (it does not auto-re-expand).",
-   "3. A full page reload resets all expansion."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R8; S6-N1; Story 23 S23-R2",
-  "viu_status": "VIU-Pending",
-  "notes": "Contrast with SBC, which collapses on every re-fetch — SBR preserves expansion within the session per its own spec.",
-  "api_related": false
- },
- {
-  "id": "SBR-TREE-09",
-  "area": "SBR — Rep Rows & Tree",
-  "title": "Detail rows order newest first with a numeric invoice-number tie-break where P sorts before S",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. One rep has invoices allowing the tie-breaks: two invoices on different dates; two on the same date with numeric parts like 999 and 1000; and if producible a P and an S invoice with the same numeric part on the same day (seed ZZAUTOTEST data)."
-  ],
-  "steps": [
-   "1. Expand the rep and read the detail rows top to bottom.",
-   "2. Change the rep-row column sort and re-read the detail order."
-  ],
-  "expected": [
-   "1. Detail rows order by invoice date descending (newest first).",
-   "2. Date ties break by invoice number ascending by the numeric portion after the P/S prefix — numeric, not alphabetical, so S999 precedes S1000.",
-   "3. If both the date and the numeric portion tie (e.g., P100 and S100 same day), P (Parts) sorts before S (Service).",
-   "4. This order is independent of the rep-row column sort (which reorders summary rows only)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R9; Story 11 S11-R2",
-  "viu_status": "VIU-Pending",
-  "notes": "The same order applies in the Expanded View PDF per-rep tables and the Expanded CSV (S14-R6/S14-R16) — cross-check during SBR-EXP-04/09.",
-  "api_related": false
- },
- {
-  "id": "SBR-BADGE-01",
-  "area": "SBR — Payment Status Badge",
-  "title": "Status column sits between Customer and Inv. Hrs and every detail row shows the mapped badge text",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Invoices exist covering paid, overpaid, prepaid (zero balance), prepaid (balance owed), partially paid, and unpaid (as seeded for SBR-STAT-02).",
-   "2. The owning rep is expanded."
-  ],
-  "steps": [
-   "1. Locate the Status column relative to its neighbours.",
-   "2. Read the badge on each seeded invoice's detail row."
-  ],
-  "expected": [
-   "1. The Status column sits between the Customer column and the Inv. Hrs column.",
-   "2. Every detail row renders a small colored badge reading \"Paid,\" \"Partially Paid,\" or \"Unpaid\" — badge rendering is unconditional on detail rows.",
-   "3. The mapping matches §3: paid → Paid; overpaid → Paid; prepaid with zero balance → Paid; prepaid with a balance owed → Partially Paid; partially_paid → Partially Paid; unpaid → Unpaid."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 8 S8-R1; S8-R2; S8-N1; §3 payment-status mapping",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-BADGE-02",
-  "area": "SBR — Payment Status Badge",
-  "title": "Badge colors use the application's canonical payment-status tokens in both light and dark mode",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Detail rows with all three badge values are visible; you can switch to dark mode."
-  ],
-  "steps": [
-   "1. Read the color treatment of each badge in light mode and compare with the badges on the application's invoice list.",
-   "2. Switch to dark mode and compare again."
-  ],
-  "expected": [
-   "1. Paid = dark teal text on light teal; Partially Paid = dark orange on light orange; Unpaid = dark red on light red.",
-   "2. The badges use the same canonical payment-status color tokens as the invoice list, consistent app-wide.",
-   "3. The treatment stays legible and consistent in both light and dark mode."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 8 S8-R3; Story 18 S18-R8",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-BADGE-03",
-  "area": "SBR — Payment Status Badge",
-  "title": "Badges are vertically centered, blank on summary rows, and carry their text as the accessible label",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. A rep is expanded with badges visible."
-  ],
-  "steps": [
-   "1. Look at a badge's vertical position within its cell.",
-   "2. Read the Status cell on a rep summary row.",
-   "3. Check that the status is readable from the badge text alone (not only its color)."
-  ],
-  "expected": [
-   "1. The badge is vertically centered within its cell.",
-   "2. On rep summary rows the Status cell is blank.",
-   "3. The badge's text (\"Paid\"/\"Partially Paid\"/\"Unpaid\") is the accessible label — status is never conveyed by color alone."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 8 S8-R4; S8-R5; S8-R6; Story 18 S18-R6",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-CALC-01",
-  "area": "SBR — Inv. Hrs & Calculations",
-  "title": "Inv. Hrs heading is verbatim and the value is hours invoiced minus hours worked, rounded half-up to one decimal",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. A ZZAUTOTEST work order exists with known billed labor-line hours and known technician clocked (timesheet) hours, invoiced under a rep."
-  ],
-  "steps": [
-   "1. Read the column heading.",
-   "2. Expand the rep and read the invoice's Inv. Hrs value; recalculate by hand."
-  ],
-  "expected": [
-   "1. The column heading reads \"Inv. Hrs\" (verbatim, including the period after \"Inv\").",
-   "2. The value equals the billed labor hours minus the technician clocked hours, rounded half-up to one decimal."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 9 S9-R1; S9-R2; §3",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-CALC-02",
-  "area": "SBR — Inv. Hrs & Calculations",
-  "title": "Inv. Hrs shows +green, -red, or 0.0 default on every row type, with rollups computed from unrounded deltas",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Invoices exist under one rep with a positive, a negative, and a break-even labor delta (seed ZZAUTOTEST data)."
-  ],
-  "steps": [
-   "1. Read the three detail rows' Inv. Hrs values and colors.",
-   "2. Read the rep summary row's and the Totals row's Inv. Hrs.",
-   "3. Recalculate the rollup as the rounded sum of the unrounded per-invoice deltas."
-  ],
-  "expected": [
-   "1. Positive values show a leading + in green (e.g., +1.5); negative values a leading - in red (e.g., -1.5); zero/break-even shows 0.0 in the default text color.",
-   "2. The same calculation, label, format, and coloring apply to rep summary rows, invoice detail rows, and the totals row.",
-   "3. The rep-summary/totals value equals round(sum of unrounded per-invoice deltas)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 9 S9-R3; S9-R4; S9-R5; S9-R6",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-CALC-03",
-  "area": "SBR — Inv. Hrs & Calculations",
-  "title": "No-labor-no-time invoices show 0.0 but clocked-yet-unbilled work shows its negative delta, never suppressed",
-  "priority": "High",
-  "type": "Negative",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. A parts-only invoice with no labor and no clocked time exists, AND an invoice whose work order has clocked technician hours but no billed labor line (seed ZZAUTOTEST data)."
-  ],
-  "steps": [
-   "1. Read the parts-only invoice's Inv. Hrs cell.",
-   "2. Read the clocked-but-unbilled invoice's Inv. Hrs cell."
-  ],
-  "expected": [
-   "1. The invoice with neither billed labor hours nor clocked hours shows Inv. Hrs 0.0 in the default color — never blank, \"N/A,\" or \"—\".",
-   "2. The invoice with clocked hours but no billed labor line shows the resulting NEGATIVE delta in red (e.g., -3.0) — the worked-but-unbilled signal is not suppressed to 0.0."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 9 S9-N1",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-CALC-04",
-  "area": "SBR — Inv. Hrs & Calculations",
-  "title": "Edge: a delta that rounds to zero shows 0.0 in the default color, and negatives always use an explicit minus with one decimal",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. If producible, an invoice whose delta is tiny (e.g., +0.04) and one with a small negative delta (e.g., -0.5) exist."
-  ],
-  "steps": [
-   "1. Read the tiny-delta invoice's Inv. Hrs.",
-   "2. Read the small-negative invoice's Inv. Hrs."
-  ],
-  "expected": [
-   "1. A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green.",
-   "2. Negative values always use an explicit minus and one decimal (e.g., -0.5)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 9 S9-E1; S9-E2",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-CALC-05",
-  "area": "SBR — Inv. Hrs & Calculations",
-  "title": "Margin % renders to one decimal with a % sign, shows an em dash when Subtotal is zero or below, and is recomputed on every rollup",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. A rep has two invoices with clearly different Margin % values; if producible, a row with Subtotal ≤ 0 also exists."
-  ],
-  "steps": [
-   "1. Read Margin % on both detail rows and on the rep's summary row; recompute the summary value as (total Margin ÷ total Subtotal) × 100.",
-   "2. Read the Subtotal ≤ 0 row's Margin % cell.",
-   "3. If a negative-margin row exists, read its format."
-  ],
-  "expected": [
-   "1. Margin % = Margin ÷ Subtotal × 100, to one decimal with a trailing % — e.g., 45.2%; a negative renders -8.4% (leading minus, no parentheses, no + on positives).",
-   "2. It renders \"—\" when Subtotal ≤ 0 — never \"0.0%\" or a divide-by-zero result.",
-   "3. On every rolled-up row (rep summary rows and every totals row) Margin % is RECOMPUTED from that row-set's total Margin and total Subtotal — never the sum or average of the child percentages."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md §3 Margin % definition; Story 10 S10-R5",
-  "viu_status": "VIU-Pending",
-  "notes": "In the CSVs Margin % is a plain number with no % (covered by SBR-EXP-10).",
-  "api_related": false
- },
- {
-  "id": "SBR-CALC-06",
-  "area": "SBR — Inv. Hrs & Calculations",
-  "title": "Money columns use the standardized labels and definitions: Subtotal is pre-tax Labor plus Parts Invoiced, Margin is the two margins combined",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. A ZZAUTOTEST invoice exists with known billed labor, billed parts, labor cost, parts cost, and tax."
-  ],
-  "steps": [
-   "1. Read the money column headers.",
-   "2. Read that invoice's row values and recalculate each by hand."
-  ],
-  "expected": [
-   "1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
-   "2. Subtotal = Labor Invoiced + Parts Invoiced, BEFORE tax.",
-   "3. Labor Margin = Labor Invoiced − labor cost; Parts Margin = Parts Invoiced − parts cost; Margin = Labor Margin + Parts Margin.",
-   "4. The same values appear everywhere the numbers show (screen, and later the exports)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md §3 definitions; §4 Terminology",
-  "viu_status": "VIU-Pending",
-  "notes": "Note the SBR Subtotal has NO Shop Supplies component (unlike SBC) — the two reports' Subtotal definitions differ by spec.",
-  "api_related": false
- },
- {
-  "id": "SBR-CALC-07",
-  "area": "SBR — Inv. Hrs & Calculations",
-  "title": "Negative dollar values render in accounting parentheses on screen, in money columns only",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. A row with a negative money value exists (e.g., a net credit/return invoice, or a negative Labor Margin from cost exceeding billed labor — seed ZZAUTOTEST data)."
-  ],
-  "steps": [
-   "1. Read the negative money cell.",
-   "2. Read a negative Inv. Hrs cell and a negative Margin % cell for comparison."
-  ],
-  "expected": [
-   "1. Negative dollar values render in accounting-convention parentheses — ($1,234.56) — on screen, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Subtotal).",
-   "2. Inv. Hrs (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md §3 Key Decisions (accounting parentheses)",
-  "viu_status": "VIU-Pending",
-  "notes": "The CSVs use plain signed numbers instead (SBR-EXP-10); the PDFs use parentheses (SBR-EXP-06).",
-  "api_related": false
- },
- {
-  "id": "SBR-CALC-08",
-  "area": "SBR — Inv. Hrs & Calculations",
-  "title": "Half-up rounding applies at each stated precision and a totals cell may differ from the eye-summed rows by one last-decimal unit — expected",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Several invoices with odd cent/decimal values sit under one rep (seed ZZAUTOTEST data with values like $10.005)."
-  ],
-  "steps": [
-   "1. Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells."
-  ],
-  "expected": [
-   "1. All displayed values round half-up (away from zero) at their stated precision — money to cents; Inv. Hrs and Margin % to one decimal.",
-   "2. Rolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.",
-   "3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md §3 rounding rule",
-  "viu_status": "VIU-Pending",
-  "notes": "KNOWN-LIMITATION ENCODING: the last-decimal totals discrepancy is by design.",
-  "api_related": false
- },
- {
-  "id": "SBR-TOT-01",
-  "area": "SBR — Subtotal & Totals",
-  "title": "Subtotal is the rightmost column, pinned to the right edge, bold everywhere, on the row's own background",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. You are on the report with data, narrow enough to force horizontal scrolling."
-  ],
-  "steps": [
-   "1. Confirm nothing renders to the right of Subtotal on any row type.",
-   "2. Scroll horizontally and watch the Subtotal column on summary and detail rows.",
-   "3. Inspect the Subtotal weight on the header, a summary row, a detail row, and the Totals indicator; check the pinned cell's background."
-  ],
-  "expected": [
-   "1. Subtotal is the rightmost column on every row type.",
-   "2. On screen it is pinned to the right edge and stays visible during horizontal scroll on every rep summary and invoice detail row.",
-   "3. Subtotal values are bold across the header, every summary row, every detail row, and the grand Totals indicator.",
-   "4. The pinned column matches the row's background color (white on body rows) — not a contrasting strip."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-N1; Story 18 S18-R7.5",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-TOT-02",
-  "area": "SBR — Subtotal & Totals",
-  "title": "Desktop Totals row merges the four identifier columns, aggregates every metric over the full filtered set, and sticks to the bottom",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Desktop viewport (1024px or wider); several reps with known amounts are on the report; at least one rep is left collapsed."
-  ],
-  "steps": [
-   "1. Scroll the table and find the Totals row.",
-   "2. Read its first cell and the per-metric cells.",
-   "3. Compare its values against the sum over ALL matching invoices (including collapsed/unloaded reps).",
-   "4. Empty the results with a no-data filter and look for the indicator; also watch during a re-fetch."
-  ],
-  "expected": [
-   "1. A Totals row is the last row inside the table, sticky at the bottom of the scroll area, on the white card surface with a thin top border.",
-   "2. Its first cell is a single merged cell spanning the four leading identifier columns (Date, Invoice, Customer, Status) labeled \"Totals,\" followed by a cell per metric column and its own pinned Subtotal cell.",
-   "3. The grand totals cover the FULL filtered result set — every matching non-reversed invoice across every rep, independent of which reps are expanded or loaded.",
-   "4. Money uses accounting parentheses for negatives; Margin % is recomputed; values are round(sum of unrounded).",
-   "5. The indicator is present whenever at least one summary row exists, and hidden during loading and in the empty state."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R5; S10-N1; Story 16 S16-R4",
-  "viu_status": "VIU-Pending",
-  "notes": "Server-side computation is covered by SBR-API-03. BUILD-DELTA: server-computed grand totals are the 2026-07-16 committed target.",
-  "api_related": false
- },
- {
-  "id": "SBR-TOT-03",
-  "area": "SBR — Subtotal & Totals",
-  "title": "Mobile shows a simplified external totals bar below the table with Totals left and the grand Subtotal right",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. You are on the report with data in a viewport below 1024px."
-  ],
-  "steps": [
-   "1. Find the totals bar and read it.",
-   "2. Swipe the table horizontally and watch the bar.",
-   "3. Scroll the page vertically and watch the bar."
-  ],
-  "expected": [
-   "1. A simplified external totals bar sits directly below the table, outside its horizontal scroll container, showing \"Totals\" on the left and the grand Subtotal on the right (no other metrics).",
-   "2. It does not scroll horizontally — it is always fully visible across.",
-   "3. During vertical page scroll it sits after the table in normal flow (not pinned to the viewport bottom).",
-   "4. It uses the white card surface with a thin top border."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R5 (mobile); Story 17 S17-R4",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-TOT-04",
-  "area": "SBR — Subtotal & Totals",
-  "title": "The column-header row is sticky to the top during vertical scroll and the Subtotal header is sticky in both axes",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Enough rows exist to force vertical scrolling; the window is narrow enough to also force horizontal scrolling."
-  ],
-  "steps": [
-   "1. Scroll down through the rows and watch the header row.",
-   "2. Scroll right and watch the Subtotal header cell."
-  ],
-  "expected": [
-   "1. The column-header row stays stuck to the top during vertical scroll.",
-   "2. The Subtotal header cell stays visible in BOTH axes — stuck to the top while scrolling down and pinned right while scrolling sideways."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R6",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-SORT-01",
-  "area": "SBR — Sorting",
-  "title": "All eight financial columns are sortable; the identifier columns are not and the Date header carries the chevron instead",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Several reps with differing values are on the report."
-  ],
-  "steps": [
-   "1. Click each financial column header in turn: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
-   "2. Click the Date, Invoice, Customer, and Status headers."
-  ],
-  "expected": [
-   "1. Each financial column responds to a header click and reorders the rep rows.",
-   "2. The identifier columns (Date, Invoice, Customer, Status) do not respond to header clicks.",
-   "3. The Date header carries the expand/collapse-all chevron, not a sort affordance."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R1; S11-R6",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-SORT-02",
-  "area": "SBR — Sorting",
-  "title": "Default order is plain A to Z by display name, case-insensitive, with no active/inactive tiers",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. No remembered sort exists (first visit or cleared storage); contributing reps include an \"(Inactive)\"-tagged rep and mixed-case names."
-  ],
-  "steps": [
-   "1. Open the report and read the rep order top to bottom."
-  ],
-  "expected": [
-   "1. Rows render in A→Z order by display name, case-insensitive.",
-   "2. There are NO active/inactive tiers — an \"(Inactive)\" rep sorts by name among the others, not grouped separately."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R4; §3 Key Decisions",
-  "viu_status": "VIU-Pending",
-  "notes": "BUILD-DELTA: the change log notes the current handler uses a tiered sort — plain A→Z is the committed target.",
-  "api_related": false
- },
- {
-  "id": "SBR-SORT-03",
-  "area": "SBR — Sorting",
-  "title": "First click sorts ascending with an indicator, second click descending, no third cleared state, and no header path back to A to Z",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Several reps are on the report in the A→Z default."
-  ],
-  "steps": [
-   "1. Click the Subtotal header once and read the order and the direction indicator.",
-   "2. Click it again.",
-   "3. Click it a third time.",
-   "4. Try to get back to the A→Z order using only the column headers."
-  ],
-  "expected": [
-   "1. The first click sorts Subtotal ASCENDING and shows an ascending direction indicator on the header.",
-   "2. The second click toggles to DESCENDING.",
-   "3. There is no third \"cleared\" state — the third click returns to ascending.",
-   "4. Via the column headers there is no way back to A→Z; the A→Z default shows only when a session carries no valid saved financial sort."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R5; Story 23 S23-R5",
-  "viu_status": "VIU-Pending",
-  "notes": "Server-side sorting is covered by SBR-API-02. KNOWN-LIMITATION ENCODING: no header path back to A→Z is by design.",
-  "api_related": false
- },
- {
-  "id": "SBR-SORT-04",
-  "area": "SBR — Sorting",
-  "title": "Sorting reorders rep summary rows only; detail rows stay under their rep and the Unassigned row stays pinned on top",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Show Unassigned is on with a populated Unassigned row; at least one rep is expanded."
-  ],
-  "steps": [
-   "1. Sort by a financial column.",
-   "2. Read the Unassigned row's position, the expanded rep's detail rows, and their order."
-  ],
-  "expected": [
-   "1. Only the rep summary rows reorder.",
-   "2. Invoice detail rows stay grouped under their parent rep, keeping their own newest-first order.",
-   "3. The Unassigned row stays pinned to the top regardless of sort."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R2; Story 22 S22-R4",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-SORT-05",
-  "area": "SBR — Sorting",
-  "title": "Equal sorted values keep the A to Z order as tie-break and an em-dash Margin % sorts as zero",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Two reps have equal values in a sortable column; if producible, one rep shows \"—\" in Margin % (seed ZZAUTOTEST data)."
-  ],
-  "steps": [
-   "1. Sort by the column where the two reps tie and read their relative order.",
-   "2. Sort by Margin % ascending and locate the \"—\" rep."
-  ],
-  "expected": [
-   "1. Reps with equal values in the sorted column retain the default A→Z order between them.",
-   "2. A Margin % cell rendered \"—\" (undefined) sorts as zero."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R7",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SBR-SORT-06",
-  "area": "SBR — Sorting",
-  "title": "With only one rep row the sort affordances are present but produce no observable change",
-  "priority": "Low",
-  "type": "Negative",
-  "permissions_required": "Reports/Performance access.",
-  "preconditions": [
-   "1. Filters are set so exactly one rep row is visible."
-  ],
-  "steps": [
-   "1. Click several financial column headers."
-  ],
-  "expected": [
-   "1. The sort affordances are present and the direction indicator updates, but the single row's position does not change."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-N1",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- }
+  {
+    "id": "SBR-ROW-01",
+    "area": "SBR — Rep Rows & Tree",
+    "title": "Contributors only: a rep row appears if and only if the rep has at least one non-reversed invoice matching all active filters",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Rep A has invoices in the current filtered view; rep B (sales-rep toggle on) has NONE; rep C has only a reversed invoice (seed ZZAUTOTEST data)."
+    ],
+    "steps": [
+      "1. Open the report and read the summary rows.",
+      "2. Look for reps B and C.",
+      "3. Read the count in parentheses after rep A's name."
+    ],
+    "expected": [
+      "1. Rep A occupies exactly one summary row.",
+      "2. Reps B and C do not appear — there are no blank placeholder rows, and a reversed invoice never satisfies the contributor gate.",
+      "3. The number of contributing invoices shows in parentheses after the rep's name, in a smaller, subdued grey font — e.g., Mary Smith (12) — and is always at least 1.",
+      "4. A staff member with no matching invoice does not appear regardless of toggle state or historical activity."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions",
+    "viu_status": "VIU-Pending",
+    "notes": "BUILD-DELTA (spec ahead of code by design): the change log notes the current handler seeds ALL toggle reps with tiered sort — contributors-only + plain A→Z is the committed target; expect a deviation until the build catches up.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-ROW-02",
+    "area": "SBR — Rep Rows & Tree",
+    "title": "Row layout: 12 columns in order, blanks in position, bold summary rows",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. You are on the report with at least one rep expanded."
+    ],
+    "steps": [
+      "1. Read the column headers left to right.",
+      "2. Read a rep summary row cell by cell.",
+      "3. Compare the font weight of a summary row and a detail row.",
+      "4. Look for any cell whose content has shifted into a neighbouring column or wrapped; check the desktop Totals row's leading cells."
+    ],
+    "expected": [
+      "1. The columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (12 columns).",
+      "2. On a rep summary row the Date cell holds the chevron control followed by the rep's display name (\"First Last\"); the date value is intentionally blank.",
+      "3. The Invoice, Customer, and Status cells are blank on summary rows; the metric cells carry the rep's totals across all matching invoices.",
+      "4. Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) — row type is distinguished by font weight, not background color.",
+      "5. Every row renders exactly the report's column count with blanks in position — a cell with nothing to show is blank, never shifted or wrapped (a drifted row is a defect). The grand Totals indicator is exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a",
+    "viu_status": "VIU-Pending",
+    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-ROWLAYOUT): absorbed SBR-ROW-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-ROW-03",
+    "area": "SBR — Rep Rows & Tree",
+    "title": "A toggled-off or deleted contributor still appears with credit intact, tagged (Inactive), named from the latest invoice snapshot when deleted",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access plus staff administration for seeding.",
+    "preconditions": [
+      "1. Rep A has matching invoices; you then turn rep A's sales-rep toggle OFF (restore afterwards).",
+      "2. If a rep whose staff record was DELETED but who has invoices in range exists (or can be produced), note it for step 3."
+    ],
+    "steps": [
+      "1. Refresh the report and find rep A's row.",
+      "2. Read the name, tag, metrics, and position in the A→Z order; try expanding the row.",
+      "3. If a deleted-rep contributor exists, read that row's name and sort position."
+    ],
+    "expected": [
+      "1. Rep A still appears with credit intact; the name is followed by a subdued \"(Inactive)\" tag — e.g., Mary Smith (Inactive) (12) — in the same muted grey as the count.",
+      "2. The tag is display-only: metrics, A→Z position, and expandability are unchanged; a rep whose toggle is on shows no tag.",
+      "3. For a deleted staff record, the display name and sort position come from the denormalized rep-name snapshot on the rep's most recent matching invoice (by invoice date, ties by invoice number), so the row still shows a historical name and sorts correctly.",
+      "4. The grand Totals stay reconciled to the period's invoices — no revenue silently disappears."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 5 S5-R9; §3 Key Decisions; §4 Snapshot",
+    "viu_status": "VIU-Pending",
+    "notes": "Deleting a staff record may not be self-serviceable — attempt seeding first (Standing Rule 14); if truly not producible, verify the toggle-off path fully and mark the deleted-record leg Blocked-Env with reason.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-ROW-04",
+    "area": "SBR — Rep Rows & Tree",
+    "title": "Column alignment is a hard invariant: every row renders exactly the report's column count with blanks in position",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. You are on the report with a rep expanded and the grand Totals row visible."
+    ],
+    "steps": [
+      "1. Compare a summary row and a detail row column by column against the headers.",
+      "2. Look for any cell whose content has shifted into a neighbouring column or wrapped.",
+      "3. Look at the desktop Totals row's leading cells."
+    ],
+    "expected": [
+      "1. Every rep summary row and every invoice detail row renders exactly the report's column count in the declared left-to-right order.",
+      "2. A cell with nothing to show is rendered blank in its position — never shifted or wrapped; a drifted row is a defect.",
+      "3. Both forms of the grand Totals indicator are exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 5 S5-R10; S5-N2; Story 18 S18-R6a",
+    "viu_status": "Retired 2026-07-28 (merged into SBR-ROW-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBR-TREE-05",
+    "area": "SBR — Rep Rows & Tree",
+    "title": "Expanding a rep loads its invoices on demand with a brief row-level loading indicator and full detail-row contents",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. A rep with several matching invoices is on the report."
+    ],
+    "steps": [
+      "1. Click the chevron in the rep's Date cell and watch the row.",
+      "2. Read a detail row left to right."
+    ],
+    "expected": [
+      "1. The rep's matching invoices appear as detail rows beneath the summary row; a brief row-level loading indicator shows while they load on the first expand.",
+      "2. Each detail row shows, left to right: the invoice's date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Inv. Hrs and the money columns.",
+      "3. A rep with a single matching invoice can still be expanded — one detail row is shown."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R1; S6-R2; S6-R3; S6-E1",
+    "viu_status": "VIU-Pending",
+    "notes": "The lazy server-fetch itself is covered by SBR-API-01. Per-rep detail page size is a tech-plan tuning value, not fixed by the spec — record what is observed. BUILD-DELTA: lazy drill-down is the 2026-07-16 committed target.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-TREE-06",
+    "area": "SBR — Rep Rows & Tree",
+    "title": "Header chevron expands every visible rep in one action and its glyph tracks the expand/collapse state",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Several reps are on the report, all collapsed."
+    ],
+    "steps": [
+      "1. Look at the header-row chevron's glyph.",
+      "2. Click it; watch the rep rows and the glyph.",
+      "3. Click it again."
+    ],
+    "expected": [
+      "1. With at least one rep collapsed the header chevron shows the \"expand\" glyph.",
+      "2. Clicking expands every visible rep in one action; with every rep expanded the glyph switches to \"collapse.\"",
+      "3. A second activation collapses them all."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R5; S6-R6",
+    "viu_status": "VIU-Pending",
+    "notes": "The bound on how many reps expand-all opens at once is a tech-plan tuning value (S6-R2 context note) — record the observed behavior.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-TREE-07",
+    "area": "SBR — Rep Rows & Tree",
+    "title": "Each invoice appears under exactly one rep or the Unassigned row, never more than one",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. A known ZZAUTOTEST invoice set exists across two reps plus at least one unassigned invoice; Show Unassigned is on."
+    ],
+    "steps": [
+      "1. Expand every rep and the Unassigned row.",
+      "2. Search the expanded rows for each seeded invoice number."
+    ],
+    "expected": [
+      "1. Every invoice appears under exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never under two rows.",
+      "2. The sum of all (N) counts equals the number of matching invoices."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R7; §3 Key Decisions",
+    "viu_status": "VIU-Pending",
+    "notes": "BUILD-DELTA: the shipped schema stores separate parts-side and service-side reps; the single-rep model is the committed target — a double-credited invoice at VIU is the known schema delta, record it as a deviation against spec.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-TREE-08",
+    "area": "SBR — Rep Rows & Tree",
+    "title": "Expansion survives filter and sort changes within the session, resets on reload, and a removed rep returns collapsed",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Two reps are on the report; one of them stops matching under a stricter filter you can apply and re-remove."
+    ],
+    "steps": [
+      "1. Expand both reps, then change the sort and a filter that keeps both matching; check the expansion.",
+      "2. Apply the stricter filter that removes rep B, then remove it again; check rep B.",
+      "3. Reload the page and check all rows."
+    ],
+    "expected": [
+      "1. Expanded state is preserved across filter and sort changes within the same session.",
+      "2. When a filter change removes a rep, the rep and its expansion state are gone; when a later change brings the rep back, the row renders collapsed (it does not auto-re-expand).",
+      "3. A full page reload resets all expansion."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R8; S6-N1; Story 23 S23-R2",
+    "viu_status": "VIU-Pending",
+    "notes": "Contrast with SBC, which collapses on every re-fetch — SBR preserves expansion within the session per its own spec.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-TREE-09",
+    "area": "SBR — Rep Rows & Tree",
+    "title": "Detail rows order newest first with a numeric invoice-number tie-break where P sorts before S",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. One rep has invoices allowing the tie-breaks: two invoices on different dates; two on the same date with numeric parts like 999 and 1000; and if producible a P and an S invoice with the same numeric part on the same day (seed ZZAUTOTEST data)."
+    ],
+    "steps": [
+      "1. Expand the rep and read the detail rows top to bottom.",
+      "2. Change the rep-row column sort and re-read the detail order."
+    ],
+    "expected": [
+      "1. Detail rows order by invoice date descending (newest first).",
+      "2. Date ties break by invoice number ascending by the numeric portion after the P/S prefix — numeric, not alphabetical, so S999 precedes S1000.",
+      "3. If both the date and the numeric portion tie (e.g., P100 and S100 same day), P (Parts) sorts before S (Service).",
+      "4. This order is independent of the rep-row column sort (which reorders summary rows only)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R9; Story 11 S11-R2",
+    "viu_status": "VIU-Pending",
+    "notes": "The same order applies in the Expanded View PDF per-rep tables and the Expanded CSV (S14-R6/S14-R16) — cross-check during SBR-EXP-04/09.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-BADGE-01",
+    "area": "SBR — Payment Status Badge",
+    "title": "Status badge between Customer and Inv. Hrs; every detail row shows mapped text",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Invoices exist covering paid, overpaid, prepaid (zero balance), prepaid (balance owed), partially paid, and unpaid (as seeded for SBR-STAT-02).",
+      "2. The owning rep is expanded."
+    ],
+    "steps": [
+      "1. Locate the Status column relative to its neighbours.",
+      "2. Read the badge on each seeded invoice's detail row.",
+      "3. Look at a badge's vertical position in its cell, read the Status cell on a rep summary row, and check the status is readable from the badge text alone."
+    ],
+    "expected": [
+      "1. The Status column sits between the Customer column and the Inv. Hrs column.",
+      "2. Every detail row renders a small colored badge reading \"Paid,\" \"Partially Paid,\" or \"Unpaid\" — badge rendering is unconditional on detail rows.",
+      "3. The mapping matches §3: paid → Paid; overpaid → Paid; prepaid with zero balance → Paid; prepaid with a balance owed → Partially Paid; partially_paid → Partially Paid; unpaid → Unpaid.",
+      "4. Badges are vertically centered in their cells; on rep summary rows the Status cell is blank; the badge's text is the accessible label — status is never conveyed by color alone."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6",
+    "viu_status": "VIU-Pending",
+    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-BADGE): absorbed SBR-BADGE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-BADGE-02",
+    "area": "SBR — Payment Status Badge",
+    "title": "Badge colors use the application's canonical payment-status tokens in both light and dark mode",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Detail rows with all three badge values are visible; you can switch to dark mode."
+    ],
+    "steps": [
+      "1. Read the color treatment of each badge in light mode and compare with the badges on the application's invoice list.",
+      "2. Switch to dark mode and compare again."
+    ],
+    "expected": [
+      "1. Paid = dark teal text on light teal; Partially Paid = dark orange on light orange; Unpaid = dark red on light red.",
+      "2. The badges use the same canonical payment-status color tokens as the invoice list, consistent app-wide.",
+      "3. The treatment stays legible and consistent in both light and dark mode."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 8 S8-R3; Story 18 S18-R8",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBR-BADGE-03",
+    "area": "SBR — Payment Status Badge",
+    "title": "Badges are vertically centered, blank on summary rows, and carry their text as the accessible label",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. A rep is expanded with badges visible."
+    ],
+    "steps": [
+      "1. Look at a badge's vertical position within its cell.",
+      "2. Read the Status cell on a rep summary row.",
+      "3. Check that the status is readable from the badge text alone (not only its color)."
+    ],
+    "expected": [
+      "1. The badge is vertically centered within its cell.",
+      "2. On rep summary rows the Status cell is blank.",
+      "3. The badge's text (\"Paid\"/\"Partially Paid\"/\"Unpaid\") is the accessible label — status is never conveyed by color alone."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 8 S8-R4; S8-R5; S8-R6; Story 18 S18-R6",
+    "viu_status": "Retired 2026-07-28 (merged into SBR-BADGE-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBR-CALC-01",
+    "area": "SBR — Inv. Hrs & Calculations",
+    "title": "Inv. Hrs heading is verbatim and the value is hours invoiced minus hours worked, rounded half-up to one decimal",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. A ZZAUTOTEST work order exists with known billed labor-line hours and known technician clocked (timesheet) hours, invoiced under a rep."
+    ],
+    "steps": [
+      "1. Read the column heading.",
+      "2. Expand the rep and read the invoice's Inv. Hrs value; recalculate by hand."
+    ],
+    "expected": [
+      "1. The column heading reads \"Inv. Hrs\" (verbatim, including the period after \"Inv\").",
+      "2. The value equals the billed labor hours minus the technician clocked hours, rounded half-up to one decimal."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 9 S9-R1; S9-R2; §3",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBR-CALC-02",
+    "area": "SBR — Inv. Hrs & Calculations",
+    "title": "Inv. Hrs: +green, -red, 0.0 default on every row; rollups from unrounded deltas",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Invoices exist under one rep with a positive, a negative, and a break-even labor delta (seed ZZAUTOTEST data).",
+      "2. If producible, an invoice whose delta is tiny (e.g., +0.04) and one with a small negative delta (e.g., -0.5) also exist."
+    ],
+    "steps": [
+      "1. Read the three detail rows' Inv. Hrs values and colors.",
+      "2. Read the rep summary row's and the Totals row's Inv. Hrs.",
+      "3. Recalculate the rollup as the rounded sum of the unrounded per-invoice deltas.",
+      "4. Read the tiny-delta and small-negative invoices' Inv. Hrs."
+    ],
+    "expected": [
+      "1. Positive values show a leading + in green (e.g., +1.5); negative values a leading - in red (e.g., -1.5); zero/break-even shows 0.0 in the default text color.",
+      "2. The same calculation, label, format, and coloring apply to rep summary rows, invoice detail rows, and the totals row.",
+      "3. The rep-summary/totals value equals round(sum of unrounded per-invoice deltas).",
+      "4. A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green; negative values always use an explicit minus and one decimal (e.g., -0.5)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 9 S9-R3; S9-R4; S9-R5; S9-R6; S9-E1; S9-E2",
+    "viu_status": "VIU-Pending",
+    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-CALCZERO): absorbed SBR-CALC-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-CALC-03",
+    "area": "SBR — Inv. Hrs & Calculations",
+    "title": "No-labor-no-time invoices show 0.0 but clocked-yet-unbilled work shows its negative delta, never suppressed",
+    "priority": "High",
+    "type": "Negative",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. A parts-only invoice with no labor and no clocked time exists, AND an invoice whose work order has clocked technician hours but no billed labor line (seed ZZAUTOTEST data)."
+    ],
+    "steps": [
+      "1. Read the parts-only invoice's Inv. Hrs cell.",
+      "2. Read the clocked-but-unbilled invoice's Inv. Hrs cell."
+    ],
+    "expected": [
+      "1. The invoice with neither billed labor hours nor clocked hours shows Inv. Hrs 0.0 in the default color — never blank, \"N/A,\" or \"—\".",
+      "2. The invoice with clocked hours but no billed labor line shows the resulting NEGATIVE delta in red (e.g., -3.0) — the worked-but-unbilled signal is not suppressed to 0.0."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 9 S9-N1",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBR-CALC-04",
+    "area": "SBR — Inv. Hrs & Calculations",
+    "title": "Edge: a delta that rounds to zero shows 0.0 in the default color, and negatives always use an explicit minus with one decimal",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. If producible, an invoice whose delta is tiny (e.g., +0.04) and one with a small negative delta (e.g., -0.5) exist."
+    ],
+    "steps": [
+      "1. Read the tiny-delta invoice's Inv. Hrs.",
+      "2. Read the small-negative invoice's Inv. Hrs."
+    ],
+    "expected": [
+      "1. A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green.",
+      "2. Negative values always use an explicit minus and one decimal (e.g., -0.5)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 9 S9-E1; S9-E2",
+    "viu_status": "Retired 2026-07-28 (merged into SBR-CALC-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBR-CALC-05",
+    "area": "SBR — Inv. Hrs & Calculations",
+    "title": "Margin % renders to one decimal with a % sign, shows an em dash when Subtotal is zero or below, and is recomputed on every rollup",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. A rep has two invoices with clearly different Margin % values; if producible, a row with Subtotal ≤ 0 also exists."
+    ],
+    "steps": [
+      "1. Read Margin % on both detail rows and on the rep's summary row; recompute the summary value as (total Margin ÷ total Subtotal) × 100.",
+      "2. Read the Subtotal ≤ 0 row's Margin % cell.",
+      "3. If a negative-margin row exists, read its format."
+    ],
+    "expected": [
+      "1. Margin % = Margin ÷ Subtotal × 100, to one decimal with a trailing % — e.g., 45.2%; a negative renders -8.4% (leading minus, no parentheses, no + on positives).",
+      "2. It renders \"—\" when Subtotal ≤ 0 — never \"0.0%\" or a divide-by-zero result.",
+      "3. On every rolled-up row (rep summary rows and every totals row) Margin % is RECOMPUTED from that row-set's total Margin and total Subtotal — never the sum or average of the child percentages."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md §3 Margin % definition; Story 10 S10-R5",
+    "viu_status": "VIU-Pending",
+    "notes": "In the CSVs Margin % is a plain number with no % (covered by SBR-EXP-10).",
+    "api_related": false
+  },
+  {
+    "id": "SBR-CALC-06",
+    "area": "SBR — Inv. Hrs & Calculations",
+    "title": "Money columns use the standardized labels and definitions: Subtotal is pre-tax Labor plus Parts Invoiced, Margin is the two margins combined",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. A ZZAUTOTEST invoice exists with known billed labor, billed parts, labor cost, parts cost, and tax."
+    ],
+    "steps": [
+      "1. Read the money column headers.",
+      "2. Read that invoice's row values and recalculate each by hand."
+    ],
+    "expected": [
+      "1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
+      "2. Subtotal = Labor Invoiced + Parts Invoiced, BEFORE tax.",
+      "3. Labor Margin = Labor Invoiced − labor cost; Parts Margin = Parts Invoiced − parts cost; Margin = Labor Margin + Parts Margin.",
+      "4. The same values appear everywhere the numbers show (screen, and later the exports)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md §3 definitions; §4 Terminology",
+    "viu_status": "VIU-Pending",
+    "notes": "Note the SBR Subtotal has NO Shop Supplies component (unlike SBC) — the two reports' Subtotal definitions differ by spec.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-CALC-07",
+    "area": "SBR — Inv. Hrs & Calculations",
+    "title": "Negative dollar values render in accounting parentheses on screen, in money columns only",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. A row with a negative money value exists (e.g., a net credit/return invoice, or a negative Labor Margin from cost exceeding billed labor — seed ZZAUTOTEST data)."
+    ],
+    "steps": [
+      "1. Read the negative money cell.",
+      "2. Read a negative Inv. Hrs cell and a negative Margin % cell for comparison."
+    ],
+    "expected": [
+      "1. Negative dollar values render in accounting-convention parentheses — ($1,234.56) — on screen, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Subtotal).",
+      "2. Inv. Hrs (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md §3 Key Decisions (accounting parentheses)",
+    "viu_status": "VIU-Pending",
+    "notes": "The CSVs use plain signed numbers instead (SBR-EXP-10); the PDFs use parentheses (SBR-EXP-06).",
+    "api_related": false
+  },
+  {
+    "id": "SBR-CALC-08",
+    "area": "SBR — Inv. Hrs & Calculations",
+    "title": "Half-up rounding at each precision; totals may differ by one last-decimal unit",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Several invoices whose money values come from calculations that produce fractions of a cent sit under one rep — seed ZZAUTOTEST invoices whose amounts come from hours × rate or percentage-based lines that do not land on a whole cent (money fields themselves only take two decimals, so the sub-cent amounts must come from the math, not be typed in)."
+    ],
+    "steps": [
+      "1. Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells."
+    ],
+    "expected": [
+      "1. All displayed values round half-up (away from zero) at their stated precision — money to cents; Inv. Hrs and Margin % to one decimal.",
+      "2. Rolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.",
+      "3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md §3 rounding rule",
+    "viu_status": "VIU-Pending",
+    "notes": "KNOWN-LIMITATION ENCODING: the last-decimal totals discrepancy is by design. FIX-WORDING repair 2026-07-28 (sense-check): the old seeding hint ('values like $10.005') was untypeable — money fields take two decimals; sub-cent intermediates must come from hours × rate / percentage math.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-TOT-01",
+    "area": "SBR — Subtotal & Totals",
+    "title": "Subtotal: rightmost, pinned right, bold everywhere; header row sticky on scroll",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. You are on the report with data, narrow enough to force horizontal scrolling.",
+      "2. Enough rows exist to also force vertical scrolling."
+    ],
+    "steps": [
+      "1. Confirm nothing renders to the right of Subtotal on any row type.",
+      "2. Scroll horizontally and watch the Subtotal column on summary and detail rows.",
+      "3. Inspect the Subtotal weight on the header, a summary row, a detail row, and the Totals indicator; check the pinned cell's background.",
+      "4. Scroll down through the rows and watch the header row; scroll right and watch the Subtotal header cell."
+    ],
+    "expected": [
+      "1. Subtotal is the rightmost column on every row type.",
+      "2. On screen it is pinned to the right edge and stays visible during horizontal scroll on every rep summary and invoice detail row.",
+      "3. Subtotal values are bold across the header, every summary row, every detail row, and the grand Totals indicator.",
+      "4. The pinned column matches the row's background color (white on body rows) — not a contrasting strip.",
+      "5. The column-header row stays stuck to the top during vertical scroll; the Subtotal header cell stays visible in BOTH axes (top while scrolling down, pinned right while scrolling sideways)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5",
+    "viu_status": "VIU-Pending",
+    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-STICKY): absorbed SBR-TOT-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-TOT-02",
+    "area": "SBR — Subtotal & Totals",
+    "title": "Desktop Totals row merges the four identifier columns, aggregates every metric over the full filtered set, and sticks to the bottom",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Desktop viewport (1024px or wider); several reps with known amounts are on the report; at least one rep is left collapsed."
+    ],
+    "steps": [
+      "1. Scroll the table and find the Totals row.",
+      "2. Read its first cell and the per-metric cells.",
+      "3. Compare its values against the sum over ALL matching invoices (including collapsed/unloaded reps).",
+      "4. Empty the results with a no-data filter and look for the indicator; also watch during a re-fetch."
+    ],
+    "expected": [
+      "1. A Totals row is the last row inside the table, sticky at the bottom of the scroll area, on the white card surface with a thin top border.",
+      "2. Its first cell is a single merged cell spanning the four leading identifier columns (Date, Invoice, Customer, Status) labeled \"Totals,\" followed by a cell per metric column and its own pinned Subtotal cell.",
+      "3. The grand totals cover the FULL filtered result set — every matching non-reversed invoice across every rep, independent of which reps are expanded or loaded.",
+      "4. Money uses accounting parentheses for negatives; Margin % is recomputed; values are round(sum of unrounded).",
+      "5. The indicator is present whenever at least one summary row exists, and hidden during loading and in the empty state."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R5; S10-N1; Story 16 S16-R4",
+    "viu_status": "VIU-Pending",
+    "notes": "Server-side computation is covered by SBR-API-03. BUILD-DELTA: server-computed grand totals are the 2026-07-16 committed target.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-TOT-03",
+    "area": "SBR — Subtotal & Totals",
+    "title": "Mobile shows a simplified external totals bar below the table with Totals left and the grand Subtotal right",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. You are on the report with data in a viewport below 1024px."
+    ],
+    "steps": [
+      "1. Find the totals bar and read it.",
+      "2. Swipe the table horizontally and watch the bar.",
+      "3. Scroll the page vertically and watch the bar."
+    ],
+    "expected": [
+      "1. A simplified external totals bar sits directly below the table, outside its horizontal scroll container, showing \"Totals\" on the left and the grand Subtotal on the right (no other metrics).",
+      "2. It does not scroll horizontally — it is always fully visible across.",
+      "3. During vertical page scroll it sits after the table in normal flow (not pinned to the viewport bottom).",
+      "4. It uses the white card surface with a thin top border."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R5 (mobile); Story 17 S17-R4",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBR-TOT-04",
+    "area": "SBR — Subtotal & Totals",
+    "title": "The column-header row is sticky to the top during vertical scroll and the Subtotal header is sticky in both axes",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Enough rows exist to force vertical scrolling; the window is narrow enough to also force horizontal scrolling."
+    ],
+    "steps": [
+      "1. Scroll down through the rows and watch the header row.",
+      "2. Scroll right and watch the Subtotal header cell."
+    ],
+    "expected": [
+      "1. The column-header row stays stuck to the top during vertical scroll.",
+      "2. The Subtotal header cell stays visible in BOTH axes — stuck to the top while scrolling down and pinned right while scrolling sideways."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R6",
+    "viu_status": "Retired 2026-07-28 (merged into SBR-TOT-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBR-SORT-01",
+    "area": "SBR — Sorting",
+    "title": "All eight financial columns are sortable; the identifier columns are not and the Date header carries the chevron instead",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Several reps with differing values are on the report."
+    ],
+    "steps": [
+      "1. Click each financial column header in turn: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
+      "2. Click the Date, Invoice, Customer, and Status headers."
+    ],
+    "expected": [
+      "1. Each financial column responds to a header click and reorders the rep rows.",
+      "2. The identifier columns (Date, Invoice, Customer, Status) do not respond to header clicks.",
+      "3. The Date header carries the expand/collapse-all chevron, not a sort affordance."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R1; S11-R6",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBR-SORT-02",
+    "area": "SBR — Sorting",
+    "title": "Default order is plain A to Z by display name, case-insensitive, with no active/inactive tiers",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. No remembered sort exists (first visit or cleared storage); contributing reps include an \"(Inactive)\"-tagged rep and mixed-case names."
+    ],
+    "steps": [
+      "1. Open the report and read the rep order top to bottom."
+    ],
+    "expected": [
+      "1. Rows render in A→Z order by display name, case-insensitive.",
+      "2. There are NO active/inactive tiers — an \"(Inactive)\" rep sorts by name among the others, not grouped separately."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R4; §3 Key Decisions",
+    "viu_status": "VIU-Pending",
+    "notes": "BUILD-DELTA: the change log notes the current handler uses a tiered sort — plain A→Z is the committed target.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-SORT-03",
+    "area": "SBR — Sorting",
+    "title": "First click sorts ascending with an indicator, second click descending, no third cleared state, and no header path back to A to Z",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Several reps are on the report in the A→Z default."
+    ],
+    "steps": [
+      "1. Click the Subtotal header once and read the order and the direction indicator.",
+      "2. Click it again.",
+      "3. Click it a third time.",
+      "4. Try to get back to the A→Z order using only the column headers."
+    ],
+    "expected": [
+      "1. The first click sorts Subtotal ASCENDING and shows an ascending direction indicator on the header.",
+      "2. The second click toggles to DESCENDING.",
+      "3. There is no third \"cleared\" state — the third click returns to ascending.",
+      "4. Via the column headers there is no way back to A→Z; the A→Z default shows only when a session carries no valid saved financial sort."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R5; Story 23 S23-R5",
+    "viu_status": "VIU-Pending",
+    "notes": "Server-side sorting is covered by SBR-API-02. KNOWN-LIMITATION ENCODING: no header path back to A→Z is by design.",
+    "api_related": false
+  },
+  {
+    "id": "SBR-SORT-04",
+    "area": "SBR — Sorting",
+    "title": "Sorting reorders rep summary rows only; detail rows stay under their rep and the Unassigned row stays pinned on top",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Show Unassigned is on with a populated Unassigned row; at least one rep is expanded."
+    ],
+    "steps": [
+      "1. Sort by a financial column.",
+      "2. Read the Unassigned row's position, the expanded rep's detail rows, and their order."
+    ],
+    "expected": [
+      "1. Only the rep summary rows reorder.",
+      "2. Invoice detail rows stay grouped under their parent rep, keeping their own newest-first order.",
+      "3. The Unassigned row stays pinned to the top regardless of sort."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R2; Story 22 S22-R4",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBR-SORT-05",
+    "area": "SBR — Sorting",
+    "title": "Equal sorted values keep the A to Z order as tie-break and an em-dash Margin % sorts as zero",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Two reps have equal values in a sortable column; if producible, one rep shows \"—\" in Margin % (seed ZZAUTOTEST data)."
+    ],
+    "steps": [
+      "1. Sort by the column where the two reps tie and read their relative order.",
+      "2. Sort by Margin % ascending and locate the \"—\" rep."
+    ],
+    "expected": [
+      "1. Reps with equal values in the sorted column retain the default A→Z order between them.",
+      "2. A Margin % cell rendered \"—\" (undefined) sorts as zero."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R7",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SBR-SORT-06",
+    "area": "SBR — Sorting",
+    "title": "With only one rep row the sort affordances are present but produce no observable change",
+    "priority": "Low",
+    "type": "Negative",
+    "permissions_required": "Reports/Performance access.",
+    "preconditions": [
+      "1. Filters are set so exactly one rep row is visible."
+    ],
+    "steps": [
+      "1. Click several financial column headers."
+    ],
+    "expected": [
+      "1. The sort affordances are present and the direction indicator updates, but the single row's position does not change."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+    "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-N1",
+    "viu_status": "Retired 2026-07-28 (CUT per usefulness+sense audit (no-op assertion); delete_case authorized 2026-07-28)",
+    "notes": "",
+    "api_related": false
+  }
 ]

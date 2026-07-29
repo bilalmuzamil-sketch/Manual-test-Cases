@@ -1,0 +1,27 @@
+{
+  "id": "SBC-TREE-07",
+  "area": "SBC — Tree & Rows",
+  "title": "Chevrons toggle closed on a second click and every customer's and asset's expansion is independent",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. At least two customers with assets are in the current view."
+  ],
+  "steps": [
+    "1. Expand customer A, then expand one of its assets.",
+    "2. Expand customer B.",
+    "3. Click customer A's chevron again.",
+    "4. Check customer B."
+  ],
+  "expected": [
+    "1. Each chevron toggles back to collapsed on a second activation.",
+    "2. Collapsing customer A does not affect customer B's expansion.",
+    "3. Each asset's expansion state is likewise independent."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R15",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

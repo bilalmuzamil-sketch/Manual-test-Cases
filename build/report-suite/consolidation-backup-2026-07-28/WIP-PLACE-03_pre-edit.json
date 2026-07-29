@@ -1,0 +1,26 @@
+{
+  "id": "WIP-PLACE-03",
+  "area": "WIP — Tab Placement",
+  "title": "An Approved work order with clocked time or a received part lands in \"Approved - partially completed\"",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. Two ZZAUTOTEST service work orders in Approved status exist within the current date range and location: one where a technician has clocked time to the job, and one where a part has been received for it (and no time clocked)."
+  ],
+  "steps": [
+    "1. Open the Work In Progress report.",
+    "2. Look for the Approved work order with clocked time in each tab.",
+    "3. Look for the Approved work order with a received part in each tab."
+  ],
+  "expected": [
+    "1. The Approved work order with clocked labor time appears in the \"Approved - partially completed\" tab.",
+    "2. The Approved work order with a received part (and no clocked time) also appears in the \"Approved - partially completed\" tab — either kind of started work counts."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 3 S3-R4 (started branch + context note)",
+  "viu_status": "VIU-Pending",
+  "notes": "\"Work has started\" means a technician has clocked time to the job OR a part has been received for it (Story 3 context note).",
+  "api_related": false
+}

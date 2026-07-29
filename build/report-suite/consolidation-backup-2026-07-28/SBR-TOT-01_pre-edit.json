@@ -1,0 +1,27 @@
+{
+  "id": "SBR-TOT-01",
+  "area": "SBR — Subtotal & Totals",
+  "title": "Subtotal is the rightmost column, pinned to the right edge, bold everywhere, on the row's own background",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. You are on the report with data, narrow enough to force horizontal scrolling."
+  ],
+  "steps": [
+    "1. Confirm nothing renders to the right of Subtotal on any row type.",
+    "2. Scroll horizontally and watch the Subtotal column on summary and detail rows.",
+    "3. Inspect the Subtotal weight on the header, a summary row, a detail row, and the Totals indicator; check the pinned cell's background."
+  ],
+  "expected": [
+    "1. Subtotal is the rightmost column on every row type.",
+    "2. On screen it is pinned to the right edge and stays visible during horizontal scroll on every rep summary and invoice detail row.",
+    "3. Subtotal values are bold across the header, every summary row, every detail row, and the grand Totals indicator.",
+    "4. The pinned column matches the row's background color (white on body rows) — not a contrasting strip."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-N1; Story 18 S18-R7.5",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

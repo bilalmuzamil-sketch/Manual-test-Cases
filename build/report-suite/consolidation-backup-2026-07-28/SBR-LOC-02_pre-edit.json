@@ -1,0 +1,23 @@
+{
+  "id": "SBR-LOC-02",
+  "area": "SBR — Location Filter",
+  "title": "Location filter defaults to the user's currently active location only",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access; user with access to at least two locations.",
+  "preconditions": [
+    "1. Your browser has no remembered settings for this report.",
+    "2. You are working in a known active location (the application's location switcher)."
+  ],
+  "steps": [
+    "1. Open the report and read the location filter's selection."
+  ],
+  "expected": [
+    "1. The filter defaults to the currently active location only — the default view is scoped to the one location you are working in."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 21 S21-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

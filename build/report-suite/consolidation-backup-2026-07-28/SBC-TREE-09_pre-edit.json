@@ -1,0 +1,25 @@
+{
+  "id": "SBC-TREE-09",
+  "area": "SBC — Tree & Rows",
+  "title": "Any change that reloads customer rows collapses all expansion, but typing in the Customer filter does not",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You are on the report with at least one customer expanded down to invoice rows."
+  ],
+  "steps": [
+    "1. With rows expanded, open the Customer filter and TYPE a search query (do not change the selection); watch the expanded rows.",
+    "2. Now change the date range (or Product Type, location, Customer selection, or sort).",
+    "3. Look at the previously expanded rows."
+  ],
+  "expected": [
+    "1. Typing in the Customer filter's type-ahead only narrows the dropdown list — the expanded table rows stay expanded.",
+    "2. A change that re-fetches customer rows (date range, Product Type, location, Customer selection, or sort) collapses all expanded rows."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R20; S8-R21",
+  "viu_status": "VIU-Pending",
+  "notes": "Reload clearing expansion (S8-R22) is covered by SBC-PERS-02.",
+  "api_related": false
+}

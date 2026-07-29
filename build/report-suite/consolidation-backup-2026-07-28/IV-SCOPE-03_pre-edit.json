@@ -1,0 +1,26 @@
+{
+  "id": "IV-SCOPE-03",
+  "area": "IV — Row Scope",
+  "title": "A core-charge part is never shown, regardless of its quantity",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. A core-charge part with a positive on-hand quantity exists at the selected location."
+  ],
+  "steps": [
+    "1. Open the Inventory Value report scoped to that location.",
+    "2. Search for the core-charge part by its part number.",
+    "3. Check the totals row for its value."
+  ],
+  "expected": [
+    "1. The core-charge part is not listed, even though its quantity is positive.",
+    "2. Its value is not counted in the totals row."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 2 S2-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

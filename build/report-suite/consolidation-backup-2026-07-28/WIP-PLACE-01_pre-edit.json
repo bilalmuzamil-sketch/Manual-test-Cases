@@ -1,0 +1,26 @@
+{
+  "id": "WIP-PLACE-01",
+  "area": "WIP — Tab Placement",
+  "title": "An Estimate work order lands in the Estimates tab and a Complete work order lands in the Completed tab",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. Two ZZAUTOTEST service work orders exist within the current date range and location: one in Estimate status and one in Complete status."
+  ],
+  "steps": [
+    "1. Open the Work In Progress report.",
+    "2. Look for the Estimate work order in each tab.",
+    "3. Look for the Complete work order in each tab."
+  ],
+  "expected": [
+    "1. The Estimate work order appears in the \"Estimates\" tab and nowhere else.",
+    "2. The Complete work order appears in the \"Completed\" tab and nowhere else."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 3 S3-R1; S3-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "SBR-TYPE-03",
+  "area": "SBR — Product Type Filter",
+  "title": "Product Type is part of the contributor gate: a rep with no matching invoice disappears and every metric narrows",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. Rep A has ONLY service invoices in range; rep B has both types (seed ZZAUTOTEST data)."
+  ],
+  "steps": [
+    "1. Select \"Parts only.\"",
+    "2. Look for rep A's row.",
+    "3. Read rep B's (N) count, summary totals, detail rows, and the grand Totals indicator."
+  ],
+  "expected": [
+    "1. Rep A disappears — a rep appears only with at least one matching invoice after this filter.",
+    "2. Rep B's summary totals, invoice detail rows, the grand Totals indicator, and the (N) count all reflect only the matching (P) invoices."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 3 S3-R8; S3-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

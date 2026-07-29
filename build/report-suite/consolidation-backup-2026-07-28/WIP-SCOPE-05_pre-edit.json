@@ -1,0 +1,26 @@
+{
+  "id": "WIP-SCOPE-05",
+  "area": "WIP — Scope & Loading",
+  "title": "When no work order qualifies, every tab shows \"Empty bays, endless possibilities. Get Going!\" and no Totals row",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. The Work In Progress report is open."
+  ],
+  "steps": [
+    "1. Set the date range and location so that no open work order qualifies (for example, a Custom range over dates with no work orders created).",
+    "2. Open each of the four tabs and read the data area."
+  ],
+  "expected": [
+    "1. Each tab shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" in place of rows.",
+    "2. No tab shows a Totals row.",
+    "3. Every tab label count reads \"(0)\"."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 2 S2-N1; §7 User Feedback Summary",
+  "viu_status": "VIU-Pending",
+  "notes": "No-data message text is verbatim from §7.",
+  "api_related": false
+}

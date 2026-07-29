@@ -1,0 +1,26 @@
+{
+  "id": "SBR-BADGE-03",
+  "area": "SBR — Payment Status Badge",
+  "title": "Badges are vertically centered, blank on summary rows, and carry their text as the accessible label",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. A rep is expanded with badges visible."
+  ],
+  "steps": [
+    "1. Look at a badge's vertical position within its cell.",
+    "2. Read the Status cell on a rep summary row.",
+    "3. Check that the status is readable from the badge text alone (not only its color)."
+  ],
+  "expected": [
+    "1. The badge is vertically centered within its cell.",
+    "2. On rep summary rows the Status cell is blank.",
+    "3. The badge's text (\"Paid\"/\"Partially Paid\"/\"Unpaid\") is the accessible label — status is never conveyed by color alone."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 8 S8-R4; S8-R5; S8-R6; Story 18 S18-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

@@ -1,0 +1,27 @@
+{
+  "id": "SBR-TYPE-02",
+  "area": "SBR — Product Type Filter",
+  "title": "Parts only includes only P invoices, Service only includes only S invoices, and Parts & Service applies no filter",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. A rep has both a P (parts) and an S (service) invoice in the range (seed ZZAUTOTEST data via the WO Sales Rep field)."
+  ],
+  "steps": [
+    "1. Select \"Parts only,\" expand the rep, and read the invoice numbers.",
+    "2. Select \"Service only\" and read them again.",
+    "3. Select \"Parts & Service.\""
+  ],
+  "expected": [
+    "1. \"Parts only\" includes only invoices whose number starts with P.",
+    "2. \"Service only\" includes only invoices whose number starts with S.",
+    "3. \"Parts & Service\" applies no product-type filter — both appear again.",
+    "4. Each change re-fetches and re-renders the report."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 3 S3-R4; S3-R5; S3-R6; S3-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

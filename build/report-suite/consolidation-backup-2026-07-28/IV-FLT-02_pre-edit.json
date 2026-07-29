@@ -1,0 +1,26 @@
+{
+  "id": "IV-FLT-02",
+  "area": "IV — Filters & Part Search",
+  "title": "The Category filter, Vendor filter, and part search apply server-side — each change re-queries and returns the first page",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. The unfiltered result set spans multiple pages, and matching parts for a category/vendor/search exist BEYOND page 1."
+  ],
+  "steps": [
+    "1. From page 2 (or later), select a Category and check which page shows and which rows are listed.",
+    "2. Repeat with a Vendor selection.",
+    "3. Repeat with a part search."
+  ],
+  "expected": [
+    "1. Each change re-queries the server and returns the first page of the new result set.",
+    "2. The filtering covers the ENTIRE data set — matching parts that were on later pages appear — not just a narrowing of the rows on the current page."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R8",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

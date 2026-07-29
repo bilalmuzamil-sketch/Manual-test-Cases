@@ -1,0 +1,26 @@
+{
+  "id": "IV-PERS-04",
+  "area": "IV — Column Selection & Persistence",
+  "title": "Restore is defensive: an invalid saved value falls back to its default, and a saved category or vendor no longer present is dropped",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. The report has saved settings in this browser, including a category or vendor selection that can be made stale (for example, the last in-stock part of a saved category is consumed so the category disappears from the data)."
+  ],
+  "steps": [
+    "1. Make the saved category or vendor no longer present in the data.",
+    "2. Open the Inventory Value report."
+  ],
+  "expected": [
+    "1. The report loads normally — a saved value that is no longer valid falls back to that setting's default rather than breaking the view.",
+    "2. The saved category or vendor no longer present in the data is dropped from the selection.",
+    "3. All other saved settings are still restored."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 8 S8-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

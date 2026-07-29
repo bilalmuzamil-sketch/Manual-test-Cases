@@ -1,0 +1,23 @@
+{
+  "id": "SBC-SORT-07",
+  "area": "SBC — Sorting",
+  "title": "With no customer rows the sort headers are still present and produce no visible change",
+  "priority": "Low",
+  "type": "Negative",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. The current filters produce no matching customers (the empty state is showing)."
+  ],
+  "steps": [
+    "1. Click several column headers."
+  ],
+  "expected": [
+    "1. The sort controls on the headers are still present.",
+    "2. Clicking them produces no visible change (the empty state remains)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

@@ -1,0 +1,24 @@
+{
+  "id": "SBC-DATE-02",
+  "area": "SBC — Date Range Filter",
+  "title": "Date range defaults to This Month when nothing is saved and no range is in the page link",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. Your browser has no saved view for this report (first visit, or clear the browser's site data first).",
+    "2. You open the report by its plain address with no date range in the page link."
+  ],
+  "steps": [
+    "1. Open the Sales By Customer report.",
+    "2. Read the date range picker's current value."
+  ],
+  "expected": [
+    "1. The date range picker shows \"This Month.\""
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 2 S2-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

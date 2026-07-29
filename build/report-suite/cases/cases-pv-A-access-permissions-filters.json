@@ -1,515 +1,518 @@
 [
- {
-  "id": "PV-NAV-01",
-  "area": "PV — Access & Defaults",
-  "title": "Parts Velocity appears under a new Parts section in the Reports navigation",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App as a user with the Manager or Office User role.",
-   "2. Your role has the Inventory Reports → View permission."
-  ],
-  "steps": [
-   "1. Open the Reports section from the main navigation.",
-   "2. Look through the report groupings for a section heading named Parts.",
-   "3. Click the entry labeled Parts Velocity."
-  ],
-  "expected": [
-   "1. A Parts section heading exists in the Reports navigation (this feature creates it - the application had no Parts reports before).",
-   "2. Under Parts there is an entry labeled Parts Velocity (the only Parts report in this release).",
-   "3. Clicking it opens the Parts Velocity report."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-R1",
-  "viu_status": "VIU-Pending",
-  "notes": "The spec is explicit that the Parts grouping does NOT exist today and must be added by this feature (S1-R1). VIU-confirm the exact placement and styling of the new Parts heading in the Reports navigation.",
-  "api_related": false
- },
- {
-  "id": "PV-NAV-02",
-  "area": "PV — Access & Defaults",
-  "title": "First visit: date range defaults to This Year and data is fetched automatically",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are signed in as a user allowed to open the report (see PV-PERM-01).",
-   "2. You are using a browser with NO saved view for this report (e.g. a fresh browser profile or after clearing the site's browser storage), so first-visit defaults apply."
-  ],
-  "steps": [
-   "1. Open Reports → Parts → Parts Velocity.",
-   "2. Look at the date range selector and the table without touching anything."
-  ],
-  "expected": [
-   "1. The date range selector shows This Year.",
-   "2. Report data loads automatically - you do not have to press anything to fetch it.",
-   "3. Rows appear ranked by Demand, highest first (the default order, see PV-ROW-03)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-R2; S4-R6",
-  "viu_status": "VIU-Pending",
-  "notes": "On a return visit the saved date range is used instead (covered by PV-COL-05). Seeding: needs at least a few parts with sales activity in the current year so the auto-fetch visibly returns rows.",
-  "api_related": false
- },
- {
-  "id": "PV-NAV-03",
-  "area": "PV — Access & Defaults",
-  "title": "A loading indicator shows while data loads and old rows are replaced only when new data returns",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are signed in as a user allowed to open the report.",
-   "2. Enough parts data exists that the report visibly takes a moment to load."
-  ],
-  "steps": [
-   "1. Open the Parts Velocity report and watch the table area during the initial load.",
-   "2. After it loads, change any filter that reloads the data from the server (for example the Type filter).",
-   "3. Watch the table while the new data is being fetched."
-  ],
-  "expected": [
-   "1. During the initial load, the table shows a loading indicator.",
-   "2. During a filter change, the loading indicator shows again.",
-   "3. The rows already on screen are replaced only when the new data comes back - the table does not blank out and rebuild mid-request."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-R3",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm the exact loading indicator appearance (the spec does not pin the visual).",
-  "api_related": false
- },
- {
-  "id": "PV-PERM-01",
-  "area": "PV — Permissions",
-  "title": "A user with the Inventory Reports → View permission can load the report and export it",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are signed in as a user with the Manager or Office User role.",
-   "2. That user's role has the Inventory Reports → View permission.",
-   "3. Some parts have sales activity in the selected date range."
-  ],
-  "steps": [
-   "1. Open Reports → Parts → Parts Velocity.",
-   "2. Wait for the data to load.",
-   "3. Open the export menu and download the CSV."
-  ],
-  "expected": [
-   "1. The report data loads and rows are shown.",
-   "2. The export downloads successfully (both loading the report and exporting it are allowed by the Inventory Reports → View permission)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-R4",
-  "viu_status": "VIU-Pending",
-  "notes": "Role/permission seeding per Standing Rule 5: create a purpose-made role with Inventory Reports → View, assign it to the Tech user, test, then restore. VIU-confirm the exact permission name as shown in the roles screen.",
-  "api_related": false
- },
- {
-  "id": "PV-PERM-02",
-  "area": "PV — Permissions",
-  "title": "A user without the Manager or Office User role does not see the Parts Velocity navigation entry",
-  "priority": "High",
-  "type": "Negative",
-  "permissions_required": "A role WITHOUT Reports section access (not Manager, not Office User).",
-  "preconditions": [
-   "1. You are signed in as a user whose role is neither Manager nor Office User (a role without access to the Reports section)."
-  ],
-  "steps": [
-   "1. Look at the application's main navigation.",
-   "2. Try to find the Reports section and the Parts Velocity entry."
-  ],
-  "expected": [
-   "1. The user cannot reach the Reports section.",
-   "2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-N1",
-  "viu_status": "VIU-Pending",
-  "notes": "Role seeding per Standing Rule 5: assign the Tech user a role without Reports access, observe, then restore the original role.",
-  "api_related": false
- },
- {
-  "id": "PV-PERM-03",
-  "area": "PV — Permissions",
-  "title": "A user with Reports access but without Inventory Reports → View sees the entry but is denied the data and the export",
-  "priority": "High",
-  "type": "Negative",
-  "permissions_required": "Manager or Office User role (Reports section access) WITHOUT the Inventory Reports → View permission.",
-  "preconditions": [
-   "1. You are signed in as a user with the Manager or Office User role.",
-   "2. That user's role does NOT have the Inventory Reports → View permission."
-  ],
-  "steps": [
-   "1. Open the Reports section and look for the Parts Velocity entry under Parts.",
-   "2. Click the Parts Velocity entry.",
-   "3. If any export control is reachable, try to export."
-  ],
-  "expected": [
-   "1. The Parts Velocity navigation entry is still visible (the entry follows Reports-section access, not the report permission).",
-   "2. On opening the report, the standard access-denied state is shown instead of data.",
-   "3. The export is likewise denied - no file downloads."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-N2; S1-R4",
-  "viu_status": "VIU-Pending",
-  "notes": "The spec carries a build-note to confirm the FE really uses this shown-then-denied model (rather than hiding the entry), matching the platform's other Inventory-Reports-permissioned reports - VIU-confirm which model the build ships. VIU-confirm the exact access-denied wording (unpinned in the spec).",
-  "api_related": false
- },
- {
-  "id": "PV-FILT-01",
-  "area": "PV — Filters",
-  "title": "Type filter is single-select, first in the filter row, with options Both, Inventory, Catalogue (default Both)",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded.",
-   "2. This is a first visit (no saved view), so the first-visit defaults apply."
-  ],
-  "steps": [
-   "1. Look at the first control in the filter row of the toolbar.",
-   "2. Open the Type filter and read its options.",
-   "3. Note which option is selected by default."
-  ],
-  "expected": [
-   "1. The Type filter is the first control in the filter row.",
-   "2. It is single-select and offers exactly three choices: Both, Inventory, and a choice for special-order catalog parts that were never put into stock. (That third choice's exact on-screen label is confirmed in the build — the spec calls it \"Catalogue\" and a rename is being considered.)",
-   "3. On a first visit the default is Both.",
-   "4. Both is an explicit selection returning inventory and special-order rows together - a deliberate filter value, not the absence of a filter."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R1 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28: update per latest info now, correct at the live build check later)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm the exact filter control label ('Type' is the spec's name for it) and the option labels as shipped. P31 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): Chris is leaning to rename 'Catalogue' toward the special-order-parts meaning — video 43:49 'maybe we do rename it. Because you're absolutely right. Things in inventory have a catalogue item' + 44:12 'we'll have to truncate that down somehow, because that'll get a little big for a column.' Possible labels: 'Catalogue' (current spec S2-R1) OR a short special-order-parts name (not yet chosen — do NOT invent it, Rule 9). The MEANING is fixed: special-order catalog parts never put into inventory stock.",
-  "api_related": false
- },
- {
-  "id": "PV-FILT-02",
-  "area": "PV — Filters",
-  "title": "Selecting a Type value immediately reloads the data limited to that type",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded.",
-   "2. Both inventory parts and catalogue (special-order) parts have sales activity in the selected date range, so both types appear under Both."
-  ],
-  "steps": [
-   "1. With Type = Both, note that the Type column shows both Inventory and Catalogue rows.",
-   "2. Select Type = Inventory.",
-   "3. Select Type = Catalogue."
-  ],
-  "expected": [
-   "1. Each selection immediately reloads the report data (no separate Apply step).",
-   "2. With Inventory selected, every row's Type column reads Inventory.",
-   "3. With Catalogue selected, every row's Type column reads Catalogue."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R1; S3-R5",
-  "viu_status": "VIU-Pending",
-  "notes": "Seeding: needs at least one invoiced sale of an inventory part AND at least one vendor-sourced (catalogue) part request on an invoiced/paid work order in the window.",
-  "api_related": false
- },
- {
-  "id": "PV-FILT-03",
-  "area": "PV — Filters",
-  "title": "Date range selector offers exactly the eleven bounded options and no All Time",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded."
-  ],
-  "steps": [
-   "1. Open the date range selector and read every option.",
-   "2. Select a non-custom option (for example Last Month)."
-  ],
-  "expected": [
-   "1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.",
-   "2. There is NO 'All Time' option - the report always operates over a bounded date window (deliberate, per the spec's Out of Scope).",
-   "3. Selecting a non-custom option immediately reloads the report data.",
-   "4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R2; §2 Out of Scope",
-  "viu_status": "VIU-Pending",
-  "notes": "Note: 'Last Sale' is still measured over all-time history (a per-part lookback, S5-R4) - that is unrelated to the missing All Time range and is not a defect.",
-  "api_related": false
- },
- {
-  "id": "PV-FILT-04",
-  "area": "PV — Filters",
-  "title": "Custom date range requires valid start and end dates and rejects a span over 366 days",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded."
-  ],
-  "steps": [
-   "1. Open the date range selector and choose Custom.",
-   "2. Pick only a start date and observe - then pick an end date earlier than the start and observe.",
-   "3. Pick a valid start and end date (start on or before end, within 366 days).",
-   "4. Now try a custom span wider than 366 days (for example 400 days)."
-  ],
-  "expected": [
-   "1. A date picker opens requiring both a start and an end date.",
-   "2. The report does not reload until both dates are valid; a start after the end is not accepted.",
-   "3. With both valid dates selected, the data reloads for that range.",
-   "4. A span wider than 366 days (counting both the start and end dates) is rejected - the selection is not applied."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R3",
-  "viu_status": "VIU-Pending",
-  "notes": "KNOWN-DELTA WATCH: the 366-day cap was added 2026-07-16 with the server-side model (spec ahead of the current code by design) - the cap may not exist in the build until dev ships it. VIU-confirm how the rejection is presented (unpinned).",
-  "api_related": false
- },
- {
-  "id": "PV-FILT-05",
-  "area": "PV — Filters",
-  "title": "Category and Vendor multi-select filters limit the table to matching parts",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded.",
-   "2. Parts with different categories and different vendors have activity in the range."
-  ],
-  "steps": [
-   "1. Open the Category filter and select one category; then add a second category.",
-   "2. Clear the Category filter.",
-   "3. Open the Vendor filter and select one vendor; then add a second vendor."
-  ],
-  "expected": [
-   "1. Both filters allow selecting more than one value (multi-select).",
-   "2. With categories selected, only parts in any of the selected categories are shown.",
-   "3. With vendors selected, only parts supplied by any of the selected vendors are shown.",
-   "4. Each change reloads the data from the server."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R4; S2-R5; S2-R10",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm the exact filter labels ('Category' / 'Vendor' are the spec's names). Seeding: parts in at least two categories and from at least two vendors with in-window activity.",
-  "api_related": false
- },
- {
-  "id": "PV-FILT-06",
-  "area": "PV — Filters",
-  "title": "Toolbar search matches part number or description, case-insensitively, and is page-specific",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded.",
-   "2. A part exists whose part number you know, and another whose description contains a distinctive word."
-  ],
-  "steps": [
-   "1. Find the search input in the report's own toolbar (not the application's global search bar).",
-   "2. Type part of a known part number, in the wrong letter case (for example lower case for an upper-case part number).",
-   "3. Clear it and type a distinctive word from a part's description.",
-   "4. Clear it and type a category or vendor name that matches no part number or description."
-  ],
-  "expected": [
-   "1. The search input is part of the report's toolbar (page-specific), separate from the global search bar.",
-   "2. The part-number search matches despite the different letter case (case-insensitive 'contains' match).",
-   "3. The description search returns rows whose description contains the word.",
-   "4. Category and vendor names are NOT searched - use their dedicated filters instead (deliberate, to avoid false matches on common words)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R6; §3 Key Decisions",
-  "viu_status": "VIU-Pending",
-  "notes": "Confirmed page-local (not global search) in the 2026-07-16 spec round. Each search change re-queries the server (S2-R10).",
-  "api_related": false
- },
- {
-  "id": "PV-FILT-07",
-  "area": "PV — Filters",
-  "title": "All active filters combine with AND logic",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded.",
-   "2. You know one part's type, category, and vendor."
-  ],
-  "steps": [
-   "1. Set the Type filter to that part's type.",
-   "2. Add the part's category in the Category filter.",
-   "3. Add a vendor that is NOT the part's vendor in the Vendor filter.",
-   "4. Change the Vendor filter to the part's actual vendor."
-  ],
-  "expected": [
-   "1. After steps 1-2 the part is still listed (it satisfies both filters).",
-   "2. After step 3 the part disappears - a part must satisfy EVERY active filter to appear (AND logic, not OR).",
-   "3. After step 4 the part is listed again."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R7",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "PV-FILT-08",
-  "area": "PV — Filters",
-  "title": "Bin multi-select filter limits the table to inventory parts stocked in the selected bins",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded.",
-   "2. Inventory parts are stocked in at least two different bin locations."
-  ],
-  "steps": [
-   "1. Open the Bin filter and select one bin location.",
-   "2. Add a second bin location."
-  ],
-  "expected": [
-   "1. Each selection reloads the data from the server.",
-   "2. Only inventory parts stocked in ANY of the selected bins are shown.",
-   "3. The filter allows more than one bin (multi-select)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R8",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm the exact filter label ('Bin' is the spec's name). Catalogue exclusion under a Bin filter is PV-FILT-09.",
-  "api_related": false
- },
- {
-  "id": "PV-FILT-09",
-  "area": "PV — Filters",
-  "title": "Any Bin filter excludes all catalogue rows - Type Catalogue plus a Bin filter is empty by design",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded.",
-   "2. Catalogue rows are present under Type = Both (a catalogue part has in-window activity)."
-  ],
-  "steps": [
-   "1. With Type = Both, select any bin in the Bin filter.",
-   "2. Look for special-order (catalogue) rows in the result.",
-   "3. Set the Type filter to the special-order (catalogue) choice while the Bin filter is still active."
-  ],
-  "expected": [
-   "1. With any Bin filter active, ALL special-order (catalogue) rows are excluded (they have no bin location).",
-   "2. The special-order (catalogue) choice combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R8 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28: update per latest info now, correct at the live build check later)",
-  "viu_status": "VIU-Pending",
-  "notes": "Expected-behavior case: the empty result here is correct per spec. P31 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): the Type choice's on-screen label may be renamed from 'Catalogue' to a short special-order-parts name — label VIU-confirm, meaning unchanged.",
-  "api_related": false
- },
- {
-  "id": "PV-FILT-10",
-  "area": "PV — Filters",
-  "title": "Location filter is rightmost, defaults to the active location, accessible-only",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4); user with access to more than one location.",
-  "preconditions": [
-   "1. You are signed in as a user with access to at least two locations.",
-   "2. You are on the Parts Velocity report on a first visit (no saved view)."
-  ],
-  "steps": [
-   "1. Look at the rightmost control in the filter row.",
-   "2. Note which location is selected by default and compare it to the location selected in the application's global location switcher.",
-   "3. Open the filter and read the list of locations.",
-   "4. Select a second location, then select the 'All Locations' option.",
-   "5. With 'All Locations' active, look at how the rows tell you which location they belong to."
-  ],
-  "expected": [
-   "1. The Location filter is the rightmost control in the filter row and is multi-select.",
-   "2. On a first visit it defaults to the user's currently active location (the one in the global location switcher).",
-   "3. The list holds the locations the signed-in user has access to, plus an 'All Locations' option.",
-   "4. Each selection reloads the data scoped to the chosen set; 'All Locations' means all locations the user can ACCESS, never beyond - a location the user cannot access is never included.",
-   "5. The location scope cascades through every metric like the other filters.",
-   "6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)"
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm the exact 'All Locations' label. Seeding: needs a user with two accessible locations and in-window activity at both (heavy multi-location seeding). VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): per-row location identifier in All-Locations view — the current spec has NO explicit Location column in the 20-column set (S4-R4), though inventory rows are per-location (S3-R1a). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9).",
-  "api_related": false
- },
- {
-  "id": "PV-FILT-11",
-  "area": "PV — Filters",
-  "title": "Empty state shows the standard no-data message when no parts match the filters",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded."
-  ],
-  "steps": [
-   "1. Type a nonsense string (for example 'zzqx-no-such-part') into the toolbar search so no part matches.",
-   "2. Read the message shown in the data area."
-  ],
-  "expected": [
-   "1. The server returns zero rows and the table shows the empty state.",
-   "2. The empty-state label reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R11; S2-N1; §7",
-  "viu_status": "VIU-Pending",
-  "notes": "Message string is pinned verbatim in §7.",
-  "api_related": false
- },
- {
-  "id": "PV-FILT-12",
-  "area": "PV — Filters",
-  "title": "Parts with no category, vendor, or bin assigned are excluded when that filter is active",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded.",
-   "2. A part with in-window activity exists that has NO category assigned; another with NO vendor; an inventory part with NO bin location."
-  ],
-  "steps": [
-   "1. Confirm the three parts appear with no filters active.",
-   "2. Activate any Category filter and look for the category-less part.",
-   "3. Clear it, activate any Vendor filter, and look for the vendor-less part.",
-   "4. Clear it, activate any Bin filter, and look for the bin-less inventory part."
-  ],
-  "expected": [
-   "1. The part with no category does not appear when any Category filter is active.",
-   "2. The part with no vendor does not appear when any Vendor filter is active.",
-   "3. The inventory part with no bin location does not appear when any Bin filter is active."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-E1; S2-E2; S2-E3",
-  "viu_status": "VIU-Pending",
-  "notes": "Seeding: create ZZAUTOTEST parts with the missing attribute and give each an invoiced sale in the window.",
-  "api_related": false
- },
- {
-  "id": "PV-FILT-13",
-  "area": "PV — Filters",
-  "title": "The Location filter is hidden for a user with access to only one location",
-  "priority": "Low",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4); user with access to exactly one location.",
-  "preconditions": [
-   "1. You are signed in as a user with access to exactly one location.",
-   "2. You are on the Parts Velocity report with data loaded."
-  ],
-  "steps": [
-   "1. Look for the Location filter in the toolbar.",
-   "2. Then sign in as a user with access to two or more locations and look again."
-  ],
-  "expected": [
-   "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.",
-   "2. For the user with access to two or more locations the Location filter IS shown."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-E4 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
-  "viu_status": "VIU-Pending",
-  "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S2-E4): 'A user with access to only one location STILL SEES the Location filter with a single selectable location.' Seeding: create a fresh ZZAUTOTEST staff member scoped to one location if none exists (Standing Rule 14 pattern).",
-  "api_related": false
- }
+  {
+    "id": "PV-NAV-01",
+    "area": "PV — Access & Defaults",
+    "title": "Parts Velocity appears under a new Parts section in the Reports navigation",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App as a user with the Manager or Office User role.",
+      "2. Your role has the Inventory Reports → View permission."
+    ],
+    "steps": [
+      "1. Open the Reports section from the main navigation.",
+      "2. Look through the report groupings for a section heading named Parts.",
+      "3. Click the entry labeled Parts Velocity."
+    ],
+    "expected": [
+      "1. A Parts section heading exists in the Reports navigation (this feature creates it - the application had no Parts reports before).",
+      "2. Under Parts there is an entry labeled Parts Velocity (the only Parts report in this release).",
+      "3. Clicking it opens the Parts Velocity report."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S1-R1",
+    "viu_status": "VIU-Pending",
+    "notes": "The spec is explicit that the Parts grouping does NOT exist today and must be added by this feature (S1-R1). VIU-confirm the exact placement and styling of the new Parts heading in the Reports navigation.",
+    "api_related": false
+  },
+  {
+    "id": "PV-NAV-02",
+    "area": "PV — Access & Defaults",
+    "title": "First visit: date range defaults to This Year and data is fetched automatically",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are signed in as a user allowed to open the report (see PV-PERM-01).",
+      "2. You are using a browser with NO saved view for this report (e.g. a fresh browser profile or after clearing the site's browser storage), so first-visit defaults apply."
+    ],
+    "steps": [
+      "1. Open Reports → Parts → Parts Velocity.",
+      "2. Look at the date range selector and the table without touching anything."
+    ],
+    "expected": [
+      "1. The date range selector shows This Year.",
+      "2. Report data loads automatically - you do not have to press anything to fetch it.",
+      "3. Rows appear ranked by Demand, highest first (the default order, see PV-ROW-03)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S1-R2; S4-R6",
+    "viu_status": "VIU-Pending",
+    "notes": "On a return visit the saved date range is used instead (covered by PV-COL-05). Seeding: needs at least a few parts with sales activity in the current year so the auto-fetch visibly returns rows.",
+    "api_related": false
+  },
+  {
+    "id": "PV-NAV-03",
+    "area": "PV — Access & Defaults",
+    "title": "A loading indicator shows while data loads and old rows are replaced only when new data returns",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are signed in as a user allowed to open the report.",
+      "2. Enough parts data exists that the report visibly takes a moment to load."
+    ],
+    "steps": [
+      "1. Open the Parts Velocity report and watch the table area during the initial load.",
+      "2. After it loads, change any filter that reloads the data from the server (for example the Type filter).",
+      "3. Watch the table while the new data is being fetched."
+    ],
+    "expected": [
+      "1. During the initial load, the table shows a loading indicator.",
+      "2. During a filter change, the loading indicator shows again.",
+      "3. The rows already on screen are replaced only when the new data comes back - the table does not blank out and rebuild mid-request."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S1-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU-confirm the exact loading indicator appearance (the spec does not pin the visual).",
+    "api_related": false
+  },
+  {
+    "id": "PV-PERM-01",
+    "area": "PV — Permissions",
+    "title": "A user with the Inventory Reports → View permission can load the report and export it",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are signed in as a user with the Manager or Office User role.",
+      "2. That user's role has the Inventory Reports → View permission.",
+      "3. Some parts have sales activity in the selected date range."
+    ],
+    "steps": [
+      "1. Open Reports → Parts → Parts Velocity.",
+      "2. Wait for the data to load.",
+      "3. Open the export menu and download the CSV."
+    ],
+    "expected": [
+      "1. The report data loads and rows are shown.",
+      "2. The export downloads successfully (both loading the report and exporting it are allowed by the Inventory Reports → View permission)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S1-R4",
+    "viu_status": "VIU-Pending",
+    "notes": "Role/permission seeding per Standing Rule 5: create a purpose-made role with Inventory Reports → View, assign it to the Tech user, test, then restore. VIU-confirm the exact permission name as shown in the roles screen.",
+    "api_related": false
+  },
+  {
+    "id": "PV-PERM-02",
+    "area": "PV — Permissions",
+    "title": "A user without the Manager or Office User role does not see the Parts Velocity navigation entry",
+    "priority": "High",
+    "type": "Negative",
+    "permissions_required": "A role WITHOUT Reports section access (not Manager, not Office User).",
+    "preconditions": [
+      "1. You are signed in as a user whose role is neither Manager nor Office User (a role without access to the Reports section)."
+    ],
+    "steps": [
+      "1. Look at the application's main navigation.",
+      "2. Try to find the Reports section and the Parts Velocity entry."
+    ],
+    "expected": [
+      "1. The user cannot reach the Reports section.",
+      "2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S1-N1",
+    "viu_status": "VIU-Pending",
+    "notes": "Role seeding per Standing Rule 5: assign the Tech user a role without Reports access, observe, then restore the original role.",
+    "api_related": false
+  },
+  {
+    "id": "PV-PERM-03",
+    "area": "PV — Permissions",
+    "title": "A user with Reports access but without Inventory Reports → View sees the entry but is denied the data and the export",
+    "priority": "High",
+    "type": "Negative",
+    "permissions_required": "Manager or Office User role (Reports section access) WITHOUT the Inventory Reports → View permission.",
+    "preconditions": [
+      "1. You are signed in as a user with the Manager or Office User role.",
+      "2. That user's role does NOT have the Inventory Reports → View permission."
+    ],
+    "steps": [
+      "1. Open the Reports section and look for the Parts Velocity entry under Parts.",
+      "2. Click the Parts Velocity entry.",
+      "3. If any export control is reachable, try to export."
+    ],
+    "expected": [
+      "1. The Parts Velocity navigation entry is still visible (the entry follows Reports-section access, not the report permission).",
+      "2. On opening the report, the standard access-denied state is shown instead of data.",
+      "3. The export is likewise denied - no file downloads."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S1-N2; S1-R4",
+    "viu_status": "VIU-Pending",
+    "notes": "The spec carries a build-note to confirm the FE really uses this shown-then-denied model (rather than hiding the entry), matching the platform's other Inventory-Reports-permissioned reports - VIU-confirm which model the build ships. VIU-confirm the exact access-denied wording (unpinned in the spec).",
+    "api_related": false
+  },
+  {
+    "id": "PV-FILT-01",
+    "area": "PV — Filters",
+    "title": "Type filter: single-select, first in row, three options, default Both; reloads",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded.",
+      "2. This is a first visit (no saved view), so the first-visit defaults apply.",
+      "3. Both inventory parts and special-order (catalogue) parts have sales activity in the selected date range."
+    ],
+    "steps": [
+      "1. Look at the first control in the filter row of the toolbar.",
+      "2. Open the Type filter and read its options.",
+      "3. Note which option is selected by default.",
+      "4. Select each Type option in turn and watch the table."
+    ],
+    "expected": [
+      "1. The Type filter is the first control in the filter row.",
+      "2. It is single-select and offers exactly three choices: Both, Inventory, and a choice for special-order catalog parts that were never put into stock. (That third choice's exact on-screen label is confirmed in the build — the spec calls it \"Catalogue\" and a rename is being considered.)",
+      "3. On a first visit the default is Both.",
+      "4. Both is an explicit selection returning inventory and special-order rows together - a deliberate filter value, not the absence of a filter.",
+      "5. Each selection immediately reloads the report limited to that type (no separate Apply step) — under Inventory every row's Type column reads Inventory; under the special-order (catalogue) choice every row shows that type; under Both, rows of both kinds appear."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R1; S3-R5 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU-confirm the exact filter control label ('Type' is the spec's name for it) and the option labels as shipped. P31 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): Chris is leaning to rename 'Catalogue' toward the special-order-parts meaning — video 43:49 'maybe we do rename it. Because you're absolutely right. Things in inventory have a catalogue item' + 44:12 'we'll have to truncate that down somehow, because that'll get a little big for a column.' Possible labels: 'Catalogue' (current spec S2-R1) OR a short special-order-parts name (not yet chosen — do NOT invent it, Rule 9). The MEANING is fixed: special-order catalog parts never put into inventory stock. Seeding for the reload leg: at least one invoiced sale of an inventory part AND at least one vendor-sourced (catalogue) part request on an invoiced/paid work order in the window. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-PV-TYPE): absorbed PV-FILT-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+    "api_related": false
+  },
+  {
+    "id": "PV-FILT-02",
+    "area": "PV — Filters",
+    "title": "Selecting a Type value immediately reloads the data limited to that type",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded.",
+      "2. Both inventory parts and catalogue (special-order) parts have sales activity in the selected date range, so both types appear under Both."
+    ],
+    "steps": [
+      "1. With Type = Both, note that the Type column shows both Inventory and Catalogue rows.",
+      "2. Select Type = Inventory.",
+      "3. Select Type = Catalogue."
+    ],
+    "expected": [
+      "1. Each selection immediately reloads the report data (no separate Apply step).",
+      "2. With Inventory selected, every row's Type column reads Inventory.",
+      "3. With Catalogue selected, every row's Type column reads Catalogue."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S2-R1; S3-R5",
+    "viu_status": "Retired 2026-07-28 (merged into PV-FILT-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "Seeding: needs at least one invoiced sale of an inventory part AND at least one vendor-sourced (catalogue) part request on an invoiced/paid work order in the window.",
+    "api_related": false
+  },
+  {
+    "id": "PV-FILT-03",
+    "area": "PV — Filters",
+    "title": "Date range selector offers exactly the eleven bounded options and no All Time",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded."
+    ],
+    "steps": [
+      "1. Open the date range selector and read every option.",
+      "2. Select a non-custom option (for example Last Month)."
+    ],
+    "expected": [
+      "1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.",
+      "2. There is NO 'All Time' option - the report always operates over a bounded date window (deliberate, per the spec's Out of Scope).",
+      "3. Selecting a non-custom option immediately reloads the report data.",
+      "4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S2-R2; §2 Out of Scope",
+    "viu_status": "VIU-Pending",
+    "notes": "Note: 'Last Sale' is still measured over all-time history (a per-part lookback, S5-R4) - that is unrelated to the missing All Time range and is not a defect.",
+    "api_related": false
+  },
+  {
+    "id": "PV-FILT-04",
+    "area": "PV — Filters",
+    "title": "Custom date range requires valid start and end dates and rejects a span over 366 days",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded."
+    ],
+    "steps": [
+      "1. Open the date range selector and choose Custom.",
+      "2. Pick only a start date and observe - then pick an end date earlier than the start and observe.",
+      "3. Pick a valid start and end date (start on or before end, within 366 days).",
+      "4. Now try a custom span wider than 366 days (for example 400 days)."
+    ],
+    "expected": [
+      "1. A date picker opens requiring both a start and an end date.",
+      "2. The report does not reload until both dates are valid; a start after the end is not accepted.",
+      "3. With both valid dates selected, the data reloads for that range.",
+      "4. A span wider than 366 days (counting both the start and end dates) is rejected - the selection is not applied."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S2-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "KNOWN-DELTA WATCH: the 366-day cap was added 2026-07-16 with the server-side model (spec ahead of the current code by design) - the cap may not exist in the build until dev ships it. VIU-confirm how the rejection is presented (unpinned).",
+    "api_related": false
+  },
+  {
+    "id": "PV-FILT-05",
+    "area": "PV — Filters",
+    "title": "Category and Vendor multi-select filters limit the table to matching parts",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded.",
+      "2. Parts with different categories and different vendors have activity in the range."
+    ],
+    "steps": [
+      "1. Open the Category filter and select one category; then add a second category.",
+      "2. Clear the Category filter.",
+      "3. Open the Vendor filter and select one vendor; then add a second vendor."
+    ],
+    "expected": [
+      "1. Both filters allow selecting more than one value (multi-select).",
+      "2. With categories selected, only parts in any of the selected categories are shown.",
+      "3. With vendors selected, only parts supplied by any of the selected vendors are shown.",
+      "4. Each change reloads the data from the server."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S2-R4; S2-R5; S2-R10",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU-confirm the exact filter labels ('Category' / 'Vendor' are the spec's names). Seeding: parts in at least two categories and from at least two vendors with in-window activity.",
+    "api_related": false
+  },
+  {
+    "id": "PV-FILT-06",
+    "area": "PV — Filters",
+    "title": "Toolbar search matches part number or description, case-insensitively, and is page-specific",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded.",
+      "2. A part exists whose part number you know, and another whose description contains a distinctive word."
+    ],
+    "steps": [
+      "1. Find the search input in the report's own toolbar (not the application's global search bar).",
+      "2. Type part of a known part number, in the wrong letter case (for example lower case for an upper-case part number).",
+      "3. Clear it and type a distinctive word from a part's description.",
+      "4. Clear it and type a category or vendor name that matches no part number or description."
+    ],
+    "expected": [
+      "1. The search input is part of the report's toolbar (page-specific), separate from the global search bar.",
+      "2. The part-number search matches despite the different letter case (case-insensitive 'contains' match).",
+      "3. The description search returns rows whose description contains the word.",
+      "4. Category and vendor names are NOT searched - use their dedicated filters instead (deliberate, to avoid false matches on common words)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S2-R6; §3 Key Decisions",
+    "viu_status": "VIU-Pending",
+    "notes": "Confirmed page-local (not global search) in the 2026-07-16 spec round. Each search change re-queries the server (S2-R10).",
+    "api_related": false
+  },
+  {
+    "id": "PV-FILT-07",
+    "area": "PV — Filters",
+    "title": "All active filters combine with AND logic",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded.",
+      "2. You know one part's type, category, and vendor."
+    ],
+    "steps": [
+      "1. Set the Type filter to that part's type.",
+      "2. Add the part's category in the Category filter.",
+      "3. Add a vendor that is NOT the part's vendor in the Vendor filter.",
+      "4. Change the Vendor filter to the part's actual vendor."
+    ],
+    "expected": [
+      "1. After steps 1-2 the part is still listed (it satisfies both filters).",
+      "2. After step 3 the part disappears - a part must satisfy EVERY active filter to appear (AND logic, not OR).",
+      "3. After step 4 the part is listed again."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S2-R7",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "PV-FILT-08",
+    "area": "PV — Filters",
+    "title": "Bin multi-select filter limits the table to inventory parts stocked in the selected bins",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded.",
+      "2. Inventory parts are stocked in at least two different bin locations."
+    ],
+    "steps": [
+      "1. Open the Bin filter and select one bin location.",
+      "2. Add a second bin location."
+    ],
+    "expected": [
+      "1. Each selection reloads the data from the server.",
+      "2. Only inventory parts stocked in ANY of the selected bins are shown.",
+      "3. The filter allows more than one bin (multi-select)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S2-R8",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU-confirm the exact filter label ('Bin' is the spec's name). Catalogue exclusion under a Bin filter is PV-FILT-09.",
+    "api_related": false
+  },
+  {
+    "id": "PV-FILT-09",
+    "area": "PV — Filters",
+    "title": "Any Bin filter excludes all catalogue rows - Type Catalogue plus a Bin filter is empty by design",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded.",
+      "2. Catalogue rows are present under Type = Both (a catalogue part has in-window activity)."
+    ],
+    "steps": [
+      "1. With Type = Both, select any bin in the Bin filter.",
+      "2. Look for special-order (catalogue) rows in the result.",
+      "3. Set the Type filter to the special-order (catalogue) choice while the Bin filter is still active."
+    ],
+    "expected": [
+      "1. With any Bin filter active, ALL special-order (catalogue) rows are excluded (they have no bin location).",
+      "2. The special-order (catalogue) choice combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R8 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28: update per latest info now, correct at the live build check later)",
+    "viu_status": "VIU-Pending",
+    "notes": "Expected-behavior case: the empty result here is correct per spec. P31 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): the Type choice's on-screen label may be renamed from 'Catalogue' to a short special-order-parts name — label VIU-confirm, meaning unchanged.",
+    "api_related": false
+  },
+  {
+    "id": "PV-FILT-10",
+    "area": "PV — Filters",
+    "title": "Location filter is rightmost, defaults to the active location, accessible-only",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4); user with access to more than one location.",
+    "preconditions": [
+      "1. You are signed in as a user with access to at least two locations.",
+      "2. You are on the Parts Velocity report on a first visit (no saved view)."
+    ],
+    "steps": [
+      "1. Look at the rightmost control in the filter row.",
+      "2. Note which location is selected by default and compare it to the location selected in the application's global location switcher.",
+      "3. Open the filter and read the list of locations.",
+      "4. Select a second location, then select the 'All Locations' option.",
+      "5. With 'All Locations' active, look at how the rows tell you which location they belong to."
+    ],
+    "expected": [
+      "1. The Location filter is the rightmost control in the filter row and is multi-select.",
+      "2. On a first visit it defaults to the user's currently active location (the one in the global location switcher).",
+      "3. The list holds the locations the signed-in user has access to, plus an 'All Locations' option.",
+      "4. Each selection reloads the data scoped to the chosen set; 'All Locations' means all locations the user can ACCESS, never beyond - a location the user cannot access is never included.",
+      "5. The location scope cascades through every metric like the other filters.",
+      "6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)"
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU-confirm the exact 'All Locations' label. Seeding: needs a user with two accessible locations and in-window activity at both (heavy multi-location seeding). VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): per-row location identifier in All-Locations view — the current spec has NO explicit Location column in the 20-column set (S4-R4), though inventory rows are per-location (S3-R1a). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9).",
+    "api_related": false
+  },
+  {
+    "id": "PV-FILT-11",
+    "area": "PV — Filters",
+    "title": "Empty state shows the standard no-data message when no parts match the filters",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded."
+    ],
+    "steps": [
+      "1. Type a nonsense string (for example 'zzqx-no-such-part') into the toolbar search so no part matches.",
+      "2. Read the message shown in the data area."
+    ],
+    "expected": [
+      "1. The server returns zero rows and the table shows the empty state.",
+      "2. The empty-state label reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S2-R11; S2-N1; §7",
+    "viu_status": "VIU-Pending",
+    "notes": "Message string is pinned verbatim in §7.",
+    "api_related": false
+  },
+  {
+    "id": "PV-FILT-12",
+    "area": "PV — Filters",
+    "title": "Parts with no category, vendor, or bin assigned are excluded when that filter is active",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded.",
+      "2. A part with in-window activity exists that has NO category assigned; another with NO vendor; an inventory part with NO bin location."
+    ],
+    "steps": [
+      "1. Confirm the three parts appear with no filters active.",
+      "2. Activate any Category filter and look for the category-less part.",
+      "3. Clear it, activate any Vendor filter, and look for the vendor-less part.",
+      "4. Clear it, activate any Bin filter, and look for the bin-less inventory part."
+    ],
+    "expected": [
+      "1. The part with no category does not appear when any Category filter is active.",
+      "2. The part with no vendor does not appear when any Vendor filter is active.",
+      "3. The inventory part with no bin location does not appear when any Bin filter is active."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S2-E1; S2-E2; S2-E3",
+    "viu_status": "VIU-Pending",
+    "notes": "Seeding: create ZZAUTOTEST parts with the missing attribute and give each an invoiced sale in the window.",
+    "api_related": false
+  },
+  {
+    "id": "PV-FILT-13",
+    "area": "PV — Filters",
+    "title": "The Location filter is hidden for a user with access to only one location",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4); user with access to exactly one location.",
+    "preconditions": [
+      "1. You are signed in as a user with access to exactly one location.",
+      "2. You are on the Parts Velocity report with data loaded."
+    ],
+    "steps": [
+      "1. Look for the Location filter in the toolbar.",
+      "2. Then sign in as a user with access to two or more locations and look again."
+    ],
+    "expected": [
+      "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.",
+      "2. For the user with access to two or more locations the Location filter IS shown."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "SV-8642 (specs/parts-velocity.md S2-E4 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+    "viu_status": "VIU-Pending",
+    "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S2-E4): 'A user with access to only one location STILL SEES the Location filter with a single selectable location.' Seeding: create a fresh ZZAUTOTEST staff member scoped to one location if none exists (Standing Rule 14 pattern).",
+    "api_related": false
+  }
 ]

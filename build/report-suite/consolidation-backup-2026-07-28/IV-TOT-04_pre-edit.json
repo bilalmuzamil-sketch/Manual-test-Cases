@@ -1,0 +1,27 @@
+{
+  "id": "IV-TOT-04",
+  "area": "IV — Totals Row",
+  "title": "Applying the Category filter, the Vendor filter, or the part search recomputes the totals on the server to match the filtered set",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. The report shows parts across at least two categories and two vendors."
+  ],
+  "steps": [
+    "1. Note the totals row, then select one Category and read the totals row again.",
+    "2. Clear it, select one Vendor, and read the totals row.",
+    "3. Clear it, type a part search that matches a subset, and read the totals row.",
+    "4. If the filtered set spans pages, check the totals from a later page too."
+  ],
+  "expected": [
+    "1. After each change, the totals row recomputes on the server over the full filtered set to match the filtered result.",
+    "2. The recomputed totals are independent of which page is currently shown."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 4 S4-R8; Story 6 S6-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

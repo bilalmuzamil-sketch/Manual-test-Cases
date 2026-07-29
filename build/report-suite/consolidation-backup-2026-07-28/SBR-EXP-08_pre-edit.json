@@ -1,0 +1,26 @@
+{
+  "id": "SBR-EXP-08",
+  "area": "SBR — Exports",
+  "title": "PDF body font size adapts to the longest positive dollar value on the four-tier scale, with fixed column widths",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+    "1. You can produce (or seed) filtered views whose LONGEST formatted positive dollar value — checked across every value in the document, including the totals row — falls in different length brackets (for example, $1,234.56 = 9 characters vs $1,000,000.00 = 13 characters)."
+  ],
+  "steps": [
+    "1. Download the Summary PDF for a view whose longest positive dollar value is 9 characters or fewer; note the body text size.",
+    "2. Repeat for views whose longest positive value is 10, 11, and 12-or-more characters (as far as seedable).",
+    "3. In each file, check whether any value overflows or wraps its column."
+  ],
+  "expected": [
+    "1. The body font follows the tier scale by the longest formatted positive dollar value in the document (totals included): 9 characters or fewer → 11px; 10 characters → 10px; 11 characters → 9px; 12 or more → 8px. 8px is the floor and 11px the ceiling.",
+    "2. Column widths are fixed for the worst case regardless of tier — the layout never breaks and no value overflows.",
+    "3. Both PDF formats adapt the same way."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R12; S14-R13",
+  "viu_status": "VIU-Pending",
+  "notes": "Exact pixel sizes need a PDF inspector or side-by-side comparison at VIU; verify the relative step-downs and the no-overflow guarantee at minimum.",
+  "api_related": false
+}

@@ -1,0 +1,26 @@
+{
+  "id": "SBC-EMPTY-03",
+  "area": "SBC — Empty & Edge States",
+  "title": "A narrowed customer selection with no data shows the empty state but the selection is kept and the customers reappear",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. The Customer filter is narrowed to specific customers who have data in the current range but none in an adjacent range."
+  ],
+  "steps": [
+    "1. Change the date range so that none of the selected customers have data.",
+    "2. Read the table and the Customer filter.",
+    "3. Change the range back."
+  ],
+  "expected": [
+    "1. The empty-state message is shown.",
+    "2. The Customer filter selection is kept (not cleared).",
+    "3. When the filters change back to a range where the selected customers have data, they reappear."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 17 S17-E1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

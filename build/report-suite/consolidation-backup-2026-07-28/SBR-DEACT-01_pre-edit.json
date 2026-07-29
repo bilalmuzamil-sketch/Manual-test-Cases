@@ -1,0 +1,22 @@
+{
+  "id": "SBR-DEACT-01",
+  "area": "SBR — Staff Deactivation",
+  "title": "Deactivating a sales rep with no customer assignments applies silently with no dialog",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Owner/Administrator/Manager profile (or equivalent custom role) with staff administration.",
+  "preconditions": [
+    "1. A ZZAUTOTEST staff member is active with the sales-rep toggle ON and NO customers assigned to them as sales rep."
+  ],
+  "steps": [
+    "1. Edit the staff member in staff administration and toggle their active status off."
+  ],
+  "expected": [
+    "1. The deactivation applies silently — no warning dialog is shown."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "Restore the staff member afterwards. The precondition check behind this branch is covered by SBR-API-06.",
+  "api_related": false
+}

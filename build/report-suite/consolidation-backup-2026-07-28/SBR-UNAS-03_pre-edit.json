@@ -1,0 +1,27 @@
+{
+  "id": "SBR-UNAS-03",
+  "area": "SBR — Show Unassigned",
+  "title": "The Unassigned row behaves like a rep row — count, expandable, in the Totals — and never carries an (Inactive) tag",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. Show Unassigned is on with a populated Unassigned row."
+  ],
+  "steps": [
+    "1. Read the Unassigned row's columns and (N) count.",
+    "2. Click its chevron.",
+    "3. Look for any \"(Inactive)\" tag."
+  ],
+  "expected": [
+    "1. The Unassigned row shows the same metric columns and the (N) count like any rep summary row.",
+    "2. It is expandable to its contributing invoices.",
+    "3. It is included in the grand Totals indicator.",
+    "4. It never carries an \"(Inactive)\" tag."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 22 S22-R5; Story 6 S6-R1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

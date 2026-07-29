@@ -1,0 +1,23 @@
+{
+  "id": "SBC-TYPE-03",
+  "area": "SBC — Product Type Filter",
+  "title": "Parts & Service applies no product-type filter",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You are on the Sales By Customer report with both S and P invoices in the date range."
+  ],
+  "steps": [
+    "1. Set Product Type to \"Parts only\" and note the visible customers/totals.",
+    "2. Set Product Type back to \"Parts & Service.\""
+  ],
+  "expected": [
+    "1. With \"Parts & Service\" selected, no product-type filter is applied — both S and P invoices are included again and counts/totals cover both."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 3 S3-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

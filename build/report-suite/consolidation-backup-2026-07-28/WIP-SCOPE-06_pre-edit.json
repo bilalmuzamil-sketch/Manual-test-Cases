@@ -1,0 +1,27 @@
+{
+  "id": "WIP-SCOPE-06",
+  "area": "WIP — Scope & Loading",
+  "title": "A single empty tab shows the no-data message while the other tabs still show their rows",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. Open work orders exist in some tabs, but at least one tab (for example, Completed) has no work orders for the current date range and location."
+  ],
+  "steps": [
+    "1. Open the Work In Progress report.",
+    "2. Open the empty tab and read its data area.",
+    "3. Open a populated tab and confirm its rows are still shown."
+  ],
+  "expected": [
+    "1. The empty tab shows the no-data message \"Empty bays, endless possibilities. Get Going!\" and no Totals row.",
+    "2. The populated tabs still show their rows normally.",
+    "3. The empty tab's label count reads \"(0)\"."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 2 S2-N2",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

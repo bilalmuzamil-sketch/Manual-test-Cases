@@ -1,0 +1,27 @@
+{
+  "id": "IV-TOT-01",
+  "area": "IV — Totals Row",
+  "title": "The totals row is labeled \"Total\" in the Part # cell, leaves the per-unit and identity cells blank, and pins its bold Total Cost far right",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. The Inventory Value report is open with rows loaded and all columns turned on."
+  ],
+  "steps": [
+    "1. Look at the row at the bottom of the report.",
+    "2. Read its Part # cell, its Description/Category/Vendor cells, and its Unit Cost/Unit Sell cells.",
+    "3. Look at its Total Cost cell and compare the number formats to the data rows."
+  ],
+  "expected": [
+    "1. A totals row is shown at the bottom, with the literal label \"Total\" in the Part # column's cell.",
+    "2. The Description, Category, and Vendor cells are blank; the Unit Cost and Unit Sell cells are blank (a per-unit price has no meaningful sum).",
+    "3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "On screen the label is \"Total\" (S4-R1) while the DOWNLOADED totals row is labeled \"Totals\" (S10-R6) — the spec states both explicitly; VIU-confirm and flag to the owner if the build differs.",
+  "api_related": false
+}

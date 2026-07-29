@@ -1,0 +1,24 @@
+{
+  "id": "SBC-SORT-05",
+  "area": "SBC — Sorting",
+  "title": "Sorting reorders only the customer summary rows; asset and invoice ordering is untouched",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. A customer with multiple assets and invoices is in the view."
+  ],
+  "steps": [
+    "1. Sort by Subtotal descending.",
+    "2. Expand a customer and an asset; read the asset order and the invoice order."
+  ],
+  "expected": [
+    "1. Only the customer summary rows are reordered by the sort.",
+    "2. Asset rows keep their own order (A→Z with \"Parts Sales\" last) and invoice rows keep their order under their asset."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

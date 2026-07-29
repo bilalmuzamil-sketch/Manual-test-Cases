@@ -1,0 +1,24 @@
+{
+  "id": "SBR-TOT-04",
+  "area": "SBR — Subtotal & Totals",
+  "title": "The column-header row is sticky to the top during vertical scroll and the Subtotal header is sticky in both axes",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. Enough rows exist to force vertical scrolling; the window is narrow enough to also force horizontal scrolling."
+  ],
+  "steps": [
+    "1. Scroll down through the rows and watch the header row.",
+    "2. Scroll right and watch the Subtotal header cell."
+  ],
+  "expected": [
+    "1. The column-header row stays stuck to the top during vertical scroll.",
+    "2. The Subtotal header cell stays visible in BOTH axes — stuck to the top while scrolling down and pinned right while scrolling sideways."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

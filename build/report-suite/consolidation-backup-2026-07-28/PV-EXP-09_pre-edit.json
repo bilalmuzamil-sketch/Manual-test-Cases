@@ -1,0 +1,25 @@
+{
+  "id": "PV-EXP-09",
+  "area": "PV — Exports",
+  "title": "Successful downloads show the exact success toasts with uppercase (CSV)/(PDF)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+  "preconditions": [
+    "1. You are on the Parts Velocity report with data loaded."
+  ],
+  "steps": [
+    "1. Download the CSV and read the toast.",
+    "2. Download the PDF and read the toast."
+  ],
+  "expected": [
+    "1. On CSV success, a success toast reads exactly: \"Velocity report exported (CSV)\" and auto-fades.",
+    "2. On PDF success, it reads exactly: \"Velocity report exported (PDF)\" and auto-fades.",
+    "3. The success toasts use UPPERCASE (CSV)/(PDF) - the failure toasts use lowercase; that casing mix is the shipped wording, documented as-is (not a bug)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/parts-velocity.md S6-R9; §7 (casing note)",
+  "viu_status": "VIU-Pending",
+  "notes": "A future copy pass may normalize the casing - until then the mixed casing is expected.",
+  "api_related": false
+}

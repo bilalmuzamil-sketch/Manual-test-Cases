@@ -178,7 +178,7 @@
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
     "spec_ref": "specs/inventory-value.md Story 5 S5-N1; §7 User Feedback Summary",
-    "viu_status": "VIU-Pending",
+    "viu_status": "Retired 2026-07-28 (merged into IV-NAV-06 per user-authorized consolidation; delete_case authorized 2026-07-28)",
     "notes": "",
     "api_related": false
   },
@@ -237,7 +237,7 @@
   {
     "id": "IV-FLT-02",
     "area": "IV — Filters & Part Search",
-    "title": "The Category filter, Vendor filter, and part search apply server-side — each change re-queries and returns the first page",
+    "title": "Category, Vendor and part search are server-side; each change returns page 1",
     "priority": "Critical",
     "type": "Functional",
     "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -248,16 +248,18 @@
     "steps": [
       "1. From page 2 (or later), select a Category and check which page shows and which rows are listed.",
       "2. Repeat with a Vendor selection.",
-      "3. Repeat with a part search."
+      "3. Repeat with a part search.",
+      "4. Also change the date range, the location selection, and the sort — watching the data area each time."
     ],
     "expected": [
       "1. Each change re-queries the server and returns the first page of the new result set.",
-      "2. The filtering covers the ENTIRE data set — matching parts that were on later pages appear — not just a narrowing of the rows on the current page."
+      "2. The filtering covers the ENTIRE data set — matching parts that were on later pages appear — not just a narrowing of the rows on the current page.",
+      "3. Every change — date range, location, Category, Vendor, part search, sort — reloads the rows from the server; while loading the standard reports loading indicator shows, and existing rows are replaced only when the new data returns."
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R8",
+    "spec_ref": "specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8",
     "viu_status": "VIU-Pending",
-    "notes": "",
+    "notes": "Every filter on this report is server-side (Story 6 context note) — only the column selection is client-side. VIU-confirm the loading indicator's appearance. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-RELOAD): absorbed IV-NAV-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
     "api_related": false
   },
   {
@@ -466,7 +468,7 @@
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
     "spec_ref": "specs/inventory-value.md Story 7 S7-N2; §7 User Feedback Summary",
-    "viu_status": "VIU-Pending",
+    "viu_status": "Retired 2026-07-28 (merged into IV-NAV-06 per user-authorized consolidation; delete_case authorized 2026-07-28)",
     "notes": "",
     "api_related": false
   }

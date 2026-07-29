@@ -1,0 +1,24 @@
+{
+  "id": "SBC-EXP-12",
+  "area": "SBC — Exports",
+  "title": "PDF action shows a loading state while exporting and a PDF export failed toast on failure",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You are on the report with data."
+  ],
+  "steps": [
+    "1. Choose \"Download (PDF)\" and immediately look at the menu action.",
+    "2. Provoke a failure (offline mode) and choose \"Download (PDF)\" again."
+  ],
+  "expected": [
+    "1. While the export is in progress, the menu's PDF action shows a loading state and is non-interactive.",
+    "2. If the export fails, an error toast is shown: \"PDF export failed.\" (dismissed by the user)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 15 S15-E1; S15-N1; §7",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

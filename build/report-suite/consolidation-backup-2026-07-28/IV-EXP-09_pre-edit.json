@@ -1,0 +1,25 @@
+{
+  "id": "IV-EXP-09",
+  "area": "IV — Exports",
+  "title": "A failed download shows the format-specific error notification, verbatim",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. A download failure can be simulated (for example, disconnect the network just before requesting the download)."
+  ],
+  "steps": [
+    "1. Simulate a failure and request the PDF download; read the notification.",
+    "2. Repeat for the CSV download."
+  ],
+  "expected": [
+    "1. The failed PDF download shows an error notification: \"Failed to export inventory value report (pdf)\".",
+    "2. The failed CSV download shows an error notification: \"Failed to export inventory value report (csv)\"."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 10 S10-R14; §7 User Feedback Summary",
+  "viu_status": "VIU-Pending",
+  "notes": "Notification texts are verbatim from the spec (note the lower-case \"(pdf)\"/\"(csv)\" in the failure messages vs the upper-case success ones).",
+  "api_related": false
+}

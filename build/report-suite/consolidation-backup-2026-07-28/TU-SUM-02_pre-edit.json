@@ -1,0 +1,26 @@
+{
+  "id": "TU-SUM-02",
+  "area": "TU — Summary",
+  "title": "Summary hours total the visible technicians from unrounded values - eye-summing the rows may differ by a cent, and all-selected equals shop totals",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+    "1. Several technicians with known clocked hours are visible (all selected in the technician filter)."
+  ],
+  "steps": [
+    "1. Read the Summary Total Hours, WO Hours, and Internal Hours.",
+    "2. Hand-sum the DISPLAYED per-row values and compare with the Summary.",
+    "3. Compare the Summary against the known shop totals for the full range at the selected location(s)."
+  ],
+  "expected": [
+    "1. Each Summary hours value is the total of that column across the VISIBLE technicians, computed from unrounded hours and rounded once for display (round-half-up).",
+    "2. Eye-summing the displayed rows MAY differ from the displayed Summary by a cent - this is expected in a compute-from-unrounded report, not a defect.",
+    "3. With every technician selected, the Summary row equals the shop totals for the full date range at the selected location(s)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S3-R3; §3 context note; S5-E1",
+  "viu_status": "VIU-Pending",
+  "notes": "'Visible technicians' = the technicians currently selected in the technician filter, not the rows scrolled into view (S3 context note).",
+  "api_related": false
+}

@@ -1,0 +1,22 @@
+{
+  "id": "SBR-LINK-02",
+  "area": "SBR — Links & Navigation",
+  "title": "Customer name on a detail row navigates the current tab to the customer's record",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access plus permission to open customer records.",
+  "preconditions": [
+    "1. A rep row is expanded with detail rows visible."
+  ],
+  "steps": [
+    "1. Click the customer name on a detail row."
+  ],
+  "expected": [
+    "1. The customer name is a clickable link that navigates the current tab to the customer's record."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 12 S12-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "Contrast with SBC where the customer name is plain text — the two reports differ by spec.",
+  "api_related": false
+}

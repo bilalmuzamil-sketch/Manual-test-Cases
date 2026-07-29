@@ -1,0 +1,26 @@
+{
+  "id": "IV-SCOPE-01",
+  "area": "IV — Row Scope",
+  "title": "A part appears only when it is not a core charge AND its on-hand quantity is greater than zero",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. ZZAUTOTEST parts exist at your active location: a normal part with positive on-hand quantity, and (for the negative side) a core-charge part and a zero-quantity part."
+  ],
+  "steps": [
+    "1. Open the Inventory Value report scoped to the location.",
+    "2. Look for the normal in-stock part.",
+    "3. Look for the core-charge part and the zero-quantity part."
+  ],
+  "expected": [
+    "1. The normal, positive-quantity, non-core part appears as one row.",
+    "2. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 2 S2-R1; S2-R2; §3 Key Decisions",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

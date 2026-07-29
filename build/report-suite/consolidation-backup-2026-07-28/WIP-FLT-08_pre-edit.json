@@ -1,0 +1,27 @@
+{
+  "id": "WIP-FLT-08",
+  "area": "WIP — Filters",
+  "title": "Advisor, customer, and asset filters combine with AND, feed the strip and Totals rows, and an empty combination shows the no-data message",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. The report shows several jobs with a known mix of advisors, customers, and assets."
+  ],
+  "steps": [
+    "1. Select an advisor, then also a customer that advisor has a job for, then also an asset from one of those jobs — checking the rows after each step.",
+    "2. Read the summary strip and the active tab's Totals row after the three selections.",
+    "3. Change one selection so that NO job passes all three filters."
+  ],
+  "expected": [
+    "1. A job must pass all three filters to remain visible (the filters combine with AND).",
+    "2. The summary strip and each tab's Totals row recompute from the still-visible jobs after every change.",
+    "3. When the combination leaves no visible jobs, every tab shows the no-data message \"Empty bays, endless possibilities. Get Going!\" and no Totals row."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R12; S7-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

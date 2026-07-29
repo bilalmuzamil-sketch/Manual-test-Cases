@@ -1,0 +1,28 @@
+{
+  "id": "SBC-EMPTY-01",
+  "area": "SBC — Empty & Edge States",
+  "title": "No matching data shows the empty-state message in the table body while the toolbar stays interactive",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You are on the report with data on screen."
+  ],
+  "steps": [
+    "1. Set a date range that contains no invoices (for example a Custom range over a quiet week far back).",
+    "2. Read the table body and try each toolbar control.",
+    "3. Also provoke the empty state via Product Type and via a location with no data, and re-check.",
+    "4. Look at the table header row's chevron."
+  ],
+  "expected": [
+    "1. The table body shows the message \"No sales data found for the selected filters.\" where customer rows would appear — not in the toolbar, the totals row, or a modal.",
+    "2. The toolbar stays visible and interactive (all filters including the Customer filter, and the action controls), so you can adjust filters without leaving the page.",
+    "3. The same empty state appears whichever filter caused it (date range, Product Type, or location).",
+    "4. The header-row chevron is hidden when the table has no visible rows."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 17 S17-R1; S17-R2; S17-R3; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "SBC-CUST-07",
+  "area": "SBC — Customer Filter",
+  "title": "Clearing every customer shows the empty state with a zero totals row",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You are on the Sales By Customer report with data on screen."
+  ],
+  "steps": [
+    "1. Open the Customer filter and activate \"Clear all\" so no customer is selected.",
+    "2. Read the table body and the totals row."
+  ],
+  "expected": [
+    "1. The report shows the empty-state message \"No sales data found for the selected filters.\"",
+    "2. The totals row shows zeros.",
+    "3. The Customer filter's collapsed label reads \"None.\""
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-N1; S17-E1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

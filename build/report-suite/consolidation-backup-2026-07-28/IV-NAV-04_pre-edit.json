@@ -1,0 +1,27 @@
+{
+  "id": "IV-NAV-04",
+  "area": "IV — Access & Display",
+  "title": "Changing the date, location, Category, Vendor, part search, or sort reloads the rows from the server with the standard loading indicator",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. The Inventory Value report is open with rows loaded."
+  ],
+  "steps": [
+    "1. Change the date range and watch the data area.",
+    "2. Change the location selection, then the Category filter, then the Vendor filter.",
+    "3. Type in the part search, then click a column header to change the sort — watching the data area each time."
+  ],
+  "expected": [
+    "1. Each change — date range, location, Category, Vendor, part search, sort — reloads the report's rows from the server.",
+    "2. While loading, the data area shows the standard reports loading indicator.",
+    "3. Existing rows are replaced only when the new data returns."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 1 S1-R4; S1-R5; S1-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "Every filter on this report is server-side (Story 6 context note) — only the column selection is client-side. VIU-confirm the loading indicator's appearance.",
+  "api_related": false
+}

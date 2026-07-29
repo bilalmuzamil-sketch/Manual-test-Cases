@@ -1,0 +1,24 @@
+{
+  "id": "SBR-STAT-03",
+  "area": "SBR — Invoice Status Filter",
+  "title": "Invoice Status is part of the contributor gate and narrows every metric",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. Rep A has only Paid invoices in range; rep B has a mix (seed ZZAUTOTEST data)."
+  ],
+  "steps": [
+    "1. Filter to \"Unpaid.\"",
+    "2. Look for rep A; read rep B's count, totals, detail rows, and the grand Totals indicator."
+  ],
+  "expected": [
+    "1. Rep A disappears (no matching invoice).",
+    "2. Rep B's summary totals, detail rows, grand Totals, and (N) count reflect only the Unpaid invoices."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 4 S4-R6; S4-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

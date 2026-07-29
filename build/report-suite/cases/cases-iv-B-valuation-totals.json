@@ -294,56 +294,62 @@
   {
     "id": "IV-TOT-01",
     "area": "IV — Totals Row",
-    "title": "The totals row is labeled \"Total\" in the Part # cell, leaves the per-unit and identity cells blank, and pins its bold Total Cost far right",
+    "title": "Totals row: Total label, blank identity/per-unit cells, pinned bold Total Cost",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The Inventory Value report is open with rows loaded and all columns turned on."
+      "2. The Inventory Value report is open with rows loaded and all columns turned on.",
+      "3. The page shows more rows than fit on the screen."
     ],
     "steps": [
       "1. Look at the row at the bottom of the report.",
       "2. Read its Part # cell, its Description/Category/Vendor cells, and its Unit Cost/Unit Sell cells.",
-      "3. Look at its Total Cost cell and compare the number formats to the data rows."
+      "3. Look at its Total Cost cell and compare the number formats to the data rows.",
+      "4. Scroll the rows up and down and watch the totals row."
     ],
     "expected": [
       "1. A totals row is shown at the bottom, with the literal label \"Total\" in the Part # column's cell.",
       "2. The Description, Category, and Vendor cells are blank; the Unit Cost and Unit Sell cells are blank (a per-unit price has no meaningful sum).",
-      "3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows."
+      "3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows.",
+      "4. The totals row stays visible at the bottom while the rows scroll."
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7",
+    "spec_ref": "specs/inventory-value.md Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5",
     "viu_status": "VIU-Pending",
-    "notes": "On screen the label is \"Total\" (S4-R1) while the DOWNLOADED totals row is labeled \"Totals\" (S10-R6) — the spec states both explicitly; VIU-confirm and flag to the owner if the build differs.",
+    "notes": "On screen the label is \"Total\" (S4-R1) while the DOWNLOADED totals row is labeled \"Totals\" (S10-R6) — the spec states both explicitly; VIU-confirm and flag to the owner if the build differs. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTSTICKY): absorbed IV-VIS-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
     "api_related": false
   },
   {
     "id": "IV-TOT-02",
     "area": "IV — Totals Row",
-    "title": "The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost over the FULL filtered set on the server, not just the visible page",
+    "title": "Totals row sums the FULL filtered set on the server, not just the visible page",
     "priority": "Critical",
     "type": "Functional",
     "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
       "2. The current filtered set spans more than one page (more rows than one page shows).",
-      "3. The Margin and Total Sell columns are turned on."
+      "3. The Margin and Total Sell columns are turned on.",
+      "4. The report shows parts across at least two categories and two vendors."
     ],
     "steps": [
       "1. Note the totals row's Qty on Hand, Margin, Total Sell, and Total Cost on page 1.",
       "2. Move to page 2 and read the totals row again.",
-      "3. Cross-check the Total Cost total against a known seeded subset (filter down to a handful of ZZAUTOTEST parts whose values you can sum by hand)."
+      "3. Cross-check the Total Cost total against a known seeded subset (filter down to a handful of ZZAUTOTEST parts whose values you can sum by hand).",
+      "4. Select one Category and read the totals row; clear it, select one Vendor; clear it, type a part search matching a subset — reading the totals row each time (from a later page too if the set spans pages)."
     ],
     "expected": [
       "1. The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost across the FULL filtered result set — every qualifying row for the current Date, Location, Category, Vendor, and part-search selection, not only the rows on the visible page.",
       "2. The totals are identical on every page (they do not change as you page).",
-      "3. The hand-summed subset matches the server-computed totals to the cent."
+      "3. The hand-summed subset matches the server-computed totals to the cent.",
+      "4. After each filter change the totals row recomputes on the server over the full filtered set, independent of which page is shown."
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 4 S4-R2; §2 Scale and data model; §4 Terminology (Filtered set)",
+    "spec_ref": "specs/inventory-value.md Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set)",
     "viu_status": "VIU-Pending",
-    "notes": "",
+    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTFILTER): absorbed IV-TOT-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
     "api_related": false
   },
   {
@@ -397,7 +403,7 @@
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
     "spec_ref": "specs/inventory-value.md Story 4 S4-R8; Story 6 S6-R6",
-    "viu_status": "VIU-Pending",
+    "viu_status": "Retired 2026-07-28 (merged into IV-TOT-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
     "notes": "",
     "api_related": false
   },
@@ -421,7 +427,7 @@
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
     "spec_ref": "specs/inventory-value.md Story 4 S4-N1; Story 1 S1-N2",
-    "viu_status": "VIU-Pending",
+    "viu_status": "Retired 2026-07-28 (CUT per usefulness audit (duplicate of the merged IV no-data case); delete_case authorized 2026-07-28)",
     "notes": "",
     "api_related": false
   }

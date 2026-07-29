@@ -1,0 +1,27 @@
+{
+  "id": "SBR-ROW-02",
+  "area": "SBR — Rep Rows & Tree",
+  "title": "Row layout: 12 columns in order, chevron plus rep name in the Date cell, blank identifier cells, bold summary vs regular detail rows",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. You are on the report with at least one rep expanded."
+  ],
+  "steps": [
+    "1. Read the column headers left to right.",
+    "2. Read a rep summary row cell by cell.",
+    "3. Compare the font weight of a summary row and a detail row."
+  ],
+  "expected": [
+    "1. The columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (12 columns).",
+    "2. On a rep summary row the Date cell holds the chevron control followed by the rep's display name (\"First Last\"); the date value is intentionally blank.",
+    "3. The Invoice, Customer, and Status cells are blank on summary rows; the metric cells carry the rep's totals across all matching invoices.",
+    "4. Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) — row type is distinguished by font weight, not background color."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 5 S5-R2; S5-R3; S5-R6; S5-R8; Story 6 S6-R4; Story 18 S18-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "SBC-SORT-01",
+  "area": "SBC — Sorting",
+  "title": "Every column is sortable except the chevron column; text sorts alphabetically and numbers by value",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. Several customers with differing values are in the current view."
+  ],
+  "steps": [
+    "1. Click each column header in turn (Customer, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal) and watch the order change.",
+    "2. Try clicking the chevron column's header position.",
+    "3. Compare a text sort (Customer) and a numeric sort (Subtotal) against the values."
+  ],
+  "expected": [
+    "1. Every column is sortable except the chevron column.",
+    "2. Text columns sort alphabetically; numeric columns sort by value (not as text)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R1; S10-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "The header chevron cell carries the expand-all control (S8-R16), not a sort.",
+  "api_related": false
+}

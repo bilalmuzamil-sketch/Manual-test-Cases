@@ -1,0 +1,24 @@
+{
+  "id": "SBC-COL-02",
+  "area": "SBC — Column Selector",
+  "title": "A toggle hides the column's header and cells together; Customer, Subtotal and the chevron column are never in the list",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You are on the report with data and the column selector open."
+  ],
+  "steps": [
+    "1. Turn the \"Shop Supplies\" toggle off, then on again, watching the table.",
+    "2. Read the toggle list for Customer, Subtotal, or a chevron entry."
+  ],
+  "expected": [
+    "1. Turning a toggle off hides that column's header and all its body cells together; turning it on restores both together.",
+    "2. The Customer and Subtotal columns and the chevron control column do NOT appear in the toggle list and are always present."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 13 S13-R5; S13-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "SBR-DEACT-07",
+  "area": "SBR — Staff Deactivation",
+  "title": "No dialog when the toggle is off, when the member is already inactive, or on reactivation — assignments resurface immediately",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
+  "preconditions": [
+    "1. ZZAUTOTEST staff member X is active WITHOUT the sales-rep toggle; ZZAUTOTEST rep Y (with assignments) is currently inactive."
+  ],
+  "steps": [
+    "1. Deactivate X and watch for a dialog.",
+    "2. Reactivate rep Y via the standard toggle and watch for a dialog; check Y's customer assignments afterwards."
+  ],
+  "expected": [
+    "1. For a staff member without the sales-rep toggle, the precondition check is skipped and no warning is shown.",
+    "2. Reactivation never shows the warning dialog (the flow does not apply to an already-inactive member).",
+    "3. After reactivation the assignments re-surface immediately with no extra action."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-N2; S13-N3; S13-E3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

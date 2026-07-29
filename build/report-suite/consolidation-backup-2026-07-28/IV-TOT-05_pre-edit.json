@@ -1,0 +1,24 @@
+{
+  "id": "IV-TOT-05",
+  "area": "IV — Totals Row",
+  "title": "When no parts qualify, no totals row is shown",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. The filters can be set so that no part qualifies (for example, a part search matching nothing)."
+  ],
+  "steps": [
+    "1. Apply a filter or search that leaves no qualifying part.",
+    "2. Look at the bottom of the data area."
+  ],
+  "expected": [
+    "1. The no-data message shows instead of rows and NO totals row is shown."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 4 S4-N1; Story 1 S1-N2",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

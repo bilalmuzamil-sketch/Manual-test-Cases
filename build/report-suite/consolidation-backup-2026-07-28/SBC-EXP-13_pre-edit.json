@@ -1,0 +1,29 @@
+{
+  "id": "SBC-EXP-13",
+  "area": "SBC — Exports",
+  "title": "Print fetches the report PDF and opens the native print dialog in the current tab, disabled while the table is first loading",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You are on the report with data fully loaded."
+  ],
+  "steps": [
+    "1. Open the overflow menu and choose \"Print\"; watch the action and the browser.",
+    "2. Cancel the print dialog and check the page behind it.",
+    "3. Reload the report and try to activate Print while the table is still in its initial loading state.",
+    "4. Provoke a failure (offline mode) and choose Print again."
+  ],
+  "expected": [
+    "1. Print fetches the report's PDF (same content as the PDF download) and then opens the browser's native print dialog in the current tab — no new browser tab is opened.",
+    "2. The page behind the print dialog is unchanged.",
+    "3. The Print action shows a loading state while the PDF is fetched and is non-interactive during that time.",
+    "4. Print is disabled while the report table is still in its initial loading state.",
+    "5. If the PDF request fails, an error toast is shown: \"PDF generation failed.\""
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 16 S16-R3; S16-R3a; S16-R3b; S16-R3c; S16-R4; S16-R5; S16-N1; §7",
+  "viu_status": "Retire-Proposed (video P25, user ruling 2026-07-28 — awaiting TestRail delete authorization)",
+  "notes": "RETIRE-PROPOSED (P25, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)) — this case's ONLY purpose is the Print behavior, and the video removes Print from Sales By Customer entirely (31:14: 'print here, this should not exist. I'm going to make sure. That's cut out of the spec.'). OVERRIDDEN spec wording: Story 16 S16-R1..R6 / S16-N1 / §7 ('Print PDF fails'). NOT deleted — Rule 6: kept in TestRail (C30171) until the user explicitly authorizes delete_case; body left as authored for the record. Prior note: the distinct failure wording Print='PDF generation failed.' vs PDF download='PDF export failed.'",
+  "api_related": false
+}

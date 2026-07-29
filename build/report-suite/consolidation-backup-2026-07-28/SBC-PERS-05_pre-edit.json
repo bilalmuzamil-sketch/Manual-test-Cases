@@ -1,0 +1,28 @@
+{
+  "id": "SBC-PERS-05",
+  "area": "SBC — Saved View & Persistence",
+  "title": "With no saved view every setting uses its own default",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. Clear the browser's site data for the application (or use a fresh browser profile)."
+  ],
+  "steps": [
+    "1. Open the Sales By Customer report.",
+    "2. Read every filter, the sort, and the visible columns."
+  ],
+  "expected": [
+    "1. Date range = This Month.",
+    "2. Product Type = \"Parts & Service.\"",
+    "3. Location = your active location.",
+    "4. Customer filter = all customers selected (label \"All customers\").",
+    "5. Sort = Customer name ascending.",
+    "6. All nine toggleable columns visible."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 6 S6-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

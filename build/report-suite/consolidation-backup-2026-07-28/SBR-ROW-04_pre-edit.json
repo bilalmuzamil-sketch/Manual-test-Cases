@@ -1,0 +1,26 @@
+{
+  "id": "SBR-ROW-04",
+  "area": "SBR — Rep Rows & Tree",
+  "title": "Column alignment is a hard invariant: every row renders exactly the report's column count with blanks in position",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. You are on the report with a rep expanded and the grand Totals row visible."
+  ],
+  "steps": [
+    "1. Compare a summary row and a detail row column by column against the headers.",
+    "2. Look for any cell whose content has shifted into a neighbouring column or wrapped.",
+    "3. Look at the desktop Totals row's leading cells."
+  ],
+  "expected": [
+    "1. Every rep summary row and every invoice detail row renders exactly the report's column count in the declared left-to-right order.",
+    "2. A cell with nothing to show is rendered blank in its position — never shifted or wrapped; a drifted row is a defect.",
+    "3. Both forms of the grand Totals indicator are exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 5 S5-R10; S5-N2; Story 18 S18-R6a",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

@@ -1,495 +1,495 @@
 [
- {
-  "id": "TU-LINK-01",
-  "area": "TU — Deep Links",
-  "title": "Total Hours is a real link with a non-color affordance and keyboard access, while the Summary's Total Hours is not a link",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. You are on the Technician Utilization report with technician rows and the Summary row visible."
-  ],
-  "steps": [
-   "1. Look at a technician row's Total Hours value.",
-   "2. Tab to it with the keyboard and check the focus indicator; press Enter.",
-   "3. Go back and look at the Summary row's Total Hours value."
-  ],
-  "expected": [
-   "1. Every technician row's Total Hours is rendered as a link (every rendered row has clocked time > 0, so the link always applies).",
-   "2. The link is distinguished by more than color - it carries an underline (or equivalent non-color affordance), is keyboard-focusable with a visible focus indicator, and activates on Enter.",
-   "3. The Summary row's Total Hours value is NOT a link."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S6-R1; S6-N1; S8-R14",
-  "viu_status": "VIU-Pending",
-  "notes": "The affordance and focus indicator must hold in dark mode too (S8-R14 - dark-mode side in TU-VIS-02).",
-  "api_related": false
- },
- {
-  "id": "TU-LINK-02",
-  "area": "TU — Deep Links",
-  "title": "The Total Hours link opens Timesheet Activities in the same tab, pre-filtered to that technician and date range",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. You are on the Technician Utilization report with a non-default date range selected (so the carried range is provable)."
-  ],
-  "steps": [
-   "1. Click a technician's Total Hours link.",
-   "2. Check which browser tab the Timesheet Activities report opened in.",
-   "3. Read the technician filter and the date range on the opened report."
-  ],
-  "expected": [
-   "1. The Timesheet Activities report opens in the SAME browser tab.",
-   "2. It is already filtered to that technician.",
-   "3. It uses the same date range that was active on the Technician Utilization report."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S6-R2; S6-R3; S6-R4",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "TU-LINK-03",
-  "area": "TU — Deep Links",
-  "title": "For the same range and single active location with closed records, Total Hours reconciles to the Timesheet Activities total to the cent",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. A technician has only CLOSED (clocked-out) records in the range - no open clock.",
-   "2. The report's location filter holds exactly ONE location, and it is the user's currently active shop."
-  ],
-  "steps": [
-   "1. Read the technician's Total Hours on the Technician Utilization report (two decimals).",
-   "2. Click the Total Hours link and read the same technician's total on the opened Timesheet Activities report.",
-   "3. Compare the two to the cent."
-  ],
-  "expected": [
-   "1. The two totals MATCH to the cent (two decimals) - both reports read the same clock records and round the same way (round-half-up, from unrounded values).",
-   "2. Under this exact scope (same range, same single location, closed records) a mismatch IS a defect.",
-   "3. The two documented scope differences (open clocks, multi-location drill-through) are covered by TU-LINK-04 and TU-LINK-05 and are NOT defects."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S1-R9; §2; §5 Assumptions",
-  "viu_status": "VIU-Pending",
-  "notes": "This is the report's headline reconciliation guarantee - verify with controlled, closed clock records.",
-  "api_related": false
- },
- {
-  "id": "TU-LINK-04",
-  "area": "TU — Deep Links",
-  "title": "Reconciliation exception (a): an open clock is snapshotted at each report's own load instant - a difference of the elapsed time is expected",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. A technician is still clocked in (an open, not-yet-clocked-out record) inside the range."
-  ],
-  "steps": [
-   "1. Load the Technician Utilization report and read the technician's Total Hours; watch whether the value ticks on screen.",
-   "2. Wait a minute or two, then open Timesheet Activities via the Total Hours link and read its total.",
-   "3. Compare the two values."
-  ],
-  "expected": [
-   "1. The open time is counted UP TO THE MOMENT THE REPORT LOADS - a fixed snapshot taken at load, not a value that keeps ticking on screen (matching how Timesheet Activities treats an open record).",
-   "2. The two reports, loaded at different moments, MAY differ by the elapsed open time - this is a deliberate scope difference of the reconciliation guarantee, EXPECTED and NOT a defect.",
-   "3. Reloading the Technician Utilization report takes a fresh snapshot (the value grows by the elapsed time)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S1-R9(a); S1-E1",
-  "viu_status": "VIU-Pending",
-  "notes": "Expected-behavior case (documented exception #1 of 2). Seeding: leave a test technician clocked in during the check; clock them out afterwards.",
-  "api_related": false
- },
- {
-  "id": "TU-LINK-05",
-  "area": "TU — Deep Links",
-  "title": "Reconciliation exception (b): the link passes no location, so with multiple locations selected the opened view shows only the active shop",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to at least two locations.",
-  "preconditions": [
-   "1. A technician has clocked time at TWO locations in the range.",
-   "2. Both locations are selected in the report's location filter; only one of them is the user's currently active shop."
-  ],
-  "steps": [
-   "1. Read the technician's pooled Total Hours (both locations).",
-   "2. Click the Total Hours link and read the total on the opened Timesheet Activities report.",
-   "3. Compare the two values."
-  ],
-  "expected": [
-   "1. The link passes the technician and the date range ONLY - it does NOT pass the location selection.",
-   "2. Timesheet Activities opens for the user's currently active shop, so it shows one location's portion - it will differ from (or be disjoint with) the multi-location row value.",
-   "3. This is a KNOWN drill-through limitation, EXPECTED and NOT a data defect (the same applies when the single selected location is not the active shop)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S6-R6; S1-R9(b)",
-  "viu_status": "VIU-Pending",
-  "notes": "Expected-behavior case (documented exception #2 of 2). HEAVY SEEDING: one technician clocked at two locations in the window.",
-  "api_related": false
- },
- {
-  "id": "TU-LINK-06",
-  "area": "TU — Deep Links",
-  "title": "A day row's Total Hours links to Timesheet Activities for that technician on that single day",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. A technician row is expanded and shows day rows."
-  ],
-  "steps": [
-   "1. Click the Total Hours value on one day row.",
-   "2. Read the technician filter and the date range on the opened Timesheet Activities report."
-  ],
-  "expected": [
-   "1. Timesheet Activities opens filtered to that technician.",
-   "2. The date range covers ONLY that single day."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S6-R5",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "TU-EXP-01",
-  "area": "TU — Exports",
-  "title": "The three-dot menu sits leftmost in the toolbar's action cluster and holds the three verbatim download options",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. You are on the Technician Utilization report with rows loaded."
-  ],
-  "steps": [
-   "1. Find the three-dot button in the toolbar and note its position in the action cluster.",
-   "2. Open it and read the options."
-  ],
-  "expected": [
-   "1. The three-dot download menu sits LEFTMOST in the toolbar's action cluster.",
-   "2. The menu holds: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", and \"Download (CSV)\".",
-   "3. The labels match exactly - only the expanded option carries the word \"View\" (the shipped strings, documented as-is)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S7-R1; S7-R2; S7-R3; S7-R4; S8-R2; S7-R12 note",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "TU-EXP-02",
-  "area": "TU — Exports",
-  "title": "The Summary PDF holds the technician rows plus the Summary, and the Expanded PDF adds every per-day breakdown",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. You are on the Technician Utilization report with several technicians who have multi-day clock records."
-  ],
-  "steps": [
-   "1. Choose \"Download Summary (PDF)\" and open the file; check its filename.",
-   "2. Choose \"Download Expanded View (PDF)\" and open the file; check its filename."
-  ],
-  "expected": [
-   "1. The Summary PDF shows the technician rows and the Summary row (no day rows); it downloads as \"Technician-Utilization-Summary.pdf\".",
-   "2. The Expanded PDF shows the technician rows, EACH technician's per-day breakdown, and the Summary row; it downloads as \"Technician-Utilization-Expanded.pdf\".",
-   "3. The PDF filenames are Title-Case as shipped."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S7-R5; S7-R6; S7-R12",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "TU-EXP-03",
-  "area": "TU — Exports",
-  "title": "The CSV is always summary-level, quotes comma-containing values, and downloads with the lower-case filename",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. At least one technician's Est. Lost Labor exceeds $1,000 (so a value contains a comma)."
-  ],
-  "steps": [
-   "1. Choose \"Download (CSV)\" and check the filename.",
-   "2. Open the file in a plain-text editor and find the over-$1,000 value.",
-   "3. Check for any day rows in the file."
-  ],
-  "expected": [
-   "1. The file downloads as \"technician-utilization.csv\" (lower-case as shipped, unlike the Title-Case PDFs).",
-   "2. The CSV shows the technician rows and the Summary row - always this summary-level content; it does NOT vary by the summary/expanded choice (no day rows).",
-   "3. Any value containing a comma (e.g. \"$1,234.50\") is wrapped in double quotes per standard CSV escaping, so the columns parse correctly."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S7-R7; S7-R10; S7-R12",
-  "viu_status": "VIU-Pending",
-  "notes": "Seeding: enough internal hours at a rated location to push Est. Lost Labor past $1,000.",
-  "api_related": false
- },
- {
-  "id": "TU-EXP-04",
-  "area": "TU — Exports",
-  "title": "Every download covers only the selected technicians, the selected locations, and the active date range",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. Several technicians are listed and the user has access to more than one location."
-  ],
-  "steps": [
-   "1. Deselect one technician, select a specific location set, and set a distinctive date range.",
-   "2. Download the Summary PDF, the Expanded PDF, and the CSV.",
-   "3. Check each file's technicians, the data scope, and the covered range.",
-   "4. Re-select all technicians and download once more."
-  ],
-  "expected": [
-   "1. Every download includes ONLY the technicians currently selected in the technician filter - the deselected technician is absent from all three files.",
-   "2. Every download covers the location(s) currently selected in the location filter and the date range currently active on the report.",
-   "3. With every technician selected, the download covers all technicians for the range at the selected location(s)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S7-R8; S7-R9; S7-E1; S9-R8",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "TU-EXP-05",
-  "area": "TU — Exports",
-  "title": "Downloads keep the on-screen column order and number formats but always order rows Technician A to Z, ignoring the on-screen sort",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. Rows exist including a \"—\" Est. Lost Labor value.",
-   "2. The on-screen rows are sorted by something OTHER than Technician A to Z (e.g. Est. Lost Labor descending)."
-  ],
-  "steps": [
-   "1. With the non-default sort applied, download the CSV and a PDF.",
-   "2. Read each file's column order, number formats, and the \"—\" cell.",
-   "3. Read each file's row order."
-  ],
-  "expected": [
-   "1. The downloaded files use the same column order and number formats as the on-screen report, including the \"—\" rendering for an unknown Est. Lost Labor.",
-   "2. Rows in EVERY download are ordered by Technician name A to Z (the default order) - the on-screen column sort is client-side only and is NOT carried into the export."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S7-R10; S7-R10a",
-  "viu_status": "VIU-Pending",
-  "notes": "Expected-behavior case: the export deliberately ignores the on-screen sort (unlike the Parts Velocity report, whose export follows the active sort).",
-  "api_related": false
- },
- {
-  "id": "TU-EXP-06",
-  "area": "TU — Exports",
-  "title": "The shop logo shows at the top of both PDF views when set, no logo shows when unset, and the CSV never includes it",
-  "priority": "Low",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); ability to set/unset the shop logo in settings.",
-  "preconditions": [
-   "1. You can toggle the shop's logo in the shop settings (restore the original state afterwards - shared env)."
-  ],
-  "steps": [
-   "1. With a shop logo set, download the Summary PDF and the Expanded PDF and look at the top of each.",
-   "2. Download the CSV and inspect it.",
-   "3. Remove the shop logo and download both PDFs again."
-  ],
-  "expected": [
-   "1. With a logo set, BOTH PDF views show that logo at the top of the report.",
-   "2. The CSV never includes the logo.",
-   "3. With no logo set, the PDF views show no logo (no placeholder, no error)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S7-R11; S7-N2; S7-N3",
-  "viu_status": "VIU-Pending",
-  "notes": "Restore the shop logo state after the test (shared environment).",
-  "api_related": false
- },
- {
-  "id": "TU-EXP-07",
-  "area": "TU — Exports",
-  "title": "Choosing a download with no technician selected is a silent no-op - no file and no message",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. You are on the Technician Utilization report with rows loaded."
-  ],
-  "steps": [
-   "1. Use \"Clear all\" in the Filter by Technician filter so no technician is selected.",
-   "2. Choose each download option in turn (Summary PDF, Expanded PDF, CSV).",
-   "3. Watch for any file download and any notification."
-  ],
-  "expected": [
-   "1. Nothing happens: NO file downloads and NO message appears (not even an error).",
-   "2. This silent no-op is the specified behavior for every download option when no technician is selected."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S7-N1; §7 context note",
-  "viu_status": "VIU-Pending",
-  "notes": "Expected-behavior case (documented silent no-op).",
-  "api_related": false
- },
- {
-  "id": "TU-EXP-08",
-  "area": "TU — Exports",
-  "title": "A starting download shows the Download started notification and a failed download shows Failed to download report",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. You are on the Technician Utilization report with rows loaded.",
-   "2. You can force a download failure (e.g. drop the network connection just before triggering the download)."
-  ],
-  "steps": [
-   "1. Trigger a normal download and read the notification.",
-   "2. Trigger a download under the failure condition and read the notification."
-  ],
-  "expected": [
-   "1. When a download starts, a success notification reads exactly: \"Download started\".",
-   "2. When a download fails, an error notification reads exactly: \"Failed to download report\"."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md Story 7 Error Handling; §7",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU note: record the failure-induction method used.",
-  "api_related": false
- },
- {
-  "id": "TU-LOC-01",
-  "area": "TU — Location Filter",
-  "title": "The Location filter is the rightmost multi-select; All Locations = select-all",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to more than one location.",
-  "preconditions": [
-   "1. You are signed in as a user with access to at least two locations.",
-   "2. You are on the Technician Utilization report."
-  ],
-  "steps": [
-   "1. Look at the rightmost control in the toolbar and read its label.",
-   "2. Open it and read the listed options.",
-   "3. Choose \"All Locations\", then uncheck one individual location.",
-   "4. With every accessible location selected, look at how the report tells you which location the shown data belongs to."
-  ],
-  "expected": [
-   "1. The toolbar has a location filter labeled \"Location\" - a multi-select and the RIGHTMOST control.",
-   "2. It lists the locations the signed-in user has access to, plus an \"All Locations\" option.",
-   "3. \"All Locations\" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations.",
-   "4. With all locations selected you can tell which location the shown data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build; this report pools each technician's hours into one row, so the marking may take a different form here.)"
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8656 (specs/technician-utilization.md S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
-  "viu_status": "VIU-Pending",
-  "notes": "Labels pinned verbatim (\"Location\" / \"All Locations\"). VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): location identifier in All-Locations view — the current spec has NO per-row location identifier (hours pooled across locations into one row per technician, S9-R4). Exact control/label/form unpinned — VIU-confirm, do not invent (Rule 9).",
-  "api_related": false
- },
- {
-  "id": "TU-LOC-02",
-  "area": "TU — Location Filter",
-  "title": "Changing the location selection reloads the report with hours pooled into one row per technician, never beyond accessible locations",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to at least two locations.",
-  "preconditions": [
-   "1. A technician has clocked time at TWO accessible locations in the range.",
-   "2. You are on the Technician Utilization report."
-  ],
-  "steps": [
-   "1. Select only location A and read the technician's hours.",
-   "2. Add location B to the selection and watch the report.",
-   "3. Count the technician's rows and compare the hours against A + B.",
-   "4. Expand the technician and check the day rows on a day with time at both locations."
-  ],
-  "expected": [
-   "1. Selecting one, several, or all locations RELOADS the report scoped to that set (unlike the technician filter, which is on-screen only).",
-   "2. All metrics (technician rows, per-day rows, and the Summary) reflect only clock records at the selected location(s).",
-   "3. The technician's hours are POOLED across the selected locations into ONE row (one row per technician, not one per location); per-day rows pool the same way.",
-   "4. Scoping never goes beyond the user's accessible locations - a location the user cannot access is never included."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S9-R3; S9-R4; S9-R5",
-  "viu_status": "VIU-Pending",
-  "notes": "HEAVY SEEDING: one technician with clock records at two locations in one window.",
-  "api_related": false
- },
- {
-  "id": "TU-LOC-03",
-  "area": "TU — Location Filter",
-  "title": "The saved location selection restores defensively - inaccessible locations are dropped and an empty remainder falls back to the active location",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); admin ability to change the test user's location access.",
-  "preconditions": [
-   "1. The user saved a location selection that includes a location their access to was later removed."
-  ],
-  "steps": [
-   "1. Return to the Technician Utilization report and read the restored location selection.",
-   "2. Repeat with a saved selection consisting ONLY of now-inaccessible locations."
-  ],
-  "expected": [
-   "1. Any saved location the user can no longer access is DROPPED from the restored selection; the remaining accessible locations restore normally.",
-   "2. If the remaining set is empty, the report falls back to the user's currently active location (the first-visit default).",
-   "3. The report loads without an error in both cases."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S9-R6; S1-R8; S9-R2",
-  "viu_status": "VIU-Pending",
-  "notes": "Seeding: save a multi-location selection, then remove the user's access to one/all of them (restore access afterwards - shared env).",
-  "api_related": false
- },
- {
-  "id": "TU-LOC-04",
-  "area": "TU — Location Filter",
-  "title": "Deselecting every location falls back to the active location instead of showing nothing",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. You are on the Technician Utilization report with at least one location selected."
-  ],
-  "steps": [
-   "1. In the Location filter, deselect every location (empty the filter).",
-   "2. Watch what the report loads."
-  ],
-  "expected": [
-   "1. The report falls back to the user's currently active location rather than showing nothing.",
-   "2. Rows for the active location load normally."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S9-R7",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "TU-LOC-05",
-  "area": "TU — Location Filter",
-  "title": "The Location filter is hidden for a user with access to only one location",
-  "priority": "Low",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to exactly one location.",
-  "preconditions": [
-   "1. You are signed in as a user with access to exactly one location.",
-   "2. You are on the Technician Utilization report."
-  ],
-  "steps": [
-   "1. Look for the Location filter in the toolbar.",
-   "2. Then sign in as a user with access to two or more locations and look again."
-  ],
-  "expected": [
-   "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.",
-   "2. For the user with access to two or more locations the Location filter IS shown."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8656 (specs/technician-utilization.md S9-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
-  "viu_status": "VIU-Pending",
-  "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S9-N1): 'A user with access to only one location still sees the filter with a single selectable location.' Seeding: a fresh ZZAUTOTEST staff member scoped to one location if none exists.",
-  "api_related": false
- }
+  {
+    "id": "TU-LINK-01",
+    "area": "TU — Deep Links",
+    "title": "Total Hours is a real link with a non-color affordance and keyboard access, while the Summary's Total Hours is not a link",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. You are on the Technician Utilization report with technician rows and the Summary row visible."
+    ],
+    "steps": [
+      "1. Look at a technician row's Total Hours value.",
+      "2. Tab to it with the keyboard and check the focus indicator; press Enter.",
+      "3. Go back and look at the Summary row's Total Hours value."
+    ],
+    "expected": [
+      "1. Every technician row's Total Hours is rendered as a link (every rendered row has clocked time > 0, so the link always applies).",
+      "2. The link is distinguished by more than color - it carries an underline (or equivalent non-color affordance), is keyboard-focusable with a visible focus indicator, and activates on Enter.",
+      "3. The Summary row's Total Hours value is NOT a link."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S6-R1; S6-N1; S8-R14",
+    "viu_status": "VIU-Pending",
+    "notes": "The affordance and focus indicator must hold in dark mode too (S8-R14 - dark-mode side in TU-VIS-02).",
+    "api_related": false
+  },
+  {
+    "id": "TU-LINK-02",
+    "area": "TU — Deep Links",
+    "title": "The Total Hours link opens Timesheet Activities in the same tab, pre-filtered to that technician and date range",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. You are on the Technician Utilization report with a non-default date range selected (so the carried range is provable)."
+    ],
+    "steps": [
+      "1. Click a technician's Total Hours link.",
+      "2. Check which browser tab the Timesheet Activities report opened in.",
+      "3. Read the technician filter and the date range on the opened report."
+    ],
+    "expected": [
+      "1. The Timesheet Activities report opens in the SAME browser tab.",
+      "2. It is already filtered to that technician.",
+      "3. It uses the same date range that was active on the Technician Utilization report."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S6-R2; S6-R3; S6-R4",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "TU-LINK-03",
+    "area": "TU — Deep Links",
+    "title": "Same range, single location, closed records: Total Hours matches Timesheet",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. A technician has only CLOSED (clocked-out) records in the range - no open clock.",
+      "2. The report's location filter holds exactly ONE location, and it is the user's currently active shop."
+    ],
+    "steps": [
+      "1. Read the technician's Total Hours on the Technician Utilization report (two decimals).",
+      "2. Click the Total Hours link and read the same technician's total on the opened Timesheet Activities report.",
+      "3. Compare the two, to two decimals."
+    ],
+    "expected": [
+      "1. The two totals MATCH exactly, to two decimals (these values are hours, not money) - both reports read the same clock records and round the same way (round-half-up, from unrounded values).",
+      "2. Under this exact scope (same range, same single location, closed records) a mismatch IS a defect.",
+      "3. The two documented scope differences (open clocks, multi-location drill-through) are covered by separate cases and are NOT defects."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S1-R9; §2; §5 Assumptions",
+    "viu_status": "VIU-Pending",
+    "notes": "This is the report's headline reconciliation guarantee - verify with controlled, closed clock records. FIX-WORDING repair 2026-07-28 (sense-check): 'to the cent' corrected to 'to two decimals' — the compared totals are hours. The open-clock and multi-location exceptions are TU-LINK-04 and TU-LINK-05.",
+    "api_related": false
+  },
+  {
+    "id": "TU-LINK-04",
+    "area": "TU — Deep Links",
+    "title": "Reconciliation exception (a): an open clock is snapshotted at each report's own load instant - a difference of the elapsed time is expected",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. A technician is still clocked in (an open, not-yet-clocked-out record) inside the range."
+    ],
+    "steps": [
+      "1. Load the Technician Utilization report and read the technician's Total Hours; watch whether the value ticks on screen.",
+      "2. Wait a minute or two, then open Timesheet Activities via the Total Hours link and read its total.",
+      "3. Compare the two values."
+    ],
+    "expected": [
+      "1. The open time is counted UP TO THE MOMENT THE REPORT LOADS - a fixed snapshot taken at load, not a value that keeps ticking on screen (matching how Timesheet Activities treats an open record).",
+      "2. The two reports, loaded at different moments, MAY differ by the elapsed open time - this is a deliberate scope difference of the reconciliation guarantee, EXPECTED and NOT a defect.",
+      "3. Reloading the Technician Utilization report takes a fresh snapshot (the value grows by the elapsed time)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S1-R9(a); S1-E1",
+    "viu_status": "VIU-Pending",
+    "notes": "Expected-behavior case (documented exception #1 of 2). Seeding: leave a test technician clocked in during the check; clock them out afterwards.",
+    "api_related": false
+  },
+  {
+    "id": "TU-LINK-05",
+    "area": "TU — Deep Links",
+    "title": "Reconciliation exception (b): the link passes no location, so with multiple locations selected the opened view shows only the active shop",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to at least two locations.",
+    "preconditions": [
+      "1. A technician has clocked time at TWO locations in the range.",
+      "2. Both locations are selected in the report's location filter; only one of them is the user's currently active shop."
+    ],
+    "steps": [
+      "1. Read the technician's pooled Total Hours (both locations).",
+      "2. Click the Total Hours link and read the total on the opened Timesheet Activities report.",
+      "3. Compare the two values."
+    ],
+    "expected": [
+      "1. The link passes the technician and the date range ONLY - it does NOT pass the location selection.",
+      "2. Timesheet Activities opens for the user's currently active shop, so it shows one location's portion - it will differ from (or be disjoint with) the multi-location row value.",
+      "3. This is a KNOWN drill-through limitation, EXPECTED and NOT a data defect (the same applies when the single selected location is not the active shop)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S6-R6; S1-R9(b)",
+    "viu_status": "VIU-Pending",
+    "notes": "Expected-behavior case (documented exception #2 of 2). HEAVY SEEDING: one technician clocked at two locations in the window.",
+    "api_related": false
+  },
+  {
+    "id": "TU-LINK-06",
+    "area": "TU — Deep Links",
+    "title": "A day row's Total Hours links to Timesheet Activities for that technician on that single day",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. A technician row is expanded and shows day rows."
+    ],
+    "steps": [
+      "1. Click the Total Hours value on one day row.",
+      "2. Read the technician filter and the date range on the opened Timesheet Activities report."
+    ],
+    "expected": [
+      "1. Timesheet Activities opens filtered to that technician.",
+      "2. The date range covers ONLY that single day."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S6-R5",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "TU-EXP-01",
+    "area": "TU — Exports",
+    "title": "The three-dot menu sits leftmost in the toolbar's action cluster and holds the three verbatim download options",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. You are on the Technician Utilization report with rows loaded."
+    ],
+    "steps": [
+      "1. Find the three-dot button in the toolbar and note its position in the action cluster.",
+      "2. Open it and read the options."
+    ],
+    "expected": [
+      "1. The three-dot download menu sits LEFTMOST in the toolbar's action cluster.",
+      "2. The menu holds: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", and \"Download (CSV)\".",
+      "3. The labels match exactly - only the expanded option carries the word \"View\" (the shipped strings, documented as-is)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S7-R1; S7-R2; S7-R3; S7-R4; S8-R2; S7-R12 note",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "TU-EXP-02",
+    "area": "TU — Exports",
+    "title": "The Summary PDF holds the technician rows plus the Summary, and the Expanded PDF adds every per-day breakdown",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. You are on the Technician Utilization report with several technicians who have multi-day clock records."
+    ],
+    "steps": [
+      "1. Choose \"Download Summary (PDF)\" and open the file; check its filename.",
+      "2. Choose \"Download Expanded View (PDF)\" and open the file; check its filename."
+    ],
+    "expected": [
+      "1. The Summary PDF shows the technician rows and the Summary row (no day rows); it downloads as \"Technician-Utilization-Summary.pdf\".",
+      "2. The Expanded PDF shows the technician rows, EACH technician's per-day breakdown, and the Summary row; it downloads as \"Technician-Utilization-Expanded.pdf\".",
+      "3. The PDF filenames are Title-Case as shipped."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S7-R5; S7-R6; S7-R12",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "TU-EXP-03",
+    "area": "TU — Exports",
+    "title": "The CSV is always summary-level, quotes comma-containing values, and downloads with the lower-case filename",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. At least one technician's Est. Lost Labor exceeds $1,000 (so a value contains a comma)."
+    ],
+    "steps": [
+      "1. Choose \"Download (CSV)\" and check the filename.",
+      "2. Open the file in a plain-text editor and find the over-$1,000 value.",
+      "3. Check for any day rows in the file."
+    ],
+    "expected": [
+      "1. The file downloads as \"technician-utilization.csv\" (lower-case as shipped, unlike the Title-Case PDFs).",
+      "2. The CSV shows the technician rows and the Summary row - always this summary-level content; it does NOT vary by the summary/expanded choice (no day rows).",
+      "3. Any value containing a comma (e.g. \"$1,234.50\") is wrapped in double quotes per standard CSV escaping, so the columns parse correctly."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S7-R7; S7-R10; S7-R12",
+    "viu_status": "VIU-Pending",
+    "notes": "Seeding: enough internal hours at a rated location to push Est. Lost Labor past $1,000.",
+    "api_related": false
+  },
+  {
+    "id": "TU-EXP-04",
+    "area": "TU — Exports",
+    "title": "Every download covers only the selected technicians, the selected locations, and the active date range",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. Several technicians are listed and the user has access to more than one location."
+    ],
+    "steps": [
+      "1. Deselect one technician, select a specific location set, and set a distinctive date range.",
+      "2. Download the Summary PDF, the Expanded PDF, and the CSV.",
+      "3. Check each file's technicians, the data scope, and the covered range.",
+      "4. Re-select all technicians and download once more."
+    ],
+    "expected": [
+      "1. Every download includes ONLY the technicians currently selected in the technician filter - the deselected technician is absent from all three files.",
+      "2. Every download covers the location(s) currently selected in the location filter and the date range currently active on the report.",
+      "3. With every technician selected, the download covers all technicians for the range at the selected location(s)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S7-R8; S7-R9; S7-E1; S9-R8",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "TU-EXP-05",
+    "area": "TU — Exports",
+    "title": "Downloads keep the on-screen column order and number formats but always order rows Technician A to Z, ignoring the on-screen sort",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. Rows exist including a \"—\" Est. Lost Labor value.",
+      "2. The on-screen rows are sorted by something OTHER than Technician A to Z (e.g. Est. Lost Labor descending)."
+    ],
+    "steps": [
+      "1. With the non-default sort applied, download the CSV and a PDF.",
+      "2. Read each file's column order, number formats, and the \"—\" cell.",
+      "3. Read each file's row order."
+    ],
+    "expected": [
+      "1. The downloaded files use the same column order and number formats as the on-screen report, including the \"—\" rendering for an unknown Est. Lost Labor.",
+      "2. Rows in EVERY download are ordered by Technician name A to Z (the default order) - the on-screen column sort is client-side only and is NOT carried into the export."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S7-R10; S7-R10a",
+    "viu_status": "VIU-Pending",
+    "notes": "Expected-behavior case: the export deliberately ignores the on-screen sort (unlike the Parts Velocity report, whose export follows the active sort).",
+    "api_related": false
+  },
+  {
+    "id": "TU-EXP-06",
+    "area": "TU — Exports",
+    "title": "The shop logo shows at the top of both PDF views when set, no logo shows when unset, and the CSV never includes it",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); ability to set/unset the shop logo in settings.",
+    "preconditions": [
+      "1. You can toggle the shop's logo in the shop settings (restore the original state afterwards - shared env)."
+    ],
+    "steps": [
+      "1. With a shop logo set, download the Summary PDF and the Expanded PDF and look at the top of each.",
+      "2. Download the CSV and inspect it.",
+      "3. Remove the shop logo and download both PDFs again."
+    ],
+    "expected": [
+      "1. With a logo set, BOTH PDF views show that logo at the top of the report.",
+      "2. The CSV never includes the logo.",
+      "3. With no logo set, the PDF views show no logo (no placeholder, no error)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S7-R11; S7-N2; S7-N3",
+    "viu_status": "VIU-Pending",
+    "notes": "Restore the shop logo state after the test (shared environment).",
+    "api_related": false
+  },
+  {
+    "id": "TU-EXP-07",
+    "area": "TU — Exports",
+    "title": "Choosing a download with no technician selected is a silent no-op - no file and no message",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. You are on the Technician Utilization report with rows loaded."
+    ],
+    "steps": [
+      "1. Use \"Clear all\" in the Filter by Technician filter so no technician is selected.",
+      "2. Choose each download option in turn (Summary PDF, Expanded PDF, CSV).",
+      "3. Watch for any file download and any notification."
+    ],
+    "expected": [
+      "1. Nothing happens: NO file downloads and NO message appears (not even an error).",
+      "2. This silent no-op is the specified behavior for every download option when no technician is selected."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S7-N1; §7 context note",
+    "viu_status": "VIU-Pending",
+    "notes": "Expected-behavior case (documented silent no-op).",
+    "api_related": false
+  },
+  {
+    "id": "TU-EXP-08",
+    "area": "TU — Exports",
+    "title": "A starting download shows the Download started notification and a failed download shows Failed to download report",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. You are on the Technician Utilization report with rows loaded.",
+      "2. You can force a download failure (e.g. drop the network connection just before triggering the download)."
+    ],
+    "steps": [
+      "1. Trigger a normal download and read the notification.",
+      "2. Trigger a download under the failure condition and read the notification."
+    ],
+    "expected": [
+      "1. When a download starts, a success notification reads exactly: \"Download started\".",
+      "2. When a download fails, an error notification reads exactly: \"Failed to download report\"."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md Story 7 Error Handling; §7",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU note: record the failure-induction method used.",
+    "api_related": false
+  },
+  {
+    "id": "TU-LOC-01",
+    "area": "TU — Location Filter",
+    "title": "The Location filter is the rightmost multi-select; All Locations = select-all",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to more than one location.",
+    "preconditions": [
+      "1. You are signed in as a user with access to at least two locations.",
+      "2. You are on the Technician Utilization report."
+    ],
+    "steps": [
+      "1. Look at the rightmost control in the toolbar and read its label.",
+      "2. Open it and read the listed options.",
+      "3. Choose \"All Locations\", then uncheck one individual location.",
+      "4. With every accessible location selected, look at how the report tells you which location the shown data belongs to."
+    ],
+    "expected": [
+      "1. The toolbar has a location filter labeled \"Location\" - a multi-select and the RIGHTMOST control.",
+      "2. It lists the locations the signed-in user has access to, plus an \"All Locations\" option.",
+      "3. \"All Locations\" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations.",
+      "4. With all locations selected you can tell which location the shown data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build; this report pools each technician's hours into one row, so the marking may take a different form here.)"
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "SV-8656 (specs/technician-utilization.md S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+    "viu_status": "VIU-Pending",
+    "notes": "Labels pinned verbatim (\"Location\" / \"All Locations\"). VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): location identifier in All-Locations view — the current spec has NO per-row location identifier (hours pooled across locations into one row per technician, S9-R4). Exact control/label/form unpinned — VIU-confirm, do not invent (Rule 9).",
+    "api_related": false
+  },
+  {
+    "id": "TU-LOC-02",
+    "area": "TU — Location Filter",
+    "title": "Changing the location selection reloads the report with hours pooled into one row per technician, never beyond accessible locations",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to at least two locations.",
+    "preconditions": [
+      "1. A technician has clocked time at TWO accessible locations in the range.",
+      "2. You are on the Technician Utilization report."
+    ],
+    "steps": [
+      "1. Select only location A and read the technician's hours.",
+      "2. Add location B to the selection and watch the report.",
+      "3. Count the technician's rows and compare the hours against A + B.",
+      "4. Expand the technician and check the day rows on a day with time at both locations."
+    ],
+    "expected": [
+      "1. Selecting one, several, or all locations RELOADS the report scoped to that set (unlike the technician filter, which is on-screen only).",
+      "2. All metrics (technician rows, per-day rows, and the Summary) reflect only clock records at the selected location(s).",
+      "3. The technician's hours are POOLED across the selected locations into ONE row (one row per technician, not one per location); per-day rows pool the same way.",
+      "4. Scoping never goes beyond the user's accessible locations - a location the user cannot access is never included."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S9-R3; S9-R4; S9-R5",
+    "viu_status": "VIU-Pending",
+    "notes": "HEAVY SEEDING: one technician with clock records at two locations in one window.",
+    "api_related": false
+  },
+  {
+    "id": "TU-LOC-03",
+    "area": "TU — Location Filter",
+    "title": "The saved location selection restores defensively - inaccessible locations are dropped and an empty remainder falls back to the active location",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); admin ability to change the test user's location access.",
+    "preconditions": [
+      "1. The user saved a location selection that includes a location their access to was later removed."
+    ],
+    "steps": [
+      "1. Return to the Technician Utilization report and read the restored location selection.",
+      "2. Repeat with a saved selection consisting ONLY of now-inaccessible locations."
+    ],
+    "expected": [
+      "1. Any saved location the user can no longer access is DROPPED from the restored selection; the remaining accessible locations restore normally.",
+      "2. If the remaining set is empty, the report falls back to the user's currently active location (the first-visit default).",
+      "3. The report loads without an error in both cases."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S9-R6; S1-R8; S9-R2",
+    "viu_status": "VIU-Pending",
+    "notes": "Seeding: save a multi-location selection, then remove the user's access to one/all of them (restore access afterwards - shared env).",
+    "api_related": false
+  },
+  {
+    "id": "TU-LOC-04",
+    "area": "TU — Location Filter",
+    "title": "Deselecting every location falls back to the active location instead of showing nothing",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. You are on the Technician Utilization report with at least one location selected."
+    ],
+    "steps": [
+      "1. In the Location filter, deselect every location (empty the filter).",
+      "2. Watch what the report loads."
+    ],
+    "expected": [
+      "1. The report falls back to the user's currently active location rather than showing nothing.",
+      "2. Rows for the active location load normally."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S9-R7",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "TU-LOC-05",
+    "area": "TU — Location Filter",
+    "title": "The Location filter is hidden for a user with access to only one location",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to exactly one location.",
+    "preconditions": [
+      "1. You are signed in as a user with access to exactly one location.",
+      "2. You are on the Technician Utilization report."
+    ],
+    "steps": [
+      "1. Look for the Location filter in the toolbar.",
+      "2. Then sign in as a user with access to two or more locations and look again."
+    ],
+    "expected": [
+      "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.",
+      "2. For the user with access to two or more locations the Location filter IS shown."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "SV-8656 (specs/technician-utilization.md S9-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+    "viu_status": "VIU-Pending",
+    "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S9-N1): 'A user with access to only one location still sees the filter with a single selectable location.' Seeding: a fresh ZZAUTOTEST staff member scoped to one location if none exists.",
+    "api_related": false
+  }
 ]

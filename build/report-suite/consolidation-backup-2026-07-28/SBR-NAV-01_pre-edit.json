@@ -1,0 +1,28 @@
+{
+  "id": "SBR-NAV-01",
+  "area": "SBR — Access & Navigation",
+  "title": "Sales By Representative appears at the bottom of the Performance group and opens the report",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user who can see the reports in the Performance group of the Reports navigation.",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. You can see the other reports in the Performance group.",
+    "3. You know (or note down) the current order of the Reports navigation entries before checking."
+  ],
+  "steps": [
+    "1. Open the Reports area and read the Performance group of the left-side navigation top to bottom.",
+    "2. Compare the rest of the navigation entries with their order before this report was added.",
+    "3. Click the \"Sales By Representative\" entry."
+  ],
+  "expected": [
+    "1. \"Sales By Representative\" appears in the Performance group, at the BOTTOM of the group — the label is the full word \"Representative,\" not a \"Rep\" shorthand.",
+    "2. The addition is additive: no existing entry is moved, replaced, or reordered, and the relative order of every other navigation entry is unchanged.",
+    "3. Selecting the entry opens the report in the main content area."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 1 S1-R1; S1-R2; S1-R3; S1-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

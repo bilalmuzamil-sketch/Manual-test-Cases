@@ -1,0 +1,24 @@
+{
+  "id": "SBC-EXP-08",
+  "area": "SBC — Exports",
+  "title": "PDF page is A4 landscape with 25px margins and a footer with the ShopView label and page numbers",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You have downloaded the PDF for a view with enough rows to span more than one page."
+  ],
+  "steps": [
+    "1. Open the PDF and check the page setup.",
+    "2. Read the footer on each page."
+  ],
+  "expected": [
+    "1. The PDF is A4 landscape with 25px margins on all sides, using the application's standard font.",
+    "2. The footer has a centered \"Software Powered by ShopView\" label and a right-aligned page number \"Page X of Y.\""
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 15 S15-R5; S15-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

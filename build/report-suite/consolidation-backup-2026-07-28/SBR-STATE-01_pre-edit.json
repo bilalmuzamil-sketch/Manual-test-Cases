@@ -1,0 +1,27 @@
+{
+  "id": "SBR-STATE-01",
+  "area": "SBR — Loading, Empty & Error States",
+  "title": "The empty state shows \"No sales activity matches the current filters.\" with no grand Totals — including when no rep was ever credited",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+    "1. You are on the report."
+  ],
+  "steps": [
+    "1. Apply a filter set that matches no invoices for any rep (for example, a date range with no activity), with Show Unassigned OFF or with no matching unassigned invoices either.",
+    "2. Read the data area and look for the grand Totals indicator.",
+    "3. If checkable: view an organization/location state where NO staff member has ever been credited with an invoice, and compare the message."
+  ],
+  "expected": [
+    "1. The table shows no data rows and the empty-state message \"No sales activity matches the current filters.\"",
+    "2. The grand Totals indicator is NOT shown.",
+    "3. The same message appears when no staff member has ever been credited — there is no separate \"no reps configured\" message; the report is contributor-driven.",
+    "4. Whenever at least one rep row (or the Unassigned row) IS in the result set, the rep list renders and no empty/error message shows."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 16 S16-R1; S16-R2; S16-N1; §7",
+  "viu_status": "VIU-Pending",
+  "notes": "Empty-state message is verbatim from §7.",
+  "api_related": false
+}

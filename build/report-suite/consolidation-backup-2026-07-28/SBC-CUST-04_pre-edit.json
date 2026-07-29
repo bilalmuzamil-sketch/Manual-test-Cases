@@ -1,0 +1,27 @@
+{
+  "id": "SBC-CUST-04",
+  "area": "SBC — Customer Filter",
+  "title": "First load starts in the all-customers state and the report shows every customer",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. Your browser has no saved view for this report.",
+    "2. Several customers have invoices in the default date range."
+  ],
+  "steps": [
+    "1. Open the Sales By Customer report.",
+    "2. Read the Customer filter's collapsed label.",
+    "3. Check the customer rows shown."
+  ],
+  "expected": [
+    "1. The Customer filter's collapsed label reads \"All customers.\"",
+    "2. The report shows every customer matching the other active filters.",
+    "3. The all-customers state is an explicit state — while it is active, any customer that appears later (new data) is included automatically."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R4; S18-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "The label deliberately does NOT use an \"N of M\" form (2026-07-21 change) — an \"N of M\" label at VIU is a build-behind-spec deviation.",
+  "api_related": false
+}

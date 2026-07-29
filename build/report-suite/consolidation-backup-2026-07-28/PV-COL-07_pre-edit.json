@@ -1,0 +1,23 @@
+{
+  "id": "PV-COL-07",
+  "area": "PV — Columns & Remembered View",
+  "title": "A saved view with a stale schema version is ignored and the current defaults load",
+  "priority": "Low",
+  "type": "Negative",
+  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+  "preconditions": [
+    "1. The browser holds a saved view whose stored schema version does not match the current version of the report's saved format (seed by editing the stored value's version marker in browser storage)."
+  ],
+  "steps": [
+    "1. Open the Parts Velocity report with the stale-version saved view in place."
+  ],
+  "expected": [
+    "1. The stale view is ignored entirely.",
+    "2. The report loads the current defaults: This Year, Both, the active location, the 14-column default set, Demand descending."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/parts-velocity.md S4-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "Requires browser-devtools seeding of the stored view - record the storage key/format found at VIU.",
+  "api_related": false
+}

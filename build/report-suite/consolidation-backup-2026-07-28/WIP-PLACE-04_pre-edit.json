@@ -1,0 +1,24 @@
+{
+  "id": "WIP-PLACE-04",
+  "area": "WIP — Tab Placement",
+  "title": "An Approved work order with no clocked time and no received part lands in \"Approved - not started\"",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. A ZZAUTOTEST service work order in Approved status exists within the current date range and location, with no labor time clocked and no part received against it."
+  ],
+  "steps": [
+    "1. Open the Work In Progress report.",
+    "2. Look for the seeded Approved work order in each tab."
+  ],
+  "expected": [
+    "1. The work order appears in the \"Approved - not started\" tab and nowhere else."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 3 S3-R4 (not-started branch)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

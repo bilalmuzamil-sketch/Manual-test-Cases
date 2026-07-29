@@ -1,0 +1,26 @@
+{
+  "id": "SBC-TYPE-01",
+  "area": "SBC — Product Type Filter",
+  "title": "Product Type dropdown offers exactly three options with Parts & Service as the default",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You are on the Sales By Customer report with no saved view (first visit or cleared browser storage)."
+  ],
+  "steps": [
+    "1. Find the \"Product Type\" dropdown in the report toolbar.",
+    "2. Read its current value before touching it.",
+    "3. Open it and read the options in order."
+  ],
+  "expected": [
+    "1. A \"Product Type\" dropdown is visible in the report toolbar.",
+    "2. The default selection on first load is \"Parts & Service.\"",
+    "3. It offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only.\""
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 3 S3-R1; S3-R2; S3-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

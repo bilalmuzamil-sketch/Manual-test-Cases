@@ -1,0 +1,24 @@
+{
+  "id": "SBR-CALC-04",
+  "area": "SBR — Inv. Hrs & Calculations",
+  "title": "Edge: a delta that rounds to zero shows 0.0 in the default color, and negatives always use an explicit minus with one decimal",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. If producible, an invoice whose delta is tiny (e.g., +0.04) and one with a small negative delta (e.g., -0.5) exist."
+  ],
+  "steps": [
+    "1. Read the tiny-delta invoice's Inv. Hrs.",
+    "2. Read the small-negative invoice's Inv. Hrs."
+  ],
+  "expected": [
+    "1. A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green.",
+    "2. Negative values always use an explicit minus and one decimal (e.g., -0.5)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 9 S9-E1; S9-E2",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

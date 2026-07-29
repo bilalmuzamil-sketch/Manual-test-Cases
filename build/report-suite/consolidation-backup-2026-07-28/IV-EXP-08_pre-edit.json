@@ -1,0 +1,25 @@
+{
+  "id": "IV-EXP-08",
+  "area": "IV — Exports",
+  "title": "A successful download shows the format-specific success notification, verbatim",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. The Inventory Value report is open with rows loaded (under the export cap)."
+  ],
+  "steps": [
+    "1. Download the PDF and read the notification.",
+    "2. Download the CSV and read the notification."
+  ],
+  "expected": [
+    "1. The PDF download shows a success notification: \"Inventory Value report exported (PDF)\".",
+    "2. The CSV download shows a success notification: \"Inventory Value report exported (CSV)\"."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 10 S10-R13; §7 User Feedback Summary",
+  "viu_status": "VIU-Pending",
+  "notes": "Notification texts are verbatim from the spec.",
+  "api_related": false
+}

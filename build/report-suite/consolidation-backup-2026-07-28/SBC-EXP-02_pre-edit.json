@@ -1,0 +1,26 @@
+{
+  "id": "SBC-EXP-02",
+  "area": "SBC — Exports",
+  "title": "CSV download is a plain .csv file named by the active date range per the filename map",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You are on the report with data."
+  ],
+  "steps": [
+    "1. Set the range to This Month and choose \"Download (CSV)\"; note the downloaded filename.",
+    "2. Repeat for at least Today, Last Quarter, and a Custom range.",
+    "3. Open a downloaded file in a text editor and in a spreadsheet."
+  ],
+  "expected": [
+    "1. The filename follows the range map: Today → sales-by-customer-today.csv; Yesterday → sales-by-customer-yesterday.csv; This Week → sales-by-customer-this_week.csv; Last Week → sales-by-customer-last_week.csv; This Month → sales-by-customer-this_month.csv; Last Month → sales-by-customer-last_month.csv; This Year → sales-by-customer-this_year.csv; Last Year → sales-by-customer-last_year.csv; This Quarter → sales-by-customer-this_quarter.csv; Last Quarter → sales-by-customer-last_quarter.csv; Custom → sales-by-customer-custom.csv.",
+    "2. For Custom the literal word \"custom\" is used — the actual start/end dates are not in the filename.",
+    "3. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet — not an .xlsx workbook and not a JSON file."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 14 S14-R4; S14-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

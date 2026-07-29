@@ -1,0 +1,26 @@
+{
+  "id": "SBR-BADGE-01",
+  "area": "SBR — Payment Status Badge",
+  "title": "Status column sits between Customer and Inv. Hrs and every detail row shows the mapped badge text",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. Invoices exist covering paid, overpaid, prepaid (zero balance), prepaid (balance owed), partially paid, and unpaid (as seeded for SBR-STAT-02).",
+    "2. The owning rep is expanded."
+  ],
+  "steps": [
+    "1. Locate the Status column relative to its neighbours.",
+    "2. Read the badge on each seeded invoice's detail row."
+  ],
+  "expected": [
+    "1. The Status column sits between the Customer column and the Inv. Hrs column.",
+    "2. Every detail row renders a small colored badge reading \"Paid,\" \"Partially Paid,\" or \"Unpaid\" — badge rendering is unconditional on detail rows.",
+    "3. The mapping matches §3: paid → Paid; overpaid → Paid; prepaid with zero balance → Paid; prepaid with a balance owed → Partially Paid; partially_paid → Partially Paid; unpaid → Unpaid."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 8 S8-R1; S8-R2; S8-N1; §3 payment-status mapping",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

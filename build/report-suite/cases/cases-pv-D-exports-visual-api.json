@@ -1,441 +1,443 @@
 [
- {
-  "id": "PV-EXP-01",
-  "area": "PV — Exports",
-  "title": "The overflow button opens an export menu with Download (PDF) and Download (CSV) in that order",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded."
-  ],
-  "steps": [
-   "1. Find the ⋯ overflow button - the leftmost control in the toolbar's action cluster.",
-   "2. Click it and read the menu items top to bottom."
-  ],
-  "expected": [
-   "1. The ⋯ overflow button sits leftmost in the toolbar's action cluster.",
-   "2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R1",
-  "viu_status": "VIU-Pending",
-  "notes": "Menu labels pinned verbatim in the spec.",
-  "api_related": false
- },
- {
-  "id": "PV-EXP-02",
-  "area": "PV — Exports",
-  "title": "Both exports reflect the filters and search active at the time of export",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded across types, categories, and locations."
-  ],
-  "steps": [
-   "1. Set a distinctive filter mix: Type = Inventory, a single category, a short date range, and a search string.",
-   "2. Download the CSV and open it.",
-   "3. Download the PDF and open it."
-  ],
-  "expected": [
-   "1. Both files contain only the rows matching the date range, type, category, vendor, bin, location, and search active at export time - not a full unfiltered dump.",
-   "2. The exported rows match what the on-screen grid was showing."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R2; §3 Key Decisions",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "PV-EXP-03",
-  "area": "PV — Exports",
-  "title": "Exports include only the enabled columns, in the canonical on-screen order",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded."
-  ],
-  "steps": [
-   "1. Hide two default columns (e.g. Category, Margin %) and enable a hidden one (e.g. Units Returned).",
-   "2. Download the CSV and read its column headers in order.",
-   "3. Download the PDF and read its columns in order."
-  ],
-  "expected": [
-   "1. Both exports contain ONLY the currently enabled columns - the hidden ones are absent.",
-   "2. Columns appear in the CANONICAL order (the fixed on-screen order) - the re-enabled Units Returned sits right after Units Sold, NOT appended at the end.",
-   "3. The export mirrors the visible grid."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R3; S4-R4",
-  "viu_status": "VIU-Pending",
-  "notes": "KNOWN BUILD-DELTA (stated in the spec): the current export builds its column order from the user's visible-columns array, appending a re-enabled column at the END instead of its canonical slot - authored to spec; expect a deviation until dev aligns it.",
-  "api_related": false
- },
- {
-  "id": "PV-EXP-04",
-  "area": "PV — Exports",
-  "title": "Exports reflect the active sort - including Min/Max sorts, the default Demand order, and identical null placement",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded, including rows with — values in a sortable column (e.g. On Hand on catalogue rows).",
-   "2. Min and Max are enabled."
-  ],
-  "steps": [
-   "1. Without clicking any header (default Demand descending), download the CSV and check the row order.",
-   "2. Sort by Min ascending, export, and check the order including where the — rows land.",
-   "3. Sort by On Hand descending, export, and check the null placement."
-  ],
-  "expected": [
-   "1. The default Demand-descending order is exported when the user has not chosen another column.",
-   "2. Every column's sort is honored in the export - including Min and Max.",
-   "3. The export renders the EXACT server order, including null placement (nulls first on ascending, last on descending) - the export and the on-screen grid match; there is no on-screen-vs-export null-sorting difference."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R4; S3-R3",
-  "viu_status": "VIU-Pending",
-  "notes": "Depends on the server-side sort model (2026-07-16 spec round; spec ahead of code by design) - record the build behavior at VIU.",
-  "api_related": false
- },
- {
-  "id": "PV-EXP-05",
-  "area": "PV — Exports",
-  "title": "PDF: named velocity-report.pdf, A3 landscape, titled Parts Velocity, with 18-character text truncation but Part # untruncated",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded, including a part with a Description, Category, and Vendor each longer than 18 characters and a long Part #."
-  ],
-  "steps": [
-   "1. Download the PDF and check the saved filename.",
-   "2. Open it and check the page format and title.",
-   "3. Find the long-text part's row and read Description, Category, Vendor, and Part #."
-  ],
-  "expected": [
-   "1. The file downloads as velocity-report.pdf.",
-   "2. The PDF is formatted for A3 landscape and titled Parts Velocity.",
-   "3. Description, Category, and Vendor are truncated to 18 characters in the PDF.",
-   "4. Part # is NOT truncated."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R5; S6-R6",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "PV-EXP-06",
-  "area": "PV — Exports",
-  "title": "CSV: named velocity-report.csv with full untruncated text values and Last Sale as a raw integer",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded, including a part with a Description longer than 18 characters and a part with a Last Sale value."
-  ],
-  "steps": [
-   "1. Download the CSV and check the saved filename.",
-   "2. Open it and read the long part's Description, Category, and Vendor.",
-   "3. Read the Last Sale column value."
-  ],
-  "expected": [
-   "1. The file downloads as velocity-report.csv.",
-   "2. The CSV carries the FULL, untruncated Description / Category / Vendor values (unlike the PDF's 18-character cut).",
-   "3. Last Sale is a raw integer in the CSV (e.g. 42) - the 'N days' wording is PDF/on-screen only."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R5; S6-R6; S6-R8",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "PV-EXP-07",
-  "area": "PV — Exports",
-  "title": "Null values render as an em-dash in both exports, and Last Sale renders as 'N days' in the PDF",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. Rows with null values exist (a catalogue row for On Hand / Turns / Yr / Min / Max; a row with billed units 0 for Unit Cost / Sell Price; a never-sold row for Last Sale).",
-   "2. All nullable columns are enabled."
-  ],
-  "steps": [
-   "1. Download the CSV and locate the null cells.",
-   "2. Download the PDF and locate the same cells.",
-   "3. In the PDF, read a non-null Last Sale value."
-  ],
-  "expected": [
-   "1. A null value renders as — (em-dash) in BOTH the CSV and the PDF, in every nullable field: Unit Cost, Sell Price, Margin %, On Hand, Turns / Yr, Last Sale, Min, Max.",
-   "2. Revenue, Margin, and the count metrics are never null in the exports either ($0.00 / 0.00 / 0).",
-   "3. In the PDF, Last Sale renders as 'N days' (e.g. 42 days)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R7; S6-R8; S3-R9",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "PV-EXP-08",
-  "area": "PV — Exports",
-  "title": "Export alignment: Type centered, text columns left-aligned, numeric and money columns right-aligned",
-  "priority": "Low",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded and several columns of each kind visible."
-  ],
-  "steps": [
-   "1. Download the PDF and look at the alignment of each column.",
-   "2. Open the CSV in a spreadsheet tool and check the produced alignment/formatting where applicable."
-  ],
-  "expected": [
-   "1. In the exports, the Type column is CENTERED.",
-   "2. The text columns (Part #, Description, Category, Vendor) are left-aligned.",
-   "3. EVERY numeric and money column is right-aligned.",
-   "4. This is a deliberate export-only treatment - the on-screen table is all-left-aligned (PV-ROW-05); the difference is documented, not a defect."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R10; S3-R8)",
-  "viu_status": "VIU-Pending",
-  "notes": "Expected-behavior case (deliberate screen-vs-export difference). P31 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): the Type column's VALUES may be renamed from 'Catalogue' (video P31) — the centered-alignment rule is unaffected; check the exported value text at VIU.",
-  "api_related": false
- },
- {
-  "id": "PV-EXP-09",
-  "area": "PV — Exports",
-  "title": "Successful downloads show the exact success toasts with uppercase (CSV)/(PDF)",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded."
-  ],
-  "steps": [
-   "1. Download the CSV and read the toast.",
-   "2. Download the PDF and read the toast."
-  ],
-  "expected": [
-   "1. On CSV success, a success toast reads exactly: \"Velocity report exported (CSV)\" and auto-fades.",
-   "2. On PDF success, it reads exactly: \"Velocity report exported (PDF)\" and auto-fades.",
-   "3. The success toasts use UPPERCASE (CSV)/(PDF) - the failure toasts use lowercase; that casing mix is the shipped wording, documented as-is (not a bug)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R9; §7 (casing note)",
-  "viu_status": "VIU-Pending",
-  "notes": "A future copy pass may normalize the casing - until then the mixed casing is expected.",
-  "api_related": false
- },
- {
-  "id": "PV-EXP-10",
-  "area": "PV — Exports",
-  "title": "A failed export shows the server message when available, otherwise the exact fallback error toast with lowercase (csv)/(pdf)",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded.",
-   "2. You can force an export failure (e.g. drop the network connection just before triggering the download, or induce a server error)."
-  ],
-  "steps": [
-   "1. Trigger a CSV export under the failure condition and read the toast.",
-   "2. Trigger a PDF export under the failure condition and read the toast."
-  ],
-  "expected": [
-   "1. An error toast is shown on failure.",
-   "2. When the server provides a message, that server message is shown.",
-   "3. Otherwise the toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" - lowercase (csv)/(pdf), per the documented shipped casing."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-N1; §7",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU note: record the failure-induction method used (offline toggle / devtools request blocking).",
-  "api_related": false
- },
- {
-  "id": "PV-VIS-01",
-  "area": "PV — Visual Conformance",
-  "title": "The report uses the standard two-tone layout: white card surfaces on a soft blue-grey backdrop with an edge-to-edge table",
-  "priority": "Low",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded, in light mode."
-  ],
-  "steps": [
-   "1. Look at the page background, the toolbar, and the table surfaces.",
-   "2. Look at the card corners and the table's horizontal extent."
-  ],
-  "expected": [
-   "1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).",
-   "2. There is NO card border-radius - the table runs edge to edge.",
-   "3. The layout matches the application's other reports (consistency goal, §1)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S7-R1; §2",
-  "viu_status": "VIU-Pending",
-  "notes": "Story 7 is the normative visual spec for this report as built (S7-R7).",
-  "api_related": false
- },
- {
-  "id": "PV-VIS-02",
-  "area": "PV — Visual Conformance",
-  "title": "Toolbar and table detail styling: paddings, white header with 1px top border, white body cells, 2rem edge padding",
-  "priority": "Low",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded (use browser devtools to measure paddings)."
-  ],
-  "steps": [
-   "1. Inspect the toolbar's background and internal padding.",
-   "2. Inspect the table header cells and the border between header and toolbar.",
-   "3. Inspect the body cells and the first/last cell padding in a row."
-  ],
-  "expected": [
-   "1. The toolbar background is white (black in dark mode) with internal padding 32px top, 2rem right, 24px bottom, 2rem left.",
-   "2. Header cells have a white background and a 1px top border separating them from the toolbar.",
-   "3. Body cells have a white background.",
-   "4. The leftmost cell in every row (header and body) has 2rem left padding; the rightmost cell has 2rem right padding."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S7-R2; S7-R3; S7-R4; S7-R5",
-  "viu_status": "VIU-Pending",
-  "notes": "Pixel-level assertions - verify with devtools computed styles at VIU.",
-  "api_related": false
- },
- {
-  "id": "PV-VIS-03",
-  "area": "PV — Visual Conformance",
-  "title": "Dark mode is supported and the grey info icon keeps at least 3:1 contrast in both modes",
-  "priority": "Low",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded and dark mode available in the application."
-  ],
-  "steps": [
-   "1. Switch the application to dark mode.",
-   "2. Look at the page background, toolbar, and cells.",
-   "3. Check the grey ⓘ info icon against its cell background in dark mode, then again in light mode."
-  ],
-  "expected": [
-   "1. The report supports dark mode: page background, toolbar, and cells use their dark-mode equivalents.",
-   "2. The grey ⓘ info icon uses a token meeting at least a 3:1 contrast ratio against the cell background in BOTH light and dark mode."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S7-R6",
-  "viu_status": "VIU-Pending",
-  "notes": "Measure the contrast ratio with a devtools/contrast tool at VIU.",
-  "api_related": false
- },
- {
-  "id": "PV-API-01",
-  "area": "PV — API",
-  "title": "The report is server-paginated - the backend returns one page of rows at a time",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with more rows in the result set than one page holds.",
-   "2. Browser devtools (network tab) are open to observe the backend requests."
-  ],
-  "steps": [
-   "1. Load the report and observe the backend data request and its response size.",
-   "2. Move to the next page of rows and observe the traffic."
-  ],
-  "expected": [
-   "1. The backend returns ONE page of rows at a time - the full result set is not shipped to the browser.",
-   "2. Paging is resolved on the server: moving to another page issues a fresh backend request for that page.",
-   "3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md §2 (server-paginated); S2-R10)",
-  "viu_status": "VIU-Pending",
-  "notes": "Generic backend-behavior case (no REST contract in the spec - do NOT assert endpoint paths; observe whatever request the build makes and record it at VIU). KNOWN-DELTA WATCH: the server-side model is the committed build target from 2026-07-16 - spec ahead of current code by design. P30 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): pagination STANDS on every page — video 45:05 Stefan: 'we are definitely having pagination on every page, so with the current code base, we are basically forcing the user to scroll.' Chris wants to revisit infinite-scroll/lazy-load LATER (45:42 'let's flag that... revisit pagination, infinite, scroll, and load') — pagination-behavior details (page size, control style) = VIU-confirm.",
-  "api_related": true
- },
- {
-  "id": "PV-API-02",
-  "area": "PV — API",
-  "title": "Every filter or search change re-queries the server and returns the first page of the new result set",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded and the browser devtools network tab open."
-  ],
-  "steps": [
-   "1. Change each of these in turn and watch the network traffic: Type, date range, Bin, Location, Category, Vendor, and the toolbar search.",
-   "2. After a filter change while on a later page, note which page of results is shown."
-  ],
-  "expected": [
-   "1. EACH change (Type, date range, Bin, Location, Category, Vendor, search) triggers a fresh server-side data load.",
-   "2. There is no client-side-only narrowing - every filter or search change re-queries the server.",
-   "3. Each change returns the FIRST page of the new result set."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R10)",
-  "viu_status": "VIU-Pending",
-  "notes": "Generic backend-behavior case - no endpoint paths asserted (none exist in the spec); record the observed requests at VIU. Server-side model is the committed build target (2026-07-16) - possible delta vs the current build. P30 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): pagination stands on every page (video 45:05); details = VIU-confirm.",
-  "api_related": true
- },
- {
-  "id": "PV-API-03",
-  "area": "PV — API",
-  "title": "Header-click sorting re-queries the server with nulls first on ascending and last on descending as a server sort semantic",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
-  "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded (including rows with null values in a sortable column) and the network tab open."
-  ],
-  "steps": [
-   "1. Click a column header and watch the network traffic and the returned order.",
-   "2. Click it again (reverse direction) and observe.",
-   "3. Note where the null rows land in the server-returned order for each direction."
-  ],
-  "expected": [
-   "1. Each header click re-fetches the data from the server, ordered by the chosen column and direction, returning the first page of the re-sorted result set.",
-   "2. Null values are placed FIRST on ascending and LAST on descending - as a server sort semantic, so the same order appears on screen and in the exports.",
-   "3. Ties keep a stable order (no explicit secondary key)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S3-R3",
-  "viu_status": "VIU-Pending",
-  "notes": "Generic backend-behavior case - no endpoint paths asserted. Server-side sorting is the committed build target (2026-07-16) - possible delta vs the current build.",
-  "api_related": true
- },
- {
-  "id": "PV-API-04",
-  "area": "PV — API",
-  "title": "The backend denies both the report data and the export to a user without Inventory Reports → View",
-  "priority": "High",
-  "type": "Negative",
-  "permissions_required": "Manager or Office User role (Reports section access) WITHOUT the Inventory Reports → View permission.",
-  "preconditions": [
-   "1. You are signed in as a Reports-section user whose role lacks the Inventory Reports → View permission.",
-   "2. Browser devtools (network tab) are open."
-  ],
-  "steps": [
-   "1. Open the Parts Velocity report and observe the backend data request's outcome.",
-   "2. Attempt the export and observe the backend export request's outcome."
-  ],
-  "expected": [
-   "1. The backend REFUSES the report data request - the user is denied the data (the UI shows the standard access-denied state, see PV-PERM-03).",
-   "2. The backend likewise refuses the export request - no file is produced.",
-   "3. Both loading and exporting are gated by the same Inventory Reports → View permission."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-R4; S1-N2",
-  "viu_status": "VIU-Pending",
-  "notes": "Generic backend-behavior case - the spec pins no REST contract or status codes; record the observed denial responses at VIU, do not assert invented codes. Role seeding per Standing Rule 5 (restore afterwards).",
-  "api_related": true
- }
+  {
+    "id": "PV-EXP-01",
+    "area": "PV — Exports",
+    "title": "The overflow button opens an export menu with Download (PDF) and Download (CSV) in that order",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded."
+    ],
+    "steps": [
+      "1. Find the ⋯ overflow button - the leftmost control in the toolbar's action cluster.",
+      "2. Click it and read the menu items top to bottom."
+    ],
+    "expected": [
+      "1. The ⋯ overflow button sits leftmost in the toolbar's action cluster.",
+      "2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S6-R1",
+    "viu_status": "VIU-Pending",
+    "notes": "Menu labels pinned verbatim in the spec.",
+    "api_related": false
+  },
+  {
+    "id": "PV-EXP-02",
+    "area": "PV — Exports",
+    "title": "Both exports reflect the filters and search active at the time of export",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded across types, categories, and locations."
+    ],
+    "steps": [
+      "1. Set a distinctive filter mix: Type = Inventory, a single category, a short date range, and a search string.",
+      "2. Download the CSV and open it.",
+      "3. Download the PDF and open it."
+    ],
+    "expected": [
+      "1. Both files contain only the rows matching the date range, type, category, vendor, bin, location, and search active at export time - not a full unfiltered dump.",
+      "2. The exported rows match what the on-screen grid was showing."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S6-R2; §3 Key Decisions",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "PV-EXP-03",
+    "area": "PV — Exports",
+    "title": "Exports include only the enabled columns, in the canonical on-screen order",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded."
+    ],
+    "steps": [
+      "1. Hide two default columns (e.g. Category, Margin %) and enable a hidden one (e.g. Units Returned).",
+      "2. Download the CSV and read its column headers in order.",
+      "3. Download the PDF and read its columns in order."
+    ],
+    "expected": [
+      "1. Both exports contain ONLY the currently enabled columns - the hidden ones are absent.",
+      "2. Columns appear in the CANONICAL order (the fixed on-screen order) - the re-enabled Units Returned sits right after Units Sold, NOT appended at the end.",
+      "3. The export mirrors the visible grid."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S6-R3; S4-R4",
+    "viu_status": "VIU-Pending",
+    "notes": "KNOWN BUILD-DELTA (stated in the spec): the current export builds its column order from the user's visible-columns array, appending a re-enabled column at the END instead of its canonical slot - authored to spec; expect a deviation until dev aligns it.",
+    "api_related": false
+  },
+  {
+    "id": "PV-EXP-04",
+    "area": "PV — Exports",
+    "title": "Exports reflect the active sort - including Min/Max sorts, the default Demand order, and identical null placement",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded, including rows with — values in a sortable column (e.g. On Hand on catalogue rows).",
+      "2. Min and Max are enabled."
+    ],
+    "steps": [
+      "1. Without clicking any header (default Demand descending), download the CSV and check the row order.",
+      "2. Sort by Min ascending, export, and check the order including where the — rows land.",
+      "3. Sort by On Hand descending, export, and check the null placement."
+    ],
+    "expected": [
+      "1. The default Demand-descending order is exported when the user has not chosen another column.",
+      "2. Every column's sort is honored in the export - including Min and Max.",
+      "3. The export renders the EXACT server order, including null placement (nulls first on ascending, last on descending) - the export and the on-screen grid match; there is no on-screen-vs-export null-sorting difference."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S6-R4; S3-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "Depends on the server-side sort model (2026-07-16 spec round; spec ahead of code by design) - record the build behavior at VIU.",
+    "api_related": false
+  },
+  {
+    "id": "PV-EXP-05",
+    "area": "PV — Exports",
+    "title": "PDF: named velocity-report.pdf, A3 landscape, titled Parts Velocity, with 18-character text truncation but Part # untruncated",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded, including a part with a Description, Category, and Vendor each longer than 18 characters and a long Part #."
+    ],
+    "steps": [
+      "1. Download the PDF and check the saved filename.",
+      "2. Open it and check the page format and title.",
+      "3. Find the long-text part's row and read Description, Category, Vendor, and Part #."
+    ],
+    "expected": [
+      "1. The file downloads as velocity-report.pdf.",
+      "2. The PDF is formatted for A3 landscape and titled Parts Velocity.",
+      "3. Description, Category, and Vendor are truncated to 18 characters in the PDF.",
+      "4. Part # is NOT truncated."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S6-R5; S6-R6",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "PV-EXP-06",
+    "area": "PV — Exports",
+    "title": "CSV: named velocity-report.csv with full untruncated text values and Last Sale as a raw integer",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded, including a part with a Description longer than 18 characters and a part with a Last Sale value."
+    ],
+    "steps": [
+      "1. Download the CSV and check the saved filename.",
+      "2. Open it and read the long part's Description, Category, and Vendor.",
+      "3. Read the Last Sale column value."
+    ],
+    "expected": [
+      "1. The file downloads as velocity-report.csv.",
+      "2. The CSV carries the FULL, untruncated Description / Category / Vendor values (unlike the PDF's 18-character cut).",
+      "3. Last Sale is a raw integer in the CSV (e.g. 42) - the 'N days' wording is PDF/on-screen only."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S6-R5; S6-R6; S6-R8",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "PV-EXP-07",
+    "area": "PV — Exports",
+    "title": "Null values render as an em-dash in both exports, and Last Sale renders as 'N days' in the PDF",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. Rows with null values exist (a catalogue row for On Hand / Turns / Yr / Min / Max; a row with billed units 0 for Unit Cost / Sell Price; a never-sold row for Last Sale).",
+      "2. All nullable columns are enabled."
+    ],
+    "steps": [
+      "1. Download the CSV and locate the null cells.",
+      "2. Download the PDF and locate the same cells.",
+      "3. In the PDF, read a non-null Last Sale value."
+    ],
+    "expected": [
+      "1. A null value renders as — (em-dash) in BOTH the CSV and the PDF, in every nullable field: Unit Cost, Sell Price, Margin %, On Hand, Turns / Yr, Last Sale, Min, Max.",
+      "2. Revenue, Margin, and the count metrics are never null in the exports either ($0.00 / 0.00 / 0).",
+      "3. In the PDF, Last Sale renders as 'N days' (e.g. 42 days)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S6-R7; S6-R8; S3-R9",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "PV-EXP-08",
+    "area": "PV — Exports",
+    "title": "PDF export alignment: Type centered, text left, numeric and money right",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded and several columns of each kind visible."
+    ],
+    "steps": [
+      "1. Download the PDF and look at the alignment of each column.",
+      "2. Download the CSV and open it in a plain text editor to confirm it is plain comma-separated values (a CSV file carries no alignment of its own)."
+    ],
+    "expected": [
+      "1. In the PDF, the Type column is CENTERED.",
+      "2. In the PDF, the text columns (Part #, Description, Category, Vendor) are left-aligned.",
+      "3. In the PDF, EVERY numeric and money column is right-aligned.",
+      "4. This is a deliberate export-only treatment - the on-screen table is all-left-aligned; the difference is documented, not a defect.",
+      "5. The CSV is plain data — the alignment assertions apply to the PDF only; how a spreadsheet displays the CSV is not part of this test."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R10; S3-R8)",
+    "viu_status": "VIU-Pending",
+    "notes": "Expected-behavior case (deliberate screen-vs-export difference). P31 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): the Type column's VALUES may be renamed from 'Catalogue' (video P31) — the centered-alignment rule is unaffected; check the exported value text at VIU. FIX-WORDING repair 2026-07-28 (sense-check): alignment assertions scoped to the PDF — a CSV carries no alignment.",
+    "api_related": false
+  },
+  {
+    "id": "PV-EXP-09",
+    "area": "PV — Exports",
+    "title": "Successful downloads show the exact success toasts with uppercase (CSV)/(PDF)",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded."
+    ],
+    "steps": [
+      "1. Download the CSV and read the toast.",
+      "2. Download the PDF and read the toast."
+    ],
+    "expected": [
+      "1. On CSV success, a success toast reads exactly: \"Velocity report exported (CSV)\" and auto-fades.",
+      "2. On PDF success, it reads exactly: \"Velocity report exported (PDF)\" and auto-fades.",
+      "3. The success toasts use UPPERCASE (CSV)/(PDF) - the failure toasts use lowercase; that casing mix is the shipped wording, documented as-is (not a bug)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S6-R9; §7 (casing note)",
+    "viu_status": "Retired 2026-07-28 (merged into PV-EXP-10 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+    "notes": "A future copy pass may normalize the casing - until then the mixed casing is expected.",
+    "api_related": false
+  },
+  {
+    "id": "PV-EXP-10",
+    "area": "PV — Exports",
+    "title": "Export toasts: exact success texts; server or fallback error text on failure",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded.",
+      "2. You can force an export failure (e.g. drop the network connection just before triggering the download, or induce a server error)."
+    ],
+    "steps": [
+      "1. Download the CSV and the PDF normally and read each toast.",
+      "2. Trigger a CSV export under the failure condition and read the toast.",
+      "3. Trigger a PDF export under the failure condition and read the toast."
+    ],
+    "expected": [
+      "1. On success the toasts read exactly \"Velocity report exported (CSV)\" / \"Velocity report exported (PDF)\" and auto-fade — UPPERCASE (CSV)/(PDF).",
+      "2. An error toast is shown on failure; when the server provides a message, that server message is shown.",
+      "3. Otherwise the failure toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S6-R9; S6-N1; §7 (casing note)",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU note: record the failure-induction method used (offline toggle / devtools request blocking). A future copy pass may normalize the casing - until then the mixed casing is expected. VIU note: record the failure-induction method used (offline toggle / devtools request blocking). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-PV-EXPTOAST): absorbed PV-EXP-09. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+    "api_related": false
+  },
+  {
+    "id": "PV-VIS-01",
+    "area": "PV — Visual Conformance",
+    "title": "The report uses the standard two-tone layout: white card surfaces on a soft blue-grey backdrop with an edge-to-edge table",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded, in light mode."
+    ],
+    "steps": [
+      "1. Look at the page background, the toolbar, and the table surfaces.",
+      "2. Look at the card corners and the table's horizontal extent."
+    ],
+    "expected": [
+      "1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).",
+      "2. There is NO card border-radius - the table runs edge to edge.",
+      "3. The layout matches the application's other reports (consistency goal, §1)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S7-R1; §2",
+    "viu_status": "VIU-Pending",
+    "notes": "Story 7 is the normative visual spec for this report as built (S7-R7).",
+    "api_related": false
+  },
+  {
+    "id": "PV-VIS-02",
+    "area": "PV — Visual Conformance",
+    "title": "Toolbar and table detail styling: paddings, white header with 1px top border, white body cells, 2rem edge padding",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded (use browser devtools to measure paddings)."
+    ],
+    "steps": [
+      "1. Inspect the toolbar's background and internal padding.",
+      "2. Inspect the table header cells and the border between header and toolbar.",
+      "3. Inspect the body cells and the first/last cell padding in a row."
+    ],
+    "expected": [
+      "1. The toolbar background is white (black in dark mode) with internal padding 32px top, 2rem right, 24px bottom, 2rem left.",
+      "2. Header cells have a white background and a 1px top border separating them from the toolbar.",
+      "3. Body cells have a white background.",
+      "4. The leftmost cell in every row (header and body) has 2rem left padding; the rightmost cell has 2rem right padding."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S7-R2; S7-R3; S7-R4; S7-R5",
+    "viu_status": "VIU-Pending",
+    "notes": "Pixel-level assertions - verify with devtools computed styles at VIU.",
+    "api_related": false
+  },
+  {
+    "id": "PV-VIS-03",
+    "area": "PV — Visual Conformance",
+    "title": "Dark mode is supported and the grey info icon keeps at least 3:1 contrast in both modes",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded and dark mode available in the application."
+    ],
+    "steps": [
+      "1. Switch the application to dark mode.",
+      "2. Look at the page background, toolbar, and cells.",
+      "3. Check the grey ⓘ info icon against its cell background in dark mode, then again in light mode."
+    ],
+    "expected": [
+      "1. The report supports dark mode: page background, toolbar, and cells use their dark-mode equivalents.",
+      "2. The grey ⓘ info icon uses a token meeting at least a 3:1 contrast ratio against the cell background in BOTH light and dark mode."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S7-R6",
+    "viu_status": "VIU-Pending",
+    "notes": "Measure the contrast ratio with a devtools/contrast tool at VIU.",
+    "api_related": false
+  },
+  {
+    "id": "PV-API-01",
+    "area": "PV — API",
+    "title": "The report is server-paginated - the backend returns one page of rows at a time",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with more rows in the result set than one page holds.",
+      "2. Browser devtools (network tab) are open to observe the backend requests."
+    ],
+    "steps": [
+      "1. Load the report and observe the backend data request and its response size.",
+      "2. Move to the next page of rows and observe the traffic."
+    ],
+    "expected": [
+      "1. The backend returns ONE page of rows at a time - the full result set is not shipped to the browser.",
+      "2. Paging is resolved on the server: moving to another page issues a fresh backend request for that page.",
+      "3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "SV-8642 (specs/parts-velocity.md §2 (server-paginated); S2-R10)",
+    "viu_status": "VIU-Pending",
+    "notes": "Generic backend-behavior case (no REST contract in the spec - do NOT assert endpoint paths; observe whatever request the build makes and record it at VIU). KNOWN-DELTA WATCH: the server-side model is the committed build target from 2026-07-16 - spec ahead of current code by design. P30 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): pagination STANDS on every page — video 45:05 Stefan: 'we are definitely having pagination on every page, so with the current code base, we are basically forcing the user to scroll.' Chris wants to revisit infinite-scroll/lazy-load LATER (45:42 'let's flag that... revisit pagination, infinite, scroll, and load') — pagination-behavior details (page size, control style) = VIU-confirm.",
+    "api_related": true
+  },
+  {
+    "id": "PV-API-02",
+    "area": "PV — API",
+    "title": "Every filter or search change re-queries the server and returns the first page of the new result set",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded and the browser devtools network tab open."
+    ],
+    "steps": [
+      "1. Change each of these in turn and watch the network traffic: Type, date range, Bin, Location, Category, Vendor, and the toolbar search.",
+      "2. After a filter change while on a later page, note which page of results is shown."
+    ],
+    "expected": [
+      "1. EACH change (Type, date range, Bin, Location, Category, Vendor, search) triggers a fresh server-side data load.",
+      "2. There is no client-side-only narrowing - every filter or search change re-queries the server.",
+      "3. Each change returns the FIRST page of the new result set."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R10)",
+    "viu_status": "VIU-Pending",
+    "notes": "Generic backend-behavior case - no endpoint paths asserted (none exist in the spec); record the observed requests at VIU. Server-side model is the committed build target (2026-07-16) - possible delta vs the current build. P30 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): pagination stands on every page (video 45:05); details = VIU-confirm.",
+    "api_related": true
+  },
+  {
+    "id": "PV-API-03",
+    "area": "PV — API",
+    "title": "Header-click sorting re-queries the server with nulls first on ascending and last on descending as a server sort semantic",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+    "preconditions": [
+      "1. You are on the Parts Velocity report with data loaded (including rows with null values in a sortable column) and the network tab open."
+    ],
+    "steps": [
+      "1. Click a column header and watch the network traffic and the returned order.",
+      "2. Click it again (reverse direction) and observe.",
+      "3. Note where the null rows land in the server-returned order for each direction."
+    ],
+    "expected": [
+      "1. Each header click re-fetches the data from the server, ordered by the chosen column and direction, returning the first page of the re-sorted result set.",
+      "2. Null values are placed FIRST on ascending and LAST on descending - as a server sort semantic, so the same order appears on screen and in the exports.",
+      "3. Ties keep a stable order (no explicit secondary key)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S3-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "Generic backend-behavior case - no endpoint paths asserted. Server-side sorting is the committed build target (2026-07-16) - possible delta vs the current build.",
+    "api_related": true
+  },
+  {
+    "id": "PV-API-04",
+    "area": "PV — API",
+    "title": "The backend denies both the report data and the export to a user without Inventory Reports → View",
+    "priority": "High",
+    "type": "Negative",
+    "permissions_required": "Manager or Office User role (Reports section access) WITHOUT the Inventory Reports → View permission.",
+    "preconditions": [
+      "1. You are signed in as a Reports-section user whose role lacks the Inventory Reports → View permission.",
+      "2. Browser devtools (network tab) are open."
+    ],
+    "steps": [
+      "1. Open the Parts Velocity report and observe the backend data request's outcome.",
+      "2. Attempt the export and observe the backend export request's outcome."
+    ],
+    "expected": [
+      "1. The backend REFUSES the report data request - the user is denied the data (the UI shows the standard access-denied state, see PV-PERM-03).",
+      "2. The backend likewise refuses the export request - no file is produced.",
+      "3. Both loading and exporting are gated by the same Inventory Reports → View permission."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/parts-velocity.md S1-R4; S1-N2",
+    "viu_status": "VIU-Pending",
+    "notes": "Generic backend-behavior case - the spec pins no REST contract or status codes; record the observed denial responses at VIU, do not assert invented codes. Role seeding per Standing Rule 5 (restore afterwards).",
+    "api_related": true
+  }
 ]

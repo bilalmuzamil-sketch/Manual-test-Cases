@@ -1,0 +1,24 @@
+{
+  "id": "WIP-TOT-04",
+  "area": "WIP — Totals Row",
+  "title": "A tab with no visible jobs shows no Totals row",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. At least one tab has no work orders (or can be emptied via the advisor/customer/asset filters)."
+  ],
+  "steps": [
+    "1. Open a tab that has no visible jobs (or filter until a tab is empty).",
+    "2. Look at the bottom of the tab's data area."
+  ],
+  "expected": [
+    "1. The empty tab shows no Totals row (only the no-data message)."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 6 S6-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

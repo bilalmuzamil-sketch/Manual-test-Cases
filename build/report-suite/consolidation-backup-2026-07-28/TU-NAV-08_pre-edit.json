@@ -1,0 +1,25 @@
+{
+  "id": "TU-NAV-08",
+  "area": "TU — Access & Display",
+  "title": "The standard no-data message shows when no technician clocked time in scope",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+    "1. A date range exists in which no technician clocked any time at the selected location(s), or a selectable location has no clocked time for the range."
+  ],
+  "steps": [
+    "1. Select that empty date range (or the empty location) and let the report load.",
+    "2. Read the message in the data area and look for the Summary row."
+  ],
+  "expected": [
+    "1. Instead of rows, the data area shows exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).",
+    "2. The Summary row is hidden.",
+    "3. The same message is used whether the cause is genuinely no data or a cleared technician filter - this version does not use distinct copy for the two."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S1-N2; S9-N2; §7",
+  "viu_status": "VIU-Pending",
+  "notes": "The cleared-technician-filter trigger for the same message is TU-TECH-05.",
+  "api_related": false
+}

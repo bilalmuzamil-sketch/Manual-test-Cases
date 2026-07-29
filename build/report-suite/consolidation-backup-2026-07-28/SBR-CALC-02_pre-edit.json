@@ -1,0 +1,26 @@
+{
+  "id": "SBR-CALC-02",
+  "area": "SBR — Inv. Hrs & Calculations",
+  "title": "Inv. Hrs shows +green, -red, or 0.0 default on every row type, with rollups computed from unrounded deltas",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. Invoices exist under one rep with a positive, a negative, and a break-even labor delta (seed ZZAUTOTEST data)."
+  ],
+  "steps": [
+    "1. Read the three detail rows' Inv. Hrs values and colors.",
+    "2. Read the rep summary row's and the Totals row's Inv. Hrs.",
+    "3. Recalculate the rollup as the rounded sum of the unrounded per-invoice deltas."
+  ],
+  "expected": [
+    "1. Positive values show a leading + in green (e.g., +1.5); negative values a leading - in red (e.g., -1.5); zero/break-even shows 0.0 in the default text color.",
+    "2. The same calculation, label, format, and coloring apply to rep summary rows, invoice detail rows, and the totals row.",
+    "3. The rep-summary/totals value equals round(sum of unrounded per-invoice deltas)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 9 S9-R3; S9-R4; S9-R5; S9-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

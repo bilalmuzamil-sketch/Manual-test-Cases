@@ -1,0 +1,28 @@
+{
+  "id": "IV-TOT-02",
+  "area": "IV — Totals Row",
+  "title": "The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost over the FULL filtered set on the server, not just the visible page",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. The current filtered set spans more than one page (more rows than one page shows).",
+    "3. The Margin and Total Sell columns are turned on."
+  ],
+  "steps": [
+    "1. Note the totals row's Qty on Hand, Margin, Total Sell, and Total Cost on page 1.",
+    "2. Move to page 2 and read the totals row again.",
+    "3. Cross-check the Total Cost total against a known seeded subset (filter down to a handful of ZZAUTOTEST parts whose values you can sum by hand)."
+  ],
+  "expected": [
+    "1. The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost across the FULL filtered result set — every qualifying row for the current Date, Location, Category, Vendor, and part-search selection, not only the rows on the visible page.",
+    "2. The totals are identical on every page (they do not change as you page).",
+    "3. The hand-summed subset matches the server-computed totals to the cent."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 4 S4-R2; §2 Scale and data model; §4 Terminology (Filtered set)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

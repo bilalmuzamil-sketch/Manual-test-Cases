@@ -1,0 +1,24 @@
+{
+  "id": "SBR-LINK-01",
+  "area": "SBR — Links & Navigation",
+  "title": "Invoice number on a detail row navigates the current tab to the underlying work order or parts sale",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access plus permission to open the destination.",
+  "preconditions": [
+    "1. A rep row is expanded with at least one S and one P invoice visible."
+  ],
+  "steps": [
+    "1. Click a service invoice's number link and note the destination and tab.",
+    "2. Go back, then click a parts invoice's number link."
+  ],
+  "expected": [
+    "1. Each invoice number is a clickable link.",
+    "2. Activating it navigates the CURRENT tab to the underlying invoice (work order or parts sale) — never a new tab."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 12 S12-R1; S12-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "Opening in a new tab (target=_blank) is explicitly listed as a defect (S12-N3).",
+  "api_related": false
+}

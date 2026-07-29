@@ -1,0 +1,26 @@
+{
+  "id": "SBC-SORT-06",
+  "area": "SBC — Sorting",
+  "title": "Changing the sort shows the loading state, collapses expanded rows, and can change which customers are on the page",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. Enough customers exist to fill more than one page of results (seed ZZAUTOTEST customers if needed).",
+    "2. At least one customer is expanded."
+  ],
+  "steps": [
+    "1. Click a column header to change the sort and watch the table.",
+    "2. When the new order arrives, check the previously expanded rows and the set of customers on the page."
+  ],
+  "expected": [
+    "1. While the re-fetch is in flight the table shows the standard loading state; it clears when the re-ordered page arrives.",
+    "2. All previously expanded customer rows are collapsed (assets/invoices re-fetch lazily on the next expand).",
+    "3. The page shows the first page of the newly ordered full set — the customers on the page can change."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R8a; S10-R8b; S10-R8c",
+  "viu_status": "VIU-Pending",
+  "notes": "Server-side sorting itself is covered by SBC-API-02. BUILD-DELTA: server-side sort/pagination is the 2026-07-16 committed target (spec ahead of code by design).",
+  "api_related": false
+}

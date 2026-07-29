@@ -1,0 +1,24 @@
+{
+  "id": "SBC-LBL-01",
+  "area": "SBC — Asset Labels",
+  "title": "Asset label = year make model plus the serial number as the identifier",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
+  "preconditions": [
+    "1. One customer has ZZAUTOTEST assets with invoices in range: (a) one with a serial number recorded, (b) one with no serial number."
+  ],
+  "steps": [
+    "1. Expand the customer and read each asset row's label."
+  ],
+  "expected": [
+    "1. Every label starts with the vehicle's year, make, and model.",
+    "2. Asset (a) shows its SERIAL NUMBER after the year/make/model as the identifier.",
+    "3. For asset (b) (no serial number), note what the label shows instead — what stands in when the serial number is missing is confirmed in the build (the older wording used the unit number, then the plate, then the last 8 of the VIN)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8 — identifier OVERRIDDEN to serial number by kickoff video P24 29:54-30:46, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+  "viu_status": "VIU-Pending",
+  "notes": "VIDEO-AUTHORITATIVE (P24, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 29:54-30:46: 'Using unit number as an identifier is not best in class... the holy grail... is the serial number, or in some cases the bin number... it's one and the same. Interchangeable terminology... that is the identifier... I need to change this on my local to actual serial number.' OVERRIDDEN spec wording (S8-R8): suffix priority '· Unit {unit}' -> plate -> 'VIN …{last 8}' -> none. The exact suffix punctuation and the missing-serial fallback are unpinned — VIU-confirm from the build, do not invent (Rule 9).",
+  "api_related": false
+}

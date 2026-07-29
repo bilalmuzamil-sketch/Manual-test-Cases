@@ -1,0 +1,24 @@
+{
+  "id": "IV-LOC-05",
+  "area": "IV — Location Filter",
+  "title": "When the selected location(s) hold no in-stock parts on the resolved date, the no-data message shows",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A user with access to at least two locations and the inventory-reports permission.",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. A location you can access holds no in-stock (positive-quantity, non-core) parts."
+  ],
+  "steps": [
+    "1. Scope the Location filter to only the empty location.",
+    "2. Read the data area."
+  ],
+  "expected": [
+    "1. The report shows the no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows, and no totals row."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 7 S7-N2; §7 User Feedback Summary",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

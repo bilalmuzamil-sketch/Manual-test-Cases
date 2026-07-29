@@ -151,7 +151,7 @@
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
     "spec_ref": "specs/wip-work-in-progress.md Story 5 S5-R11; §3 Key Decisions (strip recomputes from visible jobs)",
-    "viu_status": "VIU-Pending",
+    "viu_status": "Retired 2026-07-28 (merged into WIP-FLT-08 per user-authorized consolidation; delete_case authorized 2026-07-28)",
     "notes": "",
     "api_related": false
   },
@@ -263,7 +263,7 @@
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
     "spec_ref": "specs/wip-work-in-progress.md Story 6 S6-R6; Story 7 S7-R12",
-    "viu_status": "VIU-Pending",
+    "viu_status": "Retired 2026-07-28 (merged into WIP-FLT-08 per user-authorized consolidation; delete_case authorized 2026-07-28)",
     "notes": "",
     "api_related": false
   },
@@ -287,7 +287,7 @@
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
     "spec_ref": "specs/wip-work-in-progress.md Story 6 S6-N1",
-    "viu_status": "VIU-Pending",
+    "viu_status": "Retired 2026-07-28 (CUT per usefulness audit (duplicate of the merged WIP empty-state case); delete_case authorized 2026-07-28)",
     "notes": "",
     "api_related": false
   },
@@ -487,7 +487,7 @@
   {
     "id": "WIP-FLT-08",
     "area": "WIP — Filters",
-    "title": "Advisor, customer, and asset filters combine with AND, feed the strip and Totals rows, and an empty combination shows the no-data message",
+    "title": "Advisor, customer and asset filters AND together and recompute strip and Totals",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -502,13 +502,13 @@
     ],
     "expected": [
       "1. A job must pass all three filters to remain visible (the filters combine with AND).",
-      "2. The summary strip and each tab's Totals row recompute from the still-visible jobs after every change.",
+      "2. The summary strip and each tab's Totals row recompute immediately from the still-visible jobs after every advisor, customer, or asset change — on screen, with no page reload.",
       "3. When the combination leaves no visible jobs, every tab shows the no-data message \"Empty bays, endless possibilities. Get Going!\" and no Totals row."
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R12; S7-N1",
+    "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R12; S7-N1; Story 5 S5-R11; Story 6 S6-R6; §3 Key Decisions",
     "viu_status": "VIU-Pending",
-    "notes": "",
+    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-WIP-RECOMPUTE): absorbed WIP-SUM-06, WIP-TOT-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
     "api_related": false
   }
 ]

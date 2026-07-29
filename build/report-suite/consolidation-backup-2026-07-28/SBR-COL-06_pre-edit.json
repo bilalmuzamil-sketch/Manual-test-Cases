@@ -1,0 +1,24 @@
+{
+  "id": "SBR-COL-06",
+  "area": "SBR — Column Selector",
+  "title": "With all seven metric columns hidden the five always-on columns and the grand Totals still render — not an empty state",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. You are on the report with data."
+  ],
+  "steps": [
+    "1. Hide all seven metric columns.",
+    "2. Read the table and the grand Totals indicator."
+  ],
+  "expected": [
+    "1. The table still renders the five always-on columns (Date, Invoice, Customer, Status, Subtotal) and the grand Totals indicator.",
+    "2. No empty or error state is shown."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 20 S20-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

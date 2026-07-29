@@ -1,0 +1,25 @@
+{
+  "id": "WIP-PLACE-02",
+  "area": "WIP — Tab Placement",
+  "title": "In Progress and Review work orders land in the \"Approved - partially completed\" tab",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. Two ZZAUTOTEST service work orders exist within the current date range and location: one in In Progress status and one in Review status."
+  ],
+  "steps": [
+    "1. Open the Work In Progress report.",
+    "2. Look for the In Progress work order in each tab.",
+    "3. Look for the Review work order in each tab."
+  ],
+  "expected": [
+    "1. Both work orders appear in the \"Approved - partially completed\" tab and nowhere else."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 3 S3-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

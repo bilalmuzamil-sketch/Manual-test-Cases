@@ -1,0 +1,28 @@
+{
+  "id": "TU-HRS-02",
+  "area": "TU — Hours & Utilization",
+  "title": "Total, WO, and Internal Hours show the range's clocked hours in two decimals with no thousands separator",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+    "1. A technician with known clocked time in the range: some clocked to work orders and some to an internal, non-billable activity (e.g. shop cleanup or a staff meeting).",
+    "2. Part of the internal time was clocked at a location with NO default labor rate configured (for the completeness check)."
+  ],
+  "steps": [
+    "1. Read the technician's Total Hours, WO Hours, and Internal Hours.",
+    "2. Compare against the known clock records.",
+    "3. Check the number format on a value over 100 hours."
+  ],
+  "expected": [
+    "1. Total Hours = all time the technician was clocked in for the range.",
+    "2. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.",
+    "3. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.",
+    "4. Hours show two decimal places with NO thousands separator (e.g. \"107.70\"), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 → 0.01)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-R2; S2-R3; S2-R4; S2-R5; §3",
+  "viu_status": "VIU-Pending",
+  "notes": "Seeding: controlled clock records (work-order + internal) so the sums are checkable.",
+  "api_related": false
+}

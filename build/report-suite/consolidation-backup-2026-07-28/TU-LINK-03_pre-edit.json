@@ -1,0 +1,27 @@
+{
+  "id": "TU-LINK-03",
+  "area": "TU — Deep Links",
+  "title": "For the same range and single active location with closed records, Total Hours reconciles to the Timesheet Activities total to the cent",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+    "1. A technician has only CLOSED (clocked-out) records in the range - no open clock.",
+    "2. The report's location filter holds exactly ONE location, and it is the user's currently active shop."
+  ],
+  "steps": [
+    "1. Read the technician's Total Hours on the Technician Utilization report (two decimals).",
+    "2. Click the Total Hours link and read the same technician's total on the opened Timesheet Activities report.",
+    "3. Compare the two to the cent."
+  ],
+  "expected": [
+    "1. The two totals MATCH to the cent (two decimals) - both reports read the same clock records and round the same way (round-half-up, from unrounded values).",
+    "2. Under this exact scope (same range, same single location, closed records) a mismatch IS a defect.",
+    "3. The two documented scope differences (open clocks, multi-location drill-through) are covered by TU-LINK-04 and TU-LINK-05 and are NOT defects."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S1-R9; §2; §5 Assumptions",
+  "viu_status": "VIU-Pending",
+  "notes": "This is the report's headline reconciliation guarantee - verify with controlled, closed clock records.",
+  "api_related": false
+}

@@ -1,110 +1,110 @@
 [
- {
-  "id": "TU-VIS-01",
-  "area": "TU — Visual & Accessibility",
-  "title": "All-white table with no alternating row shading, and the toolbar controls run in the specified left-to-right order",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. You are on the Technician Utilization report with rows loaded, in light mode."
-  ],
-  "steps": [
-   "1. Look at the column headers and the data rows' backgrounds.",
-   "2. Read the toolbar controls left to right.",
-   "3. Look for the expand/collapse-all control's position."
-  ],
-  "expected": [
-   "1. The report uses an all-white table: white column headers and white data cells, with NO alternating row shading.",
-   "2. The toolbar controls run, left to right: the three-dot download menu, the technician filter, the date-range picker, and the location filter (rightmost).",
-   "3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (Technician column, per S4-R4)."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S8-R1; S8-R2; S8-R3",
-  "viu_status": "VIU-Pending",
-  "notes": "S8 context note: the requirements do not spell out every icon/styling detail - the spec's companion video was removed by the 2026-07-16 header cleanup while S8's context note still cites it (spec self-inconsistency, flagged for Chris - do not block on it); anything the requirements do not state is VIU-confirm.",
-  "api_related": false
- },
- {
-  "id": "TU-VIS-02",
-  "area": "TU — Visual & Accessibility",
-  "title": "Dark mode keeps every report element legible, with the info icon at 3:1 contrast and the link affordance intact in both modes",
-  "priority": "Low",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. You are on the Technician Utilization report with rows loaded, including a \"—\" Est. Lost Labor cell.",
-   "2. Dark mode is available in the application."
-  ],
-  "steps": [
-   "1. Switch the application to dark mode.",
-   "2. Check each element: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and a \"—\" glyph.",
-   "3. Measure the information icon's contrast against its background in dark mode, then in light mode.",
-   "4. Check the Total Hours link's underline/affordance and focus indicator in both modes."
-  ],
-  "expected": [
-   "1. The report supports dark mode: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the \"—\" glyph all use dark-mode-legible colors meeting contrast.",
-   "2. The information icon meets at least a 3:1 contrast ratio against its background in BOTH light and dark mode.",
-   "3. The Total Hours link's non-color affordance and focus indicator apply in both modes."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S8-R9; S8-R13; S8-R14",
-  "viu_status": "VIU-Pending",
-  "notes": "Measure contrast with a devtools/contrast tool at VIU.",
-  "api_related": false
- },
- {
-  "id": "TU-API-01",
-  "area": "TU — API",
-  "title": "The per-day breakdown is fetched from the backend on demand when a row is expanded, not shipped with the initial payload",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open."
-  ],
-  "steps": [
-   "1. Load the report and inspect the initial data response for per-day content.",
-   "2. Expand a technician row and watch the network traffic.",
-   "3. Collapse and re-expand after a data reload."
-  ],
-  "expected": [
-   "1. The initial report payload does NOT ship the day rows.",
-   "2. Expanding a technician row issues an on-demand backend request that returns that technician's per-day breakdown.",
-   "3. Because expansion state resets (all collapsed) on any data reload, nothing is lost by the lazy loading - re-expanding fetches fresh day data."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S4-R2; S4-R5",
-  "viu_status": "VIU-Pending",
-  "notes": "Generic backend-behavior case (Standing Rule 4) - the spec pins no REST contract; do NOT assert endpoint paths; record the observed requests at VIU. KNOWN-DELTA WATCH: lazy per-day loading came in the 2026-07-16 round - the build may lag.",
-  "api_related": true
- },
- {
-  "id": "TU-API-02",
-  "area": "TU — API",
-  "title": "Date-range and location changes trigger a fresh server load, while the technician filter and column sorting stay on-screen only",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
-  "preconditions": [
-   "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open."
-  ],
-  "steps": [
-   "1. Change the date range and watch the network traffic.",
-   "2. Change the location selection and watch the traffic.",
-   "3. Deselect/re-select a technician in the Filter by Technician filter and watch the traffic.",
-   "4. Click several column headers to sort and watch the traffic."
-  ],
-  "expected": [
-   "1. A date-range change triggers a fresh server load of the rows.",
-   "2. A location change triggers a fresh server load scoped to the selected set.",
-   "3. The technician filter causes NO server request - it works on screen only (hide/show + Summary recalculation).",
-   "4. Column sorting causes NO server request - it is applied on screen to the loaded rows."
-  ],
-  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S1-R5; S9-R3; S5 context note; S2-R13; §3",
-  "viu_status": "VIU-Pending",
-  "notes": "Generic backend-behavior case (Standing Rule 4) - no endpoint paths asserted (none exist in the spec); record the observed requests at VIU.",
-  "api_related": true
- }
+  {
+    "id": "TU-VIS-01",
+    "area": "TU — Visual & Accessibility",
+    "title": "All-white table with no alternating row shading, and the toolbar controls run in the specified left-to-right order",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. You are on the Technician Utilization report with rows loaded, in light mode."
+    ],
+    "steps": [
+      "1. Look at the column headers and the data rows' backgrounds.",
+      "2. Read the toolbar controls left to right.",
+      "3. Look for the expand/collapse-all control's position."
+    ],
+    "expected": [
+      "1. The report uses an all-white table: white column headers and white data cells, with NO alternating row shading.",
+      "2. The toolbar controls run, left to right: the three-dot download menu, the technician filter, the date-range picker, and the location filter (rightmost).",
+      "3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (Technician column, per S4-R4)."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S8-R1; S8-R2; S8-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "S8 context note: the requirements do not spell out every icon/styling detail - the spec's companion video was removed by the 2026-07-16 header cleanup while S8's context note still cites it (spec self-inconsistency, flagged for Chris - do not block on it); anything the requirements do not state is VIU-confirm.",
+    "api_related": false
+  },
+  {
+    "id": "TU-VIS-02",
+    "area": "TU — Visual & Accessibility",
+    "title": "Dark mode keeps every report element legible, with the info icon at 3:1 contrast and the link affordance intact in both modes",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. You are on the Technician Utilization report with rows loaded, including a \"—\" Est. Lost Labor cell.",
+      "2. Dark mode is available in the application."
+    ],
+    "steps": [
+      "1. Switch the application to dark mode.",
+      "2. Check each element: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and a \"—\" glyph.",
+      "3. Measure the information icon's contrast against its background in dark mode, then in light mode.",
+      "4. Check the Total Hours link's underline/affordance and focus indicator in both modes."
+    ],
+    "expected": [
+      "1. The report supports dark mode: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the \"—\" glyph all use dark-mode-legible colors meeting contrast.",
+      "2. The information icon meets at least a 3:1 contrast ratio against its background in BOTH light and dark mode.",
+      "3. The Total Hours link's non-color affordance and focus indicator apply in both modes."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S8-R9; S8-R13; S8-R14",
+    "viu_status": "VIU-Pending",
+    "notes": "Measure contrast with a devtools/contrast tool at VIU.",
+    "api_related": false
+  },
+  {
+    "id": "TU-API-01",
+    "area": "TU — API",
+    "title": "The per-day breakdown is fetched from the backend on demand when a row is expanded, not shipped with the initial payload",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open."
+    ],
+    "steps": [
+      "1. Load the report and inspect the initial data response for per-day content.",
+      "2. Expand a technician row and watch the network traffic.",
+      "3. Collapse and re-expand after a data reload."
+    ],
+    "expected": [
+      "1. The initial report payload does NOT ship the day rows.",
+      "2. Expanding a technician row issues an on-demand backend request that returns that technician's per-day breakdown.",
+      "3. Because expansion state resets (all collapsed) on any data reload, nothing is lost by the lazy loading - re-expanding fetches fresh day data."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S4-R2; S4-R5",
+    "viu_status": "VIU-Pending",
+    "notes": "Generic backend-behavior case (Standing Rule 4) - the spec pins no REST contract; do NOT assert endpoint paths; record the observed requests at VIU. KNOWN-DELTA WATCH: lazy per-day loading came in the 2026-07-16 round - the build may lag.",
+    "api_related": true
+  },
+  {
+    "id": "TU-API-02",
+    "area": "TU — API",
+    "title": "Date-range and location changes trigger a fresh server load, while the technician filter and column sorting stay on-screen only",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+    "preconditions": [
+      "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open."
+    ],
+    "steps": [
+      "1. Change the date range and watch the network traffic.",
+      "2. Change the location selection and watch the traffic.",
+      "3. Deselect/re-select a technician in the Filter by Technician filter and watch the traffic.",
+      "4. Click several column headers to sort and watch the traffic."
+    ],
+    "expected": [
+      "1. A date-range change triggers a fresh server load of the rows.",
+      "2. A location change triggers a fresh server load scoped to the selected set.",
+      "3. The technician filter causes NO server request - it works on screen only (hide/show + Summary recalculation).",
+      "4. Column sorting causes NO server request - it is applied on screen to the loaded rows."
+    ],
+    "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+    "spec_ref": "specs/technician-utilization.md S1-R5; S9-R3; S5 context note; S2-R13; §3",
+    "viu_status": "VIU-Pending",
+    "notes": "Generic backend-behavior case (Standing Rule 4) - no endpoint paths asserted (none exist in the spec); record the observed requests at VIU.",
+    "api_related": true
+  }
 ]

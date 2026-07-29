@@ -1,0 +1,22 @@
+{
+  "id": "SBC-LBL-03",
+  "area": "SBC — Asset Labels",
+  "title": "An asset with no year, make, model or VIN is labeled Unknown Asset",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
+  "preconditions": [
+    "1. A ZZAUTOTEST asset exists with no year, make, model, or VIN, and has an invoice in range (if the app's asset form forces a value, blank the fields as far as it allows)."
+  ],
+  "steps": [
+    "1. Expand the owning customer and read that asset row's label."
+  ],
+  "expected": [
+    "1. The label reads \"Unknown Asset.\""
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R10)",
+  "viu_status": "VIU-Pending",
+  "notes": "If the asset form will not allow a fully-blank vehicle, record what minimum the form enforces and mark Blocked-Env with reason (after attempting all seeding routes per Standing Rule 14). Video P24 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the asset identifier is now the SERIAL NUMBER; the 'Unknown Asset' rule (S8-R10) is not itself overridden — re-confirm in the build (an asset may now also need no serial number to be 'Unknown').",
+  "api_related": false
+}

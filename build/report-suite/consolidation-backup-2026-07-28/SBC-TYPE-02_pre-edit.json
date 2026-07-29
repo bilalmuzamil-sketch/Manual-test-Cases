@@ -1,0 +1,26 @@
+{
+  "id": "SBC-TYPE-02",
+  "area": "SBC — Product Type Filter",
+  "title": "Service only shows only invoices starting with S; Parts only shows only invoices starting with P",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You are on the Sales By Customer report.",
+    "2. The date range contains at least one service invoice (number starting with S) and one parts invoice (number starting with P) — seed ZZAUTOTEST data if needed."
+  ],
+  "steps": [
+    "1. Set Product Type to \"Service only,\" expand a customer down to invoice rows, and read the invoice numbers.",
+    "2. Set Product Type to \"Parts only\" and read the invoice numbers again."
+  ],
+  "expected": [
+    "1. Under \"Service only,\" every invoice shown has a number starting with S; parts invoices are gone and all counts/totals reflect only S invoices.",
+    "2. Under \"Parts only,\" every invoice shown has a number starting with P; service invoices are gone and all counts/totals reflect only P invoices.",
+    "3. The whole invoice is classified by its number prefix — there is no per-line-item split."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 3 S3-R5; S3-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "Per-line-item classification is explicitly out of scope (§2) — a mixed invoice classified whole by prefix is expected behavior, not a defect.",
+  "api_related": false
+}

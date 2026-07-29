@@ -1,0 +1,26 @@
+{
+  "id": "SBR-UNAS-02",
+  "area": "SBR — Show Unassigned",
+  "title": "Turning Show Unassigned on adds a single Unassigned row pinned to the top and recomputes the grand Totals",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. Matching unassigned invoices exist; the grand Totals with the toggle off are noted."
+  ],
+  "steps": [
+    "1. Turn \"Show Unassigned\" on and read the new row and its position.",
+    "2. Read the grand Totals indicator.",
+    "3. Turn the toggle off again."
+  ],
+  "expected": [
+    "1. A single summary row labeled \"Unassigned\" (verbatim) rolls up every matching invoice that has no assigned rep, respecting all other active filters.",
+    "2. The row is pinned to the TOP of the table, above the A→Z reps, and stays pinned regardless of sort.",
+    "3. Toggling re-renders the report and recomputes the grand Totals to include or exclude the Unassigned row accordingly."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 22 S22-R3; S22-R4; S22-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

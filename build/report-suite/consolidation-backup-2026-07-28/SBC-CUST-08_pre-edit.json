@@ -1,0 +1,26 @@
+{
+  "id": "SBC-CUST-08",
+  "area": "SBC — Customer Filter",
+  "title": "In the all-customers state a filter change keeps every customer included, including newly-appearing ones",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You are on the report in the all-customers state.",
+    "2. A customer exists that has invoices ONLY in a wider date range than the current one (seed a ZZAUTOTEST invoice dated last month if needed)."
+  ],
+  "steps": [
+    "1. With the current (narrow) date range, confirm that customer is not shown.",
+    "2. Widen the date range so that customer's invoice now matches.",
+    "3. Check the table and the Customer filter label."
+  ],
+  "expected": [
+    "1. The filter stays in the all-customers state (label still \"All customers\").",
+    "2. Every customer matching the new filters is included — including the newly-present customer, without any manual re-selection."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R4; S18-R9; S18-E1",
+  "viu_status": "VIU-Pending",
+  "notes": "The explicit all-customers flag (rather than an enumeration of ids) is the 2026-07-21 committed target — BUILD-DELTA possible at VIU.",
+  "api_related": false
+}

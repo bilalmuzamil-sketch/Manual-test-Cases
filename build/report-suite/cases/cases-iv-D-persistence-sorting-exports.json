@@ -81,7 +81,7 @@
   {
     "id": "IV-PERS-04",
     "area": "IV — Column Selection & Persistence",
-    "title": "Restore is defensive: an invalid saved value falls back to its default, and a saved category or vendor no longer present is dropped",
+    "title": "Defensive restore: a stale saved category or vendor is dropped on load",
     "priority": "Medium",
     "type": "Negative",
     "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -94,14 +94,13 @@
       "2. Open the Inventory Value report."
     ],
     "expected": [
-      "1. The report loads normally — a saved value that is no longer valid falls back to that setting's default rather than breaking the view.",
-      "2. The saved category or vendor no longer present in the data is dropped from the selection.",
-      "3. All other saved settings are still restored."
+      "1. The report loads normally — the saved category or vendor that is no longer present in the data is dropped from the selection instead of breaking the view (the defensive-restore rule applied to the path these steps drive).",
+      "2. All other saved settings are still restored."
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
     "spec_ref": "specs/inventory-value.md Story 8 S8-R6",
     "viu_status": "VIU-Pending",
-    "notes": "",
+    "notes": "FIX-WORDING repair 2026-07-28 (sense-check): the Expected is scoped to the stale-category/vendor path the steps actually drive; the general invalid-value fallback across other value classes is covered the SBC-PERS way only where a case drives it.",
     "api_related": false
   },
   {
@@ -418,33 +417,36 @@
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
     "spec_ref": "specs/inventory-value.md Story 10 S10-R13; §7 User Feedback Summary",
-    "viu_status": "VIU-Pending",
+    "viu_status": "Retired 2026-07-28 (merged into IV-EXP-09 per user-authorized consolidation; delete_case authorized 2026-07-28)",
     "notes": "Notification texts are verbatim from the spec.",
     "api_related": false
   },
   {
     "id": "IV-EXP-09",
     "area": "IV — Exports",
-    "title": "A failed download shows the format-specific error notification, verbatim",
+    "title": "Download notifications: verbatim success and failure texts per format",
     "priority": "Medium",
     "type": "Negative",
     "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. A download failure can be simulated (for example, disconnect the network just before requesting the download)."
+      "2. The Inventory Value report is open with rows loaded (under the export cap).",
+      "3. A download failure can be simulated (for example, disconnect the network just before requesting the download)."
     ],
     "steps": [
-      "1. Simulate a failure and request the PDF download; read the notification.",
-      "2. Repeat for the CSV download."
+      "1. Download the PDF and the CSV normally and read each notification.",
+      "2. Simulate a failure and request the PDF download; read the notification.",
+      "3. Repeat the failure for the CSV download."
     ],
     "expected": [
-      "1. The failed PDF download shows an error notification: \"Failed to export inventory value report (pdf)\".",
-      "2. The failed CSV download shows an error notification: \"Failed to export inventory value report (csv)\"."
+      "1. Success notifications read verbatim: \"Inventory Value report exported (PDF)\" and \"Inventory Value report exported (CSV)\".",
+      "2. Failure notifications read verbatim: \"Failed to export inventory value report (pdf)\" and \"Failed to export inventory value report (csv)\".",
+      "3. The lower-case \"(pdf)\"/\"(csv)\" on failure vs the upper-case success ones is the documented spec wording — expected, not a bug."
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/inventory-value.md Story 10 S10-R14; §7 User Feedback Summary",
+    "spec_ref": "specs/inventory-value.md Story 10 S10-R13; S10-R14; §7 User Feedback Summary",
     "viu_status": "VIU-Pending",
-    "notes": "Notification texts are verbatim from the spec (note the lower-case \"(pdf)\"/\"(csv)\" in the failure messages vs the upper-case success ones).",
+    "notes": "Notification texts are verbatim from the spec (note the lower-case \"(pdf)\"/\"(csv)\" in the failure messages vs the upper-case success ones). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-EXPTOAST): absorbed IV-EXP-08. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
     "api_related": false
   }
 ]

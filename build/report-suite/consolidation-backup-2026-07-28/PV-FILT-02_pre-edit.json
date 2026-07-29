@@ -1,0 +1,27 @@
+{
+  "id": "PV-FILT-02",
+  "area": "PV — Filters",
+  "title": "Selecting a Type value immediately reloads the data limited to that type",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+  "preconditions": [
+    "1. You are on the Parts Velocity report with data loaded.",
+    "2. Both inventory parts and catalogue (special-order) parts have sales activity in the selected date range, so both types appear under Both."
+  ],
+  "steps": [
+    "1. With Type = Both, note that the Type column shows both Inventory and Catalogue rows.",
+    "2. Select Type = Inventory.",
+    "3. Select Type = Catalogue."
+  ],
+  "expected": [
+    "1. Each selection immediately reloads the report data (no separate Apply step).",
+    "2. With Inventory selected, every row's Type column reads Inventory.",
+    "3. With Catalogue selected, every row's Type column reads Catalogue."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/parts-velocity.md S2-R1; S3-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "Seeding: needs at least one invoiced sale of an inventory part AND at least one vendor-sourced (catalogue) part request on an invoiced/paid work order in the window.",
+  "api_related": false
+}

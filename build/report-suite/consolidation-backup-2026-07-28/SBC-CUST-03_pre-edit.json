@@ -1,0 +1,26 @@
+{
+  "id": "SBC-CUST-03",
+  "area": "SBC — Customer Filter",
+  "title": "Pinned control toggles between All customers and Clear all with the matching action",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You are on the Sales By Customer report with several customers in the current results."
+  ],
+  "steps": [
+    "1. Open the Customer filter while it is in the all-customers state and read the pinned control at the top of the dropdown.",
+    "2. Activate it.",
+    "3. Read the pinned control again and activate it once more."
+  ],
+  "expected": [
+    "1. In the all-customers state the pinned control reads \"Clear all\"; activating it clears the selection to an empty set.",
+    "2. When the filter is NOT in the all-customers state the pinned control reads \"All customers\"; activating it puts the filter back in the all-customers state.",
+    "3. The control is pinned to the top of the dropdown in both states."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

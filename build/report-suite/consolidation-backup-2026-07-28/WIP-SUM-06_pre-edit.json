@@ -1,0 +1,26 @@
+{
+  "id": "WIP-SUM-06",
+  "area": "WIP — Summary Strip",
+  "title": "Changing the advisor, customer, or asset filter recomputes every summary figure immediately, with no reload",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. The report shows jobs for at least two different advisors, customers, and assets."
+  ],
+  "steps": [
+    "1. Note all seven summary figures.",
+    "2. Select one advisor in the Advisor filter and watch the strip.",
+    "3. Clear it, then select one customer; then clear and select one asset."
+  ],
+  "expected": [
+    "1. After each filter change, every summary figure recomputes immediately from the jobs still visible, with no page reload and no loading indicator.",
+    "2. The recomputed figures reflect only the jobs that pass the filter (across all four tabs together)."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 5 S5-R11; §3 Key Decisions (strip recomputes from visible jobs)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

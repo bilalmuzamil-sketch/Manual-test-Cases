@@ -1,0 +1,25 @@
+{
+  "id": "IV-NAV-06",
+  "area": "IV — Access & Display",
+  "title": "When no in-stock part exists for the selected location(s) on the resolved date, the no-data message shows instead of rows",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. A location you can access holds no in-stock parts (or the filters can be set so nothing qualifies)."
+  ],
+  "steps": [
+    "1. Scope the report to the empty location (or filter so nothing qualifies).",
+    "2. Read the data area."
+  ],
+  "expected": [
+    "1. The report shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows.",
+    "2. No totals row is shown."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 1 S1-N2; Story 12; §7 User Feedback Summary",
+  "viu_status": "VIU-Pending",
+  "notes": "No-data message text is verbatim from §7.",
+  "api_related": false
+}

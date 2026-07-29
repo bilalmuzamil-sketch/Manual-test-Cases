@@ -1,0 +1,24 @@
+{
+  "id": "SBR-CALC-08",
+  "area": "SBR — Inv. Hrs & Calculations",
+  "title": "Half-up rounding applies at each stated precision and a totals cell may differ from the eye-summed rows by one last-decimal unit — expected",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. Several invoices with odd cent/decimal values sit under one rep (seed ZZAUTOTEST data with values like $10.005)."
+  ],
+  "steps": [
+    "1. Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells."
+  ],
+  "expected": [
+    "1. All displayed values round half-up (away from zero) at their stated precision — money to cents; Inv. Hrs and Margin % to one decimal.",
+    "2. Rolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.",
+    "3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md §3 rounding rule",
+  "viu_status": "VIU-Pending",
+  "notes": "KNOWN-LIMITATION ENCODING: the last-decimal totals discrepancy is by design.",
+  "api_related": false
+}

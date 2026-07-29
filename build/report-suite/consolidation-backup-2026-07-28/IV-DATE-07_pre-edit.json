@@ -1,0 +1,25 @@
+{
+  "id": "IV-DATE-07",
+  "area": "IV — As-of Date & Snapshots",
+  "title": "When no recorded day exists on or before the end of the selected range, the report shows the no-data message and no totals row",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. The date nightly recording began is known, and a past range exists that ends entirely BEFORE it (or whose only covered dates have been pruned by retention)."
+  ],
+  "steps": [
+    "1. Select a Custom range ending before nightly recording began.",
+    "2. Read the data area and the bottom of the report."
+  ],
+  "expected": [
+    "1. The report shows the no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows.",
+    "2. No totals row is shown."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 5 S5-N1; §7 User Feedback Summary",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

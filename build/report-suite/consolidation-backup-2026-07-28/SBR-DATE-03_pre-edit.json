@@ -1,0 +1,24 @@
+{
+  "id": "SBR-DATE-03",
+  "area": "SBR — Date Range Filter",
+  "title": "Date range defaults to This Month and changing it re-fetches the report with a loading indicator",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. Your browser has no remembered settings for this report (first visit or cleared storage)."
+  ],
+  "steps": [
+    "1. Open the report and read the date range picker.",
+    "2. Change the range to Last Month and watch the table."
+  ],
+  "expected": [
+    "1. On first load the date range defaults to \"This Month.\"",
+    "2. Changing the range re-fetches and re-renders the report; the standard loading indicator (centered spinner over the data area) shows during the fetch."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 2 S2-R4; S2-R7; Story 16 S16-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

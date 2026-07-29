@@ -1,0 +1,26 @@
+{
+  "id": "WIP-TOT-03",
+  "area": "WIP — Totals Row",
+  "title": "The Totals row recomputes whenever the advisor, customer, or asset filter changes",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser.",
+    "2. A tab shows jobs for at least two advisors (or customers, or assets)."
+  ],
+  "steps": [
+    "1. Note the tab's Totals row values.",
+    "2. Select one advisor in the Advisor filter.",
+    "3. Read the Totals row again; repeat with a customer and an asset selection."
+  ],
+  "expected": [
+    "1. After each filter change, the Totals row recomputes to sum only the jobs still visible in the tab.",
+    "2. The recompute happens on screen with no reload."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 6 S6-R6; Story 7 S7-R12",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

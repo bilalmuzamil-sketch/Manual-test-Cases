@@ -1,0 +1,25 @@
+{
+  "id": "SBR-STAT-04",
+  "area": "SBR — Invoice Status Filter",
+  "title": "Filters compose: only invoices matching ALL active filters contribute anywhere",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+    "1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location — plus one invoice matching all four."
+  ],
+  "steps": [
+    "1. Set all four filters (a range, \"Parts only,\" \"Paid,\" one location).",
+    "2. Read the rep rows, counts, detail rows, and the grand Totals indicator."
+  ],
+  "expected": [
+    "1. Only the invoice matching ALL active filters contributes — every metric reflects the intersection.",
+    "2. A rep appears only if at least one invoice matches all of them.",
+    "3. Each invoice failing any single filter contributes nothing anywhere."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 4 S4-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

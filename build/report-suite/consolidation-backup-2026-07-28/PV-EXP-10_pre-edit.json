@@ -1,0 +1,26 @@
+{
+  "id": "PV-EXP-10",
+  "area": "PV — Exports",
+  "title": "A failed export shows the server message when available, otherwise the exact fallback error toast with lowercase (csv)/(pdf)",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+  "preconditions": [
+    "1. You are on the Parts Velocity report with data loaded.",
+    "2. You can force an export failure (e.g. drop the network connection just before triggering the download, or induce a server error)."
+  ],
+  "steps": [
+    "1. Trigger a CSV export under the failure condition and read the toast.",
+    "2. Trigger a PDF export under the failure condition and read the toast."
+  ],
+  "expected": [
+    "1. An error toast is shown on failure.",
+    "2. When the server provides a message, that server message is shown.",
+    "3. Otherwise the toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" - lowercase (csv)/(pdf), per the documented shipped casing."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/parts-velocity.md S6-N1; §7",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU note: record the failure-induction method used (offline toggle / devtools request blocking).",
+  "api_related": false
+}

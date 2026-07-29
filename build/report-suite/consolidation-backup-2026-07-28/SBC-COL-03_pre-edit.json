@@ -1,0 +1,25 @@
+{
+  "id": "SBC-COL-03",
+  "area": "SBC — Column Selector",
+  "title": "Hiding all nine toggleable columns is allowed and the table still shows Customer, Subtotal and the totals Subtotal",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+    "1. You are on the report with data."
+  ],
+  "steps": [
+    "1. Open the column selector and turn all nine toggles off.",
+    "2. Read the table."
+  ],
+  "expected": [
+    "1. All nine columns can be hidden — nothing blocks the last toggle.",
+    "2. The table still renders the Customer and Subtotal columns.",
+    "3. The totals row still shows its Subtotal."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 13 S13-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

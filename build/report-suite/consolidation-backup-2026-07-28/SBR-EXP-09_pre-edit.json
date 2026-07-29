@@ -1,0 +1,25 @@
+{
+  "id": "SBR-EXP-09",
+  "area": "SBR — Exports",
+  "title": "Font tier edge rules: a longer negative shifts one tier smaller (clamped at 8px); a document with no positive dollar value stays at 11px",
+  "priority": "Low",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+    "1. You can produce a view where a negative value's parenthesized rendering is LONGER than the largest positive value, and (separately) a view with no positive dollar value at all (for example, the empty export or an all-negative result)."
+  ],
+  "steps": [
+    "1. Download a PDF for the view whose longest value is a parenthesized negative longer than any positive; note the body size against the positive value's own tier.",
+    "2. Download a PDF for a view with zero matching invoices (or all-negative values); note the body size."
+  ],
+  "expected": [
+    "1. When a negative's parenthesized rendering is longer than the largest positive, the base tier shifts ONE step smaller than the positive value's tier, clamped at the 8px floor (already-8px stays 8px).",
+    "2. With no positive dollar value in the document, the base tier is the 11px ceiling and the negative shift does not apply — the tier stays 11px.",
+    "3. In all cases the fixed column widths prevent overflow."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R14; S14-R12 (no-positive rule)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}
