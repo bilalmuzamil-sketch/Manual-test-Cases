@@ -12,7 +12,9 @@
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/PM/pages/646021121/Simple+Mode+Streamlined+Work+Order+Completion+Bulk+Receiving
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
 >
-> **Last updated:** 2026-07-23 (**SV-8183 PERMISSION VIU — LIVE STAGING + ADVERSARIALLY
+> **Last updated:** 2026-07-29 (**§0-MM below: sell-price investigation complete, 3 corrective
+> cases pushed — SF-RCV-14/C38860, SF-RCV-15/C38861, SF-VPART-08/C38862 in NEW section 5407;
+> tally 189 active.**) Prior 2026-07-23 (**SV-8183 PERMISSION VIU — LIVE STAGING + ADVERSARIALLY
 > AUDITED, see §0-FF:** all 11 SF-PERM/SF-REV = VIU-Verified; composition 11/11 == §9.2;
 > BE atom-family finding [Parts Manager 200] → SF-PERM-01 refined [1 update_case STAGED, not
 > pushed]; FE route-guards live; element gates 6/7 this run; SF-PERM-09 + Technician
@@ -30,6 +32,32 @@
 > deliverables, live TestRail matches, run 325 untouched, retired SF-CORE-05/06/09
 > confirmed gone, no secrets. §0-DD: staging LIVE VIU drove +21 to VIU-Verified across
 > 5 batches; spec `_4` / V2.6 APPLIED + audited clean 2026-07-17, §0-BB.)
+
+> **✅ §0-MM — SELL-PRICE INVESTIGATION COMPLETE + 3 CORRECTIVE CASES PUSHED 2026-07-29
+> (user-authorized "Push").** The Fabian (founder) sell-price concern — Sell stays 0 on the
+> Receive screen no matter how many times Cost is edited (staging, WO S3-25982) — was
+> investigated (coverage gap confirmed: NO existing case asserts Sell auto-calculates from
+> Cost; honest miss analysis in
+> `sell-price-investigation-2026-07-29/FINDINGS.md`), rewritten to the QA lead's exact
+> 10-step repro, and the 3 corrective cases are now IN TestRail:
+> **SF-RCV-14 = [C38860](https://shopview.testrail.io/index.php?/cases/view/38860)** (Sell
+> auto-calculates from Cost at receive, Receive-button auto-activation folded in) +
+> **SF-RCV-15 = [C38861](https://shopview.testrail.io/index.php?/cases/view/38861)** (Sell
+> recalculates on EVERY repeated Cost edit) + **SF-VPART-08 =
+> [C38862](https://shopview.testrail.io/index.php?/cases/view/38862)** (part edit dialog Cost →
+> Sell/Margin, VIU-confirm guarded). Placed in **NEW section 5407 "Regression & Edge Cases —
+> from tickets"** (parent = Simple Flow group 4058; created per the 2026-07-29
+> execution-discipline convention — edge-case/regression findings from tickets get a dedicated
+> section; the existing 4085 "Validation / Edge" is the authored validation section, not this).
+> Writes this push: **1 add_section + 3 add_case, all HTTP 200 + re-GET MATCH; NOTHING else —
+> no updates/deletes/run writes, run 325 (Ayesha's) untouched.** All 3 = type Regression,
+> `custom_atmstatus:3`/`custom_automation_type:0`, refs = "Fabian 2026-07-29 sell-price concern
+> (ticket TBD) + QA lead repro 2026-07-29". id-map +3 rows (C-ids populated). Audit:
+> `sell-price-investigation-2026-07-29/testrail-execution-log-2026-07-29.md` (executor
+> `exec_push_2026-07-29.py`). **TALLY +3 = 189 ACTIVE** (186 + 3; the 3 new = VIU-Pending →
+> 152 VIU-Verified / 7 VIU-Pending / 21 Blocked-Env / 5 awaiting-Milos / 3 Deviation /
+> 1 VIU-Deviation). **AWAITING: (1) Fabian's Jira ticket key — re-point the 3 cases' refs when
+> known (Rule 20); (2) live VIU of the 3 cases — needs fresh staging cookies.**
 
 > **⚠️ CORRECTION 2026-07-24 — SV-8183 permission report OVER-CLAIMED; 3 QA-found coverage gaps
 > (§0-GG).** Our 2026-07-23 SV-8183 report concluded **11/11 PASS / feature-wide clean**. QA (Ayesha)

@@ -1,8 +1,9 @@
 {
   "meta": {
     "created": "2026-07-29",
-    "updated": "2026-07-29 (rewritten to the QA lead's EXACT authoritative repro — see repro-from-qa-lead-2026-07-29.md)",
-    "purpose": "Corrective case DRAFTS for the founder-reported bug: on the Receive screen the Sell price stays ZERO no matter how many times the Cost price is updated (staging, WO S3-25982). Now written to the QA lead's exact 10-step repro + expected behavior (authoritative, 2026-07-29). DRAFTS ONLY — NOT pushed to TestRail (Standing Rule 6). Blank C-ids; VIU-Pending; not yet in cases/ or testrail-id-map.csv pending user authorization.",
+    "updated": "2026-07-29 (rewritten to the QA lead's EXACT authoritative repro — see repro-from-qa-lead-2026-07-29.md); PUSHED to TestRail 2026-07-29 (user-authorized)",
+    "status": "PUSHED 2026-07-29 — user-authorized add_case x3 into NEW section 5407 'Regression & Edge Cases — from tickets' (parent = Simple Flow group 4058). SF-RCV-14 = C38860, SF-RCV-15 = C38861, SF-VPART-08 = C38862; all HTTP 200 + re-GET MATCH. Rows added to testrail-id-map.csv. Refs still carry the 'ticket TBD' placeholder — re-point when Fabian's Jira key is known. Live VIU still pending (needs fresh staging cookies). Executor exec_push_2026-07-29.py; audit testrail-execution-log-2026-07-29.md.",
+    "purpose": "Corrective cases for the founder-reported bug: on the Receive screen the Sell price stays ZERO no matter how many times the Cost price is updated (staging, WO S3-25982). Written to the QA lead's exact 10-step repro + expected behavior (authoritative, 2026-07-29).",
     "refs_note": "Rule 20: refs = placeholder 'Fabian 2026-07-29 sell-price concern (ticket TBD)' + 'QA lead repro 2026-07-29' (source anchor = repro-from-qa-lead-2026-07-29.md in this folder). ASK THE USER for the real Jira key when the bug is filed and re-point refs before any add_case push. Regression/default-behavior cases (pre-existing app default, NOT a Simple Flow spec requirement) — per the 2026-07-29 execution-discipline convention they belong to the regression/edge-case section and grow the suite from a real finding.",
     "label_note": "Rule 9: labels from the founder's screenshot + the QA lead's repro (New Part Request modal, Order, Receive, Vendor dropdown, Invoice Number, Part Number, Cost, Sell, Receive button) plus build labels already recorded in our own evidence (the part edit dialog fields per viu-findings SF-VPART-04). Exact casing/placement to be VIU-confirmed live.",
     "fold_decision": "The Receive-button gating (Receive stays disabled until Sell is populated, then auto-activates) is FOLDED INTO SF-RCV-14's expected results as outcome 2, NOT a separate case. Why (Rule 28): it is the same observable moment as the auto-calc (one click-outside produces both), a standalone case would reduce to a single gate already covered as a class by SF-VEND-06 (C29442, receive blocked until cost/sell present) — splitting it would be exactly the 'permission/gating case reducing to one gate' over-granularity pattern the usefulness audit hunts."
@@ -10,7 +11,7 @@
   "cases": [
     {
       "id": "SF-RCV-14",
-      "testrail_case_id": "",
+      "testrail_case_id": "38860",
       "area": "Accept Delivery (Story 12) — regression / default behavior",
       "story_ref": "Fabian 2026-07-29 sell-price concern (ticket TBD — ask the user for the Jira key); QA lead repro 2026-07-29 (repro-from-qa-lead-2026-07-29.md); pre-existing default app behavior, not a Simple Flow spec delta",
       "title": "Sell price auto-calculates from Cost when receiving a special order part",
@@ -44,7 +45,7 @@
     },
     {
       "id": "SF-RCV-15",
-      "testrail_case_id": "",
+      "testrail_case_id": "38861",
       "area": "Accept Delivery (Story 12) — regression / default behavior",
       "story_ref": "Fabian 2026-07-29 sell-price concern (ticket TBD — ask the user for the Jira key); QA lead repro 2026-07-29 (repro-from-qa-lead-2026-07-29.md); pre-existing default app behavior, not a Simple Flow spec delta",
       "title": "Sell price recalculates on every repeated Cost edit on the Receive screen",
@@ -73,7 +74,7 @@
     },
     {
       "id": "SF-VPART-08",
-      "testrail_case_id": "",
+      "testrail_case_id": "38862",
       "area": "Vendorless / No-PN Part (Story 5) — regression / default behavior",
       "story_ref": "Fabian 2026-07-29 sell-price concern (ticket TBD — ask the user for the Jira key); QA lead repro 2026-07-29 (repro-from-qa-lead-2026-07-29.md); pre-existing default app behavior, not a Simple Flow spec delta",
       "title": "Editing Cost in the part edit dialog updates the Sell price and Margin",

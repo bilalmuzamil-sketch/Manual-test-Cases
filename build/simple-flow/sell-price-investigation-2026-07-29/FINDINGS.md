@@ -9,6 +9,16 @@ should recalculate/update Sell.
 
 **NO TestRail writes were made in this investigation.**
 
+> **PUSHED 2026-07-29 (user-authorized follow-up):** the 3 corrective cases below are now IN
+> TestRail — **SF-RCV-14 = [C38860](https://shopview.testrail.io/index.php?/cases/view/38860),
+> SF-RCV-15 = [C38861](https://shopview.testrail.io/index.php?/cases/view/38861),
+> SF-VPART-08 = [C38862](https://shopview.testrail.io/index.php?/cases/view/38862)** — in NEW
+> section **5407 "Regression & Edge Cases — from tickets"** (parent = Simple Flow group 4058,
+> per the 2026-07-29 meeting convention). All add_case HTTP 200 + re-GET MATCH; run 325
+> untouched; refs still carry the "ticket TBD" placeholder (re-point when Fabian's Jira key is
+> known); live VIU pending (needs fresh staging cookies). Audit:
+> `testrail-execution-log-2026-07-29.md`.
+
 ---
 
 ## 1. Do we have the case?
@@ -132,14 +142,14 @@ Three drafts in `corrective-cases-draft.json` (blank C-ids, VIU-Pending, Rule-28
 3/3 KEEP + 3/3 SENSIBLE; refs = placeholder "Fabian 2026-07-29 sell-price concern (ticket TBD)"
 to be re-pointed at the real Jira key):
 
-1. **SF-RCV-14** (new, no C-ID yet) — Editing Cost on the Receive Parts screen updates the Sell
+1. **SF-RCV-14** (= [C38860](https://shopview.testrail.io/index.php?/cases/view/38860), pushed 2026-07-29) — Editing Cost on the Receive Parts screen updates the Sell
    price; Sell must not stay 0 after a real cost is entered (with an explicit precondition to
    first check the shop's pricing settings, so a genuinely-zero pricing config isn't a false
    fail).
-2. **SF-RCV-15** (new, no C-ID yet) — Repeated Cost edits each recalculate Sell (the "no matter
+2. **SF-RCV-15** (= [C38861](https://shopview.testrail.io/index.php?/cases/view/38861), pushed 2026-07-29) — Repeated Cost edits each recalculate Sell (the "no matter
    how many times" half of the founder's report — first-edit-works/later-edits-stuck is a
    distinct failure mode).
-3. **SF-VPART-08** (new, no C-ID yet) — The part edit dialog's Cost edit updates Sell/Margin
+3. **SF-VPART-08** (= [C38862](https://shopview.testrail.io/index.php?/cases/view/38862), pushed 2026-07-29) — The part edit dialog's Cost edit updates Sell/Margin
    (same default on the other surface; flagged VIU-confirm throughout since we've never observed
    it — if live observation shows that dialog is purely manual, reword to the build per Rule 9).
 
@@ -186,16 +196,16 @@ AUTHORITATIVE flow for these cases and is saved verbatim in
 **What changed in the drafts (`corrective-cases-draft.json`, same 3 cases, LOCAL only, no
 TestRail writes):**
 
-- **SF-RCV-14** (new, no C-ID yet) — rewritten to mirror the 10 steps exactly (New Part Request
+- **SF-RCV-14** (= [C38860](https://shopview.testrail.io/index.php?/cases/view/38860), pushed 2026-07-29) — rewritten to mirror the 10 steps exactly (New Part Request
   modal with ONLY Description + Quantity -> save and close -> Order -> Receive -> Vendor dropdown
   top left -> Invoice Number -> Part Number -> Cost -> click outside). Expected = two numbered
   outcomes: (1) Sell fills in automatically from the pricing matrix's **Uncategorized** category
   rules (the part has no category); (2) once Sell is filled, the **Receive button becomes
   clickable by itself**. Precondition now names the Uncategorized-matrix requirement plainly
   (if the matrix genuinely has no Uncategorized rule, confirm with the team before failing).
-- **SF-RCV-15** (new, no C-ID yet) — same flow; after the first auto-calc, change Cost again and
+- **SF-RCV-15** (= [C38861](https://shopview.testrail.io/index.php?/cases/view/38861), pushed 2026-07-29) — same flow; after the first auto-calc, change Cost again and
   click outside — Sell must recalculate on EVERY edit (the "no matter how many times" half).
-- **SF-VPART-08** (new, no C-ID yet) — kept; expected wording aligned to the matrix-based
+- **SF-VPART-08** (= [C38862](https://shopview.testrail.io/index.php?/cases/view/38862), pushed 2026-07-29) — kept; expected wording aligned to the matrix-based
   (Uncategorized) auto-calc, still flagged VIU-confirm (never observed on that dialog).
 - **Receive-button gating: FOLDED into SF-RCV-14** (expected outcome 2), NOT a 4th case — it is
   the same observable moment as the auto-calc, and a standalone case would reduce to a single
