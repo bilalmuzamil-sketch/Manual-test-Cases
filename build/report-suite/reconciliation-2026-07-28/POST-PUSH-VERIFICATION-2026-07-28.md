@@ -176,3 +176,22 @@ no run writes; no results added.
 *Verifier evidence: `/tmp/rs-verify/` (sections.json, cases.json, deleted-57-check.json,
 C38856-live.json, spot-C*.json, spot-check.json, full-sweep-drift.json, run-R359-post.json,
 r359-tests.json) — ephemeral; the durable facts are all cited above.*
+
+---
+
+## ADDENDUM (2026-07-29) — Check 4 / ISSUE-1 RESOLVED
+
+The user-authorized COMPLETION PASS (2026-07-29) pushed the 2 manifest-omitted Chris Q1=B Esc
+cases — **SBR-DEACT-04 = C30255** (https://shopview.testrail.io/index.php?/cases/view/30255) +
+**SBR-DEACT-05 = C30256** (https://shopview.testrail.io/index.php?/cases/view/30256) — via 2
+`update_case` calls (both HTTP 200, re-GET MATCH; pre-op live snapshots saved to
+`../testrail-pre-push-snapshot-2026-07-28/`). After a usage-limit kill mid-documentation, an
+INDEPENDENT read-only re-verify on resume byte-compared both live cases against the final local
+bodies: **MATCH on all 5 fields (title/preconds/steps/expected/refs), Esc-does-NOT-close
+expectation present in both.** No re-push needed; R359 = 458, still zero results, never written.
+
+**Check 4 is therefore now effectively 12/12 clean; ISSUE-1 = RESOLVED.** Verdict updates from
+"ISSUES" to: push complete (72 update / 1 add / 57 delete). Still outstanding (separate, awaiting
+user authorization): OBSERVATION-1 TU-DAY-01 C30418 import artifact + OBSERVATION-2 overlong
+titles PV-API-02 C30389 / PV-FILT-09 C30336. Audit trail:
+`testrail-execution-log-2026-07-28.md` § "COMPLETION PASS (2026-07-29)".

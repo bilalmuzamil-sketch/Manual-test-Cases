@@ -144,3 +144,38 @@
 | 126 | delete_case | WIP-TOT-04 | C30497 | https://shopview.testrail.io/index.php?/cases/view/30497 | 200 | GONE(re-GET 400) | CUT (usefulness+sense audit) |
 | 127 | delete_case | IV-TOT-05 | C30560 | https://shopview.testrail.io/index.php?/cases/view/30560 | 200 | GONE(re-GET 400) | CUT (usefulness+sense audit) |
 | 128 | delete_case | SBC-EXP-13 | C30171 | https://shopview.testrail.io/index.php?/cases/view/30171 | 200 | GONE(re-GET 400) | retire (video P25 Print removal) |
+
+## COMPLETION PASS (2026-07-29) — the 2 manifest-omitted Chris Q1=B Esc cases
+
+**Why:** the independent post-push verification (`POST-PUSH-VERIFICATION-2026-07-28.md`, Check 4 /
+ISSUE-1) found the "Push ALL" manifest omitted 2 cases that WERE in the user-approved bundle —
+SBR-DEACT-04 (C30255) + SBR-DEACT-05 (C30256), the Chris Q1=B "Esc does NOT close the dialog"
+edits (edited locally in commit 16485ca but never listed in the manifest's three buckets). The
+user authorized completing them within the already-authorized Push-ALL scope.
+
+**Executor:** `exec_completion_2026-07-28.py` (this folder); raw result JSON =
+`testrail-execution-result-completion-2026-07-29.json`. Pre-op live snapshots taken first (same
+convention): `testrail-pre-push-snapshot-2026-07-28/C30255_SBR-DEACT-04.json` +
+`C30256_SBR-DEACT-05.json` (+ `COMPLETION-PASS-NOTE.md` explaining they are completion-pass
+snapshots, not from the original 2026-07-28 snapshot run).
+
+| # | Op | Internal ID | C-id | Link | HTTP | Re-GET verify | Timestamp (UTC) |
+|---|---|---|---|---|---|---|---|
+| 129 | update_case | SBR-DEACT-04 | C30255 | https://shopview.testrail.io/index.php?/cases/view/30255 | 200 | MATCH (title/preconds/steps/expected/refs) | 2026-07-29 04:32:29Z |
+| 130 | update_case | SBR-DEACT-05 | C30256 | https://shopview.testrail.io/index.php?/cases/view/30256 | 200 | MATCH (title/preconds/steps/expected/refs) | 2026-07-29 04:32:30Z |
+
+**Limit-kill + resume note:** the worker executing this pass was killed by a usage limit
+immediately AFTER both ops succeeded ("Both ops succeeded. Now the documentation updates") and
+BEFORE any documentation/commit steps. On resume (2026-07-29) an INDEPENDENT read-only re-verify
+was run: fresh `get_case` on C30255 + C30256, byte-compared against the final local bodies in
+`cases/cases-sbr-C-links-deactivation-unassigned-columns-persistence.json` — **both MATCH on all
+five fields, and both live bodies carry the Esc-does-NOT-close expectation** (SBR-DEACT-04
+expected #3: "Pressing the \"Esc\" key does NOT close the dialog - it stays open…"; SBR-DEACT-05
+expected #1: "…pressing the \"Esc\" key never closes the dialog at any time"). **No re-push was
+needed; no further TestRail writes were made on resume.** R359 post-op total = 458 (unchanged,
+never written to).
+
+**Running totals for the full Push-ALL scope (now complete): 72 update_case + 1 add_case +
+57 delete_case, all HTTP 200 + verified, 0 failures. Suite = 459 ACTIVE.** ISSUE-1 is RESOLVED;
+remaining known live drifts (NOT in the authorized scope, AWAITING user authorization): TU-DAY-01
+C30418 (import placeholder artifact) + 2 overlong titles PV-API-02 C30389 / PV-FILT-09 C30336.

@@ -24,6 +24,14 @@ import REGENERATED post-review.)
 ## 0. STATUS
 
 **SESSION CHECKPOINT 2026-07-28 (pre-limit) — COLD-RESUME ANCHOR (read this first on resume).**
+- **COMPLETION PASS DONE 2026-07-29:** the 2 manifest-omitted Chris Q1=B Esc cases **SBR-DEACT-04 =
+  C30255 + SBR-DEACT-05 = C30256** are now pushed + live-verified MATCH (2 update_case, HTTP 200,
+  pre-op snapshots; independently re-verified on resume after a usage-limit kill) — Push-ALL scope
+  COMPLETE (72 update / 1 add / 57 delete, suite 459 ACTIVE, R359 = 458 untouched). Remaining known
+  live drifts, **AWAITING user authorization** (NOT in the consumed Push-ALL scope): TU-DAY-01
+  C30418 (import `<technician>` placeholder artifact) + 2 overlong titles PV-API-02 C30389 /
+  PV-FILT-09 C30336. Audit: `reconciliation-2026-07-28/testrail-execution-log-2026-07-28.md`
+  § COMPLETION PASS.
 - **PUSH ALL EXECUTED + VERIFIED BY EXECUTOR** (commits 93723bf / 98debf5 / ba0c043): **70
   update_case + 1 add_case (SBC-EXP-16 = C38856) + 57 delete_case**, all HTTP 200 + re-GET
   verified. **Suite now 459 ACTIVE, live == local**; run R359 = 458 tests (deletions only —
