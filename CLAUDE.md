@@ -56,6 +56,11 @@
 >   /tmp/…/otp.txt; NEVER start a fresh run to retry. ShopView/Cloudflare cookies do NOT
 >   authenticate atlassian.net (Basic auth → 401/404). Creds + cookies + OTP codes in /tmp
 >   only, never committed. The user supplies the OTP codes on request.
+> - Reusable **Ruthless Usefulness Audit** method (score 100% of a suite KEEP/MERGE/WEAK-KEEP/CUT,
+>   hunt the named slop patterns, credit load-bearing coverage, honest "is the critic right?"
+>   answer; MANDATORY final gate of every authoring pass per Standing Rule 28):
+>   build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md — canonical example
+>   build/report-suite/quality-audit-2026-07-28/.
 > - Keep the books current: After each task, append ONLY success-proven learnings
 >   (working navigation paths, action recipes, endpoints, the specific unblock that
 >   worked) to build/APP-ACTIONS-PLAYBOOK.md; update build/TESTING-RUNBOOK.md when the
@@ -852,6 +857,11 @@ deliver the 7-tab management report.
    build/report-suite/PROJECT-STATE.md. Same rules as all projects: reuse shared
    infra (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION-PROCESS,
    TESTING-RUNBOOK, harness/TestRail patterns); Standing Rules 6/11/16 apply.
+   **2026-07-28: the walkthrough VIDEO ruled AUTHORITATIVE (VP-created); video-driven edits applied
+   LOCALLY with full pre-edit backups (build/report-suite/video-promotion-backup-2026-07-28/) +
+   SPEC-WATCH deadline 2026-08-04 — if Chris Ward has NOT ratified the video items into the 6 specs
+   by then, REMIND THE USER (build/report-suite/SPEC-WATCH-2026-07-28.md); ruthless usefulness audit
+   run 2026-07-28 (build/report-suite/quality-audit-2026-07-28/).**
 
 **STANDING RULES (apply to all projects):**
 1. **Never proceed without the complete set of information needed.** If
@@ -1310,6 +1320,30 @@ deliver the 7-tab management report.
     you can retrieve them from memory instead of finding your ways from scratch again and again."
     Ties to Standing Rules 5 (self-service data/roles), 6 (disposable env), 14 (self-seed playbook)
     and the "keep the books current" convention.
+28. **Ruthless usefulness audit is a mandatory gate on all test-case authoring (all projects).**
+    EVERY test-case authoring/update pass, for every project, ENDS with the Ruthless Usefulness
+    Audit (build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md) BEFORE the suite is delivered/imported:
+    score 100% of the cases (no sampling, Rule 17) with exactly one verdict each — **KEEP**
+    (distinct observable behavior, failure = real reportable bug, not covered elsewhere) /
+    **MERGE** (over-granular; name the merge group + the one survivor) / **WEAK-KEEP** (legitimate
+    but low-value, flagged) / **CUT** (spec-parroting, untestable/vague, duplicate [named], tests
+    the framework not the feature, or PO-descoped) — hunting the named slop patterns
+    (near-duplicates across areas; sort-direction/per-column explosions; per-column display filler;
+    tooltip present-vs-text splits; empty-state triplets; permission cases reducing to one gate;
+    export pairs duplicating a whole filter matrix) AND crediting the load-bearing coverage
+    (calculation contracts, permission gating, link targets, persistence, export-reflects-filters).
+    The suite SHIPS WITH its audit tally (headline: current → recommended count) + an honest "is
+    the critic right?" answer; the audit only RECOMMENDS — no merge/cut/delete is executed in
+    TestRail without explicit user authorization (Rule 6). Also runs on demand for any existing
+    suite and as a sub-step of major spec reconciliations. Rationale, 2026-07-28: Stefan Mitrovic
+    (engineering manager) claimed 2026-07-27 there is "serious AI slop" — of the 500+ Report Suite
+    cases "maybe only 200 test cases are useful, the rest of them can be a waste" and AI makes
+    "more than 70% useless test cases"; the user directed: "we have to be very careful to make
+    sure that he does not prove us wrong and him as right when he says that AI is making more than
+    70% useless test cases" and "Regarding: ruthless usefulness audit — Please keep this approach
+    always for all the test cases you create and it should be the part of the process." Canonical
+    example: build/report-suite/quality-audit-2026-07-28/ (Report Suite, 515 cases). Ties to
+    Standing Rules 6/7/8/16/17/21.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
