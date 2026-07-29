@@ -35,9 +35,9 @@ A user with Reports access but without Inventory Reports → View sees the entry
 2. This is a first visit (no saved view), so the first-visit defaults apply.","1. Look at the first control in the filter row of the toolbar.
 2. Open the Type filter and read its options.
 3. Note which option is selected by default.","1. The Type filter is the first control in the filter row.
-2. It is single-select and offers exactly: Both, Inventory, Catalogue.
+2. It is single-select and offers exactly three choices: Both, Inventory, and a choice for special-order catalog parts that were never put into stock. (That third choice's exact on-screen label is confirmed in the build — the spec calls it ""Catalogue"" and a rename is being considered.)
 3. On a first visit the default is Both.
-4. Both is an explicit selection returning inventory and catalogue rows together - a deliberate filter value, not the absence of a filter.",specs/parts-velocity.md S2-R1,,
+4. Both is an explicit selection returning inventory and special-order rows together - a deliberate filter value, not the absence of a filter.","SV-8642 (specs/parts-velocity.md S2-R1 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28: update per latest info now, correct at the live build check later)",,
 Selecting a Type value immediately reloads the data limited to that type,PV — Filters,Functional,High,"1. You are on the Parts Velocity report with data loaded.
 2. Both inventory parts and catalogue (special-order) parts have sales activity in the selected date range, so both types appear under Both.","1. With Type = Both, note that the Type column shows both Inventory and Catalogue rows.
 2. Select Type = Inventory.
@@ -85,18 +85,20 @@ Bin multi-select filter limits the table to inventory parts stocked in the selec
 3. The filter allows more than one bin (multi-select).",specs/parts-velocity.md S2-R8,,
 Any Bin filter excludes all catalogue rows - Type Catalogue plus a Bin filter is empty by design,PV — Filters,Negative,Medium,"1. You are on the Parts Velocity report with data loaded.
 2. Catalogue rows are present under Type = Both (a catalogue part has in-window activity).","1. With Type = Both, select any bin in the Bin filter.
-2. Look for catalogue rows in the result.
-3. Set Type = Catalogue while the Bin filter is still active.","1. With any Bin filter active, ALL catalogue rows are excluded (catalogue parts have no bin location).
-2. Type = Catalogue combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect.",specs/parts-velocity.md S2-R8,,
-"Location filter is the rightmost control, defaults to the active location, and scopes to accessible locations only",PV — Filters,Functional,High,"1. You are signed in as a user with access to at least two locations.
+2. Look for special-order (catalogue) rows in the result.
+3. Set the Type filter to the special-order (catalogue) choice while the Bin filter is still active.","1. With any Bin filter active, ALL special-order (catalogue) rows are excluded (they have no bin location).
+2. The special-order (catalogue) choice combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect.","SV-8642 (specs/parts-velocity.md S2-R8 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28: update per latest info now, correct at the live build check later)",,
+"Location filter is rightmost, defaults to the active location, accessible-only",PV — Filters,Functional,High,"1. You are signed in as a user with access to at least two locations.
 2. You are on the Parts Velocity report on a first visit (no saved view).","1. Look at the rightmost control in the filter row.
 2. Note which location is selected by default and compare it to the location selected in the application's global location switcher.
 3. Open the filter and read the list of locations.
-4. Select a second location, then select the 'All Locations' option.","1. The Location filter is the rightmost control in the filter row and is multi-select.
+4. Select a second location, then select the 'All Locations' option.
+5. With 'All Locations' active, look at how the rows tell you which location they belong to.","1. The Location filter is the rightmost control in the filter row and is multi-select.
 2. On a first visit it defaults to the user's currently active location (the one in the global location switcher).
 3. The list holds the locations the signed-in user has access to, plus an 'All Locations' option.
 4. Each selection reloads the data scoped to the chosen set; 'All Locations' means all locations the user can ACCESS, never beyond - a location the user cannot access is never included.
-5. The location scope cascades through every metric like the other filters.",specs/parts-velocity.md S2-R9,,
+5. The location scope cascades through every metric like the other filters.
+6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)","SV-8642 (specs/parts-velocity.md S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
 Empty state shows the standard no-data message when no parts match the filters,PV — Filters,Negative,Medium,1. You are on the Parts Velocity report with data loaded.,"1. Type a nonsense string (for example 'zzqx-no-such-part') into the toolbar search so no part matches.
 2. Read the message shown in the data area.","1. The server returns zero rows and the table shows the empty state.
 2. The empty-state label reads exactly: ""Empty bays, endless possibilities. Get Going!"" (the application's standard reports no-data label).",specs/parts-velocity.md S2-R11; S2-N1; §7,,
@@ -107,11 +109,10 @@ Empty state shows the standard no-data message when no parts match the filters,P
 4. Clear it, activate any Bin filter, and look for the bin-less inventory part.","1. The part with no category does not appear when any Category filter is active.
 2. The part with no vendor does not appear when any Vendor filter is active.
 3. The inventory part with no bin location does not appear when any Bin filter is active.",specs/parts-velocity.md S2-E1; S2-E2; S2-E3,,
-A user with access to only one location still sees the Location filter with a single selectable location,PV — Filters,Functional,Low,"1. You are signed in as a user with access to exactly one location.
-2. You are on the Parts Velocity report with data loaded.","1. Look at the Location filter in the toolbar.
-2. Open it and read the options.","1. The Location filter is still shown.
-2. It offers a single selectable location (the user's one location).
-3. Report behavior is unchanged from single-location use.",specs/parts-velocity.md S2-E4,,
+The Location filter is hidden for a user with access to only one location,PV — Filters,Functional,Low,"1. You are signed in as a user with access to exactly one location.
+2. You are on the Parts Velocity report with data loaded.","1. Look for the Location filter in the toolbar.
+2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
+2. For the user with access to two or more locations the Location filter IS shown.","SV-8642 (specs/parts-velocity.md S2-E4 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
 An inventory part stocked at two selected locations shows as two rows with per-location stock figures,PV — Row Model,Functional,Critical,"1. The same part number is stocked as an inventory part at two locations the user can access, with different On Hand / Min / Max values at each.
 2. You are on the Parts Velocity report with both locations selected in the Location filter.","1. Search for the part number in the toolbar search.
 2. Count the rows returned for it and read each row's On Hand, Min, and Max.","1. The part appears as TWO inventory rows - one per selected location (an inventory part is a per-location stock record).
@@ -142,8 +143,8 @@ Rows load ranked by Demand descending with the descending indicator on the Deman
 "Sticky header, all-left alignment on screen, and plain-text Type values",PV — Row Model,Functional,Medium,1. You are on the Parts Velocity report with enough rows to scroll the table body vertically.,"1. Scroll the table body down and watch the header row.
 2. Read the Type column values.
 3. Look at the alignment of every header label and cell, including numeric and money columns.","1. The header row is sticky - it stays visible while the body scrolls.
-2. The Type column shows Inventory or Catalogue as plain text (no badge or chip styling).
-3. ALL columns - header and cell data, including numbers and money - are left-aligned on screen. (The exports right-align numerics instead: a deliberate export-only difference.)",specs/parts-velocity.md S3-R4; S3-R5; S3-R8,,
+2. The Type column shows each row's kind as plain text (no badge or chip styling): Inventory, or the special-order catalogue kind. (The special-order kind's exact on-screen word is confirmed in the build — the spec says ""Catalogue"", a rename is being considered, and it must stay short enough for a column.)
+3. ALL columns - header and cell data, including numbers and money - are left-aligned on screen. (The exports right-align numerics instead: a deliberate export-only difference.)","SV-8643 (specs/parts-velocity.md S3-R4; S3-R5; S3-R8 — Type value 'Catalogue' rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28: update per latest info now, correct at the live build check later)",,
 "Info icons on Units Sold, Demand, and Turns / Yr show the exact spec descriptions and never trigger a sort",PV — Row Model,Functional,Medium,"1. You are on the Parts Velocity report with data loaded.
 2. The Turns / Yr column has been enabled via the column picker (it is hidden by default).","1. Look immediately to the right of the Units Sold, Demand, and Turns / Yr header labels.
 2. Hover each grey info icon and read the description.
@@ -362,7 +363,7 @@ CSV: named velocity-report.csv with full untruncated text values and Last Sale a
 2. Open the CSV in a spreadsheet tool and check the produced alignment/formatting where applicable.","1. In the exports, the Type column is CENTERED.
 2. The text columns (Part #, Description, Category, Vendor) are left-aligned.
 3. EVERY numeric and money column is right-aligned.
-4. This is a deliberate export-only treatment - the on-screen table is all-left-aligned; the difference is documented, not a defect.",specs/parts-velocity.md S6-R10; S3-R8,,
+4. This is a deliberate export-only treatment - the on-screen table is all-left-aligned; the difference is documented, not a defect.",SV-8646 (specs/parts-velocity.md S6-R10; S3-R8),,
 Successful downloads show the exact success toasts with uppercase (CSV)/(PDF),PV — Exports,Functional,Medium,1. You are on the Parts Velocity report with data loaded.,"1. Download the CSV and read the toast.
 2. Download the PDF and read the toast.","1. On CSV success, a success toast reads exactly: ""Velocity report exported (CSV)"" and auto-fades.
 2. On PDF success, it reads exactly: ""Velocity report exported (PDF)"" and auto-fades.
@@ -390,11 +391,11 @@ The report is server-paginated - the backend returns one page of rows at a time,
 2. Browser devtools (network tab) are open to observe the backend requests.","1. Load the report and observe the backend data request and its response size.
 2. Move to the next page of rows and observe the traffic.","1. The backend returns ONE page of rows at a time - the full result set is not shipped to the browser.
 2. Paging is resolved on the server: moving to another page issues a fresh backend request for that page.
-3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations).",specs/parts-velocity.md §2 (server-paginated); S2-R10,,
+3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations).",SV-8642 (specs/parts-velocity.md §2 (server-paginated); S2-R10),,
 Every filter or search change re-queries the server and returns the first page of the new result set,PV — API,Functional,Medium,1. You are on the Parts Velocity report with data loaded and the browser devtools network tab open.,"1. Change each of these in turn and watch the network traffic: Type, date range, Bin, Location, Category, Vendor, and the toolbar search.
 2. After a filter change while on a later page, note which page of results is shown.","1. EACH change (Type, date range, Bin, Location, Category, Vendor, search) triggers a fresh server-side data load.
 2. There is no client-side-only narrowing - every filter or search change re-queries the server.
-3. Each change returns the FIRST page of the new result set.",specs/parts-velocity.md S2-R10,,
+3. Each change returns the FIRST page of the new result set.",SV-8642 (specs/parts-velocity.md S2-R10),,
 Header-click sorting re-queries the server with nulls first on ascending and last on descending as a server sort semantic,PV — API,Functional,Medium,1. You are on the Parts Velocity report with data loaded (including rows with null values in a sortable column) and the network tab open.,"1. Click a column header and watch the network traffic and the returned order.
 2. Click it again (reverse direction) and observe.
 3. Note where the null rows land in the server-returned order for each direction.","1. Each header click re-fetches the data from the server, ordered by the chosen column and direction, returning the first page of the re-sorted result set.

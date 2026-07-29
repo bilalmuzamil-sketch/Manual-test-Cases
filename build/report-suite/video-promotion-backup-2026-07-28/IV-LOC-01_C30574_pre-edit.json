@@ -1,0 +1,26 @@
+{
+ "id": "IV-LOC-01",
+ "area": "IV — Location Filter",
+ "title": "The Location filter (rightmost) is a multi-select of the user's accessible locations with an \"All locations\" / \"Clear all\" toggle, defaulting to the active location",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "A user with access to at least two locations and the inventory-reports permission.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.",
+  "2. This browser has never saved settings for this report (fresh visit)."
+ ],
+ "steps": [
+  "1. Open the Inventory Value report and find the filter labeled \"Location\".",
+  "2. Read its position in the toolbar and its default selection.",
+  "3. Open it and read its options and its toggle."
+ ],
+ "expected": [
+  "1. The toolbar has a location filter labeled \"Location\" — a multi-select and the rightmost filter — listing the locations the signed-in user has access to, with an \"All locations\" / \"Clear all\" toggle.",
+  "2. On a first visit it defaults to the user's currently active location."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

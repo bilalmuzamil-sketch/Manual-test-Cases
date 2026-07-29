@@ -4,7 +4,10 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-22** (CASES IMPORTED + C-IDs MAPPED READ-ONLY — all
+Last updated: **2026-07-28** (VIDEO PROMOTED TO AUTHORITATIVE — 27 local case edits + 1 new case
+SBC-EXP-16 + 1 retire-proposed SBC-EXP-13; backups in `video-promotion-backup-2026-07-28/`;
+spec-watch `SPEC-WATCH-2026-07-28.md` deadline 2026-08-04; see §0 first block. Prior 2026-07-22:
+CASES IMPORTED + C-IDs MAPPED READ-ONLY — all
 515 cases now live in TestRail under group 4281 "Reports Suite"; run **R359
 "Reports Suite - Nebojsa/Viktoria (VIU Pending)"** exists [515 tests, all
 Untested]; `testrail-id-map.csv` fully populated with real C-ids, range
@@ -17,6 +20,33 @@ import REGENERATED post-review.)
 ---
 
 ## 0. STATUS
+
+**UPDATE 2026-07-28 (LATEST — VIDEO PROMOTED TO AUTHORITATIVE; LOCAL EDITS APPLIED; NO TestRail
+writes).** USER RULING 2026-07-28: Chris Ward's kickoff video is AUTHENTIC + AUTHORITATIVE product
+intent (made for Chris Amani, company VP) and NEWER than the six specs (last updated 2026-07-21) —
+by last-update-wins the **video overrides the spec where they conflict**. Applied LOCALLY (cases/
+*.json only): **27 cases edited** (20 tester-facing + 7 notes/refs-only — P24 serial-number
+identifier ×8, P25 SBC Print removal ×3, P33 location-filter-hidden flips ×4, P10 All-locations
+per-row location-identifier adds ×5, P3 TU nav placement ×1, and the OPEN-DECISION items per
+LATEST info: P31 Catalogue special-order rewording ×4, P12 asset-dropdown native+toggle note,
+P30 pagination-stands notes ×2), **1 NEW case authored: SBC-EXP-16** (compressed SBC download,
+video P21 — no C-ID yet, needs authorized add_case), **1 RETIRE-PROPOSED: SBC-EXP-13 C30171**
+(Print-only case — NOT deleted, awaiting authorization). **NEW TOTAL: 516 authored (515 in
+TestRail + 1 new).** Per-case audit log (video quote + overridden spec wording, Rules 20/25):
+`reconciliation-2026-07-28/video-promotion-edit-log-2026-07-28.md`; appliers
+`apply_video_promotion_2026-07-28.py` + `apply_open_decision_2026-07-28.py`. **BACKUPS (recovery
+requirement):** every touched case's verbatim PRE-EDIT body =
+`video-promotion-backup-2026-07-28/` (27 files + MANIFEST.md; SBC-EXP-16 = delete-to-recover) —
+if Chris never ratifies the video items into the specs, recover from there. **SPEC-WATCH (read on
+ANY Report Suite touch): `SPEC-WATCH-2026-07-28.md`** — checklist of all 8 video-driven items
+awaiting Chris's spec ratification, **DEADLINE 2026-08-04** (if still unratified, REMIND THE USER
++ offer backup recovery). Change-list regenerated (21 rows: 2 APPLIED-NOW / 14 APPLIED-LOCALLY /
+1 RETIRE-PROPOSED / 1 NO-CHANGE-CONFIRMED / 2 OPEN-DECISION / 1 LIVE-VIU-PENDING) — it remains
+the approval gate for the eventual authorized push (update_case ×26 + add_case ×1 + delete_case
+×1). Deliverables regenerated over 516 (import + 6 splits, header byte-identical, 0 VIU/flag
+words, no dup titles, API cases in "— API" sections); id-map re-merged 515/515 C-ids +
+SBC-EXP-16 blank; coverage-*.md addenda appended. Run R359 untouched; ZERO TestRail writes.
+NEXT = authorized TestRail push, then live VIU on the QA branch (Rule 22).
 
 **Session wrap-up 2026-07-28 (Report Suite reconciliation, unattended) — all phases done, tree clean, HEAD pushed.**
 Phase 1 specs captured + diffed (`b22d2af`), Phase 2 reconciliation + change-list (`16485ca`), Phase 3 Filters

@@ -1,0 +1,27 @@
+{
+ "id": "SBC-LBL-01",
+ "area": "SBC — Asset Labels",
+ "title": "Asset label = year make model plus the most specific identifier: Unit, then plate, then last 8 of VIN",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
+ "preconditions": [
+  "1. One customer has four ZZAUTOTEST assets with invoices in range: (a) one with a unit number, (b) one with a plate but no unit, (c) one with only a VIN of 8+ characters, (d) one with only a VIN shorter than 8 characters."
+ ],
+ "steps": [
+  "1. Expand the customer and read each asset row's label."
+ ],
+ "expected": [
+  "1. Every label starts with the vehicle's year, make, and model.",
+  "2. Asset (a) adds \" · Unit {unit}\".",
+  "3. Asset (b) adds \" · {plate}\".",
+  "4. Asset (c) adds \" · VIN …\" followed by the last 8 characters of the VIN.",
+  "5. Asset (d) shows the whole VIN after \" · VIN …\" (shorter than 8).",
+  "6. An asset with none of unit/plate/VIN gets no suffix at all."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8",
+ "viu_status": "VIU-Pending",
+ "notes": "The \" · \" separator and \"VIN …\" prefix are quoted from the spec — VIU-confirm the exact rendered punctuation.",
+ "api_related": false
+}

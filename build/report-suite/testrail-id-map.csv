@@ -14,7 +14,7 @@ SBC-TYPE-02,C30107,Service only shows only invoices starting with S; Parts only 
 SBC-TYPE-03,C30108,Parts & Service applies no product-type filter,SBC — Product Type Filter
 SBC-LOC-01,C30109,"Location filter is the rightmost filter, lists accessible locations, and pins All locations to the top",SBC — Location Filter
 SBC-LOC-02,C30110,Location filter defaults to the user's active location on first load,SBC — Location Filter
-SBC-LOC-03,C30111,Selecting locations scopes the report data; All locations includes every accessible location,SBC — Location Filter
+SBC-LOC-03,C30111,Selecting locations scopes the data; All locations covers every accessible one,SBC — Location Filter
 SBC-CUST-01,C30112,"Customer filter sits between Product Type and Location, carries a search icon, and shows the Search customers… hint",SBC — Customer Filter
 SBC-CUST-02,C30113,"Typing in the Customer filter lists matching customers by contains match, with checkmarks on selected ones",SBC — Customer Filter
 SBC-CUST-03,C30114,Pinned control toggles between All customers and Clear all with the matching action,SBC — Customer Filter
@@ -37,10 +37,10 @@ SBC-TREE-10,C30130,"Edge: a single-invoice asset can still be expanded, and a cu
 SBC-TREE-11,C30131,"A service (S) invoice with no vehicle also lands in the Parts Sales bucket — absence of a vehicle decides, not the prefix",SBC — Tree & Rows
 SBC-TREE-12,C30132,"Reversed and voided invoices are excluded from every row, count and total under every Product Type",SBC — Tree & Rows
 SBC-TREE-13,C30133,"Every row type renders the same columns in the same order, blank cells keep their position, and summary rows use the specified font weights",SBC — Tree & Rows
-SBC-LBL-01,C30134,"Asset label = year make model plus the most specific identifier: Unit, then plate, then last 8 of VIN",SBC — Asset Labels
+SBC-LBL-01,C30134,Asset label = year make model plus the serial number as the identifier,SBC — Asset Labels
 SBC-LBL-02,C30135,"An asset with no year, make or model is labeled with the VIN on its own",SBC — Asset Labels
 SBC-LBL-03,C30136,"An asset with no year, make, model or VIN is labeled Unknown Asset",SBC — Asset Labels
-SBC-LBL-04,C30137,Two assets producing the same label get stable (#1)/(#2) suffixes that survive reloads,SBC — Asset Labels
+SBC-LBL-04,C30137,Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads,SBC — Asset Labels
 SBC-LINK-01,C30138,"Invoice number opens in the same tab: S invoices to the work order Finance tab, P invoices to the part sale Part Requests tab",SBC — Invoice Links & Navigation
 SBC-LINK-02,C30139,"Browser back from an invoice returns to the report with filters, sort and columns restored and rows collapsed",SBC — Invoice Links & Navigation
 SBC-LINK-03,C30140,Customer name is plain text; the invoice link keeps the primary color with no underline and never turns visited-purple,SBC — Invoice Links & Navigation
@@ -62,7 +62,7 @@ SBC-CALC-07,C30155,"The totals row covers the full filtered set of customers, no
 SBC-COL-01,C30156,"Column selector is a separate toolbar button with the Column Selection tooltip and nine toggles in order, all on by default",SBC — Column Selector
 SBC-COL-02,C30157,"A toggle hides the column's header and cells together; Customer, Subtotal and the chevron column are never in the list",SBC — Column Selector
 SBC-COL-03,C30158,"Hiding all nine toggleable columns is allowed and the table still shows Customer, Subtotal and the totals Subtotal",SBC — Column Selector
-SBC-EXP-01,C30159,"The overflow menu holds Download (CSV), Download (PDF) and Print in that order, with no separate export buttons",SBC — Exports
+SBC-EXP-01,C30159,The overflow menu holds only Download (CSV) and Download (PDF) — no Print item,SBC — Exports
 SBC-EXP-02,C30160,CSV download is a plain .csv file named by the active date range per the filename map,SBC — Exports
 SBC-EXP-03,C30161,"CSV has twelve columns in exact order, is flat (customer then invoice rows), and follows the blank-cell rules",SBC — Exports
 SBC-EXP-04,C30162,"CSV value formats: Margin % plain number, dates mm-dd-yyyy, currency plain numbers, no color",SBC — Exports
@@ -75,8 +75,9 @@ SBC-EXP-10,C30168,"PDF logo is embedded, scales without distortion, and falls ba
 SBC-EXP-11,C30169,PDF body matches the CSV's twelve flat columns with on-screen date/dash/bold rules and exact Inv. Hrs colors,SBC — Exports
 SBC-EXP-12,C30170,PDF action shows a loading state while exporting and a PDF export failed toast on failure,SBC — Exports
 SBC-EXP-13,C30171,"Print fetches the report PDF and opens the native print dialog in the current tab, disabled while the table is first loading",SBC — Exports
-SBC-EXP-14,C30172,"An export over 10,000 data rows is refused with the too-large toast — no file downloads and no print dialog opens",SBC — Exports
+SBC-EXP-14,C30172,"An export over 10,000 data rows is refused with the too-large toast",SBC — Exports
 SBC-EXP-15,C30173,"Exporting with no matching customers still downloads a file with headers and a zero totals row, with no warning",SBC — Exports
+SBC-EXP-16,,The download menu also offers a compressed (summary) version of the report,SBC — Exports
 SBC-PERS-01,C30174,"Filters, sort and visible columns are saved and restored on the next visit, shown immediately without a default flash",SBC — Saved View & Persistence
 SBC-PERS-02,C30175,"Type-ahead search text, expansion state and scroll position are not saved; a reload clears all expansion",SBC — Saved View & Persistence
 SBC-PERS-03,C30176,A saved value that is no longer valid is discarded and that setting falls back to its default,SBC — Saved View & Persistence
@@ -118,8 +119,8 @@ SBR-STAT-04,C30211,Filters compose: only invoices matching ALL active filters co
 SBR-STAT-05,C30212,"Money columns always show invoiced amounts, never the outstanding balance",SBR — Invoice Status Filter
 SBR-LOC-01,C30213,"Location filter is the rightmost toolbar control, a multi-select with an All Locations option",SBR — Location Filter
 SBR-LOC-02,C30214,Location filter defaults to the user's currently active location only,SBR — Location Filter
-SBR-LOC-03,C30215,Location selection cascades through the contributor gate and never includes an inaccessible location,SBR — Location Filter
-SBR-LOC-04,C30216,A single-location user still sees the filter with one selectable location and unchanged behavior,SBR — Location Filter
+SBR-LOC-03,C30215,Location selection cascades; an inaccessible location's data is never included,SBR — Location Filter
+SBR-LOC-04,C30216,The Location filter is hidden for a user with access to only one location,SBR — Location Filter
 SBR-ROW-01,C30217,Contributors only: a rep row appears if and only if the rep has at least one non-reversed invoice matching all active filters,SBR — Rep Rows & Tree
 SBR-ROW-02,C30218,"Row layout: 12 columns in order, chevron plus rep name in the Date cell, blank identifier cells, bold summary vs regular detail rows",SBR — Rep Rows & Tree
 SBR-ROW-03,C30219,"A toggled-off or deleted contributor still appears with credit intact, tagged (Inactive), named from the latest invoice snapshot when deleted",SBR — Rep Rows & Tree
@@ -240,10 +241,10 @@ PV-FILT-06,C30333,"Toolbar search matches part number or description, case-insen
 PV-FILT-07,C30334,All active filters combine with AND logic,PV — Filters
 PV-FILT-08,C30335,Bin multi-select filter limits the table to inventory parts stocked in the selected bins,PV — Filters
 PV-FILT-09,C30336,Any Bin filter excludes all catalogue rows - Type Catalogue plus a Bin filter is empty by design,PV — Filters
-PV-FILT-10,C30337,"Location filter is the rightmost control, defaults to the active location, and scopes to accessible locations only",PV — Filters
+PV-FILT-10,C30337,"Location filter is rightmost, defaults to the active location, accessible-only",PV — Filters
 PV-FILT-11,C30338,Empty state shows the standard no-data message when no parts match the filters,PV — Filters
 PV-FILT-12,C30339,"Parts with no category, vendor, or bin assigned are excluded when that filter is active",PV — Filters
-PV-FILT-13,C30340,A user with access to only one location still sees the Location filter with a single selectable location,PV — Filters
+PV-FILT-13,C30340,The Location filter is hidden for a user with access to only one location,PV — Filters
 PV-ROW-01,C30341,An inventory part stocked at two selected locations shows as two rows with per-location stock figures,PV — Row Model
 PV-ROW-02,C30342,A catalogue part shows as one merged row with values summed across the selected locations,PV — Row Model
 PV-ROW-03,C30343,Rows load ranked by Demand descending with the descending indicator on the Demand header,PV — Row Model
@@ -295,7 +296,7 @@ PV-API-01,C30388,The report is server-paginated - the backend returns one page o
 PV-API-02,C30389,Every filter or search change re-queries the server and returns the first page of the new result set,PV — API
 PV-API-03,C30390,Header-click sorting re-queries the server with nulls first on ascending and last on descending as a server sort semantic,PV — API
 PV-API-04,C30391,The backend denies both the report data and the export to a user without Inventory Reports → View,PV — API
-TU-NAV-01,C30392,Technician Utilization appears in the reports navigation under the Performance group,TU — Access & Display
+TU-NAV-01,C30392,"Technician Utilization sits under Performance, below existing report links",TU — Access & Display
 TU-NAV-02,C30393,The report shows one row for each technician who clocked time in the range at the selected locations,TU — Access & Display
 TU-NAV-03,C30394,First visit defaults to the This Month preset and the user's active location,TU — Access & Display
 TU-NAV-04,C30395,"Changing the date range reloads the rows, and a Custom range is capped at 366 days",TU — Access & Display
@@ -345,11 +346,11 @@ TU-EXP-05,C30438,"Downloads keep the on-screen column order and number formats b
 TU-EXP-06,C30439,"The shop logo shows at the top of both PDF views when set, no logo shows when unset, and the CSV never includes it",TU — Exports
 TU-EXP-07,C30440,Choosing a download with no technician selected is a silent no-op - no file and no message,TU — Exports
 TU-EXP-08,C30441,A starting download shows the Download started notification and a failed download shows Failed to download report,TU — Exports
-TU-LOC-01,C30442,"The Location filter is the rightmost multi-select listing accessible locations, with All Locations acting as a select-all shortcut",TU — Location Filter
+TU-LOC-01,C30442,The Location filter is the rightmost multi-select; All Locations = select-all,TU — Location Filter
 TU-LOC-02,C30443,"Changing the location selection reloads the report with hours pooled into one row per technician, never beyond accessible locations",TU — Location Filter
 TU-LOC-03,C30444,The saved location selection restores defensively - inaccessible locations are dropped and an empty remainder falls back to the active location,TU — Location Filter
 TU-LOC-04,C30445,Deselecting every location falls back to the active location instead of showing nothing,TU — Location Filter
-TU-LOC-05,C30446,A user with access to only one location still sees the Location filter with a single selectable location,TU — Location Filter
+TU-LOC-05,C30446,The Location filter is hidden for a user with access to only one location,TU — Location Filter
 TU-VIS-01,C30447,"All-white table with no alternating row shading, and the toolbar controls run in the specified left-to-right order",TU — Visual & Accessibility
 TU-VIS-02,C30448,"Dark mode keeps every report element legible, with the info icon at 3:1 contrast and the link affordance intact in both modes",TU — Visual & Accessibility
 TU-API-01,C30449,"The per-day breakdown is fetched from the backend on demand when a row is expanded, not shipped with the initial payload",TU — API
@@ -373,7 +374,7 @@ WIP-COL-01,C30466,"With every column turned on, the columns appear in the fixed 
 WIP-COL-02,C30467,On a first visit only the default columns show; the rest are available in the column selector and off by default,WIP — Columns & Rows
 WIP-COL-03,C30468,"The WO # is a link that opens the work order in the same browser tab, with browser back returning to the report",WIP — Columns & Rows
 WIP-COL-04,C30469,Status shows as a color-coded badge whose label text is always present (color is never the only signal),WIP — Columns & Rows
-WIP-COL-05,C30470,"The Asset cell is two lines (bold unit number over a muted VIN), with placeholders when either is missing, and VIN is also its own optional column",WIP — Columns & Rows
+WIP-COL-05,C30470,Asset cell shows a bold serial number over a muted VIN; VIN is also a column,WIP — Columns & Rows
 WIP-COL-06,C30471,"Customer shows the customer's company name, and is blank when no customer name exists",WIP — Columns & Rows
 WIP-COL-07,C30472,"Days Open shows whole days since creation and reads ""0 days"" / ""1 days"" (not pluralized) — expected, do not file",WIP — Columns & Rows
 WIP-COL-08,C30473,"Last Activity shows ""Today"", ""Xd ago"", or ""—"" when the work order has no recorded activity",WIP — Columns & Rows
@@ -388,7 +389,7 @@ WIP-CALC-08,C30481,"Inv. Hrs shows quoted minus worked labor hours as a signed o
 WIP-CALC-09,C30482,"An open estimate with no approved work shows ""$0.00"" in every money column, including Total",WIP — Earned & Remaining
 WIP-SORT-01,C30483,The initial sort is Days Open with the longest-open work order first,WIP — Sorting
 WIP-SORT-02,C30484,"Clicking a header sorts ascending, clicking again toggles descending, with no third cleared state and one sort column at a time",WIP — Sorting
-WIP-SORT-03,C30485,"Columns sort by their underlying values — money/numbers by value, Days Open by day count, Status by label, text columns as text, Asset by unit number",WIP — Sorting
+WIP-SORT-03,C30485,Columns sort by underlying values; Asset sorts by serial number,WIP — Sorting
 WIP-SORT-04,C30486,Sorting reorders only the active tab's rows and the Totals row stays at the bottom,WIP — Sorting
 WIP-SUM-01,C30487,"The summary strip shows seven figures in a fixed order, each as US-dollar currency",WIP — Summary Strip
 WIP-SUM-02,C30488,"Total Earned is the hero figure (larger, colored underline) and equals Started — Earned plus Ready to Invoice",WIP — Summary Strip
@@ -403,7 +404,7 @@ WIP-TOT-03,C30496,"The Totals row recomputes whenever the advisor, customer, or 
 WIP-TOT-04,C30497,A tab with no visible jobs shows no Totals row,WIP — Totals Row
 WIP-FLT-01,C30498,The Advisor filter is a multi-select of the advisors present in the loaded jobs and narrows rows on screen only,WIP — Filters
 WIP-FLT-02,C30499,"The Customer filter is a searchable type-ahead multi-select reading ""All customers"" when empty, with a ""Clear"" action once a customer is selected",WIP — Filters
-WIP-FLT-03,C30500,"The Asset filter's type-ahead matches either the unit number or the vehicle identification number, and reads ""All assets"" when empty",WIP — Filters
+WIP-FLT-03,C30500,"Asset filter type-ahead matches serial number or VIN, ""All assets"" when empty",WIP — Filters
 WIP-FLT-04,C30501,"The date-range control offers the standard presets plus Custom, defaults to ""This Week"", and does not offer ""All Time""",WIP — Filters
 WIP-FLT-05,C30502,"The date range filters by the work order's created date, reloads the report on change, and a Custom range is capped at 366 days",WIP — Filters
 WIP-FLT-06,C30503,"The Location filter (rightmost) is a multi-select with an ""All locations"" / ""Clear all"" toggle, defaults to the active location, and reloads on change",WIP — Filters
@@ -419,7 +420,7 @@ WIP-EXP-03,C30512,"Downloaded money and Inv. Hrs values keep the on-screen forma
 WIP-EXP-04,C30513,The Inv. Hrs green/red coloring appears on screen and in the PDF only — the CSV is monochrome,WIP — Exports
 WIP-EXP-05,C30514,Days Open in a download is frozen at the moment the file is generated (and can be one day higher than the screen),WIP — Exports
 WIP-EXP-06,C30515,"The downloaded files are named ""wip-2-report.pdf"" and ""wip-2-report.csv"" — expected current names, do not file",WIP — Exports
-WIP-EXP-07,C30516,"In downloads the asset column is headed ""Unit"" and the location column ""Branch"" — documented limitation, do not file",WIP — Exports
+WIP-EXP-07,C30516,"Export headers read ""Unit"" and ""Branch"" — documented limitation, do not file",WIP — Exports
 WIP-EXP-08,C30517,The PDF shows the shop logo at the top when one is set; the CSV never includes a logo,WIP — Exports
 WIP-EXP-09,C30518,"Export notifications: success caption, ""Empty export"" warning, and the failure error message",WIP — Exports
 WIP-VIS-01,C30519,Each tab uses an all-white table with no alternating row shading,WIP — Visual & Accessibility
@@ -477,10 +478,10 @@ IV-FLT-02,C30570,"The Category filter, Vendor filter, and part search apply serv
 IV-FLT-03,C30571,"With no category or vendor selected all parts show, and an empty part search applies no narrowing",IV — Filters & Part Search
 IV-FLT-04,C30572,"The part search is a page-local toolbar field matching part number OR description, case-insensitively, on the server",IV — Filters & Part Search
 IV-FLT-05,C30573,"Date range, Location, Category, Vendor, and the part search combine with AND",IV — Filters & Part Search
-IV-LOC-01,C30574,"The Location filter (rightmost) is a multi-select of the user's accessible locations with an ""All locations"" / ""Clear all"" toggle, defaulting to the active location",IV — Location Filter
+IV-LOC-01,C30574,The Location filter is a rightmost multi-select with an All locations toggle,IV — Location Filter
 IV-LOC-02,C30575,"Selecting one, several, or all locations reloads the report scoped to that set",IV — Location Filter
 IV-LOC-03,C30576,"Scoping never includes an inaccessible location, and a selection resolving to none falls back to the user's active location",IV — Location Filter
-IV-LOC-04,C30577,A user with access to only one location still sees the Location filter with a single selectable location,IV — Location Filter
+IV-LOC-04,C30577,The Location filter is hidden for a user with access to only one location,IV — Location Filter
 IV-LOC-05,C30578,"When the selected location(s) hold no in-stock parts on the resolved date, the no-data message shows",IV — Location Filter
 IV-PERS-01,C30579,"The column-selection icon button (tooltip ""Column Selection"") toggles columns, and Total Cost cannot be turned off",IV — Column Selection & Persistence
 IV-PERS-02,C30580,Toggling columns never reorders them — the fixed order is kept with Total Cost always last,IV — Column Selection & Persistence

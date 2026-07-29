@@ -1,0 +1,26 @@
+{
+ "id": "PV-FILT-13",
+ "area": "PV — Filters",
+ "title": "A user with access to only one location still sees the Location filter with a single selectable location",
+ "priority": "Low",
+ "type": "Functional",
+ "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4); user with access to exactly one location.",
+ "preconditions": [
+  "1. You are signed in as a user with access to exactly one location.",
+  "2. You are on the Parts Velocity report with data loaded."
+ ],
+ "steps": [
+  "1. Look at the Location filter in the toolbar.",
+  "2. Open it and read the options."
+ ],
+ "expected": [
+  "1. The Location filter is still shown.",
+  "2. It offers a single selectable location (the user's one location).",
+  "3. Report behavior is unchanged from single-location use."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/parts-velocity.md S2-E4",
+ "viu_status": "VIU-Pending",
+ "notes": "Seeding: create a fresh ZZAUTOTEST staff member scoped to one location if none exists (Standing Rule 14 pattern).",
+ "api_related": false
+}

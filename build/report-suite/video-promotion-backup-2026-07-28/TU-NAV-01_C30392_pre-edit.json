@@ -1,0 +1,25 @@
+{
+ "id": "TU-NAV-01",
+ "area": "TU — Access & Display",
+ "title": "Technician Utilization appears in the reports navigation under the Performance group",
+ "priority": "Critical",
+ "type": "Functional",
+ "permissions_required": "The permission that grants access to the timesheet reports (the same permission as the existing Timesheet Activities report - this report adds no new permission).",
+ "preconditions": [
+  "1. You are signed in as a user whose role has the timesheet-reports permission."
+ ],
+ "steps": [
+  "1. Open the reports navigation.",
+  "2. Look under the Performance group.",
+  "3. Click the entry labeled Technician Utilization."
+ ],
+ "expected": [
+  "1. The report is listed under the Performance group, labeled \"Technician Utilization\".",
+  "2. Clicking it opens the report."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/technician-utilization.md S1-R1",
+ "viu_status": "VIU-Pending",
+ "notes": "VIU-confirm the exact timesheet-reports permission name as shown in the roles screen (the spec names it only by reference to the Timesheet Activities report).",
+ "api_related": false
+}

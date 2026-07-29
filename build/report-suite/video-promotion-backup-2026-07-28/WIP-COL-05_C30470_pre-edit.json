@@ -1,0 +1,27 @@
+{
+ "id": "WIP-COL-05",
+ "area": "WIP — Columns & Rows",
+ "title": "The Asset cell is two lines (bold unit number over a muted VIN), with placeholders when either is missing, and VIN is also its own optional column",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. The report shows work orders including: one whose asset has both a unit number and a vehicle identification number, one with no unit number, and one with no vehicle identification number."
+ ],
+ "steps": [
+  "1. Read the Asset cell of a row whose asset has both values.",
+  "2. Read the Asset cell of the row with no unit number, then the one with no vehicle identification number.",
+  "3. Open the column-selection control, turn on the VIN column, and read it."
+ ],
+ "expected": [
+  "1. The Asset cell is two lines: the unit number on the first line in bold, and the vehicle identification number on the second line in a smaller, muted style.",
+  "2. When a work order has no unit number, the first line shows \"(no unit #)\"; when it has no vehicle identification number, the second line shows \"— no VIN —\".",
+  "3. The VIN column (off by default) shows the vehicle identification number on its own line as a separate, sortable column."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R7; S4-R8; S4-R10",
+ "viu_status": "VIU-Pending",
+ "notes": "Placeholder strings \"(no unit #)\" and \"— no VIN —\" are verbatim from the spec.",
+ "api_related": false
+}

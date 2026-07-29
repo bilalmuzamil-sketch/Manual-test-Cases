@@ -505,3 +505,10 @@ The rescued A–C set (80 cases) fully covered Stories 1–6, 8–13 (except S13
   message rows = ALL mapped above.
 - Processed: 127 cases (80 rescued A–C + 47 gap-closing D), 23 sections; 0 bullets unmapped.
 - Excluded-with-reason: 5 items (listed above).
+
+## ADDENDUM 2026-07-28 — video-promotion (user ruling: video overrides spec)
+- **SBR-LOC-04 C30216 FLIPPED** (video P33): single-location user now expects NO Location
+  filter — S21-N1 is overridden, its coverage row now reads through the flipped case.
+- **SBR-LOC-03 C30215** now also covers the All-Locations per-row location identifier (video P10).
+- Detail: reconciliation-2026-07-28/video-promotion-edit-log-2026-07-28.md; watch:
+  ../SPEC-WATCH-2026-07-28.md (deadline 2026-08-04).

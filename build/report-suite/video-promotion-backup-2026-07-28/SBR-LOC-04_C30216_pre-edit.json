@@ -1,0 +1,23 @@
+{
+ "id": "SBR-LOC-04",
+ "area": "SBR — Location Filter",
+ "title": "A single-location user still sees the filter with one selectable location and unchanged behavior",
+ "priority": "Low",
+ "type": "Negative",
+ "permissions_required": "Reports/Performance access; a user with access to exactly one location.",
+ "preconditions": [
+  "1. You are signed in as a user assigned to exactly one location."
+ ],
+ "steps": [
+  "1. Open the report and open the location filter."
+ ],
+ "expected": [
+  "1. The filter is still shown, with one selectable location.",
+  "2. Report behavior is unchanged from single-location use."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbr-sales-by-representative.md Story 21 S21-N1",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

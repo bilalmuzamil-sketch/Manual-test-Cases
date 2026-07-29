@@ -1,0 +1,28 @@
+{
+ "id": "PV-FILT-01",
+ "area": "PV — Filters",
+ "title": "Type filter is single-select, first in the filter row, with options Both, Inventory, Catalogue (default Both)",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+ "preconditions": [
+  "1. You are on the Parts Velocity report with data loaded.",
+  "2. This is a first visit (no saved view), so the first-visit defaults apply."
+ ],
+ "steps": [
+  "1. Look at the first control in the filter row of the toolbar.",
+  "2. Open the Type filter and read its options.",
+  "3. Note which option is selected by default."
+ ],
+ "expected": [
+  "1. The Type filter is the first control in the filter row.",
+  "2. It is single-select and offers exactly: Both, Inventory, Catalogue.",
+  "3. On a first visit the default is Both.",
+  "4. Both is an explicit selection returning inventory and catalogue rows together - a deliberate filter value, not the absence of a filter."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/parts-velocity.md S2-R1",
+ "viu_status": "VIU-Pending",
+ "notes": "VIU-confirm the exact filter control label ('Type' is the spec's name for it) and the option labels as shipped.",
+ "api_related": false
+}

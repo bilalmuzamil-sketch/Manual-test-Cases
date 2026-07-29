@@ -175,14 +175,14 @@
   ],
   "expected": [
    "1. The Type filter is the first control in the filter row.",
-   "2. It is single-select and offers exactly: Both, Inventory, Catalogue.",
+   "2. It is single-select and offers exactly three choices: Both, Inventory, and a choice for special-order catalog parts that were never put into stock. (That third choice's exact on-screen label is confirmed in the build — the spec calls it \"Catalogue\" and a rename is being considered.)",
    "3. On a first visit the default is Both.",
-   "4. Both is an explicit selection returning inventory and catalogue rows together - a deliberate filter value, not the absence of a filter."
+   "4. Both is an explicit selection returning inventory and special-order rows together - a deliberate filter value, not the absence of a filter."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R1",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R1 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28: update per latest info now, correct at the live build check later)",
   "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm the exact filter control label ('Type' is the spec's name for it) and the option labels as shipped.",
+  "notes": "VIU-confirm the exact filter control label ('Type' is the spec's name for it) and the option labels as shipped. P31 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): Chris is leaning to rename 'Catalogue' toward the special-order-parts meaning — video 43:49 'maybe we do rename it. Because you're absolutely right. Things in inventory have a catalogue item' + 44:12 'we'll have to truncate that down somehow, because that'll get a little big for a column.' Possible labels: 'Catalogue' (current spec S2-R1) OR a short special-order-parts name (not yet chosen — do NOT invent it, Rule 9). The MEANING is fixed: special-order catalog parts never put into inventory stock.",
   "api_related": false
  },
  {
@@ -390,23 +390,23 @@
   ],
   "steps": [
    "1. With Type = Both, select any bin in the Bin filter.",
-   "2. Look for catalogue rows in the result.",
-   "3. Set Type = Catalogue while the Bin filter is still active."
+   "2. Look for special-order (catalogue) rows in the result.",
+   "3. Set the Type filter to the special-order (catalogue) choice while the Bin filter is still active."
   ],
   "expected": [
-   "1. With any Bin filter active, ALL catalogue rows are excluded (catalogue parts have no bin location).",
-   "2. Type = Catalogue combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect."
+   "1. With any Bin filter active, ALL special-order (catalogue) rows are excluded (they have no bin location).",
+   "2. The special-order (catalogue) choice combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R8",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R8 — 'Catalogue' label rename PENDING per kickoff video P31 43:34-44:12; latest-info user ruling 2026-07-28: update per latest info now, correct at the live build check later)",
   "viu_status": "VIU-Pending",
-  "notes": "Expected-behavior case: the empty result here is correct per spec.",
+  "notes": "Expected-behavior case: the empty result here is correct per spec. P31 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): the Type choice's on-screen label may be renamed from 'Catalogue' to a short special-order-parts name — label VIU-confirm, meaning unchanged.",
   "api_related": false
  },
  {
   "id": "PV-FILT-10",
   "area": "PV — Filters",
-  "title": "Location filter is the rightmost control, defaults to the active location, and scopes to accessible locations only",
+  "title": "Location filter is rightmost, defaults to the active location, accessible-only",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4); user with access to more than one location.",
@@ -418,19 +418,21 @@
    "1. Look at the rightmost control in the filter row.",
    "2. Note which location is selected by default and compare it to the location selected in the application's global location switcher.",
    "3. Open the filter and read the list of locations.",
-   "4. Select a second location, then select the 'All Locations' option."
+   "4. Select a second location, then select the 'All Locations' option.",
+   "5. With 'All Locations' active, look at how the rows tell you which location they belong to."
   ],
   "expected": [
    "1. The Location filter is the rightmost control in the filter row and is multi-select.",
    "2. On a first visit it defaults to the user's currently active location (the one in the global location switcher).",
    "3. The list holds the locations the signed-in user has access to, plus an 'All Locations' option.",
    "4. Each selection reloads the data scoped to the chosen set; 'All Locations' means all locations the user can ACCESS, never beyond - a location the user cannot access is never included.",
-   "5. The location scope cascades through every metric like the other filters."
+   "5. The location scope cascades through every metric like the other filters.",
+   "6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)"
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R9",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
   "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm the exact 'All Locations' label. Seeding: needs a user with two accessible locations and in-window activity at both (heavy multi-location seeding).",
+  "notes": "VIU-confirm the exact 'All Locations' label. Seeding: needs a user with two accessible locations and in-window activity at both (heavy multi-location seeding). VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): per-row location identifier in All-Locations view — the current spec has NO explicit Location column in the 20-column set (S4-R4), though inventory rows are per-location (S3-R1a). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9).",
   "api_related": false
  },
  {
@@ -488,7 +490,7 @@
  {
   "id": "PV-FILT-13",
   "area": "PV — Filters",
-  "title": "A user with access to only one location still sees the Location filter with a single selectable location",
+  "title": "The Location filter is hidden for a user with access to only one location",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4); user with access to exactly one location.",
@@ -497,18 +499,17 @@
    "2. You are on the Parts Velocity report with data loaded."
   ],
   "steps": [
-   "1. Look at the Location filter in the toolbar.",
-   "2. Open it and read the options."
+   "1. Look for the Location filter in the toolbar.",
+   "2. Then sign in as a user with access to two or more locations and look again."
   ],
   "expected": [
-   "1. The Location filter is still shown.",
-   "2. It offers a single selectable location (the user's one location).",
-   "3. Report behavior is unchanged from single-location use."
+   "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.",
+   "2. For the user with access to two or more locations the Location filter IS shown."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-E4",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-E4 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
   "viu_status": "VIU-Pending",
-  "notes": "Seeding: create a fresh ZZAUTOTEST staff member scoped to one location if none exists (Standing Rule 14 pattern).",
+  "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S2-E4): 'A user with access to only one location STILL SEES the Location filter with a single selectable location.' Seeding: create a fresh ZZAUTOTEST staff member scoped to one location if none exists (Standing Rule 14 pattern).",
   "api_related": false
  }
 ]

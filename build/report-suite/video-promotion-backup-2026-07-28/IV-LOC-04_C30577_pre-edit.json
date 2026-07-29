@@ -1,0 +1,25 @@
+{
+ "id": "IV-LOC-04",
+ "area": "IV — Location Filter",
+ "title": "A user with access to only one location still sees the Location filter with a single selectable location",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "A user with access to exactly one location and the inventory-reports permission.",
+ "preconditions": [
+  "1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward).",
+  "2. You are signed in as that user on a desktop browser."
+ ],
+ "steps": [
+  "1. Open the Inventory Value report.",
+  "2. Open the Location filter and read its options."
+ ],
+ "expected": [
+  "1. The Location filter is still shown.",
+  "2. It offers the single location the user can access."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "specs/inventory-value.md Story 7 S7-N1",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

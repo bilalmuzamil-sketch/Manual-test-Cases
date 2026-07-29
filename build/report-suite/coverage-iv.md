@@ -263,3 +263,10 @@ recording to the cent IV-API-01). No separate cases needed — definitions, not 
 - In scope: every requirement/negative/edge bullet of Stories 1–12 (S1-R1..S12-R9 incl. N/E items), §2 overview + Known Limitations, §3 Key Decisions, §4/§5 definitions, §7 messages = ALL mapped above.
 - Processed: 77 cases authored, 13 sections; 0 requirement bullets unmapped.
 - Excluded-with-reason: 4 items (listed above).
+
+## ADDENDUM 2026-07-28 — video-promotion (user ruling: video overrides spec)
+- **IV-LOC-04 C30577 FLIPPED** (video P33): single-location user now expects NO Location
+  filter — S7-N1 is overridden.
+- **IV-LOC-01 C30574** now also covers the All-locations per-row location identifier (video P10).
+- Detail: reconciliation-2026-07-28/video-promotion-edit-log-2026-07-28.md; watch:
+  ../SPEC-WATCH-2026-07-28.md (deadline 2026-08-04).

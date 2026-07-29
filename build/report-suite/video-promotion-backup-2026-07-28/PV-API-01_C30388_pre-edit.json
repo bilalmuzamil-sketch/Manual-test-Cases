@@ -1,0 +1,26 @@
+{
+ "id": "PV-API-01",
+ "area": "PV — API",
+ "title": "The report is server-paginated - the backend returns one page of rows at a time",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+ "preconditions": [
+  "1. You are on the Parts Velocity report with more rows in the result set than one page holds.",
+  "2. Browser devtools (network tab) are open to observe the backend requests."
+ ],
+ "steps": [
+  "1. Load the report and observe the backend data request and its response size.",
+  "2. Move to the next page of rows and observe the traffic."
+ ],
+ "expected": [
+  "1. The backend returns ONE page of rows at a time - the full result set is not shipped to the browser.",
+  "2. Paging is resolved on the server: moving to another page issues a fresh backend request for that page.",
+  "3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations)."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/parts-velocity.md §2 (server-paginated); S2-R10",
+ "viu_status": "VIU-Pending",
+ "notes": "Generic backend-behavior case (no REST contract in the spec - do NOT assert endpoint paths; observe whatever request the build makes and record it at VIU). KNOWN-DELTA WATCH: the server-side model is the committed build target from 2026-07-16 - spec ahead of current code by design.",
+ "api_related": true
+}

@@ -350,30 +350,30 @@
   {
     "id": "WIP-FLT-03",
     "area": "WIP — Filters",
-    "title": "The Asset filter's type-ahead matches either the unit number or the vehicle identification number, and reads \"All assets\" when empty",
+    "title": "Asset filter type-ahead matches serial number or VIN, \"All assets\" when empty",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The report shows jobs for at least two assets whose unit numbers and vehicle identification numbers you know."
+      "2. The report shows jobs for at least two assets whose serial numbers and vehicle identification numbers you know."
     ],
     "steps": [
       "1. Read the Asset filter's label before selecting anything.",
       "2. Open the filter and read how each option is presented.",
-      "3. Type part of a unit number and check the matching options; clear and type part of a vehicle identification number instead.",
+      "3. Type part of a serial number and check the matching options; clear and type part of a vehicle identification number instead.",
       "4. Select one or more assets and watch the rows; then use the \"Clear\" action."
     ],
     "expected": [
       "1. With no asset selected, the filter reads \"All assets\" and every job is shown.",
-      "2. Each option shows the unit number and the vehicle identification number.",
-      "3. The typed text matches against EITHER the unit number OR the vehicle identification number.",
+      "2. Each option shows the serial number and the vehicle identification number.",
+      "3. The typed text matches against EITHER the serial number OR the vehicle identification number.",
       "4. Selecting assets narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one asset is selected and returns the filter to \"All assets\"."
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R4; S7-R5",
+    "spec_ref": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R4; S7-R5 — option text + match fields OVERRIDDEN from unit number to serial number by kickoff video P24 29:54-30:46, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
     "viu_status": "VIU-Pending",
-    "notes": "",
+    "notes": "VIDEO-AUTHORITATIVE (P24, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the asset identifier is the serial number. OVERRIDDEN spec wording: S7-R4/S7-R5 options and type-ahead matched the UNIT NUMBER and the VIN. P12 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): the Asset dropdown should MATCH THE NATIVE ShopView multi-select style, plus a possible toggle — video 15:49-16:04 Stefan: 'I would also add maybe a toggle or something... Just to have it, like, uniform throughout the app'; Chris 16:54: 'let's please do this. Happy to update the spec with that, too.' Exact interaction (close-on-pick vs toggle) = VIU-confirm — do not fail on stay-open vs close-per-pick until confirmed live. (No case asserted the stay-open behavior — verified by search.)",
     "api_related": false
   },
   {

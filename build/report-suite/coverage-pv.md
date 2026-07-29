@@ -223,3 +223,14 @@ Service/Parts two-type WO model (PV-CALC-05, PV-CALC-15).
 ## Open questions / flags
 - None PV-specific beyond the known-delta register. Epic/Jira key + QA env/flag
   status: NOT AVAILABLE — ask the user when VIU begins (per project scaffold).
+
+## ADDENDUM 2026-07-28 — video-promotion + latest-info (user ruling)
+- **PV-FILT-13 C30340 FLIPPED** (video P33): single-location user now expects NO Location
+  filter — S2-E4 is overridden.
+- **PV-FILT-10 C30337** now also covers the All-Locations per-row location identifier (video P10).
+- **PV-FILT-01 C30328 / PV-FILT-09 C30336 / PV-ROW-05 C30345** reworded to the special-order
+  MEANING of the 'Catalogue' Type choice; exact label = confirm in build (video P31 latest info;
+  PV-EXP-08 C30382 notes-only). **PV-API-01/02** notes flag pagination details as confirm-live
+  (video P30: pagination stands on every page).
+- Detail: reconciliation-2026-07-28/video-promotion-edit-log-2026-07-28.md; watch:
+  ../SPEC-WATCH-2026-07-28.md (deadline 2026-08-04).

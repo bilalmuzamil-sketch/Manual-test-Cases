@@ -263,7 +263,7 @@
  {
   "id": "SBC-EXP-01",
   "area": "SBC — Exports",
-  "title": "The overflow menu holds Download (CSV), Download (PDF) and Print in that order, with no separate export buttons",
+  "title": "The overflow menu holds only Download (CSV) and Download (PDF) — no Print item",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Sales By Customer report View permission.",
@@ -277,13 +277,13 @@
   ],
   "expected": [
    "1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.",
-   "2. The menu items read, in order: \"Download (CSV)\", \"Download (PDF)\", \"Print\" (Print is the third item).",
+   "2. The menu items read, in order: \"Download (CSV)\", \"Download (PDF)\" — and there is NO \"Print\" item anywhere in the menu.",
    "3. There are no separate always-visible export buttons — all exports live behind this one menu."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 14 S14-R1; S14-R2; Story 15 S15-R1; S15-R2; Story 16 S16-R1; S16-R2; Story 20 S20-R16",
+  "spec_ref": "SV-8612; SV-8613 (specs/sbc-sales-by-customer.md S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — the 'Print' third menu item REMOVED per kickoff video P25 31:14, overriding Story 16 / SV-8614, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIDEO-AUTHORITATIVE (P25, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 31:14: 'Like, print here, this should not exist. I'm going to make sure. That's cut out of the spec.' OVERRIDDEN spec wording: S14-R1 menu order 'Download (CSV)', 'Download (PDF)', 'Print' (Print third) + Story 16 S16-R1..R6 (Print the report). Exports are PDF + CSV downloads only.",
   "api_related": false
  },
  {
@@ -593,14 +593,14 @@
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "specs/sbc-sales-by-customer.md Story 16 S16-R3; S16-R3a; S16-R3b; S16-R3c; S16-R4; S16-R5; S16-N1; §7",
-  "viu_status": "VIU-Pending",
-  "notes": "Note the distinct failure wording: Print failure = \"PDF generation failed.\" vs PDF download failure = \"PDF export failed.\"",
+  "viu_status": "Retire-Proposed (video P25, user ruling 2026-07-28 — awaiting TestRail delete authorization)",
+  "notes": "RETIRE-PROPOSED (P25, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)) — this case's ONLY purpose is the Print behavior, and the video removes Print from Sales By Customer entirely (31:14: 'print here, this should not exist. I'm going to make sure. That's cut out of the spec.'). OVERRIDDEN spec wording: Story 16 S16-R1..R6 / S16-N1 / §7 ('Print PDF fails'). NOT deleted — Rule 6: kept in TestRail (C30171) until the user explicitly authorizes delete_case; body left as authored for the record. Prior note: the distinct failure wording Print='PDF generation failed.' vs PDF download='PDF export failed.'",
   "api_related": false
  },
  {
   "id": "SBC-EXP-14",
   "area": "SBC — Exports",
-  "title": "An export over 10,000 data rows is refused with the too-large toast — no file downloads and no print dialog opens",
+  "title": "An export over 10,000 data rows is refused with the too-large toast",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "Sales By Customer report View permission.",
@@ -610,19 +610,18 @@
   "steps": [
    "1. With the over-cap filter set, choose \"Download (CSV)\".",
    "2. Choose \"Download (PDF)\".",
-   "3. Choose \"Print\".",
-   "4. Narrow the filters below the cap and re-try one export."
+   "3. Narrow the filters below the cap and re-try one export."
   ],
   "expected": [
-   "1. For each of CSV, PDF, and Print: no file is generated, no download starts, and no print dialog opens.",
+   "1. For both CSV and PDF: no file is generated and no download starts.",
    "2. An error toast is shown each time: \"This export is too large to generate. Narrow the date range or filters, then try again.\" (dismissed by the user).",
    "3. The cap counts customer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.",
    "4. Below the cap the export succeeds normally."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 14 S14-R14; Story 15 S15-R22; Story 16 S16-R6; §7",
+  "spec_ref": "SV-8612; SV-8613 (specs/sbc-sales-by-customer.md Story 14 S14-R14; Story 15 S15-R22; §7 — the Print leg REMOVED per kickoff video P25 31:14 / SV-8614 overridden, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
   "viu_status": "VIU-Pending",
-  "notes": "Server-side enforcement is covered by SBC-API-05. BUILD-DELTA: the 10,000-row cap is the 2026-07-21 spec round — the current build may lack it at VIU.",
+  "notes": "Server-side enforcement is covered by SBC-API-05. BUILD-DELTA: the 10,000-row cap is the 2026-07-21 spec round — the current build may lack it at VIU. Video P25 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the Print step/expectation was removed with the Print control (spec S16-R6 had capped Print too); title shortened to fit.",
   "api_related": false
  },
  {
@@ -827,6 +826,32 @@
   "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R8",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA: the explicit all-customers flag is the 2026-07-21 committed target — the current build may store an id enumeration at VIU.",
+  "api_related": false
+ },
+ {
+  "id": "SBC-EXP-16",
+  "area": "SBC — Exports",
+  "title": "The download menu also offers a compressed (summary) version of the report",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You are on the Sales By Customer report with at least one customer and several invoices in the chosen date range."
+  ],
+  "steps": [
+   "1. Open the download (overflow) menu and read the options.",
+   "2. Download the compressed (summary) version and open the file.",
+   "3. Download the expanded (full, nested) version and compare the two files."
+  ],
+  "expected": [
+   "1. Besides the existing expanded (nested) download, the menu offers a compressed (summary) download option. (The exact menu wording is confirmed in the build.)",
+   "2. The compressed file gives one summary line per customer, without the per-invoice detail rows. (The exact file shape is confirmed in the build once the spec update lands.)",
+   "3. The expanded download still contains the full nested detail, and both files reflect exactly the filtered data shown on screen."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8582 (EPIC-LEVEL, stated explicitly: no child story exists yet for the SBC compressed download — kickoff video P21 32:10-33:03 + 48:39, user ruling 2026-07-28; overrides the current spec's single flat export, S14-R6; S14-R10; S15-R16)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIDEO-AUTHORITATIVE ADD (P21, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)), NEW — no C-ID yet (needs authorized add_case). Video: Parth 32:10 'in sales by customer, we don't want to include option to download as a expanded view?' -> Chris 32:43 'You know what? That's actually a good callout. Let's, let's add that.' + 48:39 'we're gonna have to add to SVC, Sales by Customer, like you said, the CompressedView, that was a great idea.' OVERRIDDEN spec state: SBC exports are a single FLAT shape (S14-R6/S14-R10 CSV, S15-R16 PDF) with no Summary-vs-Expanded split. Compressed-file shape modeled on the other reports' Summary downloads but unpinned until Chris's spec update — flagged, not invented (Rule 9).",
   "api_related": false
  }
 ]

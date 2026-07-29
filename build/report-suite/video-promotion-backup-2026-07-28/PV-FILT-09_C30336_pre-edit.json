@@ -1,0 +1,26 @@
+{
+ "id": "PV-FILT-09",
+ "area": "PV — Filters",
+ "title": "Any Bin filter excludes all catalogue rows - Type Catalogue plus a Bin filter is empty by design",
+ "priority": "Medium",
+ "type": "Negative",
+ "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+ "preconditions": [
+  "1. You are on the Parts Velocity report with data loaded.",
+  "2. Catalogue rows are present under Type = Both (a catalogue part has in-window activity)."
+ ],
+ "steps": [
+  "1. With Type = Both, select any bin in the Bin filter.",
+  "2. Look for catalogue rows in the result.",
+  "3. Set Type = Catalogue while the Bin filter is still active."
+ ],
+ "expected": [
+  "1. With any Bin filter active, ALL catalogue rows are excluded (catalogue parts have no bin location).",
+  "2. Type = Catalogue combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/parts-velocity.md S2-R8",
+ "viu_status": "VIU-Pending",
+ "notes": "Expected-behavior case: the empty result here is correct per spec.",
+ "api_related": false
+}

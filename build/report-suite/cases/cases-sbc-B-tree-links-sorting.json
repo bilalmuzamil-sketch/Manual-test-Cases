@@ -335,28 +335,25 @@
  {
   "id": "SBC-LBL-01",
   "area": "SBC — Asset Labels",
-  "title": "Asset label = year make model plus the most specific identifier: Unit, then plate, then last 8 of VIN",
+  "title": "Asset label = year make model plus the serial number as the identifier",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
   "preconditions": [
-   "1. One customer has four ZZAUTOTEST assets with invoices in range: (a) one with a unit number, (b) one with a plate but no unit, (c) one with only a VIN of 8+ characters, (d) one with only a VIN shorter than 8 characters."
+   "1. One customer has ZZAUTOTEST assets with invoices in range: (a) one with a serial number recorded, (b) one with no serial number."
   ],
   "steps": [
    "1. Expand the customer and read each asset row's label."
   ],
   "expected": [
    "1. Every label starts with the vehicle's year, make, and model.",
-   "2. Asset (a) adds \" · Unit {unit}\".",
-   "3. Asset (b) adds \" · {plate}\".",
-   "4. Asset (c) adds \" · VIN …\" followed by the last 8 characters of the VIN.",
-   "5. Asset (d) shows the whole VIN after \" · VIN …\" (shorter than 8).",
-   "6. An asset with none of unit/plate/VIN gets no suffix at all."
+   "2. Asset (a) shows its SERIAL NUMBER after the year/make/model as the identifier.",
+   "3. For asset (b) (no serial number), note what the label shows instead — what stands in when the serial number is missing is confirmed in the build (the older wording used the unit number, then the plate, then the last 8 of the VIN)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8 — identifier OVERRIDDEN to serial number by kickoff video P24 29:54-30:46, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
   "viu_status": "VIU-Pending",
-  "notes": "The \" · \" separator and \"VIN …\" prefix are quoted from the spec — VIU-confirm the exact rendered punctuation.",
+  "notes": "VIDEO-AUTHORITATIVE (P24, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 29:54-30:46: 'Using unit number as an identifier is not best in class... the holy grail... is the serial number, or in some cases the bin number... it's one and the same. Interchangeable terminology... that is the identifier... I need to change this on my local to actual serial number.' OVERRIDDEN spec wording (S8-R8): suffix priority '· Unit {unit}' -> plate -> 'VIN …{last 8}' -> none. The exact suffix punctuation and the missing-serial fallback are unpinned — VIU-confirm from the build, do not invent (Rule 9).",
   "api_related": false
  },
  {
@@ -376,9 +373,9 @@
    "1. The label is the VIN on its own (no year/make/model base, no \"VIN …\" suffix form)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R9",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R9)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Video P24 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the asset identifier is now the SERIAL NUMBER. This case's no-year/make/model rule (S8-R9: label = the VIN on its own) is not itself overridden by the video, but re-confirm the fallback in the build once the serial-number identifier ships.",
   "api_related": false
  },
  {
@@ -398,15 +395,15 @@
    "1. The label reads \"Unknown Asset.\""
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R10",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R10)",
   "viu_status": "VIU-Pending",
-  "notes": "If the asset form will not allow a fully-blank vehicle, record what minimum the form enforces and mark Blocked-Env with reason (after attempting all seeding routes per Standing Rule 14).",
+  "notes": "If the asset form will not allow a fully-blank vehicle, record what minimum the form enforces and mark Blocked-Env with reason (after attempting all seeding routes per Standing Rule 14). Video P24 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the asset identifier is now the SERIAL NUMBER; the 'Unknown Asset' rule (S8-R10) is not itself overridden — re-confirm in the build (an asset may now also need no serial number to be 'Unknown').",
   "api_related": false
  },
  {
   "id": "SBC-LBL-04",
   "area": "SBC — Asset Labels",
-  "title": "Two assets producing the same label get stable (#1)/(#2) suffixes that survive reloads",
+  "title": "Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
@@ -423,9 +420,9 @@
    "2. The numbering is fixed and repeatable — after a reload the same vehicle keeps the same number."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R11",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R11)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Video P24 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the asset identifier is now the SERIAL NUMBER — duplicate labels should become rarer (serials are unique), but the (#1)/(#2) rule (S8-R11) itself is not overridden; seed the duplicate-label state accordingly and re-confirm in the build. Title shortened to fit (case touched this pass).",
   "api_related": false
  },
  {

@@ -1,0 +1,27 @@
+{
+ "id": "WIP-EXP-07",
+ "area": "WIP — Exports",
+ "title": "In downloads the asset column is headed \"Unit\" and the location column \"Branch\" — documented limitation, do not file",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. The Asset and Location columns are both turned on."
+ ],
+ "steps": [
+  "1. Read the two columns' headers on screen.",
+  "2. Download the current tab as a CSV and read the same two columns' headers.",
+  "3. Download the PDF and read them there too."
+ ],
+ "expected": [
+  "1. On screen the headers read \"Asset\" and \"Location\".",
+  "2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".",
+  "3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "specs/wip-work-in-progress.md Story 9 S9-E1; §2 Known Limitations (v1)",
+ "viu_status": "VIU-Pending",
+ "notes": "DOCUMENTED LIMITATION — DO NOT FILE. The Unit/Branch export headers are a known v1 limitation, not a defect.",
+ "api_related": false
+}

@@ -1,0 +1,26 @@
+{
+ "id": "PV-ROW-05",
+ "area": "PV — Row Model",
+ "title": "Sticky header, all-left alignment on screen, and plain-text Type values",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+ "preconditions": [
+  "1. You are on the Parts Velocity report with enough rows to scroll the table body vertically."
+ ],
+ "steps": [
+  "1. Scroll the table body down and watch the header row.",
+  "2. Read the Type column values.",
+  "3. Look at the alignment of every header label and cell, including numeric and money columns."
+ ],
+ "expected": [
+  "1. The header row is sticky - it stays visible while the body scrolls.",
+  "2. The Type column shows Inventory or Catalogue as plain text (no badge or chip styling).",
+  "3. ALL columns - header and cell data, including numbers and money - are left-aligned on screen. (The exports right-align numerics instead: a deliberate export-only difference, see PV-EXP-08.)"
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/parts-velocity.md S3-R4; S3-R5; S3-R8",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

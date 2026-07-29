@@ -76,14 +76,17 @@ Filters compose: only invoices matching ALL active filters contribute anywhere,S
 2. It is a multi-select listing the locations the user has access to, plus an ""All Locations"" option.",specs/sbr-sales-by-representative.md Story 21 S21-R1; Story 18 S18-R7.2,,
 Location filter defaults to the user's currently active location only,SBR — Location Filter,Functional,High,"1. Your browser has no remembered settings for this report.
 2. You are working in a known active location (the application's location switcher).",1. Open the report and read the location filter's selection.,1. The filter defaults to the currently active location only — the default view is scoped to the one location you are working in.,specs/sbr-sales-by-representative.md Story 21 S21-R2,,
-Location selection cascades through the contributor gate and never includes an inaccessible location,SBR — Location Filter,Functional,High,"1. Rep A has invoices only at location X; rep B at locations X and Y (seed ZZAUTOTEST data).
+Location selection cascades; an inaccessible location's data is never included,SBR — Location Filter,Functional,High,"1. Rep A has invoices only at location X; rep B at locations X and Y (seed ZZAUTOTEST data).
 2. The signed-in user has access to X and Y but not to a third location Z which also has data.","1. Select only location Y.
 2. Look for rep A; read rep B's count, totals, and detail rows.
-3. Select ""All Locations"" and check whether any location-Z data appears.","1. With only Y selected, rep A disappears (no matching invoice at Y); rep B's metrics reflect only Y invoices — an invoice's location is that of its originating work order / parts sale.
+3. Select ""All Locations"" and check whether any location-Z data appears.
+4. With ""All Locations"" active, look at how the rows tell you which location they belong to.","1. With only Y selected, rep A disappears (no matching invoice at Y); rep B's metrics reflect only Y invoices — an invoice's location is that of its originating work order / parts sale.
 2. Changing the selection re-fetches and re-renders scoped to the chosen set.
-3. ""All Locations"" means all locations the user can access — location Z's data is never included.",specs/sbr-sales-by-representative.md Story 21 S21-R3; S21-R4; S21-R5; §3,,
-A single-location user still sees the filter with one selectable location and unchanged behavior,SBR — Location Filter,Negative,Low,1. You are signed in as a user assigned to exactly one location.,1. Open the report and open the location filter.,"1. The filter is still shown, with one selectable location.
-2. Report behavior is unchanged from single-location use.",specs/sbr-sales-by-representative.md Story 21 S21-N1,,
+3. ""All Locations"" means all locations the user can access — location Z's data is never included.
+4. With ""All Locations"" active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)","SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
+The Location filter is hidden for a user with access to only one location,SBR — Location Filter,Negative,Low,1. You are signed in as a user assigned to exactly one location.,"1. Open the report and look for the Location filter in the toolbar.
+2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
+2. For the user with access to two or more locations the Location filter IS shown.","SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
 Contributors only: a rep row appears if and only if the rep has at least one non-reversed invoice matching all active filters,SBR — Rep Rows & Tree,Functional,Critical,1. Rep A has invoices in the current filtered view; rep B (sales-rep toggle on) has NONE; rep C has only a reversed invoice (seed ZZAUTOTEST data).,"1. Open the report and read the summary rows.
 2. Look for reps B and C.
 3. Read the count in parentheses after rep A's name.","1. Rep A occupies exactly one summary row.

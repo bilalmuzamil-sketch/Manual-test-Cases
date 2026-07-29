@@ -202,9 +202,9 @@
    "4. This is a deliberate export-only treatment - the on-screen table is all-left-aligned (PV-ROW-05); the difference is documented, not a defect."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R10; S3-R8",
+  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R10; S3-R8)",
   "viu_status": "VIU-Pending",
-  "notes": "Expected-behavior case (deliberate screen-vs-export difference).",
+  "notes": "Expected-behavior case (deliberate screen-vs-export difference). P31 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): the Type column's VALUES may be renamed from 'Catalogue' (video P31) — the centered-alignment rule is unaffected; check the exported value text at VIU.",
   "api_related": false
  },
  {
@@ -356,9 +356,9 @@
    "3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md §2 (server-paginated); S2-R10",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md §2 (server-paginated); S2-R10)",
   "viu_status": "VIU-Pending",
-  "notes": "Generic backend-behavior case (no REST contract in the spec - do NOT assert endpoint paths; observe whatever request the build makes and record it at VIU). KNOWN-DELTA WATCH: the server-side model is the committed build target from 2026-07-16 - spec ahead of current code by design.",
+  "notes": "Generic backend-behavior case (no REST contract in the spec - do NOT assert endpoint paths; observe whatever request the build makes and record it at VIU). KNOWN-DELTA WATCH: the server-side model is the committed build target from 2026-07-16 - spec ahead of current code by design. P30 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): pagination STANDS on every page — video 45:05 Stefan: 'we are definitely having pagination on every page, so with the current code base, we are basically forcing the user to scroll.' Chris wants to revisit infinite-scroll/lazy-load LATER (45:42 'let's flag that... revisit pagination, infinite, scroll, and load') — pagination-behavior details (page size, control style) = VIU-confirm.",
   "api_related": true
  },
  {
@@ -381,9 +381,9 @@
    "3. Each change returns the FIRST page of the new result set."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R10",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R10)",
   "viu_status": "VIU-Pending",
-  "notes": "Generic backend-behavior case - no endpoint paths asserted (none exist in the spec); record the observed requests at VIU. Server-side model is the committed build target (2026-07-16) - possible delta vs the current build.",
+  "notes": "Generic backend-behavior case - no endpoint paths asserted (none exist in the spec); record the observed requests at VIU. Server-side model is the committed build target (2026-07-16) - possible delta vs the current build. P30 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): pagination stands on every page (video 45:05); details = VIU-confirm.",
   "api_related": true
  },
  {

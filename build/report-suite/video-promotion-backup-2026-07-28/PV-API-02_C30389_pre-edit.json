@@ -1,0 +1,25 @@
+{
+ "id": "PV-API-02",
+ "area": "PV — API",
+ "title": "Every filter or search change re-queries the server and returns the first page of the new result set",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+ "preconditions": [
+  "1. You are on the Parts Velocity report with data loaded and the browser devtools network tab open."
+ ],
+ "steps": [
+  "1. Change each of these in turn and watch the network traffic: Type, date range, Bin, Location, Category, Vendor, and the toolbar search.",
+  "2. After a filter change while on a later page, note which page of results is shown."
+ ],
+ "expected": [
+  "1. EACH change (Type, date range, Bin, Location, Category, Vendor, search) triggers a fresh server-side data load.",
+  "2. There is no client-side-only narrowing - every filter or search change re-queries the server.",
+  "3. Each change returns the FIRST page of the new result set."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/parts-velocity.md S2-R10",
+ "viu_status": "VIU-Pending",
+ "notes": "Generic backend-behavior case - no endpoint paths asserted (none exist in the spec); record the observed requests at VIU. Server-side model is the committed build target (2026-07-16) - possible delta vs the current build.",
+ "api_related": true
+}

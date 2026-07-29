@@ -387,7 +387,7 @@
  {
   "id": "SBC-LOC-03",
   "area": "SBC — Location Filter",
-  "title": "Selecting locations scopes the report data; All locations includes every accessible location",
+  "title": "Selecting locations scopes the data; All locations covers every accessible one",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Sales By Customer report View permission; user with access to at least two locations.",
@@ -398,17 +398,19 @@
   "steps": [
    "1. Select only location A in the location filter and note the customers/totals.",
    "2. Select locations A and B together and note the change.",
-   "3. Select \"All locations.\""
+   "3. Select \"All locations.\"",
+   "4. With \"All locations\" active, look at how the rows tell you which location they belong to."
   ],
   "expected": [
    "1. With one or more locations selected, the report includes only data from those locations.",
    "2. Adding a second location adds that location's invoices to the rows and totals.",
-   "3. With \"All locations,\" the report includes data from every location the user has access to."
+   "3. With \"All locations,\" the report includes data from every location the user has access to.",
+   "4. With \"All locations\" active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)"
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 4 S4-R5; S4-R6",
+  "spec_ref": "SV-8603 (specs/sbc-sales-by-customer.md Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 41:09-41:20: 'we'll need a way to define, we're looking at all locations... how do I know which is for shop A and which is for shop B? ... we should probably add that in there.' The current spec has NO per-row location label on this report (tree is Customer->Asset->Invoice, no Location column — only WIP has one). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9).",
   "api_related": false
  },
  {

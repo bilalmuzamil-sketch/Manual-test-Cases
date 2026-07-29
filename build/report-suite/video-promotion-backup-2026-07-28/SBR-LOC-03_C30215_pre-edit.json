@@ -1,0 +1,27 @@
+{
+ "id": "SBR-LOC-03",
+ "area": "SBR — Location Filter",
+ "title": "Location selection cascades through the contributor gate and never includes an inaccessible location",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Reports/Performance access; a non-administrator with access to only some locations.",
+ "preconditions": [
+  "1. Rep A has invoices only at location X; rep B at locations X and Y (seed ZZAUTOTEST data).",
+  "2. The signed-in user has access to X and Y but not to a third location Z which also has data."
+ ],
+ "steps": [
+  "1. Select only location Y.",
+  "2. Look for rep A; read rep B's count, totals, and detail rows.",
+  "3. Select \"All Locations\" and check whether any location-Z data appears."
+ ],
+ "expected": [
+  "1. With only Y selected, rep A disappears (no matching invoice at Y); rep B's metrics reflect only Y invoices — an invoice's location is that of its originating work order / parts sale.",
+  "2. Changing the selection re-fetches and re-renders scoped to the chosen set.",
+  "3. \"All Locations\" means all locations the user can access — location Z's data is never included."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbr-sales-by-representative.md Story 21 S21-R3; S21-R4; S21-R5; §3",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

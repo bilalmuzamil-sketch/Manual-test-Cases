@@ -1,0 +1,27 @@
+{
+ "id": "TU-LOC-01",
+ "area": "TU — Location Filter",
+ "title": "The Location filter is the rightmost multi-select listing accessible locations, with All Locations acting as a select-all shortcut",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to more than one location.",
+ "preconditions": [
+  "1. You are signed in as a user with access to at least two locations.",
+  "2. You are on the Technician Utilization report."
+ ],
+ "steps": [
+  "1. Look at the rightmost control in the toolbar and read its label.",
+  "2. Open it and read the listed options.",
+  "3. Choose \"All Locations\", then uncheck one individual location."
+ ],
+ "expected": [
+  "1. The toolbar has a location filter labeled \"Location\" - a multi-select and the RIGHTMOST control.",
+  "2. It lists the locations the signed-in user has access to, plus an \"All Locations\" option.",
+  "3. \"All Locations\" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/technician-utilization.md S9-R1",
+ "viu_status": "VIU-Pending",
+ "notes": "Labels pinned verbatim (\"Location\" / \"All Locations\").",
+ "api_related": false
+}

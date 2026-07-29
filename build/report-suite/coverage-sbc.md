@@ -24,7 +24,7 @@
 | SBC — Sorting | SBC-SORT-01..07 (7) |
 | SBC — Totals & Calculations | SBC-CALC-01..07 (7) |
 | SBC — Column Selector | SBC-COL-01..03 (3) |
-| SBC — Exports | SBC-EXP-01..15 (15) |
+| SBC — Exports | SBC-EXP-01..16 (16) |
 | SBC — Saved View & Persistence | SBC-PERS-01..07 (7) |
 | SBC — Empty & Edge States | SBC-EMPTY-01..04 (4) |
 | SBC — Visual Conformance | SBC-VIS-01..03 (3) |
@@ -396,3 +396,15 @@ dedicated report (§2 Out of Scope + §3 Key Decision). No case authored.
 - Margin excludes Shop Supplies while Subtotal includes them (§4) — SBC-CALC-01.
 - Whole-invoice S/P classification by prefix, no per-line split (§2/§3) — SBC-TYPE-02.
 - Expansion/search-text/scroll not persisted (S6-R3) — SBC-PERS-02.
+
+## ADDENDUM 2026-07-28 — video-promotion (user ruling: video overrides spec)
+- **NEW: SBC-EXP-16** (no C-ID yet) — compressed (summary) download option, kickoff video P21
+  (no spec requirement exists yet; refs = epic SV-8582, stated explicitly).
+- **RETIRE-PROPOSED: SBC-EXP-13 C30171** (Print behavior) — video P25 removes Print; Story 16
+  (S16-R1..R6) coverage is retire-proposed, NOT deleted. SBC-EXP-01/SBC-EXP-14 edited to
+  expect NO Print.
+- **SBC-LBL-01** now covers the serial-number identifier (video P24; S8-R8 overridden);
+  **SBC-LOC-03** now also covers the All-locations per-row location identifier (video P10).
+- Full detail: reconciliation-2026-07-28/video-promotion-edit-log-2026-07-28.md; watch:
+  ../SPEC-WATCH-2026-07-28.md (deadline 2026-08-04); backups:
+  ../video-promotion-backup-2026-07-28/.

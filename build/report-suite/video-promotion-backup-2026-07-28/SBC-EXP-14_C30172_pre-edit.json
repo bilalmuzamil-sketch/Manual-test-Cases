@@ -1,0 +1,28 @@
+{
+ "id": "SBC-EXP-14",
+ "area": "SBC — Exports",
+ "title": "An export over 10,000 data rows is refused with the too-large toast — no file downloads and no print dialog opens",
+ "priority": "High",
+ "type": "Negative",
+ "permissions_required": "Sales By Customer report View permission.",
+ "preconditions": [
+  "1. A filter combination exists whose customer rows plus invoice rows exceed 10,000 (widest range, all locations, all customers). If the environment cannot reach 10,000 rows even fully widened, record the max reachable and mark Blocked-Env with reason."
+ ],
+ "steps": [
+  "1. With the over-cap filter set, choose \"Download (CSV)\".",
+  "2. Choose \"Download (PDF)\".",
+  "3. Choose \"Print\".",
+  "4. Narrow the filters below the cap and re-try one export."
+ ],
+ "expected": [
+  "1. For each of CSV, PDF, and Print: no file is generated, no download starts, and no print dialog opens.",
+  "2. An error toast is shown each time: \"This export is too large to generate. Narrow the date range or filters, then try again.\" (dismissed by the user).",
+  "3. The cap counts customer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.",
+  "4. Below the cap the export succeeds normally."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbc-sales-by-customer.md Story 14 S14-R14; Story 15 S15-R22; Story 16 S16-R6; §7",
+ "viu_status": "VIU-Pending",
+ "notes": "Server-side enforcement is covered by SBC-API-05. BUILD-DELTA: the 10,000-row cap is the 2026-07-21 spec round — the current build may lack it at VIU.",
+ "api_related": false
+}

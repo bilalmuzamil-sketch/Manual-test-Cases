@@ -273,3 +273,12 @@ not standalone behaviors — no separate cases needed.
 - Adversarial review 2026-07-22 (TU/WIP/IV auditor): independent bullet walk confirmed 0 unmapped; one coverage misstatement fixed (the §3 "no on-screen status filter" decision was cited to WIP-FLT-04 where nothing asserted it — now asserted in WIP-TAB-02 expected 3) + one WIP-SORT-03 wording clarification.
 - Processed: 83 cases authored, 14 sections; 0 requirement bullets unmapped.
 - Excluded-with-reason: 4 items (listed above).
+
+## ADDENDUM 2026-07-28 — video-promotion + latest-info (user ruling)
+- **WIP-COL-05 C30470 / WIP-FLT-03 C30500 / WIP-SORT-03 C30485** now cover the SERIAL-NUMBER
+  asset identifier (video P24; S4-R7/S4-R9/S7-R4/S7-R5 overridden); **WIP-EXP-07 C30516** got a
+  serial-number data caveat on the Unit/Branch header limitation.
+- **WIP-FLT-03** note updated to the native+toggle asset-dropdown latest info (video P12).
+- WIP needs NO per-row location-label edit (P10) — its Location column already exists (S4-R1).
+- Detail: reconciliation-2026-07-28/video-promotion-edit-log-2026-07-28.md; watch:
+  ../SPEC-WATCH-2026-07-28.md (deadline 2026-08-04).

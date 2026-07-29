@@ -499,7 +499,7 @@
  {
   "id": "SBR-LOC-03",
   "area": "SBR — Location Filter",
-  "title": "Location selection cascades through the contributor gate and never includes an inaccessible location",
+  "title": "Location selection cascades; an inaccessible location's data is never included",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Reports/Performance access; a non-administrator with access to only some locations.",
@@ -510,23 +510,25 @@
   "steps": [
    "1. Select only location Y.",
    "2. Look for rep A; read rep B's count, totals, and detail rows.",
-   "3. Select \"All Locations\" and check whether any location-Z data appears."
+   "3. Select \"All Locations\" and check whether any location-Z data appears.",
+   "4. With \"All Locations\" active, look at how the rows tell you which location they belong to."
   ],
   "expected": [
    "1. With only Y selected, rep A disappears (no matching invoice at Y); rep B's metrics reflect only Y invoices — an invoice's location is that of its originating work order / parts sale.",
    "2. Changing the selection re-fetches and re-renders scoped to the chosen set.",
-   "3. \"All Locations\" means all locations the user can access — location Z's data is never included."
+   "3. \"All Locations\" means all locations the user can access — location Z's data is never included.",
+   "4. With \"All Locations\" active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)"
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 21 S21-R3; S21-R4; S21-R5; §3",
+  "spec_ref": "SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 41:09-41:20: 'how do I know which is for shop A and which is for shop B? ... we should probably add that in there.' The current spec has NO per-row location label on this report (no Location column). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9).",
   "api_related": false
  },
  {
   "id": "SBR-LOC-04",
   "area": "SBR — Location Filter",
-  "title": "A single-location user still sees the filter with one selectable location and unchanged behavior",
+  "title": "The Location filter is hidden for a user with access to only one location",
   "priority": "Low",
   "type": "Negative",
   "permissions_required": "Reports/Performance access; a user with access to exactly one location.",
@@ -534,16 +536,17 @@
    "1. You are signed in as a user assigned to exactly one location."
   ],
   "steps": [
-   "1. Open the report and open the location filter."
+   "1. Open the report and look for the Location filter in the toolbar.",
+   "2. Then sign in as a user with access to two or more locations and look again."
   ],
   "expected": [
-   "1. The filter is still shown, with one selectable location.",
-   "2. Report behavior is unchanged from single-location use."
+   "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.",
+   "2. For the user with access to two or more locations the Location filter IS shown."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 21 S21-N1",
+  "spec_ref": "SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S21-N1): 'A single-location user STILL SEES the filter with one selectable location' — the case previously asserted exactly that. Ties to the Q2 permission-model question.",
   "api_related": false
  }
 ]

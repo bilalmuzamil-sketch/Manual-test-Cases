@@ -211,11 +211,13 @@ The Category and Vendor filters are multi-selects that reload the report to only
 2. Add a part search matching only one of the remaining parts.
 3. Check the rows and the totals row after each step.","1. A part must satisfy EVERY active filter and the search to appear — the Date range, Location, Category, Vendor, and part search combine with AND.
 2. The totals row matches the combined filtered set after each step.",specs/inventory-value.md Story 6 S6-R9,,
-"The Location filter (rightmost) is a multi-select of the user's accessible locations with an ""All locations"" / ""Clear all"" toggle, defaulting to the active location",IV — Location Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
+The Location filter is a rightmost multi-select with an All locations toggle,IV — Location Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. This browser has never saved settings for this report (fresh visit).","1. Open the Inventory Value report and find the filter labeled ""Location"".
 2. Read its position in the toolbar and its default selection.
-3. Open it and read its options and its toggle.","1. The toolbar has a location filter labeled ""Location"" — a multi-select and the rightmost filter — listing the locations the signed-in user has access to, with an ""All locations"" / ""Clear all"" toggle.
-2. On a first visit it defaults to the user's currently active location.",specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3,,
+3. Open it and read its options and its toggle.
+4. Select every accessible location (""All locations"") and look at how the rows tell you which location they belong to.","1. The toolbar has a location filter labeled ""Location"" — a multi-select and the rightmost filter — listing the locations the signed-in user has access to, with an ""All locations"" / ""Clear all"" toggle.
+2. On a first visit it defaults to the user's currently active location.
+3. With ""All locations"" active you can tell which location each row's stock belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)","SV-8674 (specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
 "Selecting one, several, or all locations reloads the report scoped to that set",IV — Location Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. In-stock parts exist at both locations.","1. With one location selected, note the rows and totals.
 2. Add the second location and watch the data area.
@@ -225,10 +227,10 @@ The Category and Vendor filters are multi-selects that reload the report to only
 2. The Inventory Value report is open.","1. Open the Location filter and read the locations offered.
 2. Use ""Clear all"" so the selection resolves to no location, and watch what the report loads.","1. Only the locations the user has access to are offered — a location the user cannot access is never included in the scope.
 2. If the requested location set resolves to none the user can access, the report falls back to the user's currently active location.",specs/inventory-value.md Story 7 S7-R4; S7-R5,,
-A user with access to only one location still sees the Location filter with a single selectable location,IV — Location Filter,Functional,Medium,"1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward).
-2. You are signed in as that user on a desktop browser.","1. Open the Inventory Value report.
-2. Open the Location filter and read its options.","1. The Location filter is still shown.
-2. It offers the single location the user can access.",specs/inventory-value.md Story 7 S7-N1,,
+The Location filter is hidden for a user with access to only one location,IV — Location Filter,Functional,Medium,"1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward).
+2. You are signed in as that user on a desktop browser.","1. Open the Inventory Value report and look for the Location filter in the toolbar.
+2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's stock.
+2. For the user with access to two or more locations the Location filter IS shown.","SV-8674 (specs/inventory-value.md Story 7 S7-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
 "When the selected location(s) hold no in-stock parts on the resolved date, the no-data message shows",IV — Location Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A location you can access holds no in-stock (positive-quantity, non-core) parts.","1. Scope the Location filter to only the empty location.
 2. Read the data area.","1. The report shows the no-data message ""Empty bays, endless possibilities. Get Going!"" instead of rows, and no totals row.",specs/inventory-value.md Story 7 S7-N2; §7 User Feedback Summary,,

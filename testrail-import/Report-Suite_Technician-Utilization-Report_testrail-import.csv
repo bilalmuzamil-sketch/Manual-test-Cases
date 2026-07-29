@@ -1,8 +1,10 @@
 Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
-Technician Utilization appears in the reports navigation under the Performance group,TU — Access & Display,Functional,Critical,1. You are signed in as a user whose role has the timesheet-reports permission.,"1. Open the reports navigation.
+"Technician Utilization sits under Performance, below existing report links",TU — Access & Display,Functional,Critical,1. You are signed in as a user whose role has the timesheet-reports permission.,"1. Open the reports navigation.
 2. Look under the Performance group.
-3. Click the entry labeled Technician Utilization.","1. The report is listed under the Performance group, labeled ""Technician Utilization"".
-2. Clicking it opens the report.",specs/technician-utilization.md S1-R1,,
+3. Click the entry labeled Technician Utilization.
+4. Note where the entry sits relative to the report links that existed before this release.","1. The report is listed under the Performance group, labeled ""Technician Utilization"".
+2. Clicking it opens the report.
+3. The entry sits BELOW the previously existing report links (toward the bottom) — the new reports are added without moving or disturbing the existing entries.","SV-8648 (specs/technician-utilization.md S1-R1 — nav placement tightened per kickoff video P3 05:11-05:19 [below existing items, additive not interruptive], user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
 The report shows one row for each technician who clocked time in the range at the selected locations,TU — Access & Display,Functional,Critical,"1. Technician A clocked time (work-order and/or internal) in the selected date range at the selected location.
 2. Technician B clocked NO time in that range.","1. Open the Technician Utilization report for that range and location.
 2. Look for rows for technicians A and B.","1. Technician A has exactly ONE row.
@@ -248,12 +250,14 @@ A starting download shows the Download started notification and a failed downloa
 2. You can force a download failure (e.g. drop the network connection just before triggering the download).","1. Trigger a normal download and read the notification.
 2. Trigger a download under the failure condition and read the notification.","1. When a download starts, a success notification reads exactly: ""Download started"".
 2. When a download fails, an error notification reads exactly: ""Failed to download report"".",specs/technician-utilization.md Story 7 Error Handling; §7,,
-"The Location filter is the rightmost multi-select listing accessible locations, with All Locations acting as a select-all shortcut",TU — Location Filter,Functional,High,"1. You are signed in as a user with access to at least two locations.
+The Location filter is the rightmost multi-select; All Locations = select-all,TU — Location Filter,Functional,High,"1. You are signed in as a user with access to at least two locations.
 2. You are on the Technician Utilization report.","1. Look at the rightmost control in the toolbar and read its label.
 2. Open it and read the listed options.
-3. Choose ""All Locations"", then uncheck one individual location.","1. The toolbar has a location filter labeled ""Location"" - a multi-select and the RIGHTMOST control.
+3. Choose ""All Locations"", then uncheck one individual location.
+4. With every accessible location selected, look at how the report tells you which location the shown data belongs to.","1. The toolbar has a location filter labeled ""Location"" - a multi-select and the RIGHTMOST control.
 2. It lists the locations the signed-in user has access to, plus an ""All Locations"" option.
-3. ""All Locations"" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations.",specs/technician-utilization.md S9-R1,,
+3. ""All Locations"" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations.
+4. With all locations selected you can tell which location the shown data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build; this report pools each technician's hours into one row, so the marking may take a different form here.)","SV-8656 (specs/technician-utilization.md S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
 "Changing the location selection reloads the report with hours pooled into one row per technician, never beyond accessible locations",TU — Location Filter,Functional,Critical,"1. A technician has clocked time at TWO accessible locations in the range.
 2. You are on the Technician Utilization report.","1. Select only location A and read the technician's hours.
 2. Add location B to the selection and watch the report.
@@ -269,9 +273,10 @@ The saved location selection restores defensively - inaccessible locations are d
 Deselecting every location falls back to the active location instead of showing nothing,TU — Location Filter,Negative,Medium,1. You are on the Technician Utilization report with at least one location selected.,"1. In the Location filter, deselect every location (empty the filter).
 2. Watch what the report loads.","1. The report falls back to the user's currently active location rather than showing nothing.
 2. Rows for the active location load normally.",specs/technician-utilization.md S9-R7,,
-A user with access to only one location still sees the Location filter with a single selectable location,TU — Location Filter,Functional,Low,"1. You are signed in as a user with access to exactly one location.
-2. You are on the Technician Utilization report.",1. Look at the Location filter and open it.,"1. The filter is still shown, with a single selectable location.
-2. Report behavior is unchanged from single-location use.",specs/technician-utilization.md S9-N1,,
+The Location filter is hidden for a user with access to only one location,TU — Location Filter,Functional,Low,"1. You are signed in as a user with access to exactly one location.
+2. You are on the Technician Utilization report.","1. Look for the Location filter in the toolbar.
+2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
+2. For the user with access to two or more locations the Location filter IS shown.","SV-8656 (specs/technician-utilization.md S9-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
 "All-white table with no alternating row shading, and the toolbar controls run in the specified left-to-right order",TU — Visual & Accessibility,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded, in light mode.","1. Look at the column headers and the data rows' backgrounds.
 2. Read the toolbar controls left to right.
 3. Look for the expand/collapse-all control's position.","1. The report uses an all-white table: white column headers and white data cells, with NO alternating row shading.

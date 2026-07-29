@@ -259,3 +259,12 @@ Cases that deliberately assert documented quirks as PASS behavior:
 - The S8 companion-video citation vs the removed header row (top of this doc) —
   for Chris; already an OQ; authoring did not block.
 - Epic/Jira key + QA env/flag status: NOT AVAILABLE — ask the user when VIU begins.
+
+## ADDENDUM 2026-07-28 — video-promotion (user ruling: video overrides spec)
+- **TU-LOC-05 C30446 FLIPPED** (video P33): single-location user now expects NO Location
+  filter — S9-N1 is overridden.
+- **TU-LOC-01 C30442** now also covers the All-Locations location identifier (video P10;
+  pooled-rows wording). **TU-NAV-01 C30392** now also covers below-existing-links placement
+  (video P3). TU column selector: latest info confirms the veto stands — no case needed (no-op).
+- Detail: reconciliation-2026-07-28/video-promotion-edit-log-2026-07-28.md; watch:
+  ../SPEC-WATCH-2026-07-28.md (deadline 2026-08-04).

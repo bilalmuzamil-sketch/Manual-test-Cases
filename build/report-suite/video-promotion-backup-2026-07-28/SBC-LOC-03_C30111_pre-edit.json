@@ -1,0 +1,27 @@
+{
+ "id": "SBC-LOC-03",
+ "area": "SBC — Location Filter",
+ "title": "Selecting locations scopes the report data; All locations includes every accessible location",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Sales By Customer report View permission; user with access to at least two locations.",
+ "preconditions": [
+  "1. At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed).",
+  "2. You are on the Sales By Customer report."
+ ],
+ "steps": [
+  "1. Select only location A in the location filter and note the customers/totals.",
+  "2. Select locations A and B together and note the change.",
+  "3. Select \"All locations.\""
+ ],
+ "expected": [
+  "1. With one or more locations selected, the report includes only data from those locations.",
+  "2. Adding a second location adds that location's invoices to the rows and totals.",
+  "3. With \"All locations,\" the report includes data from every location the user has access to."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbc-sales-by-customer.md Story 4 S4-R5; S4-R6",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

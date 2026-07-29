@@ -1,0 +1,29 @@
+{
+ "id": "WIP-FLT-03",
+ "area": "WIP — Filters",
+ "title": "The Asset filter's type-ahead matches either the unit number or the vehicle identification number, and reads \"All assets\" when empty",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. The report shows jobs for at least two assets whose unit numbers and vehicle identification numbers you know."
+ ],
+ "steps": [
+  "1. Read the Asset filter's label before selecting anything.",
+  "2. Open the filter and read how each option is presented.",
+  "3. Type part of a unit number and check the matching options; clear and type part of a vehicle identification number instead.",
+  "4. Select one or more assets and watch the rows; then use the \"Clear\" action."
+ ],
+ "expected": [
+  "1. With no asset selected, the filter reads \"All assets\" and every job is shown.",
+  "2. Each option shows the unit number and the vehicle identification number.",
+  "3. The typed text matches against EITHER the unit number OR the vehicle identification number.",
+  "4. Selecting assets narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one asset is selected and returns the filter to \"All assets\"."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R4; S7-R5",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

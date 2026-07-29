@@ -363,7 +363,7 @@
  {
   "id": "TU-LOC-01",
   "area": "TU — Location Filter",
-  "title": "The Location filter is the rightmost multi-select listing accessible locations, with All Locations acting as a select-all shortcut",
+  "title": "The Location filter is the rightmost multi-select; All Locations = select-all",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to more than one location.",
@@ -374,17 +374,19 @@
   "steps": [
    "1. Look at the rightmost control in the toolbar and read its label.",
    "2. Open it and read the listed options.",
-   "3. Choose \"All Locations\", then uncheck one individual location."
+   "3. Choose \"All Locations\", then uncheck one individual location.",
+   "4. With every accessible location selected, look at how the report tells you which location the shown data belongs to."
   ],
   "expected": [
    "1. The toolbar has a location filter labeled \"Location\" - a multi-select and the RIGHTMOST control.",
    "2. It lists the locations the signed-in user has access to, plus an \"All Locations\" option.",
-   "3. \"All Locations\" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations."
+   "3. \"All Locations\" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations.",
+   "4. With all locations selected you can tell which location the shown data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build; this report pools each technician's hours into one row, so the marking may take a different form here.)"
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S9-R1",
+  "spec_ref": "SV-8656 (specs/technician-utilization.md S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
   "viu_status": "VIU-Pending",
-  "notes": "Labels pinned verbatim (\"Location\" / \"All Locations\").",
+  "notes": "Labels pinned verbatim (\"Location\" / \"All Locations\"). VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): location identifier in All-Locations view — the current spec has NO per-row location identifier (hours pooled across locations into one row per technician, S9-R4). Exact control/label/form unpinned — VIU-confirm, do not invent (Rule 9).",
   "api_related": false
  },
  {
@@ -468,7 +470,7 @@
  {
   "id": "TU-LOC-05",
   "area": "TU — Location Filter",
-  "title": "A user with access to only one location still sees the Location filter with a single selectable location",
+  "title": "The Location filter is hidden for a user with access to only one location",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to exactly one location.",
@@ -477,16 +479,17 @@
    "2. You are on the Technician Utilization report."
   ],
   "steps": [
-   "1. Look at the Location filter and open it."
+   "1. Look for the Location filter in the toolbar.",
+   "2. Then sign in as a user with access to two or more locations and look again."
   ],
   "expected": [
-   "1. The filter is still shown, with a single selectable location.",
-   "2. Report behavior is unchanged from single-location use."
+   "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.",
+   "2. For the user with access to two or more locations the Location filter IS shown."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S9-N1",
+  "spec_ref": "SV-8656 (specs/technician-utilization.md S9-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
   "viu_status": "VIU-Pending",
-  "notes": "Seeding: a fresh ZZAUTOTEST staff member scoped to one location if none exists.",
+  "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S9-N1): 'A user with access to only one location still sees the filter with a single selectable location.' Seeding: a fresh ZZAUTOTEST staff member scoped to one location if none exists.",
   "api_related": false
  }
 ]

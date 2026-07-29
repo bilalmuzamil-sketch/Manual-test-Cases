@@ -69,12 +69,14 @@ Parts & Service applies no product-type filter,SBC — Product Type Filter,Funct
 Location filter defaults to the user's active location on first load,SBC — Location Filter,Functional,High,"1. Your browser has no saved view for this report.
 2. You are working in a known active location (check the application's location switcher).","1. Open the Sales By Customer report.
 2. Read the location filter's current selection.",1. The filter defaults to the single location you are currently working in (your active location) — not all locations.,specs/sbc-sales-by-customer.md Story 4 S4-R4,,
-Selecting locations scopes the report data; All locations includes every accessible location,SBC — Location Filter,Functional,High,"1. At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed).
+Selecting locations scopes the data; All locations covers every accessible one,SBC — Location Filter,Functional,High,"1. At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed).
 2. You are on the Sales By Customer report.","1. Select only location A in the location filter and note the customers/totals.
 2. Select locations A and B together and note the change.
-3. Select ""All locations.""","1. With one or more locations selected, the report includes only data from those locations.
+3. Select ""All locations.""
+4. With ""All locations"" active, look at how the rows tell you which location they belong to.","1. With one or more locations selected, the report includes only data from those locations.
 2. Adding a second location adds that location's invoices to the rows and totals.
-3. With ""All locations,"" the report includes data from every location the user has access to.",specs/sbc-sales-by-customer.md Story 4 S4-R5; S4-R6,,
+3. With ""All locations,"" the report includes data from every location the user has access to.
+4. With ""All locations"" active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)","SV-8603 (specs/sbc-sales-by-customer.md Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
 "Customer filter sits between Product Type and Location, carries a search icon, and shows the Search customers… hint",SBC — Customer Filter,Functional,High,1. You are on the Sales By Customer report with at least one customer in the current results.,"1. Look at the toolbar filters from left to right.
 2. Open the Customer filter without typing anything.
 3. Read what the dropdown shows before any query is typed.","1. A Customer filter labeled ""Customer"" sits between the Product Type filter and the Location filter.
@@ -185,18 +187,15 @@ Chevrons toggle closed on a second click and every customer's and asset's expans
 2. A cell with no value for its row (for example the Date cell on a customer or asset row) is left blank and keeps its column position; no value moves into another column.
 3. The Date cell on the customer summary row is blank.
 4. Every cell on a customer summary row uses font-weight 600, except the Subtotal cell which uses font-weight 700.",specs/sbc-sales-by-customer.md Story 7 S7-R8; S7-R9; S7-R10; S7-R15; S7-R16,,
-"Asset label = year make model plus the most specific identifier: Unit, then plate, then last 8 of VIN",SBC — Asset Labels,Functional,High,"1. One customer has four ZZAUTOTEST assets with invoices in range: (a) one with a unit number, (b) one with a plate but no unit, (c) one with only a VIN of 8+ characters, (d) one with only a VIN shorter than 8 characters.",1. Expand the customer and read each asset row's label.,"1. Every label starts with the vehicle's year, make, and model.
-2. Asset (a) adds "" · Unit {unit}"".
-3. Asset (b) adds "" · {plate}"".
-4. Asset (c) adds "" · VIN …"" followed by the last 8 characters of the VIN.
-5. Asset (d) shows the whole VIN after "" · VIN …"" (shorter than 8).
-6. An asset with none of unit/plate/VIN gets no suffix at all.",specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8,,
-"An asset with no year, make or model is labeled with the VIN on its own",SBC — Asset Labels,Functional,Medium,"1. A ZZAUTOTEST asset exists with a VIN but no year, make, or model, and has an invoice in range.",1. Expand the owning customer and read that asset row's label.,"1. The label is the VIN on its own (no year/make/model base, no ""VIN …"" suffix form).",specs/sbc-sales-by-customer.md Story 8 S8-R9,,
-"An asset with no year, make, model or VIN is labeled Unknown Asset",SBC — Asset Labels,Functional,Medium,"1. A ZZAUTOTEST asset exists with no year, make, model, or VIN, and has an invoice in range (if the app's asset form forces a value, blank the fields as far as it allows).",1. Expand the owning customer and read that asset row's label.,"1. The label reads ""Unknown Asset.""",specs/sbc-sales-by-customer.md Story 8 S8-R10,,
-Two assets producing the same label get stable (#1)/(#2) suffixes that survive reloads,SBC — Asset Labels,Functional,Medium,"1. One customer has TWO ZZAUTOTEST assets whose labels come out identical (same year/make/model and same identifier situation), each with an invoice in range.","1. Expand the customer and read the two asset labels.
+Asset label = year make model plus the serial number as the identifier,SBC — Asset Labels,Functional,High,"1. One customer has ZZAUTOTEST assets with invoices in range: (a) one with a serial number recorded, (b) one with no serial number.",1. Expand the customer and read each asset row's label.,"1. Every label starts with the vehicle's year, make, and model.
+2. Asset (a) shows its SERIAL NUMBER after the year/make/model as the identifier.
+3. For asset (b) (no serial number), note what the label shows instead — what stands in when the serial number is missing is confirmed in the build (the older wording used the unit number, then the plate, then the last 8 of the VIN).","SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8 — identifier OVERRIDDEN to serial number by kickoff video P24 29:54-30:46, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
+"An asset with no year, make or model is labeled with the VIN on its own",SBC — Asset Labels,Functional,Medium,"1. A ZZAUTOTEST asset exists with a VIN but no year, make, or model, and has an invoice in range.",1. Expand the owning customer and read that asset row's label.,"1. The label is the VIN on its own (no year/make/model base, no ""VIN …"" suffix form).",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R9),,
+"An asset with no year, make, model or VIN is labeled Unknown Asset",SBC — Asset Labels,Functional,Medium,"1. A ZZAUTOTEST asset exists with no year, make, model, or VIN, and has an invoice in range (if the app's asset form forces a value, blank the fields as far as it allows).",1. Expand the owning customer and read that asset row's label.,"1. The label reads ""Unknown Asset.""",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R10),,
+Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads,SBC — Asset Labels,Functional,Medium,"1. One customer has TWO ZZAUTOTEST assets whose labels come out identical (same year/make/model and same identifier situation), each with an invoice in range.","1. Expand the customer and read the two asset labels.
 2. Note which asset carries "" (#1)"" and which "" (#2)"".
 3. Reload the page and expand again.","1. The duplicate labels are suffixed "" (#1)"" and "" (#2)"" (and so on for more duplicates).
-2. The numbering is fixed and repeatable — after a reload the same vehicle keeps the same number.",specs/sbc-sales-by-customer.md Story 8 S8-R11,,
+2. The numbering is fixed and repeatable — after a reload the same vehicle keeps the same number.",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R11),,
 "Invoice number opens in the same tab: S invoices to the work order Finance tab, P invoices to the part sale Part Requests tab",SBC — Invoice Links & Navigation,Functional,High,1. You have expanded an asset and can see at least one S invoice and (under another customer/asset if needed) one P invoice.,"1. Click a service (S) invoice number link and note where it opens.
 2. Go back, then click a parts (P) invoice number link and note where it opens.","1. Each invoice number on a detail row is a clickable link that opens in the SAME browser tab (no new tab).
 2. A service invoice opens the associated work order's Finance tab.
@@ -291,11 +290,11 @@ Invoice subtotals sum exactly to their asset row and asset subtotals sum exactly
 2. Read the table.","1. All nine columns can be hidden — nothing blocks the last toggle.
 2. The table still renders the Customer and Subtotal columns.
 3. The totals row still shows its Subtotal.",specs/sbc-sales-by-customer.md Story 13 S13-N1,,
-"The overflow menu holds Download (CSV), Download (PDF) and Print in that order, with no separate export buttons",SBC — Exports,Functional,High,1. You are on the Sales By Customer report.,"1. Find the overflow menu in the toolbar's action area and note its position.
+The overflow menu holds only Download (CSV) and Download (PDF) — no Print item,SBC — Exports,Functional,High,1. You are on the Sales By Customer report.,"1. Find the overflow menu in the toolbar's action area and note its position.
 2. Open it and read the items in order.
 3. Look around the toolbar for any separate always-visible export buttons.","1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.
-2. The menu items read, in order: ""Download (CSV)"", ""Download (PDF)"", ""Print"" (Print is the third item).
-3. There are no separate always-visible export buttons — all exports live behind this one menu.",specs/sbc-sales-by-customer.md Story 14 S14-R1; S14-R2; Story 15 S15-R1; S15-R2; Story 16 S16-R1; S16-R2; Story 20 S20-R16,,
+2. The menu items read, in order: ""Download (CSV)"", ""Download (PDF)"" — and there is NO ""Print"" item anywhere in the menu.
+3. There are no separate always-visible export buttons — all exports live behind this one menu.","SV-8612; SV-8613 (specs/sbc-sales-by-customer.md S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — the 'Print' third menu item REMOVED per kickoff video P25 31:14, overriding Story 16 / SV-8614, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
 CSV download is a plain .csv file named by the active date range per the filename map,SBC — Exports,Functional,High,1. You are on the report with data.,"1. Set the range to This Month and choose ""Download (CSV)""; note the downloaded filename.
 2. Repeat for at least Today, Last Quarter, and a Custom range.
 3. Open a downloaded file in a text editor and in a spreadsheet.","1. The filename follows the range map: Today → sales-by-customer-today.csv; Yesterday → sales-by-customer-yesterday.csv; This Week → sales-by-customer-this_week.csv; Last Week → sales-by-customer-last_week.csv; This Month → sales-by-customer-this_month.csv; Last Month → sales-by-customer-last_month.csv; This Year → sales-by-customer-this_year.csv; Last Year → sales-by-customer-last_year.csv; This Quarter → sales-by-customer-this_quarter.csv; Last Quarter → sales-by-customer-last_quarter.csv; Custom → sales-by-customer-custom.csv.
@@ -355,16 +354,20 @@ PDF action shows a loading state while exporting and a PDF export failed toast o
 3. The Print action shows a loading state while the PDF is fetched and is non-interactive during that time.
 4. Print is disabled while the report table is still in its initial loading state.
 5. If the PDF request fails, an error toast is shown: ""PDF generation failed.""",specs/sbc-sales-by-customer.md Story 16 S16-R3; S16-R3a; S16-R3b; S16-R3c; S16-R4; S16-R5; S16-N1; §7,,
-"An export over 10,000 data rows is refused with the too-large toast — no file downloads and no print dialog opens",SBC — Exports,Negative,High,"1. A filter combination exists whose customer rows plus invoice rows exceed 10,000 (widest range, all locations, all customers). If the environment cannot reach 10,000 rows even fully widened, record the max reachable and mark Blocked-Env with reason.","1. With the over-cap filter set, choose ""Download (CSV)"".
+"An export over 10,000 data rows is refused with the too-large toast",SBC — Exports,Negative,High,"1. A filter combination exists whose customer rows plus invoice rows exceed 10,000 (widest range, all locations, all customers). If the environment cannot reach 10,000 rows even fully widened, record the max reachable and mark Blocked-Env with reason.","1. With the over-cap filter set, choose ""Download (CSV)"".
 2. Choose ""Download (PDF)"".
-3. Choose ""Print"".
-4. Narrow the filters below the cap and re-try one export.","1. For each of CSV, PDF, and Print: no file is generated, no download starts, and no print dialog opens.
+3. Narrow the filters below the cap and re-try one export.","1. For both CSV and PDF: no file is generated and no download starts.
 2. An error toast is shown each time: ""This export is too large to generate. Narrow the date range or filters, then try again."" (dismissed by the user).
 3. The cap counts customer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.
-4. Below the cap the export succeeds normally.",specs/sbc-sales-by-customer.md Story 14 S14-R14; Story 15 S15-R22; Story 16 S16-R6; §7,,
+4. Below the cap the export succeeds normally.","SV-8612; SV-8613 (specs/sbc-sales-by-customer.md Story 14 S14-R14; Story 15 S15-R22; §7 — the Print leg REMOVED per kickoff video P25 31:14 / SV-8614 overridden, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
 "Exporting with no matching customers still downloads a file with headers and a zero totals row, with no warning",SBC — Exports,Functional,Medium,"1. The Customer filter selection is empty (""Clear all"") or the filters otherwise match no customers.","1. Choose ""Download (CSV)"" and open the file.
 2. Choose ""Download (PDF)"" and open the file.","1. The export still downloads — no error and no warning is shown.
 2. The file contains the column headers and a totals row of zeros, with no data rows.",specs/sbc-sales-by-customer.md Story 18 S18-R10,,
+The download menu also offers a compressed (summary) version of the report,SBC — Exports,Functional,Medium,1. You are on the Sales By Customer report with at least one customer and several invoices in the chosen date range.,"1. Open the download (overflow) menu and read the options.
+2. Download the compressed (summary) version and open the file.
+3. Download the expanded (full, nested) version and compare the two files.","1. Besides the existing expanded (nested) download, the menu offers a compressed (summary) download option. (The exact menu wording is confirmed in the build.)
+2. The compressed file gives one summary line per customer, without the per-invoice detail rows. (The exact file shape is confirmed in the build once the spec update lands.)
+3. The expanded download still contains the full nested detail, and both files reflect exactly the filtered data shown on screen.","SV-8582 (EPIC-LEVEL, stated explicitly: no child story exists yet for the SBC compressed download — kickoff video P21 32:10-33:03 + 48:39, user ruling 2026-07-28; overrides the current spec's single flat export, S14-R6; S14-R10; S15-R16)",,
 "Filters, sort and visible columns are saved and restored on the next visit, shown immediately without a default flash",SBC — Saved View & Persistence,Functional,Critical,1. You are on the report in a browser you can revisit.,"1. Set a non-default date range, Product Type, location selection, a two-customer Customer selection, a non-default sort, and hide one column.
 2. Navigate away to another part of the application, then return to the report.
 3. Watch the report as it loads.","1. The saved view is restored: the date range, the Product Type, the location selection, the Customer filter selection, the sort column and direction, and the visible columns.
