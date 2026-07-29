@@ -52,6 +52,18 @@ import REGENERATED post-review.)
   WIP-FLT-03 C30500 / WIP-SORT-03 C30485 untouched, on serial); **SPEC-WATCH unchanged** —
   Chris's spec changelog + companion video expected ~2026-07-30, reminder deadline 2026-08-04
   stands (`SPEC-WATCH-2026-07-28.md`); filters cross-squad sweep (Branko/Milos) still to land.
+- **Status update (state-save, later 2026-07-29):**
+  - **WIP identifier question SENT to Chris Ward by the user 2026-07-29** (VIN vs serial for the
+    WIP report — affects WIP-COL-05 C30470 / WIP-FLT-03 C30500 / WIP-SORT-03 C30485). AWAITING
+    his answer. On answer: **A (VIN)** = a 3-case VIN edit pass on those cases (needs fresh push
+    authorization, Rule 6); **B (serial)** = no-op (cases already on the video's serial ruling).
+  - **QA branch still PENDING** — the user will notify when it exists; then run the full live VIU
+    (including the VIU-time label/placement confirmations noted above).
+  - **NEW Side Project #2 started 2026-07-29 (separate from Report Suite): SV-8721 5-decimal fix
+    verification on PRODUCTION (`app.shopview.com`)** — devs believe the fix is deployed to prod.
+    Work folder: `build/side-projects/SV-8721-5decimal-PROD-2026-07-29/`. (The staging
+    verification was `build/side-projects/SV-8721-5decimal-2026-07-27/`, result = FIXED on
+    staging.)
 
 **UPDATE 2026-07-29 (second block — AUTHORIZED 3-CASE FIX + CHRIS-MESSAGE DELTA PASS).**
 - **Part 1 — 3 user-authorized TestRail fixes EXECUTED** (the exact 3 drifts flagged in the

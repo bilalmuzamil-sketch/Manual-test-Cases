@@ -46,6 +46,9 @@ Message-level effect on the watch items (message = spec-INTENT confirmed; spec T
   spec gets a padding-issue flag (purely visual, no case).
 - **DEADLINE 2026-08-04 STANDS** — if the promised spec changelog has NOT landed by then, remind
   the user (the recovery option now includes `chris-update-2026-07-29/backup/`).
+- **2026-07-29: WIP-identifier question SENT to Chris by the user** (awaiting his answer; also
+  expect it settled by his spec changelog — affects WIP-COL-05 C30470 / WIP-FLT-03 C30500 /
+  WIP-SORT-03 C30485).
 
 ## Watch checklist
 
