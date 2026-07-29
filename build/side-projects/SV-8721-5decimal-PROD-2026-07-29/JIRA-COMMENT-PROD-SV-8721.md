@@ -1,3 +1,5 @@
+> **POSTED as comment 74275 on 2026-07-29 with 3 inline screenshots (attachment ids 59136 PROD-R2-receive-3parts-subtotal-15.32.png · 59137 PROD-R1-receive-screen-4parts.png · 59138 PROD-B0-po-list-total-152.36.png).** Verified back: comment GET 200 (all 3 `!refs!` present), issue attachment list confirms all 3 PNGs.
+
 h2. QA Verification — SV-8721 verified on PRODUCTION (2026-07-29)
 
 *In one line:* the fix is *live and working on Production*. The Purchase Order Receive screen on Production now keeps the part cost at its full (up to 5) decimals and works the subtotal/total out from that exact cost — reproducing the customer's exact scenario gives the correct *$15.32* (the vendor-invoice figure), not the old wrong $15.60. Production behaves exactly as it did on staging when we verified the fix there on July 27.
