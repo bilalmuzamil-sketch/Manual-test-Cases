@@ -1,82 +1,88 @@
 {
   "meta": {
     "created": "2026-07-29",
-    "purpose": "Corrective case DRAFTS for the founder-reported bug: on the Receive Parts screen the Sell price stays ZERO no matter how many times the Cost price is updated (staging, WO S3-25982, Vendor Missing group). DRAFTS ONLY — NOT pushed to TestRail (Standing Rule 6). Blank C-ids; VIU-Pending; not yet in cases/ or testrail-id-map.csv pending user authorization.",
-    "refs_note": "Rule 20: refs currently point at the placeholder 'Fabian 2026-07-29 sell-price concern (ticket TBD)'. ASK THE USER for the real Jira key when the bug is filed and re-point refs before any add_case push. These are regression/default-behavior cases (the behavior is a pre-existing app default, NOT a Simple Flow spec requirement) — per the 2026-07-29 execution-discipline convention they belong to the regression/edge-case section and grow the suite from a real finding.",
-    "label_note": "Rule 9: labels limited to what is visible on the founder's screenshot (Cost / Sell / Quantity Received / Receive / Vendor Missing) plus build labels already recorded in our own evidence (input_cost/input_sell on /bulk-receive; the part edit dialog fields Part Number, Description, Quantity, Source, Vendor, Cost, Sell per viu-findings SF-VPART-04). Anything beyond that is flagged VIU-confirm."
+    "updated": "2026-07-29 (rewritten to the QA lead's EXACT authoritative repro — see repro-from-qa-lead-2026-07-29.md)",
+    "purpose": "Corrective case DRAFTS for the founder-reported bug: on the Receive screen the Sell price stays ZERO no matter how many times the Cost price is updated (staging, WO S3-25982). Now written to the QA lead's exact 10-step repro + expected behavior (authoritative, 2026-07-29). DRAFTS ONLY — NOT pushed to TestRail (Standing Rule 6). Blank C-ids; VIU-Pending; not yet in cases/ or testrail-id-map.csv pending user authorization.",
+    "refs_note": "Rule 20: refs = placeholder 'Fabian 2026-07-29 sell-price concern (ticket TBD)' + 'QA lead repro 2026-07-29' (source anchor = repro-from-qa-lead-2026-07-29.md in this folder). ASK THE USER for the real Jira key when the bug is filed and re-point refs before any add_case push. Regression/default-behavior cases (pre-existing app default, NOT a Simple Flow spec requirement) — per the 2026-07-29 execution-discipline convention they belong to the regression/edge-case section and grow the suite from a real finding.",
+    "label_note": "Rule 9: labels from the founder's screenshot + the QA lead's repro (New Part Request modal, Order, Receive, Vendor dropdown, Invoice Number, Part Number, Cost, Sell, Receive button) plus build labels already recorded in our own evidence (the part edit dialog fields per viu-findings SF-VPART-04). Exact casing/placement to be VIU-confirmed live.",
+    "fold_decision": "The Receive-button gating (Receive stays disabled until Sell is populated, then auto-activates) is FOLDED INTO SF-RCV-14's expected results as outcome 2, NOT a separate case. Why (Rule 28): it is the same observable moment as the auto-calc (one click-outside produces both), a standalone case would reduce to a single gate already covered as a class by SF-VEND-06 (C29442, receive blocked until cost/sell present) — splitting it would be exactly the 'permission/gating case reducing to one gate' over-granularity pattern the usefulness audit hunts."
   },
   "cases": [
     {
       "id": "SF-RCV-14",
       "testrail_case_id": "",
       "area": "Accept Delivery (Story 12) — regression / default behavior",
-      "story_ref": "Fabian 2026-07-29 sell-price concern (ticket TBD — ask the user for the Jira key); pre-existing default app behavior, not a Simple Flow spec delta",
-      "title": "Verify editing Cost on the Receive Parts screen updates the Sell price",
+      "story_ref": "Fabian 2026-07-29 sell-price concern (ticket TBD — ask the user for the Jira key); QA lead repro 2026-07-29 (repro-from-qa-lead-2026-07-29.md); pre-existing default app behavior, not a Simple Flow spec delta",
+      "title": "Sell price auto-calculates from Cost when receiving a special order part",
       "priority": "High",
       "type": "Regression",
-      "permissions_required": "Receive access + See Financial Data (cost/sell fields).",
+      "permissions_required": "Work order create/edit + order + receive access + See Financial Data (cost/sell fields).",
       "preconditions": [
         "1. Signed in as Admin on the staging build.",
-        "2. First check the shop's pricing settings: note whether the part's category has a pricing rule (markup/margin) that turns a cost into a sell price. If the shop's pricing setup genuinely says the sell price should be zero, this test does not apply — note that and stop.",
-        "3. A work order has an ordered part waiting to be received, with an editable Cost on the Receive Parts screen (for example a Vendor Missing part with Cost still at $0)."
+        "2. The organization has a pricing matrix with rules for the Uncategorized category. (The part in this test has no category, so the matrix's Uncategorized rules are what should price it.) Plain note: if the matrix genuinely has NO rule for Uncategorized, confirm with the team what the Sell price should do in that situation BEFORE failing this case."
       ],
       "steps": [
-        "1. Open the Receive Parts screen for the work order's purchase order.",
-        "2. Note the current value in the Sell field for the part.",
-        "3. Enter a real cost (for example 50) in the Cost field for the part and click away so the value saves.",
-        "4. Look at the Sell field for the same part again."
+        "1. Create a new work order.",
+        "2. Create a new line on the work order.",
+        "3. Request a special order part: in the New Part Request modal, fill in ONLY the Description and the Quantity — leave everything else empty — then click save and close.",
+        "4. Click Order.",
+        "5. Click Receive.",
+        "6. On the Receive screen, select the Vendor from the dropdown at the top left side.",
+        "7. Add the Invoice Number.",
+        "8. Add the missing Part Number for the part.",
+        "9. Add a Cost for the part (for example 50).",
+        "10. Click outside the Cost field and watch the Sell field and the Receive button."
       ],
       "expected": [
-        "1. After the Cost is entered, the Sell price updates to follow the shop's pricing rules — it is calculated from the new cost.",
-        "2. The Sell price must NOT stay at 0 after a real cost has been entered (unless the shop's pricing setup genuinely dictates a zero sell price — see the precondition check).",
-        "3. VIU-confirm: the exact way Sell follows Cost (immediately on screen, or after saving) must be confirmed live on the build — it has not been observed yet."
+        "1. When you click outside the Cost field, the Sell price fills in automatically — calculated from the pricing matrix's Uncategorized category rules (because this part has no category). It must NOT stay at 0.",
+        "2. Once the Sell price is filled in, the Receive button becomes clickable (it activates by itself — you do not have to do anything else)."
       ],
-      "design_ref": "None (pre-existing default behavior; no Simple Flow spec requirement). Related recorded fact: POST /api/work-orders/part/change-request recalculates sellPrice/margin (APP-ACTIONS-PLAYBOOK).",
+      "design_ref": "QA lead repro 2026-07-29 (authoritative). Related recorded fact: POST /api/work-orders/part/change-request recalculates sellPrice/margin (APP-ACTIONS-PLAYBOOK). Pricing model per the Inventory Value report spec: no category -> Uncategorized matrix rules.",
       "viu_status": "VIU-Pending",
-      "notes": "Born from the founder's (Fabian) 2026-07-29 report: Sell stayed 0 on WO S3-25982's Receive Parts screen no matter how many times Cost was updated. Our nearest existing cases (SF-VEND-06/C29442, SF-RCV-06/C29374, SF-BULK-06/C29355, SF-RCV-10/C29440, SF-VAL-09/C29423) only assert that cost/sell are PRESENT/editable/locked — none assert that Sell recalculates when Cost changes.",
+      "notes": "Born from the founder's (Fabian) 2026-07-29 report: Sell stayed 0 on WO S3-25982's Receive screen no matter how many times Cost was updated. Rewritten 2026-07-29 to the QA lead's exact 10-step repro. The Receive-button auto-activation is folded in here as expected outcome 2 (see meta.fold_decision). Nearest existing cases (SF-VEND-06/C29442, SF-RCV-06/C29374, SF-BULK-06/C29355, SF-RCV-10/C29440, SF-VAL-09/C29423) only assert cost/sell are PRESENT/editable/locked — none assert Sell auto-calculates from Cost.",
       "api_related": false
     },
     {
       "id": "SF-RCV-15",
       "testrail_case_id": "",
       "area": "Accept Delivery (Story 12) — regression / default behavior",
-      "story_ref": "Fabian 2026-07-29 sell-price concern (ticket TBD — ask the user for the Jira key); pre-existing default app behavior, not a Simple Flow spec delta",
-      "title": "Verify repeated Cost edits on the Receive Parts screen each update the Sell price",
+      "story_ref": "Fabian 2026-07-29 sell-price concern (ticket TBD — ask the user for the Jira key); QA lead repro 2026-07-29 (repro-from-qa-lead-2026-07-29.md); pre-existing default app behavior, not a Simple Flow spec delta",
+      "title": "Sell price recalculates on every repeated Cost edit on the Receive screen",
       "priority": "High",
       "type": "Regression",
-      "permissions_required": "Receive access + See Financial Data (cost/sell fields).",
+      "permissions_required": "Work order create/edit + order + receive access + See Financial Data (cost/sell fields).",
       "preconditions": [
-        "1. Same setup as the single-edit case: pricing settings checked first, and a part on the Receive Parts screen with an editable Cost.",
-        "2. The single-edit behavior (Cost updates Sell once) already works — run that case first."
+        "1. Same setup as SF-RCV-14: signed in as Admin on the staging build, and the organization has a pricing matrix with rules for the Uncategorized category.",
+        "2. Run SF-RCV-14 first (create the work order, line, and no-detail special order part; Order; Receive; select the Vendor, add the Invoice Number and the Part Number) so you are on the Receive screen with the first Cost already entered and the Sell price already auto-calculated once."
       ],
       "steps": [
-        "1. On the Receive Parts screen, enter a cost (for example 50) and note the resulting Sell price.",
-        "2. Change the Cost again to a clearly different value (for example 100) and click away.",
+        "1. On the Receive screen, note the Sell price that was auto-calculated from the first Cost.",
+        "2. Change the Cost to a clearly different value (for example 100) and click outside the Cost field.",
         "3. Note the Sell price again.",
-        "4. Change the Cost a third time (for example back to 50) and check the Sell price once more."
+        "4. Change the Cost a third time (for example back to 50) and click outside the Cost field once more, then check the Sell price."
       ],
       "expected": [
-        "1. Every cost change produces a matching updated Sell price — the second and third edits recalculate just like the first.",
+        "1. Every time you change the Cost and click outside the field, the Sell price recalculates from the pricing matrix's Uncategorized category rules — the second and third edits recalculate just like the first.",
         "2. The Sell price never gets stuck at an old value (or at 0) after any of the repeated edits.",
-        "3. Setting the same cost again (step 4) gives back the same sell price as before — the calculation is consistent."
+        "3. Entering the same Cost again (step 4) gives back the same Sell price as before — the calculation is consistent."
       ],
-      "design_ref": "None (pre-existing default behavior). The founder's report specifically says 'no matter how many times the Cost price is updated' — this case covers the repeat-edit half of that report.",
+      "design_ref": "QA lead repro 2026-07-29 (authoritative) — step 10's 'click outside the cost field' auto-calc, repeated. The founder's report specifically says 'no matter how many times the Cost price is updated' — this case covers the repeat-edit half of that report.",
       "viu_status": "VIU-Pending",
-      "notes": "Companion to SF-RCV-14; kept separate because a first-edit-works / later-edits-stuck bug is a real and distinct failure mode.",
+      "notes": "Companion to SF-RCV-14; kept separate because a first-edit-works / later-edits-stuck bug is a real and distinct failure mode (named verbatim in the founder's report).",
       "api_related": false
     },
     {
       "id": "SF-VPART-08",
       "testrail_case_id": "",
       "area": "Vendorless / No-PN Part (Story 5) — regression / default behavior",
-      "story_ref": "Fabian 2026-07-29 sell-price concern (ticket TBD — ask the user for the Jira key); pre-existing default app behavior, not a Simple Flow spec delta",
-      "title": "Verify editing Cost in the part edit dialog updates the Sell price and Margin",
+      "story_ref": "Fabian 2026-07-29 sell-price concern (ticket TBD — ask the user for the Jira key); QA lead repro 2026-07-29 (repro-from-qa-lead-2026-07-29.md); pre-existing default app behavior, not a Simple Flow spec delta",
+      "title": "Editing Cost in the part edit dialog updates the Sell price and Margin",
       "priority": "Medium",
       "type": "Regression",
       "permissions_required": "WO Lines: Create & Edit + See Financial Data.",
       "preconditions": [
         "1. Signed in as Admin on the staging build.",
-        "2. Pricing settings checked first (same check as SF-RCV-14).",
+        "2. The organization has a pricing matrix with rules for the Uncategorized category (same check as SF-RCV-14 — this part has no category, so the Uncategorized rules should price it). If the matrix genuinely has no Uncategorized rule, confirm with the team before failing.",
         "3. A work order line has a part whose edit dialog can be opened (the dialog shows Part Number, Description, Quantity, Source, Vendor, Cost, Sell)."
       ],
       "steps": [
@@ -86,19 +92,19 @@
         "4. Re-open the dialog and check the Sell (and Margin, if shown) values."
       ],
       "expected": [
-        "1. After the cost change is saved, the Sell price (and Margin, if shown) reflect the new cost per the shop's pricing rules.",
-        "2. VIU-confirm: whether this dialog applies the same automatic cost-to-sell behavior as the Receive Parts screen has NOT been observed live yet — confirm on the build. Our recorded API fact (part change-request recalculates sellPrice/margin) suggests it does, but that was never turned into an observed test result."
+        "1. After the cost change is saved, the Sell price (and Margin, if shown) update automatically, calculated from the pricing matrix — for a part with no category, from the Uncategorized category rules — the same auto-calc as on the Receive screen.",
+        "2. VIU-confirm: whether this dialog applies the same automatic cost-to-sell calculation as the Receive screen has NOT been observed live yet — confirm on the build. Our recorded API fact (part change-request recalculates sellPrice/margin) suggests it does, but that was never turned into an observed test result."
       ],
-      "design_ref": "APP-ACTIONS-PLAYBOOK: POST /api/work-orders/part/change-request -> 200 'recalcs sellPrice/margin' (recorded action recipe, never converted to a test case). viu-findings SF-VPART-04: the edit dialog's field list.",
+      "design_ref": "APP-ACTIONS-PLAYBOOK: POST /api/work-orders/part/change-request -> 200 'recalcs sellPrice/margin' (recorded action recipe, never converted to a test case). viu-findings SF-VPART-04: the edit dialog's field list. Expected aligned 2026-07-29 with the QA lead's matrix-based auto-calc expectation.",
       "viu_status": "VIU-Pending",
-      "notes": "Covers the same default behavior on the part-request/edit dialog surface, flagged VIU-confirm throughout. If live observation shows this dialog does NOT auto-calculate (sell is purely manual there), reword to match the build (Rule 9) rather than force the expectation.",
+      "notes": "Covers the same default behavior on the part-request/edit dialog surface, flagged VIU-confirm. If live observation shows this dialog does NOT auto-calculate (sell is purely manual there), reword to match the build (Rule 9) rather than force the expectation.",
       "api_related": false
     }
   ],
   "rule28_mini_audit": {
     "scored": "3 of 3 (100%)",
-    "useful": "SF-RCV-14 KEEP (the exact reported failure — a real, reportable bug); SF-RCV-15 KEEP (distinct repeat-edit failure mode named verbatim in the founder's report); SF-VPART-08 KEEP (distinct surface, same default; guarded with VIU-confirm so it cannot assert an unobserved behavior). No MERGE (three genuinely distinct observable behaviors), no CUT.",
-    "makes_sense": "3/3 SENSIBLE — steps executable in order, expected follows from steps, no invented controls (labels from the screenshot + our own recorded evidence), pricing-config precondition prevents the domain-nonsense trap of demanding a non-zero sell where the org's pricing genuinely yields zero.",
-    "genuine_layman": "3/3 — plain numbered steps a non-technical tester can run; traceable to the Fabian 2026-07-29 report (ticket placeholder, to be re-pointed at the real Jira key per Rule 20)."
+    "useful": "SF-RCV-14 KEEP (the exact reported failure, now in the QA lead's authoritative 10-step flow; failure = a real reportable bug; the Receive-button gate folded in rather than split — see meta.fold_decision). SF-RCV-15 KEEP (distinct repeat-edit failure mode named verbatim in the founder's report — 'no matter how many times'). SF-VPART-08 KEEP (distinct surface, same default; guarded with VIU-confirm so it cannot assert an unobserved behavior). No MERGE, no CUT; a 4th standalone Receive-button case was deliberately NOT added (would reduce to one gate already covered as a class by SF-VEND-06/C29442 = the over-granularity slop pattern).",
+    "makes_sense": "3/3 SENSIBLE — cold-read check: SF-RCV-14's 10 steps are executable in order from a fresh login (create WO -> line -> no-detail special order part -> Order -> Receive -> Vendor -> Invoice Number -> Part Number -> Cost -> click outside), each expected outcome follows directly from step 10, no invented controls (every label from the QA lead's repro + the screenshot), and the Uncategorized-matrix precondition prevents the domain-nonsense trap of demanding a non-zero Sell where the org's pricing genuinely yields none. SF-RCV-15's precondition (run SF-RCV-14 first) makes its starting state reachable. SF-VPART-08 separates the observed API fact from the unobserved UI behavior via an explicit VIU-confirm line.",
+    "genuine_layman": "3/3 — plain numbered steps a non-technical tester can run word-for-word; traceable to the Fabian 2026-07-29 report + the QA lead's 2026-07-29 repro (ticket placeholder to be re-pointed at the real Jira key per Rule 20)."
   }
 }

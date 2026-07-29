@@ -158,3 +158,50 @@ to be re-pointed at the real Jira key):
    loop: ticket -> test cases) — this is the first live exercise of that loop.
 6. **Follow-up suggestion (not done here):** revive the dropped $0-sell product question if the
    live check shows $0 sell is still reachable at completion — it was never answered.
+
+---
+
+## 7. UPDATE 2026-07-29 — QA lead's EXACT repro received (authoritative); drafts rewritten to it
+
+The QA lead supplied the exact steps-to-reproduce + expected behavior on 2026-07-29. It is the
+AUTHORITATIVE flow for these cases and is saved verbatim in
+`repro-from-qa-lead-2026-07-29.md` (this folder). Verbatim:
+
+> **Steps:**
+> 1. Create a new WO
+> 2. Create a new line
+> 3. Request a special order part but do NOT add anything in the new part request modal but description and quantity, and click save and close
+> 4. Click Order
+> 5. Click Receive
+> 6. Select Vendor from the top left side
+> 7. Add the Invoice number
+> 8. Add the missing Part number
+> 9. Add Cost
+> 10. Click outside the cost field to see if the sell price auto calculated
+>
+> **Expected behavior:**
+> - Sell price should auto calculate based on the UNCATEGORIZED category matrix (the part has no category, so the pricing matrix's Uncategorized category rules apply)
+> - After the sell price is auto generated, the Receive button should get auto activated
+
+**What changed in the drafts (`corrective-cases-draft.json`, same 3 cases, LOCAL only, no
+TestRail writes):**
+
+- **SF-RCV-14** (new, no C-ID yet) — rewritten to mirror the 10 steps exactly (New Part Request
+  modal with ONLY Description + Quantity -> save and close -> Order -> Receive -> Vendor dropdown
+  top left -> Invoice Number -> Part Number -> Cost -> click outside). Expected = two numbered
+  outcomes: (1) Sell fills in automatically from the pricing matrix's **Uncategorized** category
+  rules (the part has no category); (2) once Sell is filled, the **Receive button becomes
+  clickable by itself**. Precondition now names the Uncategorized-matrix requirement plainly
+  (if the matrix genuinely has no Uncategorized rule, confirm with the team before failing).
+- **SF-RCV-15** (new, no C-ID yet) — same flow; after the first auto-calc, change Cost again and
+  click outside — Sell must recalculate on EVERY edit (the "no matter how many times" half).
+- **SF-VPART-08** (new, no C-ID yet) — kept; expected wording aligned to the matrix-based
+  (Uncategorized) auto-calc, still flagged VIU-confirm (never observed on that dialog).
+- **Receive-button gating: FOLDED into SF-RCV-14** (expected outcome 2), NOT a 4th case — it is
+  the same observable moment as the auto-calc, and a standalone case would reduce to a single
+  gate already covered as a class by SF-VEND-06 (C29442) — the over-granularity pattern Rule 28
+  hunts.
+- **Refs** now cite BOTH anchors: the placeholder "Fabian 2026-07-29 sell-price concern (ticket
+  TBD)" + "QA lead repro 2026-07-29" (re-point at the real Jira key before any push, Rule 20).
+- **Rule-28 mini-audit re-run on the updated drafts:** 3/3 KEEP · 3/3 SENSIBLE (cold-read
+  executable) · 3/3 genuine + layman-runnable.
