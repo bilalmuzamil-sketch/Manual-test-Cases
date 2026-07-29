@@ -1,0 +1,31 @@
+{
+ "id": "WIP-SORT-03",
+ "area": "WIP — Sorting",
+ "title": "Columns sort by underlying values; Asset sorts by serial number",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. A tab shows several work orders with a spread of money values (including values over $1,000), differing statuses, and differing serial numbers."
+ ],
+ "steps": [
+  "1. Sort by a money column (for example Total) and check the order of values like $900.00 vs $1,100.00.",
+  "2. Sort by Days Open and check the order of the day counts.",
+  "3. Sort by Status and check the order against the displayed labels.",
+  "4. Sort by Asset and check the order against the serial numbers.",
+  "5. Sort by WO #, Customer, and Advisor and check they order as text."
+ ],
+ "expected": [
+  "1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 is treated as more than $900.00, not compared as text).",
+  "2. Days Open sorts by its day count.",
+  "3. Status sorts by its displayed label.",
+  "4. The Asset column sorts by the serial number.",
+  "5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R27; S4-R9 — Asset sort key OVERRIDDEN to serial number by kickoff video P24 29:54-30:46, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+ "viu_status": "VIU-Pending",
+ "notes": "VIDEO-AUTHORITATIVE (P24, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the asset identifier is the serial number, so the Asset column's sort key follows it. OVERRIDDEN spec wording: S4-R9 'sorts by unit number'. Title shortened to fit.",
+ "api_related": false
+}

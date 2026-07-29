@@ -1,0 +1,26 @@
+{
+ "id": "SBC-LBL-01",
+ "area": "SBC — Asset Labels",
+ "title": "Asset identified by VIN, falling back to Unit #, then plate",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
+ "preconditions": [
+  "1. One customer has ZZAUTOTEST assets with invoices in range: (a) one with a VIN recorded, (b) one with no VIN but a Unit # recorded, (c) one with no VIN or Unit # but a plate recorded, (d) one with no VIN, Unit #, or plate (blank the fields as far as the asset form allows)."
+ ],
+ "steps": [
+  "1. Expand the customer and read each asset row's label."
+ ],
+ "expected": [
+  "1. Asset (a) is identified by its VIN.",
+  "2. Asset (b) (no VIN) is identified by its Unit # instead.",
+  "3. Asset (c) (no VIN or Unit #) is identified by its plate instead.",
+  "4. For asset (d) (no VIN, Unit #, or plate), note what the label shows - what stands in when all three are missing is confirmed in the build (the older rule showed \"Unknown Asset\").",
+  "5. Note whether the year/make/model text still appears anywhere in the row - the update says the VIN identifier REPLACES the year/make/model label; confirm the exact rendering in the build."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to VIN, falling back to Unit #, then plate, by Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins), superseding the kickoff video's serial-number ruling P24 AND the spec's year/make/model + unit/plate/VIN-suffix rule)",
+ "viu_status": "VIU-Pending",
+ "notes": "RE-RULED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'Assets are now identified by VIN (falls back to Unit #, then plate) instead of the year/make/model label.' This supersedes (for SBC only) the kickoff-video P24 serial-number ruling applied 2026-07-28 (that pre-edit body is in chris-update-2026-07-29/backup/; the pre-video body is in video-promotion-backup-2026-07-28/). The all-three-missing fallback and whether year/make/model disappears entirely are unpinned - confirm from Chris's updated spec changelog + the build at VIU, do not invent (Rule 9). WIP's asset identifier stays on the video's serial ruling - the message scopes VIN to SBC only (ambiguity flagged in SPEC-WATCH; question queued for Chris). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-LBL): absorbed SBC-LBL-02, SBC-LBL-03 (retired locally, deleted from TestRail).",
+ "api_related": false
+}

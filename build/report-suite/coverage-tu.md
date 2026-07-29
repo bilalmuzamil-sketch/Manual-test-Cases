@@ -286,5 +286,9 @@ this report's existing export + location-scoping cases — no new cases needed) 
 `chris-update-2026-07-29/ChangeList-2026-07-29.md`: SBC = VIN→Unit #→plate identifier (SBC-LBL-01/04)
 + Summary/Expanded exports, four menu items (SBC-EXP-01/03/09/11/16); PV = "Special Order" rename
 confirmed (PV-FILT-01/09, PV-ROW-05, PV-EXP-08); TU = NEW column-selector case TU-COL-01 (= C38859, pushed
-2026-07-29); WIP = identifier stays serial, VIN-or-serial question queued for Chris; SBR/IV = the all-reports
-items only. Spec changelog expected ~2026-07-30 — re-verify then.
+2026-07-29); WIP = identifier flipped to the VIN chain per Chris's answer A 2026-07-29 ("A is the correct
+answer" — wip-identifier-answer-2026-07-29.md; WIP-COL-05 C30470 / WIP-FLT-03 C30500 / WIP-SORT-03
+C30485 + WIP-EXP-07 C30516 caveat; the VIN → Unit # → plate chain is now the STANDARD for all
+reports going forward, with the non-vehicle VIN-vs-serial terminology tester note); SBR/IV = the
+all-reports items only. Spec changelog expected ~2026-07-30 — re-verify then (Chris's spec edit is
+NOT hand-reviewed; confirm the WIP identifier text too).

@@ -871,6 +871,16 @@ deliver the 7-tab management report.
    SPEC-WATCH deadline 2026-08-04 — if Chris Ward has NOT ratified the video items into the 6 specs
    by then, REMIND THE USER (build/report-suite/SPEC-WATCH-2026-07-28.md); ruthless usefulness audit
    run 2026-07-28 (build/report-suite/quality-audit-2026-07-28/).**
+   **2026-07-29 Chris ruling (DURABLE, all projects' reports + all future work): the asset
+   identifier chain VIN → Unit # → plate is the STANDARD everywhere — WIP included (his answer "A
+   is the correct answer" to the WIP question; verbatim "Not just for these specs though -- really
+   good to keep this in mind for all actions moving forward"). Terminology caution: VIN = VEHICLE
+   identification number — for non-vehicle assets (e.g. a generator) the value is effectively the
+   serial number; keep the build label "VIN" + a short plain tester note. Source
+   build/report-suite/chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; WIP-COL-05
+   C30470 / WIP-FLT-03 C30500 / WIP-SORT-03 C30485 / WIP-EXP-07 C30516 flipped LOCALLY, wave-2
+   push queue = 4 update_case awaiting authorization; Chris's spec edit NOT hand-reviewed — the
+   changelog re-diff must confirm the WIP identifier text (SPEC-WATCH deadline 2026-08-04).**
 
 **STANDING RULES (apply to all projects):**
 1. **Never proceed without the complete set of information needed.** If

@@ -4,7 +4,11 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-29, second update** (AUTHORIZED CHRIS-UPDATE PUSH EXECUTED — 24 update_case
+Last updated: **2026-07-29, third update** (CHRIS ANSWERED THE WIP-IDENTIFIER QUESTION = **A**:
+WIP also uses the **VIN → Unit # → plate** chain — the chain is now the STANDARD for all reports
+and all future work; 3 WIP cases + the WIP-EXP-07 caveat flipped LOCALLY, wave-2 push queue = 4
+update_case awaiting authorization; see §0 UPDATE 2026-07-29-C). Earlier same day: AUTHORIZED
+CHRIS-UPDATE PUSH EXECUTED — 24 update_case
 + 1 add_case [TU-COL-01 = C38859], 25/25 HTTP 200 + re-GET MATCH; **460 active LIVE in TestRail ==
 460 local**; see §0 LATEST block). Earlier same day: 3 authorized TestRail fixes executed + Chris
 Ward group-message delta pass applied LOCALLY (change-list =
@@ -28,7 +32,36 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
-**UPDATE 2026-07-29-B (LATEST — AUTHORIZED CHRIS-UPDATE PUSH EXECUTED; read this first).**
+**UPDATE 2026-07-29-C (LATEST — CHRIS ANSWERED THE WIP-IDENTIFIER QUESTION: "A is the correct
+answer"; applied LOCALLY, NO TestRail writes; read this first).**
+- **Answer = A (verbatim, user-relayed):** the Work In Progress report **ALSO uses VIN, falling
+  back to Unit #, then plate** — same chain as Sales By Customer. Verbatim answer + his two
+  standing notes: `chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md`.
+- **DURABLE STANDING RULING (Chris, verbatim): "Not just for these specs though -- really good to
+  keep this in mind for all actions moving forward."** = the **VIN → Unit # → plate identifier
+  chain is the STANDARD for all reports and ALL future work.** Plus his terminology caution: VIN =
+  VEHICLE identification number — for non-vehicle assets (e.g. a generator) the value is
+  effectively the unit's **serial number**; keep the build label "VIN" (Rule 9) and carry a short
+  plain tester note where the label is read.
+- **Applied LOCALLY (backups `chris-update-2026-07-29/backup/` + MANIFEST wave-2 section; script
+  `apply_wip_answer_2026-07-29.py`):** WIP-COL-05 C30470 (Asset cell), WIP-FLT-03 C30500 (asset
+  filter options + type-ahead), WIP-SORT-03 C30485 (Asset sort key) flipped serial → VIN chain,
+  mirroring the SBC-LBL-01 C30134 wording pattern, + tester VIN-terminology note on COL-05/FLT-03.
+  Full 6-report serial sweep found ONE more remnant: **WIP-EXP-07 C30516** expected-#4 caveat
+  re-based on the VIN chain (caveat still reads correctly — export header text stays unpinned).
+  SBC-LBL-01 notes-only residue closed (local metadata, not pushed). No other case in any report
+  uses "serial" as an asset identifier (SBC-LBL-02/03 mentions = Retired-case history, untouched).
+- **Push queue WAVE 2 = 4 × update_case (WIP-COL-05 C30470 / WIP-FLT-03 C30500 / WIP-SORT-03
+  C30485 / WIP-EXP-07 C30516), AWAITING fresh push authorization** (Rule 6) — queue in
+  `chris-update-2026-07-29/ChangeList-2026-07-29.md` § "Push queue — wave 2".
+- Rule-28 mini-audit on the 4 flipped: USEFUL 4/4 KEEP · MAKES SENSE 4/4 SENSIBLE · GENUINE +
+  LAYMAN-RUNNABLE 4/4. Deliverables regenerated over 460 (unified + 6 splits, header
+  byte-identical, hygiene clean); id-map C-ids re-merged 460/460.
+- **SPEC-WATCH:** Chris updated the spec before bed but has **NOT hand-reviewed it** — when the
+  changelog lands (~2026-07-30), the re-diff must confirm the **WIP identifier text** too
+  (`SPEC-WATCH-2026-07-28.md` item #1 updated; deadline 2026-08-04 stands).
+
+**UPDATE 2026-07-29-B (AUTHORIZED CHRIS-UPDATE PUSH EXECUTED).**
 - **The Chris-update push queue is EXECUTED (explicit user authorization 2026-07-29): exactly
   24 update_case + 1 add_case per `chris-update-2026-07-29/ChangeList-2026-07-29.md`, NOTHING
   else.** All 25 ops HTTP 200 + re-GET verified MATCH (title/preconds/steps/expected/refs; the

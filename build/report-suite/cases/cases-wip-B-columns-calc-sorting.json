@@ -107,28 +107,30 @@
   {
     "id": "WIP-COL-05",
     "area": "WIP — Columns & Rows",
-    "title": "Asset cell shows a bold serial number over a muted VIN; VIN is also a column",
+    "title": "Asset cell identifies the asset by VIN, falling back to Unit #, then plate",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. The report shows work orders including: one whose asset has both a serial number and a vehicle identification number, one with no serial number, and one with no vehicle identification number."
+      "2. The report shows work orders including: one whose asset has a VIN recorded, one with no VIN but a Unit # recorded, and one with no VIN or Unit # but a plate recorded."
     ],
     "steps": [
-      "1. Read the Asset cell of a row whose asset has both values.",
-      "2. Read the Asset cell of the row with no serial number, then the one with no vehicle identification number.",
+      "1. Read the Asset cell of the row whose asset has a VIN.",
+      "2. Read the Asset cell of the row with no VIN, then the one with no VIN or Unit #.",
       "3. Open the column-selection control, turn on the VIN column, and read it."
     ],
     "expected": [
-      "1. The Asset cell is two lines: the asset's SERIAL NUMBER on the first line in bold, and the vehicle identification number on the second line in a smaller, muted style.",
-      "2. When the asset has no serial number, the first line shows a placeholder (its exact text is confirmed in the build); when it has no vehicle identification number, the second line shows \"— no VIN —\".",
-      "3. The VIN column (off by default) shows the vehicle identification number on its own line as a separate, sortable column."
+      "1. The Asset cell identifies the asset by its VIN.",
+      "2. When the asset has no VIN, the cell shows its Unit # instead; when it has no VIN or Unit #, it shows its plate instead.",
+      "3. Note what the cell's second line shows now that the VIN is the main identifier (the older layout put the VIN on a muted second line) - the exact rendering is confirmed in the build; record what you see.",
+      "4. The VIN column (off by default) shows the VIN on its own line as a separate, sortable column.",
+      "5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number."
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R7; S4-R8; S4-R10 — identifier OVERRIDDEN to serial number by kickoff video P24 29:54-30:46, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+    "spec_ref": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to VIN, falling back to Unit #, then plate, by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; NEWEST source, last-update-wins), superseding the kickoff video's serial-number ruling P24 AND the spec's unit-number rule)",
     "viu_status": "VIU-Pending",
-    "notes": "VIDEO-AUTHORITATIVE (P24, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 29:54-30:46: the serial number (bin number — interchangeable) is THE asset identifier, replacing the unit number ('if you see it, please flag it for anybody'). OVERRIDDEN spec wording: S4-R7 Asset cell = unit number (line 1, bold) + VIN (line 2); §4 'Asset … identified by its unit number and its VIN'; old placeholder '(no unit #)'. The missing-serial placeholder text is unpinned — VIU-confirm, do not invent (Rule 9). \"— no VIN —\" is verbatim from the spec (S4-R8) and is kept.",
+    "notes": "RE-RULED 2026-07-29 per Chris Ward's answer to the WIP-identifier question: 'A is the correct answer' - WIP uses the same VIN -> Unit # -> plate chain as Sales By Customer (mirrors SBC-LBL-01 C30134). Chris's standing note: the chain is the STANDARD for all reports and all future work ('Not just for these specs though -- really good to keep this in mind for all actions moving forward'), with the terminology caution that for non-vehicle assets (e.g. a generator) the VIN field is effectively the serial number - hence the plain tester note (label stays 'VIN' per Rule 9). Supersedes the video P24 serial ruling applied 2026-07-28 (pre-edit body in chris-update-2026-07-29/backup/WIP-COL-05.json; pre-video body in video-promotion-backup-2026-07-28/). Second-line rendering + the all-identifiers-missing fallback are unpinned - Chris updated the spec before bed but has NOT hand-reviewed it; confirm from his spec changelog + the build at VIU, do not invent (Rule 9).",
     "api_related": false
   },
   {
@@ -517,32 +519,32 @@
   {
     "id": "WIP-SORT-03",
     "area": "WIP — Sorting",
-    "title": "Columns sort by underlying values; Asset sorts by serial number",
+    "title": "Columns sort by underlying values; Asset sorts by the identifier shown",
     "priority": "Medium",
     "type": "Functional",
     "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
     "preconditions": [
       "1. You are signed in to the ShopView App on a desktop browser.",
-      "2. A tab shows several work orders with a spread of money values (including values over $1,000), differing statuses, and differing serial numbers."
+      "2. A tab shows several work orders with a spread of money values (including values over $1,000), differing statuses, and differing asset identifiers (VIN, or Unit # / plate where the VIN is missing)."
     ],
     "steps": [
       "1. Sort by a money column (for example Total) and check the order of values like $900.00 vs $1,100.00.",
       "2. Sort by Days Open and check the order of the day counts.",
       "3. Sort by Status and check the order against the displayed labels.",
-      "4. Sort by Asset and check the order against the serial numbers.",
+      "4. Sort by Asset and check the order against the identifiers shown in the Asset cells.",
       "5. Sort by WO #, Customer, and Advisor and check they order as text."
     ],
     "expected": [
       "1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 is treated as more than $900.00, not compared as text).",
       "2. Days Open sorts by its day count.",
       "3. Status sorts by its displayed label.",
-      "4. The Asset column sorts by the serial number.",
+      "4. The Asset column sorts by the identifier it shows - the VIN, falling back to Unit #, then plate.",
       "5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text."
     ],
     "design_ref": "none — design not yet available (spec-only authoring)",
-    "spec_ref": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R27; S4-R9 — Asset sort key OVERRIDDEN to serial number by kickoff video P24 29:54-30:46, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+    "spec_ref": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN, then Unit #, then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins), superseding the video P24 serial ruling AND the spec's 'sorts by unit number')",
     "viu_status": "VIU-Pending",
-    "notes": "VIDEO-AUTHORITATIVE (P24, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the asset identifier is the serial number, so the Asset column's sort key follows it. OVERRIDDEN spec wording: S4-R9 'sorts by unit number'. Title shortened to fit.",
+    "notes": "RE-RULED 2026-07-29 per Chris Ward's answer A ('A is the correct answer'): the asset identifier is the VIN chain (VIN -> Unit # -> plate; standard for all reports going forward per his standing note), so the Asset column's sort key follows the identifier it shows. Supersedes the video P24 serial ruling (pre-edit body in chris-update-2026-07-29/backup/WIP-SORT-03.json). Exact sort key when rows mix VIN/Unit #/plate identifiers is unpinned - confirm in the build at VIU. Title kept 80 chars or fewer.",
     "api_related": false
   },
   {

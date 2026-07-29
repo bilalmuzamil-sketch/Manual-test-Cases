@@ -1,0 +1,27 @@
+{
+ "id": "WIP-COL-05",
+ "area": "WIP — Columns & Rows",
+ "title": "Asset cell shows a bold serial number over a muted VIN; VIN is also a column",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. The report shows work orders including: one whose asset has both a serial number and a vehicle identification number, one with no serial number, and one with no vehicle identification number."
+ ],
+ "steps": [
+  "1. Read the Asset cell of a row whose asset has both values.",
+  "2. Read the Asset cell of the row with no serial number, then the one with no vehicle identification number.",
+  "3. Open the column-selection control, turn on the VIN column, and read it."
+ ],
+ "expected": [
+  "1. The Asset cell is two lines: the asset's SERIAL NUMBER on the first line in bold, and the vehicle identification number on the second line in a smaller, muted style.",
+  "2. When the asset has no serial number, the first line shows a placeholder (its exact text is confirmed in the build); when it has no vehicle identification number, the second line shows \"— no VIN —\".",
+  "3. The VIN column (off by default) shows the vehicle identification number on its own line as a separate, sortable column."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R7; S4-R8; S4-R10 — identifier OVERRIDDEN to serial number by kickoff video P24 29:54-30:46, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+ "viu_status": "VIU-Pending",
+ "notes": "VIDEO-AUTHORITATIVE (P24, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 29:54-30:46: the serial number (bin number — interchangeable) is THE asset identifier, replacing the unit number ('if you see it, please flag it for anybody'). OVERRIDDEN spec wording: S4-R7 Asset cell = unit number (line 1, bold) + VIN (line 2); §4 'Asset … identified by its unit number and its VIN'; old placeholder '(no unit #)'. The missing-serial placeholder text is unpinned — VIU-confirm, do not invent (Rule 9). \"— no VIN —\" is verbatim from the spec (S4-R8) and is kept.",
+ "api_related": false
+}

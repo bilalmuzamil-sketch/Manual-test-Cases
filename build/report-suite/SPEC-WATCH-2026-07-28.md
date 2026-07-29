@@ -29,11 +29,17 @@ lands, RE-RUN the spec capture+diff (`spec-current-2026-07-28/` method) and VERI
 summary against the actual changelog before treating any item as final.**
 
 Message-level effect on the watch items (message = spec-INTENT confirmed; spec TEXT still pending):
-- **#1 serial identifier — SUPERSEDED for SBC:** assets identified by **VIN (falls back Unit #,
-  then plate)**, not serial (SBC-LBL-01 C30134 re-edited). **WIP identifier now AMBIGUOUS — VIN or
-  serial? The message scopes VIN to SBC only; WIP-COL-05 C30470 / WIP-FLT-03 C30500 / WIP-SORT-03
-  C30485 stay on the video's serial ruling. QUESTION QUEUED for Chris — confirm from his spec
-  changelog** (plain question text in `chris-update-2026-07-29/ChangeList-2026-07-29.md`).
+- **#1 serial identifier — SUPERSEDED EVERYWHERE (updated 2026-07-29, answer):** assets identified
+  by **VIN (falls back Unit #, then plate)**, not serial (SBC-LBL-01 C30134 re-edited). **WIP
+  question ANSWERED = A** (Chris Ward 2026-07-29: "A is the correct answer" — verbatim + standing
+  notes in `chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md`): **WIP ALSO uses the VIN
+  chain** — WIP-COL-05 C30470 / WIP-FLT-03 C30500 / WIP-SORT-03 C30485 flipped off the video's
+  serial ruling + WIP-EXP-07 C30516 caveat re-based (all LOCAL, awaiting push authorization).
+  Chris's standing notes: the VIN → Unit # → plate chain is the **STANDARD for all reports and all
+  future work** ("keep this in mind for all actions moving forward"); terminology caution — for
+  non-vehicle assets (e.g. a generator) the VIN field is effectively the serial number (label stays
+  "VIN"). **Chris updated the spec before bed but has NOT hand-reviewed it — the changelog re-diff
+  must confirm the WIP identifier text too.**
 - **#2 SBC Print removed — CONFIRMED** by the message ("The Print option is removed.").
 - **#3 SBC compressed download — CONFIRMED + EXTENDED:** Summary AND Expanded versions for BOTH
   PDF and CSV, four exact menu items (SBC-EXP-16 C38856 + SBC-EXP-01 C30159 reshaped).
@@ -46,15 +52,18 @@ Message-level effect on the watch items (message = spec-INTENT confirmed; spec T
   spec gets a padding-issue flag (purely visual, no case).
 - **DEADLINE 2026-08-04 STANDS** — if the promised spec changelog has NOT landed by then, remind
   the user (the recovery option now includes `chris-update-2026-07-29/backup/`).
-- **2026-07-29: WIP-identifier question SENT to Chris by the user** (awaiting his answer; also
-  expect it settled by his spec changelog — affects WIP-COL-05 C30470 / WIP-FLT-03 C30500 /
-  WIP-SORT-03 C30485).
+- **2026-07-29: WIP-identifier question SENT to Chris by the user — ANSWERED the same day: "A is
+  the correct answer" (VIN chain for WIP too).** Verbatim + standing notes:
+  `chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md`. WIP-COL-05 C30470 / WIP-FLT-03
+  C30500 / WIP-SORT-03 C30485 + WIP-EXP-07 C30516 flipped LOCALLY (push queue wave 2, awaiting
+  authorization). His spec update is NOT hand-reviewed yet — verify the WIP identifier text in the
+  changelog re-diff.
 
 ## Watch checklist
 
 | # | In spec? (re-check) | Item (video anchor) | What to look for in the spec | Affected cases (internal + C-id) |
 |---|---|---|---|---|
-| 1 | ☐ | **Serial number as asset identifier** (P24, 29:54–30:46) | SBC S8-R8 asset-label suffix changed from "· Unit {unit}" to serial number; WIP S4-R7/S4-R9/§4 changed from unit number | SBC-LBL-01 C30134 (+ LBL-02 C30135 / LBL-03 C30136 / LBL-04 C30137 notes), WIP-COL-05 C30470, WIP-FLT-03 C30500, WIP-SORT-03 C30485, WIP-EXP-07 C30516 |
+| 1 | ☐ | **Asset identifier** (P24 serial, 29:54–30:46 — SUPERSEDED 2026-07-29 by the VIN chain: message for SBC + Chris answer A for WIP) | SBC S8-R8 + WIP S4-R7/S4-R9/S7-R4/S7-R5/§4 changed to **VIN, falling back to Unit #, then plate** (NOT serial — Chris's spec edit is not hand-reviewed; verify the WIP text explicitly) | SBC-LBL-01 C30134 (+ LBL-02 C30135 / LBL-03 C30136 / LBL-04 C30137 notes), WIP-COL-05 C30470, WIP-FLT-03 C30500, WIP-SORT-03 C30485, WIP-EXP-07 C30516 |
 | 2 | ☐ | **SBC Print removed** (P25, 31:14) | SBC Story 16 deleted / S14-R1 menu no longer lists "Print" | SBC-EXP-01 C30159, SBC-EXP-14 C30172, SBC-EXP-13 C30171 (DELETED from TestRail 2026-07-28, user-authorized "Push ALL"; body kept locally Retired — restore via add_case from consolidation-backup if Print is ever re-ratified) |
 | 3 | ☐ | **SBC compressed (summary) download** (P21, 32:10–33:03 + 48:39) | SBC Stories 14/15 gain a Summary/Compressed download option | SBC-EXP-16 = C38856 (added to TestRail 2026-07-28, user-authorized; delete_case C38856 to recover if never ratified) |
 | 4 | ☐ | **Location filter HIDDEN when ≤1 permitted location** (P33, 46:10–46:28) | SBR S21-N1 / TU S9-N1 / IV S7-N1 / PV S2-E4 "still sees the filter" reversed, or a custom-roles gating section added | SBR-LOC-04 C30216, TU-LOC-05 C30446, IV-LOC-04 C30577, PV-FILT-13 C30340 |

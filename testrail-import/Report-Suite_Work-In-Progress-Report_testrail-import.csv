@@ -83,12 +83,14 @@ Status shows as a color-coded badge whose label text is always present (color is
 2. Compare each badge's color against the application's standard status colors used elsewhere.","1. Status is shown as a badge using the status's label: ""Estimate"", ""Approved"", ""In Progress"", ""Review"", or ""Complete"".
 2. The badge is color-coded per the application's standard status colors.
 3. The label text is always present, so color is never the sole signal of the status.",specs/wip-work-in-progress.md Story 4 S4-R6; Story 10 S10-R8,,
-Asset cell shows a bold serial number over a muted VIN; VIN is also a column,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. The report shows work orders including: one whose asset has both a serial number and a vehicle identification number, one with no serial number, and one with no vehicle identification number.","1. Read the Asset cell of a row whose asset has both values.
-2. Read the Asset cell of the row with no serial number, then the one with no vehicle identification number.
-3. Open the column-selection control, turn on the VIN column, and read it.","1. The Asset cell is two lines: the asset's SERIAL NUMBER on the first line in bold, and the vehicle identification number on the second line in a smaller, muted style.
-2. When the asset has no serial number, the first line shows a placeholder (its exact text is confirmed in the build); when it has no vehicle identification number, the second line shows ""— no VIN —"".
-3. The VIN column (off by default) shows the vehicle identification number on its own line as a separate, sortable column.","SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R7; S4-R8; S4-R10 — identifier OVERRIDDEN to serial number by kickoff video P24 29:54-30:46, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
+"Asset cell identifies the asset by VIN, falling back to Unit #, then plate",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The report shows work orders including: one whose asset has a VIN recorded, one with no VIN but a Unit # recorded, and one with no VIN or Unit # but a plate recorded.","1. Read the Asset cell of the row whose asset has a VIN.
+2. Read the Asset cell of the row with no VIN, then the one with no VIN or Unit #.
+3. Open the column-selection control, turn on the VIN column, and read it.","1. The Asset cell identifies the asset by its VIN.
+2. When the asset has no VIN, the cell shows its Unit # instead; when it has no VIN or Unit #, it shows its plate instead.
+3. Note what the cell's second line shows now that the VIN is the main identifier (the older layout put the VIN on a muted second line) - the exact rendering is confirmed in the build; record what you see.
+4. The VIN column (off by default) shows the VIN on its own line as a separate, sortable column.
+5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.","SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to VIN, falling back to Unit #, then plate, by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; NEWEST source, last-update-wins), superseding the kickoff video's serial-number ruling P24 AND the spec's unit-number rule)",,
 "Customer shows the customer's company name, and is blank when no customer name exists",WIP — Columns & Rows,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a work order with a customer that has a company name, and one with no customer name.","1. Read the Customer cell of the row whose customer has a company name.
 2. Read the Customer cell of the row with no customer name.","1. The Customer column shows the customer's company name.
@@ -178,16 +180,16 @@ The initial sort is Days Open with the longest-open work order first,WIP — Sor
 2. The second click toggles it to descending.
 3. The third click returns to ascending — there is no third ""cleared"" state.
 4. Only one column sorts at a time: clicking another header replaces the previous sort.",specs/wip-work-in-progress.md Story 4 S4-R26,,
-Columns sort by underlying values; Asset sorts by serial number,WIP — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. A tab shows several work orders with a spread of money values (including values over $1,000), differing statuses, and differing serial numbers.","1. Sort by a money column (for example Total) and check the order of values like $900.00 vs $1,100.00.
+Columns sort by underlying values; Asset sorts by the identifier shown,WIP — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A tab shows several work orders with a spread of money values (including values over $1,000), differing statuses, and differing asset identifiers (VIN, or Unit # / plate where the VIN is missing).","1. Sort by a money column (for example Total) and check the order of values like $900.00 vs $1,100.00.
 2. Sort by Days Open and check the order of the day counts.
 3. Sort by Status and check the order against the displayed labels.
-4. Sort by Asset and check the order against the serial numbers.
+4. Sort by Asset and check the order against the identifiers shown in the Asset cells.
 5. Sort by WO #, Customer, and Advisor and check they order as text.","1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 is treated as more than $900.00, not compared as text).
 2. Days Open sorts by its day count.
 3. Status sorts by its displayed label.
-4. The Asset column sorts by the serial number.
-5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.","SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R27; S4-R9 — Asset sort key OVERRIDDEN to serial number by kickoff video P24 29:54-30:46, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
+4. The Asset column sorts by the identifier it shows - the VIN, falling back to Unit #, then plate.
+5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.","SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN, then Unit #, then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins), superseding the video P24 serial ruling AND the spec's 'sorts by unit number')",,
 Sorting reorders only the active tab's rows and the Totals row stays at the bottom,WIP — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. At least two tabs have several rows each.","1. In the active tab, sort by a column and note the new order.
 2. Check the position of the Totals row.
@@ -256,14 +258,15 @@ The Advisor filter is a multi-select of the advisors present in the loaded jobs 
 2. Typing narrows the option list (type-ahead); the options are the customers present in the loaded jobs.
 3. Selecting customers narrows the visible jobs on screen only (no reload); a single ""Clear"" action appears once at least one customer is selected.
 4. Clear returns the filter to ""All customers"" and every job is shown again.",specs/wip-work-in-progress.md Story 7 S7-R2; S7-R3,,
-"Asset filter type-ahead matches serial number or VIN, ""All assets"" when empty",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. The report shows jobs for at least two assets whose serial numbers and vehicle identification numbers you know.","1. Read the Asset filter's label before selecting anything.
+"Asset filter matches VIN, Unit #, or plate; ""All assets"" when empty",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The report shows jobs for at least two assets whose VINs (and Unit #s or plates) you know.","1. Read the Asset filter's label before selecting anything.
 2. Open the filter and read how each option is presented.
-3. Type part of a serial number and check the matching options; clear and type part of a vehicle identification number instead.
+3. Type part of a VIN and check the matching options; clear and type part of a Unit # instead.
 4. Select one or more assets and watch the rows; then use the ""Clear"" action.","1. With no asset selected, the filter reads ""All assets"" and every job is shown.
-2. Each option shows the serial number and the vehicle identification number.
-3. The typed text matches against EITHER the serial number OR the vehicle identification number.
-4. Selecting assets narrows the visible jobs on screen only (no reload); a single ""Clear"" action appears once at least one asset is selected and returns the filter to ""All assets"".","SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R4; S7-R5 — option text + match fields OVERRIDDEN from unit number to serial number by kickoff video P24 29:54-30:46, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
+2. Each option identifies the asset by its VIN, falling back to Unit #, then plate (the exact option text is confirmed in the build).
+3. The typed text matches against the asset's identifier - the VIN, and the Unit # where the asset has one (the exact fields matched are confirmed in the build).
+4. Selecting assets narrows the visible jobs on screen only (no reload); a single ""Clear"" action appears once at least one asset is selected and returns the filter to ""All assets"".
+5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.","SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R4; S7-R5 - option text + type-ahead match fields RE-RULED to the VIN chain (VIN, then Unit #, then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins), superseding the video P24 serial ruling; the spec's original unit-number+VIN matching partially survives via the chain)",,
 "The date-range control offers the standard presets plus Custom, defaults to ""This Week"", and does not offer ""All Time""",WIP — Filters,Functional,Critical,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).,"1. Open the Work In Progress report and read the date-range control's current value.
 2. Open the date-range control and read every option offered.","1. On a fresh visit the date range defaults to ""This Week"".
 2. The options offered are: ""Today"", ""Yesterday"", ""This Week"", ""Last Week"", ""This Month"", ""Last Month"", ""This Year"", ""Last Year"", ""This Quarter"", ""Last Quarter"", and ""Custom"".
@@ -359,7 +362,7 @@ Days Open in a download is frozen at the moment the file is generated (and can b
 3. Download the PDF and read them there too.","1. On screen the headers read ""Asset"" and ""Location"".
 2. In BOTH the PDF and the CSV, the same two columns are headed ""Unit"" and ""Branch"".
 3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.
-4. Note: the on-screen Asset cell now identifies the asset by its serial number; whether the export header text changes from ""Unit"" is confirmed in the build — record what it shows, do not file a bug either way.","SV-8665 (specs/wip-work-in-progress.md Story 9 S9-E1; §2 Known Limitations (v1) — asset identifier OVERRIDDEN to serial number by kickoff video P24, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
+4. Note: the on-screen Asset cell now identifies the asset by its VIN (falling back to Unit #, then plate); whether the export header text changes from ""Unit"" is confirmed in the build - record what it shows, do not file a bug either way.","SV-8665 (specs/wip-work-in-progress.md Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN, then Unit #, then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins), superseding the video P24 serial ruling; export header text at export unpinned)",,
 The PDF shows the shop logo at the top when one is set; the CSV never includes a logo,WIP — Exports,Functional,Low,"1. You are signed in to the ShopView App on a desktop browser.
 2. The shop has a logo set in its settings.","1. Download the current tab as a PDF and look at the top of the document.
 2. Download the current tab as a CSV and inspect the file.","1. The PDF shows the shop logo at the top.

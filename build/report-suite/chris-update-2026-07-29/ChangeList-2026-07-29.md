@@ -1,4 +1,19 @@
-# Report Suite — Chris-update change-list (2026-07-29) — **EXECUTED 2026-07-29**
+# Report Suite — Chris-update change-list (2026-07-29) — **wave 1 EXECUTED; wave 2 (WIP identifier) APPLIED-LOCALLY awaiting push**
+
+**WAVE 2 — 2026-07-29 (later): Chris answered the WIP-identifier question: "A is the correct
+answer"** (verbatim + his two standing notes in `wip-identifier-answer-2026-07-29.md`; NEWEST
+source, last-update-wins) — the Work In Progress report ALSO uses **VIN, falling back to Unit #,
+then plate**, and the chain is the STANDARD for all reports and all future work. Applied LOCALLY
+(backups in `backup/`, MANIFEST 2026-07-29 wave): the 3 WIP cases flipped + 1 serial-remnant flip
+found by a full 6-report sweep (WIP-EXP-07) + SBC-LBL-01 notes-only. **Wave-2 push queue = 4 ×
+update_case, awaiting authorization** (see "Push queue — wave 2" at the bottom).
+**Wave-2 Rule-28 three-dimension mini-audit (the 4 flipped cases): USEFUL 4/4 KEEP (0 merge /
+0 weak-keep / 0 cut — each asserts a distinct observable behavior: cell identifier, filter
+matching, sort key, export-header caveat). MAKES SENSE 4/4 SENSIBLE (cold-read against the 6 fail
+conditions; steps executable, expected follows, no contradiction, no invented controls). GENUINE +
+LAYMAN-RUNNABLE 4/4 (every case carries ticket + spec anchor + the answer doc in refs; plain
+wording, titles ≤80 chars; the VIN-vs-serial tester note keeps non-technical testers unconfused
+on non-vehicle assets).**
 
 **STATUS: EXECUTED.** The push queue below was pushed to TestRail 2026-07-29 under explicit user authorization — **24 update_case + 1 add_case (TU-COL-01 = C38859, section 4348 "TU — Visual & Accessibility"), 25/25 HTTP 200 + re-GET MATCH, 0 failures; live count under group 4281 = 460 == id-map; R359 untouched, no deletes.** Audit: `../reconciliation-2026-07-28/testrail-execution-log-2026-07-28.md` § "CHRIS-UPDATE PUSH 2026-07-29"; executor `exec_chris_push_2026-07-29.py`; pre-push snapshots in `pre-push-snapshot/`. All APPLIED-LOCALLY / NEW-CASE rows below are now LIVE (refs condensed to the TestRail cap where noted; full text stays in local spec_ref).
 
@@ -37,7 +52,11 @@
 | PV-EXP-08 | [C30382](https://shopview.testrail.io/index.php?/cases/view/30382) | https://shopview.testrail.io/index.php?/cases/view/30382 | PV | Chris message 2026-07-29 ('Special Order' in the export) | APPLIED-LOCALLY | Notes-only: exported Type values read 'Special Order' (rename covers the export); alignment rule unaffected. Awaiting push authorization (update_case). |
 | TU-COL-01 | (new, no C-ID yet) | — | TU | Chris message 2026-07-29 ('Column selector added for visual/natural conformance') | NEW-CASE | ONE new case authored (section TU - Visual & Accessibility; refs SV-8655 TU Story 8 + the message). Reverses the video-era no-selector state. Column list/defaults unpinned until the spec changelog lands. Needs an authorized add_case. |
 | PV-EXP-05 | [C30379](https://shopview.testrail.io/index.php?/cases/view/30379) | https://shopview.testrail.io/index.php?/cases/view/30379 | PV | Chris message 2026-07-29 (same logo treatment, all reports) | APPLIED-LOCALLY | PV was the ONLY report with no logo coverage (the PV spec never mentions a logo) - the same-logo-treatment expectation added here; the other five reports already carry logo cases (SBC-EXP-10 C30168, SBR-EXP-06 C30281, TU-EXP-06 C30439, WIP-EXP-08 C30517, IV-EXP-04 C30590 - no edits needed). Long title also trimmed. Awaiting push authorization (update_case). |
-| WIP-COL-05 (+WIP-FLT-03, WIP-SORT-03) | C30470 (+C30500, C30485) | — | WIP | Chris message 2026-07-29 scopes VIN to SBC only | QUESTION-PENDING-CHRIS | NOT edited - WIP stays on the kickoff video's serial-number identifier. QUESTION for Chris (plain): 'On the Work In Progress report, how should each asset be identified? The kickoff plan was the serial number. Your update says Sales By Customer assets are identified by VIN (then Unit #, then plate) - but it only names Sales By Customer. A) WIP also switches to VIN (then Unit #, then plate). B) WIP keeps the serial number.' Confirm from the spec changelog when it lands. |
+| WIP-COL-05 | [C30470](https://shopview.testrail.io/index.php?/cases/view/30470) | https://shopview.testrail.io/index.php?/cases/view/30470 | WIP | Chris ANSWER 2026-07-29 ("A is the correct answer" - VIN chain for WIP too) | APPLIED-LOCALLY (wave 2) | Question ANSWERED = A. Asset cell re-ruled from the video's serial number to VIN, falling back to Unit #, then plate (mirrors SBC-LBL-01); second-line rendering unpinned (confirm in the build); short tester note added: the field is labelled VIN - for non-vehicle assets (e.g. a generator) it is the unit's serial number. Awaiting push authorization (update_case). |
+| WIP-FLT-03 | [C30500](https://shopview.testrail.io/index.php?/cases/view/30500) | https://shopview.testrail.io/index.php?/cases/view/30500 | WIP | Chris ANSWER 2026-07-29 (VIN chain) | APPLIED-LOCALLY (wave 2) | Asset filter options + type-ahead re-ruled to the VIN chain (exact option text / matched fields confirmed in the build); same tester VIN-terminology note added. Awaiting push authorization (update_case). |
+| WIP-SORT-03 | [C30485](https://shopview.testrail.io/index.php?/cases/view/30485) | https://shopview.testrail.io/index.php?/cases/view/30485 | WIP | Chris ANSWER 2026-07-29 (VIN chain) | APPLIED-LOCALLY (wave 2) | Asset column sort key re-ruled from serial number to the identifier the cell shows (VIN, falling back to Unit #, then plate). Awaiting push authorization (update_case). |
+| WIP-EXP-07 | [C30516](https://shopview.testrail.io/index.php?/cases/view/30516) | https://shopview.testrail.io/index.php?/cases/view/30516 | WIP | Chris ANSWER 2026-07-29 (VIN chain) | APPLIED-LOCALLY (wave 2) | Serial-remnant flip found by the full-suite sweep: the Unit/Branch export-header caveat's expected #4 now says the on-screen Asset cell identifies the asset by its VIN (falling back to Unit #, then plate); the caveat itself (export header text unpinned, record - don't file) still reads correctly. Awaiting push authorization (update_case). |
+| SBC-LBL-01 | [C30134](https://shopview.testrail.io/index.php?/cases/view/30134) | https://shopview.testrail.io/index.php?/cases/view/30134 | SBC | Chris ANSWER 2026-07-29 (question closed) | LOCAL-NOTES-ONLY (wave 2) | Notes-only: the "WIP question queued for Chris" residue closed (answered A; chain = standard for all reports going forward). Notes are a LOCAL metadata field, not pushed to TestRail - NO update_case needed (the case's pushed fields already carry the VIN chain from the executed wave-1 push). |
 | (no case - Parts Sales report) | - | — | - | Chris message 2026-07-29 (rename on Parts Sales dropdown) | FYI | The same Catalogue -> Special Order rename applies to the matching dropdown on the Parts Sales report - that is a DIFFERENT feature, OUT of this suite's scope. No case authored; noting it so the owning suite can pick it up. |
 | (no case - SBR) | - | — | SBR | Chris message 2026-07-29 (padding flag) | FYI | Chris renamed things in his local and is adding a spec flag for the SBR padding issue - PURELY VISUAL for his companion video, his words. No case change. |
 | (no case - all reports) | - | — | - | Chris message 2026-07-29 second part (filters cross-squad) | FYI | Branko + Milos are building an app-wide Filters project that WILL cross over with the report filters. Chris's instruction: build to spec for now, but EXPECT the filter portion to change once something workable is on staging (Branko/Milos will sweep the report filters; response awaited). Our filter cases stay as authored; re-reconcile when that sweep lands. |
@@ -49,3 +68,12 @@
 - **24 × update_case:** SBC-LBL-01 C30134, SBC-LBL-04 C30137, SBC-EXP-01 C30159, SBC-EXP-16 C38856, SBC-EXP-03 C30161, SBC-EXP-11 C30169, SBC-EXP-09 C30167, SBR-EXP-02 C30277, PV-EXP-02 C30376, TU-EXP-04 C30437, IV-EXP-02 C30588, WIP-EXP-02 C30511, SBC-LOC-03 C30111, SBR-LOC-03 C30215, PV-FILT-10 C30337, TU-LOC-02 C30443, IV-LOC-02 C30575, WIP-FLT-06 C30503, PV-FILT-01 C30328, PV-FILT-09 C30336, PV-ROW-05 C30345, PV-EXP-08 C30382, PV-EXP-05 C30379, TU-DAY-01 C30418 (local title trim + refs ticket).
 - **1 × add_case:** TU-COL-01 (section TU — Visual & Accessibility; custom_atmstatus:3 + custom_automation_type:0).
 - Refs-length caution at push time: some combined refs exceed the TestRail refs cap — condense at push (full text stays in local spec_ref), same convention as SBC-EXP-01/SBR-LOC-03 on 2026-07-28.
+
+## Push queue — wave 2 (WIP identifier = VIN chain; APPLIED-LOCALLY, awaiting push authorization)
+
+- **4 × update_case:** WIP-COL-05 C30470, WIP-FLT-03 C30500, WIP-SORT-03 C30485, WIP-EXP-07 C30516.
+- **0 × add_case / 0 × delete_case.** SBC-LBL-01 C30134 = notes-only (local metadata field, NOT pushed).
+- Refs-length caution applies again: the wave-2 spec_refs cite the answer doc — condense to the
+  250-char TestRail cap at push (ticket + anchor + "Chris Ward answer A 2026-07-29" kept; full
+  text stays in local spec_ref), same convention as wave 1.
+- R359 / all runs untouched, as always.

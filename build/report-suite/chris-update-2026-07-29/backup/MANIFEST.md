@@ -30,3 +30,16 @@ over the entry in the listed cases/ file (TU-COL-01 is NEW — recover by deleti
 | PV-EXP-08 | cases-pv-D-exports-visual-api.json | D4 notes-only: export value Special Order confirmed |
 | TU-COL-01 | cases-tu-D-visual-api.json | D5 NEW case (no backup - did not exist) |
 | PV-EXP-05 | cases-pv-D-exports-visual-api.json | D6 same logo treatment (PV lacked coverage) |
+
+## 2026-07-29 WIP-answer wave (Chris: "A is the correct answer" — VIN chain for WIP)
+
+Source: `../wip-identifier-answer-2026-07-29.md` (verbatim; user-relayed, last-update-wins).
+Applied by `../apply_wip_answer_2026-07-29.py`, LOCAL ONLY (no TestRail writes).
+
+| Internal ID | File | Delta |
+|---|---|---|
+| WIP-COL-05 | cases-wip-B-columns-calc-sorting.json | Asset cell serial -> VIN chain (VIN, then Unit #, then plate) + tester VIN-terminology note |
+| WIP-SORT-03 | cases-wip-B-columns-calc-sorting.json | Asset sort key serial -> the identifier shown (VIN chain) |
+| WIP-FLT-03 | cases-wip-C-summary-totals-filters.json | Filter options/type-ahead serial -> VIN chain + tester VIN-terminology note |
+| WIP-EXP-07 | cases-wip-D-persistence-exports.json | Expected #4 caveat re-based on the VIN chain (was serial) |
+| SBC-LBL-01 | cases-sbc-B-tree-links-sorting.json | NOTES-ONLY: "WIP question queued" residue closed (answered A). Backup = SBC-LBL-01.pre-wip-answer-edit.json (the existing SBC-LBL-01.json = the earlier D1 backup, untouched) |

@@ -287,12 +287,12 @@
    "1. On screen the headers read \"Asset\" and \"Location\".",
    "2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".",
    "3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.",
-   "4. Note: the on-screen Asset cell now identifies the asset by its serial number; whether the export header text changes from \"Unit\" is confirmed in the build — record what it shows, do not file a bug either way."
+   "4. Note: the on-screen Asset cell now identifies the asset by its VIN (falling back to Unit #, then plate); whether the export header text changes from \"Unit\" is confirmed in the build - record what it shows, do not file a bug either way."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-E1; §2 Known Limitations (v1) — asset identifier OVERRIDDEN to serial number by kickoff video P24, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+  "spec_ref": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN, then Unit #, then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins), superseding the video P24 serial ruling; export header text at export unpinned)",
   "viu_status": "VIU-Pending",
-  "notes": "DOCUMENTED LIMITATION — DO NOT FILE. The Unit/Branch export headers are a known v1 limitation, not a defect. Video P24 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the asset DATA is now the serial number; the spec's export header text (S9-E1 'Unit') predates the video — header text at export is unpinned, VIU-confirm. Title shortened to fit.",
+  "notes": "DOCUMENTED LIMITATION - DO NOT FILE. The Unit/Branch export headers are a known v1 limitation, not a defect. Asset DATA re-ruled 2026-07-29 to the VIN chain per Chris Ward's answer A ('A is the correct answer'; chain = standard for all reports going forward), superseding the video P24 serial ruling (pre-edit body in chris-update-2026-07-29/backup/WIP-EXP-07.json); the spec's export header text (S9-E1 'Unit') predates both rulings - header text at export is unpinned, VIU-confirm. Title shortened to fit.",
   "api_related": false
  },
  {
