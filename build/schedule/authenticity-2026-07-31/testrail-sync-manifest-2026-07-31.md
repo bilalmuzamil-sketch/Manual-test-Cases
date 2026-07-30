@@ -1,7 +1,7 @@
 # Schedule — TestRail sync MANIFEST (closing authenticity pass, 2026-07-31)
 
-**STATUS: PENDING — not yet executed.** *(This header is flipped to EXECUTED with the audit-log
-link once the run completes.)*
+**STATUS: EXECUTED 2026-07-31** — 84/84 `update_case` HTTP 200 + re-GET MATCH, 0 failures.
+Audit log: `testrail-execution-log-2026-07-31.md`.
 
 ## SOURCE-CURRENCY BLOCK (Rule 31)
 
