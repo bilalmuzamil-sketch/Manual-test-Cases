@@ -8,6 +8,9 @@
 >   auditing, reconciling, or reviewing any test case (Rule 31); and when sources disagree
 >   (spec vs Figma vs prototype/Claude design vs video vs PO message vs tech plan) the MOST
 >   RECENT authoritative product source WINS, with source + date recorded on the case (Rule 32).**
+>   **Review findings are INPUTS, not overrides (Rule 33) — precedence: PO ruling → QA lead's
+>   ruling → our own live-verified findings → a reviewer's/other QA's claims; judge the claim,
+>   not the claimant, and never let a review silently reverse a recorded ruling.**
 > - **PROCESS CATALOG (the table of every reusable process + how to call it for any project):
 >   build/PROCESS-CATALOG.md — READ THIS to pick/name a process; it lists all of them with
 >   trigger phrases and the deliverable each produces. Keep it updated when a process is
@@ -1477,6 +1480,28 @@ deliver the 7-tab management report.
     the **Simple Flow "last-update-wins" contradiction rule** (spec `_3`/design `_4` overrode the
     earlier V2.4 doc + round-1 answer sheet) — this rule generalizes it to EVERY project and EVERY
     source type. Ties to Standing Rules 7/11/15/20/23/25/30/31.
+33. **Review findings are INPUTS, not overrides — apply the authority precedence order (all
+    projects).** USER DIRECTIVE (2026-07-31, verbatim): "Hold Ahtesham as the Junior most QA
+    person, I do not want his findings to over rule me and your findings here. But we need to know
+    if he is right at some point so that we can take advantage of his findings." **PRECEDENCE ORDER
+    for resolving any disagreement about what a test case should say:** (a) the **PO's product
+    ruling** (per project: **Branko** = Filters / Schedule / Global Search; **Chris Ward** = Report
+    Suite / Fees & Discounts; **Milos** = Simple Flow) → (b) the **QA lead's (the user's) ruling** →
+    (c) **our own live-observed, evidence-backed findings** (Rule 12) → (d) a **reviewer's / other
+    QA's spec-reading claims** (e.g. Ahtesham, the most junior QA). Within the same tier, the most
+    recent authoritative product source wins (Rule 32). **A reviewer's report is an INPUT to be
+    EVALUATED CLAIM-BY-CLAIM on the evidence** — never an authority that reverses a PO or QA-lead
+    ruling, and never dismissed either: **judge the claim, not the claimant.** **Where a review
+    claim is CORRECT, ADOPT it and say so plainly** — that is the value of the review (e.g.
+    2026-07-31: a junior QA's run review correctly exposed a real internal inconsistency in our own
+    Filters run, and correctly flagged coverage that a stale-spec baseline had cost us). **Where a
+    review claim CONTRADICTS an existing ruling, the RULING STANDS:** align the cases to the ruling,
+    and note the reviewer's observation as the trigger that surfaced the inconsistency; escalate to
+    the PO only if the underlying product question is genuinely open. **Never let a review claim
+    silently reverse a recorded ruling** — every adoption/rejection is logged with its evidence
+    (Rules 20/25). Canonical example:
+    `build/filters/ahtesham-review-2026-07-31/VERIFICATION.md`. Ties to Standing Rules
+    7/11/12/15/20/25/31/32.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
