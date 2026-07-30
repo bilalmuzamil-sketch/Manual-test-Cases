@@ -153,7 +153,7 @@ Stage 2b over 100% of the suite (Rule 17) — it is not optional and not sample-
    Record the group, both quotes, and the winner.
 3. **Align the whole group to the winner** — see "Resolution" below. Never leave the suite split.
 
-**Mechanical helpers — cheap sweeps that catch most of it (run all three):**
+**Mechanical helpers — cheap sweeps that catch most of it (run ALL FOUR):**
 - **(i) Opposite-assertion keyword-pair sweep.** For each control group, grep both sides of the
   common opposites and flag any group where both sides appear: **hidden vs shown / displayed /
   greyed-out / disabled** · **enabled vs greyed out / disabled / not clickable** · **present vs
@@ -348,12 +348,16 @@ canonical worked example is the Report Suite's 515-case audit produced 2026-07-2
    regenerate deterministically from the verdict data — mirror the canonical example's generator
    pattern, including the automated `KEEP-but-NONSENSE` embarrassment check **and the automated
    Stage-2b sweeps: the opposite-assertion keyword-pair scan over the control groups, the
-   title-vs-expected scan (every case), and the same-`refs`-anchor expectation diff. The script
-   must FAIL LOUDLY (non-zero exit / printed blocker) while any CONTRADICTION row is neither
-   aligned nor flagged PENDING — the delivery bar is enforced in code, not by memory.**
+   title-vs-expected scan (every case), the same-`refs`-anchor expectation diff, **and the
+   surface-split sweep (Rule 40) that emits the per-surface verdict matrix from the anchor clusters
+   (canonical implementation pattern: `sweep_surface.py` + `surface-split-findings.json`)**. The
+   script must FAIL LOUDLY (non-zero exit / printed blocker) while any CONTRADICTION row is neither
+   aligned nor flagged PENDING, **and while any surface cell in the matrix carries no verdict** —
+   the delivery bar is enforced in code, not by memory.**
 5. **`CONTRADICTION-SWEEP-<date>.md`** (or the CONTRADICTION section of the audit report, as the
-   NONSENSE list is handled) — the control→cases grouping actually used, the three helper sweeps'
-   output, and each group's resolution. Written so the user can approve the alignment edits
+   NONSENSE list is handled) — the control→cases grouping actually used, **all four** helper sweeps'
+   output **including the SURFACE MATRIX (Rule 40: requirement anchors × surfaces, one verdict per
+   cell, gaps named)**, and each group's resolution. Written so the user can approve the alignment edits
    **wholesale or per-group**, exactly like the merge plan.
 
 ## Numbered steps
@@ -379,14 +383,18 @@ canonical worked example is the Report Suite's 515-case audit produced 2026-07-2
    text on every NONSENSE. Then run the cross-check: list any KEEP that scored NONSENSE (the
    embarrassment check) and say so explicitly.
 4a-ii. **CROSS-CASE CONSISTENCY SWEEP (Dimension 2, Stage 2b) — MANDATORY, never skipped:** build
-   the `control → [cases]` groups, diff the expected results within each group, and run all three
+   the `control → [cases]` groups, diff the expected results within each group, and run **ALL FOUR**
    mechanical helpers — (i) the opposite-assertion keyword-pair sweep, (ii) the **title-vs-expected
-   check on EVERY case**, (iii) the same-`refs`-anchor expectation diff. Mark every member of a
+   check on EVERY case**, (iii) the same-`refs`-anchor expectation diff, **(iv) the SURFACE-SPLIT
+   CHECK (Rule 40) — group by requirement anchor and verify EVERY surface the requirement NAMES
+   (screen · PDF · CSV · print · API · mobile · selector · empty state) has a case, emitting one
+   verdict PER SURFACE and reporting the SURFACE MATRIX**. Mark every member of a
    conflicting pair/group **CONTRADICTION**, quote both assertions, resolve by the Rule-33
    precedence order (PO ruling → QA-lead ruling → our live-verified findings → reviewer claim;
    Rule 32 newest-wins within a tier), align the WHOLE group to the winner, and where no ruling
-   exists raise a PO question (Rule 7) and flag the group PENDING. **Stage 2a passing does not
-   clear Dimension 2 — both stages must complete.**
+   exists raise a PO question (Rule 7) and flag the group PENDING. **Any surface cell with no case
+   is a COVERAGE GAP — name it, count it in the tally, and recommend the authoring; never leave the
+   cell blank.** **Stage 2a passing does not clear Dimension 2 — both stages must complete.**
 4b. **Genuine + layman check (Dimension 3):** verify every case's `refs` traceability (Rule 20)
    and layman-runnability (Rules 7/9); route failures to FIX-WORDING (repair/backfill) or CUT.
 5. **Sweep pattern-by-pattern:** run the 7 named slop patterns across the whole suite (they hide
