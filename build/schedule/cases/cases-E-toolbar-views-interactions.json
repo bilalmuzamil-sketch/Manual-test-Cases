@@ -28,7 +28,7 @@
  {
   "id": "SCH-TOOL-02",
   "area": "Grid Toolbar",
-  "title": "Left/right arrows navigate by day, week, or month depending on the active range, and the date label shows the current range",
+  "title": "Left/right arrows step by day, week, or month to match the active range",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
@@ -57,7 +57,7 @@
  {
   "id": "SCH-TOOL-03",
   "area": "Grid Toolbar",
-  "title": "Toolbar search fades non-matching blocks and highlights matching ones (customer, WO number, unit, technician, line name)",
+  "title": "Toolbar search highlights matching blocks and fades non-matching ones",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
@@ -143,7 +143,7 @@
  {
   "id": "SCH-VIEW-03",
   "area": "Filter and Display and View Options",
-  "title": "'My Shifts' filters the grid to only the current user's shifts, hiding all other technician rows",
+  "title": "'My Shifts' filters the grid to only the current user's shifts",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View; the current user must appear as a grid row (department-assigned staff, §14.4).",
@@ -377,7 +377,7 @@
  {
   "id": "SCH-REAS-01",
   "area": "Reassignment and Context Menu",
-  "title": "Dragging a shift to another technician row reassigns it - target tech added to the line's roster, source removed, with a confirmation modal",
+  "title": "Dragging a shift to another technician row reassigns it, with a confirm modal",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Schedule: Edit (reassignment requires Edit; spec §14.1).",
@@ -517,7 +517,7 @@
  {
   "id": "SCH-DEL-01",
   "area": "Deletion, Series Scopes and Undo",
-  "title": "Deleting a middle shift of a series asks for scope with all three options, each stating the hours returned",
+  "title": "Deleting a middle shift of a series offers all three scope options",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: Delete (requires Edit; spec §14.1).",
@@ -545,7 +545,7 @@
  {
   "id": "SCH-DEL-02",
   "area": "Deletion, Series Scopes and Undo",
-  "title": "'This shift only' removes that day, the series keeps the gap, and the hours return to the estimate's remaining",
+  "title": "'This shift only' removes that day and the series keeps the gap",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: Delete (spec §14.1).",
@@ -575,7 +575,7 @@
  {
   "id": "SCH-DEL-03",
   "area": "Deletion, Series Scopes and Undo",
-  "title": "'This and everything after' removes from the clicked shift onward, keeping earlier shifts",
+  "title": "'This and everything after' removes from the clicked shift onward",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: Delete (spec §14.1).",
@@ -631,7 +631,7 @@
  {
   "id": "SCH-DEL-05",
   "area": "Deletion, Series Scopes and Undo",
-  "title": "Scope options adapt to position: first and last shifts of a series each show only two options",
+  "title": "Scope options adapt: the first and last shift each show only two",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: Delete (spec §14.1).",

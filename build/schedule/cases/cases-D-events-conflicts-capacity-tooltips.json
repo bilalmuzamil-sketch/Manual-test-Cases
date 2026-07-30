@@ -146,7 +146,7 @@
  {
   "id": "SCH-EVT-06",
   "area": "Events",
-  "title": "Event cards are structurally distinct from shift cards - white outlined card with a grey icon chip, no colored left rail",
+  "title": "Event cards look structurally distinct from shift cards",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
@@ -173,7 +173,7 @@
  {
   "id": "SCH-EVT-07",
   "area": "Events",
-  "title": "Events default to neutral/grey; choosing a color tints the card and its icon chip",
+  "title": "Events default to grey; choosing a color tints the card and chip",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: Edit to change color; View to observe (spec §14.1).",
@@ -231,7 +231,7 @@
  {
   "id": "SCH-CONF-01",
   "area": "Conflict Detection",
-  "title": "Double-booked: two work orders overlapping on the same technician at the same time are flagged",
+  "title": "Double-booked: two overlapping work orders on one technician are flagged",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
@@ -261,7 +261,7 @@
  {
   "id": "SCH-CONF-02",
   "area": "Conflict Detection",
-  "title": "Working-day conflict: a shift on a day outside the technician's configured working days is flagged",
+  "title": "Working-day conflict: a shift outside the tech's working days is flagged",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
@@ -348,7 +348,7 @@
  {
   "id": "SCH-CONF-05",
   "area": "Conflict Detection",
-  "title": "The toolbar conflict pill shows the issue count and opens a dropdown listing the conflicts",
+  "title": "The toolbar conflict pill shows the count and opens a list",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
@@ -405,7 +405,7 @@
  {
   "id": "SCH-CONF-07",
   "area": "Conflict Detection",
-  "title": "Red/alarming styling is reserved for conflicts and genuine errors - never used for overtime",
+  "title": "Red styling is only for conflicts and errors, never for overtime",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
@@ -462,7 +462,7 @@
  {
   "id": "SCH-CAP-02",
   "area": "Capacity Bars",
-  "title": "When aggregate hours exceed capacity, an amber spill extends past the track's right edge with a tick at the 100% line",
+  "title": "Over capacity, an amber spill extends past the track's right edge",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
@@ -488,7 +488,7 @@
  {
   "id": "SCH-CAP-03",
   "area": "Capacity Bars",
-  "title": "The 'OT' text tag appears whenever any single technician exceeds their own daily hours - even when the day's aggregate is under capacity",
+  "title": "'OT' text tag appears when one technician exceeds their own daily hours",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
@@ -515,7 +515,7 @@
  {
   "id": "SCH-CAP-04",
   "area": "Capacity Bars",
-  "title": "Hovering a capacity bar shows a per-technician breakdown, with overtime technicians highlighted in amber",
+  "title": "Hovering a capacity bar shows a per-technician breakdown",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
@@ -543,7 +543,7 @@
  {
   "id": "SCH-TIP-01",
   "area": "Hover Tooltips",
-  "title": "Shift hover tooltip shows customer, unit/vehicle/VIN, date and time, technician, scope, up to 3 line names, and a progress bar",
+  "title": "Shift hover tooltip shows the full shift summary incl. up to 3 line names",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
@@ -571,7 +571,7 @@
  {
   "id": "SCH-TIP-02",
   "area": "Hover Tooltips",
-  "title": "A conflicted shift's tooltip shows the conflict icon and the conflict reason in amber",
+  "title": "A conflicted shift's tooltip shows the icon and reason in amber",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
@@ -597,7 +597,7 @@
  {
   "id": "SCH-TIP-03",
   "area": "Hover Tooltips",
-  "title": "Event hover tooltip shows the event name with its grey category dot, date and time range, and technician",
+  "title": "Event hover tooltip shows name, grey category dot, time range and tech",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
@@ -624,7 +624,7 @@
  {
   "id": "SCH-TIP-04",
   "area": "Hover Tooltips",
-  "title": "Tooltips open after a short hover delay, dismiss on mouse-leave, and are read-only - clicking still opens the modal",
+  "title": "Tooltips open after a hover delay, dismiss on mouse-leave, are read-only",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
@@ -655,7 +655,7 @@
  {
   "id": "SCH-TIP-05",
   "area": "Hover Tooltips",
-  "title": "The tooltip flips above the block or shifts horizontally to stay within the viewport - it is never clipped",
+  "title": "The tooltip flips or shifts to stay within the viewport - never clipped",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",

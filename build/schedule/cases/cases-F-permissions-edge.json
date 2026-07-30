@@ -2,7 +2,7 @@
  {
   "id": "SCH-PERM-01",
   "area": "Permissions",
-  "title": "Schedule: View grants the full read experience - page, all three views, mini calendar, search, filter, tooltips, read-only modals",
+  "title": "Schedule: View grants the full read-only experience across the whole page",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with Schedule: View but NOT Schedule: Edit (for example Technician, Parts Manager, Parts Tech, Office, or Time Clock). Set up the test user's role at VIU per Standing Rule 5 and restore after.",
@@ -122,7 +122,7 @@
  {
   "id": "SCH-PERM-05",
   "area": "Permissions",
-  "title": "Edit without Delete: the user can create and modify but cannot remove - delete action and trash icon hidden",
+  "title": "Edit without Delete: the user can create and modify but not remove",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "A role with Schedule: Edit but NOT Schedule: Delete.",
@@ -151,7 +151,7 @@
  {
   "id": "SCH-PERM-06",
   "area": "Permissions",
-  "title": "Schedule: Delete unlocks deleting shifts and events, including the three series-aware scopes",
+  "title": "Schedule: Delete unlocks deleting shifts and events",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with Schedule: Delete (requires Edit, which requires View).",
@@ -181,7 +181,7 @@
  {
   "id": "SCH-PERM-07",
   "area": "Permissions",
-  "title": "The permission tiers depend on each other: Delete requires Edit, and Edit requires View",
+  "title": "Permission tiers nest: Delete requires Edit, Edit requires View",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Admin access to the roles screen (to inspect/set the Schedule permission tiers on a custom role).",
@@ -209,7 +209,7 @@
  {
   "id": "SCH-PERM-08",
   "area": "Permissions",
-  "title": "Schedule access without Work Orders: View - sidebar hides the WO list and drill-down; mini calendar stays; grid shifts remain usable",
+  "title": "Schedule without Work Orders: View - the sidebar hides the work order list",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "A role with Schedule: View (or higher) but Work Orders: View OFF.",
@@ -238,7 +238,7 @@
  {
   "id": "SCH-PERM-09",
   "area": "Permissions",
-  "title": "No own-only restriction: every Schedule: View user sees ALL technicians' shifts and events",
+  "title": "No own-only restriction: a View user sees ALL technicians' shifts",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A low-tier role with Schedule: View (for example Technician or Time Clock).",
@@ -265,7 +265,7 @@
  {
   "id": "SCH-PERM-10",
   "area": "Permissions",
-  "title": "Grid rows are department-based: any staff member in a visible department appears as a row, regardless of role",
+  "title": "Grid rows are department-based, not role-based",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Admin access to staff records for setup; any Schedule: View user to observe.",
@@ -292,7 +292,7 @@
  {
   "id": "SCH-PERM-11",
   "area": "Permissions",
-  "title": "Clocking into work order line tasks is gated by the staff record's 'Time Clock' setting, not the permission model",
+  "title": "Clocking into line tasks is gated by the staff 'Time Clock' setting",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Admin access to staff records for setup; the affected staff user to observe.",
@@ -318,7 +318,7 @@
  {
   "id": "SCH-PERM-12",
   "area": "Permissions",
-  "title": "With Work Orders: View OFF, work-order-derived details on shifts (customer, lines, money fields) are hidden or masked",
+  "title": "With Work Orders: View OFF, work order details on shifts are hidden",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "A role with Schedule: View (or higher) but Work Orders: View OFF. Set up the test user's role at VIU per Standing Rule 5 and restore after.",
@@ -374,7 +374,7 @@
  {
   "id": "SCH-EDGE-02",
   "area": "Edge Cases and Responsiveness",
-  "title": "Below 960px the grid scrolls horizontally, and the sidebar collapses on narrow viewports",
+  "title": "Below 960px the grid scrolls sideways and the sidebar collapses",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
@@ -432,7 +432,7 @@
  {
   "id": "SCH-EDGE-04",
   "area": "Edge Cases and Responsiveness",
-  "title": "The grid renders smoothly at full load - 15 technicians × 7 days with several shifts per cell",
+  "title": "The grid renders smoothly at full load - 15 technicians over 7 days",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Schedule: View to observe; Edit to seed (spec §14.1).",
@@ -490,7 +490,7 @@
  {
   "id": "SCH-EDGE-06",
   "area": "Edge Cases and Responsiveness",
-  "title": "Scheduled hours, the estimate, and actual (clocked) hours are three separate quantities that are not forced to reconcile",
+  "title": "Scheduled, estimated and actual clocked hours are three separate numbers",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",

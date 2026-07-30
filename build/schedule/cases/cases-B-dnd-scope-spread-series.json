@@ -1,1023 +1,1023 @@
 [
-  {
-    "id": "SCH-DND-01",
-    "area": "Drag-and-Drop Scheduling",
-    "title": "Dropping a single-line work order on a technician cell creates a shift immediately, skipping the scope picker",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit (requires View) + Work Orders: View for the sidebar (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A ZZAUTOTEST work order exists with exactly ONE approved line whose estimated hours fit within one working day of the target technician.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drag that work order's card from the sidebar.",
-      "2. Drop it onto a technician's cell on a working day."
-    ],
-    "expected": [
-      "1. A shift is created immediately in that cell - no scope picker and no spread step appears.",
-      "2. The shift block shows the customer name, unit number, and the line's name.",
-      "3. The technician is added to that line's labor roster on the work order.",
-      "4. A toast with an Undo option appears."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.1 (Single-line work order), §1.2 (roster sync), §7 (toast)",
-    "refs": "SV-8688 (§4.1 (Single-line work order), §1.2 (roster sync), §7 (toast))",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DND-02",
-    "area": "Drag-and-Drop Scheduling",
-    "title": "Dropping a multi-line work order on a technician cell opens the scope picker",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A work order exists with TWO or more approved lines.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drag that work order's card from the sidebar.",
-      "2. Drop it onto a technician's cell."
-    ],
-    "expected": [
-      "1. A scope picker popover opens, anchored to the cell you dropped on.",
-      "2. It offers 'Schedule whole work order' at the top, the individual line rows beneath, and a 'Select multiple' control.",
-      "3. No shift is created until a scope is chosen."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.1 (Multi-line work order), §4.3",
-    "refs": "SV-8688 (§4.1 (Multi-line work order), §4.3)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DND-03",
-    "area": "Drag-and-Drop Scheduling",
-    "title": "Dragging an individual line from the drill-down creates a single-line shift directly",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A work order with several approved lines exists; its drill-down is open in the sidebar.",
-      "3. The chosen line's hours fit within one working day of the target technician.",
-      "4. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Using the line's drag handle, drag one specific line from the drill-down.",
-      "2. Drop it onto a technician's cell."
-    ],
-    "expected": [
-      "1. A single-line shift for exactly that line is created directly - no scope picker appears.",
-      "2. The block's last text line shows that line's name.",
-      "3. The technician is added to that line's roster only (not to the order's other lines)."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.1 (Specific line drag)",
-    "refs": "SV-8688 (§4.1 (Specific line drag))",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DND-04",
-    "area": "Drag-and-Drop Scheduling",
-    "title": "A job exceeding the technician's daily hours opens the spread step after the scope is chosen",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A ZZAUTOTEST work order exists whose chosen scope's estimated hours EXCEED one working day of the target technician (for example a 40h line for a tech with 8h days).",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drag the work order (or the large line) onto a technician's cell.",
-      "2. If the scope picker opens, choose the large scope.",
-      "3. Look at what opens next."
-    ],
-    "expected": [
-      "1. The spread step opens (step 2 of the same modal) to distribute the hours across consecutive working days.",
-      "2. Its header shows the chosen scope and a 'Change scope' back-link.",
-      "3. No shifts exist yet until the spread is confirmed."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.1 (Large job), §4.5",
-    "refs": "SV-8688 (§4.1 (Large job), §4.5)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DND-05",
-    "area": "Drag-and-Drop Scheduling",
-    "title": "A scope that fits within one working day skips the spread step and creates a single shift",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A multi-line work order exists where one line's hours fit within the target technician's working day.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drag the work order onto a technician's cell.",
-      "2. In the scope picker, tap the small line."
-    ],
-    "expected": [
-      "1. The shift is created straight away - the spread step does NOT appear.",
-      "2. The shift sits on the dropped day only."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.1 (spread step is conditional)",
-    "refs": "SV-8688 (§4.1 (spread step is conditional))",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DND-06",
-    "area": "Drag-and-Drop Scheduling",
-    "title": "While dragging, drop-target cells highlight and a ghost block shows the line name and hours",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A work order with an approved line exists.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Start dragging a line from the sidebar and hold it over different grid cells without dropping.",
-      "2. Watch the cell under the cursor and the dragged preview."
-    ],
-    "expected": [
-      "1. The cell currently under the cursor highlights as a drop target.",
-      "2. A ghost block follows the drag showing the line name and its hours.",
-      "3. Releasing outside any valid cell creates nothing."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §7 (Drag feedback)",
-    "refs": "SV-8688 (§7 (Drag feedback))",
-    "viu_status": "VIU-Pending",
-    "notes": "Drop-target highlight + ghost block (line name + hours) pinned by the Claude design (line-drag sub-prototype, §0/§3); live-render confirm at VIU. Driver: Claude design.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DND-07",
-    "area": "Drag-and-Drop Scheduling",
-    "title": "Scheduling a technician onto a line adds them to that line's labor roster on the work order",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A work order exists with an approved line where the target technician is NOT yet on the line's roster.",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Drag that line onto the technician's cell and create the shift.",
-      "2. Open the same work order's line (in the sidebar drill-down and/or on the Work Orders page) and check its technician roster."
-    ],
-    "expected": [
-      "1. The technician now appears on that line's labor roster - the schedule and the work order stay in sync automatically.",
-      "2. The sidebar line row's avatar stack/count updates to include the technician.",
-      "3. If the line previously showed 'Needs techs', the badge is gone."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §1.2 (Goals - roster sync), §4.3 (roster add), §7",
-    "refs": "SV-8688 (§1.2 (Goals - roster sync), §4.3 (roster add), §7)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DND-08",
-    "area": "Drag-and-Drop Scheduling",
-    "title": "A click-to-arm alternative exists for scheduling without dragging",
-    "priority": "Medium",
-    "type": "Accessibility",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A work order with an approved line exists.",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Instead of dragging, click (arm) the work order card or line in the sidebar.",
-      "2. Then click a technician cell in the grid."
-    ],
-    "expected": [
-      "1. The item can be placed onto a cell without holding a drag - clicking arms it, and clicking a cell places it.",
-      "2. The result is the same as the equivalent drag-and-drop (scope picker / spread step rules apply the same way)."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §7 (Keyboard support - click-to-arm), §11 (Accessibility)",
-    "refs": "SV-8688 (§7 (Keyboard support - click-to-arm), §11 (Accessibility))",
-    "viu_status": "VIU-Pending",
-    "notes": "The spec requires a click-to-arm alternative but does not pin the exact interaction (what arms, how disarm/cancel works) - capture the real mechanics live.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SCOPE-01",
-    "area": "Scope Picker",
-    "title": "Scope picker contents: the pinned whole-order row and the line rows",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A work order exists with three approved lines with known estimated hours, where at least one line already has technicians on its roster.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drag the work order onto a technician's cell to open the scope picker.",
-      "2. Read the top option.",
-      "3. Read each line row below it."
-    ],
-    "expected": [
-      "1. The 'Schedule whole work order' option sits pinned at the top of the picker and looks visually distinct from the line rows.",
-      "2. It is labeled with the order's line count and total hours (matching the sum of the approved lines).",
-      "3. The picker is anchored to the cell that was dropped on.",
-      "4. Each line row shows the line title and its estimated hours.",
-      "5. Rows for lines that already have technicians show the current roster as an avatar stack plus count."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.3",
-    "refs": "SV-8689 (§4.3)",
-    "viu_status": "VIU-Pending",
-    "notes": "'Schedule whole work order' pinned row (accent, line count + total hours) and the line rows (title, estimated hours, roster avatar stack + count) pinned by the Claude design (§4a); confirm live. Driver: Claude design §4a + requirements §4.3. | CONSOLIDATED 2026-07-31 (usefulness audit G-SCOPE-CONTENTS, user-authorized): absorbed SCH-SCOPE-04 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SCOPE-02",
-    "area": "Scope Picker",
-    "title": "Choosing 'Schedule whole work order' assigns the technician to all lines and creates one whole-order shift",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A ZZAUTOTEST work order exists with two or more approved lines whose TOTAL hours fit within the technician's working day (to avoid the spread step).",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drag the work order onto a technician's cell.",
-      "2. Choose 'Schedule whole work order'.",
-      "3. Check the created block and the work order's line rosters."
-    ],
-    "expected": [
-      "1. One shift is created covering all of the order's approved lines.",
-      "2. The block's last text line reads 'N Lines' (with N = the line count).",
-      "3. The technician is added to the roster of every one of those lines."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.3, §4.4",
-    "refs": "SV-8689 (§4.3, §4.4)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SCOPE-03",
-    "area": "Scope Picker",
-    "title": "Tapping an individual line row immediately creates a single-line shift with no confirmation step",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A multi-line work order exists; one line fits within the technician's day.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drag the work order onto a technician's cell.",
-      "2. In the scope picker, click one line row (do not use 'Select multiple')."
-    ],
-    "expected": [
-      "1. A single-line shift for that line is created immediately - no extra confirmation step.",
-      "2. The picker closes.",
-      "3. The block's last text line shows the line's name."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.3 (Individual line rows - fast path)",
-    "refs": "SV-8689 (§4.3 (Individual line rows - fast path))",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SCOPE-04",
-    "area": "Scope Picker",
-    "title": "Scope picker line rows show the line title, estimated hours, and current technician roster",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A multi-line work order exists where at least one line already has technicians on its roster.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drag the work order onto a technician's cell to open the scope picker.",
-      "2. Read each line row."
-    ],
-    "expected": [
-      "1. Each row shows the line title and its estimated hours.",
-      "2. Rows for lines that already have technicians show the current roster as an avatar stack plus count."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.3",
-    "refs": "SV-8689 (§4.3)",
-    "viu_status": "Retired - MERGED into SCH-SCOPE-01 2026-07-31 (usefulness audit G-SCOPE-CONTENTS, user-authorized consolidation)",
-    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-SCOPE-CONTENTS): merged into SCH-SCOPE-01 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-SCOPE-04.json. | ",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SCOPE-05",
-    "area": "Scope Picker",
-    "title": "'Select multiple' checkbox mode: running tally, Select all, and Cancel",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A work order exists with three or more approved lines.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drag the work order onto a technician's cell.",
-      "2. Click 'Select multiple'.",
-      "3. Tick two lines and read the confirm bar.",
-      "4. Click 'Select all' and read the tally.",
-      "5. Click Cancel instead of confirming, and look at the picker.",
-      "6. Re-open 'Select multiple', tick two lines again, and confirm."
-    ],
-    "expected": [
-      "1. The line rows switch into checkbox mode.",
-      "2. A confirm bar appears with a running tally of the selection - the count of lines and their combined hours (in the spec's example format, 'Create shift · 2 lines · 6h').",
-      "3. 'Select all' ticks every line - the tally equals the whole order (same line count and hours as 'Schedule whole work order').",
-      "4. Cancel leaves checkbox mode and returns to the normal single-tap line list without creating anything.",
-      "5. Confirming creates ONE shift covering the ticked lines, and the technician is added to those lines' rosters only."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.3 (Select multiple)",
-    "refs": "SV-8689 (§4.3 (Select multiple, Select all shortcut, Cancel))",
-    "viu_status": "VIU-Pending",
-    "notes": "'Select multiple' checkbox mode + confirm bar 'Create shift · N lines · Xh' + 'Select all'/'Unselect all'/'Cancel' and the whole-order label 'Whole order · Xh' pinned by the Claude design (§4a); confirm live. Driver: Claude design §4a + requirements §4.3. | CONSOLIDATED 2026-07-31 (usefulness audit G-SCOPE-MULTI, user-authorized): absorbed SCH-SCOPE-06 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SCOPE-06",
-    "area": "Scope Picker",
-    "title": "'Select all' equals whole order; Cancel returns to the fast single-tap list",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A multi-line work order exists.",
-      "3. You are on the Schedule page with the scope picker open in 'Select multiple' mode."
-    ],
-    "steps": [
-      "1. Click 'Select all' and read the tally.",
-      "2. Click Cancel instead of confirming.",
-      "3. Look at the picker."
-    ],
-    "expected": [
-      "1. 'Select all' ticks every line - the tally equals the whole order (same line count and hours as 'Schedule whole work order').",
-      "2. Cancel leaves checkbox mode and returns to the normal single-tap line list without creating anything."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.3 (Select all shortcut, Cancel)",
-    "refs": "SV-8689 (§4.3 (Select all shortcut, Cancel))",
-    "viu_status": "Retired - MERGED into SCH-SCOPE-05 2026-07-31 (usefulness audit G-SCOPE-MULTI, user-authorized consolidation)",
-    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-SCOPE-MULTI): merged into SCH-SCOPE-05 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-SCOPE-06.json. | 'Select all'/'Unselect all'/'Cancel' and the whole-order label 'Whole order · Xh' pinned by the Claude design (§4a); confirm live. Driver: Claude design §4a.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-START-01",
-    "area": "Shift Start Times and Unassigned Shifts",
-    "title": "A shift's start time uses the technician's configured working hours when they are set",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A technician has configured working hours that DIFFER from the shop's business hours (for example tech 6:00 AM start vs shop 8:00 AM) - set this up first and restore after.",
-      "3. A schedulable work order line exists.",
-      "4. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drop the line onto that technician's cell (week view - not a day-view timeline drop).",
-      "2. Open the created shift's detail and read its start time."
-    ],
-    "expected": [
-      "1. The shift starts at the technician's own configured start time (6:00 AM in the example), not the shop's business-hours start."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.2",
-    "refs": "SV-8688 (§4.2)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-START-02",
-    "area": "Shift Start Times and Unassigned Shifts",
-    "title": "With no technician hours set, the shift start time falls back to the shop's business hours",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A technician exists with NO configured working hours, and the shop HAS business hours set (note the shop start time).",
-      "3. A schedulable work order line exists.",
-      "4. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drop the line onto that technician's cell.",
-      "2. Read the created shift's start time."
-    ],
-    "expected": [
-      "1. The shift starts at the shop's business-hours start time."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.2",
-    "refs": "SV-8688 (§4.2)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-START-03",
-    "area": "Shift Start Times and Unassigned Shifts",
-    "title": "With neither technician hours nor business hours set, a 7:00 AM default applies",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A technician exists with no configured hours AND the shop's business hours are not set (adjust settings if the environment allows; restore the settings byte-identical after).",
-      "3. A schedulable work order line exists.",
-      "4. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drop the line onto that technician's cell.",
-      "2. Read the created shift's start time."
-    ],
-    "expected": [
-      "1. The shift starts at 7:00 AM - the general default working day (7:00 AM to 7:00 PM) applies."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.2",
-    "refs": "SV-8688 (§4.2)",
-    "viu_status": "VIU-Pending",
-    "notes": "7:00 AM to 7:00 PM default is spec-stated - confirm the actual default live. If business hours cannot be unset in the environment, mark blocked with reason rather than skipping silently.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-START-04",
-    "area": "Shift Start Times and Unassigned Shifts",
-    "title": "In day view, the start time comes from where the shift is dropped on the timeline",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A schedulable work order line exists.",
-      "3. You are on the Schedule page in DAY view."
-    ],
-    "steps": [
-      "1. Drag the line from the sidebar and drop it at a specific time position on a technician's timeline (for example around 10:00 AM).",
-      "2. Read the created shift's start time."
-    ],
-    "expected": [
-      "1. The shift starts at the time position where it was dropped (not at the technician-hours/business-hours default).",
-      "2. The start time aligns to the timeline position (see the 15-minute snapping case SCH-DAY-04)."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.2 (day view drop position)",
-    "refs": "SV-8688 (§4.2 (day view drop position))",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-START-05",
-    "area": "Shift Start Times and Unassigned Shifts",
-    "title": "Dropping a work order or line onto the Unassigned row creates an unassigned shift with no technician",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A schedulable work order line exists.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drag the line from the sidebar and drop it onto the grid's Unassigned row on a working day.",
-      "2. Look at the created block and the line's roster."
-    ],
-    "expected": [
-      "1. An unassigned shift is created in the Unassigned row for that day.",
-      "2. It has no technician (and no technician is added to the line's roster by this drop).",
-      "3. The block uses the same anatomy as a regular shift (customer, unit, line name / 'N Lines')."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.2 (Unassigned shifts), §3.2",
-    "refs": "SV-8688 (§4.2 (Unassigned shifts), §3.2)",
-    "viu_status": "VIU-Pending",
-    "notes": "The spec does not explicitly state whether the roster stays untouched until assignment - derived from 'they simply have no technician yet'; confirm the roster behavior live.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-START-06",
-    "area": "Shift Start Times and Unassigned Shifts",
-    "title": "Unassigned shift start time skips the technician-hours rule and uses business hours or the default",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. The shop has business hours set (note the start time).",
-      "3. A schedulable work order line exists.",
-      "4. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drop the line onto the Unassigned row.",
-      "2. Read the created shift's start time."
-    ],
-    "expected": [
-      "1. The unassigned shift starts at the shop's business-hours start (there is no technician whose hours could apply)."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.2",
-    "refs": "SV-8688 (§4.2)",
-    "viu_status": "VIU-Pending",
-    "notes": "The no-business-hours fallback to the 7:00 AM default is covered by SCH-START-03 - it is not observable under this case's business-hours-set setup, so it is not asserted here.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-START-07",
-    "area": "Shift Start Times and Unassigned Shifts",
-    "title": "Dragging an unassigned shift onto a technician row assigns it, and that technician's hours then apply",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. An unassigned shift exists in the Unassigned row.",
-      "3. The target technician has configured working hours that differ from the shop's business hours.",
-      "4. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drag the unassigned shift from the Unassigned row down onto a technician's row.",
-      "2. Check the shift and the line's roster."
-    ],
-    "expected": [
-      "1. The shift is now assigned to that technician (it leaves the Unassigned row and sits in the technician's row).",
-      "2. The technician is added to the affected line's roster.",
-      "3. The technician's own working hours now apply to the shift's timing."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §3.2 (Unassigned placeholder), §4.2",
-    "refs": "SV-8688 (§3.2 (Unassigned placeholder), §4.2)",
-    "viu_status": "VIU-Pending",
-    "notes": "Whether the start time re-derives on assignment or keeps its original time is not fully pinned ('that technician's hours apply') - capture the exact behavior live.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-START-08",
-    "area": "Shift Start Times and Unassigned Shifts",
-    "title": "Every shift always has a start time - none is created without one",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. Work order lines are available to schedule.",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Create shifts by each entry point available: week-view drop on a technician, day-view drop on the timeline, drop on the Unassigned row.",
-      "2. Open each created shift's detail and read its start time."
-    ],
-    "expected": [
-      "1. Every created shift has a concrete start time - resolved from the hierarchy (technician hours, then business hours, then 7:00 AM default) or from the day-view drop position.",
-      "2. No shift appears on the grid without a time."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.2, §12",
-    "refs": "SV-8688 (§4.2, §12)",
-    "viu_status": "Retired - CUT (usefulness audit 2026-07-31, user-authorized): duplicate sweep. Its steps literally re-run the entry-point cases SCH-START-01 (C29954), SCH-START-02 (C29955), SCH-START-03 (C29956), SCH-START-04 (C29957) and SCH-START-05 (C29958), each of which already reads the created shift's start time - the 'every shift has a start time' invariant adds no new observation.",
-    "notes": "RETIRED 2026-07-31 (user-authorized CUT, usefulness audit): duplicate sweep. Its steps literally re-run the entry-point cases SCH-START-01 (C29954), SCH-START-02 (C29955), SCH-START-03 (C29956), SCH-START-04 (C29957) and SCH-START-05 (C29958), each of which already reads the created shift's start time - the 'every shift has a start time' invariant adds no new observation. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-START-08.json. | TECH-PLAN 2026-07-29: the new data model carries an is_all_day flag, but a shift's start (starts_at) is required in the schema - this case stands as written.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SPREAD-01",
-    "area": "Multi-Day Spread Scheduling",
-    "title": "Spread step shows the chosen scope in its header with a 'Change scope' back-link",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A multi-line work order exists with a scope that exceeds the technician's daily hours.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drop the work order on a technician, choose the large scope, and reach the spread step.",
-      "2. Read the spread step's header."
-    ],
-    "expected": [
-      "1. The spread step appears as step 2 of the same modal.",
-      "2. Its header shows the chosen scope (which lines / how many hours).",
-      "3. A 'Change scope' back-link is present."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.5",
-    "refs": "SV-8691 (§4.5)",
-    "viu_status": "Retired - MERGED into SCH-SPREAD-02 2026-07-31 (usefulness audit G-SPREAD-HEADER, user-authorized consolidation)",
-    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-SPREAD-HEADER): merged into SCH-SPREAD-02 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-SPREAD-01.json. | Spread header 'STEP 2 · SPREAD' + scope + 'Change scope' back-link pinned by the Claude design (§4b); confirm live. Driver: Claude design §4b.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SPREAD-02",
-    "area": "Multi-Day Spread Scheduling",
-    "title": "Spread step header shows the scope; 'Change scope' returns to the picker",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A multi-line work order exists with a scope that exceeds the technician's daily hours.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drop the work order on a technician, choose the large scope, and reach the spread step.",
-      "2. Read the spread step's header.",
-      "3. Click 'Change scope'.",
-      "4. Choose a different scope and continue."
-    ],
-    "expected": [
-      "1. The spread step appears as step 2 of the same modal.",
-      "2. Its header shows the chosen scope (which lines / how many hours).",
-      "3. A 'Change scope' back-link is present.",
-      "4. Clicking 'Change scope' takes the modal back to the scope picker (step 1) without creating anything.",
-      "5. Choosing a new scope updates the spread step's header and hours accordingly."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.5",
-    "refs": "SV-8691 (§4.5)",
-    "viu_status": "VIU-Pending",
-    "notes": "Spread header 'STEP 2 · SPREAD' + scope + 'Change scope' back-link pinned by the Claude design (§4b); confirm live. Driver: Claude design §4b + requirements §4.5. | CONSOLIDATED 2026-07-31 (usefulness audit G-SPREAD-HEADER, user-authorized): absorbed SCH-SPREAD-01 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SPREAD-03",
-    "area": "Multi-Day Spread Scheduling",
-    "title": "How-much selector defaults to Full estimate; Full estimate, 1 week, and 2 weeks apply immediately with no extra fields",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. You are on the spread step for a large scope (for example 40+ hours)."
-    ],
-    "steps": [
-      "1. Read the 'how much to schedule' selector's default value.",
-      "2. Open the selector and read its options.",
-      "3. Pick '1 week', then '2 weeks', then back to 'Full estimate', watching for extra fields."
-    ],
-    "expected": [
-      "1. The selector defaults to 'Full estimate'.",
-      "2. The options include 'Full estimate', '1 week', '2 weeks', 'Until a date…', and 'Specific hours…'.",
-      "3. 'Full estimate', '1 week', and '2 weeks' apply on selection with no extra fields - the modal stays to one line for these.",
-      "4. The preview summary updates to match each selection."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.5 (How much to schedule)",
-    "refs": "SV-8691 (§4.5 (How much to schedule))",
-    "viu_status": "VIU-Pending",
-    "notes": "How-much options 'Full estimate' (default) / '1 week' / '2 weeks' / 'Until a date…' / 'Specific hours…' pinned by the Claude design (§4b); confirm live. Driver: Claude design §4b.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SPREAD-04",
-    "area": "Multi-Day Spread Scheduling",
-    "title": "'Until a date…' reveals a single finish-by date field",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. You are on the spread step for a large scope."
-    ],
-    "steps": [
-      "1. Open the how-much selector and choose 'Until a date…'.",
-      "2. Look at the modal.",
-      "3. Pick a finish-by date."
-    ],
-    "expected": [
-      "1. Choosing 'Until a date…' reveals a single 'finish by' date field (this is the only custom control shown).",
-      "2. Picking a date updates the preview so the series ends by that date."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.5 (progressive disclosure)",
-    "refs": "SV-8691 (§4.5 (progressive disclosure))",
-    "viu_status": "VIU-Pending",
-    "notes": "'Until a date…' label pinned by the Claude design (§4b) - it reveals a finish-by date field. What happens when the estimate cannot fit by the chosen date is NOT pinned - observe live and raise a PO question if ambiguous. Driver: Claude design §4b.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SPREAD-05",
-    "area": "Multi-Day Spread Scheduling",
-    "title": "'Specific hours…' reveals an hours stepper",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. You are on the spread step for a large scope."
-    ],
-    "steps": [
-      "1. Open the how-much selector and choose 'Specific hours…'.",
-      "2. Set a number of hours with the stepper (for example 16)."
-    ],
-    "expected": [
-      "1. Choosing 'Specific hours…' reveals an hours stepper control.",
-      "2. The preview updates to spread exactly the entered hours across working days."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.5 (progressive disclosure)",
-    "refs": "SV-8691 (§4.5 (progressive disclosure))",
-    "viu_status": "VIU-Pending",
-    "notes": "'Specific hours…' label pinned by the Claude design (§4b) - it reveals an hours stepper. Stepper bounds/increments not pinned - capture live. Driver: Claude design §4b.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SPREAD-06",
-    "area": "Multi-Day Spread Scheduling",
-    "title": "Start date defaults to the earliest working day and can be adjusted to make a second technician sequential",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A large job has already been spread for technician A (note A's series end date).",
-      "3. You are on the spread step for the SAME work order dropped on technician B."
-    ],
-    "steps": [
-      "1. Read the start-date field's default.",
-      "2. Change the start date to the day after technician A's series ends.",
-      "3. Confirm the spread."
-    ],
-    "expected": [
-      "1. The start date defaults to the earliest working day.",
-      "2. It can be changed; technician B's series then starts after A's series ends (sequential, not parallel).",
-      "3. B's series is created from the adjusted start date onward."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.5 (Start date)",
-    "refs": "SV-8691 (§4.5 (Start date))",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SPREAD-07",
-    "area": "Multi-Day Spread Scheduling",
-    "title": "Spread uses the tech's working hours; skips weekends only when hours not set",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. The technician has known daily working hours (for example 8h/day, Monday to Friday).",
-      "3. A shop closure day is defined inside the spread window (set one up if the environment allows).",
-      "4. A scope of known size exists (for example 40h)."
-    ],
-    "steps": [
-      "1. Spread the 40h scope for that technician with 'Full estimate' starting on a Monday.",
-      "2. Confirm and inspect the created shifts on the grid."
-    ],
-    "expected": [
-      "1. Daily shifts are sized to the technician's own working hours (8h each in the example).",
-      "2. Weekends are skipped ONLY when the technician has no business hours set for them; if the tech has hours on a weekend day (e.g. Saturday hours) that day is NOT skipped.",
-      "3. Shop closures and public holidays are NOT skipped in V1 - shifts can be placed on those days.",
-      "4. The end date is a result of the daily distribution (for 40h at 8h/day starting Monday, the series ends on the fifth working day)."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.5, §12 (shop closures)",
-    "refs": "SV-8691 (§4.5, §12 (shop closures))",
-    "viu_status": "VIU-Pending",
-    "notes": "V1 rule (Jira SV-8691, latest-wins over the older requirements.md §12): spread skips weekends ONLY when business hours are not set for them; shop closures / public holidays are NOT skipped in V1. Driver: SV-8691 §4.5. Verify live at VIU. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-1): the engineering plan (D7) builds REAL closure skipping ('skips closures + non-working days'), contradicting the Jira V1 rule this case encodes (closures NOT skipped). Pending ruling (Questions-for-Branko-dev.md NQ-1) - do not pass/fail expected #3 until ruled; observe and record.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SPREAD-08",
-    "area": "Multi-Day Spread Scheduling",
-    "title": "Preview is collapsed to a one-line summary, expandable to a week-by-week breakdown with skipped days struck through and their reasons",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. You are on the spread step for a multi-week scope that will skip at least one weekend."
-    ],
-    "steps": [
-      "1. Read the preview area without expanding it.",
-      "2. Expand the preview.",
-      "3. Find a skipped day in the breakdown."
-    ],
-    "expected": [
-      "1. Collapsed: a one-line summary in the spirit of the spec's example '20 shifts · Jun 15 to Jul 13 · skips weekends + 2 days'.",
-      "2. Expanded: a week-by-week breakdown of the planned shifts.",
-      "3. Skipped days are struck through and show the reason they are skipped - in V1 the only skip reason is a weekend day with no working hours set."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.5 (Preview)",
-    "refs": "SV-8691 (§4.5 (Preview))",
-    "viu_status": "VIU-Pending",
-    "notes": "Preview one-liner ('N shifts · <start> → <end> · skips weekends + N closures', expandable week-by-week) pinned by the Claude design (§4b); confirm the exact copy live. Driver: Claude design §4b. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-1): plan Phase 7 SpreadDialog includes 'real closure skip' in the preview - whether a closure appears as a struck-through skipped day in V1 depends on the NQ-1 ruling. | WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): Expected 3 offered '(weekend / closure)' as the skip reason, but the suite's own V1 rule (SCH-SPREAD-07 / SCH-EDGE-05, SV-8691 Key Decision) is that shop closures are NOT skipped in V1, so a 'closure' skip reason cannot occur; reworded to weekend-only. Re-align if tech-plan conflict NQ-1 is ruled the other way.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SPREAD-09",
-    "area": "Multi-Day Spread Scheduling",
-    "title": "Confirming the spread creates a linked series of daily shifts",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. You are on the spread step for a multi-day scope with the preview showing several shifts."
-    ],
-    "steps": [
-      "1. Confirm the spread.",
-      "2. Look at the grid across the affected days/weeks.",
-      "3. Open one of the created shifts."
-    ],
-    "expected": [
-      "1. One daily shift is created per planned working day, together forming a linked series.",
-      "2. The shifts render as one connected banner (see the series-banner cases SCH-SER-01..03).",
-      "3. Each daily shift keeps its own day and hours.",
-      "4. A toast with Undo appears."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.5 (Confirming), §4.6, §8.2",
-    "refs": "SV-8691 (§4.5 (Confirming), §4.6, §8.2)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SPREAD-10",
-    "area": "Multi-Day Spread Scheduling",
-    "title": "Dropping the same work order on a second technician spreads the full estimate again, independently",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A large work order (for example 40h) has already been fully spread for technician A.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drop the SAME work order onto technician B and complete the spread with 'Full estimate'.",
-      "2. Compare the two series."
-    ],
-    "expected": [
-      "1. Technician B gets a full 40h series of their own - the estimate is spread again in full, not reduced by A's booking.",
-      "2. There is no shared 'remaining hours' counter across technicians and no splitting of a shift.",
-      "3. Planned hours across technicians may now exceed the estimate - this is expected and produces no error (progress is driven by clocked-in time)."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.5 (independent per-tech spread), §12",
-    "refs": "SV-8691 (§4.5 (independent per-tech spread), §12)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SER-01",
-    "area": "Linked Series and Banners",
-    "title": "Month view: series banner wraps across weeks, labeled once, then 'continues'",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A multi-week series exists for one technician (spread a 40h+ job first).",
-      "3. You are on the Schedule page in MONTH view showing the series' month."
-    ],
-    "steps": [
-      "1. Find the series on the month grid.",
-      "2. Read the banner across the week rows.",
-      "3. Look at the weekend columns inside the series."
-    ],
-    "expected": [
-      "1. The series renders as one continuous bar wrapping across the week rows.",
-      "2. It is labeled once at the start (including the technician); later weeks show a faded 'continues'-style label instead of repeating the full label.",
-      "3. Weekend columns inside the series are empty (no bar) when no business hours are set for those weekend days."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.6 (Month view)",
-    "refs": "SV-8692 (§4.6 (Month view))",
-    "viu_status": "VIU-Pending",
-    "notes": "Month series banner (continuous wrap, labeled once, faded '↳ continues' on later weeks) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3. | UPDATED 2026-07-31 from the live spec (Confluence v23 (2026-07-30) §4.6 Month view; the change landed in Confluence v22, after our v18 baseline). v18 read 'empty weekend columns, and visible breaks around skipped or booked days.'; v23 reads 'empty weekend columns (when business hours are not set for weekends).' - so the breaks-around-skipped/booked-days clause was DELETED from the spec and is removed here, and the empty-weekend assertion is now conditional. It was also a live CONTRADICTION (Rule-28 Stage 2b, groups X1/X2) against SCH-SPREAD-07 ('shop closures and public holidays are NOT skipped in V1'; a Saturday with hours is NOT skipped) and SCH-SPREAD-08 ('in V1 the only skip reason is a weekend day with no working hours set') - if nothing but weekends is skipped, there are no skipped days for a banner to break around. | FIX-WORDING 2026-07-31 (Rule-28 Stage-2b sweep, same pass): step 3 still told the tester to 'look at any skipped or booked days inside the series' after the corresponding expected result was removed - leftover residue pointing at behaviour the current spec no longer describes. Step 3 now asks only about the weekend columns, which is what expected 3 actually judges. | TITLE TRIMMED 2026-07-31 to the <=80-character concise-title rule (user instruction 2026-07-27: keep titles short enough to display in full on the TestRail case page; detail belongs in Steps/Expected). Was 137 chars: \"Month view renders a series as a continuous banner wrapping across week rows, labeled once, with a faded 'continues' label on later weeks\". Done now because this case is already being written in this pass - it removes one item from the 79-title trim backlog rather than adding a separate write later.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SER-02",
-    "area": "Linked Series and Banners",
-    "title": "Week view: series banner spans the week, with chevrons and 'week N of M'",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A multi-week series exists for one technician; on one of its days the technician also has an unrelated booking.",
-      "3. You are on the Schedule page in WEEK view on a middle week of the series."
-    ],
-    "steps": [
-      "1. Find the series banner in the technician's row.",
-      "2. Look at the banner's left and right edges.",
-      "3. Look for the week-position cue and at the day with the other booking."
-    ],
-    "expected": [
-      "1. One banner spans the working days of that week in the technician's row.",
-      "2. Chevrons at the banner's edges indicate the series continues beyond the visible week (both sides, on a middle week).",
-      "3. A 'week N of M' cue shows the position within the series."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.6 (Week view)",
-    "refs": "SV-8692 (§4.6 (Week view))",
-    "viu_status": "VIU-Pending",
-    "notes": "Week series banner + edge chevrons + 'week N of M' cue pinned by the Claude design (§3); confirm live. Driver: Claude design §3. | UPDATED 2026-07-31 from the live spec (Confluence v23 (2026-07-30) §4.6 Week view; changed in Confluence v22). v18 read \"a 'week N of M' cue, and a break around any day the technician is otherwise booked.\"; v23 stops at \"a 'week N of M' cue.\" - the break-around-booked-days clause was DELETED from the spec and is removed here. Same contradiction group as SCH-SER-01 (Rule-28 Stage 2b, group X1). | TITLE TRIMMED 2026-07-31 to the <=80-character concise-title rule (user instruction 2026-07-27: keep titles short enough to display in full on the TestRail case page; detail belongs in Steps/Expected). Was 117 chars: \"Week view renders a series as one banner spanning the week's working days, with edge chevrons and a 'week N of M' cue\". Done now because this case is already being written in this pass - it removes one item from the 79-title trim backlog rather than adding a separate write later.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SER-03",
-    "area": "Linked Series and Banners",
-    "title": "Day view shows the series day as a single time-positioned block with a 'part of an M-week job' cue",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A multi-week series exists for one technician.",
-      "3. You are on the Schedule page in DAY view on one of the series' days."
-    ],
-    "steps": [
-      "1. Find the series' block on the technician's timeline.",
-      "2. Read its cue text."
-    ],
-    "expected": [
-      "1. The day shows a single time-positioned block (no spanning bar - only one day is visible).",
-      "2. The block carries a cue in the spirit of 'part of an M-week job' indicating it belongs to a longer series."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.6 (Day view)",
-    "refs": "SV-8692 (§4.6 (Day view))",
-    "viu_status": "VIU-Pending",
-    "notes": "Day series cue 'Part of an N-week job' pinned by the Claude design (§3/§4e 'Part of a 6-week job'); confirm live. Driver: Claude design §3.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-SER-04",
-    "area": "Linked Series and Banners",
-    "title": "A series is a grouping of ordinary daily shifts - capacity, overtime, and conflicts operate on the individual shifts",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A series exists for a technician; on one series day the technician also has a second, overlapping shift (set up with Edit permission).",
-      "3. Capacity Bars are on in View Options."
-    ],
-    "steps": [
-      "1. Look at the capacity bar of a day inside the series.",
-      "2. Look at the day with the overlapping second shift.",
-      "3. Open one series shift's detail."
-    ],
-    "expected": [
-      "1. Each series day contributes its own daily hours to that day's capacity bar (the series is not counted as one lump).",
-      "2. The overlapping day is flagged as a Double-booked conflict, exactly as it would be for standalone shifts.",
-      "3. The detail modal shows that single day's shift (its own day and hours) while indicating it belongs to the series."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.6, §8.2",
-    "refs": "SV-8692 (§4.6, §8.2)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  }
+ {
+  "id": "SCH-DND-01",
+  "area": "Drag-and-Drop Scheduling",
+  "title": "Dropping a single-line work order creates a shift with no scope picker",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (requires View) + Work Orders: View for the sidebar (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A ZZAUTOTEST work order exists with exactly ONE approved line whose estimated hours fit within one working day of the target technician.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drag that work order's card from the sidebar.",
+   "2. Drop it onto a technician's cell on a working day."
+  ],
+  "expected": [
+   "1. A shift is created immediately in that cell - no scope picker and no spread step appears.",
+   "2. The shift block shows the customer name, unit number, and the line's name.",
+   "3. The technician is added to that line's labor roster on the work order.",
+   "4. A toast with an Undo option appears."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.1 (Single-line work order), §1.2 (roster sync), §7 (toast)",
+  "refs": "SV-8688 (§4.1 (Single-line work order), §1.2 (roster sync), §7 (toast))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DND-02",
+  "area": "Drag-and-Drop Scheduling",
+  "title": "Dropping a multi-line work order on a technician cell opens the scope picker",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A work order exists with TWO or more approved lines.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drag that work order's card from the sidebar.",
+   "2. Drop it onto a technician's cell."
+  ],
+  "expected": [
+   "1. A scope picker popover opens, anchored to the cell you dropped on.",
+   "2. It offers 'Schedule whole work order' at the top, the individual line rows beneath, and a 'Select multiple' control.",
+   "3. No shift is created until a scope is chosen."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.1 (Multi-line work order), §4.3",
+  "refs": "SV-8688 (§4.1 (Multi-line work order), §4.3)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DND-03",
+  "area": "Drag-and-Drop Scheduling",
+  "title": "Dragging a line from the drill-down creates a single-line shift",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A work order with several approved lines exists; its drill-down is open in the sidebar.",
+   "3. The chosen line's hours fit within one working day of the target technician.",
+   "4. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Using the line's drag handle, drag one specific line from the drill-down.",
+   "2. Drop it onto a technician's cell."
+  ],
+  "expected": [
+   "1. A single-line shift for exactly that line is created directly - no scope picker appears.",
+   "2. The block's last text line shows that line's name.",
+   "3. The technician is added to that line's roster only (not to the order's other lines)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.1 (Specific line drag)",
+  "refs": "SV-8688 (§4.1 (Specific line drag))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DND-04",
+  "area": "Drag-and-Drop Scheduling",
+  "title": "A job over the technician's daily hours opens the spread step",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A ZZAUTOTEST work order exists whose chosen scope's estimated hours EXCEED one working day of the target technician (for example a 40h line for a tech with 8h days).",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drag the work order (or the large line) onto a technician's cell.",
+   "2. If the scope picker opens, choose the large scope.",
+   "3. Look at what opens next."
+  ],
+  "expected": [
+   "1. The spread step opens (step 2 of the same modal) to distribute the hours across consecutive working days.",
+   "2. Its header shows the chosen scope and a 'Change scope' back-link.",
+   "3. No shifts exist yet until the spread is confirmed."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.1 (Large job), §4.5",
+  "refs": "SV-8688 (§4.1 (Large job), §4.5)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DND-05",
+  "area": "Drag-and-Drop Scheduling",
+  "title": "A scope that fits one working day skips the spread step",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A multi-line work order exists where one line's hours fit within the target technician's working day.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drag the work order onto a technician's cell.",
+   "2. In the scope picker, tap the small line."
+  ],
+  "expected": [
+   "1. The shift is created straight away - the spread step does NOT appear.",
+   "2. The shift sits on the dropped day only."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.1 (spread step is conditional)",
+  "refs": "SV-8688 (§4.1 (spread step is conditional))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DND-06",
+  "area": "Drag-and-Drop Scheduling",
+  "title": "While dragging, target cells highlight and a ghost block follows",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A work order with an approved line exists.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Start dragging a line from the sidebar and hold it over different grid cells without dropping.",
+   "2. Watch the cell under the cursor and the dragged preview."
+  ],
+  "expected": [
+   "1. The cell currently under the cursor highlights as a drop target.",
+   "2. A ghost block follows the drag showing the line name and its hours.",
+   "3. Releasing outside any valid cell creates nothing."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §7 (Drag feedback)",
+  "refs": "SV-8688 (§7 (Drag feedback))",
+  "viu_status": "VIU-Pending",
+  "notes": "Drop-target highlight + ghost block (line name + hours) pinned by the Claude design (line-drag sub-prototype, §0/§3); live-render confirm at VIU. Driver: Claude design.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DND-07",
+  "area": "Drag-and-Drop Scheduling",
+  "title": "Scheduling a technician onto a line adds them to its labor roster",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A work order exists with an approved line where the target technician is NOT yet on the line's roster.",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Drag that line onto the technician's cell and create the shift.",
+   "2. Open the same work order's line (in the sidebar drill-down and/or on the Work Orders page) and check its technician roster."
+  ],
+  "expected": [
+   "1. The technician now appears on that line's labor roster - the schedule and the work order stay in sync automatically.",
+   "2. The sidebar line row's avatar stack/count updates to include the technician.",
+   "3. If the line previously showed 'Needs techs', the badge is gone."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §1.2 (Goals - roster sync), §4.3 (roster add), §7",
+  "refs": "SV-8688 (§1.2 (Goals - roster sync), §4.3 (roster add), §7)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DND-08",
+  "area": "Drag-and-Drop Scheduling",
+  "title": "A click-to-arm alternative exists for scheduling without dragging",
+  "priority": "Medium",
+  "type": "Accessibility",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A work order with an approved line exists.",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Instead of dragging, click (arm) the work order card or line in the sidebar.",
+   "2. Then click a technician cell in the grid."
+  ],
+  "expected": [
+   "1. The item can be placed onto a cell without holding a drag - clicking arms it, and clicking a cell places it.",
+   "2. The result is the same as the equivalent drag-and-drop (scope picker / spread step rules apply the same way)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §7 (Keyboard support - click-to-arm), §11 (Accessibility)",
+  "refs": "SV-8688 (§7 (Keyboard support - click-to-arm), §11 (Accessibility))",
+  "viu_status": "VIU-Pending",
+  "notes": "The spec requires a click-to-arm alternative but does not pin the exact interaction (what arms, how disarm/cancel works) - capture the real mechanics live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SCOPE-01",
+  "area": "Scope Picker",
+  "title": "Scope picker contents: the pinned whole-order row and the line rows",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A work order exists with three approved lines with known estimated hours, where at least one line already has technicians on its roster.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drag the work order onto a technician's cell to open the scope picker.",
+   "2. Read the top option.",
+   "3. Read each line row below it."
+  ],
+  "expected": [
+   "1. The 'Schedule whole work order' option sits pinned at the top of the picker and looks visually distinct from the line rows.",
+   "2. It is labeled with the order's line count and total hours (matching the sum of the approved lines).",
+   "3. The picker is anchored to the cell that was dropped on.",
+   "4. Each line row shows the line title and its estimated hours.",
+   "5. Rows for lines that already have technicians show the current roster as an avatar stack plus count."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.3",
+  "refs": "SV-8689 (§4.3)",
+  "viu_status": "VIU-Pending",
+  "notes": "'Schedule whole work order' pinned row (accent, line count + total hours) and the line rows (title, estimated hours, roster avatar stack + count) pinned by the Claude design (§4a); confirm live. Driver: Claude design §4a + requirements §4.3. | CONSOLIDATED 2026-07-31 (usefulness audit G-SCOPE-CONTENTS, user-authorized): absorbed SCH-SCOPE-04 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SCOPE-02",
+  "area": "Scope Picker",
+  "title": "'Schedule whole work order' assigns all lines and creates one shift",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A ZZAUTOTEST work order exists with two or more approved lines whose TOTAL hours fit within the technician's working day (to avoid the spread step).",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drag the work order onto a technician's cell.",
+   "2. Choose 'Schedule whole work order'.",
+   "3. Check the created block and the work order's line rosters."
+  ],
+  "expected": [
+   "1. One shift is created covering all of the order's approved lines.",
+   "2. The block's last text line reads 'N Lines' (with N = the line count).",
+   "3. The technician is added to the roster of every one of those lines."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.3, §4.4",
+  "refs": "SV-8689 (§4.3, §4.4)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SCOPE-03",
+  "area": "Scope Picker",
+  "title": "Tapping a line row creates a single-line shift with no confirm step",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A multi-line work order exists; one line fits within the technician's day.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drag the work order onto a technician's cell.",
+   "2. In the scope picker, click one line row (do not use 'Select multiple')."
+  ],
+  "expected": [
+   "1. A single-line shift for that line is created immediately - no extra confirmation step.",
+   "2. The picker closes.",
+   "3. The block's last text line shows the line's name."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.3 (Individual line rows - fast path)",
+  "refs": "SV-8689 (§4.3 (Individual line rows - fast path))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SCOPE-04",
+  "area": "Scope Picker",
+  "title": "Scope picker line rows show the line title, estimated hours, and current technician roster",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A multi-line work order exists where at least one line already has technicians on its roster.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drag the work order onto a technician's cell to open the scope picker.",
+   "2. Read each line row."
+  ],
+  "expected": [
+   "1. Each row shows the line title and its estimated hours.",
+   "2. Rows for lines that already have technicians show the current roster as an avatar stack plus count."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.3",
+  "refs": "SV-8689 (§4.3)",
+  "viu_status": "Retired - MERGED into SCH-SCOPE-01 2026-07-31 (usefulness audit G-SCOPE-CONTENTS, user-authorized consolidation)",
+  "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-SCOPE-CONTENTS): merged into SCH-SCOPE-01 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-SCOPE-04.json. | ",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SCOPE-05",
+  "area": "Scope Picker",
+  "title": "'Select multiple' checkbox mode: running tally, Select all, and Cancel",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A work order exists with three or more approved lines.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drag the work order onto a technician's cell.",
+   "2. Click 'Select multiple'.",
+   "3. Tick two lines and read the confirm bar.",
+   "4. Click 'Select all' and read the tally.",
+   "5. Click Cancel instead of confirming, and look at the picker.",
+   "6. Re-open 'Select multiple', tick two lines again, and confirm."
+  ],
+  "expected": [
+   "1. The line rows switch into checkbox mode.",
+   "2. A confirm bar appears with a running tally of the selection - the count of lines and their combined hours (in the spec's example format, 'Create shift · 2 lines · 6h').",
+   "3. 'Select all' ticks every line - the tally equals the whole order (same line count and hours as 'Schedule whole work order').",
+   "4. Cancel leaves checkbox mode and returns to the normal single-tap line list without creating anything.",
+   "5. Confirming creates ONE shift covering the ticked lines, and the technician is added to those lines' rosters only."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.3 (Select multiple)",
+  "refs": "SV-8689 (§4.3 (Select multiple, Select all shortcut, Cancel))",
+  "viu_status": "VIU-Pending",
+  "notes": "'Select multiple' checkbox mode + confirm bar 'Create shift · N lines · Xh' + 'Select all'/'Unselect all'/'Cancel' and the whole-order label 'Whole order · Xh' pinned by the Claude design (§4a); confirm live. Driver: Claude design §4a + requirements §4.3. | CONSOLIDATED 2026-07-31 (usefulness audit G-SCOPE-MULTI, user-authorized): absorbed SCH-SCOPE-06 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SCOPE-06",
+  "area": "Scope Picker",
+  "title": "'Select all' equals whole order; Cancel returns to the fast single-tap list",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A multi-line work order exists.",
+   "3. You are on the Schedule page with the scope picker open in 'Select multiple' mode."
+  ],
+  "steps": [
+   "1. Click 'Select all' and read the tally.",
+   "2. Click Cancel instead of confirming.",
+   "3. Look at the picker."
+  ],
+  "expected": [
+   "1. 'Select all' ticks every line - the tally equals the whole order (same line count and hours as 'Schedule whole work order').",
+   "2. Cancel leaves checkbox mode and returns to the normal single-tap line list without creating anything."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.3 (Select all shortcut, Cancel)",
+  "refs": "SV-8689 (§4.3 (Select all shortcut, Cancel))",
+  "viu_status": "Retired - MERGED into SCH-SCOPE-05 2026-07-31 (usefulness audit G-SCOPE-MULTI, user-authorized consolidation)",
+  "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-SCOPE-MULTI): merged into SCH-SCOPE-05 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-SCOPE-06.json. | 'Select all'/'Unselect all'/'Cancel' and the whole-order label 'Whole order · Xh' pinned by the Claude design (§4a); confirm live. Driver: Claude design §4a.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-START-01",
+  "area": "Shift Start Times and Unassigned Shifts",
+  "title": "A shift's start time uses the technician's own working hours when set",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A technician has configured working hours that DIFFER from the shop's business hours (for example tech 6:00 AM start vs shop 8:00 AM) - set this up first and restore after.",
+   "3. A schedulable work order line exists.",
+   "4. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drop the line onto that technician's cell (week view - not a day-view timeline drop).",
+   "2. Open the created shift's detail and read its start time."
+  ],
+  "expected": [
+   "1. The shift starts at the technician's own configured start time (6:00 AM in the example), not the shop's business-hours start."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.2",
+  "refs": "SV-8688 (§4.2)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-START-02",
+  "area": "Shift Start Times and Unassigned Shifts",
+  "title": "With no technician hours set, start time falls back to business hours",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A technician exists with NO configured working hours, and the shop HAS business hours set (note the shop start time).",
+   "3. A schedulable work order line exists.",
+   "4. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drop the line onto that technician's cell.",
+   "2. Read the created shift's start time."
+  ],
+  "expected": [
+   "1. The shift starts at the shop's business-hours start time."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.2",
+  "refs": "SV-8688 (§4.2)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-START-03",
+  "area": "Shift Start Times and Unassigned Shifts",
+  "title": "With neither technician hours nor business hours set, a 7:00 AM default applies",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A technician exists with no configured hours AND the shop's business hours are not set (adjust settings if the environment allows; restore the settings byte-identical after).",
+   "3. A schedulable work order line exists.",
+   "4. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drop the line onto that technician's cell.",
+   "2. Read the created shift's start time."
+  ],
+  "expected": [
+   "1. The shift starts at 7:00 AM - the general default working day (7:00 AM to 7:00 PM) applies."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.2",
+  "refs": "SV-8688 (§4.2)",
+  "viu_status": "VIU-Pending",
+  "notes": "7:00 AM to 7:00 PM default is spec-stated - confirm the actual default live. If business hours cannot be unset in the environment, mark blocked with reason rather than skipping silently.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-START-04",
+  "area": "Shift Start Times and Unassigned Shifts",
+  "title": "In day view the start time comes from the drop position",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A schedulable work order line exists.",
+   "3. You are on the Schedule page in DAY view."
+  ],
+  "steps": [
+   "1. Drag the line from the sidebar and drop it at a specific time position on a technician's timeline (for example around 10:00 AM).",
+   "2. Read the created shift's start time."
+  ],
+  "expected": [
+   "1. The shift starts at the time position where it was dropped (not at the technician-hours/business-hours default).",
+   "2. The start time aligns to the timeline position (see the 15-minute snapping case SCH-DAY-04)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.2 (day view drop position)",
+  "refs": "SV-8688 (§4.2 (day view drop position))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-START-05",
+  "area": "Shift Start Times and Unassigned Shifts",
+  "title": "Dropping onto the Unassigned row creates a shift with no technician",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A schedulable work order line exists.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drag the line from the sidebar and drop it onto the grid's Unassigned row on a working day.",
+   "2. Look at the created block and the line's roster."
+  ],
+  "expected": [
+   "1. An unassigned shift is created in the Unassigned row for that day.",
+   "2. It has no technician (and no technician is added to the line's roster by this drop).",
+   "3. The block uses the same anatomy as a regular shift (customer, unit, line name / 'N Lines')."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.2 (Unassigned shifts), §3.2",
+  "refs": "SV-8688 (§4.2 (Unassigned shifts), §3.2)",
+  "viu_status": "VIU-Pending",
+  "notes": "The spec does not explicitly state whether the roster stays untouched until assignment - derived from 'they simply have no technician yet'; confirm the roster behavior live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-START-06",
+  "area": "Shift Start Times and Unassigned Shifts",
+  "title": "Unassigned shift start time uses business hours or the default",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. The shop has business hours set (note the start time).",
+   "3. A schedulable work order line exists.",
+   "4. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drop the line onto the Unassigned row.",
+   "2. Read the created shift's start time."
+  ],
+  "expected": [
+   "1. The unassigned shift starts at the shop's business-hours start (there is no technician whose hours could apply)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.2",
+  "refs": "SV-8688 (§4.2)",
+  "viu_status": "VIU-Pending",
+  "notes": "The no-business-hours fallback to the 7:00 AM default is covered by SCH-START-03 - it is not observable under this case's business-hours-set setup, so it is not asserted here.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-START-07",
+  "area": "Shift Start Times and Unassigned Shifts",
+  "title": "Dragging an unassigned shift onto a technician row assigns it",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. An unassigned shift exists in the Unassigned row.",
+   "3. The target technician has configured working hours that differ from the shop's business hours.",
+   "4. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drag the unassigned shift from the Unassigned row down onto a technician's row.",
+   "2. Check the shift and the line's roster."
+  ],
+  "expected": [
+   "1. The shift is now assigned to that technician (it leaves the Unassigned row and sits in the technician's row).",
+   "2. The technician is added to the affected line's roster.",
+   "3. The technician's own working hours now apply to the shift's timing."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §3.2 (Unassigned placeholder), §4.2",
+  "refs": "SV-8688 (§3.2 (Unassigned placeholder), §4.2)",
+  "viu_status": "VIU-Pending",
+  "notes": "Whether the start time re-derives on assignment or keeps its original time is not fully pinned ('that technician's hours apply') - capture the exact behavior live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-START-08",
+  "area": "Shift Start Times and Unassigned Shifts",
+  "title": "Every shift always has a start time - none is created without one",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. Work order lines are available to schedule.",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Create shifts by each entry point available: week-view drop on a technician, day-view drop on the timeline, drop on the Unassigned row.",
+   "2. Open each created shift's detail and read its start time."
+  ],
+  "expected": [
+   "1. Every created shift has a concrete start time - resolved from the hierarchy (technician hours, then business hours, then 7:00 AM default) or from the day-view drop position.",
+   "2. No shift appears on the grid without a time."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.2, §12",
+  "refs": "SV-8688 (§4.2, §12)",
+  "viu_status": "Retired - CUT (usefulness audit 2026-07-31, user-authorized): duplicate sweep. Its steps literally re-run the entry-point cases SCH-START-01 (C29954), SCH-START-02 (C29955), SCH-START-03 (C29956), SCH-START-04 (C29957) and SCH-START-05 (C29958), each of which already reads the created shift's start time - the 'every shift has a start time' invariant adds no new observation.",
+  "notes": "RETIRED 2026-07-31 (user-authorized CUT, usefulness audit): duplicate sweep. Its steps literally re-run the entry-point cases SCH-START-01 (C29954), SCH-START-02 (C29955), SCH-START-03 (C29956), SCH-START-04 (C29957) and SCH-START-05 (C29958), each of which already reads the created shift's start time - the 'every shift has a start time' invariant adds no new observation. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-START-08.json. | TECH-PLAN 2026-07-29: the new data model carries an is_all_day flag, but a shift's start (starts_at) is required in the schema - this case stands as written.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SPREAD-01",
+  "area": "Multi-Day Spread Scheduling",
+  "title": "Spread step shows the chosen scope in its header with a 'Change scope' back-link",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A multi-line work order exists with a scope that exceeds the technician's daily hours.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drop the work order on a technician, choose the large scope, and reach the spread step.",
+   "2. Read the spread step's header."
+  ],
+  "expected": [
+   "1. The spread step appears as step 2 of the same modal.",
+   "2. Its header shows the chosen scope (which lines / how many hours).",
+   "3. A 'Change scope' back-link is present."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.5",
+  "refs": "SV-8691 (§4.5)",
+  "viu_status": "Retired - MERGED into SCH-SPREAD-02 2026-07-31 (usefulness audit G-SPREAD-HEADER, user-authorized consolidation)",
+  "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-SPREAD-HEADER): merged into SCH-SPREAD-02 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-SPREAD-01.json. | Spread header 'STEP 2 · SPREAD' + scope + 'Change scope' back-link pinned by the Claude design (§4b); confirm live. Driver: Claude design §4b.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SPREAD-02",
+  "area": "Multi-Day Spread Scheduling",
+  "title": "Spread step header shows the scope; 'Change scope' returns to the picker",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A multi-line work order exists with a scope that exceeds the technician's daily hours.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drop the work order on a technician, choose the large scope, and reach the spread step.",
+   "2. Read the spread step's header.",
+   "3. Click 'Change scope'.",
+   "4. Choose a different scope and continue."
+  ],
+  "expected": [
+   "1. The spread step appears as step 2 of the same modal.",
+   "2. Its header shows the chosen scope (which lines / how many hours).",
+   "3. A 'Change scope' back-link is present.",
+   "4. Clicking 'Change scope' takes the modal back to the scope picker (step 1) without creating anything.",
+   "5. Choosing a new scope updates the spread step's header and hours accordingly."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.5",
+  "refs": "SV-8691 (§4.5)",
+  "viu_status": "VIU-Pending",
+  "notes": "Spread header 'STEP 2 · SPREAD' + scope + 'Change scope' back-link pinned by the Claude design (§4b); confirm live. Driver: Claude design §4b + requirements §4.5. | CONSOLIDATED 2026-07-31 (usefulness audit G-SPREAD-HEADER, user-authorized): absorbed SCH-SPREAD-01 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SPREAD-03",
+  "area": "Multi-Day Spread Scheduling",
+  "title": "How-much selector defaults to Full estimate; preset amounts apply at once",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. You are on the spread step for a large scope (for example 40+ hours)."
+  ],
+  "steps": [
+   "1. Read the 'how much to schedule' selector's default value.",
+   "2. Open the selector and read its options.",
+   "3. Pick '1 week', then '2 weeks', then back to 'Full estimate', watching for extra fields."
+  ],
+  "expected": [
+   "1. The selector defaults to 'Full estimate'.",
+   "2. The options include 'Full estimate', '1 week', '2 weeks', 'Until a date…', and 'Specific hours…'.",
+   "3. 'Full estimate', '1 week', and '2 weeks' apply on selection with no extra fields - the modal stays to one line for these.",
+   "4. The preview summary updates to match each selection."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.5 (How much to schedule)",
+  "refs": "SV-8691 (§4.5 (How much to schedule))",
+  "viu_status": "VIU-Pending",
+  "notes": "How-much options 'Full estimate' (default) / '1 week' / '2 weeks' / 'Until a date…' / 'Specific hours…' pinned by the Claude design (§4b); confirm live. Driver: Claude design §4b.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SPREAD-04",
+  "area": "Multi-Day Spread Scheduling",
+  "title": "'Until a date…' reveals a single finish-by date field",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. You are on the spread step for a large scope."
+  ],
+  "steps": [
+   "1. Open the how-much selector and choose 'Until a date…'.",
+   "2. Look at the modal.",
+   "3. Pick a finish-by date."
+  ],
+  "expected": [
+   "1. Choosing 'Until a date…' reveals a single 'finish by' date field (this is the only custom control shown).",
+   "2. Picking a date updates the preview so the series ends by that date."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.5 (progressive disclosure)",
+  "refs": "SV-8691 (§4.5 (progressive disclosure))",
+  "viu_status": "VIU-Pending",
+  "notes": "'Until a date…' label pinned by the Claude design (§4b) - it reveals a finish-by date field. What happens when the estimate cannot fit by the chosen date is NOT pinned - observe live and raise a PO question if ambiguous. Driver: Claude design §4b.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SPREAD-05",
+  "area": "Multi-Day Spread Scheduling",
+  "title": "'Specific hours…' reveals an hours stepper",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. You are on the spread step for a large scope."
+  ],
+  "steps": [
+   "1. Open the how-much selector and choose 'Specific hours…'.",
+   "2. Set a number of hours with the stepper (for example 16)."
+  ],
+  "expected": [
+   "1. Choosing 'Specific hours…' reveals an hours stepper control.",
+   "2. The preview updates to spread exactly the entered hours across working days."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.5 (progressive disclosure)",
+  "refs": "SV-8691 (§4.5 (progressive disclosure))",
+  "viu_status": "VIU-Pending",
+  "notes": "'Specific hours…' label pinned by the Claude design (§4b) - it reveals an hours stepper. Stepper bounds/increments not pinned - capture live. Driver: Claude design §4b.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SPREAD-06",
+  "area": "Multi-Day Spread Scheduling",
+  "title": "Start date defaults to the earliest working day and can be changed",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A large job has already been spread for technician A (note A's series end date).",
+   "3. You are on the spread step for the SAME work order dropped on technician B."
+  ],
+  "steps": [
+   "1. Read the start-date field's default.",
+   "2. Change the start date to the day after technician A's series ends.",
+   "3. Confirm the spread."
+  ],
+  "expected": [
+   "1. The start date defaults to the earliest working day.",
+   "2. It can be changed; technician B's series then starts after A's series ends (sequential, not parallel).",
+   "3. B's series is created from the adjusted start date onward."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.5 (Start date)",
+  "refs": "SV-8691 (§4.5 (Start date))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SPREAD-07",
+  "area": "Multi-Day Spread Scheduling",
+  "title": "Spread uses the tech's working hours; skips weekends only when hours not set",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. The technician has known daily working hours (for example 8h/day, Monday to Friday).",
+   "3. A shop closure day is defined inside the spread window (set one up if the environment allows).",
+   "4. A scope of known size exists (for example 40h)."
+  ],
+  "steps": [
+   "1. Spread the 40h scope for that technician with 'Full estimate' starting on a Monday.",
+   "2. Confirm and inspect the created shifts on the grid."
+  ],
+  "expected": [
+   "1. Daily shifts are sized to the technician's own working hours (8h each in the example).",
+   "2. Weekends are skipped ONLY when the technician has no business hours set for them; if the tech has hours on a weekend day (e.g. Saturday hours) that day is NOT skipped.",
+   "3. Shop closures and public holidays are NOT skipped in V1 - shifts can be placed on those days.",
+   "4. The end date is a result of the daily distribution (for 40h at 8h/day starting Monday, the series ends on the fifth working day)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.5, §12 (shop closures)",
+  "refs": "SV-8691 (§4.5, §12 (shop closures))",
+  "viu_status": "VIU-Pending",
+  "notes": "V1 rule (Jira SV-8691, latest-wins over the older requirements.md §12): spread skips weekends ONLY when business hours are not set for them; shop closures / public holidays are NOT skipped in V1. Driver: SV-8691 §4.5. Verify live at VIU. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-1): the engineering plan (D7) builds REAL closure skipping ('skips closures + non-working days'), contradicting the Jira V1 rule this case encodes (closures NOT skipped). Pending ruling (Questions-for-Branko-dev.md NQ-1) - do not pass/fail expected #3 until ruled; observe and record.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SPREAD-08",
+  "area": "Multi-Day Spread Scheduling",
+  "title": "Spread preview: one-line summary, expandable to a week-by-week breakdown",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. You are on the spread step for a multi-week scope that will skip at least one weekend."
+  ],
+  "steps": [
+   "1. Read the preview area without expanding it.",
+   "2. Expand the preview.",
+   "3. Find a skipped day in the breakdown."
+  ],
+  "expected": [
+   "1. Collapsed: a one-line summary in the spirit of the spec's example '20 shifts · Jun 15 to Jul 13 · skips weekends + 2 days'.",
+   "2. Expanded: a week-by-week breakdown of the planned shifts.",
+   "3. Skipped days are struck through and show the reason they are skipped - in V1 the only skip reason is a weekend day with no working hours set."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.5 (Preview)",
+  "refs": "SV-8691 (§4.5 (Preview))",
+  "viu_status": "VIU-Pending",
+  "notes": "Preview one-liner ('N shifts · <start> → <end> · skips weekends + N closures', expandable week-by-week) pinned by the Claude design (§4b); confirm the exact copy live. Driver: Claude design §4b. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-1): plan Phase 7 SpreadDialog includes 'real closure skip' in the preview - whether a closure appears as a struck-through skipped day in V1 depends on the NQ-1 ruling. | WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): Expected 3 offered '(weekend / closure)' as the skip reason, but the suite's own V1 rule (SCH-SPREAD-07 / SCH-EDGE-05, SV-8691 Key Decision) is that shop closures are NOT skipped in V1, so a 'closure' skip reason cannot occur; reworded to weekend-only. Re-align if tech-plan conflict NQ-1 is ruled the other way.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SPREAD-09",
+  "area": "Multi-Day Spread Scheduling",
+  "title": "Confirming the spread creates a linked series of daily shifts",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. You are on the spread step for a multi-day scope with the preview showing several shifts."
+  ],
+  "steps": [
+   "1. Confirm the spread.",
+   "2. Look at the grid across the affected days/weeks.",
+   "3. Open one of the created shifts."
+  ],
+  "expected": [
+   "1. One daily shift is created per planned working day, together forming a linked series.",
+   "2. The shifts render as one connected banner (see the series-banner cases SCH-SER-01..03).",
+   "3. Each daily shift keeps its own day and hours.",
+   "4. A toast with Undo appears."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.5 (Confirming), §4.6, §8.2",
+  "refs": "SV-8691 (§4.5 (Confirming), §4.6, §8.2)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SPREAD-10",
+  "area": "Multi-Day Spread Scheduling",
+  "title": "The same work order on a second technician spreads the full estimate again",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A large work order (for example 40h) has already been fully spread for technician A.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drop the SAME work order onto technician B and complete the spread with 'Full estimate'.",
+   "2. Compare the two series."
+  ],
+  "expected": [
+   "1. Technician B gets a full 40h series of their own - the estimate is spread again in full, not reduced by A's booking.",
+   "2. There is no shared 'remaining hours' counter across technicians and no splitting of a shift.",
+   "3. Planned hours across technicians may now exceed the estimate - this is expected and produces no error (progress is driven by clocked-in time)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.5 (independent per-tech spread), §12",
+  "refs": "SV-8691 (§4.5 (independent per-tech spread), §12)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SER-01",
+  "area": "Linked Series and Banners",
+  "title": "Month view: series banner wraps across weeks, labeled once, then 'continues'",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A multi-week series exists for one technician (spread a 40h+ job first).",
+   "3. You are on the Schedule page in MONTH view showing the series' month."
+  ],
+  "steps": [
+   "1. Find the series on the month grid.",
+   "2. Read the banner across the week rows.",
+   "3. Look at the weekend columns inside the series."
+  ],
+  "expected": [
+   "1. The series renders as one continuous bar wrapping across the week rows.",
+   "2. It is labeled once at the start (including the technician); later weeks show a faded 'continues'-style label instead of repeating the full label.",
+   "3. Weekend columns inside the series are empty (no bar) when no business hours are set for those weekend days."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.6 (Month view)",
+  "refs": "SV-8692 (§4.6 (Month view))",
+  "viu_status": "VIU-Pending",
+  "notes": "Month series banner (continuous wrap, labeled once, faded '↳ continues' on later weeks) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3. | UPDATED 2026-07-31 from the live spec (Confluence v23 (2026-07-30) §4.6 Month view; the change landed in Confluence v22, after our v18 baseline). v18 read 'empty weekend columns, and visible breaks around skipped or booked days.'; v23 reads 'empty weekend columns (when business hours are not set for weekends).' - so the breaks-around-skipped/booked-days clause was DELETED from the spec and is removed here, and the empty-weekend assertion is now conditional. It was also a live CONTRADICTION (Rule-28 Stage 2b, groups X1/X2) against SCH-SPREAD-07 ('shop closures and public holidays are NOT skipped in V1'; a Saturday with hours is NOT skipped) and SCH-SPREAD-08 ('in V1 the only skip reason is a weekend day with no working hours set') - if nothing but weekends is skipped, there are no skipped days for a banner to break around. | FIX-WORDING 2026-07-31 (Rule-28 Stage-2b sweep, same pass): step 3 still told the tester to 'look at any skipped or booked days inside the series' after the corresponding expected result was removed - leftover residue pointing at behaviour the current spec no longer describes. Step 3 now asks only about the weekend columns, which is what expected 3 actually judges. | TITLE TRIMMED 2026-07-31 to the <=80-character concise-title rule (user instruction 2026-07-27: keep titles short enough to display in full on the TestRail case page; detail belongs in Steps/Expected). Was 137 chars: \"Month view renders a series as a continuous banner wrapping across week rows, labeled once, with a faded 'continues' label on later weeks\". Done now because this case is already being written in this pass - it removes one item from the 79-title trim backlog rather than adding a separate write later.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SER-02",
+  "area": "Linked Series and Banners",
+  "title": "Week view: series banner spans the week, with chevrons and 'week N of M'",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A multi-week series exists for one technician; on one of its days the technician also has an unrelated booking.",
+   "3. You are on the Schedule page in WEEK view on a middle week of the series."
+  ],
+  "steps": [
+   "1. Find the series banner in the technician's row.",
+   "2. Look at the banner's left and right edges.",
+   "3. Look for the week-position cue and at the day with the other booking."
+  ],
+  "expected": [
+   "1. One banner spans the working days of that week in the technician's row.",
+   "2. Chevrons at the banner's edges indicate the series continues beyond the visible week (both sides, on a middle week).",
+   "3. A 'week N of M' cue shows the position within the series."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.6 (Week view)",
+  "refs": "SV-8692 (§4.6 (Week view))",
+  "viu_status": "VIU-Pending",
+  "notes": "Week series banner + edge chevrons + 'week N of M' cue pinned by the Claude design (§3); confirm live. Driver: Claude design §3. | UPDATED 2026-07-31 from the live spec (Confluence v23 (2026-07-30) §4.6 Week view; changed in Confluence v22). v18 read \"a 'week N of M' cue, and a break around any day the technician is otherwise booked.\"; v23 stops at \"a 'week N of M' cue.\" - the break-around-booked-days clause was DELETED from the spec and is removed here. Same contradiction group as SCH-SER-01 (Rule-28 Stage 2b, group X1). | TITLE TRIMMED 2026-07-31 to the <=80-character concise-title rule (user instruction 2026-07-27: keep titles short enough to display in full on the TestRail case page; detail belongs in Steps/Expected). Was 117 chars: \"Week view renders a series as one banner spanning the week's working days, with edge chevrons and a 'week N of M' cue\". Done now because this case is already being written in this pass - it removes one item from the 79-title trim backlog rather than adding a separate write later.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SER-03",
+  "area": "Linked Series and Banners",
+  "title": "Day view shows the series day as one block with a multi-week cue",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A multi-week series exists for one technician.",
+   "3. You are on the Schedule page in DAY view on one of the series' days."
+  ],
+  "steps": [
+   "1. Find the series' block on the technician's timeline.",
+   "2. Read its cue text."
+  ],
+  "expected": [
+   "1. The day shows a single time-positioned block (no spanning bar - only one day is visible).",
+   "2. The block carries a cue in the spirit of 'part of an M-week job' indicating it belongs to a longer series."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.6 (Day view)",
+  "refs": "SV-8692 (§4.6 (Day view))",
+  "viu_status": "VIU-Pending",
+  "notes": "Day series cue 'Part of an N-week job' pinned by the Claude design (§3/§4e 'Part of a 6-week job'); confirm live. Driver: Claude design §3.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-SER-04",
+  "area": "Linked Series and Banners",
+  "title": "A series is just a grouping - capacity and conflicts use the daily shifts",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A series exists for a technician; on one series day the technician also has a second, overlapping shift (set up with Edit permission).",
+   "3. Capacity Bars are on in View Options."
+  ],
+  "steps": [
+   "1. Look at the capacity bar of a day inside the series.",
+   "2. Look at the day with the overlapping second shift.",
+   "3. Open one series shift's detail."
+  ],
+  "expected": [
+   "1. Each series day contributes its own daily hours to that day's capacity bar (the series is not counted as one lump).",
+   "2. The overlapping day is flagged as a Double-booked conflict, exactly as it would be for standalone shifts.",
+   "3. The detail modal shows that single day's shift (its own day and hours) while indicating it belongs to the series."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.6, §8.2",
+  "refs": "SV-8692 (§4.6, §8.2)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ }
 ]

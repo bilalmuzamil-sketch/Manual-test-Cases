@@ -1,721 +1,721 @@
 [
-  {
-    "id": "SCH-BLOCK-01",
-    "area": "Shift Block Anatomy",
-    "title": "A single-line shift block shows three text lines: customer name, unit number, and the line name",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A single-line shift exists on the grid (VIN toggle off).",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Read the shift block's text lines from top to bottom."
-    ],
-    "expected": [
-      "1. Line 1: the customer name.",
-      "2. Line 2: the unit number.",
-      "3. Last line: the name of the scheduled line.",
-      "4. No work order number appears on the block."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.4",
-    "refs": "SV-8690 (§4.4)",
-    "viu_status": "VIU-Pending",
-    "notes": "Shift block = customer / unit / line name (three text lines, no WO number, no $) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-BLOCK-02",
-    "area": "Shift Block Anatomy",
-    "title": "Whole-order and multi-line-subset shifts both read 'N Lines' on the block - the detail modal spells out the exact scope",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. Two shifts exist for a 4-line work order: one whole-order shift (4 lines) and one 2-line subset shift.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Read the last text line of the whole-order shift's block.",
-      "2. Read the last text line of the subset shift's block.",
-      "3. Open each shift's detail modal."
-    ],
-    "expected": [
-      "1. The whole-order block reads '4 Lines'.",
-      "2. The subset block reads '2 Lines' - the block does not distinguish whole-order from subset beyond the count.",
-      "3. Each detail modal lists exactly which lines the shift covers."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.4, §12",
-    "refs": "SV-8690 (§4.4, §12)",
-    "viu_status": "VIU-Pending",
-    "notes": "Multi-line/whole-order block reads 'N Lines' pinned by the Claude design (§3, block shows lineName|'N Lines'); confirm live. Driver: Claude design §3.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-BLOCK-03",
-    "area": "Shift Block Anatomy",
-    "title": "VIN appears as an extra block line only when the VIN toggle is on, in day and week views only (month omits it)",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A shift exists for a unit that has a VIN.",
-      "3. You are on the Schedule page; the VIN toggle in 'Filter and Display' is OFF."
-    ],
-    "steps": [
-      "1. In week view, read the shift block (VIN off).",
-      "2. Turn the VIN toggle ON in 'Filter and Display'.",
-      "3. Read the block again in week view, then in day view, then in month view."
-    ],
-    "expected": [
-      "1. VIN off: the block shows three lines, no VIN.",
-      "2. VIN on: a VIN line is added to the block in week view and day view.",
-      "3. Month view still omits the VIN line even with the toggle on (space constraints)."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.4, §9 (VIN option)",
-    "refs": "SV-8690 (§4.4, §9 (VIN option))",
-    "viu_status": "Retired - MERGED into SCH-VIEW-04 2026-07-31 (usefulness audit G-VIN-TOGGLE, user-authorized consolidation)",
-    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-VIN-TOGGLE): merged into SCH-VIEW-04 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-BLOCK-03.json. | ",
-    "api_related": false
-  },
-  {
-    "id": "SCH-BLOCK-04",
-    "area": "Shift Block Anatomy",
-    "title": "Shift blocks default to blue; a custom colour can be set per shift",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. Two shifts from the SAME work order exist (for example on different technicians), plus one shift from a different work order whose color has been changed.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Look at a newly created shift block's colour.",
-      "2. Open the shift detail modal and set a custom colour via the colour picker.",
-      "3. Compare that shift with another shift from the same work order."
-    ],
-    "expected": [
-      "1. By default every shift block is blue (the default shift colour).",
-      "2. A custom colour can be assigned per shift via the colour picker in the detail modal.",
-      "3. Colour is per shift - it is NOT tied to the work order, so two shifts from the same order do not automatically share a colour."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.4, §10",
-    "refs": "SV-8690 (§4.4, §10)",
-    "viu_status": "Retired - MERGED into SCH-COLOR-02 2026-07-31 (usefulness audit G-SHIFT-COLOR, user-authorized consolidation)",
-    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-SHIFT-COLOR): merged into SCH-COLOR-02 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-BLOCK-04.json. | V1 rule (Jira SV-8690, latest-wins over the older requirements.md §10): all shift blocks default to blue; custom colours are optional per shift (NOT tied to the work order). SCH-COLOR-01 already agrees. Driver: SV-8690 §4.4, §10. Verify live at VIU.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-BLOCK-05",
-    "area": "Shift Block Anatomy",
-    "title": "The conflict icon is the only icon on a shift block - no work order number and no scope icons",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. One normal (unconflicted) shift and one conflicted shift exist (create an overlapping second shift to force a conflict).",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Inspect the unconflicted block for icons and a work order number.",
-      "2. Inspect the conflicted block."
-    ],
-    "expected": [
-      "1. The unconflicted block shows NO icons and NO work order number - only its text lines.",
-      "2. The conflicted block shows the conflict (warning) icon on its first line - and that is the only icon that ever appears on a block.",
-      "3. No scope icons distinguish whole-order from subset shifts."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.4",
-    "refs": "SV-8690 (§4.4)",
-    "viu_status": "VIU-Pending",
-    "notes": "Conflict warning icon is the only icon on a block (no WO number, no scope icons) pinned by the Claude design (§3); confirm live. Driver: Claude design §3.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-LANE-01",
-    "area": "Overlap and Lane Stacking",
-    "title": "Non-overlapping same-day shifts share one lane, even from different orders",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. Two DIFFERENT work orders have schedulable lines.",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Schedule a shift from work order 1 onto a technician for a given day (for example 8:00-10:00).",
-      "2. Schedule a shift from work order 2 onto the SAME technician for the SAME day at a non-overlapping time (for example 10:00-12:00).",
-      "3. Switch to day view and look at the technician's row on that day."
-    ],
-    "expected": [
-      "1. Both shifts are created and shown on the same day for the same technician - multiple same-day shifts from different work orders are allowed.",
-      "2. Both shifts sit in the same single lane, one after the other.",
-      "3. The row stays at its normal height.",
-      "4. No conflict is flagged for back-to-back (non-intersecting) shifts."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.7",
-    "refs": "SV-8693 (§4.7, §12 (edge case))",
-    "viu_status": "VIU-Pending",
-    "notes": "Covers the §12 edge case that one technician may hold several same-day shifts from different work orders, observed in the same non-overlap/lane sitting. Driver: requirements §4.7/§12. | CONSOLIDATED 2026-07-31 (usefulness audit G-SAMEDAY-LANE, user-authorized): absorbed SCH-LANE-05 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-LANE-02",
-    "area": "Overlap and Lane Stacking",
-    "title": "Shifts whose times intersect split into stacked lanes and the row grows to fit",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. One technician has two shifts on the same day whose time ranges DO intersect (for example 9:00-12:00 and 10:00-13:00).",
-      "3. You are on the Schedule page in day view."
-    ],
-    "steps": [
-      "1. Look at the technician's row on that day."
-    ],
-    "expected": [
-      "1. The two overlapping shifts render in separate stacked lanes - they never visually collide.",
-      "2. The row grows in height to fit the lanes.",
-      "3. The overlap is also flagged as a Double-booked conflict (stacking reads as 'resolve me')."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.7, §4.11",
-    "refs": "SV-8693 (§4.7, §4.11)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-LANE-03",
-    "area": "Overlap and Lane Stacking",
-    "title": "Visible lanes cap at 3 - additional overlapping shifts collapse into a '+N more' affordance that opens a popover",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. One technician has FIVE mutually overlapping shifts at the same time on the same day (seed ZZAUTOTEST work orders as needed).",
-      "3. You are on the Schedule page in day view."
-    ],
-    "steps": [
-      "1. Count the visible lanes in the technician's row.",
-      "2. Find and click the '+N more' affordance."
-    ],
-    "expected": [
-      "1. At most 3 lanes are visible.",
-      "2. The remaining overlapping shifts collapse into a '+N more' affordance (here '+2 more').",
-      "3. Clicking it opens a popover listing the hidden shifts.",
-      "4. The hidden shifts can be opened from that popover."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.7",
-    "refs": "SV-8693 (§4.7)",
-    "viu_status": "VIU-Pending",
-    "notes": "3-lane cap + '+N more' overflow popover pinned by the Claude design (§3, MAX_CHIPS / lane stacking); confirm the exact label live. Driver: Claude design §3.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-LANE-04",
-    "area": "Overlap and Lane Stacking",
-    "title": "Lane stacking and the '+N more' overflow apply in day, week, and month views",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. One technician has several overlapping shifts on the same day (from SCH-LANE-03's setup).",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. View the day in day view and note the stacking/overflow.",
-      "2. Switch to week view and look at the same day's cell.",
-      "3. Switch to month view and look at the same day."
-    ],
-    "expected": [
-      "1. All three views handle the overlap without blocks visually colliding.",
-      "2. Week and month views reach the '+N more' overflow sooner than day view (their cells are narrower), but the same cap-and-overflow model applies.",
-      "3. The overflow affordance opens the hidden-shifts popover in each view."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.7",
-    "refs": "SV-8693 (§4.7)",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-LANE-05",
-    "area": "Overlap and Lane Stacking",
-    "title": "A technician can hold multiple shifts on the same day from different work orders",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. Two different work orders have schedulable lines.",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Schedule a shift from work order 1 onto a technician for a given day.",
-      "2. Schedule a shift from work order 2 onto the SAME technician for the SAME day at a non-overlapping time."
-    ],
-    "expected": [
-      "1. Both shifts are created and shown on the same day for the same technician - multiple same-day shifts are allowed.",
-      "2. With non-overlapping times, no conflict is raised and both share one lane."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §12 (edge case), §4.7",
-    "refs": "SV-8693 (§12 (edge case), §4.7)",
-    "viu_status": "Retired - MERGED into SCH-LANE-01 2026-07-31 (usefulness audit G-SAMEDAY-LANE, user-authorized consolidation)",
-    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-SAMEDAY-LANE): merged into SCH-LANE-01 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-LANE-05.json. | ",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DAY-01",
-    "area": "Day View Timeline",
-    "title": "Day view auto-scrolls to the working-day start; manual scrolling stands",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. Technicians have configured start times; note the EARLIEST one (or the business-hours start / 7:00 AM if none).",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Switch to day view and look at where the timeline is scrolled to.",
-      "2. Manually scroll the timeline to a late-night hour (for example 11:00 PM).",
-      "3. Wait a few seconds and interact with the page without changing the day (hover blocks, open/close a tooltip).",
-      "4. Navigate to the next day with the toolbar arrow and look again."
-    ],
-    "expected": [
-      "1. On load and on each day navigation, the timeline is auto-scrolled so the working-day start sits at the left edge of the visible area, with a small buffer (roughly 30 to 60 minutes) before it.",
-      "2. The start used is the earliest technician's configured start; if no tech hours are set, business hours; otherwise 7:00 AM - so no shifts sit off-screen to the left.",
-      "3. Your manual scroll position stays put - nothing jumps you back to the morning while you remain on the same day.",
-      "4. The timeline is not stuck at the start - it remains a full 24-hour scrollable timeline (midnight to midnight).",
-      "5. Only navigating to another day re-triggers the auto-scroll."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.8 (Auto-scroll to business hours)",
-    "refs": "SV-8694 (§4.8 (Auto-scroll to business hours))",
-    "viu_status": "VIU-Pending",
-    "notes": "The 30-60 minute buffer is spec-approximate - confirm the actual buffer live. | CONSOLIDATED 2026-07-31 (usefulness audit G-AUTOSCROLL, user-authorized): absorbed SCH-DAY-02 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DAY-02",
-    "area": "Day View Timeline",
-    "title": "Manual scrolling is not overridden - auto-scroll fires only on load or day navigation",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. You are on the Schedule page in day view (already auto-scrolled)."
-    ],
-    "steps": [
-      "1. Manually scroll the timeline to a late-night hour (for example 11:00 PM).",
-      "2. Wait a few seconds and interact with the page without changing the day (hover blocks, open/close a tooltip).",
-      "3. Then navigate to the next day."
-    ],
-    "expected": [
-      "1. Your manual scroll position stays put - nothing jumps you back to the morning while you remain on the same day.",
-      "2. Scrolling works across the entire 24-hour timeline (midnight to midnight).",
-      "3. Only navigating to another day re-triggers the auto-scroll."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.8",
-    "refs": "SV-8694 (§4.8)",
-    "viu_status": "Retired - MERGED into SCH-DAY-01 2026-07-31 (usefulness audit G-AUTOSCROLL, user-authorized consolidation)",
-    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-AUTOSCROLL): merged into SCH-DAY-01 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-DAY-02.json. | ",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DAY-03",
-    "area": "Day View Timeline",
-    "title": "Date and time headers stick to the top of the viewport during vertical scroll (day and week views)",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. Enough technician rows exist that the grid scrolls vertically.",
-      "3. You are on the Schedule page in day view."
-    ],
-    "steps": [
-      "1. Scroll the grid down so lower technician rows come into view.",
-      "2. Look at the top of the viewport.",
-      "3. Repeat in week view."
-    ],
-    "expected": [
-      "1. In day view, the date/time header bar stays stuck to the top while the rows scroll beneath it - you always know which time column you are looking at.",
-      "2. The same sticky-header behavior applies in week view."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.8 (Sticky header bar)",
-    "refs": "SV-8694 (§4.8 (Sticky header bar))",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DAY-04",
-    "area": "Day View Timeline",
-    "title": "Dragging a shift horizontally moves its start time, snapping to 15-minute intervals",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit (spec §14.1 - horizontal drag is an Edit interaction).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A shift exists on a technician's day-view timeline.",
-      "3. You are on the Schedule page in day view."
-    ],
-    "steps": [
-      "1. Drag the shift block horizontally along the timeline and release at a position between clean quarter-hours.",
-      "2. Open the shift and read its new start time.",
-      "3. Undo via the toast if needed and restore the original time."
-    ],
-    "expected": [
-      "1. The shift moves along the timeline as you drag.",
-      "2. The released start time snaps to a 15-minute interval (for example 9:15, 9:30 - never 9:22).",
-      "3. The duration is unchanged by a horizontal move.",
-      "4. A toast with Undo appears for the move."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.8 (Horizontal drag), §7 (toast)",
-    "refs": "SV-8694 (§4.8 (Horizontal drag), §7 (toast))",
-    "viu_status": "VIU-Pending",
-    "notes": "15-minute snap is spec-stated - confirm the actual snap granularity live.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DAY-05",
-    "area": "Day View Timeline",
-    "title": "Dragging a shift's left or right edge resizes its duration",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit (spec §14.1 - resize handles are Edit affordances).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A shift exists on a technician's day-view timeline (note its start/end).",
-      "3. You are on the Schedule page in day view."
-    ],
-    "steps": [
-      "1. Drag the shift's RIGHT edge further right and release.",
-      "2. Drag the shift's LEFT edge and release.",
-      "3. Open the shift and read its times."
-    ],
-    "expected": [
-      "1. Dragging the right edge extends/shortens the end time (start unchanged).",
-      "2. Dragging the left edge adjusts the start time (end unchanged).",
-      "3. The resulting times land on 15-minute increments.",
-      "4. The shift's duration on the grid matches the modal's start/end."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.8 (Edge resize)",
-    "refs": "SV-8694 (§4.8 (Edge resize))",
-    "viu_status": "VIU-Pending",
-    "notes": "Whether edge-resize also snaps to 15 minutes is derived from the modal's 15-minute pickers - confirm live.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DAY-06",
-    "area": "Day View Timeline",
-    "title": "A now line marks the current time on today's day view, with a label on hover",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. You are on the Schedule page in day view, on TODAY (click 'Today' if needed)."
-    ],
-    "steps": [
-      "1. Scroll the timeline to the current time.",
-      "2. Find the vertical current-time indicator.",
-      "3. Hover over it."
-    ],
-    "expected": [
-      "1. A vertical line marks the current time on the timeline.",
-      "2. Its position matches the actual clock time.",
-      "3. Hovering the now line while your pointer is over the grid shows a label (the current time)."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.8 (Now line)",
-    "refs": "SV-8694 (§4.8 (Now line))",
-    "viu_status": "VIU-Pending",
-    "notes": "Now-line styling and hover-label content unpinned - confirm live. Whether it appears on non-today days is unspecified - observe and record. | UPDATED 2026-07-31 from the live spec (Confluence v23 (2026-07-30) §4.8; changed in Confluence v22): 'a label on hover' became 'a label on hover over the grid'. Build-accurate wording per Rule 9.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-DAY-07",
-    "area": "Day View Timeline",
-    "title": "With the VIN toggle on, day-view lane heights grow so block text is not clipped",
-    "priority": "Low",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A shift exists for a unit with a VIN.",
-      "3. You are on the Schedule page in day view with the VIN toggle OFF."
-    ],
-    "steps": [
-      "1. Note the height of the shift's lane and that its text fits.",
-      "2. Turn the VIN toggle ON in 'Filter and Display'.",
-      "3. Look at the same lane."
-    ],
-    "expected": [
-      "1. With VIN on, the lane height grows to accommodate the additional VIN line.",
-      "2. No block text is clipped or cut off."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.8 (Lane height with VIN)",
-    "refs": "SV-8694 (§4.8 (Lane height with VIN))",
-    "viu_status": "Retired - MERGED into SCH-VIEW-04 2026-07-31 (usefulness audit G-VIN-TOGGLE, user-authorized consolidation)",
-    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-VIN-TOGGLE): merged into SCH-VIEW-04 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-DAY-07.json. | VIN-on grows the day-view lane height (DAY_LANE_H schedVin 96 vs 80) pinned by the Claude design (§3); the toggle label is 'VIN Number' (design §6). Driver: Claude design §3/§6.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-MODAL-01",
-    "area": "Shift Detail Modal",
-    "title": "Clicking a shift opens its detail modal showing customer, unit, VIN (always visible), and the work order id",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (read-only modal) (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A shift exists for a unit that has a VIN; the VIN toggle in 'Filter and Display' is OFF.",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Click the shift block.",
-      "2. Read the modal's identity section."
-    ],
-    "expected": [
-      "1. A detail panel opens for the shift.",
-      "2. It shows the customer name, unit number, the VIN (below unit and asset), and the work order id.",
-      "3. The VIN is visible here even though the grid's VIN toggle is off - the modal always shows it."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.9, §9 (VIN always in modal)",
-    "refs": "SV-8695 (§4.9, §9 (VIN always in modal))",
-    "viu_status": "VIU-Pending",
-    "notes": "Modal identity (customer, unit · asset, VIN when present) pinned by the Claude design (§4c) - the modal always shows the VIN. WO id per spec §4.9; confirm live. Driver: Claude design §4c + §6.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-MODAL-02",
-    "area": "Shift Detail Modal",
-    "title": "Scheduled date and start/end time pickers work in 15-minute increments",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit (editing modal fields requires Edit; spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A shift exists; its detail modal is open."
-    ],
-    "steps": [
-      "1. Open the start-time picker and read the available options.",
-      "2. Change the start and end times.",
-      "3. Change the scheduled date.",
-      "4. Check the block on the grid."
-    ],
-    "expected": [
-      "1. The time pickers offer 15-minute increments (for example 8:00, 8:15, 8:30, 8:45).",
-      "2. Saving/applying the change updates the shift's times.",
-      "3. Changing the date moves the shift to the chosen day.",
-      "4. The grid block reflects the new date/times."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.9",
-    "refs": "SV-8695 (§4.9)",
-    "viu_status": "VIU-Pending",
-    "notes": "Whether changes apply immediately or on an explicit save is not pinned - capture live.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-MODAL-03",
-    "area": "Shift Detail Modal",
-    "title": "The modal shows the technician and time logged vs estimate progress",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A shift exists whose line has some clocked-in time logged against an estimate (seed by clocking a technician in/out if possible).",
-      "3. The shift's detail modal is open."
-    ],
-    "steps": [
-      "1. Read the technician shown.",
-      "2. Read the time-logged vs estimate progress."
-    ],
-    "expected": [
-      "1. The assigned technician is shown.",
-      "2. A progress indication compares time logged against the estimate (logged hours vs estimated hours).",
-      "3. The numbers are consistent with the line's actual logged time and estimate."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.9",
-    "refs": "SV-8695 (§4.9)",
-    "viu_status": "VIU-Pending",
-    "notes": "Progress rendering (bar vs text) unpinned - confirm live.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-MODAL-04",
-    "area": "Shift Detail Modal",
-    "title": "The modal shows a scope summary and the scheduled line(s) with number, title, hours, and status only",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A multi-line (subset) shift exists covering 2 of a work order's 4 lines.",
-      "3. The shift's detail modal is open."
-    ],
-    "steps": [
-      "1. Read the scope summary.",
-      "2. Read the list of scheduled lines and their figures."
-    ],
-    "expected": [
-      "1. The 'Work Order Lines' section shows the line count and a scope summary of what the shift covers.",
-      "2. Exactly the 2 scheduled lines are listed (not all 4), each showing its line number, title, hours, and a status pill only.",
-      "3. No labor figures and no total dollar amount appear anywhere in the modal.",
-      "4. This is where whole-order vs subset scope is spelled out (the grid block only says 'N Lines')."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.9, §4.4",
-    "refs": "SV-8695 (§4.9, §4.4)",
-    "viu_status": "VIU-Pending",
-    "notes": "Reconciliation 2026-07-22: total-$ / labor assertion REMOVED - the authoritative modal shows line number/title/hours/status pill only, no $ anywhere. Driver: Branko Q&A 2026-07-22 Q3 + Claude design §4c. Confirm the exact section label live at VIU.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-MODAL-05",
-    "area": "Shift Detail Modal",
-    "title": "Estimated hours can be edited inline in the modal",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A shift exists; its detail modal is open; note the current estimated hours."
-    ],
-    "steps": [
-      "1. Edit the estimated hours inline (change the value).",
-      "2. Confirm/apply the edit.",
-      "3. Re-open the modal and read the estimate."
-    ],
-    "expected": [
-      "1. The estimated hours field is editable directly in the modal.",
-      "2. The new value persists after closing and re-opening.",
-      "3. Dependent displays (progress vs estimate) reflect the new value."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.9 (Estimated hours with inline edit)",
-    "refs": "SV-8695 (§4.9 (Estimated hours with inline edit))",
-    "viu_status": "VIU-Pending",
-    "notes": "Whether this edits the line's estimate on the work order or only the shift is not pinned - observe live and flag to the PO if ambiguous.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-MODAL-06",
-    "area": "Shift Detail Modal",
-    "title": "Notes can be added, edited, and deleted per work order from the modal",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A shift exists; its detail modal is open."
-    ],
-    "steps": [
-      "1. Add a note (text 'ZZAUTOTEST note').",
-      "2. Edit the note's text.",
-      "3. Delete the note."
-    ],
-    "expected": [
-      "1. The note is added and shown in the modal.",
-      "2. The edit is saved and displayed.",
-      "3. The delete removes the note.",
-      "4. Notes are kept per work order (the same note is visible from another shift of the same work order)."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.9 (Notes: add, edit, and delete per work order)",
-    "refs": "SV-8695 (§4.9 (Notes: add, edit, and delete per work order))",
-    "viu_status": "VIU-Pending",
-    "notes": "The per-work-order sharing expectation (point 4) is derived from 'per work order' - confirm the exact scoping live.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-MODAL-07",
-    "area": "Shift Detail Modal",
-    "title": "A conflicted shift's modal shows a conflict banner with an 'Adjust' action",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: View to see; Schedule: Edit for the Adjust action (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A conflicted shift exists (for example double-booked - create an overlap).",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Open the conflicted shift's detail modal.",
-      "2. Read the banner.",
-      "3. Click 'Adjust'."
-    ],
-    "expected": [
-      "1. A conflict banner is shown in the modal describing the conflict.",
-      "2. It offers an 'Adjust' action.",
-      "3. 'Adjust' leads to a way to resolve the conflict (for example changing the shift's time).",
-      "4. An unconflicted shift's modal shows no such banner."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.9 (conflict banner + Adjust)",
-    "refs": "SV-8695 (§4.9 (conflict banner + Adjust))",
-    "viu_status": "VIU-Pending",
-    "notes": "Conflict banner 'Scheduling conflict' + reason list + 'Adjust' action pinned by the Claude design (§4c); what 'Adjust' opens - capture live. Driver: Claude design §4c.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-MODAL-08",
-    "area": "Shift Detail Modal",
-    "title": "Shift modal offers Delete only - there is no Reassign action",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Delete requires Schedule: Delete (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Delete (which includes Edit and View).",
-      "2. A shift exists; its detail modal is open."
-    ],
-    "steps": [
-      "1. Look at the modal's actions.",
-      "2. Confirm there is no 'Reassign' action anywhere in the modal.",
-      "3. Click Delete on a series shift and read what it asks (cancel without deleting)."
-    ],
-    "expected": [
-      "1. The modal offers a Delete action (a trash icon in the header) and a close (x) icon - and no other actions.",
-      "2. There is no 'Reassign' action in the modal; reassignment is done by dragging a shift to another technician row (covered by its own case).",
-      "3. Delete on a series member asks for a deletion scope (the full scope behavior has its own cases)."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.9 (Actions), §7",
-    "refs": "SV-8695 (§4.9 (Actions - Delete only; Reassign removed in Confluence v23), §7)",
-    "viu_status": "VIU-Pending",
-    "notes": "Reconciliation 2026-07-22: 'Reassign' action REMOVED from the modal (reassignment is drag-only). Driver: Branko Q&A 2026-07-22 + Claude design §4c/§4d. The Delete control's exact label/icon (trash icon) pinned by design; confirm live at VIU. | HOLD LIFTED 2026-07-31. The case body was already correct and does not change; only its provenance does. Branko answer 2026-07-31 to 'Should the shift pop-up have a Reassign button?' was verbatim 'B - No button'. Independently corroborated by the spec itself: Confluence v23 (2026-07-30) DELETED the clause - §4.9 Actions went from 'Actions: Delete (series-aware, §7) and Reassign to another technician.' to 'Actions: Delete (series-aware, §7)'. The design-vs-spec conflict that held this case since 2026-07-22 is therefore gone. NOTE FOR THE STORY OWNER (not a case change): Jira SV-8695's own text still lists a modal Reassign action and is now the stale artefact. | TITLE TRIMMED 2026-07-31 to the <=80-character concise-title rule (user instruction 2026-07-27: keep titles short enough to display in full on the TestRail case page; detail belongs in Steps/Expected). Was 82 chars: 'The modal offers a Delete (series-aware) action only - there is no Reassign action'. Done now because this case is already being written in this pass - it removes one item from the 79-title trim backlog rather than adding a separate write later.",
-    "api_related": false
-  }
+ {
+  "id": "SCH-BLOCK-01",
+  "area": "Shift Block Anatomy",
+  "title": "A single-line shift block shows customer, unit number and line name",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A single-line shift exists on the grid (VIN toggle off).",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Read the shift block's text lines from top to bottom."
+  ],
+  "expected": [
+   "1. Line 1: the customer name.",
+   "2. Line 2: the unit number.",
+   "3. Last line: the name of the scheduled line.",
+   "4. No work order number appears on the block."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.4",
+  "refs": "SV-8690 (§4.4)",
+  "viu_status": "VIU-Pending",
+  "notes": "Shift block = customer / unit / line name (three text lines, no WO number, no $) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-BLOCK-02",
+  "area": "Shift Block Anatomy",
+  "title": "Whole-order and multi-line shifts both read 'N Lines' on the block",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. Two shifts exist for a 4-line work order: one whole-order shift (4 lines) and one 2-line subset shift.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Read the last text line of the whole-order shift's block.",
+   "2. Read the last text line of the subset shift's block.",
+   "3. Open each shift's detail modal."
+  ],
+  "expected": [
+   "1. The whole-order block reads '4 Lines'.",
+   "2. The subset block reads '2 Lines' - the block does not distinguish whole-order from subset beyond the count.",
+   "3. Each detail modal lists exactly which lines the shift covers."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.4, §12",
+  "refs": "SV-8690 (§4.4, §12)",
+  "viu_status": "VIU-Pending",
+  "notes": "Multi-line/whole-order block reads 'N Lines' pinned by the Claude design (§3, block shows lineName|'N Lines'); confirm live. Driver: Claude design §3.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-BLOCK-03",
+  "area": "Shift Block Anatomy",
+  "title": "VIN appears as an extra block line only when the VIN toggle is on, in day and week views only (month omits it)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A shift exists for a unit that has a VIN.",
+   "3. You are on the Schedule page; the VIN toggle in 'Filter and Display' is OFF."
+  ],
+  "steps": [
+   "1. In week view, read the shift block (VIN off).",
+   "2. Turn the VIN toggle ON in 'Filter and Display'.",
+   "3. Read the block again in week view, then in day view, then in month view."
+  ],
+  "expected": [
+   "1. VIN off: the block shows three lines, no VIN.",
+   "2. VIN on: a VIN line is added to the block in week view and day view.",
+   "3. Month view still omits the VIN line even with the toggle on (space constraints)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.4, §9 (VIN option)",
+  "refs": "SV-8690 (§4.4, §9 (VIN option))",
+  "viu_status": "Retired - MERGED into SCH-VIEW-04 2026-07-31 (usefulness audit G-VIN-TOGGLE, user-authorized consolidation)",
+  "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-VIN-TOGGLE): merged into SCH-VIEW-04 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-BLOCK-03.json. | ",
+  "api_related": false
+ },
+ {
+  "id": "SCH-BLOCK-04",
+  "area": "Shift Block Anatomy",
+  "title": "Shift blocks default to blue; a custom colour can be set per shift",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. Two shifts from the SAME work order exist (for example on different technicians), plus one shift from a different work order whose color has been changed.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Look at a newly created shift block's colour.",
+   "2. Open the shift detail modal and set a custom colour via the colour picker.",
+   "3. Compare that shift with another shift from the same work order."
+  ],
+  "expected": [
+   "1. By default every shift block is blue (the default shift colour).",
+   "2. A custom colour can be assigned per shift via the colour picker in the detail modal.",
+   "3. Colour is per shift - it is NOT tied to the work order, so two shifts from the same order do not automatically share a colour."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.4, §10",
+  "refs": "SV-8690 (§4.4, §10)",
+  "viu_status": "Retired - MERGED into SCH-COLOR-02 2026-07-31 (usefulness audit G-SHIFT-COLOR, user-authorized consolidation)",
+  "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-SHIFT-COLOR): merged into SCH-COLOR-02 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-BLOCK-04.json. | V1 rule (Jira SV-8690, latest-wins over the older requirements.md §10): all shift blocks default to blue; custom colours are optional per shift (NOT tied to the work order). SCH-COLOR-01 already agrees. Driver: SV-8690 §4.4, §10. Verify live at VIU.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-BLOCK-05",
+  "area": "Shift Block Anatomy",
+  "title": "The conflict icon is the only icon on a shift block",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. One normal (unconflicted) shift and one conflicted shift exist (create an overlapping second shift to force a conflict).",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Inspect the unconflicted block for icons and a work order number.",
+   "2. Inspect the conflicted block."
+  ],
+  "expected": [
+   "1. The unconflicted block shows NO icons and NO work order number - only its text lines.",
+   "2. The conflicted block shows the conflict (warning) icon on its first line - and that is the only icon that ever appears on a block.",
+   "3. No scope icons distinguish whole-order from subset shifts."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.4",
+  "refs": "SV-8690 (§4.4)",
+  "viu_status": "VIU-Pending",
+  "notes": "Conflict warning icon is the only icon on a block (no WO number, no scope icons) pinned by the Claude design (§3); confirm live. Driver: Claude design §3.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-LANE-01",
+  "area": "Overlap and Lane Stacking",
+  "title": "Non-overlapping same-day shifts share one lane, even from different orders",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. Two DIFFERENT work orders have schedulable lines.",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Schedule a shift from work order 1 onto a technician for a given day (for example 8:00-10:00).",
+   "2. Schedule a shift from work order 2 onto the SAME technician for the SAME day at a non-overlapping time (for example 10:00-12:00).",
+   "3. Switch to day view and look at the technician's row on that day."
+  ],
+  "expected": [
+   "1. Both shifts are created and shown on the same day for the same technician - multiple same-day shifts from different work orders are allowed.",
+   "2. Both shifts sit in the same single lane, one after the other.",
+   "3. The row stays at its normal height.",
+   "4. No conflict is flagged for back-to-back (non-intersecting) shifts."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.7",
+  "refs": "SV-8693 (§4.7, §12 (edge case))",
+  "viu_status": "VIU-Pending",
+  "notes": "Covers the §12 edge case that one technician may hold several same-day shifts from different work orders, observed in the same non-overlap/lane sitting. Driver: requirements §4.7/§12. | CONSOLIDATED 2026-07-31 (usefulness audit G-SAMEDAY-LANE, user-authorized): absorbed SCH-LANE-05 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-LANE-02",
+  "area": "Overlap and Lane Stacking",
+  "title": "Shifts whose times intersect split into stacked lanes and the row grows to fit",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. One technician has two shifts on the same day whose time ranges DO intersect (for example 9:00-12:00 and 10:00-13:00).",
+   "3. You are on the Schedule page in day view."
+  ],
+  "steps": [
+   "1. Look at the technician's row on that day."
+  ],
+  "expected": [
+   "1. The two overlapping shifts render in separate stacked lanes - they never visually collide.",
+   "2. The row grows in height to fit the lanes.",
+   "3. The overlap is also flagged as a Double-booked conflict (stacking reads as 'resolve me')."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.7, §4.11",
+  "refs": "SV-8693 (§4.7, §4.11)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-LANE-03",
+  "area": "Overlap and Lane Stacking",
+  "title": "Visible lanes cap at 3; extra overlapping shifts collapse into '+N more'",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. One technician has FIVE mutually overlapping shifts at the same time on the same day (seed ZZAUTOTEST work orders as needed).",
+   "3. You are on the Schedule page in day view."
+  ],
+  "steps": [
+   "1. Count the visible lanes in the technician's row.",
+   "2. Find and click the '+N more' affordance."
+  ],
+  "expected": [
+   "1. At most 3 lanes are visible.",
+   "2. The remaining overlapping shifts collapse into a '+N more' affordance (here '+2 more').",
+   "3. Clicking it opens a popover listing the hidden shifts.",
+   "4. The hidden shifts can be opened from that popover."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.7",
+  "refs": "SV-8693 (§4.7)",
+  "viu_status": "VIU-Pending",
+  "notes": "3-lane cap + '+N more' overflow popover pinned by the Claude design (§3, MAX_CHIPS / lane stacking); confirm the exact label live. Driver: Claude design §3.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-LANE-04",
+  "area": "Overlap and Lane Stacking",
+  "title": "Lane stacking and the '+N more' overflow apply in day, week, and month views",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. One technician has several overlapping shifts on the same day (from SCH-LANE-03's setup).",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. View the day in day view and note the stacking/overflow.",
+   "2. Switch to week view and look at the same day's cell.",
+   "3. Switch to month view and look at the same day."
+  ],
+  "expected": [
+   "1. All three views handle the overlap without blocks visually colliding.",
+   "2. Week and month views reach the '+N more' overflow sooner than day view (their cells are narrower), but the same cap-and-overflow model applies.",
+   "3. The overflow affordance opens the hidden-shifts popover in each view."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.7",
+  "refs": "SV-8693 (§4.7)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-LANE-05",
+  "area": "Overlap and Lane Stacking",
+  "title": "A technician can hold multiple shifts on the same day from different work orders",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. Two different work orders have schedulable lines.",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Schedule a shift from work order 1 onto a technician for a given day.",
+   "2. Schedule a shift from work order 2 onto the SAME technician for the SAME day at a non-overlapping time."
+  ],
+  "expected": [
+   "1. Both shifts are created and shown on the same day for the same technician - multiple same-day shifts are allowed.",
+   "2. With non-overlapping times, no conflict is raised and both share one lane."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §12 (edge case), §4.7",
+  "refs": "SV-8693 (§12 (edge case), §4.7)",
+  "viu_status": "Retired - MERGED into SCH-LANE-01 2026-07-31 (usefulness audit G-SAMEDAY-LANE, user-authorized consolidation)",
+  "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-SAMEDAY-LANE): merged into SCH-LANE-01 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-LANE-05.json. | ",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DAY-01",
+  "area": "Day View Timeline",
+  "title": "Day view auto-scrolls to the working-day start; manual scrolling stands",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. Technicians have configured start times; note the EARLIEST one (or the business-hours start / 7:00 AM if none).",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Switch to day view and look at where the timeline is scrolled to.",
+   "2. Manually scroll the timeline to a late-night hour (for example 11:00 PM).",
+   "3. Wait a few seconds and interact with the page without changing the day (hover blocks, open/close a tooltip).",
+   "4. Navigate to the next day with the toolbar arrow and look again."
+  ],
+  "expected": [
+   "1. On load and on each day navigation, the timeline is auto-scrolled so the working-day start sits at the left edge of the visible area, with a small buffer (roughly 30 to 60 minutes) before it.",
+   "2. The start used is the earliest technician's configured start; if no tech hours are set, business hours; otherwise 7:00 AM - so no shifts sit off-screen to the left.",
+   "3. Your manual scroll position stays put - nothing jumps you back to the morning while you remain on the same day.",
+   "4. The timeline is not stuck at the start - it remains a full 24-hour scrollable timeline (midnight to midnight).",
+   "5. Only navigating to another day re-triggers the auto-scroll."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.8 (Auto-scroll to business hours)",
+  "refs": "SV-8694 (§4.8 (Auto-scroll to business hours))",
+  "viu_status": "VIU-Pending",
+  "notes": "The 30-60 minute buffer is spec-approximate - confirm the actual buffer live. | CONSOLIDATED 2026-07-31 (usefulness audit G-AUTOSCROLL, user-authorized): absorbed SCH-DAY-02 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DAY-02",
+  "area": "Day View Timeline",
+  "title": "Manual scrolling is not overridden - auto-scroll fires only on load or day navigation",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. You are on the Schedule page in day view (already auto-scrolled)."
+  ],
+  "steps": [
+   "1. Manually scroll the timeline to a late-night hour (for example 11:00 PM).",
+   "2. Wait a few seconds and interact with the page without changing the day (hover blocks, open/close a tooltip).",
+   "3. Then navigate to the next day."
+  ],
+  "expected": [
+   "1. Your manual scroll position stays put - nothing jumps you back to the morning while you remain on the same day.",
+   "2. Scrolling works across the entire 24-hour timeline (midnight to midnight).",
+   "3. Only navigating to another day re-triggers the auto-scroll."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.8",
+  "refs": "SV-8694 (§4.8)",
+  "viu_status": "Retired - MERGED into SCH-DAY-01 2026-07-31 (usefulness audit G-AUTOSCROLL, user-authorized consolidation)",
+  "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-AUTOSCROLL): merged into SCH-DAY-01 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-DAY-02.json. | ",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DAY-03",
+  "area": "Day View Timeline",
+  "title": "Date and time headers stick to the top during vertical scroll",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. Enough technician rows exist that the grid scrolls vertically.",
+   "3. You are on the Schedule page in day view."
+  ],
+  "steps": [
+   "1. Scroll the grid down so lower technician rows come into view.",
+   "2. Look at the top of the viewport.",
+   "3. Repeat in week view."
+  ],
+  "expected": [
+   "1. In day view, the date/time header bar stays stuck to the top while the rows scroll beneath it - you always know which time column you are looking at.",
+   "2. The same sticky-header behavior applies in week view."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.8 (Sticky header bar)",
+  "refs": "SV-8694 (§4.8 (Sticky header bar))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DAY-04",
+  "area": "Day View Timeline",
+  "title": "Dragging a shift sideways moves its start time in 15-minute steps",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1 - horizontal drag is an Edit interaction).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A shift exists on a technician's day-view timeline.",
+   "3. You are on the Schedule page in day view."
+  ],
+  "steps": [
+   "1. Drag the shift block horizontally along the timeline and release at a position between clean quarter-hours.",
+   "2. Open the shift and read its new start time.",
+   "3. Undo via the toast if needed and restore the original time."
+  ],
+  "expected": [
+   "1. The shift moves along the timeline as you drag.",
+   "2. The released start time snaps to a 15-minute interval (for example 9:15, 9:30 - never 9:22).",
+   "3. The duration is unchanged by a horizontal move.",
+   "4. A toast with Undo appears for the move."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.8 (Horizontal drag), §7 (toast)",
+  "refs": "SV-8694 (§4.8 (Horizontal drag), §7 (toast))",
+  "viu_status": "VIU-Pending",
+  "notes": "15-minute snap is spec-stated - confirm the actual snap granularity live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DAY-05",
+  "area": "Day View Timeline",
+  "title": "Dragging a shift's left or right edge resizes its duration",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1 - resize handles are Edit affordances).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A shift exists on a technician's day-view timeline (note its start/end).",
+   "3. You are on the Schedule page in day view."
+  ],
+  "steps": [
+   "1. Drag the shift's RIGHT edge further right and release.",
+   "2. Drag the shift's LEFT edge and release.",
+   "3. Open the shift and read its times."
+  ],
+  "expected": [
+   "1. Dragging the right edge extends/shortens the end time (start unchanged).",
+   "2. Dragging the left edge adjusts the start time (end unchanged).",
+   "3. The resulting times land on 15-minute increments.",
+   "4. The shift's duration on the grid matches the modal's start/end."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.8 (Edge resize)",
+  "refs": "SV-8694 (§4.8 (Edge resize))",
+  "viu_status": "VIU-Pending",
+  "notes": "Whether edge-resize also snaps to 15 minutes is derived from the modal's 15-minute pickers - confirm live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DAY-06",
+  "area": "Day View Timeline",
+  "title": "A now line marks the current time on today's day view, with a label on hover",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. You are on the Schedule page in day view, on TODAY (click 'Today' if needed)."
+  ],
+  "steps": [
+   "1. Scroll the timeline to the current time.",
+   "2. Find the vertical current-time indicator.",
+   "3. Hover over it."
+  ],
+  "expected": [
+   "1. A vertical line marks the current time on the timeline.",
+   "2. Its position matches the actual clock time.",
+   "3. Hovering the now line while your pointer is over the grid shows a label (the current time)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.8 (Now line)",
+  "refs": "SV-8694 (§4.8 (Now line))",
+  "viu_status": "VIU-Pending",
+  "notes": "Now-line styling and hover-label content unpinned - confirm live. Whether it appears on non-today days is unspecified - observe and record. | UPDATED 2026-07-31 from the live spec (Confluence v23 (2026-07-30) §4.8; changed in Confluence v22): 'a label on hover' became 'a label on hover over the grid'. Build-accurate wording per Rule 9.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-DAY-07",
+  "area": "Day View Timeline",
+  "title": "With the VIN toggle on, day-view lane heights grow so block text is not clipped",
+  "priority": "Low",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A shift exists for a unit with a VIN.",
+   "3. You are on the Schedule page in day view with the VIN toggle OFF."
+  ],
+  "steps": [
+   "1. Note the height of the shift's lane and that its text fits.",
+   "2. Turn the VIN toggle ON in 'Filter and Display'.",
+   "3. Look at the same lane."
+  ],
+  "expected": [
+   "1. With VIN on, the lane height grows to accommodate the additional VIN line.",
+   "2. No block text is clipped or cut off."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.8 (Lane height with VIN)",
+  "refs": "SV-8694 (§4.8 (Lane height with VIN))",
+  "viu_status": "Retired - MERGED into SCH-VIEW-04 2026-07-31 (usefulness audit G-VIN-TOGGLE, user-authorized consolidation)",
+  "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-VIN-TOGGLE): merged into SCH-VIEW-04 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-DAY-07.json. | VIN-on grows the day-view lane height (DAY_LANE_H schedVin 96 vs 80) pinned by the Claude design (§3); the toggle label is 'VIN Number' (design §6). Driver: Claude design §3/§6.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-MODAL-01",
+  "area": "Shift Detail Modal",
+  "title": "Clicking a shift opens its detail modal, with VIN always visible",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (read-only modal) (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A shift exists for a unit that has a VIN; the VIN toggle in 'Filter and Display' is OFF.",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Click the shift block.",
+   "2. Read the modal's identity section."
+  ],
+  "expected": [
+   "1. A detail panel opens for the shift.",
+   "2. It shows the customer name, unit number, the VIN (below unit and asset), and the work order id.",
+   "3. The VIN is visible here even though the grid's VIN toggle is off - the modal always shows it."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.9, §9 (VIN always in modal)",
+  "refs": "SV-8695 (§4.9, §9 (VIN always in modal))",
+  "viu_status": "VIU-Pending",
+  "notes": "Modal identity (customer, unit · asset, VIN when present) pinned by the Claude design (§4c) - the modal always shows the VIN. WO id per spec §4.9; confirm live. Driver: Claude design §4c + §6.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-MODAL-02",
+  "area": "Shift Detail Modal",
+  "title": "Scheduled date and start/end time pickers work in 15-minute increments",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (editing modal fields requires Edit; spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A shift exists; its detail modal is open."
+  ],
+  "steps": [
+   "1. Open the start-time picker and read the available options.",
+   "2. Change the start and end times.",
+   "3. Change the scheduled date.",
+   "4. Check the block on the grid."
+  ],
+  "expected": [
+   "1. The time pickers offer 15-minute increments (for example 8:00, 8:15, 8:30, 8:45).",
+   "2. Saving/applying the change updates the shift's times.",
+   "3. Changing the date moves the shift to the chosen day.",
+   "4. The grid block reflects the new date/times."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.9",
+  "refs": "SV-8695 (§4.9)",
+  "viu_status": "VIU-Pending",
+  "notes": "Whether changes apply immediately or on an explicit save is not pinned - capture live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-MODAL-03",
+  "area": "Shift Detail Modal",
+  "title": "The modal shows the technician and time logged vs estimate progress",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A shift exists whose line has some clocked-in time logged against an estimate (seed by clocking a technician in/out if possible).",
+   "3. The shift's detail modal is open."
+  ],
+  "steps": [
+   "1. Read the technician shown.",
+   "2. Read the time-logged vs estimate progress."
+  ],
+  "expected": [
+   "1. The assigned technician is shown.",
+   "2. A progress indication compares time logged against the estimate (logged hours vs estimated hours).",
+   "3. The numbers are consistent with the line's actual logged time and estimate."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.9",
+  "refs": "SV-8695 (§4.9)",
+  "viu_status": "VIU-Pending",
+  "notes": "Progress rendering (bar vs text) unpinned - confirm live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-MODAL-04",
+  "area": "Shift Detail Modal",
+  "title": "The modal lists the scheduled line(s) with no money fields",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A multi-line (subset) shift exists covering 2 of a work order's 4 lines.",
+   "3. The shift's detail modal is open."
+  ],
+  "steps": [
+   "1. Read the scope summary.",
+   "2. Read the list of scheduled lines and their figures."
+  ],
+  "expected": [
+   "1. The 'Work Order Lines' section shows the line count and a scope summary of what the shift covers.",
+   "2. Exactly the 2 scheduled lines are listed (not all 4), each showing its line number, title, hours, and a status pill only.",
+   "3. No labor figures and no total dollar amount appear anywhere in the modal.",
+   "4. This is where whole-order vs subset scope is spelled out (the grid block only says 'N Lines')."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.9, §4.4",
+  "refs": "SV-8695 (§4.9, §4.4)",
+  "viu_status": "VIU-Pending",
+  "notes": "Reconciliation 2026-07-22: total-$ / labor assertion REMOVED - the authoritative modal shows line number/title/hours/status pill only, no $ anywhere. Driver: Branko Q&A 2026-07-22 Q3 + Claude design §4c. Confirm the exact section label live at VIU.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-MODAL-05",
+  "area": "Shift Detail Modal",
+  "title": "Estimated hours can be edited inline in the modal",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A shift exists; its detail modal is open; note the current estimated hours."
+  ],
+  "steps": [
+   "1. Edit the estimated hours inline (change the value).",
+   "2. Confirm/apply the edit.",
+   "3. Re-open the modal and read the estimate."
+  ],
+  "expected": [
+   "1. The estimated hours field is editable directly in the modal.",
+   "2. The new value persists after closing and re-opening.",
+   "3. Dependent displays (progress vs estimate) reflect the new value."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.9 (Estimated hours with inline edit)",
+  "refs": "SV-8695 (§4.9 (Estimated hours with inline edit))",
+  "viu_status": "VIU-Pending",
+  "notes": "Whether this edits the line's estimate on the work order or only the shift is not pinned - observe live and flag to the PO if ambiguous.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-MODAL-06",
+  "area": "Shift Detail Modal",
+  "title": "Notes can be added, edited, and deleted per work order from the modal",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A shift exists; its detail modal is open."
+  ],
+  "steps": [
+   "1. Add a note (text 'ZZAUTOTEST note').",
+   "2. Edit the note's text.",
+   "3. Delete the note."
+  ],
+  "expected": [
+   "1. The note is added and shown in the modal.",
+   "2. The edit is saved and displayed.",
+   "3. The delete removes the note.",
+   "4. Notes are kept per work order (the same note is visible from another shift of the same work order)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.9 (Notes: add, edit, and delete per work order)",
+  "refs": "SV-8695 (§4.9 (Notes: add, edit, and delete per work order))",
+  "viu_status": "VIU-Pending",
+  "notes": "The per-work-order sharing expectation (point 4) is derived from 'per work order' - confirm the exact scoping live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-MODAL-07",
+  "area": "Shift Detail Modal",
+  "title": "A conflicted shift's modal shows a conflict banner with an 'Adjust' action",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View to see; Schedule: Edit for the Adjust action (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A conflicted shift exists (for example double-booked - create an overlap).",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Open the conflicted shift's detail modal.",
+   "2. Read the banner.",
+   "3. Click 'Adjust'."
+  ],
+  "expected": [
+   "1. A conflict banner is shown in the modal describing the conflict.",
+   "2. It offers an 'Adjust' action.",
+   "3. 'Adjust' leads to a way to resolve the conflict (for example changing the shift's time).",
+   "4. An unconflicted shift's modal shows no such banner."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.9 (conflict banner + Adjust)",
+  "refs": "SV-8695 (§4.9 (conflict banner + Adjust))",
+  "viu_status": "VIU-Pending",
+  "notes": "Conflict banner 'Scheduling conflict' + reason list + 'Adjust' action pinned by the Claude design (§4c); what 'Adjust' opens - capture live. Driver: Claude design §4c.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-MODAL-08",
+  "area": "Shift Detail Modal",
+  "title": "Shift modal offers Delete only - there is no Reassign action",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Delete requires Schedule: Delete (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Delete (which includes Edit and View).",
+   "2. A shift exists; its detail modal is open."
+  ],
+  "steps": [
+   "1. Look at the modal's actions.",
+   "2. Confirm there is no 'Reassign' action anywhere in the modal.",
+   "3. Click Delete on a series shift and read what it asks (cancel without deleting)."
+  ],
+  "expected": [
+   "1. The modal offers a Delete action (a trash icon in the header) and a close (x) icon - and no other actions.",
+   "2. There is no 'Reassign' action in the modal; reassignment is done by dragging a shift to another technician row (covered by its own case).",
+   "3. Delete on a series member asks for a deletion scope (the full scope behavior has its own cases)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.9 (Actions), §7",
+  "refs": "SV-8695 (§4.9 (Actions - Delete only; Reassign removed in Confluence v23), §7)",
+  "viu_status": "VIU-Pending",
+  "notes": "Reconciliation 2026-07-22: 'Reassign' action REMOVED from the modal (reassignment is drag-only). Driver: Branko Q&A 2026-07-22 + Claude design §4c/§4d. The Delete control's exact label/icon (trash icon) pinned by design; confirm live at VIU. | HOLD LIFTED 2026-07-31. The case body was already correct and does not change; only its provenance does. Branko answer 2026-07-31 to 'Should the shift pop-up have a Reassign button?' was verbatim 'B - No button'. Independently corroborated by the spec itself: Confluence v23 (2026-07-30) DELETED the clause - §4.9 Actions went from 'Actions: Delete (series-aware, §7) and Reassign to another technician.' to 'Actions: Delete (series-aware, §7)'. The design-vs-spec conflict that held this case since 2026-07-22 is therefore gone. NOTE FOR THE STORY OWNER (not a case change): Jira SV-8695's own text still lists a modal Reassign action and is now the stale artefact. | TITLE TRIMMED 2026-07-31 to the <=80-character concise-title rule (user instruction 2026-07-27: keep titles short enough to display in full on the TestRail case page; detail belongs in Steps/Expected). Was 82 chars: 'The modal offers a Delete (series-aware) action only - there is no Reassign action'. Done now because this case is already being written in this pass - it removes one item from the 79-title trim backlog rather than adding a separate write later.",
+  "api_related": false
+ }
 ]
