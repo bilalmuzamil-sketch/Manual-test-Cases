@@ -404,9 +404,9 @@
    "4. Unticking Imported re-enables the other chips and the normal list returns."
   ],
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md G1 / section 4-3.2",
-  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 G1 (Imported exclusivity); spec S2-R1 (conflict raised with the author - export of spec v1.3 awaited)",
+  "spec_ref": "Filters (no Jira epic) (S2-R7 (Imported cannot be combined with anything else; other filter chips disabled while it is active); S2-N4 (the combination is prevented rather than returning an empty result)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
-  "notes": "PENDING BRANKO (Questions Q3 / deltas C2): spec S2-R1 lists Imported as a plain status; engineering G1 builds it mutually exclusive with all other chips disabled (byte-identical to today's behaviour - imported comes from a separate service without filters). Exact disabled look/tooltip to capture live. A saved or shared state combining imported with other filters must also normalize back to imported-only on load (tech plan risk 4).",
+  "notes": "Traceability repaired 2026-07-31 (closing-authenticity pass defect (a)): refs re-pointed from \"tech plan G1; spec S2-R1 (conflict raised with the author - export of spec v1.3 awaited)\" to the ratified anchors S2-R7 + S2-N4. The conflict is RESOLVED - spec v1.6 (Confluence page 572030978 version 12 2026-07-28) added S2-R7 verbatim: \"Imported is an exception to S2-R2 and cannot be combined with anything else ... selecting Imported switches the list to the imported records and disables the other filter chips while it is active. Deselecting Imported returns the list and re-enables the other chips\" - which is exactly what this case asserts, so the PENDING-BRANKO question is closed. Tech plan 2026-07-29 G1 independently corroborates the same build behaviour. Exact disabled look/tooltip still VIU-confirm. A saved or shared state combining Imported with other filters must also normalise back to Imported-only on load (tech plan risk 4).",
   "api_related": false
  }
 ]

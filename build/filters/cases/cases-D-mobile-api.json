@@ -426,9 +426,9 @@
    "4. Asking for a never-saved key returns success with an empty value, not an error page."
   ],
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md section 4-1.3 (endpoint contract)",
-  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 section 4-1.3 (GET/PUT /api/users/me/preferences/{pageKey}); spec v1.3 S10 per-user persistence (export awaited)",
+  "spec_ref": "Filters (no Jira epic) (S10-R2 (filters stored server-side against the user account; last write wins); S10-R3 (saved per user)) + tech plan 2026-07-29 s4-1.3 (GET/PUT per-user page preferences) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
-  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): contract: GET/PUT /api/users/me/preferences/{pageKey}; Work Orders pageKey = work-orders-list; unset pref returns value:null (200, not 404); 400 on a malformed page key or a value over 16 KB; last-write-wins across devices. Endpoint shape is engineering intent until observed live.",
+  "notes": "Traceability repaired 2026-07-31 (closing-authenticity pass defect (b)): refs re-pointed from \"spec v1.3 S10 per-user persistence (export awaited)\" to the ratified v1.6 anchors S10-R2 + S10-R3; the export is no longer awaited (spec pulled live 2026-07-31, Confluence page 572030978 version 12). The ENDPOINT SHAPE is tech-plan-sourced (not spec) and is cited as such: tech plan 2026-07-29 section 4-1.3 - GET/PUT /api/users/me/preferences/{pageKey}; Work Orders pageKey = work-orders-list; unset pref returns value:null (200 not 404); 400 on a malformed page key or a value over 16 KB; last-write-wins across devices (matches S10-R2 verbatim). Expected result 4 (never-saved key returns success with an empty value) is tech-plan intent only - no spec anchor - and stays flagged for live confirmation.",
   "api_related": true
  }
 ]
