@@ -115,17 +115,81 @@ spec was already **v1.6** (8 versions behind), leaving requirements uncovered �
 reviewer; and the Schedule spec was **5 versions behind** (v18 vs v23), where a **PO answer had
 reversed an earlier ruling our cases still asserted**.
 
-### 1. Diff the new spec vs the current baseline
+### 1. Diff the new spec vs the current baseline — and emit the PER-REQUIREMENT COVERAGE VERDICT TABLE (Standing Rule 43, REQUIRED DELIVERABLE)
+
 List every **substantive** delta with its **requirement ID** (story/section
 number). **Ignore** pure formatting, re-numbering, and re-exports. **Detect
 byte-identical re-deliveries** (hash the files; a re-zipped design bundle that is
 byte-identical is *no new work* — record that fact and stop the delta pass for it).
 Output: a delta list `[req-id → what changed → cases likely affected]`.
 
-### 2. Apply the named deltas
+**THEN — MANDATORY, and the step is NOT COMPLETE without it (Standing Rule 43):** convert that
+delta list into a **PER-REQUIREMENT COVERAGE VERDICT TABLE**. **EVERY** added / changed / removed
+requirement gets **ITS OWN ROW**, and every row gets **EXACTLY ONE VERDICT**. A **narrative summary
+is NOT ACCEPTABLE** — prose is where correctly-detected requirements go to die.
+
+| Req id | Verbatim requirement text (Rule 25 — quote, never paraphrase) | Delta type | Surfaces it names (Rule 40) | **VERDICT** | Case(s) — internal ID + C-id + link (Rule 8) |
+|---|---|---|---|---|---|
+| `S14-R20` | *"…included in all four exports in the same position it occupies on screen…"* | ADDED | screen · PDF · CSV (Summary + Expanded) | **case extended** | SBR-EXP-10 = C30285 (expected 2 rewritten scope-conditionally) … |
+
+**The permitted verdicts — exactly one per row, no blanks, no "TBD":**
+1. **covered by case(s)** — name them (internal ID + C-id) **and state which field carries the
+   assertion**; "the area is covered" is not a verdict.
+2. **case extended** — name the case **and the field changed**.
+3. **new case authored** — or *"authoring proposed, awaiting authorization"* (Rule 6).
+4. **not independently testable** — state the reason (rationale prose; duplicates another
+   requirement's assertion; a definition rather than a behaviour).
+5. **blocked** — state the blocker **and who owns it** (goes straight to
+   `build/OUTSTANDING-ITEMS-REGISTER.md`, Rule 36).
+
+**Completeness gate (Rule 17):** state **both totals** — *deltas found by the diff* and *rows in the
+verdict table* — and **reconcile them**. An un-verdicted row, or a delta present in the diff but
+absent from the table, is a **visible hole** and blocks delivery of the pass.
+
+**RE-DERIVE, NEVER PATCH.** The requirement → case coverage matrix is **rebuilt from scratch for
+every spec version**, from the CURRENT spec body and the CURRENT case source. **Never incrementally
+patch the previous version's matrix** — patching preserves the previous version's blind spots. Run it
+in **BOTH directions**:
+- **requirement → case(s)** — finds **uncovered requirements** (the gap that costs us coverage);
+- **case → requirement** — finds **orphaned / stale-anchored cases** whose cited anchor no longer
+  exists or has been renumbered (the gap that costs us traceability, Rule 20).
+
+**Apply Rule 40 inside the table:** for any requirement whose text names more than one surface
+(*"in all four exports"*, *"every download"*, *"wherever it is shown"*, *"and in the API"*, or a
+cross-reference such as *"in the same position it occupies on screen (S21-R7)"*), the row **expands
+into one verdict PER SURFACE** — screen · PDF · CSV · print · API · mobile · selector · empty state.
+A single "covered" against a multi-surface requirement is exactly the failure this exists to stop.
+
+**RATIONALE (2026-07-31):** SBR `S14-R20` **was correctly detected and quoted** in our own v15 spec
+diff, and then **appeared nowhere** in the deltas document that acted on that diff (0 occurrences).
+The narrative summary let it slip between detection and action; two export cases stayed stale (so a
+tester would have failed a correct build) and the same on-screen/export split went unnoticed on three
+further reports (PV `S6-R11`, TU `S7-R13`, IV `S10-R15`). Only a **formal re-derivation** surfaced it.
+Evidence: `build/report-suite/coverage-rederivation-2026-07-31/COVERAGE-REDERIVATION.md` ·
+`build/contradiction-analysis-2026-07-31/SBR-CSV-LOCATION.md` · retrospective
+`build/LESSONS-2026-07-31.md` §1.4. Canonical generator pattern:
+`build/report-suite/coverage-rederivation-2026-07-31/rederive_coverage.py` +
+`requirement-coverage.csv` + `sweep_surface.py`.
+
+### 2. Apply the named deltas — every touched case RE-VERIFIED WHOLE (Standing Rule 41)
 For each delta, update the affected cases' **wording / expected results /
 preconditions** to the new spec. Mark every touched case **re-VIU-pending** (its
 behavior must be re-verified via BUILD-ACCURATE-WORDING-VIU-PROCESS.md).
+
+**NO SURGICAL EDITS (Standing Rule 41).** A case opened to apply a delta is **RE-READ END-TO-END
+against the current spec before it is saved** — title · preconditions · steps · expected · refs ·
+notes — not just the field the delta names. **Log, per touched case, the line *"re-verified whole
+against `<spec document + version + date>`"***; an execution log naming only the edited field is
+non-compliant. Any FURTHER staleness the re-read finds is **recorded** (in the manifest and, if it is
+out of this pass's scope, in `build/OUTSTANDING-ITEMS-REGISTER.md`) — never left silently in place
+under a freshly-stamped "Updated" date. *Rationale 2026-07-31: SBR-EXP-10 = C30285 / SBR-EXP-11 =
+C30286 were opened the same day to rename one header word, and the pass edited the very line whose
+list was already stale against `S14-R20` without noticing.*
+
+**Also apply Rule 42 while editing:** if the delta touches an expected result that **closes a list**
+(*"the headers, in order, are exactly …"*, *"only these columns"*), rewrite it **scope-conditionally**
+and add the governing anchor **with its spec version** to `refs` — otherwise the same delta will
+silently invalidate it again next version.
 
 ### 3. Relevance/obsolescence AUDIT of EVERY case
 Do **not** stop at the named-delta cases. Sweep the **entire** suite and sort each

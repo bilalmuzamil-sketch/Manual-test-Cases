@@ -479,6 +479,14 @@ probe endpoints, ZZAUTOTEST tags, clean up after) rather than leaving the verdic
 - Canonical worked example for the **cross-case consistency sweep (Stage 2b)** and its
   precedence-based resolution: `build/filters/ahtesham-review-2026-07-31/VERIFICATION.md` (+
   `FIX-PLAN.md`) — the Filters Status-chip contradiction our own case-by-case audit missed.
+- **Standing Rule 40 (surface-spanning requirements)** — governs Stage-2b helper **(iv)**, the
+  surface-split check + surface matrix. **Standing Rule 42 (no unanchored absolute enumerations)** —
+  is Dimension-2 fail condition **F7**. **Standing Rule 41 (touch a case → re-verify the whole
+  case)** applies to any repair this audit authorizes: a FIX-WORDING edit is still a full re-read,
+  logged as *"re-verified whole against &lt;spec + version&gt;"*, never a surgical one-field patch.
+  Full retrospective behind all three: `build/LESSONS-2026-07-31.md`. Canonical worked example of
+  the surface-split sweep: `build/report-suite/coverage-rederivation-2026-07-31/`
+  (`sweep_surface.py`, `surface-split-findings.json`, `COVERAGE-REDERIVATION.md` rows 2–5).
 
 ## Post-delivery loop — tester feedback via Blocked (the audit's runtime counterpart)
 The audit is the pre-delivery gate; this loop is its runtime counterpart, and it is a STANDING
