@@ -3,7 +3,87 @@
 
 ---
 
-## 0. LATEST — BRANKO'S PARTS/REPORTS/PAGE-SEARCH ANSWERS **APPLIED + PUSHED** (2026-07-31)
+## 0. LATEST — **CLOSING AUTHENTICITY PASS: EXECUTED + RECONCILED** (2026-07-31)
+
+**Read this section first.** Everything lives in **`authenticity-2026-07-31/`**:
+`TRACEABILITY-AUDIT.md` (Phase 2) · `RULE28-THREE-DIMENSION-AUDIT.md` (Phase 4) ·
+`traceability-per-case.csv` · `rule28-per-case-verdicts.csv` · `title-trims.csv` ·
+`testrail-sync-manifest-2026-07-31.md` (**EXECUTED**) ·
+`testrail-execution-log-2026-07-31.md` (per-op) · `pre-write-snapshot/` +
+`post-push-verify/` · scripts `phase1_fix_defects.py`, `phase2_repair_refs.py`,
+`phase3_trim_titles.py`, `phase4_repairs.py`, `phase4_sense_repairs.py`,
+`sweep_2b_closing.py`, `gen_rule28_verdicts.py`, `exec_push_2026-07-31.py`,
+`reconcile_2026-07-31.py`.
+
+### Counts — unchanged in size, changed in quality
+**146 authored → 110 ACTIVE / 36 Retired.** Live under group **4110 = 110**; id-map
+**110 rows / 110 C-ids / 0 blank**; import **110 rows**; run **352 = 110 tests, 395
+result records (untouched)**. All three reconcile **equal both ways**. Every case is
+still **VIU-Pending** — **no live-build check was possible: Filters still has no QA
+branch/env** (Rules 12/22).
+
+### What was done
+1. **The 3 known pre-existing defects fixed** (flagged 2026-07-31 but outside that
+   pass's authorization): **FLT-STAT-07 = C38877** and **FLT-API-06 = C38895** stale
+   `spec v1.3` refs re-pointed to the ratified v1.6 anchors (S2-R7/S2-N4 and
+   S10-R2/S10-R3); **FLT-EMPTY-02 = C29607** internal-id leak removed from References.
+   All three re-read live after the push.
+2. **Traceability audit of all 110** → **80 of 110 refs were defective**: 76 cited the
+   **V1.0 `requirements.md`** ingest (8 Confluence versions stale), 2 cited spec v1.3, 1
+   leaked an internal id, 1 had no anchor statement. **All repaired.** Valid-in-v1.6
+   anchors **30 → 100**; the other 10 are 9 verified v1.6 prose sections (Parts/Reports
+   have no numbered requirements) + 1 declared "no requirement exists". **0 anchors point
+   at a requirement v1.6 removed** (it removed none). All 4 changed requirements
+   (S8-R3/S8-R4/S10-R2/S12-R4) re-read against every citing case.
+3. **THE TICKET SITUATION, on the record:** **Filters has no Jira epic and no stories** —
+   170 SV epics enumerated, SV-4913 ruled out (`build/epic-recheck-2026-07-31/`). A ticket
+   key **does not exist** and **none was invented**; the ticket half now reads
+   **`Filters (no Jira epic)`** (same 22 chars as the old misleading `Epic key TBD`).
+   Spec-anchor-only is the **maximum achievable** here — an **UPSTREAM** gap, not an
+   authoring gap.
+4. **Titles: 37 over 80 chars → 0** (longest was 179). 6 more re-worded for vocabulary
+   drift/plainness ("malformed" → "broken"). Longest active title now **80**. No
+   distinguishing detail lost — each removed phrase was confirmed present in that case's
+   steps/expected.
+5. **Rule-28 three-dimension re-verify of all 110:** **80 KEEP / 26 MERGE (held) / 3
+   WEAK-KEEP / 1 CUT (held)** · **108 SENSIBLE + 2 FIX-WORDING both repaired in-pass → 0
+   NONSENSE** · **110/110 genuine + layman-runnable**. Based on a **cold read of all 110
+   full bodies (83,699 chars)**. Stage-2b sweep = **1,959 assertions, 0 failures**;
+   **5 contradictions found, 5 resolved, 0 unresolved**. Palette-cluster contradiction
+   **confirmed still CLOSED** (0 active Command-K cases; all 9 FLT-SRCH still Retired and
+   still out of the id-map).
+6. **TestRail: 110 `update_case`, ALL HTTP 200, ALL re-GET verified MATCH, 0 failures.**
+   0 add, 0 delete, 0 section ops, **0 run/result writes**. Fields: refs ×110, title ×40,
+   `custom_steps` ×1 (C38891), `custom_expected` ×1 (C29621). Pre-write `get_case`
+   snapshot per case. Run 352 verified equal both ways before and after; **395 results
+   preserved**.
+
+### STILL OPEN after this pass
+- **NEW follow-up — a markup-only anomaly on 7 cases.** In TestRail
+  **C29557, C29560, C29566, C29568, C29573, C29575, C29582** store
+  Preconditions/Steps/Expected as **HTML `<ol><li>`** while the other 103 store the
+  house-standard plain numbered lines. **Content is byte-identical** (machine-verified on
+  all 21 field pairs). **Deliberately NOT pushed:** if TestRail renders those fields as
+  Markdown the tester sees literal `<ol><li>` tags (worth fixing); if it renders HTML they
+  are fine and a rewrite is churn. **One look at a TestRail case page decides it.**
+- **26 MERGE + 1 CUT recommendations remain HELD** (13 groups; `RULE28-…AUDIT.md` §3).
+  19 of them hinge on whether the five filter dropdowns share **one component** — a
+  **live-build** question, so merging now would be guessing.
+- **No live VIU is possible** — no QA branch/env. ~18 on-screen labels stay design-sourced
+  and explicitly hedged in the case text.
+- **Branko:** NEW-Q1 (confirm Story 13 stays in this release), NEW-Q2 (the board that pins
+  the 6 new filter types), NEW-Q3 (number Parts/Reports into the requirements), plus the 6
+  unanswered questions in `PO-Questions-Branko-Filters-TechPlan_2026-07-30.md`, plus the
+  epic-key ask (or confirmation the work is tracked outside Jira).
+- `requirements.md` is **still the stale V1.0 ingest** — re-ingest from
+  `spec-current-2026-07-31/Filters-spec-current.md`. No case cites it any more.
+- `branko-answers-2026-07-31/sweep_2b.py` is marked **SUPERSEDED** (its check 13 asserts
+  the retired `Epic key TBD` convention) — run `authenticity-2026-07-31/sweep_2b_closing.py`
+  instead.
+
+---
+
+## 0.05 PRIOR — BRANKO'S PARTS/REPORTS/PAGE-SEARCH ANSWERS **APPLIED + PUSHED** (2026-07-31)
 
 **Read this section first.** Source docs: `branko-answers-2026-07-31/` —
 `answers-ingested.md` (his verbatim words), `DELTAS.md` (analysis), `APPLY-PLAN.md` (the

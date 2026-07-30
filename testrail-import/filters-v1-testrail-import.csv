@@ -2,33 +2,33 @@ Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
 Filter bar is shown below the tab row on the Work Orders page,Filter Bar Layout and Visibility,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. At least a few work orders exist in the shop.","1. Open the Work Orders page.
 2. Look at the area directly under the tab row (All, Estimates, Completed, My Work Orders).","1. A filter bar is visible directly below the tab row and above the work order table.
-2. The filter bar is shown by default (expanded) without having to turn anything on.",requirements.md Story 1 S1-R1,,
-"Five filter chips appear in a fixed order, each with an icon, its name and a down arrow",Filter Bar Layout and Visibility,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The filter bar is shown by default (expanded) without having to turn anything on.",Filters (no Jira epic) (S1-R1) [spec v1.6 2026-07-28],,
+"Five filter chips appear in a fixed order with an icon, name and arrow",Filter Bar Layout and Visibility,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the filter bar visible.
 3. You are on the All tab (on the Estimates and Completed tabs the Status chip is shown greyed out and already filled in, so the chips do not all look the same there).","1. Read the filter chips in the filter bar from left to right.
 2. Look at what each chip shows.","1. Exactly five filter chips appear, in this order: Status, Customer, Lead Technician, Service Advisor, Asset on site.
 2. Each chip shows a small icon, the filter name and a down arrow (chevron) indicating it opens a dropdown.
-3. In the design the icons are: a spinner for Status, a person for Customer, a wrench for Lead Technician, a headset for Service Advisor and a truck for Asset on site.",requirements.md Story 1 S1-R2; S1-R3,,
+3. In the design the icons are: a spinner for Status, a person for Customer, a wrench for Lead Technician, a headset for Service Advisor and a truck for Asset on site.",Filters (no Jira epic) (S1-R2; S1-R3) [spec v1.6 2026-07-28],,
 The filter bar still shows the other four chips on the Estimates tab,Filter Bar Layout and Visibility,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.","1. Click the Estimates tab.
 2. Look at the filter bar.","1. The filter bar is still shown - it does not disappear on this tab.
 2. The Customer, Lead Technician, Service Advisor and Asset on site chips are all displayed and usable.
-3. The Status chip is not usable on this tab: it is shown greyed out and already filled in with the tab's own status, and cannot be clicked.","Filters epic (key TBD) (S1-N1; S9-R2; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled) [spec v1.6 2026-07-28]",,
-Status chip opens a checkbox list of all nine work order statuses with a Clear selection action,Status Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. The Status chip is not usable on this tab: it is shown greyed out and already filled in with the tab's own status, and cannot be clicked.","Filters (no Jira epic) (S1-N1; S9-R2; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled) [spec v1.6 2026-07-28]",,
+Status chip opens a checkbox list of all nine statuses plus Clear selection,Status Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All or My Work Orders tab.
 3. No filters are currently selected.","1. Click the Status filter chip.
 2. Read the list of options from top to bottom.
 3. Look at the bottom of the dropdown panel.","1. A dropdown panel opens under the Status chip.
 2. It lists all nine statuses as checkboxes, in this order: Estimate, Approved, In progress, Review, Complete, Invoiced, Paid, Declined, Imported.
 3. All checkboxes are unticked (nothing selected yet).
-4. A 'Clear selection' action is shown at the bottom of the dropdown.",requirements.md Story 2 S2-R1; S2-R4,,
+4. A 'Clear selection' action is shown at the bottom of the dropdown.",Filters (no Jira epic) (S2-R1; S2-R4) [spec v1.6 2026-07-28],,
 "Ticking one status filters the table immediately, with no apply button",Status Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist in at least two different statuses (for example some Estimate and some Approved - create ZZAUTOTEST work orders if needed).","1. Click the Status filter chip.
 2. Tick the checkbox for one status (for example Estimate).
 3. Watch the work order table while the dropdown is still open.","1. The ticked checkbox appears filled (checked).
 2. The table updates immediately to show only work orders in the selected status - there is no confirm or apply button on desktop.
-3. Work orders in other statuses are no longer listed.",requirements.md Story 2 S2-R2; S2-R3; S2-R6,,
+3. Work orders in other statuses are no longer listed.",Filters (no Jira epic) (S2-R2; S2-R3; S2-R6) [spec v1.6 2026-07-28],,
 Ticking several statuses shows work orders matching any of them,Status Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist in at least three different statuses (seed ZZAUTOTEST work orders if needed).","1. Click the Status filter chip.
@@ -36,27 +36,27 @@ Ticking several statuses shows work orders matching any of them,Status Filter,Fu
 3. Look at the work order table.","1. Every ticked status shows a filled checkbox.
 2. The table shows work orders whose status matches ANY of the ticked statuses (both Estimate and Approved rows appear).
 3. Work orders in statuses that are not ticked are hidden.
-4. There is no limit on how many statuses you can tick.",requirements.md Story 2 S2-R2; §4 Key Decisions (no selection limit),,
-Clear selection in the Status dropdown unticks every status and removes the filter,Status Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+4. There is no limit on how many statuses you can tick.",Filters (no Jira epic) (S2-R2; §4 Key Decisions (no selection limit)) [spec v1.6 2026-07-28],,
+Clear selection in the Status dropdown unticks every status,Status Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Two or more statuses are ticked in the Status filter and the table is filtered.","1. Open the Status dropdown (if it is not already open).
 2. Click 'Clear selection' at the bottom of the dropdown.
 3. Look at the checkboxes and the table.","1. All status checkboxes become unticked.
 2. The Status filter is removed and the table returns to showing work orders of every status.
-3. Only the Status filter is affected - any other active filters stay applied.",requirements.md Story 2 S2-R4; Story 8 S8-R2,,
+3. Only the Status filter is affected - any other active filters stay applied.",Filters (no Jira epic) (S2-R4; S8-R2) [spec v1.6 2026-07-28],,
 Clicking outside the Status dropdown closes it and keeps the selections applied,Status Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. The Status dropdown is open with at least one status ticked.","1. Click anywhere outside the open dropdown (for example on empty page space).
 2. Look at the dropdown, the Status chip and the table.","1. The dropdown closes.
 2. The ticked statuses stay selected - the Status chip stays in its active state showing the selection.
-3. The table stays filtered by the selected statuses.",requirements.md Story 2 S2-R5,,
+3. The table stays filtered by the selected statuses.",Filters (no Jira epic) (S2-R5) [spec v1.6 2026-07-28],,
 Selecting statuses that no work order has shows the empty state,Status Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. At least one status exists that NO current work order has (for example Imported - check the list first).","1. Click the Status filter chip.
 2. Tick only the status that no work order currently has.
 3. Look at the table area.","1. The table shows no rows.
 2. An empty state is displayed saying no results were found for the current filters (see the Empty State cases for its full content).
-3. The app does not show an error.",requirements.md Story 2 S2-N3; Story 8 S8-R3,,
+3. The app does not show an error.",Filters (no Jira epic) (S2-N3; S8-R3) [spec v1.6 2026-07-28],,
 Imported works alone: picking it greys out the other filters,Status Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Imported work orders exist, plus some normal work orders.
 3. You are on the Work Orders page, All tab, no filters applied.","1. Open the Status filter and tick Imported.
@@ -65,42 +65,42 @@ Imported works alone: picking it greys out the other filters,Status Filter,Funct
 4. Untick Imported.","1. The table switches to showing imported work orders only.
 2. While Imported is ticked, the other filter chips are greyed out and cannot be used.
 3. Imported cannot be combined with other statuses - selecting it works alone.
-4. Unticking Imported re-enables the other chips and the normal list returns.",Filters (Epic key TBD); tech plan 2026-07-29 G1 (Imported exclusivity); spec S2-R1 (conflict raised with the author - export of spec v1.3 awaited),,
-Customer chip opens a dropdown with a 'Search customer' field and a scrollable customer list,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+4. Unticking Imported re-enables the other chips and the normal list returns.",Filters (no Jira epic) (S2-R7 (Imported cannot be combined with anything else; other filter chips disabled while it is active); S2-N4 (the combination is prevented rather than returning an empty result)) [spec v1.6 2026-07-28],,
+Customer chip opens a dropdown with a search field and a customer list,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. Several customers exist in the shop.","1. Click the Customer filter chip.
 2. Look at the top of the dropdown panel and the list below it.
 3. Look at the bottom of the panel.","1. A dropdown panel opens under the Customer chip.
 2. A search input with the placeholder 'Search customer' is at the top, already focused so you can type right away.
 3. Below it is a scrollable list of customer names.
-4. A 'Clear selection' action is shown at the bottom of the panel.",requirements.md Story 3 S3-R1,,
+4. A 'Clear selection' action is shown at the bottom of the panel.",Filters (no Jira epic) (S3-R1) [spec v1.6 2026-07-28],,
 Typing in the customer search narrows the list to matching names,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Customer dropdown open.
 3. Several customers with different names exist.","1. Type part of one customer's name into the 'Search customer' field (for example the first few letters).
 2. Watch the list while you type.","1. The customer list narrows as you type, showing only names that match what you entered.
 2. Customers that do not match are removed from the list.
-3. Deleting the text brings the full list back.",requirements.md Story 3 S3-R2,,
-Selecting customers adds removable tags in the dropdown input area and checkmarks in the list,Customer Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+3. Deleting the text brings the full list back.",Filters (no Jira epic) (S3-R2) [spec v1.6 2026-07-28],,
+Selected customers show as removable tags and as ticks in the list,Customer Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Customer dropdown open.
 3. At least three customers exist.","1. Click one customer in the list.
 2. Click a second and a third customer.
 3. Look at the input area at the top of the dropdown and at the list rows.","1. Each selected customer appears as a tag (small chip) with an x in the input area at the top of the dropdown.
 2. Each selected customer's row in the list shows a checkmark on the right.
 3. Long customer names on tags are shortened with an ellipsis (for example 'Texas Truck And Aut...').
-4. You can keep selecting as many customers as needed - there is no selection limit.",requirements.md Story 3 S3-R3; S3-R4; §4 Key Decisions (no selection limit),,
+4. You can keep selecting as many customers as needed - there is no selection limit.",Filters (no Jira epic) (S3-R3; S3-R4; §4 Key Decisions (no selection limit)) [spec v1.6 2026-07-28],,
 Clicking the x on a customer tag removes just that customer from the selection,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Customer dropdown open.
 3. Two or more customers are selected (their tags are visible in the input area).","1. Click the x on one selected customer's tag.
 2. Look at the tags, the list and the work order table.","1. That customer's tag disappears from the input area.
 2. The checkmark next to that customer in the list is removed.
 3. The other selected customers keep their tags and checkmarks.
-4. The table updates to no longer include that customer's work orders.",requirements.md Story 3 S3-R5,,
+4. The table updates to no longer include that customer's work orders.",Filters (no Jira epic) (S3-R5) [spec v1.6 2026-07-28],,
 The table shows only work orders belonging to any of the selected customers,Customer Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. At least two customers each have at least one work order, and a third customer's work orders also exist (seed ZZAUTOTEST data if needed).","1. Open the Customer filter and select two customers.
 2. Look at the Customer column in the work order table.","1. The table shows only work orders whose customer is one of the two selected customers.
 2. Work orders belonging to any other customer are hidden.
-3. The table updates in real time as you make the selections (no apply button on desktop).",requirements.md Story 3 S3-R6; Story 2 S2-R6 (real-time pattern),,
+3. The table updates in real time as you make the selections (no apply button on desktop).",Filters (no Jira epic) (S3-R6; S2-R6 (real-time pattern)) [spec v1.6 2026-07-28],,
 Clear selection in the Customer dropdown removes all selected customers,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. Two or more customers are selected in the Customer filter and the table is filtered.","1. Open the Customer dropdown (if not already open).
@@ -108,218 +108,218 @@ Clear selection in the Customer dropdown removes all selected customers,Customer
 3. Look at the tags, the list and the table.","1. All customer tags are removed from the input area.
 2. All checkmarks in the list are removed.
 3. The Customer filter is removed and the table shows work orders of all customers again.
-4. Other active filters (if any) are not affected.",requirements.md Story 3 S3-R7; Story 8 S8-R2,,
+4. Other active filters (if any) are not affected.",Filters (no Jira epic) (S3-R7; S8-R2) [spec v1.6 2026-07-28],,
 Clicking outside the Customer dropdown closes it and the selections remain,Customer Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Customer dropdown open and two customers selected.","1. Click anywhere outside the dropdown.
 2. Look at the Customer chip and the table.
 3. Click the Customer chip again to reopen the dropdown.","1. The dropdown closes when you click outside it.
 2. The Customer chip stays in the active (blue) state showing the selection and the table stays filtered.
-3. When reopened, the selected customers' tags are still visible in the input area.",requirements.md Story 3 S3-R8,,
+3. When reopened, the selected customers' tags are still visible in the input area.",Filters (no Jira epic) (S3-R8) [spec v1.6 2026-07-28],,
 Customer search with no matching name shows a no-results message in the list,Customer Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Customer dropdown open.","1. Type a string that matches no customer name (for example 'zzzqqq').
 2. Look at the list area of the dropdown.","1. The list shows a message saying there are no results (instead of an empty gap).
 2. The app does not show an error.
-3. Clearing the search text brings the customer list back.",requirements.md Story 3 S3-N1,,
-A customer with no open work orders is still listed; filtering by them returns an empty result,Customer Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+3. Clearing the search text brings the customer list back.",Filters (no Jira epic) (S3-N1) [spec v1.6 2026-07-28],,
+A customer with no work orders is still listed; picking them shows no rows,Customer Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A customer exists who currently has NO work orders (create a fresh ZZAUTOTEST customer if needed).
 3. You are on the Work Orders page on the All tab.","1. Open the Customer filter and search for the customer who has no work orders.
 2. Confirm they appear in the list, then select them (and only them).
 3. Look at the table.","1. The customer with no work orders IS shown in the filter list (they are not hidden).
 2. After selecting only that customer, the table shows no rows and the filtered empty state is displayed.
-3. No error is shown.",requirements.md Story 3 S3-E1; S3-N2; Story 8 S8-R3,,
-Lead Technician chip opens a dropdown with a 'Search technician' field and a technician list,Lead Technician Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. No error is shown.",Filters (no Jira epic) (S3-E1; S3-N2; S8-R3) [spec v1.6 2026-07-28],,
+Lead Technician chip opens a dropdown with a search field and a list,Lead Technician Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. Several technicians exist in the shop.","1. Click the Lead Technician filter chip.
 2. Look at the top of the dropdown, the list below and the bottom of the panel.","1. A dropdown panel opens under the Lead Technician chip.
 2. A search input with the placeholder 'Search technician' is at the top.
 3. Below it is a scrollable list of technician names.
-4. A 'Clear selection' action is shown at the bottom.",requirements.md Story 4 S4-R1,,
+4. A 'Clear selection' action is shown at the bottom.",Filters (no Jira epic) (S4-R1) [spec v1.6 2026-07-28],,
 Typing in the technician search narrows the list to matching names,Lead Technician Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Lead Technician dropdown open.","1. Type part of one technician's name into the 'Search technician' field.
 2. Watch the list while you type.","1. The technician list narrows to only the names matching what you typed.
-2. Deleting the text brings the full list back.",requirements.md Story 4 S4-R2,,
+2. Deleting the text brings the full list back.",Filters (no Jira epic) (S4-R2) [spec v1.6 2026-07-28],,
 Selecting technicians shows only work orders where they are the lead technician,Lead Technician Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist with different lead technicians assigned, including at least one work order where the chosen technician is assigned but NOT as lead (seed ZZAUTOTEST data if needed).","1. Open the Lead Technician filter and select one or two technicians.
 2. Look at the checkboxes in the list and the work order table.","1. Selected technicians show a filled checkbox in the list.
 2. The table shows only work orders where one of the selected technicians is assigned as the LEAD technician.
 3. A work order where the technician is assigned only in a non-lead role does not appear.
-4. The table updates in real time as you select.",requirements.md Story 4 S4-R3; S4-R4,,
+4. The table updates in real time as you select.",Filters (no Jira epic) (S4-R3; S4-R4) [spec v1.6 2026-07-28],,
 Clear selection in the Lead Technician dropdown removes all selected technicians,Lead Technician Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. One or more technicians are selected in the Lead Technician filter.","1. Open the Lead Technician dropdown and click 'Clear selection' at the bottom.
 2. Look at the list and the table.","1. All technician selections are removed (checkboxes unticked).
 2. The Lead Technician filter no longer restricts the table.
-3. Other active filters are not affected.",requirements.md Story 4 S4-R5; Story 8 S8-R2,,
+3. Other active filters are not affected.",Filters (no Jira epic) (S4-R5; S8-R2) [spec v1.6 2026-07-28],,
 Clicking outside the Lead Technician dropdown closes it,Lead Technician Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Lead Technician dropdown open and one technician selected.","1. Click anywhere outside the dropdown.
 2. Look at the dropdown, the chip and the table.","1. The dropdown closes.
-2. The selection stays applied - the chip stays active and the table stays filtered.",requirements.md Story 4 S4-R6,,
+2. The selection stays applied - the chip stays active and the table stays filtered.",Filters (no Jira epic) (S4-R6) [spec v1.6 2026-07-28],,
 Selecting a technician who leads no work orders shows the empty state,Lead Technician Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A technician exists who is not the lead technician on ANY work order (create a fresh ZZAUTOTEST staff member if needed).
 3. You are on the Work Orders page on the All tab with no other filters active.","1. Open the Lead Technician filter and select only that technician.
 2. Look at the table.","1. The table shows no rows and the filtered empty state is displayed.
-2. No error is shown.",requirements.md Story 4 S4-N1; Story 8 S8-R3,,
+2. No error is shown.",Filters (no Jira epic) (S4-N1; S8-R3) [spec v1.6 2026-07-28],,
 A deactivated technician does not appear in the Lead Technician filter list,Lead Technician Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A test technician (ZZAUTOTEST) exists and is visible in the Lead Technician filter list.
 3. That test technician is then made inactive/deactivated in staff administration (restore them afterwards).","1. On the Work Orders page, open the Lead Technician filter.
 2. Search for the deactivated technician's name.
 3. Look at the list.","1. The deactivated technician is NOT shown in the filter list.
-2. Active technicians are still listed normally.",requirements.md Story 4 S4-E1,,
-Service Advisor chip opens a dropdown with a 'Search advisor' field and an advisor list,Service Advisor Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Active technicians are still listed normally.",Filters (no Jira epic) (S4-E1) [spec v1.6 2026-07-28],,
+Service Advisor chip opens a dropdown with a search field and a list,Service Advisor Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. Several service advisors exist in the shop.","1. Click the Service Advisor filter chip.
 2. Look at the top of the dropdown, the list below and the bottom of the panel.","1. A dropdown panel opens under the Service Advisor chip.
 2. A search input with the placeholder 'Search advisor' is at the top.
 3. Below it is a scrollable list of advisor names.
-4. A 'Clear selection' action is shown at the bottom.",requirements.md Story 5 S5-R1,,
+4. A 'Clear selection' action is shown at the bottom.",Filters (no Jira epic) (S5-R1) [spec v1.6 2026-07-28],,
 Typing in the advisor search narrows the list to matching names,Service Advisor Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Service Advisor dropdown open.","1. Type part of one advisor's name into the 'Search advisor' field.
 2. Watch the list while you type.","1. The advisor list narrows to only the names matching what you typed.
-2. Deleting the text brings the full list back.",requirements.md Story 5 S5-R2,,
+2. Deleting the text brings the full list back.",Filters (no Jira epic) (S5-R2) [spec v1.6 2026-07-28],,
 Selecting advisors shows only work orders assigned to those advisors,Service Advisor Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist with different service advisors assigned (seed ZZAUTOTEST data if needed).","1. Open the Service Advisor filter and select one or two advisors.
 2. Look at the checkboxes in the list and the Service Advisor column in the table.","1. Selected advisors show a filled checkbox in the list.
 2. The table shows only work orders assigned to any of the selected advisors.
-3. The table updates in real time as you select.",requirements.md Story 5 S5-R3; S5-R4,,
+3. The table updates in real time as you select.",Filters (no Jira epic) (S5-R3; S5-R4) [spec v1.6 2026-07-28],,
 Clear selection in the Service Advisor dropdown removes all selected advisors,Service Advisor Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. One or more advisors are selected in the Service Advisor filter.","1. Open the Service Advisor dropdown and click 'Clear selection' at the bottom.
 2. Look at the list and the table.","1. All advisor selections are removed.
 2. The Service Advisor filter no longer restricts the table.
-3. Other active filters are not affected.",requirements.md Story 5 S5-R5; Story 8 S8-R2,,
+3. Other active filters are not affected.",Filters (no Jira epic) (S5-R5; S8-R2) [spec v1.6 2026-07-28],,
 Clicking outside the Service Advisor dropdown closes it,Service Advisor Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Service Advisor dropdown open and one advisor selected.","1. Click anywhere outside the dropdown.
 2. Look at the dropdown, the chip and the table.","1. The dropdown closes.
-2. The selection stays applied - the chip stays active and the table stays filtered.",requirements.md Story 5 S5-R6,,
+2. The selection stays applied - the chip stays active and the table stays filtered.",Filters (no Jira epic) (S5-R6) [spec v1.6 2026-07-28],,
 Selecting an advisor with no assigned work orders shows the empty state,Service Advisor Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. An advisor exists who is not assigned to ANY work order (create a fresh ZZAUTOTEST staff member if needed).
 3. You are on the Work Orders page on the All tab with no other filters active.","1. Open the Service Advisor filter and select only that advisor.
 2. Look at the table.","1. The table shows no rows and the filtered empty state is displayed.
-2. No error is shown.",requirements.md Story 5 S5-N1; Story 8 S8-R3,,
+2. No error is shown.",Filters (no Jira epic) (S5-N1; S8-R3) [spec v1.6 2026-07-28],,
 A deactivated advisor does not appear in the Service Advisor filter list,Service Advisor Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A test advisor (ZZAUTOTEST) exists and is visible in the Service Advisor filter list.
 3. That test advisor is then made inactive/deactivated in staff administration (restore them afterwards).","1. On the Work Orders page, open the Service Advisor filter.
 2. Search for the deactivated advisor's name.
 3. Look at the list.","1. The deactivated advisor is NOT shown in the filter list.
-2. Active advisors are still listed normally.",requirements.md Story 5 S5-E1,,
-"Asset on site chip opens a dropdown with exactly two options, Yes and No, plus Clear selection",Asset on Site Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Active advisors are still listed normally.",Filters (no Jira epic) (S5-E1) [spec v1.6 2026-07-28],,
+Asset on site chip opens a dropdown with Yes and No plus Clear selection,Asset on Site Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.","1. Click the Asset on site filter chip.
 2. Read the options in the dropdown.","1. A small dropdown panel opens under the Asset on site chip.
 2. It contains exactly two options: Yes and No.
 3. A 'Clear selection' action is shown at the bottom.
-4. It is a dropdown (like the other filters), not an on/off toggle.","requirements.md Story 6 S6-R1; §4 Key Decisions (dropdown, not toggle)",,
+4. It is a dropdown (like the other filters), not an on/off toggle.",Filters (no Jira epic) (S6-R1; §4 Key Decisions (dropdown - not toggle)) [spec v1.6 2026-07-28],,
 Choosing Yes shows only work orders whose asset is on site,Asset on Site Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist in both states: some with the asset marked on site and some not (set the on-site marker on ZZAUTOTEST work orders as needed).","1. Open the Asset on site filter and choose Yes.
 2. Look at the On Site column in the table (green house icon = on site, red = not).","1. The table shows only work orders whose asset is currently on site.
-2. Work orders whose asset is not on site are hidden.",requirements.md Story 6 S6-R2,,
+2. Work orders whose asset is not on site are hidden.",Filters (no Jira epic) (S6-R2) [spec v1.6 2026-07-28],,
 Asset on site is single-select: choosing the other option replaces the first,Asset on Site Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with Yes selected in the Asset on site filter.","1. Open the Asset on site dropdown again.
 2. Choose No.
 3. Look at the selection and the table.","1. No becomes the selected option and Yes is deselected automatically - only one option can be selected at a time.
 2. The table switches to showing only the not-on-site work orders.
-3. The chip shows the currently selected value.",requirements.md Story 6 S6-R3,,
+3. The chip shows the currently selected value.",Filters (no Jira epic) (S6-R3) [spec v1.6 2026-07-28],,
 Clear selection in the Asset on site dropdown removes the filter,Asset on Site Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with Yes or No selected in the Asset on site filter.","1. Open the Asset on site dropdown and click 'Clear selection'.
 2. Look at the chip and the table.","1. The selection is removed and the chip returns to its default (inactive) state.
 2. The table shows work orders regardless of on-site status again.
-3. Other active filters are not affected.",requirements.md Story 6 S6-R4; Story 8 S8-R2,,
+3. Other active filters are not affected.",Filters (no Jira epic) (S6-R4; S8-R2) [spec v1.6 2026-07-28],,
 Clicking outside the Asset on site dropdown closes it,Asset on Site Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Asset on site dropdown open and Yes selected.","1. Click anywhere outside the dropdown.
 2. Look at the dropdown, the chip and the table.","1. The dropdown closes.
-2. The Yes selection stays applied - the chip stays active and the table stays filtered.",requirements.md Story 6 S6-R5,,
+2. The Yes selection stays applied - the chip stays active and the table stays filtered.",Filters (no Jira epic) (S6-R5) [spec v1.6 2026-07-28],,
 An Asset on site choice that matches no work orders shows the empty state,Asset on Site Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab with no other filters active.
 3. Every current work order is in the SAME on-site state (set all ZZAUTOTEST work orders to on site, or combine with another filter so one option matches nothing).","1. Open the Asset on site filter and choose the option that matches no work orders (for example No when everything is on site).
 2. Look at the table.","1. The table shows no rows and the filtered empty state is displayed.
-2. No error is shown.",requirements.md Story 6 S6-N1; Story 8 S8-R3,,
+2. No error is shown.",Filters (no Jira epic) (S6-N1; S8-R3) [spec v1.6 2026-07-28],,
 Choosing No shows only work orders whose asset is not on site,Asset on Site Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Work orders exist both with the asset on site and with the asset not on site (create one of each if needed).
 3. You are on the Work Orders page.","1. Open the Asset on site filter.
 2. Choose No.
 3. Look at the table (and its On Site column).","1. Only work orders whose asset is NOT on site remain in the list.
 2. Every work order with the asset on site is excluded.
-3. The chip shows the active No selection.",requirements.md Story 6 S6-R2; Filters (Epic key TBD); tech plan 2026-07-29 G4 (filtering No is new capability),,
-A chip with a selected value turns into the active blue state and shows the value,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. The chip shows the active No selection.",Filters (no Jira epic) (S6-R2; tech plan 2026-07-29 G4 (filtering No is new capability)) [spec v1.6 2026-07-28],,
+A chip with a selected value turns blue and shows the value,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with no filters selected (all chips in their default grey state).","1. Open the Status filter and tick one status (for example Estimate).
 2. Click outside to close the dropdown and look at the Status chip.","1. The Status chip changes to an active/highlighted look (blue pill).
 2. The chip displays the selected value (for example 'Status: Estimate').
-3. The other chips stay in their default state.",requirements.md Story 7 S7-R1,,
-A chip with several values shows the first values and shortens the rest with an ellipsis,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. The other chips stay in their default state.",Filters (no Jira epic) (S7-R1) [spec v1.6 2026-07-28],,
+A chip with several values shows the first ones and shortens the rest,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.","1. Open the Status filter and tick three or more statuses (for example Estimate, In progress and Approved).
 2. Close the dropdown and read the Status chip label.","1. The chip lists the selected values starting with the first one and shortens the label when it gets too long (the design shows 'Status: Estimate, In progress, Approved...').
-2. The chip stays a single compact pill - it does not grow to show every value in full.",requirements.md Story 7 S7-R2,,
-'Clear filters' appears to the right of the chips only when at least one filter is active,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The chip stays a single compact pill - it does not grow to show every value in full.",Filters (no Jira epic) (S7-R2) [spec v1.6 2026-07-28],,
+'Clear filters' shows right of the chips only when a filter is active,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with no filters selected.","1. Look at the right end of the filter chip row with no filters active.
 2. Select any filter value (for example one status).
 3. Look at the right end of the chip row again.
 4. Remove the selection (Clear selection in the dropdown) and look once more.","1. With no filters active, no 'Clear filters' button/link is shown (there is nothing to click).
 2. As soon as one filter is active, a blue 'Clear filters' link appears at the right end of the chip row.
-3. When the last active filter is removed, 'Clear filters' disappears again.",requirements.md Story 7 S7-R3; S7-N1; Story 8 S8-N1,,
-'Clear filters' removes every active filter at once and all chips return to default,Active Filter Chips and Clear Filters,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+3. When the last active filter is removed, 'Clear filters' disappears again.",Filters (no Jira epic) (S7-R3; S7-N1; S8-N1) [spec v1.6 2026-07-28],,
+'Clear filters' removes every active filter and resets all chips,Active Filter Chips and Clear Filters,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Values are selected in at least three different filters (for example a status, a customer and Asset on site Yes).
 4. The page's own Search box is empty (no text typed in it) - a typed search is cleared by its own control, not by 'Clear filters'.","1. Click the 'Clear filters' link at the right end of the chip row.
 2. Look at all the chips and the table.","1. Every active filter is cleared in one click.
 2. All chips return to their default (inactive) look with no values shown.
 3. The table shows the full unfiltered list again (no text is in the page Search box, so nothing else is narrowing it).
-4. The 'Clear filters' link disappears.",Filters epic (key TBD) (S8-R1; §4 Key Decisions; S13-R13 (clearing filters does not clear a typed search)) [spec v1.6 2026-07-28],,
-'Clear selection' inside one dropdown clears only that filter and leaves the others active,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+4. The 'Clear filters' link disappears.",Filters (no Jira epic) (S8-R1; §4 Key Decisions; S13-R13 (clearing filters does not clear a typed search)) [spec v1.6 2026-07-28],,
+'Clear selection' in one dropdown clears only that filter,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Values are selected in at least two different filters (for example a status and a customer).","1. Open the Status dropdown and click 'Clear selection'.
 2. Look at the Status chip, the Customer chip and the table.","1. Only the Status filter is cleared - its chip returns to default.
 2. The Customer filter stays selected and active (blue) and keeps filtering the table.
-3. 'Clear filters' remains visible because a filter is still active.",requirements.md Story 8 S8-R2; §4 Key Decisions,,
-Several different filters combine: only work orders matching every active filter remain,Active Filter Chips and Clear Filters,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+3. 'Clear filters' remains visible because a filter is still active.",Filters (no Jira epic) (S8-R2; §4 Key Decisions) [spec v1.6 2026-07-28],,
+Status and Customer filters together show only work orders matching both,Active Filter Chips and Clear Filters,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Seed ZZAUTOTEST work orders so that: customer A has an Estimate work order and an Approved work order, and customer B has an Estimate work order.","1. Open the Status filter and tick Estimate.
 2. Open the Customer filter and select customer A.
 3. Look at the table.","1. Only customer A's Estimate work order is shown.
 2. Customer A's Approved work order is hidden (wrong status) and customer B's Estimate work order is hidden (wrong customer) - each additional filter narrows the result further.
-3. Both chips are in the active state and 'Clear filters' is visible.",requirements.md §2 Feature Overview (multi-criteria); Story 8 S8-R3 ('combination of active filters'),,
-The toolbar funnel button collapses the filter bar and the table reclaims the space,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. Both chips are in the active state and 'Clear filters' is visible.",Filters (no Jira epic) (§2 Feature Overview (multi-criteria); S8-R3 ('combination of active filters')) [spec v1.6 2026-07-28],,
+The toolbar funnel button collapses the bar and the table takes the space,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the filter bar visible (expanded).","1. Find the filter (funnel) icon button in the page toolbar (next to the Search magnifier and the column/layout toggle, left of the New Work Order button).
 2. Click the funnel icon once.
 3. Look at the filter bar area and the table.","1. The filter bar row is hidden.
 2. The work order table moves up and uses the reclaimed vertical space.
-3. The funnel icon shows a pressed/active look while the bar is collapsed.",requirements.md Story 1 S1-R4; S1-R5,,
-"Expanding the filter bar brings it back exactly as it was, with active filters still shown",Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. The funnel icon shows a pressed/active look while the bar is collapsed.",Filters (no Jira epic) (S1-R4; S1-R5) [spec v1.6 2026-07-28],,
+Expanding the filter bar brings it back with active filters still shown,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. At least one filter is selected (for example two statuses) and the filter bar has been collapsed with the funnel button.","1. Click the funnel icon in the toolbar again.
 2. Look at the filter bar.","1. The filter bar reappears below the tab row.
 2. The previously selected filters are still shown on their chips in the active (blue) state - nothing was lost while collapsed.
-3. The 'Clear filters' link is still shown at the right end of the chip row.",requirements.md Story 1 S1-R6,,
-The collapsed or expanded state of the filter bar is remembered after leaving and returning,Collapse and Expand,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+3. The 'Clear filters' link is still shown at the right end of the chip row.",Filters (no Jira epic) (S1-R6) [spec v1.6 2026-07-28],,
+The filter bar's collapsed or expanded state is remembered on return,Collapse and Expand,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page and have collapsed the filter bar with the funnel button.","1. Navigate to another page (for example open a work order, or go to Customers).
 2. Return to the Work Orders page.
 3. Look at the filter bar area.
 4. Expand the bar with the funnel button, leave the page again and come back.","1. After step 2 the filter bar is still collapsed (your choice was remembered).
-2. After step 4 the filter bar is expanded again when you return - whichever state you left it in is restored.",requirements.md Story 1 S1-R7; Story 10 S10-R1,,
-"The funnel button shows a blue indicator when filters are active while the bar is collapsed, and none when no filters are active",Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. After step 4 the filter bar is expanded again when you return - whichever state you left it in is restored.",Filters (no Jira epic) (S1-R7; S10-R1) [spec v1.6 2026-07-28],,
+Collapsed funnel button shows a blue indicator only when filters are active,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.","1. With NO filters selected, collapse the filter bar with the funnel button and look at the funnel icon.
 2. Expand the bar, select at least one filter value (for example a status).
 3. Collapse the bar again and look at the funnel icon.","1. After step 1 the funnel icon shows no special indicator (only its normal pressed look).
-2. After step 3 the funnel icon shows a visual indicator (filters icon in primary blue) signalling that active filters are in effect while the bar is hidden.",requirements.md Story 7 S7-R4; S7-N2,,
+2. After step 3 the funnel icon shows a visual indicator (filters icon in primary blue) signalling that active filters are in effect while the bar is hidden.",Filters (no Jira epic) (S7-R4; S7-N2) [spec v1.6 2026-07-28],,
 Active filters keep filtering the table while the filter bar is collapsed,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist in several statuses; a Status filter is applied (for example Estimate only) and the table is visibly filtered.","1. Collapse the filter bar with the funnel button.
 2. Look at the work order table.","1. The table content does not change when the bar collapses - it still shows only the work orders matching the active filters.
-2. Hiding the bar only hides the chips; it does not remove or pause the filtering.",requirements.md Story 7 S7-R5,,
-A filter combination with no matching work orders shows a no-results empty state instead of a blank table,Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Hiding the bar only hides the chips; it does not remove or pause the filtering.",Filters (no Jira epic) (S7-R5) [spec v1.6 2026-07-28],,
+A filter combination with no matches shows a no-results empty state,Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist, but you can pick a filter combination that matches none of them (for example a customer plus a status that customer never has).","1. Apply the filter combination that matches no work orders.
 2. Look at the table area.","1. The table body is replaced by an empty state (not just a bare empty grid).
 2. The empty state shows a message indicating no results were found for the current filters.
-3. No error message or broken layout appears.",requirements.md Story 8 S8-R3,,
-"The filtered empty state offers a way to clear the filters, and using it brings the list back",Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. No error message or broken layout appears.",Filters (no Jira epic) (S8-R3) [spec v1.6 2026-07-28],,
+The filtered empty state offers a way to clear the filters,Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page showing the filtered empty state (a filter combination matching no work orders is applied).
 3. The page's own Search box is empty (no text typed in it).","1. Read the empty state content.
 2. Click the clear-filters prompt/link inside the empty state.
 3. Look at the table and the chips.","1. The empty state includes a prompt or link to clear the filters.
 2. Clicking it removes the active filters and the full work order list is shown again (with no text in the Search box, nothing else is narrowing the list).
-3. The chips return to their default state.",Filters epic (key TBD) (S8-R4; S8-R5 (with a query active each is cleared independently - FLT-EMPTY-03)) [spec v1.6 2026-07-28],,
+3. The chips return to their default state.",Filters (no Jira epic) (S8-R4 (the empty state includes a prompt or link to clear filters); S8-R5 (where a query is also active each is cleared independently)) [spec v1.6 2026-07-28],,
 "When filters and a search find nothing, each can be cleared on its own",Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. One filter is active (for example a Status) and some work orders match it.","1. With that filter still active, type a word in the page Search box that matches none of the work orders left in the list.
@@ -328,12 +328,12 @@ A filter combination with no matching work orders shows a no-results empty state
 4. Type the same word again, then use the option the message offers for clearing the filters only.","1. The table is replaced by a no-results message that mentions BOTH the current filters and the search - not the filters alone.
 2. The message offers a way to clear the filters and, because a search is active, a separate way to clear the search.
 3. Clearing the search brings back the list as narrowed by the filter only - the filter is still on.
-4. Clearing the filters leaves your typed word in the box and still applied - each is cleared on its own without wiping the other.",Filters epic (key TBD) (S8-R3 (empty state covers filters AND any active query); S8-R4 (prompt to clear filters and the query where active); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v1.6 2026-07-28],,
+4. Clearing the filters leaves your typed word in the box and still applied - each is cleared on its own without wiping the other.",Filters (no Jira epic) (S8-R3 (empty state covers filters AND any active query); S8-R4 (prompt to clear filters and the query where active); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v1.6 2026-07-28],,
 "The All tab shows all five filter chips, all working",Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.","1. Click the All tab.
 2. Count the filter chips and click each one briefly.","1. All five chips are shown: Status, Customer, Lead Technician, Service Advisor, Asset on site.
-2. Each chip opens its dropdown and can be used.",requirements.md Story 9 S9-R1,,
-"On the Estimates tab the Status chip is shown greyed out, pre-filled with 'Status: Estimate', and cannot be changed; the other four filters work on top of the Estimates pre-filter",Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Each chip opens its dropdown and can be used.",Filters (no Jira epic) (S9-R1) [spec v1.6 2026-07-28],,
+Estimates tab: Status chip greyed out and pre-filled; other four still work,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Estimate work orders exist for at least two different customers.
 3. You are on the Work Orders page.","1. Click the Estimates tab.
 2. Look at the filter bar.
@@ -341,8 +341,8 @@ A filter combination with no matching work orders shows a no-results empty state
 4. Open the Customer filter and select one customer.
 5. Look at the table.","1. The Status chip is shown but greyed out, already filled in as 'Status: Estimate', and cannot be clicked or changed - the tab already pre-filters the list to Estimate.
 2. Customer, Lead Technician, Service Advisor and Asset on site chips are shown and usable.
-3. After step 4 the table shows only that customer's ESTIMATE work orders - the customer filter narrows the pre-filtered Estimates list.",requirements.md Story 9 S9-R2; Story 2 S2-N1 (chip-hidden wording superseded by PO ruling 2026-07-17: chip shown disabled); §4 Key Decisions,,
-"On the Completed tab the Status chip is shown greyed out, pre-filled with the tab's status, and cannot be changed; the other four filters work on top of the Completed pre-filter",Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. After step 4 the table shows only that customer's ESTIMATE work orders - the customer filter narrows the pre-filtered Estimates list.","Filters (no Jira epic) (S9-R2; S2-N1; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled; PRD alignment is Branko's open item) [spec v1.6 2026-07-28]",,
+Completed tab: Status chip greyed out and pre-filled; other four still work,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Complete work orders exist for at least two different customers.
 3. You are on the Work Orders page.","1. Click the Completed tab.
 2. Look at the filter bar.
@@ -350,33 +350,33 @@ A filter combination with no matching work orders shows a no-results empty state
 4. Open the Customer filter and select one customer.
 5. Look at the table.","1. The Status chip is shown but greyed out, already filled in with this tab's status, and cannot be clicked or changed - the tab already pre-filters the list to Complete.
 2. Customer, Lead Technician, Service Advisor and Asset on site chips are shown and usable.
-3. After step 4 the table shows only that customer's COMPLETE work orders.",requirements.md Story 9 S9-R3; Story 2 S2-N2 (chip-hidden wording superseded by PO ruling 2026-07-17: chip shown disabled); §4 Key Decisions,,
-On the My Work Orders tab all five filters are shown and narrow the already user-scoped list,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. After step 4 the table shows only that customer's COMPLETE work orders.","Filters (no Jira epic) (S9-R3; S2-N2; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled; PRD alignment is Branko's open item) [spec v1.6 2026-07-28]",,
+My Work Orders tab shows all five filters and they narrow that list,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Work orders assigned to you exist in at least two statuses, and other users' work orders also exist.
 3. You are on the Work Orders page.","1. Click the My Work Orders tab and count the chips.
 2. Open the Status filter and tick one status your work orders have.
 3. Look at the table.","1. All five filter chips are shown on the My Work Orders tab.
 2. The table only ever shows work orders assigned to you (the tab's own scope stays).
-3. After step 2 it shows only YOUR work orders in the ticked status - the filters narrow the user-scoped list, they do not widen it to other users' work orders.",requirements.md Story 9 S9-R4; §4 Key Decisions (My Work Orders tab does not remove filters),,
+3. After step 2 it shows only YOUR work orders in the ticked status - the filters narrow the user-scoped list, they do not widen it to other users' work orders.",Filters (no Jira epic) (S9-R4; §4 Key Decisions (My Work Orders tab does not remove filters)) [spec v1.6 2026-07-28],,
 A Status choice is kept while you switch tabs and comes back on the All tab,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. A Status selection (for example Approved) and a Customer selection are active.","1. Click the Estimates tab and look at the filter bar and the table.
 2. Click back to the All tab and look again.","1. On the Estimates tab your Status choice is not applied and cannot be changed - the Status chip is greyed out and pre-filled with the tab's own status. The Customer selection is still shown and still filters the list.
 2. Back on the All tab the Status chip reappears with the SAME selection (Approved) still applied - the selection was retained in memory, not lost.
-3. The Customer selection is unchanged throughout.",Filters epic (key TBD) (S9-R5; S9-N1; S9-R2 - behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30) [spec v1.6 2026-07-28],,
+3. The Customer selection is unchanged throughout.",Filters (no Jira epic) (S9-R5; S9-N1; S9-R2 - behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30) [spec v1.6 2026-07-28],,
 First visit opens the Estimates tab; your last-used tab is remembered,Tab Behaviour,Functional,High,1. You can sign in as a user who has never used the redesigned Work Orders page (no saved page choices for that account).,"1. Sign in as that fresh user and open the Work Orders page.
 2. Note which tab is selected and the tab order.
 3. Switch to the All tab.
 4. Go to another area of the app and come back to the Work Orders page.","1. On the very first visit the Estimates tab is the selected one, even though All is the FIRST tab in the row (order and default are different on purpose).
-2. After switching to All and returning, the All tab is selected - the app remembers your last-used tab per account.",Filters (Epic key TBD); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists); not in the ratified product spec - confirmation requested,,
-Leaving the Work Orders page and coming back restores the filters and the bar state exactly,Persistence,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. After switching to All and returning, the All tab is selected - the app remembers your last-used tab per account.",Filters (no Jira epic) (no requirement in the ratified spec v1.6 - default/last-used tab is engineering-plan-only - confirmation requested); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists) [spec v1.6 2026-07-28],,
+Leaving the page and coming back restores the filters and the bar state,Persistence,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with a Status and a Customer selection active and the filter bar expanded.","1. Open one work order from the list (go to its detail page).
 2. Go back to the Work Orders page.
 3. Look at the chips, the table and the filter bar state.
 4. Repeat the round-trip once more with the filter bar collapsed before leaving.","1. After step 2 the same Status and Customer selections are still applied - chips active with the same values, table filtered the same way.
 2. The filter bar is still expanded (as you left it).
-3. After step 4 the filter bar comes back collapsed - the collapsed/expanded state is restored too.",requirements.md Story 10 S10-R1; Story 1 S1-R7,,
-Filter selections are remembered for you permanently - still applied after moving around the app and even after closing the browser and signing back in,Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. After step 4 the filter bar comes back collapsed - the collapsed/expanded state is restored too.",Filters (no Jira epic) (S10-R1; S1-R7) [spec v1.6 2026-07-28],,
+"Filters are remembered permanently, even after closing the browser",Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Filters are applied on the Work Orders page (for example a status and a customer).","1. Visit several other areas of the app (Customers, Parts, Reports) and use them briefly.
 2. Return to the Work Orders page and look at the chips and the table.
 3. Close the browser completely (all windows).
@@ -384,52 +384,52 @@ Filter selections are remembered for you permanently - still applied after movin
 5. Look at the chips and the table.
 6. On a different computer (or a different browser profile), sign in as the same person and open the Work Orders page.","1. After moving around the app (step 2) the filter selections are still applied - you do not have to re-apply them.
 2. After closing the browser completely and signing back in (step 5) the same filter selections are still applied - the app remembers your filters for you permanently, not just for one browser session.
-3. The same filter selections are applied on the other computer too - the filters are saved to your account, not to one computer or browser (to confirm live once built).","requirements.md Story 10 S10-R2 (session-only wording superseded by PO ruling 2026-07-17: permanent per-user persistence); §2/§4 (persist across navigation, saved per user)",,
+3. The same filter selections are applied on the other computer too - the filters are saved to your account, not to one computer or browser (to confirm live once built).",Filters (no Jira epic) (S10-R2 (stored server-side against the account; survives logout; syncs across devices); S10-R3 (saved per user); S10-R1 (restored after navigating away)) + Branko Q2 2026-07-17 - now matched by the PRD [spec v1.6 2026-07-28],,
 Saved filters are per user: one user's filters do not appear for another user,Persistence,Functional,High,"1. Two test users (A and B) can sign in to the same shop.
 2. User A has applied filters on the Work Orders page (for example Status: Approved).","1. As user B (separate login/browser profile), open the Work Orders page.
 2. Look at the filter chips and the table.
 3. As user B, apply a DIFFERENT filter (for example a customer), then re-check user A's view.","1. User B does not see user A's filters - user B's page opens with user B's own (or no) filters.
-2. User B's new filter does not change what user A sees; each user keeps their own saved filter state.",requirements.md Story 10 S10-R3; §4 Key Decisions (saved per user),,
-A remembered filter value that no longer exists is silently dropped when you return,Persistence,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. User B's new filter does not change what user A sees; each user keeps their own saved filter state.",Filters (no Jira epic) (S10-R3; §4 Key Decisions (saved per user)) [spec v1.6 2026-07-28],,
+A remembered filter value that was deleted is silently ignored,Persistence,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A throwaway ZZAUTOTEST customer exists and is selected in the Customer filter together with one real customer.
 3. You then navigate away and the ZZAUTOTEST customer is deleted (or otherwise removed) while you are off the page.","1. Return to the Work Orders page.
 2. Look at the Customer chip, the dropdown and the table.","1. The deleted customer is silently ignored - no error or warning appears.
 2. The Customer filter now reflects only the still-valid selection (the real customer).
-3. The table is filtered by the remaining valid selection only.",requirements.md Story 10 S10-N1,,
+3. The table is filtered by the remaining valid selection only.",Filters (no Jira epic) (S10-N1) [spec v1.6 2026-07-28],,
 Each page and tab remembers its own filters separately,Persistence,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The new filter bar has rolled out to the Parts views and to a report that has tabs (part of the same programme as the Work Orders filters).","1. On one Parts view (for example Inventory) apply a filter.
 2. Switch to a different Parts view (for example Purchase Orders).
 3. Return to the first Parts view.
 4. On a report with tabs, apply a filter on one tab, switch to another tab, then switch back.","1. The second Parts view does NOT show the first view's selections - each view keeps its own.
 2. Returning to the first view restores that view's own selections.
-3. Report tabs likewise keep separate filter choices, each remembered and restored on its own tab.","Filters (Epic key TBD) (spec v1.6 S10-R4; §4 ""Parts and Reports selections are scoped to their view/tab and persist there""); Branko answers 2026-07-31 Q5 exception 1; tech plan 2026-07-29 D20",,
+3. Report tabs likewise keep separate filter choices, each remembered and restored on its own tab.","Filters (no Jira epic) (spec v1.6 S10-R4; §4 ""Parts and Reports selections are scoped to their view/tab and persist there""); Branko answers 2026-07-31 Q5 exception 1; tech plan 2026-07-29 D20",,
 Filters saved before the redesign carry over after the update,Persistence,Functional,High,"1. In one browser, the account was used on the OLD Work Orders page with choices saved there (a tab, status selections, the asset-here toggle, column choices, sorting) BEFORE the redesign was installed.","1. In that same browser, open the updated app and go to the Work Orders page.
 2. Check the selected tab, the filter chips, the table columns and the sorting.
 3. Sign in as the same person on a DIFFERENT computer or browser and open the Work Orders page.","1. The old saved choices appear in the new filter bar on the first visit - the update does not lose them (old status choices show in the Status chip, the old asset-here choice shows as Asset on site: Yes, the old My-Work-Orders toggle maps to the My Work Orders tab, columns and sorting stay).
-2. Those carried-over choices are now saved to the account: the other computer shows them too.",Filters (Epic key TBD); tech plan 2026-07-29 section 4-3.3 (one-time browser-storage to account-preference migration),,
+2. Those carried-over choices are now saved to the account: the other computer shows them too.",Filters (no Jira epic) (no numbered v1.6 requirement covers the one-off migration - context S10-R2 server-side model); tech plan 2026-07-29 s4-3.3 (browser-storage to account-preference migration) - confirmation requested [spec v1.6 2026-07-28],,
 Applying filters updates the page URL to reflect the active filter state,URL State and Shareable Links,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with no filters applied; note the current URL.","1. Apply a Status selection and a Customer selection.
 2. Look at the browser address bar.
 3. Clear all filters and look at the address bar again.","1. After step 1 the URL changes to include the active filter state.
-2. After step 3 the filter part of the URL is removed again.",requirements.md Story 11 S11-R1,,
-Opening a shared or bookmarked URL loads the Work Orders page with those filters already applied,URL State and Shareable Links,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. After step 3 the filter part of the URL is removed again.",Filters (no Jira epic) (S11-R1) [spec v1.6 2026-07-28],,
+Opening a shared URL or bookmark loads the page with those filters on,URL State and Shareable Links,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have copied a Work Orders URL that was produced with filters applied (for example Status: Approved + one customer).","1. Open the copied URL in a new browser tab (same signed-in user).
 2. Look at the chips and the table as the page loads.","1. The page opens with the same filters already applied - chips active with the same values.
 2. The table is already filtered accordingly on load (no need to re-apply anything).
-3. The same works from a saved bookmark.",requirements.md Story 11 S11-R2; §2 Feature Overview (share or bookmark),,
-A URL containing a filter value that no longer exists loads without that value,URL State and Shareable Links,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+3. The same works from a saved bookmark.",Filters (no Jira epic) (S11-R2; §2 Feature Overview (share or bookmark)) [spec v1.6 2026-07-28],,
+A URL with a deleted filter value loads and ignores that value,URL State and Shareable Links,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You saved a filtered Work Orders URL that includes a throwaway ZZAUTOTEST customer plus one real filter value.
 3. The ZZAUTOTEST customer has since been deleted.","1. Open the saved URL.
 2. Look at the chips and the table.","1. The page loads normally - no error.
 2. The deleted value is ignored; only the still-valid filter value is applied and shown on the chips.
-3. The table reflects only the valid filter.",requirements.md Story 11 S11-R3,,
-A malformed filter URL loads the page unfiltered without showing an error,URL State and Shareable Links,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+3. The table reflects only the valid filter.",Filters (no Jira epic) (S11-R3) [spec v1.6 2026-07-28],,
+A broken filter URL loads the page with no filters and no error,URL State and Shareable Links,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have a valid filtered Work Orders URL to start from.","1. Manually break the filter part of the URL (for example scramble the parameter values or insert nonsense text).
 2. Open the broken URL.
 3. Look at the page, the chips and the table.","1. The Work Orders page loads normally.
 2. No filters are applied (chips in default state, full list shown) - the unrecognizable state is discarded.
-3. No error message or broken page appears.",requirements.md Story 11 S11-N1,,
-Opening a filtered link never overwrites your saved filters,URL State and Shareable Links,Functional,High,"1. You are signed in and have your OWN filters saved on the Work Orders page (for example one customer).
+3. No error message or broken page appears.",Filters (no Jira epic) (S11-N1) [spec v1.6 2026-07-28],,
+Opening a shared link does not change your own saved filters,URL State and Shareable Links,Functional,High,"1. You are signed in and have your OWN filters saved on the Work Orders page (for example one customer).
 2. You have a Work Orders link that carries a DIFFERENT filter state (made by another user or another browser).
 3. You know how to use the page's own Search box on the Work Orders page (the Search button in the toolbar row).","1. Note your own saved filters on the Work Orders page.
 2. Open the shared link.
@@ -441,7 +441,7 @@ Opening a filtered link never overwrites your saved filters,URL State and Sharea
 3. A 'Back to my view' option is shown while you are looking at the shared link. (If the wording on screen is slightly different, note what it says and carry on.)
 4. Clicking 'Back to my view' brings back your own saved filters and removes the filter part from the web address.
 5. It also empties the Search box and removes your typed text - the search is not something that gets saved, so there is nothing to bring back.
-6. Returning normally later still shows your own saved filters, untouched by the link visit.",Filters epic (key TBD) (S11-R6 (URL state runtime-only with no write-back); S11-R7 (Back to my view - also clears the query); S11-R8 (rationale: the query is never saved)) [spec v1.6 2026-07-28],,
+6. Returning normally later still shows your own saved filters, untouched by the link visit.",Filters (no Jira epic) (S11-R6 (URL state runtime-only with no write-back); S11-R7 (Back to my view - also clears the query); S11-R8 (rationale: the query is never saved)) [spec v1.6 2026-07-28],,
 'Back to my view' is not shown when you are on your own view,URL State and Shareable Links,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have your OWN filters saved on the Work Orders page (for example one customer).
 3. You are NOT using a shared link - you have not opened a Work Orders web address that someone sent you.","1. Open the Work Orders page from the main menu.
@@ -451,32 +451,32 @@ Opening a filtered link never overwrites your saved filters,URL State and Sharea
 5. Click 'Back to my view', then look one more time.","1. On your own view there is no 'Back to my view' option anywhere - it only belongs to a shared-link visit.
 2. Changing your own filters does not make it appear.
 3. When you open the shared link, 'Back to my view' does appear.
-4. After you click it and you are back on your own view, the option disappears again.",Filters epic (key TBD) (S11-N3; S11-R7) [spec v1.6 2026-07-28],,
-"On mobile the filter chips sit in a horizontally scrollable row below the tabs, starting with All Filters",Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device (or a mobile-size browser window).
+4. After you click it and you are back on your own view, the option disappears again.",Filters (no Jira epic) (S11-N3; S11-R7) [spec v1.6 2026-07-28],,
+"Mobile: chips sit in a scrollable row below the tabs, starting All Filters",Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device (or a mobile-size browser window).
 2. You are on the Work Orders page.","1. Look at the row below the tab row (All, Estimates, Completed, My Work Orders).
 2. Swipe the chip row sideways.","1. A filter chip row is shown below the tabs, starting with an 'All Filters' chip (with a funnel icon) followed by the individual filter chips (Status, Customer, Lead Technician, ...).
 2. The row scrolls horizontally - chips that do not fit are reachable by swiping.
-3. A right-edge arrow affordance indicates the row can be scrolled (per the design variant).",requirements.md Story 12 S12-R1,,
-Tapping All Filters opens a bottom sheet listing every filter as an expandable row with an Apply filters button,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
+3. An arrow at the right-hand edge shows that the row can be scrolled. (This is what the design shows - if your screen looks different, write down what you actually see and carry on.)",Filters (no Jira epic) (S12-R1) [spec v1.6 2026-07-28],,
+Mobile: All Filters opens a sheet of expandable rows with Apply filters,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page.","1. Tap the 'All Filters' chip.
 2. Read the sheet from top to bottom.","1. A bottom sheet slides up with a drag handle at the top, the centered title 'All Filters' and a close (x) button.
 2. It lists the five filters as expandable accordion rows, each with its icon, name and a down arrow: Status, Customer, Lead Technician, Service Advisor, Asset on site.
-3. A sticky blue 'Apply filters' button sits at the bottom of the sheet.",requirements.md Story 12 S12-R3,,
-Selecting statuses in the mobile sheet and tapping Apply filters filters the list and counts on the sheet title,Mobile Filters,Functional,Critical,"1. You are signed in to the ShopView App on a mobile device.
+3. A sticky blue 'Apply filters' button sits at the bottom of the sheet.",Filters (no Jira epic) (S12-R3) [spec v1.6 2026-07-28],,
+Mobile: tapping Apply filters applies the statuses and updates the count,Mobile Filters,Functional,Critical,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page on the All tab; work orders exist in several statuses.
 3. The 'All Filters' bottom sheet is open.","1. Tap the Status accordion row to expand it.
 2. Tick one or more statuses.
 3. Tap the 'Apply filters' button.
 4. Reopen the All Filters sheet and look at its title.","1. Expanding Status reveals the same nine status checkboxes as desktop (Estimate, Approved, In progress, Review, Complete, Invoiced, Paid, Declined, Imported) plus 'Clear selection'.
 2. After 'Apply filters' the sheet closes and the work order list shows only the ticked statuses.
-3. The reopened sheet's title shows the applied-filter count, for example 'All Filters (1)', and the Status accordion header is highlighted with the selected values ticked.",requirements.md Story 12 S12-R2; S12-R3; Story 2 S2-R1,,
-Tapping an individual filter chip on mobile opens that filter's own sheet with an 'Apply filter' button,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
+3. The reopened sheet's title shows the applied-filter count, for example 'All Filters (1)', and the Status accordion header is highlighted with the selected values ticked.",Filters (no Jira epic) (S12-R2; S12-R3; S2-R1) [spec v1.6 2026-07-28],,
+Mobile: tapping one chip opens its own sheet with an 'Apply filter' button,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page.","1. Tap the Status chip (not All Filters).
 2. Read the sheet.
 3. Tick a status and tap the bottom button.","1. A bottom sheet opens for that single filter: its title row shows the filter's icon and name (for example 'Status') with a close (x) button - no accordion list of the other filters.
 2. The sheet shows only that filter's options (the nine status checkboxes plus 'Clear selection').
-3. The bottom button reads 'Apply filter' (singular); tapping it applies the selection and filters the list.",requirements.md Story 12 S12-R2; S12-R3,,
-"The mobile Customer filter has search, multi-select and removable tags, matching desktop",Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
+3. The bottom button reads 'Apply filter' (singular); tapping it applies the selection and filters the list.",Filters (no Jira epic) (S12-R2; S12-R3) [spec v1.6 2026-07-28],,
+"Mobile Customer filter has search, multi-select and removable tags",Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page; several customers exist.
 3. The All Filters sheet is open with the Customer accordion expanded.","1. Type part of a customer name in the 'Search customer' field and watch the list.
 2. Select two or three customers.
@@ -484,36 +484,36 @@ Tapping an individual filter chip on mobile opens that filter's own sheet with a
 4. Remove one customer with the x on its tag, then tap 'Apply filters'.","1. The list narrows to matching names as you type.
 2. Each selected customer appears as a tag with an x in the input area, and its list row shows a checkmark.
 3. Removing a tag deselects just that customer.
-4. After 'Apply filters' the list shows only work orders of the remaining selected customers, and the sheet title counts the applied filters (for example 'All Filters (2)').",requirements.md Story 12 S12-R2; Story 3 S3-R2/R3/R5,,
-The mobile Lead Technician and Service Advisor filters offer their search lists in the sheet,Mobile Filters,Functional,Medium,"1. You are signed in to the ShopView App on a mobile device.
+4. After 'Apply filters' the list shows only work orders of the remaining selected customers, and the sheet title counts the applied filters (for example 'All Filters (2)').",Filters (no Jira epic) (S12-R2; S3-R2/R3/R5) [spec v1.6 2026-07-28],,
+Mobile Lead Technician and Service Advisor filters offer their search lists,Mobile Filters,Functional,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page; technicians and advisors exist.
 3. The All Filters sheet is open.","1. Expand the Lead Technician accordion row and look at its content.
 2. Collapse it, expand the Service Advisor row and look at its content.
 3. Select one name in either list and tap 'Apply filters'.","1. The Lead Technician row opens with a 'Search technician' field and the technician list.
 2. The Service Advisor row opens with a 'Search advisor' field and the advisor list.
-3. Applying a selection filters the work order list just like on desktop.",requirements.md Story 12 S12-R2; Story 4 S4-R1; Story 5 S5-R1,,
+3. Applying a selection filters the work order list just like on desktop.",Filters (no Jira epic) (S12-R2; S4-R1; S5-R1) [spec v1.6 2026-07-28],,
 The mobile Asset on site filter offers Yes/No with Clear selection in the sheet,Mobile Filters,Functional,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page; work orders exist in both on-site states.
 3. The All Filters sheet is open.","1. Expand the Asset on site accordion row.
 2. Choose Yes and tap 'Apply filters'.
 3. Look at the list.","1. The Asset on site row opens showing the two options Yes and No plus 'Clear selection'.
 2. Only one option can be selected at a time.
-3. After applying, the list shows only work orders matching the chosen on-site state.",requirements.md Story 12 S12-R2; Story 6 S6-R1/R2/R3,,
+3. After applying, the list shows only work orders matching the chosen on-site state.",Filters (no Jira epic) (S12-R2; S6-R1/R2/R3) [spec v1.6 2026-07-28],,
 Active chips and Clear filters behave on mobile the same way as on desktop,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page with at least one filter applied via the sheet.","1. Look at the chip row after applying the filter.
 2. Look for a 'Clear filters' control while a filter is active.
 3. Use it and look at the chips and the list.","1. The chip for the applied filter shows the active state with the selected value(s), like on desktop.
 2. A 'Clear filters' control appears while at least one filter is active.
-3. Using it removes all active filters, the chips return to default and the full list comes back.",requirements.md Story 12 S12-R2; Story 7 S7-R1/R3; Story 8 S8-R1,,
+3. Using it removes all active filters, the chips return to default and the full list comes back.",Filters (no Jira epic) (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28],,
 Mobile has no collapse toggle: the filter chip row is always visible,Mobile Filters,Negative,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page.","1. Look at the toolbar row (Search, sort icon, New Work Order button).
 2. Look for any control that would hide the filter chip row.","1. There is no filter-bar collapse/expand (funnel) toggle on mobile.
-2. The filter chip row is always visible on the mobile Work Orders page.",requirements.md Story 12 S12-R4,,
+2. The filter chip row is always visible on the mobile Work Orders page.",Filters (no Jira epic) (S12-R4) [spec v1.6 2026-07-28],,
 Filters matching no work orders on mobile show the same empty state as desktop,Mobile Filters,Negative,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page; work orders exist.","1. Apply a filter combination that matches no work orders (for example a customer plus a status that customer never has).
 2. Look at the list area.","1. The list shows the same no-results empty state as desktop, saying no results were found for the current filters.
 2. The empty state includes the prompt to clear filters.
-3. No error appears.",requirements.md Story 12 S12-N1; Story 8 S8-R3/R4,,
+3. No error appears.",Filters (no Jira epic) (S12-N1; S8-R3/R4) [spec v1.6 2026-07-28],,
 Every Parts list page shows its designed filter buttons,Parts Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Parts area of the app with some sample data present.","1. Open the Parts area and go to the Inventory page, and look at the filter buttons shown above the table.
 2. Go to the Part Sales page and look at the filter buttons.
@@ -536,7 +536,7 @@ Every Parts list page shows its designed filter buttons,Parts Page Filters,Funct
 10. Every Parts list page also shows a Search (magnifier) icon and a filter (funnel) icon in the toolbar; some pages (for example Inventory) also show a column/layout toggle icon.
 11. Every filter button shown above is a working filter on that page - none of them is display-only.
 12. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.
-13. Still to check on the live build: what the funnel icon and the column/layout icon do (the written description does not cover the toolbar icons).","Filters (Epic key TBD) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
+13. Still to check on the live build: what the funnel icon and the column/layout icon do (the written description does not cover the toolbar icons).","Filters (no Jira epic) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
 Part Type filter opens a Core / Non Core list with Clear selection,Parts Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Parts area of the app with some sample data present.","1. On the Parts Returns tab, click the Part Type filter button.
 2. Look at the small menu that opens.
@@ -544,19 +544,19 @@ Part Type filter opens a Core / Non Core list with Clear selection,Parts Page Fi
 4. Use Clear selection.","1. A small menu opens with two options: Core and Non Core.
 2. A Clear selection action is shown at the bottom of the menu.
 3. You can tick both Core and Non Core at the same time - this filter allows more than one choice.
-4. As soon as you tick a choice the list below narrows to matching parts straight away, with no Apply button to press; Clear selection puts the list back.","Filters (Epic key TBD) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
+4. As soon as you tick a choice the list below narrows to matching parts straight away, with no Apply button to press; Clear selection puts the list back.","Filters (no Jira epic) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
 Choosing a Parts filter narrows the list on that page,Parts Page Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Parts area of the app with some sample data present.","1. Open a Parts list page that has a filter button (for example Inventory).
 2. Open a filter button and choose one value.
 3. Watch the table below.","1. The table updates to show only the rows that match the chosen filter value.
 2. The chosen value is shown on the filter button so you can see what is applied.
-3. The list narrows as soon as you pick the value - there is no Apply or Search button to press. Every filter button on every Parts page works this way.","Filters (Epic key TBD) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
+3. The list narrows as soon as you pick the value - there is no Apply or Search button to press. Every filter button on every Parts page works this way.","Filters (no Jira epic) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
 Parts filters support multiple choices and can be cleared,Parts Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Parts area of the app with some sample data present.","1. Open a Parts filter button that shows a list of choices.
 2. Select more than one choice, then look at the filter button.
 3. Use the Clear selection action, then look at the filter bar for a way to clear all filters.","1. More than one value can be chosen inside the filter, and the button shows what you picked.
 2. Clear selection removes the choices for that one filter.
-3. A Clear filters button appears in the filter bar while any filter is set, and using it clears them all at once - exactly as it works on the Work Orders page.","Filters (Epic key TBD) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
+3. A Clear filters button appears in the filter bar while any filter is set, and using it clears them all at once - exactly as it works on the Work Orders page.","Filters (no Jira epic) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
 Every filter a page had before is still available in the new filter bar,Parts Page Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have a written list of the filters each Parts page and each report offers today, before the new filter bar (take screenshots of the old screens first, or ask the developers for the list).
 3. Sample data is present in the Parts area and in the Reports area.","1. Take your before-list for one page.
@@ -565,7 +565,7 @@ Every filter a page had before is still available in the new filter bar,Parts Pa
 4. Open each button and compare the choices inside it against the choices the old filter offered.
 5. Repeat steps 1 to 4 for the other Parts pages and for each report.","1. Every filter the page offered before is still offered - nothing has been taken away.
 2. Every choice each of those filters offered before is still available inside the new button.
-3. If any filter or choice is missing, write down exactly which page, which filter and which choice - that is a bug worth reporting.","Filters (Epic key TBD) (spec v1.6 §2 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 (""support all the filters we have right now in the app as well as all choices per filter""); tech plan 2026-07-29 rollout rule",,
+3. If any filter or choice is missing, write down exactly which page, which filter and which choice - that is a bug worth reporting.","Filters (no Jira epic) (spec v1.6 §2 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 (""support all the filters we have right now in the app as well as all choices per filter""); tech plan 2026-07-29 rollout rule",,
 Every report page shows its designed filter buttons,Reports Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Reports area of the app with some sample data present.","1. Open the Reports area and go to the Timesheet Activities report, and look at the filter buttons shown above the report table.
 2. Go to the Timesheets (Payroll Timesheet) report and look at the filter buttons.
@@ -605,18 +605,18 @@ Every report page shows its designed filter buttons,Reports Page Filters,Functio
 21. On every report above, each filter button shows its name and a down arrow.
 22. Every filter button shown above is a working filter on that report - none of them is display-only.
 23. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.
-24. Still to check on the live build: the real columns of the Sales Tax report and of the six A/R and A/P aging reports. The design uses sample placeholder tables for those, and the written description does not list their columns.","Filters (Epic key TBD) (spec v1.6 §2 Reports Filters; §4 Key Decisions ""New date-range filter type"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",,
+24. Still to check on the live build: the real columns of the Sales Tax report and of the six A/R and A/P aging reports. The design uses sample placeholder tables for those, and the written description does not list their columns.","Filters (no Jira epic) (spec v1.6 §2 Reports Filters; §4 Key Decisions ""New date-range filter type"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",,
 Choosing a Reports filter narrows the report results,Reports Page Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Reports area of the app with some sample data present.","1. Open the Reports area and go to any report — for example the Sales report.
 2. Open one of the filter buttons shown above the report table and choose one value.
 3. Look at the report table below.","1. The report updates to show only the rows matching the chosen filter value, and the chosen value is shown on the filter button.
-2. The report narrows as soon as you pick the value - there is no Apply or Run button to press. Every filter button on every report works this way.","Filters (Epic key TBD) (spec v1.6 §2 Reports Filters; §4 Key Decisions ""New date-range filter type"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",,
+2. The report narrows as soon as you pick the value - there is no Apply or Run button to press. Every filter button on every report works this way.","Filters (no Jira epic) (spec v1.6 §2 Reports Filters; §4 Key Decisions ""New date-range filter type"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",,
 "New Reports filter types behave correctly (Location, Transaction Type, etc.)",Reports Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Reports area of the app with some sample data present.","1. Open the Reports area and go to a report that uses them - for example A/R Aging Detail (Location, Transaction Type) or Notes (Mention).
 2. Look at the filter buttons shown above the report table.
 3. Open each of those filter buttons in turn, tick two choices where possible, and watch the report.","1. Each of these filter buttons - Location, Transaction Type, Invoice Status, Type, User and Mention - opens a list of choices, lets you tick more than one, and narrows the report straight away with no Apply button.
 2. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.
-3. Write down the choices you actually see behind each of these six buttons. They have not been written down anywhere yet, so your list becomes the record.","Filters (Epic key TBD) (spec v1.6 §2 Reports Filters; §4 ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q3/Q5 + Q4 (pointer only - the 6 new types are not enumerated in v1.6; see DELTAS.md F1); Figma 11903-10573",,
+3. Write down the choices you actually see behind each of these six buttons. They have not been written down anywhere yet, so your list becomes the record.","Filters (no Jira epic) (spec v1.6 §2 Reports Filters; §4 ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q3/Q5 + Q4 (pointer only - the 6 new types are not enumerated in v1.6; see DELTAS.md F1); Figma 11903-10573",,
 Date range filter: results update when both start and end dates are picked,Reports Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The new filter bar has rolled out to a page with a Date filter chip (a report, or a Parts page with a date column).
 3. Records exist inside and outside the date range you will pick.","1. Click the Date filter chip.
@@ -626,7 +626,7 @@ Date range filter: results update when both start and end dates are picked,Repor
 5. Look at the results and the chip.","1. A start/end date picker opens - there are NO preset ranges (no 'Last 30 days' shortcuts) and NO pre-filled default range.
 2. After only the start date, the results do not change yet.
 3. As soon as the second date is picked, the results update immediately to show only records inside the range.
-4. Only one date range can be active at a time on that chip, and the chip shows the active range.","Filters (Epic key TBD) (spec v1.6 §4 ""New date-range filter type""; §2 Reports Filters - start/end picker; no presets; no default; applies on the second date); Branko answers 2026-07-31 Q5; tech plan 2026-07-29 D19",,
+4. Only one date range can be active at a time on that chip, and the chip shows the active range.","Filters (no Jira epic) (spec v1.6 §4 ""New date-range filter type""; §2 Reports Filters - start/end picker; no presets; no default; applies on the second date); Branko answers 2026-07-31 Q5; tech plan 2026-07-29 D19",,
 Page toolbar Search expands in place and narrows the list as you type,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.","1. Find the Search control in the page toolbar (a magnifier icon with the word Search).
 2. Click it.
@@ -636,14 +636,14 @@ Page toolbar Search expands in place and narrows the list as you type,Page Searc
 6. Expand it again, type text, and click somewhere else.","1. The control expands in place into a small search box showing the placeholder 'Type to search'.
 2. The list narrows as you type, after a brief pause - and ONLY this page's list changes, nothing else in the app.
 3. The round x clears the text and the full list returns.
-4. Clicking away with an empty box collapses it back to the Search button; with text in it, the box stays open.",Filters epic (key TBD) (S13-R1 (placement in the toolbar action group); S13-R9 (scoped to this table only); S13-R12; S13-R15 (blur rules)) [spec v1.6 2026-07-28],,
+4. Clicking away with an empty box collapses it back to the Search button; with text in it, the box stays open.",Filters (no Jira epic) (S13-R1 (placement in the toolbar action group); S13-R9 (scoped to this table only); S13-R12; S13-R15 (blur rules)) [spec v1.6 2026-07-28],,
 Page search combines with filters and is cleared separately,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with work orders for several customers and statuses.","1. Apply one filter (for example a Status).
 2. Type a search term in the page search box.
 3. Clear ONLY the search (the round x).
 4. Re-type the search, then clear ONLY the filter.","1. With both active, the results match the filter AND the search together (both narrow the list at once).
 2. Clearing the search keeps the filter applied.
-3. Clearing the filter keeps the search applied - each is cleared by its own control without wiping the other.",Filters epic (key TBD) (S13-R10 (search and filters are additive); S13-R13 (each cleared independently); S8-R5) [spec v1.6 2026-07-28],,
+3. Clearing the filter keeps the search applied - each is cleared by its own control without wiping the other.",Filters (no Jira epic) (S13-R10 (search and filters are additive); S13-R13 (each cleared independently); S8-R5) [spec v1.6 2026-07-28],,
 Your typed search stays in this browser tab only and is never saved,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.
 3. You know how to open a second browser tab on the same page.","1. Type a search term in the page Search box that matches some work orders.
@@ -653,14 +653,14 @@ Your typed search stays in this browser tab only and is never saved,Page Search 
 5. Close every browser tab, open the browser again and go back to the Work Orders page.","1. Sorting and paging keep your search applied - your text stays in the box and the list stays narrowed.
 2. Leaving the page and coming back also keeps your text in the box and the list still narrowed.
 3. The second browser tab starts clean: its Search box is empty and it shows the full list. Each tab keeps its own search.
-4. After closing the browser and coming back, the Search box is empty and the list is unsearched - a typed search is never remembered for next time (your filters, unlike the search, ARE remembered).",Filters epic (key TBD) (S13-R14 (retained for the browser tab session); S13-R25 (never stored against the account; each tab independent); S13-N4 (not restored on a later visit); S10-R5) [spec v1.6 2026-07-28],,
+4. After closing the browser and coming back, the Search box is empty and the list is unsearched - a typed search is never remembered for next time (your filters, unlike the search, ARE remembered).",Filters (no Jira epic) (S13-R14 (retained for the browser tab session); S13-R25 (never stored against the account; each tab independent); S13-N4 (not restored on a later visit); S10-R5) [spec v1.6 2026-07-28],,
 The search term is part of the shareable page link,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.","1. Type a search term and copy the page address.
 2. Open the copied address in a fresh tab.
 3. Hand-edit the search part of the address into something malformed and load it.","1. The address contains the search term after step 1.
 2. The fresh tab opens with the search box filled and the list already narrowed.
 3. The malformed part is ignored - the page loads cleanly without an error.
-4. A search arriving via a link is view-only, the same as filters from a link - it does not overwrite your own remembered search.",Filters epic (key TBD) (S11-R4 (query reflected in the URL); S11-R5 (URL query pre-applied with the control filled); S11-N2 (malformed query ignored with no error); S11-R8 (rationale: no saved value to overwrite)) [spec v1.6 2026-07-28],,
+4. A search arriving via a link is view-only, the same as filters from a link - it does not overwrite your own remembered search.",Filters (no Jira epic) (S11-R4 (query reflected in the URL); S11-R5 (URL query pre-applied with the control filled); S11-N2 (malformed query ignored with no error); S11-R8 (rationale: no saved value to overwrite)) [spec v1.6 2026-07-28],,
 On mobile the search expands in the toolbar and buttons make room,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page.","1. Tap the Search control in the page toolbar.
 2. Type a term and watch the list.
@@ -669,25 +669,25 @@ On mobile the search expands in the toolbar and buttons make room,Page Search To
 2. The list narrows as you type, same as desktop.
 3. To make room, the page's main button no longer stretches full-width, and pages with two or more small icon buttons collapse them into a single 'more' menu.
 4. The box stretches to fill the space left in the action row instead of staying the narrow desktop size, and every other toolbar button stays visible and in the same place while you search.
-5. There is no extra 'search is on' badge on mobile: with text in it the box simply stays open showing your text, and an empty box closes back to the Search button when you tap elsewhere - exactly as on desktop.","Filters epic (key TBD) (S13-R16 (inline expansion with no modal); S13-R17 (field fills the remaining width); S13-R18 (CTA hug width); S13-R19 (2+ icon actions -> ""more"" kebab); S13-R20 (no active-query indicator); S12-R5) [spec v1.6 2026-07-28]",,
+5. There is no extra 'search is on' badge on mobile: with text in it the box simply stays open showing your text, and an empty box closes back to the Search button when you tap elsewhere - exactly as on desktop.","Filters (no Jira epic) (S13-R16 (inline expansion with no modal); S13-R17 (field fills the remaining width); S13-R18 (CTA hug width); S13-R19 (2+ icon actions -> ""more"" kebab); S13-R20 (no active-query indicator); S12-R5) [spec v1.6 2026-07-28]",,
 "Every list page keeps its own search box (Parts, Reports, detail tabs)",Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The page-search rollout has finished everywhere (run this sweep at the end of the rollout, not part-way through).
-3. You can reach Work Orders, Customers, Parts, Administration, Reports and the Dashboard.","1. Work Orders surfaces: the Work Orders list, a work order's History tab, the Work Order Log dialog opened from that tab's kebab menu, a line's Line Log dialog opened from the Lines tab, and the work order's Notes tab.
-2. Customer and asset surfaces: the Customers list, then on one customer - Contacts, Assets, Invoices, Work Orders, Part Sales, Fees & Discounts, Notes; then on one asset - Work Orders, Invoices, Notes.
-3. Parts surfaces: Inventory, Catalog, Part Sales, Purchase Orders, Returns, Credits, Vendors, Vendor Invoices (web address /parts/deliveries), a vendor's Unpaid Invoices, and Part History.
-4. Administration surfaces: Locations, Roles & Permissions, Staff, Departments, Taxes, Labor Rates, Canned Lines, Payment Methods, Fees & Discounts, Asset Types, Categories, Pricing.
-5. Reports and Dashboard surfaces: IBS Batch Transactions, Sales Tax Invoices, the Dashboard, and one dashboard report drill-down.
+3. You can reach Work Orders, Customers, Parts, Administration, Reports and the Dashboard.","1. Visit the Work Orders surfaces: the Work Orders list, a work order's History tab, the Work Order Log dialog opened from that tab's kebab menu, a line's Line Log dialog opened from the Lines tab, and the work order's Notes tab.
+2. Visit the customer and asset surfaces: the Customers list, then on one customer - Contacts, Assets, Invoices, Work Orders, Part Sales, Fees & Discounts, Notes; then on one asset - Work Orders, Invoices, Notes.
+3. Visit the Parts surfaces: Inventory, Catalog, Part Sales, Purchase Orders, Returns, Credits, Vendors, Vendor Invoices (web address /parts/deliveries), a vendor's Unpaid Invoices, and Part History.
+4. Visit the Administration surfaces: Locations, Roles & Permissions, Staff, Departments, Taxes, Labor Rates, Canned Lines, Payment Methods, Fees & Discounts, Asset Types, Categories, Pricing.
+5. Visit the Reports and Dashboard surfaces: IBS Batch Transactions, Sales Tax Invoices, the Dashboard, and one dashboard report drill-down.
 6. On each surface, find that table's own Search box and type something that matches one of its rows. Then open a work order's Parts tab and look at the search input it already has.","1. Every table listed above has its own Search box - no table lost the ability to narrow by text.
 2. Each Search box narrows only its own table; nothing else in the app changes.
 3. Where the table sits inside a dialog (the Work Order Log, the Line Log, the audit log dialog), the Search box is inside that dialog and works there.
-4. The work order Parts tab keeps the local search input it already had - it was deliberately left as it is.",Filters epic (key TBD) (S14-R6 (audit: 42 surfaces across 39 components; Work Order Parts excluded); S14-R5 (app-wide sweep); S13-R22 (every table carries a search control); S14-N1 (verify once at the end)) [spec v1.6 2026-07-28],,
+4. The work order Parts tab keeps the local search input it already had - it was deliberately left as it is.",Filters (no Jira epic) (S14-R6 (audit: 42 surfaces across 39 components; Work Order Parts excluded); S14-R5 (app-wide sweep); S13-R22 (every table carries a search control); S14-N1 (verify once at the end)) [spec v1.6 2026-07-28],,
 The top navigation search no longer filters page lists,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.","1. Type a term into the TOP NAVIGATION search (the app-wide search at the top), not the page's own search box.
 2. Watch the Work Orders list while typing.
 3. Repeat on the Parts Inventory page.
 4. Pick one of the results offered in the navigation search's dropdown.","1. The page list does NOT narrow while you type in the navigation search - only its dropdown of matching records appears.
 2. The same holds on the other pages checked.
-3. Picking a dropdown result still takes you to that record - the navigation search keeps its find-and-open role.",Filters epic (key TBD) (S14-R1 (navigational results only); S14-R2 (the page-filtering code path is removed rather than dormant); S14-R4 (the list is left untouched); S14-R5) [spec v1.6 2026-07-28],,
+3. Picking a dropdown result still takes you to that record - the navigation search keeps its find-and-open role.",Filters (no Jira epic) (S14-R1 (navigational results only); S14-R2 (the page-filtering code path is removed rather than dormant); S14-R4 (the list is left untouched); S14-R5) [spec v1.6 2026-07-28],,
 "The Search box changes look as you hover over it, open it and type",Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.","1. Look at the right-hand end of the toolbar row, before the small icon buttons and before the 'New Work Order' button.
 2. Move the mouse pointer over the 'Search' button without clicking.
@@ -698,7 +698,7 @@ The top navigation search no longer filters page lists,Page Search Toolbar,Funct
 3. Clicking it turns the button into a small text box in the same spot (the design sets it at 180 pixels wide), the typing cursor is already inside it, and the box grows towards the left so the other toolbar buttons do not move.
 4. While the box is empty it shows the magnifier icon and the grey placeholder text 'Type to search'.
 5. As soon as you type, your text shows in a dark grey and a small round x appears at the right-hand end of the box.
-6. A very long sentence does not make the box grow and does not cut the text off - the text scrolls sideways inside the box and the cursor stays where you are typing.","Filters epic (key TBD) (S13-R2 (default text button); S13-R3 (hover fill); S13-R4 (expands in place at 180px); S13-R5 (placeholder ""Type to search""); S13-R6 (typed text + X-circle clear); S13-R8 (long queries scroll)) [spec v1.6 2026-07-28]",,
+6. A very long sentence does not make the box grow and does not cut the text off - the text scrolls sideways inside the box and the cursor stays where you are typing.","Filters (no Jira epic) (S13-R2 (default text button); S13-R3 (hover fill); S13-R4 (expands in place at 180px); S13-R5 (placeholder ""Type to search""); S13-R6 (typed text + X-circle clear); S13-R8 (long queries scroll)) [spec v1.6 2026-07-28]",,
 "The list narrows shortly after you stop typing, with no button to press",Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.
 3. You can also open the Parts Inventory page.","1. On the Work Orders page open the Search box and type a few letters that match some work orders. Do NOT press Enter.
@@ -709,7 +709,7 @@ The top navigation search no longer filters page lists,Page Search Toolbar,Funct
 2. The matching rows appear in the table you were already looking at; no separate results page, results list or pop-up window opens.
 3. There is no Apply or Submit button anywhere next to the Search box.
 4. Pressing Enter changes nothing that has not already happened - the same rows stay listed and no page reload happens.
-5. Parts Inventory behaves the same way, only it waits a fraction longer before reacting; that longer wait is on purpose because that page carries more data.",Filters epic (key TBD) (S13-R7 (applies as you type; debounced 300ms; no apply/submit; Enter not required; Inventory 350ms); S13-R12 (results replace the table in place)) [spec v1.6 2026-07-28],,
+5. Parts Inventory behaves the same way, only it waits a fraction longer before reacting; that longer wait is on purpose because that page carries more data.",Filters (no Jira epic) (S13-R7 (applies as you type; debounced 300ms; no apply/submit; Enter not required; Inventory 350ms); S13-R12 (results replace the table in place)) [spec v1.6 2026-07-28],,
 One search box serves all Work Orders tabs and searches the tab you are on,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Work orders exist in several statuses, so the All, Estimates and Completed tabs each have rows.
 3. You have a word (for example part of a customer name) that matches work orders on more than one of those tabs.","1. On the All tab, type that word into the page Search box.
@@ -718,7 +718,7 @@ One search box serves all Work Orders tabs and searches the tab you are on,Page 
 4. Still on the Completed tab, clear the search with the round x, then go back to the All tab.","1. On the All tab only the rows matching your word remain.
 2. On the Estimates tab your word is still in the Search box, and the list shows only Estimates rows that match it - no rows from the other tabs appear.
 3. The Completed tab behaves the same way: your word is still there and only that tab's matching rows are listed.
-4. Clearing the search clears it for all the Work Orders tabs - they share one search - and each tab shows its full list again.",Filters epic (key TBD) (S13-R11 (search applies within the active tab only); S13-R24 (the Work Orders tabs share a single query - views of one dataset)) [spec v1.6 2026-07-28],,
+4. Clearing the search clears it for all the Work Orders tabs - they share one search - and each tab shows its full list again.",Filters (no Jira epic) (S13-R11 (search applies within the active tab only); S13-R24 (the Work Orders tabs share a single query - views of one dataset)) [spec v1.6 2026-07-28],,
 Each Report tab and each Parts view keeps its own separate search,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You can open at least two Parts views (for example Inventory and Purchase Orders).
 3. You can open a report that has more than one tab.","1. On a Parts view (for example Inventory) type a word into that page's Search box.
@@ -727,7 +727,7 @@ Each Report tab and each Parts view keeps its own separate search,Page Search To
 4. Do the same on a report with tabs: search on one tab, then switch to another tab of the same report.","1. The second Parts view opens with an empty Search box and its full list - the word you typed on the first view is not carried over.
 2. Going back to the first view brings its own word back and narrows its list again.
 3. Each report tab behaves the same way: a word typed on one tab stays on that tab only, and each tab remembers its own.
-4. No search is ever applied to a table it was not typed on.",Filters epic (key TBD) (S13-R24 (Reports sub-tabs and Parts views each keep their own query); S13-R11; S10-R4 (each view/tab keeps its own set)) [spec v1.6 2026-07-28],,
+4. No search is ever applied to a table it was not typed on.",Filters (no Jira epic) (S13-R24 (Reports sub-tabs and Parts views each keep their own query); S13-R11; S10-R4 (each view/tab keeps its own set)) [spec v1.6 2026-07-28],,
 An old link carrying a top-search word no longer narrows the page list,Page Search Toolbar,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have a Work Orders web address from BEFORE this change that still carries a word typed into the top-of-screen search (a bookmark, or a link someone sent). If you do not have one, hand-type that old search part onto the end of the Work Orders address.","1. Open that old web address.
 2. Look at the work order list and at the page's own Search box.
@@ -735,40 +735,40 @@ An old link carrying a top-search word no longer narrows the page list,Page Sear
 4. Type a word into the top-of-screen search, then reload the page.","1. The page opens with the normal list for your own saved filters - the old search word does NOT narrow the list.
 2. The page's own Search box is empty; nothing was carried into it.
 3. No error is shown - the leftover search part in the address is simply ignored. (Whether it also disappears from the address is not important; note what you see.)
-4. After typing in the top-of-screen search and reloading, the list is still not narrowed and nothing about that word was remembered for the list.",Filters epic (key TBD) (S14-R3 (state / URL parameters / persisted values carrying a global search term into page filtering are removed with it); S14-R2; S14-R1) [spec v1.6 2026-07-28],,
+4. After typing in the top-of-screen search and reloading, the list is still not narrowed and nothing about that word was remembered for the list.",Filters (no Jira epic) (S14-R3 (state / URL parameters / persisted values carrying a global search term into page filtering are removed with it); S14-R2; S14-R1) [spec v1.6 2026-07-28],,
 Collapsing the filter bar keeps an active search working,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page and the filter bar is expanded.
 3. A word is typed in the page Search box and the list is narrowed by it.","1. With the search still active, click the funnel button in the toolbar to collapse the filter bar.
 2. Look at the table and at the toolbar row.
 3. Expand the filter bar again.","1. The list stays narrowed by your word - collapsing the filter bar does not cancel the search.
 2. The Search box stays in the toolbar row with your word still showing; it is not tucked away with the filter bar, because the search sits in the toolbar row and the chips sit in the row below.
-3. Expanding the bar again changes nothing about the search or the narrowed list.",Filters epic (key TBD) (S13-E1 (a collapsed filter bar keeps an active query applying and the search control stays in the toolbar); §4 Key Decisions (page search is separate from the filter bar)) [spec v1.6 2026-07-28],,
+3. Expanding the bar again changes nothing about the search or the narrowed list.",Filters (no Jira epic) (S13-E1 (a collapsed filter bar keeps an active query applying and the search control stays in the toolbar); §4 Key Decisions (page search is separate from the filter bar)) [spec v1.6 2026-07-28],,
 The work order list request carries the active filter selections,API — Work Orders List Filtering,Functional,High,"1. You are signed in to the ShopView App on a desktop browser with developer tools open on the Network tab.
 2. You are on the Work Orders page with no filters applied.","1. Apply a Status selection and a Customer selection in the filter bar.
 2. In the Network tab, find the work order list request the page sends after the change.
 3. Inspect the request's parameters.","1. The list request includes the active filter selections as request parameters (status values and customer identifiers).
 2. The request succeeds (HTTP 200).
-3. The response contains only work orders matching the filters - the filtering is done by the backend, not just hidden client-side.",requirements.md Story 2 S2-R2; Story 3 S3-R6 (backend view),,
-"A combined multi-filter request returns only work orders matching all filters, any value within each filter",API — Work Orders List Filtering,Functional,High,"1. You are signed in with developer tools open on the Network tab.
+3. The response contains only work orders matching the filters - the filtering is done by the backend, not just hidden client-side.",Filters (no Jira epic) (S2-R2; S3-R6 (backend view)) [spec v1.6 2026-07-28],,
+A combined multi-filter request returns only work orders matching all filters,API — Work Orders List Filtering,Functional,High,"1. You are signed in with developer tools open on the Network tab.
 2. Seeded ZZAUTOTEST work orders exist: customer A with an Estimate and an Approved work order, customer B with an Estimate work order.","1. On the Work Orders page apply Status = Estimate + Approved and Customer = customer A.
 2. Capture the resulting list request and response.","1. One request carries both filters together (both statuses and the customer).
 2. The response returns customer A's Estimate and Approved work orders only.
-3. Customer B's work orders are absent - the customer filter and status filter both restrict the result, while the two statuses combine as either-or.",requirements.md Story 2 S2-R2; Story 3 S3-R6; Story 8 S8-R3 (backend view),,
-A list request with a deleted or unknown filter value is handled without a server error,API — Work Orders List Filtering,Negative,Medium,"1. You are signed in and can replay/edit the work order list request (developer tools or an API client).
+3. Customer B's work orders are absent - the customer filter and status filter both restrict the result, while the two statuses combine as either-or.",Filters (no Jira epic) (S2-R2; S3-R6; S8-R3 (backend view)) [spec v1.6 2026-07-28],,
+A request with a deleted or unknown filter value gives no server error,API — Work Orders List Filtering,Negative,Medium,"1. You are signed in and can replay/edit the work order list request (developer tools or an API client).
 2. You have a captured filtered list request, and one of its filter values has since been deleted (for example a removed ZZAUTOTEST customer) or is a made-up identifier.","1. Send the list request containing the no-longer-existing (or made-up) filter value.
 2. Inspect the HTTP status and the response body.","1. The backend does not fail with a server error (no HTTP 5xx).
 2. The response is a normal, successful list response - the invalid value is ignored or simply matches nothing.
-3. Any still-valid filter values in the same request are applied normally.",requirements.md Story 10 S10-N1; Story 11 S11-R3,,
+3. Any still-valid filter values in the same request are applied normally.",Filters (no Jira epic) (S10-N1; S11-R3) [spec v1.6 2026-07-28],,
 A list request with malformed filter parameters does not produce a server error,API — Work Orders List Filtering,Negative,Medium,"1. You are signed in and can replay/edit the work order list request.
 2. You have a captured filtered list request to tamper with.","1. Corrupt the filter parameters (wrong types, scrambled values, nonsense text) and send the request.
 2. Inspect the HTTP status and the response body.
 3. Also open the equally malformed page URL in the browser and watch the page.","1. The backend responds gracefully - no HTTP 5xx / crash; either a normal (unfiltered or empty) list or a clean validation response.
-2. In the browser the page still loads without filters and without an error message, matching the malformed-URL requirement.",requirements.md Story 11 S11-N1,,
-"A filter combination matching nothing returns a successful empty list, not an error",API — Work Orders List Filtering,Functional,Medium,"1. You are signed in with developer tools open on the Network tab.
+2. In the browser the page still loads without filters and without an error message, matching the malformed-URL requirement.",Filters (no Jira epic) (S11-N1) [spec v1.6 2026-07-28],,
+"A filter combination matching nothing returns an empty list, not an error",API — Work Orders List Filtering,Functional,Medium,"1. You are signed in with developer tools open on the Network tab.
 2. A filter combination is known to match no work orders (for example a seeded customer plus a status they never have).","1. Apply that filter combination on the Work Orders page.
 2. Capture the list request and response.","1. The request succeeds (HTTP 200).
 2. The response contains an empty result set (zero work orders) - an empty match is a normal outcome, not an error.
-3. The page renders the no-results empty state from this response.",requirements.md Story 8 S8-R3; Story 2 S2-N3,,
+3. The page renders the no-results empty state from this response.",Filters (no Jira epic) (S8-R3; S2-N3) [spec v1.6 2026-07-28],,
 "Saved-filters service round-trip: save, reload, and per-user isolation",API — Work Orders List Filtering,Functional,High,"1. You are signed in to the ShopView App on a desktop browser with developer tools open on the Network tab.
 2. A second user account is available.","1. On the Work Orders page, change a filter and watch the Network tab for the save request the page sends shortly after.
 2. Reload the page and find the load request for the saved page state.
@@ -776,4 +776,4 @@ A list request with malformed filter parameters does not produce a server error,
 4. With an API client (or by editing the request), ask the saved-state service for a page key that was never saved.","1. Changing a filter sends a save (PUT) to the per-user page-preferences service carrying the page's state, and it succeeds (HTTP 200).
 2. On reload the page requests the saved state back (GET, HTTP 200) and applies it - the filters return without you redoing them.
 3. The second user does NOT receive the first user's saved state - each account's saved filters are isolated.
-4. Asking for a never-saved key returns success with an empty value, not an error page.",Filters (Epic key TBD); tech plan 2026-07-29 section 4-1.3 (GET/PUT /api/users/me/preferences/{pageKey}); spec v1.3 S10 per-user persistence (export awaited),,
+4. Asking for a never-saved key returns success with an empty value, not an error page.",Filters (no Jira epic) (S10-R2 (filters stored server-side against the user account; last write wins); S10-R3 (saved per user)) + tech plan 2026-07-29 s4-1.3 (GET/PUT per-user page preferences) [spec v1.6 2026-07-28],,
