@@ -53,7 +53,7 @@ for f in files:
         if str(c.get("viu_status", "")).startswith("Retired"):
             continue
         cases[c["id"]] = c
-assert len(cases) == 472, len(cases)
+assert len(cases) in (472, 474), len(cases)
 
 TICK = re.compile(r"SV-\d+")
 ANCHOR = re.compile(r"(S\d+-[A-Z]+\d+[a-z]?|Story \d+|§\s?\d|specs/[a-z0-9-]+\.md|"
@@ -128,7 +128,7 @@ noowner = [r for r in rows if r["expected"] is None and not r["ticket"]]
 overcap = [r for r in rows if r["len"] > 250]
 
 json.dump(rows, open(os.path.join(OUT, "audit.json"), "w"), indent=1)
-print("=== Rule-20 traceability audit — 472 active cases ===")
+print("=== Rule-20 traceability audit — %d active cases ===" % len(rows))
 for k in ("compliant", "ticket-missing", "anchor-missing", "neither"):
     print(f"  {k:16s} {cnt.get(k,0)}")
 print(f"  stale-anchor     {len(stale_rows)}")

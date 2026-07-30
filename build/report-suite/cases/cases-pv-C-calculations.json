@@ -449,5 +449,36 @@
   "viu_status": "VIU-Pending",
   "notes": "HEAVY SEEDING: a work order whose end date and invoicing date fall in different windows (backdated end date). COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins.",
   "api_related": false
+ },
+ {
+  "id": "PV-PREC-01",
+  "area": "PV — Columns & Calculations",
+  "title": "Units Sold keeps an exact part-of-a-unit quantity and is never rounded off",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing Inventory Reports to View permission (the report adds no new permission).",
+  "preconditions": [
+   "1. You can sign in with a role that opens the Parts Velocity report.",
+   "2. A ZZAUTOTEST inventory part is in stock with a known unit cost, and there is enough on the shelf to sell a part-of-a-unit quantity such as 2.5.",
+   "3. Today's date falls inside the date range you will use on the report."
+  ],
+  "steps": [
+   "1. Open a ZZAUTOTEST work order and add that part to it with the quantity 2.5.",
+   "2. Approve the part line, then invoice the work order.",
+   "3. Sign out and sign back in, so nothing is being read from the browser's memory.",
+   "4. Open the Parts Velocity report for a date range that includes today and find that part's row.",
+   "5. Read the Units Sold value, then switch the On Hand column on and read that too."
+  ],
+  "expected": [
+   "1. Units Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash.",
+   "2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once.",
+   "3. On Hand has gone down by exactly 2.50 from what it was before the sale.",
+   "4. No value anywhere on the row has been quietly rounded to a whole number."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8589 (PV spec S5-R1 Units Sold net stock movement + S5-R5 two-decimal movement format; tech-plan-2026-07-29 Phase 0 / PR-1 D2; SV-8589 verbatim Tests: 'fractional-quantity round-trip regression')",
+  "viu_status": "VIU-Pending",
+  "notes": "DRIVER SV-8589 (In Progress 2026-07-29) — Goal verbatim: 'Fix the live QuickBooks-corruption bug caused by inventory_changes.old_quantity/new_quantity being mapped integer while the domain types them float - fractional units are truncated at hydrate/persist'. Tests verbatim: 'fractional-quantity round-trip regression'. SV-8589 'Blocks: B3 (PV - Units Sold precision)'. VIU-confirm live: (a) whether the part-line quantity field actually accepts a fractional value and its exact on-screen label, (b) the exact On Hand column label and the column-picker label, (c) the fix is FORWARD-ONLY per the story ('historical truncation unreconstructible') so use a movement made AFTER the migration, never pre-migration history.",
+  "api_related": false
  }
 ]

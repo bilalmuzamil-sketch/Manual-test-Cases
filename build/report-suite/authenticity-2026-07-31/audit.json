@@ -2044,6 +2044,36 @@
   "len": 46
  },
  {
+  "id": "PV-PREC-01",
+  "cid": "",
+  "area": "PV \u2014 Columns & Calculations",
+  "report": "PV",
+  "refs": "SV-8589 (PV spec S5-R1 Units Sold net stock movement + S5-R5 two-decimal movement format; tech-plan-2026-07-29 Phase 0 / PR-1 D2; SV-8589 verbatim Tests: 'fractional-quantity round-trip regression')",
+  "status": "compliant",
+  "stale": [],
+  "stories": [
+   5
+  ],
+  "ticket": "SV-8589",
+  "expected": "SV-8645",
+  "why": "PV Story 5 (present ticket SV-8589 != first-anchor story ticket SV-8645)",
+  "len": 198
+ },
+ {
+  "id": "PV-PREC-02",
+  "cid": "",
+  "area": "PV \u2014 API",
+  "report": "PV",
+  "refs": "SV-8589 (verbatim Tests: 'QB journal amount exact from fractional movement'; Goal: 'QB journal-entry sync multiplies these into dollar amounts'; tech-plan-2026-07-29 Phase 0 / PR-1 D2 - no report spec covers QuickBooks)",
+  "status": "compliant",
+  "stale": [],
+  "stories": [],
+  "ticket": "SV-8589",
+  "expected": null,
+  "why": "anchor cites no story number (cross-cutting)",
+  "len": 219
+ },
+ {
   "id": "PV-ROW-01",
   "cid": "C30341",
   "area": "PV \u2014 Row Model",
