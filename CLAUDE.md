@@ -35,6 +35,13 @@
 >   authorization needed), and on another rate limit append the attempt + re-arm DUE-AT = new
 >   error time + 9 h. OPEN NOW: `build/filters/design-2026-07-31/PENDING-FIGMA-FETCH.md`
 >   (73/85 PNGs, DUE-AT `2026-07-30T23:27:02Z`).**
+> - **OUTSTANDING-ITEMS REGISTER (Standing Rule 36) — the single cross-project list of everything we
+>   are WAITING ON: build/OUTSTANDING-ITEMS-REGISTER.md. READ IT before writing any status report or
+>   management deliverable, and UPDATE IT the moment an item is raised or cleared. EVERY project
+>   report MUST END with an "OUTSTANDING — what I need from you" section (say "nothing outstanding"
+>   if that is true — never omit it). Sweep all six categories: missing sources · unanswered PO/dev
+>   questions · missing go-aheads/authorizations · access/credentials · deferred or HELD decisions ·
+>   what another team owes. Unresolved inputs are the main threat to 100% authentic tests.**
 > - **PROCESS CATALOG (the table of every reusable process + how to call it for any project):
 >   build/PROCESS-CATALOG.md — READ THIS to pick/name a process; it lists all of them with
 >   trigger phrases and the deliverable each produces. Keep it updated when a process is
@@ -1672,6 +1679,90 @@ deliver the 7-tab management report.
     `build/APP-ACTIONS-PLAYBOOK.md` §M "Figma: extract ALL frames from a design link". Ties to
     Standing Rules 17 (complete data in/out), 27 (reuse recorded recipes), 29 (no work loss —
     the queue file is committed to git, the only durable store), 31 and 32 (latest source wins).
+36. **Always remind the user of everything OUTSTANDING for each project — every report carries
+    the asks (all projects).** USER DIRECTIVE (2026-07-31, verbatim): *"And keep on reminding me
+    for anything which is missing for any project, like the epic is missing for some project the
+    answers are missing for some project my go ahead is missing for some project OR anything which
+    you had asked me to give you for that project that can be anything from give you a go ahead for
+    something or provided you with a soure of something or to answer any of your squestion,m if
+    anything is missing with the report of each project you will include that as a reminder for me
+    to provide you with. The end goal is ALWAYS to make sure that our tests are 100% authentic."*
+    **THE RULE:** EVERY project status report, management deliverable, and progress update MUST
+    END with an **"OUTSTANDING — what I need from you"** section for that project. If nothing is
+    outstanding, **say that explicitly** (*"Nothing outstanding"*) — **never omit the section**, so
+    the user can always tell the difference between "clear" and "we forgot to check".
+    **THE SIX CATEGORIES TO SWEEP EVERY TIME** (walk all six, every report — do not stop at the
+    first one that has items): **(1) MISSING SOURCES** — spec/PRD not shared or stale, no epic in
+    Jira, designs not provided or a Rule-35 Figma fetch queue still OPEN, tech plan not supplied
+    (Rule 30), a promised video/changelog not delivered. **(2) UNANSWERED QUESTIONS** to a PO or to
+    dev — name the sheet + the question number and who owes it, and **how long it has been
+    outstanding**. **(3) MISSING GO-AHEADS / AUTHORIZATIONS** from the user — TestRail pushes,
+    retirements, merges, deletions, run syncs, title-trim passes (Rule 6 means nothing moves
+    without them). **(4) ACCESS / CREDENTIALS** needed — fresh staging or prod cookies, Atlassian
+    access, a Figma token, a QuickBooks-connected company, a QA branch/env + flag state. **(5)
+    DECISIONS THE USER DEFERRED OR HELD** — anything marked HELD, PENDING, or "your call".
+    **(6) THINGS ANOTHER TEAM OWES** — a PO's spec correction, a dev fix, a missing ticket key, a
+    stale Jira story.
+    **EACH ITEM STATES FOUR THINGS:** *what is missing* · *who owes it* · **what it BLOCKS** (the
+    concrete authenticity or coverage consequence, not a vague "needed for completeness") · *since
+    when*.
+    **THE DURABLE REGISTER: `build/OUTSTANDING-ITEMS-REGISTER.md`** is the SINGLE cross-project
+    source of truth for these asks — one section per project, a table per project, plus a one-line
+    "what I most need from you". It is **updated whenever an item is RAISED or CLEARED** (same
+    turn, like the PROCESS-CATALOG convention in Rule 21), and each project's `PROJECT-STATE.md`
+    points at it. **Items are removed ONLY when genuinely satisfied** — never quietly dropped;
+    cleared items move to the register's "Recently cleared" log with the date and how they were
+    satisfied, so nothing can silently disappear and nothing gets re-asked (we have already
+    embarrassed ourselves once by re-asking a question a source had answered). Predecessor
+    snapshot kept for the record: `build/PROJECTS-NEEDS-2026-07-27.md`.
+    **Reader-facing wording stays plain and layman (Rule 7)** — the outstanding section is written
+    for a non-technical reader: what you need to give us, and what we cannot prove until you do.
+    **RATIONALE:** the end goal is **100% AUTHENTIC tests**, and most authenticity gaps are things
+    WE are waiting on — a missing epic means no ticket traceability (Rule 20 cannot be satisfied at
+    all); an unanswered PO question means a case stays hedged/flagged rather than asserted; a
+    missing QA branch means **nothing is live-verified** and the whole suite sits VIU-Pending (Rules
+    12/22). Surfacing these every time is how the gaps get closed instead of quietly accumulating.
+    Ties to Standing Rules 1 (never proceed without the complete input set), 6 (nothing written
+    without permission), 12 (observed, never inferred), 20 (traceability/authenticity), 22 (ask for
+    the live-build check + access up front), 30 (tech plan is a standard input), 31 (source
+    currency), 33 (authority precedence) and 35 (the Figma fetch queue).
+37. **Epics — ASK before a full re-read; if authorized, read them EXHAUSTIVELY (all projects).**
+    USER DIRECTIVE (2026-07-31, verbatim): *"And for the EPics, since reading them from scratch is
+    a long proess, ask me if you want me to get the updated epic version too. But if I ask you to
+    do ye, then you need to check the epic open each ticket defect, bug, story and everything in
+    that epic or related to that epic including the ticket/stories/bug/task titles/description/
+    attached or inline images/comments and everything related to ALL the tickets."*
+    This **REFINES Rule 31's epic step into two tiers** — it does not contradict it.
+    **TIER 1 — THE CHEAP CURRENCY CHECK (part of the Rule-31 pre-flight; NO need to ask).** Fetch
+    the epic + its child list and compare against our ingest: the **STORY SET** (any new or removed
+    keys), **each story's STATUS**, and the **Jira CHANGELOG**. Verify the child count two
+    independent ways (`parent = <epic>` and `"Epic Link" = <epic>`) with no paging remainder (Rule
+    17). This is cheap and it is what proved **SV-8685 unchanged** and caught **SV-8582's 6
+    reopened stories** on 2026-07-31. **If nothing moved, SAY SO plainly and proceed** — no full
+    re-read, no question needed.
+    **TIER 2 — THE FULL RE-READ (EXPENSIVE — ASK THE USER FIRST).** When the currency check shows
+    **meaningful movement**, or when the task genuinely needs the epic's full content, **ASK the
+    user whether to do a full epic re-read before starting it** — it is a long process and it is
+    the most expensive ingest we do. **Never launch a full re-read unannounced, and never skip one
+    the user has authorized.**
+    **IF AUTHORIZED, "EXHAUSTIVE" MEANS EXACTLY THIS (Rule 17 completeness — state the totals
+    found):** open **EVERY child ticket AND every related ticket** — linked issues, sub-tasks,
+    defects, bugs, stories, tasks, **including tickets OUTSIDE the epic that link to it** — and for
+    **EACH** one read: the **title**, the **FULL description**, **EVERY comment**, and **EVERY
+    attachment INCLUDING inline images**. **Images must actually be DOWNLOADED and LOOKED AT — not
+    merely listed by filename** — because screenshots routinely carry the real requirement or the
+    real defect. Also read the **changelog**, the **status/resolution history**, and any **linked
+    PRs/branches** referenced. **Report the exact counts** (tickets read / comments read / images
+    viewed) and **quote the testable content VERBATIM** with its ticket key (Rule 25).
+    **HONESTY CLAUSE:** if any part cannot be read — an attachment that will not download, a
+    permission-blocked linked ticket, a truncated comment thread — **say precisely what was
+    unreadable and why**. **NEVER present a partial epic read as complete** (Rules 12/17).
+    **RATIONALE:** epic re-reads are the most expensive ingest we do, so they are **user-gated**;
+    but a **PARTIAL one is worse than none**, because it produces false confidence about coverage.
+    Canonical Tier-1 example: `build/epic-recheck-2026-07-31/` (both active epics currency-checked,
+    170 SV epics enumerated to prove Filters has none). Ties to Standing Rules 1 (complete inputs),
+    11 (ask which process), 12 (observed not inferred), 17 (complete data in/out), 22 (ask up
+    front), 25 (verbatim citations), 31 (source currency) and 33 (authority precedence).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

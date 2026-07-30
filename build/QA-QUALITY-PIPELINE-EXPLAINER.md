@@ -6,7 +6,7 @@
 > use to ensure the test cases are good?"*. Each step ends with a pointer to the full internal
 > process doc for readers who want the mechanics.
 
-Every suite we deliver passes through **nine gates**. No suite skips a gate, and every gate
+Every suite we deliver passes through **ten gates**. No suite skips a gate, and every gate
 produces an artifact (a matrix, a tally, an audit log) so the quality is provable, not claimed.
 
 ## 1. Source ingestion — verbatim, complete, latest-wins
@@ -168,8 +168,24 @@ are later CONVERTED INTO TEST CASES too."*
 
 ---
 
+## 10. Every status report ends with what we are waiting on
+
+**Every project status report ends with a plain list of what we are still waiting on and who owes
+it — the missing specs, epics and designs, the unanswered PO and developer questions, the
+authorizations we need, and the test environments we do not yet have — because unresolved inputs
+are the main threat to test authenticity.** A case cannot cite a ticket that does not exist, cannot
+assert a behaviour nobody has ruled on, and cannot be proven against a build we cannot log in to.
+Naming these openly in every report is how they get closed instead of quietly accumulating. The
+single cross-project list is kept in `build/OUTSTANDING-ITEMS-REGISTER.md`, updated the moment an
+item is raised or cleared; an item is only removed when it is genuinely satisfied.
+
+*Internal reference: Standing Rule 36 (and the six categories it mandates sweeping).*
+
+---
+
 **The one-line answer:** *every case is sourced verbatim from the current spec and ticket,
 traceable, written in the exact words of the real application, coverage-mapped both ways,
 adversarially reviewed, audited for usefulness and sense across 100% of the suite, re-reconciled
 on every spec change, proven live in the UI with evidence — and then kept honest forever by the
-testers themselves through the Blocked-revisit loop.*
+testers themselves through the Blocked-revisit loop, with every report stating openly what we are
+still waiting on and who owes it.*
