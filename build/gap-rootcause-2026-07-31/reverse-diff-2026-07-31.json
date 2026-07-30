@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-30T20:17:40Z",
+  "generated": "2026-07-30T20:19:01Z",
   "ours_uid": 3,
   "groups": [
     {
@@ -38,6 +38,8 @@
       "author": "Vladimir Tomovic",
       "refs": null,
       "case_verdict": "CONTRADICTS-OURS",
+      "units_total": 7,
+      "units_strong": 7,
       "units": [
         {
           "where": "custom_preconds",
@@ -49,11 +51,12 @@
             "storage"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "admin"
+            "storage"
           ],
-          "why": "no case of ours contains 'admin' together with ['project', 'sbr', 'storage']"
+          "why": "no case of ours contains 'storage' together with ['admin', 'project', 'sbr']"
         },
         {
           "where": "custom_preconds",
@@ -65,11 +68,12 @@
             "least"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "workplaces"
+            "accessible"
           ],
-          "why": "no case of ours contains 'workplaces' together with ['org', 'accessible', 'least']"
+          "why": "no case of ours contains 'accessible' together with ['workplaces', 'org', 'least']"
         },
         {
           "where": "custom_preconds",
@@ -81,11 +85,12 @@
             "aggregates"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "workplaces"
+            "wos"
           ],
-          "why": "no case of ours contains 'workplaces' together with ['api', 'wos', 'aggregates']"
+          "why": "no case of ours contains 'wos' together with ['workplaces', 'api', 'aggregates']"
         },
         {
           "where": "step1.content",
@@ -97,6 +102,7 @@
             "default"
           ],
           "verdict": "COVERED-BY",
+          "strength": "STRONG",
           "our_cases": [
             30218,
             30278
@@ -114,11 +120,12 @@
             "locations"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "refetch"
+            "turn"
           ],
-          "why": "no case of ours contains 'refetch' together with ['wait', 'turn', 'locations']"
+          "why": "no case of ours contains 'turn' together with ['refetch', 'wait', 'locations']"
         },
         {
           "where": "step3.content",
@@ -129,15 +136,13 @@
             "expanded",
             "csv"
           ],
-          "verdict": "CONTRADICTS-OURS",
-          "our_cases": [
-            30286,
-            38913
-          ],
+          "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
+          "our_cases": [],
           "missing_token": [
-            "widened"
+            "scope"
           ],
-          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'widened'"
+          "why": "no case of ours contains 'scope' together with ['widened', 'expanded', 'csv']"
         },
         {
           "where": "step4.content",
@@ -149,6 +154,7 @@
             "totals"
           ],
           "verdict": "CONTRADICTS-OURS",
+          "strength": "STRONG",
           "our_cases": [
             30291,
             30318
@@ -156,7 +162,7 @@
           "missing_token": [
             "footer"
           ],
-          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'footer'"
+          "why": "our case(s) share this topic AND carry a closed-list/negation marker, while never mentioning 'footer' - read both before ruling"
         }
       ]
     },
@@ -168,6 +174,8 @@
       "author": "Vladimir Tomovic",
       "refs": null,
       "case_verdict": "CONTRADICTS-OURS",
+      "units_total": 8,
+      "units_strong": 7,
       "units": [
         {
           "where": "custom_preconds",
@@ -179,11 +187,12 @@
             "owner"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "admin"
+            "accessible"
           ],
-          "why": "no case of ours contains 'admin' together with ['workplaces', 'accessible', 'owner']"
+          "why": "no case of ours contains 'accessible' together with ['admin', 'workplaces', 'owner']"
         },
         {
           "where": "custom_preconds",
@@ -195,11 +204,12 @@
             "sold"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "api"
+            "sold"
           ],
-          "why": "no case of ours contains 'api' together with ['workplace', 'seeded', 'sold']"
+          "why": "no case of ours contains 'sold' together with ['api', 'workplace', 'seeded']"
         },
         {
           "where": "custom_preconds",
@@ -211,6 +221,7 @@
             "wos"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "PHRASING",
           "our_cases": [],
           "missing_token": [
             "workplaces"
@@ -227,6 +238,7 @@
             "location"
           ],
           "verdict": "COVERED-BY",
+          "strength": "STRONG",
           "our_cases": [
             30352
           ],
@@ -243,11 +255,12 @@
             "server"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "refetch"
+            "wait"
           ],
-          "why": "no case of ours contains 'refetch' together with ['wait', 'turn', 'server']"
+          "why": "no case of ours contains 'wait' together with ['refetch', 'turn', 'server']"
         },
         {
           "where": "step3.content",
@@ -259,13 +272,14 @@
             "number"
           ],
           "verdict": "CONTRADICTS-OURS",
+          "strength": "STRONG",
           "our_cases": [
             30342
           ],
           "missing_token": [
             "number"
           ],
-          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'number'"
+          "why": "our case(s) share this topic AND carry a closed-list/negation marker, while never mentioning 'number' - read both before ruling"
         },
         {
           "where": "step4.content",
@@ -276,14 +290,13 @@
             "number",
             "type"
           ],
-          "verdict": "CONTRADICTS-OURS",
-          "our_cases": [
-            30333
-          ],
+          "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
+          "our_cases": [],
           "missing_token": [
-            "seeded"
+            "search"
           ],
-          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'seeded'"
+          "why": "no case of ours contains 'search' together with ['seeded', 'number', 'type']"
         },
         {
           "where": "step5.content",
@@ -294,6 +307,7 @@
             "column"
           ],
           "verdict": "CONTRADICTS-OURS",
+          "strength": "STRONG",
           "our_cases": [
             30328,
             30352,
@@ -303,7 +317,7 @@
           "missing_token": [
             "menu"
           ],
-          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'menu'"
+          "why": "our case(s) share this topic AND carry a closed-list/negation marker, while never mentioning 'menu' - read both before ruling"
         }
       ]
     },
@@ -315,6 +329,8 @@
       "author": "Vladimir Tomovic",
       "refs": null,
       "case_verdict": "CONTRADICTS-OURS",
+      "units_total": 10,
+      "units_strong": 10,
       "units": [
         {
           "where": "custom_preconds",
@@ -326,11 +342,12 @@
             "storage"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "admin"
+            "storage"
           ],
-          "why": "no case of ours contains 'admin' together with ['logged', 'project', 'storage']"
+          "why": "no case of ours contains 'storage' together with ['admin', 'logged', 'project']"
         },
         {
           "where": "custom_preconds",
@@ -342,11 +359,12 @@
             "est"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "api"
+            "calendar"
           ],
-          "why": "no case of ours contains 'api' together with ['calendar', 'clock', 'est']"
+          "why": "no case of ours contains 'calendar' together with ['api', 'clock', 'est']"
         },
         {
           "where": "custom_preconds",
@@ -358,6 +376,7 @@
             "labor"
           ],
           "verdict": "COVERED-BY",
+          "strength": "STRONG",
           "our_cases": [
             30401
           ],
@@ -374,11 +393,12 @@
             "apply"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "context"
+            "five"
           ],
-          "why": "no case of ours contains 'context' together with ['five', 'metric', 'apply']"
+          "why": "no case of ours contains 'five' together with ['context', 'metric', 'apply']"
         },
         {
           "where": "step1.expected",
@@ -388,14 +408,13 @@
             "performance",
             "entry"
           ],
-          "verdict": "CONTRADICTS-OURS",
-          "our_cases": [
-            30392
-          ],
+          "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
+          "our_cases": [],
           "missing_token": [
-            "nav"
+            "performance"
           ],
-          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'nav'"
+          "why": "no case of ours contains 'performance' together with ['nav', 'entry']"
         },
         {
           "where": "step2.content",
@@ -406,6 +425,7 @@
             "column"
           ],
           "verdict": "COVERED-BY",
+          "strength": "STRONG",
           "our_cases": [
             30434,
             30447,
@@ -424,6 +444,7 @@
             "column"
           ],
           "verdict": "COVERED-BY",
+          "strength": "STRONG",
           "our_cases": [
             30405,
             38859
@@ -441,13 +462,14 @@
             "csv"
           ],
           "verdict": "CONTRADICTS-OURS",
+          "strength": "STRONG",
           "our_cases": [
             30434
           ],
           "missing_token": [
             "export"
           ],
-          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'export'"
+          "why": "our case(s) share this topic AND carry a closed-list/negation marker, while never mentioning 'export' - read both before ruling"
         },
         {
           "where": "step6.content",
@@ -457,15 +479,13 @@
             "selector",
             "toggle"
           ],
-          "verdict": "CONTRADICTS-OURS",
-          "our_cases": [
-            30410,
-            38859
-          ],
+          "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
+          "our_cases": [],
           "missing_token": [
-            "selector"
+            "est"
           ],
-          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'selector'"
+          "why": "no case of ours contains 'est' together with ['selector', 'toggle']"
         },
         {
           "where": "step6.content",
@@ -476,6 +496,7 @@
             "labor"
           ],
           "verdict": "COVERED-BY",
+          "strength": "STRONG",
           "our_cases": [
             30411,
             38859
@@ -493,6 +514,8 @@
       "author": "Vladimir Tomovic",
       "refs": null,
       "case_verdict": "CANDIDATE GAP",
+      "units_total": 8,
+      "units_strong": 8,
       "units": [
         {
           "where": "custom_preconds",
@@ -504,11 +527,12 @@
             "storage"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "admin"
+            "wip"
           ],
-          "why": "no case of ours contains 'admin' together with ['project', 'wip', 'storage']"
+          "why": "no case of ours contains 'wip' together with ['admin', 'project', 'storage']"
         },
         {
           "where": "custom_preconds",
@@ -520,11 +544,12 @@
             "least"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "workplaces"
+            "least"
           ],
-          "why": "no case of ours contains 'workplaces' together with ['org', 'accessible', 'least']"
+          "why": "no case of ours contains 'least' together with ['workplaces', 'org', 'accessible']"
         },
         {
           "where": "custom_preconds",
@@ -536,11 +561,12 @@
             "week"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "unique"
+            "lands"
           ],
-          "why": "no case of ours contains 'unique' together with ['lands', 'vehicle', 'week']"
+          "why": "no case of ours contains 'lands' together with ['unique', 'vehicle', 'week']"
         },
         {
           "where": "custom_preconds",
@@ -552,13 +578,12 @@
             "seeded"
           ],
           "verdict": "CANDIDATE GAP",
-          "our_cases": [
-            30462
-          ],
+          "strength": "STRONG",
+          "our_cases": [],
           "missing_token": [
-            "api"
+            "completed"
           ],
-          "why": "no case of ours contains 'api' together with ['completed', 'partially', 'seeded']"
+          "why": "no case of ours contains 'completed' together with ['api', 'partially', 'seeded']"
         },
         {
           "where": "custom_preconds",
@@ -570,11 +595,12 @@
             "hidden"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "context"
+            "wip"
           ],
-          "why": "no case of ours contains 'context' together with ['wip', 'starts', 'hidden']"
+          "why": "no case of ours contains 'wip' together with ['context', 'starts', 'hidden']"
         },
         {
           "where": "step1.content",
@@ -586,11 +612,12 @@
             "wip"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "isolate"
+            "wip"
           ],
-          "why": "no case of ours contains 'isolate' together with ['unique', 'nav', 'wip']"
+          "why": "no case of ours contains 'wip' together with ['isolate', 'unique', 'nav']"
         },
         {
           "where": "step2.content",
@@ -602,11 +629,12 @@
             "locations"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "refetch"
+            "wait"
           ],
-          "why": "no case of ours contains 'refetch' together with ['wait', 'turn', 'locations']"
+          "why": "no case of ours contains 'wait' together with ['refetch', 'turn', 'locations']"
         },
         {
           "where": "step3.content",
@@ -618,6 +646,7 @@
             "download"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
             "menu"
@@ -634,6 +663,8 @@
       "author": "Vladimir Tomovic",
       "refs": null,
       "case_verdict": "CONTRADICTS-OURS",
+      "units_total": 6,
+      "units_strong": 6,
       "units": [
         {
           "where": "custom_preconds",
@@ -645,11 +676,12 @@
             "owner"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "admin"
+            "accessible"
           ],
-          "why": "no case of ours contains 'admin' together with ['workplaces', 'accessible', 'owner']"
+          "why": "no case of ours contains 'accessible' together with ['admin', 'workplaces', 'owner']"
         },
         {
           "where": "custom_preconds",
@@ -661,11 +693,12 @@
             "valued"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "api"
+            "core"
           ],
-          "why": "no case of ours contains 'api' together with ['workplace', 'core', 'valued']"
+          "why": "no case of ours contains 'core' together with ['api', 'workplace', 'valued']"
         },
         {
           "where": "step1.content",
@@ -677,6 +710,7 @@
             "export"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
             "seeded"
@@ -693,6 +727,7 @@
             "download"
           ],
           "verdict": "CONTRADICTS-OURS",
+          "strength": "STRONG",
           "our_cases": [
             30589,
             30592,
@@ -702,7 +737,7 @@
           "missing_token": [
             "menu"
           ],
-          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'menu'"
+          "why": "our case(s) share this topic AND carry a closed-list/negation marker, while never mentioning 'menu' - read both before ruling"
         },
         {
           "where": "step3.content",
@@ -714,11 +749,12 @@
             "locations"
           ],
           "verdict": "CANDIDATE GAP",
+          "strength": "STRONG",
           "our_cases": [],
           "missing_token": [
-            "refetch"
+            "turn"
           ],
-          "why": "no case of ours contains 'refetch' together with ['wait', 'turn', 'locations']"
+          "why": "no case of ours contains 'turn' together with ['refetch', 'wait', 'locations']"
         },
         {
           "where": "step4.content",
@@ -730,13 +766,14 @@
             "data"
           ],
           "verdict": "CONTRADICTS-OURS",
+          "strength": "STRONG",
           "our_cases": [
             30607
           ],
           "missing_token": [
             "cell"
           ],
-          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'cell'"
+          "why": "our case(s) share this topic AND carry a closed-list/negation marker, while never mentioning 'cell' - read both before ruling"
         }
       ]
     }

@@ -260,37 +260,56 @@ COVERED, GAP, CONTRA = "COVERED-BY", "CANDIDATE GAP", "CONTRADICTS-OURS"
 
 
 def diff_unit(unit_text, sig, our_index, our_tokens_by_id):
-    """The whole question in one function: does ANY case of ours assert all of this?"""
+    """The whole question in one function: does ANY case of ours assert all of this?
+
+    Returns (verdict, our_case_ids, [missing_token], why, strength).
+
+    STRENGTH is what makes the output readable instead of noisy:
+      STRONG  - the missing token IS part of our own vocabulary (we use that word
+                elsewhere), it just never co-occurs with the rest. That is a
+                MEANINGFUL absence: we talk about 'location' and we talk about
+                'csv', and never both in one case. This is the shape of a real gap.
+      PHRASING- the missing token appears NOWHERE in our corpus ('refetch',
+                'widened'). Usually their wording, not our gap. Reported, ranked
+                last, and never allowed to set the case-level verdict.
+    """
     if not sig:
-        return COVERED, [], [], "no discriminative tokens - nothing to test"
+        return COVERED, [], [], "no discriminative tokens - nothing to test", "PHRASING"
 
     sets = [our_index.get(t, set()) for t in sig]
     full = set.intersection(*sets) if all(sets) else set()
     if full:
-        return COVERED, sorted(full)[:6], [], f"all of {sig} co-occur in a case of ours"
+        return (COVERED, sorted(full)[:6], [],
+                f"all of {sig} co-occur in a case of ours", "STRONG")
 
-    # Which token is the one nobody of ours ever pairs with the rest?
-    best_missing, best_hits = None, set()
-    for drop in range(len(sig)):
+    # Which token is the one nobody of ours ever pairs with the rest? Prefer a
+    # token we DO use elsewhere - otherwise the explanation is about their
+    # vocabulary rather than our coverage, which was the noise in v1.
+    best = None  # (in_our_vocab, hit_count, token, hits)
+    for drop, tok in enumerate(sig):
         kept = [t for i, t in enumerate(sig) if i != drop]
-        hits = set.intersection(*[our_index.get(t, set()) for t in kept]) if kept and all(
-                our_index.get(t) for t in kept) else set()
-        if len(hits) > len(best_hits) or best_missing is None:
-            best_missing, best_hits = sig[drop], hits
+        hits = (set.intersection(*[our_index.get(t, set()) for t in kept])
+                if kept and all(our_index.get(t) for t in kept) else set())
+        cand = (1 if our_index.get(tok) else 0, len(hits), tok, hits)
+        if best is None or cand[:2] > best[:2]:
+            best = cand
+    in_vocab, _, best_missing, best_hits = best
+    strength = "STRONG" if in_vocab else "PHRASING"
 
     ut = tokens(unit_text)
     contra = []
-    for cid in list(best_hits)[:40]:
+    for cid in list(best_hits)[:60]:
         their, txt = our_tokens_by_id[cid]
         if len(ut & their) >= max(2, len(ut) // 3) and NEGATION.search(txt):
             contra.append(cid)
-    if contra:
+    if contra and strength == "STRONG":
         return (CONTRA, sorted(contra)[:6], [best_missing],
-                f"our case(s) share the topic but carry a closed-list/negation marker, "
-                f"and never mention '{best_missing}'")
+                f"our case(s) share this topic AND carry a closed-list/negation marker, "
+                f"while never mentioning '{best_missing}' - read both before ruling",
+                strength)
     return (GAP, sorted(best_hits)[:6], [best_missing],
             f"no case of ours contains '{best_missing}' together with "
-            f"{[t for t in sig if t != best_missing]}")
+            f"{[t for t in sig if t != best_missing]}", strength)
 
 
 def main():
@@ -376,21 +395,27 @@ def main():
             urows, worst = [], COVERED
             for where, text in units:
                 sig = signature(text, idf, args.sig_size)
-                verdict, hits, missing, why = diff_unit(text, sig, index, tok_by_id)
-                if verdict == CONTRA or (verdict == GAP and worst != CONTRA):
-                    worst = verdict
+                verdict, hits, missing, why, strength = diff_unit(text, sig, index, tok_by_id)
+                # Only STRONG units may set the case-level verdict: a PHRASING
+                # difference is their wording, not our missing coverage.
+                if strength == "STRONG":
+                    if verdict == CONTRA or (verdict == GAP and worst != CONTRA):
+                        worst = verdict
                 urows.append({"where": where, "assertion": text, "signature": sig,
-                              "verdict": verdict, "our_cases": hits,
+                              "verdict": verdict, "strength": strength, "our_cases": hits,
                               "missing_token": missing, "why": why})
+            strong = [u for u in urows if u["strength"] == "STRONG"]
             results.append({
                 "group": group, "case_id": c["id"], "title": c.get("title"),
                 "section": section_path(c["section_id"], by_id),
                 "author": resolve_user(c.get("created_by"), headers),
-                "refs": c.get("refs"), "case_verdict": worst, "units": urows})
-            print(f"  C{c['id']} [{worst}] {c.get('title')[:70]}  "
-                  f"({sum(1 for u in urows if u['verdict']==GAP)} gap / "
-                  f"{sum(1 for u in urows if u['verdict']==CONTRA)} contra of {len(urows)} units)",
-                  flush=True)
+                "refs": c.get("refs"), "case_verdict": worst,
+                "units_total": len(urows), "units_strong": len(strong), "units": urows})
+            print(f"  C{c['id']} [{worst}] {(c.get('title') or '')[:66]}  "
+                  f"(STRONG units: {sum(1 for u in strong if u['verdict']==GAP)} gap / "
+                  f"{sum(1 for u in strong if u['verdict']==CONTRA)} contra / "
+                  f"{sum(1 for u in strong if u['verdict']==COVERED)} covered; "
+                  f"{len(urows)-len(strong)} phrasing-only)", flush=True)
 
     if args.json:
         with open(args.json, "w") as fh:
@@ -400,12 +425,12 @@ def main():
         with open(args.csv, "w", newline="") as fh:
             w = csv.writer(fh)
             w.writerow(["group", "foreign_case", "author", "section", "case_verdict",
-                        "unit_where", "unit_verdict", "signature", "missing_token",
+                        "unit_where", "unit_verdict", "strength", "signature", "missing_token",
                         "our_cases", "why", "assertion"])
             for r in results:
                 for u in r["units"]:
                     w.writerow([r["group"], f"C{r['case_id']}", r["author"], r["section"],
-                                r["case_verdict"], u["where"], u["verdict"],
+                                r["case_verdict"], u["where"], u["verdict"], u["strength"],
                                 " ".join(u["signature"]), " ".join(u["missing_token"]),
                                 " ".join(f"C{i}" for i in u["our_cases"]), u["why"],
                                 u["assertion"][:400]])
@@ -424,9 +449,11 @@ def main():
                          f"*{r['title']}*  \nSection: {r['section']}  \n"
                          f"Author: **{r['author']}** · refs: `{r['refs'] or 'None'}` · "
                          f"[open](https://shopview.testrail.io/index.php?/cases/view/{r['case_id']})\n\n")
-                fh.write("| # | Verdict | Signature | Missing | Our nearest | Assertion |\n|---|---|---|---|---|---|\n")
-                for i, u in enumerate(r["units"], 1):
-                    fh.write(f"| {i} | {u['verdict']} | `{' '.join(u['signature'])}` | "
+                fh.write("| # | Verdict | Strength | Signature | Missing | Our nearest | Assertion |\n"
+                         "|---|---|---|---|---|---|---|\n")
+                order = {"STRONG": 0, "PHRASING": 1}
+                for i, u in enumerate(sorted(r["units"], key=lambda x: order[x["strength"]]), 1):
+                    fh.write(f"| {i} | {u['verdict']} | {u['strength']} | `{' '.join(u['signature'])}` | "
                              f"`{' '.join(u['missing_token']) or '-'}` | "
                              f"{' '.join('C'+str(x) for x in u['our_cases']) or '-'} | "
                              f"{u['assertion'][:220].replace('|','/')} |\n")
