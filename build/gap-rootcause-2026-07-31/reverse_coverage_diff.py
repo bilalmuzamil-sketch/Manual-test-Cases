@@ -105,8 +105,9 @@ def api_get(path, headers, retries=5):
 def api_paged(path, key, headers):
     out, offset = [], 0
     while True:
-        sep = "&" if "?" in path else "?"
-        data = api_get(f"{path}{sep}limit=250&offset={offset}", headers)
+        # Everything after index.php? is ONE query string, so extra params are
+        # always joined with & - never ?. (A ? here returns HTTP 400.)
+        data = api_get(f"{path}&limit=250&offset={offset}", headers)
         chunk = data.get(key, data) if isinstance(data, dict) else data
         out.extend(chunk)
         if isinstance(data, dict) and data.get("_links", {}).get("next"):
