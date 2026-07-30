@@ -985,8 +985,8 @@ ROWS = [
                  "Preconditions/Steps/Expected as HTML <ol><li> while the other 103 store the "
                  "house-standard plain numbered lines. Content is byte-identical "
                  "(machine-verified on all 21 field pairs). Deliberately NOT pushed.\"",
-        cases=[("FLT-BAR-01", 29557), ("FLT-BAR-04", 29560), ("FLT-CUST-01", 29566),
-               ("FLT-CUST-03", 29568), ("FLT-TECH-01", 29573), ("FLT-TECH-03", 29575),
+        cases=[("FLT-BAR-01", 29557), ("FLT-STAT-01", 29560), ("FLT-CUST-01", 29566),
+               ("FLT-CUST-03", 29568), ("FLT-CUST-08", 29573), ("FLT-TECH-01", 29575),
                ("FLT-ADV-01", 29582)],
         closer="Anyone who opens one of those seven case pages in TestRail and tells us what they "
                "see.",
