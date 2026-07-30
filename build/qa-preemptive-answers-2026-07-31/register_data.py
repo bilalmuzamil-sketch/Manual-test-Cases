@@ -1268,7 +1268,7 @@ CONCEDED = [
      "Half of our own traceability rule is unsatisfiable on that project. We proved the "
      "absence by listing all 170 SV epics rather than guessing, and we did not invent a key.",
      "The epic key, or your confirmation that the work genuinely is not ticketed."),
-    ("Twelve of Filters' twelve-plus-seventy-three design boards still have no picture.",
+    ("Twelve of the 85 Filters design boards still have no rendered picture.",
      "Figma rate-limits image rendering. All twelve are described from their layer trees so "
      "nothing is guessed, but the design pass may not be called complete while the queue is "
      "open.",
