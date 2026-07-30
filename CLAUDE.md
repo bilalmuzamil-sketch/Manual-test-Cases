@@ -47,6 +47,20 @@
 >   if that is true — never omit it). Sweep all six categories: missing sources · unanswered PO/dev
 >   questions · missing go-aheads/authorizations · access/credentials · deferred or HELD decisions ·
 >   what another team owes. Unresolved inputs are the main threat to 100% authentic tests.**
+> - **THE OUTSIDE-IN GAP HUNT (Standing Rules 45 + 46) — a suite may NOT be called current until it
+>   has been looked at from OUTSIDE our own work. Rules 40–44 force follow-through on what WE found;
+>   45/46 exist because we had no way to notice an OUTSIDER could see what we could not. **45** run the
+>   foreign-coverage diff in BOTH directions (overlap AND the reverse — their assertions with no
+>   counterpart in ours = a COVERAGE SIGNAL, not a nuisance: read-only checker
+>   `build/gap-rootcause-2026-07-31/reverse_coverage_diff.py`), apply the automation-engineer lens
+>   ("what would I assert from the running build?" — limited to the document while we have no QA
+>   branch, and say so), the hostile-reviewer lens, treat EVERY external signal as a coverage input
+>   rather than a reply, and **(e) never accept a "covered" verdict without BOTH TEXTS QUOTED SIDE BY
+>   SIDE — a requirement making two assertions gets one row PER ASSERTION** · **46** every suite ships
+>   its DELIBERATE-DECISIONS / anticipated-challenge register (decision · plain one-sentence answer ·
+>   evidence · affected cases with C-ids · who closes it · honest risk), because an undocumented
+>   deliberate omission is indistinguishable from a miss. Root-cause analysis:
+>   `build/gap-rootcause-2026-07-31/WHY-VLAD-FOUND-IT-FIRST.md`.**
 > - **THE 2026-07-31 LESSONS (Standing Rules 40–44) — read `build/LESSONS-2026-07-31.md` before any
 >   spec-delta, authoring, or case-edit pass. In one line each: **40** trace a requirement across
 >   EVERY surface (screen · PDF · CSV · print · API · mobile) and ship the SURFACE MATRIX, not a case
@@ -1981,6 +1995,106 @@ deliver the 7-tab management report.
     `build/contradiction-analysis-2026-07-31/SBR-CSV-LOCATION.md` +
     `build/testrail-foreign-cases-2026-07-31/FOREIGN-CASES.md`. Ties to Standing Rules 12, 25, 31, 32,
     33 (precedence — judge the claim, not the claimant), 38, 39, 40 and 43.
+45. **OUTSIDE-IN GAP HUNT — before any suite is declared current, deliberately look at it from
+    OUTSIDE (all projects).** USER DIRECTIVE (2026-07-31, verbatim): *"Also I need to fill the GAP,
+    Vlad should not have been able to find the missing cases, how did we miss them and what have we
+    learned from that? How will we ensure that we will not miss creating those cases which Vlad picked
+    up. Learn from that and add to your strategy anything which should be the part of your learning to
+    never miss any test cases to be created which others can raise like Vlad did today."*
+    **THE RULE:** a suite may **NOT** be reported as current, complete, or audited-clean until it has
+    been examined from a position **other than our own**. Rules 40–44 force us to follow through on
+    what WE detected; this rule exists because **we had no way to notice that an outsider could see
+    something we could not.** All five checks below run, and the suite's deliverable **states the
+    result of each one** — "not applicable" is a permitted answer, silence is not.
+    **(a) FOREIGN-COVERAGE DIFF, IN BOTH DIRECTIONS.** The overlap direction ("which of THEIR cases
+    duplicate OURS") is `build/testrail-foreign-cases-2026-07-31/foreign_overlap_check.py`. The
+    REVERSE direction — **assertions in other authors' cases with NO counterpart in ours** — is
+    `build/gap-rootcause-2026-07-31/reverse_coverage_diff.py` (READ-ONLY, `get_*` only). **Their case
+    existing where ours does not is a COVERAGE SIGNAL, not a nuisance.** Every foreign assertion gets
+    one of three labels — **COVERED-BY** (name our case ids) · **CANDIDATE GAP** · **CONTRADICTS-OURS**
+    — and every CANDIDATE GAP / CONTRADICTS row is **carried into the deliverable with its evidence**.
+    **Foreign cases stay untouched in every scenario (Rule 38); a candidate gap is authorised by the
+    QA lead, never authored on our own initiative (Rule 6).**
+    **(b) THE AUTOMATION-ENGINEER LENS.** For each requirement ask: *"if I were automating this from
+    the RUNNING BUILD, what would I assert?"* — then check we have a case for it. An automation
+    engineer must assert what a system actually emits; he cannot write a header list he has not seen.
+    **HONESTY, per Rule 12: WITHOUT A QA BRANCH this lens is limited to what the DOCUMENT says, and
+    that limit must be stated in the deliverable.** It is also itself an **OUTSTANDING ASK** (Rule 36)
+    — the largest single reason an outsider working from the build can out-see us.
+    **(c) THE HOSTILE-REVIEWER LENS.** An explicit *"what would a reviewer claim is missing?"* pass
+    **before** delivery, not after the challenge arrives. Its output is the Rule-46 register.
+    **(d) EVERY EXTERNAL SIGNAL IS A COVERAGE INPUT, NEVER MERELY A REPLY.** A reviewer's report, a
+    colleague's test case, a support ticket, a dev comment, a customer complaint, a PO aside — each is
+    **LOGGED and DIFFED against the suite**, not just answered. On 2026-07-31 **two reviews and one
+    foreign case each surfaced something real**; answering them would have fixed three sentences and
+    left the defects in place.
+    **(e) A "COVERED" VERDICT IS ONLY VALID WITH BOTH TEXTS QUOTED SIDE BY SIDE — and a requirement
+    making MORE THAN ONE ASSERTION GETS ONE ROW PER ASSERTION.** This is the mechanical clause; the
+    other four are lenses. *"Covered by C30277"* is **unfalsifiable as written**, so no reviewer ever
+    tests it. Any coverage / NO-CHANGE / "provably fine" verdict must show **the requirement's verbatim
+    text** beside **the covering case's verbatim expected-result text**, and where a requirement
+    asserts two things (a column **and** a metadata line; on screen **and** in the export) **each
+    assertion is verdicted separately.** **Checkable test of compliance: a NO-CHANGE entry that names
+    only case ids, with no quoted text, is non-compliant and the pass is not done.**
+    **RATIONALE (2026-07-31 — the failure this rule exists for):** SBR spec v15 `S14-R20` (live
+    2026-07-29) makes **two** assertions — the per-row Location **column** in all four exports, **and**
+    a `"Locations:"` metadata **line**. Our deltas pass
+    (`build/report-suite/chris-answers-2026-07-31/DELTAS.md`) **did examine the export surface** and
+    filed it under **"NO-CHANGE (checked, provably fine — not skipped)"** entry **N2**, listing seven
+    case ids that cover the **line** — thereby certifying the **column** as done. That is a **false
+    all-clear, which is worse than a blind spot because it stops anyone looking again**. `S14-R20`
+    appears **nowhere** in that document (0 occurrences). Consequence: **SBR-EXP-10 =
+    [C30285](https://shopview.testrail.io/index.php?/cases/view/30285)** and **SBR-EXP-11 =
+    [C30286](https://shopview.testrail.io/index.php?/cases/view/30286)** kept enumerating CSV headers
+    *"exactly"* without Location, and the identical split existed on **four more reports** — SBC
+    `S4-R13`, PV `S6-R11`, TU `S7-R13`, IV `S10-R15` (**five reports in total**; WIP was covered by
+    WIP-FLT-09 = [C38916](https://shopview.testrail.io/index.php?/cases/view/38916)). **We did not find
+    it by auditing. We found it because Vladimir Tomovic's automated
+    [C38923](https://shopview.testrail.io/index.php?/cases/view/38923) — which carried NO `refs` —
+    disagreed with ours.** The reverse checker reproduces the catch from cold: for C38923 it narrows
+    **474 of our cases to 8 candidates** with C30285 and C30286 ranked **3rd and 4th**. Full analysis
+    (timeline, five-whys, and the honest finding that **Rule 42 would NOT have fired here** because the
+    invalidating requirement was a NEW anchor arriving in the same spec version):
+    `build/gap-rootcause-2026-07-31/WHY-VLAD-FOUND-IT-FIRST.md`; live output
+    `build/gap-rootcause-2026-07-31/REVERSE-DIFF-2026-07-31.md`. Ties to Standing Rules 6 (nothing
+    written without permission), 12 (observed, never inferred), 17 (complete data in/out), 22 (ask for
+    the live check + access up front), 28 (the audit's outside-in stage), 31, 33 (judge the claim, not
+    the claimant), 36 (the QA-branch ask), 38 (foreign cases hands-off), 39, 40, 41, 43, 44 and 46.
+46. **EVERY SUITE SHIPS ITS DELIBERATE-DECISIONS / ANTICIPATED-CHALLENGE REGISTER (all projects).**
+    **THE RULE:** every **deliberate non-authoring**, every case that **follows a PO ruling over spec
+    text**, every **HELD / open / awaiting-answer** item, and every **accepted imperfection** is
+    **WRITTEN DOWN — with its evidence and a plain one-sentence answer — BEFORE anyone asks.** The
+    register ships **with** the suite, as a required deliverable of every authoring, audit,
+    reconciliation and push pass; a suite delivered without one is incomplete.
+    **REQUIRED CONTENT, per entry (all six fields, every entry):** **(1)** the decision, in plain
+    layman words (Rule 7); **(2)** the **plain one-sentence answer** a non-technical reader can paste
+    straight into a public channel; **(3)** the **evidence** — document, version, anchor, date (Rules
+    20/25); **(4)** the **affected cases** with internal ID **and** C-id **and**
+    `https://shopview.testrail.io/index.php?/cases/view/<id>` link (Rule 8); **(5)** **who can close
+    it** (PO / QA lead / dev / a live check); **(6)** an honest **RISK rating** — and read that column
+    honestly: **HIGH does not mean we are wrong, it means if this is raised publicly we have a
+    concession to make, not just an explanation.**
+    **THE CATEGORIES TO SWEEP** (walk all of them; "none" is a valid entry, omission is not):
+    requirements not authored **because the spec contradicts itself** · cases that **follow a PO ruling
+    over the spec text** · requirements **deliberately not authored for other reasons** · items **open,
+    awaiting a PO or dev** · things that **cannot be settled without a live build** · **foreign-case
+    overlaps** (Rule 38/45a) · **known imperfections accepted or scheduled**.
+    **HONESTY CLAUSE:** the register records what we **decided**, never what we **wish we had
+    decided**. A defect discovered late goes in as a defect — dated, with the cost stated — not
+    re-labelled as a deliberate choice. **Back-dating a miss into the register is the one thing that
+    would make it worthless.**
+    **RATIONALE:** the QA lead must **never be blindsided in a public channel by a decision we made on
+    purpose**, and — the sharper half — **an undocumented deliberate omission is indistinguishable from
+    a miss.** On 2026-07-31 entry **N2** of
+    `build/report-suite/chris-answers-2026-07-31/DELTAS.md` was written in the exact register of a
+    considered decision — a numbered NO-CHANGE entry, seven case ids, a stated reason — and was an
+    **error**; nothing in the deliverable let a reader tell the two apart, because no NO-CHANGE verdict
+    was required to show its working (now Rule 45(e)). Canonical examples:
+    `build/report-suite/coverage-rederivation-2026-07-31/DELIBERATE-DECISIONS.md` (Report Suite, 474
+    cases — 7 categories, risk profile HIGH 3 · MEDIUM 7 · LOW 25) and the cross-project
+    `build/qa-preemptive-answers-2026-07-31/`. Ties to Standing Rules 6, 7 (plain layman wording), 8
+    (always give the C-id + link), 12, 17, 20, 25, 28 (a required audit deliverable), 33, 36 (the
+    outstanding register is its waiting-on-others sibling), 38, 43 and 45.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
