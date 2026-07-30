@@ -87,7 +87,7 @@ absorbed as a *behaviour change*, not a scope removal:
 
 | Case | TestRail | Was | Now | Why |
 |---|---|---|---|---|
-| SCH-EDGE-03 | C30086 | `SV-8686 (§11 (Performance - virtualization))` | `SV-8687 (§11 (Performance - sidebar list and line drill-down virtualize at 50+ items))` | The case is entirely about the **sidebar** list + line drill-down. **SV-8687** owns it verbatim: *"WO list virtualizes at 50+ items; line drill-down virtualizes for orders with many lines. — ( PRD: §11 )"*. SV-8686 §11 only owns the **grid** (*"must render smoothly with up to 15 technicians × 7 days"*) — that is SCH-EDGE-04, which correctly stays on SV-8686. |
+| SCH-EDGE-03 | C30087 | `SV-8686 (§11 (Performance - virtualization))` | `SV-8687 (§11 (Performance - sidebar list and line drill-down virtualize at 50+ items))` | The case is entirely about the **sidebar** list + line drill-down. **SV-8687** owns it verbatim: *"WO list virtualizes at 50+ items; line drill-down virtualizes for orders with many lines. — ( PRD: §11 )"*. SV-8686 §11 only owns the **grid** (*"must render smoothly with up to 15 technicians × 7 days"*) — that is SCH-EDGE-04, which correctly stays on SV-8686. |
 | SCH-EDGE-02 | C30085 | `SV-8686 (§11 (Responsiveness))` | `SV-8686,SV-8687 (§11 (Responsiveness - grid scrolls horizontally below 960px; sidebar collapses))` | The case asserts **both** halves of §11 Responsiveness, and they have **different owners**: SV-8686 *"Minimum supported width is 960px; the grid scrolls horizontally below that"* and SV-8687 *"The sidebar collapses on narrow viewports"*. Both keys now cited. |
 
 ## 5. EPIC-KEY cases — cross-cutting rationale now stated on the case (15)
