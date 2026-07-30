@@ -5,9 +5,26 @@ redesign. Please pick A or B (or write your own answer). No technical knowledge
 needed. (QA mapping to test cases is at the bottom, in the QA-only section —
 readers can ignore it.)
 
+**Status 2026-07-30: Q1 RESOLVED by user ruling (see below) — 6 questions remain
+open for Branko (Q2–Q6 A/B + the Q7 spec v1.3 export request).**
+
 ---
 
 **Question 1 — The Status filter on the Estimates and Completed tabs**
+
+**✅ RESOLVED by user ruling 2026-07-30 — no answer needed from Branko.**
+User ruling (verbatim): *"Status chip is hidden on certain tabs = greyed-out/disabled"*
+— i.e. the tech plan's "hidden" wording and Branko's earlier answer
+"greyed-out/disabled" describe the SAME behavior: on the tabs where the Status
+filter doesn't apply (Estimates/Completed), the pre-filled Status chip shows
+greyed-out/disabled. The engineering plan's phrasing is NOT a different behavior.
+**Consequence:** cases FLT-TAB-02 (C29609
+https://shopview.testrail.io/index.php?/cases/view/29609) and FLT-TAB-03 (C29610
+https://shopview.testrail.io/index.php?/cases/view/29610) remain CORRECT as
+pushed — greyed-out/disabled pre-filled chip; no case change, no TestRail write
+needed.
+
+<details><summary>Original question (kept for the record — do not answer)</summary>
 
 What happens now (two different answers exist): You told us earlier (July 17)
 that on the Estimates and Completed tabs the Status filter button should be
@@ -21,6 +38,8 @@ The question: On the Estimates and Completed tabs, should the Status button be:
 - **B)** Hidden completely (what engineering is building)
 
 Answer: ______________________________________________
+
+</details>
 
 ---
 
@@ -136,7 +155,7 @@ it looks like it already exists as spec v1.3.
 
 | Q | Deltas ref | Cases affected | TestRail |
 |---|---|---|---|
-| Q1 | C3 (G9 vs Branko Q4=B) | FLT-TAB-02, FLT-TAB-03 | C29609 https://shopview.testrail.io/index.php?/cases/view/29609 · C29610 https://shopview.testrail.io/index.php?/cases/view/29610 (already pushed per Q4=B — re-rule decides whether to revert) |
+| Q1 | C3 (G9 vs Branko Q4=B) — **RESOLVED by user ruling 2026-07-30 (hidden == greyed-out/disabled)** | FLT-TAB-02, FLT-TAB-03 | C29609 https://shopview.testrail.io/index.php?/cases/view/29609 · C29610 https://shopview.testrail.io/index.php?/cases/view/29610 stand as pushed — no case change, no TestRail write |
 | Q2 | C1 (G7 runtime-only) | FLT-URL-02 (C29618 https://shopview.testrail.io/index.php?/cases/view/29618), FLT-URL-05 (new, no C-ID yet), FLT-PSRCH-04 (new, no C-ID yet) |
 | Q3 | C2 (G1 Imported exclusivity) | FLT-STAT-03 (C29562 https://shopview.testrail.io/index.php?/cases/view/29562), FLT-STAT-07 (new, no C-ID yet) |
 | Q4 | C4 (D15 vs design) | FLT-MOB-04 (C29624 https://shopview.testrail.io/index.php?/cases/view/29624) |

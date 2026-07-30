@@ -16,10 +16,10 @@ change list + push queue = `tech-plan-2026-07-29/ChangeList.md`; quality gate =
   SPEC-RELEVANCE-RECONCILIATION over the whole suite.
 - **OQ-2 RESOLVED:** canonical spec URL =
   https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/572030978/Filters.
-- **⚠️ Conflict with pushed cases:** engineering builds the Status chip HIDDEN on
-  Estimates/Completed (G9) vs Branko Q4=B greyed-out-disabled — FLT-TAB-02/03
-  (C29609/C29610) were pushed per Q4=B; Branko must re-rule (Questions Q1). NO
-  edit made.
+- **Status-chip conflict RESOLVED by user ruling 2026-07-30** (hidden ==
+  greyed-out/disabled; FLT-TAB-02/03 C29609/C29610 stand correct as pushed, no
+  case change, no TestRail write); Branko doc now 6 open questions incl. the
+  v1.3 spec-export request (Questions Q1 marked RESOLVED).
 - **15 NEW cases authored** (blank C-ids, VIU-Pending): FLT-TAB-06 (default tab
   Estimates D10), FLT-STAT-07 (Imported exclusivity G1), FLT-ASSET-07 (Asset on
   Site "No" G4), FLT-URL-05 (link view runtime-only + back-to-saved G7),

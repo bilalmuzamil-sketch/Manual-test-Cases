@@ -59,8 +59,10 @@ C-ids (43 prior design-level + 15 new this pass).
 
 ## D. CONFLICTS routed to Branko/dev (NOT baked into cases)
 
-`Questions-for-Branko-dev.md` — Q1 Status chip hidden vs greyed-out (touches pushed
-C29609/C29610 ⚠️), Q2 link view runtime-only, Q3 Imported exclusivity, Q4 mobile
+`Questions-for-Branko-dev.md` — Q1 Status chip hidden vs greyed-out →
+**RESOLVED-NO-CHANGE (user ruling 2026-07-30: hidden == greyed-out/disabled; the
+pushed C29609/C29610 stand correct as pushed; no case change, no TestRail
+write)**, Q2 link view runtime-only, Q3 Imported exclusivity, Q4 mobile
 per-filter sheet Apply vs real-time, Q5 default tab Estimates, Q6 Parts Vendors design,
 Q7 request the spec v1.3 export (drives the follow-up SPEC-RELEVANCE-RECONCILIATION —
 Rule-11 ask first).

@@ -22,11 +22,13 @@ answers (newest PRODUCT ruling wins).** Nothing here is pushed to TestRail.
 2. **Canonical spec URL now known (resolves OQ-2):**
    https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/572030978/Filters
    (from the tech plan header; reference pointer, do not fetch without MCP).
-3. **One direct conflict with an already-pushed Branko ruling:** tech plan G9/§3.1
-   builds the Status chip **HIDDEN** on Estimates/Completed; Branko's Q4=B
-   (2026-07-17) ruled it **shown greyed-out, pre-filled, not clickable** — and we
-   pushed FLT-TAB-02/03 (C29609/C29610) to TestRail on that ruling. Must go back to
-   Branko (see §3 C3). No case edit until he re-rules.
+3. **~~One direct conflict with an already-pushed Branko ruling~~ — RESOLVED by
+   user ruling 2026-07-30:** *"Status chip is hidden on certain tabs =
+   greyed-out/disabled"* — the tech plan's "hidden" wording (G9/§3.1) and Branko's
+   Q4=B answer (2026-07-17, greyed-out/disabled) describe the SAME behavior: on
+   Estimates/Completed the pre-filled Status chip shows greyed-out/disabled. Cases
+   FLT-TAB-02/03 (C29609/C29610) remain CORRECT as pushed — no case change, no
+   TestRail write needed (see §3 C3).
 4. **No feature flag (D13) + ONE program PR (D11):** when Filters lands on a QA
    branch it arrives all-at-once — WO pilot + Parts + Reports + mobile + page
    search + the global-search decoupling. Plan the VIU accordingly.
@@ -91,7 +93,7 @@ answers (newest PRODUCT ruling wins).** Nothing here is pushed to TestRail.
 |---|---|---|---|
 | C1 | **URL precedence** | Spec v1.3 closing note: "URL wins on load, **then persists**" vs tech plan G7 (runtime-only, author agreed in page comments) | Author FLT-URL-05 to runtime-only WITH pending-confirm flag; ask Branko to ratify in spec text (Questions Q2) |
 | C2 | **Imported combinability** | Spec S2-R1 lists Imported as a plain status vs G1 mutually-exclusive + chips disabled (tech plan raised it as spec conflict 4) | FLT-STAT-07 authored with pending flag; Questions Q3 |
-| C3 | **Status chip on Estimates/Completed — HIDDEN vs GREYED-OUT** ⚠️ highest priority | Tech plan G9/§3.1 builds HIDDEN (per spec) vs **Branko Q4=B 2026-07-17: shown greyed-out, pre-filled, disabled** — already pushed to TestRail as FLT-TAB-02/03 (C29609/C29610) | NO edit — Branko's ruling is the newest PRODUCT truth we hold; but spec v1.3 (2026-07-20) is newer than his answer, so he must re-rule. Questions Q1 |
+| C3 | **Status chip on Estimates/Completed — HIDDEN vs GREYED-OUT** — **✅ RESOLVED by user ruling 2026-07-30** | User ruling (verbatim): *"Status chip is hidden on certain tabs = greyed-out/disabled"* — the tech plan's "hidden" wording and Branko's Q4=B "greyed-out/disabled" describe the SAME behavior: on Estimates/Completed the pre-filled Status chip shows greyed-out/disabled; the engineering phrasing is NOT a different behavior | NO conflict remains — FLT-TAB-02/03 (C29609/C29610) stand CORRECT as pushed (greyed-out/disabled pre-filled chip); no case change, no TestRail write. Questions Q1 marked RESOLVED |
 | C4 | **Mobile per-filter sheet: Apply button vs real-time** | Final design frames (11884:21065/21271) + our FLT-MOB-04 show an "Apply filter" button vs D15: individual sheets are REAL-TIME, only the combined All-Filters sheet batches | note on FLT-MOB-04; Questions Q4 |
 | C5 | **Default tab = Estimates (D10)** | Not in any ratified product spec we hold; product-visible behavior decided by engineering for DB-load reasons | FLT-TAB-06 authored with pending flag; Questions Q5 |
 | C6 | **Page-search ownership + the FLT-SRCH spotlight cases** | FLT-SRCH-01..08 (authored from the spotlight design) vs G8/D22: spotlight = Global Search v2 project | Recommend transfer/retire of FLT-SRCH-01..08 pending Branko Q6 (already sent 2026-07-27); FLT-SRCH-09 notes updated |
