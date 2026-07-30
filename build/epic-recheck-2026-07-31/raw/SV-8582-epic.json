@@ -1,0 +1,1087 @@
+{
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "id": "54603",
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/54603",
+ "key": "SV-8582",
+ "renderedFields": {
+  "statuscategorychangedate": "Monday 9:23 AM",
+  "issuetype": null,
+  "timespent": null,
+  "project": null,
+  "customfield_10153": null,
+  "customfield_10351": "",
+  "fixVersions": null,
+  "customfield_10352": null,
+  "aggregatetimespent": null,
+  "statusCategory": null,
+  "resolution": null,
+  "resolutiondate": null,
+  "workratio": null,
+  "watches": null,
+  "issuerestriction": null,
+  "lastViewed": "Tuesday 5:53 PM",
+  "created": "Monday 9:23 AM",
+  "customfield_10021": null,
+  "customfield_10385": null,
+  "priority": null,
+  "labels": null,
+  "customfield_10017": "",
+  "customfield_10019": null,
+  "timeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "versions": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "issuelinks": null,
+  "assignee": null,
+  "updated": "Monday 11:12 AM",
+  "status": null,
+  "components": null,
+  "description": "<h1><a name=\"Epic%3AReportingSuite\"></a>Epic: Reporting Suite</h1>\n\n<h2><a name=\"Goal\"></a>Goal</h2>\n\n<p>Ship a consolidated reporting suite of six shop-management reports that live under one <b>Reports</b> nav, share one visual chassis, and give shops a consistent, drillable, exportable view of labor productivity, customer/rep revenue, parts velocity, inventory value, and open work. Built together so they look and behave as one product, not six bolt-ons.</p>\n\n<h2><a name=\"Outcomeforshops\"></a>Outcome for shops</h2>\n\n<ul>\n\t<li>One place to answer: <em>Are my techs productive? Who are my best customers and reps? What parts actually move? What is my inventory worth? What work is open and how much of it is earned?</em></li>\n\t<li>Every report reads the same way \u2014 identifier columns left, financials middle, a bold pinned <b>Subtotal</b> far right \u2014 so there's nothing to relearn per report.</li>\n\t<li>Drill in (customer \u2192 asset \u2192 invoice, tech \u2192 line), filter by date range and location, and export the on-screen view to CSV/PDF.</li>\n</ul>\n\n\n<h2><a name=\"Thesixreports\"></a>The six reports</h2>\n\n<ol>\n\t<li><b>Technician Utilization</b> \u2014 how much of each technician's available time is productive/billed vs. lost. Tech multi-select filter, deep-link to Timesheet Activities, org-wide location filter.</li>\n\t<li><b>Sales By Customer</b> \u2014 revenue, margin, and labor-delta per customer with a Customer \u2192 Asset \u2192 Invoice drill and cross-customer asset compare.</li>\n\t<li><b>Sales By Representative</b> \u2014 sales grouped by sales rep (parts + service reps), with unassigned/House Account handling.</li>\n\t<li><b>Inventory Velocity</b> \u2014 parts movement / ABC velocity with per-part profitability (unit cost, sell price, revenue, margin, margin %).</li>\n\t<li><b>Inventory Value</b> \u2014 current on-hand stock valued at cost and sell (qty on hand, unit cost/sell, margin, margin %, extended Total Sell and pinned Total Cost), with an as-of date backed by nightly snapshots.</li>\n\t<li><b>Work In Progress (WIP)</b> \u2014 open work orders split into earned vs. remaining (True-WIP accounting model), with summary cards and asset/customer filters.</li>\n</ol>\n\n\n<h2><a name=\"Specs\"></a>Specs</h2>\n\n<ul>\n\t<li><b>Technician Utilization \u2014</b> <a href=\"https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report\" title=\"smart-link\" class=\"external-link\" rel=\"nofollow noreferrer\">https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report</a></li>\n\t<li><b>Sales By Customer \u2014</b> <a href=\"https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\" title=\"smart-link\" class=\"external-link\" rel=\"nofollow noreferrer\">https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report</a></li>\n\t<li><b>Sales By Representative \u2014</b> <a href=\"https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\" title=\"smart-link\" class=\"external-link\" rel=\"nofollow noreferrer\">https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report</a></li>\n\t<li><b>Inventory Velocity (Parts Velocity) \u2014</b> <a href=\"https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report\" title=\"smart-link\" class=\"external-link\" rel=\"nofollow noreferrer\">https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report</a></li>\n\t<li><b>Inventory Value \u2014</b> <a href=\"https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\" title=\"smart-link\" class=\"external-link\" rel=\"nofollow noreferrer\">https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report</a></li>\n\t<li><b>Work In Progress (WIP) \u2014</b> <a href=\"https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\" title=\"smart-link\" class=\"external-link\" rel=\"nofollow noreferrer\">https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report</a></li>\n</ul>\n\n\n<h2><a name=\"Sharedchassis%28suitewide%2Cbuiltonce%29\"></a>Shared chassis (suite-wide, built once)</h2>\n\n<ul>\n\t<li>Consolidated <b>Reports</b> nav; single visual theme (two-tone Tech-Efficiency).</li>\n\t<li><b>Subtotal</b> column pinned far-right + bolded across header/rows/totals.</li>\n\t<li>Shared <b>Labor Delta (\u201cInv. Hrs\u201d)</b> treatment where applicable.</li>\n\t<li>Shared date-range selector, org-wide <b>multi-location filter</b> (<tt>AccessibleWorkplaceResolver</tt>, requested \u2229 accessible), and per-report <b>filter persistence</b>.</li>\n\t<li>CSV + PDF exports mirror the on-screen view.</li>\n</ul>\n\n\n<h2><a name=\"Outofscope%2Ffollowups\"></a>Out of scope / follow-ups</h2>\n\n<ul>\n\t<li>Server-side rework to safely offer \u201cAll Time\u201d on the history-scan reports (SBC / SBR / Tech Utilization) \u2014 per engineering review, All Time stays on WIP only until this lands.</li>\n\t<li>Parts Velocity row-scale (server-side paging / virtual scroll) before it can offer All Time or handle very large tenants.</li>\n\t<li>Trend/as-of history views for WIP (snapshot rig is forward-capture, write-only).</li>\n\t<li>E2E (Playwright) coverage is being authored per report as part of the suite.</li>\n</ul>\n\n\n<h2><a name=\"Branch\"></a>Branch</h2>\n\n<ul>\n\t<li><tt>project/reports-suite-bravo</tt> (local suite worktree; source report branches untouched).</li>\n</ul>\n",
+  "customfield_10252": "",
+  "timetracking": {},
+  "customfield_10015": null,
+  "security": null,
+  "aggregatetimeestimate": null,
+  "attachment": [],
+  "summary": null,
+  "creator": null,
+  "subtasks": null,
+  "customfield_10285": "",
+  "reporter": null,
+  "customfield_10044": null,
+  "aggregateprogress": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "environment": "",
+  "customfield_10318": null,
+  "duedate": null,
+  "progress": null,
+  "votes": null,
+  "comment": {
+   "comments": [],
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54603/comment",
+   "maxResults": 0,
+   "total": 0,
+   "startAt": 0
+  },
+  "worklog": {
+   "startAt": 0,
+   "maxResults": 20,
+   "total": 0,
+   "worklogs": []
+  }
+ },
+ "changelog": {
+  "startAt": 0,
+  "maxResults": 2,
+  "total": 2,
+  "histories": [
+   {
+    "id": "136866",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "active": true,
+     "timeZone": "Asia/Karachi",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-27T01:12:35.143-0500",
+    "items": [
+     {
+      "field": "QA Assignee",
+      "fieldtype": "custom",
+      "fieldId": "customfield_10385",
+      "from": null,
+      "fromString": null,
+      "to": "[712020:d1a278f3-be0a-4f74-9e70-81459e0f6681, 712020:537d6513-fb94-4f09-85ec-4cfde3c817a7]",
+      "toString": "[Nebojsa Glavinic, Viktoria Videnovic]"
+     }
+    ]
+   },
+   {
+    "id": "136555",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Aaa00b8d6-a71f-4259-8919-82a304227c20",
+     "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+      "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+      "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+      "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+     },
+     "displayName": "Chris Ward",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-26T23:26:41.287-0500",
+    "items": [
+     {
+      "field": "description",
+      "fieldtype": "jira",
+      "fieldId": "description",
+      "from": null,
+      "fromString": "h1. Epic: Reporting Suite\n\nh2. Goal\n\nShip a consolidated reporting suite of five shop-management reports that live under one *Reports* nav, share one visual chassis, and give shops a consistent, drillable, exportable view of labor productivity, customer/rep revenue, parts velocity, and open work. Built together so they look and behave as one product, not five bolt-ons.\n\nh2. Outcome for shops\n\n* One place to answer: _Are my techs productive? Who are my best customers and reps? What parts actually move? What work is open and how much of it is earned?_\n* Every report reads the same way \u2014 identifier columns left, financials middle, a bold pinned *Subtotal* far right \u2014 so there's nothing to relearn per report.\n* Drill in (customer \u2192 asset \u2192 invoice, tech \u2192 line), filter by date range and location, and export the on-screen view to CSV/PDF.\n\nh2. The five reports\n\n# *Technician Utilization* \u2014 how much of each technician's available time is productive/billed vs. lost. Tech multi-select filter, deep-link to Timesheet Activities, org-wide location filter.\n# *Sales By Customer* \u2014 revenue, margin, and labor-delta per customer with a Customer \u2192 Asset \u2192 Invoice drill and cross-customer asset compare.\n# *Sales By Representative* \u2014 sales grouped by sales rep (parts + service reps), with unassigned/House Account handling.\n# *Inventory Velocity* \u2014 parts movement / ABC velocity with per-part profitability (unit cost, sell price, revenue, margin, margin %).\n# *Work In Progress (WIP)* \u2014 open work orders split into earned vs. remaining (True-WIP accounting model), with summary cards and asset/customer filters.\n\nh2. Shared chassis (suite-wide, built once)\n\n* Consolidated *Reports* nav; single visual theme (two-tone Tech-Efficiency).\n* *Subtotal* column pinned far-right + bolded across header/rows/totals.\n* Shared *Labor Delta (\u201cInv. Hrs\u201d)* treatment where applicable.\n* Shared date-range selector, org-wide *multi-location filter* ({{AccessibleWorkplaceResolver}}, requested \u2229 accessible), and per-report *filter persistence*.\n* CSV + PDF exports mirror the on-screen view.\n\nh2. Out of scope / follow-ups\n\n* Server-side rework to safely offer \u201cAll Time\u201d on the history-scan reports (SBC / SBR / Tech Utilization) \u2014 per engineering review, All Time stays on WIP only until this lands.\n* Parts Velocity row-scale (server-side paging / virtual scroll) before it can offer All Time or handle very large tenants.\n* Trend/as-of history views for WIP (snapshot rig is forward-capture, write-only).\n* E2E (Playwright) coverage is being authored per report as part of the suite.\n\nh2. Documentation\n\n* Per-report specs on Confluence (canonical Sales-By-Customer layout).\n* Project docs under {{docs/}} and the suite RESUME.\n\nh2. Branch\n\n* {{project/reports-suite-bravo}} (local suite worktree; source report branches untouched).",
+      "to": null,
+      "toString": "h1. Epic: Reporting Suite\n\nh2. Goal\n\nShip a consolidated reporting suite of six shop-management reports that live under one *Reports* nav, share one visual chassis, and give shops a consistent, drillable, exportable view of labor productivity, customer/rep revenue, parts velocity, inventory value, and open work. Built together so they look and behave as one product, not six bolt-ons.\n\nh2. Outcome for shops\n\n* One place to answer: _Are my techs productive? Who are my best customers and reps? What parts actually move? What is my inventory worth? What work is open and how much of it is earned?_\n* Every report reads the same way \u2014 identifier columns left, financials middle, a bold pinned *Subtotal* far right \u2014 so there's nothing to relearn per report.\n* Drill in (customer \u2192 asset \u2192 invoice, tech \u2192 line), filter by date range and location, and export the on-screen view to CSV/PDF.\n\nh2. The six reports\n\n# *Technician Utilization* \u2014 how much of each technician's available time is productive/billed vs. lost. Tech multi-select filter, deep-link to Timesheet Activities, org-wide location filter.\n# *Sales By Customer* \u2014 revenue, margin, and labor-delta per customer with a Customer \u2192 Asset \u2192 Invoice drill and cross-customer asset compare.\n# *Sales By Representative* \u2014 sales grouped by sales rep (parts + service reps), with unassigned/House Account handling.\n# *Inventory Velocity* \u2014 parts movement / ABC velocity with per-part profitability (unit cost, sell price, revenue, margin, margin %).\n# *Inventory Value* \u2014 current on-hand stock valued at cost and sell (qty on hand, unit cost/sell, margin, margin %, extended Total Sell and pinned Total Cost), with an as-of date backed by nightly snapshots.\n# *Work In Progress (WIP)* \u2014 open work orders split into earned vs. remaining (True-WIP accounting model), with summary cards and asset/customer filters.\n\nh2. Specs\n\n* *Technician Utilization \u2014* [https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report|smart-link]\n* *Sales By Customer \u2014* [https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report|smart-link]\n* *Sales By Representative \u2014* [https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report|smart-link]\n* *Inventory Velocity (Parts Velocity) \u2014* [https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report|smart-link]\n* *Inventory Value \u2014* [https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report|smart-link]\n* *Work In Progress (WIP) \u2014* [https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report|smart-link]\n\nh2. Shared chassis (suite-wide, built once)\n\n* Consolidated *Reports* nav; single visual theme (two-tone Tech-Efficiency).\n* *Subtotal* column pinned far-right + bolded across header/rows/totals.\n* Shared *Labor Delta (\u201cInv. Hrs\u201d)* treatment where applicable.\n* Shared date-range selector, org-wide *multi-location filter* ({{AccessibleWorkplaceResolver}}, requested \u2229 accessible), and per-report *filter persistence*.\n* CSV + PDF exports mirror the on-screen view.\n\nh2. Out of scope / follow-ups\n\n* Server-side rework to safely offer \u201cAll Time\u201d on the history-scan reports (SBC / SBR / Tech Utilization) \u2014 per engineering review, All Time stays on WIP only until this lands.\n* Parts Velocity row-scale (server-side paging / virtual scroll) before it can offer All Time or handle very large tenants.\n* Trend/as-of history views for WIP (snapshot rig is forward-capture, write-only).\n* E2E (Playwright) coverage is being authored per report as part of the suite.\n\nh2. Branch\n\n* {{project/reports-suite-bravo}} (local suite worktree; source report branches untouched)."
+     },
+     {
+      "field": "summary",
+      "fieldtype": "jira",
+      "fieldId": "summary",
+      "from": null,
+      "fromString": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, WIP",
+      "to": null,
+      "toString": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, Inventory Value, WIP"
+     }
+    ]
+   }
+  ]
+ },
+ "fields": {
+  "statuscategorychangedate": "2026-07-26T23:23:01.871-0500",
+  "issuetype": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+   "id": "10006",
+   "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+   "name": "Epic",
+   "subtask": false,
+   "avatarId": 10306,
+   "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+   "hierarchyLevel": 1
+  },
+  "timespent": null,
+  "project": {
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "simplified": true,
+   "avatarUrls": {
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium"
+   }
+  },
+  "customfield_10153": {
+   "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10566",
+   "value": "Reports & Dashboards",
+   "id": "10566",
+   "color": "GREY_DARKEST"
+  },
+  "customfield_10351": null,
+  "fixVersions": [],
+  "customfield_10352": null,
+  "aggregatetimespent": null,
+  "statusCategory": {
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+   "id": 2,
+   "key": "new",
+   "colorName": "blue-gray",
+   "name": "To Do"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "workratio": -1,
+  "watches": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8582/watchers",
+   "watchCount": 2,
+   "isWatching": true
+  },
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "lastViewed": "2026-07-28T07:53:37.925-0500",
+  "created": "2026-07-26T23:23:01.466-0500",
+  "customfield_10021": null,
+  "customfield_10385": [
+   {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Ad1a278f3-be0a-4f74-9e70-81459e0f6681",
+    "accountId": "712020:d1a278f3-be0a-4f74-9e70-81459e0f6681",
+    "avatarUrls": {
+     "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:d1a278f3-be0a-4f74-9e70-81459e0f6681/28dbf816-d1d4-42b7-b11c-b0cab1155d09/48",
+     "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:d1a278f3-be0a-4f74-9e70-81459e0f6681/28dbf816-d1d4-42b7-b11c-b0cab1155d09/24",
+     "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:d1a278f3-be0a-4f74-9e70-81459e0f6681/28dbf816-d1d4-42b7-b11c-b0cab1155d09/16",
+     "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:d1a278f3-be0a-4f74-9e70-81459e0f6681/28dbf816-d1d4-42b7-b11c-b0cab1155d09/32"
+    },
+    "displayName": "Nebojsa Glavinic",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A537d6513-fb94-4f09-85ec-4cfde3c817a7",
+    "accountId": "712020:537d6513-fb94-4f09-85ec-4cfde3c817a7",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/7120fa1d41f3104d89d20304c4abeb39?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FVV-1.png",
+     "24x24": "https://secure.gravatar.com/avatar/7120fa1d41f3104d89d20304c4abeb39?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FVV-1.png",
+     "16x16": "https://secure.gravatar.com/avatar/7120fa1d41f3104d89d20304c4abeb39?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FVV-1.png",
+     "32x32": "https://secure.gravatar.com/avatar/7120fa1d41f3104d89d20304c4abeb39?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FVV-1.png"
+    },
+    "displayName": "Viktoria Videnovic",
+    "active": true,
+    "timeZone": "Europe/Belgrade",
+    "accountType": "atlassian"
+   }
+  ],
+  "priority": {
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+   "name": "Medium",
+   "id": "3"
+  },
+  "labels": [],
+  "customfield_10017": null,
+  "customfield_10019": "0|i01t3l:",
+  "timeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "versions": [],
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "issuelinks": [],
+  "assignee": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Aaa00b8d6-a71f-4259-8919-82a304227c20",
+   "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+   "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+    "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+    "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+    "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+   },
+   "displayName": "Chris Ward",
+   "active": true,
+   "timeZone": "America/Bogota",
+   "accountType": "atlassian"
+  },
+  "updated": "2026-07-27T01:12:35.143-0500",
+  "status": {
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "name": "Open",
+   "id": "10349",
+   "statusCategory": {
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+    "id": 2,
+    "key": "new",
+    "colorName": "blue-gray",
+    "name": "To Do"
+   }
+  },
+  "components": [],
+  "description": {
+   "type": "doc",
+   "version": 1,
+   "content": [
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 1
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Epic: Reporting Suite"
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Goal"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Ship a consolidated reporting suite of six shop-management reports that live under one "
+      },
+      {
+       "type": "text",
+       "text": "Reports",
+       "marks": [
+        {
+         "type": "strong"
+        }
+       ]
+      },
+      {
+       "type": "text",
+       "text": " nav, share one visual chassis, and give shops a consistent, drillable, exportable view of labor productivity, customer/rep revenue, parts velocity, inventory value, and open work. Built together so they look and behave as one product, not six bolt-ons."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Outcome for shops"
+      }
+     ]
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "One place to answer: "
+          },
+          {
+           "type": "text",
+           "text": "Are my techs productive? Who are my best customers and reps? What parts actually move? What is my inventory worth? What work is open and how much of it is earned?",
+           "marks": [
+            {
+             "type": "em"
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Every report reads the same way \u2014 identifier columns left, financials middle, a bold pinned "
+          },
+          {
+           "type": "text",
+           "text": "Subtotal",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " far right \u2014 so there's nothing to relearn per report."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Drill in (customer \u2192 asset \u2192 invoice, tech \u2192 line), filter by date range and location, and export the on-screen view to CSV/PDF."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "The six reports"
+      }
+     ]
+    },
+    {
+     "type": "orderedList",
+     "attrs": {
+      "order": 1
+     },
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Technician Utilization",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " \u2014 how much of each technician's available time is productive/billed vs. lost. Tech multi-select filter, deep-link to Timesheet Activities, org-wide location filter."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Sales By Customer",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " \u2014 revenue, margin, and labor-delta per customer with a Customer \u2192 Asset \u2192 Invoice drill and cross-customer asset compare."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Sales By Representative",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " \u2014 sales grouped by sales rep (parts + service reps), with unassigned/House Account handling."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Inventory Velocity",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " \u2014 parts movement / ABC velocity with per-part profitability (unit cost, sell price, revenue, margin, margin %)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Inventory Value",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " \u2014 current on-hand stock valued at cost and sell (qty on hand, unit cost/sell, margin, margin %, extended Total Sell and pinned Total Cost), with an as-of date backed by nightly snapshots."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Work In Progress (WIP)",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " \u2014 open work orders split into earned vs. remaining (True-WIP accounting model), with summary cards and asset/customer filters."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Specs"
+      }
+     ]
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Technician Utilization \u2014 ",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "inlineCard",
+           "attrs": {
+            "url": "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report"
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Sales By Customer \u2014 ",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "inlineCard",
+           "attrs": {
+            "url": "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Sales By Representative \u2014 ",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "inlineCard",
+           "attrs": {
+            "url": "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Inventory Velocity (Parts Velocity) \u2014 ",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "inlineCard",
+           "attrs": {
+            "url": "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report"
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Inventory Value \u2014 ",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "inlineCard",
+           "attrs": {
+            "url": "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+           }
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Work In Progress (WIP) \u2014 ",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "inlineCard",
+           "attrs": {
+            "url": "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Shared chassis (suite-wide, built once)"
+      }
+     ]
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Consolidated "
+          },
+          {
+           "type": "text",
+           "text": "Reports",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " nav; single visual theme (two-tone Tech-Efficiency)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Subtotal",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " column pinned far-right + bolded across header/rows/totals."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Shared "
+          },
+          {
+           "type": "text",
+           "text": "Labor Delta (\u201cInv. Hrs\u201d)",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " treatment where applicable."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Shared date-range selector, org-wide "
+          },
+          {
+           "type": "text",
+           "text": "multi-location filter",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " ("
+          },
+          {
+           "type": "text",
+           "text": "AccessibleWorkplaceResolver",
+           "marks": [
+            {
+             "type": "code"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": ", requested \u2229 accessible), and per-report "
+          },
+          {
+           "type": "text",
+           "text": "filter persistence",
+           "marks": [
+            {
+             "type": "strong"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": "."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "CSV + PDF exports mirror the on-screen view."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Out of scope / follow-ups"
+      }
+     ]
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Server-side rework to safely offer \u201cAll Time\u201d on the history-scan reports (SBC / SBR / Tech Utilization) \u2014 per engineering review, All Time stays on WIP only until this lands."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Parts Velocity row-scale (server-side paging / virtual scroll) before it can offer All Time or handle very large tenants."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Trend/as-of history views for WIP (snapshot rig is forward-capture, write-only)."
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "E2E (Playwright) coverage is being authored per report as part of the suite."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Branch"
+      }
+     ]
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "project/reports-suite-bravo",
+           "marks": [
+            {
+             "type": "code"
+            }
+           ]
+          },
+          {
+           "type": "text",
+           "text": " (local suite worktree; source report branches untouched)."
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "customfield_10252": null,
+  "timetracking": {},
+  "customfield_10015": null,
+  "security": null,
+  "aggregatetimeestimate": null,
+  "attachment": [],
+  "summary": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, Inventory Value, WIP",
+  "creator": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Aaa00b8d6-a71f-4259-8919-82a304227c20",
+   "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+   "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+    "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+    "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+    "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+   },
+   "displayName": "Chris Ward",
+   "active": true,
+   "timeZone": "America/Bogota",
+   "accountType": "atlassian"
+  },
+  "subtasks": [],
+  "customfield_10285": null,
+  "reporter": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3Aaa00b8d6-a71f-4259-8919-82a304227c20",
+   "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+   "avatarUrls": {
+    "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+    "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+    "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+    "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+   },
+   "displayName": "Chris Ward",
+   "active": true,
+   "timeZone": "America/Bogota",
+   "accountType": "atlassian"
+  },
+  "customfield_10044": null,
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "environment": null,
+  "customfield_10318": null,
+  "duedate": null,
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "votes": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8582/votes",
+   "votes": 0,
+   "hasVoted": false
+  },
+  "comment": {
+   "comments": [],
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54603/comment",
+   "maxResults": 0,
+   "total": 0,
+   "startAt": 0
+  },
+  "worklog": {
+   "startAt": 0,
+   "maxResults": 20,
+   "total": 0,
+   "worklogs": []
+  }
+ }
+}

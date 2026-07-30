@@ -1,0 +1,1852 @@
+{
+ "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+ "id": "54707",
+ "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+ "key": "SV-8685",
+ "renderedFields": {
+  "statuscategorychangedate": "Monday 3:25 PM",
+  "issuetype": null,
+  "timespent": null,
+  "project": null,
+  "customfield_10153": null,
+  "customfield_10351": "",
+  "fixVersions": null,
+  "customfield_10352": null,
+  "aggregatetimespent": null,
+  "statusCategory": null,
+  "resolution": null,
+  "resolutiondate": null,
+  "workratio": null,
+  "watches": null,
+  "issuerestriction": null,
+  "lastViewed": "Tuesday 5:55 PM",
+  "created": "Monday 3:25 PM",
+  "customfield_10021": null,
+  "customfield_10385": null,
+  "priority": null,
+  "labels": null,
+  "customfield_10017": "",
+  "customfield_10019": null,
+  "timeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "versions": null,
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "issuelinks": null,
+  "assignee": null,
+  "updated": "Tuesday 12:33 PM",
+  "status": null,
+  "components": null,
+  "description": "<h2><a name=\"ProblemStatement\"></a>Problem Statement</h2>\n\n<p>Heavy-duty shops manage dozens of open work orders simultaneously, each with multiple repair lines requiring different technicians and hours. Without a dedicated scheduling tool, managers rely on memory, whiteboards, or ad-hoc spreadsheets, which leads to double-bookings, overtime surprises, and unbalanced workloads across the team.</p>\n\n<h2><a name=\"Goal\"></a>Goal</h2>\n\n<p>A single-screen, drag-and-drop scheduling interface that assigns technicians to work order lines across days and weeks, respects technician capacity, surfaces conflicts, and keeps the work order system of record in sync. Success means near-zero scheduling conflicts, under 30s per shift creation, and 80% shop adoption within 90 days.</p>\n\n<h2><a name=\"Scope\"></a>Scope</h2>\n\n<h3><a name=\"Included\"></a>Included</h3>\n\n<ul>\n\t<li>Visual calendar grid with day, week, and month views</li>\n\t<li>Work order sidebar with search, filters, and line drill-down</li>\n\t<li>Drag-and-drop scheduling with scope picker for multi-line WOs</li>\n\t<li>Multi-day spread scheduling for large jobs (40\u2013160+ hours)</li>\n\t<li>Linked series with connected banners and series-aware deletion</li>\n\t<li>Shift block anatomy with consistent labeling</li>\n\t<li>Overlap and lane stacking (3-lane cap with +N overflow)</li>\n\t<li>Day view timeline interactions (horizontal drag, edge resize, 15-min snap)</li>\n\t<li>Shift detail modal with tooltips, notes, color, reassignment</li>\n\t<li>Events (non-WO time blocks: meetings, training)</li>\n\t<li>Conflict detection (double-booked, weekend, before/after hours)</li>\n\t<li>Capacity visualization (aggregate bars, per-tech OT tag)</li>\n\t<li>Working hours settings (business hours + technician hours)</li>\n\t<li>View options, color system, and display customization</li>\n\t<li>Schedule permissions (View / Edit / Delete tiers)</li>\n</ul>\n\n\n<h3><a name=\"Deferred\"></a>Deferred</h3>\n\n<ul>\n\t<li>Technician availability and PTO blocking</li>\n\t<li>Auto-scheduling (optimal tech assignment suggestions)</li>\n\t<li>Recurring events (repeating calendar blocks)</li>\n\t<li>Skill matching (certification warnings)</li>\n\t<li>Spread around existing bookings (auto-flow around booked days)</li>\n\t<li>Long-job cap (single assignment span instead of daily shifts)</li>\n</ul>\n\n\n<h2><a name=\"Stories%28ordered%29\"></a>Stories (ordered)</h2>\n\n<ol>\n\t<li>Schedule Grid Layout &amp; Navigation \u2014 Core grid with day/week/month views, department rows, toolbar</li>\n\t<li>Work Order Sidebar &amp; Mini Calendar \u2014 WO card list, search, filters, line drill-down</li>\n\t<li>Drag-and-Drop Scheduling &amp; Shift Creation \u2014 DnD from sidebar, shift start-time hierarchy, unassigned shifts</li>\n\t<li>Scope Picker \u2014 Multi-line WO scope selection (whole order, single line, multi-select)</li>\n\t<li>Shift Block Anatomy &amp; Scope Labeling \u2014 Three-line block format, default blue color, conflict icon</li>\n\t<li>Multi-Day Spread Scheduling \u2014 Hour distribution across working days, skipping weekends</li>\n\t<li>Linked Series &amp; Banners \u2014 Connected banners in month/week/day, series-aware deletion</li>\n\t<li>Overlap &amp; Lane Stacking \u2014 Stacked lanes for overlapping shifts, 3-lane cap, +N overflow</li>\n\t<li>Day View Timeline Interactions \u2014 Horizontal drag, edge resize, auto-scroll, sticky headers, now line</li>\n\t<li>Shift Detail Modal &amp; Hover Tooltips \u2014 Full detail panel, reassignment, tooltips with quick peek</li>\n\t<li>Events \u2014 Non-WO time blocks, left-click creation, event card anatomy</li>\n\t<li>Conflict Detection \u2014 Double-booked, weekend, before/after hours scanning and toolbar pill</li>\n\t<li>Capacity Visualization \u2014 Aggregate capacity bars, amber spill, per-tech OT tag</li>\n\t<li>Working Hours Settings \u2014 Business hours and tech hours editors with overlap validation</li>\n\t<li>View Options, Color System &amp; Display Customization \u2014 Filters, toggles, colors, dark theme, keyboard shortcuts</li>\n</ol>\n\n\n<h2><a name=\"KeyDecisions\"></a>Key Decisions</h2>\n\n<ul>\n\t<li>Stories are functional units (no BE/FE splits)</li>\n\t<li>All shift blocks default to blue; custom colors are optional per shift</li>\n\t<li>Weekends are skipped by spread scheduling only when business hours are not set for them; shop closures/holidays are not skipped in V1</li>\n\t<li>Events are not conflict-checked against shifts or other events</li>\n\t<li>\"My Shifts\" is a personal convenience filter, not a permission boundary</li>\n\t<li>Grid rows are department-based (staff record), not role-based</li>\n</ul>\n\n\n<h2><a name=\"RelatedIssues\"></a>Related Issues</h2>\n\n<p>\n    <span class=\"jira-issue-macro resolved\" data-jira-key=\"SV-8038\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8038\" class=\"jira-issue-macro-key issue-link\"  title=\"Schedule rejects WO drop in first two time columns\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium\" />\n            SV-8038\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-success jira-macro-single-issue-export-pdf\">Done</span>\n            </span>\n, \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-5339\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-5339\" class=\"jira-issue-macro-key issue-link\"  title=\"Regression BUG-Scheduler scroll position shifts when changing dates\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium\" />\n            SV-5339\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Open</span>\n            </span>\n, \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8048\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8048\" class=\"jira-issue-macro-key issue-link\"  title=\"Custom role with only Schedule View + Create &amp; Edit: &quot;Access restricted&quot; on login (must click Schedule); newly created events disappear; &quot;Assign to existing work order&quot; fails with fetch error and persistent Access restricted until logout + new tab\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium\" />\n            SV-8048\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Ready to Fix</span>\n            </span>\n, \n    <span class=\"jira-issue-macro resolved\" data-jira-key=\"SV-8558\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8558\" class=\"jira-issue-macro-key issue-link\"  title=\"Schedule: Add week/month calendar view (not only single-day view) with broader timeframe visualization\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium\" />\n            SV-8558\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-success jira-macro-single-issue-export-pdf\">OBSOLETE</span>\n            </span>\n, \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-5737\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-5737\" class=\"jira-issue-macro-key issue-link\"  title=\"FR: Support 15-Minute Scheduling Increments with Start &amp; End Times\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium\" />\n            SV-5737\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Board Backlog</span>\n            </span>\n, \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-3550\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-3550\" class=\"jira-issue-macro-key issue-link\"  title=\"Schedule enhancement requests - multiple in ticket\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium\" />\n            SV-3550\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Board Backlog</span>\n            </span>\n, \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-3397\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-3397\" class=\"jira-issue-macro-key issue-link\"  title=\"Scheduler Enhancements Round 3\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium\" />\n            SV-3397\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Board Backlog</span>\n            </span>\n, \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-5735\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-5735\" class=\"jira-issue-macro-key issue-link\"  title=\"FR: Automatically Assign Work Order Lines When Technician Is Scheduled\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium\" />\n            SV-5735\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Board Backlog</span>\n            </span>\n, \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-3620\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-3620\" class=\"jira-issue-macro-key issue-link\"  title=\"7. Department enhancement - Schedule\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium\" />\n            SV-3620\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Board Backlog</span>\n            </span>\n, \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-5331\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-5331\" class=\"jira-issue-macro-key issue-link\"  title=\"FR \u2013 Add Reminders and Team Tags for Custom Schedule Events\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium\" />\n            SV-5331\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-complete jira-macro-single-issue-export-pdf\">Open</span>\n            </span>\n</p>",
+  "customfield_10252": "",
+  "timetracking": {},
+  "customfield_10015": null,
+  "security": null,
+  "aggregatetimeestimate": null,
+  "attachment": [],
+  "summary": null,
+  "creator": null,
+  "subtasks": null,
+  "customfield_10285": "",
+  "reporter": null,
+  "customfield_10044": null,
+  "aggregateprogress": null,
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "environment": "",
+  "customfield_10318": null,
+  "duedate": null,
+  "progress": null,
+  "votes": null,
+  "comment": {
+   "comments": [],
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54707/comment",
+   "maxResults": 0,
+   "total": 0,
+   "startAt": 0
+  },
+  "worklog": {
+   "startAt": 0,
+   "maxResults": 20,
+   "total": 0,
+   "worklogs": []
+  }
+ },
+ "changelog": {
+  "startAt": 0,
+  "maxResults": 12,
+  "total": 12,
+  "histories": [
+   {
+    "id": "137762",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e",
+     "accountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+     "emailAddress": "bilal.muzamil@shopview.com",
+     "avatarUrls": {
+      "48x48": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "24x24": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "16x16": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png",
+      "32x32": "https://secure.gravatar.com/avatar/939e0aa31ab923104bfaac4c5012d8c0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBM-2.png"
+     },
+     "displayName": "Bilal Muzamil",
+     "active": true,
+     "timeZone": "Asia/Karachi",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-28T02:33:54.965-0500",
+    "items": [
+     {
+      "field": "QA Assignee",
+      "fieldtype": "custom",
+      "fieldId": "customfield_10385",
+      "from": null,
+      "fromString": null,
+      "to": "[712020:67f76d27-9119-4cb6-93c6-dbf94204abba]",
+      "toString": "[Ayesha Khan]"
+     }
+    ]
+   },
+   {
+    "id": "137336",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+     "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+     },
+     "displayName": "Branko Cicovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-27T05:47:08.081-0500",
+    "items": [
+     {
+      "field": "RemoteWorkItemLink",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "12779",
+      "toString": "This work item links to \"Page (Confluence)\""
+     }
+    ]
+   },
+   {
+    "id": "137328",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+     "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+     },
+     "displayName": "Branko Cicovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-27T05:32:34.816-0500",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-5331",
+      "toString": "This work item relates to SV-5331"
+     }
+    ]
+   },
+   {
+    "id": "137326",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+     "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+     },
+     "displayName": "Branko Cicovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-27T05:32:31.206-0500",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-3620",
+      "toString": "This work item relates to SV-3620"
+     }
+    ]
+   },
+   {
+    "id": "137324",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+     "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+     },
+     "displayName": "Branko Cicovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-27T05:32:26.458-0500",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-5735",
+      "toString": "This work item relates to SV-5735"
+     }
+    ]
+   },
+   {
+    "id": "137322",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+     "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+     },
+     "displayName": "Branko Cicovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-27T05:32:22.626-0500",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-3397",
+      "toString": "This work item relates to SV-3397"
+     }
+    ]
+   },
+   {
+    "id": "137320",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+     "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+     },
+     "displayName": "Branko Cicovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-27T05:32:18.982-0500",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-3550",
+      "toString": "This work item relates to SV-3550"
+     }
+    ]
+   },
+   {
+    "id": "137318",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+     "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+     },
+     "displayName": "Branko Cicovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-27T05:32:13.454-0500",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-5737",
+      "toString": "This work item relates to SV-5737"
+     }
+    ]
+   },
+   {
+    "id": "137316",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+     "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+     },
+     "displayName": "Branko Cicovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-27T05:32:07.863-0500",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8558",
+      "toString": "This work item relates to SV-8558"
+     }
+    ]
+   },
+   {
+    "id": "137314",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+     "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+     },
+     "displayName": "Branko Cicovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-27T05:31:47.214-0500",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8048",
+      "toString": "This work item relates to SV-8048"
+     }
+    ]
+   },
+   {
+    "id": "137312",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+     "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+     },
+     "displayName": "Branko Cicovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-27T05:31:42.847-0500",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-5339",
+      "toString": "This work item relates to SV-5339"
+     }
+    ]
+   },
+   {
+    "id": "137310",
+    "author": {
+     "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+     "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+     "avatarUrls": {
+      "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+      "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+      "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+      "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+     },
+     "displayName": "Branko Cicovic",
+     "active": true,
+     "timeZone": "America/Bogota",
+     "accountType": "atlassian"
+    },
+    "created": "2026-07-27T05:31:39.168-0500",
+    "items": [
+     {
+      "field": "Link",
+      "fieldtype": "jira",
+      "from": null,
+      "fromString": null,
+      "to": "SV-8038",
+      "toString": "This work item relates to SV-8038"
+     }
+    ]
+   }
+  ]
+ },
+ "fields": {
+  "statuscategorychangedate": "2026-07-27T05:25:26.046-0500",
+  "issuetype": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+   "id": "10006",
+   "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+   "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+   "name": "Epic",
+   "subtask": false,
+   "avatarId": 10306,
+   "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+   "hierarchyLevel": 1
+  },
+  "timespent": null,
+  "project": {
+   "self": "https://shopview.atlassian.net/rest/api/3/project/10001",
+   "id": "10001",
+   "key": "SV",
+   "name": "ShopView",
+   "projectTypeKey": "software",
+   "simplified": true,
+   "avatarUrls": {
+    "48x48": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551",
+    "24x24": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=small",
+    "16x16": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=xsmall",
+    "32x32": "https://shopview.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10551?size=medium"
+   }
+  },
+  "customfield_10153": {
+   "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+   "value": "Schedule",
+   "id": "10123",
+   "color": "GREY"
+  },
+  "customfield_10351": null,
+  "fixVersions": [],
+  "customfield_10352": null,
+  "aggregatetimespent": null,
+  "statusCategory": {
+   "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+   "id": 2,
+   "key": "new",
+   "colorName": "blue-gray",
+   "name": "To Do"
+  },
+  "resolution": null,
+  "resolutiondate": null,
+  "workratio": -1,
+  "watches": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8685/watchers",
+   "watchCount": 1,
+   "isWatching": false
+  },
+  "issuerestriction": {
+   "issuerestrictions": {},
+   "shouldDisplay": true
+  },
+  "lastViewed": "2026-07-28T07:55:29.108-0500",
+  "created": "2026-07-27T05:25:25.747-0500",
+  "customfield_10021": null,
+  "customfield_10385": [
+   {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A67f76d27-9119-4cb6-93c6-dbf94204abba",
+    "accountId": "712020:67f76d27-9119-4cb6-93c6-dbf94204abba",
+    "avatarUrls": {
+     "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/48",
+     "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/24",
+     "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/16",
+     "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:67f76d27-9119-4cb6-93c6-dbf94204abba/4980e208-2cbf-4704-a83a-6fc499e6b7fb/32"
+    },
+    "displayName": "Ayesha Khan",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   }
+  ],
+  "priority": {
+   "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+   "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+   "name": "Medium",
+   "id": "3"
+  },
+  "labels": [],
+  "customfield_10017": null,
+  "customfield_10019": "0|i01tqh:",
+  "timeestimate": null,
+  "aggregatetimeoriginalestimate": null,
+  "versions": [],
+  "customfield_10418": null,
+  "customfield_10419": null,
+  "issuelinks": [
+   {
+    "id": "31905",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/31905",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "outwardIssue": {
+     "id": "53936",
+     "key": "SV-8038",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/53936",
+     "fields": {
+      "summary": "Schedule rejects WO drop in first two time columns",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10005",
+       "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "Done",
+       "id": "10005",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3",
+        "id": 3,
+        "key": "done",
+        "colorName": "green",
+        "name": "Done"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10008",
+       "id": "10008",
+       "description": "Bugs track problems or errors. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+       "name": "Bug",
+       "subtask": false,
+       "avatarId": 10303,
+       "entityId": "28af1af2-ae8b-4de4-94eb-bcecd7d4031c",
+       "hierarchyLevel": 0
+      }
+     }
+    }
+   },
+   {
+    "id": "31906",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/31906",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "outwardIssue": {
+     "id": "30572",
+     "key": "SV-5339",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/30572",
+     "fields": {
+      "summary": "Regression BUG-Scheduler scroll position shifts when changing dates",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "Open",
+       "id": "10349",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10008",
+       "id": "10008",
+       "description": "Bugs track problems or errors. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+       "name": "Bug",
+       "subtask": false,
+       "avatarId": 10303,
+       "entityId": "28af1af2-ae8b-4de4-94eb-bcecd7d4031c",
+       "hierarchyLevel": 0
+      }
+     }
+    }
+   },
+   {
+    "id": "31907",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/31907",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "outwardIssue": {
+     "id": "53946",
+     "key": "SV-8048",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/53946",
+     "fields": {
+      "summary": "Custom role with only Schedule View + Create & Edit: \"Access restricted\" on login (must click Schedule); newly created events disappear; \"Assign to existing work order\" fails with fetch error and persistent Access restricted until logout + new tab",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10453",
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "Ready to Fix",
+       "id": "10453",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/4",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/low_new.svg",
+       "name": "Low",
+       "id": "4"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10008",
+       "id": "10008",
+       "description": "Bugs track problems or errors. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+       "name": "Bug",
+       "subtask": false,
+       "avatarId": 10303,
+       "entityId": "28af1af2-ae8b-4de4-94eb-bcecd7d4031c",
+       "hierarchyLevel": 0
+      }
+     }
+    }
+   },
+   {
+    "id": "31908",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/31908",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "outwardIssue": {
+     "id": "54556",
+     "key": "SV-8558",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/54556",
+     "fields": {
+      "summary": "Schedule: Add week/month calendar view (not only single-day view) with broader timeframe visualization",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10250",
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "OBSOLETE",
+       "id": "10250",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/3",
+        "id": 3,
+        "key": "done",
+        "colorName": "green",
+        "name": "Done"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10245",
+       "id": "10245",
+       "description": "Stories track functionality or features expressed as user goals.",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+       "name": "Story",
+       "subtask": false,
+       "avatarId": 10315,
+       "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+       "hierarchyLevel": 0
+      }
+     }
+    }
+   },
+   {
+    "id": "31909",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/31909",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "outwardIssue": {
+     "id": "35793",
+     "key": "SV-5737",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/35793",
+     "fields": {
+      "summary": "FR: Support 15-Minute Scheduling Increments with Start & End Times",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10007",
+       "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "Board Backlog",
+       "id": "10007",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10005",
+       "id": "10005",
+       "description": "Tasks track small, distinct pieces of work. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium",
+       "name": "Task",
+       "subtask": false,
+       "avatarId": 10321,
+       "entityId": "bbce579c-61d9-4635-aa13-ce7ec404c25a",
+       "hierarchyLevel": 0
+      }
+     }
+    }
+   },
+   {
+    "id": "31910",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/31910",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "outwardIssue": {
+     "id": "15298",
+     "key": "SV-3550",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/15298",
+     "fields": {
+      "summary": "Schedule enhancement requests - multiple in ticket",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10007",
+       "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "Board Backlog",
+       "id": "10007",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10005",
+       "id": "10005",
+       "description": "Tasks track small, distinct pieces of work. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium",
+       "name": "Task",
+       "subtask": false,
+       "avatarId": 10321,
+       "entityId": "bbce579c-61d9-4635-aa13-ce7ec404c25a",
+       "hierarchyLevel": 0
+      }
+     }
+    }
+   },
+   {
+    "id": "31911",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/31911",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "outwardIssue": {
+     "id": "14050",
+     "key": "SV-3397",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/14050",
+     "fields": {
+      "summary": "Scheduler Enhancements Round 3",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10007",
+       "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "Board Backlog",
+       "id": "10007",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10005",
+       "id": "10005",
+       "description": "Tasks track small, distinct pieces of work. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium",
+       "name": "Task",
+       "subtask": false,
+       "avatarId": 10321,
+       "entityId": "bbce579c-61d9-4635-aa13-ce7ec404c25a",
+       "hierarchyLevel": 0
+      }
+     }
+    }
+   },
+   {
+    "id": "31912",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/31912",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "outwardIssue": {
+     "id": "35727",
+     "key": "SV-5735",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/35727",
+     "fields": {
+      "summary": "FR: Automatically Assign Work Order Lines When Technician Is Scheduled",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10007",
+       "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "Board Backlog",
+       "id": "10007",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10005",
+       "id": "10005",
+       "description": "Tasks track small, distinct pieces of work. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium",
+       "name": "Task",
+       "subtask": false,
+       "avatarId": 10321,
+       "entityId": "bbce579c-61d9-4635-aa13-ce7ec404c25a",
+       "hierarchyLevel": 0
+      }
+     }
+    }
+   },
+   {
+    "id": "31913",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/31913",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "outwardIssue": {
+     "id": "16039",
+     "key": "SV-3620",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/16039",
+     "fields": {
+      "summary": "7. Department enhancement - Schedule",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10007",
+       "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "Board Backlog",
+       "id": "10007",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10005",
+       "id": "10005",
+       "description": "Tasks track small, distinct pieces of work. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium",
+       "name": "Task",
+       "subtask": false,
+       "avatarId": 10321,
+       "entityId": "bbce579c-61d9-4635-aa13-ce7ec404c25a",
+       "hierarchyLevel": 0
+      }
+     }
+    }
+   },
+   {
+    "id": "31914",
+    "self": "https://shopview.atlassian.net/rest/api/3/issueLink/31914",
+    "type": {
+     "id": "10003",
+     "name": "Relates",
+     "inward": "relates to",
+     "outward": "relates to",
+     "self": "https://shopview.atlassian.net/rest/api/3/issueLinkType/10003"
+    },
+    "outwardIssue": {
+     "id": "30467",
+     "key": "SV-5331",
+     "self": "https://shopview.atlassian.net/rest/api/3/issue/30467",
+     "fields": {
+      "summary": "FR \u2013 Add Reminders and Team Tags for Custom Schedule Events",
+      "status": {
+       "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+       "description": "",
+       "iconUrl": "https://shopview.atlassian.net/",
+       "name": "Open",
+       "id": "10349",
+       "statusCategory": {
+        "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "To Do"
+       }
+      },
+      "priority": {
+       "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+       "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+       "name": "Medium",
+       "id": "3"
+      },
+      "issuetype": {
+       "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+       "id": "10006",
+       "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+       "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+       "name": "Epic",
+       "subtask": false,
+       "avatarId": 10306,
+       "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+       "hierarchyLevel": 1
+      }
+     }
+    }
+   }
+  ],
+  "assignee": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+   "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+   "avatarUrls": {
+    "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+    "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+    "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+    "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+   },
+   "displayName": "Branko Cicovic",
+   "active": true,
+   "timeZone": "America/Bogota",
+   "accountType": "atlassian"
+  },
+  "updated": "2026-07-28T02:33:54.965-0500",
+  "status": {
+   "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+   "description": "",
+   "iconUrl": "https://shopview.atlassian.net/",
+   "name": "Open",
+   "id": "10349",
+   "statusCategory": {
+    "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+    "id": 2,
+    "key": "new",
+    "colorName": "blue-gray",
+    "name": "To Do"
+   }
+  },
+  "components": [],
+  "description": {
+   "type": "doc",
+   "version": 1,
+   "content": [
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Problem Statement"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "Heavy-duty shops manage dozens of open work orders simultaneously, each with multiple repair lines requiring different technicians and hours. Without a dedicated scheduling tool, managers rely on memory, whiteboards, or ad-hoc spreadsheets, which leads to double-bookings, overtime surprises, and unbalanced workloads across the team."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Goal"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "A single-screen, drag-and-drop scheduling interface that assigns technicians to work order lines across days and weeks, respects technician capacity, surfaces conflicts, and keeps the work order system of record in sync. Success means near-zero scheduling conflicts, under 30s per shift creation, and 80% shop adoption within 90 days."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Scope"
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Included"
+      }
+     ]
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Visual calendar grid with day, week, and month views"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Work order sidebar with search, filters, and line drill-down"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Drag-and-drop scheduling with scope picker for multi-line WOs"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Multi-day spread scheduling for large jobs (40\u2013160+ hours)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Linked series with connected banners and series-aware deletion"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Shift block anatomy with consistent labeling"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Overlap and lane stacking (3-lane cap with +N overflow)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Day view timeline interactions (horizontal drag, edge resize, 15-min snap)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Shift detail modal with tooltips, notes, color, reassignment"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Events (non-WO time blocks: meetings, training)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Conflict detection (double-booked, weekend, before/after hours)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Capacity visualization (aggregate bars, per-tech OT tag)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Working hours settings (business hours + technician hours)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "View options, color system, and display customization"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Schedule permissions (View / Edit / Delete tiers)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 3
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Deferred"
+      }
+     ]
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Technician availability and PTO blocking"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Auto-scheduling (optimal tech assignment suggestions)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Recurring events (repeating calendar blocks)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Skill matching (certification warnings)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Spread around existing bookings (auto-flow around booked days)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Long-job cap (single assignment span instead of daily shifts)"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Stories (ordered)"
+      }
+     ]
+    },
+    {
+     "type": "orderedList",
+     "attrs": {
+      "order": 1
+     },
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Schedule Grid Layout & Navigation \u2014 Core grid with day/week/month views, department rows, toolbar"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Work Order Sidebar & Mini Calendar \u2014 WO card list, search, filters, line drill-down"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Drag-and-Drop Scheduling & Shift Creation \u2014 DnD from sidebar, shift start-time hierarchy, unassigned shifts"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Scope Picker \u2014 Multi-line WO scope selection (whole order, single line, multi-select)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Shift Block Anatomy & Scope Labeling \u2014 Three-line block format, default blue color, conflict icon"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Multi-Day Spread Scheduling \u2014 Hour distribution across working days, skipping weekends"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Linked Series & Banners \u2014 Connected banners in month/week/day, series-aware deletion"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Overlap & Lane Stacking \u2014 Stacked lanes for overlapping shifts, 3-lane cap, +N overflow"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Day View Timeline Interactions \u2014 Horizontal drag, edge resize, auto-scroll, sticky headers, now line"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Shift Detail Modal & Hover Tooltips \u2014 Full detail panel, reassignment, tooltips with quick peek"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Events \u2014 Non-WO time blocks, left-click creation, event card anatomy"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Conflict Detection \u2014 Double-booked, weekend, before/after hours scanning and toolbar pill"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Capacity Visualization \u2014 Aggregate capacity bars, amber spill, per-tech OT tag"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Working Hours Settings \u2014 Business hours and tech hours editors with overlap validation"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "View Options, Color System & Display Customization \u2014 Filters, toggles, colors, dark theme, keyboard shortcuts"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Key Decisions"
+      }
+     ]
+    },
+    {
+     "type": "bulletList",
+     "content": [
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Stories are functional units (no BE/FE splits)"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "All shift blocks default to blue; custom colors are optional per shift"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Weekends are skipped by spread scheduling only when business hours are not set for them; shop closures/holidays are not skipped in V1"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Events are not conflict-checked against shifts or other events"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "\"My Shifts\" is a personal convenience filter, not a permission boundary"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "type": "listItem",
+       "content": [
+        {
+         "type": "paragraph",
+         "content": [
+          {
+           "type": "text",
+           "text": "Grid rows are department-based (staff record), not role-based"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "attrs": {
+      "level": 2
+     },
+     "content": [
+      {
+       "type": "text",
+       "text": "Related Issues"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "content": [
+      {
+       "type": "text",
+       "text": "SV-8038, SV-5339, SV-8048, SV-8558, SV-5737, SV-3550, SV-3397, SV-5735, SV-3620, SV-5331"
+      }
+     ]
+    }
+   ]
+  },
+  "customfield_10252": null,
+  "timetracking": {},
+  "customfield_10015": null,
+  "security": null,
+  "aggregatetimeestimate": null,
+  "attachment": [],
+  "summary": "Schedule \u2014 Technician Scheduling Module",
+  "creator": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+   "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+   "avatarUrls": {
+    "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+    "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+    "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+    "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+   },
+   "displayName": "Branko Cicovic",
+   "active": true,
+   "timeZone": "America/Bogota",
+   "accountType": "atlassian"
+  },
+  "subtasks": [],
+  "customfield_10285": null,
+  "reporter": {
+   "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A92c46428-d353-4811-9672-e47eeb410d09",
+   "accountId": "712020:92c46428-d353-4811-9672-e47eeb410d09",
+   "avatarUrls": {
+    "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/48",
+    "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/24",
+    "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/16",
+    "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:92c46428-d353-4811-9672-e47eeb410d09/44b5f4ef-c8a3-46e3-8422-2a4514f1ec41/32"
+   },
+   "displayName": "Branko Cicovic",
+   "active": true,
+   "timeZone": "America/Bogota",
+   "accountType": "atlassian"
+  },
+  "customfield_10044": null,
+  "aggregateprogress": {
+   "progress": 0,
+   "total": 0
+  },
+  "customfield_10046": null,
+  "customfield_10047": null,
+  "environment": null,
+  "customfield_10318": null,
+  "duedate": null,
+  "progress": {
+   "progress": 0,
+   "total": 0
+  },
+  "votes": {
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/SV-8685/votes",
+   "votes": 0,
+   "hasVoted": false
+  },
+  "comment": {
+   "comments": [],
+   "self": "https://shopview.atlassian.net/rest/api/3/issue/54707/comment",
+   "maxResults": 0,
+   "total": 0,
+   "startAt": 0
+  },
+  "worklog": {
+   "startAt": 0,
+   "maxResults": 20,
+   "total": 0,
+   "worklogs": []
+  }
+ }
+}
