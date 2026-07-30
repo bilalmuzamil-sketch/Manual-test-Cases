@@ -1,6 +1,9 @@
 # Schedule — TestRail execution manifest — 2026-07-31 (consolidation + wording repairs)
 
-**Status at time of writing: STAGED — NOT YET EXECUTED.** (Updated to EXECUTED with results once the run completes.)
+**STATUS: EXECUTED 2026-07-31.** All **49/49** operations succeeded — **24/24 `update_case` HTTP 200 + re-GET
+MATCH** and **25/25 `delete_case` HTTP 200 + re-GET confirmed gone**; 0 failures. Live case count under group
+4254 went **190 → 165**, exactly equal to the local active tally. Runs untouched; HELD items untouched.
+Per-operation audit: `testrail-execution-log-2026-07-31.md`.
 
 **Authorization:** user-authorized 2026-07-31 to execute the recommendations in
 `build/schedule/quality-audit-2026-07-31/MERGE-PLAN.md` (20 merge groups + 2 cuts) and the 6 FIX-WORDING
