@@ -133,11 +133,12 @@
 >   build/RUTHLESS-USEFULNESS-AUDIT-PROCESS.md — canonical example
 >   build/report-suite/quality-audit-2026-07-28/.
 > - **QA QUALITY PIPELINE EXPLAINER (the presentable "how do we ensure the test cases are
->   good?" doc the QA lead presents): build/QA-QUALITY-PIPELINE-EXPLAINER.md — the 9-step
+>   good?" doc the QA lead presents): build/QA-QUALITY-PIPELINE-EXPLAINER.md — the 12-step
 >   quality pipeline in plain language (source ingestion → traceability → build-accurate
 >   wording → coverage matrix → adversarial review → Ruthless Usefulness Audit → spec-change
->   reconciliation → VIU → the tester Blocked-revisit loop), each step cross-referenced to its
->   internal process doc.**
+>   reconciliation → VIU → the tester Blocked-revisit loop → the OUTSIDE-IN CHECK against other
+>   people's cases in both directions → the DELIBERATE-DECISIONS register → the outstanding-items
+>   close), each step cross-referenced to its internal process doc.**
 > - Keep the books current: After each task, append ONLY success-proven learnings
 >   (working navigation paths, action recipes, endpoints, the specific unblock that
 >   worked) to build/APP-ACTIONS-PLAYBOOK.md; update build/TESTING-RUNBOOK.md when the

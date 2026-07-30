@@ -188,7 +188,65 @@ are later CONVERTED INTO TEST CASES too."*
 
 ---
 
-## 10. Every status report ends with what we are waiting on
+## 10. The outside-in check — we check our tests against what other people have written
+
+**We now check our tests against what other people have written, in both directions.** Until
+recently we only asked *"has somebody duplicated one of our tests?"* — a tidiness question. We now
+also ask the question that actually protects coverage: **"has somebody written a test for something
+we have no test for at all?"** If a colleague's test asserts something ours never mentions, that is
+treated as a **signal that we may be missing a test**, not as a nuisance — and it is checked, with a
+read-only script, before we call a suite finished.
+
+Three more habits sit alongside it, and all four run before delivery, not after somebody complains:
+
+- **We ask what an automation engineer would see.** Automation is written against the **running
+  product**, so an automation engineer cannot describe a screen he has not seen. We deliberately
+  take that point of view for each requirement — *"if I were automating this from the live product,
+  what would I check?"* — and confirm we have a test for it. **Honestly stated: while we have no
+  test environment of our own for a project, this can only reach as far as the written
+  specification** — which is one of the reasons a test environment is on our list of asks.
+- **We play the hostile reviewer against ourselves.** Before delivery we ask *"what would a critic
+  say is missing?"* and answer it in writing, rather than waiting to be asked in public.
+- **Every outside signal counts as coverage information, not just a message to answer.** A review, a
+  colleague's test, a support ticket, a developer's comment, a customer complaint — each one is
+  written down and compared against the suite. On one day in July, two reviews and one colleague's
+  test each revealed something real; simply replying to them would have corrected three sentences
+  and left the actual problems in place.
+- **And a "we already cover that" answer must now show its working.** Saying *"that is covered by
+  test 30277"* is not accepted on its own, because nobody can check it without redoing the work. The
+  requirement's own words and the test's own words must be put **side by side** — and where one
+  requirement demands **two** things, each gets its **own** line. This is the specific check that a
+  real miss slipped through: a requirement asked for a column **and** a heading line in the
+  downloads, we confirmed the heading line, and recorded the whole requirement as covered.
+
+*Why this exists, plainly: an outside automation engineer once found a genuine gap in our tests
+before we did — across five reports. He was right, we were wrong against our own specification, and
+we had no process that would have told us he could see something we could not. That process now
+exists.*
+*Internal reference: Standing Rule 45; `build/gap-rootcause-2026-07-31/WHY-VLAD-FOUND-IT-FIRST.md`.*
+
+## 11. We write down our deliberate decisions before anyone challenges them
+
+**Every suite ships with a register of the decisions we made on purpose.** Where we chose not to
+write a test, where we followed the product owner's ruling instead of the wording in his own
+document, where something is on hold awaiting an answer, and where we have accepted a known
+imperfection — each is written down with **the evidence, the tests affected, who can close it, an
+honest risk rating, and a single plain sentence anyone can read out in a meeting.**
+
+The reason is simple and slightly uncomfortable: **a deliberate decision that nobody wrote down
+looks exactly like a mistake.** On the day an outside engineer found a real gap, our own document
+had recorded a nearby judgement in the confident language of a considered decision — and that one
+was an error. Nothing in the document let a reader tell the two apart. Writing decisions down in
+advance, with their evidence, means the QA lead is never surprised in a public channel by something
+we chose on purpose, and a genuine mistake stands out instead of hiding among the deliberate ones.
+
+**We never back-date a mistake into this register as though it had been a decision** — that single
+temptation would make the whole register worthless.
+
+*Internal reference: Standing Rule 46;
+`build/report-suite/coverage-rederivation-2026-07-31/DELIBERATE-DECISIONS.md`.*
+
+## 12. Every status report ends with what we are waiting on
 
 **Every project status report ends with a plain list of what we are still waiting on and who owes
 it — the missing specs, epics and designs, the unanswered PO and developer questions, the
