@@ -5,7 +5,7 @@
   "title": "Every report page shows its designed filter buttons",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Any signed-in user with access to the Reports pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "permissions_required": "Any signed-in user with access to the Reports pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. You are on the Reports area of the app with some sample data present."
@@ -25,7 +25,8 @@
    "12. Go to the Notes report and look at the filter buttons and the toolbar icons.",
    "13. Go to the Reminders report and look at the filter buttons.",
    "14. Go to the IBS Batch Transactions report and look at the filter buttons and the view tabs.",
-   "15. Go to the QB Unexported report. Look at the filter buttons on the Customers tab, then switch to the Vendors tab, then to the Journal Entries tab, looking at the filter buttons on each."
+   "15. Go to the QB Unexported report. Look at the filter buttons on the Customers tab, then switch to the Vendors tab, then to the Journal Entries tab, looking at the filter buttons on each.",
+   "16. On each report above, open one of its filter buttons, look at the list of choices inside it, and pick a value to check the report changes."
   ],
   "expected": [
    "1. Timesheet Activities shows four filter buttons: Staff, Date, Status and Modified by.",
@@ -49,12 +50,14 @@
    "19. QB Unexported shows three filter buttons and the first one changes with the tab: Customer, Date and Type on the Customers tab; Vendor, Date and Type on the Vendors tab; User, Date and Type on the Journal Entries tab.",
    "20. Each of the six A/R and A/P aging reports also shows a print icon in its toolbar.",
    "21. On every report above, each filter button shows its name and a down arrow.",
-   "22. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (the option lists behind each filter button; and because several report bodies in the design are sample placeholders, the real report columns come from the same product write-up)."
+   "22. Every filter button shown above is a working filter on that report - none of them is display-only.",
+   "23. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.",
+   "24. Still to check on the live build: the real columns of the Sales Tax report and of the six A/R and A/P aging reports. The design uses sample placeholder tables for those, and the written description does not list their columns."
   ],
   "design_ref": "design-notes.md B.6 #1-#23 (11906:12519; 11984:9560; 11951:30535; 11955:30653 / 11955:31069; 11955:30786; 11955:30951; 11955:31355; 11984:9457; 11955:31458; 11955:31573; 11955:31691; 11955:31802; 11955:31901; 11955:32006; 11955:32097; 11955:32215; 11982:9225; 11982:9338; 11974:33068; 11981:8749 / 11982:8879 / 11982:8998)",
-  "spec_ref": "Filters (Epic key TBD); Figma 11903-10573 (Reports filters); design-notes.md §B.6 #1-#23",
+  "spec_ref": "Filters (Epic key TBD) (spec v1.6 §2 Feature Overview -> Reports Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"New date-range filter type\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",
   "viu_status": "VIU-Pending",
-  "notes": "MERGE SURVIVOR 2026-07-31 — MG15-REPORTS-CHIP-MATRIX (Rule-28 audit, user-authorized partial execution). Absorbed FLT-RPTS-02..FLT-RPTS-20 (19 cases, all design-level with blank C-ids, so LOCAL-ONLY — no TestRail delete was needed). One Reports walk with a per-report checklist of the designed filter buttons instead of twenty near-identical presence cases. This ALSO delivers 9 of the 12 audit FIX-WORDING repairs, as the audit predicted: the expected list is now numbered 1-22 with no repeated '2.' (was broken in FLT-RPTS-09/11/12/13/14/15/16) and the tab-bearing reports now carry explicit switch-tab steps (FLT-RPTS-04 Invoiced/Completed, FLT-RPTS-20 Customers/Vendors/Journal Entries, plus Sales Tax Collected/All Tax Rates). Per the audit, report TABLE COLUMN lists were demoted to reference notes: Timesheet Activities — Date, Employee, Work Order, Clock In Activity, Clock In, Clock Out, Total Hours, WO Hours, Internal Hours, Modified By, Modified Date/Time; Payroll Timesheet — Employee Name, Date, Clock In Time, Lunch, Clock Out Time, Hours; Sales — Invoice Date, Invoice, Customer, Inv. Hrs, Billing Efficiency, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Cost, Parts Margin, Profit, Subtotal; Advisor Analysis — Date, Invoice, Customer, Advisor, Days Open, Lines, Hrs Worked, Hrs Invoiced, Hrs Profit, Billing Efficiency, ELR, Parts Cost, Parts Invoiced, Parts Margin, Subtotal; Shop Efficiency — Total Clocked Hours, Total Invoiced Hours, Difference, Efficiency; Work in Progress — rows grouped by status (Pending Authorization, In Progress, Ready To Invoice) with Sales, Cost, Profit $, Profit %; Sales Follow Up — Customer, Sales Representative, Number Of Work Orders, Total Spend, Last Visit; IBS Batch Transactions — checkbox, Date, Type, No., Customer, Total, Balance, Status. The Sales Tax and both aging families use SAMPLE PLACEHOLDER bodies in the design, so their real columns are unknown until Branko's PRD. On-screen title notes carried over: 'Payroll Timesheet' (menu says Timesheets) and 'Work in Progress' (lower-case 'in'). The new filter TYPES (Location, Transaction Type, Invoice Status, Type, User, Mention) keep their own behaviour case FLT-RPTS-22; apply behaviour stays with FLT-RPTS-21 and the date-range chip with FLT-RPTS-23. | Design-only (chip + column presence). Apply behaviour and option lists pending Branko's PRD.",
+  "notes": "MERGE SURVIVOR 2026-07-31 — MG15-REPORTS-CHIP-MATRIX (Rule-28 audit, user-authorized partial execution). Absorbed FLT-RPTS-02..FLT-RPTS-20 (19 cases, all design-level with blank C-ids, so LOCAL-ONLY — no TestRail delete was needed). One Reports walk with a per-report checklist of the designed filter buttons instead of twenty near-identical presence cases. This ALSO delivers 9 of the 12 audit FIX-WORDING repairs, as the audit predicted: the expected list is now numbered 1-22 with no repeated '2.' (was broken in FLT-RPTS-09/11/12/13/14/15/16) and the tab-bearing reports now carry explicit switch-tab steps (FLT-RPTS-04 Invoiced/Completed, FLT-RPTS-20 Customers/Vendors/Journal Entries, plus Sales Tax Collected/All Tax Rates). Per the audit, report TABLE COLUMN lists were demoted to reference notes: Timesheet Activities — Date, Employee, Work Order, Clock In Activity, Clock In, Clock Out, Total Hours, WO Hours, Internal Hours, Modified By, Modified Date/Time; Payroll Timesheet — Employee Name, Date, Clock In Time, Lunch, Clock Out Time, Hours; Sales — Invoice Date, Invoice, Customer, Inv. Hrs, Billing Efficiency, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Cost, Parts Margin, Profit, Subtotal; Advisor Analysis — Date, Invoice, Customer, Advisor, Days Open, Lines, Hrs Worked, Hrs Invoiced, Hrs Profit, Billing Efficiency, ELR, Parts Cost, Parts Invoiced, Parts Margin, Subtotal; Shop Efficiency — Total Clocked Hours, Total Invoiced Hours, Difference, Efficiency; Work in Progress — rows grouped by status (Pending Authorization, In Progress, Ready To Invoice) with Sales, Cost, Profit $, Profit %; Sales Follow Up — Customer, Sales Representative, Number Of Work Orders, Total Spend, Last Visit; IBS Batch Transactions — checkbox, Date, Type, No., Customer, Total, Balance, Status. The Sales Tax and both aging families use SAMPLE PLACEHOLDER bodies in the design and spec v1.6 does not list their columns either, so their real columns stay unknown until the live build (carried as expected 24). On-screen title notes carried over: 'Payroll Timesheet' (menu says Timesheets) and 'Work in Progress' (lower-case 'in'). The new filter TYPES (Location, Transaction Type, Invoice Status, Type, User, Mention) keep their own behaviour case FLT-RPTS-22; apply behaviour stays with FLT-RPTS-21 and the date-range chip with FLT-RPTS-23. | RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending. SENSE REPAIR 2026-07-31 (Rule-28 Stage 2b): step 16 added because expected 22 and 23 assert behaviour (every shown button really filters; the choices come from the shop's data) that steps 1-15 never drove. This is the ALL-REPORTS check and deliberately does NOT duplicate FLT-RPTS-21, which is the single-report apply-behaviour case.",
   "api_related": false
  },
  {
@@ -552,7 +555,7 @@
   "title": "Choosing a Reports filter narrows the report results",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Any signed-in user with access to the Reports pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "permissions_required": "Any signed-in user with access to the Reports pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. You are on the Reports area of the app with some sample data present."
@@ -564,12 +567,12 @@
   ],
   "expected": [
    "1. The report updates to show only the rows matching the chosen filter value, and the chosen value is shown on the filter button.",
-   "2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (exactly which filters apply on each report, the full option lists, and whether results update immediately)."
+   "2. The report narrows as soon as you pick the value - there is no Apply or Run button to press. Every filter button on every report works this way."
   ],
   "design_ref": "design-notes.md B.6 (11903-10573 (behaviour not pinned))",
-  "spec_ref": "Filters (Epic key TBD); Figma 11903-10573 (Reports filters); design-notes.md §B.6",
+  "spec_ref": "Filters (Epic key TBD) (spec v1.6 §2 Feature Overview -> Reports Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"New date-range filter type\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",
   "viu_status": "VIU-Pending",
-  "notes": "WORDING REPAIR 2026-07-31 (Rule-28 audit FIX-WORDING, user-authorized): the steps only looked at the buttons while expected 1 asserted filtered results — added a choose-a-value step (mirrors FLT-PARTS-11 step 2) and fixed the grammar 'go to the any (for example Sales) report'. | BEHAVIOUR case — the design does not pin how Reports filters apply. Pending Branko's PRD; VIU-confirm on the build. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every report page gets the chip design + shareable links + per-user remembered filters with NO change to what is filterable; nearly every report leads with the date-range chip (see FLT-RPTS-23); sub-report tabs keep separate state per tab (see FLT-PERS-05). Pending Branko's PRD ratification (spec v1.3 export awaited).",
+  "notes": "WORDING REPAIR 2026-07-31 (Rule-28 audit FIX-WORDING, user-authorized): the steps only looked at the buttons while expected 1 asserted filtered results — added a choose-a-value step (mirrors FLT-PARTS-11 step 2) and fixed the grammar 'go to the any (for example Sales) report'. | BEHAVIOUR case - the design does not pin how Reports filters apply; the behaviour is settled by Branko's Q2=A + Q5=A and spec v1.6 §2 Reports Filters. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every report page gets the chip design + shareable links + per-user remembered filters with NO change to what is filterable; nearly every report leads with the date-range chip (see FLT-RPTS-23); sub-report tabs keep separate state per tab (see FLT-PERS-05). RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending.",
   "api_related": false
  },
  {
@@ -578,23 +581,25 @@
   "title": "New Reports filter types behave correctly (Location, Transaction Type, etc.)",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Any signed-in user with access to the Reports pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "permissions_required": "Any signed-in user with access to the Reports pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. You are on the Reports area of the app with some sample data present."
   ],
   "steps": [
-   "1. Open the Reports area and go to the reports that use them (for example A/R Aging Detail, Notes) report.",
-   "2. Look at the filter buttons shown above the report table."
+   "1. Open the Reports area and go to a report that uses them - for example A/R Aging Detail (Location, Transaction Type) or Notes (Mention).",
+   "2. Look at the filter buttons shown above the report table.",
+   "3. Open each of those filter buttons in turn, tick two choices where possible, and watch the report."
   ],
   "expected": [
-   "1. Each new filter type (Location, Transaction Type, Invoice Status, Type, User, Mention) opens a list of choices and filters the report by the choice.",
-   "2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (the exact choices, single- vs multi-select, and how each new filter type filters the report)."
+   "1. Each of these filter buttons - Location, Transaction Type, Invoice Status, Type, User and Mention - opens a list of choices, lets you tick more than one, and narrows the report straight away with no Apply button.",
+   "2. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.",
+   "3. Write down the choices you actually see behind each of these six buttons. They have not been written down anywhere yet, so your list becomes the record."
   ],
   "design_ref": "design-notes.md B.6 (11903-10573 (behaviour not pinned))",
-  "spec_ref": "Filters (Epic key TBD); Figma 11903-10573 (Reports filters); design-notes.md §B.6",
+  "spec_ref": "Filters (Epic key TBD) (spec v1.6 §2 Feature Overview -> Reports Filters; §4 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"New date-range filter type\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7 + Q4 (Q4 is a pointer to the design/PRD - the six new filter types are NOT enumerated in v1.6; see DELTAS.md flag F1); Figma 11903-10573",
   "viu_status": "VIU-Pending",
-  "notes": "BEHAVIOUR case — the Reports pages introduce filter types not on the Work Orders page. Pending Branko's PRD; VIU-confirm. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every report page gets the chip design + shareable links + per-user remembered filters with NO change to what is filterable; nearly every report leads with the date-range chip (see FLT-RPTS-23); sub-report tabs keep separate state per tab (see FLT-PERS-05). Pending Branko's PRD ratification (spec v1.3 export awaited).",
+  "notes": "BEHAVIOUR case - the Reports pages introduce filter types that are not on the Work Orders page. The MECHANICS are settled by Branko's Q3 (\"There is no specific list of choices\") + Q5=A parity + spec v1.6 §4 (\"Multi-select where it makes sense\"), NOT by his Q4 answer, which is a pointer (\"Filter behavior and types are fully displayed in the design. The links are in the PRD.\") and does not match our own live design read. OPEN: the option list for each of the six new filter types is not in spec v1.6 and not visible on any rendered design board (12 boards still un-rendered, Rule-35 queue); question NEW-Q2 asks Branko for the specific board. Capture the real lists live at VIU - expected 3 makes that the tester's job. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every report page gets the chip design + shareable links + per-user remembered filters with NO change to what is filterable. RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending.",
   "api_related": false
  },
  {
@@ -603,7 +608,7 @@
   "title": "Date range filter: results update when both start and end dates are picked",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Any signed-in user with access to the Reports pages.",
+  "permissions_required": "Any signed-in user with access to the Reports pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The new filter bar has rolled out to a page with a Date filter chip (a report, or a Parts page with a date column).",
@@ -623,9 +628,9 @@
    "4. Only one date range can be active at a time on that chip, and the chip shows the active range."
   ],
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D19",
-  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 D19 (date-range chip: no presets, no default, applies on second date); spec v1.3 Parts + Reports sections (export awaited)",
+  "spec_ref": "Filters (Epic key TBD) (spec v1.6 §4 Key Decisions -> \"New date-range filter type\"; §2 Feature Overview -> Reports Filters: start/end picker with no presets and no default range; applies immediately when the second date is picked; range=custom&from=&to= in the URL); Branko answers 2026-07-31 Q5 (date-range is a single range - not multi-select); tech plan 2026-07-29 D19",
   "viu_status": "VIU-Pending",
-  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): one new chip type used by nearly every report and by Parts date columns (Date, Invoice date, Date received). In the page link the range appears as range=custom&from=YYYY-MM-DD&to=YYYY-MM-DD - check when driving the URL cases. Exact panel labels to capture live.",
+  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): one new chip type used by nearly every report and by Parts date columns (Date, Invoice date, Date received). In the page link the range appears as range=custom&from=YYYY-MM-DD&to=YYYY-MM-DD - check when driving the URL cases. Exact panel labels to capture live. CONFIRMED 2026-07-31 from two sources that agree: Branko's answer (\"Date-range is a single range, not multi-select\") and spec v1.6 §4 Key Decisions. The spec export is no longer awaited. No tester-facing wording changed - expected 4 already asserted the single-range behaviour. Exact panel labels still to capture live.",
   "api_related": false
  }
 ]
