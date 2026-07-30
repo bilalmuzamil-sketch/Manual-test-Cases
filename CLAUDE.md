@@ -3,6 +3,11 @@
 > **Before any staging or TestRail testing, read `build/TESTING-RUNBOOK.md`.**
 > That runbook holds the full, proven method; this file is a concise index +
 > durable memory. **No secrets in this repo — ever** (secrets live in `/tmp`).
+> - **PRE-FLIGHT FOR ANY TEST-CASE WORK (Standing Rules 31 + 32): ALWAYS pull the LATEST spec
+>   from its canonical URL and record its version + last-updated date BEFORE authoring, editing,
+>   auditing, reconciling, or reviewing any test case (Rule 31); and when sources disagree
+>   (spec vs Figma vs prototype/Claude design vs video vs PO message vs tech plan) the MOST
+>   RECENT authoritative product source WINS, with source + date recorded on the case (Rule 32).**
 > - **PROCESS CATALOG (the table of every reusable process + how to call it for any project):
 >   build/PROCESS-CATALOG.md — READ THIS to pick/name a process; it lists all of them with
 >   trigger phrases and the deliverable each produces. Keep it updated when a process is
@@ -1441,6 +1446,37 @@ deliver the 7-tab management report.
     build/schedule/tech-plan-2026-07-29/. Ties to Standing Rules 1 (complete inputs before
     work), 11 (ask which process on new inputs), 17 (complete data in/out), and the
     new-project onboarding convention (tech plan is part of the required input set).
+31. **Always pull the LATEST spec from its URL before creating or touching any test case (all
+    projects).** USER DIRECTIVE (2026-07-31, verbatim): "everytime you are making the test cases
+    or looking at the test cases for any reason make a rule that you pull the latest version of
+    Specs from the URL, I see that the specs have been updated on 28th. But I believe you are
+    unaware of that and due to that you left a few tests uncovered." BEFORE authoring, editing,
+    auditing, reconciling, or reviewing ANY test case, **FETCH the current spec from its canonical
+    URL** — Confluence via the Atlassian MCP (`getConfluencePage`) when available, else the REST
+    API with the session cookies; if the fetch fails, ASK THE USER for access. **Never proceed on
+    a possibly-stale local copy and never fabricate spec content.** Then **compare the LIVE version
+    number + last-updated date against the ingested `requirements.md` baseline**; if the live spec
+    is newer, run the **spec diff FIRST** and fold the deltas in BEFORE doing the requested work
+    (Rule 11 — ask which process). **RECORD the spec version + date checked in the deliverable**
+    (and in the audit log) so every pass is provably current. Rationale: 2026-07-31 — the Filters
+    spec had moved to **v1.6** while we were working from **V1.0**; a QA reviewer (Ahtesham) found
+    requirements with NO coverage as a direct result. This **STRENGTHENS Standing Rule 23** from
+    "ask if unsure" to **"ALWAYS pull"**. Ties to Standing Rules 1 (complete inputs), 11 (ask which
+    process), 17 (complete data in/out), 23 (check the Confluence spec).
+32. **Latest information wins across ALL sources (all projects).** USER DIRECTIVE (2026-07-31,
+    verbatim): "Rule of trusting something if it is duplicated or if figma says one thing and
+    claud design says the other thing. Trust the latest information." When two sources disagree —
+    spec vs Figma design vs a prototype/Claude-generated design vs a walkthrough video vs a PO
+    message vs an engineering tech plan — **the MOST RECENT authoritative PRODUCT source wins**,
+    and the case **records which source + date it follows**. Corollaries: **(i) DUPLICATION RAISES
+    CONFIDENCE** — where the same thing appears in two sources and they AGREE, treat it as
+    CONFIRMED; **(ii) engineering docs INFORM but NEVER OVERRULE product truth** from the spec/PO
+    (Rule 30); **(iii) if the newest source is AMBIGUOUS or its recency cannot be established, ASK
+    THE PO rather than pick a side** (Rules 7/11/15 — never silently choose); **(iv) ALWAYS state
+    the source + date in the case metadata** so the next pass can re-evaluate. Proven precedent:
+    the **Simple Flow "last-update-wins" contradiction rule** (spec `_3`/design `_4` overrode the
+    earlier V2.4 doc + round-1 answer sheet) — this rule generalizes it to EVERY project and EVERY
+    source type. Ties to Standing Rules 7/11/15/20/23/25/30/31.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

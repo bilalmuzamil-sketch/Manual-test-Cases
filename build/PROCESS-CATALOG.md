@@ -11,6 +11,11 @@
 > for Fees & Discounts."* Add any specifics (epic key, spec page, env) if Claude doesn't have
 > them yet.
 >
+> **EVERY process now BEGINS with the Rule-31 spec pull (Standing Rules 31 + 32):** before any
+> test-case work, Claude pulls the LATEST spec from its canonical URL, records its version +
+> last-updated date, and folds in any deltas first — and where sources disagree, the most recent
+> authoritative product source wins (source + date recorded on the case).
+>
 > **Always-ask live-build-check rule (Standing Rule 22):** for EVERY process below, at the start
 > Claude identifies anything that appears to need observing the LIVE build (labels, controls,
 > behaviour, permissions, calculations, states, "what needs to change", VIU, spec-vs-build,

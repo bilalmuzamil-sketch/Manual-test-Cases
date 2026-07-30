@@ -73,6 +73,18 @@ cases and the *deliverables* accurate.
 
 ## Method (steps)
 
+### 0. PULL the current spec from its URL + record its version (Standing Rule 31 — MANDATORY FIRST)
+**Before any other step**, FETCH the spec LIVE from its canonical URL (Confluence via the
+Atlassian MCP `getConfluencePage`; else the REST API with session cookies — if the fetch fails,
+ASK THE USER for access; never proceed on a possibly-stale local copy, never fabricate).
+**Compare the live version number + last-updated date against the ingested `requirements.md`
+baseline.** If the live spec is NEWER, that newer spec IS the input to step 1 — reconcile against
+it, not the local copy. **Record the spec version + date checked in the deliverable and the audit
+log** so the pass is provably current. Where sources disagree, **latest authoritative product
+source wins** and the case records source + date (Standing Rule 32). Rationale: 2026-07-31 —
+Filters was reconciled from V1.0 while the live spec was already v1.6, leaving requirements
+uncovered.
+
 ### 1. Diff the new spec vs the current baseline
 List every **substantive** delta with its **requirement ID** (story/section
 number). **Ignore** pure formatting, re-numbering, and re-exports. **Detect
