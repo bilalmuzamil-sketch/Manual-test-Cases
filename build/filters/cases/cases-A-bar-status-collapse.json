@@ -33,7 +33,8 @@
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. You are on the Work Orders page with the filter bar visible."
+   "2. You are on the Work Orders page with the filter bar visible.",
+   "3. You are on the All tab (on the Estimates and Completed tabs the Status chip is shown greyed out and already filled in, so the chips do not all look the same there)."
   ],
   "steps": [
    "1. Read the filter chips in the filter bar from left to right.",
@@ -47,7 +48,7 @@
   "design_ref": "design-notes.md B.1 #1 (11854:24657)",
   "spec_ref": "requirements.md Story 1 S1-R2; S1-R3",
   "viu_status": "VIU-Pending",
-  "notes": "DESIGN TYPO FLAG: the design's work order table column header reads 'Lead Tehnician' (missing 'c') while the filter chip itself is spelled correctly - the build must ship 'Lead Technician' everywhere (design-notes C.1); if the build inherits the typo, raise a bug. Chip label capitalisation 'Asset on site' (design) vs 'Asset on Site' (spec) - VIU-confirm the exact on-screen label.",
+  "notes": "WORDING REPAIR 2026-07-31 (Rule-28 audit FIX-WORDING, user-authorized): added precondition 3 'You are on the All tab' — the default landing tab is Estimates (FLT-TAB-06) where the Status chip renders greyed/pre-filled, so the five-identical-chips expectation only reads cleanly on the All tab. | DESIGN TYPO FLAG: the design's work order table column header reads 'Lead Tehnician' (missing 'c') while the filter chip itself is spelled correctly - the build must ship 'Lead Technician' everywhere (design-notes C.1); if the build inherits the typo, raise a bug. Chip label capitalisation 'Asset on site' (design) vs 'Asset on Site' (spec) - VIU-confirm the exact on-screen label.",
   "api_related": false
  },
  {

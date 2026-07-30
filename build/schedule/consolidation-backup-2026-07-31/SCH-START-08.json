@@ -1,0 +1,27 @@
+{
+  "id": "SCH-START-08",
+  "area": "Shift Start Times and Unassigned Shifts",
+  "title": "Every shift always has a start time - none is created without one",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Edit.",
+    "2. Work order lines are available to schedule.",
+    "3. You are on the Schedule page."
+  ],
+  "steps": [
+    "1. Create shifts by each entry point available: week-view drop on a technician, day-view drop on the timeline, drop on the Unassigned row.",
+    "2. Open each created shift's detail and read its start time."
+  ],
+  "expected": [
+    "1. Every created shift has a concrete start time - resolved from the hierarchy (technician hours, then business hours, then 7:00 AM default) or from the day-view drop position.",
+    "2. No shift appears on the grid without a time."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.2, §12",
+  "refs": "SV-8688 (§4.2, §12)",
+  "viu_status": "VIU-Pending",
+  "notes": "TECH-PLAN 2026-07-29: the new data model carries an is_all_day flag, but a shift's start (starts_at) is required in the schema - this case stands as written.",
+  "api_related": false
+}

@@ -1,0 +1,26 @@
+{
+  "id": "SCH-KEY-04",
+  "area": "Keyboard Interactions",
+  "title": "Enter does not fire inside textareas - multiline note editing works normally",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Edit.",
+    "2. A shift's detail modal is open with the note editor active."
+  ],
+  "steps": [
+    "1. Type a line of note text and press Enter.",
+    "2. Type a second line."
+  ],
+  "expected": [
+    "1. Enter inserts a new line in the note - it does NOT confirm/close the dialog.",
+    "2. The multiline note can be completed and saved normally."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §7 (Enter does not fire inside textareas)",
+  "refs": "SV-8700 (§7 (Enter does not fire inside textareas))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

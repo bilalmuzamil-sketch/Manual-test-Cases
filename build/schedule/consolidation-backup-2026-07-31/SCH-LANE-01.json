@@ -1,0 +1,27 @@
+{
+  "id": "SCH-LANE-01",
+  "area": "Overlap and Lane Stacking",
+  "title": "Shifts whose times do not overlap share a single lane - the row keeps its normal height",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser.",
+    "2. One technician has two shifts on the same day whose time ranges do NOT intersect (for example 8:00-10:00 and 10:00-12:00 back-to-back).",
+    "3. You are on the Schedule page in day view."
+  ],
+  "steps": [
+    "1. Look at the technician's row on that day."
+  ],
+  "expected": [
+    "1. Both shifts sit in the same single lane, one after the other.",
+    "2. The row stays at its normal height.",
+    "3. No conflict is flagged for back-to-back (non-intersecting) shifts."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.7",
+  "refs": "SV-8693 (§4.7)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

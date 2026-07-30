@@ -1,0 +1,318 @@
+[
+ {
+  "id": "FLT-PARTS-01",
+  "area": "Parts Page Filters",
+  "title": "Parts Inventory page shows Bin Location, Category, Supply and Vendor filters",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Inventory page.",
+   "2. Look at the filter buttons shown above the parts table."
+  ],
+  "expected": [
+   "1. The Inventory page shows four filter buttons in a row: Bin Location, Category, Supply and Vendor (each with a small icon and a down arrow).",
+   "2. The table below shows the columns: Description, Part number, Tags, Category, Manufacturer, Vendor, Bin Location / Quantity and Action.",
+   "3. A blue New Inventory Part button is shown at the top right."
+  ],
+  "design_ref": "design-notes.md B.5 #1 (11894:21846)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #1",
+  "viu_status": "VIU-Pending",
+  "notes": "Design-only (chip + column presence). Which filters actually apply and their option lists are pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-02",
+  "area": "Parts Page Filters",
+  "title": "Parts Part Sales page shows Status, Customer, Created by and Date filters",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Part Sales page.",
+   "2. Look at the filter buttons shown above the part sales table."
+  ],
+  "expected": [
+   "1. The Part Sales page shows four filter buttons: Status, Customer, Created by and Date.",
+   "2. The table shows the columns: Number, Status, Customer, Asset, VIN/Serial #, Created By, Total Price, Created On, Parts and Returns.",
+   "3. A blue New Part Sale button is shown at the top right."
+  ],
+  "design_ref": "design-notes.md B.5 #2 (11902:8517)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #2",
+  "viu_status": "VIU-Pending",
+  "notes": "Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-03",
+  "area": "Parts Page Filters",
+  "title": "Parts Catalog page shows Manufacturer and Category filters",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Catalog page.",
+   "2. Look at the filter buttons shown above the catalog table."
+  ],
+  "expected": [
+   "1. The Catalog page shows two filter buttons: Manufacturer and Category.",
+   "2. The table shows the columns: (row checkbox), Description, Part Number, Tags and Category.",
+   "3. A blue New Catalog Part button is shown at the top right."
+  ],
+  "design_ref": "design-notes.md B.5 #3 (11902:9736)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #3",
+  "viu_status": "VIU-Pending",
+  "notes": "Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-04",
+  "area": "Parts Page Filters",
+  "title": "Parts Returns tab shows Vendor, Category and Part Type filters",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Returns page.",
+   "2. Make sure the Returns tab is selected (the page has Returns and Credits tabs).",
+   "3. Look at the filter buttons shown above the returns table."
+  ],
+  "expected": [
+   "1. The Returns tab shows three filter buttons: Vendor, Category and Part Type.",
+   "2. The table shows the columns: Work Order, Vendor Invoice, Vendor, Part Number, Description, Quantity, Cost, Total Cost, Return Reason, Status and Requested.",
+   "3. A blue Create Return button is shown at the top right."
+  ],
+  "design_ref": "design-notes.md B.5 #4 (11902:9852)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #4",
+  "viu_status": "VIU-Pending",
+  "notes": "Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-05",
+  "area": "Parts Page Filters",
+  "title": "Parts Credits tab shows Vendor, Date and Processed by filters",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Returns page.",
+   "2. Select the Credits tab.",
+   "3. Look at the filter buttons shown above the credits table."
+  ],
+  "expected": [
+   "1. The Credits tab shows three filter buttons: Vendor, Date and Processed by.",
+   "2. The table shows the columns: Credit Memo Number, Vendor, Work Order, Vendor Invoice, Date, Processed By, Total Cost and Notes.",
+   "3. A blue Create Credit button is shown at the top right."
+  ],
+  "design_ref": "design-notes.md B.5 #5 (11903:10067)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #5",
+  "viu_status": "VIU-Pending",
+  "notes": "Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-06",
+  "area": "Parts Page Filters",
+  "title": "Parts Purchase Orders page shows Vendor, Status, Date and Ordered by filters",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Purchase Orders page.",
+   "2. Look at the filter buttons shown above the purchase orders table."
+  ],
+  "expected": [
+   "1. The Purchase Orders page shows four filter buttons: Vendor, Status, Date and Ordered by.",
+   "2. The table shows the columns: Work Order, Purchase Order Number, Vendor, Order Status, Created On, Ordered By, Total Price and Note.",
+   "3. A blue New Purchase Order button is shown at the top right."
+  ],
+  "design_ref": "design-notes.md B.5 #6 (11903:10188)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #6",
+  "viu_status": "VIU-Pending",
+  "notes": "Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-07",
+  "area": "Parts Page Filters",
+  "title": "Vendor Invoices page shows Vendor, Invoice date, Date received, Received by",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Vendor Invoices page.",
+   "2. Look at the filter buttons shown above the vendor invoices table."
+  ],
+  "expected": [
+   "1. The Vendor Invoices page shows four filter buttons: Vendor, Invoice date, Date received and Received by.",
+   "2. The table shows the columns: Work Order, Invoice Number, Order Number, Received By, Vendor Name, Date Received, Invoice Date, Due Date, Total Cost and Note.",
+   "3. There is no New button on this page (only the search and filter icons)."
+  ],
+  "design_ref": "design-notes.md B.5 #7 (11903:10312)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #7",
+  "viu_status": "VIU-Pending",
+  "notes": "Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-08",
+  "area": "Parts Page Filters",
+  "title": "Parts Vendors list page shows Vendor and State/Province filters",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open the Parts area and go to the Vendors list page.",
+   "2. Look at the filter buttons shown above the vendors table."
+  ],
+  "expected": [
+   "1. The Vendors page shows two filter buttons: Vendor and State/Province.",
+   "2. The table shows the columns: Name, Telephone, Email, Address 1, Address 2, City, State/Province and Zip/Postal Code.",
+   "3. A blue New Vendor button is shown at the top right."
+  ],
+  "design_ref": "design-notes.md B.5 #8 (11903:10461)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #8",
+  "viu_status": "VIU-Pending",
+  "notes": "Design-only (chip + column presence). Frame is named 'Vendor Invoices' in Figma but shows the Vendors list (design typo, §C.4). Option lists pending Branko's PRD. CONFLICT - PENDING DESIGN (Questions Q6 / deltas C7): engineering found NO Figma frame for the Parts Vendors view (they read frame 11903:10461 as Vendor Invoices, not a Vendors typo) and will NOT build Vendors filters until a design is delivered. This case's chip set may change - hold against the requested design + PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-09",
+  "area": "Parts Page Filters",
+  "title": "Part Type filter opens a Core / Non Core list with Clear selection",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. On the Parts Returns tab, click the Part Type filter button.",
+   "2. Look at the small menu that opens."
+  ],
+  "expected": [
+   "1. A small menu opens with two options: Core and Non Core.",
+   "2. A Clear selection action is shown at the bottom of the menu.",
+   "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (whether the options are single- or multi-select, and how the list is filtered after choosing)."
+  ],
+  "design_ref": "design-notes.md B.5 #9 (11902:9973)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #9",
+  "viu_status": "VIU-Pending",
+  "notes": "Design-only (menu contents). Selection/apply behaviour pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-10",
+  "area": "Parts Page Filters",
+  "title": "Parts pages show the shared search and filter toolbar icons",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open any Parts list page (for example Inventory).",
+   "2. Look at the small icons on the right side of the toolbar."
+  ],
+  "expected": [
+   "1. The toolbar shows a Search (magnifier) icon and a filter (funnel) icon on every Parts list page.",
+   "2. Some pages also show a column/layout toggle icon (for example Inventory).",
+   "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (what the funnel and column icons do)."
+  ],
+  "design_ref": "design-notes.md B.5 (shared shell)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 shared shell",
+  "viu_status": "VIU-Pending",
+  "notes": "Design-only (toolbar icon presence). Icon actions pending Branko's PRD.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-11",
+  "area": "Parts Page Filters",
+  "title": "Choosing a Parts filter narrows the list on that page",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open a Parts list page that has a filter button (for example Inventory).",
+   "2. Open a filter button and choose one value.",
+   "3. Watch the table below."
+  ],
+  "expected": [
+   "1. The table updates to show only the rows that match the chosen filter value.",
+   "2. The chosen value is shown on the filter button so you can see what is applied.",
+   "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (exactly which filters apply on which Parts page, the full option lists, and whether results update immediately)."
+  ],
+  "design_ref": "design-notes.md B.5 (behaviour not pinned)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5",
+  "viu_status": "VIU-Pending",
+  "notes": "BEHAVIOUR case — design does not pin how Parts filters apply. Pending Branko's PRD; VIU-confirm on the build. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every Parts page gets all three together: the chip design, shareable links, and per-user remembered filters, with NO change to what is filterable; date columns use the date-range chip (see FLT-RPTS-23) and each view keeps its own state (see FLT-PERS-05). Pending Branko's PRD ratification (spec v1.3 export awaited).",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PARTS-12",
+  "area": "Parts Page Filters",
+  "title": "Parts filters support multiple choices and can be cleared",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Parts area of the app with some sample data present."
+  ],
+  "steps": [
+   "1. Open a Parts filter button that shows a list of choices.",
+   "2. Try selecting more than one choice.",
+   "3. Use the Clear selection action, then look at the filter bar for a way to clear all filters."
+  ],
+  "expected": [
+   "1. More than one value can be chosen inside a filter (to be checked live once available).",
+   "2. Clear selection removes the choices for that one filter.",
+   "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (whether multi-select, per-filter Clear selection, and an overall Clear filters action all work the same as on the Work Orders page)."
+  ],
+  "design_ref": "design-notes.md B.5 (behaviour not pinned)",
+  "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5",
+  "viu_status": "VIU-Pending",
+  "notes": "BEHAVIOUR case — parity with Work Orders filter behaviour is assumed but not pinned by the design. Pending Branko's PRD; VIU-confirm. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every Parts page gets all three together: the chip design, shareable links, and per-user remembered filters, with NO change to what is filterable; date columns use the date-range chip (see FLT-RPTS-23) and each view keeps its own state (see FLT-PERS-05). Pending Branko's PRD ratification (spec v1.3 export awaited).",
+  "api_related": false
+ }
+]

@@ -1,0 +1,26 @@
+{
+  "id": "SCH-NAV-01",
+  "area": "Navigation and Layout",
+  "title": "Schedule appears as a top-level navigation item",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1) - any role with Schedule access.",
+  "preconditions": [
+    "1. You are signed in to the ShopView App on a desktop browser (window at least 960px wide).",
+    "2. Your role has the Schedule: View permission."
+  ],
+  "steps": [
+    "1. Look at the app's main (top-level) navigation.",
+    "2. Click the Schedule item."
+  ],
+  "expected": [
+    "1. Schedule is listed as a top-level navigation item alongside Work Orders, Customers, Parts, and Reports.",
+    "2. Clicking it opens the Schedule screen."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §3",
+  "refs": "SV-8686 (§3)",
+  "viu_status": "VIU-Pending",
+  "notes": "Nav item 'Schedule' and its position (Work Orders · Schedule · Customers · Parts · Reports) pinned by the Claude design (§1); live-confirm deferred to VIU (Rule 12). Driver: Claude design §1.",
+  "api_related": false
+}

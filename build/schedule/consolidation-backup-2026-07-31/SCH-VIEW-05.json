@@ -1,0 +1,26 @@
+{
+  "id": "SCH-VIEW-05",
+  "area": "Filter and Display and View Options",
+  "title": "'View Options' popover offers Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday with the spec defaults",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser.",
+    "2. You are on the Schedule page with no view options changed yet (fresh state)."
+  ],
+  "steps": [
+    "1. Open 'View Options' in the grid toolbar.",
+    "2. Read each toggle and its state."
+  ],
+  "expected": [
+    "1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday.",
+    "2. Defaults: Business Hours OFF, Capacity Bars ON, Events ON, Tech Hours OFF, Saturday ON, Sunday ON."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §6, §9 (View Options popover)",
+  "refs": "SV-8700 (§6, §9 (View Options popover))",
+  "viu_status": "VIU-Pending",
+  "notes": "'View Options' toggles (Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday) pinned by the Claude design (§1 View Options icon/popover); confirm the exact labels + defaults live. Driver: Claude design §1.",
+  "api_related": false
+}

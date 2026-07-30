@@ -1,0 +1,29 @@
+{
+  "id": "SCH-VIEW-04",
+  "area": "Filter and Display and View Options",
+  "title": "The 'VIN Number' toggle adds the VIN to shift blocks (day/week) only; the hover tooltip and the detail modal always show the VIN",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser.",
+    "2. A shift exists for a unit with a VIN; the VIN toggle is OFF.",
+    "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+    "1. With 'VIN Number' off: read the block, hover for the tooltip, then open the detail modal.",
+    "2. Turn 'VIN Number' ON in 'Filter and Display' and repeat."
+  ],
+  "expected": [
+    "1. 'VIN Number' off: no VIN line on the block - but the hover tooltip still shows the VIN, and the detail modal still shows the VIN.",
+    "2. 'VIN Number' on: the VIN appears as an additional line on blocks in day and week views (and the day-view lane grows taller to fit it).",
+    "3. The 'VIN Number' toggle affects the block only - the tooltip and the modal always show the VIN when the unit has one.",
+    "4. Month view blocks never show the VIN."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §9 (VIN), §4.4",
+  "refs": "SV-8700 (§9 (VIN), §4.4)",
+  "viu_status": "VIU-Pending",
+  "notes": "Reconciliation 2026-07-22: RESOLVES the §4.13-vs-§9 inconsistency in favour of §4.13 - the tooltip shows VIN unconditionally; the toggle (label 'VIN Number', pinned by design) gates the shift-BLOCK VIN line only. §9 tooltip-gating prose flagged to Branko for doc hygiene. Driver: Claude design §6 + Branko Q&A 2026-07-22.",
+  "api_related": false
+}

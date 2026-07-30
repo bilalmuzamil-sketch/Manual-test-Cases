@@ -1,0 +1,29 @@
+{
+  "id": "SCH-DEL-07",
+  "area": "Deletion, Series Scopes and Undo",
+  "title": "Every create, delete, move, and reassign action produces a toast with an Undo option",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (Delete for the delete action; spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Delete.",
+    "2. Schedulable lines and an existing shift are available.",
+    "3. You are on the Schedule page."
+  ],
+  "steps": [
+    "1. Create a shift - watch for a toast.",
+    "2. Move a shift to another day - watch for a toast.",
+    "3. Reassign a shift to another technician - watch for a toast.",
+    "4. Delete a shift - watch for a toast."
+  ],
+  "expected": [
+    "1. Each of the four actions produces a toast notification.",
+    "2. Every toast offers an Undo option."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §7 (Toast notifications), §11 (Undo)",
+  "refs": "SV-8688 (§7 (Toast notifications), §11 (Undo))",
+  "viu_status": "VIU-Pending",
+  "notes": "Toast copy unpinned - capture live.",
+  "api_related": false
+}

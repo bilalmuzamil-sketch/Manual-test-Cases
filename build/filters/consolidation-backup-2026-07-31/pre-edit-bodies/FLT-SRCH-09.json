@@ -1,0 +1,25 @@
+{
+ "id": "FLT-SRCH-09",
+ "area": "Page Search (Command-K)",
+ "title": "Page search scope belongs to Filters or Global Search (to decide)",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user of the ShopView App. Whether search results are scoped by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. Some sample work orders, customers, assets, parts and vendors exist."
+ ],
+ "steps": [
+  "1. Review where the page search / Command-K component is owned for testing.",
+  "2. Compare against the Global Search project's existing cases."
+ ],
+ "expected": [
+  "1. The page-search component is agreed to belong to either the Filters test suite or the Global Search test suite, not both.",
+  "2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (product/QA decision on which project owns page search)."
+ ],
+ "design_ref": "design-2026-07-27/design-system/page-search/DESIGN-INGEST-2026-07-27.md",
+ "spec_ref": "Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D",
+ "viu_status": "VIU-Pending",
+ "notes": "SCOPE case — Global Search already has 86 authored cases for this component. This case exists to force a de-duplication decision before any push. OVERLAP: this page-search / Command-K component is also covered by the Global Search project (86 cases already authored there, currently postponed). Reconcile / de-duplicate with Global Search before any TestRail push so the same component is not tested twice. UPDATE 2026-07-29: the ENGINEERING answer is now on record (tech plan G8/D22) - the page-local toolbar search (spec v1.3 Story 13) belongs to the Filters programme; the spotlight/command-K palette is the separate Global Search v2 project with its own PRD, and the nav search additionally STOPS filtering page lists (Story 14). Pending Branko's product ratification (PO Q6); once ratified, transfer/retire FLT-SRCH-01..08 to Global Search and keep FLT-PSRCH-01..07 here.",
+ "api_related": false
+}

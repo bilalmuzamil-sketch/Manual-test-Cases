@@ -1,0 +1,28 @@
+{
+  "id": "SCH-DAY-07",
+  "area": "Day View Timeline",
+  "title": "With the VIN toggle on, day-view lane heights grow so block text is not clipped",
+  "priority": "Low",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser.",
+    "2. A shift exists for a unit with a VIN.",
+    "3. You are on the Schedule page in day view with the VIN toggle OFF."
+  ],
+  "steps": [
+    "1. Note the height of the shift's lane and that its text fits.",
+    "2. Turn the VIN toggle ON in 'Filter and Display'.",
+    "3. Look at the same lane."
+  ],
+  "expected": [
+    "1. With VIN on, the lane height grows to accommodate the additional VIN line.",
+    "2. No block text is clipped or cut off."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.8 (Lane height with VIN)",
+  "refs": "SV-8694 (§4.8 (Lane height with VIN))",
+  "viu_status": "VIU-Pending",
+  "notes": "VIN-on grows the day-view lane height (DAY_LANE_H schedVin 96 vs 80) pinned by the Claude design (§3); the toggle label is 'VIN Number' (design §6). Driver: Claude design §3/§6.",
+  "api_related": false
+}

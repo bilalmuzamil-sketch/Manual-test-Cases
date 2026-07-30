@@ -1,0 +1,29 @@
+{
+  "id": "SCH-BLOCK-03",
+  "area": "Shift Block Anatomy",
+  "title": "VIN appears as an extra block line only when the VIN toggle is on, in day and week views only (month omits it)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser.",
+    "2. A shift exists for a unit that has a VIN.",
+    "3. You are on the Schedule page; the VIN toggle in 'Filter and Display' is OFF."
+  ],
+  "steps": [
+    "1. In week view, read the shift block (VIN off).",
+    "2. Turn the VIN toggle ON in 'Filter and Display'.",
+    "3. Read the block again in week view, then in day view, then in month view."
+  ],
+  "expected": [
+    "1. VIN off: the block shows three lines, no VIN.",
+    "2. VIN on: a VIN line is added to the block in week view and day view.",
+    "3. Month view still omits the VIN line even with the toggle on (space constraints)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.4, §9 (VIN option)",
+  "refs": "SV-8690 (§4.4, §9 (VIN option))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

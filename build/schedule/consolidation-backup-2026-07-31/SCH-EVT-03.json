@@ -1,0 +1,28 @@
+{
+  "id": "SCH-EVT-03",
+  "area": "Events",
+  "title": "Event modal offers name, date, start/end time, an all-day toggle, and a color category",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Edit.",
+    "2. You are on the Schedule page with the event modal open (via right-click 'New Event')."
+  ],
+  "steps": [
+    "1. Read the fields the modal offers.",
+    "2. Fill each: name, date, start and end time, and pick a color category.",
+    "3. Save."
+  ],
+  "expected": [
+    "1. The modal contains: name, date, start/end time, an all-day toggle, and a color category.",
+    "2. The event saves with the entered values.",
+    "3. Re-opening the event shows the saved values."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.10 (Event modal)",
+  "refs": "SV-8696 (§4.10 (Event modal))",
+  "viu_status": "VIU-Pending",
+  "notes": "Field labels unpinned - confirm the exact on-screen labels live.",
+  "api_related": false
+}

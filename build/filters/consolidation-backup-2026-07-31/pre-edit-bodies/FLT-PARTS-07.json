@@ -1,0 +1,26 @@
+{
+ "id": "FLT-PARTS-07",
+ "area": "Parts Page Filters",
+ "title": "Vendor Invoices page shows Vendor, Invoice date, Date received, Received by",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Parts area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. Open the Parts area and go to the Vendor Invoices page.",
+  "2. Look at the filter buttons shown above the vendor invoices table."
+ ],
+ "expected": [
+  "1. The Vendor Invoices page shows four filter buttons: Vendor, Invoice date, Date received and Received by.",
+  "2. The table shows the columns: Work Order, Invoice Number, Order Number, Received By, Vendor Name, Date Received, Invoice Date, Due Date, Total Cost and Note.",
+  "3. There is no New button on this page (only the search and filter icons)."
+ ],
+ "design_ref": "design-notes.md B.5 #7 (11903:10312)",
+ "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #7",
+ "viu_status": "VIU-Pending",
+ "notes": "Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+ "api_related": false
+}

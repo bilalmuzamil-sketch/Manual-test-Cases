@@ -1,0 +1,27 @@
+{
+  "id": "SCH-REAS-06",
+  "area": "Reassignment and Context Menu",
+  "title": "'New Work Order' in the cell menu points the user to the Work Orders tab",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View / Edit and Work Orders access. Confirm the exact behaviour and permission live at VIU.",
+  "preconditions": [
+    "1. You are on the Schedule grid.",
+    "2. The cell context menu shows 'Create Event' and 'New Work Order' (SCH-REAS-03)."
+  ],
+  "steps": [
+    "1. Right-click an empty grid cell.",
+    "2. Choose 'New Work Order' from the menu."
+  ],
+  "expected": [
+    "1. The menu offers a 'New Work Order' item.",
+    "2. Choosing it directs the user to create a work order (a toast / prompt pointing to the Work Orders tab).",
+    "3. The exact target flow (toast or navigation) is confirmed during live testing."
+  ],
+  "design_ref": "Claude design (Schedule.dc.html cell menu / schedule-menu screenshots), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "SV-8700 / SV-8696 (§7 / §4.10 - New Work Order menu item)",
+  "refs": "SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut)",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW-scope shortcut: the redesigned cell menu adds 'New Work Order' (design + Jira SV-8696/SV-8700; DESIGN-RECONCILIATION §5). Design shows it raises a toast pointing to the Work Orders tab; confirm the exact behaviour LIVE at VIU (Rule 12). Driver: SV-8700 §7. TECH-PLAN 2026-07-29 (informs Q4): the engineering plan (Phase 7) builds 'New Work Order' to OPEN the real work-order creation window in place ('opens the real WorkOrderDialog.vue (not a toast)'), not a toast pointing to the Work Orders tab. Confirm the built behaviour live; final wording pending Branko Q4.",
+  "api_related": false
+}

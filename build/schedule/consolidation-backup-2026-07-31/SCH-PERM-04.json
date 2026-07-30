@@ -1,0 +1,32 @@
+{
+  "id": "SCH-PERM-04",
+  "area": "Permissions",
+  "title": "Schedule: Edit unlocks all creation and modification interactions",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with Schedule: Edit (requires View) - per spec the level for Service Manager, Senior Service Advisor, Service Advisor, and Foreman.",
+  "preconditions": [
+    "1. A test user's role has Schedule: Edit (and View) but NOT Delete.",
+    "2. Work orders with approved lines exist; you are signed in AS that user, on the Schedule page."
+  ],
+  "steps": [
+    "1. Drag a work order from the sidebar onto a technician cell and complete the scope picker (and spread modal for a large job).",
+    "2. Right-click a cell and create an event via 'New Event'; in day view, click empty space to create.",
+    "3. Reassign a shift between technicians by dragging.",
+    "4. In day view, edge-resize and horizontally drag a shift.",
+    "5. Edit fields in the shift and event detail modals."
+  ],
+  "expected": [
+    "1. Drag-and-drop from the sidebar, the scope picker, and the spread modal all work.",
+    "2. Shift and event creation works, including via the right-click context menu and day-view click-to-create.",
+    "3. Reassignment between technicians works.",
+    "4. Edge-resize and horizontal drag work in day view.",
+    "5. Modal fields are editable and save."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §14.1 (Schedule: Edit)",
+  "refs": "SV-8685 (§14.1 (Schedule: Edit))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

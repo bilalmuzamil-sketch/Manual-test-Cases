@@ -1,0 +1,27 @@
+{
+ "id": "FLT-ASSET-02",
+ "area": "Asset on Site Filter",
+ "title": "Choosing Yes shows only work orders whose asset is on site",
+ "priority": "Critical",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Work Orders page on the All tab.",
+  "3. Work orders exist in both states: some with the asset marked on site and some not (set the on-site marker on ZZAUTOTEST work orders as needed)."
+ ],
+ "steps": [
+  "1. Open the Asset on site filter and choose Yes.",
+  "2. Look at the On Site column in the table (green house icon = on site, red = not)."
+ ],
+ "expected": [
+  "1. The table shows only work orders whose asset is currently on site.",
+  "2. Work orders whose asset is not on site are hidden.",
+  "3. Choosing No instead shows only the not-on-site work orders."
+ ],
+ "design_ref": "design-notes.md B.1 #12 (11880:12460); B.1 shared shell (On Site column icons)",
+ "spec_ref": "requirements.md Story 6 S6-R2",
+ "viu_status": "VIU-Pending",
+ "notes": "Which field in the build drives a work order's on-site status is open (OQ-6) - the mobile design shows an 'Asset On Site' toggle on the work order card; VIU-confirm the data source and seed both states before testing.",
+ "api_related": false
+}

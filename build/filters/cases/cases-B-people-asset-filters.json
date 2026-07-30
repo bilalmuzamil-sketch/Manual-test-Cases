@@ -665,13 +665,12 @@
   ],
   "expected": [
    "1. The table shows only work orders whose asset is currently on site.",
-   "2. Work orders whose asset is not on site are hidden.",
-   "3. Choosing No instead shows only the not-on-site work orders."
+   "2. Work orders whose asset is not on site are hidden."
   ],
   "design_ref": "design-notes.md B.1 #12 (11880:12460); B.1 shared shell (On Site column icons)",
   "spec_ref": "requirements.md Story 6 S6-R2",
   "viu_status": "VIU-Pending",
-  "notes": "Which field in the build drives a work order's on-site status is open (OQ-6) - the mobile design shows an 'Asset On Site' toggle on the work order card; VIU-confirm the data source and seed both states before testing.",
+  "notes": "WORDING REPAIR 2026-07-31 (Rule-28 audit FIX-WORDING, user-authorized): removed the old expected 3 ('Choosing No instead shows only the not-on-site work orders') — the steps only choose Yes, and the No direction is FLT-ASSET-07's subject (C38878). | Which field in the build drives a work order's on-site status is open (OQ-6) - the mobile design shows an 'Asset On Site' toggle on the work order card; VIU-confirm the data source and seed both states before testing.",
   "api_related": false
  },
  {

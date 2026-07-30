@@ -1,989 +1,1011 @@
 [
- {
-  "id": "SCH-TOOL-01",
-  "area": "Grid Toolbar",
-  "title": "'Today' button jumps the grid to the current date",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page, navigated several weeks away from today."
-  ],
-  "steps": [
-   "1. Click the 'Today' button in the grid toolbar.",
-   "2. Look at the grid and the date label."
-  ],
-  "expected": [
-   "1. The grid jumps to the range containing the current date (today's day, this week, or this month depending on the active view).",
-   "2. The date label updates accordingly."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §6 (Today button)",
-  "refs": "SV-8686 (§6 (Today button))",
-  "viu_status": "VIU-Pending",
-  "notes": "'Today' button pinned by the Claude design (§1 grid toolbar); confirm live. Driver: Claude design §1.",
-  "api_related": false
- },
- {
-  "id": "SCH-TOOL-02",
-  "area": "Grid Toolbar",
-  "title": "Left/right arrows navigate by day, week, or month depending on the active range, and the date label shows the current range",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. In week view, click the right arrow and read the date label.",
-   "2. Switch to day view and click the right arrow.",
-   "3. Switch to month view and click the left arrow."
-  ],
-  "expected": [
-   "1. Week view: each arrow click moves one whole week; the label shows the week range (spec's example format: 'Jul 14 to 20, 2026').",
-   "2. Day view: each click moves one day; the label shows that day.",
-   "3. Month view: each click moves one month; the label shows that month.",
-   "4. The label always matches what the grid displays."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §6 (Left/right arrows, Date label)",
-  "refs": "SV-8686 (§6 (Left/right arrows, Date label))",
-  "viu_status": "VIU-Pending",
-  "notes": "Left/right nav arrows + date-range label ('Jul 12 – 18, 2026' week / 'July 2026' month) pinned by the Claude design (§1); confirm live. Driver: Claude design §1.",
-  "api_related": false
- },
- {
-  "id": "SCH-TOOL-03",
-  "area": "Grid Toolbar",
-  "title": "Toolbar search fades non-matching blocks and highlights matching ones (customer, WO number, unit, technician, line name)",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. Several shifts exist on the visible range for different customers/orders/technicians.",
-   "3. You are on the Schedule page in week view."
-  ],
-  "steps": [
-   "1. Type a customer name into the toolbar search; look at the grid.",
-   "2. Clear, then search a work order number, a unit number, a technician name, and a line name in turn.",
-   "3. Clear the search."
-  ],
-  "expected": [
-   "1. Blocks that match the search are highlighted; blocks that do not match fade.",
-   "2. All five fields match: customer name, work order number, unit number, technician name, and line name.",
-   "3. Matching blocks stay in place on the grid (search visually filters; it does not remove or rearrange).",
-   "4. Clearing the search restores all blocks to normal."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §6 (Search)",
-  "refs": "SV-8686 (§6 (Search))",
-  "viu_status": "VIU-Pending",
-  "notes": "Toolbar search fade-non-matching/highlight-matching pinned by the Claude design (§0/search fade render); WO number searchable though not printed on the block. Driver: Claude design.",
-  "api_related": false
- },
- {
-  "id": "SCH-VIEW-01",
-  "area": "Filter and Display and View Options",
-  "title": "'Filter & Display' dropdown combines department toggles, My Shifts, and VIN",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Open the 'Filter & Display' dropdown in the grid toolbar.",
-   "2. Read its contents and default states."
-  ],
-  "expected": [
-   "1. The dropdown is checkbox style and contains: a toggle per department, 'My Shifts', and 'VIN'.",
-   "2. Defaults: all department toggles ON, 'My Shifts' OFF, 'VIN' OFF.",
-   "3. There is no separate departments-only control - this dropdown replaces it."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §6, §9 (Filter and Display dropdown)",
-  "refs": "SV-8700 (§6, §9 (Filter and Display dropdown))",
-  "viu_status": "VIU-Pending",
-  "notes": "Control label is 'Filter & Display' (ampersand) - design + Jira SV-8700 agree (DESIGN-RECONCILIATION #12). The VIN toggle label is 'VIN Number' (design §6). Driver: SV-8700 §9 + Claude design §1/§6. Confirm live at VIU.",
-  "api_related": false
- },
- {
-  "id": "SCH-VIEW-02",
-  "area": "Filter and Display and View Options",
-  "title": "Department toggles show or hide individual department groups in the grid",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. At least two department groups are visible in the grid.",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. In 'Filter and Display', turn OFF one department's toggle.",
-   "2. Look at the grid.",
-   "3. Turn it back ON."
-  ],
-  "expected": [
-   "1. The turned-off department's group (header and technician rows) disappears from the grid.",
-   "2. Other departments are unaffected.",
-   "3. Turning it back on restores the group."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §9 (Department toggles)",
-  "refs": "SV-8700 (§9 (Department toggles))",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SCH-VIEW-03",
-  "area": "Filter and Display and View Options",
-  "title": "'My Shifts' filters the grid to only the current user's shifts, hiding all other technician rows",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: View; the current user must appear as a grid row (department-assigned staff, §14.4).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser as a user who appears as a technician row and has at least one shift.",
-   "2. Other technicians also have shifts on the visible range.",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. In 'Filter and Display', turn ON 'My Shifts'.",
-   "2. Look at the grid.",
-   "3. Turn it OFF again."
-  ],
-  "expected": [
-   "1. Only shifts assigned to you remain visible; all other technician rows and their shifts are hidden.",
-   "2. Turning it off restores the full grid.",
-   "3. This is a personal convenience filter only - it does not change what you are permitted to see (default is OFF, everyone's shifts visible).",
-   "4. For a user who has no technician/staff record of their own, the 'My Shifts' option is not shown at all."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §9 (My Shifts), §14.3",
-  "refs": "SV-8700 (§9 (My Shifts), §14.3)",
-  "viu_status": "VIU-Pending",
-  "notes": "TECH-PLAN 2026-07-29: 'My Shifts hidden when the user has no staff id' (plan Phase 7 SchedulePage - fixes a prototype stub). Tech-plan-pinned - confirm LIVE at VIU (Rule 12).",
-  "api_related": false
- },
- {
-  "id": "SCH-VIEW-04",
-  "area": "Filter and Display and View Options",
-  "title": "The 'VIN Number' toggle adds the VIN to shift blocks (day/week) only; the hover tooltip and the detail modal always show the VIN",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. A shift exists for a unit with a VIN; the VIN toggle is OFF.",
-   "3. You are on the Schedule page in week view."
-  ],
-  "steps": [
-   "1. With 'VIN Number' off: read the block, hover for the tooltip, then open the detail modal.",
-   "2. Turn 'VIN Number' ON in 'Filter and Display' and repeat."
-  ],
-  "expected": [
-   "1. 'VIN Number' off: no VIN line on the block - but the hover tooltip still shows the VIN, and the detail modal still shows the VIN.",
-   "2. 'VIN Number' on: the VIN appears as an additional line on blocks in day and week views (and the day-view lane grows taller to fit it).",
-   "3. The 'VIN Number' toggle affects the block only - the tooltip and the modal always show the VIN when the unit has one.",
-   "4. Month view blocks never show the VIN."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §9 (VIN), §4.4",
-  "refs": "SV-8700 (§9 (VIN), §4.4)",
-  "viu_status": "VIU-Pending",
-  "notes": "Reconciliation 2026-07-22: RESOLVES the §4.13-vs-§9 inconsistency in favour of §4.13 - the tooltip shows VIN unconditionally; the toggle (label 'VIN Number', pinned by design) gates the shift-BLOCK VIN line only. §9 tooltip-gating prose flagged to Branko for doc hygiene. Driver: Claude design §6 + Branko Q&A 2026-07-22.",
-  "api_related": false
- },
- {
-  "id": "SCH-VIEW-05",
-  "area": "Filter and Display and View Options",
-  "title": "'View Options' popover offers Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday with the spec defaults",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page with no view options changed yet (fresh state)."
-  ],
-  "steps": [
-   "1. Open 'View Options' in the grid toolbar.",
-   "2. Read each toggle and its state."
-  ],
-  "expected": [
-   "1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday.",
-   "2. Defaults: Business Hours OFF, Capacity Bars ON, Events ON, Tech Hours OFF, Saturday ON, Sunday ON."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §6, §9 (View Options popover)",
-  "refs": "SV-8700 (§6, §9 (View Options popover))",
-  "viu_status": "VIU-Pending",
-  "notes": "'View Options' toggles (Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday) pinned by the Claude design (§1 View Options icon/popover); confirm the exact labels + defaults live. Driver: Claude design §1.",
-  "api_related": false
- },
- {
-  "id": "SCH-VIEW-06",
-  "area": "Filter and Display and View Options",
-  "title": "Business Hours toggle shades non-working hours in day view",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. The shop has working hours set.",
-   "3. You are on the Schedule page in DAY view with Business Hours OFF."
-  ],
-  "steps": [
-   "1. Note the timeline background outside working hours.",
-   "2. Turn ON Business Hours in 'View Options'.",
-   "3. Look at the timeline again."
-  ],
-  "expected": [
-   "1. With the toggle on, the hours OUTSIDE the working day are shaded with a grey overlay.",
-   "2. Working hours remain unshaded.",
-   "3. Turning it off removes the shading."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §9 (Business Hours), §4.8 (Business-hours shading)",
-  "refs": "SV-8700 (§9 (Business Hours), §4.8 (Business-hours shading))",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SCH-VIEW-07",
-  "area": "Filter and Display and View Options",
-  "title": "Capacity Bars toggle shows and hides the per-day capacity bars",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. Shifts exist so capacity bars have fill.",
-   "3. You are on the Schedule page in week view with Capacity Bars ON (default)."
-  ],
-  "steps": [
-   "1. Confirm the bars are visible in the day column headers.",
-   "2. Turn OFF Capacity Bars in 'View Options'.",
-   "3. Turn it back ON."
-  ],
-  "expected": [
-   "1. Off: the capacity bars disappear from the column headers.",
-   "2. On: they reappear with the same values."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §9 (Capacity Bars), §4.12",
-  "refs": "SV-8700 (§9 (Capacity Bars), §4.12)",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SCH-VIEW-08",
-  "area": "Filter and Display and View Options",
-  "title": "Events toggle shows and hides event blocks on the grid",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. At least one event and one shift exist on the visible range.",
-   "3. You are on the Schedule page with Events ON (default)."
-  ],
-  "steps": [
-   "1. Turn OFF Events in 'View Options'.",
-   "2. Look at the grid.",
-   "3. Turn it back ON."
-  ],
-  "expected": [
-   "1. Off: event blocks disappear from the grid; shifts remain.",
-   "2. On: the events reappear unchanged."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §9 (Events)",
-  "refs": "SV-8700 (§9 (Events))",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SCH-VIEW-09",
-  "area": "Filter and Display and View Options",
-  "title": "Tech Hours toggle displays each technician's working hours next to their name",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. Technicians have configured working hours.",
-   "3. You are on the Schedule page with Tech Hours OFF (default)."
-  ],
-  "steps": [
-   "1. Turn ON Tech Hours in 'View Options'.",
-   "2. Look at the technician rows."
-  ],
-  "expected": [
-   "1. Each technician's working hours are displayed next to their name in the row header.",
-   "2. The hours match the technicians' configured hours.",
-   "3. Turning it off hides the hours again."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §9 (Tech Hours)",
-  "refs": "SV-8700 (§9 (Tech Hours))",
-  "viu_status": "VIU-Pending",
-  "notes": "Display format for the hours unpinned - capture live. What shows for a tech with no configured hours is unspecified - observe.",
-  "api_related": false
- },
- {
-  "id": "SCH-VIEW-10",
-  "area": "Filter and Display and View Options",
-  "title": "Saturday and Sunday toggles include or exclude the weekend columns",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page in WEEK view with Saturday and Sunday ON (default) - 7 columns visible."
-  ],
-  "steps": [
-   "1. Turn OFF Saturday in 'View Options'; look at the grid.",
-   "2. Turn OFF Sunday too; look again.",
-   "3. Turn both back ON."
-  ],
-  "expected": [
-   "1. Saturday off: the Saturday column is removed (6 columns remain).",
-   "2. Sunday off too: 5 weekday columns remain (Monday to Friday).",
-   "3. Both back on: the full Monday-to-Sunday 7-column week returns."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §9 (Saturday, Sunday), §3.2 (Week view)",
-  "refs": "SV-8700 (§9 (Saturday, Sunday), §3.2 (Week view))",
-  "viu_status": "VIU-Pending",
-  "notes": "Behavior of an existing weekend shift while its column is hidden is unspecified - observe and record (it should still count in conflicts per §4.11).",
-  "api_related": false
- },
- {
-  "id": "SCH-REAS-01",
-  "area": "Reassignment and Context Menu",
-  "title": "Dragging a shift to another technician row reassigns it - target tech added to the line's roster, source removed, with a confirmation modal",
-  "priority": "Critical",
-  "type": "Functional",
-  "permissions_required": "Schedule: Edit (reassignment requires Edit; spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. A shift exists on technician A; note the affected line's roster.",
-   "3. You are on the Schedule page in week view."
-  ],
-  "steps": [
-   "1. Drag the shift block from technician A's row to technician B's row.",
-   "2. Confirm the move in the confirmation modal.",
-   "3. Check the line's roster on the work order."
-  ],
-  "expected": [
-   "1. A confirmation modal appears for the cross-technician move.",
-   "2. After confirming, the shift sits on technician B's row.",
-   "3. Technician B is added to the affected line's roster and technician A is removed from it.",
-   "4. A toast with Undo appears."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (Shift reassignment), §12",
-  "refs": "SV-8695 (§7 (Shift reassignment), §12)",
-  "viu_status": "VIU-Pending",
-  "notes": "Drag-reassign + cross-tech confirmation modal (Cancel / Confirm) pinned by the Claude design (§4d reassignModal); confirm the exact copy live. Driver: Claude design §4d.",
-  "api_related": false
- },
- {
-  "id": "SCH-REAS-02",
-  "area": "Reassignment and Context Menu",
-  "title": "'Reassign' in the shift detail modal moves the shift to another technician",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: Edit (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. A shift exists on technician A; its detail modal is open."
-  ],
-  "steps": [
-   "1. Click the 'Reassign' action.",
-   "2. Choose technician B and confirm.",
-   "3. Check the grid and the line's roster."
-  ],
-  "expected": [
-   "1. The shift moves to technician B's row.",
-   "2. The roster updates the same way as a drag reassignment (B added, A removed).",
-   "3. A toast with Undo appears."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §4.9 (Reassign action), §7",
-  "viu_status": "Retired - user delete authorization 2026-07-22; Reassign-in-modal removed (Branko 2026-07-22)",
-  "notes": "RETIRED 2026-07-22 (user-authorized delete): the 'Reassign' action in the shift detail modal was REMOVED (Branko 2026-07-22) and is absent from the authoritative Claude prototype (design §4c/§4d) - reassignment is drag-only, fully covered by the drag-reassignment case SCH-REAS-01 (C30052). DELETED from TestRail via delete_case on 2026-07-22 (HTTP 200; re-GET returns is_deleted/400 = gone). Former TestRail ID kept for the record: C30053. EXCLUDED from active deliverables + tally; body kept locally for the record. Driver: Branko Q&A 2026-07-22 + Claude design §4c. | RETIRE-PROPOSED (reconciliation 2026-07-22): removed action, drag-only reassignment fully covered by the drag-reassignment case.",
-  "api_related": false
- },
- {
-  "id": "SCH-REAS-03",
-  "area": "Reassignment and Context Menu",
-  "title": "Right-click a grid cell opens a menu with Create Event and New Work Order",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: Edit (the context menu is an editing affordance hidden for View-only users; spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. You are on the Schedule page in week view."
-  ],
-  "steps": [
-   "1. Right-click a technician's grid cell.",
-   "2. Read the menu items."
-  ],
-  "expected": [
-   "1. A context menu opens at the cell.",
-   "2. It contains: 'Create Event' and 'New Work Order'.",
-   "3. The browser's own right-click menu does not appear instead."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (Right-click context menu)",
-  "refs": "SV-8700 (§7 (Right-click context menu))",
-  "viu_status": "VIU-Pending",
-  "notes": "The cell context menu is now 'Create Event' + 'New Work Order' - the old 'New Shift' / 'New Event' / 'View Day' items were removed. Design + Jira SV-8696/SV-8700 agree (DESIGN-RECONCILIATION #8). Driver: SV-8700 §7/§4.10. Confirm the exact on-screen labels live at VIU.",
-  "api_related": false
- },
- {
-  "id": "SCH-REAS-04",
-  "area": "Reassignment and Context Menu",
-  "title": "'View Day' is no longer offered in the grid cell context menu",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: Edit to open the menu (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. You are on the Schedule page in week or month view."
-  ],
-  "steps": [
-   "1. Right-click a technician's grid cell.",
-   "2. Read the menu items."
-  ],
-  "expected": [
-   "1. The context menu shows only 'Create Event' and 'New Work Order'.",
-   "2. There is no 'View Day' item - it was removed from the menu."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (Right-click context menu - View Day)",
-  "refs": "SV-8700 (§7 (Right-click context menu - View Day))",
-  "viu_status": "VIU-Pending",
-  "notes": "'View Day' was removed from the cell context menu (menu redesigned to 'Create Event' + 'New Work Order'). Design + Jira SV-8700 agree (DESIGN-RECONCILIATION #9). Driver: SV-8700 §7. Confirm live at VIU.",
-  "api_related": false
- },
- {
-  "id": "SCH-REAS-05",
-  "area": "Reassignment and Context Menu",
-  "title": "'New Shift' is no longer offered in the grid cell context menu",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: Edit (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. Schedulable work order lines exist.",
-   "3. You are on the Schedule page in week view."
-  ],
-  "steps": [
-   "1. Right-click a technician's grid cell.",
-   "2. Read the menu items."
-  ],
-  "expected": [
-   "1. The context menu shows only 'Create Event' and 'New Work Order'.",
-   "2. There is no 'New Shift' item - it was removed from the menu."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (Right-click context menu - New Shift), §14.1 (creation via context menu)",
-  "refs": "SV-8700 (§7 (Right-click context menu - New Shift), §14.1 (creation via context menu))",
-  "viu_status": "VIU-Pending",
-  "notes": "'New Shift' was removed from the cell context menu (menu redesigned to 'Create Event' + 'New Work Order'). Design + Jira SV-8700 agree (DESIGN-RECONCILIATION #10). Driver: SV-8700 §7. Confirm live at VIU.",
-  "api_related": false
- },
- {
-  "id": "SCH-DEL-01",
-  "area": "Deletion, Series Scopes and Undo",
-  "title": "Deleting a middle shift of a series asks for scope with all three options, each stating the hours returned",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: Delete (requires Edit; spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Delete.",
-   "2. A series of at least 3 shifts exists for one technician.",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Delete a MIDDLE shift of the series (via the detail modal's Delete).",
-   "2. Read the scope options offered (do not confirm yet)."
-  ],
-  "expected": [
-   "1. A scope prompt appears with three options: this shift only, this and everything after, and the whole series.",
-   "2. Each option states its consequence in hours returned (spec's example format: 'returns 8h' / 'returns 56h').",
-   "3. The prompt uses routine, lightweight styling - not alarming destructive styling."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (Series-aware deletion)",
-  "refs": "SV-8692 (§7 (Series-aware deletion))",
-  "viu_status": "VIU-Pending",
-  "notes": "Series delete-scope modal ('Remove from series', 'Part of a 6-week job · 20 shifts', each option with a 'returns Nh' chip) pinned by the Claude design (§4e); confirm the exact wording live. Driver: Claude design §4e.",
-  "api_related": false
- },
- {
-  "id": "SCH-DEL-02",
-  "area": "Deletion, Series Scopes and Undo",
-  "title": "'This shift only' removes that day, the series keeps the gap, and the hours return to the estimate's remaining",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: Delete (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Delete.",
-   "2. A series of at least 3 shifts exists; note the total scheduled hours.",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Delete a middle shift with the 'this shift only' scope.",
-   "2. Look at the series on the grid.",
-   "3. Check the scheduled hours."
-  ],
-  "expected": [
-   "1. Only that day's shift is removed.",
-   "2. The series keeps the gap - the remaining shifts do NOT shuffle to close it.",
-   "3. The removed day's hours return to the estimate's remaining (scheduled hours drop by that day's hours).",
-   "4. An undo toast appears."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (This shift only)",
-  "refs": "SV-8692 (§7 (This shift only))",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SCH-DEL-03",
-  "area": "Deletion, Series Scopes and Undo",
-  "title": "'This and everything after' removes from the clicked shift onward, keeping earlier shifts",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: Delete (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Delete.",
-   "2. A series of at least 4 shifts exists.",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Delete the series' THIRD shift with the 'this and everything after' scope.",
-   "2. Look at the series on the grid."
-  ],
-  "expected": [
-   "1. The third shift and every later shift of the series are removed.",
-   "2. The first two shifts remain untouched.",
-   "3. An undo toast appears."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (This and everything after)",
-  "refs": "SV-8692 (§7 (This and everything after))",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SCH-DEL-04",
-  "area": "Deletion, Series Scopes and Undo",
-  "title": "'The whole series' removes all of the series' shifts for that technician",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: Delete (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Delete.",
-   "2. The SAME work order has a series on technician A and an independent series on technician B.",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Delete one of technician A's series shifts with the 'whole series' scope.",
-   "2. Look at both technicians' rows."
-  ],
-  "expected": [
-   "1. All of technician A's series shifts are removed.",
-   "2. Technician B's independent series is untouched (the scope is per technician's series).",
-   "3. An undo toast appears."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (The whole series - 'for that technician')",
-  "refs": "SV-8692 (§7 (The whole series - 'for that technician'))",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SCH-DEL-05",
-  "area": "Deletion, Series Scopes and Undo",
-  "title": "Scope options adapt to position: first and last shifts of a series each show only two options",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: Delete (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Delete.",
-   "2. A series of at least 3 shifts exists.",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Start deleting the FIRST shift of the series; read the options, then cancel.",
-   "2. Start deleting the LAST shift; read the options, then cancel.",
-   "3. Start deleting a MIDDLE shift; read the options, then cancel."
-  ],
-  "expected": [
-   "1. First shift: two options ('this and after' would equal 'whole series', so only two are shown).",
-   "2. Last shift: two options ('this and after' would equal 'this only').",
-   "3. Middle shift: all three options.",
-   "4. Cancelling leaves the series unchanged in every case."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (options adapt to position)",
-  "refs": "SV-8692 (§7 (options adapt to position))",
-  "viu_status": "VIU-Pending",
-  "notes": "Scope options adapt to position; labels ('This shift only'/'This and everything after'/'The whole series') pinned by the Claude design (§4e); confirm the two-option end cases live. Driver: Claude design §4e.",
-  "api_related": false
- },
- {
-  "id": "SCH-DEL-06",
-  "area": "Deletion, Series Scopes and Undo",
-  "title": "Deleting a standalone (non-series) shift does not ask for a series scope",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: Delete (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Delete.",
-   "2. A single standalone shift (not part of any series) exists.",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Delete the standalone shift.",
-   "2. Watch what is asked."
-  ],
-  "expected": [
-   "1. No series-scope prompt appears (the scope question is only for shifts that belong to a series).",
-   "2. The shift is deleted and an undo toast appears."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (derived - scope prompt is for series shifts)",
-  "refs": "SV-8692 (§7 (derived - scope prompt is for series shifts))",
-  "viu_status": "VIU-Pending",
-  "notes": "Derived from 'Deleting a shift that belongs to a series asks for scope' - confirm live whether standalone deletes have any confirmation at all.",
-  "api_related": false
- },
- {
-  "id": "SCH-DEL-07",
-  "area": "Deletion, Series Scopes and Undo",
-  "title": "Every create, delete, move, and reassign action produces a toast with an Undo option",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: Edit (Delete for the delete action; spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Delete.",
-   "2. Schedulable lines and an existing shift are available.",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Create a shift - watch for a toast.",
-   "2. Move a shift to another day - watch for a toast.",
-   "3. Reassign a shift to another technician - watch for a toast.",
-   "4. Delete a shift - watch for a toast."
-  ],
-  "expected": [
-   "1. Each of the four actions produces a toast notification.",
-   "2. Every toast offers an Undo option."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (Toast notifications), §11 (Undo)",
-  "refs": "SV-8688 (§7 (Toast notifications), §11 (Undo))",
-  "viu_status": "VIU-Pending",
-  "notes": "Toast copy unpinned - capture live.",
-  "api_related": false
- },
- {
-  "id": "SCH-DEL-08",
-  "area": "Deletion, Series Scopes and Undo",
-  "title": "Toast lasts ~7s with Undo (about 4s without); stays on hover, goes on leave",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: Edit (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Perform an action that shows a toast (for example move a shift) and let the toast sit untouched - time how long it stays.",
-   "2. Trigger another toast and hold the cursor OVER it well past its normal lifetime.",
-   "3. Move the cursor off the toast."
-  ],
-  "expected": [
-   "1. Untouched, a toast that has an Undo action persists about 7 seconds; a toast without Undo persists about 4 seconds, before dismissing.",
-   "2. While the cursor is over it, the toast stays (does not auto-dismiss).",
-   "3. After the cursor leaves, it dismisses."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (Toast notifications), §11 (Undo)",
-  "refs": "SV-8688 (§7 (Toast notifications), §11 (Undo))",
-  "viu_status": "VIU-Pending",
-  "notes": "Toast lifetime is 7 seconds with Undo / 4 seconds without (design code sets undo?7000:4000, DESIGN-RECONCILIATION #7, inside the spec's 4-7s window). Driver: SV-8688 §7. Confirm live at VIU.",
-  "api_related": false
- },
- {
-  "id": "SCH-DEL-09",
-  "area": "Deletion, Series Scopes and Undo",
-  "title": "Undo restores the state before the action - for delete, move, and reassign",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: Delete (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Delete.",
-   "2. A shift exists; note its technician, day, and time.",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Delete the shift, then click Undo on the toast.",
-   "2. Move the shift to another day, then click Undo.",
-   "3. Reassign it to another technician, then click Undo.",
-   "4. Check the line's roster after the reassign undo."
-  ],
-  "expected": [
-   "1. Undo after delete: the shift is back exactly where it was.",
-   "2. Undo after move: the shift returns to its original day/time.",
-   "3. Undo after reassign: the shift returns to the original technician, and the line's roster is restored (original tech back on, target tech off).",
-   "4. Every destructive action is undoable within the toast's lifetime."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §11 (Undo), §7",
-  "refs": "SV-8688 (§11 (Undo), §7)",
-  "viu_status": "VIU-Pending",
-  "notes": "Roster restoration on undo is derived from reassignment's roster sync - confirm live. TECH-PLAN 2026-07-29: undo-of-delete is backed by a dedicated restore call (POST /api/schedule/shifts/restore - D10 compensating mutation, commit-immediately). The refresh-before-undo behaviour is covered by the new commit-immediately case.",
-  "api_related": false
- },
- {
-  "id": "SCH-KEY-01",
-  "area": "Keyboard Interactions",
-  "title": "Escape closes the topmost open modal or popover, following the stacking order",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Schedule: Edit (to open the layered dialogs; spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Open the shift detail modal, then open a popover on top of it (for example the color picker or a filter/search popover elsewhere).",
-   "2. Press Escape once.",
-   "3. Press Escape again."
-  ],
-  "expected": [
-   "1. The FIRST Escape closes only the topmost layer (the popover), leaving the layer beneath open.",
-   "2. The SECOND Escape closes the next layer down.",
-   "3. Escape works anywhere on the schedule page as a global shortcut, following the defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search)."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (Keyboard support - Escape)",
-  "refs": "SV-8700 (§7 (Keyboard support - Escape))",
-  "viu_status": "VIU-Pending",
-  "notes": "Escape closes the topmost layer per the design's enumerated 13-layer stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search) - pinned by the Claude design code; exercise the layers live. Driver: Claude design §4.",
-  "api_related": false
- },
- {
-  "id": "SCH-KEY-02",
-  "area": "Keyboard Interactions",
-  "title": "Within the shift modal, Escape first dismisses an open sub-picker before closing the modal itself",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: Edit (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. A shift's detail modal is open."
-  ],
-  "steps": [
-   "1. Open the color picker inside the modal, press Escape, and watch.",
-   "2. Open the time picker, press Escape.",
-   "3. Start editing a note, press Escape.",
-   "4. With nothing open inside the modal, press Escape."
-  ],
-  "expected": [
-   "1. Escape with the color picker open closes only the color picker - the modal stays open.",
-   "2. Same for the time picker and the note edit.",
-   "3. Escape with no open sub-picker closes the modal itself."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (Escape within the shift modal)",
-  "refs": "SV-8700 (§7 (Escape within the shift modal))",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SCH-KEY-03",
-  "area": "Keyboard Interactions",
-  "title": "Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit)",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: Delete (to exercise the delete-scope dialog; spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Delete.",
-   "2. Shifts/series and events exist to exercise the dialogs.",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Open the spread step for a large job, press Enter.",
-   "2. Open the reassign dialog for a shift, choose a technician, press Enter.",
-   "3. Open the event modal with valid fields, press Enter.",
-   "4. Open a series delete-scope prompt, select a scope, press Enter."
-  ],
-  "expected": [
-   "1. In each confirmable dialog, Enter confirms it - equivalent to clicking its confirm action.",
-   "2. The confirmed action takes effect (spread created / reassigned / event saved / delete applied)."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (Keyboard support - Enter)",
-  "refs": "SV-8700 (§7 (Keyboard support - Enter))",
-  "viu_status": "VIU-Pending",
-  "notes": "Undo/clean up each confirmed action after verifying.",
-  "api_related": false
- },
- {
-  "id": "SCH-KEY-04",
-  "area": "Keyboard Interactions",
-  "title": "Enter does not fire inside textareas - multiline note editing works normally",
-  "priority": "Medium",
-  "type": "Negative",
-  "permissions_required": "Schedule: Edit (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. A shift's detail modal is open with the note editor active."
-  ],
-  "steps": [
-   "1. Type a line of note text and press Enter.",
-   "2. Type a second line."
-  ],
-  "expected": [
-   "1. Enter inserts a new line in the note - it does NOT confirm/close the dialog.",
-   "2. The multiline note can be completed and saved normally."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §7 (Enter does not fire inside textareas)",
-  "refs": "SV-8700 (§7 (Enter does not fire inside textareas))",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SCH-KEY-05",
-  "area": "Keyboard Interactions",
-  "title": "Modals trap focus and all interactive elements are keyboard-reachable",
-  "priority": "Medium",
-  "type": "Accessibility",
-  "permissions_required": "Schedule: Edit (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. A shift's detail modal is open."
-  ],
-  "steps": [
-   "1. Press Tab repeatedly and watch where focus goes.",
-   "2. Continue tabbing past the last control in the modal.",
-   "3. Close the modal and Tab through the schedule page's toolbar and sidebar controls."
-  ],
-  "expected": [
-   "1. Focus moves through the modal's interactive elements with visible focus rings.",
-   "2. Focus stays trapped inside the modal (wraps back to its first control) until the modal closes.",
-   "3. On the page, toolbar and sidebar controls are reachable by keyboard."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §11 (Accessibility)",
-  "refs": "SV-8700 (§11 (Accessibility))",
-  "viu_status": "VIU-Pending",
-  "notes": "Focus-ring styling follows the design system - visual details to confirm live.",
-  "api_related": false
- },
- {
-  "id": "SCH-COLOR-01",
-  "area": "Color System",
-  "title": "Blue is the default color for all shifts, including long and multi-week jobs",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: Edit to create; View to observe (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Create a normal single-day shift without touching any color option.",
-   "2. Create a multi-week series without touching any color option.",
-   "3. Look at both on the grid."
-  ],
-  "expected": [
-   "1. Both the single shift and the multi-week series render in the default blue.",
-   "2. No special color is auto-applied to long jobs - blue is the default for ALL shifts."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §10",
-  "refs": "SV-8700 (§10)",
-  "viu_status": "VIU-Pending",
-  "notes": "",
-  "api_related": false
- },
- {
-  "id": "SCH-COLOR-02",
-  "area": "Color System",
-  "title": "Choosing a color from the shift modal's picker recolors the shift with matching background, text, and accent tones",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: Edit (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. A shift exists; its detail modal is open."
-  ],
-  "steps": [
-   "1. Open the color picker in the modal.",
-   "2. Choose a non-default color.",
-   "3. Look at the block on the grid."
-  ],
-  "expected": [
-   "1. The shift's block re-renders in the chosen color.",
-   "2. The color provides three consistent tones: background fill, text color, and accent (left border).",
-   "3. Colors carry no fixed meaning - they are free choice beyond the two defaults (blue shift / grey event)."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §10, §4.9 (Color picker)",
-  "refs": "SV-8700 (§10, §4.9 (Color picker))",
-  "viu_status": "VIU-Pending",
-  "notes": "Palette contents and tone rendering unpinned (Claude design now available; live-render confirm at VIU) - confirm live. Whether recoloring one shift recolors all blocks of the same work order (§4.4 ties color to the WO) - observe and record.",
-  "api_related": false
- },
- {
-  "id": "SCH-COLOR-03",
-  "area": "Color System",
-  "title": "Color labels are editable per shop",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Schedule: Edit (spec §14.1); the label-editing surface may need an admin - identify live.",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. A shift's or event's color picker is open."
-  ],
-  "steps": [
-   "1. Find the editable label of one color in the picker.",
-   "2. Rename it (for example to 'ZZAUTOTEST Rush').",
-   "3. Open the picker again from another shift/event.",
-   "4. Restore the original label."
-  ],
-  "expected": [
-   "1. Each color's label can be edited.",
-   "2. The renamed label shows for the whole shop - the same picker opened elsewhere shows 'ZZAUTOTEST Rush'.",
-   "3. Shifts and events share the same custom palette with the same labels."
-  ],
-  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §10 (Color labels are editable per shop), §4.10 (shared picker)",
-  "refs": "SV-8700 (§10 (Color labels are editable per shop), §4.10 (shared picker))",
-  "viu_status": "VIU-Pending",
-  "notes": "Where/how labels are edited (inline in the picker vs a settings surface) is unpinned - locate the real surface live.",
-  "api_related": false
- }
+  {
+    "id": "SCH-TOOL-01",
+    "area": "Grid Toolbar",
+    "title": "'Today' button jumps the grid to the current date",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. You are on the Schedule page, navigated several weeks away from today."
+    ],
+    "steps": [
+      "1. Click the 'Today' button in the grid toolbar.",
+      "2. Look at the grid and the date label."
+    ],
+    "expected": [
+      "1. The grid jumps to the range containing the current date (today's day, this week, or this month depending on the active view).",
+      "2. The date label updates accordingly."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §6 (Today button)",
+    "refs": "SV-8686 (§6 (Today button))",
+    "viu_status": "VIU-Pending",
+    "notes": "'Today' button pinned by the Claude design (§1 grid toolbar); confirm live. Driver: Claude design §1.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-TOOL-02",
+    "area": "Grid Toolbar",
+    "title": "Left/right arrows navigate by day, week, or month depending on the active range, and the date label shows the current range",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. In week view, click the right arrow and read the date label.",
+      "2. Switch to day view and click the right arrow.",
+      "3. Switch to month view and click the left arrow."
+    ],
+    "expected": [
+      "1. Week view: each arrow click moves one whole week; the label shows the week range (spec's example format: 'Jul 14 to 20, 2026').",
+      "2. Day view: each click moves one day; the label shows that day.",
+      "3. Month view: each click moves one month; the label shows that month.",
+      "4. The label always matches what the grid displays."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §6 (Left/right arrows, Date label)",
+    "refs": "SV-8686 (§6 (Left/right arrows, Date label))",
+    "viu_status": "VIU-Pending",
+    "notes": "Left/right nav arrows + date-range label ('Jul 12 – 18, 2026' week / 'July 2026' month) pinned by the Claude design (§1); confirm live. Driver: Claude design §1.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-TOOL-03",
+    "area": "Grid Toolbar",
+    "title": "Toolbar search fades non-matching blocks and highlights matching ones (customer, WO number, unit, technician, line name)",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. Several shifts exist on the visible range for different customers/orders/technicians.",
+      "3. You are on the Schedule page in week view."
+    ],
+    "steps": [
+      "1. Type a customer name into the toolbar search; look at the grid.",
+      "2. Clear, then search a work order number, a unit number, a technician name, and a line name in turn.",
+      "3. Clear the search."
+    ],
+    "expected": [
+      "1. Blocks that match the search are highlighted; blocks that do not match fade.",
+      "2. All five fields match: customer name, work order number, unit number, technician name, and line name.",
+      "3. Matching blocks stay in place on the grid (search visually filters; it does not remove or rearrange).",
+      "4. Clearing the search restores all blocks to normal."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §6 (Search)",
+    "refs": "SV-8686 (§6 (Search))",
+    "viu_status": "VIU-Pending",
+    "notes": "Toolbar search fade-non-matching/highlight-matching pinned by the Claude design (§0/search fade render); WO number searchable though not printed on the block. Driver: Claude design.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-VIEW-01",
+    "area": "Filter and Display and View Options",
+    "title": "'Filter & Display' dropdown combines department toggles, My Shifts, and VIN",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. Open the 'Filter & Display' dropdown in the grid toolbar.",
+      "2. Read its contents and default states."
+    ],
+    "expected": [
+      "1. The dropdown is checkbox style and contains: a toggle per department, 'My Shifts', and 'VIN'.",
+      "2. Defaults: all department toggles ON, 'My Shifts' OFF, 'VIN' OFF.",
+      "3. There is no separate departments-only control - this dropdown replaces it."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §6, §9 (Filter and Display dropdown)",
+    "refs": "SV-8700 (§6, §9 (Filter and Display dropdown))",
+    "viu_status": "VIU-Pending",
+    "notes": "Control label is 'Filter & Display' (ampersand) - design + Jira SV-8700 agree (DESIGN-RECONCILIATION #12). The VIN toggle label is 'VIN Number' (design §6). Driver: SV-8700 §9 + Claude design §1/§6. Confirm live at VIU.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-VIEW-02",
+    "area": "Filter and Display and View Options",
+    "title": "Department toggles show or hide individual department groups in the grid",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. At least two department groups are visible in the grid.",
+      "3. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. In 'Filter and Display', turn OFF one department's toggle.",
+      "2. Look at the grid.",
+      "3. Turn it back ON."
+    ],
+    "expected": [
+      "1. The turned-off department's group (header and technician rows) disappears from the grid.",
+      "2. Other departments are unaffected.",
+      "3. Turning it back on restores the group."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §9 (Department toggles)",
+    "refs": "SV-8700 (§9 (Department toggles))",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SCH-VIEW-03",
+    "area": "Filter and Display and View Options",
+    "title": "'My Shifts' filters the grid to only the current user's shifts, hiding all other technician rows",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: View; the current user must appear as a grid row (department-assigned staff, §14.4).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser as a user who appears as a technician row and has at least one shift.",
+      "2. Other technicians also have shifts on the visible range.",
+      "3. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. In 'Filter and Display', turn ON 'My Shifts'.",
+      "2. Look at the grid.",
+      "3. Turn it OFF again."
+    ],
+    "expected": [
+      "1. Only shifts assigned to you remain visible; all other technician rows and their shifts are hidden.",
+      "2. Turning it off restores the full grid.",
+      "3. This is a personal convenience filter only - it does not change what you are permitted to see (default is OFF, everyone's shifts visible).",
+      "4. For a user who has no technician/staff record of their own, the 'My Shifts' option is not shown at all."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §9 (My Shifts), §14.3",
+    "refs": "SV-8700 (§9 (My Shifts), §14.3)",
+    "viu_status": "VIU-Pending",
+    "notes": "TECH-PLAN 2026-07-29: 'My Shifts hidden when the user has no staff id' (plan Phase 7 SchedulePage - fixes a prototype stub). Tech-plan-pinned - confirm LIVE at VIU (Rule 12).",
+    "api_related": false
+  },
+  {
+    "id": "SCH-VIEW-04",
+    "area": "Filter and Display and View Options",
+    "title": "'VIN Number' toggle gates the block VIN only - tooltip and modal always show it",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. A shift exists for a unit with a VIN; the VIN toggle is OFF.",
+      "3. You are on the Schedule page in week view."
+    ],
+    "steps": [
+      "1. With 'VIN Number' off: read the block in week view, hover for the tooltip, then open the detail modal.",
+      "2. Turn 'VIN Number' ON in 'Filter and Display'.",
+      "3. Read the block again in week view, then in day view, then in month view; hover for the tooltip and open the detail modal again.",
+      "4. In day view, compare the height of the shift's lane with the toggle off and on."
+    ],
+    "expected": [
+      "1. 'VIN Number' off: no VIN line on the block (the block shows its three normal lines) - but the hover tooltip still shows the VIN, and the detail modal still shows the VIN.",
+      "2. 'VIN Number' on: the VIN appears as an additional line on blocks in day and week views.",
+      "3. Month view blocks never show the VIN, even with the toggle on (space constraints).",
+      "4. In day view with the VIN on, the lane height grows to fit the extra VIN line and no block text is clipped or cut off.",
+      "5. The 'VIN Number' toggle affects the block only - the tooltip and the modal always show the VIN when the unit has one."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §9 (VIN), §4.4",
+    "refs": "SV-8700 (§9 (VIN), §4.4); SV-8690 (§4.4, §9 (VIN option)); SV-8694 (§4.8 (Lane height with VIN))",
+    "viu_status": "VIU-Pending",
+    "notes": "Reconciliation 2026-07-22: RESOLVES the §4.13-vs-§9 inconsistency in favour of §4.13 - the tooltip shows VIN unconditionally; the toggle (label 'VIN Number', pinned by design) gates the shift-BLOCK VIN line only. §9 tooltip-gating prose flagged to Branko for doc hygiene. VIN-on grows the day-view lane height (DAY_LANE_H schedVin 96 vs 80) pinned by the Claude design (§3). Driver: Claude design §3/§6 + Branko Q&A 2026-07-22. | CONSOLIDATED 2026-07-31 (usefulness audit G-VIN-TOGGLE, user-authorized): absorbed SCH-BLOCK-03, SCH-DAY-07 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-VIEW-05",
+    "area": "Filter and Display and View Options",
+    "title": "'View Options': six toggles with defaults; Capacity Bars and Events flip",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. You are on the Schedule page in week view with no view options changed yet (fresh state).",
+      "3. At least one event and some shifts exist in the visible range, so capacity bars have fill."
+    ],
+    "steps": [
+      "1. Open 'View Options' in the grid toolbar.",
+      "2. Read each toggle and its state.",
+      "3. Turn OFF Capacity Bars, look at the day column headers, then turn it back ON.",
+      "4. Turn OFF Events, look at the grid, then turn it back ON."
+    ],
+    "expected": [
+      "1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday.",
+      "2. Defaults: Business Hours OFF, Capacity Bars ON, Events ON, Tech Hours OFF, Saturday ON, Sunday ON.",
+      "3. Capacity Bars OFF: the capacity bars disappear from the column headers; ON: they reappear with the same values.",
+      "4. Events OFF: event blocks disappear from the grid while shifts remain; ON: the events reappear unchanged."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §6, §9 (View Options popover)",
+    "refs": "SV-8700 (§6, §9 (View Options popover, Capacity Bars, Events), §4.12)",
+    "viu_status": "VIU-Pending",
+    "notes": "'View Options' toggles (Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday) pinned by the Claude design (§1 View Options icon/popover); confirm the exact labels + defaults live. Driver: Claude design §1 + requirements §6/§9/§4.12. | CONSOLIDATED 2026-07-31 (usefulness audit G-VIEW-TOGGLES, user-authorized): absorbed SCH-VIEW-07, SCH-VIEW-08 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-VIEW-06",
+    "area": "Filter and Display and View Options",
+    "title": "Business Hours toggle shades non-working hours in day view",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. The shop has working hours set.",
+      "3. You are on the Schedule page in DAY view with Business Hours OFF."
+    ],
+    "steps": [
+      "1. Note the timeline background outside working hours.",
+      "2. Turn ON Business Hours in 'View Options'.",
+      "3. Look at the timeline again."
+    ],
+    "expected": [
+      "1. With the toggle on, the hours OUTSIDE the working day are shaded with a grey overlay.",
+      "2. Working hours remain unshaded.",
+      "3. Turning it off removes the shading."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §9 (Business Hours), §4.8 (Business-hours shading)",
+    "refs": "SV-8700 (§9 (Business Hours), §4.8 (Business-hours shading))",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SCH-VIEW-07",
+    "area": "Filter and Display and View Options",
+    "title": "Capacity Bars toggle shows and hides the per-day capacity bars",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. Shifts exist so capacity bars have fill.",
+      "3. You are on the Schedule page in week view with Capacity Bars ON (default)."
+    ],
+    "steps": [
+      "1. Confirm the bars are visible in the day column headers.",
+      "2. Turn OFF Capacity Bars in 'View Options'.",
+      "3. Turn it back ON."
+    ],
+    "expected": [
+      "1. Off: the capacity bars disappear from the column headers.",
+      "2. On: they reappear with the same values."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §9 (Capacity Bars), §4.12",
+    "refs": "SV-8700 (§9 (Capacity Bars), §4.12)",
+    "viu_status": "Retired - MERGED into SCH-VIEW-05 2026-07-31 (usefulness audit G-VIEW-TOGGLES, user-authorized consolidation)",
+    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-VIEW-TOGGLES): merged into SCH-VIEW-05 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-VIEW-07.json. | ",
+    "api_related": false
+  },
+  {
+    "id": "SCH-VIEW-08",
+    "area": "Filter and Display and View Options",
+    "title": "Events toggle shows and hides event blocks on the grid",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. At least one event and one shift exist on the visible range.",
+      "3. You are on the Schedule page with Events ON (default)."
+    ],
+    "steps": [
+      "1. Turn OFF Events in 'View Options'.",
+      "2. Look at the grid.",
+      "3. Turn it back ON."
+    ],
+    "expected": [
+      "1. Off: event blocks disappear from the grid; shifts remain.",
+      "2. On: the events reappear unchanged."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §9 (Events)",
+    "refs": "SV-8700 (§9 (Events))",
+    "viu_status": "Retired - MERGED into SCH-VIEW-05 2026-07-31 (usefulness audit G-VIEW-TOGGLES, user-authorized consolidation)",
+    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-VIEW-TOGGLES): merged into SCH-VIEW-05 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-VIEW-08.json. | ",
+    "api_related": false
+  },
+  {
+    "id": "SCH-VIEW-09",
+    "area": "Filter and Display and View Options",
+    "title": "Tech Hours toggle displays each technician's working hours next to their name",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. Technicians have configured working hours.",
+      "3. You are on the Schedule page with Tech Hours OFF (default)."
+    ],
+    "steps": [
+      "1. Turn ON Tech Hours in 'View Options'.",
+      "2. Look at the technician rows."
+    ],
+    "expected": [
+      "1. Each technician's working hours are displayed next to their name in the row header.",
+      "2. The hours match the technicians' configured hours.",
+      "3. Turning it off hides the hours again."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §9 (Tech Hours)",
+    "refs": "SV-8700 (§9 (Tech Hours))",
+    "viu_status": "VIU-Pending",
+    "notes": "Display format for the hours unpinned - capture live. What shows for a tech with no configured hours is unspecified - observe.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-VIEW-10",
+    "area": "Filter and Display and View Options",
+    "title": "Saturday and Sunday toggles include or exclude the weekend columns",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. You are on the Schedule page in WEEK view with Saturday and Sunday ON (default) - 7 columns visible."
+    ],
+    "steps": [
+      "1. Turn OFF Saturday in 'View Options'; look at the grid.",
+      "2. Turn OFF Sunday too; look again.",
+      "3. Turn both back ON."
+    ],
+    "expected": [
+      "1. Saturday off: the Saturday column is removed (6 columns remain).",
+      "2. Sunday off too: 5 weekday columns remain (Monday to Friday).",
+      "3. Both back on: the full Monday-to-Sunday 7-column week returns."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §9 (Saturday, Sunday), §3.2 (Week view)",
+    "refs": "SV-8700 (§9 (Saturday, Sunday), §3.2 (Week view))",
+    "viu_status": "VIU-Pending",
+    "notes": "Behavior of an existing weekend shift while its column is hidden is unspecified - observe and record (it should still count in conflicts per §4.11).",
+    "api_related": false
+  },
+  {
+    "id": "SCH-REAS-01",
+    "area": "Reassignment and Context Menu",
+    "title": "Dragging a shift to another technician row reassigns it - target tech added to the line's roster, source removed, with a confirmation modal",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (reassignment requires Edit; spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. A shift exists on technician A; note the affected line's roster.",
+      "3. You are on the Schedule page in week view."
+    ],
+    "steps": [
+      "1. Drag the shift block from technician A's row to technician B's row.",
+      "2. Confirm the move in the confirmation modal.",
+      "3. Check the line's roster on the work order."
+    ],
+    "expected": [
+      "1. A confirmation modal appears for the cross-technician move.",
+      "2. After confirming, the shift sits on technician B's row.",
+      "3. Technician B is added to the affected line's roster and technician A is removed from it.",
+      "4. A toast with Undo appears."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (Shift reassignment), §12",
+    "refs": "SV-8695 (§7 (Shift reassignment), §12)",
+    "viu_status": "VIU-Pending",
+    "notes": "Drag-reassign + cross-tech confirmation modal (Cancel / Confirm) pinned by the Claude design (§4d reassignModal); confirm the exact copy live. Driver: Claude design §4d.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-REAS-02",
+    "area": "Reassignment and Context Menu",
+    "title": "'Reassign' in the shift detail modal moves the shift to another technician",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. A shift exists on technician A; its detail modal is open."
+    ],
+    "steps": [
+      "1. Click the 'Reassign' action.",
+      "2. Choose technician B and confirm.",
+      "3. Check the grid and the line's roster."
+    ],
+    "expected": [
+      "1. The shift moves to technician B's row.",
+      "2. The roster updates the same way as a drag reassignment (B added, A removed).",
+      "3. A toast with Undo appears."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.9 (Reassign action), §7",
+    "viu_status": "Retired - user delete authorization 2026-07-22; Reassign-in-modal removed (Branko 2026-07-22)",
+    "notes": "RETIRED 2026-07-22 (user-authorized delete): the 'Reassign' action in the shift detail modal was REMOVED (Branko 2026-07-22) and is absent from the authoritative Claude prototype (design §4c/§4d) - reassignment is drag-only, fully covered by the drag-reassignment case SCH-REAS-01 (C30052). DELETED from TestRail via delete_case on 2026-07-22 (HTTP 200; re-GET returns is_deleted/400 = gone). Former TestRail ID kept for the record: C30053. EXCLUDED from active deliverables + tally; body kept locally for the record. Driver: Branko Q&A 2026-07-22 + Claude design §4c. | RETIRE-PROPOSED (reconciliation 2026-07-22): removed action, drag-only reassignment fully covered by the drag-reassignment case.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-REAS-03",
+    "area": "Reassignment and Context Menu",
+    "title": "Right-click a grid cell opens a menu with Create Event and New Work Order",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (the context menu is an editing affordance hidden for View-only users; spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. You are on the Schedule page in week view (the same menu is offered in month view).",
+      "3. Schedulable work order lines exist."
+    ],
+    "steps": [
+      "1. Right-click a technician's grid cell.",
+      "2. Read the menu items."
+    ],
+    "expected": [
+      "1. A context menu opens at the cell.",
+      "2. It contains ONLY two items: 'Create Event' and 'New Work Order'.",
+      "3. There is no 'View Day' item - it was removed from the menu.",
+      "4. There is no 'New Shift' item - it was removed from the menu.",
+      "5. The browser's own right-click menu does not appear instead."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (Right-click context menu)",
+    "refs": "SV-8700 (§7 (Right-click context menu; View Day and New Shift removed), §14.1 (creation via context menu))",
+    "viu_status": "VIU-Pending",
+    "notes": "The cell context menu is now 'Create Event' + 'New Work Order' - the old 'New Shift' / 'New Event' / 'View Day' items were removed. Design + Jira SV-8696/SV-8700 agree (DESIGN-RECONCILIATION #8/#9/#10). Driver: SV-8700 §7/§4.10. Confirm the exact on-screen labels live at VIU. | CONSOLIDATED 2026-07-31 (usefulness audit G-CELL-MENU, user-authorized): absorbed SCH-REAS-04, SCH-REAS-05 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-REAS-04",
+    "area": "Reassignment and Context Menu",
+    "title": "'View Day' is no longer offered in the grid cell context menu",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit to open the menu (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. You are on the Schedule page in week or month view."
+    ],
+    "steps": [
+      "1. Right-click a technician's grid cell.",
+      "2. Read the menu items."
+    ],
+    "expected": [
+      "1. The context menu shows only 'Create Event' and 'New Work Order'.",
+      "2. There is no 'View Day' item - it was removed from the menu."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (Right-click context menu - View Day)",
+    "refs": "SV-8700 (§7 (Right-click context menu - View Day))",
+    "viu_status": "Retired - MERGED into SCH-REAS-03 2026-07-31 (usefulness audit G-CELL-MENU, user-authorized consolidation)",
+    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-CELL-MENU): merged into SCH-REAS-03 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-REAS-04.json. | 'View Day' was removed from the cell context menu (menu redesigned to 'Create Event' + 'New Work Order'). Design + Jira SV-8700 agree (DESIGN-RECONCILIATION #9). Driver: SV-8700 §7. Confirm live at VIU.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-REAS-05",
+    "area": "Reassignment and Context Menu",
+    "title": "'New Shift' is no longer offered in the grid cell context menu",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. Schedulable work order lines exist.",
+      "3. You are on the Schedule page in week view."
+    ],
+    "steps": [
+      "1. Right-click a technician's grid cell.",
+      "2. Read the menu items."
+    ],
+    "expected": [
+      "1. The context menu shows only 'Create Event' and 'New Work Order'.",
+      "2. There is no 'New Shift' item - it was removed from the menu."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (Right-click context menu - New Shift), §14.1 (creation via context menu)",
+    "refs": "SV-8700 (§7 (Right-click context menu - New Shift), §14.1 (creation via context menu))",
+    "viu_status": "Retired - MERGED into SCH-REAS-03 2026-07-31 (usefulness audit G-CELL-MENU, user-authorized consolidation)",
+    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-CELL-MENU): merged into SCH-REAS-03 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-REAS-05.json. | 'New Shift' was removed from the cell context menu (menu redesigned to 'Create Event' + 'New Work Order'). Design + Jira SV-8700 agree (DESIGN-RECONCILIATION #10). Driver: SV-8700 §7. Confirm live at VIU.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-DEL-01",
+    "area": "Deletion, Series Scopes and Undo",
+    "title": "Deleting a middle shift of a series asks for scope with all three options, each stating the hours returned",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Delete (requires Edit; spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Delete.",
+      "2. A series of at least 3 shifts exists for one technician.",
+      "3. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. Delete a MIDDLE shift of the series (via the detail modal's Delete).",
+      "2. Read the scope options offered (do not confirm yet)."
+    ],
+    "expected": [
+      "1. A scope prompt appears with three options: this shift only, this and everything after, and the whole series.",
+      "2. Each option states its consequence in hours returned (spec's example format: 'returns 8h' / 'returns 56h').",
+      "3. The prompt uses routine, lightweight styling - not alarming destructive styling."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (Series-aware deletion)",
+    "refs": "SV-8692 (§7 (Series-aware deletion))",
+    "viu_status": "VIU-Pending",
+    "notes": "Series delete-scope modal ('Remove from series', 'Part of a 6-week job · 20 shifts', each option with a 'returns Nh' chip) pinned by the Claude design (§4e); confirm the exact wording live. Driver: Claude design §4e.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-DEL-02",
+    "area": "Deletion, Series Scopes and Undo",
+    "title": "'This shift only' removes that day, the series keeps the gap, and the hours return to the estimate's remaining",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Delete (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Delete.",
+      "2. A series of at least 3 shifts exists; note the total scheduled hours.",
+      "3. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. Delete a middle shift with the 'this shift only' scope.",
+      "2. Look at the series on the grid.",
+      "3. Check the scheduled hours."
+    ],
+    "expected": [
+      "1. Only that day's shift is removed.",
+      "2. The series keeps the gap - the remaining shifts do NOT shuffle to close it.",
+      "3. The removed day's hours return to the estimate's remaining (scheduled hours drop by that day's hours).",
+      "4. An undo toast appears."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (This shift only)",
+    "refs": "SV-8692 (§7 (This shift only))",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SCH-DEL-03",
+    "area": "Deletion, Series Scopes and Undo",
+    "title": "'This and everything after' removes from the clicked shift onward, keeping earlier shifts",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Delete (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Delete.",
+      "2. A series of at least 4 shifts exists.",
+      "3. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. Delete the series' THIRD shift with the 'this and everything after' scope.",
+      "2. Look at the series on the grid."
+    ],
+    "expected": [
+      "1. The third shift and every later shift of the series are removed.",
+      "2. The first two shifts remain untouched.",
+      "3. An undo toast appears."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (This and everything after)",
+    "refs": "SV-8692 (§7 (This and everything after))",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SCH-DEL-04",
+    "area": "Deletion, Series Scopes and Undo",
+    "title": "'The whole series' removes all of the series' shifts for that technician",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Delete (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Delete.",
+      "2. The SAME work order has a series on technician A and an independent series on technician B.",
+      "3. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. Delete one of technician A's series shifts with the 'whole series' scope.",
+      "2. Look at both technicians' rows."
+    ],
+    "expected": [
+      "1. All of technician A's series shifts are removed.",
+      "2. Technician B's independent series is untouched (the scope is per technician's series).",
+      "3. An undo toast appears."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (The whole series - 'for that technician')",
+    "refs": "SV-8692 (§7 (The whole series - 'for that technician'))",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SCH-DEL-05",
+    "area": "Deletion, Series Scopes and Undo",
+    "title": "Scope options adapt to position: first and last shifts of a series each show only two options",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: Delete (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Delete.",
+      "2. A series of at least 3 shifts exists.",
+      "3. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. Start deleting the FIRST shift of the series; read the options, then cancel.",
+      "2. Start deleting the LAST shift; read the options, then cancel.",
+      "3. Start deleting a MIDDLE shift; read the options, then cancel."
+    ],
+    "expected": [
+      "1. First shift: two options ('this and after' would equal 'whole series', so only two are shown).",
+      "2. Last shift: two options ('this and after' would equal 'this only').",
+      "3. Middle shift: all three options.",
+      "4. Cancelling leaves the series unchanged in every case."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (options adapt to position)",
+    "refs": "SV-8692 (§7 (options adapt to position))",
+    "viu_status": "VIU-Pending",
+    "notes": "Scope options adapt to position; labels ('This shift only'/'This and everything after'/'The whole series') pinned by the Claude design (§4e); confirm the two-option end cases live. Driver: Claude design §4e.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-DEL-06",
+    "area": "Deletion, Series Scopes and Undo",
+    "title": "Deleting a standalone (non-series) shift does not ask for a series scope",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: Delete (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Delete.",
+      "2. A single standalone shift (not part of any series) exists.",
+      "3. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. Delete the standalone shift.",
+      "2. Watch what is asked."
+    ],
+    "expected": [
+      "1. No series-scope prompt appears (the scope question is only for shifts that belong to a series).",
+      "2. The shift is deleted and an undo toast appears."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (derived - scope prompt is for series shifts)",
+    "refs": "SV-8692 (§7 (derived - scope prompt is for series shifts))",
+    "viu_status": "VIU-Pending",
+    "notes": "Derived from 'Deleting a shift that belongs to a series asks for scope' - confirm live whether standalone deletes have any confirmation at all.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-DEL-07",
+    "area": "Deletion, Series Scopes and Undo",
+    "title": "Every create, delete, move, and reassign action produces a toast with an Undo option",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (Delete for the delete action; spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Delete.",
+      "2. Schedulable lines and an existing shift are available.",
+      "3. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. Create a shift - watch for a toast.",
+      "2. Move a shift to another day - watch for a toast.",
+      "3. Reassign a shift to another technician - watch for a toast.",
+      "4. Delete a shift - watch for a toast."
+    ],
+    "expected": [
+      "1. Each of the four actions produces a toast notification.",
+      "2. Every toast offers an Undo option."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (Toast notifications), §11 (Undo)",
+    "refs": "SV-8688 (§7 (Toast notifications), §11 (Undo))",
+    "viu_status": "Retired - MERGED into SCH-DEL-09 2026-07-31 (usefulness audit G-UNDO, user-authorized consolidation)",
+    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-UNDO): merged into SCH-DEL-09 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-DEL-07.json. | Toast copy unpinned - capture live.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-DEL-08",
+    "area": "Deletion, Series Scopes and Undo",
+    "title": "Toast lasts ~7s with Undo (about 4s without); stays on hover, goes on leave",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. Perform an action that shows a toast (for example move a shift) and let the toast sit untouched - time how long it stays.",
+      "2. Trigger another toast and hold the cursor OVER it well past its normal lifetime.",
+      "3. Move the cursor off the toast."
+    ],
+    "expected": [
+      "1. Untouched, a toast that has an Undo action persists about 7 seconds; a toast without Undo persists about 4 seconds, before dismissing.",
+      "2. While the cursor is over it, the toast stays (does not auto-dismiss).",
+      "3. After the cursor leaves, it dismisses."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (Toast notifications), §11 (Undo)",
+    "refs": "SV-8688 (§7 (Toast notifications), §11 (Undo))",
+    "viu_status": "VIU-Pending",
+    "notes": "Toast lifetime is 7 seconds with Undo / 4 seconds without (design code sets undo?7000:4000, DESIGN-RECONCILIATION #7, inside the spec's 4-7s window). Driver: SV-8688 §7. Confirm live at VIU.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-DEL-09",
+    "area": "Deletion, Series Scopes and Undo",
+    "title": "Every create/delete/move/reassign toasts with Undo, and Undo restores",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Delete (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Delete.",
+      "2. Schedulable lines exist and a shift exists; note its technician, day, and time.",
+      "3. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. Create a shift and watch for the toast.",
+      "2. Delete the shift, watch for the toast, then click Undo on it.",
+      "3. Move the shift to another day, watch for the toast, then click Undo.",
+      "4. Reassign it to another technician, watch for the toast, then click Undo.",
+      "5. Check the line's roster after the reassign undo."
+    ],
+    "expected": [
+      "1. Each of the four actions (create, delete, move, reassign) produces a toast notification, and every toast offers an Undo option.",
+      "2. Undo after delete: the shift is back exactly where it was.",
+      "3. Undo after move: the shift returns to its original day/time.",
+      "4. Undo after reassign: the shift returns to the original technician, and the line's roster is restored (original tech back on, target tech off).",
+      "5. Every destructive action is undoable within the toast's lifetime."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §11 (Undo), §7",
+    "refs": "SV-8688 (§7 (Toast notifications), §11 (Undo))",
+    "viu_status": "VIU-Pending",
+    "notes": "Toast copy unpinned - capture live. Roster restoration on undo is derived from reassignment's roster sync - confirm live. TECH-PLAN 2026-07-29: undo-of-delete is backed by a dedicated restore call (POST /api/schedule/shifts/restore - D10 compensating mutation, commit-immediately). The refresh-before-undo behaviour is covered by the new commit-immediately case. | CONSOLIDATED 2026-07-31 (usefulness audit G-UNDO, user-authorized): absorbed SCH-DEL-07 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-KEY-01",
+    "area": "Keyboard Interactions",
+    "title": "Escape closes the topmost open modal or popover, following the stacking order",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (to open the layered dialogs; spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. Open the shift detail modal, then open the color picker inside it and press Escape.",
+      "2. Open the time picker inside the modal and press Escape; then start editing a note and press Escape.",
+      "3. With nothing open inside the modal, press Escape again.",
+      "4. Open the shift detail modal again with a popover from elsewhere on top of it, and press Escape twice."
+    ],
+    "expected": [
+      "1. Escape with the color picker open closes only the color picker - the modal stays open.",
+      "2. Same for the time picker and the note edit - each sub-picker closes first and the modal stays open.",
+      "3. Escape with no open sub-picker closes the modal itself.",
+      "4. With two layers open, the FIRST Escape closes only the topmost layer, and the SECOND Escape closes the next layer down.",
+      "5. Escape works anywhere on the schedule page as a global shortcut, following the defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search)."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (Keyboard support - Escape)",
+    "refs": "SV-8700 (§7 (Keyboard support - Escape, including within the shift modal))",
+    "viu_status": "VIU-Pending",
+    "notes": "Escape closes the topmost layer per the design's enumerated 13-layer stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search), and inside the shift modal its own sub-pickers are the top layers - pinned by the Claude design code; exercise the layers live. Driver: Claude design §4. | CONSOLIDATED 2026-07-31 (usefulness audit G-ESCAPE, user-authorized): absorbed SCH-KEY-02 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-KEY-02",
+    "area": "Keyboard Interactions",
+    "title": "Within the shift modal, Escape first dismisses an open sub-picker before closing the modal itself",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. A shift's detail modal is open."
+    ],
+    "steps": [
+      "1. Open the color picker inside the modal, press Escape, and watch.",
+      "2. Open the time picker, press Escape.",
+      "3. Start editing a note, press Escape.",
+      "4. With nothing open inside the modal, press Escape."
+    ],
+    "expected": [
+      "1. Escape with the color picker open closes only the color picker - the modal stays open.",
+      "2. Same for the time picker and the note edit.",
+      "3. Escape with no open sub-picker closes the modal itself."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (Escape within the shift modal)",
+    "refs": "SV-8700 (§7 (Escape within the shift modal))",
+    "viu_status": "Retired - MERGED into SCH-KEY-01 2026-07-31 (usefulness audit G-ESCAPE, user-authorized consolidation)",
+    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-ESCAPE): merged into SCH-KEY-01 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-KEY-02.json. | ",
+    "api_related": false
+  },
+  {
+    "id": "SCH-KEY-03",
+    "area": "Keyboard Interactions",
+    "title": "Enter confirms the active dialog, but not inside a note textarea",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: Delete (to exercise the delete-scope dialog; spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Delete.",
+      "2. Shifts/series and events exist to exercise the dialogs.",
+      "3. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. Open the spread step for a large job, press Enter.",
+      "2. Open the reassign dialog for a shift, choose a technician, press Enter.",
+      "3. Open the event modal with valid fields, press Enter.",
+      "4. Open a series delete-scope prompt, select a scope, press Enter.",
+      "5. Open a shift's detail modal, click into the note editor, type a line of note text and press Enter, then type a second line."
+    ],
+    "expected": [
+      "1. In each confirmable dialog, Enter confirms it - equivalent to clicking its confirm action.",
+      "2. The confirmed action takes effect (spread created / reassigned / event saved / delete applied).",
+      "3. In the note editor, Enter inserts a new line in the note - it does NOT confirm or close the dialog.",
+      "4. The multiline note can be completed and saved normally."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (Keyboard support - Enter)",
+    "refs": "SV-8700 (§7 (Keyboard support - Enter; Enter does not fire inside textareas))",
+    "viu_status": "VIU-Pending",
+    "notes": "Undo/clean up each confirmed action after verifying. | CONSOLIDATED 2026-07-31 (usefulness audit G-ENTER, user-authorized): absorbed SCH-KEY-04 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-KEY-04",
+    "area": "Keyboard Interactions",
+    "title": "Enter does not fire inside textareas - multiline note editing works normally",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "Schedule: Edit (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. A shift's detail modal is open with the note editor active."
+    ],
+    "steps": [
+      "1. Type a line of note text and press Enter.",
+      "2. Type a second line."
+    ],
+    "expected": [
+      "1. Enter inserts a new line in the note - it does NOT confirm/close the dialog.",
+      "2. The multiline note can be completed and saved normally."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (Enter does not fire inside textareas)",
+    "refs": "SV-8700 (§7 (Enter does not fire inside textareas))",
+    "viu_status": "Retired - MERGED into SCH-KEY-03 2026-07-31 (usefulness audit G-ENTER, user-authorized consolidation)",
+    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-ENTER): merged into SCH-KEY-03 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-KEY-04.json. | ",
+    "api_related": false
+  },
+  {
+    "id": "SCH-KEY-05",
+    "area": "Keyboard Interactions",
+    "title": "Modals trap focus and all interactive elements are keyboard-reachable",
+    "priority": "Medium",
+    "type": "Accessibility",
+    "permissions_required": "Schedule: Edit (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. A shift's detail modal is open."
+    ],
+    "steps": [
+      "1. Press Tab repeatedly and watch where focus goes.",
+      "2. Continue tabbing past the last control in the modal.",
+      "3. Close the modal and Tab through the schedule page's toolbar and sidebar controls."
+    ],
+    "expected": [
+      "1. Focus moves through the modal's interactive elements with visible focus rings.",
+      "2. Focus stays trapped inside the modal (wraps back to its first control) until the modal closes.",
+      "3. On the page, toolbar and sidebar controls are reachable by keyboard."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §11 (Accessibility)",
+    "refs": "SV-8700 (§11 (Accessibility))",
+    "viu_status": "VIU-Pending",
+    "notes": "Focus-ring styling follows the design system - visual details to confirm live.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-COLOR-01",
+    "area": "Color System",
+    "title": "Blue is the default color for all shifts, including long and multi-week jobs",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit to create; View to observe (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. You are on the Schedule page."
+    ],
+    "steps": [
+      "1. Create a normal single-day shift without touching any color option.",
+      "2. Create a multi-week series without touching any color option.",
+      "3. Look at both on the grid."
+    ],
+    "expected": [
+      "1. Both the single shift and the multi-week series render in the default blue.",
+      "2. No special color is auto-applied to long jobs - blue is the default for ALL shifts."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §10",
+    "refs": "SV-8700 (§10)",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "SCH-COLOR-02",
+    "area": "Color System",
+    "title": "Shift modal color picker recolors that shift only, in matching tones",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. Two shifts from the SAME work order exist (for example on different technicians).",
+      "3. One of those shifts' detail modal is open."
+    ],
+    "steps": [
+      "1. Open the color picker in the modal.",
+      "2. Choose a non-default color.",
+      "3. Look at the block on the grid.",
+      "4. Compare that shift with the other shift from the same work order."
+    ],
+    "expected": [
+      "1. The shift's block re-renders in the chosen color.",
+      "2. The color provides three consistent tones: background fill, text color, and accent (left border).",
+      "3. The color is per SHIFT, not per work order - the other shift from the same work order keeps its own (default blue) color and does not change.",
+      "4. Colors carry no fixed meaning - they are free choice beyond the two defaults (blue shift / grey event)."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §10, §4.9 (Color picker)",
+    "refs": "SV-8700 (§10, §4.9 (Color picker)); SV-8690 (§4.4, §10)",
+    "viu_status": "VIU-Pending",
+    "notes": "Palette contents and tone rendering unpinned (Claude design now available; live-render confirm at VIU) - confirm live. V1 rule (Jira SV-8690, latest-wins over the older requirements.md §10): shift colour is optional PER SHIFT and is NOT tied to the work order; SCH-COLOR-01 covers the blue default. Driver: SV-8690 §4.4/§10 + SV-8700 §10/§4.9. | CONSOLIDATED 2026-07-31 (usefulness audit G-SHIFT-COLOR, user-authorized): absorbed SCH-BLOCK-04 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail. | WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): the stale open question 'whether recoloring one shift recolors all blocks of the same work order (§4.4 ties color to the WO)' was DROPPED - it is contradicted by the reconciled per-SHIFT colour rule (SV-8690, applied 2026-07-27), which is now asserted in Expected 3.",
+    "api_related": false
+  },
+  {
+    "id": "SCH-COLOR-03",
+    "area": "Color System",
+    "title": "Color labels are editable per shop",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (spec §14.1); the label-editing surface may need an admin - identify live.",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. A shift's or event's color picker is open."
+    ],
+    "steps": [
+      "1. Find the editable label of one color in the picker.",
+      "2. Rename it (for example to 'ZZAUTOTEST Rush').",
+      "3. Open the picker again from another shift/event.",
+      "4. Restore the original label."
+    ],
+    "expected": [
+      "1. Each color's label can be edited.",
+      "2. The renamed label shows for the whole shop - the same picker opened elsewhere shows 'ZZAUTOTEST Rush'.",
+      "3. Shifts and events share the same custom palette with the same labels."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §10 (Color labels are editable per shop), §4.10 (shared picker)",
+    "refs": "SV-8700 (§10 (Color labels are editable per shop), §4.10 (shared picker))",
+    "viu_status": "VIU-Pending",
+    "notes": "Where/how labels are edited (inline in the picker vs a settings surface) is unpinned - locate the real surface live.",
+    "api_related": false
+  }
 ]

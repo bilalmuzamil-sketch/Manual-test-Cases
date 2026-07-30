@@ -1,0 +1,28 @@
+{
+ "id": "FLT-RPTS-20",
+ "area": "Reports Page Filters",
+ "title": "QB Unexported report filters change per tab (Customer / Vendor / User)",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Reports pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Reports area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. Open the Reports area and go to the QB Unexported report.",
+  "2. Look at the filter buttons shown above the report table."
+ ],
+ "expected": [
+  "1. The QB Unexported report has three view tabs, and the first filter button changes per tab.",
+  "2. On the Customers tab the filter buttons are Customer, Date and Type.",
+  "3. On the Vendors tab they are Vendor, Date and Type.",
+  "4. On the Journal Entries tab they are User, Date and Type.",
+  "5. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (option lists behind each button)."
+ ],
+ "design_ref": "design-notes.md B.6 (11981:8749 / 11982:8879 / 11982:8998)",
+ "spec_ref": "Filters (Epic key TBD); Figma 11903-10573 (Reports filters); design-notes.md §B.6 #21, #22, #23",
+ "viu_status": "VIU-Pending",
+ "notes": "Design-only. Covers all three tabs (Customers / Vendors / Journal Entries). The first chip differs per tab. Option lists pending Branko's PRD.",
+ "api_related": false
+}

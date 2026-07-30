@@ -1,0 +1,28 @@
+{
+  "id": "SCH-VIEW-08",
+  "area": "Filter and Display and View Options",
+  "title": "Events toggle shows and hides event blocks on the grid",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser.",
+    "2. At least one event and one shift exist on the visible range.",
+    "3. You are on the Schedule page with Events ON (default)."
+  ],
+  "steps": [
+    "1. Turn OFF Events in 'View Options'.",
+    "2. Look at the grid.",
+    "3. Turn it back ON."
+  ],
+  "expected": [
+    "1. Off: event blocks disappear from the grid; shifts remain.",
+    "2. On: the events reappear unchanged."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §9 (Events)",
+  "refs": "SV-8700 (§9 (Events))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

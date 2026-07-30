@@ -1,0 +1,28 @@
+{
+  "id": "SCH-VIEW-07",
+  "area": "Filter and Display and View Options",
+  "title": "Capacity Bars toggle shows and hides the per-day capacity bars",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser.",
+    "2. Shifts exist so capacity bars have fill.",
+    "3. You are on the Schedule page in week view with Capacity Bars ON (default)."
+  ],
+  "steps": [
+    "1. Confirm the bars are visible in the day column headers.",
+    "2. Turn OFF Capacity Bars in 'View Options'.",
+    "3. Turn it back ON."
+  ],
+  "expected": [
+    "1. Off: the capacity bars disappear from the column headers.",
+    "2. On: they reappear with the same values."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §9 (Capacity Bars), §4.12",
+  "refs": "SV-8700 (§9 (Capacity Bars), §4.12)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

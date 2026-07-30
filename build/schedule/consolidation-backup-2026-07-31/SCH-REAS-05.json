@@ -1,0 +1,27 @@
+{
+  "id": "SCH-REAS-05",
+  "area": "Reassignment and Context Menu",
+  "title": "'New Shift' is no longer offered in the grid cell context menu",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Edit.",
+    "2. Schedulable work order lines exist.",
+    "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+    "1. Right-click a technician's grid cell.",
+    "2. Read the menu items."
+  ],
+  "expected": [
+    "1. The context menu shows only 'Create Event' and 'New Work Order'.",
+    "2. There is no 'New Shift' item - it was removed from the menu."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §7 (Right-click context menu - New Shift), §14.1 (creation via context menu)",
+  "refs": "SV-8700 (§7 (Right-click context menu - New Shift), §14.1 (creation via context menu))",
+  "viu_status": "VIU-Pending",
+  "notes": "'New Shift' was removed from the cell context menu (menu redesigned to 'Create Event' + 'New Work Order'). Design + Jira SV-8700 agree (DESIGN-RECONCILIATION #10). Driver: SV-8700 §7. Confirm live at VIU.",
+  "api_related": false
+}

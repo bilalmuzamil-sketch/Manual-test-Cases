@@ -1,0 +1,28 @@
+{
+  "id": "SCH-DAY-02",
+  "area": "Day View Timeline",
+  "title": "Manual scrolling is not overridden - auto-scroll fires only on load or day navigation",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser.",
+    "2. You are on the Schedule page in day view (already auto-scrolled)."
+  ],
+  "steps": [
+    "1. Manually scroll the timeline to a late-night hour (for example 11:00 PM).",
+    "2. Wait a few seconds and interact with the page without changing the day (hover blocks, open/close a tooltip).",
+    "3. Then navigate to the next day."
+  ],
+  "expected": [
+    "1. Your manual scroll position stays put - nothing jumps you back to the morning while you remain on the same day.",
+    "2. Scrolling works across the entire 24-hour timeline (midnight to midnight).",
+    "3. Only navigating to another day re-triggers the auto-scroll."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.8",
+  "refs": "SV-8694 (§4.8)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

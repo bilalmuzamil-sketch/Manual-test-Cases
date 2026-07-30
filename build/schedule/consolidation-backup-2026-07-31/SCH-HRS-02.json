@@ -1,0 +1,28 @@
+{
+  "id": "SCH-HRS-02",
+  "area": "Working Hours Settings",
+  "title": "Edit Location shows a per-day (Mon-Sun) From-To business-hours editor",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Access to the Edit Location settings screen (admin / settings). Confirm the exact permission live at VIU.",
+  "preconditions": [
+    "1. You are on the Edit Location screen.",
+    "2. The 'Set business hours for this shop' toggle is ON."
+  ],
+  "steps": [
+    "1. Read the per-day rows shown when business hours are ON.",
+    "2. Set a From time and a To time for one day (for example Monday).",
+    "3. Save the location settings."
+  ],
+  "expected": [
+    "1. There is one row per day of the week, Monday through Sunday.",
+    "2. Each day has a From time and a To time you can set.",
+    "3. The saved shop business hours are used by the Schedule (start-time hierarchy, before/after-hours conflicts, business-hours shading)."
+  ],
+  "design_ref": "Claude design (Edit Modals.dc.html - Edit Location modal), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "SV-8699 Working Hours Settings (§4.2 settings - per-day editor)",
+  "refs": "SV-8699 (§4.2 Working Hours - per-day From/To editor)",
+  "viu_status": "VIU-Pending",
+  "notes": "New-scope from Jira SV-8699. Per-day Mon-Sun From-To editor per the story verbatim; confirm the exact fields/labels LIVE at VIU (Rule 12). Driver: SV-8699. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-3): same placement conflict as the toggle case - the per-day shop-hours editor may live in an Administration 'Schedule Settings' page instead of Edit Location (plan Phase 2). Pending NQ-3.",
+  "api_related": false
+}

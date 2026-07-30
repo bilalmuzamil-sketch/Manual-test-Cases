@@ -1,0 +1,25 @@
+{
+ "id": "FLT-RPTS-21",
+ "area": "Reports Page Filters",
+ "title": "Choosing a Reports filter narrows the report results",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Reports pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Reports area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. Open the Reports area and go to the any (for example Sales) report.",
+  "2. Look at the filter buttons shown above the report table."
+ ],
+ "expected": [
+  "1. The report updates to show only the rows matching the chosen filter value, and the chosen value is shown on the filter button.",
+  "2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (exactly which filters apply on each report, the full option lists, and whether results update immediately)."
+ ],
+ "design_ref": "design-notes.md B.6 (11903-10573 (behaviour not pinned))",
+ "spec_ref": "Filters (Epic key TBD); Figma 11903-10573 (Reports filters); design-notes.md §B.6",
+ "viu_status": "VIU-Pending",
+ "notes": "BEHAVIOUR case — the design does not pin how Reports filters apply. Pending Branko's PRD; VIU-confirm on the build. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every report page gets the chip design + shareable links + per-user remembered filters with NO change to what is filterable; nearly every report leads with the date-range chip (see FLT-RPTS-23); sub-report tabs keep separate state per tab (see FLT-PERS-05). Pending Branko's PRD ratification (spec v1.3 export awaited).",
+ "api_related": false
+}

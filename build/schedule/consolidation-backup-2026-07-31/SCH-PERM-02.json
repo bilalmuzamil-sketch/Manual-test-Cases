@@ -1,0 +1,31 @@
+{
+  "id": "SCH-PERM-02",
+  "area": "Permissions",
+  "title": "View-only: every editing affordance is hidden or disabled",
+  "priority": "Critical",
+  "type": "Negative",
+  "permissions_required": "A role with Schedule: View but NOT Edit.",
+  "preconditions": [
+    "1. A test user's role has Schedule: View but NOT Edit.",
+    "2. Shifts, a series, and events exist on the grid.",
+    "3. You are signed in AS that View-only user on a desktop browser, on the Schedule page."
+  ],
+  "steps": [
+    "1. Look for drag handles on sidebar lines and try to drag a work order card onto the grid.",
+    "2. Try dragging an existing shift block (move/reassign) and look for resize handles in day view.",
+    "3. Right-click a grid cell.",
+    "4. Open a shift's detail modal and inspect its fields and actions."
+  ],
+  "expected": [
+    "1. No drag handles are offered and nothing can be dragged from the sidebar onto the grid.",
+    "2. Shift blocks cannot be moved or resized - no drop targets or resize handles appear.",
+    "3. The right-click context menu does not appear (no New Shift / New Event / View Day creation entry points).",
+    "4. In the modal, edit fields are hidden or disabled, and the reassign and delete actions are absent."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §14.1 (Schedule: View - editing affordances hidden or disabled)",
+  "refs": "SV-8685 (§14.1 (Schedule: View - editing affordances hidden or disabled))",
+  "viu_status": "VIU-Pending",
+  "notes": "Spec allows 'hidden or disabled' - record which of the two the build does for each affordance.",
+  "api_related": false
+}

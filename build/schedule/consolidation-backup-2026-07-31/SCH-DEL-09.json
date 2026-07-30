@@ -1,0 +1,31 @@
+{
+  "id": "SCH-DEL-09",
+  "area": "Deletion, Series Scopes and Undo",
+  "title": "Undo restores the state before the action - for delete, move, and reassign",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Delete (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Delete.",
+    "2. A shift exists; note its technician, day, and time.",
+    "3. You are on the Schedule page."
+  ],
+  "steps": [
+    "1. Delete the shift, then click Undo on the toast.",
+    "2. Move the shift to another day, then click Undo.",
+    "3. Reassign it to another technician, then click Undo.",
+    "4. Check the line's roster after the reassign undo."
+  ],
+  "expected": [
+    "1. Undo after delete: the shift is back exactly where it was.",
+    "2. Undo after move: the shift returns to its original day/time.",
+    "3. Undo after reassign: the shift returns to the original technician, and the line's roster is restored (original tech back on, target tech off).",
+    "4. Every destructive action is undoable within the toast's lifetime."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §11 (Undo), §7",
+  "refs": "SV-8688 (§11 (Undo), §7)",
+  "viu_status": "VIU-Pending",
+  "notes": "Roster restoration on undo is derived from reassignment's roster sync - confirm live. TECH-PLAN 2026-07-29: undo-of-delete is backed by a dedicated restore call (POST /api/schedule/shifts/restore - D10 compensating mutation, commit-immediately). The refresh-before-undo behaviour is covered by the new commit-immediately case.",
+  "api_related": false
+}

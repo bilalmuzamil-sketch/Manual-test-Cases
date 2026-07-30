@@ -1,0 +1,28 @@
+{
+  "id": "SCH-KEY-01",
+  "area": "Keyboard Interactions",
+  "title": "Escape closes the topmost open modal or popover, following the stacking order",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (to open the layered dialogs; spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Edit.",
+    "2. You are on the Schedule page."
+  ],
+  "steps": [
+    "1. Open the shift detail modal, then open a popover on top of it (for example the color picker or a filter/search popover elsewhere).",
+    "2. Press Escape once.",
+    "3. Press Escape again."
+  ],
+  "expected": [
+    "1. The FIRST Escape closes only the topmost layer (the popover), leaving the layer beneath open.",
+    "2. The SECOND Escape closes the next layer down.",
+    "3. Escape works anywhere on the schedule page as a global shortcut, following the defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §7 (Keyboard support - Escape)",
+  "refs": "SV-8700 (§7 (Keyboard support - Escape))",
+  "viu_status": "VIU-Pending",
+  "notes": "Escape closes the topmost layer per the design's enumerated 13-layer stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search) - pinned by the Claude design code; exercise the layers live. Driver: Claude design §4.",
+  "api_related": false
+}

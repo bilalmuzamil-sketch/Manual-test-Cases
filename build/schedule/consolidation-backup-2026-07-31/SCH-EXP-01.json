@@ -1,0 +1,26 @@
+{
+  "id": "SCH-EXP-01",
+  "area": "Week Export and Printing",
+  "title": "Week Export opens a printable Department-by-Technician week grid",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View. Confirm the exact permission and entry point live at VIU.",
+  "preconditions": [
+    "1. You are on the Schedule screen in Week view with some shifts scheduled.",
+    "2. Your role has Schedule: View."
+  ],
+  "steps": [
+    "1. Open the Week Export / Print action for the current week.",
+    "2. Read the exported / printable layout."
+  ],
+  "expected": [
+    "1. A printable week view opens laid out as a Department-by-Technician grid for the week.",
+    "2. It is formatted for printing (a clean page layout, without the interactive grid controls)."
+  ],
+  "design_ref": "Claude design (Schedule Week Export.dc.html + schedule-week-view.html + schedule-export.png), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "Design Week Export (V1 scope pending Branko confirmation)",
+  "refs": "SV-8685 (design Week Export - V1 scope pending Branko)",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW SCOPE surfaced by the 2026-07-27 design ZIP (Week Export / Print view) - NOT in requirements.md or the 15 stories. Scope for V1 must be confirmed with Branko before this is treated as required (DESIGN-RECONCILIATION §5). No single-story owner yet -> epic SV-8685 (Rule 20 cross-cutting). Confirm LIVE at VIU (Rule 12).",
+  "api_related": false
+}

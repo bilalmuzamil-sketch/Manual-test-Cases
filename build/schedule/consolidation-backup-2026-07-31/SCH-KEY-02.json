@@ -1,0 +1,29 @@
+{
+  "id": "SCH-KEY-02",
+  "area": "Keyboard Interactions",
+  "title": "Within the shift modal, Escape first dismisses an open sub-picker before closing the modal itself",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Edit.",
+    "2. A shift's detail modal is open."
+  ],
+  "steps": [
+    "1. Open the color picker inside the modal, press Escape, and watch.",
+    "2. Open the time picker, press Escape.",
+    "3. Start editing a note, press Escape.",
+    "4. With nothing open inside the modal, press Escape."
+  ],
+  "expected": [
+    "1. Escape with the color picker open closes only the color picker - the modal stays open.",
+    "2. Same for the time picker and the note edit.",
+    "3. Escape with no open sub-picker closes the modal itself."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §7 (Escape within the shift modal)",
+  "refs": "SV-8700 (§7 (Escape within the shift modal))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+}

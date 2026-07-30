@@ -1,0 +1,26 @@
+{
+ "id": "FLT-PARTS-10",
+ "area": "Parts Page Filters",
+ "title": "Parts pages show the shared search and filter toolbar icons",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Parts area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. Open any Parts list page (for example Inventory).",
+  "2. Look at the small icons on the right side of the toolbar."
+ ],
+ "expected": [
+  "1. The toolbar shows a Search (magnifier) icon and a filter (funnel) icon on every Parts list page.",
+  "2. Some pages also show a column/layout toggle icon (for example Inventory).",
+  "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (what the funnel and column icons do)."
+ ],
+ "design_ref": "design-notes.md B.5 (shared shell)",
+ "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 shared shell",
+ "viu_status": "VIU-Pending",
+ "notes": "Design-only (toolbar icon presence). Icon actions pending Branko's PRD.",
+ "api_related": false
+}

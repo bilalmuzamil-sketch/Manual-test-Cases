@@ -1,0 +1,28 @@
+{
+  "id": "SCH-DAY-01",
+  "area": "Day View Timeline",
+  "title": "Day view auto-scrolls on load and day navigation so the working-day start sits at the left edge (with a small buffer)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser.",
+    "2. Technicians have configured start times; note the EARLIEST one (or the business-hours start / 7:00 AM if none).",
+    "3. You are on the Schedule page."
+  ],
+  "steps": [
+    "1. Switch to day view and look at where the timeline is scrolled to.",
+    "2. Navigate to the next day with the toolbar arrow and look again."
+  ],
+  "expected": [
+    "1. On load and on each day navigation, the timeline is auto-scrolled so the working-day start sits at the left edge of the visible area, with a small buffer (roughly 30 to 60 minutes) before it.",
+    "2. The start used is the earliest technician's configured start; if no tech hours are set, business hours; otherwise 7:00 AM - so no shifts sit off-screen to the left.",
+    "3. The timeline is not stuck there - it remains a full 24-hour scrollable timeline."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.8 (Auto-scroll to business hours)",
+  "refs": "SV-8694 (§4.8 (Auto-scroll to business hours))",
+  "viu_status": "VIU-Pending",
+  "notes": "The 30-60 minute buffer is spec-approximate - confirm the actual buffer live.",
+  "api_related": false
+}

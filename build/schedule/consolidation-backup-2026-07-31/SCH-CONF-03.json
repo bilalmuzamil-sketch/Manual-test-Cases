@@ -1,0 +1,28 @@
+{
+  "id": "SCH-CONF-03",
+  "area": "Conflict Detection",
+  "title": "Before hours: a shift starting before the technician's configured working-day start is flagged",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Edit.",
+    "2. A technician has a known working-day start (for example 8:00 AM).",
+    "3. A shift exists for that technician."
+  ],
+  "steps": [
+    "1. In day view, drag the shift so it starts BEFORE the technician's working-day start (for example 6:00 AM).",
+    "2. Look at the block and the conflict pill."
+  ],
+  "expected": [
+    "1. The shift is flagged as a before-hours conflict (the design's reason sentence reads in the spirit of 'Starts before working hours (8:00 AM)'), measured against the technician's configured working-day start.",
+    "2. The working-day start follows the hierarchy technician hours, then business hours, then the default.",
+    "3. Warning icon on the block; the conflict appears in the toolbar dropdown."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.11 (Before hours)",
+  "refs": "SV-8697 (§4.11 (Before hours))",
+  "viu_status": "VIU-Pending",
+  "notes": "Reconciliation 2026-07-22: 'working-day start' now = the technician's CONFIGURED start (hierarchy Tech > Business > Default). Driver: Branko Q&A 2026-07-22 Q2. Prototype hardcodes 8:00 AM (design §5) - confirm the real hierarchy LIVE at VIU.",
+  "api_related": false
+}

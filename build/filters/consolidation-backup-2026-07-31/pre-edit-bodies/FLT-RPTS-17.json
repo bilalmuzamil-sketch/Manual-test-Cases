@@ -1,0 +1,26 @@
+{
+ "id": "FLT-RPTS-17",
+ "area": "Reports Page Filters",
+ "title": "Notes report shows Author, Date and Mention filters",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Reports pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Reports area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. Open the Reports area and go to the Notes report.",
+  "2. Look at the filter buttons shown above the report table."
+ ],
+ "expected": [
+  "1. The Notes report shows three filter buttons: Author, Date and Mention (the Mention button uses an @ icon).",
+  "2. The toolbar also shows a search icon, a filter icon and a sort icon.",
+  "3. Mention is a new filter type not on the Work Orders page — Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available."
+ ],
+ "design_ref": "design-notes.md B.6 (11982:9225)",
+ "spec_ref": "Filters (Epic key TBD); Figma 11903-10573 (Reports filters); design-notes.md §B.6 #18",
+ "viu_status": "VIU-Pending",
+ "notes": "Design-only. New filter type (Mention). Option lists pending Branko's PRD.",
+ "api_related": false
+}

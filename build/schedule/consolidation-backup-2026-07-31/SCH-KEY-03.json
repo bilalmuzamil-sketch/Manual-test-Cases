@@ -1,0 +1,29 @@
+{
+  "id": "SCH-KEY-03",
+  "area": "Keyboard Interactions",
+  "title": "Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Delete (to exercise the delete-scope dialog; spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Delete.",
+    "2. Shifts/series and events exist to exercise the dialogs.",
+    "3. You are on the Schedule page."
+  ],
+  "steps": [
+    "1. Open the spread step for a large job, press Enter.",
+    "2. Open the reassign dialog for a shift, choose a technician, press Enter.",
+    "3. Open the event modal with valid fields, press Enter.",
+    "4. Open a series delete-scope prompt, select a scope, press Enter."
+  ],
+  "expected": [
+    "1. In each confirmable dialog, Enter confirms it - equivalent to clicking its confirm action.",
+    "2. The confirmed action takes effect (spread created / reassigned / event saved / delete applied)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §7 (Keyboard support - Enter)",
+  "refs": "SV-8700 (§7 (Keyboard support - Enter))",
+  "viu_status": "VIU-Pending",
+  "notes": "Undo/clean up each confirmed action after verifying.",
+  "api_related": false
+}

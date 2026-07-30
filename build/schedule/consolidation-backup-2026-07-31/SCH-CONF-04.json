@@ -1,0 +1,28 @@
+{
+  "id": "SCH-CONF-04",
+  "area": "Conflict Detection",
+  "title": "After hours: a shift extending past the technician's configured working-day end is flagged",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Edit.",
+    "2. A technician has a known working-day end (for example 5:00 PM).",
+    "3. A shift exists for that technician ending before 5:00 PM."
+  ],
+  "steps": [
+    "1. In day view, drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM).",
+    "2. Look at the block and the conflict pill."
+  ],
+  "expected": [
+    "1. The shift is flagged as an after-hours conflict (the design's reason sentence reads in the spirit of 'Extends past working hours (5:00 PM)'), measured against the technician's configured working-day end.",
+    "2. The working-day end follows the hierarchy technician hours, then business hours, then the default.",
+    "3. Warning icon on the block; the conflict appears in the toolbar dropdown."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.11 (After hours)",
+  "refs": "SV-8697 (§4.11 (After hours))",
+  "viu_status": "VIU-Pending",
+  "notes": "Reconciliation 2026-07-22: 'working-day end' now = the technician's CONFIGURED end (hierarchy Tech > Business > Default). Driver: Branko Q&A 2026-07-22 Q2. Prototype hardcodes 5:00 PM (design §5) - confirm the real hierarchy LIVE at VIU.",
+  "api_related": false
+}

@@ -1,0 +1,29 @@
+{
+  "id": "SCH-LINE-01",
+  "area": "Sidebar - Line Drill-Down",
+  "title": "Clicking a work order card replaces the list in place with that order's lines, with a back control",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser.",
+    "2. A work order exists with at least two approved lines.",
+    "3. You are on the Schedule page with the work order list visible."
+  ],
+  "steps": [
+    "1. Click that work order's card in the sidebar.",
+    "2. Look at the sidebar.",
+    "3. Click the back control."
+  ],
+  "expected": [
+    "1. The card list is replaced, in the same place, by that work order's lines (no new page or popup).",
+    "2. A back control is shown to return to the card list.",
+    "3. Clicking back restores the work order card list."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §3.1 (Line drill-down)",
+  "refs": "SV-8687 (§3.1 (Line drill-down))",
+  "viu_status": "VIU-Pending",
+  "notes": "Back control form (arrow/label) unpinned - confirm live.",
+  "api_related": false
+}

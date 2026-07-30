@@ -1,0 +1,26 @@
+{
+ "id": "FLT-PARTS-01",
+ "area": "Parts Page Filters",
+ "title": "Parts Inventory page shows Bin Location, Category, Supply and Vendor filters",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Parts area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. Open the Parts area and go to the Inventory page.",
+  "2. Look at the filter buttons shown above the parts table."
+ ],
+ "expected": [
+  "1. The Inventory page shows four filter buttons in a row: Bin Location, Category, Supply and Vendor (each with a small icon and a down arrow).",
+  "2. The table below shows the columns: Description, Part number, Tags, Category, Manufacturer, Vendor, Bin Location / Quantity and Action.",
+  "3. A blue New Inventory Part button is shown at the top right."
+ ],
+ "design_ref": "design-notes.md B.5 #1 (11894:21846)",
+ "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #1",
+ "viu_status": "VIU-Pending",
+ "notes": "Design-only (chip + column presence). Which filters actually apply and their option lists are pending Branko's PRD.",
+ "api_related": false
+}

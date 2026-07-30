@@ -1,0 +1,26 @@
+{
+ "id": "FLT-PARTS-02",
+ "area": "Parts Page Filters",
+ "title": "Parts Part Sales page shows Status, Customer, Created by and Date filters",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Parts area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. Open the Parts area and go to the Part Sales page.",
+  "2. Look at the filter buttons shown above the part sales table."
+ ],
+ "expected": [
+  "1. The Part Sales page shows four filter buttons: Status, Customer, Created by and Date.",
+  "2. The table shows the columns: Number, Status, Customer, Asset, VIN/Serial #, Created By, Total Price, Created On, Parts and Returns.",
+  "3. A blue New Part Sale button is shown at the top right."
+ ],
+ "design_ref": "design-notes.md B.5 #2 (11902:8517)",
+ "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #2",
+ "viu_status": "VIU-Pending",
+ "notes": "Design-only (chip + column presence). Option lists and apply behaviour pending Branko's PRD.",
+ "api_related": false
+}

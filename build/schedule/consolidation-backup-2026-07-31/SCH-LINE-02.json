@@ -1,0 +1,27 @@
+{
+  "id": "SCH-LINE-02",
+  "area": "Sidebar - Line Drill-Down",
+  "title": "Drill-down header shows the work order id plus its line count",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser.",
+    "2. A work order exists with a known number of approved lines.",
+    "3. You are on the Schedule page."
+  ],
+  "steps": [
+    "1. Click the work order card to open the drill-down.",
+    "2. Read the header of the drill-down."
+  ],
+  "expected": [
+    "1. The header shows the work order id.",
+    "2. The header also shows the line count, and it matches the number of approved lines."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §3.1 (Line drill-down)",
+  "refs": "SV-8687 (§3.1 (Line drill-down))",
+  "viu_status": "VIU-Pending",
+  "notes": "Exact header composition/format unpinned - confirm live.",
+  "api_related": false
+}

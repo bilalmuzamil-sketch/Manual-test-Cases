@@ -1,0 +1,26 @@
+{
+ "id": "FLT-PARTS-08",
+ "area": "Parts Page Filters",
+ "title": "Parts Vendors list page shows Vendor and State/Province filters",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Parts area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. Open the Parts area and go to the Vendors list page.",
+  "2. Look at the filter buttons shown above the vendors table."
+ ],
+ "expected": [
+  "1. The Vendors page shows two filter buttons: Vendor and State/Province.",
+  "2. The table shows the columns: Name, Telephone, Email, Address 1, Address 2, City, State/Province and Zip/Postal Code.",
+  "3. A blue New Vendor button is shown at the top right."
+ ],
+ "design_ref": "design-notes.md B.5 #8 (11903:10461)",
+ "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #8",
+ "viu_status": "VIU-Pending",
+ "notes": "Design-only (chip + column presence). Frame is named 'Vendor Invoices' in Figma but shows the Vendors list (design typo, §C.4). Option lists pending Branko's PRD. CONFLICT - PENDING DESIGN (Questions Q6 / deltas C7): engineering found NO Figma frame for the Parts Vendors view (they read frame 11903:10461 as Vendor Invoices, not a Vendors typo) and will NOT build Vendors filters until a design is delivered. This case's chip set may change - hold against the requested design + PRD.",
+ "api_related": false
+}

@@ -1,0 +1,26 @@
+{
+  "id": "SCH-EXP-02",
+  "area": "Week Export and Printing",
+  "title": "Exported week view lists each department with its technicians and shifts",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View. Confirm the exact permission live at VIU.",
+  "preconditions": [
+    "1. You have opened the Week Export / Print view for a week that has shifts."
+  ],
+  "steps": [
+    "1. Read the exported week view.",
+    "2. Check the department grouping, the technician rows, and the shifts shown per day."
+  ],
+  "expected": [
+    "1. The exported view groups technicians by department, with department headers.",
+    "2. Each technician's shifts for the week appear in the correct day columns.",
+    "3. The week's date range is shown."
+  ],
+  "design_ref": "Claude design (Schedule Week Export.dc.html + schedule-week-view.html), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "Design Week Export (V1 scope pending Branko confirmation)",
+  "refs": "SV-8685 (design Week Export - V1 scope pending Branko)",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW SCOPE from the 2026-07-27 design ZIP (Week Export). Scope for V1 pending Branko (DESIGN-RECONCILIATION §5). No single-story owner yet -> epic SV-8685 (Rule 20). Confirm the exact layout/content LIVE at VIU (Rule 12).",
+  "api_related": false
+}

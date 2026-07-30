@@ -1,0 +1,28 @@
+{
+  "id": "SCH-SCOPE-06",
+  "area": "Scope Picker",
+  "title": "'Select all' equals whole order; Cancel returns to the fast single-tap list",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Edit.",
+    "2. A multi-line work order exists.",
+    "3. You are on the Schedule page with the scope picker open in 'Select multiple' mode."
+  ],
+  "steps": [
+    "1. Click 'Select all' and read the tally.",
+    "2. Click Cancel instead of confirming.",
+    "3. Look at the picker."
+  ],
+  "expected": [
+    "1. 'Select all' ticks every line - the tally equals the whole order (same line count and hours as 'Schedule whole work order').",
+    "2. Cancel leaves checkbox mode and returns to the normal single-tap line list without creating anything."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.3 (Select all shortcut, Cancel)",
+  "refs": "SV-8689 (§4.3 (Select all shortcut, Cancel))",
+  "viu_status": "VIU-Pending",
+  "notes": "'Select all'/'Unselect all'/'Cancel' and the whole-order label 'Whole order · Xh' pinned by the Claude design (§4a); confirm live. Driver: Claude design §4a.",
+  "api_related": false
+}

@@ -1,0 +1,25 @@
+{
+ "id": "FLT-RPTS-08",
+ "area": "Reports Page Filters",
+ "title": "Sales Follow Up report shows Customer, Date and Contact filters",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Reports pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Reports area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. Open the Reports area and go to the Sales Follow Up report.",
+  "2. Look at the filter buttons shown above the report table."
+ ],
+ "expected": [
+  "1. The Sales Follow Up report shows three filter buttons: Customer, Date and Contact.",
+  "2. The table shows columns: Customer, Sales Representative, Number Of Work Orders, Total Spend and Last Visit."
+ ],
+ "design_ref": "design-notes.md B.6 (11984:9457)",
+ "spec_ref": "Filters (Epic key TBD); Figma 11903-10573 (Reports filters); design-notes.md §B.6 #9",
+ "viu_status": "VIU-Pending",
+ "notes": "Design-only (chip + column presence). Option lists pending Branko's PRD.",
+ "api_related": false
+}

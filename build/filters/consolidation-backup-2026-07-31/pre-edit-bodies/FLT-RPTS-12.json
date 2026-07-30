@@ -1,0 +1,27 @@
+{
+ "id": "FLT-RPTS-12",
+ "area": "Reports Page Filters",
+ "title": "A/R Aging Detail shows Customer, Date, Location, Transaction Type filters",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Reports pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Reports area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. Open the Reports area and go to the A/R Aging Detail report.",
+  "2. Look at the filter buttons shown above the report table."
+ ],
+ "expected": [
+  "1. The A/R Aging Detail report shows four filter buttons: Customer, Date, Location and Transaction Type.",
+  "2. A print icon is shown in the toolbar.",
+  "3. Location and Transaction Type are new filter types not on the Work Orders page — Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available.",
+  "2. Note: in the design the report body uses a sample placeholder table, so only the title, tabs and filter buttons are design-confirmed here; the real report columns come from Branko's PRD."
+ ],
+ "design_ref": "design-notes.md B.6 (11955:31802)",
+ "spec_ref": "Filters (Epic key TBD); Figma 11903-10573 (Reports filters); design-notes.md §B.6 #13",
+ "viu_status": "VIU-Pending",
+ "notes": "Design-only (title/chips). New filter types (Location, Transaction Type). Option lists pending Branko's PRD.",
+ "api_related": false
+}

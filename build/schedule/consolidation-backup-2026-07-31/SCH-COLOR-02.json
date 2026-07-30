@@ -1,0 +1,28 @@
+{
+  "id": "SCH-COLOR-02",
+  "area": "Color System",
+  "title": "Choosing a color from the shift modal's picker recolors the shift with matching background, text, and accent tones",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Edit.",
+    "2. A shift exists; its detail modal is open."
+  ],
+  "steps": [
+    "1. Open the color picker in the modal.",
+    "2. Choose a non-default color.",
+    "3. Look at the block on the grid."
+  ],
+  "expected": [
+    "1. The shift's block re-renders in the chosen color.",
+    "2. The color provides three consistent tones: background fill, text color, and accent (left border).",
+    "3. Colors carry no fixed meaning - they are free choice beyond the two defaults (blue shift / grey event)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §10, §4.9 (Color picker)",
+  "refs": "SV-8700 (§10, §4.9 (Color picker))",
+  "viu_status": "VIU-Pending",
+  "notes": "Palette contents and tone rendering unpinned (Claude design now available; live-render confirm at VIU) - confirm live. Whether recoloring one shift recolors all blocks of the same work order (§4.4 ties color to the WO) - observe and record.",
+  "api_related": false
+}

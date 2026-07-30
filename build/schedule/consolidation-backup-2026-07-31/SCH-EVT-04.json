@@ -1,0 +1,27 @@
+{
+  "id": "SCH-EVT-04",
+  "area": "Events",
+  "title": "The all-day toggle creates an all-day event",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+    "1. You are signed in on a desktop browser with Schedule: Edit.",
+    "2. You are on the Schedule page with the event modal open."
+  ],
+  "steps": [
+    "1. Turn the all-day toggle ON.",
+    "2. Save the event.",
+    "3. Look at how it renders in day and week views."
+  ],
+  "expected": [
+    "1. With all-day on, specific start/end times are not required (the time fields are disabled or hidden).",
+    "2. The event is created as an all-day block for that technician and day."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.10, §8.1 (Event allDay field)",
+  "refs": "SV-8696 (§4.10, §8.1 (Event allDay field))",
+  "viu_status": "VIU-Pending",
+  "notes": "All-day rendering (where the block sits on the timeline) unpinned - capture live.",
+  "api_related": false
+}

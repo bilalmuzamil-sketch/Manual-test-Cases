@@ -1,0 +1,28 @@
+{
+  "id": "SCH-HRS-01",
+  "area": "Working Hours Settings",
+  "title": "Edit Location has a 'Set business hours for this shop' toggle, off by default",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Access to the Edit Location settings screen (admin / settings). Confirm the exact permission live at VIU.",
+  "preconditions": [
+    "1. You are signed in to the ShopView App with access to location settings.",
+    "2. You open the Edit Location screen for a shop."
+  ],
+  "steps": [
+    "1. Open the Edit Location screen.",
+    "2. Find the business hours setting and read its default state.",
+    "3. Turn the 'Set business hours for this shop' toggle ON."
+  ],
+  "expected": [
+    "1. Edit Location shows a toggle labelled 'Set business hours for this shop'.",
+    "2. The toggle is OFF by default (no business hours set).",
+    "3. Turning it ON reveals a per-day working-hours editor for the shop."
+  ],
+  "design_ref": "Claude design (Edit Modals.dc.html - Edit Location modal), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "SV-8699 Working Hours Settings (§4.2 settings - business hours)",
+  "refs": "SV-8699 (§4.2 Working Hours - business hours toggle)",
+  "viu_status": "VIU-Pending",
+  "notes": "New-scope from Jira SV-8699 (GAP G1, RECONCILIATION.md). Toggle label 'Set business hours for this shop' + off-by-default per the story verbatim; confirm the exact label/behaviour LIVE at VIU (Rule 12). Driver: SV-8699. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-3): the engineering plan (Phase 2) places shop business hours + closures in a NEW Administration 'Schedule Settings' page (reachable from the admin menu and linked from the calendar's View Options), not an Edit-Location toggle. The design file this case came from was an empty shell per the plan. Placement pending ruling (Questions-for-Branko-dev.md NQ-3).",
+  "api_related": false
+}
