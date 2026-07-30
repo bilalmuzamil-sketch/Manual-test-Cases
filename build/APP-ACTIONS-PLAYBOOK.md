@@ -66,6 +66,7 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 [J. TestRail API](#j-testrail-api) ·
 [K. PRODUCTION access & fix-verification](#k-production-access--fix-verification-sv-8721-proven-2026-07-29) ·
 [L. Git practice with parallel workers](#l-git-practice-with-parallel-workers) ·
+[M. Figma: extract ALL frames from a design link](#m-figma-extract-all-frames-from-a-design-link-proven-2026-07-31-filters) ·
 [Jira/Confluence access](#jiraconfluence-access)
 
 ---
@@ -399,6 +400,50 @@ Terse entries; where the full detail already lives elsewhere in this playbook, t
   be active. **Syntax gotcha:** `git commit -m "<msg>" -- <paths>` errors ("did not match any
   file(s)") — write the message to a temp file and use **`git commit -F /tmp/msg.txt -- <paths>`**
   (multi-line messages work cleanly this way too). *(proven 2026-07-31)*
+
+## M. Figma: extract ALL frames from a design link (proven 2026-07-31, Filters)
+**Use when** the user hands over one or more `figma.com/design/<fileKey>/...?node-id=A-B` links and
+wants every frame/board captured. **Do NOT WebFetch the figma.com URL** (returns the app shell only)
+and do not assume the Figma MCP is connected — it usually is not.
+
+- **Creds:** a Figma **personal access token** already lives at **`/tmp/figma-token`** (secret →
+  `/tmp` only, NEVER committed; scripts must read the file, never inline the value). Verify with
+  `GET https://api.figma.com/v1/files/<fileKey>?depth=1` → HTTP 200 + the file name.
+- **Node-id format gotcha:** the URL uses a **dash** (`11817-27678`); the **API uses a colon**
+  (`11817:27678`). Convert both ways.
+- **Step 1 — enumerate the whole tree (Rule 17 completeness):**
+  `GET /v1/files/<fileKey>/nodes?ids=<id1>,<id2>,...` (all ids in ONE call), then walk it:
+  descend through `CANVAS` and `SECTION`, and **collect at the first `FRAME` / `COMPONENT_SET`**
+  (do not recurse into a frame or you collect its inner layers as separate boards).
+  **Dedupe by node id** — a link often points at a whole CANVAS that *contains* the other links, so
+  the union is far smaller than the sum. *(Filters: 4 links → 118 hits → **85 unique boards**.)*
+  State the exact total found before rendering.
+- **Step 2 — read the exact on-screen labels WITHOUT any image:** walk the same tree collecting
+  `TEXT.characters` per board, **skipping `visible:false`** layers. This is the Rule-9 wording source
+  and it survives a rate limit. Also read `componentProperties`/`variantProperties` on `INSTANCE`
+  nodes — that is how you prove a state (e.g. a chip rendered with variant `Disabled` vs `Selected`),
+  and `COMPONENT_SET` children names give the full variant list (`Default/Hover/Selected/Disabled`).
+  Layer NAMES also identify unlabelled icons (`Filter-lines`, `Columns`, `Switch-vertical` = sort).
+  **⚠️ Never report a `visible:false` layer as design content** — Figma components are full of hidden
+  placeholder text ("By ownership", "Administrator", "Placeholder").
+- **Step 3 — render:** `GET /v1/images/<fileKey>?ids=<comma ids>&format=png&scale=2` returns
+  `{images:{id:url}}` (signed S3 URLs), then `curl -L -o <file> <url>`.
+- **⚠️ THE BIG GOTCHA — the images endpoint has a hard, long-window cap.** After ~24 renders it
+  returns `HTTP 429 {"err":"Rate limit exceeded"}` with **`retry-after: ~37874` (≈10.5 HOURS)**.
+  `scale=1` is capped identically (cost is not per-pixel), and no amount of backoff helps inside a
+  session. The **`/nodes` endpoint is a separate budget and keeps working** — which is why Step 2
+  matters. Practical rules: **render in small batches with a pause, most-important boards FIRST**,
+  make the fetcher **resumable** (skip any file already on disk, cache the signed URLs to json), and
+  when capped, fall back to (a) PNGs already exported for the same node ids in an earlier pass, and
+  (b) the Step-2 text/variant extraction — then state the honest split in the deliverable.
+- **Naming (Rule 19):** `<Section-Name>__<Board-Name>__<node-id-with-dash>.png` — board names repeat
+  constantly ("Mobile" ×4, "Step 1" ×3), so the node id is mandatory to disambiguate.
+- **Python gotcha:** do NOT name a helper script `enum.py` — it shadows stdlib `enum` and breaks
+  `import json` with a circular-import error.
+- **Helpers (copy these):** `build/filters/design-2026-07-31/tools/` — `enumerate_frames.py`
+  (tree walk + dedupe), `texts.py` (visible-text per board), `render.py` (batch image request),
+  `fetch_all.py` (resumable download with backoff). Canonical example output:
+  `build/filters/design-2026-07-31/DESIGN-NOTES.md` (85-board inventory + design-vs-cases flags).
 
 ## Jira/Confluence access
 - Live browser login (headless Chromium via a fresh MITM bridge → id.atlassian.com email+password →
