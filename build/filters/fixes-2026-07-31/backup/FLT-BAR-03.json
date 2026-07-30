@@ -1,0 +1,25 @@
+{
+ "id": "FLT-BAR-03",
+ "area": "Filter Bar Layout and Visibility",
+ "title": "The filter bar still shows the remaining chips on a tab where the Status filter is hidden",
+ "priority": "Medium",
+ "type": "Negative",
+ "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Work Orders page."
+ ],
+ "steps": [
+  "1. Click the Estimates tab.",
+  "2. Look at the filter bar."
+ ],
+ "expected": [
+  "1. The filter bar is still shown (it does not disappear).",
+  "2. The remaining filter chips (Customer, Lead Technician, Service Advisor, Asset on site) are displayed and usable."
+ ],
+ "design_ref": "design-notes.md B.1 #2 (11972:32318)",
+ "spec_ref": "requirements.md Story 1 S1-N1",
+ "viu_status": "VIU-Pending",
+ "notes": "SPEC-vs-DESIGN CONFLICT on the Status chip itself: the spec (S2-N1/S9-R2) says the Status chip is NOT shown on the Estimates tab, but the final design frame 11972:32318 shows a pale/disabled chip reading 'Status: Estimate'. Raised as a PO question; VIU-confirm which behavior the build implements. This case only asserts the remaining four chips stay visible - true under either reading.",
+ "api_related": false
+}

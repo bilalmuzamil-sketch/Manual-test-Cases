@@ -1,0 +1,28 @@
+{
+ "id": "FLT-PSRCH-04",
+ "area": "Page Search Toolbar",
+ "title": "The search term is part of the shareable page link",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the page being searched.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Work Orders page."
+ ],
+ "steps": [
+  "1. Type a search term and copy the page address.",
+  "2. Open the copied address in a fresh tab.",
+  "3. Hand-edit the search part of the address into something malformed and load it."
+ ],
+ "expected": [
+  "1. The address contains the search term after step 1.",
+  "2. The fresh tab opens with the search box filled and the list already narrowed.",
+  "3. The malformed part is ignored - the page loads cleanly without an error.",
+  "4. A search arriving via a link is view-only, the same as filters from a link - it does not overwrite your own remembered search."
+ ],
+ "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D18 / G7",
+ "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 D18 + G7; spec v1.3 S11-R4/R5, S11-N2 (export awaited)",
+ "viu_status": "VIU-Pending",
+ "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): the view-only rule (expected 4) follows G7 which is pending Branko's spec-text ratification (deltas C1) - same caveat as FLT-URL-05.",
+ "api_related": false
+}

@@ -1,0 +1,25 @@
+{
+ "id": "FLT-PSRCH-06",
+ "area": "Page Search Toolbar",
+ "title": "Every list page keeps its own search box (Parts, Reports, detail tabs)",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the page being searched.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. The page-search rollout has shipped (same programme as the Work Orders filters)."
+ ],
+ "steps": [
+  "1. Visit several list surfaces: a Parts view (for example Inventory), a report, a customer's Notes tab on the customer page, and any pop-up list that used to be searchable.",
+  "2. On each, look for that surface's own search box and use it."
+ ],
+ "expected": [
+  "1. Every list surface that could be text-searched before still offers its own search control - no list silently lost its search.",
+  "2. Each search box narrows only its own list, not any other page."
+ ],
+ "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md Phase 9.1 / risk 9",
+ "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 Phase 9.1 (built-in table search, opt-out); spec v1.3 S13-R22 + S14-R5/R6 (export awaited)",
+ "viu_status": "VIU-Pending",
+ "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): engineering's safety net is a built-in search on every list table (opt-out) precisely so nothing is forgotten - this case is the release sweep for it. Pull the exact page list (S13-R22) from the spec v1.3 export when it arrives.",
+ "api_related": false
+}

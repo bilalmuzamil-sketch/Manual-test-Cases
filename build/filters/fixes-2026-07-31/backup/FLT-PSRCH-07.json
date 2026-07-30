@@ -1,0 +1,28 @@
+{
+ "id": "FLT-PSRCH-07",
+ "area": "Page Search Toolbar",
+ "title": "The top navigation search no longer filters page lists",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the page being searched.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Work Orders page with several work orders listed."
+ ],
+ "steps": [
+  "1. Type a term into the TOP NAVIGATION search (the app-wide search at the top), not the page's own search box.",
+  "2. Watch the Work Orders list while typing.",
+  "3. Repeat on the Parts Inventory page.",
+  "4. Pick one of the results offered in the navigation search's dropdown."
+ ],
+ "expected": [
+  "1. The page list does NOT narrow while you type in the navigation search - only its dropdown of matching records appears.",
+  "2. The same holds on the other pages checked.",
+  "3. Picking a dropdown result still takes you to that record - the navigation search keeps its find-and-open role."
+ ],
+ "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md Phase 9 / D22",
+ "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 Phase 9 (search decoupling); spec v1.3 Story 14 S14-R2/R3 (export awaited)",
+ "viu_status": "VIU-Pending",
+ "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): the old behaviour (nav search silently filtering the open page's list) is REMOVED for real, app-wide. Its replacement on each page is the page's own search box (FLT-PSRCH-01/06). Do not run before the pages have their own boxes - engineering lands the page boxes first.",
+ "api_related": false
+}

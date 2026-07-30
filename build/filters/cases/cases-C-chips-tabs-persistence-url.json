@@ -331,7 +331,7 @@
  {
   "id": "FLT-TAB-05",
   "area": "Tab Behaviour",
-  "title": "Filter selections survive tab switching; a Status selection hidden on Estimates/Completed comes back on the All tab",
+  "title": "A Status choice is kept while you switch tabs and comes back on the All tab",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -345,14 +345,14 @@
    "2. Click back to the All tab and look again."
   ],
   "expected": [
-   "1. On the Estimates tab the Status selection is not applied and not shown as an editable filter (incompatible with the tab), but the Customer selection is still shown and still filters the list.",
+   "1. On the Estimates tab your Status choice is not applied and cannot be changed - the Status chip is greyed out and pre-filled with the tab's own status. The Customer selection is still shown and still filters the list.",
    "2. Back on the All tab the Status chip reappears with the SAME selection (Approved) still applied - the selection was retained in memory, not lost.",
    "3. The Customer selection is unchanged throughout."
   ],
   "design_ref": "design-notes.md B.1 #2/#4 (11972:32318, 11854:26246)",
-  "spec_ref": "requirements.md Story 9 S9-R5; S9-N1",
+  "spec_ref": "Filters epic (key TBD) (S9-R5; S9-N1; S9-R2 - behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Consistency fix 2026-07-31 (FIX-PLAN F1b, user-authorized): title and expected 1 realigned to the settled Status-chip behaviour (shown greyed out, pre-filled, not clickable); the word \"hidden\" removed. Spec v1.6 prose still says \"hidden\" - Branko asked to align (item B1).",
   "api_related": false
  },
  {
@@ -660,25 +660,60 @@
   "permissions_required": "Any signed-in user with access to the Work Orders page (filter lists are role-independent per Branko Round-2 Q3=A).",
   "preconditions": [
    "1. You are signed in and have your OWN filters saved on the Work Orders page (for example one customer).",
-   "2. You have a Work Orders link that carries a DIFFERENT filter state (made by another user or another browser)."
+   "2. You have a Work Orders link that carries a DIFFERENT filter state (made by another user or another browser).",
+   "3. You know how to use the page's own Search box on the Work Orders page (the Search button in the toolbar row)."
   ],
   "steps": [
    "1. Note your own saved filters on the Work Orders page.",
    "2. Open the shared link.",
    "3. While on the link view, change one more filter.",
-   "4. Use the on-screen option to go back to your own saved filters.",
-   "5. Leave the page and return to Work Orders normally (via the menu)."
+   "4. Still on the link view, type something into the page's Search box so the list is narrowed by text as well.",
+   "5. Click 'Back to my view'.",
+   "6. Leave the page and return to Work Orders normally (via the menu)."
   ],
   "expected": [
    "1. The link's filters apply for viewing only - the page shows the shared view.",
    "2. Changes made during the link visit are also NOT saved to your account.",
-   "3. The go-back option restores your own saved filters and removes the filter part from the address bar.",
-   "4. Returning normally later still shows your own saved filters, untouched by the link visit."
+   "3. A 'Back to my view' option is shown while you are looking at the shared link. (VIU-confirm the exact wording on screen.)",
+   "4. Clicking 'Back to my view' brings back your own saved filters and removes the filter part from the web address.",
+   "5. It also empties the Search box and removes your typed text - the search is not something that gets saved, so there is nothing to bring back.",
+   "6. Returning normally later still shows your own saved filters, untouched by the link visit."
   ],
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md G7 / section 4-3.4",
-  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 G7 (URL state runtime-only + back-to-saved affordance); spec closing-note conflict raised with the author (spec v1.3 export awaited)",
+  "spec_ref": "Filters epic (key TBD) (S11-R6 (URL state runtime-only, no write-back); S11-R7 (Back to my view, also clears the query); S11-R8 (rationale: the query is never saved)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
-  "notes": "PENDING BRANKO (Questions Q2 / deltas C1): one spec sentence floats 'URL wins on load, then persists'; engineering builds runtime-only and reports the spec author agreed in page comments. The 'back to my saved filters' control name is engineering intent - capture the real on-screen text live.",
+  "notes": "RESOLVED by spec v1.4/v1.5 (2026-07-27): S11-R6 ratifies runtime-only with no write-back, exactly as tested; S11-R7 ratifies the control label as \"Back to my view\" (deliberately \"my view\" not \"my filters\" because it affects filters AND search). Branko Q2 and the naming question both withdrawn. The negative direction (control absent on a normal visit, S11-N3) is FLT-URL-06. Updated 2026-07-31 (FIX-PLAN F4+F5, user-authorized) against spec v1.6 (Confluence v12, 2026-07-28); the on-screen label is still (VIU-confirm) - no Filters QA branch exists yet.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-URL-06",
+  "area": "URL State and Shareable Links",
+  "title": "'Back to my view' is not shown when you are on your own view",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (filter lists are role-independent per Branko Round-2 Q3=A).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You have your OWN filters saved on the Work Orders page (for example one customer).",
+   "3. You are NOT using a shared link - you have not opened a Work Orders web address that someone sent you."
+  ],
+  "steps": [
+   "1. Open the Work Orders page from the main menu.",
+   "2. Look at the filter bar and the toolbar row for a 'Back to my view' option.",
+   "3. Change one of your filters and look again.",
+   "4. Open a Work Orders link that carries someone else's filters, and look again.",
+   "5. Click 'Back to my view', then look one more time."
+  ],
+  "expected": [
+   "1. On your own view there is no 'Back to my view' option anywhere - it only belongs to a shared-link visit.",
+   "2. Changing your own filters does not make it appear.",
+   "3. When you open the shared link, 'Back to my view' does appear.",
+   "4. After you click it and you are back on your own view, the option disappears again."
+  ],
+  "design_ref": "No design frame for this state (spec-sourced; Figma link on Story 11 is the Claude prototype Filters.html) - VIU-confirm live.",
+  "spec_ref": "Filters epic (key TBD) (S11-N3; S11-R7) [spec v1.6 2026-07-28]",
+  "viu_status": "VIU-Pending",
+  "notes": "Negative half of FLT-URL-05 (C38879). Ratified label per spec v1.5 S11-R7 - VIU-confirm the exact on-screen wording. Gap identified by QA review 2026-07-31 (FIX-PLAN F6, user-authorized). Authored against spec v1.6 (Confluence v12, 2026-07-28).",
   "api_related": false
  }
 ]

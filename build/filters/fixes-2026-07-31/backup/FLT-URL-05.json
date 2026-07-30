@@ -1,0 +1,30 @@
+{
+ "id": "FLT-URL-05",
+ "area": "URL State and Shareable Links",
+ "title": "Opening a filtered link never overwrites your saved filters",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Work Orders page (filter lists are role-independent per Branko Round-2 Q3=A).",
+ "preconditions": [
+  "1. You are signed in and have your OWN filters saved on the Work Orders page (for example one customer).",
+  "2. You have a Work Orders link that carries a DIFFERENT filter state (made by another user or another browser)."
+ ],
+ "steps": [
+  "1. Note your own saved filters on the Work Orders page.",
+  "2. Open the shared link.",
+  "3. While on the link view, change one more filter.",
+  "4. Use the on-screen option to go back to your own saved filters.",
+  "5. Leave the page and return to Work Orders normally (via the menu)."
+ ],
+ "expected": [
+  "1. The link's filters apply for viewing only - the page shows the shared view.",
+  "2. Changes made during the link visit are also NOT saved to your account.",
+  "3. The go-back option restores your own saved filters and removes the filter part from the address bar.",
+  "4. Returning normally later still shows your own saved filters, untouched by the link visit."
+ ],
+ "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md G7 / section 4-3.4",
+ "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 G7 (URL state runtime-only + back-to-saved affordance); spec closing-note conflict raised with the author (spec v1.3 export awaited)",
+ "viu_status": "VIU-Pending",
+ "notes": "PENDING BRANKO (Questions Q2 / deltas C1): one spec sentence floats 'URL wins on load, then persists'; engineering builds runtime-only and reports the spec author agreed in page comments. The 'back to my saved filters' control name is engineering intent - capture the real on-screen text live.",
+ "api_related": false
+}

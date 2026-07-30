@@ -1,0 +1,27 @@
+{
+ "id": "FLT-TAB-05",
+ "area": "Tab Behaviour",
+ "title": "Filter selections survive tab switching; a Status selection hidden on Estimates/Completed comes back on the All tab",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Work Orders page on the All tab.",
+  "3. A Status selection (for example Approved) and a Customer selection are active."
+ ],
+ "steps": [
+  "1. Click the Estimates tab and look at the filter bar and the table.",
+  "2. Click back to the All tab and look again."
+ ],
+ "expected": [
+  "1. On the Estimates tab the Status selection is not applied and not shown as an editable filter (incompatible with the tab), but the Customer selection is still shown and still filters the list.",
+  "2. Back on the All tab the Status chip reappears with the SAME selection (Approved) still applied - the selection was retained in memory, not lost.",
+  "3. The Customer selection is unchanged throughout."
+ ],
+ "design_ref": "design-notes.md B.1 #2/#4 (11972:32318, 11854:26246)",
+ "spec_ref": "requirements.md Story 9 S9-R5; S9-N1",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

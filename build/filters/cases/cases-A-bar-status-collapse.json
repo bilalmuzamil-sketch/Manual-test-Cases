@@ -54,7 +54,7 @@
  {
   "id": "FLT-BAR-03",
   "area": "Filter Bar Layout and Visibility",
-  "title": "The filter bar still shows the remaining chips on a tab where the Status filter is hidden",
+  "title": "The filter bar still shows the other four chips on the Estimates tab",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -67,13 +67,14 @@
    "2. Look at the filter bar."
   ],
   "expected": [
-   "1. The filter bar is still shown (it does not disappear).",
-   "2. The remaining filter chips (Customer, Lead Technician, Service Advisor, Asset on site) are displayed and usable."
+   "1. The filter bar is still shown - it does not disappear on this tab.",
+   "2. The Customer, Lead Technician, Service Advisor and Asset on site chips are all displayed and usable.",
+   "3. The Status chip is not usable on this tab: it is shown greyed out and already filled in with the tab's own status, and cannot be clicked. (VIU-confirm the exact greyed-out look.)"
   ],
   "design_ref": "design-notes.md B.1 #2 (11972:32318)",
-  "spec_ref": "requirements.md Story 1 S1-N1",
+  "spec_ref": "Filters epic (key TBD) (S1-N1; S9-R2; §4 Key Decisions - PRD text says \"hidden\"; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
-  "notes": "SPEC-vs-DESIGN CONFLICT on the Status chip itself: the spec (S2-N1/S9-R2) says the Status chip is NOT shown on the Estimates tab, but the final design frame 11972:32318 shows a pale/disabled chip reading 'Status: Estimate'. Raised as a PO question; VIU-confirm which behavior the build implements. This case only asserts the remaining four chips stay visible - true under either reading.",
+  "notes": "Status-chip wording standard: this behaviour is described as \"shown greyed out, pre-filled, not clickable\" everywhere in this suite. PRD v1.6 S9-R2/S9-R3/S2-N1/S2-N2/S1-N1 and §4 still say \"hidden\" - stale prose, Branko asked to align (item B1). Do not reintroduce the word \"hidden\". | Consistency fix 2026-07-31 (FIX-PLAN F1a, user-authorized) against spec v1.6 (Confluence v12, 2026-07-28).",
   "api_related": false
  },
  {
