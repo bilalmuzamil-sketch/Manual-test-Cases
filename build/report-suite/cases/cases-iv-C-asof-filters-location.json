@@ -19,7 +19,7 @@
    "2. \"All Time\" is NOT offered — because the report is valued as of a single date, an All-Time option would be meaningless; its absence is the documented v1 behavior."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 5 S5-R1; §2 Known Limitations (v1)",
+  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-R1; §2 Known Limitations (v1))",
   "viu_status": "VIU-Pending",
   "notes": "DOCUMENTED LIMITATION — DO NOT FILE. The missing \"All Time\" option is a deliberate v1 boundary.",
   "api_related": false
@@ -46,7 +46,7 @@
    "2. The date control is an \"as of\" anchor, not a created-date filter — narrowing it does not select \"parts added in that range\"; it shows the whole shelf as it stood on that date, so the part stocked before the range still appears."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 5 S5-R2 (+ context note)",
+  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-R2 (+ context note))",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -72,7 +72,7 @@
    "2. The part's row reflects today's changed quantity (not yesterday's snapshot), proving the live fallback is in use."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 5 S5-R3; §3 Key Decisions (live fallback for today)",
+  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-R3; §3 Key Decisions (live fallback for today))",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -98,7 +98,7 @@
    "2. The part's row shows the quantity and values recorded for that day, not today's live stock."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 5 S5-R4; §2 Relationship to nightly history",
+  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-R4; §2 Relationship to nightly history)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -124,7 +124,7 @@
    "2. When the displayed day matches the date asked for (the common current-view case), the \"As of\" indicator is not shown — the date control already communicates the date."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 5 S5-R5; S5-R6",
+  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-R5; S5-R6)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the indicator's exact on-screen wording — the spec pins \"As of \" plus the day but not the full label format. COMPANION-VIDEO 2026-07-30 (C20, 12:01-13:10) soft-worded CONFIRMATION: 'if snapshot data is taken, we don't need to see this ... only ... important if you've been offline ... Or, no snapshot' — matches S5-R5/S5-R6 (indicator hidden when the shown day matches, shown on fallback). Spec silent on an offline/stale-data state — VIU-watch only, not authored (Rule 15 spec-silent stated).",
   "api_related": false
@@ -152,7 +152,7 @@
    "3. Changing the date range reloads the report (the loading indicator shows and the rows re-fetch)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 5 S5-R7; S5-R8",
+  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-R7; S5-R8)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm how the today-cap is enforced (disabled future dates vs an error).",
   "api_related": false
@@ -202,7 +202,7 @@
    "2. This forward-capture-only behavior is the documented v1 boundary, not a defect."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope",
+  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope)",
   "viu_status": "VIU-Pending",
   "notes": "DOCUMENTED LIMITATION — DO NOT FILE. Forward-capture history only; no backfill exists.",
   "api_related": false
@@ -229,7 +229,7 @@
    "3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 6 S6-R1; S6-R2; S6-R3; S6-R4",
+  "spec_ref": "SV-8673 (specs/inventory-value.md Story 6 S6-R1; S6-R2; S6-R3; S6-R4)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: the 2026-07-21 spec change moved these filters server-side (they were \"on-screen only\" in the earlier draft). If the build still narrows only the current page client-side, record it as a build deviation from the current spec.",
   "api_related": false
@@ -257,7 +257,7 @@
    "3. Every change — date range, location, Category, Vendor, part search, sort — reloads the rows from the server; while loading the standard reports loading indicator shows, and existing rows are replaced only when the new data returns."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8",
+  "spec_ref": "SV-8673 (specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8)",
   "viu_status": "VIU-Pending",
   "notes": "Every filter on this report is server-side (Story 6 context note) — only the column selection is client-side. VIU-confirm the loading indicator's appearance. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-RELOAD): absorbed IV-NAV-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -284,7 +284,7 @@
    "3. With the part search empty, no search narrowing is applied."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 6 S6-R7",
+  "spec_ref": "SV-8673 (specs/inventory-value.md Story 6 S6-R7)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -313,7 +313,7 @@
    "4. The search applies server-side (whole data set, first page returned); a no-match search shows the no-data message."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 6 S6-R8; S6-R5",
+  "spec_ref": "SV-8673 (specs/inventory-value.md Story 6 S6-R8; S6-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Parts Velocity is the spec's named sibling for this same search pattern. VIU-confirm the search field's placeholder/label text (unpinned).",
   "api_related": false
@@ -339,7 +339,7 @@
    "2. The totals row matches the combined filtered set after each step."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 6 S6-R9",
+  "spec_ref": "SV-8673 (specs/inventory-value.md Story 6 S6-R9)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -367,7 +367,7 @@
    "3. With \"All locations\" active you can tell which location each row's stock belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)"
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+  "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
   "viu_status": "VIU-Pending",
   "notes": "VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 41:09-41:20: 'how do I know which is for shop A and which is for shop B? ... we should probably add that in there.' The current spec has NO Location identifier column (one row per part per location, S2-R3, but no Location column in S3-R1). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9). Title shortened to fit.",
   "api_related": false
@@ -394,7 +394,7 @@
    "3. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
   "viu_status": "VIU-Pending",
   "notes": "SCOPE-INDICATOR added 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now shows which location(s) it's scoped to... on screen') - distinct from the per-row location label (video P10), which stays. Spec anchor pending the updated spec changelog.",
   "api_related": false
@@ -419,7 +419,7 @@
    "2. If the requested location set resolves to none the user can access, the report falls back to the user's currently active location."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 7 S7-R4; S7-R5",
+  "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-R4; S7-R5)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -444,7 +444,7 @@
    "2. For the user with access to two or more locations the Location filter IS shown."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S7-N1 \"still sees the filter\" note is stale, spec edit pending)",
+  "spec_ref": "SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S7-N1 \"still sees the filter\" note is stale; spec edit pending)",
   "viu_status": "VIU-Pending",
   "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S7-N1): 'A user with access to only one location still sees the filter with a single selectable location.' Q1 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A \"classic spec drift\"): the Location filter is HIDDEN for a user with access to only one location. This CONFIRMS the video-based flip and closes the \"pending his answer\" caveat; the tester-facing wording did not change. The four spec notes that still say the opposite need Chris's edit.",
   "api_related": false
@@ -530,7 +530,7 @@
    "6. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8674 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10 — Location column inserted between Vendor and Qty on Hand, automatic visibility, never \"Multiple\")",
+  "spec_ref": "SV-8674 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never \"Multiple\")",
   "viu_status": "VIU-Pending",
   "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (IV v3 change-log row: \"Added a per-row Location column (shown only when more than one location is in scope)\"). §4 Terminology verbatim: \"every row maps to exactly one location name — this report never shows an aggregated 'Multiple' value in the column.\" Pairs with IV-SCOPE-02 (a part at two locations = two rows). The \"Locations:\" export line is already covered by IV-EXP-02. Not live-verified (Rule 12).",
   "api_related": false

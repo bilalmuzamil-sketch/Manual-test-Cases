@@ -75,7 +75,7 @@
    "4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it as the known pending change — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8600 (SBC spec Story 1 S1-R2 — OVERRULED by Chris Ward answer 2026-07-31 Q4=A \"the intention is to not hide these from normal reports access\"; S1-R2 + the build still use a dedicated permission, dev change ticket raised)",
+  "spec_ref": "SV-8600 (SBC spec Story 1 S1-R2 — OVERRULED by Chris Ward answer 2026-07-31 Q4=A \"the intention is to not hide these from normal reports access\"; S1-R2 + the build still use a dedicated permission; dev change ticket raised)",
   "viu_status": "VIU-Pending",
   "notes": "Exact permission name and where it sits in the role editor are VIU-confirm. Per Standing Rule 10, verify by actually logging in as the role and observing. Q4 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A, verbatim: \"the intention is to not hide these from normal reports access. These were specced before CRP was built\"): every report in the suite is gated by the ORDINARY reports permission; no report gets its own. THE BUILD DIFFERS — the engineering tech plan §B5.3 gates every Sales By Customer endpoint on a new dedicated atom ROLE_SALES_BY_CUSTOMER_REPORT::VIEW, and SBC spec S1-R2 still states the dedicated model. Dev change ticket + spec correction raised in chris-answers-2026-07-31/Q4-permission-dev-note-2026-07-31.md. Not live-verified (Rule 12).",
   "api_related": false
@@ -128,7 +128,7 @@
    "2. Pressing back returns you to the Sales By Customer report."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 9 S9-N2",
+  "spec_ref": "SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-N2)",
   "viu_status": "VIU-Pending",
   "notes": "Seed the role combination per Standing Rule 5 (a ZZAUTOTEST role with the report permission but without work-order view).",
   "api_related": false
@@ -158,7 +158,7 @@
    "4. The report data never includes invoices from a location the user does not have access to."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 4 S4-R7; S4-R8; S4-R9; S4-N1",
+  "spec_ref": "SV-8603 (specs/sbc-sales-by-customer.md Story 4 S4-R7; S4-R8; S4-R9; S4-N1)",
   "viu_status": "VIU-Pending",
   "notes": "How an inaccessible location could be 'requested' is not pinned by the spec — probe via the page link / restored saved view at VIU; the pass condition is that it is ignored, never widened. FIX-WORDING repair 2026-07-28 (sense-check): the probe routes are now named concretely (edited page link; stale saved view). The pass condition stays: an inaccessible location is ignored, never widened.",
   "api_related": false
@@ -183,7 +183,7 @@
    "3. There is no \"All Time\" option."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 2 S2-R1; S2-R2",
+  "spec_ref": "SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R1; S2-R2)",
   "viu_status": "VIU-Pending",
   "notes": "\"All Time\" was removed by the 2026-07-16 spec round — if the build still shows it, that is a build-behind-spec deviation, not a spec error.",
   "api_related": false
@@ -233,7 +233,7 @@
    "3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 2 S2-R3; S2-R4; S2-N2",
+  "spec_ref": "SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R3; S2-R4; S2-N2)",
   "viu_status": "VIU-Pending",
   "notes": "HOW the wider range is prevented (disabled dates vs a validation message) is not pinned — VIU-confirm the exact mechanism and any message wording.",
   "api_related": false
@@ -258,7 +258,7 @@
    "2. Opening that link in a browser with no saved view for this report restores the sender's date range."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 2 S2-R6; S2-R9 (context)",
+  "spec_ref": "SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R6; S2-R9 (context))",
   "viu_status": "VIU-Pending",
   "notes": "A recipient WITH a saved view of their own will see their saved range instead (S2-R9, covered by SBC-PERS-06) — that is intentional, not a defect.",
   "api_related": false
@@ -314,7 +314,7 @@
    "5. The whole invoice is classified by its number prefix — there is no per-line-item split."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6",
+  "spec_ref": "SV-8602 (specs/sbc-sales-by-customer.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6)",
   "viu_status": "VIU-Pending",
   "notes": "Per-line-item classification is explicitly out of scope (§2) — a mixed invoice classified whole by prefix is expected behavior, not a defect. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-TYPE): absorbed SBC-TYPE-01, SBC-TYPE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. COMPANION-VIDEO 2026-07-30 (C9, 05:10-05:42): P = parts order, S = service/work order confirmed; under Parts Sales real data shows P numbers ('These would all be P's') — the all-S parts-sales rows in the PO's local were a fake-data artifact.",
   "api_related": false
@@ -366,7 +366,7 @@
    "5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8600 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A, applied suite-wide)",
+  "spec_ref": "SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A; applied suite-wide)",
   "viu_status": "VIU-Pending",
   "notes": "Exact on-screen capitalisation of \"All locations\" is VIU-confirm. Q1 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): the Location filter is hidden for a one-location user. His ruling is suite-wide; Sales By Customer had no case for it, so the assertion is folded into this existing filter case rather than authored as a near-duplicate (Rule 28).",
   "api_related": false
@@ -420,7 +420,7 @@
    "5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8603 (specs/sbc-sales-by-customer.md Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins)",
+  "spec_ref": "SV-8603 (SBC spec Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]",
   "viu_status": "VIU-Pending",
   "notes": "VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 41:09-41:20: 'we'll need a way to define, we're looking at all locations... how do I know which is for shop A and which is for shop B? ... we should probably add that in there.' The current spec has NO per-row location label on this report (tree is Customer->Asset->Invoice, no Location column — only WIP has one). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9). SCOPE-INDICATOR added 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now shows which location(s) it's scoped to... on screen') - distinct from the per-row location label (video P10), which stays. Spec anchor pending the updated spec changelog.",
   "api_related": false
@@ -447,7 +447,7 @@
    "4. The hint yields to the typed query while you are searching."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R1; S18-R2",
+  "spec_ref": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R1; S18-R2)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -474,7 +474,7 @@
    "3. A selected customer is shown with a checkmark."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R2",
+  "spec_ref": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R2)",
   "viu_status": "VIU-Pending",
   "notes": "The server-fetch aspect of the type-ahead is covered by SBC-API-03; this case verifies the visible matching behavior only. BUILD-DELTA: the server-backed type-ahead is the 2026-07-21 committed target (spec ahead of code by design) — the current build may still load a full client-side list at VIU. COMPANION-VIDEO 2026-07-30 (C11, 06:41-07:09): the multi-select's product intent is COMPARISON — 'I want to compare accurate aerodynamics versus Baxter Mining Corp. inside that same time zone'; selecting customers puts exactly those on the page.",
   "api_related": false
@@ -501,7 +501,7 @@
    "4. After \"Clear all\": the report shows the empty-state message \"No sales data found for the selected filters.\", the totals row shows zeros, and the collapsed label reads \"None.\""
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R3; S18-N1; S17-E1",
+  "spec_ref": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R3; S18-N1; S17-E1)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-CLEARALL): absorbed SBC-CUST-07. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -531,7 +531,7 @@
    "4. After the filter change the filter stays in the all-customers state (label still \"All customers\") and every customer matching the new filters is included — including the newly-appearing one, with no manual re-selection."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R4; S18-R5; S18-R9; S18-E1",
+  "spec_ref": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R4; S18-R5; S18-R9; S18-E1)",
   "viu_status": "VIU-Pending",
   "notes": "The label deliberately does NOT use an \"N of M\" form (2026-07-21 change) — an \"N of M\" label at VIU is a build-behind-spec deviation. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-ALLCUST): absorbed SBC-CUST-08. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -559,7 +559,7 @@
    "4. While typing, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R5",
+  "spec_ref": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R5)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -585,7 +585,7 @@
    "3. The totals row updates to cover only the selected customers' matching invoices."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R5; S18-R11",
+  "spec_ref": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R5; S18-R11)",
   "viu_status": "VIU-Pending",
   "notes": "Server-side application of the filter is covered by SBC-API-04.",
   "api_related": false
@@ -663,7 +663,7 @@
    "4. The Customer filter selection itself is not cleared by the date change."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R9; S18-E1",
+  "spec_ref": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R9; S18-E1)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -698,7 +698,7 @@
    "7. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8600 (SBC spec v12 2026-07-29 S4-R12; S4-R12a; S20-R19 — per-row Location column with automatic visibility, \"Multiple\" on aggregating rows)",
+  "spec_ref": "SV-8603 (SBC spec v12 2026-07-29 S4-R12; S4-R12a; S20-R19 — per-row Location column with automatic visibility; \"Multiple\" on aggregating rows)",
   "viu_status": "VIU-Pending",
   "notes": "NEW 2026-07-31. The per-row Location column is a suite-wide addition in Chris Ward's 2026-07-29 spec changelog (SBC v12 change-log row: \"added a per-row Location column (shown when more than one location is in scope; 'Multiple' on aggregating rows, exact on invoice rows) plus a 'Locations:' export line\"). The suite had NO coverage of this column. The \"Locations:\" export line itself is already covered by SBC-EXP-03 and SBC-EXP-09. Exact on-screen header capitalisation is VIU-confirm. Not live-verified (Rule 12).",
   "api_related": false

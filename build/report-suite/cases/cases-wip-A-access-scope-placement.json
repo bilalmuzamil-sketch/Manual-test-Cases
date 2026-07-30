@@ -22,7 +22,7 @@
    "3. The browser page title is exactly \"Work In Progress - Report | ShopView\" — a plain hyphen with one space on each side."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R1 — Performance group; below the named anchor items [Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05)",
+  "spec_ref": "SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R1 — Performance group; below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the exact reports-navigation structure and the Performance group's on-screen label live. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-WIP-NAV): absorbed WIP-TAB-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. COMPANION-VIDEO 2026-07-30 (C4, 01:18-02:05): WIP is one of the four new Performance reports added below Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency; order among the four not fixed. Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins).",
   "api_related": false
@@ -49,7 +49,7 @@
    "3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter)",
+  "spec_ref": "SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter))",
   "viu_status": "VIU-Pending",
   "notes": "Tab labels are verbatim from the spec (note the plain hyphen in \"Approved - partially completed\" / \"Approved - not started\").",
   "api_related": false
@@ -77,7 +77,7 @@
    "3. A tab with no work orders shows \"(0)\"."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 1 S1-R4; Story 2 S2-N2 (count portion)",
+  "spec_ref": "SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R4; Story 2 S2-N2 (count portion))",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -126,7 +126,7 @@
    "2. No screen in the report reads or displays the nightly snapshot history."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md §2 Out of scope; §2 Known Limitations (v1); Story 11 S11-R7",
+  "spec_ref": "SV-8667 (specs/wip-work-in-progress.md §2 Out of scope; §2 Known Limitations (v1); Story 11 S11-R7)",
   "viu_status": "VIU-Pending",
   "notes": "DOCUMENTED LIMITATION — DO NOT FILE. The missing Trend view is a deliberate v1 boundary; the nightly snapshot IS captured (Story 11, see WIP — API) but no screen reads it in this version.",
   "api_related": false
@@ -151,7 +151,7 @@
    "2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 2 S2-R1",
+  "spec_ref": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R1)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -179,7 +179,7 @@
    "3. No excluded work order's money is counted in any figure."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 2 S2-R2; S2-R3",
+  "spec_ref": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R2; S2-R3)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -205,7 +205,7 @@
    "2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\"."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 2 S2-R4; §3 Key Decisions (every open job is listed)",
+  "spec_ref": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R4; §3 Key Decisions (every open job is listed))",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -231,7 +231,7 @@
    "3. Both a date-range change and a location change reload the report's rows."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 2 S2-R5; S2-R6",
+  "spec_ref": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R5; S2-R6)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm what the \"standard reports loading indicator\" looks like in the build (spinner/skeleton) — the spec does not pin its appearance.",
   "api_related": false
@@ -260,7 +260,7 @@
    "4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a \"(0)\" count while the populated tabs still show their rows normally."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 2 S2-N1; S2-N2; §7 User Feedback Summary",
+  "spec_ref": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-N1; S2-N2; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
   "notes": "No-data message text is verbatim from §7. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-WIP-EMPTY): absorbed WIP-SCOPE-06. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -313,7 +313,7 @@
    "3. The In Progress and Review work orders appear in the \"Approved - partially completed\" tab and nowhere else."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 3 S3-R1; S3-R2; S3-R3",
+  "spec_ref": "SV-8659 (specs/wip-work-in-progress.md Story 3 S3-R1; S3-R2; S3-R3)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-WIP-PLACE-STATUS): absorbed WIP-PLACE-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -364,7 +364,7 @@
    "3. The Approved work order with no clocked time and no received part appears in the \"Approved - not started\" tab and nowhere else."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 3 S3-R4 (started + not-started branches + context note)",
+  "spec_ref": "SV-8659 (specs/wip-work-in-progress.md Story 3 S3-R4 (started + not-started branches + context note))",
   "viu_status": "VIU-Pending",
   "notes": "\"Work has started\" means a technician has clocked time to the job OR a part has been received for it (Story 3 context note). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-WIP-PLACE-START): absorbed WIP-PLACE-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false

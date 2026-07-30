@@ -21,7 +21,7 @@
    "3. Every other column is right-aligned."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 3 S3-R1; S3-R2",
+  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R1; S3-R2)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -48,7 +48,7 @@
    "3. Money values show a leading \"$\", two decimal places, and thousands separators (for example \"$1,234.56\"); a negative value shows a leading minus before the \"$\" (\"-$1,234.56\"); a genuine zero shows \"$0.00\"."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity)",
+  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity))",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -74,7 +74,7 @@
    "2. The pricing-matrix markup is NOT applied when a fixed sell price is set — the fixed price wins."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list)",
+  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list))",
   "viu_status": "VIU-Pending",
   "notes": "First step of the sell-price fallback chain: fixed price → matrix markup → cost.",
   "api_related": false
@@ -99,7 +99,7 @@
    "1. Unit Sell equals the shop's pricing-matrix markup on cost for that part's category (the same way the parts list resolves it)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 3 S3-R5 (matrix branch); §5 Assumptions",
+  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R5 (matrix branch); §5 Assumptions)",
   "viu_status": "VIU-Pending",
   "notes": "Second step of the sell-price fallback chain.",
   "api_related": false
@@ -126,7 +126,7 @@
    "2. Such a part shows a Margin of $0.00 and a Margin % of 0.0% — the stock is valued at cost."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions",
+  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions)",
   "viu_status": "VIU-Pending",
   "notes": "Final step of the sell-price fallback chain — do NOT file the zero margin as a defect; it is the specified cost-valuation fallback.",
   "api_related": false
@@ -153,7 +153,7 @@
    "2. Total Cost equals the part's on-hand quantity × Unit Cost, shown as US-dollar currency."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 3 S3-R6; S3-R7; §4 Terminology",
+  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R6; S3-R7; §4 Terminology)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -180,7 +180,7 @@
    "2. Margin is the extended (total) margin, not the per-unit difference."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology",
+  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -207,7 +207,7 @@
    "3. Margin % shows \"—\" when Total Sell is zero or negative (the percentage is undefined)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 3 S3-R9; S3-E3",
+  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R9; S3-E3)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -233,7 +233,7 @@
    "3. It stays fixed to the right edge while the other columns scroll underneath."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions",
+  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -259,7 +259,7 @@
    "3. Both can be turned on from the column-selection control and then appear in their fixed positions."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 3 S3-R12; S3-R13; Story 8 S8-R3",
+  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R12; S3-R13; Story 8 S8-R3)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -286,7 +286,7 @@
    "3. A part with no vendor shows an em dash (\"—\") in its Vendor cell."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 3 S3-R14; S3-E1; S3-E2",
+  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R14; S3-E1; S3-E2)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -316,7 +316,7 @@
    "4. The totals row stays visible at the bottom while the rows scroll."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5",
+  "spec_ref": "SV-8671 (specs/inventory-value.md Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5)",
   "viu_status": "VIU-Pending",
   "notes": "On screen the label is \"Total\" (S4-R1) while the DOWNLOADED totals row is labeled \"Totals\" (S10-R6) — the spec states both explicitly; VIU-confirm and flag to the owner if the build differs. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTSTICKY): absorbed IV-VIS-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -347,7 +347,7 @@
    "4. After each filter change the totals row recomputes on the server over the full filtered set, independent of which page is shown."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set)",
+  "spec_ref": "SV-8671 (specs/inventory-value.md Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set))",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTFILTER): absorbed IV-TOT-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -375,7 +375,7 @@
    "3. It shows \"—\" when the total Total Sell is zero or negative."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 4 S4-R3",
+  "spec_ref": "SV-8671 (specs/inventory-value.md Story 4 S4-R3)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false

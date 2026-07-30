@@ -20,7 +20,7 @@
    "3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (in the Technician column)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8655 (TU spec v5 2026-07-29 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu, and the date-range picker now precedes the technician filter)",
+  "spec_ref": "SV-8655 (TU spec v5 2026-07-29 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu; and the date-range picker now precedes the technician filter)",
   "viu_status": "VIU-Pending",
   "notes": "S8 context note: the requirements do not spell out every icon/styling detail - the spec's companion video was removed by the 2026-07-16 header cleanup while S8's context note still cites it (spec self-inconsistency, flagged for Chris - do not block on it); anything the requirements do not state is VIU-confirm. COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact). CHANGED by the TU spec v5 2026-07-29 S8-R3 (was: \"the three-dot download menu, the technician filter, the date-range picker, and the location filter\"; now: \"the three-dot download menu, the Column Selection control, the date-range picker, the technician filter, and the location filter (rightmost)\").",
   "api_related": false
@@ -48,7 +48,7 @@
    "3. The Total Hours link's non-color affordance and focus indicator apply in both modes."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S8-R9; S8-R13; S8-R14",
+  "spec_ref": "SV-8655 (specs/technician-utilization.md S8-R9; S8-R13; S8-R14)",
   "viu_status": "VIU-Pending",
   "notes": "Measure contrast with a devtools/contrast tool at VIU.",
   "api_related": false
@@ -82,7 +82,7 @@
    "7. Your column choice is remembered in this browser and is still applied when you come back."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8655 (TU spec v5 2026-07-29 NEW Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 — column selector RATIFIED, replacing the placeholder written from the 2026-07-29 group message)",
+  "spec_ref": "SV-8582 (TU spec v5 2026-07-29 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 column selector — NO OWNING JIRA STORY: epic SV-8582 carries no TU Story-10 ticket and the spec's own Jira field reads TBD; epic key used and FLAGGED)",
   "viu_status": "VIU-Pending",
   "notes": "NEW 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) - reverses the earlier no-column-selector state (kickoff video P18 had vetoed one for TU; the message adds it 'for visual/natural conformance' = Story 8, SV-8655). Modeled on the suite's existing column-selector cases (SBC-COL-01 C30156 / SBR-COL-01 C30265) but kept to ONE case - the per-column list, defaults, and persistence behaviour are unpinned until the spec changelog lands; do not invent (Rule 9). No C-ID yet (needs authorized add_case; section = TU — Visual & Accessibility, sits with Story 8). RATIFIED by the TU spec v5 changelog 2026-07-29 (\"Added the suite-standard column selector; made Est. Lost Labor a toggleable (hideable) column\") — the group-message placeholder is superseded. Persistence is per browser, not per account. TRACEABILITY NOTE: the TU spec's NEW Story 10 (Column Selection and Persistence, added 2026-07-29) has NO Jira story ticket in epic SV-8582 — the TU story tickets stop at SV-8656 (Story 9, Location Filter). This case is cited to the nearest owning story; ASK for the new Story-10 ticket key and re-cite when it exists.",
   "api_related": false
@@ -108,7 +108,7 @@
    "3. Because expansion state resets (all collapsed) on any data reload, nothing is lost by the lazy loading - re-expanding fetches fresh day data."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S4-R2; S4-R5",
+  "spec_ref": "SV-8651 (specs/technician-utilization.md S4-R2; S4-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Generic backend-behavior case (Standing Rule 4) - the spec pins no REST contract; do NOT assert endpoint paths; record the observed requests at VIU. KNOWN-DELTA WATCH: lazy per-day loading came in the 2026-07-16 round - the build may lag.",
   "api_related": true
@@ -136,7 +136,7 @@
    "4. Column sorting causes NO server request - it is applied on screen to the loaded rows."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S1-R5; S9-R3; S5 context note; S2-R13; §3",
+  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R5; S9-R3; S5 context note; S2-R13; §3)",
   "viu_status": "VIU-Pending",
   "notes": "Generic backend-behavior case (Standing Rule 4) - no endpoint paths asserted (none exist in the spec); record the observed requests at VIU.",
   "api_related": true

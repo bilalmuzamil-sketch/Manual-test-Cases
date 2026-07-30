@@ -22,7 +22,7 @@
    "4. Units Sold can be 0.00 or negative when reversals exceed sales."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R1; S5-R4 (Units Sold, inventory); §4",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R1; S5-R4 (Units Sold; inventory); §4)",
   "viu_status": "VIU-Pending",
   "notes": "HEAVY SEEDING: needs invoice + reversal + return flows on one part inside the window. Only Invoiced/Paid work orders count at all (§5 Assumptions). Inventory Units Sold/Demand are windowed by the inventory-movement event date, not the work-order date (S5 definitions).",
   "api_related": false
@@ -48,7 +48,7 @@
    "3. Only requests on work orders at status Invoiced or Paid count; the window is anchored to the work-order date."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R2; S5-R4 (Units Sold, catalogue); S5-R4b)",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R2; S5-R4 (Units Sold; catalogue); S5-R4b)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: reversal netting on the billed-line columns is a documented build-delta (the current billed-side queries do not net reversals) - see PV-CALC-11. HEAVY SEEDING: vendor part requests on invoiced/paid work orders plus one reversed sale. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
@@ -77,7 +77,7 @@
    "4. After step 4, Units Returned is UNCHANGED - invoice reversals are not returns (they affect Units Sold instead)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R3; S5-R4 (Units Returned); §3 Key Decisions",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R3; S5-R4 (Units Returned); §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "Counted the same way for inventory and special-order parts. HEAVY SEEDING: return + credit + cancellation flows in one window.",
   "api_related": false
@@ -107,7 +107,7 @@
    "5. A part whose ONLY in-window event is a return (no sale, no stock, no revenue) produces no row at all (per S3-N1) - accepted behavior, the row axis is sales/stock activity."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R3",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R3)",
   "viu_status": "VIU-Pending",
   "notes": "HEAVY SEEDING: cross-window sale/return pair + a core-charge return.",
   "api_related": false
@@ -221,7 +221,7 @@
    "3. Min and Max are READ-ONLY display columns - no edit control or slide-over opens; editing part attributes from this report is out of scope in this version."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R4 (On Hand / Min / Max); §2 Out of Scope; S5-R5",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4 (On Hand / Min / Max); §2 Out of Scope; S5-R5)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -336,7 +336,7 @@
    "4. The three triggers are independent: Unit Cost/Sell Price null on billed units ≤ 0; Margin % null on Revenue ≤ 0."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R4a (null rules + mixed-row paragraph); S3-R9",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4a (null rules + mixed-row paragraph); S3-R9)",
   "viu_status": "VIU-Pending",
   "notes": "Expected-behavior case - the spec explicitly declares these mixed rows correct. HEAVY SEEDING: credit/adjustment revenue without billed quantity, and a $0-sell-price billed line.",
   "api_related": false

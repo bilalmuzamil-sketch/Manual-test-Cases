@@ -21,7 +21,7 @@
    "3. The Total Cost column is always shown and cannot be turned off."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 8 S8-R1; S8-R2",
+  "spec_ref": "SV-8675 (specs/inventory-value.md Story 8 S8-R1; S8-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Tooltip text \"Column Selection\" is verbatim from the spec. Column selection is the report's ONLY purely client-side view choice (§3).",
   "api_related": false
@@ -46,7 +46,7 @@
    "2. Total Cost is always the last column."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 8 S8-R4; Story 3 S3-R1",
+  "spec_ref": "SV-8675 (specs/inventory-value.md Story 8 S8-R4; Story 3 S3-R1)",
   "viu_status": "VIU-Pending",
   "notes": "The default on/off split (Margin and Total Sell off, the rest on — S8-R3) is covered by IV-COL-04.",
   "api_related": false
@@ -73,7 +73,7 @@
    "2. In a different browser the report shows the defaults instead — persistence is per browser, not tied to the user's account."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 8 S8-R5 (+ context note); Story 9 S9-R5",
+  "spec_ref": "SV-8675 (specs/inventory-value.md Story 8 S8-R5 (+ context note); Story 9 S9-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Unlike the reports whose sort resets each visit, this report remembers the user's sort along with the rest of its setup (Story 9 context note).",
   "api_related": false
@@ -98,7 +98,7 @@
    "2. All other saved settings are still restored."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 8 S8-R6",
+  "spec_ref": "SV-8675 (specs/inventory-value.md Story 8 S8-R6)",
   "viu_status": "VIU-Pending",
   "notes": "FIX-WORDING repair 2026-07-28 (sense-check): the Expected is scoped to the stale-category/vendor path the steps actually drive; the general invalid-value fallback across other value classes is covered the SBC-PERS way only where a case drives it.",
   "api_related": false
@@ -123,7 +123,7 @@
    "2. The order holds across pages (page 2 continues below page 1's lowest value) — the server applies the default order over the full set."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 9 S9-R1; §3 Key Decisions (Total Cost default sort)",
+  "spec_ref": "SV-8676 (specs/inventory-value.md Story 9 S9-R1; §3 Key Decisions (Total Cost default sort))",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -151,7 +151,7 @@
    "3. Only one column sorts at a time."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 9 S9-R2",
+  "spec_ref": "SV-8676 (specs/inventory-value.md Story 9 S9-R2)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: server-side sorting is the 2026-07-21 spec change (per Milan's review). If the build sorts only the loaded page client-side, record it as a build deviation from the current spec.",
   "api_related": false
@@ -177,7 +177,7 @@
    "2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (\"apple\" and \"Apple\" sort together)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 9 S9-R3",
+  "spec_ref": "SV-8676 (specs/inventory-value.md Story 9 S9-R3)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -202,7 +202,7 @@
    "2. On return, the report restores the chosen sort (remembered per browser, Story 8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 9 S9-R4; S9-R5",
+  "spec_ref": "SV-8676 (specs/inventory-value.md Story 9 S9-R4; S9-R5)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -228,7 +228,7 @@
    "2. Each option downloads a file of the current view in the chosen format."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 10 S10-R1; S10-R2",
+  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R1; S10-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Menu option labels are verbatim from the spec.",
   "api_related": false
@@ -258,7 +258,7 @@
    "4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R3; S10-R4; S10-R5; S10-R6 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R3; S10-R4; S10-R5; S10-R6 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
   "viu_status": "VIU-Pending",
   "notes": "Note the on-screen totals row is labeled \"Total\" (S4-R1) while the export totals row is labeled \"Totals\" (S10-R6) — both verbatim in the spec; VIU-confirm. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 158 chars; meaning unchanged; awaiting push authorization.",
   "api_related": false
@@ -284,7 +284,7 @@
    "3. The PDF uses the same on-screen currency formatting with the \"$\" and thousands separators."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 10 S10-R7 (+ context note)",
+  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R7 (+ context note))",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -313,7 +313,7 @@
    "3. The CSV never includes a logo."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 10 S10-R8; S10-R9",
+  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R8; S10-R9)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the exact wording of the header's as-of line and the no-snapshot message (unpinned).",
   "api_related": false
@@ -338,7 +338,7 @@
    "2. The CSV is named \"inventory-value-report.csv\"."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 10 S10-R10",
+  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R10)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -365,7 +365,7 @@
    "3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 10 S10-R11",
+  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R11)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -392,7 +392,7 @@
    "3. After narrowing the filters below the cap, the download works again."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 10 S10-R12; §7 User Feedback Summary",
+  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R12; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
   "notes": "CAP VALUE: the spec's 10,000-row cap was written as a proposed default; the engineering plan (2026-07-21, A3/FR-F4) records 10,000 as the single suite-wide export cap \"locked by Chris 07-21\". Verify the capped BEHAVIOR and the verbatim message live, and record the actual cap value observed. TECH-PLAN EDIT 2026-07-30 (title trimmed — the pending-confirmation clause is resolved by the plan; still VIU-confirm).",
   "api_related": false
@@ -445,7 +445,7 @@
    "3. The lower-case \"(pdf)\"/\"(csv)\" on failure vs the upper-case success ones is the documented spec wording — expected, not a bug."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/inventory-value.md Story 10 S10-R13; S10-R14; §7 User Feedback Summary",
+  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R13; S10-R14; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
   "notes": "Notification texts are verbatim from the spec (note the lower-case \"(pdf)\"/\"(csv)\" in the failure messages vs the upper-case success ones). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-EXPTOAST): absorbed IV-EXP-08. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false

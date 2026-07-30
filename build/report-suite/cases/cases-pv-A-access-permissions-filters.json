@@ -21,7 +21,7 @@
    "3. Clicking it opens the Parts Velocity report."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8641 (specs/parts-velocity.md S1-R1 — the spec's 'only report' sentence is superseded: Parts Velocity and Inventory Value BOTH live under Parts per the PRD companion video 2026-07-30 00:35-01:18; PV S1-R1 vs IV S1-R1 inconsistency flagged to SPEC-WATCH)",
+  "spec_ref": "SV-8641 (PV spec S1-R1 — spec's 'only report' sentence superseded: Parts Velocity and Inventory Value BOTH live under Parts per PRD video 2026-07-30 00:35-01:18; PV-vs-IV S1-R1 clash on SPEC-WATCH)",
   "viu_status": "VIU-Pending",
   "notes": "COMPANION-VIDEO 2026-07-30 (C2b/C3, 00:35-01:18): 'Parts Velocity and Inventory Value will live under here [the new Parts section]' — supersedes PV spec S1-R1's 'its first (and, in this release, only) report' (intra-suite inconsistency with IV S1-R1; flagged, Rule 15). Ordering inside the section is PO-flexible ('no alphabetical sort ... order that seems the most fitting'). The Parts grouping is still NEW (S1-R1 stands on that). VIU-confirm exact placement/styling. Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins).",
   "api_related": false
@@ -47,7 +47,7 @@
    "3. Rows appear ranked by Demand, highest first (the default order, see PV-ROW-03)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-R2; S4-R6",
+  "spec_ref": "SV-8641 (specs/parts-velocity.md S1-R2; S4-R6)",
   "viu_status": "VIU-Pending",
   "notes": "On a return visit the saved date range is used instead (covered by PV-COL-05). Seeding: needs at least a few parts with sales activity in the current year so the auto-fetch visibly returns rows.",
   "api_related": false
@@ -74,7 +74,7 @@
    "3. The rows already on screen are replaced only when the new data comes back - the table does not blank out and rebuild mid-request."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-R3",
+  "spec_ref": "SV-8641 (specs/parts-velocity.md S1-R3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the exact loading indicator appearance (the spec does not pin the visual).",
   "api_related": false
@@ -101,7 +101,7 @@
    "2. The export downloads successfully (both loading the report and exporting it are allowed by the Inventory Reports → View permission)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-R4",
+  "spec_ref": "SV-8641 (specs/parts-velocity.md S1-R4)",
   "viu_status": "VIU-Pending",
   "notes": "Role/permission seeding per Standing Rule 5: create a purpose-made role with Inventory Reports → View, assign it to the Tech user, test, then restore. VIU-confirm the exact permission name as shown in the roles screen.",
   "api_related": false
@@ -125,7 +125,7 @@
    "2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-N1",
+  "spec_ref": "SV-8641 (specs/parts-velocity.md S1-N1)",
   "viu_status": "VIU-Pending",
   "notes": "Role seeding per Standing Rule 5: assign the Tech user a role without Reports access, observe, then restore the original role.",
   "api_related": false
@@ -152,7 +152,7 @@
    "3. The export is likewise denied - no file downloads."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-N2; S1-R4",
+  "spec_ref": "SV-8641 (specs/parts-velocity.md S1-N2; S1-R4)",
   "viu_status": "VIU-Pending",
   "notes": "The spec carries a build-note to confirm the FE really uses this shown-then-denied model (rather than hiding the entry), matching the platform's other Inventory-Reports-permissioned reports - VIU-confirm which model the build ships. VIU-confirm the exact access-denied wording (unpinned in the spec).",
   "api_related": false
@@ -183,7 +183,7 @@
    "5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R1; S3-R5 - 'Catalogue' RENAMED to the exact label 'Special Order' [Type filter, Type column, export] per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins), confirming kickoff video P31)",
+  "spec_ref": "SV-8642 (PV spec S2-R1; S3-R5 - 'Catalogue' RENAMED to the exact label 'Special Order' [Type filter; Type column; export] per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31])",
   "viu_status": "VIU-Pending",
   "notes": "RENAME CONFIRMED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'The part type \"Special Order\" is renamed to \"Special Order\" (the Type filter, the Type column, and the export)... No data changes - splay/label only.' The label is now spec-stated (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. VIU-confirm the filter control's own name ('Type' is the spec's name). Seeding for the reload leg: at least one invoiced sale of an inventory part AND at least one vendor-sourced (Special Order) part request on an invoiced/paid work order in the window. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-PV-TYPE): absorbed PV-FILT-02. TITLE unchanged (already label-neutral). NOTE: the same rename on the Parts Sales report's dropdown is OUT of this suite's scope (different feature) - recorded as an FYI in the change-list, no case here.",
   "api_related": false
@@ -236,7 +236,7 @@
    "4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R2; §2 Out of Scope",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R2; §2 Out of Scope)",
   "viu_status": "VIU-Pending",
   "notes": "Note: 'Last Sale' is still measured over all-time history (a per-part lookback, S5-R4) - that is unrelated to the missing All Time range and is not a defect.",
   "api_related": false
@@ -264,7 +264,7 @@
    "4. A span wider than 366 days (counting both the start and end dates) is rejected - the selection is not applied."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R3",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R3)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: the 366-day cap was added 2026-07-16 with the server-side model (spec ahead of the current code by design) - the cap may not exist in the build until dev ships it. VIU-confirm how the rejection is presented (unpinned).",
   "api_related": false
@@ -292,7 +292,7 @@
    "4. Each change reloads the data from the server."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R4; S2-R5; S2-R10",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R4; S2-R5; S2-R10)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the exact filter labels ('Category' / 'Vendor' are the spec's names). Seeding: parts in at least two categories and from at least two vendors with in-window activity.",
   "api_related": false
@@ -321,7 +321,7 @@
    "4. Category and vendor names are NOT searched - use their dedicated filters instead (deliberate, to avoid false matches on common words)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R6; §3 Key Decisions",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R6; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "Confirmed page-local (not global search) in the 2026-07-16 spec round. Each search change re-queries the server (S2-R10).",
   "api_related": false
@@ -349,7 +349,7 @@
    "3. After step 4 the part is listed again."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R7",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R7)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -375,7 +375,7 @@
    "3. The filter allows more than one bin (multi-select)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R8",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R8)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the exact filter label ('Bin' is the spec's name). Special Order exclusion under a Bin filter is PV-FILT-09.",
   "api_related": false
@@ -401,7 +401,7 @@
    "2. Special Order combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R8 - 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins), confirming kickoff video P31)",
+  "spec_ref": "SV-8642 (PV spec S2-R8 - 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31])",
   "viu_status": "VIU-Pending",
   "notes": "Expected-behavior case: the empty result here is correct per spec. RENAME CONFIRMED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) - label now spec-stated (VIU-confirm hedge removed); still to be sighted live at VIU per Rule 12. TITLE TRIMMED 2026-07-29 (user-authorized): was 96 chars, over the no-more-than-80 concise-title rule; meaning unchanged.",
   "api_related": false
@@ -434,7 +434,7 @@
    "7. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins)",
+  "spec_ref": "SV-8642 (PV spec S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the exact 'All Locations' label. Seeding: needs a user with two accessible locations and in-window activity at both (heavy multi-location seeding). VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): per-row location identifier in All-Locations view — the current spec has NO explicit Location column in the 20-column set (S4-R4), though inventory rows are per-location (S3-R1a). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9). SCOPE-INDICATOR added 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now shows which location(s) it's scoped to... on screen') - distinct from the per-row location label (video P10), which stays. Spec anchor pending the updated spec changelog.",
   "api_related": false
@@ -458,7 +458,7 @@
    "2. The empty-state label reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-R11; S2-N1; §7",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R11; S2-N1; §7)",
   "viu_status": "VIU-Pending",
   "notes": "Message string is pinned verbatim in §7.",
   "api_related": false
@@ -486,7 +486,7 @@
    "3. The inventory part with no bin location does not appear when any Bin filter is active."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S2-E1; S2-E2; S2-E3",
+  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-E1; S2-E2; S2-E3)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: create ZZAUTOTEST parts with the missing attribute and give each an invoiced sale in the window.",
   "api_related": false
@@ -511,7 +511,7 @@
    "2. For the user with access to two or more locations the Location filter IS shown."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S2-E4 \"still sees the filter\" note is stale, spec edit pending)",
+  "spec_ref": "SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S2-E4 \"still sees the filter\" note is stale; spec edit pending)",
   "viu_status": "VIU-Pending",
   "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S2-E4): 'A user with access to only one location STILL SEES the Location filter with a single selectable location.' Seeding: create a fresh ZZAUTOTEST staff member scoped to one location if none exists (Standing Rule 14 pattern). Q1 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A \"classic spec drift\"): the Location filter is HIDDEN for a user with access to only one location. This CONFIRMS the video-based flip and closes the \"pending his answer\" caveat; the tester-facing wording did not change. The four spec notes that still say the opposite need Chris's edit.",
   "api_related": false
@@ -544,7 +544,7 @@
    "6. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8 — per-row Location column, leftmost before Type, \"Multiple\" on the merged special-order row, not in the picker)",
+  "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8 — per-row Location column; leftmost before Type; \"Multiple\" on the merged special-order row; not in the picker)",
   "viu_status": "VIU-Pending",
   "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (PV v4 change-log row: \"added a per-row Location column (shown when more than one location is in scope; 'Multiple' on rows spanning locations)\"). The per-row rule follows the report's row model (S3-R1a): inventory rows are per-location, special-order rows are merged. The \"Locations:\" export line is already covered by PV-EXP-02. Not live-verified (Rule 12).",
   "api_related": false

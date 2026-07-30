@@ -21,7 +21,7 @@
    "4. A staff member with no matching invoice does not appear regardless of toggle state or historical activity."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions",
+  "spec_ref": "SV-8623 (specs/sbr-sales-by-representative.md Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA (spec ahead of code by design): the change log notes the current handler seeds ALL toggle reps with tiered sort — contributors-only + plain A→Z is the committed target; expect a deviation until the build catches up.",
   "api_related": false
@@ -50,7 +50,7 @@
    "5. Every row renders exactly the report's column count with blanks in position — a cell with nothing to show is blank, never shifted or wrapped (a drifted row is a defect). The grand Totals indicator is exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a",
+  "spec_ref": "SV-8623 (specs/sbr-sales-by-representative.md Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-ROWLAYOUT): absorbed SBR-ROW-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -78,7 +78,7 @@
    "4. The grand Totals stay reconciled to the period's invoices — no revenue silently disappears."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 5 S5-R9; §3 Key Decisions; §4 Snapshot",
+  "spec_ref": "SV-8623 (specs/sbr-sales-by-representative.md Story 5 S5-R9; §3 Key Decisions; §4 Snapshot)",
   "viu_status": "VIU-Pending",
   "notes": "Deleting a staff record may not be self-serviceable — attempt seeding first (Standing Rule 14); if truly not producible, verify the toggle-off path fully and mark the deleted-record leg Blocked-Env with reason.",
   "api_related": false
@@ -129,7 +129,7 @@
    "3. A rep with a single matching invoice can still be expanded — one detail row is shown."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R1; S6-R2; S6-R3; S6-E1",
+  "spec_ref": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R1; S6-R2; S6-R3; S6-E1)",
   "viu_status": "VIU-Pending",
   "notes": "The lazy server-fetch itself is covered by SBR-API-01. Per-rep detail page size is a tech-plan tuning value, not fixed by the spec — record what is observed. BUILD-DELTA: lazy drill-down is the 2026-07-16 committed target.",
   "api_related": false
@@ -155,7 +155,7 @@
    "3. A second activation collapses them all."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R5; S6-R6",
+  "spec_ref": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R5; S6-R6)",
   "viu_status": "VIU-Pending",
   "notes": "The bound on how many reps expand-all opens at once is a tech-plan tuning value (S6-R2 context note) — record the observed behavior.",
   "api_related": false
@@ -179,7 +179,7 @@
    "2. The sum of all (N) counts equals the number of matching invoices."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R7; §3 Key Decisions",
+  "spec_ref": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R7; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA: the shipped schema stores separate parts-side and service-side reps; the single-rep model is the committed target — a double-credited invoice at VIU is the known schema delta, record it as a deviation against spec.",
   "api_related": false
@@ -205,7 +205,7 @@
    "3. A full page reload resets all expansion."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R8; S6-N1; Story 23 S23-R2",
+  "spec_ref": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R8; S6-N1; Story 23 S23-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Contrast with SBC, which collapses on every re-fetch — SBR preserves expansion within the session per its own spec.",
   "api_related": false
@@ -231,7 +231,7 @@
    "4. This order is independent of the rep-row column sort (which reorders summary rows only)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R9; Story 11 S11-R2",
+  "spec_ref": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R9; Story 11 S11-R2)",
   "viu_status": "VIU-Pending",
   "notes": "The same order applies in the Expanded View PDF per-rep tables and the Expanded CSV (S14-R6/S14-R16) — cross-check during SBR-EXP-04/09.",
   "api_related": false
@@ -259,7 +259,7 @@
    "4. Badges are vertically centered in their cells; on rep summary rows the Status cell is blank; the badge's text is the accessible label — status is never conveyed by color alone."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6",
+  "spec_ref": "SV-8625 (specs/sbr-sales-by-representative.md Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-BADGE): absorbed SBR-BADGE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. TECH-PLAN NOTE 2026-07-30: include the deposit-covered prepaid invoice from SBR-STAT-02's seeding — that badge reading \"Partially Paid\" instead of \"Paid\" is the known bug-prone failure (engineering plan B6.2).",
   "api_related": false
@@ -284,7 +284,7 @@
    "3. The treatment stays legible and consistent in both light and dark mode."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 8 S8-R3; Story 18 S18-R8",
+  "spec_ref": "SV-8625 (specs/sbr-sales-by-representative.md Story 8 S8-R3; Story 18 S18-R8)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -334,7 +334,7 @@
    "2. The value equals the billed labor hours minus the technician clocked hours, rounded half-up to one decimal."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 9 S9-R1; S9-R2; §3",
+  "spec_ref": "SV-8626 (specs/sbr-sales-by-representative.md Story 9 S9-R1; S9-R2; §3)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -363,7 +363,7 @@
    "4. A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green; negative values always use an explicit minus and one decimal (e.g., -0.5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 9 S9-R3; S9-R4; S9-R5; S9-R6; S9-E1; S9-E2",
+  "spec_ref": "SV-8626 (specs/sbr-sales-by-representative.md Story 9 S9-R3; S9-R4; S9-R5; S9-R6; S9-E1; S9-E2)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-CALCZERO): absorbed SBR-CALC-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -387,7 +387,7 @@
    "2. The invoice with clocked hours but no billed labor line shows the resulting NEGATIVE delta in red (e.g., -3.0) — the worked-but-unbilled signal is not suppressed to 0.0."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 9 S9-N1",
+  "spec_ref": "SV-8626 (specs/sbr-sales-by-representative.md Story 9 S9-N1)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -437,7 +437,7 @@
    "3. On every rolled-up row (rep summary rows and every totals row) Margin % is RECOMPUTED from that row-set's total Margin and total Subtotal — never the sum or average of the child percentages."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md §3 Margin % definition; Story 10 S10-R5",
+  "spec_ref": "SV-8627 (specs/sbr-sales-by-representative.md §3 Margin % definition; Story 10 S10-R5)",
   "viu_status": "VIU-Pending",
   "notes": "In the CSVs Margin % is a plain number with no % (covered by SBR-EXP-10).",
   "api_related": false
@@ -463,7 +463,7 @@
    "4. The same values appear everywhere the numbers show (screen, and later the exports)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md §3 definitions; §4 Terminology",
+  "spec_ref": "SV-8582 (SBR spec §3 definitions; §4 Terminology — money-column labels and the Subtotal/Margin definitions; CROSS-CUTTING across every SBR row level with no single owning story)",
   "viu_status": "VIU-Pending",
   "notes": "Note the SBR Subtotal has NO Shop Supplies component (unlike SBC) — the two reports' Subtotal definitions differ by spec.",
   "api_related": false
@@ -487,7 +487,7 @@
    "2. Inv. Hrs (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md §3 Key Decisions (accounting parentheses)",
+  "spec_ref": "SV-8593 (SBR spec §3 Key Decisions accounting parentheses — owned by the shared A5 report-shell formatter module: verbatim 'accounting-parens negatives')",
   "viu_status": "VIU-Pending",
   "notes": "The CSVs use plain signed numbers instead (SBR-EXP-10); the PDFs use parentheses (SBR-EXP-06).",
   "api_related": false
@@ -511,7 +511,7 @@
    "3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md §3 rounding rule",
+  "spec_ref": "SV-8582 (SBR spec §3 half-up rounding rule + round of unrounded rollups; CROSS-CUTTING display rule with no single owning story)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-LIMITATION ENCODING: the last-decimal totals discrepancy is by design. FIX-WORDING repair 2026-07-28 (sense-check): the old seeding hint ('values like $10.005') was untypeable — money fields take two decimals; sub-cent intermediates must come from hours × rate / percentage math.",
   "api_related": false
@@ -541,7 +541,7 @@
    "5. The column-header row stays stuck to the top during vertical scroll; the Subtotal header cell stays visible in BOTH axes (top while scrolling down, pinned right while scrolling sideways)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5",
+  "spec_ref": "SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-STICKY): absorbed SBR-TOT-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -570,7 +570,7 @@
    "5. The indicator is present whenever at least one summary row exists, and hidden during loading and in the empty state."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R5; S10-N1; Story 16 S16-R4",
+  "spec_ref": "SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R5; S10-N1; Story 16 S16-R4)",
   "viu_status": "VIU-Pending",
   "notes": "Server-side computation is covered by SBR-API-03. BUILD-DELTA: server-computed grand totals are the 2026-07-16 committed target.",
   "api_related": false
@@ -597,7 +597,7 @@
    "4. It uses the white card surface with a thin top border."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R5 (mobile); Story 17 S17-R4",
+  "spec_ref": "SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R5 (mobile); Story 17 S17-R4)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -646,7 +646,7 @@
    "3. The Date header carries the expand/collapse-all chevron, not a sort affordance."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R1; S11-R6",
+  "spec_ref": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R1; S11-R6)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -669,7 +669,7 @@
    "2. There are NO active/inactive tiers — an \"(Inactive)\" rep sorts by name among the others, not grouped separately."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R4; §3 Key Decisions",
+  "spec_ref": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R4; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA: the change log notes the current handler uses a tiered sort — plain A→Z is the committed target.",
   "api_related": false
@@ -697,7 +697,7 @@
    "4. Via the column headers there is no way back to A→Z; the A→Z default shows only when a session carries no valid saved financial sort."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R5; Story 23 S23-R5",
+  "spec_ref": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R5; Story 23 S23-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Server-side sorting is covered by SBR-API-02. KNOWN-LIMITATION ENCODING: no header path back to A→Z is by design.",
   "api_related": false
@@ -722,7 +722,7 @@
    "3. The Unassigned row stays pinned to the top regardless of sort."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R2; Story 22 S22-R4",
+  "spec_ref": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R2; Story 22 S22-R4)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -746,7 +746,7 @@
    "2. A Margin % cell rendered \"—\" (undefined) sorts as zero."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R7",
+  "spec_ref": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R7)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false

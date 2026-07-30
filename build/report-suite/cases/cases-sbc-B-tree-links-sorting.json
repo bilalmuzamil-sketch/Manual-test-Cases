@@ -22,7 +22,7 @@
    "4. The count reflects the active date range, Product Type, and location — it drops when the range is narrowed; it is not a lifetime count."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 7 S7-R1; S7-R2; S7-R3; S7-R4; S7-R5",
+  "spec_ref": "SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R1; S7-R2; S7-R3; S7-R4; S7-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Verify the exact color/weight with browser dev tools at VIU.",
   "api_related": false
@@ -46,7 +46,7 @@
    "1. The customer is not shown — there are no zero-value placeholder rows."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 7 S7-N1",
+  "spec_ref": "SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-N1)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -77,7 +77,7 @@
    "7. Collapsing customer A does not affect customer B's expansion; each asset's expansion state is likewise independent."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R1; S8-R2; S8-R5; S8-R5a; S8-R5b; S8-R5c; S8-R15",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R1; S8-R2; S8-R5; S8-R5a; S8-R5b; S8-R5c; S8-R15)",
   "viu_status": "VIU-Pending",
   "notes": "Exact vehicle icon appearance is VIU-confirm (spec pins an icon exists, not its glyph). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPAND): absorbed SBC-TREE-07. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -102,7 +102,7 @@
    "3. The invoice date shows in the format \"Mon DD YYYY\" — for example, May 14 2026."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R4; S8-R12; S8-R12a; Story 20 S20-R14",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R4; S8-R12; S8-R12a; Story 20 S20-R14)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -127,7 +127,7 @@
    "2. An older invoice with no vehicle id on file groups by the invoice's own stored vehicle snapshot instead."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R3",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R3)",
   "viu_status": "VIU-Pending",
   "notes": "The no-vehicle-id legacy path may need dev-seeded data — mark Blocked-Env with reason if such an invoice cannot be produced (Standing Rule 14 applies first: try to seed).",
   "api_related": false
@@ -152,7 +152,7 @@
    "3. Changing the column sort does not change the asset order — assets stay A→Z with \"Parts Sales\" last."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R6; S8-R6a; Story 10 S10-R6",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R6; S8-R6a; Story 10 S10-R6)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -205,7 +205,7 @@
    "3. With all visible customers expanded, the icon switches to \"collapse\" and the tooltip reads \"Collapse all\"; clicking collapses them all."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R16; S8-R17; S8-R18; S8-R19",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R16; S8-R17; S8-R18; S8-R19)",
   "viu_status": "VIU-Pending",
   "notes": "The bounded lazy-fetch behavior behind expand-all is covered by SBC-API-01.",
   "api_related": false
@@ -232,7 +232,7 @@
    "3. While the re-fetch is in flight the table shows the standard loading state; when it clears, the page shows the first page of the newly ordered set — the customers on the page can change."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R20; S8-R21; Story 10 S10-R8a; S10-R8b; S10-R8c",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R20; S8-R21; Story 10 S10-R8a; S10-R8b; S10-R8c)",
   "viu_status": "VIU-Pending",
   "notes": "Reload clearing expansion (S8-R22) is covered by SBC-PERS-02. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-SORTRELOAD): absorbed SBC-SORT-06. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -256,7 +256,7 @@
    "2. Customer B shows a single \"Parts Sales\" row and no vehicle rows."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-E1; S8-E2",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-E1; S8-E2)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -279,7 +279,7 @@
    "1. The no-vehicle S invoice appears under that customer's \"Parts Sales\" row — the bucket collects work by the ABSENCE of a vehicle, not by the invoice-number prefix."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-E3",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-E3)",
   "viu_status": "VIU-Pending",
   "notes": "If the app cannot produce a no-vehicle service invoice, record the seeding path tried and mark Blocked-Env with reason (Standing Rule 14: attempt seeding first). COMPANION-VIDEO 2026-07-30 (C9, 05:10-05:42): the video's 'you shouldn't see S [under parts sales]' refers to normal data ('usually'); this case's deliberate no-vehicle S edge (S8-E3) is NOT contradicted — the bucket is still decided by vehicle absence.",
   "api_related": false
@@ -306,7 +306,7 @@
    "3. The customer/asset totals drop by exactly that invoice's amounts."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 7 S7-R7; S7-N2; §3 Key Decisions",
+  "spec_ref": "SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R7; S7-N2; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -333,7 +333,7 @@
    "4. Every cell on a customer summary row uses font-weight 600, except the Subtotal cell which uses font-weight 700."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 7 S7-R8; S7-R9; S7-R10; S7-R15; S7-R16",
+  "spec_ref": "SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R8; S7-R9; S7-R10; S7-R15; S7-R16)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -359,7 +359,7 @@
    "5. Note whether the year/make/model text still appears anywhere in the row - the update says the VIN identifier REPLACES the year/make/model label; confirm the exact rendering in the build."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to VIN, falling back to Unit #, then plate, by Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins), superseding the kickoff video's serial-number ruling P24 AND the spec's year/make/model + unit/plate/VIN-suffix rule)",
+  "spec_ref": "SV-8606 (SBC spec Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward msg 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's year/make/model rule)",
   "viu_status": "VIU-Pending",
   "notes": "RE-RULED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'Assets are now identified by VIN (falls back to Unit #, then plate) instead of the year/make/model label.' This supersedes (for SBC only) the kickoff-video P24 serial-number ruling applied 2026-07-28 (that pre-edit body is in chris-update-2026-07-29/backup/; the pre-video body is in video-promotion-backup-2026-07-28/). The all-three-missing fallback and whether year/make/model disappears entirely are unpinned - confirm from Chris's updated spec changelog + the build at VIU, do not invent (Rule 9). 2026-07-29: the WIP question is ANSWERED - Chris Ward: 'A is the correct answer' (wip-identifier-answer-2026-07-29.md): WIP also uses the VIN chain, and the chain is the STANDARD for all reports and all future work ('really good to keep this in mind for all actions moving forward'); WIP-COL-05/WIP-FLT-03/WIP-SORT-03 + the WIP-EXP-07 caveat flipped the same day. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-LBL): absorbed SBC-LBL-02, SBC-LBL-03 (retired locally, deleted from TestRail).",
   "api_related": false
@@ -453,7 +453,7 @@
    "3. A parts invoice opens the associated part sale's Part Requests tab."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 9 S9-R1; S9-R2; S9-R2a; S9-R2b",
+  "spec_ref": "SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-R1; S9-R2; S9-R2a; S9-R2b)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -480,7 +480,7 @@
    "3. Expanded rows are shown collapsed again — expansion is not restored (this is the specified behavior, not a defect)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 9 S9-R3; S9-R4",
+  "spec_ref": "SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-R3; S9-R4)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-LIMITATION ENCODING: collapsed-on-return is per spec (S9-R4) — do not file expansion loss as a defect.",
   "api_related": false
@@ -506,7 +506,7 @@
    "4. The link never recolors to the browser's visited-link (purple) color."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 9 S9-R5; S9-R6; S9-R7; S9-R8",
+  "spec_ref": "SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-R5; S9-R6; S9-R7; S9-R8)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -531,7 +531,7 @@
    "2. Pressing back returns you to the report."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 9 S9-N1",
+  "spec_ref": "SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-N1)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -559,7 +559,7 @@
    "3. Sorting reorders only the customer summary rows — asset rows keep their own order (A→Z with \"Parts Sales\" last) and invoice rows keep their order under their asset."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R1; S10-R2; S10-R6",
+  "spec_ref": "SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R1; S10-R2; S10-R6)",
   "viu_status": "VIU-Pending",
   "notes": "The header chevron cell carries the expand-all control (S8-R16), not a sort. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-SORTSCOPE): absorbed SBC-SORT-05. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -584,7 +584,7 @@
    "2. Clicking a column header replaces the default with that column's sort."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R4; S10-R7",
+  "spec_ref": "SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R4; S10-R7)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -608,7 +608,7 @@
    "2. Descending: the em-dash row sorts to the top."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R3",
+  "spec_ref": "SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R3)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -632,7 +632,7 @@
    "2. The Date cells on customer rows stay blank — the sort still works."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R5",
+  "spec_ref": "SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R5)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false

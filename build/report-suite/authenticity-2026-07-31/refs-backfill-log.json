@@ -1,0 +1,2600 @@
+[
+ {
+  "id": "SBC-LOC-01",
+  "before": "SV-8600 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A, applied suite-wide)",
+  "after": "SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A, applied suite-wide)",
+  "why": "F1 mis-cited ticket corrected SV-8600 -> SV-8603: its anchor is SBC Story 4 Filter by location = SV-8603; SV-8600 is SBC Story 1"
+ },
+ {
+  "id": "SBC-LOC-04",
+  "before": "SV-8600 (SBC spec v12 2026-07-29 S4-R12; S4-R12a; S20-R19 — per-row Location column with automatic visibility, \"Multiple\" on aggregating rows)",
+  "after": "SV-8603 (SBC spec v12 2026-07-29 S4-R12; S4-R12a; S20-R19 — per-row Location column with automatic visibility, \"Multiple\" on aggregating rows)",
+  "why": "F1 mis-cited ticket corrected SV-8600 -> SV-8603: its anchor is SBC Story 4 Filter by location = SV-8603; SV-8600 is SBC Story 1"
+ },
+ {
+  "id": "TU-ELL-02",
+  "before": "SV-8652 (TU spec v5 2026-07-29 S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1 — each re-worded \"When shown\" now that Est. Lost Labor is a hideable column, new Story 10 S10-R3)",
+  "after": "SV-8649 (TU spec v5 2026-07-29 S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1 — each re-worded \"When shown\" now that Est. Lost Labor is a hideable column, new Story 10 S10-R3)",
+  "why": "F1 mis-cited ticket corrected SV-8652 -> SV-8649: its first anchor is TU S2 Columns and Calculations = SV-8649; SV-8652 is TU Story 5 Technician Filter"
+ },
+ {
+  "id": "WIP-COL-01",
+  "before": "SV-8659 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope)",
+  "after": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope)",
+  "why": "F1 mis-cited ticket corrected SV-8659 -> SV-8660: its anchor is WIP Story 4 Columns and Calculations = SV-8660; SV-8659 is WIP Story 3 Tab Placement"
+ },
+ {
+  "id": "WIP-COL-02",
+  "before": "SV-8659; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: \"The Location column is not offered in the column selector; its visibility is automatic\")",
+  "after": "SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: \"The Location column is not offered in the column selector; its visibility is automatic\")",
+  "why": "F1 mis-cited ticket corrected SV-8659 -> SV-8660: its anchors are WIP Story 4 = SV-8660 plus Story 8 = SV-8664; SV-8659 is WIP Story 3 Tab Placement"
+ },
+ {
+  "id": "SBC-API-05",
+  "before": "specs/sbc-sales-by-customer.md Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22; Story 16 S16-R6",
+  "after": "specs/sbc-sales-by-customer.md Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22",
+  "why": "F2 STALE anchor dropped: SBC Story 16 (Print) reads '(removed - Print retired)' in the current SBC spec v12 2026-07-29, so S16-R6 no longer exists"
+ },
+ {
+  "id": "SBC-EMPTY-04",
+  "before": "specs/sbc-sales-by-customer.md §7 User Feedback Summary",
+  "after": "SV-8582 (SBC spec §7 User Feedback Summary — the data-fetch error toast; CROSS-CUTTING: the SBC spec carries no error-state story of its own so the epic key is used deliberately)",
+  "why": "F3 no owning story — SBC error states live only in §7; epic-level ref stated explicitly"
+ },
+ {
+  "id": "SBR-CALC-06",
+  "before": "specs/sbr-sales-by-representative.md §3 definitions; §4 Terminology",
+  "after": "SV-8582 (SBR spec §3 definitions; §4 Terminology — money-column labels and the Subtotal/Margin definitions; CROSS-CUTTING across every SBR row level with no single owning story)",
+  "why": "F3 cross-cutting money definitions; epic-level ref stated explicitly"
+ },
+ {
+  "id": "SBR-CALC-07",
+  "before": "specs/sbr-sales-by-representative.md §3 Key Decisions (accounting parentheses)",
+  "after": "SV-8593 (SBR spec §3 Key Decisions accounting parentheses — owned by the shared A5 report-shell formatter module: verbatim 'accounting-parens negatives')",
+  "why": "F3 shared-chassis story SV-8593 [A5] verbatim owns the accounting-parens formatter"
+ },
+ {
+  "id": "SBR-CALC-08",
+  "before": "specs/sbr-sales-by-representative.md §3 rounding rule",
+  "after": "SV-8582 (SBR spec §3 half-up rounding rule + round of unrounded rollups; CROSS-CUTTING display rule with no single owning story)",
+  "why": "F3 cross-cutting rounding rule; epic-level ref stated explicitly"
+ },
+ {
+  "id": "WIP-CALC-07",
+  "before": "specs/wip-work-in-progress.md §2 Relationship to the work order; §4 Terminology (Approved line / approved work)",
+  "after": "SV-8660 (WIP spec Story 4 S4-R15 verbatim 'summed across the work order's approved lines' + §2 Relationship to the work order; §4 Terminology Approved line)",
+  "why": "F3 owning story identified: WIP Story 4 Columns and Calculations = SV-8660 (S4-R15 verbatim)"
+ },
+ {
+  "id": "TU-COL-01",
+  "before": "SV-8655 (TU spec v5 2026-07-29 NEW Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 — column selector RATIFIED, replacing the placeholder written from the 2026-07-29 group message)",
+  "after": "SV-8582 (TU spec v5 2026-07-29 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 column selector — NO OWNING JIRA STORY: epic SV-8582 carries no TU Story-10 ticket and the spec's own Jira field reads TBD; epic key used and FLAGGED)",
+  "why": "F3 no owning story — was mis-cited to SV-8655 (TU Story 8 Visual Conformance); TU Story 10 has no Jira ticket at all (spec Jira field: TBD)"
+ },
+ {
+  "id": "IV-API-01",
+  "before": "specs/inventory-value.md Story 11 S11-R1; S11-R4",
+  "after": "SV-8678 (specs/inventory-value.md Story 11 S11-R1; S11-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 11)"
+ },
+ {
+  "id": "IV-API-02",
+  "before": "specs/inventory-value.md Story 11 S11-R2; §2 Relationship to nightly history",
+  "after": "SV-8678 (specs/inventory-value.md Story 11 S11-R2; §2 Relationship to nightly history)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 11)"
+ },
+ {
+  "id": "IV-API-03",
+  "before": "specs/inventory-value.md Story 11 S11-R3",
+  "after": "SV-8678 (specs/inventory-value.md Story 11 S11-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 11)"
+ },
+ {
+  "id": "IV-API-04",
+  "before": "specs/inventory-value.md Story 11 S11-R5; Story 5 S5-E1",
+  "after": "SV-8678 (specs/inventory-value.md Story 11 S11-R5; Story 5 S5-E1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 11)"
+ },
+ {
+  "id": "IV-API-05",
+  "before": "specs/inventory-value.md Story 11 S11-R6",
+  "after": "SV-8678 (specs/inventory-value.md Story 11 S11-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 11)"
+ },
+ {
+  "id": "IV-API-06",
+  "before": "specs/inventory-value.md Story 11 S11-E1; S11-R6; Story 5 S5-R4; S5-R5; S5-N1",
+  "after": "SV-8678 (specs/inventory-value.md Story 11 S11-E1; S11-R6; Story 5 S5-R4; S5-R5; S5-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 11)"
+ },
+ {
+  "id": "IV-CALC-01",
+  "before": "specs/inventory-value.md Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list)",
+  "after": "SV-8670 (specs/inventory-value.md Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 3)"
+ },
+ {
+  "id": "IV-CALC-02",
+  "before": "specs/inventory-value.md Story 3 S3-R5 (matrix branch); §5 Assumptions",
+  "after": "SV-8670 (specs/inventory-value.md Story 3 S3-R5 (matrix branch); §5 Assumptions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 3)"
+ },
+ {
+  "id": "IV-CALC-03",
+  "before": "specs/inventory-value.md Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions",
+  "after": "SV-8670 (specs/inventory-value.md Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 3)"
+ },
+ {
+  "id": "IV-CALC-04",
+  "before": "specs/inventory-value.md Story 3 S3-R6; S3-R7; §4 Terminology",
+  "after": "SV-8670 (specs/inventory-value.md Story 3 S3-R6; S3-R7; §4 Terminology)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 3)"
+ },
+ {
+  "id": "IV-CALC-05",
+  "before": "specs/inventory-value.md Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology",
+  "after": "SV-8670 (specs/inventory-value.md Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 3)"
+ },
+ {
+  "id": "IV-CALC-06",
+  "before": "specs/inventory-value.md Story 3 S3-R9; S3-E3",
+  "after": "SV-8670 (specs/inventory-value.md Story 3 S3-R9; S3-E3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 3)"
+ },
+ {
+  "id": "IV-COL-01",
+  "before": "specs/inventory-value.md Story 3 S3-R1; S3-R2",
+  "after": "SV-8670 (specs/inventory-value.md Story 3 S3-R1; S3-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 3)"
+ },
+ {
+  "id": "IV-COL-02",
+  "before": "specs/inventory-value.md Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity)",
+  "after": "SV-8670 (specs/inventory-value.md Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 3)"
+ },
+ {
+  "id": "IV-COL-03",
+  "before": "specs/inventory-value.md Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions",
+  "after": "SV-8670 (specs/inventory-value.md Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 3)"
+ },
+ {
+  "id": "IV-COL-04",
+  "before": "specs/inventory-value.md Story 3 S3-R12; S3-R13; Story 8 S8-R3",
+  "after": "SV-8670 (specs/inventory-value.md Story 3 S3-R12; S3-R13; Story 8 S8-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 3)"
+ },
+ {
+  "id": "IV-COL-05",
+  "before": "specs/inventory-value.md Story 3 S3-R14; S3-E1; S3-E2",
+  "after": "SV-8670 (specs/inventory-value.md Story 3 S3-R14; S3-E1; S3-E2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 3)"
+ },
+ {
+  "id": "IV-DATE-01",
+  "before": "specs/inventory-value.md Story 5 S5-R1; §2 Known Limitations (v1)",
+  "after": "SV-8672 (specs/inventory-value.md Story 5 S5-R1; §2 Known Limitations (v1))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 5)"
+ },
+ {
+  "id": "IV-DATE-02",
+  "before": "specs/inventory-value.md Story 5 S5-R2 (+ context note)",
+  "after": "SV-8672 (specs/inventory-value.md Story 5 S5-R2 (+ context note))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 5)"
+ },
+ {
+  "id": "IV-DATE-03",
+  "before": "specs/inventory-value.md Story 5 S5-R3; §3 Key Decisions (live fallback for today)",
+  "after": "SV-8672 (specs/inventory-value.md Story 5 S5-R3; §3 Key Decisions (live fallback for today))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 5)"
+ },
+ {
+  "id": "IV-DATE-04",
+  "before": "specs/inventory-value.md Story 5 S5-R4; §2 Relationship to nightly history",
+  "after": "SV-8672 (specs/inventory-value.md Story 5 S5-R4; §2 Relationship to nightly history)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 5)"
+ },
+ {
+  "id": "IV-DATE-05",
+  "before": "specs/inventory-value.md Story 5 S5-R5; S5-R6",
+  "after": "SV-8672 (specs/inventory-value.md Story 5 S5-R5; S5-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 5)"
+ },
+ {
+  "id": "IV-DATE-06",
+  "before": "specs/inventory-value.md Story 5 S5-R7; S5-R8",
+  "after": "SV-8672 (specs/inventory-value.md Story 5 S5-R7; S5-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 5)"
+ },
+ {
+  "id": "IV-DATE-08",
+  "before": "specs/inventory-value.md Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope",
+  "after": "SV-8672 (specs/inventory-value.md Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 5)"
+ },
+ {
+  "id": "IV-EXP-01",
+  "before": "specs/inventory-value.md Story 10 S10-R1; S10-R2",
+  "after": "SV-8677 (specs/inventory-value.md Story 10 S10-R1; S10-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 10)"
+ },
+ {
+  "id": "IV-EXP-03",
+  "before": "specs/inventory-value.md Story 10 S10-R7 (+ context note)",
+  "after": "SV-8677 (specs/inventory-value.md Story 10 S10-R7 (+ context note))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 10)"
+ },
+ {
+  "id": "IV-EXP-04",
+  "before": "specs/inventory-value.md Story 10 S10-R8; S10-R9",
+  "after": "SV-8677 (specs/inventory-value.md Story 10 S10-R8; S10-R9)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 10)"
+ },
+ {
+  "id": "IV-EXP-05",
+  "before": "specs/inventory-value.md Story 10 S10-R10",
+  "after": "SV-8677 (specs/inventory-value.md Story 10 S10-R10)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 10)"
+ },
+ {
+  "id": "IV-EXP-06",
+  "before": "specs/inventory-value.md Story 10 S10-R11",
+  "after": "SV-8677 (specs/inventory-value.md Story 10 S10-R11)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 10)"
+ },
+ {
+  "id": "IV-EXP-07",
+  "before": "specs/inventory-value.md Story 10 S10-R12; §7 User Feedback Summary",
+  "after": "SV-8677 (specs/inventory-value.md Story 10 S10-R12; §7 User Feedback Summary)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 10)"
+ },
+ {
+  "id": "IV-EXP-09",
+  "before": "specs/inventory-value.md Story 10 S10-R13; S10-R14; §7 User Feedback Summary",
+  "after": "SV-8677 (specs/inventory-value.md Story 10 S10-R13; S10-R14; §7 User Feedback Summary)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 10)"
+ },
+ {
+  "id": "IV-FLT-01",
+  "before": "specs/inventory-value.md Story 6 S6-R1; S6-R2; S6-R3; S6-R4",
+  "after": "SV-8673 (specs/inventory-value.md Story 6 S6-R1; S6-R2; S6-R3; S6-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 6)"
+ },
+ {
+  "id": "IV-FLT-02",
+  "before": "specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8",
+  "after": "SV-8673 (specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 6)"
+ },
+ {
+  "id": "IV-FLT-03",
+  "before": "specs/inventory-value.md Story 6 S6-R7",
+  "after": "SV-8673 (specs/inventory-value.md Story 6 S6-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 6)"
+ },
+ {
+  "id": "IV-FLT-04",
+  "before": "specs/inventory-value.md Story 6 S6-R8; S6-R5",
+  "after": "SV-8673 (specs/inventory-value.md Story 6 S6-R8; S6-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 6)"
+ },
+ {
+  "id": "IV-FLT-05",
+  "before": "specs/inventory-value.md Story 6 S6-R9",
+  "after": "SV-8673 (specs/inventory-value.md Story 6 S6-R9)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 6)"
+ },
+ {
+  "id": "IV-LOC-03",
+  "before": "specs/inventory-value.md Story 7 S7-R4; S7-R5",
+  "after": "SV-8674 (specs/inventory-value.md Story 7 S7-R4; S7-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 7)"
+ },
+ {
+  "id": "IV-NAV-01",
+  "before": "specs/inventory-value.md Story 1 S1-R1",
+  "after": "SV-8668 (specs/inventory-value.md Story 1 S1-R1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 1)"
+ },
+ {
+  "id": "IV-NAV-02",
+  "before": "specs/inventory-value.md Story 1 S1-R2; S1-R6",
+  "after": "SV-8668 (specs/inventory-value.md Story 1 S1-R2; S1-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 1)"
+ },
+ {
+  "id": "IV-NAV-03",
+  "before": "specs/inventory-value.md Story 1 S1-R3; Story 7 S7-R2",
+  "after": "SV-8668 (specs/inventory-value.md Story 1 S1-R3; Story 7 S7-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 1)"
+ },
+ {
+  "id": "IV-NAV-05",
+  "before": "specs/inventory-value.md Story 1 S1-R8; §2 Scale and data model",
+  "after": "SV-8668 (specs/inventory-value.md Story 1 S1-R8; §2 Scale and data model)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 1)"
+ },
+ {
+  "id": "IV-NAV-06",
+  "before": "specs/inventory-value.md Story 1 S1-N2; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary",
+  "after": "SV-8668 (specs/inventory-value.md Story 1 S1-N2; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 1)"
+ },
+ {
+  "id": "IV-PERM-01",
+  "before": "specs/inventory-value.md Story 1 Prerequisites",
+  "after": "SV-8668 (specs/inventory-value.md Story 1 Prerequisites)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 1)"
+ },
+ {
+  "id": "IV-PERM-02",
+  "before": "specs/inventory-value.md Story 1 S1-N1",
+  "after": "SV-8668 (specs/inventory-value.md Story 1 S1-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 1)"
+ },
+ {
+  "id": "IV-PERS-01",
+  "before": "specs/inventory-value.md Story 8 S8-R1; S8-R2",
+  "after": "SV-8675 (specs/inventory-value.md Story 8 S8-R1; S8-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 8)"
+ },
+ {
+  "id": "IV-PERS-02",
+  "before": "specs/inventory-value.md Story 8 S8-R4; Story 3 S3-R1",
+  "after": "SV-8675 (specs/inventory-value.md Story 8 S8-R4; Story 3 S3-R1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 8)"
+ },
+ {
+  "id": "IV-PERS-03",
+  "before": "specs/inventory-value.md Story 8 S8-R5 (+ context note); Story 9 S9-R5",
+  "after": "SV-8675 (specs/inventory-value.md Story 8 S8-R5 (+ context note); Story 9 S9-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 8)"
+ },
+ {
+  "id": "IV-PERS-04",
+  "before": "specs/inventory-value.md Story 8 S8-R6",
+  "after": "SV-8675 (specs/inventory-value.md Story 8 S8-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 8)"
+ },
+ {
+  "id": "IV-SCOPE-01",
+  "before": "specs/inventory-value.md Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions",
+  "after": "SV-8669 (specs/inventory-value.md Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 2)"
+ },
+ {
+  "id": "IV-SCOPE-02",
+  "before": "specs/inventory-value.md Story 2 S2-R3; §2 Known Limitations (v1)",
+  "after": "SV-8669 (specs/inventory-value.md Story 2 S2-R3; §2 Known Limitations (v1))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 2)"
+ },
+ {
+  "id": "IV-SCOPE-05",
+  "before": "specs/inventory-value.md Story 2 context note (no dead-stock exclusion)",
+  "after": "SV-8669 (specs/inventory-value.md Story 2 context note (no dead-stock exclusion))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 2)"
+ },
+ {
+  "id": "IV-SORT-01",
+  "before": "specs/inventory-value.md Story 9 S9-R1; §3 Key Decisions (Total Cost default sort)",
+  "after": "SV-8676 (specs/inventory-value.md Story 9 S9-R1; §3 Key Decisions (Total Cost default sort))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 9)"
+ },
+ {
+  "id": "IV-SORT-02",
+  "before": "specs/inventory-value.md Story 9 S9-R2",
+  "after": "SV-8676 (specs/inventory-value.md Story 9 S9-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 9)"
+ },
+ {
+  "id": "IV-SORT-03",
+  "before": "specs/inventory-value.md Story 9 S9-R3",
+  "after": "SV-8676 (specs/inventory-value.md Story 9 S9-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 9)"
+ },
+ {
+  "id": "IV-SORT-04",
+  "before": "specs/inventory-value.md Story 9 S9-R4; S9-R5",
+  "after": "SV-8676 (specs/inventory-value.md Story 9 S9-R4; S9-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 9)"
+ },
+ {
+  "id": "IV-TOT-01",
+  "before": "specs/inventory-value.md Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5",
+  "after": "SV-8671 (specs/inventory-value.md Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 4)"
+ },
+ {
+  "id": "IV-TOT-02",
+  "before": "specs/inventory-value.md Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set)",
+  "after": "SV-8671 (specs/inventory-value.md Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 4)"
+ },
+ {
+  "id": "IV-TOT-03",
+  "before": "specs/inventory-value.md Story 4 S4-R3",
+  "after": "SV-8671 (specs/inventory-value.md Story 4 S4-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 4)"
+ },
+ {
+  "id": "IV-VIS-01",
+  "before": "specs/inventory-value.md Story 12 S12-R1",
+  "after": "SV-8679 (specs/inventory-value.md Story 12 S12-R1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 12)"
+ },
+ {
+  "id": "IV-VIS-02",
+  "before": "specs/inventory-value.md Story 12 S12-R2; S12-R3",
+  "after": "SV-8679 (specs/inventory-value.md Story 12 S12-R2; S12-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 12)"
+ },
+ {
+  "id": "IV-VIS-04",
+  "before": "specs/inventory-value.md Story 12 S12-R6",
+  "after": "SV-8679 (specs/inventory-value.md Story 12 S12-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 12)"
+ },
+ {
+  "id": "IV-VIS-05",
+  "before": "specs/inventory-value.md Story 12 S12-R7",
+  "after": "SV-8679 (specs/inventory-value.md Story 12 S12-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 12)"
+ },
+ {
+  "id": "IV-VIS-06",
+  "before": "specs/inventory-value.md Story 12 S12-R8",
+  "after": "SV-8679 (specs/inventory-value.md Story 12 S12-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 12)"
+ },
+ {
+  "id": "IV-VIS-07",
+  "before": "specs/inventory-value.md Story 12 S12-R9",
+  "after": "SV-8679 (specs/inventory-value.md Story 12 S12-R9)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (IV Story 12)"
+ },
+ {
+  "id": "PV-API-03",
+  "before": "specs/parts-velocity.md S3-R3",
+  "after": "SV-8643 (specs/parts-velocity.md S3-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 3)"
+ },
+ {
+  "id": "PV-API-04",
+  "before": "specs/parts-velocity.md S1-R4; S1-N2",
+  "after": "SV-8641 (specs/parts-velocity.md S1-R4; S1-N2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 1)"
+ },
+ {
+  "id": "PV-CALC-01",
+  "before": "specs/parts-velocity.md S5-R1; S5-R4 (Units Sold, inventory); §4",
+  "after": "SV-8645 (specs/parts-velocity.md S5-R1; S5-R4 (Units Sold, inventory); §4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 5)"
+ },
+ {
+  "id": "PV-CALC-03",
+  "before": "specs/parts-velocity.md S5-R3; S5-R4 (Units Returned); §3 Key Decisions",
+  "after": "SV-8645 (specs/parts-velocity.md S5-R3; S5-R4 (Units Returned); §3 Key Decisions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 5)"
+ },
+ {
+  "id": "PV-CALC-04",
+  "before": "specs/parts-velocity.md S5-R3",
+  "after": "SV-8645 (specs/parts-velocity.md S5-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 5)"
+ },
+ {
+  "id": "PV-CALC-08",
+  "before": "specs/parts-velocity.md S5-R4 (On Hand / Min / Max); §2 Out of Scope; S5-R5",
+  "after": "SV-8645 (specs/parts-velocity.md S5-R4 (On Hand / Min / Max); §2 Out of Scope; S5-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 5)"
+ },
+ {
+  "id": "PV-CALC-12",
+  "before": "specs/parts-velocity.md S5-R4a (null rules + mixed-row paragraph); S3-R9",
+  "after": "SV-8645 (specs/parts-velocity.md S5-R4a (null rules + mixed-row paragraph); S3-R9)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 5)"
+ },
+ {
+  "id": "PV-COL-04",
+  "before": "specs/parts-velocity.md S4-R6; S1-R2",
+  "after": "SV-8644 (specs/parts-velocity.md S4-R6; S1-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 4)"
+ },
+ {
+  "id": "PV-COL-05",
+  "before": "specs/parts-velocity.md S4-R6",
+  "after": "SV-8644 (specs/parts-velocity.md S4-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 4)"
+ },
+ {
+  "id": "PV-COL-08",
+  "before": "specs/parts-velocity.md S4-E1; S4-R6",
+  "after": "SV-8644 (specs/parts-velocity.md S4-E1; S4-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 4)"
+ },
+ {
+  "id": "PV-EXP-01",
+  "before": "specs/parts-velocity.md S6-R1",
+  "after": "SV-8646 (specs/parts-velocity.md S6-R1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 6)"
+ },
+ {
+  "id": "PV-EXP-03",
+  "before": "specs/parts-velocity.md S6-R3; S4-R4",
+  "after": "SV-8646 (specs/parts-velocity.md S6-R3; S4-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 6)"
+ },
+ {
+  "id": "PV-EXP-06",
+  "before": "specs/parts-velocity.md S6-R5; S6-R6; S6-R8",
+  "after": "SV-8646 (specs/parts-velocity.md S6-R5; S6-R6; S6-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 6)"
+ },
+ {
+  "id": "PV-EXP-10",
+  "before": "specs/parts-velocity.md S6-R9; S6-N1; §7 (casing note)",
+  "after": "SV-8646 (specs/parts-velocity.md S6-R9; S6-N1; §7 (casing note))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 6)"
+ },
+ {
+  "id": "PV-FILT-03",
+  "before": "specs/parts-velocity.md S2-R2; §2 Out of Scope",
+  "after": "SV-8642 (specs/parts-velocity.md S2-R2; §2 Out of Scope)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 2)"
+ },
+ {
+  "id": "PV-FILT-04",
+  "before": "specs/parts-velocity.md S2-R3",
+  "after": "SV-8642 (specs/parts-velocity.md S2-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 2)"
+ },
+ {
+  "id": "PV-FILT-05",
+  "before": "specs/parts-velocity.md S2-R4; S2-R5; S2-R10",
+  "after": "SV-8642 (specs/parts-velocity.md S2-R4; S2-R5; S2-R10)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 2)"
+ },
+ {
+  "id": "PV-FILT-06",
+  "before": "specs/parts-velocity.md S2-R6; §3 Key Decisions",
+  "after": "SV-8642 (specs/parts-velocity.md S2-R6; §3 Key Decisions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 2)"
+ },
+ {
+  "id": "PV-FILT-07",
+  "before": "specs/parts-velocity.md S2-R7",
+  "after": "SV-8642 (specs/parts-velocity.md S2-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 2)"
+ },
+ {
+  "id": "PV-FILT-08",
+  "before": "specs/parts-velocity.md S2-R8",
+  "after": "SV-8642 (specs/parts-velocity.md S2-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 2)"
+ },
+ {
+  "id": "PV-FILT-11",
+  "before": "specs/parts-velocity.md S2-R11; S2-N1; §7",
+  "after": "SV-8642 (specs/parts-velocity.md S2-R11; S2-N1; §7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 2)"
+ },
+ {
+  "id": "PV-FILT-12",
+  "before": "specs/parts-velocity.md S2-E1; S2-E2; S2-E3",
+  "after": "SV-8642 (specs/parts-velocity.md S2-E1; S2-E2; S2-E3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 2)"
+ },
+ {
+  "id": "PV-NAV-02",
+  "before": "specs/parts-velocity.md S1-R2; S4-R6",
+  "after": "SV-8641 (specs/parts-velocity.md S1-R2; S4-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 1)"
+ },
+ {
+  "id": "PV-NAV-03",
+  "before": "specs/parts-velocity.md S1-R3",
+  "after": "SV-8641 (specs/parts-velocity.md S1-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 1)"
+ },
+ {
+  "id": "PV-PERM-01",
+  "before": "specs/parts-velocity.md S1-R4",
+  "after": "SV-8641 (specs/parts-velocity.md S1-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 1)"
+ },
+ {
+  "id": "PV-PERM-02",
+  "before": "specs/parts-velocity.md S1-N1",
+  "after": "SV-8641 (specs/parts-velocity.md S1-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 1)"
+ },
+ {
+  "id": "PV-PERM-03",
+  "before": "specs/parts-velocity.md S1-N2; S1-R4",
+  "after": "SV-8641 (specs/parts-velocity.md S1-N2; S1-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 1)"
+ },
+ {
+  "id": "PV-ROW-01",
+  "before": "specs/parts-velocity.md S3-R1a; §3 Key Decisions",
+  "after": "SV-8643 (specs/parts-velocity.md S3-R1a; §3 Key Decisions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 3)"
+ },
+ {
+  "id": "PV-ROW-06",
+  "before": "specs/parts-velocity.md S3-R6",
+  "after": "SV-8643 (specs/parts-velocity.md S3-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 3)"
+ },
+ {
+  "id": "PV-ROW-07",
+  "before": "specs/parts-velocity.md S3-R7",
+  "after": "SV-8643 (specs/parts-velocity.md S3-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 3)"
+ },
+ {
+  "id": "PV-ROW-10",
+  "before": "specs/parts-velocity.md S3-E1; S5-R5",
+  "after": "SV-8643 (specs/parts-velocity.md S3-E1; S5-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 3)"
+ },
+ {
+  "id": "PV-VIS-01",
+  "before": "specs/parts-velocity.md S7-R1; §2",
+  "after": "SV-8647 (specs/parts-velocity.md S7-R1; §2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 7)"
+ },
+ {
+  "id": "PV-VIS-02",
+  "before": "specs/parts-velocity.md S7-R2; S7-R3; S7-R4; S7-R5",
+  "after": "SV-8647 (specs/parts-velocity.md S7-R2; S7-R3; S7-R4; S7-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 7)"
+ },
+ {
+  "id": "PV-VIS-03",
+  "before": "specs/parts-velocity.md S7-R6",
+  "after": "SV-8647 (specs/parts-velocity.md S7-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (PV Story 7)"
+ },
+ {
+  "id": "SBC-API-01",
+  "before": "specs/sbc-sales-by-customer.md Story 8 S8-R14; S8-R16",
+  "after": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R14; S8-R16)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 8)"
+ },
+ {
+  "id": "SBC-API-02",
+  "before": "specs/sbc-sales-by-customer.md Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist)",
+  "after": "SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 10)"
+ },
+ {
+  "id": "SBC-API-03",
+  "before": "specs/sbc-sales-by-customer.md Story 18 S18-R2; S18-R4",
+  "after": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R2; S18-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 18)"
+ },
+ {
+  "id": "SBC-API-04",
+  "before": "specs/sbc-sales-by-customer.md Story 18 S18-R6; S18-R11",
+  "after": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R6; S18-R11)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 18)"
+ },
+ {
+  "id": "SBC-API-05",
+  "before": "specs/sbc-sales-by-customer.md Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22",
+  "after": "SV-8612 (specs/sbc-sales-by-customer.md Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 14)"
+ },
+ {
+  "id": "SBC-CALC-01",
+  "before": "specs/sbc-sales-by-customer.md §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1",
+  "after": "SV-8605 (specs/sbc-sales-by-customer.md §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 7)"
+ },
+ {
+  "id": "SBC-CALC-02",
+  "before": "specs/sbc-sales-by-customer.md Story 7 S7-R11; S7-R12; S7-R13; S7-R14",
+  "after": "SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R11; S7-R12; S7-R13; S7-R14)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 7)"
+ },
+ {
+  "id": "SBC-CALC-03",
+  "before": "specs/sbc-sales-by-customer.md Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6",
+  "after": "SV-8610 (specs/sbc-sales-by-customer.md Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 12)"
+ },
+ {
+  "id": "SBC-CALC-04",
+  "before": "specs/sbc-sales-by-customer.md Story 12 S12-N1; S12-E1; S12-E2",
+  "after": "SV-8610 (specs/sbc-sales-by-customer.md Story 12 S12-N1; S12-E1; S12-E2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 12)"
+ },
+ {
+  "id": "SBC-CALC-05",
+  "before": "specs/sbc-sales-by-customer.md Story 8 S8-R13",
+  "after": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R13)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 8)"
+ },
+ {
+  "id": "SBC-CALC-06",
+  "before": "specs/sbc-sales-by-customer.md Story 11 S11-R1; S11-R2; S11-R3; S11-N1",
+  "after": "SV-8609 (specs/sbc-sales-by-customer.md Story 11 S11-R1; S11-R2; S11-R3; S11-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 11)"
+ },
+ {
+  "id": "SBC-CALC-07",
+  "before": "specs/sbc-sales-by-customer.md Story 18 S18-R6",
+  "after": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 18)"
+ },
+ {
+  "id": "SBC-COL-01",
+  "before": "specs/sbc-sales-by-customer.md Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7",
+  "after": "SV-8611 (specs/sbc-sales-by-customer.md Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 13)"
+ },
+ {
+  "id": "SBC-COL-02",
+  "before": "specs/sbc-sales-by-customer.md Story 13 S13-R5; S13-R6; S13-N1",
+  "after": "SV-8611 (specs/sbc-sales-by-customer.md Story 13 S13-R5; S13-R6; S13-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 13)"
+ },
+ {
+  "id": "SBC-CUST-01",
+  "before": "specs/sbc-sales-by-customer.md Story 18 S18-R1; S18-R2",
+  "after": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R1; S18-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 18)"
+ },
+ {
+  "id": "SBC-CUST-02",
+  "before": "specs/sbc-sales-by-customer.md Story 18 S18-R2",
+  "after": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 18)"
+ },
+ {
+  "id": "SBC-CUST-03",
+  "before": "specs/sbc-sales-by-customer.md Story 18 S18-R3; S18-N1; S17-E1",
+  "after": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R3; S18-N1; S17-E1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 18)"
+ },
+ {
+  "id": "SBC-CUST-04",
+  "before": "specs/sbc-sales-by-customer.md Story 18 S18-R4; S18-R5; S18-R9; S18-E1",
+  "after": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R4; S18-R5; S18-R9; S18-E1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 18)"
+ },
+ {
+  "id": "SBC-CUST-05",
+  "before": "specs/sbc-sales-by-customer.md Story 18 S18-R5",
+  "after": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 18)"
+ },
+ {
+  "id": "SBC-CUST-06",
+  "before": "specs/sbc-sales-by-customer.md Story 18 S18-R5; S18-R11",
+  "after": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R5; S18-R11)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 18)"
+ },
+ {
+  "id": "SBC-CUST-09",
+  "before": "specs/sbc-sales-by-customer.md Story 18 S18-R9; S18-E1",
+  "after": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R9; S18-E1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 18)"
+ },
+ {
+  "id": "SBC-DATE-01",
+  "before": "specs/sbc-sales-by-customer.md Story 2 S2-R1; S2-R2",
+  "after": "SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R1; S2-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 2)"
+ },
+ {
+  "id": "SBC-DATE-03",
+  "before": "specs/sbc-sales-by-customer.md Story 2 S2-R3; S2-R4; S2-N2",
+  "after": "SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R3; S2-R4; S2-N2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 2)"
+ },
+ {
+  "id": "SBC-DATE-04",
+  "before": "specs/sbc-sales-by-customer.md Story 2 S2-R6; S2-R9 (context)",
+  "after": "SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R6; S2-R9 (context))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 2)"
+ },
+ {
+  "id": "SBC-EMPTY-01",
+  "before": "specs/sbc-sales-by-customer.md Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1",
+  "after": "SV-8615 (specs/sbc-sales-by-customer.md Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 17)"
+ },
+ {
+  "id": "SBC-EMPTY-02",
+  "before": "specs/sbc-sales-by-customer.md Story 17 S17-N1",
+  "after": "SV-8615 (specs/sbc-sales-by-customer.md Story 17 S17-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 17)"
+ },
+ {
+  "id": "SBC-EXP-04",
+  "before": "specs/sbc-sales-by-customer.md Story 14 S14-R10; S14-R11; S14-R12; S14-R13",
+  "after": "SV-8612 (specs/sbc-sales-by-customer.md Story 14 S14-R10; S14-R11; S14-R12; S14-R13)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 14)"
+ },
+ {
+  "id": "SBC-EXP-05",
+  "before": "specs/sbc-sales-by-customer.md Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7",
+  "after": "SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 2)"
+ },
+ {
+  "id": "SBC-EXP-08",
+  "before": "specs/sbc-sales-by-customer.md Story 15 S15-R5; S15-R6",
+  "after": "SV-8613 (specs/sbc-sales-by-customer.md Story 15 S15-R5; S15-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 15)"
+ },
+ {
+  "id": "SBC-EXP-10",
+  "before": "specs/sbc-sales-by-customer.md Story 15 S15-R12; S15-R13; S15-R14; S15-R15",
+  "after": "SV-8613 (specs/sbc-sales-by-customer.md Story 15 S15-R12; S15-R13; S15-R14; S15-R15)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 15)"
+ },
+ {
+  "id": "SBC-EXP-15",
+  "before": "specs/sbc-sales-by-customer.md Story 18 S18-R10",
+  "after": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R10)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 18)"
+ },
+ {
+  "id": "SBC-LINK-01",
+  "before": "specs/sbc-sales-by-customer.md Story 9 S9-R1; S9-R2; S9-R2a; S9-R2b",
+  "after": "SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-R1; S9-R2; S9-R2a; S9-R2b)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 9)"
+ },
+ {
+  "id": "SBC-LINK-02",
+  "before": "specs/sbc-sales-by-customer.md Story 9 S9-R3; S9-R4",
+  "after": "SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-R3; S9-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 9)"
+ },
+ {
+  "id": "SBC-LINK-03",
+  "before": "specs/sbc-sales-by-customer.md Story 9 S9-R5; S9-R6; S9-R7; S9-R8",
+  "after": "SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-R5; S9-R6; S9-R7; S9-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 9)"
+ },
+ {
+  "id": "SBC-LINK-04",
+  "before": "specs/sbc-sales-by-customer.md Story 9 S9-N1",
+  "after": "SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 9)"
+ },
+ {
+  "id": "SBC-MOB-01",
+  "before": "specs/sbc-sales-by-customer.md Story 21 S21-R1; S21-R2; S21-R3",
+  "after": "SV-8618 (specs/sbc-sales-by-customer.md Story 21 S21-R1; S21-R2; S21-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 21)"
+ },
+ {
+  "id": "SBC-MOB-02",
+  "before": "specs/sbc-sales-by-customer.md Story 21 S21-R4; S21-R5; S21-R6",
+  "after": "SV-8618 (specs/sbc-sales-by-customer.md Story 21 S21-R4; S21-R5; S21-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 21)"
+ },
+ {
+  "id": "SBC-PERM-03",
+  "before": "specs/sbc-sales-by-customer.md Story 9 S9-N2",
+  "after": "SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-N2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 9)"
+ },
+ {
+  "id": "SBC-PERM-04",
+  "before": "specs/sbc-sales-by-customer.md Story 4 S4-R7; S4-R8; S4-R9; S4-N1",
+  "after": "SV-8603 (specs/sbc-sales-by-customer.md Story 4 S4-R7; S4-R8; S4-R9; S4-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 4)"
+ },
+ {
+  "id": "SBC-PERS-01",
+  "before": "specs/sbc-sales-by-customer.md Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8",
+  "after": "SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 6)"
+ },
+ {
+  "id": "SBC-PERS-02",
+  "before": "specs/sbc-sales-by-customer.md Story 6 S6-R3; Story 8 S8-R22",
+  "after": "SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-R3; Story 8 S8-R22)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 6)"
+ },
+ {
+  "id": "SBC-PERS-03",
+  "before": "specs/sbc-sales-by-customer.md Story 6 S6-R5; S6-R6",
+  "after": "SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-R5; S6-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 6)"
+ },
+ {
+  "id": "SBC-PERS-04",
+  "before": "specs/sbc-sales-by-customer.md Story 6 S6-R7",
+  "after": "SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 6)"
+ },
+ {
+  "id": "SBC-PERS-05",
+  "before": "specs/sbc-sales-by-customer.md Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4",
+  "after": "SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 6)"
+ },
+ {
+  "id": "SBC-PERS-06",
+  "before": "specs/sbc-sales-by-customer.md Story 2 S2-R9",
+  "after": "SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R9)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 2)"
+ },
+ {
+  "id": "SBC-PERS-07",
+  "before": "specs/sbc-sales-by-customer.md Story 18 S18-R8",
+  "after": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 18)"
+ },
+ {
+  "id": "SBC-SORT-01",
+  "before": "specs/sbc-sales-by-customer.md Story 10 S10-R1; S10-R2; S10-R6",
+  "after": "SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R1; S10-R2; S10-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 10)"
+ },
+ {
+  "id": "SBC-SORT-02",
+  "before": "specs/sbc-sales-by-customer.md Story 10 S10-R4; S10-R7",
+  "after": "SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R4; S10-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 10)"
+ },
+ {
+  "id": "SBC-SORT-03",
+  "before": "specs/sbc-sales-by-customer.md Story 10 S10-R3",
+  "after": "SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 10)"
+ },
+ {
+  "id": "SBC-SORT-04",
+  "before": "specs/sbc-sales-by-customer.md Story 10 S10-R5",
+  "after": "SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 10)"
+ },
+ {
+  "id": "SBC-TREE-01",
+  "before": "specs/sbc-sales-by-customer.md Story 7 S7-R1; S7-R2; S7-R3; S7-R4; S7-R5",
+  "after": "SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R1; S7-R2; S7-R3; S7-R4; S7-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 7)"
+ },
+ {
+  "id": "SBC-TREE-02",
+  "before": "specs/sbc-sales-by-customer.md Story 7 S7-N1",
+  "after": "SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 7)"
+ },
+ {
+  "id": "SBC-TREE-03",
+  "before": "specs/sbc-sales-by-customer.md Story 8 S8-R1; S8-R2; S8-R5; S8-R5a; S8-R5b; S8-R5c; S8-R15",
+  "after": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R1; S8-R2; S8-R5; S8-R5a; S8-R5b; S8-R5c; S8-R15)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 8)"
+ },
+ {
+  "id": "SBC-TREE-04",
+  "before": "specs/sbc-sales-by-customer.md Story 8 S8-R4; S8-R12; S8-R12a; Story 20 S20-R14",
+  "after": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R4; S8-R12; S8-R12a; Story 20 S20-R14)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 8)"
+ },
+ {
+  "id": "SBC-TREE-05",
+  "before": "specs/sbc-sales-by-customer.md Story 8 S8-R3",
+  "after": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 8)"
+ },
+ {
+  "id": "SBC-TREE-06",
+  "before": "specs/sbc-sales-by-customer.md Story 8 S8-R6; S8-R6a; Story 10 S10-R6",
+  "after": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R6; S8-R6a; Story 10 S10-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 8)"
+ },
+ {
+  "id": "SBC-TREE-08",
+  "before": "specs/sbc-sales-by-customer.md Story 8 S8-R16; S8-R17; S8-R18; S8-R19",
+  "after": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R16; S8-R17; S8-R18; S8-R19)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 8)"
+ },
+ {
+  "id": "SBC-TREE-09",
+  "before": "specs/sbc-sales-by-customer.md Story 8 S8-R20; S8-R21; Story 10 S10-R8a; S10-R8b; S10-R8c",
+  "after": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R20; S8-R21; Story 10 S10-R8a; S10-R8b; S10-R8c)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 8)"
+ },
+ {
+  "id": "SBC-TREE-10",
+  "before": "specs/sbc-sales-by-customer.md Story 8 S8-E1; S8-E2",
+  "after": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-E1; S8-E2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 8)"
+ },
+ {
+  "id": "SBC-TREE-11",
+  "before": "specs/sbc-sales-by-customer.md Story 8 S8-E3",
+  "after": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-E3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 8)"
+ },
+ {
+  "id": "SBC-TREE-12",
+  "before": "specs/sbc-sales-by-customer.md Story 7 S7-R7; S7-N2; §3 Key Decisions",
+  "after": "SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R7; S7-N2; §3 Key Decisions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 7)"
+ },
+ {
+  "id": "SBC-TREE-13",
+  "before": "specs/sbc-sales-by-customer.md Story 7 S7-R8; S7-R9; S7-R10; S7-R15; S7-R16",
+  "after": "SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R8; S7-R9; S7-R10; S7-R15; S7-R16)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 7)"
+ },
+ {
+  "id": "SBC-TYPE-02",
+  "before": "specs/sbc-sales-by-customer.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6",
+  "after": "SV-8602 (specs/sbc-sales-by-customer.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 3)"
+ },
+ {
+  "id": "SBC-VIS-01",
+  "before": "specs/sbc-sales-by-customer.md Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17",
+  "after": "SV-8617 (specs/sbc-sales-by-customer.md Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 20)"
+ },
+ {
+  "id": "SBC-VIS-02",
+  "before": "specs/sbc-sales-by-customer.md Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14",
+  "after": "SV-8617 (specs/sbc-sales-by-customer.md Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 20)"
+ },
+ {
+  "id": "SBC-VIS-03",
+  "before": "specs/sbc-sales-by-customer.md Story 20 S20-R18",
+  "after": "SV-8617 (specs/sbc-sales-by-customer.md Story 20 S20-R18)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBC Story 20)"
+ },
+ {
+  "id": "SBR-API-01",
+  "before": "specs/sbr-sales-by-representative.md Story 6 S6-R2",
+  "after": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 6)"
+ },
+ {
+  "id": "SBR-API-02",
+  "before": "specs/sbr-sales-by-representative.md Story 11 S11-R5",
+  "after": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 11)"
+ },
+ {
+  "id": "SBR-API-03",
+  "before": "specs/sbr-sales-by-representative.md Story 10 S10-R5",
+  "after": "SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 10)"
+ },
+ {
+  "id": "SBR-API-04",
+  "before": "specs/sbr-sales-by-representative.md Story 14 S14-R2a; S14-N2; S14-E3",
+  "after": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R2a; S14-N2; S14-E3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 14)"
+ },
+ {
+  "id": "SBR-API-05",
+  "before": "specs/sbr-sales-by-representative.md Story 14 S14-E2",
+  "after": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 14)"
+ },
+ {
+  "id": "SBR-BADGE-01",
+  "before": "specs/sbr-sales-by-representative.md Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6",
+  "after": "SV-8625 (specs/sbr-sales-by-representative.md Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 8)"
+ },
+ {
+  "id": "SBR-BADGE-02",
+  "before": "specs/sbr-sales-by-representative.md Story 8 S8-R3; Story 18 S18-R8",
+  "after": "SV-8625 (specs/sbr-sales-by-representative.md Story 8 S8-R3; Story 18 S18-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 8)"
+ },
+ {
+  "id": "SBR-CALC-01",
+  "before": "specs/sbr-sales-by-representative.md Story 9 S9-R1; S9-R2; §3",
+  "after": "SV-8626 (specs/sbr-sales-by-representative.md Story 9 S9-R1; S9-R2; §3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 9)"
+ },
+ {
+  "id": "SBR-CALC-02",
+  "before": "specs/sbr-sales-by-representative.md Story 9 S9-R3; S9-R4; S9-R5; S9-R6; S9-E1; S9-E2",
+  "after": "SV-8626 (specs/sbr-sales-by-representative.md Story 9 S9-R3; S9-R4; S9-R5; S9-R6; S9-E1; S9-E2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 9)"
+ },
+ {
+  "id": "SBR-CALC-03",
+  "before": "specs/sbr-sales-by-representative.md Story 9 S9-N1",
+  "after": "SV-8626 (specs/sbr-sales-by-representative.md Story 9 S9-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 9)"
+ },
+ {
+  "id": "SBR-CALC-05",
+  "before": "specs/sbr-sales-by-representative.md §3 Margin % definition; Story 10 S10-R5",
+  "after": "SV-8627 (specs/sbr-sales-by-representative.md §3 Margin % definition; Story 10 S10-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 10)"
+ },
+ {
+  "id": "SBR-COL-01",
+  "before": "specs/sbr-sales-by-representative.md Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1",
+  "after": "SV-8637 (specs/sbr-sales-by-representative.md Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 20)"
+ },
+ {
+  "id": "SBR-COL-03",
+  "before": "specs/sbr-sales-by-representative.md Story 20 S20-R4; S20-R7",
+  "after": "SV-8637 (specs/sbr-sales-by-representative.md Story 20 S20-R4; S20-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 20)"
+ },
+ {
+  "id": "SBR-COL-04",
+  "before": "specs/sbr-sales-by-representative.md Story 20 S20-R8",
+  "after": "SV-8637 (specs/sbr-sales-by-representative.md Story 20 S20-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 20)"
+ },
+ {
+  "id": "SBR-COL-05",
+  "before": "specs/sbr-sales-by-representative.md Story 20 S20-R9",
+  "after": "SV-8637 (specs/sbr-sales-by-representative.md Story 20 S20-R9)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 20)"
+ },
+ {
+  "id": "SBR-DATE-01",
+  "before": "specs/sbr-sales-by-representative.md Story 2 S2-R1; S2-R2",
+  "after": "SV-8620 (specs/sbr-sales-by-representative.md Story 2 S2-R1; S2-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 2)"
+ },
+ {
+  "id": "SBR-DATE-02",
+  "before": "specs/sbr-sales-by-representative.md Story 2 S2-R3; S2-R6",
+  "after": "SV-8620 (specs/sbr-sales-by-representative.md Story 2 S2-R3; S2-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 2)"
+ },
+ {
+  "id": "SBR-DATE-04",
+  "before": "specs/sbr-sales-by-representative.md Story 2 S2-R5; S2-R8; §3",
+  "after": "SV-8620 (specs/sbr-sales-by-representative.md Story 2 S2-R5; S2-R8; §3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 2)"
+ },
+ {
+  "id": "SBR-DEACT-03",
+  "before": "specs/sbr-sales-by-representative.md Story 13 S13-R6; S13-R7",
+  "after": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R6; S13-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 13)"
+ },
+ {
+  "id": "SBR-DEACT-08",
+  "before": "specs/sbr-sales-by-representative.md Story 13 S13-N5; §7",
+  "after": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-N5; §7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 13)"
+ },
+ {
+  "id": "SBR-DEACT-09",
+  "before": "specs/sbr-sales-by-representative.md Story 13 S13-N4",
+  "after": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-N4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 13)"
+ },
+ {
+  "id": "SBR-EXP-01",
+  "before": "specs/sbr-sales-by-representative.md Story 14 S14-R1; Story 17 S17-R3 (position)",
+  "after": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R1; Story 17 S17-R3 (position))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 14)"
+ },
+ {
+  "id": "SBR-EXP-03",
+  "before": "specs/sbr-sales-by-representative.md Story 14 S14-R3; S14-R5; Story 2 S2-R5; §3 Margin % definition",
+  "after": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R3; S14-R5; Story 2 S2-R5; §3 Margin % definition)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 14)"
+ },
+ {
+  "id": "SBR-EXP-04",
+  "before": "specs/sbr-sales-by-representative.md Story 14 S14-R6; S14-R8; Story 6 S6-R9",
+  "after": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R6; S14-R8; Story 6 S6-R9)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 14)"
+ },
+ {
+  "id": "SBR-EXP-05",
+  "before": "specs/sbr-sales-by-representative.md Story 14 S14-R7",
+  "after": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 14)"
+ },
+ {
+  "id": "SBR-EXP-06",
+  "before": "specs/sbr-sales-by-representative.md Story 14 S14-R4; S14-R3a; S14-R11",
+  "after": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R4; S14-R3a; S14-R11)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 14)"
+ },
+ {
+  "id": "SBR-EXP-07",
+  "before": "specs/sbr-sales-by-representative.md Story 14 S14-R9; S14-R10",
+  "after": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R9; S14-R10)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 14)"
+ },
+ {
+  "id": "SBR-EXP-08",
+  "before": "specs/sbr-sales-by-representative.md Story 14 S14-R12; S14-R13",
+  "after": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R12; S14-R13)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 14)"
+ },
+ {
+  "id": "SBR-EXP-14",
+  "before": "specs/sbr-sales-by-representative.md Story 14 S14-N1; S14-N2; S14-E1; §7",
+  "after": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-N1; S14-N2; S14-E1; §7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 14)"
+ },
+ {
+  "id": "SBR-EXP-16",
+  "before": "specs/sbr-sales-by-representative.md Story 14 S14-E3",
+  "after": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 14)"
+ },
+ {
+  "id": "SBR-LINK-01",
+  "before": "specs/sbr-sales-by-representative.md Story 12 S12-R1; S12-R2; S12-R3",
+  "after": "SV-8629 (specs/sbr-sales-by-representative.md Story 12 S12-R1; S12-R2; S12-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 12)"
+ },
+ {
+  "id": "SBR-LINK-03",
+  "before": "specs/sbr-sales-by-representative.md Story 12 S12-R3a; Story 23 S23-R2",
+  "after": "SV-8629 (specs/sbr-sales-by-representative.md Story 12 S12-R3a; Story 23 S23-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 12)"
+ },
+ {
+  "id": "SBR-LINK-04",
+  "before": "specs/sbr-sales-by-representative.md Story 12 S12-R4; S12-R5; S12-R6; S12-N3",
+  "after": "SV-8629 (specs/sbr-sales-by-representative.md Story 12 S12-R4; S12-R5; S12-R6; S12-N3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 12)"
+ },
+ {
+  "id": "SBR-LINK-05",
+  "before": "specs/sbr-sales-by-representative.md Story 12 S12-N1; S12-N2",
+  "after": "SV-8629 (specs/sbr-sales-by-representative.md Story 12 S12-N1; S12-N2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 12)"
+ },
+ {
+  "id": "SBR-LOC-01",
+  "before": "specs/sbr-sales-by-representative.md Story 21 S21-R1; Story 18 S18-R7.2",
+  "after": "SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-R1; Story 18 S18-R7.2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 21)"
+ },
+ {
+  "id": "SBR-MOB-01",
+  "before": "specs/sbr-sales-by-representative.md Story 17 S17-R1; S17-R2; S17-R3",
+  "after": "SV-8634 (specs/sbr-sales-by-representative.md Story 17 S17-R1; S17-R2; S17-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 17)"
+ },
+ {
+  "id": "SBR-MOB-02",
+  "before": "specs/sbr-sales-by-representative.md Story 17 S17-R4; S17-R5; Story 10 S10-R5 (mobile)",
+  "after": "SV-8634 (specs/sbr-sales-by-representative.md Story 17 S17-R4; S17-R5; Story 10 S10-R5 (mobile))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 17)"
+ },
+ {
+  "id": "SBR-MOB-03",
+  "before": "specs/sbr-sales-by-representative.md Story 17 S17-R6; S17-N1; Story 18 S18-R9",
+  "after": "SV-8634 (specs/sbr-sales-by-representative.md Story 17 S17-R6; S17-N1; Story 18 S18-R9)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 17)"
+ },
+ {
+  "id": "SBR-NAV-03",
+  "before": "specs/sbr-sales-by-representative.md Story 1 S1-R7; §1 naming note",
+  "after": "SV-8619 (specs/sbr-sales-by-representative.md Story 1 S1-R7; §1 naming note)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 1)"
+ },
+ {
+  "id": "SBR-PERM-01",
+  "before": "specs/sbr-sales-by-representative.md Story 1 S1-R1",
+  "after": "SV-8619 (specs/sbr-sales-by-representative.md Story 1 S1-R1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 1)"
+ },
+ {
+  "id": "SBR-PERM-03",
+  "before": "specs/sbr-sales-by-representative.md Story 13 S13-N1",
+  "after": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 13)"
+ },
+ {
+  "id": "SBR-PERS-01",
+  "before": "specs/sbr-sales-by-representative.md Story 23 S23-R1; Story 20 S20-R5",
+  "after": "SV-8640 (specs/sbr-sales-by-representative.md Story 23 S23-R1; Story 20 S20-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 23)"
+ },
+ {
+  "id": "SBR-PERS-02",
+  "before": "specs/sbr-sales-by-representative.md Story 23 S23-R2; §2 Out of Scope",
+  "after": "SV-8640 (specs/sbr-sales-by-representative.md Story 23 S23-R2; §2 Out of Scope)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 23)"
+ },
+ {
+  "id": "SBR-PERS-03",
+  "before": "specs/sbr-sales-by-representative.md Story 23 S23-R3",
+  "after": "SV-8640 (specs/sbr-sales-by-representative.md Story 23 S23-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 23)"
+ },
+ {
+  "id": "SBR-PERS-04",
+  "before": "specs/sbr-sales-by-representative.md Story 23 S23-R4; S23-N1; Story 2 S2-R4; Story 21 S21-R2",
+  "after": "SV-8640 (specs/sbr-sales-by-representative.md Story 23 S23-R4; S23-N1; Story 2 S2-R4; Story 21 S21-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 23)"
+ },
+ {
+  "id": "SBR-PERS-05",
+  "before": "specs/sbr-sales-by-representative.md Story 23 S23-R5; Story 11 S11-R4",
+  "after": "SV-8640 (specs/sbr-sales-by-representative.md Story 23 S23-R5; Story 11 S11-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 23)"
+ },
+ {
+  "id": "SBR-ROW-01",
+  "before": "specs/sbr-sales-by-representative.md Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions",
+  "after": "SV-8623 (specs/sbr-sales-by-representative.md Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 5)"
+ },
+ {
+  "id": "SBR-ROW-02",
+  "before": "specs/sbr-sales-by-representative.md Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a",
+  "after": "SV-8623 (specs/sbr-sales-by-representative.md Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 5)"
+ },
+ {
+  "id": "SBR-ROW-03",
+  "before": "specs/sbr-sales-by-representative.md Story 5 S5-R9; §3 Key Decisions; §4 Snapshot",
+  "after": "SV-8623 (specs/sbr-sales-by-representative.md Story 5 S5-R9; §3 Key Decisions; §4 Snapshot)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 5)"
+ },
+ {
+  "id": "SBR-SORT-01",
+  "before": "specs/sbr-sales-by-representative.md Story 11 S11-R1; S11-R6",
+  "after": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R1; S11-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 11)"
+ },
+ {
+  "id": "SBR-SORT-02",
+  "before": "specs/sbr-sales-by-representative.md Story 11 S11-R4; §3 Key Decisions",
+  "after": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R4; §3 Key Decisions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 11)"
+ },
+ {
+  "id": "SBR-SORT-03",
+  "before": "specs/sbr-sales-by-representative.md Story 11 S11-R5; Story 23 S23-R5",
+  "after": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R5; Story 23 S23-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 11)"
+ },
+ {
+  "id": "SBR-SORT-04",
+  "before": "specs/sbr-sales-by-representative.md Story 11 S11-R2; Story 22 S22-R4",
+  "after": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R2; Story 22 S22-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 11)"
+ },
+ {
+  "id": "SBR-SORT-05",
+  "before": "specs/sbr-sales-by-representative.md Story 11 S11-R7",
+  "after": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 11)"
+ },
+ {
+  "id": "SBR-STAT-01",
+  "before": "specs/sbr-sales-by-representative.md Story 4 S4-R1; S4-R2; S4-R3; S4-R5",
+  "after": "SV-8622 (specs/sbr-sales-by-representative.md Story 4 S4-R1; S4-R2; S4-R3; S4-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 4)"
+ },
+ {
+  "id": "SBR-STAT-02",
+  "before": "specs/sbr-sales-by-representative.md Story 4 S4-R4; §3 payment-status mapping",
+  "after": "SV-8622 (specs/sbr-sales-by-representative.md Story 4 S4-R4; §3 payment-status mapping)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 4)"
+ },
+ {
+  "id": "SBR-STAT-04",
+  "before": "specs/sbr-sales-by-representative.md Story 4 S4-R7; S4-R6; S4-N1; Story 3 S3-R8; S3-N1",
+  "after": "SV-8622 (specs/sbr-sales-by-representative.md Story 4 S4-R7; S4-R6; S4-N1; Story 3 S3-R8; S3-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 4)"
+ },
+ {
+  "id": "SBR-STAT-05",
+  "before": "specs/sbr-sales-by-representative.md Story 4 S4-R8",
+  "after": "SV-8622 (specs/sbr-sales-by-representative.md Story 4 S4-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 4)"
+ },
+ {
+  "id": "SBR-STATE-01",
+  "before": "specs/sbr-sales-by-representative.md Story 16 S16-R1; S16-R2; S16-R3; S16-N1; §7",
+  "after": "SV-8633 (specs/sbr-sales-by-representative.md Story 16 S16-R1; S16-R2; S16-R3; S16-N1; §7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 16)"
+ },
+ {
+  "id": "SBR-STATE-03",
+  "before": "specs/sbr-sales-by-representative.md Story 16 S16-R4",
+  "after": "SV-8633 (specs/sbr-sales-by-representative.md Story 16 S16-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 16)"
+ },
+ {
+  "id": "SBR-STATE-04",
+  "before": "specs/sbr-sales-by-representative.md Story 16 S16-R5; §7",
+  "after": "SV-8633 (specs/sbr-sales-by-representative.md Story 16 S16-R5; §7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 16)"
+ },
+ {
+  "id": "SBR-TOT-01",
+  "before": "specs/sbr-sales-by-representative.md Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5",
+  "after": "SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 10)"
+ },
+ {
+  "id": "SBR-TOT-02",
+  "before": "specs/sbr-sales-by-representative.md Story 10 S10-R5; S10-N1; Story 16 S16-R4",
+  "after": "SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R5; S10-N1; Story 16 S16-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 10)"
+ },
+ {
+  "id": "SBR-TOT-03",
+  "before": "specs/sbr-sales-by-representative.md Story 10 S10-R5 (mobile); Story 17 S17-R4",
+  "after": "SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R5 (mobile); Story 17 S17-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 10)"
+ },
+ {
+  "id": "SBR-TREE-05",
+  "before": "specs/sbr-sales-by-representative.md Story 6 S6-R1; S6-R2; S6-R3; S6-E1",
+  "after": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R1; S6-R2; S6-R3; S6-E1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 6)"
+ },
+ {
+  "id": "SBR-TREE-06",
+  "before": "specs/sbr-sales-by-representative.md Story 6 S6-R5; S6-R6",
+  "after": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R5; S6-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 6)"
+ },
+ {
+  "id": "SBR-TREE-07",
+  "before": "specs/sbr-sales-by-representative.md Story 6 S6-R7; §3 Key Decisions",
+  "after": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R7; §3 Key Decisions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 6)"
+ },
+ {
+  "id": "SBR-TREE-08",
+  "before": "specs/sbr-sales-by-representative.md Story 6 S6-R8; S6-N1; Story 23 S23-R2",
+  "after": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R8; S6-N1; Story 23 S23-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 6)"
+ },
+ {
+  "id": "SBR-TREE-09",
+  "before": "specs/sbr-sales-by-representative.md Story 6 S6-R9; Story 11 S11-R2",
+  "after": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R9; Story 11 S11-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 6)"
+ },
+ {
+  "id": "SBR-UNAS-02",
+  "before": "specs/sbr-sales-by-representative.md Story 22 S22-R3; S22-R4; S22-R5; S22-R6; Story 6 S6-R1",
+  "after": "SV-8639 (specs/sbr-sales-by-representative.md Story 22 S22-R3; S22-R4; S22-R5; S22-R6; Story 6 S6-R1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 22)"
+ },
+ {
+  "id": "SBR-UNAS-04",
+  "before": "specs/sbr-sales-by-representative.md Story 22 S22-N1; Story 6 S6-N2",
+  "after": "SV-8639 (specs/sbr-sales-by-representative.md Story 22 S22-N1; Story 6 S6-N2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 22)"
+ },
+ {
+  "id": "SBR-VIS-01",
+  "before": "specs/sbr-sales-by-representative.md Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1",
+  "after": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 18)"
+ },
+ {
+  "id": "SBR-VIS-02",
+  "before": "specs/sbr-sales-by-representative.md Story 18 S18-R8",
+  "after": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 18)"
+ },
+ {
+  "id": "SBR-VIS-03",
+  "before": "specs/sbr-sales-by-representative.md Story 18 S18-R9",
+  "after": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R9)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 18)"
+ },
+ {
+  "id": "SBR-VIS-04",
+  "before": "specs/sbr-sales-by-representative.md Story 18 S18-R10",
+  "after": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R10)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 18)"
+ },
+ {
+  "id": "SBR-VIS-05",
+  "before": "specs/sbr-sales-by-representative.md Story 18 S18-R11; S18-R12",
+  "after": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R11; S18-R12)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (SBR Story 18)"
+ },
+ {
+  "id": "TU-API-01",
+  "before": "specs/technician-utilization.md S4-R2; S4-R5",
+  "after": "SV-8651 (specs/technician-utilization.md S4-R2; S4-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 4)"
+ },
+ {
+  "id": "TU-API-02",
+  "before": "specs/technician-utilization.md S1-R5; S9-R3; S5 context note; S2-R13; §3",
+  "after": "SV-8648 (specs/technician-utilization.md S1-R5; S9-R3; S5 context note; S2-R13; §3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 1)"
+ },
+ {
+  "id": "TU-DAY-02",
+  "before": "specs/technician-utilization.md S4-R2; S4-N1; S9-R4",
+  "after": "SV-8651 (specs/technician-utilization.md S4-R2; S4-N1; S9-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 4)"
+ },
+ {
+  "id": "TU-DAY-03",
+  "before": "specs/technician-utilization.md S4-R3; S2-R8; §3",
+  "after": "SV-8651 (specs/technician-utilization.md S4-R3; S2-R8; §3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 4)"
+ },
+ {
+  "id": "TU-DAY-04",
+  "before": "specs/technician-utilization.md S4-R4; S8-R12; S8-R3",
+  "after": "SV-8651 (specs/technician-utilization.md S4-R4; S8-R12; S8-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 4)"
+ },
+ {
+  "id": "TU-DAY-05",
+  "before": "specs/technician-utilization.md S4-R5",
+  "after": "SV-8651 (specs/technician-utilization.md S4-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 4)"
+ },
+ {
+  "id": "TU-ELL-01",
+  "before": "specs/technician-utilization.md S2-R8; S2-R9; §3",
+  "after": "SV-8649 (specs/technician-utilization.md S2-R8; S2-R9; §3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 2)"
+ },
+ {
+  "id": "TU-ELL-03",
+  "before": "specs/technician-utilization.md S2-E2; §5 Assumptions; S2 context note",
+  "after": "SV-8649 (specs/technician-utilization.md S2-E2; §5 Assumptions; S2 context note)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 2)"
+ },
+ {
+  "id": "TU-ELL-04",
+  "before": "specs/technician-utilization.md S2-E3; S8-R11; S2-R4",
+  "after": "SV-8649 (specs/technician-utilization.md S2-E3; S8-R11; S2-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 2)"
+ },
+ {
+  "id": "TU-ELL-05",
+  "before": "specs/technician-utilization.md S2-E4",
+  "after": "SV-8649 (specs/technician-utilization.md S2-E4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 2)"
+ },
+ {
+  "id": "TU-EXP-02",
+  "before": "specs/technician-utilization.md S7-R5; S7-R6; S7-R12",
+  "after": "SV-8654 (specs/technician-utilization.md S7-R5; S7-R6; S7-R12)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 7)"
+ },
+ {
+  "id": "TU-EXP-03",
+  "before": "specs/technician-utilization.md S7-R7; S7-R10; S7-R12",
+  "after": "SV-8654 (specs/technician-utilization.md S7-R7; S7-R10; S7-R12)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 7)"
+ },
+ {
+  "id": "TU-EXP-05",
+  "before": "specs/technician-utilization.md S7-R10; S7-R10a",
+  "after": "SV-8654 (specs/technician-utilization.md S7-R10; S7-R10a)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 7)"
+ },
+ {
+  "id": "TU-EXP-07",
+  "before": "specs/technician-utilization.md S7-N1; §7 context note",
+  "after": "SV-8654 (specs/technician-utilization.md S7-N1; §7 context note)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 7)"
+ },
+ {
+  "id": "TU-EXP-08",
+  "before": "specs/technician-utilization.md Story 7 Error Handling; §7",
+  "after": "SV-8654 (specs/technician-utilization.md Story 7 Error Handling; §7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 7)"
+ },
+ {
+  "id": "TU-HRS-02",
+  "before": "specs/technician-utilization.md S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3",
+  "after": "SV-8649 (specs/technician-utilization.md S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 2)"
+ },
+ {
+  "id": "TU-HRS-03",
+  "before": "specs/technician-utilization.md S2-R6; S2-R7; §3",
+  "after": "SV-8649 (specs/technician-utilization.md S2-R6; S2-R7; §3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 2)"
+ },
+ {
+  "id": "TU-HRS-04",
+  "before": "specs/technician-utilization.md S2-E1; S2-R7; S2 context note",
+  "after": "SV-8649 (specs/technician-utilization.md S2-E1; S2-R7; S2 context note)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 2)"
+ },
+ {
+  "id": "TU-LINK-01",
+  "before": "specs/technician-utilization.md S6-R1; S6-N1; S8-R14",
+  "after": "SV-8653 (specs/technician-utilization.md S6-R1; S6-N1; S8-R14)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 6)"
+ },
+ {
+  "id": "TU-LINK-02",
+  "before": "specs/technician-utilization.md S6-R2; S6-R3; S6-R4",
+  "after": "SV-8653 (specs/technician-utilization.md S6-R2; S6-R3; S6-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 6)"
+ },
+ {
+  "id": "TU-LINK-03",
+  "before": "specs/technician-utilization.md S1-R9; §2; §5 Assumptions",
+  "after": "SV-8648 (specs/technician-utilization.md S1-R9; §2; §5 Assumptions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 1)"
+ },
+ {
+  "id": "TU-LINK-04",
+  "before": "specs/technician-utilization.md S1-R9(a); S1-E1",
+  "after": "SV-8648 (specs/technician-utilization.md S1-R9(a); S1-E1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 1)"
+ },
+ {
+  "id": "TU-LINK-05",
+  "before": "specs/technician-utilization.md S6-R6; S1-R9(b)",
+  "after": "SV-8653 (specs/technician-utilization.md S6-R6; S1-R9(b))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 6)"
+ },
+ {
+  "id": "TU-LINK-06",
+  "before": "specs/technician-utilization.md S6-R5",
+  "after": "SV-8653 (specs/technician-utilization.md S6-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 6)"
+ },
+ {
+  "id": "TU-LOC-03",
+  "before": "specs/technician-utilization.md S9-R6; S1-R8; S9-R2",
+  "after": "SV-8656 (specs/technician-utilization.md S9-R6; S1-R8; S9-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 9)"
+ },
+ {
+  "id": "TU-LOC-04",
+  "before": "specs/technician-utilization.md S9-R7",
+  "after": "SV-8656 (specs/technician-utilization.md S9-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 9)"
+ },
+ {
+  "id": "TU-NAV-02",
+  "before": "specs/technician-utilization.md S1-R2",
+  "after": "SV-8648 (specs/technician-utilization.md S1-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 1)"
+ },
+ {
+  "id": "TU-NAV-03",
+  "before": "specs/technician-utilization.md S1-R3; S9-R2",
+  "after": "SV-8648 (specs/technician-utilization.md S1-R3; S9-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 1)"
+ },
+ {
+  "id": "TU-NAV-04",
+  "before": "specs/technician-utilization.md S1-R4; S1-R5",
+  "after": "SV-8648 (specs/technician-utilization.md S1-R4; S1-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 1)"
+ },
+ {
+  "id": "TU-NAV-05",
+  "before": "specs/technician-utilization.md S1-R10",
+  "after": "SV-8648 (specs/technician-utilization.md S1-R10)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 1)"
+ },
+ {
+  "id": "TU-NAV-06",
+  "before": "specs/technician-utilization.md S1-R7; S1 context notes",
+  "after": "SV-8648 (specs/technician-utilization.md S1-R7; S1 context notes)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 1)"
+ },
+ {
+  "id": "TU-NAV-07",
+  "before": "specs/technician-utilization.md S1-N1",
+  "after": "SV-8648 (specs/technician-utilization.md S1-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 1)"
+ },
+ {
+  "id": "TU-NAV-08",
+  "before": "specs/technician-utilization.md S1-N2; S9-N2; S5-N1; S3-N1; §7",
+  "after": "SV-8648 (specs/technician-utilization.md S1-N2; S9-N2; S5-N1; S3-N1; §7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 1)"
+ },
+ {
+  "id": "TU-SORT-01",
+  "before": "specs/technician-utilization.md S2-R12; S8-R8; S8-R10",
+  "after": "SV-8649 (specs/technician-utilization.md S2-R12; S8-R8; S8-R10)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 2)"
+ },
+ {
+  "id": "TU-SORT-02",
+  "before": "specs/technician-utilization.md S2-R13; S2-R14",
+  "after": "SV-8649 (specs/technician-utilization.md S2-R13; S2-R14)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 2)"
+ },
+ {
+  "id": "TU-SORT-03",
+  "before": "specs/technician-utilization.md S2-R15; §3",
+  "after": "SV-8649 (specs/technician-utilization.md S2-R15; §3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 2)"
+ },
+ {
+  "id": "TU-SORT-04",
+  "before": "specs/technician-utilization.md S2-R16",
+  "after": "SV-8649 (specs/technician-utilization.md S2-R16)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 2)"
+ },
+ {
+  "id": "TU-SORT-05",
+  "before": "specs/technician-utilization.md S2-R17",
+  "after": "SV-8649 (specs/technician-utilization.md S2-R17)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 2)"
+ },
+ {
+  "id": "TU-SUM-01",
+  "before": "specs/technician-utilization.md S3-R1; S3-R2; S3-R6; S3-R7; S8-R5",
+  "after": "SV-8650 (specs/technician-utilization.md S3-R1; S3-R2; S3-R6; S3-R7; S8-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 3)"
+ },
+ {
+  "id": "TU-SUM-02",
+  "before": "specs/technician-utilization.md S3-R3; §3 context note; S5-E1",
+  "after": "SV-8650 (specs/technician-utilization.md S3-R3; §3 context note; S5-E1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 3)"
+ },
+ {
+  "id": "TU-SUM-03",
+  "before": "specs/technician-utilization.md S3-R4",
+  "after": "SV-8650 (specs/technician-utilization.md S3-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 3)"
+ },
+ {
+  "id": "TU-SUM-04",
+  "before": "specs/technician-utilization.md S3-R5",
+  "after": "SV-8650 (specs/technician-utilization.md S3-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 3)"
+ },
+ {
+  "id": "TU-TECH-01",
+  "before": "specs/technician-utilization.md S5-R1; S5-R2",
+  "after": "SV-8652 (specs/technician-utilization.md S5-R1; S5-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 5)"
+ },
+ {
+  "id": "TU-TECH-02",
+  "before": "specs/technician-utilization.md S5-R3; S5-R4; S5-R5; §3; S5 context note",
+  "after": "SV-8652 (specs/technician-utilization.md S5-R3; S5-R4; S5-R5; §3; S5 context note)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 5)"
+ },
+ {
+  "id": "TU-TECH-03",
+  "before": "specs/technician-utilization.md S5-R6; S5-R7; S5-R8; S5-R9",
+  "after": "SV-8652 (specs/technician-utilization.md S5-R6; S5-R7; S5-R8; S5-R9)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 5)"
+ },
+ {
+  "id": "TU-TECH-04",
+  "before": "specs/technician-utilization.md S5-R10; S1-R8; §3",
+  "after": "SV-8652 (specs/technician-utilization.md S5-R10; S1-R8; §3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 5)"
+ },
+ {
+  "id": "TU-VIS-02",
+  "before": "specs/technician-utilization.md S8-R9; S8-R13; S8-R14",
+  "after": "SV-8655 (specs/technician-utilization.md S8-R9; S8-R13; S8-R14)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (TU Story 8)"
+ },
+ {
+  "id": "WIP-API-01",
+  "before": "specs/wip-work-in-progress.md Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs)",
+  "after": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 11)"
+ },
+ {
+  "id": "WIP-API-02",
+  "before": "specs/wip-work-in-progress.md Story 11 S11-R2",
+  "after": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 11)"
+ },
+ {
+  "id": "WIP-API-03",
+  "before": "specs/wip-work-in-progress.md Story 11 S11-R3",
+  "after": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 11)"
+ },
+ {
+  "id": "WIP-API-04",
+  "before": "specs/wip-work-in-progress.md Story 11 S11-R4; Story 2 S2-R1 (first two conditions)",
+  "after": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R4; Story 2 S2-R1 (first two conditions))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 11)"
+ },
+ {
+  "id": "WIP-API-05",
+  "before": "specs/wip-work-in-progress.md Story 11 S11-R5",
+  "after": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 11)"
+ },
+ {
+  "id": "WIP-API-06",
+  "before": "specs/wip-work-in-progress.md Story 11 S11-R6; Story 4 S4-E1",
+  "after": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R6; Story 4 S4-E1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 11)"
+ },
+ {
+  "id": "WIP-CALC-01",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R14",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R14)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-CALC-02",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R15; §4 Terminology (Earned)",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R15; §4 Terminology (Earned))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-CALC-03",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R16",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R16)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-CALC-04",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R17",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R17)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-CALC-05",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R18",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R18)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-CALC-06",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R19; S4-R20; S4-R21; §3 Key Decisions",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R19; S4-R20; S4-R21; §3 Key Decisions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-CALC-08",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R23; S4-R24; S4-E2",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R23; S4-R24; S4-E2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-CALC-09",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-E1; Story 2 S2-R4",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-E1; Story 2 S2-R4)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-COL-03",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R5 (+ context note)",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R5 (+ context note))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-COL-04",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R6; Story 10 S10-R8",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R6; Story 10 S10-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-COL-06",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R11",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R11)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-COL-07",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R12; §2 Known Limitations (v1)",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R12; §2 Known Limitations (v1))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-COL-08",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R13",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R13)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-EXP-01",
+  "before": "specs/wip-work-in-progress.md Story 9 S9-R1",
+  "after": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 9)"
+ },
+ {
+  "id": "WIP-EXP-03",
+  "before": "specs/wip-work-in-progress.md Story 9 S9-R5; S9-R6",
+  "after": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R5; S9-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 9)"
+ },
+ {
+  "id": "WIP-EXP-04",
+  "before": "specs/wip-work-in-progress.md Story 9 S9-R7",
+  "after": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 9)"
+ },
+ {
+  "id": "WIP-EXP-05",
+  "before": "specs/wip-work-in-progress.md Story 9 S9-R8; Story 4 context note (Days Open live vs frozen)",
+  "after": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R8; Story 4 context note (Days Open live vs frozen))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 9)"
+ },
+ {
+  "id": "WIP-EXP-06",
+  "before": "specs/wip-work-in-progress.md Story 9 S9-R9",
+  "after": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R9)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 9)"
+ },
+ {
+  "id": "WIP-EXP-08",
+  "before": "specs/wip-work-in-progress.md Story 9 S9-R10",
+  "after": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R10)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 9)"
+ },
+ {
+  "id": "WIP-EXP-09",
+  "before": "specs/wip-work-in-progress.md Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary",
+  "after": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 9)"
+ },
+ {
+  "id": "WIP-FLT-01",
+  "before": "specs/wip-work-in-progress.md Story 7 S7-R1",
+  "after": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 7)"
+ },
+ {
+  "id": "WIP-FLT-02",
+  "before": "specs/wip-work-in-progress.md Story 7 S7-R2; S7-R3",
+  "after": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R2; S7-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 7)"
+ },
+ {
+  "id": "WIP-FLT-04",
+  "before": "specs/wip-work-in-progress.md Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week)",
+  "after": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 7)"
+ },
+ {
+  "id": "WIP-FLT-05",
+  "before": "specs/wip-work-in-progress.md Story 7 S7-R7; S7-R8",
+  "after": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R7; S7-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 7)"
+ },
+ {
+  "id": "WIP-FLT-07",
+  "before": "specs/wip-work-in-progress.md Story 7 S7-R11; Story 8 S8-R8",
+  "after": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R11; Story 8 S8-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 7)"
+ },
+ {
+  "id": "WIP-FLT-08",
+  "before": "specs/wip-work-in-progress.md Story 7 S7-R12; S7-N1; Story 5 S5-R11; Story 6 S6-R6; §3 Key Decisions",
+  "after": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R12; S7-N1; Story 5 S5-R11; Story 6 S6-R6; §3 Key Decisions)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 7)"
+ },
+ {
+  "id": "WIP-PERM-01",
+  "before": "specs/wip-work-in-progress.md Story 1 Prerequisites (+ context note)",
+  "after": "SV-8657 (specs/wip-work-in-progress.md Story 1 Prerequisites (+ context note))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 1)"
+ },
+ {
+  "id": "WIP-PERM-02",
+  "before": "specs/wip-work-in-progress.md Story 1 S1-N1",
+  "after": "SV-8657 (specs/wip-work-in-progress.md Story 1 S1-N1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 1)"
+ },
+ {
+  "id": "WIP-PERS-01",
+  "before": "specs/wip-work-in-progress.md Story 8 S8-R1; S8-R2",
+  "after": "SV-8664 (specs/wip-work-in-progress.md Story 8 S8-R1; S8-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 8)"
+ },
+ {
+  "id": "WIP-PERS-02",
+  "before": "specs/wip-work-in-progress.md Story 8 S8-R5; S8-R6; Story 4 S4-R1",
+  "after": "SV-8664 (specs/wip-work-in-progress.md Story 8 S8-R5; S8-R6; Story 4 S4-R1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 8)"
+ },
+ {
+  "id": "WIP-PERS-03",
+  "before": "specs/wip-work-in-progress.md Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence)",
+  "after": "SV-8664 (specs/wip-work-in-progress.md Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 8)"
+ },
+ {
+  "id": "WIP-PERS-04",
+  "before": "specs/wip-work-in-progress.md Story 8 S8-R8",
+  "after": "SV-8664 (specs/wip-work-in-progress.md Story 8 S8-R8)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 8)"
+ },
+ {
+  "id": "WIP-PLACE-01",
+  "before": "specs/wip-work-in-progress.md Story 3 S3-R1; S3-R2; S3-R3",
+  "after": "SV-8659 (specs/wip-work-in-progress.md Story 3 S3-R1; S3-R2; S3-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 3)"
+ },
+ {
+  "id": "WIP-PLACE-03",
+  "before": "specs/wip-work-in-progress.md Story 3 S3-R4 (started + not-started branches + context note)",
+  "after": "SV-8659 (specs/wip-work-in-progress.md Story 3 S3-R4 (started + not-started branches + context note))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 3)"
+ },
+ {
+  "id": "WIP-SCOPE-01",
+  "before": "specs/wip-work-in-progress.md Story 2 S2-R1",
+  "after": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 2)"
+ },
+ {
+  "id": "WIP-SCOPE-02",
+  "before": "specs/wip-work-in-progress.md Story 2 S2-R2; S2-R3",
+  "after": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R2; S2-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 2)"
+ },
+ {
+  "id": "WIP-SCOPE-03",
+  "before": "specs/wip-work-in-progress.md Story 2 S2-R4; §3 Key Decisions (every open job is listed)",
+  "after": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R4; §3 Key Decisions (every open job is listed))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 2)"
+ },
+ {
+  "id": "WIP-SCOPE-04",
+  "before": "specs/wip-work-in-progress.md Story 2 S2-R5; S2-R6",
+  "after": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R5; S2-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 2)"
+ },
+ {
+  "id": "WIP-SCOPE-05",
+  "before": "specs/wip-work-in-progress.md Story 2 S2-N1; S2-N2; §7 User Feedback Summary",
+  "after": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-N1; S2-N2; §7 User Feedback Summary)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 2)"
+ },
+ {
+  "id": "WIP-SORT-01",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R25",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R25)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-SORT-02",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R26",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R26)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-SORT-04",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R28",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R28)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-SUM-01",
+  "before": "specs/wip-work-in-progress.md Story 5 S5-R1; S5-R10",
+  "after": "SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R1; S5-R10)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 5)"
+ },
+ {
+  "id": "WIP-SUM-02",
+  "before": "specs/wip-work-in-progress.md Story 5 S5-R2",
+  "after": "SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 5)"
+ },
+ {
+  "id": "WIP-SUM-03",
+  "before": "specs/wip-work-in-progress.md Story 5 S5-R3",
+  "after": "SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 5)"
+ },
+ {
+  "id": "WIP-SUM-04",
+  "before": "specs/wip-work-in-progress.md Story 5 S5-R4; S5-R5; S5-R6; S5-R7",
+  "after": "SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R4; S5-R5; S5-R6; S5-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 5)"
+ },
+ {
+  "id": "WIP-SUM-05",
+  "before": "specs/wip-work-in-progress.md Story 5 S5-R8; S5-R9",
+  "after": "SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R8; S5-R9)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 5)"
+ },
+ {
+  "id": "WIP-SUM-07",
+  "before": "specs/wip-work-in-progress.md Story 5 S5-R12",
+  "after": "SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R12)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 5)"
+ },
+ {
+  "id": "WIP-TAB-02",
+  "before": "specs/wip-work-in-progress.md Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter)",
+  "after": "SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 1)"
+ },
+ {
+  "id": "WIP-TAB-03",
+  "before": "specs/wip-work-in-progress.md Story 1 S1-R4; Story 2 S2-N2 (count portion)",
+  "after": "SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R4; Story 2 S2-N2 (count portion))",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 1)"
+ },
+ {
+  "id": "WIP-TAB-05",
+  "before": "specs/wip-work-in-progress.md §2 Out of scope; §2 Known Limitations (v1); Story 11 S11-R7",
+  "after": "SV-8667 (specs/wip-work-in-progress.md §2 Out of scope; §2 Known Limitations (v1); Story 11 S11-R7)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 11)"
+ },
+ {
+  "id": "WIP-TOT-01",
+  "before": "specs/wip-work-in-progress.md Story 6 S6-R1; S6-R4; S6-R5",
+  "after": "SV-8662 (specs/wip-work-in-progress.md Story 6 S6-R1; S6-R4; S6-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 6)"
+ },
+ {
+  "id": "WIP-TOT-02",
+  "before": "specs/wip-work-in-progress.md Story 6 S6-R2; S6-R3",
+  "after": "SV-8662 (specs/wip-work-in-progress.md Story 6 S6-R2; S6-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 6)"
+ },
+ {
+  "id": "WIP-VIS-01",
+  "before": "specs/wip-work-in-progress.md Story 10 S10-R1",
+  "after": "SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R1)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 10)"
+ },
+ {
+  "id": "WIP-VIS-02",
+  "before": "specs/wip-work-in-progress.md Story 10 S10-R2",
+  "after": "SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R2)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 10)"
+ },
+ {
+  "id": "WIP-VIS-03",
+  "before": "specs/wip-work-in-progress.md Story 4 S4-R22; Story 10 S10-R3",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R22; Story 10 S10-R3)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 4)"
+ },
+ {
+  "id": "WIP-VIS-04",
+  "before": "specs/wip-work-in-progress.md Story 10 S10-R4; S10-R5",
+  "after": "SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R4; S10-R5)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 10)"
+ },
+ {
+  "id": "WIP-VIS-05",
+  "before": "specs/wip-work-in-progress.md Story 10 S10-R6",
+  "after": "SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R6)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 10)"
+ },
+ {
+  "id": "WIP-VIS-06",
+  "before": "specs/wip-work-in-progress.md Story 10 S10-R7; Story 5 S5-R12",
+  "after": "SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R7; Story 5 S5-R12)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 10)"
+ },
+ {
+  "id": "WIP-VIS-07",
+  "before": "specs/wip-work-in-progress.md Story 10 S10-R9",
+  "after": "SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R9)",
+  "why": "F4 Rule-20 ticket backfilled from the SV-8582 epic ingest (WIP Story 10)"
+ },
+ {
+  "id": "IV-EXP-02",
+  "before": "SV-8677 (specs/inventory-value.md Story 10 S10-R3; S10-R4; S10-R5; S10-R6 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "after": "SV-8677 (specs/inventory-value.md Story 10 S10-R3; S10-R4; S10-R5; S10-R6 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "IV-LOC-01",
+  "before": "SV-8674 (specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+  "after": "SV-8674 (specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "IV-LOC-02",
+  "before": "SV-8674 (specs/inventory-value.md Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "after": "SV-8674 (specs/inventory-value.md Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "IV-LOC-04",
+  "before": "SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S7-N1 \"still sees the filter\" note is stale, spec edit pending)",
+  "after": "SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S7-N1 \"still sees the filter\" note is stale; spec edit pending)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "IV-LOC-06",
+  "before": "SV-8674 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10 — Location column inserted between Vendor and Qty on Hand, automatic visibility, never \"Multiple\")",
+  "after": "SV-8674 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never \"Multiple\")",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "PV-CALC-01",
+  "before": "SV-8645 (specs/parts-velocity.md S5-R1; S5-R4 (Units Sold, inventory); §4)",
+  "after": "SV-8645 (specs/parts-velocity.md S5-R1; S5-R4 (Units Sold; inventory); §4)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "PV-CALC-02",
+  "before": "SV-8645 (specs/parts-velocity.md S5-R2; S5-R4 (Units Sold, catalogue); S5-R4b)",
+  "after": "SV-8645 (specs/parts-velocity.md S5-R2; S5-R4 (Units Sold; catalogue); S5-R4b)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "PV-EXP-02",
+  "before": "SV-8646 (specs/parts-velocity.md S6-R2; §3 Key Decisions + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "after": "SV-8646 (specs/parts-velocity.md S6-R2; §3 Key Decisions + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "PV-EXP-05",
+  "before": "SV-8646 (specs/parts-velocity.md S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "after": "SV-8646 (specs/parts-velocity.md S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "PV-EXP-11",
+  "before": "SV-8646 (specs/parts-velocity.md Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10,000-row export cap, locked by Chris 2026-07-21)",
+  "after": "SV-8646 (specs/parts-velocity.md Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "PV-FILT-01",
+  "before": "SV-8642 (specs/parts-velocity.md S2-R1; S3-R5 - 'Catalogue' RENAMED to the exact label 'Special Order' [Type filter, Type column, export] per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins), confirming kickoff video P31)",
+  "after": "SV-8642 (specs/parts-velocity.md S2-R1; S3-R5 - 'Catalogue' RENAMED to the exact label 'Special Order' [Type filter; Type column; export] per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins); confirming kickoff video P31)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "PV-FILT-09",
+  "before": "SV-8642 (specs/parts-velocity.md S2-R8 - 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins), confirming kickoff video P31)",
+  "after": "SV-8642 (specs/parts-velocity.md S2-R8 - 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins); confirming kickoff video P31)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "PV-FILT-10",
+  "before": "SV-8642 (specs/parts-velocity.md S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins)",
+  "after": "SV-8642 (specs/parts-velocity.md S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "PV-FILT-13",
+  "before": "SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S2-E4 \"still sees the filter\" note is stale, spec edit pending)",
+  "after": "SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S2-E4 \"still sees the filter\" note is stale; spec edit pending)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "PV-FILT-14",
+  "before": "SV-8642 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8 — per-row Location column, leftmost before Type, \"Multiple\" on the merged special-order row, not in the picker)",
+  "after": "SV-8642 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8 — per-row Location column; leftmost before Type; \"Multiple\" on the merged special-order row; not in the picker)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "PV-ROW-05",
+  "before": "SV-8643 (specs/parts-velocity.md S3-R4; S3-R5; S3-R8 - Type value 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins), confirming kickoff video P31)",
+  "after": "SV-8643 (specs/parts-velocity.md S3-R4; S3-R5; S3-R8 - Type value 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins); confirming kickoff video P31)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBC-EXP-01",
+  "before": "SV-8612; SV-8613 (specs/sbc-sales-by-customer.md S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 - menu RESHAPED to the four Summary/Expanded items by Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) [ratifies + extends video P21]; 'Print' REMOVED per video P25 31:14, CONFIRMED by the same message)",
+  "after": "SV-8612; SV-8613 (specs/sbc-sales-by-customer.md S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 - menu RESHAPED to the four Summary/Expanded items by Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins) [ratifies + extends video P21]; 'Print' REMOVED per video P25 31:14; CONFIRMED by the same message)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBC-EXP-03",
+  "before": "SV-8612 (SBC spec v12 2026-07-29 Story 14 S14-R5; S14-R6; S14-R7; S14-R13 — the Expanded CSV now has thirteen columns INCLUDING Asset, with per-level blank-cell rules; the old flat twelve-column shape is superseded)",
+  "after": "SV-8612 (SBC spec v12 2026-07-29 Story 14 S14-R5; S14-R6; S14-R7; S14-R13 — the Expanded CSV now has thirteen columns INCLUDING Asset; with per-level blank-cell rules; the old flat twelve-column shape is superseded)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBC-EXP-06",
+  "before": "SV-8612; SV-8613 (SBC spec v12 2026-07-29 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item, four items)",
+  "after": "SV-8612; SV-8613 (SBC spec v12 2026-07-29 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item; four items)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBC-EXP-09",
+  "before": "SV-8613 (specs/sbc-sales-by-customer.md Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11 - the old 'location is not shown in the header' rule is REVERSED by the Locations: line added to every export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "after": "SV-8613 (specs/sbc-sales-by-customer.md Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11 - the old 'location is not shown in the header' rule is REVERSED by the Locations: line added to every export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBC-EXP-11",
+  "before": "SV-8613 (SBC spec v12 2026-07-29 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 — Expanded PDF body = the Expanded columns with the asset layer, one block per customer; the title is the same for both versions)",
+  "after": "SV-8613 (SBC spec v12 2026-07-29 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 — Expanded PDF body = the Expanded columns with the asset layer; one block per customer; the title is the same for both versions)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBC-EXP-14",
+  "before": "SV-8612; SV-8613 (specs/sbc-sales-by-customer.md Story 14 S14-R14; Story 15 S15-R22; §7 — the Print leg REMOVED per kickoff video P25 31:14 / SV-8614 overridden, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+  "after": "SV-8612; SV-8613 (specs/sbc-sales-by-customer.md Story 14 S14-R14; Story 15 S15-R22; §7 — the Print leg REMOVED per kickoff video P25 31:14 / SV-8614 overridden; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBC-LBL-01",
+  "before": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to VIN, falling back to Unit #, then plate, by Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins), superseding the kickoff video's serial-number ruling P24 AND the spec's year/make/model + unit/plate/VIN-suffix rule)",
+  "after": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to VIN; falling back to Unit #; then plate; by Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins); superseding the kickoff video's serial-number ruling P24 AND the spec's year/make/model + unit/plate/VIN-suffix rule)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBC-LOC-01",
+  "before": "SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A, applied suite-wide)",
+  "after": "SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A; applied suite-wide)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBC-LOC-03",
+  "before": "SV-8603 (specs/sbc-sales-by-customer.md Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins)",
+  "after": "SV-8603 (specs/sbc-sales-by-customer.md Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBC-LOC-04",
+  "before": "SV-8603 (SBC spec v12 2026-07-29 S4-R12; S4-R12a; S20-R19 — per-row Location column with automatic visibility, \"Multiple\" on aggregating rows)",
+  "after": "SV-8603 (SBC spec v12 2026-07-29 S4-R12; S4-R12a; S20-R19 — per-row Location column with automatic visibility; \"Multiple\" on aggregating rows)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBC-PERM-01",
+  "before": "SV-8600 (SBC spec Story 1 S1-R2 — OVERRULED by Chris Ward answer 2026-07-31 Q4=A \"the intention is to not hide these from normal reports access\"; S1-R2 + the build still use a dedicated permission, dev change ticket raised)",
+  "after": "SV-8600 (SBC spec Story 1 S1-R2 — OVERRULED by Chris Ward answer 2026-07-31 Q4=A \"the intention is to not hide these from normal reports access\"; S1-R2 + the build still use a dedicated permission; dev change ticket raised)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBR-EXP-02",
+  "before": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "after": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBR-LOC-03",
+  "before": "SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins)",
+  "after": "SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBR-LOC-04",
+  "before": "SV-8638 (SBR spec S21-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S21-N1 \"still sees the filter\" note is stale, spec edit pending)",
+  "after": "SV-8638 (SBR spec S21-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S21-N1 \"still sees the filter\" note is stale; spec edit pending)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBR-LOC-05",
+  "before": "SV-8638 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13 — per-row Location column, \"Multiple\" verbatim on a rep row spanning locations, position after Status, constant-width filter)",
+  "after": "SV-8638 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13 — per-row Location column; \"Multiple\" verbatim on a rep row spanning locations; position after Status; constant-width filter)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "SBR-NAV-01",
+  "before": "SV-8619 (specs/sbr-sales-by-representative.md Story 1 S1-R1; S1-R2; S1-R3; S1-R4; S1-R5; S1-R6 — 'at the bottom' re-based to below-the-named-anchors [Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05; order among the four new reports not important)",
+  "after": "SV-8619 (specs/sbr-sales-by-representative.md Story 1 S1-R1; S1-R2; S1-R3; S1-R4; S1-R5; S1-R6 — 'at the bottom' re-based to below-the-named-anchors [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05; order among the four new reports not important)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "TU-ELL-02",
+  "before": "SV-8649 (TU spec v5 2026-07-29 S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1 — each re-worded \"When shown\" now that Est. Lost Labor is a hideable column, new Story 10 S10-R3)",
+  "after": "SV-8649 (TU spec v5 2026-07-29 S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1 — each re-worded \"When shown\" now that Est. Lost Labor is a hideable column; new Story 10 S10-R3)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "TU-EXP-04",
+  "before": "SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-E1; S9-R8 — S7-R10 now says the downloads include the columns currently shown, mirroring the column selector)",
+  "after": "SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-E1; S9-R8 — S7-R10 now says the downloads include the columns currently shown; mirroring the column selector)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "TU-EXP-06",
+  "before": "SV-8654 (TU spec v5 2026-07-29 S7-R11; S7-N2; S7-N3 — logo now resolved by the shared resolver: the organization's uploaded logo, else the bundled ShopView default)",
+  "after": "SV-8654 (TU spec v5 2026-07-29 S7-R11; S7-N2; S7-N3 — logo now resolved by the shared resolver: the organization's uploaded logo; else the bundled ShopView default)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "TU-EXP-09",
+  "before": "SV-8654 (specs/technician-utilization.md Story 7 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10,000-row export cap, locked by Chris 2026-07-21)",
+  "after": "SV-8654 (specs/technician-utilization.md Story 7 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "TU-LOC-01",
+  "before": "SV-8656 (specs/technician-utilization.md S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+  "after": "SV-8656 (specs/technician-utilization.md S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "TU-LOC-02",
+  "before": "SV-8656 (specs/technician-utilization.md S9-R3; S9-R4; S9-R5 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "after": "SV-8656 (specs/technician-utilization.md S9-R3; S9-R4; S9-R5 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "TU-LOC-05",
+  "before": "SV-8656 (TU spec S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S9-N1 \"still sees the filter\" note is stale, spec edit pending)",
+  "after": "SV-8656 (TU spec S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S9-N1 \"still sees the filter\" note is stale; spec edit pending)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "TU-LOC-06",
+  "before": "SV-8656 (TU spec v5 2026-07-29 S9-R9; S9-R10; S8-R15; S10-R4 — per-row Location column, leftmost before Technician, \"Multiple\" on a spanning row, Summary row blank, never in the selector)",
+  "after": "SV-8656 (TU spec v5 2026-07-29 S9-R9; S9-R10; S8-R15; S10-R4 — per-row Location column; leftmost before Technician; \"Multiple\" on a spanning row; Summary row blank; never in the selector)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "TU-NAV-01",
+  "before": "SV-8648 (specs/technician-utilization.md S1-R1 — below the named anchor items [Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05, refining kickoff video P3; video authoritative, newest-wins)",
+  "after": "SV-8648 (specs/technician-utilization.md S1-R1 — below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05; refining kickoff video P3; video authoritative; newest-wins)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "TU-VIS-01",
+  "before": "SV-8655 (TU spec v5 2026-07-29 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu, and the date-range picker now precedes the technician filter)",
+  "after": "SV-8655 (TU spec v5 2026-07-29 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu; and the date-range picker now precedes the technician filter)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "WIP-COL-05",
+  "before": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to VIN, falling back to Unit #, then plate, by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; NEWEST source, last-update-wins), superseding the kickoff video's serial-number ruling P24 AND the spec's unit-number rule)",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to VIN; falling back to Unit #; then plate; by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; NEWEST source; last-update-wins); superseding the kickoff video's serial-number ruling P24 AND the spec's unit-number rule)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "WIP-EXP-02",
+  "before": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R2; S9-R3; S9-R4 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "after": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R2; S9-R3; S9-R4 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "WIP-EXP-07",
+  "before": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN, then Unit #, then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins), superseding the video P24 serial ruling; export header text at export unpinned)",
+  "after": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN; then Unit #; then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins); superseding the video P24 serial ruling; export header text at export unpinned)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "WIP-EXP-10",
+  "before": "SV-8665 (WIP spec Story 9 — the 10,000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line, his spec edit is pending)",
+  "after": "SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "WIP-FLT-03",
+  "before": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R4; S7-R5 - option text + type-ahead match fields RE-RULED to the VIN chain (VIN, then Unit #, then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins), superseding the video P24 serial ruling; the spec's original unit-number+VIN matching partially survives via the chain)",
+  "after": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R4; S7-R5 - option text + type-ahead match fields RE-RULED to the VIN chain (VIN; then Unit #; then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins); superseding the video P24 serial ruling; the spec's original unit-number+VIN matching partially survives via the chain)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "WIP-FLT-06",
+  "before": "SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator, spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A)",
+  "after": "SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator; spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "WIP-FLT-09",
+  "before": "SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; §4 Location (column) — automatic visibility, never \"Multiple\", export header \"Branch\")",
+  "after": "SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; §4 Location (column) — automatic visibility; never \"Multiple\"; export header \"Branch\")",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "WIP-SORT-03",
+  "before": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN, then Unit #, then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins), superseding the video P24 serial ruling AND the spec's 'sorts by unit number')",
+  "after": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN; then Unit #; then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins); superseding the video P24 serial ruling AND the spec's 'sorts by unit number')",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "WIP-TAB-01",
+  "before": "SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R1 — Performance group; below the named anchor items [Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05)",
+  "after": "SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R1 — Performance group; below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05)",
+  "why": "F5a comma-free refs (TestRail normalises ', ' to ',')"
+ },
+ {
+  "id": "PV-FILT-01",
+  "before": "SV-8642 (specs/parts-velocity.md S2-R1; S3-R5 - 'Catalogue' RENAMED to the exact label 'Special Order' [Type filter; Type column; export] per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins); confirming kickoff video P31)",
+  "after": "SV-8642 (PV spec S2-R1; S3-R5 - 'Catalogue' RENAMED to the exact label 'Special Order' [Type filter; Type column; export] per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31])",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "PV-FILT-09",
+  "before": "SV-8642 (specs/parts-velocity.md S2-R8 - 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins); confirming kickoff video P31)",
+  "after": "SV-8642 (PV spec S2-R8 - 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31])",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "PV-FILT-10",
+  "before": "SV-8642 (specs/parts-velocity.md S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)",
+  "after": "SV-8642 (PV spec S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "PV-NAV-01",
+  "before": "SV-8641 (specs/parts-velocity.md S1-R1 — the spec's 'only report' sentence is superseded: Parts Velocity and Inventory Value BOTH live under Parts per the PRD companion video 2026-07-30 00:35-01:18; PV S1-R1 vs IV S1-R1 inconsistency flagged to SPEC-WATCH)",
+  "after": "SV-8641 (PV spec S1-R1 — spec's 'only report' sentence superseded: Parts Velocity and Inventory Value BOTH live under Parts per PRD video 2026-07-30 00:35-01:18; PV-vs-IV S1-R1 clash on SPEC-WATCH)",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "PV-ROW-05",
+  "before": "SV-8643 (specs/parts-velocity.md S3-R4; S3-R5; S3-R8 - Type value 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins); confirming kickoff video P31)",
+  "after": "SV-8643 (PV spec S3-R4; S3-R5; S3-R8 - Type value 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31])",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "SBC-EXP-01",
+  "before": "SV-8612; SV-8613 (specs/sbc-sales-by-customer.md S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 - menu RESHAPED to the four Summary/Expanded items by Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins) [ratifies + extends video P21]; 'Print' REMOVED per video P25 31:14; CONFIRMED by the same message)",
+  "after": "SV-8612; SV-8613 (SBC spec S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 - menu RESHAPED to 4 Summary/Expanded items by Chris Ward msg 2026-07-29 [newest-wins] [extends video P21]; 'Print' REMOVED per video P25 [same msg confirms])",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "SBC-EXP-09",
+  "before": "SV-8613 (specs/sbc-sales-by-customer.md Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11 - the old 'location is not shown in the header' rule is REVERSED by the Locations: line added to every export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "after": "SV-8613 (SBC spec Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11 - old 'location not in the header' rule REVERSED by the Locations: line in every export per Chris Ward msg 2026-07-29 [newest-wins])",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "SBC-LBL-01",
+  "before": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to VIN; falling back to Unit #; then plate; by Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins); superseding the kickoff video's serial-number ruling P24 AND the spec's year/make/model + unit/plate/VIN-suffix rule)",
+  "after": "SV-8606 (SBC spec Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward msg 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's year/make/model rule)",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "SBC-LOC-03",
+  "before": "SV-8603 (specs/sbc-sales-by-customer.md Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)",
+  "after": "SV-8603 (SBC spec Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "SBR-EXP-02",
+  "before": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "after": "SV-8631 (SBR spec Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4 + Locations: line in every export per Chris Ward msg 2026-07-29 [newest-wins])",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "SBR-LOC-03",
+  "before": "SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)",
+  "after": "SV-8638 (SBR spec Story 21 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward 2026-07-29",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "SBR-NAV-01",
+  "before": "SV-8619 (specs/sbr-sales-by-representative.md Story 1 S1-R1; S1-R2; S1-R3; S1-R4; S1-R5; S1-R6 — 'at the bottom' re-based to below-the-named-anchors [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05; order among the four new reports not important)",
+  "after": "SV-8619 (SBR spec Story 1 S1-R1; S1-R2; S1-R3; S1-R4; S1-R5; S1-R6 — 'at the bottom' = below the named anchors [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per PRD video 2026-07-30 01:18-02:05; order among the four not important)",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "TU-NAV-01",
+  "before": "SV-8648 (specs/technician-utilization.md S1-R1 — below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05; refining kickoff video P3; video authoritative; newest-wins)",
+  "after": "SV-8648 (TU spec S1-R1 — below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per PRD video 2026-07-30 01:18-02:05; refines video P3 [newest-wins])",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "WIP-COL-05",
+  "before": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to VIN; falling back to Unit #; then plate; by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; NEWEST source; last-update-wins); superseding the kickoff video's serial-number ruling P24 AND the spec's unit-number rule)",
+  "after": "SV-8660 (WIP spec Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's unit-number rule)",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "WIP-EXP-07",
+  "before": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN; then Unit #; then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins); superseding the video P24 serial ruling; export header text at export unpinned)",
+  "after": "SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned)",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "WIP-FLT-03",
+  "before": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R4; S7-R5 - option text + type-ahead match fields RE-RULED to the VIN chain (VIN; then Unit #; then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins); superseding the video P24 serial ruling; the spec's original unit-number+VIN matching partially survives via the chain)",
+  "after": "SV-8663 (WIP spec Story 7 S7-R4; S7-R5 - option text + match fields RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [supersedes video P24])",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ },
+ {
+  "id": "WIP-SORT-03",
+  "before": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN; then Unit #; then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins); superseding the video P24 serial ruling AND the spec's 'sorts by unit number')",
+  "after": "SV-8660 (WIP spec Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's 'sorts by unit number' rule)",
+  "why": "F5b compressed to the 250-char TestRail refs cap (every requirement token + the driving source kept; only repeated provenance prose removed)"
+ }
+]

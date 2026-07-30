@@ -24,7 +24,7 @@
    "5. With a narrowed customer selection and no data, the empty state shows but the selection is KEPT (not cleared) — when the filters change back, the selected customers reappear."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1",
+  "spec_ref": "SV-8615 (specs/sbc-sales-by-customer.md Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EMPTYSEL): absorbed SBC-EMPTY-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -48,7 +48,7 @@
    "2. The message appears only after the table finishes its initial loading and shows zero customers."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 17 S17-N1",
+  "spec_ref": "SV-8615 (specs/sbc-sales-by-customer.md Story 17 S17-N1)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -98,7 +98,7 @@
    "2. The toast auto-fades after 5 seconds."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md §7 User Feedback Summary",
+  "spec_ref": "SV-8582 (SBC spec §7 User Feedback Summary — the data-fetch error toast; CROSS-CUTTING: the SBC spec carries no error-state story of its own so the epic key is used deliberately)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -129,7 +129,7 @@
    "7. When the table content does not fill the viewport, the blue-grey page background shows through below the table — no white strip."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17",
+  "spec_ref": "SV-8617 (specs/sbc-sales-by-customer.md Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17)",
   "viu_status": "VIU-Pending",
   "notes": "Technician Efficiency is the suite's visual reference (Story 20 context note) — compare side-by-side at VIU if in doubt.",
   "api_related": false
@@ -157,7 +157,7 @@
    "5. The three tree levels show by indentation: customer at the base, asset rows one level in (chevron and vehicle icon sit in from the customer), invoice rows one level deeper."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14",
+  "spec_ref": "SV-8617 (specs/sbc-sales-by-customer.md Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -181,7 +181,7 @@
    "2. The PDF export always renders in light-mode colors regardless of the user's app mode."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 20 S20-R18",
+  "spec_ref": "SV-8617 (specs/sbc-sales-by-customer.md Story 20 S20-R18)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -207,7 +207,7 @@
    "3. At 1024px and above the toolbar uses the desktop single-row layout."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 21 S21-R1; S21-R2; S21-R3",
+  "spec_ref": "SV-8618 (specs/sbc-sales-by-customer.md Story 21 S21-R1; S21-R2; S21-R3)",
   "viu_status": "VIU-Pending",
   "notes": "A mobile-optimized layout is out of scope (§2) — the dense table itself is not redesigned; only control usability is asserted.",
   "api_related": false
@@ -233,7 +233,7 @@
    "3. The invoice number link opens the invoice in the same tab, the same as on desktop."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 21 S21-R4; S21-R5; S21-R6",
+  "spec_ref": "SV-8618 (specs/sbc-sales-by-customer.md Story 21 S21-R4; S21-R5; S21-R6)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -260,7 +260,7 @@
    "3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R14; S8-R16",
+  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R14; S8-R16)",
   "viu_status": "VIU-Pending",
   "notes": "The spec defines no REST contract — observe the browser's real requests; do NOT assume endpoint shapes. BUILD-DELTA: lazy drill-down is the 2026-07-16 committed server-side target (spec ahead of code by design) — the current build may still preload client-side at VIU.",
   "api_related": true
@@ -287,7 +287,7 @@
    "4. A sort request naming a column the report does not offer is safely refused or ignored — never an error page or a crash; sorting works only on the report's own columns."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist)",
+  "spec_ref": "SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist))",
   "viu_status": "VIU-Pending",
   "notes": "Generic wording on purpose — no endpoint invented. BUILD-DELTA: server-side sort is the 2026-07-16 committed target.",
   "api_related": true
@@ -313,7 +313,7 @@
    "3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R2; S18-R4",
+  "spec_ref": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R2; S18-R4)",
   "viu_status": "VIU-Pending",
   "notes": "Verify the flag-vs-enumeration point by observing what a filter change/restore sends, not by reading source. BUILD-DELTA: server-backed type-ahead is the 2026-07-21 committed target.",
   "api_related": true
@@ -339,7 +339,7 @@
    "3. The totals are computed on the server over the full set of matching customers — they arrive with the data and do not change as you page."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R6; S18-R11",
+  "spec_ref": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R6; S18-R11)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA: server pagination/totals are the 2026-07-16 committed target (spec ahead of code by design).",
   "api_related": true
@@ -363,7 +363,7 @@
    "2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download — the count the cap checks is the count the file would contain, against the same filters and sort as the screen."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22; Story 16 S16-R6",
+  "spec_ref": "SV-8612 (specs/sbc-sales-by-customer.md Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22)",
   "viu_status": "VIU-Pending",
   "notes": "No endpoint or status code is pinned by the spec — record what is actually observed. BUILD-DELTA: server-side exports (2026-07-16) and the cap (2026-07-21) are committed targets ahead of code.",
   "api_related": true

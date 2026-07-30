@@ -19,7 +19,7 @@
    "2. There is no alternating row shading (no zebra striping)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 10 S10-R1",
+  "spec_ref": "SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R1)",
   "viu_status": "VIU-Pending",
   "notes": "COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact).",
   "api_related": false
@@ -44,7 +44,7 @@
    "2. It is shown as a bold band delineated by a top and bottom rule — not as a row of separate cards."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 10 S10-R2",
+  "spec_ref": "SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R2)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -69,7 +69,7 @@
    "2. The Total column (header and cells, shown in bold) stays fixed to the right edge while the rest of the columns scroll underneath."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R22; Story 10 S10-R3",
+  "spec_ref": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R22; Story 10 S10-R3)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -94,7 +94,7 @@
    "2. The report fills the available height and only the active tab's table body scrolls — the page itself does not add a second scrollbar."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 10 S10-R4; S10-R5",
+  "spec_ref": "SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R4; S10-R5)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -121,7 +121,7 @@
    "3. Activating it opens the work order (in the same browser tab)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 10 S10-R6",
+  "spec_ref": "SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R6)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -148,7 +148,7 @@
    "3. The explanation text is exposed to assistive technology."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 10 S10-R7; Story 5 S5-R12",
+  "spec_ref": "SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R7; Story 5 S5-R12)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -174,7 +174,7 @@
    "2. The table, the summary strip, the WO # link, the Inv. Hrs green/red coloring, and the two-line asset cell all use dark-mode-legible colors meeting contrast."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 10 S10-R9",
+  "spec_ref": "SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R9)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -200,7 +200,7 @@
    "2. The download works with the same permission — the report reuses one existing reporting permission, adds no new one, and the same permission covers the report and its downloads."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 1 Prerequisites (+ context note)",
+  "spec_ref": "SV-8657 (specs/wip-work-in-progress.md Story 1 Prerequisites (+ context note))",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm WHICH existing reporting permission gates this report — the spec does not name it; capture the exact permission label live and tighten this case then. Do not invent a permission name.",
   "api_related": false
@@ -224,7 +224,7 @@
    "1. The report does not appear in the navigation for this user."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 1 S1-N1",
+  "spec_ref": "SV-8657 (specs/wip-work-in-progress.md Story 1 S1-N1)",
   "viu_status": "VIU-Pending",
   "notes": "Per Standing Rule 10, verify live AS the role — never derive from role definitions. Also probe direct navigation to the report's URL at VIU and record the observed behavior (the spec pins only the navigation hiding).",
   "api_related": false
@@ -252,7 +252,7 @@
    "3. Re-running the capture for the SAME date replaces that date's rows — the day's existing rows are removed and re-recorded from current data, never duplicated."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs)",
+  "spec_ref": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs))",
   "viu_status": "VIU-Pending",
   "notes": "The spec defines job behavior only — NO endpoint or table name is specified and none is invented here. VIU-confirm with dev how to trigger/inspect the capture (schedule time, storage, any manual re-run). TECH-PLAN EDIT 2026-07-30: re-run idempotency (delete-and-re-record per location/work order/date) comes from the engineering plan B1.2 — the WIP spec is silent on it (the IV spec's S11-R3 twin has it); confirm live and flag to Chris if the spec re-diff still lacks it.",
   "api_related": true
@@ -276,7 +276,7 @@
    "1. The snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 11 S11-R2",
+  "spec_ref": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Generic backend wording — no schema/endpoint invented; confirm the concrete storage shape with dev at VIU.",
   "api_related": true
@@ -301,7 +301,7 @@
    "1. The captured Earned equals the on-screen Earned and the captured Remaining equals the on-screen Remaining, to the cent — the snapshot uses the identical computation (Earned per S4-R19, Remaining per S4-R20), so the two can never diverge for a given work order on the capture date."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 11 S11-R3",
+  "spec_ref": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R3)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": true
@@ -329,7 +329,7 @@
    "3. Invoiced, Paid, and Declined work orders and part-sale work orders are not captured."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 11 S11-R4; Story 2 S2-R1 (first two conditions)",
+  "spec_ref": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R4; Story 2 S2-R1 (first two conditions))",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": true
@@ -353,7 +353,7 @@
    "1. Captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 11 S11-R5",
+  "spec_ref": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R5)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": true
@@ -378,7 +378,7 @@
    "2. Its Earned is $0.00 and its Remaining is $0.00, matching the on-screen S4-E1 behavior."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 11 S11-R6; Story 4 S4-E1",
+  "spec_ref": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R6; Story 4 S4-E1)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": true

@@ -19,7 +19,7 @@
    "2. No other entries appear in the menu."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R1; Story 17 S17-R3 (position)",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R1; Story 17 S17-R3 (position))",
   "viu_status": "VIU-Pending",
   "notes": "Menu action labels are verbatim from the spec.",
   "api_related": false
@@ -50,7 +50,7 @@
    "5. Every file (all four downloads, PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "spec_ref": "SV-8631 (SBR spec Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4 + Locations: line in every export per Chris Ward msg 2026-07-29 [newest-wins])",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA: all four exports are server-generated against the active filters + sort (2026-07-16 change log; spec ahead of code by design) — record a deviation if the build still exports from loaded screen data. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 131 chars; meaning unchanged; awaiting push authorization.",
   "api_related": false
@@ -79,7 +79,7 @@
    "5. The grand totals row reads \"Totals\" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin ÷ total Subtotal (shown \"—\" when that Subtotal is zero or below), never the sum or average of the rows' percentages."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R3; S14-R5; Story 2 S2-R5; §3 Margin % definition",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R3; S14-R5; Story 2 S2-R5; §3 Margin % definition)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -109,7 +109,7 @@
    "6. There is NO grand-totals row across all reps at the end of the document."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R6; S14-R8; Story 6 S6-R9",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R6; S14-R8; Story 6 S6-R9)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -134,7 +134,7 @@
    "3. In the PDF, the 18-character-or-shorter number shows in full with no ellipsis."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R7",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R7)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm whether an >18-character invoice number is seedable in this environment; if not, mark Blocked-Env with the reason rather than inferring.",
   "api_related": false
@@ -161,7 +161,7 @@
    "3. With no configured logo, the logo region falls back to the default ShopView logo and the PDF still generates normally."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R4; S14-R3a; S14-R11",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R4; S14-R3a; S14-R11)",
   "viu_status": "VIU-Pending",
   "notes": "Restore the organization logo after the fallback check (shared-env rule).",
   "api_related": false
@@ -187,7 +187,7 @@
    "3. The \"(Inactive)\" tag DOES render on toggled-off contributors' names in both PDFs; other rep names render plainly."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R9; S14-R10",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R9; S14-R10)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -213,7 +213,7 @@
    "3. Both PDF formats adapt the same way."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R12; S14-R13",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R12; S14-R13)",
   "viu_status": "VIU-Pending",
   "notes": "Exact pixel sizes need a PDF inspector or side-by-side comparison at VIU; verify the relative step-downs and the no-overflow guarantee at minimum. FIX-WORDING repair 2026-07-28 (sense-check): the px tier table is metadata, not the manual pass criterion (it needs a PDF inspector). Spec tier table (S14-R12): longest formatted positive dollar value 9 chars or fewer → 11px; 10 → 10px; 11 → 9px; 12+ → 8px (8px floor, 11px ceiling, totals included).",
   "api_related": false
@@ -377,7 +377,7 @@
    "3. A genuine failure downloads nothing — never a malformed file."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-N1; S14-N2; S14-E1; §7",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-N1; S14-N2; S14-E1; §7)",
   "viu_status": "VIU-Pending",
   "notes": "\"Ooooops! An error occured\" is the canonical ShopView fallback wording, verbatim INCLUDING the typo — do not \"correct\" it when comparing.",
   "api_related": false
@@ -429,7 +429,7 @@
    "5. No special \"empty\" treatment or message appears inside the files."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-E3",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E3)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -619,7 +619,7 @@
    "5. In the empty state the toolbar — filters, column selector, and the ⋯ exports — stays visible and interactive; widening the range re-fetches and renders the matching reps normally."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 16 S16-R1; S16-R2; S16-R3; S16-N1; §7",
+  "spec_ref": "SV-8633 (specs/sbr-sales-by-representative.md Story 16 S16-R1; S16-R2; S16-R3; S16-N1; §7)",
   "viu_status": "VIU-Pending",
   "notes": "Empty-state message is verbatim from §7. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-EMPTYBAR): absorbed SBR-STATE-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -670,7 +670,7 @@
    "4. A re-fetch replaces the previous data only when the new data returns — no flash of a blank table beyond the spinner overlay."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 16 S16-R4",
+  "spec_ref": "SV-8633 (specs/sbr-sales-by-representative.md Story 16 S16-R4)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -696,7 +696,7 @@
    "3. \"Retry\" re-runs the CURRENT request — the report loads with the same filters still applied."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 16 S16-R5; §7",
+  "spec_ref": "SV-8633 (specs/sbr-sales-by-representative.md Story 16 S16-R5; §7)",
   "viu_status": "VIU-Pending",
   "notes": "Inline error message is verbatim from §7 — it is an inline data-area message with a Retry action, not a toast.",
   "api_related": false
@@ -722,7 +722,7 @@
    "3. At 1024px and above the desktop layout applies."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 17 S17-R1; S17-R2; S17-R3",
+  "spec_ref": "SV-8634 (specs/sbr-sales-by-representative.md Story 17 S17-R1; S17-R2; S17-R3)",
   "viu_status": "VIU-Pending",
   "notes": "The dense table is deliberately NOT redesigned for small screens (§2 Out of Scope) — only control operability and stacking are in scope here.",
   "api_related": false
@@ -748,7 +748,7 @@
    "3. The chevron expands/collapses the rep on touch."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 17 S17-R4; S17-R5; Story 10 S10-R5 (mobile)",
+  "spec_ref": "SV-8634 (specs/sbr-sales-by-representative.md Story 17 S17-R4; S17-R5; Story 10 S10-R5 (mobile))",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -772,7 +772,7 @@
    "2. Hover-only tooltips are not shown on touch; the icons communicate the action and each icon-only control carries an accessible name."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 17 S17-R6; S17-N1; Story 18 S18-R9",
+  "spec_ref": "SV-8634 (specs/sbr-sales-by-representative.md Story 17 S17-R6; S17-N1; Story 18 S18-R9)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -800,7 +800,7 @@
    "5. Row types are differentiated by font weight and color, not background color. These rules apply unconditionally whenever the report is rendered."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1",
+  "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1)",
   "viu_status": "VIU-Pending",
   "notes": "S18-R7 is self-contained and normative — if app-wide report styling has evolved, this spec is still the source of truth until a new spec round says otherwise (S18-R7.6). COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact).",
   "api_related": false
@@ -828,7 +828,7 @@
    "4. PDFs always render in light-mode colors, even when downloaded from dark mode."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 18 S18-R8",
+  "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R8)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -855,7 +855,7 @@
    "5. Dialog X = \"Close\"."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 18 S18-R9",
+  "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R9)",
   "viu_status": "VIU-Pending",
   "notes": "All five names are verbatim from the spec.",
   "api_related": false
@@ -881,7 +881,7 @@
    "3. A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 18 S18-R10",
+  "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R10)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -905,7 +905,7 @@
    "2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 18 S18-R11; S18-R12",
+  "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R11; S18-R12)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -1092,7 +1092,7 @@
    "2. Because the customer count is unavailable, the dialog OMITS the count headline and shows only the reassurance line \"Their customer assignments will stay where they are.\" above the \"Type YES to confirm\" gate."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-N4",
+  "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-N4)",
   "viu_status": "VIU-Pending",
   "notes": "Restore the staff member (cancel the dialog / reactivate) afterward.",
   "api_related": false
@@ -1119,7 +1119,7 @@
    "3. When a rep's matching-invoice count is large, its detail rows are paginated per rep."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R2",
+  "spec_ref": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R2)",
   "viu_status": "VIU-Pending",
   "notes": "The spec defines no REST contract — observe the browser's real requests; do NOT assume endpoint shapes. The per-rep page size and the expand-all bound are build tuning values (tech plan), not fixed by the spec. BUILD-DELTA: lazy server-side drill-down is the 2026-07-16 committed target (spec ahead of code by design).",
   "api_related": true
@@ -1144,7 +1144,7 @@
    "3. Invoice detail rows continue to load lazily per rep on expand, unaffected by the sort mechanism."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R5",
+  "spec_ref": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Generic wording on purpose — no endpoint invented. BUILD-DELTA: server-side sort is the 2026-07-16 committed target.",
   "api_related": true
@@ -1169,7 +1169,7 @@
    "3. The on-screen grand Totals match the export's aggregate for the same filter set."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R5",
+  "spec_ref": "SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R5)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA: server-computed grand totals are the 2026-07-16 committed target (spec ahead of code by design).",
   "api_related": true
@@ -1195,7 +1195,7 @@
    "3. An empty-but-loaded result still produces a valid file (header-row-only CSV / no-rows PDF)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R2a; S14-N2; S14-E3",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R2a; S14-N2; S14-E3)",
   "viu_status": "VIU-Pending",
   "notes": "No endpoint or status code is pinned by the spec — record what is actually observed. BUILD-DELTA: server-side exports are the 2026-07-16 committed target.",
   "api_related": true
@@ -1221,7 +1221,7 @@
    "3. A filter set just below the cap still generates a complete (possibly very large) PDF."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-E2",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E2)",
   "viu_status": "VIU-Pending",
   "notes": "Cap value 10,000 data rows is the spec's stated context note (2026-07-21 change log). No endpoint invented — observe the real request.",
   "api_related": true

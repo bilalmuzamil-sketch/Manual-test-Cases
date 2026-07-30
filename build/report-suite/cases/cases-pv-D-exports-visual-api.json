@@ -18,7 +18,7 @@
    "2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R1",
+  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R1)",
   "viu_status": "VIU-Pending",
   "notes": "Menu labels pinned verbatim in the spec.",
   "api_related": false
@@ -44,7 +44,7 @@
    "3. Each file (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R2; §3 Key Decisions + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R2; §3 Key Decisions + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
   "viu_status": "VIU-Pending",
   "notes": "LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU.",
   "api_related": false
@@ -70,7 +70,7 @@
    "3. The export mirrors the visible grid."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R3; S4-R4",
+  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R3; S4-R4)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN BUILD-DELTA (stated in the spec): the current export builds its column order from the user's visible-columns array, appending a re-enabled column at the END instead of its canonical slot - authored to spec; expect a deviation until dev aligns it.",
   "api_related": false
@@ -125,7 +125,7 @@
    "5. The shop logo shows at the top of the PDF when one is set, with the same logo treatment as the other reports in the suite (fallback behaviour when no logo is set is confirmed in the build; the CSV never includes a logo)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
   "viu_status": "VIU-Pending",
   "notes": "LOGO ADDED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now ensures the same \"logo\" treatment') - the PV spec had NO logo mention, so this report genuinely lacked coverage; the other five reports already carry logo cases (SBC-EXP-10 C30168, SBR-EXP-06 C30281, TU-EXP-06 C30439, WIP-EXP-08 C30517, IV-EXP-04 C30590). Exact treatment pending the updated spec changelog. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 125 chars; meaning unchanged; awaiting push authorization.",
   "api_related": false
@@ -151,7 +151,7 @@
    "3. Last Sale is a raw integer in the CSV (e.g. 42) - the 'N days' wording is PDF/on-screen only."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R5; S6-R6; S6-R8",
+  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R5; S6-R6; S6-R8)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -257,7 +257,7 @@
    "3. Otherwise the failure toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R9; S6-N1; §7 (casing note)",
+  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R9; S6-N1; §7 (casing note))",
   "viu_status": "VIU-Pending",
   "notes": "VIU note: record the failure-induction method used (offline toggle / devtools request blocking). A future copy pass may normalize the casing - until then the mixed casing is expected. VIU note: record the failure-induction method used (offline toggle / devtools request blocking). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-PV-EXPTOAST): absorbed PV-EXP-09. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -282,7 +282,7 @@
    "3. The layout matches the application's other reports (consistency goal, §1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S7-R1; §2",
+  "spec_ref": "SV-8647 (specs/parts-velocity.md S7-R1; §2)",
   "viu_status": "VIU-Pending",
   "notes": "Story 7 is the normative visual spec for this report as built (S7-R7). COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact).",
   "api_related": false
@@ -309,7 +309,7 @@
    "4. The leftmost cell in every row (header and body) has 2rem left padding; the rightmost cell has 2rem right padding."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S7-R2; S7-R3; S7-R4; S7-R5",
+  "spec_ref": "SV-8647 (specs/parts-velocity.md S7-R2; S7-R3; S7-R4; S7-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Pixel-level assertions - verify with devtools computed styles at VIU.",
   "api_related": false
@@ -334,7 +334,7 @@
    "2. The grey ⓘ info icon uses a token meeting at least a 3:1 contrast ratio against the cell background in BOTH light and dark mode."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S7-R6",
+  "spec_ref": "SV-8647 (specs/parts-velocity.md S7-R6)",
   "viu_status": "VIU-Pending",
   "notes": "Measure the contrast ratio with a devtools/contrast tool at VIU.",
   "api_related": false
@@ -411,7 +411,7 @@
    "3. Ties keep a stable order (no explicit secondary key)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S3-R3",
+  "spec_ref": "SV-8643 (specs/parts-velocity.md S3-R3)",
   "viu_status": "VIU-Pending",
   "notes": "Generic backend-behavior case - no endpoint paths asserted. Server-side sorting is the committed build target (2026-07-16) - possible delta vs the current build.",
   "api_related": true
@@ -437,7 +437,7 @@
    "3. Both loading and exporting are gated by the same Inventory Reports → View permission."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-R4; S1-N2",
+  "spec_ref": "SV-8641 (specs/parts-velocity.md S1-R4; S1-N2)",
   "viu_status": "VIU-Pending",
   "notes": "Generic backend-behavior case - the spec pins no REST contract or status codes; record the observed denial responses at VIU, do not assert invented codes. Role seeding per Standing Rule 5 (restore afterwards).",
   "api_related": true
@@ -465,7 +465,7 @@
    "3. After narrowing below the cap, the downloads work again."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8646 (specs/parts-velocity.md Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10,000-row export cap, locked by Chris 2026-07-21)",
+  "spec_ref": "SV-8646 (specs/parts-velocity.md Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21)",
   "viu_status": "VIU-Pending",
   "notes": "SPEC-SILENT: the Parts Velocity spec page carries no export-cap text; the cap comes from the engineering plan's suite-wide 10,000-row export guard (locked by Chris 2026-07-21; the plan's own PV test list includes the over-cap toast). Flagged to Chris to ratify into the spec (Questions-for-Chris-dev Q3). VIU-confirm the behavior, the exact message text, and the actual cap value.",
   "api_related": false

@@ -21,7 +21,7 @@
    "3. The entry sits BELOW the pre-existing report links — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency — the new reports are added below those items without moving or disturbing them."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R1 — below the named anchor items [Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05, refining kickoff video P3; video authoritative, newest-wins)",
+  "spec_ref": "SV-8648 (TU spec S1-R1 — below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per PRD video 2026-07-30 01:18-02:05; refines video P3 [newest-wins])",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the exact timesheet-reports permission name as shown in the roles screen (the spec names it only by reference to the Timesheet Activities report). VIDEO-AUTHORITATIVE (P3, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 05:11-05:19: 'technician utilization is actually in a really bad spot right now. So, we want to move these down below what's already there.' The spec is order-agnostic among the six reports (order relax kept); the below-existing rule is the video's addition. Title shortened to fit. COMPANION-VIDEO 2026-07-30 (C4, 01:18-02:05): the anchor items are now NAMED — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency 'normally live in a spot that everybody's used to clicking on'; TU was 'in absolutely the wrong spot' and moves below them. Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins).",
   "api_related": false
@@ -46,7 +46,7 @@
    "2. Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) appear."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S1-R2",
+  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: clock work-order and internal time for one technician; leave another with no clock records in the window.",
   "api_related": false
@@ -71,7 +71,7 @@
    "3. The location filter defaults to the user's currently active location (the one in the application's global location switcher)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S1-R3; S9-R2",
+  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R3; S9-R2)",
   "viu_status": "VIU-Pending",
   "notes": "The 'current month' boundary is evaluated in the active workplace's report-level time zone (S1-R7).",
   "api_related": false
@@ -97,7 +97,7 @@
    "3. A Custom span wider than 366 days (matching the largest preset) is rejected - it cannot be applied."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S1-R4; S1-R5",
+  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R4; S1-R5)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: the 366-day cap (and All-Time removal) came in the 2026-07-16 spec round - the build may lag. VIU-confirm the date-picker preset labels and how the rejection is presented.",
   "api_related": false
@@ -123,7 +123,7 @@
    "3. The toolbar remains interactive during the load."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S1-R10",
+  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R10)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -152,7 +152,7 @@
    "4. This matches the Timesheet Activities report's single-time-zone grouping."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S1-R7; S1 context notes",
+  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R7; S1 context notes)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: the single report-level timezone model was set in the 2026-07-16 round (Milan's option 1) - the build may lag. HEAVY SEEDING: cross-midnight and boundary-straddling clock records; two locations in different time zones.",
   "api_related": false
@@ -175,7 +175,7 @@
    "1. The Technician Utilization report does NOT appear in the navigation."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S1-N1",
+  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-N1)",
   "viu_status": "VIU-Pending",
   "notes": "Role seeding per Standing Rule 5: assign the Tech user a role without the permission, observe, restore afterwards.",
   "api_related": false
@@ -202,7 +202,7 @@
    "3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S1-N2; S9-N2; S5-N1; S3-N1; §7",
+  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-N2; S9-N2; S5-N1; S3-N1; §7)",
   "viu_status": "VIU-Pending",
   "notes": "The cleared-technician-filter trigger for the same message is TU-TECH-05. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-TU-EMPTY): absorbed TU-TECH-05. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -254,7 +254,7 @@
    "5. Hours show two decimal places with NO thousands separator (e.g. \"107.70\"), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 → 0.01)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3",
+  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: controlled clock records (work-order + internal) so the sums are checkable. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-TU-COLS): absorbed TU-HRS-01. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
@@ -278,7 +278,7 @@
    "2. It shows one decimal place followed by a percent sign, rounded round-half-up (66.65% → 66.7%)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S2-R6; S2-R7; §3",
+  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R6; S2-R7; §3)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: clock durations that produce an exact .x5 tie to prove the rounding direction.",
   "api_related": false
@@ -304,7 +304,7 @@
    "3. The \"—\" (undefined, total = 0) state is unreachable on a rendered technician or day row, because only technicians with clocked time get rows."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S2-E1; S2-R7; S2 context note",
+  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-E1; S2-R7; S2 context note)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -332,7 +332,7 @@
    "3. The value shows as dollars with two decimals and commas between thousands (e.g. \"$1,234.50\")."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S2-R8; S2-R9; §3",
+  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R8; S2-R9; §3)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN BUILD-DELTA (owner decision 2026-07-11): the current rollup applies a single (first-encountered) location rate to the technician's TOTAL internal hours - multi-location values will deviate until dev ships the per-location accumulation; single-location views are already exact. HEAVY SEEDING: two rated locations with distinct rates + internal clock time at each.",
   "api_related": false
@@ -361,7 +361,7 @@
    "4. Est. Lost Labor can be turned OFF in the Column Selection control; when it is off the column, its bold styling and its information icon are all absent, and the report still works normally."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8652 (TU spec v5 2026-07-29 S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1 — each re-worded \"When shown\" now that Est. Lost Labor is a hideable column, new Story 10 S10-R3)",
+  "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1 — each re-worded \"When shown\" now that Est. Lost Labor is a hideable column; new Story 10 S10-R3)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN BUILD-DELTA: the shipped tooltip currently reads \"Default labor rate multiplied by internal hours\" (single-rate wording) - the spec requires the S8-R7 per-location wording; expect a deviation until dev updates it. CHANGED by the TU spec v5 2026-07-29: S2-R10/S2-R11/S8-R4/S8-R6 all now read \"When shown…\" and S10-R3 makes Est. Lost Labor hideable (verbatim: \"Est. Lost Labor was previously always-on; it is now a hideable column like the others\").",
   "api_related": false
@@ -387,7 +387,7 @@
    "3. \"$0.00\" means 'the rate is known and there is nothing (or $0) to value' - a different state from \"—\" ('the rate is unknown')."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S2-E2; §5 Assumptions; S2 context note",
+  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-E2; §5 Assumptions; S2 context note)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: set a location's default labor rate to exactly $0.00 (restore the original rate afterwards - shared env).",
   "api_related": false
@@ -412,7 +412,7 @@
    "3. The technician's Internal Hours column still shows all the internal hours (they are counted even though they cannot be valued)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S2-E3; S8-R11; S2-R4",
+  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-E3; S8-R11; S2-R4)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: remove/blank a test location's default labor rate (restore afterwards - shared env).",
   "api_related": false
@@ -438,7 +438,7 @@
    "3. This is a documented known limitation (a partial-value indicator is a possible follow-up) - expected behavior, not a defect."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S2-E4",
+  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-E4)",
   "viu_status": "VIU-Pending",
   "notes": "Expected-behavior case. HEAVY SEEDING: rated + unrated locations with internal clock time at each for one technician.",
   "api_related": false

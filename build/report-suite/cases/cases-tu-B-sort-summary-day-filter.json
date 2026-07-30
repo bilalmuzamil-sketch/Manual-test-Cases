@@ -20,7 +20,7 @@
    "3. The active sort header exposes its state to assistive technology (aria-sort = ascending on the Technician header; none on the others)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S2-R12; S8-R8; S8-R10",
+  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R12; S8-R8; S8-R10)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -50,7 +50,7 @@
    "5. Technicians tied in the sorted column are ordered by Technician name A to Z; two technicians sharing the same display name keep a stable order between renders."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S2-R13; S2-R14",
+  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R13; S2-R14)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -75,7 +75,7 @@
    "2. On the return visit, the sort is again Technician A to Z - sort is NOT persisted (unlike the date range, technician selection, and location selection, which are)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S2-R15; §3",
+  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R15; §3)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -101,7 +101,7 @@
    "3. Each technician's expanded day rows stay under that technician, still in date order (earliest to latest) - they do not re-sort by the clicked column."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S2-R16",
+  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R16)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -127,7 +127,7 @@
    "3. A \"$0.00\" value is a number, not \"—\" - it sorts as zero (lowest ascending, above only the — group)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S2-R17",
+  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R17)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: needs both an unrated-location technician (—) and a zero-internal or $0-rate technician ($0.00) in one view.",
   "api_related": false
@@ -154,7 +154,7 @@
    "4. Its values carry NO label prefix such as \"TOTAL:\" or \"AVG:\"."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S3-R1; S3-R2; S3-R6; S3-R7; S8-R5",
+  "spec_ref": "SV-8650 (specs/technician-utilization.md S3-R1; S3-R2; S3-R6; S3-R7; S8-R5)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -180,7 +180,7 @@
    "3. With every technician selected, the Summary row equals the shop totals for the full date range at the selected location(s)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S3-R3; §3 context note; S5-E1",
+  "spec_ref": "SV-8650 (specs/technician-utilization.md S3-R3; §3 context note; S5-E1)",
   "viu_status": "VIU-Pending",
   "notes": "'Visible technicians' = the technicians currently selected in the technician filter, not the rows scrolled into view (S3 context note). FIX-WORDING repair 2026-07-28 (sense-check): 'differ by a cent' corrected — the values are hours, so the tolerance is 0.01 (one unit in the last decimal).",
   "api_related": false
@@ -205,7 +205,7 @@
    "2. It is NOT the average of the per-technician percentages (not 50.0%)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S3-R4",
+  "spec_ref": "SV-8650 (specs/technician-utilization.md S3-R4)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: two ZZAUTOTEST technicians with the skewed clock records above.",
   "api_related": false
@@ -230,7 +230,7 @@
    "3. The Summary shows \"—\" only when EVERY visible technician's Est. Lost Labor is \"—\"."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S3-R5",
+  "spec_ref": "SV-8650 (specs/technician-utilization.md S3-R5)",
   "viu_status": "VIU-Pending",
   "notes": "HEAVY SEEDING: rated, unrated, and mixed-location technicians in one view.",
   "api_related": false
@@ -285,7 +285,7 @@
    "4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S4-R2; S4-N1; S9-R4",
+  "spec_ref": "SV-8651 (specs/technician-utilization.md S4-R2; S4-N1; S9-R4)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: lazy on-expand loading came in the 2026-07-16 spec round - the build may still ship day rows with the initial payload. The backend-observable half is TU-API-01.",
   "api_related": false
@@ -311,7 +311,7 @@
    "3. Hours 2dp / Utilization one decimal + % / dollars with commas - all identical to the row formats, computed from unrounded values and rounded once."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S4-R3; S2-R8; §3",
+  "spec_ref": "SV-8651 (specs/technician-utilization.md S4-R3; S2-R8; §3)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -339,7 +339,7 @@
    "4. It is keyboard-focusable, toggles on Enter/Space, and exposes its state to assistive technology."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S4-R4; S8-R12; S8-R3",
+  "spec_ref": "SV-8651 (specs/technician-utilization.md S4-R4; S8-R12; S8-R3)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -365,7 +365,7 @@
    "3. Deselecting and re-selecting a technician (an on-screen operation) does NOT change the expansion state of the other rows - the expanded row stays expanded."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S4-R5",
+  "spec_ref": "SV-8651 (specs/technician-utilization.md S4-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Nothing is lost by the reset because day rows load on expand (S4-R2).",
   "api_related": false
@@ -391,7 +391,7 @@
    "3. All technicians' rows are shown."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S5-R1; S5-R2",
+  "spec_ref": "SV-8652 (specs/technician-utilization.md S5-R1; S5-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Filter label pinned verbatim in S5-R1.",
   "api_related": false
@@ -419,7 +419,7 @@
    "4. Re-selecting the technician shows the row again (and the Summary recalculates back)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S5-R3; S5-R4; S5-R5; §3; S5 context note",
+  "spec_ref": "SV-8652 (specs/technician-utilization.md S5-R3; S5-R4; S5-R5; §3; S5 context note)",
   "viu_status": "VIU-Pending",
   "notes": "The on-screen-only vs server split is also asserted backend-side in TU-API-02.",
   "api_related": false
@@ -447,7 +447,7 @@
    "4. After step 4, the newly-appearing technician is selected even though you had cleared all - \"Clear all\" only deselected the technicians listed at the time."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S5-R6; S5-R7; S5-R8; S5-R9",
+  "spec_ref": "SV-8652 (specs/technician-utilization.md S5-R6; S5-R7; S5-R8; S5-R9)",
   "viu_status": "VIU-Pending",
   "notes": "Control labels pinned verbatim (\"Select all\" / \"Clear all\").",
   "api_related": false
@@ -473,7 +473,7 @@
    "3. The saved date range and location selection are restored alongside (per S1-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S5-R10; S1-R8; §3",
+  "spec_ref": "SV-8652 (specs/technician-utilization.md S5-R10; S1-R8; §3)",
   "viu_status": "VIU-Pending",
   "notes": "Persistence is per browser only - it does not follow the user to another browser or device (§3 context note).",
   "api_related": false

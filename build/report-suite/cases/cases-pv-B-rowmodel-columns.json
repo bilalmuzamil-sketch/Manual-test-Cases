@@ -20,7 +20,7 @@
    "3. On Hand / Min / Max are NEVER summed across locations."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S3-R1a; §3 Key Decisions",
+  "spec_ref": "SV-8643 (specs/parts-velocity.md S3-R1a; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "HEAVY SEEDING: needs the same part number stocked at two accessible locations with distinct stock levels. VIU-confirm whether/how each row identifies its location on screen (the spec does not pin a Location column).",
   "api_related": false
@@ -131,7 +131,7 @@
    "3. ALL columns - header and cell data, including numbers and money - are left-aligned on screen. (The exports right-align numerics instead: a deliberate export-only difference, see PV-EXP-08.)"
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8643 (specs/parts-velocity.md S3-R4; S3-R5; S3-R8 - Type value 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins), confirming kickoff video P31)",
+  "spec_ref": "SV-8643 (PV spec S3-R4; S3-R5; S3-R8 - Type value 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31])",
   "viu_status": "VIU-Pending",
   "notes": "RENAME CONFIRMED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): the Type column value is 'Special Order' (label/display-only, no data change). Label now spec-stated (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12.",
   "api_related": false
@@ -162,7 +162,7 @@
    "6. No other column header carries an info icon."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S3-R6",
+  "spec_ref": "SV-8643 (specs/parts-velocity.md S3-R6)",
   "viu_status": "VIU-Pending",
   "notes": "The tooltip strings are deliberate plain-language summaries; the exhaustive definitions live in S5-R4/S5-R4a (covered by the PV-CALC cases).",
   "api_related": false
@@ -191,7 +191,7 @@
    "4. The CSV export carries the full untruncated Description / Category / Vendor values (verified in PV-EXP-06)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S3-R7",
+  "spec_ref": "SV-8643 (specs/parts-velocity.md S3-R7)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: a ZZAUTOTEST part with an extra-long description/category/vendor and one invoiced sale.",
   "api_related": false
@@ -271,7 +271,7 @@
    "3. A fully-reversed part with zero net movement, no on-hand stock, and no residual revenue would be excluded per S3-N1 (Demand alone is not a keep-criterion)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S3-E1; S5-R5",
+  "spec_ref": "SV-8643 (specs/parts-velocity.md S3-E1; S5-R5)",
   "viu_status": "VIU-Pending",
   "notes": "HEAVY SEEDING: invoice a work order with the part, then reverse/void the invoice inside the same window; for part D make the reversal larger than the in-window sales.",
   "api_related": false
@@ -372,7 +372,7 @@
    "4. The same holds after a full page reload."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S4-R6; S1-R2",
+  "spec_ref": "SV-8644 (specs/parts-velocity.md S4-R6; S1-R2)",
   "viu_status": "VIU-Pending",
   "notes": "The saved view covers: Type, date range (incl. custom start/end), categories, vendors, bin locations, location, column selection, and active sort (column + direction). Storage is per browser, not per account.",
   "api_related": false
@@ -397,7 +397,7 @@
    "3. The report loads without an error."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S4-R6",
+  "spec_ref": "SV-8644 (specs/parts-velocity.md S4-R6)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: save a view with two locations, then remove the user's access to one (restore access afterwards). A malformed custom range may need browser-storage editing - note the method used at VIU.",
   "api_related": false
@@ -471,7 +471,7 @@
    "3. On the next visit the all-hidden selection is NOT restored - the report falls back to the default 14-column set (the saved column selection returns to the last NON-EMPTY selection; all-hidden is the exception)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S4-E1; S4-R6",
+  "spec_ref": "SV-8644 (specs/parts-velocity.md S4-E1; S4-R6)",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
