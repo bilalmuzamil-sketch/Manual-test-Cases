@@ -119,7 +119,8 @@ Cross-project register: `build/OUTSTANDING-ITEMS-REGISTER.md` (Standing Rule 36)
 1. **Send this sheet to Chris.** Five questions. Two of them (Q1 and Q4) are places where his own descriptions contradict each other or contradict his own note, so a reader cannot tell which is right — and one of them (Q3) is a detail nobody has written down anywhere.
 2. **The QA branch / environment, and confirmation the reports are switched on.** This is still the single biggest gap on the project: **all 474 cases have never been run against the real build.** Everything we assert about wording and layout is "the description says so", not "the build shows it". We also need fresh login cookies when the branch exists.
 3. **A nudge to Chris on the seven description corrections he still owes** — headed by the Work In Progress asset identifier, which he believed he had already fixed. Our cases follow his answer, so until he edits the text anyone comparing us to the written description will read a mismatch as our mistake. The deadline we agreed was **4 August**.
-4. **Go-ahead for the title-trim pass** — 288 of the 474 case titles are still too long and get cut off on the TestRail case page. Cosmetic, but it costs the tester every day.
+
+**Already done, so please do not chase it:** the case titles are all within the length TestRail can display (none over 80 characters) — that was completed in the earlier pass on 31 July.
 
 **From Chris:** answers to the five questions here, plus Q1 of the 27 July sheet (the Escape-key question, now open four days).
 
