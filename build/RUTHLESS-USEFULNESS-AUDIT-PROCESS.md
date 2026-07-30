@@ -263,6 +263,62 @@ Every case must be BOTH:
 cross-references Standing Rules 7 (layman questions/wording), 9 (build-accurate wording), and 20
 (traceability) — apply those rules' full text; this process does not restate them.
 
+## Dimension 4 — the OUTSIDE-IN GAP HUNT (mandatory; Standing Rule 45)
+
+Dimensions 1–3 examine the cases **we wrote**, from **our own** point of view. They cannot find the
+thing we do not know we are missing. This dimension asks the only question that can: **could somebody
+outside this work see something we cannot?** It is the LAST dimension and the audit is **not
+complete without it** — a suite may not be reported current, complete or audited-clean until all
+five checks below have a stated result ("not applicable" is a permitted result; **silence is not**).
+
+**Stage 4a — FOREIGN-COVERAGE DIFF, IN BOTH DIRECTIONS.** Run both checkers over the project's
+TestRail group, read-only:
+- **overlap direction** (do THEIR cases duplicate OURS?) —
+  `build/testrail-foreign-cases-2026-07-31/foreign_overlap_check.py`
+- **reverse direction** (do THEY assert something with NO counterpart in ours?) —
+  `build/gap-rootcause-2026-07-31/reverse_coverage_diff.py`
+
+**Their case existing where ours does not is a COVERAGE SIGNAL, not a nuisance.** Label every foreign
+assertion **COVERED-BY** (naming our case ids) · **CANDIDATE GAP** · **CONTRADICTS-OURS**, and carry
+every CANDIDATE GAP / CONTRADICTS row into the audit report **with its evidence**. Report **both
+counts — "ours N / live total M"** (Rule 38). **Never edit, move, retitle, re-ref or delete a foreign
+case (Rule 38); a candidate gap is authorised by the QA lead, never authored on our own initiative
+(Rule 6).** Where a foreign case CONTRADICTS ours, Rule 44 applies first: **re-derive our own
+position from the current sources before defending it** — the honest outcome is often that ours is
+the stale one.
+
+**Stage 4b — THE AUTOMATION-ENGINEER LENS.** For each requirement ask *"if I were automating this
+from the RUNNING BUILD, what would I assert?"* — then check a case exists for it. An automation
+engineer must assert what a system actually **emits**; he cannot write a header list he has not seen.
+**HONESTY (Rule 12): without a QA branch this lens reaches only as far as the DOCUMENT, and the audit
+must SAY SO** — and log the QA branch as an outstanding ask (Rule 36).
+
+**Stage 4c — THE HOSTILE-REVIEWER LENS.** An explicit *"what would a reviewer claim is missing?"*
+pass **before** delivery. Its output is the **Rule-46 deliberate-decisions register** (deliverable 5
+below).
+
+**Stage 4d — EVERY EXTERNAL SIGNAL IS A COVERAGE INPUT, NEVER MERELY A REPLY.** Sweep the signals
+received since the last audit — a reviewer's report, a colleague's case, a support ticket, a dev
+comment, a customer complaint, a PO aside — and **DIFF each against the suite**, recording what it
+changed. Answering a signal fixes a sentence; diffing it finds the defect.
+
+**Stage 4e — THE EVIDENCE TEST ON EVERY "COVERED" VERDICT (the mechanical one).** For every
+requirement this audit calls **covered** — and for every **NO-CHANGE** entry — quote **the
+requirement's verbatim text beside the covering case's verbatim expected-result text**, and where a
+requirement asserts **more than one thing**, give **each assertion its own row**. **A "covered" or
+NO-CHANGE entry that names only case ids, with no quoted text, is NON-COMPLIANT and the audit is not
+done.**
+
+**Why this dimension exists (2026-07-31).** Our own Rule-28 audit scored 110 Filters cases as
+individually sensible while they contradicted each other (which is why Stage 2b exists), and — worse
+— a Report Suite delta pass filed the export surface under *"NO-CHANGE (checked, provably fine — not
+skipped)"* while the requirement's **second assertion** was uncovered on **five reports**. The defect
+was found only because an outside automation engineer's case
+([C38923](https://shopview.testrail.io/index.php?/cases/view/38923), carrying **no `refs`**)
+disagreed with **SBR-EXP-10 = [C30285](https://shopview.testrail.io/index.php?/cases/view/30285)** and
+**SBR-EXP-11 = [C30286](https://shopview.testrail.io/index.php?/cases/view/30286)**. Full analysis:
+`build/gap-rootcause-2026-07-31/WHY-VLAD-FOUND-IT-FIRST.md`.
+
 ## Named slop patterns — hunt these explicitly (the prosecution)
 Go pattern-by-pattern across the WHOLE suite, not just case-by-case:
 1. **Near-duplicates across areas** — the same behaviour re-authored in two sections/reports with
@@ -359,6 +415,26 @@ canonical worked example is the Report Suite's 515-case audit produced 2026-07-2
    output **including the SURFACE MATRIX (Rule 40: requirement anchors × surfaces, one verdict per
    cell, gaps named)**, and each group's resolution. Written so the user can approve the alignment edits
    **wholesale or per-group**, exactly like the merge plan.
+6. **`OUTSIDE-IN-GAP-HUNT-<date>.md`** — **REQUIRED (Dimension 4 / Standing Rule 45).** One stated
+   result per stage: **4a** the two-direction foreign-coverage diff (the checkers' output, the
+   **"ours N / live total M"** counts, every foreign case with its author resolved via `get_user/{id}`
+   and its verdict COVERED-BY / CANDIDATE GAP / CONTRADICTS-OURS, evidence per gap) · **4b** the
+   automation-engineer lens **with its honest live-build limit stated** · **4c** the hostile-reviewer
+   pass · **4d** the external-signal log and what each signal changed · **4e** the evidence test —
+   confirmation that every "covered"/NO-CHANGE verdict quotes **both texts**, and that every
+   multi-assertion requirement was split **per assertion**. Canonical worked example of the checker
+   output: `build/gap-rootcause-2026-07-31/REVERSE-DIFF-2026-07-31.md`.
+7. **`DELIBERATE-DECISIONS.md`** — **REQUIRED (Standing Rule 46).** Every deliberate non-authoring,
+   every case following a PO ruling over the spec text, every HELD/open item, every accepted
+   imperfection — each with all six fields: the decision in plain words · the **plain one-sentence
+   answer** a non-technical reader can paste into a channel · the evidence (document + version +
+   anchor + date) · the affected cases (internal ID + C-id + link, Rule 8) · **who can close it** ·
+   an honest **RISK** rating (HIGH = if raised publicly we have a concession to make, not just an
+   explanation). Sweep all seven categories in Rule 46; "none" is a valid entry, **omission is not**.
+   **Honesty clause: never back-date a miss into this register as though it were a decision.**
+   Canonical example: `build/report-suite/coverage-rederivation-2026-07-31/DELIBERATE-DECISIONS.md`
+   (7 categories; risk profile HIGH 3 · MEDIUM 7 · LOW 25); cross-project sibling
+   `build/qa-preemptive-answers-2026-07-31/`.
 
 ## Numbered steps
 1. **Enumerate the FULL population** (Rule 17): every active case in the suite (local `cases/`

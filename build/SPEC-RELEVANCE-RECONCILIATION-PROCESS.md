@@ -132,9 +132,26 @@ is NOT ACCEPTABLE** — prose is where correctly-detected requirements go to die
 |---|---|---|---|---|---|
 | `S14-R20` | *"…included in all four exports in the same position it occupies on screen…"* | ADDED | screen · PDF · CSV (Summary + Expanded) | **case extended** | SBR-EXP-10 = C30285 (expected 2 rewritten scope-conditionally) … |
 
+**ONE ROW PER ASSERTION, NOT PER REQUIREMENT (Standing Rule 45(e)).** A requirement that asserts
+**more than one thing** is **SPLIT**, and each assertion gets its **own row and its own verdict**.
+`S14-R20` asserts **two** things — the per-row Location **COLUMN** in all four exports, **and** a
+`"Locations:"` metadata **LINE** in each export. Verdicted as one unit, coverage of the *line*
+certified the *column* as done. **Before writing a verdict, count the assertions in the requirement's
+verbatim text and confirm the row count matches.**
+
+**EVERY "covered" AND EVERY NO-CHANGE VERDICT MUST QUOTE BOTH TEXTS SIDE BY SIDE (Rule 45(e)).**
+*"covered by C30277"* is **unfalsifiable as written** — a reader cannot check it without redoing the
+work, so nobody ever does. The row must carry **the requirement's verbatim text** beside **the
+covering case's verbatim expected-result text**. **A "covered"/NO-CHANGE entry naming only case ids,
+with no quoted text, is NON-COMPLIANT and the step is not done.** This applies with full force to any
+*"checked, provably fine — not skipped"* style NO-CHANGE list: **that is exactly the shape that
+produced the 2026-07-31 false all-clear**, and a NO-CHANGE list is the highest-risk section of the
+whole deliverable precisely because it looks like diligence.
+
 **The permitted verdicts — exactly one per row, no blanks, no "TBD":**
-1. **covered by case(s)** — name them (internal ID + C-id) **and state which field carries the
-   assertion**; "the area is covered" is not a verdict.
+1. **covered by case(s)** — name them (internal ID + C-id), **state which field carries the
+   assertion**, **and quote that field's text against the requirement's text**; "the area is covered"
+   is not a verdict.
 2. **case extended** — name the case **and the field changed**.
 3. **new case authored** — or *"authoring proposed, awaiting authorization"* (Rule 6).
 4. **not independently testable** — state the reason (rationale prose; duplicates another
@@ -160,16 +177,48 @@ cross-reference such as *"in the same position it occupies on screen (S21-R7)"*)
 into one verdict PER SURFACE** — screen · PDF · CSV · print · API · mobile · selector · empty state.
 A single "covered" against a multi-surface requirement is exactly the failure this exists to stop.
 
+**THE CHANGE-LOG → VERDICT LINKAGE (mandatory closing check of this step).** The spec's own
+**change-log row** is a second, independent enumeration of what changed — written by the PO, in his
+words, and it routinely names anchors the prose diff bundles into one paragraph. **Extract EVERY
+anchor mentioned in the change-log rows for the new version, and grep the verdict table for each
+one.** Any anchor present in the spec diff **or** in the change log but **absent from the verdict
+table** is a **BLOCKING hole**, named in the pass's completeness statement. Mechanically: state
+*"anchors in diff = N, anchors in change-log = M, rows in verdict table = R, unmatched = 0"*.
+**This single grep is what would have caught the 2026-07-31 defect at the cheapest possible point:**
+the v15 change-log row names `S14-R20` explicitly, and the deltas document contained **zero**
+occurrences of it.
+
+**FOREIGN-COVERAGE DIFF (Standing Rule 45(a)) — run it in this step, not after delivery.** Before the
+reconciliation is reported complete, run both checkers read-only over the project's TestRail group:
+`build/testrail-foreign-cases-2026-07-31/foreign_overlap_check.py` (overlap: do THEIR cases duplicate
+ours?) **and** `build/gap-rootcause-2026-07-31/reverse_coverage_diff.py` (**reverse:** do THEY assert
+something with **no counterpart in ours?**). **Their case existing where ours does not is a coverage
+signal, not a nuisance** — a CANDIDATE GAP becomes a row in the verdict table with verdict *blocked /
+authoring proposed, awaiting authorization*. Where a foreign case **contradicts** ours, **Rule 44
+applies first: re-derive our own position from the current sources before defending it.** Report
+**"ours N / live total M"** (Rule 38); **never edit, move or delete a foreign case**; **never author
+from a candidate gap without the QA lead's go-ahead** (Rule 6).
+
 **RATIONALE (2026-07-31):** SBR `S14-R20` **was correctly detected and quoted** in our own v15 spec
-diff, and then **appeared nowhere** in the deltas document that acted on that diff (0 occurrences).
-The narrative summary let it slip between detection and action; two export cases stayed stale (so a
-tester would have failed a correct build) and the same on-screen/export split went unnoticed on three
-further reports (PV `S6-R11`, TU `S7-R13`, IV `S10-R15`). Only a **formal re-derivation** surfaced it.
+diff (`SPEC-DIFF-2026-07-31.md:136`), and then **appeared nowhere** in the deltas document that acted
+on that diff (0 occurrences). The narrative summary let it slip between detection and action; two
+export cases stayed stale (so a tester would have failed a correct build) and the same on-screen/export
+split went unnoticed on **four further reports** — SBC `S4-R13`, PV `S6-R11`, TU `S7-R13`, IV `S10-R15`
+(**five reports in total**; WIP was covered). **Worse than a plain omission:** the pass **did** examine
+the export surface and filed it under *"NO-CHANGE (checked, provably fine — not skipped)"*, matching
+the requirement's **metadata-line** assertion and thereby certifying its **column** assertion as done —
+a **false all-clear**. Only a **formal re-derivation** surfaced it, and only after an outside
+engineer's case disagreed with ours.
 Evidence: `build/report-suite/coverage-rederivation-2026-07-31/COVERAGE-REDERIVATION.md` ·
 `build/contradiction-analysis-2026-07-31/SBR-CSV-LOCATION.md` · retrospective
-`build/LESSONS-2026-07-31.md` §1.4. Canonical generator pattern:
+`build/LESSONS-2026-07-31.md` §1.4 · full root-cause analysis (timeline, five-whys, and why **Rule 42
+would NOT have fired** here — the invalidating requirement was a **NEW anchor** the cases could not
+have cited, arriving in the **same spec version**)
+`build/gap-rootcause-2026-07-31/WHY-VLAD-FOUND-IT-FIRST.md`. Canonical generator pattern:
 `build/report-suite/coverage-rederivation-2026-07-31/rederive_coverage.py` +
-`requirement-coverage.csv` + `sweep_surface.py`.
+`requirement-coverage.csv` + `sweep_surface.py`; foreign-coverage checkers
+`build/testrail-foreign-cases-2026-07-31/foreign_overlap_check.py` +
+`build/gap-rootcause-2026-07-31/reverse_coverage_diff.py`.
 
 ### 2. Apply the named deltas — every touched case RE-VERIFIED WHOLE (Standing Rule 41)
 For each delta, update the affected cases' **wording / expected results /
