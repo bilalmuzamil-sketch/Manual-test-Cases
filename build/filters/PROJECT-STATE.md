@@ -3,7 +3,133 @@
 
 ---
 
-## 0. LATEST — SPEC v1.6 FIX + AUTHORING PASS **EXECUTED** (2026-07-31)
+## 0. LATEST — BRANKO'S PARTS/REPORTS/PAGE-SEARCH ANSWERS **APPLIED + PUSHED** (2026-07-31)
+
+**Read this section first.** Source docs: `branko-answers-2026-07-31/` —
+`answers-ingested.md` (his verbatim words), `DELTAS.md` (analysis), `APPLY-PLAN.md` (the
+change list, now marked APPLIED), `RULE28-AUDIT-2026-07-31.md` (the quality gate),
+`testrail-sync-manifest-2026-07-31.md` + `testrail-execution-log-2026-07-31.md` (EXECUTED),
+`backup/` + `pre-push-snapshot/` + `run352/` (evidence).
+
+**SPEC BASELINE: v1.6** — Confluence page **572030978**, version **12**, updated
+**2026-07-28** (Rule 31; local copy `spec-current-2026-07-31/Filters-spec-current.md`,
+pulled live 2026-07-31). ⚠️ `requirements.md` is still the **stale V1.0 ingest** — re-ingest
+from the v1.6 pull.
+
+### NEW TALLY: **146 authored → 110 ACTIVE / 36 Retired** — and for the first time **ALL 110 ARE LIVE IN TESTRAIL**
+`testrail-id-map.csv` = **110 rows, 110 C-ids, ZERO blank** (was 118 rows / 102 C-ids / 16
+blank). Live count under group **4110 = 110**, reconciled **equal both ways** (0
+live-not-in-map / 0 map-not-live, plus section and title agreement 110/110). **Run 352 =
+110 tests.** Every case is still `VIU-Pending` — **no live-build check was run** (Rules
+12/22): Filters still has no QA branch.
+
+### What Branko settled (6 of 7 answered; Q1 left blank)
+**Q2=A** every chip shown filters that page · **Q3** *"support all the filters we have right
+now in the app as well as all choices per filter. There is no specific list of choices"* ·
+**Q4** a pointer only (*"fully displayed in the design"*) · **Q5=A** full Work-Orders parity
+with 2 named exceptions (per-view/per-tab scoping; date-range is a single range) ·
+**Q6=A** the pop-up palette is **Global Search's**, not Filters' · **Q7=A** role changes
+neither chips nor options.
+
+### What was executed
+1. **9 local case edits (A1–A9).** Every *"Behaviour to confirm — pending Branko's product
+   write-up"* hedge REPLACED with the settled assertion; `permissions_required` replaced with
+   the Q7=A ruling on all 12 Parts/Reports cases; `refs` re-pointed from Figma-only /
+   *"spec v1.3 export awaited"* to live v1.6 anchors + Branko's answers.
+   **The Vendors-page hedge in FLT-PARTS-01 DELIBERATELY SURVIVES** — Q2=A speaks about chips
+   *shown in the design* and there **is no Vendors design**; that stays open.
+2. **1 new case — FLT-PARTS-13 = [C38908](https://shopview.testrail.io/index.php?/cases/view/38908)**
+   *"Every filter a page had before is still available in the new filter bar"*: the Q3
+   scope/parity ruling **nothing in the 110-case suite asserted** — no case checked that the
+   redesign did not silently DROP a filter shops use today. **ONE case covering both Parts and
+   Reports**, not one per page (Rule 28).
+3. **The 9 `FLT-SRCH` command-palette cases RETIRED (local only).** See the ruling block below.
+4. **Rule-28 three-dimension gate + the mandatory Stage-2b cross-case sweep.**
+   **10 KEEP / 0 MERGE / 0 WEAK-KEEP / 0 CUT · 7 SENSIBLE / 3 FIX-WORDING (all repaired
+   in-pass) / 0 NONSENSE · 10/10 GENUINE + layman.** The sweep is scripted as **475
+   assertions, 475 PASS, 0 FAILED** (`branko-answers-2026-07-31/sweep_2b.py` + captured output). It
+   caught 3 cases where new expected lines asserted behaviour the look-only steps never drove
+   — **on cases the plan's own per-item pre-check had scored SENSIBLE** — repaired by adding
+   FLT-PARTS-01 step 10, FLT-RPTS-01 step 16 and rewording FLT-PARTS-12 step 2.
+5. **TestRail: 2 `add_section` + 8 `add_case` + 2 `update_case` + 1 `move_cases_to_section`,
+   every op HTTP 200 + re-GET verified MATCH, 0 mismatches. 0 `delete_case`, 0 result
+   writes.** New sections **Parts Page Filters = 5411** and **Reports Page Filters = 5412**
+   (group 4110 now has 17 children). New cases **C38904–C38911**. Both `update_case` were
+   **`refs`-only** (live bodies were diffed against local first and MATCHED, so no
+   tester-facing text moved). **C38882 moved 4117 → 5412** — this **closes the 2026-07-30
+   "FLT-RPTS-23 section move" follow-up**.
+6. **Run 352 synced (Rule 34): 102 → 110 tests**, all 102 prior case_ids present, 0 extra,
+   **result records unchanged 395 → 395**, `include_all` still false. No other run touched.
+
+### ✅ THE 9 PALETTE CASES — RULING APPLIED, THREAD CLOSED
+The QA-lead's ruling was conditional — verbatim: *"If those searches are also part of filters
+then lets keep if filters project has nothing to do with them and they are not mentioned in
+the specs then we can leave them to be tested with global search."* **The condition resolves
+to LEAVE THEM TO GLOBAL SEARCH**, on three independent sources: **(a)** Branko **Q6=A** *"Test
+it under Global Search, not here"*; **(b)** spec **v1.6 has no command-palette requirement** —
+Story 13 is the in-toolbar input (`S13-R12` *"Results replace the table contents in place.
+There is no separate results view or results page"*) and §4 gives cross-page lookup to the
+global header search; **(c)** the **Filters Figma file contains no palette board** (it lives
+on a separate "Global search" page — this corrects our own 2026-07-27 mislabelling of node
+`11829-8908`).
+**`FLT-SRCH-01…09` RETIRED locally.** Each C-id was **asserted BLANK before the write**, so
+there was **NO `delete_case` and nothing to remove from TestRail**; bodies are **kept** with
+the ruling + all three pieces of evidence recorded in each. Coverage lives in the Global
+Search project's **86-case suite** — but say it out loud: **Global Search is POSTPONED**
+(user ruling 2026-07-27), so that coverage is **parked, not running**.
+**CONTRADICTION CLUSTER CLOSED** — 0 active command-palette cases remain (asserted by the
+sweep), so the suite no longer holds two incompatible descriptions of "page search".
+
+### ⛔ THE 13 `FLT-PSRCH` CASES WERE NOT TOUCHED — verified by C-id
+**C38883, C38884, C38886, C38888, C38889, C38891, C38893, C38898, C38899, C38900, C38901,
+C38902, C38903.** Different component: Filters' own **Story 13** in-toolbar page search, **29
+ratified requirements in v1.6** — genuinely in scope. `cases-H-page-search-toolbar.json` shows
+**no diff** for this pass. **Flag F2:** one clause of Branko's answer (*"This release only
+removes global search's page-filtering behaviour (Story 14)"*), read literally and in
+isolation, would descope Story 13 — the correct response is question **NEW-Q1**, not an edit.
+
+### 🆕 DURABLE GOTCHA LEARNED (cost one HTTP 400 mid-run)
+**TestRail's `refs` (References) field has a MAX LENGTH of 250 characters.** Over it →
+**HTTP 400 `{"error":"Field :refs does not match the required pattern."}`**. 6 of this pass's
+10 refs strings were 265–391 chars and were shortened to ≤240, keeping **both Rule-20 halves
+(ticket + spec anchor)** plus the Branko attribution; everything trimmed out of `refs` was
+moved into `notes` so nothing was lost. **This sits alongside the older gotcha that TestRail
+strips the space after every comma in `refs`** (so write refs comma-free, or re-GET verifies
+will falsely MISMATCH).
+
+### STILL OPEN after this pass
+- **2 NEW questions for Branko** (fold into the next sheet, layman per Rule 7):
+  **NEW-Q1** — confirm the **in-page toolbar search box (Story 13) stays in this Filters
+  release** (flag F2 — a literal reading of his answer would descope 13 live cases; priority).
+  **NEW-Q2** — he says the new filter behaviour is *"fully displayed in the design"*, but every
+  Parts/Reports board we can open pins **button names only** and the six new filter types
+  (Location, Transaction Type, Invoice Status, Type, User, Mention) are **enumerated nowhere in
+  v1.6** — ask for the exact board. *(**NEW-Q3**, asking him to add Parts/Reports to the
+  numbered requirements — the Q1-blank residue — is a nice-to-have on the same sheet.)*
+- **His answers settled NOT ONE of the 6 questions already in
+  `PO-Questions-Branko-Filters-TechPlan_2026-07-30.md`** — that sheet goes out **unchanged**.
+  Still open there: the Parts **"Vendors"** page design/scope · **sorting** (he never mentioned
+  it; the design section is marked *Work In Progress*, so **do not author sorting cases**) ·
+  the per-page **searchable-field list (`S13-R23`)** · the **mobile individual-filter "Apply"
+  button** (genuine design-vs-tech-plan conflict on FLT-MOB-04 = C29624) · **which tab opens
+  first** (Estimates default, absent from v1.6).
+- **No live VIU is possible yet** — still **no Filters QA branch/env** and **no epic key
+  (OQ-3)**, so every `refs` ticket half reads `Filters (Epic key TBD)` and the Parts/Reports
+  spec anchors are **prose sections, not `S#-R#`** (because Q1 was left blank). Neither is
+  invented (Rule 20).
+- **Pre-existing, found by the sweep but OUTSIDE this pass's authorization** — recommended for
+  the next authorized push: stale `spec v1.3` refs on **FLT-STAT-07 = C38877** and
+  **FLT-API-06 = C38895**; an internal-id leak in the References of **FLT-EMPTY-02 = C29607**.
+- **37 over-length titles** (Rule 19 trim queue) — none of them touched this pass.
+- **Cross-project flag, NOT written (needs its own authorization):** record Branko's ownership
+  ruling + his *"'Ask a question' is not in this PRD's scope"* line in
+  `build/global-search/PROJECT-STATE.md` (that project's **OQ-3**).
+- **Rule-35 Figma queue may still be open** — 12 of 85 boards had no PNG; see the queue note
+  further down. Owned by a sibling worker this window.
+
+---
+
+## 0.1 PRIOR — SPEC v1.6 FIX + AUTHORING PASS **EXECUTED** (2026-07-31, earlier the same day)
 
 **Read this section first.** Source docs: `fixes-2026-07-31/` (manifest, execution log,
 authoring coverage, Rule-28 audit, backups, snapshots, run-352 evidence),

@@ -402,7 +402,7 @@ Each page and tab remembers its own filters separately,Persistence,Functional,Me
 3. Return to the first Parts view.
 4. On a report with tabs, apply a filter on one tab, switch to another tab, then switch back.","1. The second Parts view does NOT show the first view's selections - each view keeps its own.
 2. Returning to the first view restores that view's own selections.
-3. Report tabs likewise keep separate filter choices, each remembered and restored on its own tab.",Filters (Epic key TBD); tech plan 2026-07-29 D20 (per-view/per-tab state scoping); spec v1.3 Key Decisions (export awaited),,
+3. Report tabs likewise keep separate filter choices, each remembered and restored on its own tab.","Filters (Epic key TBD) (spec v1.6 S10-R4; §4 ""Parts and Reports selections are scoped to their view/tab and persist there""); Branko answers 2026-07-31 Q5 exception 1; tech plan 2026-07-29 D20",,
 Filters saved before the redesign carry over after the update,Persistence,Functional,High,"1. In one browser, the account was used on the OLD Work Orders page with choices saved there (a tab, status selections, the asset-here toggle, column choices, sorting) BEFORE the redesign was installed.","1. In that same browser, open the updated app and go to the Work Orders page.
 2. Check the selected tab, the filter chips, the table columns and the sorting.
 3. Sign in as the same person on a DIFFERENT computer or browser and open the Work Orders page.","1. The old saved choices appear in the new filter bar on the first visit - the update does not lose them (old status choices show in the Status chip, the old asset-here choice shows as Asset on site: Yes, the old My-Work-Orders toggle maps to the My Work Orders tab, columns and sorting stay).
@@ -523,7 +523,8 @@ Every Parts list page shows its designed filter buttons,Parts Page Filters,Funct
 6. Go to the Purchase Orders page and look at the filter buttons.
 7. Go to the Vendor Invoices page and look at the filter buttons.
 8. Go to the Vendors list page and look at the filter buttons.
-9. On any one of these pages, look at the small icons on the right-hand side of the toolbar.","1. Inventory shows four filter buttons: Bin Location, Category, Supply and Vendor.
+9. On any one of these pages, look at the small icons on the right-hand side of the toolbar.
+10. On each page above, open one of its filter buttons, look at the list of choices inside it, and pick a value to check the list changes.","1. Inventory shows four filter buttons: Bin Location, Category, Supply and Vendor.
 2. Part Sales shows four filter buttons: Status, Customer, Created by and Date.
 3. Catalog shows two filter buttons: Manufacturer and Category.
 4. The Returns tab shows three filter buttons: Vendor, Category and Part Type.
@@ -533,24 +534,38 @@ Every Parts list page shows its designed filter buttons,Parts Page Filters,Funct
 8. The Vendors list page shows two filter buttons: Vendor and State/Province. Note: the developers have not been given a design for the Vendors page filters yet, so this page may not have them — write down what you actually see instead of failing the whole test.
 9. On every page above, each filter button shows a small icon, the filter name and a down arrow.
 10. Every Parts list page also shows a Search (magnifier) icon and a filter (funnel) icon in the toolbar; some pages (for example Inventory) also show a column/layout toggle icon.
-11. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (which filters actually apply on each Parts page, their full option lists, and what the funnel and column icons do).",Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #1-#8 and §B.5 shared shell,,
+11. Every filter button shown above is a working filter on that page - none of them is display-only.
+12. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.
+13. Still to check on the live build: what the funnel icon and the column/layout icon do (the written description does not cover the toolbar icons).","Filters (Epic key TBD) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
 Part Type filter opens a Core / Non Core list with Clear selection,Parts Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Parts area of the app with some sample data present.","1. On the Parts Returns tab, click the Part Type filter button.
-2. Look at the small menu that opens.","1. A small menu opens with two options: Core and Non Core.
+2. Look at the small menu that opens.
+3. Tick Core, then also tick Non Core, and watch the list below.
+4. Use Clear selection.","1. A small menu opens with two options: Core and Non Core.
 2. A Clear selection action is shown at the bottom of the menu.
-3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (whether the options are single- or multi-select, and how the list is filtered after choosing).",Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #9,,
+3. You can tick both Core and Non Core at the same time - this filter allows more than one choice.
+4. As soon as you tick a choice the list below narrows to matching parts straight away, with no Apply button to press; Clear selection puts the list back.","Filters (Epic key TBD) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
 Choosing a Parts filter narrows the list on that page,Parts Page Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Parts area of the app with some sample data present.","1. Open a Parts list page that has a filter button (for example Inventory).
 2. Open a filter button and choose one value.
 3. Watch the table below.","1. The table updates to show only the rows that match the chosen filter value.
 2. The chosen value is shown on the filter button so you can see what is applied.
-3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (exactly which filters apply on which Parts page, the full option lists, and whether results update immediately).",Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5,,
+3. The list narrows as soon as you pick the value - there is no Apply or Search button to press. Every filter button on every Parts page works this way.","Filters (Epic key TBD) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
 Parts filters support multiple choices and can be cleared,Parts Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Parts area of the app with some sample data present.","1. Open a Parts filter button that shows a list of choices.
-2. Try selecting more than one choice.
-3. Use the Clear selection action, then look at the filter bar for a way to clear all filters.","1. More than one value can be chosen inside a filter (to be checked live once available).
+2. Select more than one choice, then look at the filter button.
+3. Use the Clear selection action, then look at the filter bar for a way to clear all filters.","1. More than one value can be chosen inside the filter, and the button shows what you picked.
 2. Clear selection removes the choices for that one filter.
-3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (whether multi-select, per-filter Clear selection, and an overall Clear filters action all work the same as on the Work Orders page).",Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5,,
+3. A Clear filters button appears in the filter bar while any filter is set, and using it clears them all at once - exactly as it works on the Work Orders page.","Filters (Epic key TBD) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
+Every filter a page had before is still available in the new filter bar,Parts Page Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You have a written list of the filters each Parts page and each report offers today, before the new filter bar (take screenshots of the old screens first, or ask the developers for the list).
+3. Sample data is present in the Parts area and in the Reports area.","1. Take your before-list for one page.
+2. Open the same page with the new filter bar.
+3. Compare the filter buttons you now see against your before-list.
+4. Open each button and compare the choices inside it against the choices the old filter offered.
+5. Repeat steps 1 to 4 for the other Parts pages and for each report.","1. Every filter the page offered before is still offered - nothing has been taken away.
+2. Every choice each of those filters offered before is still available inside the new button.
+3. If any filter or choice is missing, write down exactly which page, which filter and which choice - that is a bug worth reporting.","Filters (Epic key TBD) (spec v1.6 §2 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 (""support all the filters we have right now in the app as well as all choices per filter""); tech plan 2026-07-29 rollout rule",,
 Every report page shows its designed filter buttons,Reports Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Reports area of the app with some sample data present.","1. Open the Reports area and go to the Timesheet Activities report, and look at the filter buttons shown above the report table.
 2. Go to the Timesheets (Payroll Timesheet) report and look at the filter buttons.
@@ -566,7 +581,8 @@ Every report page shows its designed filter buttons,Reports Page Filters,Functio
 12. Go to the Notes report and look at the filter buttons and the toolbar icons.
 13. Go to the Reminders report and look at the filter buttons.
 14. Go to the IBS Batch Transactions report and look at the filter buttons and the view tabs.
-15. Go to the QB Unexported report. Look at the filter buttons on the Customers tab, then switch to the Vendors tab, then to the Journal Entries tab, looking at the filter buttons on each.","1. Timesheet Activities shows four filter buttons: Staff, Date, Status and Modified by.
+15. Go to the QB Unexported report. Look at the filter buttons on the Customers tab, then switch to the Vendors tab, then to the Journal Entries tab, looking at the filter buttons on each.
+16. On each report above, open one of its filter buttons, look at the list of choices inside it, and pick a value to check the report changes.","1. Timesheet Activities shows four filter buttons: Staff, Date, Status and Modified by.
 2. Payroll Timesheet shows two filter buttons: Employee and Date.
 3. Sales shows two filter buttons: Customer and Date.
 4. Technician Efficiency shows three filter buttons: Customer, Technician and Date — the same three on both of its view tabs, Invoiced and Completed. 'Technician' is spelled correctly here.
@@ -587,16 +603,20 @@ Every report page shows its designed filter buttons,Reports Page Filters,Functio
 19. QB Unexported shows three filter buttons and the first one changes with the tab: Customer, Date and Type on the Customers tab; Vendor, Date and Type on the Vendors tab; User, Date and Type on the Journal Entries tab.
 20. Each of the six A/R and A/P aging reports also shows a print icon in its toolbar.
 21. On every report above, each filter button shows its name and a down arrow.
-22. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (the option lists behind each filter button; and because several report bodies in the design are sample placeholders, the real report columns come from the same product write-up).",Filters (Epic key TBD); Figma 11903-10573 (Reports filters); design-notes.md §B.6 #1-#23,,
+22. Every filter button shown above is a working filter on that report - none of them is display-only.
+23. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.
+24. Still to check on the live build: the real columns of the Sales Tax report and of the six A/R and A/P aging reports. The design uses sample placeholder tables for those, and the written description does not list their columns.","Filters (Epic key TBD) (spec v1.6 §2 Reports Filters; §4 Key Decisions ""New date-range filter type"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",,
 Choosing a Reports filter narrows the report results,Reports Page Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Reports area of the app with some sample data present.","1. Open the Reports area and go to any report — for example the Sales report.
 2. Open one of the filter buttons shown above the report table and choose one value.
 3. Look at the report table below.","1. The report updates to show only the rows matching the chosen filter value, and the chosen value is shown on the filter button.
-2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (exactly which filters apply on each report, the full option lists, and whether results update immediately).",Filters (Epic key TBD); Figma 11903-10573 (Reports filters); design-notes.md §B.6,,
+2. The report narrows as soon as you pick the value - there is no Apply or Run button to press. Every filter button on every report works this way.","Filters (Epic key TBD) (spec v1.6 §2 Reports Filters; §4 Key Decisions ""New date-range filter type"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",,
 "New Reports filter types behave correctly (Location, Transaction Type, etc.)",Reports Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Reports area of the app with some sample data present.","1. Open the Reports area and go to the reports that use them (for example A/R Aging Detail, Notes) report.
-2. Look at the filter buttons shown above the report table.","1. Each new filter type (Location, Transaction Type, Invoice Status, Type, User, Mention) opens a list of choices and filters the report by the choice.
-2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (the exact choices, single- vs multi-select, and how each new filter type filters the report).",Filters (Epic key TBD); Figma 11903-10573 (Reports filters); design-notes.md §B.6,,
+2. You are on the Reports area of the app with some sample data present.","1. Open the Reports area and go to a report that uses them - for example A/R Aging Detail (Location, Transaction Type) or Notes (Mention).
+2. Look at the filter buttons shown above the report table.
+3. Open each of those filter buttons in turn, tick two choices where possible, and watch the report.","1. Each of these filter buttons - Location, Transaction Type, Invoice Status, Type, User and Mention - opens a list of choices, lets you tick more than one, and narrows the report straight away with no Apply button.
+2. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.
+3. Write down the choices you actually see behind each of these six buttons. They have not been written down anywhere yet, so your list becomes the record.","Filters (Epic key TBD) (spec v1.6 §2 Reports Filters; §4 ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q3/Q5 + Q4 (pointer only - the 6 new types are not enumerated in v1.6; see DELTAS.md F1); Figma 11903-10573",,
 Date range filter: results update when both start and end dates are picked,Reports Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The new filter bar has rolled out to a page with a Date filter chip (a report, or a Parts page with a date column).
 3. Records exist inside and outside the date range you will pick.","1. Click the Date filter chip.
@@ -606,7 +626,7 @@ Date range filter: results update when both start and end dates are picked,Repor
 5. Look at the results and the chip.","1. A start/end date picker opens - there are NO preset ranges (no 'Last 30 days' shortcuts) and NO pre-filled default range.
 2. After only the start date, the results do not change yet.
 3. As soon as the second date is picked, the results update immediately to show only records inside the range.
-4. Only one date range can be active at a time on that chip, and the chip shows the active range.","Filters (Epic key TBD); tech plan 2026-07-29 D19 (date-range chip: no presets, no default, applies on second date); spec v1.3 Parts + Reports sections (export awaited)",,
+4. Only one date range can be active at a time on that chip, and the chip shows the active range.","Filters (Epic key TBD) (spec v1.6 §4 ""New date-range filter type""; §2 Reports Filters - start/end picker; no presets; no default; applies on the second date); Branko answers 2026-07-31 Q5; tech plan 2026-07-29 D19",,
 Page toolbar Search expands in place and narrows the list as you type,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.","1. Find the Search control in the page toolbar (a magnifier icon with the word Search).
 2. Click it.
@@ -723,52 +743,6 @@ Collapsing the filter bar keeps an active search working,Page Search Toolbar,Fun
 3. Expand the filter bar again.","1. The list stays narrowed by your word - collapsing the filter bar does not cancel the search.
 2. The Search box stays in the toolbar row with your word still showing; it is not tucked away with the filter bar, because the search sits in the toolbar row and the chips sit in the row below.
 3. Expanding the bar again changes nothing about the search or the narrowed list.",Filters epic (key TBD) (S13-E1 (a collapsed filter bar keeps an active query applying and the search control stays in the toolbar); §4 Key Decisions (page search is separate from the filter bar)) [spec v1.6 2026-07-28],,
-Page search opens with the 'Search or ask a question' box,Page Search (Command-K),Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. Some sample work orders, customers, assets, parts and vendors exist.","1. From anywhere in the app, open the page search (the Search box in the top bar, or press Command-K / Ctrl-K).
-2. Look at the search panel that opens.","1. A search panel opens with an empty search box at the top.
-2. The box shows the placeholder text 'Search or ask a question' with a magnifier icon on the left and a clear (X) button on the right.
-3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (whether 'ask a question' means an AI search — this is out of scope for now).",Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D,,
-"Page search shows entity tabs All, Work Orders, Customers, Assets, Parts...",Page Search (Command-K),Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. Some sample work orders, customers, assets, parts and vendors exist.","1. Open the page search panel.
-2. Look at the row of tabs under the search box.","1. A row of tabs is shown: All, Work Orders, Customers, Assets, Parts, Vendors and Part Sales.
-2. The All tab is selected by default.
-3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (whether choosing a tab limits results to that type only).",Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D,,
-Typing a term shows grouped results with counts and highlighting,Page Search (Command-K),Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. Some sample work orders, customers, assets, parts and vendors exist.","1. Open the page search panel.
-2. Type a few letters (for example 'Fib') into the search box.
-3. Look at the results.","1. Results are grouped by type with a count next to each group heading, for example 'Work orders (2)', 'Customers (2)', 'Vendors (1)', 'Assets (2)', 'Parts (1)'.
-2. The matching part of each result is highlighted in yellow.
-3. Each work order row shows its number, name, a status pill (for example Approved or Estimate), the person and a date.
-4. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (how matching works — exact vs fuzzy — and the ranking order).",Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D,,
-"Recent searches are shown grouped by Today, Yesterday, Past week...",Page Search (Command-K),Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. Some sample work orders, customers, assets, parts and vendors exist.","1. Open the page search panel without typing anything.
-2. Look at the list shown under the tabs.","1. A list of recent items is shown, grouped under headings: Today, Yesterday, Past week and Past 30 days.
-2. Each item shows a type icon, its name and a short detail line (for example a customer address or a date).
-3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (how many recent items are kept and how long they persist).",Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D,,
-Re-opening page search keeps the last typed text and its results,Page Search (Command-K),Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. Some sample work orders, customers, assets, parts and vendors exist.","1. Open the page search and type a term (for example 'Fibridge').
-2. Close the panel, then open it again.
-3. Look at the search box and the results.","1. The previous search text is still in the box (shown selected/highlighted) and its results are shown.
-2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (whether the last search is remembered per person and for how long — this is the 'persisting search' state).",Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D,,
-Hovering a search result shows quick-action buttons,Page Search (Command-K),Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. Some sample work orders, customers, assets, parts and vendors exist.","1. Open the page search panel (recent items or results shown).
-2. Move the mouse over a result row.
-3. Look at the right side of that row.","1. Quick-action buttons appear on the row, depending on the result type — for example 'Add new line' on a work order, 'New work order' on an asset or customer, 'Add part' on a part sale, 'Add contact' on a vendor and 'Add to work order' on a part.
-2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (exactly which quick actions show for which result type, and what each one does).",Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D,,
-Page search shows keyboard hints and supports keyboard navigation,Page Search (Command-K),Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. Some sample work orders, customers, assets, parts and vendors exist.","1. Open the page search panel.
-2. Look at the bar along the bottom of the panel.
-3. Use the up/down arrow keys, Enter and Esc.","1. The bottom bar shows keyboard hints: up/down arrows labelled 'Navigate', the Enter key labelled 'Select', and 'Close esc'.
-2. Arrow keys move the highlight between results, Enter opens the highlighted result, and Esc closes the panel (to be checked live once available).
-3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (exact keyboard behaviour).",Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D,,
-Page search results include a Refresh action,Page Search (Command-K),Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. Some sample work orders, customers, assets, parts and vendors exist.","1. Open the page search and type a term so grouped results appear.
-2. Look at the top right of the results area.","1. A 'Refresh' link is shown at the top right of the results.
-2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (what Refresh reloads and when it is shown).",Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D,,
-Page search scope belongs to Filters or Global Search (to decide),Page Search (Command-K),Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. Some sample work orders, customers, assets, parts and vendors exist.","1. Review where the page search / Command-K component is owned for testing.
-2. Compare against the Global Search project's existing cases.","1. The page-search component is agreed to belong to either the Filters test suite or the Global Search test suite, not both.
-2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (product/QA decision on which project owns page search).",Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D,,
 The work order list request carries the active filter selections,API — Work Orders List Filtering,Functional,High,"1. You are signed in to the ShopView App on a desktop browser with developer tools open on the Network tab.
 2. You are on the Work Orders page with no filters applied.","1. Apply a Status selection and a Customer selection in the filter bar.
 2. In the Network tab, find the work order list request the page sends after the change.

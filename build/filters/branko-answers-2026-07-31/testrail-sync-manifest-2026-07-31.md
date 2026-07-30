@@ -1,15 +1,19 @@
 # TestRail sync MANIFEST — Filters, Branko Parts/Reports apply pass, 2026-07-31
 
-> **STATUS: STAGED — written BEFORE the first write** (house convention: manifest first,
-> execution log during). Superseded by
-> `testrail-execution-log-2026-07-31.md` once executed.
+> # ✅ STATUS: **EXECUTED 2026-07-31.**
+> Written BEFORE the first write (house convention: manifest first, execution log during),
+> then executed in full. **All 13 case/section ops + the 1 run write completed: every op
+> HTTP 200, every op re-GET verified MATCH, 0 mismatches, 0 `delete_case`, 0 result
+> writes.** Per-op detail, the live reconcile and the two self-corrected deviations are in
+> **`testrail-execution-log-2026-07-31.md`** — read that for the outcome; this file records
+> what was authorized and the pre-write state.
 
 | | |
 |---|---|
 | **Authorization** | **USER-AUTHORIZED 2026-07-31** — "execute the Branko-answers APPLY-PLAN in full, including retiring the 9 palette cases", explicitly including the TestRail ops and the run-352 write (Standing Rule 6) |
 | Source of truth | `APPLY-PLAN.md` §2/§3/§4/§6 · rulings in `answers-ingested.md` · analysis in `DELTAS.md` |
 | **Spec baseline (Rule 31)** | **v1.6** — Confluence page **572030978** version **12**, updated **2026-07-28** |
-| Quality gate (Rule 28) | `RULE28-AUDIT-2026-07-31.md` — **PASSED** before this manifest was written (477/477 sweep assertions) |
+| Quality gate (Rule 28) | `RULE28-AUDIT-2026-07-31.md` — **PASSED** before this manifest was written (all sweep assertions PASS, 0 FAILED) |
 | Scope | project **1** / suite **1** / group **4110** ONLY · run **352** ONLY |
 | **Totals** | **2 `add_section` + 8 `add_case` + 2 `update_case` + 1 `move_cases_to_section` + 1 `update_run`** |
 | **`delete_case`** | **0** |

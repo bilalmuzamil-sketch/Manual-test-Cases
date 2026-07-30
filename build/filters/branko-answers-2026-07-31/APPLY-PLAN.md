@@ -1,6 +1,12 @@
 # Filters — APPLY PLAN from Branko's Parts/Reports/page-search answers — 2026-07-31
 
-> # ⛔ NOTHING IN THIS PLAN HAS BEEN APPLIED.
+> # ✅ FULLY APPLIED + PUSHED 2026-07-31 (user-authorized).
+> Local edits, the new case and the 9 retirements are applied; the TestRail ops and the
+> run-352 sync are EXECUTED. See `testrail-execution-log-2026-07-31.md` +
+> `RULE28-AUDIT-2026-07-31.md`. The original "not applied" preamble below is kept for the
+> record of what was staged.
+>
+> ~~NOTHING IN THIS PLAN HAS BEEN APPLIED.~~
 > **Zero case bodies were edited. `../testrail-id-map.csv` and
 > `testrail-import/filters-v1-testrail-import.csv` were NOT touched. ZERO TestRail
 > writes were made.** This document is a staged, ready-to-execute change list for a
