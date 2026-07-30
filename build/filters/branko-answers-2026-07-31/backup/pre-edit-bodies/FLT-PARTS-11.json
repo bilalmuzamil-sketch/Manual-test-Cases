@@ -1,0 +1,27 @@
+{
+ "id": "FLT-PARTS-11",
+ "area": "Parts Page Filters",
+ "title": "Choosing a Parts filter narrows the list on that page",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Parts area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. Open a Parts list page that has a filter button (for example Inventory).",
+  "2. Open a filter button and choose one value.",
+  "3. Watch the table below."
+ ],
+ "expected": [
+  "1. The table updates to show only the rows that match the chosen filter value.",
+  "2. The chosen value is shown on the filter button so you can see what is applied.",
+  "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (exactly which filters apply on which Parts page, the full option lists, and whether results update immediately)."
+ ],
+ "design_ref": "design-notes.md B.5 (behaviour not pinned)",
+ "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5",
+ "viu_status": "VIU-Pending",
+ "notes": "BEHAVIOUR case — design does not pin how Parts filters apply. Pending Branko's PRD; VIU-confirm on the build. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every Parts page gets all three together: the chip design, shareable links, and per-user remembered filters, with NO change to what is filterable; date columns use the date-range chip (see FLT-RPTS-23) and each view keeps its own state (see FLT-PERS-05). Pending Branko's PRD ratification (spec v1.3 export awaited).",
+ "api_related": false
+}

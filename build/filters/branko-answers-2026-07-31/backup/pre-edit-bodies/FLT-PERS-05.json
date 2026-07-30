@@ -1,0 +1,28 @@
+{
+ "id": "FLT-PERS-05",
+ "area": "Persistence",
+ "title": "Each page and tab remembers its own filters separately",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Parts and Reports pages.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. The new filter bar has rolled out to the Parts views and to a report that has tabs (part of the same programme as the Work Orders filters)."
+ ],
+ "steps": [
+  "1. On one Parts view (for example Inventory) apply a filter.",
+  "2. Switch to a different Parts view (for example Purchase Orders).",
+  "3. Return to the first Parts view.",
+  "4. On a report with tabs, apply a filter on one tab, switch to another tab, then switch back."
+ ],
+ "expected": [
+  "1. The second Parts view does NOT show the first view's selections - each view keeps its own.",
+  "2. Returning to the first view restores that view's own selections.",
+  "3. Report tabs likewise keep separate filter choices, each remembered and restored on its own tab."
+ ],
+ "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D20",
+ "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 D20 (per-view/per-tab state scoping); spec v1.3 Key Decisions (export awaited)",
+ "viu_status": "VIU-Pending",
+ "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): state is scoped per view AND per tab, not per route (saved under a per-view key). Applies once the Parts/Reports rollout ships - hold until then.",
+ "api_related": false
+}

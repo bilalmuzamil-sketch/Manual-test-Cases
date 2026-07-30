@@ -1,0 +1,26 @@
+{
+ "id": "FLT-PARTS-09",
+ "area": "Parts Page Filters",
+ "title": "Part Type filter opens a Core / Non Core list with Clear selection",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Parts area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. On the Parts Returns tab, click the Part Type filter button.",
+  "2. Look at the small menu that opens."
+ ],
+ "expected": [
+  "1. A small menu opens with two options: Core and Non Core.",
+  "2. A Clear selection action is shown at the bottom of the menu.",
+  "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (whether the options are single- or multi-select, and how the list is filtered after choosing)."
+ ],
+ "design_ref": "design-notes.md B.5 #9 (11902:9973)",
+ "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #9",
+ "viu_status": "VIU-Pending",
+ "notes": "Design-only (menu contents). Selection/apply behaviour pending Branko's PRD.",
+ "api_related": false
+}

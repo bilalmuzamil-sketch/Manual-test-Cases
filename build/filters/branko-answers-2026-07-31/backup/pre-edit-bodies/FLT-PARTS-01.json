@@ -1,0 +1,41 @@
+{
+ "id": "FLT-PARTS-01",
+ "area": "Parts Page Filters",
+ "title": "Every Parts list page shows its designed filter buttons",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Parts area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. Open the Parts area and go to the Inventory page, and look at the filter buttons shown above the table.",
+  "2. Go to the Part Sales page and look at the filter buttons.",
+  "3. Go to the Catalog page and look at the filter buttons.",
+  "4. Go to the Returns page, make sure the Returns tab is selected, and look at the filter buttons.",
+  "5. Select the Credits tab on the same page and look at the filter buttons.",
+  "6. Go to the Purchase Orders page and look at the filter buttons.",
+  "7. Go to the Vendor Invoices page and look at the filter buttons.",
+  "8. Go to the Vendors list page and look at the filter buttons.",
+  "9. On any one of these pages, look at the small icons on the right-hand side of the toolbar."
+ ],
+ "expected": [
+  "1. Inventory shows four filter buttons: Bin Location, Category, Supply and Vendor.",
+  "2. Part Sales shows four filter buttons: Status, Customer, Created by and Date.",
+  "3. Catalog shows two filter buttons: Manufacturer and Category.",
+  "4. The Returns tab shows three filter buttons: Vendor, Category and Part Type.",
+  "5. The Credits tab shows three filter buttons: Vendor, Date and Processed by.",
+  "6. Purchase Orders shows four filter buttons: Vendor, Status, Date and Ordered by.",
+  "7. Vendor Invoices shows four filter buttons: Vendor, Invoice date, Date received and Received by.",
+  "8. The Vendors list page shows two filter buttons: Vendor and State/Province. Note: the developers have not been given a design for the Vendors page filters yet, so this page may not have them — write down what you actually see instead of failing the whole test.",
+  "9. On every page above, each filter button shows a small icon, the filter name and a down arrow.",
+  "10. Every Parts list page also shows a Search (magnifier) icon and a filter (funnel) icon in the toolbar; some pages (for example Inventory) also show a column/layout toggle icon.",
+  "11. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (which filters actually apply on each Parts page, their full option lists, and what the funnel and column icons do)."
+ ],
+ "design_ref": "design-notes.md B.5 #1-#9 + B.5 shared shell (11894:21846; 11902:8517; 11902:9736; 11902:9852; 11903:10067; 11903:10188; 11903:10312; 11903:10461)",
+ "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5 #1-#8 and §B.5 shared shell",
+ "viu_status": "VIU-Pending",
+ "notes": "MERGE SURVIVOR 2026-07-31 — MG14-PARTS-CHIP-MATRIX (Rule-28 audit, user-authorized partial execution). Absorbed FLT-PARTS-02/03/04/05/06/07/08/10 (all design-level, blank C-ids, so LOCAL-ONLY — no TestRail delete was needed). One Parts walk with a per-view checklist of the designed filter buttons instead of nine near-identical presence cases. Per the audit, the per-view TABLE COLUMN lists and 'New ...' button assertions were demoted to reference notes (they are outside the Filters scope): Inventory — Description, Part number, Tags, Category, Manufacturer, Vendor, Bin Location / Quantity, Action (+ New Inventory Part); Part Sales — Number, Status, Customer, Asset, VIN/Serial #, Created By, Total Price, Created On, Parts, Returns (+ New Part Sale); Catalog — checkbox, Description, Part Number, Tags, Category (+ New Catalog Part); Returns — Work Order, Vendor Invoice, Vendor, Part Number, Description, Quantity, Cost, Total Cost, Return Reason, Status, Requested (+ Create Return); Credits — Credit Memo Number, Vendor, Work Order, Vendor Invoice, Date, Processed By, Total Cost, Notes (+ Create Credit); Purchase Orders — Work Order, Purchase Order Number, Vendor, Order Status, Created On, Ordered By, Total Price, Note (+ New Purchase Order); Vendor Invoices — Work Order, Invoice Number, Order Number, Received By, Vendor Name, Date Received, Invoice Date, Due Date, Total Cost, Note (NO New button); Vendors — Name, Telephone, Email, Address 1, Address 2, City, State/Province, Zip/Postal Code (+ New Vendor). VENDORS CONFLICT CARRIED OVER from FLT-PARTS-08 (Questions Q6 / tech-plan deltas C7): engineering found NO Figma frame for the Parts Vendors view (they read frame 11903:10461 as Vendor Invoices, not a Vendors typo) and will NOT build Vendors filters until a design is delivered — hold that line against the requested design + PRD. Part Type menu contents stay with FLT-PARTS-09; apply/multi-select behaviour stays with FLT-PARTS-11 / FLT-PARTS-12. | Design-only (chip + column presence). Which filters actually apply and their option lists are pending Branko's PRD.",
+ "api_related": false
+}

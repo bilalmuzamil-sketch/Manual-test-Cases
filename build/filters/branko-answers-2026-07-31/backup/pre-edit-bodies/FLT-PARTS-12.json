@@ -1,0 +1,27 @@
+{
+ "id": "FLT-PARTS-12",
+ "area": "Parts Page Filters",
+ "title": "Parts filters support multiple choices and can be cleared",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Parts pages. Whether the filter option lists differ by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. You are on the Parts area of the app with some sample data present."
+ ],
+ "steps": [
+  "1. Open a Parts filter button that shows a list of choices.",
+  "2. Try selecting more than one choice.",
+  "3. Use the Clear selection action, then look at the filter bar for a way to clear all filters."
+ ],
+ "expected": [
+  "1. More than one value can be chosen inside a filter (to be checked live once available).",
+  "2. Clear selection removes the choices for that one filter.",
+  "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (whether multi-select, per-filter Clear selection, and an overall Clear filters action all work the same as on the Work Orders page)."
+ ],
+ "design_ref": "design-notes.md B.5 (behaviour not pinned)",
+ "spec_ref": "Filters (Epic key TBD); Figma 11884-16885 (Parts filters); design-notes.md §B.5",
+ "viu_status": "VIU-Pending",
+ "notes": "BEHAVIOUR case — parity with Work Orders filter behaviour is assumed but not pinned by the design. Pending Branko's PRD; VIU-confirm. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every Parts page gets all three together: the chip design, shareable links, and per-user remembered filters, with NO change to what is filterable; date columns use the date-range chip (see FLT-RPTS-23) and each view keeps its own state (see FLT-PERS-05). Pending Branko's PRD ratification (spec v1.3 export awaited).",
+ "api_related": false
+}

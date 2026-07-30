@@ -1,0 +1,31 @@
+{
+ "id": "FLT-RPTS-23",
+ "area": "Reports Page Filters",
+ "title": "Date range filter: results update when both start and end dates are picked",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user with access to the Reports pages.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. The new filter bar has rolled out to a page with a Date filter chip (a report, or a Parts page with a date column).",
+  "3. Records exist inside and outside the date range you will pick."
+ ],
+ "steps": [
+  "1. Click the Date filter chip.",
+  "2. Look at the panel that opens.",
+  "3. Pick a start date only, and watch the results.",
+  "4. Pick the end date.",
+  "5. Look at the results and the chip."
+ ],
+ "expected": [
+  "1. A start/end date picker opens - there are NO preset ranges (no 'Last 30 days' shortcuts) and NO pre-filled default range.",
+  "2. After only the start date, the results do not change yet.",
+  "3. As soon as the second date is picked, the results update immediately to show only records inside the range.",
+  "4. Only one date range can be active at a time on that chip, and the chip shows the active range."
+ ],
+ "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D19",
+ "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 D19 (date-range chip: no presets, no default, applies on second date); spec v1.3 Parts + Reports sections (export awaited)",
+ "viu_status": "VIU-Pending",
+ "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): one new chip type used by nearly every report and by Parts date columns (Date, Invoice date, Date received). In the page link the range appears as range=custom&from=YYYY-MM-DD&to=YYYY-MM-DD - check when driving the URL cases. Exact panel labels to capture live.",
+ "api_related": false
+}

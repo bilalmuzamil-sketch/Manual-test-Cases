@@ -1,0 +1,25 @@
+{
+ "id": "FLT-SRCH-08",
+ "area": "Page Search (Command-K)",
+ "title": "Page search results include a Refresh action",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Any signed-in user of the ShopView App. Whether search results are scoped by role is to confirm — pending Branko's PRD.",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. Some sample work orders, customers, assets, parts and vendors exist."
+ ],
+ "steps": [
+  "1. Open the page search and type a term so grouped results appear.",
+  "2. Look at the top right of the results area."
+ ],
+ "expected": [
+  "1. A 'Refresh' link is shown at the top right of the results.",
+  "2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (what Refresh reloads and when it is shown)."
+ ],
+ "design_ref": "design-2026-07-27/design-system/page-search/search results.png",
+ "spec_ref": "Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D",
+ "viu_status": "VIU-Pending",
+ "notes": "Design-only (Refresh link). Behaviour pending confirmation. OVERLAP: this page-search / Command-K component is also covered by the Global Search project (86 cases already authored there, currently postponed). Reconcile / de-duplicate with Global Search before any TestRail push so the same component is not tested twice. OWNERSHIP (tech plan 2026-07-29 G8/D22, deltas C6): this spotlight/command palette component is the separate Global Search v2 project, NOT the Filters programme - Filters ships a small page-toolbar search instead (see the Page Search Toolbar section, FLT-PSRCH-01..07). Recommend transferring/retiring this case from the Filters suite once Branko answers the page-search-scope question (PO Q6, sent 2026-07-27). | HELD + CONTRADICTION FLAGGED 2026-07-31: spec v1.6 Story 13 (Confluence v12, 2026-07-28) describes page search as an in-toolbar field that expands in place and narrows ONLY the current table (S13-R4/R9/R12/R22), with the placeholder 'Type to search' - NOT the palette with entity tabs, grouped counts and recent searches this case describes. These 9 cases therefore contradict the ratified Filters spec and read as Global Search v2. They are LOCAL-ONLY (blank C-id, never pushed to TestRail, not in run 352), so no tester can hit the contradiction. HELD, not deleted or reworded, per the user ruling of 2026-07-31 - awaiting Branko's ownership confirmation.",
+ "api_related": false
+}
