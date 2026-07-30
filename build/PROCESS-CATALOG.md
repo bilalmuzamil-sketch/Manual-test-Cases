@@ -11,10 +11,20 @@
 > for Fees & Discounts."* Add any specifics (epic key, spec page, env) if Claude doesn't have
 > them yet.
 >
-> **EVERY process now BEGINS with the Rule-31 spec pull (Standing Rules 31 + 32):** before any
-> test-case work, Claude pulls the LATEST spec from its canonical URL, records its version +
-> last-updated date, and folds in any deltas first — and where sources disagree, the most recent
-> authoritative product source wins (source + date recorded on the case).
+> **EVERY process now BEGINS with the Rule-31 ALL-SOURCES currency check (Standing Rules 31 + 32;
+> strengthened 2026-07-31):** before any test-case work, Claude establishes that we hold the CURRENT
+> version of **every** source — (1) the **spec** (live Confluence version + last-updated), (2) the
+> **epic + its child stories** (story set, statuses, description/comment changes), (3) the
+> **designs** (Figma file/nodes; an open Rule-35 fetch queue means the designs are NOT current),
+> (4) the **engineering tech plan** (Rule 30) and (5) the **PO/stakeholder answers, messages and
+> videos** — folds in any deltas FIRST, and emits a **SOURCE-CURRENCY block** in the deliverable
+> (per source: identifier, version/last-updated, date checked, CURRENT / STALE / PARTIAL, with a
+> PARTIAL source naming its exact shortfall). Nothing may claim completeness while a source is
+> STALE; if a source can't be fetched Claude STOPS and asks for access. Note the two traps: a
+> Confluence page's in-body "Version" can sit at 1.0 while the real version advances, and a Jira
+> epic's "updated" date moves for admin-only edits — Claude uses the Confluence version number and
+> the Jira changelog. Where sources disagree, the most recent authoritative product source wins
+> (source + date recorded on the case).
 >
 > **Always-ask live-build-check rule (Standing Rule 22):** for EVERY process below, at the start
 > Claude identifies anything that appears to need observing the LIVE build (labels, controls,

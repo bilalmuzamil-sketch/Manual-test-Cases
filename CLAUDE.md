@@ -3,9 +3,21 @@
 > **Before any staging or TestRail testing, read `build/TESTING-RUNBOOK.md`.**
 > That runbook holds the full, proven method; this file is a concise index +
 > durable memory. **No secrets in this repo — ever** (secrets live in `/tmp`).
-> - **PRE-FLIGHT FOR ANY TEST-CASE WORK (Standing Rules 31 + 32): ALWAYS pull the LATEST spec
->   from its canonical URL and record its version + last-updated date BEFORE authoring, editing,
->   auditing, reconciling, or reviewing any test case (Rule 31); and when sources disagree
+> - **PRE-FLIGHT FOR ANY TEST-CASE WORK (Standing Rules 31 + 32): ESTABLISH THE CURRENCY OF **ALL
+>   SOURCES** — not just the spec — BEFORE authoring, editing, auditing, reconciling, or reviewing
+>   any test case (Rule 31, strengthened 2026-07-31): (1) the **spec** (live Confluence version +
+>   last-updated vs our baseline), (2) the **epic + its child stories** (story set, statuses,
+>   description/comment changes), (3) the **designs** (Figma file/nodes; an OPEN Rule-35 fetch queue
+>   means the design source is NOT current — say so), (4) the **engineering tech plan** (Rule 30),
+>   (5) the **PO/stakeholder answers, messages and videos** (newest authoritative source wins).
+>   **Every deliverable carries a SOURCE-CURRENCY block** — per source: identifier, version /
+>   last-updated, date checked, and CURRENT / STALE / PARTIAL (a PARTIAL source names the exact
+>   shortfall); nothing may claim completeness while a source is STALE. **Staleness markers lie:**
+>   a Confluence page's in-body "Version" can sit at 1.0 while the real version advances (how the
+>   Schedule spec drifted 5 versions) and a Jira epic's "updated" date moves for admin-only edits
+>   like a QA-Assignee change — use the **Confluence version number** and the **Jira changelog**.
+>   If a source can't be fetched, STOP and ask for access; never work off a possibly-stale copy.
+>   And when sources disagree
 >   (spec vs Figma vs prototype/Claude design vs video vs PO message vs tech plan) the MOST
 >   RECENT authoritative product source WINS, with source + date recorded on the case (Rule 32).**
 >   **Review findings are INPUTS, not overrides (Rule 33) — precedence: PO ruling → QA lead's
@@ -1476,23 +1488,57 @@ deliver the 7-tab management report.
     build/schedule/tech-plan-2026-07-29/. Ties to Standing Rules 1 (complete inputs before
     work), 11 (ask which process on new inputs), 17 (complete data in/out), and the
     new-project onboarding convention (tech plan is part of the required input set).
-31. **Always pull the LATEST spec from its URL before creating or touching any test case (all
-    projects).** USER DIRECTIVE (2026-07-31, verbatim): "everytime you are making the test cases
-    or looking at the test cases for any reason make a rule that you pull the latest version of
-    Specs from the URL, I see that the specs have been updated on 28th. But I believe you are
-    unaware of that and due to that you left a few tests uncovered." BEFORE authoring, editing,
-    auditing, reconciling, or reviewing ANY test case, **FETCH the current spec from its canonical
-    URL** — Confluence via the Atlassian MCP (`getConfluencePage`) when available, else the REST
-    API with the session cookies; if the fetch fails, ASK THE USER for access. **Never proceed on
-    a possibly-stale local copy and never fabricate spec content.** Then **compare the LIVE version
-    number + last-updated date against the ingested `requirements.md` baseline**; if the live spec
-    is newer, run the **spec diff FIRST** and fold the deltas in BEFORE doing the requested work
-    (Rule 11 — ask which process). **RECORD the spec version + date checked in the deliverable**
-    (and in the audit log) so every pass is provably current. Rationale: 2026-07-31 — the Filters
-    spec had moved to **v1.6** while we were working from **V1.0**; a QA reviewer (Ahtesham) found
-    requirements with NO coverage as a direct result. This **STRENGTHENS Standing Rule 23** from
-    "ask if unsure" to **"ALWAYS pull"**. Ties to Standing Rules 1 (complete inputs), 11 (ask which
-    process), 17 (complete data in/out), 23 (check the Confluence spec).
+31. **Establish the CURRENCY OF EVERY SOURCE before creating or touching any test case (all
+    projects).** *(Originally "always pull the latest spec"; **STRENGTHENED 2026-07-31** to cover
+    EVERY source, keeping the rule number so existing cross-references stay valid.)*
+    USER DIRECTIVE (2026-07-31, verbatim): **"I want the test cases to be current with specs and
+    epics and you must have the current version of epics and specs and every other doc you are
+    using alwyas first make sure that you have the current source for the test cases before doing
+    anything with the test cases."** Earlier directive (2026-07-31, verbatim): "everytime you are
+    making the test cases or looking at the test cases for any reason make a rule that you pull the
+    latest version of Specs from the URL, I see that the specs have been updated on 28th. But I
+    believe you are unaware of that and due to that you left a few tests uncovered."
+    **THE PRE-FLIGHT (MANDATORY, before authoring / editing / auditing / reconciling / reviewing
+    ANY test case) — establish and record the currency of ALL FIVE source types:**
+    **(1) THE SPEC** — fetch it LIVE from its canonical URL (Confluence via the Atlassian MCP
+    `getConfluencePage` when available, else the REST API with session cookies); compare the **live
+    version number + last-updated date** against our ingested `requirements.md` baseline.
+    **(2) THE EPIC AND ITS CHILD STORIES** — fetch the epic LIVE and compare the **story set +
+    each story's status + description/comment changes** against our ingest; a **reopened** story or
+    a **newly-Done** story CHANGES what must be tested, so this is never optional.
+    **(3) THE DESIGNS** — the Figma file + node set (and any prototype/Claude design in play); **if
+    a design-fetch queue is OPEN per Rule 35, the design source is NOT current and that must be
+    STATED in the deliverable**, naming the shortfall.
+    **(4) THE ENGINEERING TECH PLAN** (Rule 30) — confirm we hold the current version; if it was
+    never supplied, remind the user.
+    **(5) THE PO / STAKEHOLDER ANSWERS, MESSAGES AND VIDEOS** — the **newest authoritative product
+    source wins** (Rule 32); a later PO answer can reverse an earlier ruling our cases still assert.
+    If the live spec/epic/design/plan/answer is NEWER than our baseline, run the **diff FIRST** and
+    fold the deltas in BEFORE doing the requested work (Rule 11 — ask which process).
+    **EVERY DELIVERABLE MUST CARRY A "SOURCE-CURRENCY" BLOCK** stating, **per source**: the
+    **identifier** (Confluence page id / epic key / Figma file + node ids / doc name), the
+    **version-or-last-updated value**, the **date we checked it**, and a verdict of
+    **CURRENT / STALE / PARTIAL** — e.g. *"designs PARTIAL — 12 of 85 frames pending, Rule-35 queue
+    open"*. **No deliverable may claim completeness while ANY source is STALE**, and a **PARTIAL**
+    source must name the **exact shortfall** (which frames/stories/sections are missing).
+    **⚠️ STALENESS MARKERS ARE UNRELIABLE — VERIFY THE RIGHT ONE (two proven traps):**
+    **(a)** a Confluence page's **BODY "Version" field can sit at 1.0 forever** while the real
+    Confluence page version advances — this is exactly how the **Schedule spec drifted 5 versions**
+    unnoticed; **use the CONFLUENCE VERSION NUMBER, not the version written inside the document.**
+    **(b)** a Jira epic's **"updated" timestamp moves for purely ADMINISTRATIVE edits** such as a
+    QA-Assignee change — on **2026-07-31 two epics looked changed when their content was identical**;
+    **use the JIRA CHANGELOG (what actually changed), not the surface updated-date.**
+    **If a source cannot be fetched, STOP and ASK THE USER for access** — never proceed on a
+    possibly-stale copy, never fabricate content to appear complete (Rule 12).
+    **RATIONALE (both incidents are the evidence):** the **Filters** spec was **8 versions behind**
+    (we held **V1.0**, live was **v1.6**) and a QA reviewer (Ahtesham) found requirements with **NO
+    coverage** as a direct result; the **Schedule** spec was **5 versions behind** (we held **v18**,
+    live was **v23**) and a **PO answer had reversed an earlier ruling our cases still asserted**.
+    This **STRENGTHENS Standing Rule 23** from "ask if unsure" to **"ALWAYS verify currency, for
+    every source"**. Ties to Standing Rules 1 (complete inputs), 11 (ask which process), 12
+    (observed, never inferred/fabricated), 17 (complete data in/out), 23 (check the Confluence
+    spec), 30 (tech plan is a standard input), 32 (latest information wins), 33 (authority
+    precedence), 35 (design-fetch queues).
 32. **Latest information wins across ALL sources (all projects).** USER DIRECTIVE (2026-07-31,
     verbatim): "Rule of trusting something if it is duplicated or if figma says one thing and
     claud design says the other thing. Trust the latest information." When two sources disagree —

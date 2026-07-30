@@ -73,17 +73,47 @@ cases and the *deliverables* accurate.
 
 ## Method (steps)
 
-### 0. PULL the current spec from its URL + record its version (Standing Rule 31 — MANDATORY FIRST)
-**Before any other step**, FETCH the spec LIVE from its canonical URL (Confluence via the
-Atlassian MCP `getConfluencePage`; else the REST API with session cookies — if the fetch fails,
-ASK THE USER for access; never proceed on a possibly-stale local copy, never fabricate).
-**Compare the live version number + last-updated date against the ingested `requirements.md`
-baseline.** If the live spec is NEWER, that newer spec IS the input to step 1 — reconcile against
-it, not the local copy. **Record the spec version + date checked in the deliverable and the audit
-log** so the pass is provably current. Where sources disagree, **latest authoritative product
-source wins** and the case records source + date (Standing Rule 32). Rationale: 2026-07-31 —
-Filters was reconciled from V1.0 while the live spec was already v1.6, leaving requirements
-uncovered.
+### 0. Establish the CURRENCY OF EVERY SOURCE + emit the SOURCE-CURRENCY block (Standing Rule 31 — MANDATORY FIRST)
+**Before any other step**, verify we hold the CURRENT version of **all five source types** — not
+just the spec (Rule 31, strengthened 2026-07-31):
+
+1. **THE SPEC** — FETCH it LIVE from its canonical URL (Confluence via the Atlassian MCP
+   `getConfluencePage`; else the REST API with session cookies). **Compare the live version number
+   + last-updated date against the ingested `requirements.md` baseline.** If the live spec is NEWER,
+   that newer spec IS the input to step 1 — reconcile against it, not the local copy.
+2. **THE EPIC + ITS CHILD STORIES** — fetch the epic LIVE; compare the **story set, each story's
+   status, and description/comment changes** against our ingest. A **reopened** or **newly-Done**
+   story changes what must be tested, so this check is never optional.
+3. **THE DESIGNS** — the Figma file + node set (and any prototype/Claude design in play). **If a
+   design-fetch queue is OPEN per Rule 35, the design source is NOT current — state that**, naming
+   the exact shortfall (which frames are missing).
+4. **THE ENGINEERING TECH PLAN** (Rule 30) — confirm we hold the current version; if it was never
+   supplied, remind the user.
+5. **THE PO / STAKEHOLDER ANSWERS, MESSAGES AND VIDEOS** — the **newest authoritative product
+   source wins** (Rule 32); a later PO answer can reverse an earlier ruling our cases still assert.
+
+**REQUIRED — the deliverable and the audit log MUST carry a "SOURCE-CURRENCY" block** stating, per
+source: the **identifier** (Confluence page id / epic key / Figma file + node ids / doc name), the
+**version-or-last-updated value**, the **date we checked it**, and a verdict of
+**CURRENT / STALE / PARTIAL** — e.g. *"designs PARTIAL — 12 of 85 frames pending, Rule-35 queue
+open"*. **No deliverable may claim completeness while ANY source is STALE**; a PARTIAL source names
+the exact shortfall.
+
+**⚠️ Staleness markers are unreliable — verify the right one.** (a) A Confluence page's **in-body
+"Version" field can sit at 1.0 forever** while the real Confluence page version advances — this is
+how the **Schedule spec drifted 5 versions** unnoticed; use the **Confluence version number**, not
+the version printed inside the document. (b) A Jira epic's **"updated" timestamp moves for purely
+administrative edits** such as a QA-Assignee change — on 2026-07-31 two epics looked changed when
+their content was identical; use the **Jira changelog** (what actually changed), not the surface
+updated-date.
+
+**If any source cannot be fetched, STOP and ASK THE USER for access** — never proceed on a
+possibly-stale copy and never fabricate content to appear complete (Rule 12).
+
+**Rationale (both incidents are the evidence):** Filters was reconciled from **V1.0** while the live
+spec was already **v1.6** (8 versions behind), leaving requirements uncovered — found by a QA
+reviewer; and the Schedule spec was **5 versions behind** (v18 vs v23), where a **PO answer had
+reversed an earlier ruling our cases still asserted**.
 
 ### 1. Diff the new spec vs the current baseline
 List every **substantive** delta with its **requirement ID** (story/section

@@ -15,9 +15,11 @@ We start from the **complete, canonical sources**: the current spec (read verbat
 canonical Confluence page, never from a summary), every Jira story in the epic, the designs,
 and any PO rulings. When sources conflict, the **most recent update wins** — we never let a
 stale sentence from an older spec version survive into a test case. If any part of the input
-set is missing, we stop and ask for it rather than guess.
+set is missing, we stop and ask for it rather than guess. **Before we touch a single test case we
+re-check that we are holding the latest requirements, the latest tickets and the latest designs —
+and we write down exactly which versions we checked, and when.**
 *Internal reference: `build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md` + the per-project
-`requirements.md` ingest conventions (Standing Rules 1/15/17/23).*
+`requirements.md` ingest conventions (Standing Rules 1/15/17/23/31).*
 
 ## 2. Traceability — no orphan cases, ever
 
