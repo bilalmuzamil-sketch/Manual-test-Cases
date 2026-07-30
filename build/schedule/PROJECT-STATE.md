@@ -7,6 +7,108 @@
 
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-31)
 
+### 0.0-BRANKO-ANSWERS BRANKO'S ANSWERS INGESTED + APPLIED + PUSHED (2026-07-31, LATEST — read this first)
+
+**Branko answered the 2026-07-27 question sheet. Both long-HELD items are settled, the local spec
+was 5 Confluence versions stale, 24 cases were edited, and 16 `update_case` writes are live in
+TestRail (all HTTP 200, all re-GET MATCH). Run 357 verified read-only — 165 tests, 429 result
+records unchanged. Nothing deleted.**
+
+**Resume docs for this pass:** `branko-answers-2026-07-31/answers-ingested.md` (his verbatim
+answers) → `DELTAS.md` (consequences, §10 = what got pushed, §11 = the new question) →
+`audit/AUDIT-2026-07-31.md` (Rule-28) → `testrail-execution-log-2026-07-31.md`.
+
+**SPEC WAS STALE — now current.** `requirements.md` corresponded to Confluence **version 18**
+(2026-07-22); live is **version 23** (2026-07-30, Branko). **We were 5 versions behind.** The live
+body + a per-version attributed diff are in `spec-current-2026-07-31/`
+(`Schedule-spec-current.md`, `SPEC-DIFF.md`). ⚠️ **`requirements.md` itself is still the v18 text** —
+the 2026-07-27 epic pass and the 2026-07-30 tech-plan pass edited CASES from Jira/the plan but never
+re-ingested the page, which is exactly why it lagged. Nine body deltas found; **seven were already
+reflected in our cases**; the two that were not are the two HELD items. ⚠️ **Read
+`spec-current-2026-07-31/` (not `requirements.md`) as the current spec** until requirements.md is
+re-ingested. **The page-body "Version" field always reads 1.0 — use the Confluence version number.**
+
+**His answers (7 asked, 6 answered, 1 declined):**
+| Q | Topic | Answer |
+|---|---|---|
+| 1 (**D1**) | Do events consume technician capacity? | **A — yes.** Quotes §4.12 verbatim. **REVERSES his 2026-07-22 "no"** |
+| 2 (**D4**) | 'Reassign' button in the shift pop-up? | **B — no button, drag only.** He also deleted the clause from the PRD in v23 |
+| 3 | Printable Week Export in V1? | **No** — "nothing about this in the PRD, not in the future requirements" |
+| 4 | Cell-menu shortcut + wording | **C** — "there is no right click, only left click"; menu = 'Create event' + 'New work order' |
+| 5 | Default working day | **B — 7:00 AM to 7:00 PM** |
+| 6 | VIN in the hover note | **A — always visible regardless of the toggle.** Closes OQ-6(a) |
+| 7 | Test the backend too? | **NOT ANSWERED** — "I'm not sure if this question is for me Bilal." **Re-route to engineering / the QA lead; do not re-ask him** |
+
+**BOTH HOLDS LIFTED.**
+- **D1 = A → a real reversal, not a confirmation.** SCH-EVT-08 (C30615) asserted the opposite and was
+  rewritten (title + expected); SCH-CAP-01 (C30030) now names shift+event hours; the stale
+  "events excluded" notes cleared on C30031/C30032/C30033/C30023. The tech plan already built it this
+  way, so plan + spec + PO now agree.
+- **D4 = B → confirmation.** SCH-MODAL-08 (C30015) was already right; only its provenance/refs
+  changed. SCH-REAS-02 stays retired. **Jira SV-8695's text is now the stale artefact** (still lists a
+  modal Reassign action) — for the story owner, we do not edit Jira.
+
+**Biggest genuine find: the cell menu was unrunnable as written.** The 2026-07-27 pass fixed the menu
+ITEMS but left **right-click** in 6 active cases; Branko and the spec (since v22) both say left-click
+only. Corrected on C30016, C30017, C30018, C30054, C30075, C30077, C38855.
+
+**16 `update_case` EXECUTED (15 authorized + 1 same-run repair), all 200 + re-GET MATCH:**
+SCH-EVT-08 C30615 · SCH-CAP-01 C30030 · SCH-MODAL-08 C30015 · SCH-EVT-01 C30016 · SCH-EVT-02 C30017 ·
+SCH-REAS-03 C30054 · SCH-EVT-03 C30018 · SCH-PERM-02 C30075 · SCH-PERM-04 C30077 · SCH-REAS-06 C38855
+(×2, the repair) · SCH-CONF-03 C30025 · SCH-SER-01 C29987 · SCH-SER-02 C29988 · SCH-DAY-06 C30006 ·
+SCH-EDGE-08 C38866. **0 add_case · 0 add_section · 0 delete_case · 0 update_run · 0 result writes.**
+9 further edits are **notes-only and stay LOCAL** (the executor pushes only title / preconds / steps /
+expected / refs).
+
+**TALLY UNCHANGED: 165 ACTIVE, all VIU-Pending.** Live count under group 4254 = **165** == the
+165-row id-map (165 C-ids, 0 blanks after the re-merge). Import regenerated over 165 — header
+byte-identical to all four prior project imports, 0 VIU/flag words, 4 API cases in "API — Schedule".
+
+**Rule-28 audit (`audit/`): 21 KEEP / 2 WEAK-KEEP / 1 CUT · 24 SENSIBLE · 24/24 genuine +
+layman-runnable · KEEP-but-NONSENSE empty. The cross-case consistency sweep ran SUITE-WIDE over all
+165 cases: 6 contradiction groups found, 6 resolved, 0 delivered unresolved.** Two were invisible to
+every other check — **X6** (SCH-EVT-02/C30017 said a left-click STARTS event creation while
+SCH-REAS-03 said the same click OPENS A MENU; it reads perfectly cold and is only wrong next to its
+neighbour) and SCH-SER-01's step-3 residue. 7 more candidate pairs were checked and CLEARED with
+reasons (mostly role-gated preconditions).
+
+**Also folded in:** 4 over-length titles trimmed on cases already being written (SCH-SER-01 137→76,
+SCH-SER-02 117→72, SCH-CAP-01 125→80, SCH-MODAL-08 82→60) — **title-trim backlog 79 → 75.**
+
+### ⚠️ OPEN AFTER THIS PASS
+
+1. **HELD RETIRE — needs your ruling: SCH-EXP-01 (C38853) Week Export.** Branko says it is not in V1
+   and not in the backlog; the audit rates it CUT. **NOT deleted.** Retiring it is 3 linked ops:
+   `delete_case` C38853 + decide the then-empty section **5406 "Week Export and Printing"** +
+   a **run-357 resync** (Rule 34).
+2. **4 NEW questions his answer opened — spec silent, so deliberately NOT asserted** (`DELTAS.md`
+   §8/§11): **A1** do event hours feed the per-technician OT tag / hover breakdown (C30032, C30033)?
+   **A2** do department-assigned events consume each tech's time? **A3** does an all-day event consume
+   a full day? **A7** does switching the 'Events' display OFF take event hours back out of the
+   capacity bars (C30046)?
+3. **A4 — Q7 re-route.** Backend-testing scope goes to engineering / the QA lead, not Branko.
+4. **A5** — what 'New Work Order' actually DOES (toast vs opens the WO window) is still unresolved;
+   SCH-REAS-06 (C38855) passes either way.
+5. **A6 — migration heads-up for product:** now that events count, ~9,684 migrated legacy events will
+   raise capacity bars at cutover. Expected, not a bug.
+6. **NQ-1..NQ-5 still unanswered** — `PO-Questions-Branko-Schedule-TechPlan_2026-07-30` looks unsent.
+   Its Q6/Q7 were re-asks of the 07-27 Q1/Q2 and are now answered, so **send it trimmed to
+   NQ-1..NQ-5, plus A1/A2/A3.** The live spec now sides with our existing cases on **NQ-1** (closures
+   NOT skipped in V1), **NQ-3** (hours live in Edit Staff Member + Edit Location) and **NQ-4**
+   ("Add hours" explicitly "supports split shifts") — so reframe those three as "please confirm the
+   PRD stands and the build plan should change". NQ-2 is genuinely split; NQ-5 the spec is silent on.
+7. **Doc hygiene for Branko:** live v23 **§9 still** ties the tooltip VIN to the 'VIN Number' toggle,
+   contradicting §4.13 and his own Q6 answer.
+8. **Latent import defect (needs its own authorized write):** `SCH-HRS-04` precondition 1 carries a
+   bare `(SCH-HRS-01/02)`; `clean()` strips only the ID and leaves a stray `(/02)` in the pushed
+   text. Harden `clean()` in `gen_import.py` to drop the whole parenthetical.
+9. **75 over-80-character titles** (was 79) — still needs its own authorized pass.
+10. **`requirements.md` re-ingest to v23** — not done this pass; `spec-current-2026-07-31/` is the
+    current-spec reference in the meantime.
+11. **Live VIU still pending the QA branch (OQ-3)** and the Epic key is known (SV-8685). **Rule 12:
+    PO-, spec-, design- and tech-plan-pinned ≠ VIU-Verified.**
+
+
 **TEST RUN SYNCED 2026-07-31 (Standing Rule 34, user-authorized):** run **357 "Schedule -
 Ayesha (VIU Pending)"** now contains the COMPLETE active Schedule suite — **+22 cases, 143 →
 165 tests**, result records unchanged (429 → 429, nothing lost), and the run's case set is

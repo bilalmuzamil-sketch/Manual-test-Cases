@@ -55,8 +55,8 @@ SCH-SPREAD-08,C29984,"Preview is collapsed to a one-line summary, expandable to 
 SCH-SPREAD-09,C29985,Confirming the spread creates a linked series of daily shifts,Multi-Day Spread Scheduling,"SV-8691 (§4.5 (Confirming), §4.6, §8.2)"
 SCH-SPREAD-10,C29986,"Dropping the same work order on a second technician spreads the full estimate again, independently",Multi-Day Spread Scheduling,"SV-8691 (§4.5 (independent per-tech spread), §12)"
 SCH-SPREAD-11,C38863,Spread past 8 weeks asks to confirm; a series can never exceed 120 shifts,Multi-Day Spread Scheduling,SV-8691 (§4.5 + tech-plan D8 series caps)
-SCH-SER-01,C29987,"Month view renders a series as a continuous banner wrapping across week rows, labeled once, with a faded 'continues' label on later weeks",Linked Series and Banners,SV-8692 (§4.6 (Month view))
-SCH-SER-02,C29988,"Week view renders a series as one banner spanning the week's working days, with edge chevrons and a 'week N of M' cue",Linked Series and Banners,SV-8692 (§4.6 (Week view))
+SCH-SER-01,C29987,"Month view: series banner wraps across weeks, labeled once, then 'continues'",Linked Series and Banners,SV-8692 (§4.6 (Month view))
+SCH-SER-02,C29988,"Week view: series banner spans the week, with chevrons and 'week N of M'",Linked Series and Banners,SV-8692 (§4.6 (Week view))
 SCH-SER-03,C29989,Day view shows the series day as a single time-positioned block with a 'part of an M-week job' cue,Linked Series and Banners,SV-8692 (§4.6 (Day view))
 SCH-SER-04,C29990,"A series is a grouping of ordinary daily shifts - capacity, overtime, and conflicts operate on the individual shifts",Linked Series and Banners,"SV-8692 (§4.6, §8.2)"
 SCH-BLOCK-01,C29991,"A single-line shift block shows three text lines: customer name, unit number, and the line name",Shift Block Anatomy,SV-8690 (§4.4)
@@ -78,21 +78,21 @@ SCH-MODAL-04,C30011,"The modal shows a scope summary and the scheduled line(s) w
 SCH-MODAL-05,C30012,Estimated hours can be edited inline in the modal,Shift Detail Modal,SV-8695 (§4.9 (Estimated hours with inline edit))
 SCH-MODAL-06,C30013,"Notes can be added, edited, and deleted per work order from the modal",Shift Detail Modal,"SV-8695 (§4.9 (Notes: add, edit, and delete per work order))"
 SCH-MODAL-07,C30014,A conflicted shift's modal shows a conflict banner with an 'Adjust' action,Shift Detail Modal,SV-8695 (§4.9 (conflict banner + Adjust))
-SCH-MODAL-08,C30015,The modal offers a Delete (series-aware) action only - there is no Reassign action,Shift Detail Modal,"SV-8695 (§4.9 (Actions), §7)"
-SCH-EVT-01,C30016,Create an event via right-click 'Create Event' on a grid cell,Events,"SV-8696 (§4.10, §7 (right-click menu))"
-SCH-EVT-02,C30017,"Create an event by clicking empty grid space in day view, with a live preview block and drag-to-resize",Events,"SV-8696 (§4.10 (day-view click-to-create, live preview))"
+SCH-MODAL-08,C30015,Shift modal offers Delete only - there is no Reassign action,Shift Detail Modal,"SV-8695 (§4.9 (Actions - Delete only; Reassign removed in Confluence v23), §7)"
+SCH-EVT-01,C30016,Create an event via left-click 'Create Event' on empty grid space,Events,"SV-8696 (§4.10 (left-click menu on empty grid space), §7)"
+SCH-EVT-02,C30017,Day view event creation shows a live preview block you can drag to resize,Events,"SV-8696 (§4.10 (left-click menu entry; day-view live preview, drag-to-resize))"
 SCH-EVT-03,C30018,Event modal fields all save; the all-day toggle creates an all-day event,Events,"SV-8696 (§4.10 (Event modal), §8.1 (Event allDay field))"
 SCH-EVT-05,C30020,Events can be dragged to another technician or another day,Events,"SV-8696 (§4.10 (Drag-and-drop to reassign/move), §7 (toast))"
 SCH-EVT-06,C30021,"Event cards are structurally distinct from shift cards - white outlined card with a grey icon chip, no colored left rail",Events,SV-8696 (§4.10 (Event card anatomy))
 SCH-EVT-07,C30022,Events default to neutral/grey; choosing a color tints the card and its icon chip,Events,"SV-8696 (§4.10 (Event color), §10)"
-SCH-EVT-08,C30615,An event does not count toward a technician's capacity bar and does not raise a conflict,Events,"SV-8696 (§4.10 (Events), §4.11, §4.12)"
+SCH-EVT-08,C30615,An event's hours count toward the capacity bar but raise no conflict,Events,"SV-8696 (§4.10 (Events), §4.11 (events not conflict-checked), §4.12 (event time included in the utilization total))"
 SCH-CONF-01,C30023,Double-booked: two work orders overlapping on the same technician at the same time are flagged,Conflict Detection,SV-8697 (§4.11 (Double-booked))
 SCH-CONF-02,C30024,Working-day conflict: a shift on a day outside the technician's configured working days is flagged,Conflict Detection,SV-8697 (§4.11 (Weekend shift))
-SCH-CONF-03,C30025,Before-hours and after-hours shifts are flagged against the tech's hours,Conflict Detection,"SV-8697 (§4.11 (Before hours, After hours))"
+SCH-CONF-03,C30025,Before-hours and after-hours shifts are flagged against the tech's hours,Conflict Detection,"SV-8697 (§4.11 (Before hours, After hours), §4.2 (working-hours hierarchy; 7:00 AM to 7:00 PM default))"
 SCH-CONF-05,C30027,The toolbar conflict pill shows the issue count and opens a dropdown listing the conflicts,Conflict Detection,"SV-8697 (§4.11, §6 (Conflict pill))"
 SCH-CONF-06,C30028,Clicking a conflict in the dropdown navigates to the relevant technician and day,Conflict Detection,SV-8697 (§4.11 (Clicking a conflict navigates))
 SCH-CONF-07,C30029,Red/alarming styling is reserved for conflicts and genuine errors - never used for overtime,Conflict Detection,"SV-8697 (§4.11 (styling rule), §4.12)"
-SCH-CAP-01,C30030,"Day-column headers show a capacity bar - blue fill = aggregate booked vs total available, clamped at 100%, equal track widths",Capacity Bars,SV-8698 (§4.12 (Blue fill))
+SCH-CAP-01,C30030,"Capacity bar fill = booked (shifts + events) vs available, clamped, equal tracks",Capacity Bars,SV-8698 (§4.12 (Blue fill - aggregate booked = shifts plus events))
 SCH-CAP-02,C30031,"When aggregate hours exceed capacity, an amber spill extends past the track's right edge with a tick at the 100% line",Capacity Bars,SV-8698 (§4.12 (Amber spill))
 SCH-CAP-03,C30032,The 'OT' text tag appears whenever any single technician exceeds their own daily hours - even when the day's aggregate is under capacity,Capacity Bars,"SV-8698 (§4.12 (OT tag), §11 (not color-only))"
 SCH-CAP-04,C30033,"Hovering a capacity bar shows a per-technician breakdown, with overtime technicians highlighted in amber",Capacity Bars,SV-8698 (§4.12 (Hover tooltip))
@@ -113,7 +113,7 @@ SCH-VIEW-06,C30047,Business Hours toggle shades non-working hours in day view,Fi
 SCH-VIEW-09,C30050,Tech Hours toggle displays each technician's working hours next to their name,Filter and Display and View Options,SV-8700 (§9 (Tech Hours))
 SCH-VIEW-10,C30051,Saturday and Sunday toggles include or exclude the weekend columns,Filter and Display and View Options,"SV-8700 (§9 (Saturday, Sunday), §3.2 (Week view))"
 SCH-REAS-01,C30052,"Dragging a shift to another technician row reassigns it - target tech added to the line's roster, source removed, with a confirmation modal",Reassignment and Context Menu,"SV-8695 (§7 (Shift reassignment), §12)"
-SCH-REAS-03,C30054,Right-click a grid cell opens a menu with Create Event and New Work Order,Reassignment and Context Menu,"SV-8700 (§7 (Right-click context menu; View Day and New Shift removed), §14.1 (creation via context menu))"
+SCH-REAS-03,C30054,Left-click empty grid space opens a menu: Create Event and New Work Order,Reassignment and Context Menu,"SV-8700 (§7 (left-click menu on empty grid space; View Day and New Shift removed), §14.1 (creation via the cell menu))"
 SCH-REAS-06,C38855,'New Work Order' in the cell menu points the user to the Work Orders tab,Reassignment and Context Menu,SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut)
 SCH-DEL-01,C30057,"Deleting a middle shift of a series asks for scope with all three options, each stating the hours returned","Deletion, Series Scopes and Undo",SV-8692 (§7 (Series-aware deletion))
 SCH-DEL-02,C30058,"'This shift only' removes that day, the series keeps the gap, and the hours return to the estimate's remaining","Deletion, Series Scopes and Undo",SV-8692 (§7 (This shift only))
@@ -154,7 +154,7 @@ SCH-EDGE-04,C30088,The grid renders smoothly at full load - 15 technicians × 7 
 SCH-EDGE-05,C30089,Shop closures do NOT block spread in V1 - shifts can land on closure days,Edge Cases and Responsiveness,"SV-8691 (§12 (Shop closures), §4.5)"
 SCH-EDGE-06,C30090,"Scheduled hours, the estimate, and actual (clocked) hours are three separate quantities that are not forced to reconcile",Edge Cases and Responsiveness,"SV-8691 (§4.5 (three separate quantities), §12)"
 SCH-EDGE-07,C38865,A multi-week series keeps the same local start time across the clock change,Edge Cases and Responsiveness,SV-8691 (§4.5 + tech-plan D2 NFR-005 DST)
-SCH-EDGE-08,C38866,Schedule and all its dialogs display correctly in dark mode,Edge Cases and Responsiveness,SV-8685 (tech-plan §6 checklist 13 dark mode)
+SCH-EDGE-08,C38866,Schedule and all its dialogs display correctly in dark mode,Edge Cases and Responsiveness,"SV-8685 (§11 (Dark theme - user-selectable Light / Dark, persisted per user))"
 SCH-REG-01,C38867,Shifts and events created before the Schedule rewrite still appear after it,Cross-Module and Rewrite Regression,SV-8685 (tech-plan §3 FR-015 data migration)
 SCH-REG-02,C38868,Dashboard shows one schedule row per work order even with many shifts,Cross-Module and Rewrite Regression,SV-8685 (tech-plan §4 Dashboard FR-016)
 SCH-REG-03,C38869,A work order created with an appointment shows up on the Schedule board,Cross-Module and Rewrite Regression,SV-8685 (tech-plan §4 WO-create AppointmentScheduler)

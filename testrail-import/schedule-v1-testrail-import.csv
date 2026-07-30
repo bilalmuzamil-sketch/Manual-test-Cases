@@ -362,22 +362,20 @@ Spread past 8 weeks asks to confirm; a series can never exceed 120 shifts,Multi-
 2. After you confirm the warning, the long series is created normally.
 3. A single spread that would create more than 120 daily shifts is refused outright - no confirmation can override it, and no shifts are created for that attempt.
 4. No half-created series is left behind after a refused attempt.",SV-8691 (§4.5 + tech-plan D8 series caps),,
-"Month view renders a series as a continuous banner wrapping across week rows, labeled once, with a faded 'continues' label on later weeks",Linked Series and Banners,Functional,High,"1. You are signed in on a desktop browser.
+"Month view: series banner wraps across weeks, labeled once, then 'continues'",Linked Series and Banners,Functional,High,"1. You are signed in on a desktop browser.
 2. A multi-week series exists for one technician (spread a 40h+ job first).
 3. You are on the Schedule page in MONTH view showing the series' month.","1. Find the series on the month grid.
 2. Read the banner across the week rows.
-3. Look at the weekend columns and any skipped or booked days inside the series.","1. The series renders as one continuous bar wrapping across the week rows.
+3. Look at the weekend columns inside the series.","1. The series renders as one continuous bar wrapping across the week rows.
 2. It is labeled once at the start (including the technician); later weeks show a faded 'continues'-style label instead of repeating the full label.
-3. Weekend columns inside the series are empty (no bar).
-4. Visible breaks appear around skipped days and days the technician is otherwise booked.",SV-8692 (§4.6 (Month view)),,
-"Week view renders a series as one banner spanning the week's working days, with edge chevrons and a 'week N of M' cue",Linked Series and Banners,Functional,High,"1. You are signed in on a desktop browser.
+3. Weekend columns inside the series are empty (no bar) when no business hours are set for those weekend days.",SV-8692 (§4.6 (Month view)),,
+"Week view: series banner spans the week, with chevrons and 'week N of M'",Linked Series and Banners,Functional,High,"1. You are signed in on a desktop browser.
 2. A multi-week series exists for one technician; on one of its days the technician also has an unrelated booking.
 3. You are on the Schedule page in WEEK view on a middle week of the series.","1. Find the series banner in the technician's row.
 2. Look at the banner's left and right edges.
 3. Look for the week-position cue and at the day with the other booking.","1. One banner spans the working days of that week in the technician's row.
 2. Chevrons at the banner's edges indicate the series continues beyond the visible week (both sides, on a middle week).
-3. A 'week N of M' cue shows the position within the series.
-4. The banner breaks around the day the technician is otherwise booked.",SV-8692 (§4.6 (Week view)),,
+3. A 'week N of M' cue shows the position within the series.",SV-8692 (§4.6 (Week view)),,
 Day view shows the series day as a single time-positioned block with a 'part of an M-week job' cue,Linked Series and Banners,Functional,Medium,"1. You are signed in on a desktop browser.
 2. A multi-week series exists for one technician.
 3. You are on the Schedule page in DAY view on one of the series' days.","1. Find the series' block on the technician's timeline.
@@ -473,7 +471,7 @@ Dragging a shift's left or right edge resizes its duration,Day View Timeline,Fun
 2. Find the vertical current-time indicator.
 3. Hover over it.","1. A vertical line marks the current time on the timeline.
 2. Its position matches the actual clock time.
-3. Hovering it shows a label (the current time).",SV-8694 (§4.8 (Now line)),,
+3. Hovering the now line while your pointer is over the grid shows a label (the current time).",SV-8694 (§4.8 (Now line)),,
 "Clicking a shift opens its detail modal showing customer, unit, VIN (always visible), and the work order id",Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser.
 2. A shift exists for a unit that has a VIN; the VIN toggle in 'Filter and Display' is OFF.
 3. You are on the Schedule page.","1. Click the shift block.
@@ -522,27 +520,27 @@ A conflicted shift's modal shows a conflict banner with an 'Adjust' action,Shift
 2. It offers an 'Adjust' action.
 3. 'Adjust' leads to a way to resolve the conflict (for example changing the shift's time).
 4. An unconflicted shift's modal shows no such banner.",SV-8695 (§4.9 (conflict banner + Adjust)),,
-The modal offers a Delete (series-aware) action only - there is no Reassign action,Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser with Schedule: Delete (which includes Edit and View).
+Shift modal offers Delete only - there is no Reassign action,Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser with Schedule: Delete (which includes Edit and View).
 2. A shift exists; its detail modal is open.","1. Look at the modal's actions.
 2. Confirm there is no 'Reassign' action anywhere in the modal.
 3. Click Delete on a series shift and read what it asks (cancel without deleting).","1. The modal offers a Delete action (a trash icon in the header) and a close (x) icon - and no other actions.
 2. There is no 'Reassign' action in the modal; reassignment is done by dragging a shift to another technician row (covered by its own case).
-3. Delete on a series member asks for a deletion scope (the full scope behavior has its own cases).","SV-8695 (§4.9 (Actions), §7)",,
-Create an event via right-click 'Create Event' on a grid cell,Events,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. You are on the Schedule page in week view.","1. Right-click a technician's cell on a working day.
-2. Choose 'Create Event' from the context menu.
-3. Fill in a name (for example 'ZZAUTOTEST stand-up'), keep the date/times offered, and save.","1. The right-click context menu contains 'Create Event'.
+3. Delete on a series member asks for a deletion scope (the full scope behavior has its own cases).","SV-8695 (§4.9 (Actions - Delete only; Reassign removed in Confluence v23), §7)",,
+Create an event via left-click 'Create Event' on empty grid space,Events,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. You are on the Schedule page in week view.","1. Left-click an empty spot in a technician's cell on a working day (not on an existing block).
+2. Choose 'Create Event' from the menu that opens.
+3. Fill in a name (for example 'ZZAUTOTEST stand-up'), keep the date/times offered, and save.","1. A menu opens at the spot you clicked and contains 'Create Event'.
 2. The event modal opens with the clicked cell's technician and date pre-set.
 3. Saving creates an event block on that technician's day.
-4. A toast with Undo appears.","SV-8696 (§4.10, §7 (right-click menu))",,
-"Create an event by clicking empty grid space in day view, with a live preview block and drag-to-resize",Events,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. You are on the Schedule page in DAY view.","1. Click (or click-drag) an empty spot on a technician's timeline.
+4. A toast with Undo appears.","SV-8696 (§4.10 (left-click menu on empty grid space), §7)",,
+Day view event creation shows a live preview block you can drag to resize,Events,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. You are on the Schedule page in DAY view.","1. Left-click an empty spot on a technician's timeline and choose 'Create Event' from the menu that opens.
 2. While creating, watch the block and try dragging to size it.
-3. Complete the event creation.","1. Clicking empty day-view space starts event creation at that time.
+3. Complete the event creation.","1. Left-clicking empty day-view space opens the cell menu; choosing 'Create Event' starts creation at the time you clicked.
 2. A live preview block is shown while creating, and dragging resizes it.
-3. Completing creates the event at the previewed time/duration.","SV-8696 (§4.10 (day-view click-to-create, live preview))",,
+3. Completing creates the event at the previewed time/duration.","SV-8696 (§4.10 (left-click menu entry; day-view live preview, drag-to-resize))",,
 Event modal fields all save; the all-day toggle creates an all-day event,Events,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. You are on the Schedule page with the event modal open (via right-click 'Create Event').","1. Read the fields the modal offers.
+2. You are on the Schedule page with the event modal open (left-click empty grid space, then 'Create Event').","1. Read the fields the modal offers.
 2. Fill each: name, date, start and end time, and pick a color category. Save, then re-open the event.
 3. Open the event modal again, turn the all-day toggle ON, and save.
 4. Look at how the all-day event renders in day and week views.","1. The modal contains: name, date, start/end time, an all-day toggle, and a color category.
@@ -569,13 +567,13 @@ Events default to neutral/grey; choosing a color tints the card and its icon chi
 3. Look at the card again.","1. The default event color is neutral/grey.
 2. The color picker offers the same custom color palette as shifts (shared picker with editable labels).
 3. Choosing a color tints the card and the icon chip in matching tones, the same way a colored shift is tinted.","SV-8696 (§4.10 (Event color), §10)",,
-An event does not count toward a technician's capacity bar and does not raise a conflict,Events,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
+An event's hours count toward the capacity bar but raise no conflict,Events,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. Capacity Bars and Events are ON in View Options.
 3. A technician has a shift and, on the same day/time, an event (create both, ZZAUTOTEST).","1. Note the day's capacity bar fill with only the shift present.
 2. Add an all-day (or long) event on the same technician and day.
-3. Look at the capacity bar again and check for any conflict on the block and in the toolbar conflict pill.","1. Adding the event does NOT change the capacity bar fill - events are not counted toward booked/available hours.
+3. Look at the capacity bar again and check for any conflict on the block and in the toolbar conflict pill.","1. Adding the event DOES increase that day's capacity bar fill - the event's hours are counted alongside shift hours (a 2-hour meeting uses up 2 hours of the technician's available time).
 2. The event does NOT create a double-booked or overlap conflict with the shift, and the toolbar conflict count does not increase because of it.
-3. Only shifts drive capacity and conflicts.","SV-8696 (§4.10 (Events), §4.11, §4.12)",,
+3. The two behave differently on purpose: an event uses up capacity, but it is never flagged as a conflict.","SV-8696 (§4.10 (Events), §4.11 (events not conflict-checked), §4.12 (event time included in the utilization total))",,
 Double-booked: two work orders overlapping on the same technician at the same time are flagged,Conflict Detection,Functional,Critical,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. Two different work orders have schedulable lines.
 3. You are on the Schedule page; note the toolbar conflict pill's current count.","1. Schedule work order 1 on a technician for a given time.
@@ -595,10 +593,10 @@ Before-hours and after-hours shifts are flagged against the tech's hours,Conflic
 3. A shift exists for that technician inside those hours.","1. In day view, drag the shift so it starts BEFORE the technician's working-day start (for example 6:00 AM).
 2. Look at the block and the conflict pill.
 3. Now drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM).
-4. Look at the block and the conflict pill again.","1. The shift is flagged as a before-hours conflict (the design's reason sentence reads in the spirit of 'Starts before working hours (8:00 AM)'), measured against the technician's configured working-day start.
-2. The shift is flagged as an after-hours conflict (the design's reason sentence reads in the spirit of 'Extends past working hours (5:00 PM)'), measured against the technician's configured working-day end.
-3. Both the start and the end follow the hierarchy technician hours, then business hours, then the default.
-4. Warning icon on the block in each case; the conflict appears in the toolbar dropdown.","SV-8697 (§4.11 (Before hours, After hours))",,
+4. Look at the block and the conflict pill again.","1. The shift is flagged as a before-hours conflict, with a reason sentence in the spirit of 'Starts before working hours', measured against that technician's own configured working-day START time (not a fixed hour).
+2. The shift is flagged as an after-hours conflict, with a reason sentence in the spirit of 'Extends past working hours', measured against that technician's own configured working-day END time (not a fixed hour).
+3. Both the start and the end follow the hierarchy technician hours, then shop business hours, then the general default working day of 7:00 AM to 7:00 PM.
+4. Warning icon on the block in each case; the conflict appears in the toolbar dropdown.","SV-8697 (§4.11 (Before hours, After hours), §4.2 (working-hours hierarchy; 7:00 AM to 7:00 PM default))",,
 The toolbar conflict pill shows the issue count and opens a dropdown listing the conflicts,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser.
 2. At least two conflicts of different types exist (for example one double-booked overlap and one Saturday shift - create them first).
 3. You are on the Schedule page.","1. Read the conflict pill in the grid toolbar.
@@ -617,14 +615,14 @@ Red/alarming styling is reserved for conflicts and genuine errors - never used f
 3. Capacity Bars are on.","1. Look at the overtime signals for that day ('OT' tag, amber highlights).
 2. Look at a conflicted shift for comparison.","1. Overtime is signaled with the 'OT' text tag and amber tones - NOT red or alarming styling.
 2. Red/alarming styling appears only for conflicts and genuine errors.","SV-8697 (§4.11 (styling rule), §4.12)",,
-"Day-column headers show a capacity bar - blue fill = aggregate booked vs total available, clamped at 100%, equal track widths",Capacity Bars,Functional,High,"1. You are signed in on a desktop browser.
+"Capacity bar fill = booked (shifts + events) vs available, clamped, equal tracks",Capacity Bars,Functional,High,"1. You are signed in on a desktop browser.
 2. Capacity Bars are ON in View Options (default).
 3. Technicians' working hours are known; shifts exist on at least two days with different total booked hours.
 4. You are on the Schedule page in week view.","1. Look at each day column's header bar.
 2. Compare a lightly-booked day with a heavily-booked day.
-3. Compare the bars' track widths across days.","1. Each day header shows a capacity bar; the blue fill represents total technician-hours booked divided by total available (sum of all techs' working hours).
+3. Compare the bars' track widths across days.","1. Each day header shows a capacity bar; the blue fill represents total technician-hours booked - shift hours PLUS event hours - divided by total available (sum of all techs' working hours).
 2. A more heavily booked day shows a longer blue fill; the fill never exceeds the track (clamped at 100%).
-3. The track width is identical across all days (capacity is not rescaled per day), so bars are comparable at a glance.",SV-8698 (§4.12 (Blue fill)),,
+3. The track width is identical across all days (capacity is not rescaled per day), so bars are comparable at a glance.",SV-8698 (§4.12 (Blue fill - aggregate booked = shifts plus events)),,
 "When aggregate hours exceed capacity, an amber spill extends past the track's right edge with a tick at the 100% line",Capacity Bars,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. Capacity Bars are ON.
 3. One day is booked BEYOND the team's total available hours (seed extra shifts).",1. Look at that day's capacity bar.,"1. An amber segment extends past the right edge of the track, showing the excess.
@@ -755,16 +753,16 @@ Saturday and Sunday toggles include or exclude the weekend columns,Filter and Di
 2. After confirming, the shift sits on technician B's row.
 3. Technician B is added to the affected line's roster and technician A is removed from it.
 4. A toast with Undo appears.","SV-8695 (§7 (Shift reassignment), §12)",,
-Right-click a grid cell opens a menu with Create Event and New Work Order,Reassignment and Context Menu,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+Left-click empty grid space opens a menu: Create Event and New Work Order,Reassignment and Context Menu,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. You are on the Schedule page in week view (the same menu is offered in month view).
-3. Schedulable work order lines exist.","1. Right-click a technician's grid cell.
-2. Read the menu items.","1. A context menu opens at the cell.
+3. Schedulable work order lines exist.","1. Left-click an empty spot in a technician's grid cell (not on an existing shift or event block).
+2. Read the menu items.","1. A dropdown menu opens at the spot you clicked.
 2. It contains ONLY two items: 'Create Event' and 'New Work Order'.
 3. There is no 'View Day' item - it was removed from the menu.
 4. There is no 'New Shift' item - it was removed from the menu.
-5. The browser's own right-click menu does not appear instead.","SV-8700 (§7 (Right-click context menu; View Day and New Shift removed), §14.1 (creation via context menu))",,
+5. This menu is opened by a normal left-click - right-clicking the cell does not open it.","SV-8700 (§7 (left-click menu on empty grid space; View Day and New Shift removed), §14.1 (creation via the cell menu))",,
 'New Work Order' in the cell menu points the user to the Work Orders tab,Reassignment and Context Menu,Functional,Medium,"1. You are on the Schedule grid.
-2. The cell context menu shows 'Create Event' and 'New Work Order' ().","1. Right-click an empty grid cell.
+2. The cell menu already shows 'Create Event' and 'New Work Order'.","1. Left-click an empty spot in a grid cell.
 2. Choose 'New Work Order' from the menu.","1. The menu offers a 'New Work Order' item.
 2. Choosing it directs the user to create a work order (a toast / prompt pointing to the Work Orders tab).",SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut),,
 "Deleting a middle shift of a series asks for scope with all three options, each stating the hours returned","Deletion, Series Scopes and Undo",Functional,High,"1. You are signed in on a desktop browser with Schedule: Delete.
@@ -932,10 +930,10 @@ View-only: every editing affordance is hidden or disabled,Permissions,Negative,C
 2. Shifts, a series, and events exist on the grid.
 3. You are signed in AS that View-only user on a desktop browser, on the Schedule page.","1. Look for drag handles on sidebar lines and try to drag a work order card onto the grid.
 2. Try dragging an existing shift block (move/reassign) and look for resize handles in day view.
-3. Right-click a grid cell.
+3. Left-click an empty spot in a grid cell.
 4. Open a shift's detail modal and inspect its fields and actions.","1. No drag handles are offered and nothing can be dragged from the sidebar onto the grid.
 2. Shift blocks cannot be moved or resized - no drop targets or resize handles appear.
-3. The right-click context menu does not appear (no creation entries - no 'Create Event' and no 'New Work Order').
+3. No creation menu opens at all - there is no 'Create Event' and no 'New Work Order' offered.
 4. In the modal, edit fields are hidden or disabled, and the reassign and delete actions are absent.",SV-8685 (§14.1 (Schedule: View - editing affordances hidden or disabled)),,
 "With Schedule: View OFF, the Schedule top-level nav item is hidden entirely",Permissions,Negative,Critical,"1. A test user's role has Schedule: View OFF (no Schedule permission).
 2. You are signed in AS that user on a desktop browser.","1. Look at the app's main navigation.
@@ -943,11 +941,11 @@ View-only: every editing affordance is hidden or disabled,Permissions,Negative,C
 2. The rest of the app works normally for the role.",SV-8685 (§14.1 (When Schedule: View is OFF)),,
 Schedule: Edit unlocks all creation and modification interactions,Permissions,Functional,Critical,"1. A test user's role has Schedule: Edit (and View) but NOT Delete.
 2. Work orders with approved lines exist; you are signed in AS that user, on the Schedule page.","1. Drag a work order from the sidebar onto a technician cell and complete the scope picker (and spread modal for a large job).
-2. Right-click a cell and create an event via 'Create Event'; in day view, click empty space to create.
+2. Left-click an empty spot in a cell and create an event via 'Create Event'; do the same on the timeline in day view.
 3. Reassign a shift between technicians by dragging.
 4. In day view, edge-resize and horizontally drag a shift.
 5. Edit fields in the shift and event detail modals.","1. Drag-and-drop from the sidebar, the scope picker, and the spread modal all work.
-2. Shift and event creation works, including via the right-click context menu and day-view click-to-create.
+2. Shift and event creation works, including via the menu opened by left-clicking empty grid space in both week and day view.
 3. Reassignment between technicians works.
 4. Edge-resize and horizontal drag work in day view.
 5. Modal fields are editable and save.",SV-8685 (§14.1 (Schedule: Edit)),,
@@ -1044,7 +1042,7 @@ Schedule and all its dialogs display correctly in dark mode,Edge Cases and Respo
 4. Switch back to light mode and spot-check again.","1. In dark mode every part of the Schedule stays readable - no white-on-white or black-on-black text, no unreadable labels or invisible icons.
 2. Every dialog and popover opened from the Schedule follows the dark theme too.
 3. Conflict and overtime cues remain distinguishable (they never rely on colour alone - text/icon still present).
-4. Switching back to light mode restores the normal look with nothing stuck in dark colours.",SV-8685 (tech-plan §6 checklist 13 dark mode),,
+4. Switching back to light mode restores the normal look with nothing stuck in dark colours.","SV-8685 (§11 (Dark theme - user-selectable Light / Dark, persisted per user))",,
 Shifts and events created before the Schedule rewrite still appear after it,Cross-Module and Rewrite Regression,Functional,Critical,"1. This case runs around the Schedule rewrite release: before the release, note (or create) a handful of scheduled shifts and calendar events - including at least one future-dated one - with their technician, day, and time.
 2. The release (which replaces the Schedule behind the scenes) has been deployed.","1. After the release, open the Schedule and navigate to the dates of the noted entries.
 2. Compare each noted shift and event against what the grid now shows.
