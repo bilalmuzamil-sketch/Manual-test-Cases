@@ -407,20 +407,24 @@ the three corroborating sources: `DELTAS.md` §2.
 
 ## 6. Run-352 sync implication (Standing Rule 34) — MANDATORY LAST STEP
 
-**Run **352** — "Filters - Ahtasham (Awaiting QA- ENV)"** — currently holds the complete
-active suite (**94 tests**, **395 result records**) after the 2026-07-31 sync
-(`build/testrail-run-sync-2026-07-31/`).
+**Run **352** — "Filters - Ahtasham (Awaiting QA- ENV)"** — holds the complete active
+suite. **Re-verified live after the sibling worker's push (commits `e69c84a` + `9c311d4`,
+2026-07-31): the run is now at 102 tests / 395 result records**, up from 94, and
+`../fixes-2026-07-31/testrail-execution-log-2026-07-31.md` confirms
+**16 deliberately-blank id-map rows remain — exactly the FLT-PARTS ×4 + FLT-RPTS ×3 +
+FLT-SRCH ×9 this plan covers.** So this plan's targets are all still un-pushed and its
+op types are unchanged. `include_all` is **false** (verified in that log).
 
 **Every `add_case` in this plan MUST be followed by a run-352 union sync**, or the new
 cases will be invisible to the tester and a reviewer will again report "no case exists"
 for coverage that does exist — the exact failure that created Rule 34.
 
 - **Cases to add to the run: 8** — the 7 Parts/Reports (`FLT-PARTS-01/09/11/12`,
-  `FLT-RPTS-01/21/22`) + **NEW-1**. Plus **whatever the sibling worker pushes**
-  (`FLT-PSRCH-08…13` = 6 more if they are pushed in the same window) — **do ONE union sync
-  covering everything**, do not sync twice.
-- **Expected test count: 94 → 102** (or 108 if the sibling's 6 are included in the same
-  push). **Record before→after in the audit log.**
+  `FLT-RPTS-01/21/22`) + **NEW-1**. The sibling worker's 8 (incl. `FLT-PSRCH-08…13`) are
+  **already synced** — do **not** re-add them; the union handles them automatically.
+- **Expected test count: 102 → 110.** **Re-read `get_run/352` + `get_tests/352` at
+  execution time** rather than trusting this number — another worker may push again in
+  between. **Record before→after in the audit log.**
 - **Method, exactly:** `get_run/352` → if `include_all` is **true**, nothing to do, just
   verify the count. It is **false** for every VIU run in this workspace, so:
   `get_tests/352` → derive the current case_id list → `sorted(set(current) | set(new))` →
@@ -481,7 +485,7 @@ pre-checks in §2:
 - [ ] TestRail sync manifest written **BEFORE** the first write
 - [ ] **User authorization obtained for the TestRail ops** (Rule 6) — and **separately** for the run-352 write
 - [ ] 2 `add_section` → 8 `add_case` → 1–2 `update_case` → 1 `move_cases_to_section`; **every op re-GET verified MATCH**; per-op audit log
-- [ ] **Run-352 union sync** (§6): snapshot first, **full union only**, verify 94 → expected, all 395 results intact
+- [ ] **Run-352 union sync** (§6): snapshot first, **full union only**, verify 102 → 110 (re-read live first), all 395 results intact
 - [ ] `../PROJECT-STATE.md` updated (new tally, this folder indexed, the closed threads marked closed: Round-1 Q1 gate, page-search ownership, AI scope, Parts/Reports OQ-4 half)
 - [ ] The QA-internal notes in `../PO-Questions-Branko-PartsReports-2026-07-27.md` and `../tech-plan-2026-07-29/Questions-for-Branko-dev.md` marked **ANSWERED** for page-search ownership, so it is never re-asked
 - [ ] New questions **NEW-Q1 / NEW-Q2 / NEW-Q3** + the three PRD-alignment additions folded into the next Branko sheet (`DELTAS.md` §4d) — **and confirm none of the 6 questions already in `../PO-Questions-Branko-Filters-TechPlan_2026-07-30.md` was removed**, because his answers settled **none** of them
