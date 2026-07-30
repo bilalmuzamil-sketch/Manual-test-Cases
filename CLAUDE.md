@@ -641,7 +641,12 @@ deliver the 7-tab management report.
    **STATUS: CASES AUTHORED 2026-07-16 (86 cases/15 sections, adversarial-reviewed
    CLEAN, import ready VIU-word-free/flag-free); TestRail push PENDING permission; VIU
    pending feature on QA; PO=Branko; Epic key TBD (ask at VIU); OQ-3 open. Canonical
-   resume doc: build/global-search/PROJECT-STATE.md.** Spec fully
+   resume doc: build/global-search/PROJECT-STATE.md.**
+   **2026-07-31 OWNERSHIP RULING (Branko, via the Filters Q6 sheet): the ⌘K/pop-up
+   "Search or ask a question" palette is tested under GLOBAL SEARCH, not Filters — so the
+   9 retired Filters palette cases (FLT-SRCH-01..09, blank C-ids, never pushed) have their
+   coverage land HERE on resume; "Ask a question" is out of the FILTERS PRD only, so OQ-3
+   (AI in Global Search V1?) STAYS OPEN. See PROJECT-STATE.md §0.0.** Spec fully
    ingested → `build/global-search/requirements.md` (§1–§11: 6 searchable entity types
    [Work Orders, Customers, Assets, Parts, Vendors, Part Sales], ⌘K/K spotlight
    palette, fuzzy match [trigram + Damerau-Levenshtein + Double Metaphone; identifier

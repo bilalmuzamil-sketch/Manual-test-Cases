@@ -5,6 +5,117 @@
 > infrastructure (staging/QA access method, harness scripts, TestRail API patterns,
 > the two process docs) across all projects.
 
+## 0.0 — 2026-07-31 — Ownership ruling from Branko (Filters cross-project)
+
+> **Read this alongside §0.** It does NOT change this project's status (still
+> **POSTPONED**, user ruling 2026-07-27 — 86 cases authored, NEVER pushed to TestRail,
+> all C-ids blank). It records an ownership decision made on the **Filters** project
+> that lands coverage HERE, plus one nuance for **OQ-3**. **No TestRail writes. No case
+> edits in this project.**
+
+### 1. Branko's ruling (verbatim)
+
+Branko answered the **Filters** Parts/Reports PO question sheet
+(`build/filters/PO-Questions-Branko-PartsReports-2026-07-27.md`/`.xlsx`, issued
+**2026-07-27**; his answers **ingested 2026-07-31** →
+`build/filters/branko-answers-2026-07-31/answers-ingested.md` §Q6). Q6 asked whether the
+pop-up / command-palette search box (**"Search or ask a question"**, opened from the top
+bar or by keyboard shortcut, searching across work orders, customers, assets, parts,
+vendors and part sales) belongs to the Filters release or to the separate Global Search
+work. **His answer, verbatim:**
+
+> **"A - Test it under Global Search, not here. This release only removes global search's
+> page-filtering behaviour (Story 14). \"Ask a question\" is not in this PRD's scope."**
+
+Three separate statements: (1) the pop-up / command-palette search box is **Global
+Search's**, not Filters'; (2) the only pop-up-search work in the Filters release is the
+**Story 14** removal of its page-filtering behaviour; (3) **"Ask a question" (the AI
+element) is NOT in the Filters PRD's scope.**
+
+### 2. Consequence for THIS project — 9 palette cases' coverage belongs here
+
+Nine command-palette cases had been authored under the **Filters** project
+(`FLT-SRCH-01..09`, **every one new with a BLANK C-id — not one was ever pushed to
+TestRail**). On the user's ruling of **2026-07-31** (*"OK do not delete those cases
+unless Branko confirms that they are related to Global search only"*), the hold condition
+is now met, and they are **retired from the Filters suite — LOCAL-ONLY** (`viu_status`
+marked Retired; **no `delete_case`, no TestRail operation of any kind**, because there are
+no C-ids). **Their subject matter is Global Search's, so their coverage BELONGS HERE.**
+
+**When Global Search resumes, re-author / adopt this coverage in this project so it is
+not lost.** Cross-check each against our existing 86 cases first — the Filters quality
+audit (`build/filters/quality-audit-2026-07-31/MERGE-PLAN.md`, Cuts section) records that
+our authored suite already covers each of these topics, so most should reconcile to an
+existing `GS-*` case rather than become a new one.
+
+The nine (Filters internal IDs — **all new, no C-ID yet**):
+
+| Filters ID | Subject (one line) | Topic our suite already covers |
+|---|---|---|
+| `FLT-SRCH-01` | Page search opens with the "Search or ask a question" box | palette entry point / placeholder |
+| `FLT-SRCH-02` | Page search shows entity tabs All, Work Orders, Customers, Assets, Parts… | entity scope tabs |
+| `FLT-SRCH-03` | Typing a term shows grouped results with counts and highlighting | grouped results + highlighting |
+| `FLT-SRCH-04` | Recent searches are shown grouped by Today, Yesterday, Past week… | recent searches |
+| `FLT-SRCH-05` | Re-opening page search keeps the last typed text and its results | persisting search |
+| `FLT-SRCH-06` | Hovering a search result shows quick-action buttons | hover quick-actions |
+| `FLT-SRCH-07` | Page search shows keyboard hints and supports keyboard navigation | keyboard navigation |
+| `FLT-SRCH-08` | Page search results include a Refresh action | results panel incl. Refresh (also our own open thread — is Refresh in V1?) |
+| `FLT-SRCH-09` | "Page search scope belongs to Filters or Global Search (to decide)" | **NOT a test case** — it was the scope decision itself, now MADE by this ruling; nothing to adopt |
+
+**Where the bodies live (read-only, do not edit the Filters project):**
+- `build/filters/cases/cases-G-page-search.json` — the live bodies, marked Retired by the
+  Filters worker.
+- `build/filters/consolidation-backup-2026-07-31/cases-G-page-search.json.pre-edit` —
+  pre-edit backup of the same file (all 9 bodies as authored).
+- `build/filters/quality-audit-2026-07-31/MERGE-PLAN.md` — per-case cut rationale +
+  the Global-Search-coverage mapping.
+- `build/filters/branko-answers-2026-07-31/DELTAS.md` §2 (VERDICT 2) — the full
+  ownership verdict and its three independent sources.
+
+### 3. The AI / "ask a question" note — **OQ-3 STAYS OPEN**
+
+Branko said the AI element is out of the **FILTERS** PRD's scope. **That does NOT by
+itself answer whether it is in GLOBAL SEARCH's V1 scope.** Two different questions:
+
+- **Answered:** "Ask a question" is not part of the Filters release.
+- **STILL OPEN (our OQ-3):** does the **"Search or ask a question" placeholder** — and any
+  AI / natural-language query behaviour — ship in **Global Search V1**? Our Figma capture
+  labels AI search **OUT OF SCOPE** (not authored), while the spec placeholder and §8
+  "gracefully degrade when the AI flag is off" imply an AI capability.
+
+**Do NOT over-read his answer into a V1 ruling for this project** (Rules 32/33 — do not
+resolve ambiguity by inference). **OQ-3 remains OPEN and must still be asked of Branko
+before/at VIU**, ideally in the same breath as the Epic key (OQ-4).
+
+### 4. Supporting evidence (so this is not re-litigated)
+
+- **Filters spec v1.6 (2026-07-28) has NO command-palette requirement.** Its **Story 13**
+  is the **in-toolbar page search** — an input that expands in place and narrows the
+  current table (`S13-R12`: *"Results replace the table contents in place. There is no
+  separate results view or results page"*). Its **§4 Key Decisions** assigns cross-page
+  lookup away from Filters: *"Cross-page and cross-module lookup is the job of the global
+  header search, which is the whole basis for the split in Story 14."* v1.6 describes none
+  of the entity tabs / grouped results / recent searches / hover quick-actions the 9 cases
+  test.
+- **The Filters Figma file contains no command-palette board at all.** Live design read
+  2026-07-31 (`build/filters/design-2026-07-31/DESIGN-NOTES.md` §2 + §5.7): *"The Filters
+  page contains no ⌘K palette board at all. The palette lives on a different page of the
+  same file ('Global search')."* Node `11829-8908`, previously mislabelled as the palette,
+  is actually a 4-state component set for the **page toolbar search field**.
+- **Do NOT confuse the two components.** Filters' `FLT-PSRCH-01..13` (in-page toolbar
+  search, Filters' own Story 13, 7 already live in TestRail) are a **different** component
+  and are **NOT** ours — they stay with Filters.
+
+### 5. What changed here / what did NOT
+
+- **Changed:** this block added; one pointer line added to the CLAUDE.md Global Search
+  entry.
+- **NOT changed:** status (still POSTPONED), case count (**86**), any case body, the
+  id-map (C-ids still blank), the import, TestRail (**zero writes**). OQ-3/OQ-4/OQ-5 all
+  still open.
+
+---
+
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-16)
 
 **STATUS: CASES AUTHORED & REVIEWED — 86 cases / 15 sections (12 API cases in an
@@ -228,6 +339,8 @@ placeholder but is OUT OF SCOPE for V1 per the Figma.
   (user doesn't have it yet as of 2026-07-16).
 - **OQ-3 AI/"ask a question" scope — STILL OPEN** (AI is out of V1 scope per Figma;
   confirm whether the "Search or ask a question" placeholder still ships in V1).
+  **2026-07-31:** Branko ruled the AI element out of the **Filters** PRD's scope — that
+  does **not** answer it for **Global Search V1**, so OQ-3 stays open (see §0.0 item 3).
 - OQ-5 (QA env + feature-flag status) — not yet known; VIU + TestRail push wait on it.
 - ~20 VIU-confirm placeholders (see `coverage-matrix.md` §D): footer legend text,
   "Show all N" link text, Show-all target (OQ-SPEC-1), highlight color, full status
