@@ -4,16 +4,11 @@
 
 Hi Mudassir,
 
-Thanks for the status report — helpful timing.
+Thanks for the status report — helpful timing. The test cases have now been synced to the newest
+versions of the sources, the PRD and the epic.
 
-The test cases have now been synced to reflect the updated PRD and epic, including the
-latest rulings from Branko, and your run has been refreshed so it holds the full active
-suite rather than the frozen selection you were looking at. Your recorded results were
-preserved.
-
-Could you join a call with me tomorrow, whenever suits you, so we can walk the suite
-together and decide whether any cases need further refinement? Ahtesham will be on it too,
-since several of the points overlap with Filters.
+Could you put a test-case refinement call on my calendar for tomorrow, whenever works for you, so we
+can walk through them together and see if any need further refinement?
 
 Thanks again,
 
