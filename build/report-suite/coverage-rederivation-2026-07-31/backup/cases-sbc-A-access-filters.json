@@ -688,8 +688,7 @@
    "4. Expand to an invoice row and read its Location cell.",
    "5. Open the column selector and look for Location in the list.",
    "6. Narrow the Location filter to a single location and read the headers again.",
-   "7. Change the Location selection between one location, several, and \"All locations\", watching the filter control's width.",
-   "8. With more than one location still selected, download all four files from the download menu (Summary and Expanded View, PDF and CSV) and read the columns in each one."
+   "7. Change the Location selection between one location, several, and \"All locations\", watching the filter control's width."
   ],
   "expected": [
    "1. With more than one location in scope a Location column is shown, positioned immediately after the Date column.",
@@ -698,13 +697,12 @@
    "4. An invoice row always shows its own exact location — never \"Multiple\".",
    "5. Location is NOT offered in the column selector — it appears and disappears on its own, following the location scope.",
    "6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.",
-   "7. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.",
-   "8. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at one location, \"Multiple\" on a row that aggregates more than one, and the invoice's own location on an invoice row. (Exactly where the column sits inside each file is confirmed in the build.)"
+   "7. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8603; SV-8612; SV-8613 (SBC spec v12 2026-07-29 S4-R12; S4-R12a; S4-R13; S20-R19 — per-row Location column with automatic visibility; \"Multiple\" on aggregating rows; S4-R13 = the same column in every export)",
+  "spec_ref": "SV-8603 (SBC spec v12 2026-07-29 S4-R12; S4-R12a; S20-R19 — per-row Location column with automatic visibility; \"Multiple\" on aggregating rows)",
   "viu_status": "VIU-Pending",
-  "notes": "NEW 2026-07-31. The per-row Location column is a suite-wide addition in Chris Ward's 2026-07-29 spec changelog (SBC v12 change-log row: \"added a per-row Location column (shown when more than one location is in scope; 'Multiple' on aggregating rows, exact on invoice rows) plus a 'Locations:' export line\"). The suite had NO coverage of this column. The \"Locations:\" export line itself is already covered by SBC-EXP-03 and SBC-EXP-09. Exact on-screen header capitalisation is VIU-confirm. Not live-verified (Rule 12). COVERAGE RE-DERIVATION 2026-07-31: extended to close S4-R13's second half — \"When the Location column is shown on screen (more than one location in scope S4-R12) every export also includes that Location column.\" The \"Locations:\" line half was already covered by SBC-EXP-09 (C30167) and SBC-EXP-03 (C30161); the exported COLUMN was covered nowhere. Owning story for S4-R13 = SV-8603 (SBC Story 4); the export stories SV-8612/SV-8613 are cited because the observation happens in their files. Extended rather than authored as a new case (Rule 28) — same control, and this case already establishes the >1-location scope a new case would have to re-seed. Not live-verified: no QA branch exists.",
+  "notes": "NEW 2026-07-31. The per-row Location column is a suite-wide addition in Chris Ward's 2026-07-29 spec changelog (SBC v12 change-log row: \"added a per-row Location column (shown when more than one location is in scope; 'Multiple' on aggregating rows, exact on invoice rows) plus a 'Locations:' export line\"). The suite had NO coverage of this column. The \"Locations:\" export line itself is already covered by SBC-EXP-03 and SBC-EXP-09. Exact on-screen header capitalisation is VIU-confirm. Not live-verified (Rule 12).",
   "api_related": false
  }
 ]

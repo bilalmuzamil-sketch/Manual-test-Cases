@@ -313,9 +313,9 @@
    "5. The two PDF downloads follow the same names with a .pdf extension — for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612; SV-8613 (SBC spec v12 2026-07-29 S14-R14; S14-R15; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded)",
+  "spec_ref": "SV-8612; SV-8613 (SBC spec v12 2026-07-29 S14-R14; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded)",
   "viu_status": "VIU-Pending",
-  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPNAME): absorbed SBC-EXP-07. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. CHANGED by the SBC spec v12 2026-07-29 S14-R14 / S15-R6 (Summary and Expanded file names). SPEC-WATCH item 3 CLOSED — the Summary/Expanded split is now spec-ratified. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R15 (plain comma-separated .csv; not .xlsx and not JSON) added — already asserted in expected 4.",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPNAME): absorbed SBC-EXP-07. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. CHANGED by the SBC spec v12 2026-07-29 S14-R14 / S15-R6 (Summary and Expanded file names). SPEC-WATCH item 3 CLOSED — the Summary/Expanded split is now spec-ratified.",
   "api_related": false
  },
  {
@@ -343,9 +343,9 @@
    "7. The file carries a \"Locations:\" line naming the location or locations the report was scoped to, or \"All locations\" when every location you can access is selected — as a leading line above the column headers."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612 (SBC spec v12 2026-07-29 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 — the Expanded CSV now has thirteen columns INCLUDING Asset; with per-level blank-cell rules; the old flat twelve-column shape is superseded)",
+  "spec_ref": "SV-8612 (SBC spec v12 2026-07-29 Story 14 S14-R5; S14-R6; S14-R7; S14-R13 — the Expanded CSV now has thirteen columns INCLUDING Asset; with per-level blank-cell rules; the old flat twelve-column shape is superseded)",
   "viu_status": "VIU-Pending",
-  "notes": "RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): exports split Summary/Expanded and the Expanded View is 'the full Customer -> Asset -> Invoice breakdown', so the old 'no asset layer by design' known-limitation note is STALE and removed. Column order + blank-cell rules kept from the current spec until the changelog lands - reconcile then. Locations: line = all-reports change, same message. RATIFIED + EXTENDED by the SBC spec v12 2026-07-29: S14-R5 gives the exact thirteen-column Expanded order (Asset added), S14-R6 the per-level row shape, S14-R7 the \"Parts Sales\" asset row, S14-R13 the \"Locations:\" line. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R8 (plain customer names; no \"(N)\" count) added — already asserted in expected 5, anchor was missing.",
+  "notes": "RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): exports split Summary/Expanded and the Expanded View is 'the full Customer -> Asset -> Invoice breakdown', so the old 'no asset layer by design' known-limitation note is STALE and removed. Column order + blank-cell rules kept from the current spec until the changelog lands - reconcile then. Locations: line = all-reports change, same message. RATIFIED + EXTENDED by the SBC spec v12 2026-07-29: S14-R5 gives the exact thirteen-column Expanded order (Asset added), S14-R6 the per-level row shape, S14-R7 the \"Parts Sales\" asset row, S14-R13 the \"Locations:\" line.",
   "api_related": false
  },
  {
@@ -369,9 +369,9 @@
    "4. The CSV has no color; the signed Inv. Hrs value still conveys direction."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612 (SBC spec v12 2026-07-29 Story 14 S14-R9; S14-R10; S14-R11; S14-R12; S14-R13)",
+  "spec_ref": "SV-8612 (specs/sbc-sales-by-customer.md Story 14 S14-R10; S14-R11; S14-R12; S14-R13)",
   "viu_status": "VIU-Pending",
-  "notes": "COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R9 (Margin % plain to one decimal; empty when Subtotal <= 0) added — already asserted in expected 1; the citation was off by one.",
+  "notes": "",
   "api_related": false
  },
  {
@@ -521,9 +521,9 @@
    "4. The logo is embedded in the PDF (renders offline, not loaded from a network address)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8613 (SBC spec v12 2026-07-29 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18)",
+  "spec_ref": "SV-8613 (specs/sbc-sales-by-customer.md Story 15 S15-R12; S15-R13; S15-R14; S15-R15)",
   "viu_status": "VIU-Pending",
-  "notes": "The no-logo-at-all state (step 3 of the fallback) may not be reachable if the bundled logo always exists — record what is observed. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S15-R16 (scales without distortion) S15-R17 (logo fallback order) and S15-R18 (no-logo layout) added - all three already asserted in expected 1-3; the existing S15-R12..R15 citations are kept.",
+  "notes": "The no-logo-at-all state (step 3 of the fallback) may not be reachable if the bundled logo always exists — record what is observed.",
   "api_related": false
  },
  {
@@ -630,9 +630,9 @@
    "4. Below the cap the export succeeds normally."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612; SV-8613 (SBC spec v12 2026-07-29 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; §7 — Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec)",
+  "spec_ref": "SV-8612; SV-8613 (specs/sbc-sales-by-customer.md Story 14 S14-R14; Story 15 S15-R22; §7 — the Print leg REMOVED per kickoff video P25 31:14 / SV-8614 overridden; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
   "viu_status": "VIU-Pending",
-  "notes": "Server-side enforcement is covered by SBC-API-05. BUILD-DELTA: the 10,000-row cap is the 2026-07-21 spec round — the current build may lack it at VIU. Video P25 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the Print step/expectation was removed with the Print control (spec S16-R6 had capped Print too); title shortened to fit. Q2 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A 'great catch'): ONE message across all six reports — \"This report is too large to export. Narrow the date range or filters, then try again.\" The Sales By Customer spec text still carries the retired \"This export is too large to generate…\" wording; Chris's spec edit is pending. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R16 (CSV cap) and S15-R25 (PDF cap) added - the pre-v12 S14-R14/S15-R22 citations are kept so no other requirement loses its anchor.",
+  "notes": "Server-side enforcement is covered by SBC-API-05. BUILD-DELTA: the 10,000-row cap is the 2026-07-21 spec round — the current build may lack it at VIU. Video P25 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the Print step/expectation was removed with the Print control (spec S16-R6 had capped Print too); title shortened to fit. Q2 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A 'great catch'): ONE message across all six reports — \"This report is too large to export. Narrow the date range or filters, then try again.\" The Sales By Customer spec text still carries the retired \"This export is too large to generate…\" wording; Chris's spec edit is pending.",
   "api_related": false
  },
  {

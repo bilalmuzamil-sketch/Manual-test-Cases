@@ -533,8 +533,7 @@
    "3. Read the Location cell on the merged Special Order row.",
    "4. Open the column picker and look for Location in the list.",
    "5. Narrow to a single location and read the headers again.",
-   "6. Change the selection between one location, several, and \"All Locations\", watching the filter control's width.",
-   "7. With more than one location still selected, download the CSV and the PDF and read their columns from the left."
+   "6. Change the selection between one location, several, and \"All Locations\", watching the filter control's width."
   ],
   "expected": [
    "1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Type.",
@@ -542,13 +541,12 @@
    "3. The merged Special Order row shows \"Multiple\", because it is summed across the selected locations.",
    "4. Location is NOT one of the 20 columns in the picker — it is managed by the location scope, not by you.",
    "5. With a single location in scope the Location column is hidden.",
-   "6. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.",
-   "7. Both downloads include the Location column in the same position it holds on screen (leftmost, before Type), with the same values — each inventory row's own location, and \"Multiple\" on the merged Special Order row."
+   "6. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8642; SV-8646 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8; S6-R11 — per-row Location column; leftmost before Type; \"Multiple\" on the merged special-order row; not in the picker; S6-R11 = the same column in both exports)",
+  "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8 — per-row Location column; leftmost before Type; \"Multiple\" on the merged special-order row; not in the picker)",
   "viu_status": "VIU-Pending",
-  "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (PV v4 change-log row: \"added a per-row Location column (shown when more than one location is in scope; 'Multiple' on rows spanning locations)\"). The per-row rule follows the report's row model (S3-R1a): inventory rows are per-location, special-order rows are merged. The \"Locations:\" export line is already covered by PV-EXP-02. Not live-verified (Rule 12). COVERAGE RE-DERIVATION 2026-07-31: extended to close S6-R11 — \"Every export includes the per-row Location column whenever it is shown on screen (more than one location in scope S2-R12 / S3-R10) in its on-screen column position.\" PV-EXP-02 (C30376) covered only the \"Locations:\" line. Owning story for S6-R11 = SV-8646 (PV Story 6 Exports) — added alongside SV-8642 (Story 2). Extended rather than duplicated (Rule 28). Not live-verified.",
+  "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (PV v4 change-log row: \"added a per-row Location column (shown when more than one location is in scope; 'Multiple' on rows spanning locations)\"). The per-row rule follows the report's row model (S3-R1a): inventory rows are per-location, special-order rows are merged. The \"Locations:\" export line is already covered by PV-EXP-02. Not live-verified (Rule 12).",
   "api_related": false
  }
 ]

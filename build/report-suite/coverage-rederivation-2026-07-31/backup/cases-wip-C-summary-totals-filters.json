@@ -546,9 +546,9 @@
    "7. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; S10-R5a; §4 Location (column) — automatic visibility; never \"Multiple\"; export header \"Branch\")",
+  "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; §4 Location (column) — automatic visibility; never \"Multiple\"; export header \"Branch\")",
   "viu_status": "VIU-Pending",
-  "notes": "NEW 2026-07-31. WIP already HAD a Location column, but spec v6 2026-07-29 changed it from a user-toggled column to an automatic, scope-driven one and pinned the never-\"Multiple\" rule (§3 Key Decision verbatim: \"Because a work order belongs to exactly one location, each WIP row names its own location — a WIP row never shows 'Multiple'\"). The \"Branch\" export header is the pre-existing documented difference also covered by WIP-EXP-07. Not live-verified (Rule 12). COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S10-R5a (constant-width Location filter control; fixed left-aligned column position) added — asserted in expected 7 and expected 1.",
+  "notes": "NEW 2026-07-31. WIP already HAD a Location column, but spec v6 2026-07-29 changed it from a user-toggled column to an automatic, scope-driven one and pinned the never-\"Multiple\" rule (§3 Key Decision verbatim: \"Because a work order belongs to exactly one location, each WIP row names its own location — a WIP row never shows 'Multiple'\"). The \"Branch\" export header is the pre-existing documented difference also covered by WIP-EXP-07. Not live-verified (Rule 12).",
   "api_related": false
  }
 ]

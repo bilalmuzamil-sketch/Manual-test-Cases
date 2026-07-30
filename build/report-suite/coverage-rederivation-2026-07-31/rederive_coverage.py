@@ -292,13 +292,14 @@ def main():
                     status = "COVERED-TEXT"
                     cases = [x.strip() for x in j.get("cases", "").split(";") if x.strip()]
                 elif verdict == "GAP":
-                    status = "GAP"
+                    # closed once the authored/extended case cites the requirement
+                    status = "GAP-CLOSED" if direct_active else "GAP"
                 else:
                     status = verdict
             elif status in ("TEXT-CANDIDATE", "NO-CASE"):
                 status = "UNJUDGED"
 
-            if status.startswith("COVERED"):
+            if status.startswith("COVERED") or status == "GAP-CLOSED":
                 covered += 1
             elif status == "GAP":
                 gaps += 1
@@ -334,6 +335,8 @@ def main():
             "stories": len({r["story"] for r in reqs}),
             "covered": covered,
             "gaps": gaps,
+            "gaps_closed_this_pass": sum(1 for x in rows if x["report_prefix"] == prefix
+                                         and x["status"] == "GAP-CLOSED"),
             "not_testable": sum(1 for x in rows if x["report_prefix"] == prefix
                                 and x["status"] in ("NOT-TESTABLE", "CUT-BY-AUDIT",
                                                     "SPEC-BLOCKED", "DESCOPED")),
@@ -355,12 +358,14 @@ def main():
 
     tot = sum(s["requirements"] for s in summary.values())
     cov = sum(s["covered"] for s in summary.values())
-    print(f"{'report':<26}{'reqs':>6}{'cov':>6}{'GAP':>5}{'n/test':>7}{'unjud':>7}{'cases':>7}  spec")
+    print(f"{'report':<26}{'reqs':>6}{'cov':>6}{'fix':>5}{'GAP':>5}{'n/test':>7}{'unjud':>7}{'cases':>7}  spec")
     for p, s in summary.items():
-        print(f"{s['report']:<26}{s['requirements']:>6}{s['covered']:>6}{s['gaps']:>5}"
+        print(f"{s['report']:<26}{s['requirements']:>6}{s['covered']:>6}"
+              f"{s['gaps_closed_this_pass']:>5}{s['gaps']:>5}"
               f"{s['not_testable']:>7}{s['unjudged']:>7}{s['active_cases']:>7}"
               f"  v{s['version']} {s['updated'][:10]}")
     print(f"{'TOTAL':<26}{tot:>6}{cov:>6}"
+          f"{sum(s['gaps_closed_this_pass'] for s in summary.values()):>5}"
           f"{sum(s['gaps'] for s in summary.values()):>5}"
           f"{sum(s['not_testable'] for s in summary.values()):>7}"
           f"{sum(s['unjudged'] for s in summary.values()):>7}"

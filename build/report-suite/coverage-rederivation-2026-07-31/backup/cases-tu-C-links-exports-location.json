@@ -544,8 +544,7 @@
    "5. Read the Location cell on the Summary row at the bottom.",
    "6. Open the Column Selection control and look for Location in the list.",
    "7. Narrow to a single location and read the headers again.",
-   "8. Change the selection between one location, several, and \"All Locations\", watching the filter control's width.",
-   "9. With more than one location still selected, download both PDF views and the CSV and read their columns from the left."
+   "8. Change the selection between one location, several, and \"All Locations\", watching the filter control's width."
   ],
   "expected": [
    "1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Technician.",
@@ -555,13 +554,12 @@
    "5. The Summary row leaves the Location cell blank.",
    "6. Location is never listed in the Column Selection control — it follows the location scope on its own.",
    "7. With a single location in scope the Location column is hidden.",
-   "8. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.",
-   "9. Every download — both PDF views and the CSV — includes the Location column in its on-screen leftmost position, carrying the same values you just read on screen."
+   "8. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8656; SV-8654 (TU spec v5 2026-07-29 S9-R9; S9-R10; S8-R15; S10-R4; S7-R13 — per-row Location column; leftmost before Technician; \"Multiple\" on a spanning row; Summary row blank; not in the selector; S7-R13 = same column in every download)",
+  "spec_ref": "SV-8656 (TU spec v5 2026-07-29 S9-R9; S9-R10; S8-R15; S10-R4 — per-row Location column; leftmost before Technician; \"Multiple\" on a spanning row; Summary row blank; never in the selector)",
   "viu_status": "VIU-Pending",
-  "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (TU v5 change-log row: \"added a per-row Location column (shown when more than one location is in scope)\"). The blank Summary cell is explicit in S9-R10 (\"The Summary row leaves the Location column blank\"). The \"Locations:\" export line is already covered by TU-EXP-04. Not live-verified (Rule 12). TRACEABILITY NOTE: the TU spec's NEW Story 10 (Column Selection and Persistence, added 2026-07-29) has NO Jira story ticket in epic SV-8582 — the TU story tickets stop at SV-8656 (Story 9, Location Filter). This case is cited to the nearest owning story; ASK for the new Story-10 ticket key and re-cite when it exists. COVERAGE RE-DERIVATION 2026-07-31: extended to close S7-R13 — \"Every download (both PDF views and the CSV) includes the per-row Location column whenever it is shown on screen (more than one location in scope — S9-R9) in its on-screen leftmost position.\" TU-EXP-04 (C30437) covered only the \"Locations:\" line. Owning story for S7-R13 = SV-8654 (TU Story 7 Export to PDF and CSV) — added alongside SV-8656 (Story 9). Extended rather than duplicated (Rule 28). Not live-verified.",
+  "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (TU v5 change-log row: \"added a per-row Location column (shown when more than one location is in scope)\"). The blank Summary cell is explicit in S9-R10 (\"The Summary row leaves the Location column blank\"). The \"Locations:\" export line is already covered by TU-EXP-04. Not live-verified (Rule 12). TRACEABILITY NOTE: the TU spec's NEW Story 10 (Column Selection and Persistence, added 2026-07-29) has NO Jira story ticket in epic SV-8582 — the TU story tickets stop at SV-8656 (Story 9, Location Filter). This case is cited to the nearest owning story; ASK for the new Story-10 ticket key and re-cite when it exists.",
   "api_related": false
  }
 ]

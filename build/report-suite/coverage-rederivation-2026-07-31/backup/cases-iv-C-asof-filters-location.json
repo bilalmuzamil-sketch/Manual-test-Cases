@@ -519,8 +519,7 @@
    "3. Look for any row showing \"Multiple\".",
    "4. Open the column-selection control and look for Location in the list.",
    "5. Narrow to a single location and read the headers again.",
-   "6. Change the selection between one location, several, and \"All locations\", watching the filter control's width.",
-   "7. With more than one location still selected, download the CSV and the PDF and read their columns."
+   "6. Change the selection between one location, several, and \"All locations\", watching the filter control's width."
   ],
   "expected": [
    "1. With more than one location in scope a Location column is shown, inserted between Vendor and Qty on Hand.",
@@ -528,13 +527,12 @@
    "3. NO row ever shows \"Multiple\" — each row is one part at one location.",
    "4. Location is NOT offered in the column-selection control — its visibility follows the location scope automatically.",
    "5. With a single location in scope the Location column is hidden and the surrounding columns close up.",
-   "6. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.",
-   "7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty on Hand), naming each row's own location."
+   "6. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never \"Multiple\"; S10-R15 = the same column in every export)",
+  "spec_ref": "SV-8674 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never \"Multiple\")",
   "viu_status": "VIU-Pending",
-  "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (IV v3 change-log row: \"Added a per-row Location column (shown only when more than one location is in scope)\"). §4 Terminology verbatim: \"every row maps to exactly one location name — this report never shows an aggregated 'Multiple' value in the column.\" Pairs with IV-SCOPE-02 (a part at two locations = two rows). The \"Locations:\" export line is already covered by IV-EXP-02. Not live-verified (Rule 12). COVERAGE RE-DERIVATION 2026-07-31: extended to close S10-R15 — \"Every export (each CSV and each PDF) includes the Location column whenever it is shown on screen (S7-R6).\" IV-EXP-02 (C30588) covered only the \"Locations:\" line. Owning story for S10-R15 = SV-8677 (IV Story 10 Export to PDF and CSV) — added alongside SV-8674 (Story 7). Extended rather than duplicated (Rule 28). Not live-verified.",
+  "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (IV v3 change-log row: \"Added a per-row Location column (shown only when more than one location is in scope)\"). §4 Terminology verbatim: \"every row maps to exactly one location name — this report never shows an aggregated 'Multiple' value in the column.\" Pairs with IV-SCOPE-02 (a part at two locations = two rows). The \"Locations:\" export line is already covered by IV-EXP-02. Not live-verified (Rule 12).",
   "api_related": false
  }
 ]

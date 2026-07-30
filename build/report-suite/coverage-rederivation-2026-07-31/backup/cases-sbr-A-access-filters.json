@@ -578,8 +578,7 @@
    "5. Read the Location cell on the Unassigned summary row.",
    "6. Check that the pinned Subtotal column is still the rightmost column.",
    "7. Narrow to a single location and read the headers again.",
-   "8. Change the selection between one location, several, and \"All Locations\", watching the filter control's width.",
-   "9. With more than one location still selected, download all four files from the ⋯ menu (Summary and Expanded View, PDF and CSV) and read the Location column in each one."
+   "8. Change the selection between one location, several, and \"All Locations\", watching the filter control's width."
   ],
   "expected": [
    "1. With more than one location in scope a Location column is shown, positioned immediately after the Status column and before Inv. Hrs.",
@@ -589,13 +588,12 @@
    "5. The Unassigned summary row follows the same rule as any rep summary row.",
    "6. The pinned Subtotal column is still rightmost — the Location column never displaces it.",
    "7. With a single location in scope the Location column is hidden.",
-   "8. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.",
-   "9. All four downloads include the Location column in the same position it occupies on screen. In the Summary files a rep's row carries that rep's location and reads \"Multiple\" when the rep spans more than one location; in the Expanded View files each invoice row carries that invoice's own exact location."
+   "8. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8638; SV-8631 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13; S14-R20 — per-row Location column; \"Multiple\" on a rep row spanning locations; position after Status; constant-width filter; S14-R20 = the same column in all four exports)",
+  "spec_ref": "SV-8638 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13 — per-row Location column; \"Multiple\" verbatim on a rep row spanning locations; position after Status; constant-width filter)",
   "viu_status": "VIU-Pending",
-  "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (SBR v15 change-log row: \"Added a per-row Location column, shown only when the current view spans more than one location…\"). \"Multiple\" is used verbatim per S21-R8. The \"Locations:\" export line is already covered by SBR-EXP-02. Not live-verified (Rule 12). COVERAGE RE-DERIVATION 2026-07-31: extended to close S14-R20 — \"Whenever the Location column is shown on screen (S21-R7) it is included in all four exports in the same position it occupies on screen … a Summary (rolled-up) row carries the rep's location reading Multiple when that rep spans more than one location; an Expanded (per-invoice) row carries that invoice's own exact location.\" SBR-EXP-02 (C30277) covered only the \"Locations:\" line. Owning story for S14-R20 = SV-8631 (SBR Story 14 PDF and CSV exports) — added alongside SV-8638 (Story 21). Extended rather than duplicated (Rule 28). Not live-verified.",
+  "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (SBR v15 change-log row: \"Added a per-row Location column, shown only when the current view spans more than one location…\"). \"Multiple\" is used verbatim per S21-R8. The \"Locations:\" export line is already covered by SBR-EXP-02. Not live-verified (Rule 12).",
   "api_related": false
  }
 ]
