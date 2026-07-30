@@ -20,7 +20,7 @@
    "3. The other chips stay in their default state."
   ],
   "design_ref": "design-notes.md B.1 #4 (11854:26246)",
-  "spec_ref": "requirements.md Story 7 S7-R1",
+  "spec_ref": "Filters (no Jira epic) (S7-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -45,7 +45,7 @@
    "2. The chip stays a single compact pill - it does not grow to show every value in full."
   ],
   "design_ref": "design-notes.md B.1 #4 (11854:26246)",
-  "spec_ref": "requirements.md Story 7 S7-R2",
+  "spec_ref": "Filters (no Jira epic) (S7-R2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "The spec text says 'the first value followed by a COUNT of additional selections' while the spec's own example and the design show a comma-separated list truncated with an ellipsis - VIU-confirm the exact composition the build uses (list+ellipsis vs '+N' count).",
   "api_related": false
@@ -73,7 +73,7 @@
    "3. When the last active filter is removed, 'Clear filters' disappears again."
   ],
   "design_ref": "design-notes.md B.1 #1 vs #4 (11854:24657, 11854:26246)",
-  "spec_ref": "requirements.md Story 7 S7-R3; S7-N1; Story 8 S8-N1",
+  "spec_ref": "Filters (no Jira epic) (S7-R3; S7-N1; S8-N1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -102,7 +102,7 @@
    "4. The 'Clear filters' link disappears."
   ],
   "design_ref": "design-notes.md B.1 #4 (11854:26246)",
-  "spec_ref": "Filters epic (key TBD) (S8-R1; §4 Key Decisions; S13-R13 (clearing filters does not clear a typed search)) [spec v1.6 2026-07-28]",
+  "spec_ref": "Filters (no Jira epic) (S8-R1; §4 Key Decisions; S13-R13 (clearing filters does not clear a typed search)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Cross-case consistency repair 2026-07-31 (Rule 28 dimension 2 sweep): precondition 4 + expected 3 now say the Search box must be empty, so this case no longer reads as contradicting S13-R13 / FLT-PSRCH-02 = C38884 (clearing filters leaves a typed search applied). Checked against spec v1.6 (Confluence v12, 2026-07-28).",
   "api_related": false
@@ -129,7 +129,7 @@
    "3. 'Clear filters' remains visible because a filter is still active."
   ],
   "design_ref": "design-notes.md B.1 #4/#6 (11854:26246, 11854:24280)",
-  "spec_ref": "requirements.md Story 8 S8-R2; §4 Key Decisions",
+  "spec_ref": "Filters (no Jira epic) (S8-R2; §4 Key Decisions) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -157,7 +157,7 @@
    "3. Both chips are in the active state and 'Clear filters' is visible."
   ],
   "design_ref": "design-notes.md B.1 #4 (11854:26246)",
-  "spec_ref": "requirements.md §2 Feature Overview (multi-criteria); Story 8 S8-R3 ('combination of active filters')",
+  "spec_ref": "Filters (no Jira epic) (§2 Feature Overview (multi-criteria); S8-R3 ('combination of active filters')) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "The spec never states the across-filter combination rule explicitly, but S8-R3's 'combination of active filters produces no matching work orders' implies each filter narrows (AND across filters, ANY within one filter) - VIU-confirm.",
   "api_related": false
@@ -184,7 +184,7 @@
    "3. No error message or broken layout appears."
   ],
   "design_ref": "design-notes.md B.1 (empty state not drawn in the final WO frames - message text to be captured from the build)",
-  "spec_ref": "requirements.md Story 8 S8-R3",
+  "spec_ref": "Filters (no Jira epic) (S8-R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Exact empty-state message text is not in the final design set - VIU-confirm the real on-screen wording. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): engineering copy for the filtered empty state is 'No work orders match your filters' with a clear-filters action shown only while filters are active (section 4-3.5) - capture the real on-screen text live, do not fail on wording before that.",
   "api_related": false
@@ -242,7 +242,7 @@
    "4. Clearing the filters leaves your typed word in the box and still applied - each is cleared on its own without wiping the other."
   ],
   "design_ref": "Spec-sourced (S8-R3/R4/R5 as reworded in v1.6, S13-N1, S13-N2); the exact on-screen message is not pinned in any design frame - VIU-confirm.",
-  "spec_ref": "Filters epic (key TBD) (S8-R3 (empty state covers filters AND any active query); S8-R4 (prompt to clear filters and the query where active); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v1.6 2026-07-28]",
+  "spec_ref": "Filters (no Jira epic) (S8-R3 (empty state covers filters AND any active query); S8-R4 (prompt to clear filters and the query where active); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "New in spec v1.6: S8-R3 and S8-R4 were BROADENED from filters-only to 'filters and any active search query'. FLT-EMPTY-01 = C29606 and FLT-EMPTY-02 = C29607 stay valid for the filters-only case (no contradiction - they simply cover the narrower situation); this case covers the both-active situation the reworded requirements added. Overlap: FLT-PSRCH-02 = C38884 covers independent clearing from the chips and the Search box; this case covers it from the no-results empty state, which is what S8-R5 specifically requires. Exact message wording VIU-confirm.",
   "api_related": false
@@ -267,7 +267,7 @@
    "2. Each chip opens its dropdown and can be used."
   ],
   "design_ref": "design-notes.md B.1 #1 (11854:24657)",
-  "spec_ref": "requirements.md Story 9 S9-R1",
+  "spec_ref": "Filters (no Jira epic) (S9-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -297,7 +297,7 @@
    "3. After step 4 the table shows only that customer's ESTIMATE work orders - the customer filter narrows the pre-filtered Estimates list."
   ],
   "design_ref": "design-notes.md B.1 #2 (11972:32318)",
-  "spec_ref": "requirements.md Story 9 S9-R2; Story 2 S2-N1 (chip-hidden wording superseded by PO ruling 2026-07-17: chip shown disabled); §4 Key Decisions",
+  "spec_ref": "Filters (no Jira epic) (S9-R2; S2-N1; §4 Key Decisions - PRD text says \"hidden\"; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled; PRD alignment is Branko's open item) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "SPEC-vs-DESIGN CONFLICT RESOLVED by Branko 2026-07-17 (answer B - the design wins): the Status chip is SHOWN but greyed out (disabled), pre-filled 'Status: Estimate', and not clickable, exactly as final design frame 11972:32318 shows. Spec passages S2-N1/S2-N2 and S9-R2/S9-R3 (chip hidden) are STALE - flag for Branko's PRD update. Exact on-screen label and disabled appearance still VIU-confirm.",
   "api_related": false
@@ -327,7 +327,7 @@
    "3. After step 4 the table shows only that customer's COMPLETE work orders."
   ],
   "design_ref": "design-notes.md B.1 #2 (11972:32318 - Estimates equivalent; Completed not drawn separately)",
-  "spec_ref": "requirements.md Story 9 S9-R3; Story 2 S2-N2 (chip-hidden wording superseded by PO ruling 2026-07-17: chip shown disabled); §4 Key Decisions",
+  "spec_ref": "Filters (no Jira epic) (S9-R3; S2-N2; §4 Key Decisions - PRD text says \"hidden\"; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled; PRD alignment is Branko's open item) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "SPEC-vs-DESIGN CONFLICT RESOLVED by Branko 2026-07-17 (answer B - the design wins): the Status chip is SHOWN but greyed out (disabled), pre-filled with the Completed tab's status, and not clickable. Spec passages S2-N2/S9-R3 (chip hidden) are STALE - flag for Branko's PRD update. No dedicated Completed-tab design frame exists (behavior mirrors the Estimates frame 11972:32318), so the EXACT pre-filled string on this tab (e.g. 'Status: Complete') has no design evidence - capture it live at VIU before hardening it into the expected text.",
   "api_related": false
@@ -355,7 +355,7 @@
    "3. After step 2 it shows only YOUR work orders in the ticked status - the filters narrow the user-scoped list, they do not widen it to other users' work orders."
   ],
   "design_ref": "design-notes.md B.1 #1 (11854:24657 - tab row)",
-  "spec_ref": "requirements.md Story 9 S9-R4; §4 Key Decisions (My Work Orders tab does not remove filters)",
+  "spec_ref": "Filters (no Jira epic) (S9-R4; §4 Key Decisions (My Work Orders tab does not remove filters)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -382,7 +382,7 @@
    "3. The Customer selection is unchanged throughout."
   ],
   "design_ref": "design-notes.md B.1 #2/#4 (11972:32318, 11854:26246)",
-  "spec_ref": "Filters epic (key TBD) (S9-R5; S9-N1; S9-R2 - behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30) [spec v1.6 2026-07-28]",
+  "spec_ref": "Filters (no Jira epic) (S9-R5; S9-N1; S9-R2 - behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Consistency fix 2026-07-31 (FIX-PLAN F1b, user-authorized): title and expected 1 realigned to the settled Status-chip behaviour (shown greyed out, pre-filled, not clickable); the word \"hidden\" removed. Spec v1.6 prose still says \"hidden\" - Branko asked to align (item B1).",
   "api_related": false
@@ -410,7 +410,7 @@
    "3. After step 4 the filter bar comes back collapsed - the collapsed/expanded state is restored too."
   ],
   "design_ref": "design-notes.md B.1 #4/#5 (11854:26246, 11854:26564)",
-  "spec_ref": "requirements.md Story 10 S10-R1; Story 1 S1-R7",
+  "spec_ref": "Filters (no Jira epic) (S10-R1; S1-R7) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -440,7 +440,7 @@
    "3. The same filter selections are applied on the other computer too - the filters are saved to your account, not to one computer or browser (to confirm live once built)."
   ],
   "design_ref": "design-notes.md B.1 #4 (11854:26246)",
-  "spec_ref": "requirements.md Story 10 S10-R2 (session-only wording superseded by PO ruling 2026-07-17: permanent per-user persistence); §2/§4 (persist across navigation, saved per user)",
+  "spec_ref": "Filters (no Jira epic) (S10-R2 (stored server-side against the account; survives logout; syncs across devices); S10-R3 (saved per user); S10-R1 (restored after navigating away)) + Branko Q2 2026-07-17 - now matched by the PRD [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "RESOLVED (was OQ-5): Branko ruled 2026-07-17 (answer B) that filter selections are remembered PERMANENTLY per user - still there after closing the browser entirely and signing back in (and after logging out). The S10-R2 'for the duration of the browser session' sentence is superseded by the §2/§4 'saved per user' reading (last-update-wins); flag the stale S10-R2 text for Branko's PRD update. Exact on-screen labels still VIU-confirm. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): persistence is server-side per user account - cross-device, survives logout, last-write-wins when two devices save (G6). NOTE the 2026-07-28 cross-squad decision: this account-level layer is also what the Report Suite will reuse for its reports.",
   "api_related": false
@@ -466,7 +466,7 @@
    "2. User B's new filter does not change what user A sees; each user keeps their own saved filter state."
   ],
   "design_ref": "design-notes.md B.1 #4 (11854:26246)",
-  "spec_ref": "requirements.md Story 10 S10-R3; §4 Key Decisions (saved per user)",
+  "spec_ref": "Filters (no Jira epic) (S10-R3; §4 Key Decisions (saved per user)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Use two fresh ZZAUTOTEST staff logins if needed (Standing Rule 5/14).",
   "api_related": false
@@ -493,7 +493,7 @@
    "3. The table is filtered by the remaining valid selection only."
   ],
   "design_ref": "design-notes.md B.1 #11 (11854:19595)",
-  "spec_ref": "requirements.md Story 10 S10-N1",
+  "spec_ref": "Filters (no Jira epic) (S10-N1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "If customers cannot be hard-deleted in the build, use a deactivated staff member on the Lead Technician filter as the vanished value - VIU-confirm the closest achievable data state (Standing Rule 14).",
   "api_related": false
@@ -519,7 +519,7 @@
    "2. After step 3 the filter part of the URL is removed again."
   ],
   "design_ref": "requirements.md Story 11 (no design frame - behavior requirement)",
-  "spec_ref": "requirements.md Story 11 S11-R1",
+  "spec_ref": "Filters (no Jira epic) (S11-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "The URL parameter format is not specified anywhere - capture the real format at VIU.",
   "api_related": false
@@ -545,7 +545,7 @@
    "3. The same works from a saved bookmark."
   ],
   "design_ref": "requirements.md Story 11 (no design frame - behavior requirement)",
-  "spec_ref": "requirements.md Story 11 S11-R2; §2 Feature Overview (share or bookmark)",
+  "spec_ref": "Filters (no Jira epic) (S11-R2; §2 Feature Overview (share or bookmark)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): opening a filtered link is a VIEW-ONLY state - it must never overwrite your own saved filters (G7 runtime-only); see FLT-URL-05. Pending Branko: one spec sentence says the opposite ('URL wins on load, then persists') - Questions Q2 / deltas C1.",
   "api_related": false
@@ -572,7 +572,7 @@
    "3. The table reflects only the valid filter."
   ],
   "design_ref": "requirements.md Story 11 (no design frame - behavior requirement)",
-  "spec_ref": "requirements.md Story 11 S11-R3",
+  "spec_ref": "Filters (no Jira epic) (S11-R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -599,7 +599,7 @@
    "3. No error message or broken page appears."
   ],
   "design_ref": "requirements.md Story 11 (no design frame - behavior requirement)",
-  "spec_ref": "requirements.md Story 11 S11-N1",
+  "spec_ref": "Filters (no Jira epic) (S11-N1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -625,7 +625,7 @@
    "2. After switching to All and returning, the All tab is selected - the app remembers your last-used tab per account."
   ],
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D10 / section 4-3.1",
-  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists); not in the ratified product spec - confirmation requested",
+  "spec_ref": "Filters (no Jira epic) (no requirement in the ratified spec v1.6 - default/last-used tab is engineering-plan-only - confirmation requested); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "PENDING BRANKO (Questions Q5 / deltas C5): the Estimates-first-visit default is an ENGINEERING decision (D10, database-load driven), product-visible but not in any ratified spec we hold. If Branko rules the default should be All, flip expected 1.",
   "api_related": false
@@ -653,7 +653,7 @@
    "3. Report tabs likewise keep separate filter choices, each remembered and restored on its own tab."
   ],
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D20",
-  "spec_ref": "Filters (Epic key TBD) (spec v1.6 S10-R4; §4 \"Parts and Reports selections are scoped to their view/tab and persist there\"); Branko answers 2026-07-31 Q5 exception 1; tech plan 2026-07-29 D20",
+  "spec_ref": "Filters (no Jira epic) (spec v1.6 S10-R4; §4 \"Parts and Reports selections are scoped to their view/tab and persist there\"); Branko answers 2026-07-31 Q5 exception 1; tech plan 2026-07-29 D20",
   "viu_status": "VIU-Pending",
   "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): state is scoped per view AND per tab, not per route (saved under a per-view key). Applies once the Parts/Reports rollout ships - hold until then. TRACEABILITY UPGRADE 2026-07-31: the expectation is no longer sourced from an engineering decision ID alone - Branko's Q5 exception 1 (\"filters don't carry across Parts views or Report tabs; each view keeps its own set\") and spec v1.6 S10-R4 + §4 Key Decisions now say the same thing, so PO and spec agree (Rule 32(i) - duplication raises confidence). No behaviour change. This case is the SINGLE home of per-view/per-tab scoping - FLT-PARTS-12 deliberately does not duplicate it.",
   "api_related": false
@@ -678,7 +678,7 @@
    "2. Those carried-over choices are now saved to the account: the other computer shows them too."
   ],
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md section 4-3.3 (migration mapping table)",
-  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 section 4-3.3 (one-time browser-storage to account-preference migration)",
+  "spec_ref": "Filters (no Jira epic) (no numbered v1.6 requirement covers the one-off migration - context S10-R2 server-side model); tech plan 2026-07-29 s4-3.3 (browser-storage to account-preference migration) - confirmation requested [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): one-time migration, release-critical (existing users must not lose saved filters). Needs a browser profile with pre-update saved state - prepare one BEFORE the build lands on the test environment, or seed the old-format saved state deliberately. Exact mapping per the tech plan 3.3 table.",
   "api_related": false
@@ -712,7 +712,7 @@
    "6. Returning normally later still shows your own saved filters, untouched by the link visit."
   ],
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md G7 / section 4-3.4",
-  "spec_ref": "Filters epic (key TBD) (S11-R6 (URL state runtime-only with no write-back); S11-R7 (Back to my view - also clears the query); S11-R8 (rationale: the query is never saved)) [spec v1.6 2026-07-28]",
+  "spec_ref": "Filters (no Jira epic) (S11-R6 (URL state runtime-only with no write-back); S11-R7 (Back to my view - also clears the query); S11-R8 (rationale: the query is never saved)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "RESOLVED by spec v1.4/v1.5 (2026-07-27): S11-R6 ratifies runtime-only with no write-back, exactly as tested; S11-R7 ratifies the control label as \"Back to my view\" (deliberately \"my view\" not \"my filters\" because it affects filters AND search). Branko Q2 and the naming question both withdrawn. The negative direction (control absent on a normal visit, S11-N3) is FLT-URL-06. Updated 2026-07-31 (FIX-PLAN F4+F5, user-authorized) against spec v1.6 (Confluence v12, 2026-07-28); the on-screen label is still (VIU-confirm) - no Filters QA branch exists yet. | (VIU-confirm the exact on-screen wording of 'Back to my view' - flag kept here, out of the tester-facing text.)",
   "api_related": false
@@ -743,7 +743,7 @@
    "4. After you click it and you are back on your own view, the option disappears again."
   ],
   "design_ref": "No design frame for this state (spec-sourced; Figma link on Story 11 is the Claude prototype Filters.html) - VIU-confirm live.",
-  "spec_ref": "Filters epic (key TBD) (S11-N3; S11-R7) [spec v1.6 2026-07-28]",
+  "spec_ref": "Filters (no Jira epic) (S11-N3; S11-R7) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Negative half of FLT-URL-05 (C38879). Ratified label per spec v1.5 S11-R7 - VIU-confirm the exact on-screen wording. Gap identified by QA review 2026-07-31 (FIX-PLAN F6, user-authorized). Authored against spec v1.6 (Confluence v12, 2026-07-28).",
   "api_related": false

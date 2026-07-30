@@ -20,7 +20,7 @@
    "3. A right-edge arrow affordance indicates the row can be scrolled (per the design variant)."
   ],
   "design_ref": "design-notes.md B.1 #13/#14 (11857:31046, 11884:20807)",
-  "spec_ref": "requirements.md Story 12 S12-R1",
+  "spec_ref": "Filters (no Jira epic) (S12-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "The scroll-arrow overlay appears in one design variant (11884:20807) - VIU-confirm whether the build shows it always, on overflow only, or not at all.",
   "api_related": false
@@ -46,7 +46,7 @@
    "3. A sticky blue 'Apply filters' button sits at the bottom of the sheet."
   ],
   "design_ref": "design-notes.md B.1 #15 (11884:13689)",
-  "spec_ref": "requirements.md Story 12 S12-R3",
+  "spec_ref": "Filters (no Jira epic) (S12-R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "DESIGN TYPO FLAG: the sheet rows in the design read 'Lead Tehnician' (missing 'c') - the build must ship 'Lead Technician' (design-notes C.1); if it inherits the typo, raise a bug.",
   "api_related": false
@@ -75,7 +75,7 @@
    "3. The reopened sheet's title shows the applied-filter count, for example 'All Filters (1)', and the Status accordion header is highlighted with the selected values ticked."
   ],
   "design_ref": "design-notes.md B.1 #16/#18 (11884:13719, 11884:16160)",
-  "spec_ref": "requirements.md Story 12 S12-R2; S12-R3; Story 2 S2-R1",
+  "spec_ref": "Filters (no Jira epic) (S12-R2; S12-R3; S2-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Mobile uses an explicit 'Apply filters' step (unlike desktop's real-time filtering) - the sheet button is in the final design; VIU-confirm whether the list also live-updates before Apply.",
   "api_related": false
@@ -102,7 +102,7 @@
    "3. The bottom button reads 'Apply filter' (singular); tapping it applies the selection and filters the list."
   ],
   "design_ref": "design-notes.md B.1 #17/#21 (11884:21065, 11884:21271)",
-  "spec_ref": "requirements.md Story 12 S12-R2; S12-R3",
+  "spec_ref": "Filters (no Jira epic) (S12-R2; S12-R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "CONFLICT - PENDING BRANKO/DEV (Questions Q4 / deltas C4): the design frames show an 'Apply filter' button, but the tech plan (D15) builds INDIVIDUAL filter sheets as real-time (no button) - only the combined All Filters sheet batch-applies. Verify live which one ships before failing this case.",
   "api_related": false
@@ -132,7 +132,7 @@
    "4. After 'Apply filters' the list shows only work orders of the remaining selected customers, and the sheet title counts the applied filters (for example 'All Filters (2)')."
   ],
   "design_ref": "design-notes.md B.1 #20/#22/#23 (11884:13940, 11884:16695, 11884:16383)",
-  "spec_ref": "requirements.md Story 12 S12-R2; Story 3 S3-R2/R3/R5",
+  "spec_ref": "Filters (no Jira epic) (S12-R2; S3-R2/R3/R5) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -160,7 +160,7 @@
    "3. Applying a selection filters the work order list just like on desktop."
   ],
   "design_ref": "design-notes.md B.1 #24/#25 (11884:14296, 11884:14811)",
-  "spec_ref": "requirements.md Story 12 S12-R2; Story 4 S4-R1; Story 5 S5-R1",
+  "spec_ref": "Filters (no Jira epic) (S12-R2; S4-R1; S5-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "DESIGN TYPO FLAG: the accordion row label in the design reads 'Lead Tehnician' - the build must ship 'Lead Technician' (design-notes C.1).",
   "api_related": false
@@ -188,7 +188,7 @@
    "3. After applying, the list shows only work orders matching the chosen on-site state."
   ],
   "design_ref": "design-notes.md B.1 #19 (11884:15582)",
-  "spec_ref": "requirements.md Story 12 S12-R2; Story 6 S6-R1/R2/R3",
+  "spec_ref": "Filters (no Jira epic) (S12-R2; S6-R1/R2/R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -215,7 +215,7 @@
    "3. Using it removes all active filters, the chips return to default and the full list comes back."
   ],
   "design_ref": "design-notes.md B.1 #13/#14 (11857:31046, 11884:20807); Story 12",
-  "spec_ref": "requirements.md Story 12 S12-R2; Story 7 S7-R1/R3; Story 8 S8-R1",
+  "spec_ref": "Filters (no Jira epic) (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "The final mobile frames show the chip row unselected; the exact mobile placement of 'Clear filters' is not drawn - VIU-confirm where it appears (chip row vs sheet).",
   "api_related": false
@@ -240,7 +240,7 @@
    "2. The filter chip row is always visible on the mobile Work Orders page."
   ],
   "design_ref": "design-notes.md B.1 #13 (11857:31046 - toolbar has Search, sort and New Work Order only)",
-  "spec_ref": "requirements.md Story 12 S12-R4",
+  "spec_ref": "Filters (no Jira epic) (S12-R4) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -266,7 +266,7 @@
    "3. No error appears."
   ],
   "design_ref": "design-notes.md B.1 (empty state not drawn in the final mobile frames)",
-  "spec_ref": "requirements.md Story 12 S12-N1; Story 8 S8-R3/R4",
+  "spec_ref": "Filters (no Jira epic) (S12-N1; S8-R3/R4) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Exact mobile empty-state text is not in the design set - VIU-confirm it matches desktop.",
   "api_related": false
@@ -293,7 +293,7 @@
    "3. The response contains only work orders matching the filters - the filtering is done by the backend, not just hidden client-side."
   ],
   "design_ref": "requirements.md Story 11 (URL state implies parameterized list requests)",
-  "spec_ref": "requirements.md Story 2 S2-R2; Story 3 S3-R6 (backend view)",
+  "spec_ref": "Filters (no Jira epic) (S2-R2; S3-R6 (backend view)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "The filters endpoint and parameter names are not in the spec (OQ-7) - capture the real endpoint shape live at VIU and tighten this case's wording then. If filtering turns out to be purely client-side in the build, flag it to the developers instead of failing blindly. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): the list request sends each selected value as its own repeated filter entry (filters[N][field]/filters[N][value], one per value - no 'in' lists); field names: status, company_id, tech_assigned_id, service_advisor_id, vehicleHere. Imported is different: it switches to a separate imported-work-orders request with no filters (G1). Tabs do not send a status= parameter.",
   "api_related": true
@@ -319,7 +319,7 @@
    "3. Customer B's work orders are absent - the customer filter and status filter both restrict the result, while the two statuses combine as either-or."
   ],
   "design_ref": "requirements.md Story 8 S8-R3 (combination semantics)",
-  "spec_ref": "requirements.md Story 2 S2-R2; Story 3 S3-R6; Story 8 S8-R3 (backend view)",
+  "spec_ref": "Filters (no Jira epic) (S2-R2; S3-R6; S8-R3 (backend view)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Endpoint/parameter shape unknown (OQ-7) - VIU-confirm; across-filter AND semantics implied by S8-R3, confirm live. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): values within one field combine as OR (repeated entries on the same field); different fields combine as AND. Field names as in FLT-API-01.",
   "api_related": true
@@ -345,7 +345,7 @@
    "3. Any still-valid filter values in the same request are applied normally."
   ],
   "design_ref": "requirements.md Story 10 S10-N1; Story 11 S11-R3 (backend view)",
-  "spec_ref": "requirements.md Story 10 S10-N1; Story 11 S11-R3",
+  "spec_ref": "Filters (no Jira epic) (S10-N1; S11-R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Whether the backend ignores the value (returns the rest) or returns an empty match for it is not specified - record the observed behavior at VIU; either is acceptable as long as no error surfaces to the user. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): deleted/unknown selected values are silently dropped by the page itself when options load (the saved/shared value simply never reaches the request) - so the check here is: no error AND the bad value is absent from the request.",
   "api_related": true
@@ -371,7 +371,7 @@
    "2. In the browser the page still loads without filters and without an error message, matching the malformed-URL requirement."
   ],
   "design_ref": "requirements.md Story 11 S11-N1 (backend view)",
-  "spec_ref": "requirements.md Story 11 S11-N1",
+  "spec_ref": "Filters (no Jira epic) (S11-N1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Endpoint shape unknown (OQ-7) - VIU-confirm. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): a filter field the backend does not allow is REJECTED with a controlled error response (not silently ignored) - a controlled rejection is fine; a server crash (HTTP 500) is the bug.",
   "api_related": true
@@ -397,7 +397,7 @@
    "3. The page renders the no-results empty state from this response."
   ],
   "design_ref": "requirements.md Story 8 S8-R3 (backend view)",
-  "spec_ref": "requirements.md Story 8 S8-R3; Story 2 S2-N3",
+  "spec_ref": "Filters (no Jira epic) (S8-R3; S2-N3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Endpoint shape unknown (OQ-7) - VIU-confirm.",
   "api_related": true
