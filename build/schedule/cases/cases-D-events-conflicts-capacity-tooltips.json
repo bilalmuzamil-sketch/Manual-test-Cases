@@ -1,683 +1,683 @@
 [
-  {
-    "id": "SCH-EVT-01",
-    "area": "Events",
-    "title": "Create an event via left-click 'Create Event' on empty grid space",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit (event creation requires Edit; spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Left-click an empty spot in a technician's cell on a working day (not on an existing block).",
-      "2. Choose 'Create Event' from the menu that opens.",
-      "3. Fill in a name (for example 'ZZAUTOTEST stand-up'), keep the date/times offered, and save."
-    ],
-    "expected": [
-      "1. A menu opens at the spot you clicked and contains 'Create Event'.",
-      "2. The event modal opens with the clicked cell's technician and date pre-set.",
-      "3. Saving creates an event block on that technician's day.",
-      "4. A toast with Undo appears."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.10, §7 (right-click menu)",
-    "refs": "SV-8696 (§4.10 (left-click menu on empty grid space), §7)",
-    "viu_status": "VIU-Pending",
-    "notes": "Menu item label is 'Create Event' (was 'New Event') - design + Jira SV-8696 agree (DESIGN-RECONCILIATION #7). Pre-fill (clicked cell's tech + date) confirmed by design. Driver: SV-8696 §4.10 + Claude design. Confirm live at VIU. | Q4 ANSWERED 2026-07-31 (Branko answer 2026-07-31, option C, verbatim: 'C. there is no right click, only left click. when clicked it opens dropdown menu with two options (Create event, New work order) as mentioned in prd.'). Spec basis: Confluence v23 (2026-07-30) §4.10 ('Create via left-click on empty grid space, which opens a menu with \"Create event\" and \"New work order\"..') + §7 ('Left-click on empty grid space opens a menu with: Create event, New work order.'), changed in Confluence v22. The 2026-07-27 pass fixed the menu ITEMS but left the CLICK TYPE as right-click - corrected here. Confirm the exact on-screen labels LIVE at VIU (Rules 9/12).",
-    "api_related": false
-  },
-  {
-    "id": "SCH-EVT-02",
-    "area": "Events",
-    "title": "Day view event creation shows a live preview block you can drag to resize",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. You are on the Schedule page in DAY view."
-    ],
-    "steps": [
-      "1. Left-click an empty spot on a technician's timeline and choose 'Create Event' from the menu that opens.",
-      "2. While creating, watch the block and try dragging to size it.",
-      "3. Complete the event creation."
-    ],
-    "expected": [
-      "1. Left-clicking empty day-view space opens the cell menu; choosing 'Create Event' starts creation at the time you clicked.",
-      "2. A live preview block is shown while creating, and dragging resizes it.",
-      "3. Completing creates the event at the previewed time/duration."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.10 (day-view click-to-create, live preview)",
-    "refs": "SV-8696 (§4.10 (left-click menu entry; day-view live preview, drag-to-resize))",
-    "viu_status": "VIU-Pending",
-    "notes": "Exact create gesture (single click vs click-drag) unpinned - capture live. | CONTRADICTION RESOLVED 2026-07-31 (Rule-28 Stage-2b cross-case sweep, group X6): this case said a left-click on empty grid space STARTS event creation, while SCH-REAS-03 and SCH-EVT-01 say the same left-click OPENS A MENU - both cannot be true of the same build. Winner = the PO ruling (tier 1, Branko answer 2026-07-31: 'there is no right click, only left click. when clicked it opens dropdown menu with two options (Create event, New work order)') + Confluence v23 §4.10, whose old 'or by clicking empty grid space in day view' clause was REPLACED by the left-click menu. Realigned to route through the menu. The live-preview + drag-to-resize behaviour is unchanged - v23 §4.10 still states 'Day view shows a live preview block while creating, with drag-to-resize.'",
-    "api_related": false
-  },
-  {
-    "id": "SCH-EVT-03",
-    "area": "Events",
-    "title": "Event modal fields all save; the all-day toggle creates an all-day event",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. You are on the Schedule page with the event modal open (left-click empty grid space, then 'Create Event')."
-    ],
-    "steps": [
-      "1. Read the fields the modal offers.",
-      "2. Fill each: name, date, start and end time, and pick a color category. Save, then re-open the event.",
-      "3. Open the event modal again, turn the all-day toggle ON, and save.",
-      "4. Look at how the all-day event renders in day and week views."
-    ],
-    "expected": [
-      "1. The modal contains: name, date, start/end time, an all-day toggle, and a color category.",
-      "2. The event saves with the entered values.",
-      "3. Re-opening the event shows the saved values.",
-      "4. With all-day ON, specific start/end times are not required (the time fields are disabled or hidden).",
-      "5. The event is created as an all-day block for that technician and day."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.10 (Event modal)",
-    "refs": "SV-8696 (§4.10 (Event modal), §8.1 (Event allDay field))",
-    "viu_status": "VIU-Pending",
-    "notes": "Field labels unpinned - confirm the exact on-screen labels live. All-day rendering (where the block sits on the timeline) unpinned - capture live. Menu item label is 'Create Event' (was 'New Event') - design + Jira SV-8696 agree (DESIGN-RECONCILIATION #7). | CONSOLIDATED 2026-07-31 (usefulness audit G-EVENT-MODAL, user-authorized): absorbed SCH-EVT-04 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail. | WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): Precondition 2's stale menu label 'New Event' corrected to 'Create Event' (DESIGN-RECONCILIATION #7). | Q4 ANSWERED 2026-07-31 (Branko answer 2026-07-31, option C, verbatim: 'C. there is no right click, only left click. when clicked it opens dropdown menu with two options (Create event, New work order) as mentioned in prd.'). Spec basis: Confluence v23 (2026-07-30) §4.10 ('Create via left-click on empty grid space, which opens a menu with \"Create event\" and \"New work order\"..') + §7 ('Left-click on empty grid space opens a menu with: Create event, New work order.'), changed in Confluence v22. The 2026-07-27 pass fixed the menu ITEMS but left the CLICK TYPE as right-click - corrected here. Confirm the exact on-screen labels LIVE at VIU (Rules 9/12).",
-    "api_related": false
-  },
-  {
-    "id": "SCH-EVT-04",
-    "area": "Events",
-    "title": "The all-day toggle creates an all-day event",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. You are on the Schedule page with the event modal open."
-    ],
-    "steps": [
-      "1. Turn the all-day toggle ON.",
-      "2. Save the event.",
-      "3. Look at how it renders in day and week views."
-    ],
-    "expected": [
-      "1. With all-day on, specific start/end times are not required (the time fields are disabled or hidden).",
-      "2. The event is created as an all-day block for that technician and day."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.10, §8.1 (Event allDay field)",
-    "refs": "SV-8696 (§4.10, §8.1 (Event allDay field))",
-    "viu_status": "Retired - MERGED into SCH-EVT-03 2026-07-31 (usefulness audit G-EVENT-MODAL, user-authorized consolidation)",
-    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-EVENT-MODAL): merged into SCH-EVT-03 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-EVT-04.json. | All-day rendering (where the block sits on the timeline) unpinned - capture live.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-EVT-05",
-    "area": "Events",
-    "title": "Events can be dragged to another technician or another day",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. An event exists on a technician's day.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Drag the event block to a different technician's row.",
-      "2. Drag it to a different day.",
-      "3. Undo/move back to restore."
-    ],
-    "expected": [
-      "1. Dropping on another technician reassigns the event to them.",
-      "2. Dropping on another day moves it to that day.",
-      "3. Each move produces a toast with Undo."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.10 (Drag-and-drop to reassign/move), §7 (toast)",
-    "refs": "SV-8696 (§4.10 (Drag-and-drop to reassign/move), §7 (toast))",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-EVT-06",
-    "area": "Events",
-    "title": "Event cards are structurally distinct from shift cards - white outlined card with a grey icon chip, no colored left rail",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. An event and a shift sit near each other on the grid.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Compare the event card with the shift block side by side."
-    ],
-    "expected": [
-      "1. The event card is a white/neutral card with a thin, even border on all four sides and NO colored left rail (the left rail is the shift's cue).",
-      "2. It has a small grey-filled rounded chip on the left containing a calendar icon, and two lines of text beside it: the event name, then the time range in secondary text.",
-      "3. The shift reads as a tinted color-filled block with a colored left rail - the two types are separable at a glance, not by color alone."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.10 (Event card anatomy)",
-    "refs": "SV-8696 (§4.10 (Event card anatomy))",
-    "viu_status": "VIU-Pending",
-    "notes": "Event card anatomy (white/neutral outlined card, calendar icon chip, name + time range, no colored left rail) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-EVT-07",
-    "area": "Events",
-    "title": "Events default to neutral/grey; choosing a color tints the card and its icon chip",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit to change color; View to observe (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A newly created event exists with no color chosen.",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Look at the new event's default color.",
-      "2. Open the event and choose a color from the color picker.",
-      "3. Look at the card again."
-    ],
-    "expected": [
-      "1. The default event color is neutral/grey.",
-      "2. The color picker offers the same custom color palette as shifts (shared picker with editable labels).",
-      "3. Choosing a color tints the card and the icon chip in matching tones, the same way a colored shift is tinted."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.10 (Event color), §10",
-    "refs": "SV-8696 (§4.10 (Event color), §10)",
-    "viu_status": "VIU-Pending",
-    "notes": "Event default neutral/grey + shared color palette pinned by the Claude design (§3/§4c color picker); confirm live. Driver: Claude design.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-EVT-08",
-    "area": "Events",
-    "title": "An event's hours count toward the capacity bar but raise no conflict",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. Capacity Bars and Events are ON in View Options.",
-      "3. A technician has a shift and, on the same day/time, an event (create both, ZZAUTOTEST)."
-    ],
-    "steps": [
-      "1. Note the day's capacity bar fill with only the shift present.",
-      "2. Add an all-day (or long) event on the same technician and day.",
-      "3. Look at the capacity bar again and check for any conflict on the block and in the toolbar conflict pill."
-    ],
-    "expected": [
-      "1. Adding the event DOES increase that day's capacity bar fill - the event's hours are counted alongside shift hours (a 2-hour meeting uses up 2 hours of the technician's available time).",
-      "2. The event does NOT create a double-booked or overlap conflict with the shift, and the toolbar conflict count does not increase because of it.",
-      "3. The two behave differently on purpose: an event uses up capacity, but it is never flagged as a conflict."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.10 (Events), §4.11, §4.12",
-    "refs": "SV-8696 (§4.10 (Events), §4.11 (events not conflict-checked), §4.12 (event time included in the utilization total))",
-    "viu_status": "VIU-Pending",
-    "notes": "REVERSED 2026-07-31 by the PO (Branko answer 2026-07-31, answer A): event hours DO consume capacity. Verbatim: 'A) §4.12 PRD is explicit: \"Event time is included in the utilization total alongside shifts, so meetings and training consume capacity.\" A 2-hour meeting consumes 2 hours of capacity. Note the split in §4.11: events count toward capacity but are not conflict-checked.' Spec basis: Confluence v23 (2026-07-30) §4.12 ('Blue fill: aggregate technician-hours booked (shifts plus events)...') + §4.11 ('Events are not conflict-checked for now... Their time still counts toward capacity'), both added in Confluence v19 (2026-07-23) - after our v18 baseline. This SUPERSEDES his 2026-07-22 'events currently excluded' answer, which is what this case previously asserted (Rule 32 newest-wins). NOT YET ANSWERED and therefore NOT asserted here: whether a DEPARTMENT-assigned event consumes each technician's time, and whether an ALL-DAY event (no start/end) consumes a full day - see DELTAS.md questions A2/A3; observe and record LIVE at VIU (Rule 12).",
-    "api_related": false
-  },
-  {
-    "id": "SCH-CONF-01",
-    "area": "Conflict Detection",
-    "title": "Double-booked: two work orders overlapping on the same technician at the same time are flagged",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. Two different work orders have schedulable lines.",
-      "3. You are on the Schedule page; note the toolbar conflict pill's current count."
-    ],
-    "steps": [
-      "1. Schedule work order 1 on a technician for a given time.",
-      "2. Schedule work order 2 on the SAME technician overlapping the same time.",
-      "3. Look at the two blocks and the toolbar conflict pill."
-    ],
-    "expected": [
-      "1. The overlap is detected as a Double-booked conflict.",
-      "2. A warning icon appears on the affected block(s).",
-      "3. The toolbar conflict pill's count increases.",
-      "4. The conflict is listed in the pill's dropdown."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.11 (Double-booked)",
-    "refs": "SV-8697 (§4.11 (Double-booked))",
-    "viu_status": "VIU-Pending",
-    "notes": "Conflict-type display names ('Double-booked' etc.) are the spec's words - confirm on-screen wording live. Whether one or both blocks get the icon is unpinned - observe. Events do NOT participate in double-booked/overlap conflict detection - CONFIRMED 2026-07-31, no longer provisional. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-2): the engineering plan (D4) treats double-booking as a FE 'soft warning', NOT a hard conflict - the BE detector reports only outside-window/closure/non-working-day. Whether the toolbar pill counts double-bookings is therefore uncertain; pending Branko/dev ruling (tech-plan-2026-07-29/Questions-for-Branko-dev.md NQ-2). Observe live; do not fail solely on the pill count until ruled. | CONFIRMED 2026-07-31 (Branko answer 2026-07-31 answer A + Confluence v23 (2026-07-30) §4.11 verbatim: 'Events are not conflict-checked for now: an event overlapping a shift (or another event) does not raise a conflict. Their time still counts toward capacity'). The events-not-conflicted half is now spec text AND a PO ruling, so the earlier 'may change' caveat is dropped. The capacity half moved the other way - see SCH-EVT-08. NQ-2 (does the conflict counter include double-bookings?) is STILL OPEN and untouched by this ruling.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-CONF-02",
-    "area": "Conflict Detection",
-    "title": "Working-day conflict: a shift on a day outside the technician's configured working days is flagged",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A technician's configured working days are known (for example Monday to Friday); Saturday/Sunday columns are visible (View Options - Saturday and Sunday on).",
-      "3. A schedulable work order line exists."
-    ],
-    "steps": [
-      "1. Drop the line onto that technician's cell on a day OUTSIDE their working days (for example a Saturday when the technician works Monday to Friday).",
-      "2. Look at the block and the conflict pill."
-    ],
-    "expected": [
-      "1. The shift is created but flagged as a conflict because the day is outside the technician's configured working days (the design's reason sentence reads in the spirit of 'Scheduled on a weekend (outside Mon-Fri)').",
-      "2. If the technician's working days DO include that day (for example Saturday hours are configured), a shift on that day is NOT flagged.",
-      "3. The warning icon appears on the block and the conflict is listed in the toolbar dropdown."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.11 (Weekend shift)",
-    "refs": "SV-8697 (§4.11 (Weekend shift))",
-    "viu_status": "VIU-Pending",
-    "notes": "Reconciliation 2026-07-22: reframed from a fixed Saturday/Sunday rule to the technician's own configured working days. Driver: Branko Q&A 2026-07-22 Q2 (hierarchy Tech hours > Business hours > Default; Saturday hours => no conflict). The prototype hardcodes Mon-Fri/8-17 (design §5) - confirm the real per-tech hierarchy LIVE at VIU. TECH-PLAN 2026-07-29 CONFIRMS: plan D4/§6 test matrix states 'Saturday with tech Saturday hours set is NOT a conflict' and the same Tech > Business > Default hierarchy - expected #2 stands.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-CONF-03",
-    "area": "Conflict Detection",
-    "title": "Before-hours and after-hours shifts are flagged against the tech's hours",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A technician has a known working day (for example 8:00 AM to 5:00 PM).",
-      "3. A shift exists for that technician inside those hours."
-    ],
-    "steps": [
-      "1. In day view, drag the shift so it starts BEFORE the technician's working-day start (for example 6:00 AM).",
-      "2. Look at the block and the conflict pill.",
-      "3. Now drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM).",
-      "4. Look at the block and the conflict pill again."
-    ],
-    "expected": [
-      "1. The shift is flagged as a before-hours conflict, with a reason sentence in the spirit of 'Starts before working hours', measured against that technician's own configured working-day START time (not a fixed hour).",
-      "2. The shift is flagged as an after-hours conflict, with a reason sentence in the spirit of 'Extends past working hours', measured against that technician's own configured working-day END time (not a fixed hour).",
-      "3. Both the start and the end follow the hierarchy technician hours, then shop business hours, then the general default working day of 7:00 AM to 7:00 PM.",
-      "4. Warning icon on the block in each case; the conflict appears in the toolbar dropdown."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.11 (Before hours)",
-    "refs": "SV-8697 (§4.11 (Before hours, After hours), §4.2 (working-hours hierarchy; 7:00 AM to 7:00 PM default))",
-    "viu_status": "VIU-Pending",
-    "notes": "Reconciliation 2026-07-22: 'working-day start/end' now = the technician's CONFIGURED start/end (hierarchy Tech > Business > Default). Driver: Branko Q&A 2026-07-22 Q2. Prototype hardcodes 8:00 AM / 5:00 PM (design §5) - confirm the real hierarchy LIVE at VIU. | CONSOLIDATED 2026-07-31 (usefulness audit G-HOURS-CONFLICT, user-authorized): absorbed SCH-CONF-04 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail. | Q5 ANSWERED 2026-07-31 (Branko answer 2026-07-31, option B, verbatim: 'B) 7:00 AM to 7:00 PM. PRD §4.2 hierarchy: technician's custom hours -> shop business hours -> general default of 7 AM 7 PM. §4.8 repeats 7:00 AM as the auto-scroll fallback.'). The prototype's hardcoded 8:00 AM / 5:00 PM numbers have been REMOVED from the expected results - printing them in front of a tester was misleading now that 7-7 is confirmed by the PO, the spec and the engineering plan alike (the prototype is the lone outlier).",
-    "api_related": false
-  },
-  {
-    "id": "SCH-CONF-04",
-    "area": "Conflict Detection",
-    "title": "After hours: a shift extending past the technician's configured working-day end is flagged",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. A technician has a known working-day end (for example 5:00 PM).",
-      "3. A shift exists for that technician ending before 5:00 PM."
-    ],
-    "steps": [
-      "1. In day view, drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM).",
-      "2. Look at the block and the conflict pill."
-    ],
-    "expected": [
-      "1. The shift is flagged as an after-hours conflict (the design's reason sentence reads in the spirit of 'Extends past working hours (5:00 PM)'), measured against the technician's configured working-day end.",
-      "2. The working-day end follows the hierarchy technician hours, then business hours, then the default.",
-      "3. Warning icon on the block; the conflict appears in the toolbar dropdown."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.11 (After hours)",
-    "refs": "SV-8697 (§4.11 (After hours))",
-    "viu_status": "Retired - MERGED into SCH-CONF-03 2026-07-31 (usefulness audit G-HOURS-CONFLICT, user-authorized consolidation)",
-    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-HOURS-CONFLICT): merged into SCH-CONF-03 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-CONF-04.json. | Reconciliation 2026-07-22: 'working-day end' now = the technician's CONFIGURED end (hierarchy Tech > Business > Default). Driver: Branko Q&A 2026-07-22 Q2. Prototype hardcodes 5:00 PM (design §5) - confirm the real hierarchy LIVE at VIU.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-CONF-05",
-    "area": "Conflict Detection",
-    "title": "The toolbar conflict pill shows the issue count and opens a dropdown listing the conflicts",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. At least two conflicts of different types exist (for example one double-booked overlap and one Saturday shift - create them first).",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Read the conflict pill in the grid toolbar.",
-      "2. Click it.",
-      "3. Read the dropdown."
-    ],
-    "expected": [
-      "1. The pill shows the current number of scheduling issues.",
-      "2. Clicking opens a dropdown listing each conflict.",
-      "3. The list covers all current conflicts (count matches the pill).",
-      "4. Resolving a conflict (for example moving the shift) reduces the count - detection is continuous."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.11, §6 (Conflict pill)",
-    "refs": "SV-8697 (§4.11, §6 (Conflict pill))",
-    "viu_status": "VIU-Pending",
-    "notes": "Pill copy/format unpinned - capture live. Events are excluded from the conflict count/list (Branko 2026-07-22 Q1 - may change).",
-    "api_related": false
-  },
-  {
-    "id": "SCH-CONF-06",
-    "area": "Conflict Detection",
-    "title": "Clicking a conflict in the dropdown navigates to the relevant technician and day",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A conflict exists on a technician/day that is NOT currently in view (navigate the grid away first).",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Open the conflict pill's dropdown.",
-      "2. Click the conflict entry."
-    ],
-    "expected": [
-      "1. The grid navigates to the relevant technician and day.",
-      "2. The conflicted shift is brought into view."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.11 (Clicking a conflict navigates)",
-    "refs": "SV-8697 (§4.11 (Clicking a conflict navigates))",
-    "viu_status": "VIU-Pending",
-    "notes": "Whether it switches view (day/week) or highlights the block is unpinned - observe and record.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-CONF-07",
-    "area": "Conflict Detection",
-    "title": "Red/alarming styling is reserved for conflicts and genuine errors - never used for overtime",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. One technician is booked into OVERTIME on a day WITHOUT any conflict (more hours than their day, sequential non-overlapping shifts within working hours - use the technician's working window carefully, or observe the OT tag day).",
-      "3. Capacity Bars are on."
-    ],
-    "steps": [
-      "1. Look at the overtime signals for that day ('OT' tag, amber highlights).",
-      "2. Look at a conflicted shift for comparison."
-    ],
-    "expected": [
-      "1. Overtime is signaled with the 'OT' text tag and amber tones - NOT red or alarming styling.",
-      "2. Red/alarming styling appears only for conflicts and genuine errors."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.11 (styling rule), §4.12",
-    "refs": "SV-8697 (§4.11 (styling rule), §4.12)",
-    "viu_status": "VIU-Pending",
-    "notes": "Note: overtime that spills past working-day end would itself be an After-hours conflict - the pure-OT setup needs hours summed within the working window via overlapping-free stacking; capture the achievable state live.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-CAP-01",
-    "area": "Capacity Bars",
-    "title": "Capacity bar fill = booked (shifts + events) vs available, clamped, equal tracks",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. Capacity Bars are ON in View Options (default).",
-      "3. Technicians' working hours are known; shifts exist on at least two days with different total booked hours.",
-      "4. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Look at each day column's header bar.",
-      "2. Compare a lightly-booked day with a heavily-booked day.",
-      "3. Compare the bars' track widths across days."
-    ],
-    "expected": [
-      "1. Each day header shows a capacity bar; the blue fill represents total technician-hours booked - shift hours PLUS event hours - divided by total available (sum of all techs' working hours).",
-      "2. A more heavily booked day shows a longer blue fill; the fill never exceeds the track (clamped at 100%).",
-      "3. The track width is identical across all days (capacity is not rescaled per day), so bars are comparable at a glance."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.12 (Blue fill)",
-    "refs": "SV-8698 (§4.12 (Blue fill - aggregate booked = shifts plus events))",
-    "viu_status": "VIU-Pending",
-    "notes": "Day-column capacity bar (blue fill, clamped, equal track widths) pinned by the Claude design (§3 week/month cap bars); live-render confirm at VIU. Driver: Claude design §3. | UPDATED 2026-07-31 (Branko answer 2026-07-31 answer A + Confluence v23 (2026-07-30) §4.12): the aggregate explicitly includes EVENT hours as well as shift hours ('shifts plus events'). This reverses the earlier 2026-07-22 'events excluded' note. | TITLE TRIMMED 2026-07-31 to the <=80-character concise-title rule (user instruction 2026-07-27: keep titles short enough to display in full on the TestRail case page; detail belongs in Steps/Expected). Was 125 chars: 'Day-column headers show a capacity bar - blue fill = aggregate booked vs total available, clamped at 100%, equal track widths'. Done now because this case is already being written in this pass - it removes one item from the 79-title trim backlog rather than adding a separate write later.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-CAP-02",
-    "area": "Capacity Bars",
-    "title": "When aggregate hours exceed capacity, an amber spill extends past the track's right edge with a tick at the 100% line",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. Capacity Bars are ON.",
-      "3. One day is booked BEYOND the team's total available hours (seed extra shifts)."
-    ],
-    "steps": [
-      "1. Look at that day's capacity bar."
-    ],
-    "expected": [
-      "1. An amber segment extends past the right edge of the track, showing the excess.",
-      "2. A tick marks the 100% line where the track ends."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.12 (Amber spill)",
-    "refs": "SV-8698 (§4.12 (Amber spill))",
-    "viu_status": "VIU-Pending",
-    "notes": "Amber spill past the track + tick at 100% pinned by the Claude design (§3 capacity visualization); confirm live. Driver: Claude design §3. | UPDATED 2026-07-31 (Branko answer 2026-07-31 answer A + Confluence v23 (2026-07-30) §4.12): events are NOT excluded any more - event hours count toward the aggregate, so event time is another way a day can exceed capacity and show the amber spill. The spill behaviour itself is unchanged, so no tester-facing edit was needed.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-CAP-03",
-    "area": "Capacity Bars",
-    "title": "The 'OT' text tag appears whenever any single technician exceeds their own daily hours - even when the day's aggregate is under capacity",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser with Schedule: Edit.",
-      "2. Capacity Bars are ON.",
-      "3. On one day, a single technician is booked beyond THEIR daily hours while the team's aggregate for that day remains UNDER total capacity (other techs lightly booked)."
-    ],
-    "steps": [
-      "1. Look at that day's capacity bar and header."
-    ],
-    "expected": [
-      "1. An 'OT' tag appears for the day even though the aggregate bar is under 100%.",
-      "2. The tag is text, not a color-only signal.",
-      "3. Overtime (per-technician) and capacity (aggregate) are independent signals."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.12 (OT tag), §11 (not color-only)",
-    "refs": "SV-8698 (§4.12 (OT tag), §11 (not color-only))",
-    "viu_status": "VIU-Pending",
-    "notes": "'OT' text tag pinned by the Claude design (§3 week headers show 'OT' tags); confirm live. Driver: Claude design §3. | UPDATED 2026-07-31: the old 'events do not count' claim is withdrawn (Branko answer 2026-07-31 answer A). It is deliberately NOT replaced with the opposite: Confluence v23 (2026-07-30) §4.12 says event time is in the AGGREGATE utilization total but calls overtime 'a separate per-technician signal, and the two are independent', and never says whether event hours feed the per-technician OT test. SPEC SILENT (Rule 15) -> VIU-confirm; open question A1 in DELTAS.md. Do not fail this case on the OT-vs-events point until it is ruled.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-CAP-04",
-    "area": "Capacity Bars",
-    "title": "Hovering a capacity bar shows a per-technician breakdown, with overtime technicians highlighted in amber",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. Capacity Bars are ON; a day exists where one technician is in overtime and others are not.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Hover over that day's capacity bar.",
-      "2. Read the tooltip."
-    ],
-    "expected": [
-      "1. A tooltip shows a per-technician breakdown: assigned hours vs that technician's capacity.",
-      "2. The overtime technician's entry is highlighted in amber.",
-      "3. The numbers agree with the shifts actually on the grid."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.12 (Hover tooltip)",
-    "refs": "SV-8698 (§4.12 (Hover tooltip))",
-    "viu_status": "VIU-Pending",
-    "notes": "Capacity hover tooltip (per-tech breakdown, OT techs in amber) pinned by the Claude design (§3 cap-tooltip render); confirm live. Driver: Claude design §3. | UPDATED 2026-07-31: the old 'breakdown excludes events' claim is withdrawn (Branko answer 2026-07-31 answer A). Whether the per-TECHNICIAN hover breakdown includes event hours is NOT stated in Confluence v23 (2026-07-30) §4.12 (only the aggregate is) - SPEC SILENT (Rule 15) -> VIU-confirm; open question A1 in DELTAS.md. Record what the tooltip actually totals when observed live.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-TIP-01",
-    "area": "Hover Tooltips",
-    "title": "Shift hover tooltip shows customer, unit/vehicle/VIN, date and time, technician, scope, up to 3 line names, and a progress bar",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A multi-line shift exists covering 5 lines, with some time logged, for a unit that has a VIN.",
-      "3. You are on the Schedule page in week view."
-    ],
-    "steps": [
-      "1. Hover over the shift block and wait briefly for the tooltip.",
-      "2. Read the tooltip from top to bottom."
-    ],
-    "expected": [
-      "1. The tooltip shows: the customer name; unit, vehicle, and VIN (the tooltip shows the VIN whenever the unit has one, regardless of the 'VIN Number' toggle); the date and time range; the technician; and a scope summary ('N lines · Xh' style).",
-      "2. The individual line names appear as a short list capped at 3, with a '+N more lines' row for the rest (here '+2 more lines'); line statuses are NOT shown.",
-      "3. A time-logged progress bar shows logged vs estimated hours ('X / Yh' style)."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.13 (Shift tooltip)",
-    "refs": "SV-8695 (§4.13 (Shift tooltip))",
-    "viu_status": "VIU-Pending",
-    "notes": "Reconciliation 2026-07-22: the hover tooltip always shows the VIN when present (NOT gated by the 'VIN Number' toggle) - the old §4.13-vs-§9 caveat is resolved by the design in favour of §4.13. The 'N lines · Xh', '+N more lines' and 'X / Yh' formats + the 3-line cap are pinned by the Claude design (§4c/tooltip). Driver: Claude design §6/§7 + Branko Q&A 2026-07-22. | Q6 ANSWERED 2026-07-31 - PO RATIFIES our 2026-07-22 reading (Branko answer 2026-07-31, option A, verbatim: 'A. Vin is always visible on hover regardless of the toggle'). The §4.13-vs-§9 inconsistency is settled in favour of §4.13; OQ-6(a) is CLOSED. No tester-facing edit needed - the case already asserted this. DOC-HYGIENE FLAG for Branko (not a case change): Confluence v23 (2026-07-30) §9 STILL ties the tooltip VIN to the 'VIN Number' toggle, contradicting §4.13 and his own answer.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-TIP-02",
-    "area": "Hover Tooltips",
-    "title": "A conflicted shift's tooltip shows the conflict icon and the conflict reason in amber",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A conflicted shift exists (for example double-booked).",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Hover the conflicted shift and read the tooltip."
-    ],
-    "expected": [
-      "1. The customer name line includes the conflict icon.",
-      "2. The conflict reason is shown in amber."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.13 (Shift tooltip - conflict)",
-    "refs": "SV-8695 (§4.13 (Shift tooltip - conflict))",
-    "viu_status": "VIU-Pending",
-    "notes": "Conflict-reason copy unpinned - capture live.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-TIP-03",
-    "area": "Hover Tooltips",
-    "title": "Event hover tooltip shows the event name with its grey category dot, date and time range, and technician",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. An event exists on a technician's day.",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Hover the event card and read the tooltip."
-    ],
-    "expected": [
-      "1. The tooltip shows the event name with its category dot (grey for a default event).",
-      "2. The date and time range are shown.",
-      "3. The technician is shown."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.13 (Event tooltip)",
-    "refs": "SV-8695 (§4.13 (Event tooltip))",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SCH-TIP-04",
-    "area": "Hover Tooltips",
-    "title": "Tooltips open after a short hover delay, dismiss on mouse-leave, and are read-only - clicking still opens the modal",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A shift exists on the grid.",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Move the mouse quickly across the block without stopping - watch for tooltips.",
-      "2. Rest the pointer on the block and wait briefly.",
-      "3. Move the mouse off the block.",
-      "4. Click the block."
-    ],
-    "expected": [
-      "1. A quick pass does not flash tooltips - the tooltip opens only after a short hover delay (spec: roughly 300 to 500ms).",
-      "2. It dismisses when the mouse leaves the block.",
-      "3. The tooltip is read-only (no buttons/actions inside it).",
-      "4. Clicking the block opens the full detail modal as normal."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.13 (Behavior)",
-    "refs": "SV-8695 (§4.13 (Behavior))",
-    "viu_status": "VIU-Pending",
-    "notes": "The 300-500ms delay is spec-approximate - confirm the actual delay behavior live.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-TIP-05",
-    "area": "Hover Tooltips",
-    "title": "The tooltip flips above the block or shifts horizontally to stay within the viewport - it is never clipped",
-    "priority": "Low",
-    "type": "Functional",
-    "permissions_required": "Schedule: View (spec §14.1).",
-    "preconditions": [
-      "1. You are signed in on a desktop browser.",
-      "2. A multi-line shift (tall tooltip) exists near the BOTTOM edge of the viewport, and another near a horizontal edge (scroll to arrange).",
-      "3. You are on the Schedule page."
-    ],
-    "steps": [
-      "1. Hover the shift near the bottom edge and look at where its tooltip opens.",
-      "2. Hover the shift near the side edge."
-    ],
-    "expected": [
-      "1. When there is not enough room below, the tooltip opens ABOVE the block instead.",
-      "2. Near a side edge, the tooltip shifts horizontally to stay fully within the viewport.",
-      "3. No part of the tooltip is clipped off-screen."
-    ],
-    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-    "spec_ref": "requirements.md §4.13 (flip/shift to stay in viewport)",
-    "refs": "SV-8695 (§4.13 (flip/shift to stay in viewport))",
-    "viu_status": "VIU-Pending",
-    "notes": "Tooltip flip-above / horizontal-shift to stay in the viewport pinned by the Claude design (tooltip positioning); confirm live. Driver: Claude design §4.",
-    "api_related": false
-  }
+ {
+  "id": "SCH-EVT-01",
+  "area": "Events",
+  "title": "Create an event via left-click 'Create Event' on empty grid space",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (event creation requires Edit; spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Left-click an empty spot in a technician's cell on a working day (not on an existing block).",
+   "2. Choose 'Create Event' from the menu that opens.",
+   "3. Fill in a name (for example 'ZZAUTOTEST stand-up'), keep the date/times offered, and save."
+  ],
+  "expected": [
+   "1. A menu opens at the spot you clicked and contains 'Create Event'.",
+   "2. The event modal opens with the clicked cell's technician and date pre-set.",
+   "3. Saving creates an event block on that technician's day.",
+   "4. A toast with Undo appears."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.10 (left-click menu on empty grid space), §7",
+  "refs": "SV-8696 (§4.10 (left-click menu on empty grid space), §7)",
+  "viu_status": "VIU-Pending",
+  "notes": "Menu item label is 'Create Event' (was 'New Event') - design + Jira SV-8696 agree (DESIGN-RECONCILIATION #7). Pre-fill (clicked cell's tech + date) confirmed by design. Driver: SV-8696 §4.10 + Claude design. Confirm live at VIU. | Q4 ANSWERED 2026-07-31 (Branko answer 2026-07-31, option C, verbatim: 'C. there is no right click, only left click. when clicked it opens dropdown menu with two options (Create event, New work order) as mentioned in prd.'). Spec basis: Confluence v23 (2026-07-30) §4.10 ('Create via left-click on empty grid space, which opens a menu with \"Create event\" and \"New work order\"..') + §7 ('Left-click on empty grid space opens a menu with: Create event, New work order.'), changed in Confluence v22. The 2026-07-27 pass fixed the menu ITEMS but left the CLICK TYPE as right-click - corrected here. Confirm the exact on-screen labels LIVE at VIU (Rules 9/12).",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-02",
+  "area": "Events",
+  "title": "Day view event creation shows a live preview block you can drag to resize",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. You are on the Schedule page in DAY view."
+  ],
+  "steps": [
+   "1. Left-click an empty spot on a technician's timeline and choose 'Create Event' from the menu that opens.",
+   "2. While creating, watch the block and try dragging to size it.",
+   "3. Complete the event creation."
+  ],
+  "expected": [
+   "1. Left-clicking empty day-view space opens the cell menu; choosing 'Create Event' starts creation at the time you clicked.",
+   "2. A live preview block is shown while creating, and dragging resizes it.",
+   "3. Completing creates the event at the previewed time/duration."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.10 (day-view click-to-create, live preview)",
+  "refs": "SV-8696 (§4.10 (left-click menu entry; day-view live preview, drag-to-resize))",
+  "viu_status": "VIU-Pending",
+  "notes": "Exact create gesture (single click vs click-drag) unpinned - capture live. | CONTRADICTION RESOLVED 2026-07-31 (Rule-28 Stage-2b cross-case sweep, group X6): this case said a left-click on empty grid space STARTS event creation, while SCH-REAS-03 and SCH-EVT-01 say the same left-click OPENS A MENU - both cannot be true of the same build. Winner = the PO ruling (tier 1, Branko answer 2026-07-31: 'there is no right click, only left click. when clicked it opens dropdown menu with two options (Create event, New work order)') + Confluence v23 §4.10, whose old 'or by clicking empty grid space in day view' clause was REPLACED by the left-click menu. Realigned to route through the menu. The live-preview + drag-to-resize behaviour is unchanged - v23 §4.10 still states 'Day view shows a live preview block while creating, with drag-to-resize.'",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-03",
+  "area": "Events",
+  "title": "Event modal fields all save; the all-day toggle creates an all-day event",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. You are on the Schedule page with the event modal open (left-click empty grid space, then 'Create Event')."
+  ],
+  "steps": [
+   "1. Read the fields the modal offers.",
+   "2. Fill each: name, date, start and end time, and pick a color category. Save, then re-open the event.",
+   "3. Open the event modal again, turn the all-day toggle ON, and save.",
+   "4. Look at how the all-day event renders in day and week views."
+  ],
+  "expected": [
+   "1. The modal contains: name, date, start/end time, an all-day toggle, and a color category.",
+   "2. The event saves with the entered values.",
+   "3. Re-opening the event shows the saved values.",
+   "4. With all-day ON, specific start/end times are not required (the time fields are disabled or hidden).",
+   "5. The event is created as an all-day block for that technician and day."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.10 (Event modal)",
+  "refs": "SV-8696 (§4.10 (Event modal), §8.1 (Event allDay field))",
+  "viu_status": "VIU-Pending",
+  "notes": "Field labels unpinned - confirm the exact on-screen labels live. All-day rendering (where the block sits on the timeline) unpinned - capture live. Menu item label is 'Create Event' (was 'New Event') - design + Jira SV-8696 agree (DESIGN-RECONCILIATION #7). | CONSOLIDATED 2026-07-31 (usefulness audit G-EVENT-MODAL, user-authorized): absorbed SCH-EVT-04 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail. | WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): Precondition 2's stale menu label 'New Event' corrected to 'Create Event' (DESIGN-RECONCILIATION #7). | Q4 ANSWERED 2026-07-31 (Branko answer 2026-07-31, option C, verbatim: 'C. there is no right click, only left click. when clicked it opens dropdown menu with two options (Create event, New work order) as mentioned in prd.'). Spec basis: Confluence v23 (2026-07-30) §4.10 ('Create via left-click on empty grid space, which opens a menu with \"Create event\" and \"New work order\"..') + §7 ('Left-click on empty grid space opens a menu with: Create event, New work order.'), changed in Confluence v22. The 2026-07-27 pass fixed the menu ITEMS but left the CLICK TYPE as right-click - corrected here. Confirm the exact on-screen labels LIVE at VIU (Rules 9/12).",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-04",
+  "area": "Events",
+  "title": "The all-day toggle creates an all-day event",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. You are on the Schedule page with the event modal open."
+  ],
+  "steps": [
+   "1. Turn the all-day toggle ON.",
+   "2. Save the event.",
+   "3. Look at how it renders in day and week views."
+  ],
+  "expected": [
+   "1. With all-day on, specific start/end times are not required (the time fields are disabled or hidden).",
+   "2. The event is created as an all-day block for that technician and day."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.10, §8.1 (Event allDay field)",
+  "refs": "SV-8696 (§4.10, §8.1 (Event allDay field))",
+  "viu_status": "Retired - MERGED into SCH-EVT-03 2026-07-31 (usefulness audit G-EVENT-MODAL, user-authorized consolidation)",
+  "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-EVENT-MODAL): merged into SCH-EVT-03 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-EVT-04.json. | All-day rendering (where the block sits on the timeline) unpinned - capture live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-05",
+  "area": "Events",
+  "title": "Events can be dragged to another technician or another day",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. An event exists on a technician's day.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drag the event block to a different technician's row.",
+   "2. Drag it to a different day.",
+   "3. Undo/move back to restore."
+  ],
+  "expected": [
+   "1. Dropping on another technician reassigns the event to them.",
+   "2. Dropping on another day moves it to that day.",
+   "3. Each move produces a toast with Undo."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.10 (Drag-and-drop to reassign/move), §7 (toast)",
+  "refs": "SV-8696 (§4.10 (Drag-and-drop to reassign/move), §7 (toast))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-06",
+  "area": "Events",
+  "title": "Event cards are structurally distinct from shift cards - white outlined card with a grey icon chip, no colored left rail",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. An event and a shift sit near each other on the grid.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Compare the event card with the shift block side by side."
+  ],
+  "expected": [
+   "1. The event card is a white/neutral card with a thin, even border on all four sides and NO colored left rail (the left rail is the shift's cue).",
+   "2. It has a small grey-filled rounded chip on the left containing a calendar icon, and two lines of text beside it: the event name, then the time range in secondary text.",
+   "3. The shift reads as a tinted color-filled block with a colored left rail - the two types are separable at a glance, not by color alone."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.10 (Event card anatomy)",
+  "refs": "SV-8696 (§4.10 (Event card anatomy))",
+  "viu_status": "VIU-Pending",
+  "notes": "Event card anatomy (white/neutral outlined card, calendar icon chip, name + time range, no colored left rail) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-07",
+  "area": "Events",
+  "title": "Events default to neutral/grey; choosing a color tints the card and its icon chip",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to change color; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A newly created event exists with no color chosen.",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Look at the new event's default color.",
+   "2. Open the event and choose a color from the color picker.",
+   "3. Look at the card again."
+  ],
+  "expected": [
+   "1. The default event color is neutral/grey.",
+   "2. The color picker offers the same custom color palette as shifts (shared picker with editable labels).",
+   "3. Choosing a color tints the card and the icon chip in matching tones, the same way a colored shift is tinted."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.10 (Event color), §10",
+  "refs": "SV-8696 (§4.10 (Event color), §10)",
+  "viu_status": "VIU-Pending",
+  "notes": "Event default neutral/grey + shared color palette pinned by the Claude design (§3/§4c color picker); confirm live. Driver: Claude design.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-08",
+  "area": "Events",
+  "title": "An event's hours count toward the capacity bar but raise no conflict",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. Capacity Bars and Events are ON in View Options.",
+   "3. A technician has a shift and, on the same day/time, an event (create both, ZZAUTOTEST)."
+  ],
+  "steps": [
+   "1. Note the day's capacity bar fill with only the shift present.",
+   "2. Add an all-day (or long) event on the same technician and day.",
+   "3. Look at the capacity bar again and check for any conflict on the block and in the toolbar conflict pill."
+  ],
+  "expected": [
+   "1. Adding the event DOES increase that day's capacity bar fill - the event's hours are counted alongside shift hours (a 2-hour meeting uses up 2 hours of the technician's available time).",
+   "2. The event does NOT create a double-booked or overlap conflict with the shift, and the toolbar conflict count does not increase because of it.",
+   "3. The two behave differently on purpose: an event uses up capacity, but it is never flagged as a conflict."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.10 (Events), §4.11, §4.12",
+  "refs": "SV-8696 (§4.10 (Events), §4.11 (events not conflict-checked), §4.12 (event time included in the utilization total))",
+  "viu_status": "VIU-Pending",
+  "notes": "REVERSED 2026-07-31 by the PO (Branko answer 2026-07-31, answer A): event hours DO consume capacity. Verbatim: 'A) §4.12 PRD is explicit: \"Event time is included in the utilization total alongside shifts, so meetings and training consume capacity.\" A 2-hour meeting consumes 2 hours of capacity. Note the split in §4.11: events count toward capacity but are not conflict-checked.' Spec basis: Confluence v23 (2026-07-30) §4.12 ('Blue fill: aggregate technician-hours booked (shifts plus events)...') + §4.11 ('Events are not conflict-checked for now... Their time still counts toward capacity'), both added in Confluence v19 (2026-07-23) - after our v18 baseline. This SUPERSEDES his 2026-07-22 'events currently excluded' answer, which is what this case previously asserted (Rule 32 newest-wins). NOT YET ANSWERED and therefore NOT asserted here: whether a DEPARTMENT-assigned event consumes each technician's time, and whether an ALL-DAY event (no start/end) consumes a full day - see DELTAS.md questions A2/A3; observe and record LIVE at VIU (Rule 12).",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-01",
+  "area": "Conflict Detection",
+  "title": "Double-booked: two work orders overlapping on the same technician at the same time are flagged",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. Two different work orders have schedulable lines.",
+   "3. You are on the Schedule page; note the toolbar conflict pill's current count."
+  ],
+  "steps": [
+   "1. Schedule work order 1 on a technician for a given time.",
+   "2. Schedule work order 2 on the SAME technician overlapping the same time.",
+   "3. Look at the two blocks and the toolbar conflict pill."
+  ],
+  "expected": [
+   "1. The overlap is detected as a Double-booked conflict.",
+   "2. A warning icon appears on the affected block(s).",
+   "3. The toolbar conflict pill's count increases.",
+   "4. The conflict is listed in the pill's dropdown."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.11 (Double-booked)",
+  "refs": "SV-8697 (§4.11 (Double-booked))",
+  "viu_status": "VIU-Pending",
+  "notes": "Conflict-type display names ('Double-booked' etc.) are the spec's words - confirm on-screen wording live. Whether one or both blocks get the icon is unpinned - observe. Events do NOT participate in double-booked/overlap conflict detection - CONFIRMED 2026-07-31, no longer provisional. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-2): the engineering plan (D4) treats double-booking as a FE 'soft warning', NOT a hard conflict - the BE detector reports only outside-window/closure/non-working-day. Whether the toolbar pill counts double-bookings is therefore uncertain; pending Branko/dev ruling (tech-plan-2026-07-29/Questions-for-Branko-dev.md NQ-2). Observe live; do not fail solely on the pill count until ruled. | CONFIRMED 2026-07-31 (Branko answer 2026-07-31 answer A + Confluence v23 (2026-07-30) §4.11 verbatim: 'Events are not conflict-checked for now: an event overlapping a shift (or another event) does not raise a conflict. Their time still counts toward capacity'). The events-not-conflicted half is now spec text AND a PO ruling, so the earlier 'may change' caveat is dropped. The capacity half moved the other way - see SCH-EVT-08. NQ-2 (does the conflict counter include double-bookings?) is STILL OPEN and untouched by this ruling.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-02",
+  "area": "Conflict Detection",
+  "title": "Working-day conflict: a shift on a day outside the technician's configured working days is flagged",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A technician's configured working days are known (for example Monday to Friday); Saturday/Sunday columns are visible (View Options - Saturday and Sunday on).",
+   "3. A schedulable work order line exists."
+  ],
+  "steps": [
+   "1. Drop the line onto that technician's cell on a day OUTSIDE their working days (for example a Saturday when the technician works Monday to Friday).",
+   "2. Look at the block and the conflict pill."
+  ],
+  "expected": [
+   "1. The shift is created but flagged as a conflict because the day is outside the technician's configured working days (the design's reason sentence reads in the spirit of 'Scheduled on a weekend (outside Mon-Fri)').",
+   "2. If the technician's working days DO include that day (for example Saturday hours are configured), a shift on that day is NOT flagged.",
+   "3. The warning icon appears on the block and the conflict is listed in the toolbar dropdown."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.11 (Weekend shift)",
+  "refs": "SV-8697 (§4.11 (Weekend shift))",
+  "viu_status": "VIU-Pending",
+  "notes": "Reconciliation 2026-07-22: reframed from a fixed Saturday/Sunday rule to the technician's own configured working days. Driver: Branko Q&A 2026-07-22 Q2 (hierarchy Tech hours > Business hours > Default; Saturday hours => no conflict). The prototype hardcodes Mon-Fri/8-17 (design §5) - confirm the real per-tech hierarchy LIVE at VIU. TECH-PLAN 2026-07-29 CONFIRMS: plan D4/§6 test matrix states 'Saturday with tech Saturday hours set is NOT a conflict' and the same Tech > Business > Default hierarchy - expected #2 stands.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-03",
+  "area": "Conflict Detection",
+  "title": "Before-hours and after-hours shifts are flagged against the tech's hours",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A technician has a known working day (for example 8:00 AM to 5:00 PM).",
+   "3. A shift exists for that technician inside those hours."
+  ],
+  "steps": [
+   "1. In day view, drag the shift so it starts BEFORE the technician's working-day start (for example 6:00 AM).",
+   "2. Look at the block and the conflict pill.",
+   "3. Now drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM).",
+   "4. Look at the block and the conflict pill again."
+  ],
+  "expected": [
+   "1. The shift is flagged as a before-hours conflict, with a reason sentence in the spirit of 'Starts before working hours', measured against that technician's own configured working-day START time (not a fixed hour).",
+   "2. The shift is flagged as an after-hours conflict, with a reason sentence in the spirit of 'Extends past working hours', measured against that technician's own configured working-day END time (not a fixed hour).",
+   "3. Both the start and the end follow the hierarchy technician hours, then shop business hours, then the general default working day of 7:00 AM to 7:00 PM.",
+   "4. Warning icon on the block in each case; the conflict appears in the toolbar dropdown."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.11 (Before hours)",
+  "refs": "SV-8697 (§4.11 (Before hours, After hours), §4.2 (working-hours hierarchy; 7:00 AM to 7:00 PM default))",
+  "viu_status": "VIU-Pending",
+  "notes": "Reconciliation 2026-07-22: 'working-day start/end' now = the technician's CONFIGURED start/end (hierarchy Tech > Business > Default). Driver: Branko Q&A 2026-07-22 Q2. Prototype hardcodes 8:00 AM / 5:00 PM (design §5) - confirm the real hierarchy LIVE at VIU. | CONSOLIDATED 2026-07-31 (usefulness audit G-HOURS-CONFLICT, user-authorized): absorbed SCH-CONF-04 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail. | Q5 ANSWERED 2026-07-31 (Branko answer 2026-07-31, option B, verbatim: 'B) 7:00 AM to 7:00 PM. PRD §4.2 hierarchy: technician's custom hours -> shop business hours -> general default of 7 AM 7 PM. §4.8 repeats 7:00 AM as the auto-scroll fallback.'). The prototype's hardcoded 8:00 AM / 5:00 PM numbers have been REMOVED from the expected results - printing them in front of a tester was misleading now that 7-7 is confirmed by the PO, the spec and the engineering plan alike (the prototype is the lone outlier).",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-04",
+  "area": "Conflict Detection",
+  "title": "After hours: a shift extending past the technician's configured working-day end is flagged",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A technician has a known working-day end (for example 5:00 PM).",
+   "3. A shift exists for that technician ending before 5:00 PM."
+  ],
+  "steps": [
+   "1. In day view, drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM).",
+   "2. Look at the block and the conflict pill."
+  ],
+  "expected": [
+   "1. The shift is flagged as an after-hours conflict (the design's reason sentence reads in the spirit of 'Extends past working hours (5:00 PM)'), measured against the technician's configured working-day end.",
+   "2. The working-day end follows the hierarchy technician hours, then business hours, then the default.",
+   "3. Warning icon on the block; the conflict appears in the toolbar dropdown."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.11 (After hours)",
+  "refs": "SV-8697 (§4.11 (After hours))",
+  "viu_status": "Retired - MERGED into SCH-CONF-03 2026-07-31 (usefulness audit G-HOURS-CONFLICT, user-authorized consolidation)",
+  "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-HOURS-CONFLICT): merged into SCH-CONF-03 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-CONF-04.json. | Reconciliation 2026-07-22: 'working-day end' now = the technician's CONFIGURED end (hierarchy Tech > Business > Default). Driver: Branko Q&A 2026-07-22 Q2. Prototype hardcodes 5:00 PM (design §5) - confirm the real hierarchy LIVE at VIU.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-05",
+  "area": "Conflict Detection",
+  "title": "The toolbar conflict pill shows the issue count and opens a dropdown listing the conflicts",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. At least two conflicts of different types exist (for example one double-booked overlap and one Saturday shift - create them first).",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Read the conflict pill in the grid toolbar.",
+   "2. Click it.",
+   "3. Read the dropdown."
+  ],
+  "expected": [
+   "1. The pill shows the current number of scheduling issues.",
+   "2. Clicking opens a dropdown listing each conflict.",
+   "3. The list covers all current conflicts (count matches the pill).",
+   "4. Resolving a conflict (for example moving the shift) reduces the count - detection is continuous."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.11, §6 (Conflict pill)",
+  "refs": "SV-8697 (§4.11, §6 (Conflict pill))",
+  "viu_status": "VIU-Pending",
+  "notes": "Pill copy/format unpinned - capture live. Events are excluded from the conflict count/list (Branko 2026-07-22 Q1 - may change).",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-06",
+  "area": "Conflict Detection",
+  "title": "Clicking a conflict in the dropdown navigates to the relevant technician and day",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A conflict exists on a technician/day that is NOT currently in view (navigate the grid away first).",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Open the conflict pill's dropdown.",
+   "2. Click the conflict entry."
+  ],
+  "expected": [
+   "1. The grid navigates to the relevant technician and day.",
+   "2. The conflicted shift is brought into view."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.11 (Clicking a conflict navigates)",
+  "refs": "SV-8697 (§4.11 (Clicking a conflict navigates))",
+  "viu_status": "VIU-Pending",
+  "notes": "Whether it switches view (day/week) or highlights the block is unpinned - observe and record.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-07",
+  "area": "Conflict Detection",
+  "title": "Red/alarming styling is reserved for conflicts and genuine errors - never used for overtime",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. One technician is booked into OVERTIME on a day WITHOUT any conflict (more hours than their day, sequential non-overlapping shifts within working hours - use the technician's working window carefully, or observe the OT tag day).",
+   "3. Capacity Bars are on."
+  ],
+  "steps": [
+   "1. Look at the overtime signals for that day ('OT' tag, amber highlights).",
+   "2. Look at a conflicted shift for comparison."
+  ],
+  "expected": [
+   "1. Overtime is signaled with the 'OT' text tag and amber tones - NOT red or alarming styling.",
+   "2. Red/alarming styling appears only for conflicts and genuine errors."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.11 (styling rule), §4.12",
+  "refs": "SV-8697 (§4.11 (styling rule), §4.12)",
+  "viu_status": "VIU-Pending",
+  "notes": "Note: overtime that spills past working-day end would itself be an After-hours conflict - the pure-OT setup needs hours summed within the working window via overlapping-free stacking; capture the achievable state live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CAP-01",
+  "area": "Capacity Bars",
+  "title": "Capacity bar fill = booked (shifts + events) vs available, clamped, equal tracks",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. Capacity Bars are ON in View Options (default).",
+   "3. Technicians' working hours are known; shifts exist on at least two days with different total booked hours.",
+   "4. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Look at each day column's header bar.",
+   "2. Compare a lightly-booked day with a heavily-booked day.",
+   "3. Compare the bars' track widths across days."
+  ],
+  "expected": [
+   "1. Each day header shows a capacity bar; the blue fill represents total technician-hours booked - shift hours PLUS event hours - divided by total available (sum of all techs' working hours).",
+   "2. A more heavily booked day shows a longer blue fill; the fill never exceeds the track (clamped at 100%).",
+   "3. The track width is identical across all days (capacity is not rescaled per day), so bars are comparable at a glance."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.12 (Blue fill)",
+  "refs": "SV-8698 (§4.12 (Blue fill - aggregate booked = shifts plus events))",
+  "viu_status": "VIU-Pending",
+  "notes": "Day-column capacity bar (blue fill, clamped, equal track widths) pinned by the Claude design (§3 week/month cap bars); live-render confirm at VIU. Driver: Claude design §3. | UPDATED 2026-07-31 (Branko answer 2026-07-31 answer A + Confluence v23 (2026-07-30) §4.12): the aggregate explicitly includes EVENT hours as well as shift hours ('shifts plus events'). This reverses the earlier 2026-07-22 'events excluded' note. | TITLE TRIMMED 2026-07-31 to the <=80-character concise-title rule (user instruction 2026-07-27: keep titles short enough to display in full on the TestRail case page; detail belongs in Steps/Expected). Was 125 chars: 'Day-column headers show a capacity bar - blue fill = aggregate booked vs total available, clamped at 100%, equal track widths'. Done now because this case is already being written in this pass - it removes one item from the 79-title trim backlog rather than adding a separate write later.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CAP-02",
+  "area": "Capacity Bars",
+  "title": "When aggregate hours exceed capacity, an amber spill extends past the track's right edge with a tick at the 100% line",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. Capacity Bars are ON.",
+   "3. One day is booked BEYOND the team's total available hours (seed extra shifts)."
+  ],
+  "steps": [
+   "1. Look at that day's capacity bar."
+  ],
+  "expected": [
+   "1. An amber segment extends past the right edge of the track, showing the excess.",
+   "2. A tick marks the 100% line where the track ends."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.12 (Amber spill)",
+  "refs": "SV-8698 (§4.12 (Amber spill))",
+  "viu_status": "VIU-Pending",
+  "notes": "Amber spill past the track + tick at 100% pinned by the Claude design (§3 capacity visualization); confirm live. Driver: Claude design §3. | UPDATED 2026-07-31 (Branko answer 2026-07-31 answer A + Confluence v23 (2026-07-30) §4.12): events are NOT excluded any more - event hours count toward the aggregate, so event time is another way a day can exceed capacity and show the amber spill. The spill behaviour itself is unchanged, so no tester-facing edit was needed.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CAP-03",
+  "area": "Capacity Bars",
+  "title": "The 'OT' text tag appears whenever any single technician exceeds their own daily hours - even when the day's aggregate is under capacity",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. Capacity Bars are ON.",
+   "3. On one day, a single technician is booked beyond THEIR daily hours while the team's aggregate for that day remains UNDER total capacity (other techs lightly booked)."
+  ],
+  "steps": [
+   "1. Look at that day's capacity bar and header."
+  ],
+  "expected": [
+   "1. An 'OT' tag appears for the day even though the aggregate bar is under 100%.",
+   "2. The tag is text, not a color-only signal.",
+   "3. Overtime (per-technician) and capacity (aggregate) are independent signals."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.12 (OT tag), §11 (not color-only)",
+  "refs": "SV-8698 (§4.12 (OT tag), §11 (not color-only))",
+  "viu_status": "VIU-Pending",
+  "notes": "'OT' text tag pinned by the Claude design (§3 week headers show 'OT' tags); confirm live. Driver: Claude design §3. | UPDATED 2026-07-31: the old 'events do not count' claim is withdrawn (Branko answer 2026-07-31 answer A). It is deliberately NOT replaced with the opposite: Confluence v23 (2026-07-30) §4.12 says event time is in the AGGREGATE utilization total but calls overtime 'a separate per-technician signal, and the two are independent', and never says whether event hours feed the per-technician OT test. SPEC SILENT (Rule 15) -> VIU-confirm; open question A1 in DELTAS.md. Do not fail this case on the OT-vs-events point until it is ruled.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CAP-04",
+  "area": "Capacity Bars",
+  "title": "Hovering a capacity bar shows a per-technician breakdown, with overtime technicians highlighted in amber",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. Capacity Bars are ON; a day exists where one technician is in overtime and others are not.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Hover over that day's capacity bar.",
+   "2. Read the tooltip."
+  ],
+  "expected": [
+   "1. A tooltip shows a per-technician breakdown: assigned hours vs that technician's capacity.",
+   "2. The overtime technician's entry is highlighted in amber.",
+   "3. The numbers agree with the shifts actually on the grid."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.12 (Hover tooltip)",
+  "refs": "SV-8698 (§4.12 (Hover tooltip))",
+  "viu_status": "VIU-Pending",
+  "notes": "Capacity hover tooltip (per-tech breakdown, OT techs in amber) pinned by the Claude design (§3 cap-tooltip render); confirm live. Driver: Claude design §3. | UPDATED 2026-07-31: the old 'breakdown excludes events' claim is withdrawn (Branko answer 2026-07-31 answer A). Whether the per-TECHNICIAN hover breakdown includes event hours is NOT stated in Confluence v23 (2026-07-30) §4.12 (only the aggregate is) - SPEC SILENT (Rule 15) -> VIU-confirm; open question A1 in DELTAS.md. Record what the tooltip actually totals when observed live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-TIP-01",
+  "area": "Hover Tooltips",
+  "title": "Shift hover tooltip shows customer, unit/vehicle/VIN, date and time, technician, scope, up to 3 line names, and a progress bar",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A multi-line shift exists covering 5 lines, with some time logged, for a unit that has a VIN.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Hover over the shift block and wait briefly for the tooltip.",
+   "2. Read the tooltip from top to bottom."
+  ],
+  "expected": [
+   "1. The tooltip shows: the customer name; unit, vehicle, and VIN (the tooltip shows the VIN whenever the unit has one, regardless of the 'VIN Number' toggle); the date and time range; the technician; and a scope summary ('N lines · Xh' style).",
+   "2. The individual line names appear as a short list capped at 3, with a '+N more lines' row for the rest (here '+2 more lines'); line statuses are NOT shown.",
+   "3. A time-logged progress bar shows logged vs estimated hours ('X / Yh' style)."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.13 (Shift tooltip)",
+  "refs": "SV-8695 (§4.13 (Shift tooltip))",
+  "viu_status": "VIU-Pending",
+  "notes": "Reconciliation 2026-07-22: the hover tooltip always shows the VIN when present (NOT gated by the 'VIN Number' toggle) - the old §4.13-vs-§9 caveat is resolved by the design in favour of §4.13. The 'N lines · Xh', '+N more lines' and 'X / Yh' formats + the 3-line cap are pinned by the Claude design (§4c/tooltip). Driver: Claude design §6/§7 + Branko Q&A 2026-07-22. | Q6 ANSWERED 2026-07-31 - PO RATIFIES our 2026-07-22 reading (Branko answer 2026-07-31, option A, verbatim: 'A. Vin is always visible on hover regardless of the toggle'). The §4.13-vs-§9 inconsistency is settled in favour of §4.13; OQ-6(a) is CLOSED. No tester-facing edit needed - the case already asserted this. DOC-HYGIENE FLAG for Branko (not a case change): Confluence v23 (2026-07-30) §9 STILL ties the tooltip VIN to the 'VIN Number' toggle, contradicting §4.13 and his own answer.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-TIP-02",
+  "area": "Hover Tooltips",
+  "title": "A conflicted shift's tooltip shows the conflict icon and the conflict reason in amber",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A conflicted shift exists (for example double-booked).",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Hover the conflicted shift and read the tooltip."
+  ],
+  "expected": [
+   "1. The customer name line includes the conflict icon.",
+   "2. The conflict reason is shown in amber."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.13 (Shift tooltip - conflict)",
+  "refs": "SV-8695 (§4.13 (Shift tooltip - conflict))",
+  "viu_status": "VIU-Pending",
+  "notes": "Conflict-reason copy unpinned - capture live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-TIP-03",
+  "area": "Hover Tooltips",
+  "title": "Event hover tooltip shows the event name with its grey category dot, date and time range, and technician",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. An event exists on a technician's day.",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Hover the event card and read the tooltip."
+  ],
+  "expected": [
+   "1. The tooltip shows the event name with its category dot (grey for a default event).",
+   "2. The date and time range are shown.",
+   "3. The technician is shown."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.13 (Event tooltip)",
+  "refs": "SV-8695 (§4.13 (Event tooltip))",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-TIP-04",
+  "area": "Hover Tooltips",
+  "title": "Tooltips open after a short hover delay, dismiss on mouse-leave, and are read-only - clicking still opens the modal",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A shift exists on the grid.",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Move the mouse quickly across the block without stopping - watch for tooltips.",
+   "2. Rest the pointer on the block and wait briefly.",
+   "3. Move the mouse off the block.",
+   "4. Click the block."
+  ],
+  "expected": [
+   "1. A quick pass does not flash tooltips - the tooltip opens only after a short hover delay (spec: roughly 300 to 500ms).",
+   "2. It dismisses when the mouse leaves the block.",
+   "3. The tooltip is read-only (no buttons/actions inside it).",
+   "4. Clicking the block opens the full detail modal as normal."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.13 (Behavior)",
+  "refs": "SV-8695 (§4.13 (Behavior))",
+  "viu_status": "VIU-Pending",
+  "notes": "The 300-500ms delay is spec-approximate - confirm the actual delay behavior live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-TIP-05",
+  "area": "Hover Tooltips",
+  "title": "The tooltip flips above the block or shifts horizontally to stay within the viewport - it is never clipped",
+  "priority": "Low",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A multi-line shift (tall tooltip) exists near the BOTTOM edge of the viewport, and another near a horizontal edge (scroll to arrange).",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Hover the shift near the bottom edge and look at where its tooltip opens.",
+   "2. Hover the shift near the side edge."
+  ],
+  "expected": [
+   "1. When there is not enough room below, the tooltip opens ABOVE the block instead.",
+   "2. Near a side edge, the tooltip shifts horizontally to stay fully within the viewport.",
+   "3. No part of the tooltip is clipped off-screen."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.13 (flip/shift to stay in viewport)",
+  "refs": "SV-8695 (§4.13 (flip/shift to stay in viewport))",
+  "viu_status": "VIU-Pending",
+  "notes": "Tooltip flip-above / horizontal-shift to stay in the viewport pinned by the Claude design (tooltip positioning); confirm live. Driver: Claude design §4.",
+  "api_related": false
+ }
 ]
