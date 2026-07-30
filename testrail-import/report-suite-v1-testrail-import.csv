@@ -425,9 +425,11 @@ On a phone every toolbar control works on touch and below 1024px the toolbar spl
 2. The first expand of a customer triggers a server fetch for that customer's asset and invoice rows.
 3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.",specs/sbc-sales-by-customer.md Story 8 S8-R14; S8-R16,,
 Sorting is applied on the server: a header click re-fetches the customer rows ordered by that column as a fresh first page,SBC — API,Functional,Medium,1. Enough customers exist to span more than one page; the browser's network panel is open.,"1. Click a column header and watch the network panel.
-2. Compare the returned first page with the previous page contents.","1. Clicking a column header issues a server request that returns the customer rows ordered by that column.
+2. Compare the returned first page with the previous page contents.
+3. Optional (API tooling): repeat the request with a made-up sort column name and read the response.","1. Clicking a column header issues a server request that returns the customer rows ordered by that column.
 2. The full filtered set is re-ordered and re-paginated on the server — the response is the first page of results in the new order, so page membership can change.
-3. The ordering is not done by re-shuffling rows already in the browser.",specs/sbc-sales-by-customer.md Story 10 S10-R8; S10-R8b,,
+3. The ordering is not done by re-shuffling rows already in the browser.
+4. A sort request naming a column the report does not offer is safely refused or ignored — never an error page or a crash; sorting works only on the report's own columns.",specs/sbc-sales-by-customer.md Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist),,
 The Customer filter's type-ahead fetches matching customers from the server per query instead of loading the full list up front,SBC — API,Functional,Medium,1. You are on the report with the browser's network panel open.,"1. Open the Customer filter WITHOUT typing and check whether a full customer list was downloaded.
 2. Type a query and watch the network panel.
 3. Change the query and watch again.","1. The dropdown does not load the full customer list into the browser up front.
@@ -488,7 +490,8 @@ Invoice Status dropdown offers exactly four options with All Statuses as the def
 2. It offers exactly four options: ""All Statuses,"" ""Unpaid,"" ""Partially Paid,"" ""Paid.""
 3. ""All Statuses"" is the default on first load.
 4. Changing the selection re-fetches and re-renders the report.",specs/sbr-sales-by-representative.md Story 4 S4-R1; S4-R2; S4-R3; S4-R5,,
-"Status filtering matches on the mapped display value: five system states collapse into Paid, Partially Paid and Unpaid",SBR — Invoice Status Filter,Functional,Critical,1. ZZAUTOTEST invoices exist under one rep covering the payment situations: fully paid; overpaid; prepaid with zero balance owed; prepaid with a balance still owed; partially paid; unpaid.,"1. Filter to ""Paid"" and read which invoices appear.
+"Status filtering matches on the mapped display value: five system states collapse into Paid, Partially Paid and Unpaid",SBR — Invoice Status Filter,Functional,Critical,"1. ZZAUTOTEST invoices exist under one rep covering the payment situations: fully paid; overpaid; prepaid with zero balance owed; prepaid with a balance still owed; partially paid; unpaid.
+2. Seed the prepaid-with-zero-balance situation the realistic way: the customer pays a DEPOSIT up front that fully covers the work, so the invoice is created with nothing left to pay.","1. Filter to ""Paid"" and read which invoices appear.
 2. Filter to ""Partially Paid"" and read again.
 3. Filter to ""Unpaid"" and read again.","1. ""Paid"" includes the paid, the overpaid, AND the prepaid-with-zero-balance invoices.
 2. ""Partially Paid"" includes the partially-paid AND the prepaid-with-a-balance-owed invoices.
@@ -602,6 +605,11 @@ Badge colors use the application's canonical payment-status tokens in both light
 Half-up rounding at each precision; totals may differ by one last-decimal unit,SBR — Inv. Hrs & Calculations,Functional,Medium,"1. Several invoices whose money values come from calculations that produce fractions of a cent sit under one rep — seed ZZAUTOTEST invoices whose amounts come from hours × rate or percentage-based lines that do not land on a whole cent (money fields themselves only take two decimals, so the sub-cent amounts must come from the math, not be typed in).","1. Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells.","1. All displayed values round half-up (away from zero) at their stated precision — money to cents; Inv. Hrs and Margin % to one decimal.
 2. Rolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.
 3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect.",specs/sbr-sales-by-representative.md §3 rounding rule,,
+A clock-record edit after invoicing updates Inv. Hrs; billed money stays put,SBR — Inv. Hrs & Calculations,Functional,High,"1. A ZZAUTOTEST invoiced (not reversed, not void) work order exists with billed labor and clocked technician hours, and its invoice row is visible under its rep in the report.","1. Note the invoice row's Inv. Hrs value and its money columns.
+2. Edit a technician clock record on that work order (change its length), or delete one.
+3. Reload the report and re-read the same invoice row.","1. The worked-hours side updates — Inv. Hrs (hours invoiced minus hours worked) reflects the edited clock time after the reload.
+2. The billed SELL values (Labor, Parts, Subtotal) stay unchanged — a clock edit never rewrites what was billed.
+3. The figures tied to worked time move together consistently (Margin uses the labor cost behind the worked hours, so it may change too) — nothing is left stale.",SV-8626 (specs/sbr-sales-by-representative.md §3 (hours worked = technician clocked hours recorded against that work order); Story 9 S9-R2; tech-plan-2026-07-29 Phase 4 FR-F7 clock-change rebuild),,
 "Subtotal: rightmost, pinned right, bold everywhere; header row sticky on scroll",SBR — Subtotal & Totals,Functional,High,"1. You are on the report with data, narrow enough to force horizontal scrolling.
 2. Enough rows exist to also force vertical scrolling.","1. Confirm nothing renders to the right of Subtotal on any row type.
 2. Scroll horizontally and watch the Subtotal column on summary and detail rows.
@@ -1257,11 +1265,14 @@ All 20 columns can be hidden; the empty selection is not restored and an export 
 4. Demand is the report's default ranking signal (a whole number, never null - 0 when none).",specs/parts-velocity.md S5-R4 (Demand); §4; §3 Key Decisions,,
 "Last Sale shows whole days since the most recent sale over ALL-TIME history, scoped to the selected locations",PV — Columns & Calculations,Functional,Medium,"1. A part whose most recent sale was N days ago, OUTSIDE the currently selected date range (e.g. range = This Month, last sale 42 days ago).
 2. The part still appears in the report (it has on-hand stock).
-3. For the location check: the part's most recent sale at location A is more recent than at location B.","1. Read the part's Last Sale value with the narrow date range selected.
-2. Switch the Location filter between location A and location B and re-read Last Sale.","1. Last Sale shows the whole days between today and the part's most recent sale measured over ALL-TIME history - it IGNORES the selected date range (e.g. '42 days' even though the range is This Month).
+3. For the location check: the part's most recent sale at location A is more recent than at location B.
+4. For the reversal check: a ZZAUTOTEST part whose MOST RECENT sale can be reversed, and an older sale of the same part also exists.","1. Read the part's Last Sale value with the narrow date range selected.
+2. Switch the Location filter between location A and location B and re-read Last Sale.
+3. Reverse the part's most recent sale invoice and re-read Last Sale.","1. Last Sale shows the whole days between today and the part's most recent sale measured over ALL-TIME history - it IGNORES the selected date range (e.g. '42 days' even though the range is This Month).
 2. It IS scoped to the selected location(s): with only location B selected, Last Sale reflects B's own most recent sale.
 3. Format is 'N days' (e.g. 42 days); a part with no recorded sale ever shows —.
-4. For a catalogue part, the anchor is its most recent vendor-sourced invoiced/paid request.",specs/parts-velocity.md S5-R4 (Last Sale); §4; S5-R5,,
+4. For a catalogue part, the anchor is its most recent vendor-sourced invoiced/paid request.
+5. When the most recent sale is reversed, Last Sale re-anchors to the previous remaining sale (the day count grows accordingly); if no other sale remains it shows —.",specs/parts-velocity.md S5-R4 (Last Sale); §4; S5-R5; tech-plan-2026-07-29 B3.1 (last-sale re-anchor on reversal — spec-silent),,
 "On Hand shows the row's own location stock, and Min / Max are read-only stored thresholds with no editing from the report",PV — Columns & Calculations,Functional,Medium,"1. An inventory part with a known on-hand quantity and stored Min / Max reorder thresholds at one location.
 2. The Min and Max columns are enabled via the column picker.","1. Read the part's On Hand, Min, and Max in the report and compare with the inventory record.
 2. Try clicking / double-clicking the Min and Max cells and look for any edit control or slide-over.","1. On Hand equals the part's CURRENT on-hand quantity at that row's location (never summed across locations).
@@ -1372,6 +1383,13 @@ Export toasts: exact success texts; server or fallback error text on failure,PV 
 3. Trigger a PDF export under the failure condition and read the toast.","1. On success the toasts read exactly ""Velocity report exported (CSV)"" / ""Velocity report exported (PDF)"" and auto-fade — UPPERCASE (CSV)/(PDF).
 2. An error toast is shown on failure; when the server provides a message, that server message is shown.
 3. Otherwise the failure toast reads exactly: ""Failed to export velocity report (csv)"" or ""Failed to export velocity report (pdf)"" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",specs/parts-velocity.md S6-R9; S6-N1; §7 (casing note),,
+An over-cap Parts Velocity export is refused with the too-large message,PV — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set).","1. Set the filters so the filtered set exceeds the export row cap.
+2. Request the CSV download and read what happens.
+3. Request the PDF download and read what happens.
+4. Narrow the date range or filters below the cap and request a download again.","1. Neither the CSV nor the PDF is produced — no download starts.
+2. A clear too-large message appears telling the user to narrow the date range or filters, then try again — the standard wording is ""This report is too large to export. Narrow the date range or filters, then try again.""
+3. After narrowing below the cap, the downloads work again.","SV-8646 (specs/parts-velocity.md Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10,000-row export cap, locked by Chris 2026-07-21)",,
 The report uses the standard two-tone layout: white card surfaces on a soft blue-grey backdrop with an edge-to-edge table,PV — Visual Conformance,Functional,Low,"1. You are on the Parts Velocity report with data loaded, in light mode.","1. Look at the page background, the toolbar, and the table surfaces.
 2. Look at the card corners and the table's horizontal extent.","1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).
 2. There is NO card border-radius - the table runs edge to edge.
@@ -1657,6 +1675,13 @@ A starting download shows the Download started notification and a failed downloa
 2. You can force a download failure (e.g. drop the network connection just before triggering the download).","1. Trigger a normal download and read the notification.
 2. Trigger a download under the failure condition and read the notification.","1. When a download starts, a success notification reads exactly: ""Download started"".
 2. When a download fails, an error notification reads exactly: ""Failed to download report"".",specs/technician-utilization.md Story 7 Error Handling; §7,,
+An over-cap Technician Utilization export is refused with the too-large message,TU — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A range/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST clock records in bulk if needed, or use the largest available data set).","1. Set the date range and locations so the filtered set exceeds the export row cap.
+2. Request the CSV download and read what happens.
+3. Request the PDF download and read what happens.
+4. Narrow the date range or filters below the cap and request a download again.","1. Neither the CSV nor the PDF is produced — no download starts.
+2. A clear too-large message appears telling the user to narrow the date range or filters, then try again — the standard wording is ""This report is too large to export. Narrow the date range or filters, then try again.""
+3. After narrowing below the cap, the downloads work again.","SV-8654 (specs/technician-utilization.md Story 7 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10,000-row export cap, locked by Chris 2026-07-21)",,
 The Location filter is the rightmost multi-select; All Locations = select-all,TU — Location Filter,Functional,High,"1. You are signed in as a user with access to at least two locations.
 2. You are on the Technician Utilization report.","1. Look at the rightmost control in the toolbar and read its label.
 2. Open it and read the listed options.
@@ -1884,6 +1909,14 @@ Lines that are not yet approved contribute nothing to any money figure,WIP — E
 3. A ZZAUTOTEST open estimate exists with no approved line items.","1. Open the Work In Progress report and open the Estimates tab.
 2. Find the seeded estimate's row and read every money column.","1. Every money column — Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, and Total — shows ""$0.00"".
 2. The row still appears in the Estimates tab (it is not hidden for having no value).",specs/wip-work-in-progress.md Story 4 S4-E1; Story 2 S2-R4,,
+"A technician still clocked in counts toward Labor Earned, capped at the quote",WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Labor Earned column is turned on.
+3. A ZZAUTOTEST open work order exists with one approved labor line quoted at a known time and rate (for example 2.0 hours at $100/hour = $200 quoted).
+4. A technician is CURRENTLY CLOCKED IN on that line and has not clocked out.","1. Read the work order's Labor Earned value while the technician is still clocked in.
+2. Wait a while (let more time accrue on the running clock), refresh the report, and re-read Labor Earned.
+3. Leave the clock running well past the line's quoted time (or simulate it), refresh, and re-read.","1. The running (not-yet-clocked-out) time counts toward Labor Earned — the line's earned share reflects the time clocked up to now, not only closed clock records.
+2. After more time accrues, a refresh shows a larger earned share for that line.
+3. Labor Earned never exceeds the line's full quoted value, no matter how long the clock keeps running — the per-line cap still applies.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R15; §4 Terminology (Earned) — spec silent on running clocks; tech-plan-2026-07-29 B1.2 open-clock policy),,
 The initial sort is Days Open with the longest-open work order first,WIP — Sorting,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab shows several work orders created on different dates.","1. Open the Work In Progress report without clicking any column header.
 2. Read the Days Open values from the top row down.","1. The rows are sorted by Days Open, longest-open first (descending).",specs/wip-work-in-progress.md Story 4 S4-R25,,
@@ -2132,8 +2165,10 @@ A user without the required permission does not see Work In Progress in the repo
 "Nightly snapshot: once per day the system records one row per then-open work order, per calendar date",WIP — API,Functional,High,"1. Open work orders exist across the organization on the capture date.
 2. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).","1. Note the set of open work orders before the nightly capture runs.
 2. After the capture, inspect the stored snapshot rows for that calendar date.
-3. Let the capture run again the next day and inspect again.","1. Once per day the system records one row per then-open work order — one row per work order per calendar date.
-2. The next day's capture adds a new row per open work order under the new date; a work order open on both days has one row for each date, never two rows for the same date.",specs/wip-work-in-progress.md Story 11 S11-R1,,
+3. Let the capture run again the next day and inspect again.
+4. If a manual re-run of the capture is available, re-run it for the same date and inspect that date's rows again.","1. Once per day the system records one row per then-open work order — one row per work order per calendar date.
+2. The next day's capture adds a new row per open work order under the new date; a work order open on both days has one row for each date, never two rows for the same date.
+3. Re-running the capture for the SAME date replaces that date's rows — the day's existing rows are removed and re-recorded from current data, never duplicated.",specs/wip-work-in-progress.md Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs),,
 "Nightly snapshot: each row captures the work order, status, Earned, Remaining, location, organization, and the snapshot's calendar date",WIP — API,Functional,High,"1. At least one open work order with known status, location, and organization existed when the nightly capture ran.
 2. You can inspect that date's stored snapshot rows.","1. Find the seeded work order's snapshot row for the capture date.
 2. Read each captured field and compare to the work order.","1. The snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.",specs/wip-work-in-progress.md Story 11 S11-R2,,
@@ -2317,6 +2352,13 @@ For a past date the report replays the closest recorded day on or before the end
 2. The date nightly recording began at this organization is known.","1. Select a range ending before the first nightly recording.
 2. Read what the report shows.","1. The report shows the empty state — there is no way to reconstruct inventory value for a date before recording began, because there is no historical backfill.
 2. This forward-capture-only behavior is the documented v1 boundary, not a defect.",specs/inventory-value.md Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope,,
+A recorded day keeps its category and vendor names after a rename or delete,IV — As-of Date & Snapshots,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A recorded (overnight-captured) day exists that includes ZZAUTOTEST parts under a known category and a known vendor.","1. Rename that part category (and/or rename or delete the vendor) in administration.
+2. Set the report's date range so it shows the earlier recorded day (the ""As of"" indicator names that earlier date).
+3. Read the affected rows' Category and Vendor cells on the recorded day.
+4. Move the range back to include today (live view) and re-read a renamed category's rows.","1. The earlier recorded day still shows the category and vendor names AS THEY WERE RECORDED that day — a recorded day equals what the live report showed that day, even after the rename/delete.
+2. The rename/delete causes no blank Category/Vendor cells and no dropped rows on the recorded day.
+3. The live view (window reaching today) shows the NEW name for the renamed category.",SV-8678 (specs/inventory-value.md Story 11 S11-R2; Story 5 S5-R4; tech-plan-2026-07-29 B4.1 — names stored with the recorded rows on purpose),,
 The Category and Vendor filters are multi-selects that reload the report to only the matching parts,IV — Filters & Part Search,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. In-stock parts exist across at least two categories and two vendors.","1. Open the filter labeled ""Category"" and select one category; watch the data area.
 2. Add a second category to the selection.
@@ -2447,7 +2489,7 @@ Exports are generated server-side over the full filtered set — rows beyond the
 3. Compare the file's totals row to the on-screen totals.","1. The export contains the FULL filtered set — every qualifying row across all pages, not only the rows loaded in the browser.
 2. Parts from the later pages are present.
 3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser.",specs/inventory-value.md Story 10 S10-R11,,
-An over-cap filtered set produces no file and shows the too-large-to-export message (exact cap value pending owner confirmation),IV — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+An over-cap filtered set produces no file and shows the too-large-to-export message,IV — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set).","1. Set the filters so the filtered set exceeds the export row cap.
 2. Request ""Download (PDF)"" and read what happens.
 3. Request ""Download (CSV)"" and read what happens.","1. Neither the PDF nor the CSV is produced.

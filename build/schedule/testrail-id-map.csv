@@ -61,6 +61,7 @@ SCH-SPREAD-07,C29983,Spread uses the tech's working hours; skips weekends only w
 SCH-SPREAD-08,C29984,"Preview is collapsed to a one-line summary, expandable to a week-by-week breakdown with skipped days struck through and their reasons",Multi-Day Spread Scheduling,SV-8691 (§4.5 (Preview))
 SCH-SPREAD-09,C29985,Confirming the spread creates a linked series of daily shifts,Multi-Day Spread Scheduling,"SV-8691 (§4.5 (Confirming), §4.6, §8.2)"
 SCH-SPREAD-10,C29986,"Dropping the same work order on a second technician spreads the full estimate again, independently",Multi-Day Spread Scheduling,"SV-8691 (§4.5 (independent per-tech spread), §12)"
+SCH-SPREAD-11,,Spread past 8 weeks asks to confirm; a series can never exceed 120 shifts,Multi-Day Spread Scheduling,SV-8691 (§4.5 + tech-plan D8 series caps)
 SCH-SER-01,C29987,"Month view renders a series as a continuous banner wrapping across week rows, labeled once, with a faded 'continues' label on later weeks",Linked Series and Banners,SV-8692 (§4.6 (Month view))
 SCH-SER-02,C29988,"Week view renders a series as one banner spanning the week's working days, with edge chevrons and a 'week N of M' cue",Linked Series and Banners,SV-8692 (§4.6 (Week view))
 SCH-SER-03,C29989,Day view shows the series day as a single time-positioned block with a 'part of an M-week job' cue,Linked Series and Banners,SV-8692 (§4.6 (Day view))
@@ -141,6 +142,7 @@ SCH-DEL-06,C30062,Deleting a standalone (non-series) shift does not ask for a se
 SCH-DEL-07,C30063,"Every create, delete, move, and reassign action produces a toast with an Undo option","Deletion, Series Scopes and Undo","SV-8688 (§7 (Toast notifications), §11 (Undo))"
 SCH-DEL-08,C30064,"Toast lasts ~7s with Undo (about 4s without); stays on hover, goes on leave","Deletion, Series Scopes and Undo","SV-8688 (§7 (Toast notifications), §11 (Undo))"
 SCH-DEL-09,C30065,"Undo restores the state before the action - for delete, move, and reassign","Deletion, Series Scopes and Undo","SV-8688 (§11 (Undo), §7)"
+SCH-DEL-10,,"Schedule actions save immediately - Undo reverses them, closing does not cancel","Deletion, Series Scopes and Undo",SV-8688 (§7 toast/undo + tech-plan D10)
 SCH-KEY-01,C30066,"Escape closes the topmost open modal or popover, following the stacking order",Keyboard Interactions,SV-8700 (§7 (Keyboard support - Escape))
 SCH-KEY-02,C30067,"Within the shift modal, Escape first dismisses an open sub-picker before closing the modal itself",Keyboard Interactions,SV-8700 (§7 (Escape within the shift modal))
 SCH-KEY-03,C30068,"Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit)",Keyboard Interactions,SV-8700 (§7 (Keyboard support - Enter))
@@ -176,3 +178,14 @@ SCH-EDGE-03,C30087,The sidebar work order list and line drill-down stay smooth w
 SCH-EDGE-04,C30088,The grid renders smoothly at full load - 15 technicians × 7 days with several shifts per cell,Edge Cases and Responsiveness,SV-8686 (§11 (Performance))
 SCH-EDGE-05,C30089,Shop closures do NOT block spread in V1 - shifts can land on closure days,Edge Cases and Responsiveness,"SV-8691 (§12 (Shop closures), §4.5)"
 SCH-EDGE-06,C30090,"Scheduled hours, the estimate, and actual (clocked) hours are three separate quantities that are not forced to reconcile",Edge Cases and Responsiveness,"SV-8691 (§4.5 (three separate quantities), §12)"
+SCH-EDGE-07,,A multi-week series keeps the same local start time across the clock change,Edge Cases and Responsiveness,SV-8691 (§4.5 + tech-plan D2 NFR-005 DST)
+SCH-EDGE-08,,Schedule and all its dialogs display correctly in dark mode,Edge Cases and Responsiveness,SV-8685 (tech-plan §6 checklist 13 dark mode)
+SCH-REG-01,,Shifts and events created before the Schedule rewrite still appear after it,Cross-Module and Rewrite Regression,SV-8685 (tech-plan §3 FR-015 data migration)
+SCH-REG-02,,Dashboard shows one schedule row per work order even with many shifts,Cross-Module and Rewrite Regression,SV-8685 (tech-plan §4 Dashboard FR-016)
+SCH-REG-03,,A work order created with an appointment shows up on the Schedule board,Cross-Module and Rewrite Regression,SV-8685 (tech-plan §4 WO-create AppointmentScheduler)
+SCH-REG-04,,A multi-location technician's shift appears only on the work order's location,Cross-Module and Rewrite Regression,SV-8685 (tech-plan §3 WO-primary location resolution)
+SCH-REG-05,,Work order form offers a Priority (High/Medium/Low) that drives the sidebar,Cross-Module and Rewrite Regression,SV-8687 (§5.1 + tech-plan FR-P4 WO priority)
+SCH-API-01,,API - Schedule reads need View; writes need Edit; deletes need Delete (403),API — Schedule,SV-8685 (§14 + tech-plan §4 NFR-003 permissions)
+SCH-API-02,,API - Series past 8 weeks returns 409 until acknowledged; over 120 shifts 422,API — Schedule,SV-8691 (§4.5 + tech-plan D8 error cases)
+SCH-API-03,,API - No pricing fields in Schedule responses; WO details need Work Orders View,API — Schedule,SV-8685 (§14 + tech-plan D6/NFR-002 no pricing)
+SCH-API-04,,"API - A shift from another location returns 404, not another shop's data",API — Schedule,SV-8685 (tech-plan NFR-001 location scoping)

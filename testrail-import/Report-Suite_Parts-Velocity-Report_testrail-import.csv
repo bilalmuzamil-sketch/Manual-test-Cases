@@ -254,11 +254,14 @@ All 20 columns can be hidden; the empty selection is not restored and an export 
 4. Demand is the report's default ranking signal (a whole number, never null - 0 when none).",specs/parts-velocity.md S5-R4 (Demand); §4; §3 Key Decisions,,
 "Last Sale shows whole days since the most recent sale over ALL-TIME history, scoped to the selected locations",PV — Columns & Calculations,Functional,Medium,"1. A part whose most recent sale was N days ago, OUTSIDE the currently selected date range (e.g. range = This Month, last sale 42 days ago).
 2. The part still appears in the report (it has on-hand stock).
-3. For the location check: the part's most recent sale at location A is more recent than at location B.","1. Read the part's Last Sale value with the narrow date range selected.
-2. Switch the Location filter between location A and location B and re-read Last Sale.","1. Last Sale shows the whole days between today and the part's most recent sale measured over ALL-TIME history - it IGNORES the selected date range (e.g. '42 days' even though the range is This Month).
+3. For the location check: the part's most recent sale at location A is more recent than at location B.
+4. For the reversal check: a ZZAUTOTEST part whose MOST RECENT sale can be reversed, and an older sale of the same part also exists.","1. Read the part's Last Sale value with the narrow date range selected.
+2. Switch the Location filter between location A and location B and re-read Last Sale.
+3. Reverse the part's most recent sale invoice and re-read Last Sale.","1. Last Sale shows the whole days between today and the part's most recent sale measured over ALL-TIME history - it IGNORES the selected date range (e.g. '42 days' even though the range is This Month).
 2. It IS scoped to the selected location(s): with only location B selected, Last Sale reflects B's own most recent sale.
 3. Format is 'N days' (e.g. 42 days); a part with no recorded sale ever shows —.
-4. For a catalogue part, the anchor is its most recent vendor-sourced invoiced/paid request.",specs/parts-velocity.md S5-R4 (Last Sale); §4; S5-R5,,
+4. For a catalogue part, the anchor is its most recent vendor-sourced invoiced/paid request.
+5. When the most recent sale is reversed, Last Sale re-anchors to the previous remaining sale (the day count grows accordingly); if no other sale remains it shows —.",specs/parts-velocity.md S5-R4 (Last Sale); §4; S5-R5; tech-plan-2026-07-29 B3.1 (last-sale re-anchor on reversal — spec-silent),,
 "On Hand shows the row's own location stock, and Min / Max are read-only stored thresholds with no editing from the report",PV — Columns & Calculations,Functional,Medium,"1. An inventory part with a known on-hand quantity and stored Min / Max reorder thresholds at one location.
 2. The Min and Max columns are enabled via the column picker.","1. Read the part's On Hand, Min, and Max in the report and compare with the inventory record.
 2. Try clicking / double-clicking the Min and Max cells and look for any edit control or slide-over.","1. On Hand equals the part's CURRENT on-hand quantity at that row's location (never summed across locations).
@@ -369,6 +372,13 @@ Export toasts: exact success texts; server or fallback error text on failure,PV 
 3. Trigger a PDF export under the failure condition and read the toast.","1. On success the toasts read exactly ""Velocity report exported (CSV)"" / ""Velocity report exported (PDF)"" and auto-fade — UPPERCASE (CSV)/(PDF).
 2. An error toast is shown on failure; when the server provides a message, that server message is shown.
 3. Otherwise the failure toast reads exactly: ""Failed to export velocity report (csv)"" or ""Failed to export velocity report (pdf)"" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",specs/parts-velocity.md S6-R9; S6-N1; §7 (casing note),,
+An over-cap Parts Velocity export is refused with the too-large message,PV — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set).","1. Set the filters so the filtered set exceeds the export row cap.
+2. Request the CSV download and read what happens.
+3. Request the PDF download and read what happens.
+4. Narrow the date range or filters below the cap and request a download again.","1. Neither the CSV nor the PDF is produced — no download starts.
+2. A clear too-large message appears telling the user to narrow the date range or filters, then try again — the standard wording is ""This report is too large to export. Narrow the date range or filters, then try again.""
+3. After narrowing below the cap, the downloads work again.","SV-8646 (specs/parts-velocity.md Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10,000-row export cap, locked by Chris 2026-07-21)",,
 The report uses the standard two-tone layout: white card surfaces on a soft blue-grey backdrop with an edge-to-edge table,PV — Visual Conformance,Functional,Low,"1. You are on the Parts Velocity report with data loaded, in light mode.","1. Look at the page background, the toolbar, and the table surfaces.
 2. Look at the card corners and the table's horizontal extent.","1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).
 2. There is NO card border-radius - the table runs edge to edge.

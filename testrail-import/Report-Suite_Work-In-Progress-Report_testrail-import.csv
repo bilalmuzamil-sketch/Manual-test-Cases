@@ -169,6 +169,14 @@ Lines that are not yet approved contribute nothing to any money figure,WIP — E
 3. A ZZAUTOTEST open estimate exists with no approved line items.","1. Open the Work In Progress report and open the Estimates tab.
 2. Find the seeded estimate's row and read every money column.","1. Every money column — Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, and Total — shows ""$0.00"".
 2. The row still appears in the Estimates tab (it is not hidden for having no value).",specs/wip-work-in-progress.md Story 4 S4-E1; Story 2 S2-R4,,
+"A technician still clocked in counts toward Labor Earned, capped at the quote",WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Labor Earned column is turned on.
+3. A ZZAUTOTEST open work order exists with one approved labor line quoted at a known time and rate (for example 2.0 hours at $100/hour = $200 quoted).
+4. A technician is CURRENTLY CLOCKED IN on that line and has not clocked out.","1. Read the work order's Labor Earned value while the technician is still clocked in.
+2. Wait a while (let more time accrue on the running clock), refresh the report, and re-read Labor Earned.
+3. Leave the clock running well past the line's quoted time (or simulate it), refresh, and re-read.","1. The running (not-yet-clocked-out) time counts toward Labor Earned — the line's earned share reflects the time clocked up to now, not only closed clock records.
+2. After more time accrues, a refresh shows a larger earned share for that line.
+3. Labor Earned never exceeds the line's full quoted value, no matter how long the clock keeps running — the per-line cap still applies.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R15; §4 Terminology (Earned) — spec silent on running clocks; tech-plan-2026-07-29 B1.2 open-clock policy),,
 The initial sort is Days Open with the longest-open work order first,WIP — Sorting,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab shows several work orders created on different dates.","1. Open the Work In Progress report without clicking any column header.
 2. Read the Days Open values from the top row down.","1. The rows are sorted by Days Open, longest-open first (descending).",specs/wip-work-in-progress.md Story 4 S4-R25,,
@@ -417,8 +425,10 @@ A user without the required permission does not see Work In Progress in the repo
 "Nightly snapshot: once per day the system records one row per then-open work order, per calendar date",WIP — API,Functional,High,"1. Open work orders exist across the organization on the capture date.
 2. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).","1. Note the set of open work orders before the nightly capture runs.
 2. After the capture, inspect the stored snapshot rows for that calendar date.
-3. Let the capture run again the next day and inspect again.","1. Once per day the system records one row per then-open work order — one row per work order per calendar date.
-2. The next day's capture adds a new row per open work order under the new date; a work order open on both days has one row for each date, never two rows for the same date.",specs/wip-work-in-progress.md Story 11 S11-R1,,
+3. Let the capture run again the next day and inspect again.
+4. If a manual re-run of the capture is available, re-run it for the same date and inspect that date's rows again.","1. Once per day the system records one row per then-open work order — one row per work order per calendar date.
+2. The next day's capture adds a new row per open work order under the new date; a work order open on both days has one row for each date, never two rows for the same date.
+3. Re-running the capture for the SAME date replaces that date's rows — the day's existing rows are removed and re-recorded from current data, never duplicated.",specs/wip-work-in-progress.md Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs),,
 "Nightly snapshot: each row captures the work order, status, Earned, Remaining, location, organization, and the snapshot's calendar date",WIP — API,Functional,High,"1. At least one open work order with known status, location, and organization existed when the nightly capture ran.
 2. You can inspect that date's stored snapshot rows.","1. Find the seeded work order's snapshot row for the capture date.
 2. Read each captured field and compare to the work order.","1. The snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.",specs/wip-work-in-progress.md Story 11 S11-R2,,

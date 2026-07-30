@@ -89,7 +89,8 @@ Sidebar search filters the card list in real time as you type,Sidebar - Work Ord
 2. Several work orders exist.
 3. You are on the Schedule page with the work order list visible.","1. Type a search term into 'Search work orders' one character at a time.
 2. Watch the list while typing (do not press Enter).","1. The list narrows live with each keystroke - no Enter press or apply button is needed.
-2. Deleting characters widens the results again.",SV-8687 (§3.1 (Sidebar search)),,
+2. Deleting characters widens the results again.
+3. With very many work orders, the list may load further results in pages as you scroll - that is expected, not a fault.",SV-8687 (§3.1 (Sidebar search)),,
 Sidebar search with no matching work orders shows an empty list,Sidebar - Work Order List and Search,Negative,Medium,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page with the work order list visible.","1. In 'Search work orders', type a nonsense string that matches nothing (for example 'zzzxq999').
 2. Look at the list.
@@ -367,6 +368,15 @@ Confirming the spread creates a linked series of daily shifts,Multi-Day Spread S
 2. Compare the two series.","1. Technician B gets a full 40h series of their own - the estimate is spread again in full, not reduced by A's booking.
 2. There is no shared 'remaining hours' counter across technicians and no splitting of a shift.
 3. Planned hours across technicians may now exceed the estimate - this is expected and produces no error (progress is driven by clocked-in time).","SV-8691 (§4.5 (independent per-tech spread), §12)",,
+Spread past 8 weeks asks to confirm; a series can never exceed 120 shifts,Multi-Day Spread Scheduling,Negative,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. A work order line with a very large hours estimate exists (enough to fill more than 8 weeks of daily shifts - seed one if needed).
+3. You are on the Schedule page.","1. Drag the large job onto a technician and reach the spread step.
+2. Choose a spread that runs longer than 8 weeks (about 2 months) and try to confirm.
+3. Read the message that appears, then confirm/acknowledge it and continue.
+4. Now try an extreme spread that would create more than 120 daily shifts in one go (raise the hours or extend the finish-by date) and try to confirm.","1. Going past 8 weeks does not silently succeed: a warning about the very long series appears and asks you to confirm before the shifts are created.
+2. After you confirm the warning, the long series is created normally.
+3. A single spread that would create more than 120 daily shifts is refused outright - no confirmation can override it, and no shifts are created for that attempt.
+4. No half-created series is left behind after a refused attempt.",SV-8691 (§4.5 + tech-plan D8 series caps),,
 "Month view renders a series as a continuous banner wrapping across week rows, labeled once, with a faded 'continues' label on later weeks",Linked Series and Banners,Functional,High,"1. You are signed in on a desktop browser.
 2. A multi-week series exists for one technician (spread a 40h+ job first).
 3. You are on the Schedule page in MONTH view showing the series' month.","1. Find the series on the month grid.
@@ -741,7 +751,8 @@ Department toggles show or hide individual department groups in the grid,Filter 
 2. Look at the grid.
 3. Turn it OFF again.","1. Only shifts assigned to you remain visible; all other technician rows and their shifts are hidden.
 2. Turning it off restores the full grid.
-3. This is a personal convenience filter only - it does not change what you are permitted to see (default is OFF, everyone's shifts visible).","SV-8700 (§9 (My Shifts), §14.3)",,
+3. This is a personal convenience filter only - it does not change what you are permitted to see (default is OFF, everyone's shifts visible).
+4. For a user who has no technician/staff record of their own, the 'My Shifts' option is not shown at all.","SV-8700 (§9 (My Shifts), §14.3)",,
 The 'VIN Number' toggle adds the VIN to shift blocks (day/week) only; the hover tooltip and the detail modal always show the VIN,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
 2. A shift exists for a unit with a VIN; the VIN toggle is OFF.
 3. You are on the Schedule page in week view.","1. With 'VIN Number' off: read the block, hover for the tooltip, then open the detail modal.
@@ -872,6 +883,15 @@ Deleting a standalone (non-series) shift does not ask for a series scope,"Deleti
 2. Undo after move: the shift returns to its original day/time.
 3. Undo after reassign: the shift returns to the original technician, and the line's roster is restored (original tech back on, target tech off).
 4. Every destructive action is undoable within the toast's lifetime.","SV-8688 (§11 (Undo), §7)",,
+"Schedule actions save immediately - Undo reverses them, closing does not cancel","Deletion, Series Scopes and Undo",Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Delete.
+2. A shift exists on the grid; note its technician, day, and time.
+3. You are on the Schedule page.","1. Delete the shift. While the Undo toast is still showing, refresh the page WITHOUT clicking Undo.
+2. Check the grid for the shift.
+3. Recreate a shift, move it to another day, and again refresh while the toast shows, without clicking Undo.
+4. Finally do one more delete and this time click Undo before the toast disappears.","1. The delete took effect immediately: after the refresh the shift is gone even though Undo was never clicked - closing or refreshing does not cancel the action.
+2. The move also stuck after the refresh - the shift is on the new day.
+3. Clicking Undo within the toast's lifetime reverses the action (the deleted shift comes back).
+4. Note for the tester: Undo works by performing a reversing action, not by holding the change back - a change surviving a refresh before Undo is expected, not a bug.",SV-8688 (§7 toast/undo + tech-plan D10),,
 "Escape closes the topmost open modal or popover, following the stacking order",Keyboard Interactions,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. You are on the Schedule page.","1. Open the shift detail modal, then open a popover on top of it (for example the color picker or a filter/search popover elsewhere).
 2. Press Escape once.
@@ -1080,3 +1100,78 @@ Shop closures do NOT block spread in V1 - shifts can land on closure days,Edge C
 2. A line has estimate 10h; a technician has 6h scheduled against it and some different amount of time actually clocked (seed what is possible).","1. Open the shift's detail modal.
 2. Compare the scheduled hours, the estimate, and the logged/actual time.","1. All three quantities are shown/derivable and may differ from one another.
 2. Nothing forces them to match - no error, no auto-correction (progress is driven by clocked-in time).","SV-8691 (§4.5 (three separate quantities), §12)",,
+A multi-week series keeps the same local start time across the clock change,Edge Cases and Responsiveness,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. The shop's location observes daylight saving (clocks change); the next clock-change date is known (e.g. the November change).
+3. A job large enough to spread across the clock-change date exists.","1. Spread the job across a window that includes the clock-change date (shifts before and after it).
+2. Open shifts from before the change and from after the change and read their start times.","1. Every shift in the series starts at the SAME local wall-clock time (e.g. 8:00 AM) on both sides of the clock change.
+2. No shift in the series silently moves an hour earlier or later after the change date.",SV-8691 (§4.5 + tech-plan D2 NFR-005 DST),,
+Schedule and all its dialogs display correctly in dark mode,Edge Cases and Responsiveness,Accessibility,Low,"1. You are signed in on a desktop browser; the app's dark mode / theme toggle is available.
+2. The Schedule page has shifts, an event, a conflict, and capacity bars visible.","1. Switch the app to dark mode.
+2. Look over the Schedule grid: shift blocks, event cards, capacity bars, conflict styling, tooltips.
+3. Open each dialog/popover you can reach (shift detail, event form, spread step, delete scope, filters, view options).
+4. Switch back to light mode and spot-check again.","1. In dark mode every part of the Schedule stays readable - no white-on-white or black-on-black text, no unreadable labels or invisible icons.
+2. Every dialog and popover opened from the Schedule follows the dark theme too.
+3. Conflict and overtime cues remain distinguishable (they never rely on colour alone - text/icon still present).
+4. Switching back to light mode restores the normal look with nothing stuck in dark colours.",SV-8685 (tech-plan §6 checklist 13 dark mode),,
+Shifts and events created before the Schedule rewrite still appear after it,Cross-Module and Rewrite Regression,Functional,Critical,"1. This case runs around the Schedule rewrite release: before the release, note (or create) a handful of scheduled shifts and calendar events - including at least one future-dated one - with their technician, day, and time.
+2. The release (which replaces the Schedule behind the scenes) has been deployed.","1. After the release, open the Schedule and navigate to the dates of the noted entries.
+2. Compare each noted shift and event against what the grid now shows.
+3. Open a couple of them to check their details.","1. Every shift and event that existed before the release is still there after it - same technician, same day, same time, same work order.
+2. Events are still events and shifts are still shifts (nothing changed kind or vanished).
+3. Their details open normally and are editable/deletable like any other entry.",SV-8685 (tech-plan §3 FR-015 data migration),,
+Dashboard shows one schedule row per work order even with many shifts,Cross-Module and Rewrite Regression,Functional,Medium,"1. The Schedule rewrite release is deployed.
+2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts).","1. Open the Dashboard and find its schedule/today sections.
+2. Look for the spread work order in those sections.
+3. Count how many rows that one work order produces.","1. The Dashboard shows that work order as ONE row (covering the whole scheduled span), not one row per daily shift.
+2. Note for the tester: before this release the Dashboard duplicated such a work order once per scheduled day - showing one combined row now is the intended fix, do not report it as a missing-rows bug.
+3. Work orders with a single shift are unaffected.",SV-8685 (tech-plan §4 Dashboard FR-016),,
+A work order created with an appointment shows up on the Schedule board,Cross-Module and Rewrite Regression,Functional,High,"1. The Schedule rewrite release is deployed.
+2. You can create a work order and set its appointment/scheduling details during creation.","1. Create a new work order and give it an appointment (a scheduled date/time) as part of the creation flow.
+2. Open the Schedule and navigate to that date.
+3. Find the new work order on the board.","1. The appointment created with the work order appears on the Schedule board at the chosen date/time.
+2. It behaves like any other scheduled entry (opens, moves, deletes normally).
+3. It also appears in the Dashboard's schedule section for that day.",SV-8685 (tech-plan §4 WO-create AppointmentScheduler),,
+A multi-location technician's shift appears only on the work order's location,Cross-Module and Rewrite Regression,Functional,Medium,"1. The Schedule rewrite release is deployed.
+2. A technician is enrolled at TWO locations (set this up if needed).
+3. A work order belonging to location A has a shift scheduled on that technician.","1. Open the Schedule while working in location A and find the technician's shift.
+2. Switch to location B and open its Schedule for the same date.
+3. Look for the same shift on location B's board.","1. The shift appears on location A's board (the location the work order belongs to).
+2. The shift does NOT appear on location B's board, even though the technician is enrolled there too.
+3. Note for the tester: before the rewrite such a shift showed on EVERY location the technician was enrolled at - showing it only on the work order's location is the intended new behaviour, do not report the disappearance from other locations as a bug.",SV-8685 (tech-plan §3 WO-primary location resolution),,
+Work order form offers a Priority (High/Medium/Low) that drives the sidebar,Cross-Module and Rewrite Regression,Functional,Medium,"1. The Schedule rewrite release (which adds the Priority field) is deployed.
+2. You can create/edit a work order.","1. Open the work order create/edit form and find the Priority field.
+2. Read its default value on a brand-new work order.
+3. Set it to High and save.
+4. Open the Schedule sidebar, find that work order's card, and apply the Priority = High filter.","1. The work order form offers a Priority choice of High, Medium, Low.
+2. A new work order has NO priority pre-selected by default.
+3. After saving, the Schedule sidebar reflects the chosen priority and the Priority filter finds the work order under High.
+4. A work order with no priority set simply shows none (it is not treated as an error).",SV-8687 (§5.1 + tech-plan FR-P4 WO priority),,
+API - Schedule reads need View; writes need Edit; deletes need Delete (403),API — Schedule,Negative,High,"1. The Schedule rewrite build (new /api/schedule endpoints) is deployed.
+2. Three test users exist: one with NO Schedule permission, one with Schedule: View only, one with Schedule: View + Edit (but not Delete).
+3. A shift id from the current location is known.","1. As the user with NO Schedule permission, call GET /api/schedule/board?from=&to= for the current week.
+2. As the View-only user, call the same GET, then try POST /api/schedule/shifts (a minimal single-shift body) and PATCH /api/schedule/shifts/{id}.
+3. As the View+Edit user, repeat the POST and PATCH, then try DELETE /api/schedule/shifts/{id}?scope=shift.","1. No Schedule permission: the board GET is refused with HTTP 403.
+2. View-only: the board GET returns HTTP 200 with the grid data; the POST and PATCH are refused with HTTP 403.
+3. View + Edit: the POST and PATCH succeed (HTTP 201/200); the DELETE is refused with HTTP 403 because the user lacks Schedule: Delete.
+4. Each refusal is a clean 403 response - never a server error.",SV-8685 (§14 + tech-plan §4 NFR-003 permissions),,
+API - Series past 8 weeks returns 409 until acknowledged; over 120 shifts 422,API — Schedule,Negative,Medium,"1. The Schedule rewrite build is deployed; an API session with Schedule: Edit exists.
+2. A schedulable work order line id and a technician staff id are known.","1. POST /api/schedule/shifts with a spread whose window exceeds 8 weeks (56 calendar days), WITHOUT acknowledgeLongSeries.
+2. Repeat the same POST with acknowledgeLongSeries=true.
+3. POST a spread that would materialize MORE than 120 shifts in one request, with acknowledgeLongSeries=true.
+4. Check the board for leftovers after the refused calls.","1. The over-8-week create is refused with HTTP 409 (a 'series too long' error) - nothing is created.
+2. With acknowledgeLongSeries=true the same request succeeds (HTTP 201) and returns the full materialized series under one series id.
+3. The over-120-shift request is refused with HTTP 422 even WITH the acknowledgement - the hard cap cannot be overridden.
+4. Refused calls leave no partial series behind.",SV-8691 (§4.5 + tech-plan D8 error cases),,
+API - No pricing fields in Schedule responses; WO details need Work Orders View,API — Schedule,Functional,High,"1. The Schedule rewrite build is deployed.
+2. A shift covering work order lines exists.
+3. Two API users: one with Schedule: View + Work Orders: View, one with Schedule: View but WITHOUT Work Orders: View.","1. As the full user, call GET /api/schedule/board, GET /api/schedule/shifts/{id}, and GET /api/schedule/work-orders and search the raw responses for money fields (price, cost, rate, total, $ amounts).
+2. As the user WITHOUT Work Orders: View, call GET /api/schedule/board and GET /api/schedule/shifts/{id} and read the work-order-derived fields (customer, unit, VIN, lines).","1. No Schedule response contains any pricing/money field for ANY caller - the schedule never returns labor, totals, or dollar amounts.
+2. For the caller without Work Orders: View, the work-order-derived details (customer, unit, VIN, line names) are absent/empty in the response itself - not just hidden on screen.
+3. Both calls still succeed (HTTP 200) - lacking Work Orders: View limits the content, it does not break the schedule read.",SV-8685 (§14 + tech-plan D6/NFR-002 no pricing),,
+"API - A shift from another location returns 404, not another shop's data",API — Schedule,Negative,Medium,"1. The Schedule rewrite build is deployed.
+2. Two locations exist; a shift exists at location B; your API session is scoped to location A.
+3. The location-B shift's id is known (create it while switched to B, then switch back to A).","1. While scoped to location A, call GET /api/schedule/shifts/{id} with the location-B shift id.
+2. Also try PATCH /api/schedule/shifts/{id} on the same id.
+3. Call GET /api/schedule/board for location A's current week.","1. The foreign-location GET is refused as not found (HTTP 404) - the response reveals nothing about the other location's shift.
+2. The PATCH on the foreign id is refused the same way (404) - no cross-location edit is possible.
+3. Location A's board contains only location A's shifts - nothing from location B leaks in.",SV-8685 (tech-plan NFR-001 location scoping),,

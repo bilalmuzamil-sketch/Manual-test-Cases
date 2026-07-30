@@ -4,7 +4,7 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-29, fourth update** (WAVE-2 PUSH EXECUTED — the 4 WIP VIN-chain
+Last updated: **2026-07-30** (TECH-PLAN RECONCILIATION applied locally — 7 edits + 5 new cases, tally 465, push queue 5 update + 5 add awaiting authorization; see §0 UPDATE 2026-07-30). Prior: **2026-07-29, fourth update** (WAVE-2 PUSH EXECUTED — the 4 WIP VIN-chain
 update_case [WIP-COL-05 C30470 / WIP-FLT-03 C30500 / WIP-SORT-03 C30485 / WIP-EXP-07 C30516]
 pushed under explicit user authorization "Push", 4/4 HTTP 200 + re-GET MATCH, live count under
 group 4281 = 460 == id-map, R359 untouched; **suite 460 active, ALL current with Chris's
@@ -39,7 +39,41 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
-**LATEST 2026-07-29 (session complete — state-save):** wave-2 pushed (commit e2201e2; see UPDATE
+**UPDATE 2026-07-30 (LATEST — TECH-PLAN RECONCILIATION APPLIED LOCALLY; NO TestRail writes; read
+`tech-plan-2026-07-29/TECH-PLAN-DELTAS.md` + `tech-plan-2026-07-29/ChangeList-2026-07-30.md`
+first):** the engineering tech plan (user upload 2026-07-29; verbatim copy =
+`tech-plan-2026-07-29/TechPlan-Reports-Suite-Full-Implementation.md`) was reconciled against the
+460 cases. **Applied LOCALLY:** 7 case edits (WIP-API-01 C30528 snapshot re-run idempotency;
+SBR-STAT-02 C30209 deposit-covered-prepaid seeding + SBR-BADGE-01 C30226 note; PV-CALC-07 C30365
+Last-Sale re-anchor on reversal; SBC-API-02 C30191 sort-whitelist safety; WIP-FLT-05 C30502
+created=start-date seeding note [local-only]; IV-EXP-07 C30593 title trim — cap 10,000 locked by
+Chris 07-21 per plan) + **5 NEW cases** (PV-EXP-11 + TU-EXP-09 over-cap export refusal [spec-silent,
+tech-plan-sourced, flagged]; WIP-CALC-10 running-clock counts toward Labor Earned [legacy code
+dropped open clocks]; IV-DATE-09 recorded day survives category/vendor rename/delete; SBR-CALC-09
+post-invoice clock edit updates Inv. Hrs, billed sell unchanged). Backups
+`tech-plan-2026-07-29/backup/` + MANIFEST; apply script `apply_tech_plan_2026-07-30.py`.
+**PERMISSION-MODEL FINDING (Q2):** the tech plan CONFIRMS the mixed model as deliberate design
+(SBC dedicated atom `ROLE_SALES_BY_CUSTOMER_REPORT::VIEW` — bundle placement explicitly "a
+product-level decision to surface"; PV Inventory Reports→View; IV ROLE_REPORT_VIEW; SBR/TU/WIP
+existing report access) — sharpens but does NOT settle Chris's Q2 ("normal reports access");
+Q2 note QA-internal section updated with citations; permission cases stay AS AUTHORED (Ruling 1).
+**Conflicts flagged, NOT rewritten** (`Questions-for-Chris-dev.md`, DRAFT not sent): Q1
+single-location Location-filter (plan says visible, video P33 says hidden — cases stay
+video-authoritative), Q2 two different too-large messages (SBC spec vs IV spec/plan), Q3 cap
+missing from PV/TU/WIP spec pages; SBR-Esc + permission-model questions already open elsewhere.
+**14 VIU-prep facts** recorded in TECH-PLAN-DELTAS §5 (backfill-NULL on historical SBC/SBR money;
+SBR credit forward-only → historical = Unassigned; snapshot crons; localStorage key
+`report_view:<slug>`; location switch clears cache; WIP client-side architecture; etc. — READ
+BEFORE the QA-branch VIU). **NEW TALLY: 465 ACTIVE authored** (460 live in TestRail + 5 new blank
+C-ids); deliverables regenerated over 465 (unified + 6 splits, header byte-identical, hygiene
+clean: 0 VIU/flag words, 29 API cases all in API sections); id-map 465 rows, 460 C-ids re-merged.
+**Rule-28 audit on the touched/new 12: USEFUL 12/12 KEEP · SENSE 12/12 SENSIBLE · GENUINE+LAYMAN
+12/12.** **PUSH QUEUE AWAITING AUTHORIZATION: 5 update_case (C30528, C30209, C30365, C30191,
+C30593) + 5 add_case (the new cases); 0 deletes; R359 untouched** — manifest = ChangeList
+2026-07-30 §C. SPEC-WATCH 2026-08-04 unchanged (Chris changelog still pending; the WIP snapshot
+re-run + cap items feed the re-diff).
+
+**PRIOR 2026-07-29 (session complete — state-save):** wave-2 pushed (commit e2201e2; see UPDATE
 2026-07-29-D), leadership process doc delivered (commit 75ad986:
 `build/Test-Case-Creation-and-Refinement-Process_2026-07-29.docx` + simple guide commit 3e18b3e),
 QA meeting notes ingested (`build/meetings/Daily-QA-Meetup-2026-07-29-notes.md`),

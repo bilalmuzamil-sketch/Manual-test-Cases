@@ -161,6 +161,13 @@ For a past date the report replays the closest recorded day on or before the end
 2. The date nightly recording began at this organization is known.","1. Select a range ending before the first nightly recording.
 2. Read what the report shows.","1. The report shows the empty state — there is no way to reconstruct inventory value for a date before recording began, because there is no historical backfill.
 2. This forward-capture-only behavior is the documented v1 boundary, not a defect.",specs/inventory-value.md Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope,,
+A recorded day keeps its category and vendor names after a rename or delete,IV — As-of Date & Snapshots,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A recorded (overnight-captured) day exists that includes ZZAUTOTEST parts under a known category and a known vendor.","1. Rename that part category (and/or rename or delete the vendor) in administration.
+2. Set the report's date range so it shows the earlier recorded day (the ""As of"" indicator names that earlier date).
+3. Read the affected rows' Category and Vendor cells on the recorded day.
+4. Move the range back to include today (live view) and re-read a renamed category's rows.","1. The earlier recorded day still shows the category and vendor names AS THEY WERE RECORDED that day — a recorded day equals what the live report showed that day, even after the rename/delete.
+2. The rename/delete causes no blank Category/Vendor cells and no dropped rows on the recorded day.
+3. The live view (window reaching today) shows the NEW name for the renamed category.",SV-8678 (specs/inventory-value.md Story 11 S11-R2; Story 5 S5-R4; tech-plan-2026-07-29 B4.1 — names stored with the recorded rows on purpose),,
 The Category and Vendor filters are multi-selects that reload the report to only the matching parts,IV — Filters & Part Search,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. In-stock parts exist across at least two categories and two vendors.","1. Open the filter labeled ""Category"" and select one category; watch the data area.
 2. Add a second category to the selection.
@@ -291,7 +298,7 @@ Exports are generated server-side over the full filtered set — rows beyond the
 3. Compare the file's totals row to the on-screen totals.","1. The export contains the FULL filtered set — every qualifying row across all pages, not only the rows loaded in the browser.
 2. Parts from the later pages are present.
 3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser.",specs/inventory-value.md Story 10 S10-R11,,
-An over-cap filtered set produces no file and shows the too-large-to-export message (exact cap value pending owner confirmation),IV — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+An over-cap filtered set produces no file and shows the too-large-to-export message,IV — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set).","1. Set the filters so the filtered set exceeds the export row cap.
 2. Request ""Download (PDF)"" and read what happens.
 3. Request ""Download (CSV)"" and read what happens.","1. Neither the PDF nor the CSV is produced.

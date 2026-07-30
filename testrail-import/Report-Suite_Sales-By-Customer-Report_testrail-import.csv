@@ -425,9 +425,11 @@ On a phone every toolbar control works on touch and below 1024px the toolbar spl
 2. The first expand of a customer triggers a server fetch for that customer's asset and invoice rows.
 3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.",specs/sbc-sales-by-customer.md Story 8 S8-R14; S8-R16,,
 Sorting is applied on the server: a header click re-fetches the customer rows ordered by that column as a fresh first page,SBC — API,Functional,Medium,1. Enough customers exist to span more than one page; the browser's network panel is open.,"1. Click a column header and watch the network panel.
-2. Compare the returned first page with the previous page contents.","1. Clicking a column header issues a server request that returns the customer rows ordered by that column.
+2. Compare the returned first page with the previous page contents.
+3. Optional (API tooling): repeat the request with a made-up sort column name and read the response.","1. Clicking a column header issues a server request that returns the customer rows ordered by that column.
 2. The full filtered set is re-ordered and re-paginated on the server — the response is the first page of results in the new order, so page membership can change.
-3. The ordering is not done by re-shuffling rows already in the browser.",specs/sbc-sales-by-customer.md Story 10 S10-R8; S10-R8b,,
+3. The ordering is not done by re-shuffling rows already in the browser.
+4. A sort request naming a column the report does not offer is safely refused or ignored — never an error page or a crash; sorting works only on the report's own columns.",specs/sbc-sales-by-customer.md Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist),,
 The Customer filter's type-ahead fetches matching customers from the server per query instead of loading the full list up front,SBC — API,Functional,Medium,1. You are on the report with the browser's network panel open.,"1. Open the Customer filter WITHOUT typing and check whether a full customer list was downloaded.
 2. Type a query and watch the network panel.
 3. Change the query and watch again.","1. The dropdown does not load the full customer list into the browser up front.

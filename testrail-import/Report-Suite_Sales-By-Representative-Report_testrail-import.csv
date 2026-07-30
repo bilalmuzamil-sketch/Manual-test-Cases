@@ -46,7 +46,8 @@ Invoice Status dropdown offers exactly four options with All Statuses as the def
 2. It offers exactly four options: ""All Statuses,"" ""Unpaid,"" ""Partially Paid,"" ""Paid.""
 3. ""All Statuses"" is the default on first load.
 4. Changing the selection re-fetches and re-renders the report.",specs/sbr-sales-by-representative.md Story 4 S4-R1; S4-R2; S4-R3; S4-R5,,
-"Status filtering matches on the mapped display value: five system states collapse into Paid, Partially Paid and Unpaid",SBR — Invoice Status Filter,Functional,Critical,1. ZZAUTOTEST invoices exist under one rep covering the payment situations: fully paid; overpaid; prepaid with zero balance owed; prepaid with a balance still owed; partially paid; unpaid.,"1. Filter to ""Paid"" and read which invoices appear.
+"Status filtering matches on the mapped display value: five system states collapse into Paid, Partially Paid and Unpaid",SBR — Invoice Status Filter,Functional,Critical,"1. ZZAUTOTEST invoices exist under one rep covering the payment situations: fully paid; overpaid; prepaid with zero balance owed; prepaid with a balance still owed; partially paid; unpaid.
+2. Seed the prepaid-with-zero-balance situation the realistic way: the customer pays a DEPOSIT up front that fully covers the work, so the invoice is created with nothing left to pay.","1. Filter to ""Paid"" and read which invoices appear.
 2. Filter to ""Partially Paid"" and read again.
 3. Filter to ""Unpaid"" and read again.","1. ""Paid"" includes the paid, the overpaid, AND the prepaid-with-zero-balance invoices.
 2. ""Partially Paid"" includes the partially-paid AND the prepaid-with-a-balance-owed invoices.
@@ -160,6 +161,11 @@ Badge colors use the application's canonical payment-status tokens in both light
 Half-up rounding at each precision; totals may differ by one last-decimal unit,SBR — Inv. Hrs & Calculations,Functional,Medium,"1. Several invoices whose money values come from calculations that produce fractions of a cent sit under one rep — seed ZZAUTOTEST invoices whose amounts come from hours × rate or percentage-based lines that do not land on a whole cent (money fields themselves only take two decimals, so the sub-cent amounts must come from the math, not be typed in).","1. Read the displayed per-invoice values, sum them by hand, and compare with the rep summary and Totals cells.","1. All displayed values round half-up (away from zero) at their stated precision — money to cents; Inv. Hrs and Margin % to one decimal.
 2. Rolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.
 3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect.",specs/sbr-sales-by-representative.md §3 rounding rule,,
+A clock-record edit after invoicing updates Inv. Hrs; billed money stays put,SBR — Inv. Hrs & Calculations,Functional,High,"1. A ZZAUTOTEST invoiced (not reversed, not void) work order exists with billed labor and clocked technician hours, and its invoice row is visible under its rep in the report.","1. Note the invoice row's Inv. Hrs value and its money columns.
+2. Edit a technician clock record on that work order (change its length), or delete one.
+3. Reload the report and re-read the same invoice row.","1. The worked-hours side updates — Inv. Hrs (hours invoiced minus hours worked) reflects the edited clock time after the reload.
+2. The billed SELL values (Labor, Parts, Subtotal) stay unchanged — a clock edit never rewrites what was billed.
+3. The figures tied to worked time move together consistently (Margin uses the labor cost behind the worked hours, so it may change too) — nothing is left stale.",SV-8626 (specs/sbr-sales-by-representative.md §3 (hours worked = technician clocked hours recorded against that work order); Story 9 S9-R2; tech-plan-2026-07-29 Phase 4 FR-F7 clock-change rebuild),,
 "Subtotal: rightmost, pinned right, bold everywhere; header row sticky on scroll",SBR — Subtotal & Totals,Functional,High,"1. You are on the report with data, narrow enough to force horizontal scrolling.
 2. Enough rows exist to also force vertical scrolling.","1. Confirm nothing renders to the right of Subtotal on any row type.
 2. Scroll horizontally and watch the Subtotal column on summary and detail rows.

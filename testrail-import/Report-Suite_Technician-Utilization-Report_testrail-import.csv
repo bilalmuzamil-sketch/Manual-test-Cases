@@ -251,6 +251,13 @@ A starting download shows the Download started notification and a failed downloa
 2. You can force a download failure (e.g. drop the network connection just before triggering the download).","1. Trigger a normal download and read the notification.
 2. Trigger a download under the failure condition and read the notification.","1. When a download starts, a success notification reads exactly: ""Download started"".
 2. When a download fails, an error notification reads exactly: ""Failed to download report"".",specs/technician-utilization.md Story 7 Error Handling; §7,,
+An over-cap Technician Utilization export is refused with the too-large message,TU — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A range/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST clock records in bulk if needed, or use the largest available data set).","1. Set the date range and locations so the filtered set exceeds the export row cap.
+2. Request the CSV download and read what happens.
+3. Request the PDF download and read what happens.
+4. Narrow the date range or filters below the cap and request a download again.","1. Neither the CSV nor the PDF is produced — no download starts.
+2. A clear too-large message appears telling the user to narrow the date range or filters, then try again — the standard wording is ""This report is too large to export. Narrow the date range or filters, then try again.""
+3. After narrowing below the cap, the downloads work again.","SV-8654 (specs/technician-utilization.md Story 7 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10,000-row export cap, locked by Chris 2026-07-21)",,
 The Location filter is the rightmost multi-select; All Locations = select-all,TU — Location Filter,Functional,High,"1. You are signed in as a user with access to at least two locations.
 2. You are on the Technician Utilization report.","1. Look at the rightmost control in the toolbar and read its label.
 2. Open it and read the listed options.

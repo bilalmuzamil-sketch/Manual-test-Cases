@@ -5,9 +5,54 @@
 > (staging/QA access method, harness scripts, TestRail API patterns, the two process
 > docs) across all projects.
 
-## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-27)
+## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-29)
 
-### 0.0-EPIC-EXECUTED EPIC SV-8685 SYNC EXECUTED (2026-07-27, LATEST — user-authorized TestRail writes DONE)
+### 0.0-TECHPLAN ENGINEERING TECH PLAN RECONCILED (2026-07-29, LATEST — LOCAL only, NO TestRail writes)
+
+**The engineering "Schedule Module Rewrite — Technical Implementation Plan" (user upload
+2026-07-29) was ingested VERBATIM + reconciled against the 177-case suite.** Sources of
+record: `tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md` (the plan),
+`TECH-PLAN-DELTAS.md` (full classification), `Schedule_TechPlan_ChangeList_2026-07-29.md`/`.xlsx`
+(sign-off file), `RULE28-AUDIT-2026-07-29.md`, `Questions-for-Branko-dev.md`,
+`backup/` + `MANIFEST.md` (pre-edit copies).
+
+- **13 NEW cases authored** (`cases/cases-H-tech-plan.json`, all VIU-Pending, blank
+  C-ids — need add_case): SCH-SPREAD-11 (8-week warn + 120-shift hard cap), SCH-DEL-10
+  (commit-immediately undo), SCH-EDGE-07 (DST-stable series), SCH-EDGE-08 (dark mode),
+  SCH-REG-01..05 (rewrite regression: data survives migration; Dashboard ONE aggregated
+  row per WO [intended fix]; WO-create appointment lands on board; multi-location tech
+  shift on the WO's location only [intended change]; WO Priority field), SCH-API-01..04
+  (first API cases ever for Schedule — the tech plan IS the backend contract: permission
+  matrix 403s, series caps 409/422, no-pricing + WO:View server-side omission,
+  cross-location 404). Two NEW sections: "Cross-Module and Rewrite Regression",
+  "API — Schedule" (Rule 4).
+- **16 edits**: 2 tester-facing (SCH-WOL-05/C29940 paged-loading expected line;
+  SCH-VIEW-03/C30044 My-Shifts-hidden-for-non-tech line) + 14 notes-only QA flags
+  (conflict cautions + confirmations; notes never reach TestRail).
+- **HELD items D1 (events→capacity) + D4 (modal Reassign): the plan SPEAKS to both but
+  settles NEITHER** — it builds events-count (D5, citing a PRD Q&A comment 2026-07-23)
+  and drag-only reassign ("PRD wins over prototype"); product truth stays with Branko.
+  Cases untouched; PO-Questions QA-internal appendix updated (also informs Q3 no-export,
+  Q4 New-WO opens the real dialog, Q5 default 07:00–19:00, Q7 backend contract exists).
+- **5 NEW conflicts flagged, NOT rewritten** (`Questions-for-Branko-dev.md`, layman):
+  NQ-1 closure-skip in spread (plan skips; Jira V1 rule says no — hits SCH-EDGE-05/
+  SPREAD-07/08), NQ-2 double-booking in the conflicts counter (plan: soft warning only —
+  hits SCH-CONF-01/05), NQ-3 business-hours/closures placement (admin "Schedule
+  Settings" page vs Edit Location — hits SCH-HRS-01/02), NQ-4 split shifts (plan model =
+  ONE range/day — hits SCH-HRS-05..07), NQ-5 own-data write scoping (ManageShiftVoter).
+- **VIU-PREP recorded** (DELTAS §E): no feature flag ever (one-release cutover; pre-cutover
+  /schedule still renders LEGACY even with new endpoints live); route + atoms unchanged
+  (`ROLE_SCHEDULE_VIEW/CREATE_AND_EDIT/DELETE`); DOM hook `schedule_shift_block`/
+  `data-shift-id`; 17-endpoint API map + error contract in DELTAS §C.
+- **NEW TALLY: 190 ACTIVE authored** (177 + 13). Deliverables regenerated over 190:
+  import 190 rows (header byte-identical, 0 VIU/flag words, no dup titles/ids, API
+  section emitted), id-map 190 rows (177 C-ids re-merged, 13 blank). Rule-28 audit:
+  12 KEEP / 1 WEAK-KEEP / 0 CUT · 15/15 SENSIBLE · all traceable.
+- **PUSH QUEUE (awaiting authorization): 2 add_section + 13 add_case + 2 update_case.**
+- **NEXT:** authorize the push; send NQ-1..5 with the open Q1/Q2/Q3 sheet; live VIU when
+  the QA branch exists (OQ-3) — note SCH-REG-01..04 need the CUTOVER build.
+
+### 0.0-EPIC-EXECUTED EPIC SV-8685 SYNC EXECUTED (2026-07-27 — user-authorized TestRail writes DONE)
 
 **The staged epic sync (§0.0-EPIC manifest) is now EXECUTED (user-authorized, Standing Rule 6):
 2 add_section + 10 add_case + 167 update_case, ALL HTTP 200, ALL re-GET verified MATCH, 0 delete.**
