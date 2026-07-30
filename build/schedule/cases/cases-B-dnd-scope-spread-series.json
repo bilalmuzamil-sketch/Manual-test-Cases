@@ -184,7 +184,7 @@
   "steps": [
    "1. Drag that line onto the technician's cell and create the shift.",
    "2. Open the same work order's line (in the sidebar drill-down and/or on the Work Orders page) and check its technician roster.",
-   "3. Drag the SAME line onto a different technician's cell and create a second shift.",
+   "3. Drag the SAME line onto a different technician's cell and create a second shift (drag the line from the sidebar again - do NOT drag the shift block you just created, that would move it instead).",
    "4. Look at that line's technician roster again."
   ],
   "expected": [
@@ -198,7 +198,7 @@
   "spec_ref": "requirements.md §1.2 (Goals - roster sync) · §4.3 (roster add + no swap flow) · §7",
   "refs": "SV-8688 (§1.2 Goals - roster sync · §4.3 roster add + no swap flow · §7; spec v23 2026-07-30)",
   "viu_status": "VIU-Pending",
-  "notes": "EXTENDED 2026-07-31 (coverage re-derivation vs Confluence v23) - closes gap G1. §4.3 says \"There is no technician cap and no swap flow. Scheduling a technician onto a line simply adds them to that line's roster.\" The 'no cap' half was already covered (SCH-LINE-04 / SCH-SCOPE-01 avatar stack 'no cap'), but NO case observed that a SECOND technician is ADDED alongside the first rather than replacing them or prompting a swap - a build that silently replaced the incumbent would have passed every case. Steps 3-4 and expected 4-5 close that. Extended rather than authored as a new case because it is the same observable behaviour as the roster sync this case already covers (Rule 28 - no near-duplicates).",
+  "notes": "EXTENDED 2026-07-31 (coverage re-derivation vs Confluence v23) - closes gap G1. §4.3 says \"There is no technician cap and no swap flow. Scheduling a technician onto a line simply adds them to that line's roster.\" The 'no cap' half was already covered (SCH-LINE-04 / SCH-SCOPE-01 avatar stack 'no cap'), but NO case observed that a SECOND technician is ADDED alongside the first rather than replacing them or prompting a swap - a build that silently replaced the incumbent would have passed every case. Steps 3-4 and expected 4-5 close that. Extended rather than authored as a new case because it is the same observable behaviour as the roster sync this case already covers (Rule 28 - no near-duplicates). | Rule-28 Stage-2b (same pass): step 3 spells out 'drag the line again - not the shift block' so this case cannot be read as contradicting SCH-DND-07's neighbour SCH-REAS-01 (C30052), where dragging an existing SHIFT block to another technician REMOVES the source technician. Two different actions, both correct per v23 (§4.3 'simply adds them' vs §7 'the source technician is removed').",
   "api_related": false
  },
  {
