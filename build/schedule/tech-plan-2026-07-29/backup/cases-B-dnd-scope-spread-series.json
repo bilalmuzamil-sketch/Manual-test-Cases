@@ -610,7 +610,7 @@
   "spec_ref": "requirements.md §4.2, §12",
   "refs": "SV-8688 (§4.2, §12)",
   "viu_status": "VIU-Pending",
-  "notes": "TECH-PLAN 2026-07-29: the new data model carries an is_all_day flag, but a shift's start (starts_at) is required in the schema - this case stands as written.",
+  "notes": "",
   "api_related": false
  },
  {
@@ -805,7 +805,7 @@
   "spec_ref": "requirements.md §4.5, §12 (shop closures)",
   "refs": "SV-8691 (§4.5, §12 (shop closures))",
   "viu_status": "VIU-Pending",
-  "notes": "V1 rule (Jira SV-8691, latest-wins over the older requirements.md §12): spread skips weekends ONLY when business hours are not set for them; shop closures / public holidays are NOT skipped in V1. Driver: SV-8691 §4.5. Verify live at VIU. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-1): the engineering plan (D7) builds REAL closure skipping ('skips closures + non-working days'), contradicting the Jira V1 rule this case encodes (closures NOT skipped). Pending ruling (Questions-for-Branko-dev.md NQ-1) - do not pass/fail expected #3 until ruled; observe and record.",
+  "notes": "V1 rule (Jira SV-8691, latest-wins over the older requirements.md §12): spread skips weekends ONLY when business hours are not set for them; shop closures / public holidays are NOT skipped in V1. Driver: SV-8691 §4.5. Verify live at VIU.",
   "api_related": false
  },
  {
@@ -833,7 +833,7 @@
   "spec_ref": "requirements.md §4.5 (Preview)",
   "refs": "SV-8691 (§4.5 (Preview))",
   "viu_status": "VIU-Pending",
-  "notes": "Preview one-liner ('N shifts · <start> → <end> · skips weekends + N closures', expandable week-by-week) pinned by the Claude design (§4b); confirm the exact copy live. Driver: Claude design §4b. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-1): plan Phase 7 SpreadDialog includes 'real closure skip' in the preview - whether a closure appears as a struck-through skipped day in V1 depends on the NQ-1 ruling.",
+  "notes": "Preview one-liner ('N shifts · <start> → <end> · skips weekends + N closures', expandable week-by-week) pinned by the Claude design (§4b); confirm the exact copy live. Driver: Claude design §4b.",
   "api_related": false
  },
  {

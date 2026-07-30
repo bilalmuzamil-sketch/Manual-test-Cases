@@ -113,38 +113,3 @@ Schedule cases are already in TestRail (`build/schedule/testrail-id-map.csv`, St
 | 5 | SCH-START-03 (C29971), SCH-START-06 (C29974), SCH-CONF-03 (C30025), SCH-CONF-04 (C30026) | DESIGN-RECONCILIATION §3 #10 (discrepancy persists). Prototype hardcodes 8 AM-5 PM (start:8,end:17); written plan says 7 AM-7 PM. Our start-time + before/after-hours cases depend on the default working day. | A (8-5) -> adjust the default-hours cases to 8 AM-5 PM. B (7-7) -> keep the 7 AM start / adjust to 7 PM end. Confirm LIVE at VIU. |
 | 6 | SCH-VIEW-04 (C30045), SCH-TIP-01 (C30034) | PROJECT-STATE OQ-6(a) + §4.13-vs-§9 VIN inconsistency. §4.13 lists the tooltip VIN unconditionally; §9 ties it to the 'VIN Number' toggle (default OFF). We resolved cases in favour of §4.13 (tooltip always shows VIN; the toggle gates the shift BLOCK only) - needs Branko confirmation. | A (always) -> matches how cases are currently written (SCH-TIP-01 tooltip always shows VIN; SCH-VIEW-04 toggle gates the block only). B (toggle-gated) -> rewrite SCH-TIP-01 to hide the tooltip VIN when the toggle is off. Verify LIVE at VIU. |
 | 7 | (cross-cutting - all API/backend Schedule cases) | PROJECT-STATE OQ-6(b). No backend/API contract was provided; the suite is screen-behaviour only. Does Branko/dev want backend cases, and if so supply the contract? (Also folds OQ-5 spec-label ambiguities - resolved LIVE at VIU.) | A -> obtain the backend contract; author API cases (Rule 4 places them in 'API'-titled sections). B -> screen-only coverage stands for V1. |
-
-### QA-internal update 2026-07-29 — engineering tech plan ingested (QA-only, not for the PO)
-
-The engineering "Schedule Module Rewrite — Technical Implementation Plan" (user upload
-2026-07-29; `build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md`)
-speaks to several pending questions. It INFORMS them — it does not settle them (product
-truth = Branko). Per-question:
-
-- **Q1 (events → capacity):** the plan BUILDS "events count toward capacity, but are NOT
-  conflict-checked" (its D5), citing a PRD Confluence Q&A comment answer of 2026-07-23
-  that *revises* Branko's earlier "No". Engineering defaults pending product confirm:
-  department-assigned events do NOT count; unbounded all-day events are visual-only.
-  Also: ~9,684 migrated legacy events would immediately raise capacity bars at cutover
-  (the plan says to tell product so it isn't filed as a bug). Supports option A; cases
-  SCH-EVT-08 (C30615) + SCH-CAP-01..04 (C30030–C30033) stay HELD until Branko answers.
-- **Q2 (modal Reassign):** the plan BUILDS drag-only reassign — "no modal reassign
-  action" ("PRD wins over prototype drift"). Supports option B (our current cases).
-  Still HELD for Branko because the Jira story SV-8695 text says Delete AND Reassign.
-- **Q3 (Week Export):** the plan's full requirement table (§9) contains NO export or
-  printing item — engineering is not building it per this plan. Supports option B for
-  the plan's scope; SCH-EXP-01/02 (C38853/C38854) stay pending Branko.
-- **Q4 (New Work Order shortcut):** the plan BUILDS it — the cell menu's "New Work
-  Order" opens the real work-order creation window in place ("not a toast"). Supports
-  option A and pins the behaviour (window, not navigation); SCH-REAS-06 (C38855) carries
-  a conflict-flag note until Branko confirms.
-- **Q5 (default working day):** the plan fixes the default at **07:00–19:00 local** as a
-  shared front-end/back-end constant (its D3/D4 "Default (7–19)"). Supports option B.
-- **Q7 (behind-the-scenes testing):** the tech plan IS the written backend description
-  Q7 asked about (17 endpoints + error contract, recorded in
-  `tech-plan-2026-07-29/TECH-PLAN-DELTAS.md` §C). Four lean API cases are now authored
-  locally (SCH-API-01..04, no C-ids yet) pending the usual authorized push + live VIU.
-
-NEW conflicts the plan raised (closure skipping, double-booking counter, settings
-placement, split shifts, own-data write scoping) are drafted as NQ-1..NQ-5 in
-`tech-plan-2026-07-29/Questions-for-Branko-dev.md`.

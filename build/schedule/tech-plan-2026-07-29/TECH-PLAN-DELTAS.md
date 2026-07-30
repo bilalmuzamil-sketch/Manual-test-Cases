@@ -13,11 +13,11 @@ and fold what the plan says into the question drafts' QA-internal sections. Engi
 detail that is testable and uncontested becomes case improvements. Everything
 tech-plan-pinned is **NOT VIU-verified** (Rule 12) — live VIU still pending the QA branch.
 
-**Headline counts:** IMPROVES-CASE = **10 points → 13 new cases + 3 tester-facing edits
-+ 7 notes-only metadata edits** · API-CONTRACT = **17 endpoints recorded, 4 lean API
-cases** · CONFLICTS/CONFIRM-WITH-BRANKO = **9 flagged (incl. both HELD items — the plan
-speaks to both, neither is settled by it)** · VIU-PREP = **12 facts recorded** ·
-NO-IMPACT = **10 groups**.
+**Headline counts (as applied in Phase 3):** IMPROVES-CASE = **10 points → 13 new cases
++ 2 tester-facing edits + 14 notes-only metadata edits (16 edits total)** · API-CONTRACT
+= **17 endpoints recorded, 4 lean API cases** · CONFLICTS/CONFIRM-WITH-BRANKO = **9
+flagged (incl. both HELD items — the plan speaks to both, neither is settled by it)** ·
+VIU-PREP = **12 facts recorded** · NO-IMPACT = **10 groups**.
 
 ---
 
@@ -63,7 +63,7 @@ NO-IMPACT = **10 groups**.
 | B7 | **§4 WO create / FR-001** | "creating a WO with an appointment produces a `schedule_shift` row that appears on the board" — cross-module path with zero coverage. | **NEW SCH-REG-03** (WO created with an appointment shows on the Schedule board). |
 | B8 | **FR-P4 WO priority** | Phase 1 adds a High/Med/Low select (default unset) to the WO form; the sidebar Priority filter (SCH-FILT-04) has no case for the *setting* side. | **NEW SCH-REG-05** (set Priority on the WO form → sidebar card/filter reflects it; default = none). |
 | B9 | **Design §Theming + §6 manual checklist 13** | Design system is light/dark aware; plan mandates "Dark mode across the whole feature". New module = real dark-mode risk. | **NEW SCH-EDGE-08** (Schedule + all its dialogs readable/correct in dark mode). |
-| B10 | **D4 + §6 unit matrix ("Saturday-with-tech-hours ⇒ working")** | "Saturday with tech Saturday hours set is **not** a conflict" — the positive complement our SCH-CONF-02 lacks (it only tests the flagged case). Consistent with SV-8691's weekend rule (no product conflict). | **EDIT SCH-CONF-02 (C30024)** — add the expected line: a day WITH tech hours set (e.g. Saturday) is NOT flagged. |
+| B10 | **D4 + §6 unit matrix ("Saturday-with-tech-hours ⇒ working")** | "Saturday with tech Saturday hours set is **not** a conflict" — checked: SCH-CONF-02's expected #2 ALREADY covers this positive complement. | **No tester-facing edit needed** — notes-only confirmation added to SCH-CONF-02 (C30024). |
 | B11 | **Phase 7 SchedulePage ("My Shifts hidden when `userService.getStaffId()` undefined")** | 'My Shifts' is hidden for a user with no technician/staff record — SCH-VIEW-03 assumes it's always there. | **EDIT SCH-VIEW-03 (C30044)** — tester-facing note (tech-plan-pinned, confirm at VIU). |
 | B12 | **§4 board/sidebar ("server-side search + pagination")** | Sidebar search/pagination is server-side (list loads in pages). | Notes-only on SCH-WOL-05 (C29940) — VIU-prep, testers may see paged loading with 50+ WOs. |
 

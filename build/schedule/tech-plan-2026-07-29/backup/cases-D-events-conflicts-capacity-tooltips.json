@@ -252,7 +252,7 @@
   "spec_ref": "requirements.md §4.11 (Double-booked)",
   "refs": "SV-8697 (§4.11 (Double-booked))",
   "viu_status": "VIU-Pending",
-  "notes": "Conflict-type display names ('Double-booked' etc.) are the spec's words - confirm on-screen wording live. Whether one or both blocks get the icon is unpinned - observe. Events do NOT participate in double-booked/overlap conflict detection (Branko 2026-07-22 Q1 - may change; design-confirmed: _conflictReasons iterates shifts only). TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-2): the engineering plan (D4) treats double-booking as a FE 'soft warning', NOT a hard conflict - the BE detector reports only outside-window/closure/non-working-day. Whether the toolbar pill counts double-bookings is therefore uncertain; pending Branko/dev ruling (tech-plan-2026-07-29/Questions-for-Branko-dev.md NQ-2). Observe live; do not fail solely on the pill count until ruled.",
+  "notes": "Conflict-type display names ('Double-booked' etc.) are the spec's words - confirm on-screen wording live. Whether one or both blocks get the icon is unpinned - observe. Events do NOT participate in double-booked/overlap conflict detection (Branko 2026-07-22 Q1 - may change; design-confirmed: _conflictReasons iterates shifts only).",
   "api_related": false
  },
  {
@@ -280,7 +280,7 @@
   "spec_ref": "requirements.md §4.11 (Weekend shift)",
   "refs": "SV-8697 (§4.11 (Weekend shift))",
   "viu_status": "VIU-Pending",
-  "notes": "Reconciliation 2026-07-22: reframed from a fixed Saturday/Sunday rule to the technician's own configured working days. Driver: Branko Q&A 2026-07-22 Q2 (hierarchy Tech hours > Business hours > Default; Saturday hours => no conflict). The prototype hardcodes Mon-Fri/8-17 (design §5) - confirm the real per-tech hierarchy LIVE at VIU. TECH-PLAN 2026-07-29 CONFIRMS: plan D4/§6 test matrix states 'Saturday with tech Saturday hours set is NOT a conflict' and the same Tech > Business > Default hierarchy - expected #2 stands.",
+  "notes": "Reconciliation 2026-07-22: reframed from a fixed Saturday/Sunday rule to the technician's own configured working days. Driver: Branko Q&A 2026-07-22 Q2 (hierarchy Tech hours > Business hours > Default; Saturday hours => no conflict). The prototype hardcodes Mon-Fri/8-17 (design §5) - confirm the real per-tech hierarchy LIVE at VIU.",
   "api_related": false
  },
  {

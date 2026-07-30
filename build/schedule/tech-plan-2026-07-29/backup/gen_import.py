@@ -21,12 +21,11 @@ CONTENT RULES enforced here (same as the other generators):
      any "(see SCH-...)" internal cross-refs are stripped.
   2. Feature-flag-free: no feature-flag phrasing survives (Schedule has none in
      the reader-facing case text; a sanity check confirms 0 occurrences).
-  3. Sections = leaf area names. STANDING RULE 4: API-related cases route to an
-     "API — <leaf>" section. Since 2026-07-29 the engineering tech plan supplies
-     the backend contract (tech-plan-2026-07-29/TECH-PLAN-DELTAS.md §C), so the
-     SCH-API-* cases (area "Schedule", api_related=true) emit into the
-     "API — Schedule" section. (Before that the spec had no API contract and no
-     API cases existed.)
+  3. Sections = leaf area names. STANDING RULE 4: any API-related case would
+     route to an "API — <leaf>" section — NOTE: the Schedule spec v1.0 contains
+     NO API contract (no endpoints/methods/status codes), so NO API cases were
+     authored and no API section is emitted (explicit exclusion; see
+     coverage-matrix.md).
   4. References = spec reference only (no internal SCH- ids, no VIU text).
   5/6. Preconditions/Steps/Expected kept as authored (numbered, line-broken),
      cleaned per rule 1.
@@ -59,8 +58,8 @@ HEADER = [
     "", "",
 ]
 
-# Deterministic, tidy section order (spec/user-journey order; API section last —
-# fed by the tech-plan backend contract since 2026-07-29, see module docstring).
+# Deterministic, tidy section order (spec/user-journey order; no API section —
+# the spec has no API contract, see module docstring).
 SECTION_ORDER = [
     "Navigation and Layout",
     "Sidebar - Mini Calendar",
@@ -90,8 +89,6 @@ SECTION_ORDER = [
     "Week Export and Printing",
     "Permissions",
     "Edge Cases and Responsiveness",
-    "Cross-Module and Rewrite Regression",
-    "API — Schedule",
 ]
 
 
@@ -125,8 +122,8 @@ def load_cases():
 
 
 def section_for(c):
-    """Leaf area name; API-related cases route to an 'API — <leaf>' section
-    (STANDING RULE 4) — SCH-API-* (area 'Schedule') → 'API — Schedule'."""
+    """Leaf area name; API-related cases would route to an 'API — <leaf>'
+    section (STANDING RULE 4) — Schedule v1.0 has none (no API contract)."""
     area = c["area"].strip()
     if c.get("api_related"):
         leaf = re.sub(r"^API\s*[—-]\s*", "", area).strip()
