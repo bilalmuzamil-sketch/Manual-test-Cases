@@ -69,6 +69,9 @@ def main():
     over = sorted([i for i, c in cases.items() if len(c["title"]) > LIMIT],
                   key=lambda i: -len(cases[i]["title"]))
     print("titles over %d chars, re-derived live: %d" % (LIMIT, len(over)))
+    if not over and all(cases[i]["title"] == t for i, t in NEW.items()):
+        print("ALREADY APPLIED - nothing to do (this script is one-shot/idempotent-safe).")
+        return
     assert set(over) == set(NEW), ("list drift", set(over) ^ set(NEW))
 
     rows = []

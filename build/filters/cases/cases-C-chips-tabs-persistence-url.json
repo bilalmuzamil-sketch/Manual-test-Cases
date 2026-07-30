@@ -137,7 +137,7 @@
  {
   "id": "FLT-CHIP-06",
   "area": "Active Filter Chips and Clear Filters",
-  "title": "Different filters combine: only work orders matching every one remain",
+  "title": "Status and Customer filters together show only work orders matching both",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -474,7 +474,7 @@
  {
   "id": "FLT-PERS-04",
   "area": "Persistence",
-  "title": "A remembered filter value that no longer exists is silently dropped",
+  "title": "A remembered filter value that was deleted is silently ignored",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Any signed-in user with access to the Work Orders page; rights to delete/deactivate the seeded test value.",
@@ -527,7 +527,7 @@
  {
   "id": "FLT-URL-02",
   "area": "URL State and Shareable Links",
-  "title": "Opening a shared or bookmarked link loads the page with those filters on",
+  "title": "Opening a shared URL or bookmark loads the page with those filters on",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -553,7 +553,7 @@
  {
   "id": "FLT-URL-03",
   "area": "URL State and Shareable Links",
-  "title": "A URL containing a filter value that no longer exists loads without that value",
+  "title": "A URL with a deleted filter value loads and ignores that value",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Any signed-in user with access to the Work Orders page; rights to delete/deactivate the seeded test value.",
@@ -580,7 +580,7 @@
  {
   "id": "FLT-URL-04",
   "area": "URL State and Shareable Links",
-  "title": "A malformed filter URL loads the page unfiltered without showing an error",
+  "title": "A broken filter URL loads the page with no filters and no error",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -686,7 +686,7 @@
  {
   "id": "FLT-URL-05",
   "area": "URL State and Shareable Links",
-  "title": "Opening a filtered link never overwrites your saved filters",
+  "title": "Opening a shared link does not change your own saved filters",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (filter lists are role-independent per Branko Round-2 Q3=A).",

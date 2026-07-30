@@ -9,6 +9,12 @@ any consistency rule is violated, so nothing can be delivered with an unresolved
 contradiction.
 
 Run: python3 build/filters/branko-answers-2026-07-31/sweep_2b.py
+
+SUPERSEDED 2026-07-31 by build/filters/authenticity-2026-07-31/sweep_2b_closing.py:
+check 13 below asserts the OLD refs convention "Filters (Epic key TBD)", which the
+closing-authenticity pass replaced with the honest "Filters (no Jira epic)" (no epic
+exists - 170 SV epics enumerated). This script is kept as the record of THAT pass;
+do not re-run it against the current suite - run the closing sweep instead.
 """
 import json, glob, os, re, sys, csv
 from collections import defaultdict
