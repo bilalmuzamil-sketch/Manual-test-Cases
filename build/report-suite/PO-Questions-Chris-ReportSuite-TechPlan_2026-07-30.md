@@ -1,5 +1,7 @@
 # Report Suite — Questions for Chris Ward (from the engineering plan) — 2026-07-30
 
+**STATUS: SENT to Chris 2026-07-30, awaiting answers** (on return: ingest verbatim + revisit cases per standing workflow).
+
 Plain-language product questions only (no bugs, no test jargon). These came up from the engineering build plan read against the written descriptions, your kickoff video, and your earlier answers — plus one earlier question asked again more clearly.
 Please pick an option (or write your own answer) for each.
 

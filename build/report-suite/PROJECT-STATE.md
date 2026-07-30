@@ -94,6 +94,7 @@ Honesty (Rule 12): all edited cases remain VIU-Pending — nothing live-verified
 video's visual content (which links are bolded, the exact screens) was NOT available in the
 transcript and stays VIU-confirm. Still open: Chris changelog re-diff, Q1–Q5 answers, live VIU
 pending the QA branch.
+**STATUS 2026-07-30: the 5-question TechPlan sheet (incl. Q5 short-form labels) was SENT to Chris Ward by the user 2026-07-30 — awaiting his answers; on return, ingest verbatim + revisit cases per the standing workflow.**
 
 **PRIOR UPDATE 2026-07-30-B (TECH-PLAN PUSH EXECUTED; explicit user authorization "Push all
 three" 2026-07-30):** the staged ChangeList-2026-07-30 §C queue is now LIVE in TestRail —
