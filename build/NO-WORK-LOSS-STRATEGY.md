@@ -63,6 +63,13 @@ Every in-flight TestRail/Jira write sequence must be resumable:
   the coordinator writes the cold-resume block (what's DONE, what's IN FLIGHT with
   its exact re-run recipe, what's AWAITING WHOM) into the relevant
   PROJECT-STATE.md and pushes it, and tells in-flight workers to checkpoint-commit.
+- **⚠️ COMMIT PATH-SCOPED — parallel workers share ONE git index.** A bare `git commit`
+  after `git add <own paths>` also commits whatever a sibling worker staged in between,
+  sweeping their half-written files into the wrong commit (**happened twice on
+  2026-07-30/31**; content survived both times but history got muddied). **Fix (proven):
+  always `git commit -- <explicit paths>` (or `git commit <paths>`); never a bare
+  `git commit` after staging, and never `git add -A`/`git add .`, when other workers may
+  be active.** Recipe also in build/APP-ACTIONS-PLAYBOOK.md §L.
 
 ## SECRETS RE-SUPPLY (lost on every restart/limit)
 Cookies, tokens, and OTP codes live in `/tmp` ONLY and are LOST on restart/limit —

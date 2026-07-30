@@ -686,6 +686,13 @@ deliver the 7-tab management report.
    Branko PRD/answers → SPEC-RELEVANCE-RECONCILIATION + build-accurate wording + live
    VIU on the 43 new cases → authorized add_case push. Canonical resume doc:
    build/filters/PROJECT-STATE.md (2026-07-27 header).
+   **STATUS 2026-07-31 (LATEST — three-dimension Ruthless Usefulness Audit RUN + consolidation
+   EXECUTED; audit dir build/filters/quality-audit-2026-07-31/):** 137 → **110 local / 94 live**
+   (2 update_case + 27 local-only retirements + 12 sense repairs); audit tally = **1 nonsense
+   (RETAINED per user ruling) + 0 missing-traceability**. **PENDING:** 39 title trims; the 19
+   dropdown merges (await QA-branch LIVE check of the shared-dropdown-component assumption); the
+   9 FLT-SRCH cases (await Branko's Global-Search ownership confirmation — user ruling 2026-07-31:
+   do NOT delete unless he confirms).
    **Prior STATUS: CASES AUTHORED 2026-07-17 — 79 cases/14 sections,
    adversarial-reviewed CLEAN (7/7); import ready (pure 1:1,
    testrail-import/filters-v1-testrail-import.csv/.xlsx); PO questions ready
@@ -774,6 +781,10 @@ deliver the 7-tab management report.
    transient HTTP 000). Audit `testrail-execution-log-epic-2026-07-27.md`; manifest header = EXECUTED.**
    Scripts: `epic-sv8685/backfill_refs.py`, `epic-sv8685/patch_edits.py`. Design-pinned ≠
    VIU-Verified (Rule 12); live VIU still pending QA branch (OQ-3).
+   **STATUS 2026-07-31 (LATEST — three-dimension Ruthless Usefulness Audit RUN + consolidation
+   EXECUTED; audit dir build/schedule/quality-audit-2026-07-31/):** 190 → **165 ACTIVE**
+   (49/49 TestRail ops verified — 20 merge groups + 2 cuts + 6 sense repairs); audit tally =
+   **0 nonsense + 0 missing-traceability**. **PENDING: 79 title trims.**
    **PRIOR STATUS: TestRail SYNC EXECUTED 2026-07-22 (user-authorized, incl. delete) — the staged
    spec_1+design+Branko reconciliation is now LIVE in TestRail: 7 update_case + 2 add_case +
    1 delete_case, ALL HTTP 200, ALL re-GET verified MATCH; run 325 untouched, only group 4254

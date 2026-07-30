@@ -65,6 +65,7 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 [I. UI automation (Quasar)](#i-ui-automation-quasar) ·
 [J. TestRail API](#j-testrail-api) ·
 [K. PRODUCTION access & fix-verification](#k-production-access--fix-verification-sv-8721-proven-2026-07-29) ·
+[L. Git practice with parallel workers](#l-git-practice-with-parallel-workers) ·
 [Jira/Confluence access](#jiraconfluence-access)
 
 ---
@@ -386,6 +387,18 @@ Terse entries; where the full detail already lives elsewhere in this playbook, t
   *(proven 2026-07-29, SV-8721 comment 74275)*
 - **TestRail import gotcha (angle brackets):** `<placeholders>` get swallowed as HTML — full entry:
   §J. *(proven 2026-07-29)*
+
+## L. Git practice with parallel workers
+- **⚠️ Parallel workers SHARE ONE git index** — a bare `git commit` after `git add <own paths>` also
+  commits whatever a sibling worker staged in between, sweeping their half-written files into the
+  wrong commit. **Happened TWICE on 2026-07-30/31** (content survived both times, but history got
+  muddied).
+- **THE FIX (proven working): always commit PATH-SCOPED** — `git commit -- <explicit paths>` (or
+  `git commit <paths>`), which commits only those paths regardless of what else is staged. **Never a
+  bare `git commit` after staging, and never `git add -A` / `git add .`,** whenever other workers may
+  be active. **Syntax gotcha:** `git commit -m "<msg>" -- <paths>` errors ("did not match any
+  file(s)") — write the message to a temp file and use **`git commit -F /tmp/msg.txt -- <paths>`**
+  (multi-line messages work cleanly this way too). *(proven 2026-07-31)*
 
 ## Jira/Confluence access
 - Live browser login (headless Chromium via a fresh MITM bridge → id.atlassian.com email+password →
