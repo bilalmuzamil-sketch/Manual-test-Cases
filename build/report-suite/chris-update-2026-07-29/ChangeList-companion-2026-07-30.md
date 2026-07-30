@@ -1,7 +1,11 @@
 # Report Suite — Companion-Video Change List (2026-07-30)
 
-**STATUS: PUSH QUEUE — user-authorized 2026-07-30 ("do update the test cases if you learn
-that the video is warranting for that"); execution log appended on push.**
+**STATUS: EXECUTED 2026-07-30 — the §A queue was pushed under the user's same-day
+authorization ("do update the test cases if you learn that the video is warranting for
+that"): 7/7 update_case HTTP 200 + re-GET MATCH, 0 failures, R359 untouched, live count
+under group 4281 = 465 == id-map. Audit: `reconciliation-2026-07-28/
+testrail-execution-log-2026-07-28.md` § "COMPANION-VIDEO PUSH 2026-07-30" (ops 173–179);
+machine result `testrail-execution-result-companion-2026-07-30.json`.**
 
 - **Source:** Chris Ward PRD companion video 2026-07-30 (Loom
   https://www.loom.com/share/e4a3ad01912048c0bba88f1a02677004; transcript
@@ -64,6 +68,12 @@ API sections, no dup titles, no missing fields). id-map 465 rows, C-ids re-merge
 
 ---
 
-## EXECUTION LOG (appended at push)
+## EXECUTION LOG
 
-(pending)
+Executed 2026-07-30 09:37Z. 7/7 update_case: SBC-NAV-01 C30096, TU-NAV-01 C30392,
+SBR-NAV-01 C30195, WIP-TAB-01 C30451, PV-NAV-01 C30322, SBR-WO-06 C30315, SBR-WO-02 C30311 —
+all HTTP 200 + re-GET verified MATCH (title/preconds/steps/expected/refs). 0 adds, 0 deletes,
+0 section writes, no run writes (R359 untouched). Live count under group 4281 = 465 == id-map.
+Pre-op live snapshots: `pre-push-snapshot/C<cid>_<iid>.pre-companion-push-2026-07-30.json`.
+Per-op audit table: `../reconciliation-2026-07-28/testrail-execution-log-2026-07-28.md`
+§ "COMPANION-VIDEO PUSH 2026-07-30" (ops 173–179).

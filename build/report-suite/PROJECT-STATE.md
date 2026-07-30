@@ -4,7 +4,14 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-30, second update** (TECH-PLAN PUSH EXECUTED — the ChangeList-2026-07-30 §C
+Last updated: **2026-07-30, third update** (COMPANION VIDEO INGESTED + DELTA PASS + AUTHORIZED
+PUSH EXECUTED — Chris Ward's PRD companion video arrived (Loom e4a3ad0191…; transcript + 20-point
+delta analysis in `chris-update-2026-07-29/`); 3 FIRM deltas → 7 update_case pushed under the
+user's same-day authorization ("do update the test cases if you learn that the video is warranting
+for that"), 7/7 HTTP 200 + re-GET MATCH, tally UNCHANGED 465, R359 untouched, live count under
+group 4281 = 465 == id-map; 13 notes-only annotations local; 0 new cases; Q5 (Rep-label scope)
+appended to the unsent Chris sheet; SPEC-WATCH: companion-video item CLOSED, new items #9–#12
+added, changelog deadline 2026-08-04 stands; see §0 UPDATE 2026-07-30-C). Prior same day, second update (TECH-PLAN PUSH EXECUTED — the ChangeList-2026-07-30 §C
 queue is LIVE under explicit user authorization "Push all three": 5 update_case [WIP-API-01 C30528 /
 SBR-STAT-02 C30209 / PV-CALC-07 C30365 / SBC-API-02 C30191 / IV-EXP-07 C30593] + 5 add_case
 [PV-EXP-11 = C38885 / TU-EXP-09 = C38887 / WIP-CALC-10 = C38890 / IV-DATE-09 = C38892 /
@@ -46,7 +53,49 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
-**UPDATE 2026-07-30-B (LATEST — TECH-PLAN PUSH EXECUTED; explicit user authorization "Push all
+**UPDATE 2026-07-30-C (LATEST — COMPANION VIDEO INGESTED + DELTA PASS + AUTHORIZED PUSH
+EXECUTED):** Chris Ward's promised **PRD/Spec Companion video** arrived 2026-07-30 (Loom
+https://www.loom.com/share/e4a3ad01912048c0bba88f1a02677004 — canonical pointer; mp4 NOT
+committed; transcript verbatim = `chris-update-2026-07-29/companion-video-transcript-2026-07-30.md`;
+analysis TRANSCRIPT-based, visual-only details stay VIU-confirm). Per the user's standing ruling
+his videos are authoritative product intent, newest-wins. **Delta analysis over the 465 cases**
+(`chris-update-2026-07-29/companion-video-deltas-2026-07-30.md`): 20 points = **3 FIRM / 10
+CONFIRMATION / 1 PENDING-SPEC / 3 VISUAL-VIU-CONFIRM / 1 CROSS-SQUAD / 2 NO-IMPACT**. FIRM
+deltas applied + **PUSHED under the user's same-day authorization** ("do update the test cases
+if you learn that the video is warranting for that") — **7 update_case, 7/7 HTTP 200 + re-GET
+MATCH, 0 failures**: SBC-NAV-01 C30096 / TU-NAV-01 C30392 / SBR-NAV-01 C30195 / WIP-TAB-01
+C30451 (Performance nav: the four anchor items NAMED — Sales, Technician Efficiency, Advisor
+Analysis, Shop Efficiency — new reports added BELOW them; SBC's group was previously unknown;
+SBR's "at the BOTTOM" re-based), PV-NAV-01 C30322 ("only Parts report" dropped — PV+IV both
+under Parts; PV S1-R1 vs IV S1-R1 inconsistency flagged), SBR-WO-06 C30315 (customer-card row
+label → **"Sales Representative"**, video-FIRM, supersedes spec S19-R7 "Sales Rep"), SBR-WO-02
+C30311 (toggle path Settings → Staff → edit staff member tester-aid; titles >80 trimmed).
+**0 adds / 0 deletes — TALLY UNCHANGED: 465 ACTIVE**; R359 untouched; live count under group
+4281 = 465 == id-map (465/465 C-ids, 0 blanks). 13 notes-only annotations local (bold-vs-plain
+hyperlinks VIU-watch; P/S prefix + customer-compare + export-reflects-page confirmations;
+all-six-modeled-after-Technician-Efficiency styling reference; SBR-WO-01 label-pending;
+IV-DATE-05 snapshot-indicator corroboration). **0 new cases** (both candidate gaps already
+covered — Rule-28 no-slop; mini-audit on the touched 20: USEFUL 7/7 KEEP, SENSE 7/7 SENSIBLE,
+GENUINE+LAYMAN 7/7; notes-only 13 unchanged). **Soft/pending NOT pushed:** C15 Rep-label scope
+(how far "Representative, the full word" reaches — WO selector / Sales Rep Assignments export)
+→ **Q5 appended** to the unsent `PO-Questions-Chris-ReportSuite-TechPlan_2026-07-30.md/.xlsx`;
+C20 snapshot-indicator soft ruling ("if snapshot data is taken, we don't need to see this…
+offline… or no snapshot") = CONFIRMS current IV S5-R5/R6 + the ratified PV/WIP label removal,
+NO contradiction, SPEC-WATCH note only. **SPEC-WATCH:** companion-video expected-artifact item
+CLOSED; new watch items #9 (S19-R7 label), #10 (SBC Performance group + anchors), #11 (PV S1-R1
+"only report" inconsistency), #12 (Rep-label scope Q5); **spec changelog STILL AWAITED, deadline
+2026-08-04 stands.** Deliverables regenerated over 465 (header byte-identical, hygiene clean).
+Backups `chris-update-2026-07-29/backup/companion-2026-07-30/` + MANIFEST; apply
+`apply_companion_2026-07-30.py`; executor `exec_companion_push_2026-07-30.py`; machine result
+`testrail-execution-result-companion-2026-07-30.json`; audit =
+`reconciliation-2026-07-28/testrail-execution-log-2026-07-28.md` § "COMPANION-VIDEO PUSH
+2026-07-30" (ops 173–179); ChangeList = `ChangeList-companion-2026-07-30.md` header EXECUTED.
+Honesty (Rule 12): all edited cases remain VIU-Pending — nothing live-verified this pass; the
+video's visual content (which links are bolded, the exact screens) was NOT available in the
+transcript and stays VIU-confirm. Still open: Chris changelog re-diff, Q1–Q5 answers, live VIU
+pending the QA branch.
+
+**PRIOR UPDATE 2026-07-30-B (TECH-PLAN PUSH EXECUTED; explicit user authorization "Push all
 three" 2026-07-30):** the staged ChangeList-2026-07-30 §C queue is now LIVE in TestRail —
 **5 update_case** (WIP-API-01 C30528 re-run idempotency; SBR-STAT-02 C30209 deposit-seeding
 precondition; PV-CALC-07 C30365 Last-Sale re-anchor on reversal; SBC-API-02 C30191 sort-whitelist
