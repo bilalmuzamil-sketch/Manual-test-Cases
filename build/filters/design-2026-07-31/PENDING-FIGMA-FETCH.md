@@ -24,10 +24,27 @@ retry (user directive 2026-07-31).
 | Blocked endpoint | `GET https://api.figma.com/v1/images/{file_key}` (the *nodes* endpoint is a separate budget and still works) |
 | Plan tier / limit type (from the 429 headers) | `x-figma-plan-tier: pro`, `x-figma-rate-limit-type: low` |
 
-**Last rate-limit error (UTC):** `2026-07-30T14:27:02Z` _(attempt 3 in the log below)_
-**Fresh `retry-after` returned then:** `36098` s (~10.03 h → the cap itself lifts about
+**Last rate-limit error (UTC):** `2026-07-30T15:03:19Z` _(attempt 4 in the log below)_
+**Fresh `retry-after` returned then:** `33921` s (~9.42 h → the cap itself lifts about
 `2026-07-31T00:28:40Z`)
-**DUE-AT (re-attempt at or after this time):** `2026-07-30T23:27:02Z` _(re-armed by attempt 3: error 2026-07-30T14:27:02Z + 9h)_
+**DUE-AT (re-attempt at or after this time):** `2026-07-31T00:03:19Z` _(re-armed per Rule 35: error 2026-07-30T15:03:19Z + 9h)_
+
+> ⚠️ **Read this before the next attempt.** Figma's own `retry-after` has now pointed at
+> **~`2026-07-31T00:28:40Z`** three times in a row, which is *later* than the Rule-35
+> formula DUE-AT of `00:03:19Z`. An attempt at the formula time will therefore probably 429
+> once more. **Best practical retry time = at or after `2026-07-31T00:30Z`.** The formula
+> DUE-AT is kept above because that is what the rule prescribes; this line is the
+> evidence-based recommendation, not a rule change.
+
+> ✅ **Useful discovery (2026-07-30): only IMAGE RENDERING is capped.** The
+> `GET /v1/files/{key}/nodes?ids=…` endpoint sits on a **different budget and still returns
+> 200**. Full layer trees (with `visible` flags) were pulled for **7 of the 12** missing
+> boards this way — the 4 Sorting boards and the 3 Components boards — which pinned the sort
+> control, the filter-button states and the search-box states verbatim and **caught a real
+> error** in the previous text-only reading of Sorting steps 1–2. So a rate limit is **not**
+> a reason to stop analysing a board: read the tree, and treat the PNG as confirmation of
+> layout/spacing/colour only. Script: `/tmp/nodes_probe.py` pattern (re-creatable; `/tmp` is
+> ephemeral).
 
 > Note (honesty): the rule's 9-hour timer is DELIBERATELY shorter than Figma's own
 > `retry-after` (~10.07 h). That is fine — attempt at DUE-AT; if it 429s again, the log row
@@ -62,6 +79,13 @@ Comma-separated for a manual call:
 All 12 are ALREADY described in `DESIGN-NOTES.md` §3 from the node tree (their own text
 layers, component variant names and layer names) — accurate but **not seen rendered**.
 Nothing about them is guessed (Standing Rule 12).
+
+**Updated 2026-07-30:** rows **3–6 (Sorting)** and **10–12 (Components)** have since had
+their **full visibility-filtered layer trees** read via the `/nodes` endpoint, so their
+DESIGN-NOTES entries are now layer-verbatim rather than text-only (and Sorting steps 1–2
+were **corrected** — the earlier "sort arrow / toolbar sort button on step 1" reading was
+wrong). Rows 1, 2, 7, 8, 9 are still text-extract only. The PNGs are still wanted for
+layout/spacing/colour confirmation.
 
 ---
 
@@ -107,7 +131,8 @@ workaround).
 <!-- RETRY-LOG-START -->
 | 1 | 2026-07-30T13:58Z (approx., from `frames/` mtime) | HTTP 429 rate limit — initial design pass, stopped at 73/85 | 24 rendered + 49 copied from the 2026-07-17 export | 12 | 37874 | superseded by attempt 2 |
 | 2 | 2026-07-30T14:24:38Z | HTTP 429 rate limit — single probe of all 12 ids, no frames returned | 0 | 12 | 36242 | superseded by attempt 3 |
-| 3 | 2026-07-30T14:27:02Z | HTTP 429 rate limit — resumable fetcher run (validated end-to-end, exit 2) | 0 | 12 | 36098 | 2026-07-30T23:27:02Z |
+| 3 | 2026-07-30T14:27:02Z | HTTP 429 rate limit — resumable fetcher run (validated end-to-end, exit 2) | 0 | 12 | 36098 | superseded by attempt 4 |
+| 4 | 2026-07-30T15:03:19Z | HTTP 429 rate limit — **EARLY probe, run 8h24m BEFORE the DUE-AT** (see note) — run with `--once --no-log` so the armed DUE-AT could not be corrupted; log row added by hand | 0 | 12 | 33921 | **2026-07-31T00:03:19Z** (practical: ≥ `00:30Z`) |
 <!-- RETRY-LOG-END -->
 
 _(The fetcher appends rows here automatically. Row 1 was reconstructed from
