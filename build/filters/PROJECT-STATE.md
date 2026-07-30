@@ -1,7 +1,54 @@
 # Filters (Work Order List Filtering) — PROJECT STATE
 **Canonical cold-resume doc. Read this first to resume the Filters project.**
 
-Last updated: 2026-07-27 (**LATEST — OPTION A: DESIGN-LEVEL Parts + Reports +
+Last updated: 2026-07-29 (**LATEST — TECH-PLAN RECONCILIATION APPLIED, LOCAL ONLY,
+NO TestRail writes**). The user provided the engineering tech plan for the
+app-wide filter redesign (`tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md`,
+verbatim ingest). Full analysis = `tech-plan-2026-07-29/TECH-PLAN-DELTAS.md`;
+change list + push queue = `tech-plan-2026-07-29/ChangeList.md`; quality gate =
+`tech-plan-2026-07-29/RULE28-AUDIT-2026-07-29.md` (15 KEEP / 0 CUT, 15 SENSIBLE,
+15 genuine+layman). Headlines:
+- **Confluence spec is now v1.3 — we hold V1.0.** Spec v1.3 (2026-07-20) adds
+  Parts filters (8 views), Reports filters (~21), **Story 13 Page Search (23
+  reqs)**, **Story 14 nav search stops filtering lists**, a date-range chip type
+  and per-view/per-tab state scoping — this IS the awaited "Branko PRD update".
+  Request the export (Questions Q7) → then Rule-11 ask →
+  SPEC-RELEVANCE-RECONCILIATION over the whole suite.
+- **OQ-2 RESOLVED:** canonical spec URL =
+  https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/572030978/Filters.
+- **⚠️ Conflict with pushed cases:** engineering builds the Status chip HIDDEN on
+  Estimates/Completed (G9) vs Branko Q4=B greyed-out-disabled — FLT-TAB-02/03
+  (C29609/C29610) were pushed per Q4=B; Branko must re-rule (Questions Q1). NO
+  edit made.
+- **15 NEW cases authored** (blank C-ids, VIU-Pending): FLT-TAB-06 (default tab
+  Estimates D10), FLT-STAT-07 (Imported exclusivity G1), FLT-ASSET-07 (Asset on
+  Site "No" G4), FLT-URL-05 (link view runtime-only + back-to-saved G7),
+  FLT-PERS-05 (per-view/per-tab scoping D20), FLT-PERS-06 (localStorage→account
+  migration §4-3.3), FLT-RPTS-23 (date-range chip D19), FLT-PSRCH-01..07 (page
+  toolbar search Story 13 + Story 14 decoupling; NEW section "Page Search
+  Toolbar"), FLT-API-06 (prefs endpoint contract §4-1.3). **12 edit groups**
+  (FLT-PERS-02/C29614 gains the cross-device leg — the only tester-facing content
+  edit; the rest are QA-notes/metadata: FLT-STAT-03, FLT-CUST-05, FLT-TECH-07,
+  FLT-ADV-07, FLT-EMPTY-01, FLT-MOB-04 conflict note, FLT-API-01..04 contract
+  notes, FLT-PARTS-08/11/12 + FLT-RPTS-21/22 rollout notes, FLT-SRCH-01..09
+  ownership notes). Pre-edit backups + apply script in
+  `tech-plan-2026-07-29/backup/` (+ MANIFEST).
+- **FLT-SRCH-01..08 flagged for transfer/retire:** per engineering (G8/D22) the
+  spotlight/⌘K palette = Global Search v2 project; Filters ships the page-toolbar
+  search instead — pending Branko Q6.
+- **NEW TOTAL: 137 cases** (79 in TestRail C29557–C29635 + 58 blank C-ids).
+  Import + id-map regenerated over 137, hygiene verified (header byte-identical,
+  0 VIU/flag words, 79 C-ids re-merged). **PUSH QUEUE (awaiting authorization):
+  15 add_case + 1 update_case (C29614).**
+- **Questions doc READY:** `tech-plan-2026-07-29/Questions-for-Branko-dev.md`
+  (Q1–Q6 A/B layman + Q7 spec-export request; QA mapping on the QA-only section).
+- VIU-prep facts (no flag — D13 straight replace; prefs endpoint + pageKeys;
+  test-ids; debounces; date-range URL form) recorded in TECH-PLAN-DELTAS.md §5.
+- Report Suite crossover confirmed end-to-end (prefs endpoint is the shared
+  cross-device layer; Phase 8 re-skins ~24 legacy report pages) — flagged in
+  TECH-PLAN-DELTAS.md §7, NOT written into build/report-suite/.
+
+Prior update: 2026-07-27 (**OPTION A: DESIGN-LEVEL Parts + Reports +
 page-search cases AUTHORED, VIU-Pending, NO TestRail writes**). The user chose
 Option A (author now from the captured designs rather than wait for the PRD).
 **43 new cases authored** (all `viu_status` = VIU-Pending, design-only, not

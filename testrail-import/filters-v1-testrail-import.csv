@@ -55,6 +55,15 @@ Selecting statuses that no work order has shows the empty state,Status Filter,Ne
 3. Look at the table area.","1. The table shows no rows.
 2. An empty state is displayed saying no results were found for the current filters (see the Empty State cases for its full content).
 3. The app does not show an error.",requirements.md Story 2 S2-N3; Story 8 S8-R3,,
+Imported works alone: picking it greys out the other filters,Status Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Imported work orders exist, plus some normal work orders.
+3. You are on the Work Orders page, All tab, no filters applied.","1. Open the Status filter and tick Imported.
+2. Look at the other filter chips (Customer, Lead Technician, Service Advisor, Asset on site).
+3. Try to combine Imported with another status.
+4. Untick Imported.","1. The table switches to showing imported work orders only.
+2. While Imported is ticked, the other filter chips are greyed out and cannot be used.
+3. Imported cannot be combined with other statuses - selecting it works alone.
+4. Unticking Imported re-enables the other chips and the normal list returns.",Filters (Epic key TBD); tech plan 2026-07-29 G1 (Imported exclusivity); spec S2-R1 (conflict raised with the author - export of spec v1.3 awaited),,
 Customer chip opens a dropdown with a 'Search customer' field and a scrollable customer list,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. Several customers exist in the shop.","1. Click the Customer filter chip.
@@ -225,6 +234,13 @@ An Asset on site choice that matches no work orders shows the empty state,Asset 
 3. Every current work order is in the SAME on-site state (set all ZZAUTOTEST work orders to on site, or combine with another filter so one option matches nothing).","1. Open the Asset on site filter and choose the option that matches no work orders (for example No when everything is on site).
 2. Look at the table.","1. The table shows no rows and the filtered empty state is displayed.
 2. No error is shown.",requirements.md Story 6 S6-N1; Story 8 S8-R3,,
+Choosing No shows only work orders whose asset is not on site,Asset on Site Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Work orders exist both with the asset on site and with the asset not on site (create one of each if needed).
+3. You are on the Work Orders page.","1. Open the Asset on site filter.
+2. Choose No.
+3. Look at the table (and its On Site column).","1. Only work orders whose asset is NOT on site remain in the list.
+2. Every work order with the asset on site is excluded.
+3. The chip shows the active No selection.",requirements.md Story 6 S6-R2; Filters (Epic key TBD); tech plan 2026-07-29 G4 (filtering No is new capability),,
 A chip with a selected value turns into the active blue state and shows the value,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with no filters selected (all chips in their default grey state).","1. Open the Status filter and tick one status (for example Estimate).
 2. Click outside to close the dropdown and look at the Status chip.","1. The Status chip changes to an active/highlighted look (blue pill).
@@ -336,6 +352,11 @@ Filter selections survive tab switching; a Status selection hidden on Estimates/
 2. Click back to the All tab and look again.","1. On the Estimates tab the Status selection is not applied and not shown as an editable filter (incompatible with the tab), but the Customer selection is still shown and still filters the list.
 2. Back on the All tab the Status chip reappears with the SAME selection (Approved) still applied - the selection was retained in memory, not lost.
 3. The Customer selection is unchanged throughout.",requirements.md Story 9 S9-R5; S9-N1,,
+First visit opens the Estimates tab; your last-used tab is remembered,Tab Behaviour,Functional,High,1. You can sign in as a user who has never used the redesigned Work Orders page (no saved page choices for that account).,"1. Sign in as that fresh user and open the Work Orders page.
+2. Note which tab is selected and the tab order.
+3. Switch to the All tab.
+4. Go to another area of the app and come back to the Work Orders page.","1. On the very first visit the Estimates tab is the selected one, even though All is the FIRST tab in the row (order and default are different on purpose).
+2. After switching to All and returning, the All tab is selected - the app remembers your last-used tab per account.",Filters (Epic key TBD); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists); not in the ratified product spec - confirmation requested,,
 Leaving the Work Orders page and coming back restores the filters and the bar state exactly,Persistence,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with a Status and a Customer selection active and the filter bar expanded.","1. Open one work order from the list (go to its detail page).
 2. Go back to the Work Orders page.
@@ -348,8 +369,10 @@ Filter selections are remembered for you permanently - still applied after movin
 2. Return to the Work Orders page and look at the chips and the table.
 3. Close the browser completely (all windows).
 4. Open the browser again, sign in as the same person, and go to the Work Orders page.
-5. Look at the chips and the table.","1. After moving around the app (step 2) the filter selections are still applied - you do not have to re-apply them.
-2. After closing the browser completely and signing back in (step 5) the same filter selections are still applied - the app remembers your filters for you permanently, not just for one browser session.","requirements.md Story 10 S10-R2 (session-only wording superseded by PO ruling 2026-07-17: permanent per-user persistence); §2/§4 (persist across navigation, saved per user)",,
+5. Look at the chips and the table.
+6. On a different computer (or a different browser profile), sign in as the same person and open the Work Orders page.","1. After moving around the app (step 2) the filter selections are still applied - you do not have to re-apply them.
+2. After closing the browser completely and signing back in (step 5) the same filter selections are still applied - the app remembers your filters for you permanently, not just for one browser session.
+3. The same filter selections are applied on the other computer too - the filters are saved to your account, not to one computer or browser (to confirm live once built).","requirements.md Story 10 S10-R2 (session-only wording superseded by PO ruling 2026-07-17: permanent per-user persistence); §2/§4 (persist across navigation, saved per user)",,
 Saved filters are per user: one user's filters do not appear for another user,Persistence,Functional,High,"1. Two test users (A and B) can sign in to the same shop.
 2. User A has applied filters on the Work Orders page (for example Status: Approved).","1. As user B (separate login/browser profile), open the Work Orders page.
 2. Look at the filter chips and the table.
@@ -361,6 +384,17 @@ A remembered filter value that no longer exists is silently dropped when you ret
 2. Look at the Customer chip, the dropdown and the table.","1. The deleted customer is silently ignored - no error or warning appears.
 2. The Customer filter now reflects only the still-valid selection (the real customer).
 3. The table is filtered by the remaining valid selection only.",requirements.md Story 10 S10-N1,,
+Each page and tab remembers its own filters separately,Persistence,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The new filter bar has rolled out to the Parts views and to a report that has tabs (part of the same programme as the Work Orders filters).","1. On one Parts view (for example Inventory) apply a filter.
+2. Switch to a different Parts view (for example Purchase Orders).
+3. Return to the first Parts view.
+4. On a report with tabs, apply a filter on one tab, switch to another tab, then switch back.","1. The second Parts view does NOT show the first view's selections - each view keeps its own.
+2. Returning to the first view restores that view's own selections.
+3. Report tabs likewise keep separate filter choices, each remembered and restored on its own tab.",Filters (Epic key TBD); tech plan 2026-07-29 D20 (per-view/per-tab state scoping); spec v1.3 Key Decisions (export awaited),,
+Filters saved before the redesign carry over after the update,Persistence,Functional,High,"1. In one browser, the account was used on the OLD Work Orders page with choices saved there (a tab, status selections, the asset-here toggle, column choices, sorting) BEFORE the redesign was installed.","1. In that same browser, open the updated app and go to the Work Orders page.
+2. Check the selected tab, the filter chips, the table columns and the sorting.
+3. Sign in as the same person on a DIFFERENT computer or browser and open the Work Orders page.","1. The old saved choices appear in the new filter bar on the first visit - the update does not lose them (old status choices show in the Status chip, the old asset-here choice shows as Asset on site: Yes, the old My-Work-Orders toggle maps to the My Work Orders tab, columns and sorting stay).
+2. Those carried-over choices are now saved to the account: the other computer shows them too.",Filters (Epic key TBD); tech plan 2026-07-29 section 4-3.3 (one-time browser-storage to account-preference migration),,
 Applying filters updates the page URL to reflect the active filter state,URL State and Shareable Links,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with no filters applied; note the current URL.","1. Apply a Status selection and a Customer selection.
 2. Look at the browser address bar.
@@ -383,6 +417,15 @@ A malformed filter URL loads the page unfiltered without showing an error,URL St
 3. Look at the page, the chips and the table.","1. The Work Orders page loads normally.
 2. No filters are applied (chips in default state, full list shown) - the unrecognizable state is discarded.
 3. No error message or broken page appears.",requirements.md Story 11 S11-N1,,
+Opening a filtered link never overwrites your saved filters,URL State and Shareable Links,Functional,High,"1. You are signed in and have your OWN filters saved on the Work Orders page (for example one customer).
+2. You have a Work Orders link that carries a DIFFERENT filter state (made by another user or another browser).","1. Note your own saved filters on the Work Orders page.
+2. Open the shared link.
+3. While on the link view, change one more filter.
+4. Use the on-screen option to go back to your own saved filters.
+5. Leave the page and return to Work Orders normally (via the menu).","1. The link's filters apply for viewing only - the page shows the shared view.
+2. Changes made during the link visit are also NOT saved to your account.
+3. The go-back option restores your own saved filters and removes the filter part from the address bar.
+4. Returning normally later still shows your own saved filters, untouched by the link visit.",Filters (Epic key TBD); tech plan 2026-07-29 G7 (URL state runtime-only + back-to-saved affordance); spec closing-note conflict raised with the author (spec v1.3 export awaited),,
 "On mobile the filter chips sit in a horizontally scrollable row below the tabs, starting with All Filters",Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device (or a mobile-size browser window).
 2. You are on the Work Orders page.","1. Look at the row below the tab row (All, Estimates, Completed, My Work Orders).
 2. Swipe the chip row sideways.","1. A filter chip row is shown below the tabs, starting with an 'All Filters' chip (with a funnel icon) followed by the individual filter chips (Status, Customer, Lead Technician, ...).
@@ -611,6 +654,62 @@ Choosing a Reports filter narrows the report results,Reports Page Filters,Functi
 2. You are on the Reports area of the app with some sample data present.","1. Open the Reports area and go to the reports that use them (for example A/R Aging Detail, Notes) report.
 2. Look at the filter buttons shown above the report table.","1. Each new filter type (Location, Transaction Type, Invoice Status, Type, User, Mention) opens a list of choices and filters the report by the choice.
 2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (the exact choices, single- vs multi-select, and how each new filter type filters the report).",Filters (Epic key TBD); Figma 11903-10573 (Reports filters); design-notes.md §B.6,,
+Date range filter: results update when both start and end dates are picked,Reports Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The new filter bar has rolled out to a page with a Date filter chip (a report, or a Parts page with a date column).
+3. Records exist inside and outside the date range you will pick.","1. Click the Date filter chip.
+2. Look at the panel that opens.
+3. Pick a start date only, and watch the results.
+4. Pick the end date.
+5. Look at the results and the chip.","1. A start/end date picker opens - there are NO preset ranges (no 'Last 30 days' shortcuts) and NO pre-filled default range.
+2. After only the start date, the results do not change yet.
+3. As soon as the second date is picked, the results update immediately to show only records inside the range.
+4. Only one date range can be active at a time on that chip, and the chip shows the active range.","Filters (Epic key TBD); tech plan 2026-07-29 D19 (date-range chip: no presets, no default, applies on second date); spec v1.3 Parts + Reports sections (export awaited)",,
+Page toolbar Search expands in place and narrows the list as you type,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page with several work orders listed.","1. Find the Search control in the page toolbar (a magnifier icon with the word Search).
+2. Click it.
+3. Type part of a work order's text (for example part of a customer or asset name).
+4. Clear the text with the round x in the box.
+5. Click somewhere else on the page while the box is EMPTY.
+6. Expand it again, type text, and click somewhere else.","1. The control expands in place into a small search box inviting you to type (engineering copy: 'Type to search').
+2. The list narrows as you type, after a brief pause - and ONLY this page's list changes, nothing else in the app.
+3. The round x clears the text and the full list returns.
+4. Clicking away with an empty box collapses it back to the Search button; with text in it, the box stays open.","Filters (Epic key TBD); tech plan 2026-07-29 D18; spec v1.3 S13-R1..R7, S13-R9, S13-R15 (export awaited)",,
+Page search combines with filters and is cleared separately,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page with work orders for several customers and statuses.","1. Apply one filter (for example a Status).
+2. Type a search term in the page search box.
+3. Clear ONLY the search (the round x).
+4. Re-type the search, then clear ONLY the filter.","1. With both active, the results match the filter AND the search together (both narrow the list at once).
+2. Clearing the search keeps the filter applied.
+3. Clearing the filter keeps the search applied - each is cleared by its own control without wiping the other.",Filters (Epic key TBD); tech plan 2026-07-29 D18; spec v1.3 S13-R10/R13 + S8-R5 (export awaited),,
+The page search text is remembered and restored like filters,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page.","1. Type a search term that matches some work orders.
+2. Go to another area of the app and come back to the Work Orders page.
+3. Now type a search term that matches NOTHING, leave the page, and come back again.","1. The search box comes back with your text still in it and the list still narrowed by it - just like the filters.
+2. A remembered search that matches nothing shows the no-results empty state - the remembered text is NOT silently thrown away.","Filters (Epic key TBD); tech plan 2026-07-29 D18; spec v1.3 S10-R4/R5, S10-N2 (export awaited)",,
+The search term is part of the shareable page link,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page.","1. Type a search term and copy the page address.
+2. Open the copied address in a fresh tab.
+3. Hand-edit the search part of the address into something malformed and load it.","1. The address contains the search term after step 1.
+2. The fresh tab opens with the search box filled and the list already narrowed.
+3. The malformed part is ignored - the page loads cleanly without an error.
+4. A search arriving via a link is view-only, the same as filters from a link - it does not overwrite your own remembered search.","Filters (Epic key TBD); tech plan 2026-07-29 D18 + G7; spec v1.3 S11-R4/R5, S11-N2 (export awaited)",,
+On mobile the search expands in the toolbar and buttons make room,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a mobile device.
+2. You are on the Work Orders page.","1. Tap the Search control in the page toolbar.
+2. Type a term and watch the list.
+3. Visit a page that has several small icon-only toolbar buttons (for example Parts Inventory or Purchase Orders) and look at its toolbar.","1. The search expands inline inside the toolbar - no separate popup window opens.
+2. The list narrows as you type, same as desktop.
+3. To make room, the page's main button no longer stretches full-width, and pages with two or more small icon buttons collapse them into a single 'more' menu.",Filters (Epic key TBD); tech plan 2026-07-29 D21; spec v1.3 S13-R16..R21 (export awaited),,
+"Every list page keeps its own search box (Parts, Reports, detail tabs)",Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The page-search rollout has shipped (same programme as the Work Orders filters).","1. Visit several list surfaces: a Parts view (for example Inventory), a report, a customer's Notes tab on the customer page, and any pop-up list that used to be searchable.
+2. On each, look for that surface's own search box and use it.","1. Every list surface that could be text-searched before still offers its own search control - no list silently lost its search.
+2. Each search box narrows only its own list, not any other page.","Filters (Epic key TBD); tech plan 2026-07-29 Phase 9.1 (built-in table search, opt-out); spec v1.3 S13-R22 + S14-R5/R6 (export awaited)",,
+The top navigation search no longer filters page lists,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page with several work orders listed.","1. Type a term into the TOP NAVIGATION search (the app-wide search at the top), not the page's own search box.
+2. Watch the Work Orders list while typing.
+3. Repeat on the Parts Inventory page.
+4. Pick one of the results offered in the navigation search's dropdown.","1. The page list does NOT narrow while you type in the navigation search - only its dropdown of matching records appears.
+2. The same holds on the other pages checked.
+3. Picking a dropdown result still takes you to that record - the navigation search keeps its find-and-open role.",Filters (Epic key TBD); tech plan 2026-07-29 Phase 9 (search decoupling); spec v1.3 Story 14 S14-R2/R3 (export awaited),,
 Page search opens with the 'Search or ask a question' box,Page Search (Command-K),Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Some sample work orders, customers, assets, parts and vendors exist.","1. From anywhere in the app, open the page search (the Search box in the top bar, or press Command-K / Ctrl-K).
 2. Look at the search panel that opens.","1. A search panel opens with an empty search box at the top.
@@ -683,3 +782,11 @@ A list request with malformed filter parameters does not produce a server error,
 2. Capture the list request and response.","1. The request succeeds (HTTP 200).
 2. The response contains an empty result set (zero work orders) - an empty match is a normal outcome, not an error.
 3. The page renders the no-results empty state from this response.",requirements.md Story 8 S8-R3; Story 2 S2-N3,,
+"Saved-filters service round-trip: save, reload, and per-user isolation",API — Work Orders List Filtering,Functional,High,"1. You are signed in to the ShopView App on a desktop browser with developer tools open on the Network tab.
+2. A second user account is available.","1. On the Work Orders page, change a filter and watch the Network tab for the save request the page sends shortly after.
+2. Reload the page and find the load request for the saved page state.
+3. Sign in as the second user (different browser/profile) and open the Work Orders page.
+4. With an API client (or by editing the request), ask the saved-state service for a page key that was never saved.","1. Changing a filter sends a save (PUT) to the per-user page-preferences service carrying the page's state, and it succeeds (HTTP 200).
+2. On reload the page requests the saved state back (GET, HTTP 200) and applies it - the filters return without you redoing them.
+3. The second user does NOT receive the first user's saved state - each account's saved filters are isolated.
+4. Asking for a never-saved key returns success with an empty value, not an error page.",Filters (Epic key TBD); tech plan 2026-07-29 section 4-1.3 (GET/PUT /api/users/me/preferences/{pageKey}); spec v1.3 S10 per-user persistence (export awaited),,

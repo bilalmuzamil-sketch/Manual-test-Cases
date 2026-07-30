@@ -8,6 +8,7 @@ FLT-STAT-03,C29562,Ticking several statuses shows work orders matching any of th
 FLT-STAT-04,C29563,Clear selection in the Status dropdown unticks every status and removes the filter,Status Filter
 FLT-STAT-05,C29564,Clicking outside the Status dropdown closes it and keeps the selections applied,Status Filter
 FLT-STAT-06,C29565,Selecting statuses that no work order has shows the empty state,Status Filter
+FLT-STAT-07,,Imported works alone: picking it greys out the other filters,Status Filter
 FLT-CUST-01,C29566,Customer chip opens a dropdown with a 'Search customer' field and a scrollable customer list,Customer Filter
 FLT-CUST-02,C29567,Typing in the customer search narrows the list to matching names,Customer Filter
 FLT-CUST-03,C29568,Selecting customers adds removable tags in the dropdown input area and checkmarks in the list,Customer Filter
@@ -37,6 +38,7 @@ FLT-ASSET-03,C29591,Asset on site is single-select: choosing the other option re
 FLT-ASSET-04,C29592,Clear selection in the Asset on site dropdown removes the filter,Asset on Site Filter
 FLT-ASSET-05,C29593,Clicking outside the Asset on site dropdown closes it,Asset on Site Filter
 FLT-ASSET-06,C29594,An Asset on site choice that matches no work orders shows the empty state,Asset on Site Filter
+FLT-ASSET-07,,Choosing No shows only work orders whose asset is not on site,Asset on Site Filter
 FLT-CHIP-01,C29595,A chip with a selected value turns into the active blue state and shows the value,Active Filter Chips and Clear Filters
 FLT-CHIP-02,C29596,A chip with several values shows the first values and shortens the rest with an ellipsis,Active Filter Chips and Clear Filters
 FLT-CHIP-03,C29597,'Clear filters' appears to the right of the chips only when at least one filter is active,Active Filter Chips and Clear Filters
@@ -55,14 +57,18 @@ FLT-TAB-02,C29609,"On the Estimates tab the Status chip is shown greyed out, pre
 FLT-TAB-03,C29610,"On the Completed tab the Status chip is shown greyed out, pre-filled with the tab's status, and cannot be changed; the other four filters work on top of the Completed pre-filter",Tab Behaviour
 FLT-TAB-04,C29611,On the My Work Orders tab all five filters are shown and narrow the already user-scoped list,Tab Behaviour
 FLT-TAB-05,C29612,Filter selections survive tab switching; a Status selection hidden on Estimates/Completed comes back on the All tab,Tab Behaviour
+FLT-TAB-06,,First visit opens the Estimates tab; your last-used tab is remembered,Tab Behaviour
 FLT-PERS-01,C29613,Leaving the Work Orders page and coming back restores the filters and the bar state exactly,Persistence
 FLT-PERS-02,C29614,Filter selections are remembered for you permanently - still applied after moving around the app and even after closing the browser and signing back in,Persistence
 FLT-PERS-03,C29615,Saved filters are per user: one user's filters do not appear for another user,Persistence
 FLT-PERS-04,C29616,A remembered filter value that no longer exists is silently dropped when you return,Persistence
+FLT-PERS-05,,Each page and tab remembers its own filters separately,Persistence
+FLT-PERS-06,,Filters saved before the redesign carry over after the update,Persistence
 FLT-URL-01,C29617,Applying filters updates the page URL to reflect the active filter state,URL State and Shareable Links
 FLT-URL-02,C29618,Opening a shared or bookmarked URL loads the Work Orders page with those filters already applied,URL State and Shareable Links
 FLT-URL-03,C29619,A URL containing a filter value that no longer exists loads without that value,URL State and Shareable Links
 FLT-URL-04,C29620,A malformed filter URL loads the page unfiltered without showing an error,URL State and Shareable Links
+FLT-URL-05,,Opening a filtered link never overwrites your saved filters,URL State and Shareable Links
 FLT-MOB-01,C29621,"On mobile the filter chips sit in a horizontally scrollable row below the tabs, starting with All Filters",Mobile Filters
 FLT-MOB-02,C29622,Tapping All Filters opens a bottom sheet listing every filter as an expandable row with an Apply filters button,Mobile Filters
 FLT-MOB-03,C29623,Selecting statuses in the mobile sheet and tapping Apply filters filters the list and counts on the sheet title,Mobile Filters
@@ -107,6 +113,14 @@ FLT-RPTS-19,,"IBS Batch Transactions report shows Customer, Date and Status filt
 FLT-RPTS-20,,QB Unexported report filters change per tab (Customer / Vendor / User),Reports Page Filters
 FLT-RPTS-21,,Choosing a Reports filter narrows the report results,Reports Page Filters
 FLT-RPTS-22,,"New Reports filter types behave correctly (Location, Transaction Type, etc.)",Reports Page Filters
+FLT-RPTS-23,,Date range filter: results update when both start and end dates are picked,Reports Page Filters
+FLT-PSRCH-01,,Page toolbar Search expands in place and narrows the list as you type,Page Search Toolbar
+FLT-PSRCH-02,,Page search combines with filters and is cleared separately,Page Search Toolbar
+FLT-PSRCH-03,,The page search text is remembered and restored like filters,Page Search Toolbar
+FLT-PSRCH-04,,The search term is part of the shareable page link,Page Search Toolbar
+FLT-PSRCH-05,,On mobile the search expands in the toolbar and buttons make room,Page Search Toolbar
+FLT-PSRCH-06,,"Every list page keeps its own search box (Parts, Reports, detail tabs)",Page Search Toolbar
+FLT-PSRCH-07,,The top navigation search no longer filters page lists,Page Search Toolbar
 FLT-SRCH-01,,Page search opens with the 'Search or ask a question' box,Page Search (Command-K)
 FLT-SRCH-02,,"Page search shows entity tabs All, Work Orders, Customers, Assets, Parts...",Page Search (Command-K)
 FLT-SRCH-03,,Typing a term shows grouped results with counts and highlighting,Page Search (Command-K)
@@ -121,3 +135,4 @@ FLT-API-02,C29632,"A combined multi-filter request returns only work orders matc
 FLT-API-03,C29633,A list request with a deleted or unknown filter value is handled without a server error,API — Work Orders List Filtering
 FLT-API-04,C29634,A list request with malformed filter parameters does not produce a server error,API — Work Orders List Filtering
 FLT-API-05,C29635,"A filter combination matching nothing returns a successful empty list, not an error",API — Work Orders List Filtering
+FLT-API-06,,"Saved-filters service round-trip: save, reload, and per-user isolation",API — Work Orders List Filtering
