@@ -1,0 +1,262 @@
+{
+ "updates": [
+  {
+   "internal_id": "FLT-BAR-03",
+   "case_id": 29559,
+   "section_id": 4111,
+   "title_before": "The filter bar still shows the remaining chips on a tab where the Status filter is hidden",
+   "title_after": "The filter bar still shows the other four chips on the Estimates tab",
+   "refs_before": "requirements.md Story 1 S1-N1",
+   "refs_after": "Filters epic (key TBD) (S1-N1; S9-R2; §4 Key Decisions - PRD text says \"hidden\"; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled) [spec v1.6 2026-07-28]",
+   "fields": [
+    "title",
+    "custom_preconds",
+    "custom_steps",
+    "custom_expected",
+    "refs"
+   ]
+  },
+  {
+   "internal_id": "FLT-TAB-05",
+   "case_id": 29612,
+   "section_id": 4120,
+   "title_before": "Filter selections survive tab switching; a Status selection hidden on Estimates/Completed comes back on the All tab",
+   "title_after": "A Status choice is kept while you switch tabs and comes back on the All tab",
+   "refs_before": "requirements.md Story 9 S9-R5; S9-N1",
+   "refs_after": "Filters epic (key TBD) (S9-R5; S9-N1; S9-R2 - behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30) [spec v1.6 2026-07-28]",
+   "fields": [
+    "title",
+    "custom_preconds",
+    "custom_steps",
+    "custom_expected",
+    "refs"
+   ]
+  },
+  {
+   "internal_id": "FLT-URL-05",
+   "case_id": 38879,
+   "section_id": 4122,
+   "title_before": "Opening a filtered link never overwrites your saved filters",
+   "title_after": "Opening a filtered link never overwrites your saved filters",
+   "refs_before": "Filters (Epic key TBD); tech plan 2026-07-29 G7 (URL state runtime-only + back-to-saved affordance); spec closing-note conflict raised with the author (spec v1.3 export awaited)",
+   "refs_after": "Filters epic (key TBD) (S11-R6 (URL state runtime-only, no write-back); S11-R7 (Back to my view, also clears the query); S11-R8 (rationale: the query is never saved)) [spec v1.6 2026-07-28]",
+   "fields": [
+    "title",
+    "custom_preconds",
+    "custom_steps",
+    "custom_expected",
+    "refs"
+   ]
+  },
+  {
+   "internal_id": "FLT-CHIP-04",
+   "case_id": 29598,
+   "section_id": 4117,
+   "title_before": "'Clear filters' removes every active filter at once and all chips return to default",
+   "title_after": "'Clear filters' removes every active filter at once and all chips return to default",
+   "refs_before": "requirements.md Story 8 S8-R1; §4 Key Decisions",
+   "refs_after": "requirements.md Story 8 S8-R1; §4 Key Decisions ; S13-R13 (clearing filters does not clear a typed search) [spec v1.6 2026-07-28]",
+   "fields": [
+    "title",
+    "custom_preconds",
+    "custom_steps",
+    "custom_expected",
+    "refs"
+   ]
+  },
+  {
+   "internal_id": "FLT-EMPTY-02",
+   "case_id": 29607,
+   "section_id": 4119,
+   "title_before": "The filtered empty state offers a way to clear the filters, and using it brings the list back",
+   "title_after": "The filtered empty state offers a way to clear the filters, and using it brings the list back",
+   "refs_before": "requirements.md Story 8 S8-R4",
+   "refs_after": "requirements.md Story 8 S8-R4 ; S8-R5 (with a query active each is cleared independently - FLT-EMPTY-03) [spec v1.6 2026-07-28]",
+   "fields": [
+    "title",
+    "custom_preconds",
+    "custom_steps",
+    "custom_expected",
+    "refs"
+   ]
+  },
+  {
+   "internal_id": "FLT-PSRCH-01",
+   "case_id": 38883,
+   "section_id": 5410,
+   "title_before": "Page toolbar Search expands in place and narrows the list as you type",
+   "title_after": "Page toolbar Search expands in place and narrows the list as you type",
+   "refs_before": "Filters (Epic key TBD); tech plan 2026-07-29 D18; spec v1.3 S13-R1..R7,S13-R9,S13-R15 (export awaited)",
+   "refs_after": "Filters epic (key TBD) (S13-R1 (placement in the toolbar action group); S13-R9 (scoped to this table only); S13-R12; S13-R15 (blur rules)) [spec v1.6 2026-07-28]",
+   "fields": [
+    "title",
+    "custom_preconds",
+    "custom_steps",
+    "custom_expected",
+    "refs"
+   ]
+  },
+  {
+   "internal_id": "FLT-PSRCH-02",
+   "case_id": 38884,
+   "section_id": 5410,
+   "title_before": "Page search combines with filters and is cleared separately",
+   "title_after": "Page search combines with filters and is cleared separately",
+   "refs_before": "Filters (Epic key TBD); tech plan 2026-07-29 D18; spec v1.3 S13-R10/R13 + S8-R5 (export awaited)",
+   "refs_after": "Filters epic (key TBD) (S13-R10 (search and filters are additive); S13-R13 (each cleared independently); S8-R5) [spec v1.6 2026-07-28]",
+   "fields": [
+    "title",
+    "custom_preconds",
+    "custom_steps",
+    "custom_expected",
+    "refs"
+   ]
+  },
+  {
+   "internal_id": "FLT-PSRCH-03",
+   "case_id": 38886,
+   "section_id": 5410,
+   "title_before": "The page search text is remembered and restored like filters",
+   "title_after": "Your typed search stays in this browser tab only and is never saved",
+   "refs_before": "Filters (Epic key TBD); tech plan 2026-07-29 D18; spec v1.3 S10-R4/R5,S10-N2 (export awaited)",
+   "refs_after": "Filters epic (key TBD) (S13-R14 (retained for the browser tab session); S13-R25 (never stored against the account, each tab independent); S13-N4 (not restored on a later visit); S10-R5) [spec v1.6 2026-07-28]",
+   "fields": [
+    "title",
+    "custom_preconds",
+    "custom_steps",
+    "custom_expected",
+    "refs"
+   ]
+  },
+  {
+   "internal_id": "FLT-PSRCH-04",
+   "case_id": 38888,
+   "section_id": 5410,
+   "title_before": "The search term is part of the shareable page link",
+   "title_after": "The search term is part of the shareable page link",
+   "refs_before": "Filters (Epic key TBD); tech plan 2026-07-29 D18 + G7; spec v1.3 S11-R4/R5,S11-N2 (export awaited)",
+   "refs_after": "Filters epic (key TBD) (S11-R4 (query reflected in the URL); S11-R5 (URL query pre-applied, control in its filled state); S11-N2 (malformed query ignored, no error); S11-R8 (rationale: a query has no saved value to overwrite)) [spec v1.6 2026-07-28]",
+   "fields": [
+    "title",
+    "custom_preconds",
+    "custom_steps",
+    "custom_expected",
+    "refs"
+   ]
+  },
+  {
+   "internal_id": "FLT-PSRCH-05",
+   "case_id": 38889,
+   "section_id": 5410,
+   "title_before": "On mobile the search expands in the toolbar and buttons make room",
+   "title_after": "On mobile the search expands in the toolbar and buttons make room",
+   "refs_before": "Filters (Epic key TBD); tech plan 2026-07-29 D21; spec v1.3 S13-R16..R21 (export awaited)",
+   "refs_after": "Filters epic (key TBD) (S13-R16 (inline expansion, no modal); S13-R17 (field fills the remaining width); S13-R18 (CTA hug width); S13-R19 (2+ icon actions -> \"more\" kebab); S13-R20 (no active-query indicator); S12-R5) [spec v1.6 2026-07-28]",
+   "fields": [
+    "title",
+    "custom_preconds",
+    "custom_steps",
+    "custom_expected",
+    "refs"
+   ]
+  },
+  {
+   "internal_id": "FLT-PSRCH-06",
+   "case_id": 38891,
+   "section_id": 5410,
+   "title_before": "Every list page keeps its own search box (Parts, Reports, detail tabs)",
+   "title_after": "Every list page keeps its own search box (Parts, Reports, detail tabs)",
+   "refs_before": "Filters (Epic key TBD); tech plan 2026-07-29 Phase 9.1 (built-in table search,opt-out); spec v1.3 S13-R22 + S14-R5/R6 (export awaited)",
+   "refs_after": "Filters epic (key TBD) (S14-R6 (audit: 42 surfaces across 39 components, Work Order Parts excluded); S14-R5 (app-wide sweep); S13-R22 (every table carries a search control); S14-N1 (verify once at the end of a phased rollout)) [spec v1.6 2026-07-28]",
+   "fields": [
+    "title",
+    "custom_preconds",
+    "custom_steps",
+    "custom_expected",
+    "refs"
+   ]
+  },
+  {
+   "internal_id": "FLT-PSRCH-07",
+   "case_id": 38893,
+   "section_id": 5410,
+   "title_before": "The top navigation search no longer filters page lists",
+   "title_after": "The top navigation search no longer filters page lists",
+   "refs_before": "Filters (Epic key TBD); tech plan 2026-07-29 Phase 9 (search decoupling); spec v1.3 Story 14 S14-R2/R3 (export awaited)",
+   "refs_after": "Filters epic (key TBD) (S14-R1 (navigational results only); S14-R2 (the page-filtering code path is removed, not dormant); S14-R4 (the list is left untouched); S14-R5) [spec v1.6 2026-07-28]",
+   "fields": [
+    "title",
+    "custom_preconds",
+    "custom_steps",
+    "custom_expected",
+    "refs"
+   ]
+  }
+ ],
+ "adds": [
+  {
+   "internal_id": "FLT-URL-06",
+   "section_id": 4122,
+   "title": "'Back to my view' is not shown when you are on your own view",
+   "type": "Negative",
+   "priority": "Medium",
+   "refs": "Filters epic (key TBD) (S11-N3; S11-R7) [spec v1.6 2026-07-28]"
+  },
+  {
+   "internal_id": "FLT-EMPTY-03",
+   "section_id": 4119,
+   "title": "When filters and a search find nothing, each can be cleared on its own",
+   "type": "Functional",
+   "priority": "High",
+   "refs": "Filters epic (key TBD) (S8-R3 (empty state covers filters AND any active query); S8-R4 (prompt to clear filters and, where active, the query); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v1.6 2026-07-28]"
+  },
+  {
+   "internal_id": "FLT-PSRCH-08",
+   "section_id": 5410,
+   "title": "The Search box changes look as you hover over it, open it and type",
+   "type": "Functional",
+   "priority": "Medium",
+   "refs": "Filters epic (key TBD) (S13-R2 (default text button); S13-R3 (hover fill); S13-R4 (expands in place, 180px); S13-R5 (placeholder \"Type to search\"); S13-R6 (typed text + X-circle clear); S13-R8 (long queries scroll)) [spec v1.6 2026-07-28]"
+  },
+  {
+   "internal_id": "FLT-PSRCH-09",
+   "section_id": 5410,
+   "title": "The list narrows shortly after you stop typing, with no button to press",
+   "type": "Functional",
+   "priority": "High",
+   "refs": "Filters epic (key TBD) (S13-R7 (applies as you type, debounced 300ms, no apply/submit, Enter not required, Inventory 350ms); S13-R12 (results replace the table in place)) [spec v1.6 2026-07-28]"
+  },
+  {
+   "internal_id": "FLT-PSRCH-10",
+   "section_id": 5410,
+   "title": "One search box serves all Work Orders tabs and searches the tab you are on",
+   "type": "Functional",
+   "priority": "High",
+   "refs": "Filters epic (key TBD) (S13-R11 (search applies within the active tab only); S13-R24 (the Work Orders tabs share a single query because they are views of one dataset)) [spec v1.6 2026-07-28]"
+  },
+  {
+   "internal_id": "FLT-PSRCH-11",
+   "section_id": 5410,
+   "title": "Each Report tab and each Parts view keeps its own separate search",
+   "type": "Functional",
+   "priority": "Medium",
+   "refs": "Filters epic (key TBD) (S13-R24 (Reports sub-tabs and Parts views each keep their own query); S13-R11; S10-R4 (each view/tab keeps its own set)) [spec v1.6 2026-07-28]"
+  },
+  {
+   "internal_id": "FLT-PSRCH-12",
+   "section_id": 5410,
+   "title": "An old link carrying a top-search word no longer narrows the page list",
+   "type": "Negative",
+   "priority": "High",
+   "refs": "Filters epic (key TBD) (S14-R3 (state, URL parameters and persisted values carrying a global search term into page filtering are removed with it); S14-R2; S14-R1) [spec v1.6 2026-07-28]"
+  },
+  {
+   "internal_id": "FLT-PSRCH-13",
+   "section_id": 5410,
+   "title": "Collapsing the filter bar keeps an active search working",
+   "type": "Functional",
+   "priority": "Medium",
+   "refs": "Filters epic (key TBD) (S13-E1 (a collapsed filter bar keeps an active query applying and the search control stays in the toolbar); §4 Key Decisions (page search is separate from the filter bar)) [spec v1.6 2026-07-28]"
+  }
+ ]
+}

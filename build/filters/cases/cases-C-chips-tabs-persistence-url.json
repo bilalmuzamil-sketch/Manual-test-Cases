@@ -242,7 +242,7 @@
    "4. Clearing the filters leaves your typed word in the box and still applied - each is cleared on its own without wiping the other."
   ],
   "design_ref": "Spec-sourced (S8-R3/R4/R5 as reworded in v1.6, S13-N1, S13-N2); the exact on-screen message is not pinned in any design frame - VIU-confirm.",
-  "spec_ref": "Filters epic (key TBD) (S8-R3 (empty state covers filters AND any active query); S8-R4 (a prompt to clear filters and, where a query is active, to clear the query); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v1.6 2026-07-28]",
+  "spec_ref": "Filters epic (key TBD) (S8-R3 (empty state covers filters AND any active query); S8-R4 (prompt to clear filters and, where active, the query); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "New in spec v1.6: S8-R3 and S8-R4 were BROADENED from filters-only to 'filters and any active search query'. FLT-EMPTY-01 = C29606 and FLT-EMPTY-02 = C29607 stay valid for the filters-only case (no contradiction - they simply cover the narrower situation); this case covers the both-active situation the reworded requirements added. Overlap: FLT-PSRCH-02 = C38884 covers independent clearing from the chips and the Search box; this case covers it from the no-results empty state, which is what S8-R5 specifically requires. Exact message wording VIU-confirm.",
   "api_related": false
