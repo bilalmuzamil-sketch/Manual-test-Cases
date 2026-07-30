@@ -23,7 +23,7 @@ The report is server-paginated: one page of rows at a time,IV — Access & Displ
 2. Three causes can be produced: (a) a location you can access holds no in-stock parts, (b) a past range ends entirely before nightly recording began (or its covered dates were pruned by retention), (c) the filters can be set so nothing qualifies.","1. Scope the report to the empty location and read the data area.
 2. Select a Custom range ending before nightly recording began and read the data area and the bottom of the report.
 3. Set the filters so nothing qualifies and re-read.","1. In every case the report shows the standard reports no-data message ""Empty bays, endless possibilities. Get Going!"" instead of rows.
-2. No totals row is shown in any of the cases.",SV-8668 (specs/inventory-value.md Story 1 S1-N2; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary),,
+2. No totals row is shown in any of the cases.",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-N2; Story 4 S4-N1; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary),,
 A part appears only if not a core charge and on-hand quantity is above zero,IV — Row Scope,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. ZZAUTOTEST parts exist at your active location: a normal part with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity.","1. Open the Inventory Value report scoped to the location.
 2. Look for the normal in-stock part.
@@ -74,9 +74,10 @@ Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0,IV —
 With every column on they appear in the fixed order with the set alignment,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.
 3. Every column (including Margin and Total Sell) is turned on in the column-selection control.","1. Read the column headers from left to right.
-2. Look at how the values in each column are aligned.","1. The columns appear in this order: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.
+2. Look at how the values in each column are aligned.","1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.
 2. Part #, Description, Category, and Vendor are left-aligned.
-3. Every other column is right-aligned.",SV-8670 (specs/inventory-value.md Story 3 S3-R1; S3-R2),,
+3. Every other column is right-aligned.
+4. When more than one location is in scope the automatic Location column also appears, between Vendor and Qty on Hand, left-aligned. It is not in the column-selection control, so its presence is expected and is not a failure of this test.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand),,
 Value formats: Qty on Hand to two decimals; money as US-dollar currency,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a part with a fractional on-hand quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value.","1. Read the Qty on Hand cell of the fractional-quantity part.
 2. Read a money value over one thousand dollars (Unit Cost, Unit Sell, Total Sell, or Total Cost).
@@ -90,9 +91,10 @@ Total Cost is bold and pinned far right; it stays put on sideways scroll,IV — 
 3. It stays fixed to the right edge while the other columns scroll underneath.",SV-8670 (specs/inventory-value.md Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions),,
 On a first visit the default columns show and the rest stay available,IV — Valuation & Columns,Functional,High,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).,"1. Open the Inventory Value report and read the visible column headers.
 2. Open the column-selection control and read which columns are on and off.
-3. Turn Margin and Total Sell on and check they appear.","1. On first visit, the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost.
+3. Turn Margin and Total Sell on and check they appear.","1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost.
 2. The Margin and Total Sell columns are hidden by default.
-3. Both can be turned on from the column-selection control and then appear in their fixed positions.",SV-8670 (specs/inventory-value.md Story 3 S3-R12; S3-R13; Story 8 S8-R3),,
+3. Both can be turned on from the column-selection control and then appear in their fixed positions.
+4. When more than one location is in scope the automatic Location column also shows, between Vendor and Qty on Hand — it is not one of the toggleable columns and its presence is expected.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope),,
 "Category and Vendor show their names; an em dash (""—"") when the part has none",IV — Valuation & Columns,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a part with a category and a vendor, a part with no category, and a part with no vendor.","1. Read the Category and Vendor cells of the fully-populated part.
 2. Read the Category cell of the part with no category.
@@ -228,12 +230,14 @@ Inventory Value: the Location filter is hidden for a one-location user,IV — Lo
 3. Look for any row showing ""Multiple"".
 4. Open the column-selection control and look for Location in the list.
 5. Narrow to a single location and read the headers again.
-6. Change the selection between one location, several, and ""All locations"", watching the filter control's width.","1. With more than one location in scope a Location column is shown, inserted between Vendor and Qty on Hand.
+6. Change the selection between one location, several, and ""All locations"", watching the filter control's width.
+7. With more than one location still selected, download the CSV and the PDF and read their columns.","1. With more than one location in scope a Location column is shown, inserted between Vendor and Qty on Hand.
 2. Each row names the location that row's stock is held at.
 3. NO row ever shows ""Multiple"" — each row is one part at one location.
 4. Location is NOT offered in the column-selection control — its visibility follows the location scope automatically.
 5. With a single location in scope the Location column is hidden and the surrounding columns close up.
-6. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.","SV-8674 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never ""Multiple"")",,
+6. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.
+7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty on Hand), naming each row's own location.","SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never ""Multiple""; S10-R15 = the same column in every export)",,
 Column Selection toggles columns; Total Cost cannot be turned off,IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
 2. Open the control and toggle a column off, then on again, watching the table.
@@ -242,8 +246,8 @@ Column Selection toggles columns; Total Cost cannot be turned off,IV — Column 
 3. The Total Cost column is always shown and cannot be turned off.",SV-8675 (specs/inventory-value.md Story 8 S8-R1; S8-R2),,
 Toggling columns never reorders them,IV — Column Selection & Persistence,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Turn several columns on and off in different orders (for example, turn on Total Sell, then Margin).
-2. Read the resulting column order after each change.","1. Whatever columns are shown, they appear in the fixed left-to-right order (Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) — toggling visibility never reorders columns.
-2. Total Cost is always the last column.",SV-8675 (specs/inventory-value.md Story 8 S8-R4; Story 3 S3-R1),,
+2. Read the resulting column order after each change.","1. Whatever columns are shown, they appear in the fixed left-to-right order — with the automatic Location column, when more than one location is in scope, between Vendor and Qty on Hand (Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) — toggling visibility never reorders columns.
+2. Total Cost is always the last column.",SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand),,
 The report remembers all filters; columns and sort per browser,IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Change the date range, select a category and a vendor, type a part search, change the location selection, change the column selection, and sort by a non-default column.
 2. Navigate away to another screen, then return to the report.
