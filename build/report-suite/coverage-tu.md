@@ -1,5 +1,19 @@
 # Technician Utilization (TU) — Coverage Matrix
 
+> ## ⚠️ SUPERSEDED FOR THE COMPLETENESS QUESTION — 2026-07-31
+>
+> This matrix was built against an **older spec version**. For the question *"is every
+> requirement in the CURRENT spec covered?"* the authoritative answer is now the
+> **coverage RE-DERIVATION**, which enumerates every requirement in the live 2026-07-29
+> spec versions from scratch and maps each one to its case(s):
+>
+> - **`build/report-suite/coverage-rederivation-2026-07-31/COVERAGE-REDERIVATION.md`** — method, per-report totals, the gap list with judgements, the reverse (stale-anchor) check
+> - **`build/report-suite/coverage-rederivation-2026-07-31/requirement-coverage.csv`** — one row per requirement (895), with its covering case internal IDs + C-ids
+>
+> Suite-wide result: **888 of 895 current requirements covered · 0 open gaps · 7 not
+> covered by design (with reasons) · 0 stale or invented anchors.**
+> This file is retained as the record of the 2026-07-22 authoring round.
+
 > **CONSOLIDATION UPDATE 2026-07-28 (user-authorized, pushed to TestRail):** the suite was
 > consolidated to **57 active TU cases**. Every case ID below still resolves:
 > a merged-away ID's coverage now lives in its SURVIVOR (mapping below); cut cases' assertions
