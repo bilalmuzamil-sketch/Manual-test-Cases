@@ -909,7 +909,7 @@
   {
     "id": "SCH-SER-01",
     "area": "Linked Series and Banners",
-    "title": "Month view: series banner wraps across weeks, labeled once, then 'continues'",
+    "title": "Month view renders a series as a continuous banner wrapping across week rows, labeled once, with a faded 'continues' label on later weeks",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "Schedule: View (spec §14.1).",
@@ -921,24 +921,25 @@
     "steps": [
       "1. Find the series on the month grid.",
       "2. Read the banner across the week rows.",
-      "3. Look at the weekend columns inside the series."
+      "3. Look at the weekend columns and any skipped or booked days inside the series."
     ],
     "expected": [
       "1. The series renders as one continuous bar wrapping across the week rows.",
       "2. It is labeled once at the start (including the technician); later weeks show a faded 'continues'-style label instead of repeating the full label.",
-      "3. Weekend columns inside the series are empty (no bar) when no business hours are set for those weekend days."
+      "3. Weekend columns inside the series are empty (no bar).",
+      "4. Visible breaks appear around skipped days and days the technician is otherwise booked."
     ],
     "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
     "spec_ref": "requirements.md §4.6 (Month view)",
     "refs": "SV-8692 (§4.6 (Month view))",
     "viu_status": "VIU-Pending",
-    "notes": "Month series banner (continuous wrap, labeled once, faded '↳ continues' on later weeks) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3. | UPDATED 2026-07-31 from the live spec (Confluence v23 (2026-07-30) §4.6 Month view; the change landed in Confluence v22, after our v18 baseline). v18 read 'empty weekend columns, and visible breaks around skipped or booked days.'; v23 reads 'empty weekend columns (when business hours are not set for weekends).' - so the breaks-around-skipped/booked-days clause was DELETED from the spec and is removed here, and the empty-weekend assertion is now conditional. It was also a live CONTRADICTION (Rule-28 Stage 2b, groups X1/X2) against SCH-SPREAD-07 ('shop closures and public holidays are NOT skipped in V1'; a Saturday with hours is NOT skipped) and SCH-SPREAD-08 ('in V1 the only skip reason is a weekend day with no working hours set') - if nothing but weekends is skipped, there are no skipped days for a banner to break around. | FIX-WORDING 2026-07-31 (Rule-28 Stage-2b sweep, same pass): step 3 still told the tester to 'look at any skipped or booked days inside the series' after the corresponding expected result was removed - leftover residue pointing at behaviour the current spec no longer describes. Step 3 now asks only about the weekend columns, which is what expected 3 actually judges. | TITLE TRIMMED 2026-07-31 to the <=80-character concise-title rule (user instruction 2026-07-27: keep titles short enough to display in full on the TestRail case page; detail belongs in Steps/Expected). Was 137 chars: \"Month view renders a series as a continuous banner wrapping across week rows, labeled once, with a faded 'continues' label on later weeks\". Done now because this case is already being written in this pass - it removes one item from the 79-title trim backlog rather than adding a separate write later.",
+    "notes": "Month series banner (continuous wrap, labeled once, faded '↳ continues' on later weeks) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3.",
     "api_related": false
   },
   {
     "id": "SCH-SER-02",
     "area": "Linked Series and Banners",
-    "title": "Week view: series banner spans the week, with chevrons and 'week N of M'",
+    "title": "Week view renders a series as one banner spanning the week's working days, with edge chevrons and a 'week N of M' cue",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "Schedule: View (spec §14.1).",
@@ -955,13 +956,14 @@
     "expected": [
       "1. One banner spans the working days of that week in the technician's row.",
       "2. Chevrons at the banner's edges indicate the series continues beyond the visible week (both sides, on a middle week).",
-      "3. A 'week N of M' cue shows the position within the series."
+      "3. A 'week N of M' cue shows the position within the series.",
+      "4. The banner breaks around the day the technician is otherwise booked."
     ],
     "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
     "spec_ref": "requirements.md §4.6 (Week view)",
     "refs": "SV-8692 (§4.6 (Week view))",
     "viu_status": "VIU-Pending",
-    "notes": "Week series banner + edge chevrons + 'week N of M' cue pinned by the Claude design (§3); confirm live. Driver: Claude design §3. | UPDATED 2026-07-31 from the live spec (Confluence v23 (2026-07-30) §4.6 Week view; changed in Confluence v22). v18 read \"a 'week N of M' cue, and a break around any day the technician is otherwise booked.\"; v23 stops at \"a 'week N of M' cue.\" - the break-around-booked-days clause was DELETED from the spec and is removed here. Same contradiction group as SCH-SER-01 (Rule-28 Stage 2b, group X1). | TITLE TRIMMED 2026-07-31 to the <=80-character concise-title rule (user instruction 2026-07-27: keep titles short enough to display in full on the TestRail case page; detail belongs in Steps/Expected). Was 117 chars: \"Week view renders a series as one banner spanning the week's working days, with edge chevrons and a 'week N of M' cue\". Done now because this case is already being written in this pass - it removes one item from the 79-title trim backlog rather than adding a separate write later.",
+    "notes": "Week series banner + edge chevrons + 'week N of M' cue pinned by the Claude design (§3); confirm live. Driver: Claude design §3.",
     "api_related": false
   },
   {

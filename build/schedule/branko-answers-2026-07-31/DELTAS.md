@@ -16,10 +16,10 @@
 
 | Class | Count | Notes |
 |---|---|---|
-| **APPLY-NOW** (clear ruling → edit now) | **21 cases** | 15 need a TestRail `update_case` (title/preconds/steps/expected/refs changed); 6 are **notes-only = local only** (the executor does not push `notes`) |
+| **APPLY-NOW** (clear ruling → edit now) | **23 cases** *(final, after Phase 3)* | 15 need a TestRail `update_case` (title/preconds/steps/expected/refs changed); 8 are **notes-only = local only** (the executor does not push `notes`). The Phase-2 estimate was 21; Phase 3's Rule-28 Stage-2b sweep added SCH-EVT-02 (contradiction X6) and SCH-VIEW-05 (new question A7) — see §10 |
 | **NEEDS-NEW-CASE** | **0** | deliberate — see §6. Every ruling either rewrites an existing case or resolves a note. Authoring filler here would be exactly the slop Rule 28 exists to prevent |
 | **RETIRE-CANDIDATE** | **1 case** | SCH-EXP-01 (C38853) Week Export — **HELD for user authorization, NOT deleted** |
-| **STILL-AMBIGUOUS** (back to Branko / dev) | **10 questions** | 3 brand-new sub-questions his answer opened + Q7 re-route + the 5 unanswered NQ-1..NQ-5 + 1 migration heads-up |
+| **STILL-AMBIGUOUS** (back to Branko / dev) | **11 questions** *(final)* | 3 brand-new sub-questions his answer opened (A1/A2/A3) + a 4th found in Phase 3 (**A7**, §11) + Q7 re-route (A4) + the 'New work order' behaviour (A5) + the 5 unanswered NQ-1..NQ-5. Plus 1 migration heads-up (A6, not a question) |
 | **NO-CHANGE** (confirmation only) | **6 cases** | already written the answered way; recorded so the confirmation is auditable |
 
 ---
@@ -233,25 +233,39 @@ Recorded here because they are consequences of the spec diff; the resolved sweep
 PENDING.** (The genuinely undecidable items became questions A1/A2/A3 instead of contradictions,
 because no case currently asserts either side of them.)
 
-## 10. What gets pushed vs what stays local
+## 10. What gets pushed vs what stays local — FINAL (reconciled after Phase 3)
 
 The Schedule executor pushes exactly **`title`, `custom_preconds`, `custom_steps`,
 `custom_expected`, `refs`** (per `exec_sync_techplan_2026-07-30.py` → `desired_body()`). **`notes`
-and `viu_status` are LOCAL-ONLY fields** — they never reach TestRail. So:
+and `viu_status` are LOCAL-ONLY fields** — they never reach TestRail.
+
+Phase 3 changed the counts from the estimate above in three ways, all recorded here rather than
+silently: **SCH-TIP-01 dropped to notes-only** (its `refs` already carried ticket + spec anchor, so
+there was nothing to write — the footnote below anticipated this); the Rule-28 Stage-2b sweep added
+**SCH-EVT-02** to the push list (contradiction X6, found only by the cross-case diff); and
+**SCH-VIEW-05** was added as a notes-only case for the new spec-silent question A7.
 
 **15 × `update_case` (TestRail):** SCH-EVT-08 (C30615) · SCH-CAP-01 (C30030) · SCH-MODAL-08
-(C30015, refs) · SCH-EVT-01 (C30016) · SCH-REAS-03 (C30054) · SCH-EVT-03 (C30018) · SCH-PERM-02
-(C30075) · SCH-PERM-04 (C30077) · SCH-REAS-06 (C38855) · SCH-CONF-03 (C30025) · SCH-SER-01
-(C29987) · SCH-SER-02 (C29988) · SCH-DAY-06 (C30006) · SCH-EDGE-08 (C38866) · SCH-TIP-01 (C30034,
-refs only — see below)
+(C30015) · SCH-EVT-01 (C30016) · **SCH-EVT-02 (C30017)** · SCH-REAS-03 (C30054) · SCH-EVT-03
+(C30018) · SCH-PERM-02 (C30075) · SCH-PERM-04 (C30077) · SCH-REAS-06 (C38855) · SCH-CONF-03
+(C30025) · SCH-SER-01 (C29987) · SCH-SER-02 (C29988) · SCH-DAY-06 (C30006) · SCH-EDGE-08 (C38866)
 
-**6 × notes-only (local):** SCH-CAP-02 (C30031) · SCH-CAP-03 (C30032) · SCH-CAP-04 (C30033) ·
-SCH-CONF-01 (C30023) · SCH-REAS-01 (C30052) · SCH-VIEW-04 (C30045)
+**9 × notes-only (local, no TestRail write):** SCH-CAP-02 (C30031) · SCH-CAP-03 (C30032) ·
+SCH-CAP-04 (C30033) · SCH-CONF-01 (C30023) · SCH-REAS-01 (C30052) · SCH-TIP-01 (C30034) ·
+SCH-VIEW-04 (C30045) · **SCH-VIEW-05 (C30046)** · SCH-EXP-01 (C38853, the held retire-candidate)
 
 **0 × `add_case`** (no new cases) · **0 × `add_section`** · **0 × `delete_case`** (the one
-retire-candidate is HELD) · **0 × run writes beyond the Rule-34 check** — with no new cases, run
-357 needs **verification only**, not a resync.
+retire-candidate is HELD) · **0 × run writes beyond the Rule-34 verification** — with no new cases,
+run 357 needs **verification only**, not a resync.
 
-> *SCH-TIP-01 is listed under push only if its `refs` anchor changes; if the body and refs are
-> byte-identical it drops to the notes-only list. Resolved in Phase 3 by comparing the generated
-> payload against the live case — no no-op writes.*
+**Also folded into the 15 pushes (no extra writes):** 4 over-length titles trimmed to the ≤80
+concise-title rule on cases already being written — SCH-SER-01 137→76, SCH-SER-02 117→72,
+SCH-CAP-01 125→80, SCH-MODAL-08 82→60 — taking the standing trim backlog **79 → 75**. The 6
+touched cases that keep long titles are all notes-only edits, so trimming them would mean opening
+TestRail writes this pass was not scoped to make; they stay in the backlog.
+
+## 11. New open point created by the D1 ruling (added in Phase 3)
+
+| # | Question (plain, Rule 7) | Affected | Why we cannot decide it |
+|---|---|---|---|
+| **A7** | When you switch the 'Events' display option OFF, do the meeting hours also come back OUT of the day's busy bar — or are the meetings just hidden while the bar keeps counting them? | SCH-VIEW-05 ([C30046](https://shopview.testrail.io/index.php?/cases/view/30046)) | Now that events consume capacity, hiding them has two plausible outcomes and the spec addresses neither. **Spec silent** (Rule 15). SCH-VIEW-05 asserts only what IS pinned ("event blocks disappear from the grid while shifts remain") and deliberately asserts neither capacity outcome |

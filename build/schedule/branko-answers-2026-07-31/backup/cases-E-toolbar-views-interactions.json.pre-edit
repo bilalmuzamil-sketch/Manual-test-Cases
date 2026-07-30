@@ -199,7 +199,7 @@
     "spec_ref": "requirements.md §9 (VIN), §4.4",
     "refs": "SV-8700 (§9 (VIN), §4.4); SV-8690 (§4.4, §9 (VIN option)); SV-8694 (§4.8 (Lane height with VIN))",
     "viu_status": "VIU-Pending",
-    "notes": "Reconciliation 2026-07-22: RESOLVES the §4.13-vs-§9 inconsistency in favour of §4.13 - the tooltip shows VIN unconditionally; the toggle (label 'VIN Number', pinned by design) gates the shift-BLOCK VIN line only. §9 tooltip-gating prose flagged to Branko for doc hygiene. VIN-on grows the day-view lane height (DAY_LANE_H schedVin 96 vs 80) pinned by the Claude design (§3). Driver: Claude design §3/§6 + Branko Q&A 2026-07-22. | CONSOLIDATED 2026-07-31 (usefulness audit G-VIN-TOGGLE, user-authorized): absorbed SCH-BLOCK-03, SCH-DAY-07 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail. | Q6 ANSWERED 2026-07-31 - PO RATIFIES our 2026-07-22 reading (Branko answer 2026-07-31, option A, verbatim: 'A. Vin is always visible on hover regardless of the toggle'). The §4.13-vs-§9 inconsistency is settled in favour of §4.13; OQ-6(a) is CLOSED. No tester-facing edit needed - the case already asserted this. DOC-HYGIENE FLAG for Branko (not a case change): Confluence v23 (2026-07-30) §9 STILL ties the tooltip VIN to the 'VIN Number' toggle, contradicting §4.13 and his own answer.",
+    "notes": "Reconciliation 2026-07-22: RESOLVES the §4.13-vs-§9 inconsistency in favour of §4.13 - the tooltip shows VIN unconditionally; the toggle (label 'VIN Number', pinned by design) gates the shift-BLOCK VIN line only. §9 tooltip-gating prose flagged to Branko for doc hygiene. VIN-on grows the day-view lane height (DAY_LANE_H schedVin 96 vs 80) pinned by the Claude design (§3). Driver: Claude design §3/§6 + Branko Q&A 2026-07-22. | CONSOLIDATED 2026-07-31 (usefulness audit G-VIN-TOGGLE, user-authorized): absorbed SCH-BLOCK-03, SCH-DAY-07 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
     "api_related": false
   },
   {
@@ -230,7 +230,7 @@
     "spec_ref": "requirements.md §6, §9 (View Options popover)",
     "refs": "SV-8700 (§6, §9 (View Options popover, Capacity Bars, Events), §4.12)",
     "viu_status": "VIU-Pending",
-    "notes": "'View Options' toggles (Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday) pinned by the Claude design (§1 View Options icon/popover); confirm the exact labels + defaults live. Driver: Claude design §1 + requirements §6/§9/§4.12. | CONSOLIDATED 2026-07-31 (usefulness audit G-VIEW-TOGGLES, user-authorized): absorbed SCH-VIEW-07, SCH-VIEW-08 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail. | NEW OPEN POINT 2026-07-31 (consequence of the PO's D1 ruling that event hours now consume capacity): the spec does NOT say whether turning the 'Events' DISPLAY toggle OFF also removes event hours from the capacity bar totals, or only hides the event blocks while the bars keep counting them. SPEC SILENT (Rule 15) - this case asserts only what is pinned ('event blocks disappear from the grid while shifts remain') and deliberately does NOT assert either capacity outcome. Observe and record LIVE at VIU; question A7 in DELTAS.md.",
+    "notes": "'View Options' toggles (Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday) pinned by the Claude design (§1 View Options icon/popover); confirm the exact labels + defaults live. Driver: Claude design §1 + requirements §6/§9/§4.12. | CONSOLIDATED 2026-07-31 (usefulness audit G-VIEW-TOGGLES, user-authorized): absorbed SCH-VIEW-07, SCH-VIEW-08 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
     "api_related": false
   },
   {
@@ -401,7 +401,7 @@
     "spec_ref": "requirements.md §7 (Shift reassignment), §12",
     "refs": "SV-8695 (§7 (Shift reassignment), §12)",
     "viu_status": "VIU-Pending",
-    "notes": "Drag-reassign + cross-tech confirmation modal (Cancel / Confirm) pinned by the Claude design (§4d reassignModal); confirm the exact copy live. Driver: Claude design §4d. | CONFIRMED 2026-07-31 (Branko answer 2026-07-31 answer B + Confluence v23 (2026-07-30) §4.9): dragging is now the ONLY way to reassign a shift - the shift detail modal has no Reassign action at all. Behaviour under test is unchanged, so no tester-facing edit was needed. The retired SCH-REAS-02 (modal-Reassign, deleted 2026-07-22) correctly stays retired.",
+    "notes": "Drag-reassign + cross-tech confirmation modal (Cancel / Confirm) pinned by the Claude design (§4d reassignModal); confirm the exact copy live. Driver: Claude design §4d.",
     "api_related": false
   },
   {
@@ -434,7 +434,7 @@
   {
     "id": "SCH-REAS-03",
     "area": "Reassignment and Context Menu",
-    "title": "Left-click empty grid space opens a menu: Create Event and New Work Order",
+    "title": "Right-click a grid cell opens a menu with Create Event and New Work Order",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "Schedule: Edit (the context menu is an editing affordance hidden for View-only users; spec §14.1).",
@@ -444,21 +444,21 @@
       "3. Schedulable work order lines exist."
     ],
     "steps": [
-      "1. Left-click an empty spot in a technician's grid cell (not on an existing shift or event block).",
+      "1. Right-click a technician's grid cell.",
       "2. Read the menu items."
     ],
     "expected": [
-      "1. A dropdown menu opens at the spot you clicked.",
+      "1. A context menu opens at the cell.",
       "2. It contains ONLY two items: 'Create Event' and 'New Work Order'.",
       "3. There is no 'View Day' item - it was removed from the menu.",
       "4. There is no 'New Shift' item - it was removed from the menu.",
-      "5. This menu is opened by a normal left-click - right-clicking the cell does not open it."
+      "5. The browser's own right-click menu does not appear instead."
     ],
     "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
     "spec_ref": "requirements.md §7 (Right-click context menu)",
-    "refs": "SV-8700 (§7 (left-click menu on empty grid space; View Day and New Shift removed), §14.1 (creation via the cell menu))",
+    "refs": "SV-8700 (§7 (Right-click context menu; View Day and New Shift removed), §14.1 (creation via context menu))",
     "viu_status": "VIU-Pending",
-    "notes": "The cell context menu is now 'Create Event' + 'New Work Order' - the old 'New Shift' / 'New Event' / 'View Day' items were removed. Design + Jira SV-8696/SV-8700 agree (DESIGN-RECONCILIATION #8/#9/#10). Driver: SV-8700 §7/§4.10. Confirm the exact on-screen labels live at VIU. | CONSOLIDATED 2026-07-31 (usefulness audit G-CELL-MENU, user-authorized): absorbed SCH-REAS-04, SCH-REAS-05 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail. | Q4 ANSWERED 2026-07-31 (Branko answer 2026-07-31, option C, verbatim: 'C. there is no right click, only left click. when clicked it opens dropdown menu with two options (Create event, New work order) as mentioned in prd.'). Spec basis: Confluence v23 (2026-07-30) §4.10 ('Create via left-click on empty grid space, which opens a menu with \"Create event\" and \"New work order\"..') + §7 ('Left-click on empty grid space opens a menu with: Create event, New work order.'), changed in Confluence v22. The 2026-07-27 pass fixed the menu ITEMS but left the CLICK TYPE as right-click - corrected here. Confirm the exact on-screen labels LIVE at VIU (Rules 9/12). The old expected line \"The browser's own right-click menu does not appear instead\" was unreachable under left-click and has been replaced with the PO-backed negative (a right-click does NOT open this menu).",
+    "notes": "The cell context menu is now 'Create Event' + 'New Work Order' - the old 'New Shift' / 'New Event' / 'View Day' items were removed. Design + Jira SV-8696/SV-8700 agree (DESIGN-RECONCILIATION #8/#9/#10). Driver: SV-8700 §7/§4.10. Confirm the exact on-screen labels live at VIU. | CONSOLIDATED 2026-07-31 (usefulness audit G-CELL-MENU, user-authorized): absorbed SCH-REAS-04, SCH-REAS-05 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
     "api_related": false
   },
   {

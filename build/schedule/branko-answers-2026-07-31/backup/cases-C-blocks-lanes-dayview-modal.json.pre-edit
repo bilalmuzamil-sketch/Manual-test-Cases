@@ -451,13 +451,13 @@
     "expected": [
       "1. A vertical line marks the current time on the timeline.",
       "2. Its position matches the actual clock time.",
-      "3. Hovering the now line while your pointer is over the grid shows a label (the current time)."
+      "3. Hovering it shows a label (the current time)."
     ],
     "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
     "spec_ref": "requirements.md §4.8 (Now line)",
     "refs": "SV-8694 (§4.8 (Now line))",
     "viu_status": "VIU-Pending",
-    "notes": "Now-line styling and hover-label content unpinned - confirm live. Whether it appears on non-today days is unspecified - observe and record. | UPDATED 2026-07-31 from the live spec (Confluence v23 (2026-07-30) §4.8; changed in Confluence v22): 'a label on hover' became 'a label on hover over the grid'. Build-accurate wording per Rule 9.",
+    "notes": "Now-line styling and hover-label content unpinned - confirm live. Whether it appears on non-today days is unspecified - observe and record.",
     "api_related": false
   },
   {
@@ -693,7 +693,7 @@
   {
     "id": "SCH-MODAL-08",
     "area": "Shift Detail Modal",
-    "title": "Shift modal offers Delete only - there is no Reassign action",
+    "title": "The modal offers a Delete (series-aware) action only - there is no Reassign action",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "Delete requires Schedule: Delete (spec §14.1).",
@@ -713,9 +713,9 @@
     ],
     "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
     "spec_ref": "requirements.md §4.9 (Actions), §7",
-    "refs": "SV-8695 (§4.9 (Actions - Delete only; Reassign removed in Confluence v23), §7)",
+    "refs": "SV-8695 (§4.9 (Actions), §7)",
     "viu_status": "VIU-Pending",
-    "notes": "Reconciliation 2026-07-22: 'Reassign' action REMOVED from the modal (reassignment is drag-only). Driver: Branko Q&A 2026-07-22 + Claude design §4c/§4d. The Delete control's exact label/icon (trash icon) pinned by design; confirm live at VIU. | HOLD LIFTED 2026-07-31. The case body was already correct and does not change; only its provenance does. Branko answer 2026-07-31 to 'Should the shift pop-up have a Reassign button?' was verbatim 'B - No button'. Independently corroborated by the spec itself: Confluence v23 (2026-07-30) DELETED the clause - §4.9 Actions went from 'Actions: Delete (series-aware, §7) and Reassign to another technician.' to 'Actions: Delete (series-aware, §7)'. The design-vs-spec conflict that held this case since 2026-07-22 is therefore gone. NOTE FOR THE STORY OWNER (not a case change): Jira SV-8695's own text still lists a modal Reassign action and is now the stale artefact. | TITLE TRIMMED 2026-07-31 to the <=80-character concise-title rule (user instruction 2026-07-27: keep titles short enough to display in full on the TestRail case page; detail belongs in Steps/Expected). Was 82 chars: 'The modal offers a Delete (series-aware) action only - there is no Reassign action'. Done now because this case is already being written in this pass - it removes one item from the 79-title trim backlog rather than adding a separate write later.",
+    "notes": "Reconciliation 2026-07-22: 'Reassign' action REMOVED from the modal (reassignment is drag-only). Driver: Branko Q&A 2026-07-22 + Claude design §4c/§4d. The Delete control's exact label/icon (trash icon) pinned by design; confirm live at VIU.",
     "api_related": false
   }
 ]

@@ -1,0 +1,707 @@
+{
+  "SCH-EVT-08": {
+    "id": "SCH-EVT-08",
+    "area": "Events",
+    "title": "An event does not count toward a technician's capacity bar and does not raise a conflict",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. Capacity Bars and Events are ON in View Options.",
+      "3. A technician has a shift and, on the same day/time, an event (create both, ZZAUTOTEST)."
+    ],
+    "steps": [
+      "1. Note the day's capacity bar fill with only the shift present.",
+      "2. Add an all-day (or long) event on the same technician and day.",
+      "3. Look at the capacity bar again and check for any conflict on the block and in the toolbar conflict pill."
+    ],
+    "expected": [
+      "1. Adding the event does NOT change the capacity bar fill - events are not counted toward booked/available hours.",
+      "2. The event does NOT create a double-booked or overlap conflict with the shift, and the toolbar conflict count does not increase because of it.",
+      "3. Only shifts drive capacity and conflicts."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.10 (Events), §4.11, §4.12",
+    "refs": "SV-8696 (§4.10 (Events), §4.11, §4.12)",
+    "viu_status": "VIU-Pending",
+    "notes": "NEW case (reconciliation 2026-07-22). Driver: Branko Q&A 2026-07-22 Q1 (events currently excluded from capacity + conflict) - design-confirmed (prototype _capForDate / _conflictReasons iterate shifts only). MAY CHANGE if the PO decides to support events later. No TestRail C-id yet - pending authorized add_case.",
+    "api_related": false
+  },
+  "SCH-CAP-01": {
+    "id": "SCH-CAP-01",
+    "area": "Capacity Bars",
+    "title": "Day-column headers show a capacity bar - blue fill = aggregate booked vs total available, clamped at 100%, equal track widths",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. Capacity Bars are ON in View Options (default).",
+      "3. Technicians' working hours are known; shifts exist on at least two days with different total booked hours.",
+      "4. You are on the Schedule page in week view."
+    ],
+    "steps": [
+      "1. Look at each day column's header bar.",
+      "2. Compare a lightly-booked day with a heavily-booked day.",
+      "3. Compare the bars' track widths across days."
+    ],
+    "expected": [
+      "1. Each day header shows a capacity bar; the blue fill represents total technician-hours booked divided by total available (sum of all techs' working hours).",
+      "2. A more heavily booked day shows a longer blue fill; the fill never exceeds the track (clamped at 100%).",
+      "3. The track width is identical across all days (capacity is not rescaled per day), so bars are comparable at a glance."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.12 (Blue fill)",
+    "refs": "SV-8698 (§4.12 (Blue fill))",
+    "viu_status": "VIU-Pending",
+    "notes": "Day-column capacity bar (blue fill, clamped, equal track widths) pinned by the Claude design (§3 week/month cap bars); live-render confirm at VIU. Driver: Claude design §3. Capacity bar aggregates SHIFT hours only; events do NOT count toward capacity (Branko 2026-07-22 Q1 - may change if the PO decides to support events later; design-confirmed: _capForDate iterates shifts only).",
+    "api_related": false
+  },
+  "SCH-CAP-02": {
+    "id": "SCH-CAP-02",
+    "area": "Capacity Bars",
+    "title": "When aggregate hours exceed capacity, an amber spill extends past the track's right edge with a tick at the 100% line",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. Capacity Bars are ON.",
+      "3. One day is booked BEYOND the team's total available hours (seed extra shifts)."
+    ],
+    "steps": [
+      "1. Look at that day's capacity bar."
+    ],
+    "expected": [
+      "1. An amber segment extends past the right edge of the track, showing the excess.",
+      "2. A tick marks the 100% line where the track ends."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.12 (Amber spill)",
+    "refs": "SV-8698 (§4.12 (Amber spill))",
+    "viu_status": "VIU-Pending",
+    "notes": "Amber spill past the track + tick at 100% pinned by the Claude design (§3 capacity visualization); confirm live. Driver: Claude design §3. Events are excluded from the capacity aggregate (Branko 2026-07-22 Q1 - may change).",
+    "api_related": false
+  },
+  "SCH-CAP-03": {
+    "id": "SCH-CAP-03",
+    "area": "Capacity Bars",
+    "title": "The 'OT' text tag appears whenever any single technician exceeds their own daily hours - even when the day's aggregate is under capacity",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. Capacity Bars are ON.",
+      "3. On one day, a single technician is booked beyond THEIR daily hours while the team's aggregate for that day remains UNDER total capacity (other techs lightly booked)."
+    ],
+    "steps": [
+      "1. Look at that day's capacity bar and header."
+    ],
+    "expected": [
+      "1. An 'OT' tag appears for the day even though the aggregate bar is under 100%.",
+      "2. The tag is text, not a color-only signal.",
+      "3. Overtime (per-technician) and capacity (aggregate) are independent signals."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.12 (OT tag), §11 (not color-only)",
+    "refs": "SV-8698 (§4.12 (OT tag), §11 (not color-only))",
+    "viu_status": "VIU-Pending",
+    "notes": "'OT' text tag pinned by the Claude design (§3 week headers show 'OT' tags); confirm live. Driver: Claude design §3. The OT calculation is over SHIFT hours only; events do not count (Branko 2026-07-22 Q1 - may change).",
+    "api_related": false
+  },
+  "SCH-CAP-04": {
+    "id": "SCH-CAP-04",
+    "area": "Capacity Bars",
+    "title": "Hovering a capacity bar shows a per-technician breakdown, with overtime technicians highlighted in amber",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. Capacity Bars are ON; a day exists where one technician is in overtime and others are not.",
+      "3. You are on the Schedule page in week view."
+    ],
+    "steps": [
+      "1. Hover over that day's capacity bar.",
+      "2. Read the tooltip."
+    ],
+    "expected": [
+      "1. A tooltip shows a per-technician breakdown: assigned hours vs that technician's capacity.",
+      "2. The overtime technician's entry is highlighted in amber.",
+      "3. The numbers agree with the shifts actually on the grid."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.12 (Hover tooltip)",
+    "refs": "SV-8698 (§4.12 (Hover tooltip))",
+    "viu_status": "VIU-Pending",
+    "notes": "Capacity hover tooltip (per-tech breakdown, OT techs in amber) pinned by the Claude design (§3 cap-tooltip render); confirm live. Driver: Claude design §3. Per-tech capacity breakdown excludes events (Branko 2026-07-22 Q1 - may change).",
+    "api_related": false
+  },
+  "SCH-CONF-01": {
+    "id": "SCH-CONF-01",
+    "area": "Conflict Detection",
+    "title": "Double-booked: two work orders overlapping on the same technician at the same time are flagged",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. Two different work orders have schedulable lines.",
+      "3. You are on the Schedule page; note the toolbar conflict pill's current count."
+    ],
+    "steps": [
+      "1. Schedule work order 1 on a technician for a given time.",
+      "2. Schedule work order 2 on the SAME technician overlapping the same time.",
+      "3. Look at the two blocks and the toolbar conflict pill."
+    ],
+    "expected": [
+      "1. The overlap is detected as a Double-booked conflict.",
+      "2. A warning icon appears on the affected block(s).",
+      "3. The toolbar conflict pill's count increases.",
+      "4. The conflict is listed in the pill's dropdown."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.11 (Double-booked)",
+    "refs": "SV-8697 (§4.11 (Double-booked))",
+    "viu_status": "VIU-Pending",
+    "notes": "Conflict-type display names ('Double-booked' etc.) are the spec's words - confirm on-screen wording live. Whether one or both blocks get the icon is unpinned - observe. Events do NOT participate in double-booked/overlap conflict detection (Branko 2026-07-22 Q1 - may change; design-confirmed: _conflictReasons iterates shifts only). TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-2): the engineering plan (D4) treats double-booking as a FE 'soft warning', NOT a hard conflict - the BE detector reports only outside-window/closure/non-working-day. Whether the toolbar pill counts double-bookings is therefore uncertain; pending Branko/dev ruling (tech-plan-2026-07-29/Questions-for-Branko-dev.md NQ-2). Observe live; do not fail solely on the pill count until ruled.",
+    "api_related": false
+  },
+  "SCH-MODAL-08": {
+    "id": "SCH-MODAL-08",
+    "area": "Shift Detail Modal",
+    "title": "The modal offers a Delete (series-aware) action only - there is no Reassign action",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Delete requires Schedule: Delete (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Delete (which includes Edit and View).",
+      "2. A shift exists; its detail modal is open."
+    ],
+    "steps": [
+      "1. Look at the modal's actions.",
+      "2. Confirm there is no 'Reassign' action anywhere in the modal.",
+      "3. Click Delete on a series shift and read what it asks (cancel without deleting)."
+    ],
+    "expected": [
+      "1. The modal offers a Delete action (a trash icon in the header) and a close (x) icon - and no other actions.",
+      "2. There is no 'Reassign' action in the modal; reassignment is done by dragging a shift to another technician row (covered by its own case).",
+      "3. Delete on a series member asks for a deletion scope (the full scope behavior has its own cases)."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.9 (Actions), §7",
+    "refs": "SV-8695 (§4.9 (Actions), §7)",
+    "viu_status": "VIU-Pending",
+    "notes": "Reconciliation 2026-07-22: 'Reassign' action REMOVED from the modal (reassignment is drag-only). Driver: Branko Q&A 2026-07-22 + Claude design §4c/§4d. The Delete control's exact label/icon (trash icon) pinned by design; confirm live at VIU.",
+    "api_related": false
+  },
+  "SCH-REAS-01": {
+    "id": "SCH-REAS-01",
+    "area": "Reassignment and Context Menu",
+    "title": "Dragging a shift to another technician row reassigns it - target tech added to the line's roster, source removed, with a confirmation modal",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (reassignment requires Edit; spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. A shift exists on technician A; note the affected line's roster.",
+      "3. You are on the Schedule page in week view."
+    ],
+    "steps": [
+      "1. Drag the shift block from technician A's row to technician B's row.",
+      "2. Confirm the move in the confirmation modal.",
+      "3. Check the line's roster on the work order."
+    ],
+    "expected": [
+      "1. A confirmation modal appears for the cross-technician move.",
+      "2. After confirming, the shift sits on technician B's row.",
+      "3. Technician B is added to the affected line's roster and technician A is removed from it.",
+      "4. A toast with Undo appears."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (Shift reassignment), §12",
+    "refs": "SV-8695 (§7 (Shift reassignment), §12)",
+    "viu_status": "VIU-Pending",
+    "notes": "Drag-reassign + cross-tech confirmation modal (Cancel / Confirm) pinned by the Claude design (§4d reassignModal); confirm the exact copy live. Driver: Claude design §4d.",
+    "api_related": false
+  },
+  "SCH-EVT-01": {
+    "id": "SCH-EVT-01",
+    "area": "Events",
+    "title": "Create an event via right-click 'Create Event' on a grid cell",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (event creation requires Edit; spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. You are on the Schedule page in week view."
+    ],
+    "steps": [
+      "1. Right-click a technician's cell on a working day.",
+      "2. Choose 'Create Event' from the context menu.",
+      "3. Fill in a name (for example 'ZZAUTOTEST stand-up'), keep the date/times offered, and save."
+    ],
+    "expected": [
+      "1. The right-click context menu contains 'Create Event'.",
+      "2. The event modal opens with the clicked cell's technician and date pre-set.",
+      "3. Saving creates an event block on that technician's day.",
+      "4. A toast with Undo appears."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.10, §7 (right-click menu)",
+    "refs": "SV-8696 (§4.10, §7 (right-click menu))",
+    "viu_status": "VIU-Pending",
+    "notes": "Menu item label is 'Create Event' (was 'New Event') - design + Jira SV-8696 agree (DESIGN-RECONCILIATION #7). Pre-fill (clicked cell's tech + date) confirmed by design. Driver: SV-8696 §4.10 + Claude design. Confirm live at VIU.",
+    "api_related": false
+  },
+  "SCH-REAS-03": {
+    "id": "SCH-REAS-03",
+    "area": "Reassignment and Context Menu",
+    "title": "Right-click a grid cell opens a menu with Create Event and New Work Order",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (the context menu is an editing affordance hidden for View-only users; spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. You are on the Schedule page in week view (the same menu is offered in month view).",
+      "3. Schedulable work order lines exist."
+    ],
+    "steps": [
+      "1. Right-click a technician's grid cell.",
+      "2. Read the menu items."
+    ],
+    "expected": [
+      "1. A context menu opens at the cell.",
+      "2. It contains ONLY two items: 'Create Event' and 'New Work Order'.",
+      "3. There is no 'View Day' item - it was removed from the menu.",
+      "4. There is no 'New Shift' item - it was removed from the menu.",
+      "5. The browser's own right-click menu does not appear instead."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §7 (Right-click context menu)",
+    "refs": "SV-8700 (§7 (Right-click context menu; View Day and New Shift removed), §14.1 (creation via context menu))",
+    "viu_status": "VIU-Pending",
+    "notes": "The cell context menu is now 'Create Event' + 'New Work Order' - the old 'New Shift' / 'New Event' / 'View Day' items were removed. Design + Jira SV-8696/SV-8700 agree (DESIGN-RECONCILIATION #8/#9/#10). Driver: SV-8700 §7/§4.10. Confirm the exact on-screen labels live at VIU. | CONSOLIDATED 2026-07-31 (usefulness audit G-CELL-MENU, user-authorized): absorbed SCH-REAS-04, SCH-REAS-05 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+    "api_related": false
+  },
+  "SCH-EVT-03": {
+    "id": "SCH-EVT-03",
+    "area": "Events",
+    "title": "Event modal fields all save; the all-day toggle creates an all-day event",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. You are on the Schedule page with the event modal open (via right-click 'Create Event')."
+    ],
+    "steps": [
+      "1. Read the fields the modal offers.",
+      "2. Fill each: name, date, start and end time, and pick a color category. Save, then re-open the event.",
+      "3. Open the event modal again, turn the all-day toggle ON, and save.",
+      "4. Look at how the all-day event renders in day and week views."
+    ],
+    "expected": [
+      "1. The modal contains: name, date, start/end time, an all-day toggle, and a color category.",
+      "2. The event saves with the entered values.",
+      "3. Re-opening the event shows the saved values.",
+      "4. With all-day ON, specific start/end times are not required (the time fields are disabled or hidden).",
+      "5. The event is created as an all-day block for that technician and day."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.10 (Event modal)",
+    "refs": "SV-8696 (§4.10 (Event modal), §8.1 (Event allDay field))",
+    "viu_status": "VIU-Pending",
+    "notes": "Field labels unpinned - confirm the exact on-screen labels live. All-day rendering (where the block sits on the timeline) unpinned - capture live. Menu item label is 'Create Event' (was 'New Event') - design + Jira SV-8696 agree (DESIGN-RECONCILIATION #7). | CONSOLIDATED 2026-07-31 (usefulness audit G-EVENT-MODAL, user-authorized): absorbed SCH-EVT-04 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail. | WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): Precondition 2's stale menu label 'New Event' corrected to 'Create Event' (DESIGN-RECONCILIATION #7).",
+    "api_related": false
+  },
+  "SCH-PERM-02": {
+    "id": "SCH-PERM-02",
+    "area": "Permissions",
+    "title": "View-only: every editing affordance is hidden or disabled",
+    "priority": "Critical",
+    "type": "Negative",
+    "permissions_required": "A role with Schedule: View but NOT Edit.",
+    "preconditions": [
+      "1. A test user's role has Schedule: View but NOT Edit.",
+      "2. Shifts, a series, and events exist on the grid.",
+      "3. You are signed in AS that View-only user on a desktop browser, on the Schedule page."
+    ],
+    "steps": [
+      "1. Look for drag handles on sidebar lines and try to drag a work order card onto the grid.",
+      "2. Try dragging an existing shift block (move/reassign) and look for resize handles in day view.",
+      "3. Right-click a grid cell.",
+      "4. Open a shift's detail modal and inspect its fields and actions."
+    ],
+    "expected": [
+      "1. No drag handles are offered and nothing can be dragged from the sidebar onto the grid.",
+      "2. Shift blocks cannot be moved or resized - no drop targets or resize handles appear.",
+      "3. The right-click context menu does not appear (no creation entries - no 'Create Event' and no 'New Work Order').",
+      "4. In the modal, edit fields are hidden or disabled, and the reassign and delete actions are absent."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §14.1 (Schedule: View - editing affordances hidden or disabled)",
+    "refs": "SV-8685 (§14.1 (Schedule: View - editing affordances hidden or disabled))",
+    "viu_status": "VIU-Pending",
+    "notes": "Spec allows 'hidden or disabled' - record which of the two the build does for each affordance. | WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): Expected 3 named the OLD menu items ('New Shift / New Event / View Day'); reworded to the reconciled menu ('Create Event' + 'New Work Order') per SCH-REAS-03 / DESIGN-RECONCILIATION #8-10.",
+    "api_related": false
+  },
+  "SCH-PERM-04": {
+    "id": "SCH-PERM-04",
+    "area": "Permissions",
+    "title": "Schedule: Edit unlocks all creation and modification interactions",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with Schedule: Edit (requires View) - per spec the level for Service Manager, Senior Service Advisor, Service Advisor, and Foreman.",
+    "preconditions": [
+      "1. A test user's role has Schedule: Edit (and View) but NOT Delete.",
+      "2. Work orders with approved lines exist; you are signed in AS that user, on the Schedule page."
+    ],
+    "steps": [
+      "1. Drag a work order from the sidebar onto a technician cell and complete the scope picker (and spread modal for a large job).",
+      "2. Right-click a cell and create an event via 'Create Event'; in day view, click empty space to create.",
+      "3. Reassign a shift between technicians by dragging.",
+      "4. In day view, edge-resize and horizontally drag a shift.",
+      "5. Edit fields in the shift and event detail modals."
+    ],
+    "expected": [
+      "1. Drag-and-drop from the sidebar, the scope picker, and the spread modal all work.",
+      "2. Shift and event creation works, including via the right-click context menu and day-view click-to-create.",
+      "3. Reassignment between technicians works.",
+      "4. Edge-resize and horizontal drag work in day view.",
+      "5. Modal fields are editable and save."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §14.1 (Schedule: Edit)",
+    "refs": "SV-8685 (§14.1 (Schedule: Edit))",
+    "viu_status": "VIU-Pending",
+    "notes": "| WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): Step 2's menu label 'New Event' was renamed 'Create Event' (DESIGN-RECONCILIATION #7, applied in SCH-EVT-01); label updated.",
+    "api_related": false
+  },
+  "SCH-REAS-06": {
+    "id": "SCH-REAS-06",
+    "area": "Reassignment and Context Menu",
+    "title": "'New Work Order' in the cell menu points the user to the Work Orders tab",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: View / Edit and Work Orders access. Confirm the exact behaviour and permission live at VIU.",
+    "preconditions": [
+      "1. You are on the Schedule grid.",
+      "2. The cell context menu shows 'Create Event' and 'New Work Order' (SCH-REAS-03)."
+    ],
+    "steps": [
+      "1. Right-click an empty grid cell.",
+      "2. Choose 'New Work Order' from the menu."
+    ],
+    "expected": [
+      "1. The menu offers a 'New Work Order' item.",
+      "2. Choosing it directs the user to create a work order (a toast / prompt pointing to the Work Orders tab)."
+    ],
+    "design_ref": "Claude design (Schedule.dc.html cell menu / schedule-menu screenshots), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+    "spec_ref": "SV-8700 / SV-8696 (§7 / §4.10 - New Work Order menu item)",
+    "refs": "SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut)",
+    "viu_status": "VIU-Pending",
+    "notes": "NEW-scope shortcut: the redesigned cell menu adds 'New Work Order' (design + Jira SV-8696/SV-8700; DESIGN-RECONCILIATION §5). Design shows it raises a toast pointing to the Work Orders tab; confirm the exact behaviour LIVE at VIU (Rule 12). Driver: SV-8700 §7. TECH-PLAN 2026-07-29 (informs Q4): the engineering plan (Phase 7) builds 'New Work Order' to OPEN the real work-order creation window in place ('opens the real WorkOrderDialog.vue (not a toast)'), not a toast pointing to the Work Orders tab. Confirm the built behaviour live; final wording pending Branko Q4. | WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): the former Expected 3 - 'The exact target flow (toast or navigation) is confirmed during live testing' - was a to-be-confirmed placeholder, not a pass criterion, and has been MOVED here; Expected 1-2 are the pass bar. Capture the actual target flow (toast pointing to the Work Orders tab vs opening the work-order creation window) LIVE at VIU.",
+    "api_related": false
+  },
+  "SCH-CONF-03": {
+    "id": "SCH-CONF-03",
+    "area": "Conflict Detection",
+    "title": "Before-hours and after-hours shifts are flagged against the tech's hours",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. A technician has a known working day (for example 8:00 AM to 5:00 PM).",
+      "3. A shift exists for that technician inside those hours."
+    ],
+    "steps": [
+      "1. In day view, drag the shift so it starts BEFORE the technician's working-day start (for example 6:00 AM).",
+      "2. Look at the block and the conflict pill.",
+      "3. Now drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM).",
+      "4. Look at the block and the conflict pill again."
+    ],
+    "expected": [
+      "1. The shift is flagged as a before-hours conflict (the design's reason sentence reads in the spirit of 'Starts before working hours (8:00 AM)'), measured against the technician's configured working-day start.",
+      "2. The shift is flagged as an after-hours conflict (the design's reason sentence reads in the spirit of 'Extends past working hours (5:00 PM)'), measured against the technician's configured working-day end.",
+      "3. Both the start and the end follow the hierarchy technician hours, then business hours, then the default.",
+      "4. Warning icon on the block in each case; the conflict appears in the toolbar dropdown."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.11 (Before hours)",
+    "refs": "SV-8697 (§4.11 (Before hours, After hours))",
+    "viu_status": "VIU-Pending",
+    "notes": "Reconciliation 2026-07-22: 'working-day start/end' now = the technician's CONFIGURED start/end (hierarchy Tech > Business > Default). Driver: Branko Q&A 2026-07-22 Q2. Prototype hardcodes 8:00 AM / 5:00 PM (design §5) - confirm the real hierarchy LIVE at VIU. | CONSOLIDATED 2026-07-31 (usefulness audit G-HOURS-CONFLICT, user-authorized): absorbed SCH-CONF-04 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+    "api_related": false
+  },
+  "SCH-TIP-01": {
+    "id": "SCH-TIP-01",
+    "area": "Hover Tooltips",
+    "title": "Shift hover tooltip shows customer, unit/vehicle/VIN, date and time, technician, scope, up to 3 line names, and a progress bar",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. A multi-line shift exists covering 5 lines, with some time logged, for a unit that has a VIN.",
+      "3. You are on the Schedule page in week view."
+    ],
+    "steps": [
+      "1. Hover over the shift block and wait briefly for the tooltip.",
+      "2. Read the tooltip from top to bottom."
+    ],
+    "expected": [
+      "1. The tooltip shows: the customer name; unit, vehicle, and VIN (the tooltip shows the VIN whenever the unit has one, regardless of the 'VIN Number' toggle); the date and time range; the technician; and a scope summary ('N lines · Xh' style).",
+      "2. The individual line names appear as a short list capped at 3, with a '+N more lines' row for the rest (here '+2 more lines'); line statuses are NOT shown.",
+      "3. A time-logged progress bar shows logged vs estimated hours ('X / Yh' style)."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.13 (Shift tooltip)",
+    "refs": "SV-8695 (§4.13 (Shift tooltip))",
+    "viu_status": "VIU-Pending",
+    "notes": "Reconciliation 2026-07-22: the hover tooltip always shows the VIN when present (NOT gated by the 'VIN Number' toggle) - the old §4.13-vs-§9 caveat is resolved by the design in favour of §4.13. The 'N lines · Xh', '+N more lines' and 'X / Yh' formats + the 3-line cap are pinned by the Claude design (§4c/tooltip). Driver: Claude design §6/§7 + Branko Q&A 2026-07-22.",
+    "api_related": false
+  },
+  "SCH-VIEW-04": {
+    "id": "SCH-VIEW-04",
+    "area": "Filter and Display and View Options",
+    "title": "'VIN Number' toggle gates the block VIN only - tooltip and modal always show it",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. A shift exists for a unit with a VIN; the VIN toggle is OFF.",
+      "3. You are on the Schedule page in week view."
+    ],
+    "steps": [
+      "1. With 'VIN Number' off: read the block in week view, hover for the tooltip, then open the detail modal.",
+      "2. Turn 'VIN Number' ON in 'Filter and Display'.",
+      "3. Read the block again in week view, then in day view, then in month view; hover for the tooltip and open the detail modal again.",
+      "4. In day view, compare the height of the shift's lane with the toggle off and on."
+    ],
+    "expected": [
+      "1. 'VIN Number' off: no VIN line on the block (the block shows its three normal lines) - but the hover tooltip still shows the VIN, and the detail modal still shows the VIN.",
+      "2. 'VIN Number' on: the VIN appears as an additional line on blocks in day and week views.",
+      "3. Month view blocks never show the VIN, even with the toggle on (space constraints).",
+      "4. In day view with the VIN on, the lane height grows to fit the extra VIN line and no block text is clipped or cut off.",
+      "5. The 'VIN Number' toggle affects the block only - the tooltip and the modal always show the VIN when the unit has one."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §9 (VIN), §4.4",
+    "refs": "SV-8700 (§9 (VIN), §4.4); SV-8690 (§4.4, §9 (VIN option)); SV-8694 (§4.8 (Lane height with VIN))",
+    "viu_status": "VIU-Pending",
+    "notes": "Reconciliation 2026-07-22: RESOLVES the §4.13-vs-§9 inconsistency in favour of §4.13 - the tooltip shows VIN unconditionally; the toggle (label 'VIN Number', pinned by design) gates the shift-BLOCK VIN line only. §9 tooltip-gating prose flagged to Branko for doc hygiene. VIN-on grows the day-view lane height (DAY_LANE_H schedVin 96 vs 80) pinned by the Claude design (§3). Driver: Claude design §3/§6 + Branko Q&A 2026-07-22. | CONSOLIDATED 2026-07-31 (usefulness audit G-VIN-TOGGLE, user-authorized): absorbed SCH-BLOCK-03, SCH-DAY-07 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+    "api_related": false
+  },
+  "SCH-SER-01": {
+    "id": "SCH-SER-01",
+    "area": "Linked Series and Banners",
+    "title": "Month view renders a series as a continuous banner wrapping across week rows, labeled once, with a faded 'continues' label on later weeks",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. A multi-week series exists for one technician (spread a 40h+ job first).",
+      "3. You are on the Schedule page in MONTH view showing the series' month."
+    ],
+    "steps": [
+      "1. Find the series on the month grid.",
+      "2. Read the banner across the week rows.",
+      "3. Look at the weekend columns and any skipped or booked days inside the series."
+    ],
+    "expected": [
+      "1. The series renders as one continuous bar wrapping across the week rows.",
+      "2. It is labeled once at the start (including the technician); later weeks show a faded 'continues'-style label instead of repeating the full label.",
+      "3. Weekend columns inside the series are empty (no bar).",
+      "4. Visible breaks appear around skipped days and days the technician is otherwise booked."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.6 (Month view)",
+    "refs": "SV-8692 (§4.6 (Month view))",
+    "viu_status": "VIU-Pending",
+    "notes": "Month series banner (continuous wrap, labeled once, faded '↳ continues' on later weeks) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3.",
+    "api_related": false
+  },
+  "SCH-SER-02": {
+    "id": "SCH-SER-02",
+    "area": "Linked Series and Banners",
+    "title": "Week view renders a series as one banner spanning the week's working days, with edge chevrons and a 'week N of M' cue",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. A multi-week series exists for one technician; on one of its days the technician also has an unrelated booking.",
+      "3. You are on the Schedule page in WEEK view on a middle week of the series."
+    ],
+    "steps": [
+      "1. Find the series banner in the technician's row.",
+      "2. Look at the banner's left and right edges.",
+      "3. Look for the week-position cue and at the day with the other booking."
+    ],
+    "expected": [
+      "1. One banner spans the working days of that week in the technician's row.",
+      "2. Chevrons at the banner's edges indicate the series continues beyond the visible week (both sides, on a middle week).",
+      "3. A 'week N of M' cue shows the position within the series.",
+      "4. The banner breaks around the day the technician is otherwise booked."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.6 (Week view)",
+    "refs": "SV-8692 (§4.6 (Week view))",
+    "viu_status": "VIU-Pending",
+    "notes": "Week series banner + edge chevrons + 'week N of M' cue pinned by the Claude design (§3); confirm live. Driver: Claude design §3.",
+    "api_related": false
+  },
+  "SCH-DAY-06": {
+    "id": "SCH-DAY-06",
+    "area": "Day View Timeline",
+    "title": "A now line marks the current time on today's day view, with a label on hover",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. You are on the Schedule page in day view, on TODAY (click 'Today' if needed)."
+    ],
+    "steps": [
+      "1. Scroll the timeline to the current time.",
+      "2. Find the vertical current-time indicator.",
+      "3. Hover over it."
+    ],
+    "expected": [
+      "1. A vertical line marks the current time on the timeline.",
+      "2. Its position matches the actual clock time.",
+      "3. Hovering it shows a label (the current time)."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.8 (Now line)",
+    "refs": "SV-8694 (§4.8 (Now line))",
+    "viu_status": "VIU-Pending",
+    "notes": "Now-line styling and hover-label content unpinned - confirm live. Whether it appears on non-today days is unspecified - observe and record.",
+    "api_related": false
+  },
+  "SCH-EDGE-08": {
+    "id": "SCH-EDGE-08",
+    "area": "Edge Cases and Responsiveness",
+    "title": "Schedule and all its dialogs display correctly in dark mode",
+    "priority": "Low",
+    "type": "Accessibility",
+    "permissions_required": "Schedule: Edit (to open the create/edit dialogs).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser; the app's dark mode / theme toggle is available.",
+      "2. The Schedule page has shifts, an event, a conflict, and capacity bars visible."
+    ],
+    "steps": [
+      "1. Switch the app to dark mode.",
+      "2. Look over the Schedule grid: shift blocks, event cards, capacity bars, conflict styling, tooltips.",
+      "3. Open each dialog/popover you can reach (shift detail, event form, spread step, delete scope, filters, view options).",
+      "4. Switch back to light mode and spot-check again."
+    ],
+    "expected": [
+      "1. In dark mode every part of the Schedule stays readable - no white-on-white or black-on-black text, no unreadable labels or invisible icons.",
+      "2. Every dialog and popover opened from the Schedule follows the dark theme too.",
+      "3. Conflict and overtime cues remain distinguishable (they never rely on colour alone - text/icon still present).",
+      "4. Switching back to light mode restores the normal look with nothing stuck in dark colours."
+    ],
+    "design_ref": "Tech plan §Design tokens/Theming (light/dark aware --sv-* variables; 'Verify the schedule (and every new dialog/popover) in dark mode').",
+    "spec_ref": "Epic SV-8685 cross-cutting + tech plan §6 manual checklist 13 (dark mode)",
+    "refs": "SV-8685 (tech-plan §6 checklist 13 dark mode)",
+    "viu_status": "VIU-Pending",
+    "notes": "From the engineering tech plan (design-system theming + the mandated dark-mode pass). Cross-cutting, so refs the epic per Rule 20. Confirm the app-level dark-mode entry point LIVE at VIU (Rule 12).",
+    "api_related": false
+  },
+  "SCH-EXP-01": {
+    "id": "SCH-EXP-01",
+    "area": "Week Export and Printing",
+    "title": "Week Export opens a printable Department-by-Technician week grid",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: View. Confirm the exact permission and entry point live at VIU.",
+    "preconditions": [
+      "1. You are on the Schedule screen in Week view with some shifts scheduled.",
+      "2. Your role has Schedule: View."
+    ],
+    "steps": [
+      "1. Open the Week Export / Print action for the current week.",
+      "2. Read the exported / printable layout.",
+      "3. Check the department grouping, the technician rows, and the shifts shown per day."
+    ],
+    "expected": [
+      "1. A printable week view opens laid out as a Department-by-Technician grid for the week.",
+      "2. It is formatted for printing (a clean page layout, without the interactive grid controls).",
+      "3. The exported view groups technicians by department, with department headers.",
+      "4. Each technician's shifts for the week appear in the correct day columns.",
+      "5. The week's date range is shown."
+    ],
+    "design_ref": "Claude design (Schedule Week Export.dc.html + schedule-week-view.html + schedule-export.png), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+    "spec_ref": "Design Week Export (V1 scope pending Branko confirmation)",
+    "refs": "SV-8685 (design Week Export - V1 scope pending Branko)",
+    "viu_status": "VIU-Pending",
+    "notes": "NEW SCOPE surfaced by the 2026-07-27 design ZIP (Week Export / Print view) - NOT in requirements.md or the 15 stories. Scope for V1 must be confirmed with Branko before this is treated as required (DESIGN-RECONCILIATION §5). No single-story owner yet -> epic SV-8685 (Rule 20 cross-cutting). Confirm the exact layout/content LIVE at VIU (Rule 12). | CONSOLIDATED 2026-07-31 (usefulness audit G-WEEK-EXPORT, user-authorized): absorbed SCH-EXP-02 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+    "api_related": false
+  },
+  "SCH-VIEW-05": {
+    "id": "SCH-VIEW-05",
+    "area": "Filter and Display and View Options",
+    "title": "'View Options': six toggles with defaults; Capacity Bars and Events flip",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Schedule: View (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser.",
+      "2. You are on the Schedule page in week view with no view options changed yet (fresh state).",
+      "3. At least one event and some shifts exist in the visible range, so capacity bars have fill."
+    ],
+    "steps": [
+      "1. Open 'View Options' in the grid toolbar.",
+      "2. Read each toggle and its state.",
+      "3. Turn OFF Capacity Bars, look at the day column headers, then turn it back ON.",
+      "4. Turn OFF Events, look at the grid, then turn it back ON."
+    ],
+    "expected": [
+      "1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday.",
+      "2. Defaults: Business Hours OFF, Capacity Bars ON, Events ON, Tech Hours OFF, Saturday ON, Sunday ON.",
+      "3. Capacity Bars OFF: the capacity bars disappear from the column headers; ON: they reappear with the same values.",
+      "4. Events OFF: event blocks disappear from the grid while shifts remain; ON: the events reappear unchanged."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §6, §9 (View Options popover)",
+    "refs": "SV-8700 (§6, §9 (View Options popover, Capacity Bars, Events), §4.12)",
+    "viu_status": "VIU-Pending",
+    "notes": "'View Options' toggles (Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday) pinned by the Claude design (§1 View Options icon/popover); confirm the exact labels + defaults live. Driver: Claude design §1 + requirements §6/§9/§4.12. | CONSOLIDATED 2026-07-31 (usefulness audit G-VIEW-TOGGLES, user-authorized): absorbed SCH-VIEW-07, SCH-VIEW-08 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+    "api_related": false
+  },
+  "SCH-EVT-02": {
+    "id": "SCH-EVT-02",
+    "area": "Events",
+    "title": "Create an event by clicking empty grid space in day view, with a live preview block and drag-to-resize",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Schedule: Edit (spec §14.1).",
+    "preconditions": [
+      "1. You are signed in on a desktop browser with Schedule: Edit.",
+      "2. You are on the Schedule page in DAY view."
+    ],
+    "steps": [
+      "1. Click (or click-drag) an empty spot on a technician's timeline.",
+      "2. While creating, watch the block and try dragging to size it.",
+      "3. Complete the event creation."
+    ],
+    "expected": [
+      "1. Clicking empty day-view space starts event creation at that time.",
+      "2. A live preview block is shown while creating, and dragging resizes it.",
+      "3. Completing creates the event at the previewed time/duration."
+    ],
+    "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+    "spec_ref": "requirements.md §4.10 (day-view click-to-create, live preview)",
+    "refs": "SV-8696 (§4.10 (day-view click-to-create, live preview))",
+    "viu_status": "VIU-Pending",
+    "notes": "Exact create gesture (single click vs click-drag) unpinned - capture live.",
+    "api_related": false
+  }
+}

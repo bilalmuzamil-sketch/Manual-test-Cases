@@ -45,20 +45,20 @@
     "steps": [
       "1. Look for drag handles on sidebar lines and try to drag a work order card onto the grid.",
       "2. Try dragging an existing shift block (move/reassign) and look for resize handles in day view.",
-      "3. Left-click an empty spot in a grid cell.",
+      "3. Right-click a grid cell.",
       "4. Open a shift's detail modal and inspect its fields and actions."
     ],
     "expected": [
       "1. No drag handles are offered and nothing can be dragged from the sidebar onto the grid.",
       "2. Shift blocks cannot be moved or resized - no drop targets or resize handles appear.",
-      "3. No creation menu opens at all - there is no 'Create Event' and no 'New Work Order' offered.",
+      "3. The right-click context menu does not appear (no creation entries - no 'Create Event' and no 'New Work Order').",
       "4. In the modal, edit fields are hidden or disabled, and the reassign and delete actions are absent."
     ],
     "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
     "spec_ref": "requirements.md §14.1 (Schedule: View - editing affordances hidden or disabled)",
     "refs": "SV-8685 (§14.1 (Schedule: View - editing affordances hidden or disabled))",
     "viu_status": "VIU-Pending",
-    "notes": "Spec allows 'hidden or disabled' - record which of the two the build does for each affordance. | WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): Expected 3 named the OLD menu items ('New Shift / New Event / View Day'); reworded to the reconciled menu ('Create Event' + 'New Work Order') per SCH-REAS-03 / DESIGN-RECONCILIATION #8-10. | Q4 ANSWERED 2026-07-31 (Branko answer 2026-07-31, option C, verbatim: 'C. there is no right click, only left click. when clicked it opens dropdown menu with two options (Create event, New work order) as mentioned in prd.'). Spec basis: Confluence v23 (2026-07-30) §4.10 ('Create via left-click on empty grid space, which opens a menu with \"Create event\" and \"New work order\"..') + §7 ('Left-click on empty grid space opens a menu with: Create event, New work order.'), changed in Confluence v22. The 2026-07-27 pass fixed the menu ITEMS but left the CLICK TYPE as right-click - corrected here. Confirm the exact on-screen labels LIVE at VIU (Rules 9/12).",
+    "notes": "Spec allows 'hidden or disabled' - record which of the two the build does for each affordance. | WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): Expected 3 named the OLD menu items ('New Shift / New Event / View Day'); reworded to the reconciled menu ('Create Event' + 'New Work Order') per SCH-REAS-03 / DESIGN-RECONCILIATION #8-10.",
     "api_related": false
   },
   {
@@ -100,14 +100,14 @@
     ],
     "steps": [
       "1. Drag a work order from the sidebar onto a technician cell and complete the scope picker (and spread modal for a large job).",
-      "2. Left-click an empty spot in a cell and create an event via 'Create Event'; do the same on the timeline in day view.",
+      "2. Right-click a cell and create an event via 'Create Event'; in day view, click empty space to create.",
       "3. Reassign a shift between technicians by dragging.",
       "4. In day view, edge-resize and horizontally drag a shift.",
       "5. Edit fields in the shift and event detail modals."
     ],
     "expected": [
       "1. Drag-and-drop from the sidebar, the scope picker, and the spread modal all work.",
-      "2. Shift and event creation works, including via the menu opened by left-clicking empty grid space in both week and day view.",
+      "2. Shift and event creation works, including via the right-click context menu and day-view click-to-create.",
       "3. Reassignment between technicians works.",
       "4. Edge-resize and horizontal drag work in day view.",
       "5. Modal fields are editable and save."
@@ -116,7 +116,7 @@
     "spec_ref": "requirements.md §14.1 (Schedule: Edit)",
     "refs": "SV-8685 (§14.1 (Schedule: Edit))",
     "viu_status": "VIU-Pending",
-    "notes": "| WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): Step 2's menu label 'New Event' was renamed 'Create Event' (DESIGN-RECONCILIATION #7, applied in SCH-EVT-01); label updated. | Q4 ANSWERED 2026-07-31 (Branko answer 2026-07-31, option C, verbatim: 'C. there is no right click, only left click. when clicked it opens dropdown menu with two options (Create event, New work order) as mentioned in prd.'). Spec basis: Confluence v23 (2026-07-30) §4.10 ('Create via left-click on empty grid space, which opens a menu with \"Create event\" and \"New work order\"..') + §7 ('Left-click on empty grid space opens a menu with: Create event, New work order.'), changed in Confluence v22. The 2026-07-27 pass fixed the menu ITEMS but left the CLICK TYPE as right-click - corrected here. Confirm the exact on-screen labels LIVE at VIU (Rules 9/12). | Aligned 2026-07-31 with contradiction group X6 (see SCH-EVT-02): day view uses the SAME left-click menu entry, not a separate direct click-to-create gesture.",
+    "notes": "| WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): Step 2's menu label 'New Event' was renamed 'Create Event' (DESIGN-RECONCILIATION #7, applied in SCH-EVT-01); label updated.",
     "api_related": false
   },
   {
