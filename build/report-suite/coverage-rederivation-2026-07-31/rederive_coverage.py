@@ -62,16 +62,23 @@ DEF_RE = re.compile(r"^\s*(?:\*|-|\d+\.)\s*\*\*(" + REQ_ID + r")\b")
 ANY_RE = re.compile(r"\b(" + REQ_ID + r")\b")
 # compressed refs a case may use: "S14-R1/R2/R4" -> S14-R1, S14-R2, S14-R4
 COMPRESSED_RE = re.compile(r"\b(S\d+)-([RNE]\d+[a-z]?(?:\.\d+)?(?:/[RNE]?\d+[a-z]?(?:\.\d+)?)+)\b")
+# dotted sub-requirement range with no spaces: "S18-R7.1–R7.6"
+DOTRANGE_RE = re.compile(r"\b(S\d+)-([RNE])(\d+)\.(\d+)[–—-](?:[RNE])?(\d+)\.(\d+)\b")
 
 
 def anchors_in(text):
-    """Every requirement id a ref string cites, expanding compressed forms."""
+    """Every requirement id a ref string cites, expanding compressed and range forms."""
     out = set(ANY_RE.findall(text or ""))
     for story, tail in COMPRESSED_RE.findall(text or ""):
         kind = re.match(r"([RNE])", tail).group(1)
         for part in tail.split("/"):
             part = part if re.match(r"[RNE]", part) else kind + part
             out.add(f"{story}-{part}")
+    for story, kind, base, lo, base2, hi in DOTRANGE_RE.findall(text or ""):
+        if base == base2:
+            out.add(f"{story}-{kind}{base}")          # the parent rule itself
+            for n in range(int(lo), int(hi) + 1):
+                out.add(f"{story}-{kind}{base}.{n}")
     return out
 STORY_RE = re.compile(r"^###\s+Story\s+(\d+)\s*:\s*(.*)$")
 REQS_START = re.compile(r"^##\s+\d+\.\s+Requirements\s*$")
@@ -184,9 +191,18 @@ def case_body(c):
     return "\n".join(parts)
 
 
+def load_judgements():
+    p = os.path.join(HERE, "judgements.json")
+    if not os.path.exists(p):
+        return {}
+    return {k: v for k, v in json.load(open(p, encoding="utf-8")).items()
+            if not k.startswith("_")}
+
+
 def main():
     idmap = {r["internal_id"]: r["testrail_case_id"]
              for r in csv.DictReader(open(ID_MAP, encoding="utf-8"))}
+    judge = load_judgements()
     active, retired = load_cases()
 
     by_report_cases = {p: [] for p in REPORTS}
@@ -263,10 +279,31 @@ def main():
                     text_cands = [(round(s, 3), cid) for s, n, cid in scored[:3] if s >= 0.34]
                 status = "TEXT-CANDIDATE" if text_cands else "NO-CASE"
 
+            jk = f"{prefix}|{r['id']}"
+            j = judge.get(jk)
+            verdict = ""
+            rationale = ""
+            if j:
+                verdict = j["verdict"]
+                rationale = j.get("why", "")
+                if j.get("fix"):
+                    rationale = j["fix"] + " - " + rationale
+                if verdict == "COVERED-TEXT":
+                    status = "COVERED-TEXT"
+                    cases = [x.strip() for x in j.get("cases", "").split(";") if x.strip()]
+                elif verdict == "GAP":
+                    status = "GAP"
+                else:
+                    status = verdict
+            elif status in ("TEXT-CANDIDATE", "NO-CASE"):
+                status = "UNJUDGED"
+
             if status.startswith("COVERED"):
                 covered += 1
-            else:
+            elif status == "GAP":
                 gaps += 1
+            else:
+                gaps += 0  # NOT-TESTABLE / CUT-BY-AUDIT / SPEC-BLOCKED / DESCOPED
 
             rows.append({
                 "report": REPORT_NAME[prefix],
@@ -281,6 +318,8 @@ def main():
                 "covering_c_ids": "; ".join(idmap.get(x, "") for x in cases),
                 "retired_only_anchor": "; ".join(direct_retired) if (not direct_active and direct_retired) else "",
                 "text_candidates": "; ".join(f"{cid}({s})" for s, cid in text_cands),
+                "verdict": verdict,
+                "judgement": rationale,
             })
 
         summary[prefix] = {
@@ -294,7 +333,12 @@ def main():
             "E": sum(1 for r in reqs if r["kind"] == "edge"),
             "stories": len({r["story"] for r in reqs}),
             "covered": covered,
-            "unmapped": gaps,
+            "gaps": gaps,
+            "not_testable": sum(1 for x in rows if x["report_prefix"] == prefix
+                                and x["status"] in ("NOT-TESTABLE", "CUT-BY-AUDIT",
+                                                    "SPEC-BLOCKED", "DESCOPED")),
+            "unjudged": sum(1 for x in rows if x["report_prefix"] == prefix
+                            and x["status"] == "UNJUDGED"),
             "active_cases": sum(1 for c in by_report_cases[prefix]
                                 if c.get("viu_status") == "VIU-Pending"),
         }
@@ -311,11 +355,15 @@ def main():
 
     tot = sum(s["requirements"] for s in summary.values())
     cov = sum(s["covered"] for s in summary.values())
-    print(f"{'report':<28}{'reqs':>6}{'cov':>6}{'unmapped':>10}{'cases':>7}  spec")
+    print(f"{'report':<26}{'reqs':>6}{'cov':>6}{'GAP':>5}{'n/test':>7}{'unjud':>7}{'cases':>7}  spec")
     for p, s in summary.items():
-        print(f"{s['report']:<28}{s['requirements']:>6}{s['covered']:>6}{s['unmapped']:>10}"
-              f"{s['active_cases']:>7}  v{s['version']} {s['updated'][:10]}")
-    print(f"{'TOTAL':<28}{tot:>6}{cov:>6}{tot-cov:>10}"
+        print(f"{s['report']:<26}{s['requirements']:>6}{s['covered']:>6}{s['gaps']:>5}"
+              f"{s['not_testable']:>7}{s['unjudged']:>7}{s['active_cases']:>7}"
+              f"  v{s['version']} {s['updated'][:10]}")
+    print(f"{'TOTAL':<26}{tot:>6}{cov:>6}"
+          f"{sum(s['gaps'] for s in summary.values()):>5}"
+          f"{sum(s['not_testable'] for s in summary.values()):>7}"
+          f"{sum(s['unjudged'] for s in summary.values()):>7}"
           f"{sum(s['active_cases'] for s in summary.values()):>7}")
     print("\nreverse-check (anchors not defined in current spec):", len(reverse))
     for r in reverse:
