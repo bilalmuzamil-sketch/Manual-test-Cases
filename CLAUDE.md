@@ -11,6 +11,11 @@
 >   **Review findings are INPUTS, not overrides (Rule 33) — precedence: PO ruling → QA lead's
 >   ruling → our own live-verified findings → a reviewer's/other QA's claims; judge the claim,
 >   not the claimant, and never let a review silently reverse a recorded ruling.**
+>   **AFTER EVERY authorized `add_case` push, RUN-SYNC the project's test run (Rule 34) — a
+>   fixed-selection run (`include_all: false`) never auto-picks up new cases; UNION the run's
+>   current case_ids with the new ones (a partial `update_run` DELETES tests + results), snapshot
+>   first, and get the user's authorization since the runs belong to other testers. Checker:
+>   `build/testrail-run-sync-2026-07-31/run_sync_audit.py`.**
 > - **PROCESS CATALOG (the table of every reusable process + how to call it for any project):
 >   build/PROCESS-CATALOG.md — READ THIS to pick/name a process; it lists all of them with
 >   trigger phrases and the deliverable each produces. Keep it updated when a process is
@@ -1502,6 +1507,39 @@ deliver the 7-tab management report.
     (Rules 20/25). Canonical example:
     `build/filters/ahtesham-review-2026-07-31/VERIFICATION.md`. Ties to Standing Rules
     7/11/12/15/20/25/31/32.
+34. **Keep test runs in sync with the cases (all projects) — new/updated cases must appear in
+    the existing run.** USER DIRECTIVE (2026-07-31, verbatim): "when we update or add test cases
+    for any projects and we have a test run for them, make sure that those test cases also appear
+    in the test run." **THE GOTCHA THAT CAUSES THIS:** a TestRail run does **NOT** auto-include
+    newly added cases **unless the run was created with `include_all: true`**. A run built from a
+    FIXED CASE SELECTION (`include_all: false` — which is how every per-project VIU run in this
+    workspace was built) stays **FROZEN** at the selection it was created with. Therefore **every
+    authorized `add_case` pass MUST be followed by a run-sync check** — it is the LAST STEP of
+    every push manifest/execution log, not an afterthought. **METHOD:** (1) `get_run/{id}` → if
+    `include_all` is **true**, new cases appear automatically — nothing to do, just VERIFY the test
+    count equals the live case count. (2) If `include_all` is **false**: `get_tests/{run_id}` to
+    derive the run's **CURRENT** case_id list, **UNION** it with the new case ids
+    (`sorted(set(current) | set(new))`), then `update_run` with the **FULL UNION**.
+    **⚠️ NEVER SEND A PARTIAL `case_ids` LIST — `update_run` REPLACES the selection, so a partial
+    list DELETES the omitted tests AND THEIR RECORDED RESULTS.** This is the single most dangerous
+    operation in the sync: **always union, and always snapshot the run's tests + results
+    (`get_tests` + `get_results_for_run`) BEFORE writing**, then re-verify after (test count ==
+    expected, every prior result still present). **Deleted/retired cases drop out of runs
+    automatically** — so the sync is add-only; still **record the run's test count before→after in
+    the audit log** (proven 2026-07-28: R359 went 515→458 when the consolidated cases were
+    deleted). **Runs owned by other testers** (R359 = Nebojsa/Viktoria Report Suite; run 357 =
+    Ayesha/Schedule; run 352 = Ahtesham/Filters; run 325 = Ayesha/Simple Flow; run 324 =
+    Ahtasham/Fees & Discounts; run 278 = Custom Roles; note the old "run 312" no longer exists)
+    **still require the user's EXPLICIT AUTHORIZATION before any run write (Rule 6 stands)** — and
+    the case-sync must **never touch existing RESULTS**. Where a run belongs to a COMPLETED project
+    or already holds graded results, ASK the user whether to sync it at all or to create a new run
+    for the unrun cases (a "finished" run becoming incomplete is a reporting decision, not a QA one).
+    **Rationale, 2026-07-31:** a junior QA's review of Filters run 352 reported "no case exists" for
+    requirements we HAD already authored and pushed — the cases simply were not in his run.
+    Out-of-sync runs cause **false coverage gaps and wasted review cycles**. Canonical audit +
+    reusable read-only checker + union executor:
+    `build/testrail-run-sync-2026-07-31/` (`RUN-SYNC-AUDIT.md`, `run_sync_audit.py`,
+    `sync_runs_EXECUTOR.py`). Ties to Standing Rules 6/8/17/20/29/31/33.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
