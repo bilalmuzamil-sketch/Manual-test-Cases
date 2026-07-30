@@ -58,6 +58,28 @@ discrepancy is resolved):** SBC-PERM-01/02 (C30098/C30099); SBR-PERM-01/02
 (C30198/C30199); PV-PERM-01/03 (C30325/C30327); TU-NAV-01/07 (C30392/C30397);
 WIP-PERM-01/02 (C30526/C30527); IV-PERM-01/02 (C30603/C30604).
 
+**TECH-PLAN CONFIRMATION (added 2026-07-30, from the engineering tech plan
+`build/report-suite/tech-plan-2026-07-29/TechPlan-Reports-Suite-Full-Implementation.md`,
+plan dated 2026-07-21):** the mixed model is the DELIBERATE engineering design, not an
+accident:
+
+- SBC: new dedicated atom `ROLE_SALES_BY_CUSTOMER_REPORT::VIEW`; "Every SBC endpoint (rows,
+  drilldown, typeahead, totals, CSV, PDF, Print) gates on the new atom via `#[IsGranted]` —
+  NOT `ROLE_REPORT_VIEW` (S1-N1)" (§B5.3). The plan itself flags the SBC bundle placement
+  ("a 43rd bundle vs ride an existing one" — the 42-bundle set is locked, SV-7476) as a
+  "**product-level decision to surface**, not a mechanical default" (🔴 decision #5) — i.e.
+  engineering expected exactly this PO call.
+- PV: "existing **Inventory Reports→View** (`ROLE_REPORT_VIEW` family — no new atom)" (§B3.2).
+- IV: "`ROLE_REPORT_VIEW` (the inventory-reports atom was retired SV-7478 — correction to
+  spec wording; no new atom)" (§B4.2).
+- SBR / TU / WIP: no dedicated atom anywhere in the plan — they ride the shell's per-route
+  permission contract (§8).
+
+So the tech plan MATCHES the shipped mixed model our cases were authored to, and CONTRADICTS
+Chris's Q2 answer for SBC at minimum. Product truth = PO — the A/B question above stands
+unchanged; an engineering doc informs but does not overrule. Cases stay AS AUTHORED (user
+Ruling 1) until Chris answers.
+
 **Resolution path:**
 - Option A (dev changes the code to a single normal-reports permission) → then revise the
   permission cases to the unified model and VIU-confirm live.
