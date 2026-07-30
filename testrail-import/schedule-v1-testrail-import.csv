@@ -909,14 +909,6 @@ Overlapping hour ranges block Save; incomplete rows are ignored,Working Hours Se
 3. Save is disabled while the overlap exists.
 4. The incomplete row (empty From/To) is ignored by the overlap check - it does not raise the overlap error.
 5. Save is not blocked by an incomplete row on its own (only genuine overlaps disable Save).",SV-8699 (§4.2 Working Hours - overlap validation; incomplete rows ignored by overlap check),,
-Week Export opens a printable Department-by-Technician week grid,Week Export and Printing,Functional,Medium,"1. You are on the Schedule screen in Week view with some shifts scheduled.
-2. Your role has Schedule: View.","1. Open the Week Export / Print action for the current week.
-2. Read the exported / printable layout.
-3. Check the department grouping, the technician rows, and the shifts shown per day.","1. A printable week view opens laid out as a Department-by-Technician grid for the week.
-2. It is formatted for printing (a clean page layout, without the interactive grid controls).
-3. The exported view groups technicians by department, with department headers.
-4. Each technician's shifts for the week appear in the correct day columns.
-5. The week's date range is shown.",SV-8685 (design Week Export - V1 scope pending Branko),,
 "Schedule: View grants the full read experience - page, all three views, mini calendar, search, filter, tooltips, read-only modals",Permissions,Functional,Critical,"1. A test user's role has Schedule: View but NOT Edit (assign a suitable system role or a purpose-made custom role; restore after).
 2. Shifts and events exist on the grid, created by an Edit-capable user.
 3. You are signed in AS that View-only user on a desktop browser.","1. Open the Schedule page.
