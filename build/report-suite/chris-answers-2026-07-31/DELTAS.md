@@ -6,7 +6,7 @@
 >    WIP v6 / IV v3) — `../spec-current-2026-07-31/SPEC-DIFF-2026-07-31.md`.
 >
 > Baseline suite: **465 active cases**, all live in TestRail under group 4281, id-map 465/465
-> with 0 blanks. Run R359 currently holds 458 tests.
+> with 0 blanks. Run R359 held 465 tests + 539 recorded results before this pass.
 >
 > **Nothing in this file is live-verified** (Rule 12) — the Report Suite QA branch is still not
 > available, so every item is spec/answer reconciliation to be VIU-confirmed live later.
@@ -17,13 +17,18 @@
 
 | Disposition | Count | Cases |
 |---|---|---|
-| **APPLY-NOW** (edit an existing case) | **73** | D1–D10 below |
+| **APPLY-NOW** (edit an existing case) | **70** (executed) | D1–D10 below |
 | **NEEDS-NEW-CASE** | **7** | D11 (6 Location-column cases) + D12 (1 WIP export-cap case) |
 | **NO-CHANGE** (already correct — recorded so it is provably checked, not skipped) | 13 | N1–N4 below |
 | **RETIRE-CANDIDATE** | **0** | nothing in his answers or the changelog retires a case (SBC Print was already retired 2026-07-28) |
 | **STILL-AMBIGUOUS** (do NOT guess — ask him) | **3** | A1–A3 below |
 
-Post-pass tally: **465 + 7 = 472 active cases.**
+Post-pass tally: **465 + 7 = 472 active cases** — ALL PUSHED AND VERIFIED 2026-07-31
+(70 `update_case` + 7 `add_case`, all HTTP 200 + re-GET MATCH, 0 deletes; run 359 case-synced
+465→472 tests with its 539 recorded results untouched). Audit log:
+`testrail-execution-log-2026-07-31.md`. New C-ids: SBC-LOC-04 = C38912, SBR-LOC-05 = C38913,
+PV-FILT-14 = C38914, TU-LOC-06 = C38915, WIP-FLT-09 = C38916, IV-LOC-06 = C38917,
+WIP-EXP-10 = C38918.
 
 ---
 
@@ -101,7 +106,7 @@ TestRail** (`gen_import.py` excludes it) — it is updated locally for coherence
 
 **No change to the other five reports' permission cases** — see ambiguity **A1**.
 
-## D5 — Q5: the full word "Sales Representative" everywhere  → APPLY-NOW (26 cases)
+## D5 — Q5: the full word "Sales Representative" everywhere  → APPLY-NOW (24 cases)
 
 **His ruling, verbatim:** *"A - … Rep is too much slang, let's do representative everywhere"*
 (scope A = every label, including the work-order box and the assignments download with its file and
@@ -121,7 +126,7 @@ and expected 1 said the full word).
 | Assignments export (entry, note, file, column) | SBR-ASGN-01 [C30292](https://shopview.testrail.io/index.php?/cases/view/30292), SBR-ASGN-02 [C30293](https://shopview.testrail.io/index.php?/cases/view/30293), SBR-ASGN-03 [C30294](https://shopview.testrail.io/index.php?/cases/view/30294), SBR-ASGN-04 [C30295](https://shopview.testrail.io/index.php?/cases/view/30295), SBR-ASGN-05 [C30296](https://shopview.testrail.io/index.php?/cases/view/30296), SBR-ASGN-06 [C30297](https://shopview.testrail.io/index.php?/cases/view/30297), SBR-DEACT-06 [C30257](https://shopview.testrail.io/index.php?/cases/view/30257), SBR-PERM-02 [C30199](https://shopview.testrail.io/index.php?/cases/view/30199) | `"Sales Rep Assignments"` → `"Sales Representative Assignments"`; CSV header `Sales Rep` → `Sales Representative`; the file no longer uses the short form (expected `sales-representative-assignments.csv`, exact final file name to be VIU-confirmed) |
 | Export column headers | SBR-EXP-10 [C30285](https://shopview.testrail.io/index.php?/cases/view/30285), SBR-EXP-11 [C30286](https://shopview.testrail.io/index.php?/cases/view/30286), SBR-EXP-12 [C30287](https://shopview.testrail.io/index.php?/cases/view/30287), SBR-EXP-13 [C30288](https://shopview.testrail.io/index.php?/cases/view/30288) | first header `Sales Rep` → `Sales Representative` |
 | Deactivation dialog sentence | SBR-DEACT-02 [C30253](https://shopview.testrail.io/index.php?/cases/view/30253), SBR-API-06 [C30321](https://shopview.testrail.io/index.php?/cases/view/30321) | `"{Staff Name} is the sales rep on {N} customer{s}."` → `"… is the sales representative on …"` |
-| Prose naming the role | SBR-DEACT-04 [C30255](https://shopview.testrail.io/index.php?/cases/view/30255), SBR-DEACT-05 [C30256](https://shopview.testrail.io/index.php?/cases/view/30256), SBR-DEACT-07 [C30258](https://shopview.testrail.io/index.php?/cases/view/30258), SBR-UNAS-01 [C30261](https://shopview.testrail.io/index.php?/cases/view/30261), SBR-TYPE-02 [C30206](https://shopview.testrail.io/index.php?/cases/view/30206) | "sales rep" → "sales representative" |
+| Prose naming the role (SBR-DEACT-04 C30255 was checked and needed NO tester-facing change — notes only, not pushed) | SBR-DEACT-05 [C30256](https://shopview.testrail.io/index.php?/cases/view/30256), SBR-DEACT-07 [C30258](https://shopview.testrail.io/index.php?/cases/view/30258), SBR-UNAS-01 [C30261](https://shopview.testrail.io/index.php?/cases/view/30261), SBR-TYPE-02 [C30206](https://shopview.testrail.io/index.php?/cases/view/30206) | "sales rep" → "sales representative" |
 
 **Spec follow-up:** SBR S19-R1/R7/R8 + Story 15 (9 occurrences of "Sales Rep Assignments") still
 use the short form — Chris's edit needed. See ambiguity **A2** for the one label he did NOT name.
@@ -205,12 +210,12 @@ column's position + that it is not in the selector).
 
 | New case | Report | The per-row rule it must assert | Spec |
 |---|---|---|---|
-| SBC-LOC-04 | SBC | customer/asset rows that span locations read **"Multiple"**; invoice rows read their exact location; column sits immediately after Date | S4-R12, S4-R12a, S20-R19 |
-| SBR-LOC-05 | SBR | rep summary row = its one location's name, or **"Multiple"** when the rep's invoices span locations; invoice detail row = its own location; the Unassigned row follows the same rule; column sits after Status | S21-R7, S21-R8, S18-R13 |
-| PV-FILT-14 | PV | inventory row = its own location's name; a merged special-order row = **"Multiple"**; column renders **leftmost, before Type** | S2-R12, S3-R10, S7-R8 |
-| TU-LOC-06 | TU | technician row = its one location, or **"Multiple"** when hours span locations; per-day detail row likewise; **the Summary row leaves it blank**; column renders leftmost, before Technician | S9-R9, S9-R10, S8-R15 |
-| WIP-FLT-09 | WIP | every row is one work order, so a WIP row **NEVER shows "Multiple"**; column sits between VIN and Advisor; in exports it is headed **"Branch"** | S7-R13, S7-R14, §4, S9-E1 |
-| IV-LOC-05 | IV | each row is one part at one location, so IV **never shows "Multiple"**; column is inserted **between Vendor and Qty on Hand** | S7-R6, S7-R7, S3-R1, S12-R10 |
+| SBC-LOC-04 (C38912) | SBC | customer/asset rows that span locations read **"Multiple"**; invoice rows read their exact location; column sits immediately after Date | S4-R12, S4-R12a, S20-R19 |
+| SBR-LOC-05 (C38913) | SBR | rep summary row = its one location's name, or **"Multiple"** when the rep's invoices span locations; invoice detail row = its own location; the Unassigned row follows the same rule; column sits after Status | S21-R7, S21-R8, S18-R13 |
+| PV-FILT-14 (C38914) | PV | inventory row = its own location's name; a merged special-order row = **"Multiple"**; column renders **leftmost, before Type** | S2-R12, S3-R10, S7-R8 |
+| TU-LOC-06 (C38915) | TU | technician row = its one location, or **"Multiple"** when hours span locations; per-day detail row likewise; **the Summary row leaves it blank**; column renders leftmost, before Technician | S9-R9, S9-R10, S8-R15 |
+| WIP-FLT-09 (C38916) | WIP | every row is one work order, so a WIP row **NEVER shows "Multiple"**; column sits between VIN and Advisor; in exports it is headed **"Branch"** | S7-R13, S7-R14, §4, S9-E1 |
+| IV-LOC-06 (C38917) | IV | each row is one part at one location, so IV **never shows "Multiple"**; column is inserted **between Vendor and Qty on Hand** | S7-R6, S7-R7, S3-R1, S12-R10 |
 
 Each also asserts the **constant-width Location filter control** (it must not resize as the
 selection changes) — a suite-wide addition in this changelog.
@@ -223,7 +228,7 @@ times)"* = the 10,000-row cap applies to **all six** reports. PV and TU already 
 
 | New case | What it asserts |
 |---|---|
-| WIP-EXP-08 | An over-cap download on a WIP tab produces **no file** (neither PDF nor CSV) and shows the ruled message **"This report is too large to export. Narrow the date range or filters, then try again."**; below the cap the download works normally. Refs cite Chris's answer, because the WIP spec page still has no cap line. |
+| WIP-EXP-10 (C38918) | An over-cap download on a WIP tab produces **no file** (neither PDF nor CSV) and shows the ruled message **"This report is too large to export. Narrow the date range or filters, then try again."**; below the cap the download works normally. Refs cite Chris's answer, because the WIP spec page still has no cap line. |
 
 **Spec follow-up:** the PV, TU and WIP pages all still lack the cap line — Chris's edit needed on
 three pages.
@@ -274,5 +279,10 @@ three pages.
 5. SBC **S1-R2** → the ordinary reports permission (plus the build change).
 6. SBR **S19-R1/R7/R8** and Story 15 → "Sales Representative".
 7. SBC nav group + the named nav anchors; PV S1-R1 "only report"; the WIP asset-dropdown style.
-8. **Mojibake** introduced in SBR v15 and PV v4 (`â‹¯` for `⋯`, `â “˜` for `ⓘ`) — cosmetic, no case
+8. **Logo treatment is inconsistent across the suite** (found by the cross-case sweep): TU now
+   says the **bundled ShopView default logo** always, SBC S15-R17 has a three-step chain ending in
+   **no logo**, and the PV page has **no logo requirement at all** — yet his 2026-07-29 message
+   promised "same logo treatment all reports". No case changed (Rule 15 — spec silent / spec
+   inconsistent, flagged).
+9. **Mojibake** introduced in SBR v15 and PV v4 (`â‹¯` for `⋯`, `â “˜` for `ⓘ`) — cosmetic, no case
    impact, but it will confuse the next reader.

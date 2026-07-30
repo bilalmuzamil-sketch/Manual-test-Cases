@@ -10,7 +10,7 @@ SBC-DATE-04,C30105,Changing the date range writes the chosen value to the page l
 SBC-TYPE-02,C30107,Product Type: three options with Parts & Service default; S/P prefix filtering,SBC — Product Type Filter
 SBC-LOC-01,C30109,"Location filter: rightmost, lists accessible locations, All locations on top",SBC — Location Filter
 SBC-LOC-03,C30111,Selecting locations scopes the data; All locations covers every accessible one,SBC — Location Filter
-SBC-LOC-04,,The Location column shows only with more than one location; Multiple on totals,SBC — Location Filter
+SBC-LOC-04,C38912,The Location column shows only with more than one location; Multiple on totals,SBC — Location Filter
 SBC-CUST-01,C30112,"Customer filter sits between Product Type and Location, carries a search icon, and shows the Search customers… hint",SBC — Customer Filter
 SBC-CUST-02,C30113,"Typing in the Customer filter lists matching customers by contains match, with checkmarks on selected ones",SBC — Customer Filter
 SBC-CUST-03,C30114,Pinned control toggles All customers and Clear all; clearing shows empty state,SBC — Customer Filter
@@ -98,7 +98,7 @@ SBR-STAT-05,C30212,"Money columns always show invoiced amounts, never the outsta
 SBR-LOC-01,C30213,"Location filter is the rightmost toolbar control, a multi-select with an All Locations option",SBR — Location Filter
 SBR-LOC-03,C30215,Location selection cascades; an inaccessible location's data is never included,SBR — Location Filter
 SBR-LOC-04,C30216,The Location filter is hidden for a user with access to only one location,SBR — Location Filter
-SBR-LOC-05,,The Location column shows only with more than one location; rep rows Multiple,SBR — Location Filter
+SBR-LOC-05,C38913,The Location column shows only with more than one location; rep rows Multiple,SBR — Location Filter
 SBR-ROW-01,C30217,Contributors only: a rep row appears if and only if the rep has at least one non-reversed invoice matching all active filters,SBR — Rep Rows & Tree
 SBR-ROW-02,C30218,"Row layout: 12 columns in order, blanks in position, bold summary rows",SBR — Rep Rows & Tree
 SBR-ROW-03,C30219,"A toggled-off or deleted contributor still appears with credit intact, tagged (Inactive), named from the latest invoice snapshot when deleted",SBR — Rep Rows & Tree
@@ -211,7 +211,7 @@ PV-FILT-10,C30337,"Location filter is rightmost, defaults to the active location
 PV-FILT-11,C30338,Empty state shows the standard no-data message when no parts match the filters,PV — Filters
 PV-FILT-12,C30339,"Parts with no category, vendor, or bin assigned are excluded when that filter is active",PV — Filters
 PV-FILT-13,C30340,The Location filter is hidden for a user with access to only one location,PV — Filters
-PV-FILT-14,,"The Location column shows only with more than one location, leftmost before Type",PV — Filters
+PV-FILT-14,C38914,"The Location column shows only with more than one location, leftmost before Type",PV — Filters
 PV-ROW-01,C30341,An inventory part stocked at two selected locations shows as two rows with per-location stock figures,PV — Row Model
 PV-ROW-02,C30342,A Special Order part is one merged row summed across selected locations,PV — Row Model
 PV-ROW-03,C30343,"Rows load ranked by Demand descending, indicator on the Demand header",PV — Row Model
@@ -316,7 +316,7 @@ TU-LOC-02,C30443,Location changes reload with hours pooled into one row per tech
 TU-LOC-03,C30444,The saved location selection restores defensively - inaccessible locations are dropped and an empty remainder falls back to the active location,TU — Location Filter
 TU-LOC-04,C30445,Deselecting every location falls back to the active location instead of showing nothing,TU — Location Filter
 TU-LOC-05,C30446,The Location filter is hidden for a user with access to only one location,TU — Location Filter
-TU-LOC-06,,The Location column shows only with more than one location; Summary row blank,TU — Location Filter
+TU-LOC-06,C38915,The Location column shows only with more than one location; Summary row blank,TU — Location Filter
 TU-COL-01,C38859,"Column Selection: Technician always on, the other five toggleable, remembered",TU — Visual & Accessibility
 TU-VIS-01,C30447,All-white table with no row shading; toolbar controls in the fixed order,TU — Visual & Accessibility
 TU-VIS-02,C30448,"Dark mode keeps every report element legible, with the info icon at 3:1 contrast and the link affordance intact in both modes",TU — Visual & Accessibility
@@ -371,7 +371,7 @@ WIP-FLT-05,C30502,"The date range filters by the work order's created date, relo
 WIP-FLT-06,C30503,"Location filter: rightmost multi-select with All locations, reloads on change",WIP — Filters
 WIP-FLT-07,C30504,"The location scope never includes an inaccessible location, and an empty selection falls back to the user's active location",WIP — Filters
 WIP-FLT-08,C30505,"Advisor, customer and asset filters AND together and recompute strip and Totals",WIP — Filters
-WIP-FLT-09,,The Location column is automatic and never reads Multiple on a work-order row,WIP — Filters
+WIP-FLT-09,C38916,The Location column is automatic and never reads Multiple on a work-order row,WIP — Filters
 WIP-PERS-01,C30506,"The column-selection icon button (tooltip ""Column Selection"") toggles columns, and Total is not offered and cannot be turned off",WIP — Column Selection & Persistence
 WIP-PERS-02,C30507,"Toggling columns never reorders them (Total always last), and the column selection applies to all four tabs at once",WIP — Column Selection & Persistence
 WIP-PERS-03,C30508,"The report remembers the date range, filter selections, location, columns, and active tab per browser and restores them on return",WIP — Column Selection & Persistence
@@ -385,7 +385,7 @@ WIP-EXP-06,C30515,"The downloaded files are named ""wip-2-report.pdf"" and ""wip
 WIP-EXP-07,C30516,"Export headers read ""Unit"" and ""Branch"" — documented limitation, do not file",WIP — Exports
 WIP-EXP-08,C30517,The PDF shows the shop logo at the top when one is set; the CSV never includes a logo,WIP — Exports
 WIP-EXP-09,C30518,"Export notifications: success caption, ""Empty export"" warning, and the failure error message",WIP — Exports
-WIP-EXP-10,,An over-cap Work In Progress download is refused with the too-large message,WIP — Exports
+WIP-EXP-10,C38918,An over-cap Work In Progress download is refused with the too-large message,WIP — Exports
 WIP-VIS-01,C30519,Each tab uses an all-white table with no alternating row shading,WIP — Visual & Accessibility
 WIP-VIS-02,C30520,"The summary strip is a bold band delineated by a top and bottom rule, above the tabs — not separate cards",WIP — Visual & Accessibility
 WIP-VIS-03,C30521,The Total column (header and cells) is bold and stays pinned to the right edge while scrolling the rows sideways,WIP — Visual & Accessibility
@@ -440,7 +440,7 @@ IV-LOC-01,C30574,The Location filter is a rightmost multi-select with an All loc
 IV-LOC-02,C30575,"Selecting one, several, or all locations reloads the report scoped to that set",IV — Location Filter
 IV-LOC-03,C30576,"Scoping never includes an inaccessible location, and a selection resolving to none falls back to the user's active location",IV — Location Filter
 IV-LOC-04,C30577,The Location filter is hidden for a user with access to only one location,IV — Location Filter
-IV-LOC-06,,"The Location column is automatic, sits after Vendor, and never reads Multiple",IV — Location Filter
+IV-LOC-06,C38917,"The Location column is automatic, sits after Vendor, and never reads Multiple",IV — Location Filter
 IV-PERS-01,C30579,"The column-selection icon button (tooltip ""Column Selection"") toggles columns, and Total Cost cannot be turned off",IV — Column Selection & Persistence
 IV-PERS-02,C30580,Toggling columns never reorders them — the fixed order is kept with Total Cost always last,IV — Column Selection & Persistence
 IV-PERS-03,C30581,"The report remembers the date range, category, vendor, part search text, location, columns, and sort per browser and restores them on return",IV — Column Selection & Persistence

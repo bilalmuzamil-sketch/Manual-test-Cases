@@ -4,7 +4,8 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-30, third update** (COMPANION VIDEO INGESTED + DELTA PASS + AUTHORIZED
+Last updated: **2026-07-31** (SPEC RE-DIFF + CHRIS'S 5 ANSWERS APPLIED + AUTHORIZED PUSH EXECUTED
++ RUN-359 SYNCED — see §0 UPDATE 2026-07-31 immediately below). Prior: **2026-07-30, third update** (COMPANION VIDEO INGESTED + DELTA PASS + AUTHORIZED
 PUSH EXECUTED — Chris Ward's PRD companion video arrived (Loom e4a3ad0191…; transcript + 20-point
 delta analysis in `chris-update-2026-07-29/`); 3 FIRM deltas → 7 update_case pushed under the
 user's same-day authorization ("do update the test cases if you learn that the video is warranting
@@ -52,6 +53,109 @@ import REGENERATED post-review.)
 ---
 
 ## 0. STATUS
+
+### UPDATE 2026-07-31 — SPEC RE-DIFF (all six specs now CURRENT) + CHRIS'S 5 ANSWERS APPLIED + PUSH EXECUTED + RUN 359 SYNCED
+
+**Resume here. This is the current state.**
+
+**1. All six Confluence specs were re-pulled LIVE (Rule 31) — the promised changelog HAS landed.**
+Every page moved on **2026-07-29**, each with a new dated Change Log row: **SBC v11→v12 · SBR
+v14→v15 · PV v3→v4 · TU v4→v5 · WIP v5→v6 · IV v2→v3**. Verbatim captures +
+per-report unified diffs + the full requirement-by-requirement diff:
+`spec-current-2026-07-31/` (`SPEC-DIFF-2026-07-31.md`, `*-current.md`, `*-raw-unified.diff`,
+`capture_specs_2026-07-31.py`). The capture pipeline was validated 6/6 byte-identical against the
+2026-07-28 baseline, so every difference is a real Chris edit.
+
+**SPEC-WATCH verdicts (`SPEC-WATCH-2026-07-28.md` updated):** **RATIFIED/CLOSED — 1a** (SBC VIN
+chain), **2** (SBC Print retired), **3** (Summary/Expanded exports, extended to four menu items),
+**5** (per-row Location column on all six + "Locations:" export line), **7** (Catalogue → **"Special
+Order"**), **12** (rep-label scope, answered). **STILL OPEN — 1b, 4, 6, 8, 9, 10, 11.** The one to
+put in front of Chris first is **1b: the WIP asset-identifier text is UNCHANGED** (§4, S4-R7/R8/R9,
+S7-R4 still unit-number-first) even though he told us he had already edited it — our WIP cases
+follow his later answer, so the spec and the cases are out of step until he fixes it. Items **4**
+(the four "single-location user still sees the filter" notes) and **9** (SBR "Sales Rep" labels) now
+actively CONTRADICT rulings he gave us afterwards. The 2026-08-04 deadline is **partly met** — the
+changelog landed on time, but not everything he believed he had edited is there.
+
+**2. Chris Ward's 5 TechPlan answers are ingested verbatim — all five = option A**
+(`chris-answers-2026-07-31/answers-ingested.md`, source workbook preserved in the same folder):
+Q1 the Location dropdown is **hidden** for a one-location user (*"classic spec drift"*) · Q2 **one**
+suite-wide too-large message, *"This report is too large to export. Narrow the date range or
+filters, then try again."* · Q3 the **10,000-row export cap applies to all six** reports · Q4 **every
+report is gated by the ordinary reports permission** (*"the intention is to not hide these from
+normal reports access. These were specced before CRP was built"*) · Q5 the full word **"Sales
+Representative" everywhere** (*"Rep is too much slang"*). 5/5 answered, 0 ambiguous.
+
+**3. THE PERMISSION OUTCOME (the important one): the cases CHANGED and a DEV TICKET IS NEEDED.**
+His ruling is on INTENDED behaviour, so it wins (Rules 30/32/33) — but the BUILD ships a dedicated
+`ROLE_SALES_BY_CUSTOMER_REPORT::VIEW` atom (tech plan §B5.3) and SBC spec **S1-R2** still states the
+dedicated model. So **SBC-PERM-01 (C30098) / SBC-PERM-02 (C30099) / SBC-NAV-01 (C30096) were moved
+to the ordinary reports access** — they will FAIL against today's build on purpose, each carrying a
+plain tester note — **plus a dev-facing change note: `chris-answers-2026-07-31/Q4-permission-dev-note-2026-07-31.md`**
+(raise a change ticket against epic SV-8582; Chris also owes the S1-R2 spec correction). The Q2
+mixed-model discrepancy thread from 2026-07-28 is now CLOSED by this ruling.
+
+**4. Consequences applied + PUSHED.** `chris-answers-2026-07-31/DELTAS.md` = 70 APPLY-NOW / 7
+NEEDS-NEW-CASE / 13 NO-CHANGE / **0 RETIRE** / 3 STILL-AMBIGUOUS. Executed under the user's
+authorization: **70 `update_case` + 7 `add_case` + 0 delete, ALL HTTP 200 + re-GET MATCH, 0
+failures**; live count under group 4281 = **472 == id-map 472/472, 0 blanks**. Audit:
+`chris-answers-2026-07-31/testrail-execution-log-2026-07-31.md`; manifest header = EXECUTED;
+70 pre-write `get_case` snapshots in `chris-answers-2026-07-31/pre-push-snapshot/`.
+**NEW TALLY: 472 ACTIVE** (SBR 111 · SBC 83 · WIP 79 · IV 70 · PV 69 · TU 60), all VIU-Pending.
+
+**New cases (Standing Rule 8):** SBC-LOC-04 = **C38912** · SBR-LOC-05 = **C38913** ·
+PV-FILT-14 = **C38914** · TU-LOC-06 = **C38915** · WIP-FLT-09 = **C38916** · IV-LOC-06 = **C38917**
+(the six per-report per-row **Location column** cases — auto-visibility, the per-report "Multiple"
+rule, position, not-in-the-selector, constant-width filter) and WIP-EXP-10 = **C38918** (the WIP
+10,000-row export cap, from Q3).
+
+**What the 70 edits were:** one suite-wide too-large message (2) · Q1 refs re-cited to the PO's own
+answer (4) and the ruling applied to the two reports that had no case, folded into SBC-LOC-01
+C30109 + WIP-FLT-06 C30503 rather than authoring near-duplicates (2) · the SBC permission model (3)
+· **"Sales Rep" → "Sales Representative"** across labels, export headers, the assignments download
+and its file name, and the deactivation dialog (24) · PV **"Sold via WO/Parts Sale" → "Sold (WO)" /
+"Sold (Parts Sale)"** (9) · **Catalogue → Special Order** (16) · TU's ratified **Story 10 Column
+Selection**, Est. Lost Labor now hideable, the changed toolbar order, and the **bundled-ShopView-logo**
+inversion (6) · SBC Summary/Expanded export detail — 13-column Expanded CSV with Asset, new file
+names, per-item loading state, PDF "Locations:" header (5) · WIP Location **out of** the column
+selector (2) · plus 41 titles trimmed to ≤80 and 51 audit repairs.
+
+**5. RUN 359 SYNCED (Standing Rule 34).** R359 "Reports Suite - Nebojsa/Viktoria (VIU Pending)" has
+`include_all=false`, so new cases do NOT appear automatically. Add-only union `update_run`:
+**465 → 472 tests**, and its **539 recorded results are UNCHANGED**; every prior case still present;
+all 7 new cases present. Pre-sync snapshot: `pre-push-snapshot/run359.pre-sync-2026-07-31.json`.
+**No other run was touched.**
+
+**6. Rule-28 three-dimension audit (mandatory gate) — `chris-answers-2026-07-31/audit/RUTHLESS-AUDIT-2026-07-31.md`.**
+77/77 KEEP · 0 NONSENSE · **0 contradictions remaining** · traceability 77/77 · layman 77/77.
+The **cross-case consistency sweep ran over all 472 cases** and found 1 real contradiction in this
+pass's own work (SBR-WO-01 C30310, title vs its own expected) — repaired; 6 further flagged pairs
+were adjudicated as non-contradictions with written reasons. The audit found and repaired **53
+defects in our own work before delivery**, the biggest being **44 cases whose `refs` carried a spec
+anchor but no Jira ticket** (Rule 20) — backfilled with the exact per-story ticket from the SV-8582
+epic ingest, plus 2 mis-cited tickets corrected (SBC Story 1 = SV-8600, not SV-8601).
+
+**7. STILL OPEN after this pass:**
+- **Chris owes 8 spec-text corrections** (bundled in DELTAS.md "Spec-text corrections Chris still
+  owes"), headed by the **WIP asset identifier** he thinks he already did.
+- **3 questions not to guess at** (DELTAS.md A1–A3): does "normal reports access" mean the five
+  other reports' per-area report permissions collapse into ONE Reports permission? · does the
+  second short-form header **"Rep is active?"** also become "Representative"? · what is the exact
+  renamed **assignments file name**?
+- **A logo inconsistency across the suite** found by the sweep: TU now says the bundled ShopView
+  default always, SBC has a three-step chain ending in *no logo*, PV has no logo requirement at all
+  — yet his 2026-07-29 message promised "same logo treatment all reports". Flagged, no case changed.
+- **The TU spec's new Story 10 has no Jira ticket** — ask for the key and re-cite TU-COL-01 (C38859)
+  and TU-LOC-06 (C38915).
+- **Mojibake** in the SBR v15 and PV v4 spec text (`â‹¯` for `⋯`, `â “˜` for `ⓘ`) — cosmetic.
+- **288 of the 472 titles still exceed 80 characters** on cases this pass did not touch — worth its
+  own authorized title-trim pass.
+- **Live VIU is still not possible** — the Report Suite QA branch/env is still unavailable, so all
+  472 cases remain **VIU-Pending** and nothing in this pass was live-verified (Rule 12).
+- The **SBR staff-dialog Escape vs Golden-Rule** question is still unanswered on the 2026-07-27
+  Chris sheet.
+
+
 
 **TEST RUN SYNCED 2026-07-31 (Standing Rule 34, user-authorized):** run **R359 "Reports Suite -
 Nebojsa/Viktoria (VIU Pending)"** now contains the COMPLETE active Reports Suite — **+7 cases,
