@@ -4,7 +4,7 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-31** (CLOSING AUTHENTICITY PASS — 474 active, Rule-20 traceability 114/472 -> 474/474, 288 over-cap titles -> 0, the SV-8589 QuickBooks gap CLOSED, Rule-28 three-dimension audit 474/474 with 0 contradictions, 414 update_case + 2 add_case EXECUTED and verified zero-diff, run 359 synced 472 -> 474 with results unchanged; **5 FOREIGN cases C38919-C38923 found inside group 4281 and left untouched pending a decision** — see §0 UPDATE 2026-07-31-CLOSING immediately below). Prior: SPEC RE-DIFF + CHRIS'S 5 ANSWERS APPLIED + AUTHORIZED PUSH EXECUTED + RUN-359 SYNCED — see §0 UPDATE 2026-07-31. Prior: **2026-07-30, third update** (COMPANION VIDEO INGESTED + DELTA PASS + AUTHORIZED
+Last updated: **2026-07-31** (COVERAGE RE-DERIVATION FROM THE CURRENT SPECS — 895 requirements enumerated, **888/895 covered, 6 genuine gaps found and ALL CLOSED as extensions (0 new cases)**, **15 cross-case contradictions found and fixed** (the absolute column/header lists vs the new automatic Location column, incl. the authorized SBR S14-R20 export fix), a NEW permanent same-requirement-different-surface check (Location was the only instance in the six specs), 33 update_case EXECUTED 33/33 verified, run 359 verified untouched 474/474 tests + 539/539 results, 474 active unchanged, live 4281 = 474 ours + 5 foreign untouched — see §0 UPDATE 2026-07-31-COVERAGE-REDERIVATION immediately below). Prior: (CLOSING AUTHENTICITY PASS — 474 active, Rule-20 traceability 114/472 -> 474/474, 288 over-cap titles -> 0, the SV-8589 QuickBooks gap CLOSED, Rule-28 three-dimension audit 474/474 with 0 contradictions, 414 update_case + 2 add_case EXECUTED and verified zero-diff, run 359 synced 472 -> 474 with results unchanged; **5 FOREIGN cases C38919-C38923 found inside group 4281 and left untouched pending a decision** — see §0 UPDATE 2026-07-31-CLOSING immediately below). Prior: SPEC RE-DIFF + CHRIS'S 5 ANSWERS APPLIED + AUTHORIZED PUSH EXECUTED + RUN-359 SYNCED — see §0 UPDATE 2026-07-31. Prior: **2026-07-30, third update** (COMPANION VIDEO INGESTED + DELTA PASS + AUTHORIZED
 PUSH EXECUTED — Chris Ward's PRD companion video arrived (Loom e4a3ad0191…; transcript + 20-point
 delta analysis in `chris-update-2026-07-29/`); 3 FIRM deltas → 7 update_case pushed under the
 user's same-day authorization ("do update the test cases if you learn that the video is warranting
@@ -48,6 +48,114 @@ Untested]; `testrail-id-map.csv` fully populated with real C-ids, range
 read-only get_sections/get_cases only. Earlier same day: PER-REPORT IMPORT
 SPLIT DELIVERED; ADVERSARIAL REVIEW DONE — both auditors CLEAN after fixes;
 import REGENERATED post-review.)
+
+---
+
+## §0 UPDATE 2026-07-31-COVERAGE-REDERIVATION (LATEST — read first)
+
+**COVERAGE RE-DERIVATION FROM THE CURRENT SPECS + 6 GAPS CLOSED + 15 CONTRADICTIONS FIXED +
+33 update_case EXECUTED AND VERIFIED. Run 359 verified untouched. 474 active, unchanged.**
+
+Folder: `build/report-suite/coverage-rederivation-2026-07-31/`.
+
+### Why this pass existed
+Every earlier coverage matrix (`coverage-sbc.md` … `coverage-iv.md`) was built against an
+**older spec version**, and all of today's earlier work ran off the **spec DIFF**. A diff
+proves the *changes* are covered; it cannot prove nothing was **already** missing. This pass
+re-derived coverage from the six live specs from scratch, requirement by requirement. The six
+old matrices now carry a **SUPERSEDED-for-the-completeness-question** banner pointing here.
+
+### Result
+| | |
+|---|---|
+| Requirements enumerated in the 6 current specs | **895** (SBC 234 · SBR 234 · PV 73 · TU 120 · WIP 122 · IV 112) |
+| Covered **before** this pass | 882 (865 by anchor + 17 by case text with a missing/mis-typed anchor) |
+| Covered **after** | **888 / 895** |
+| Genuine gaps found | **6** → **all closed** |
+| Not covered by design | **7** (4 cut by the 2026-07-28 audit · 3 not independently testable) |
+| Stale or invented anchors on active cases | **0** |
+| Cases added / deleted | **0 / 0** — **474 active, unchanged** |
+
+### The 6 gaps — all one defect class
+All six were the **export half** of the per-row **Location** column added suite-wide on
+2026-07-29: **SBC S4-R13 · SBR S14-R20 · PV S6-R11 · TU S7-R13 · IV S10-R15**, plus
+**TU S8-R16** (accessible name of the icon-only Column Selection button). Closed as **6
+EXTENSIONS, 0 new cases** — the case that already owns the column also already establishes
+the >1-location scope, so five new "the export has the column" cases would have been the
+audit's own export-duplication slop pattern. **WIP had no gap** because WIP-FLT-09
+([C38916](https://shopview.testrail.io/index.php?/cases/view/38916)) already opens the file.
+Extended: SBC-LOC-04 C38912 · SBR-LOC-05 C38913 · PV-FILT-14 C38914 · TU-LOC-06 C38915 ·
+IV-LOC-06 C38917 · TU-COL-01 C38859.
+
+### 15 CONTRADICTIONS found by the Rule-28 Stage-2b sweep, all resolved
+Fifteen older cases enumerated a column/header list in absolute terms (*"Exactly these 14
+columns show"*, *"these thirteen columns in this exact order"*, *"the headers, in order, are
+exactly …"*) with **no mention of Location** — so in any two-location organisation those cases
+and the Location cases **could not both be true** and a tester would fail a correct build.
+Every list is now **scope-conditional** (exact for one location; states where Location joins
+it otherwise), following WIP-COL-01 (C30466) which already did this. Repaired: SBC-EXP-03/11/16,
+SBR-EXP-03/04/10/11, PV-COL-02/03, IV-COL-01/04, IV-PERS-02, SBR-ROW-02, TU-HRS-02, and
+SBC-EXP-08 (refs only). **This includes the user-authorized SBR `S14-R20` export fix.**
+
+### NEW PERMANENT CHECK — same-requirement-different-surface
+`sweep_surface.py` finds a requirement that governs the screen **and** the export where our
+cases only assert one surface — the blind spot a coverage matrix cannot see. Run over all 895:
+**165 speak about a non-screen surface; 2 flagged; both false positives.** **The Location
+column was the ONLY instance of this defect class in the six specs.** Keep this in the pipeline
+alongside the coverage re-derivation (they catch different halves: this one catches
+half-asserted requirements, the re-derivation catches wholly-unasserted ones).
+
+### TestRail
+**33 `update_case`, 33/33 HTTP 200 + re-GET byte-verified MATCH, 0 failures.**
+0 `add_case` · 0 `delete_case` · 0 `add_section` · **0 titles changed** · 0 `section_id`
+changed. Run **359** (`include_all: false`) snapshotted and re-read: **tests 474 → 474,
+results 539 → 539**, every prior case_id present, no new case_id — Rule 34's union-add was a
+**no-op** because 0 cases were added. No other run touched.
+**Live under group 4281 = 479 = OUR 474 + Vladimir Tomovic's 5 foreign cases
+(C38919–C38923), which were never touched (Rule 38).**
+Manifest `testrail-sync-manifest-2026-07-31.md` (header = EXECUTED); per-op audit
+`testrail-execution-log-2026-07-31.md`; executor `exec_push_2026-07-31.py` (resumable via
+`oplog.json`).
+
+### SOURCE-CURRENCY (Standing Rule 31)
+| Source | Identifier | Version / updated | Checked | Verdict |
+|---|---|---|---|---|
+| Spec — Sales By Customer | pageId 577634305 | **v12**, 2026-07-29 (Chris Ward) | 2026-07-31 | CURRENT |
+| Spec — Sales By Representative | pageId 585629698 | **v15**, 2026-07-29 | 2026-07-31 | CURRENT |
+| Spec — Parts Velocity | pageId 620888066 | **v4**, 2026-07-29 | 2026-07-31 | CURRENT |
+| Spec — Technician Utilization | pageId 641400833 | **v5**, 2026-07-29 | 2026-07-31 | CURRENT |
+| Spec — WIP | pageId 703660034 | **v6**, 2026-07-29 | 2026-07-31 | CURRENT |
+| Spec — Inventory Value | pageId 720142338 | **v3**, 2026-07-29 | 2026-07-31 | CURRENT |
+| Epic + children | **SV-8582**, 97 children | Tier-1 currency check (`build/epic-recheck-2026-07-31/`); 6 reopened stories noted | 2026-07-31 | CURRENT |
+| Designs | none exist | spec-only project — no Figma file, so nothing to be stale | 2026-07-31 | N/A |
+| Engineering tech plan | `tech-plan-2026-07-29/` | 2026-07-29 | 2026-07-31 | CURRENT |
+| PO answers / message / video | Chris 2026-07-31 answers · 2026-07-29 message · PRD video 2026-07-30 | newest = 2026-07-31 | 2026-07-31 | CURRENT |
+
+**Live-build status:** no QA branch/environment exists. **Nothing in this pass is
+live-verified**; all 474 cases remain `VIU-Pending` (Rules 12/22).
+
+### Deliverables
+`COVERAGE-REDERIVATION.md` · `requirement-coverage.csv` (895 rows) · `judgements.json` ·
+`coverage-summary.json` · `AUTHORING-COVERAGE.md` · `RULE28-AUDIT.md` ·
+`surface-split-findings.json` · `rederive_coverage.py` · `author_gaps.py` · `repair_2b.py` ·
+`sweep_2b.py` · `sweep_surface.py` · `exec_push_2026-07-31.py` · `pre-write-snapshot/` ·
+`post-push-verify/` · `backup/` + `backup-2b/` · manifest + execution log.
+
+### Carried to Chris Ward (NOT resolved by us — Rule 15)
+1. **SBR spec v15 is self-inconsistent:** `S14-R15`/`S14-R16` still enumerate the export
+   headers as a fixed set while the newer `S14-R20` (same version) says the Location column is
+   included in the exports whenever it is on screen. Our cases follow the **newer** `S14-R20`
+   (Rule 32). Chris needs to confirm and correct the older lines.
+2. **SPEC-WATCH (deadline 2026-08-04) stands:** the over-cap export message he ruled on
+   2026-07-31 and the WIP VIN → Unit # → plate chain he ruled on 2026-07-29 are still not in
+   the six spec pages.
+3. Where the Location column sits inside the **SBC and SBR Summary** files (those files have
+   no Date/Status column for it to follow) — left "confirm in the build", not invented.
+
+### One-line resume
+Coverage is now provably complete against the current specs (**888/895, 0 open gaps**) and the
+suite is internally consistent (**0 contradictions**). Next: the Chris question sheet
+(`PO-Questions-Chris-ReportSuite-2026-07-31`), then live VIU when a QA branch exists.
 
 ---
 
