@@ -7,6 +7,151 @@
 
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-31)
 
+### 0.0-AUTHENTICITY CLOSING AUTHENTICITY PASS — DONE + PUSHED (2026-07-31, LATEST — read this first)
+
+**Deliverables: `build/schedule/authenticity-2026-07-31/`.**
+**TALLY: 164 ACTIVE, all `VIU-Pending`. Unchanged by this pass — 0 cases added, 0 retired.**
+
+The closing pass on the user's 2026-07-31 directive: *every case absolutely authentic —
+traceable, sensible, layman-runnable, in its run.* Four gates, all cleared.
+
+#### SOURCE-CURRENCY (Rule 31) — verified LIVE this pass, not assumed
+
+| Source | Identifier | Version / last-updated | Verdict |
+|---|---|---|---|
+| Spec | Confluence **713031682** | **version 23**, 2026-07-30T10:40:32Z by Branko Cicovic | **CURRENT** = our `requirements.md` |
+| Epic + stories | **SV-8685** + SV-8686..SV-8700 | 15 children, **all `Open`**; newest child `updated` 2026-07-27 (older than our 2026-07-28 ingest) | **CURRENT** — 0 new/removed/renamed/status changes |
+| Designs | no Figma for Schedule (spec-only, user-confirmed); Claude prototype is the authority (Branko Q0) | `spec-v1-2026-07-22/design-notes-claude.md` | **CURRENT** — no Rule-35 queue open |
+| Tech plan | `tech-plan-2026-07-29/` | supplied 2026-07-30 | **CURRENT** |
+| PO answers | Branko ×6 | `branko-answers-2026-07-31/answers-ingested.md` | **CURRENT** — nothing newer |
+
+#### 1 · TRACEABILITY (Rule 20) — `TRACEABILITY-AUDIT.md`
+
+All 164 audited (no sampling). The 2026-07-27 refs backfill was written against Confluence
+**v18**; v19–v23 removed 8 sentences (appendix R1–R8), so an anchor could name a live section
+while describing text that no longer exists. **19 field repairs / 19 cases:**
+
+- **2 genuinely STALE anchors** → re-anchored, neither case obsolete: **SCH-EVT-01 (C30016)** +
+  **SCH-REAS-03 (C30054)** `spec_ref` right-click → left-click (R7/R8, v22). `spec_ref` is
+  **local-only** (the executor pushes `refs`), so no TestRail write was needed.
+- **2 per-story precision repairs:** **SCH-EDGE-03 (C30087)** SV-8686 → **SV-8687** (SV-8687
+  owns the sidebar virtualization verbatim); **SCH-EDGE-02 (C30086)** → **SV-8686,SV-8687** (the
+  case asserts both halves of §11 Responsiveness and they have different owners).
+- **15 epic-key cases now STATE the cross-cutting rationale on the case**, as Rule 20 requires:
+  `SV-8685 [epic - cross-cutting, no single-story owner] (<anchor>)`. Verified against the story
+  bodies that **none** of SV-8686..SV-8700 is a permissions or regression/migration story.
+- **RESULT: 164/164 ticket valid · 164/164 spec anchor present · every anchor section live in
+  v23 · 0 stale · 0 possibly-obsolete · 0 refs over the 250-char cap.**
+- Honest exceptions, stated: **5 cases** (SCH-REG-01..04, SCH-API-04) anchor to the **tech plan**
+  because the Confluence page has no backend contract at all (spec-silent, Rules 15/30);
+  SCH-EVT-05 trips the "reassign" fingerprint but is the still-live **event** drag behaviour,
+  verbatim in v23 §4.10 — left unchanged.
+
+#### 2 · TITLES — `TITLE-TRIMS.md`
+
+**73 titles were over 80 characters (longest 139) → all trimmed; longest is now exactly 80.**
+0 detail lost — every dropped specific was diffed against that case's own Preconditions/Steps/
+Expected and was already there (which is *why* the titles were long: they restated their own
+expected results). 0 duplicate titles, 0 empty titles.
+One finding: **SCH-SER-04 (C29990)**'s old title claimed "capacity, **overtime**, and conflicts"
+but its Expected never asserts overtime — the trim *fixed* a pre-existing title over-claim.
+
+#### 3 · RULE-28 THREE-DIMENSION RE-VERIFY — `RULE-28-AUDIT.md` + `per-case-verdicts.csv`
+
+| Dimension | Result over all 164 |
+|---|---|
+| USEFUL | **145 KEEP · 19 WEAK-KEEP · 0 MERGE · 0 CUT** |
+| MAKES SENSE (cold read) | **164 SENSIBLE · 0 FIX-WORDING · 0 NONSENSE** |
+| CROSS-CASE CONSISTENCY (2b) | **1 NEW contradiction found · 1 resolved · 0 PENDING** |
+| GENUINE + LAYMAN-RUNNABLE | **164 / 164 PASS** (0 jargon hits, 0 numbering breaks) |
+| KEEP-but-NONSENSE | **EMPTY** ✅ |
+
+- **NEW contradiction X7 — SCH-CONF-02 (C30024).** Expected 1 quoted the prototype's hardcoded
+  *"'Scheduled on a weekend (outside Mon-Fri)'"* — a string in **no** spec/design/ticket/PO
+  source, which contradicted **the case's own Expected 2** ("if Saturday hours are configured,
+  that day is NOT flagged") **and** its control-group sibling **SCH-CONF-03 (C30025)**, whose
+  hardcoded 8:00 AM/5:00 PM the morning pass de-numbered as X5 for exactly this reason.
+  Realigned to v23 §4.11 verbatim: *"Weekend shift | Shift scheduled on Saturday or Sunday
+  **(outside working days)**"*. **Same failure mode as X6** — one member of a control group gets
+  fixed and its neighbour is left on the superseded model; only a re-run of the grouped diff
+  finds it.
+- **The morning pass's X1–X6: ALL SIX RE-VERIFIED STILL RESOLVED.**
+- **The six right-click → left-click repairs: ALL HELD.** A suite-wide scan of every
+  tester-facing field finds **exactly one** `right-click` mention left — the deliberate PO-backed
+  negative in SCH-REAS-03 (C30054) E5.
+- Stage-2b ran **14 control groups** + fuzzy opposite-polarity detection + TITLE-vs-EXPECTED on
+  all 164 (critical, since 73 titles were rewritten) + same-anchor clustering over 33 shared
+  anchors. **13 candidate pairs surfaced, all 13 cleared with a stated reason.** 0 near-identical
+  titles introduced; 1 near-identical Expected pair (SCH-START-01/C29969 ↔ SCH-START-02/C29970)
+  **cleared as load-bearing** §4.2 hierarchy coverage, not a merge.
+- **Spec-internal contradiction X1 flagged, NOT resolved** (Rule 15): v23 **§4.5** *"Shop
+  closures and public holidays are not skipped in V1.."* vs **§12** *"closures … block the spread
+  step"*. All **8** closure sentences in the suite were checked: **every one asserts the §4.5
+  side, NONE asserts the §12 side**, and SCH-SPREAD-07 (C29983) + SCH-EDGE-05 (C30089) cite both
+  sections so the conflict is visible from the metadata. Still Branko question **NQ-1**.
+
+#### 4 · TESTRAIL PUSH — EXECUTED, and the run is in sync
+
+`testrail-sync-manifest-2026-07-31.md` (header = **EXECUTED**) +
+`testrail-execution-log-2026-07-31.md` (per-case, with C-ID + link per Rule 8) +
+`testrail-op-log-2026-07-31.json` + `pre-push-snapshot/`.
+
+- **84 `update_case`, ALL HTTP 200, ALL re-GET field-verified MATCH, 0 failures.**
+  73 `title` + 17 `refs` + 1 `custom_expected`. **0** add_case / delete_case / add_section /
+  result writes.
+- **Rule 34 — run 357** "Schedule - Ayesha (VIU Pending)": **164 tests vs 164 active cases, 0
+  missing, 0 extra, 429 results UNCHANGED.** Already equal **both ways**, so **no `update_run`
+  was issued** and no test or result was touched.
+- **COUNT EQUALITY: live under group 4254 = 164 == local active 164 == id-map 164 == import
+  rows 164.** Import hygiene: header sha1 **byte-identical to all five peer imports**, no C-id
+  column, 0 duplicate titles, 0 titles >80, 0 VIU/feature-flag words, API cases in
+  **"API — Schedule"** (4) with **0** API content outside an API section (Rule 4).
+- ⚠️ `gen_import.py` blanks the id-map C-ids on every rerun (known) — 164/164 were re-merged
+  from the pre-run snapshot; id-map `refs` + `title` now mirror the cases exactly.
+
+#### ⚠️ OPEN ITEM FOR THE COORDINATOR — 16 cases were reformatted to HTML in TestRail
+
+The pre-write diff surfaced **48 body-field differences across 16 cases this pass never
+touched**. Cause: those cases' Preconditions/Steps/Expected were converted **inside TestRail**
+into HTML ordered lists (`<ol><li>`) **by another actor**, while our local mirror holds the plain
+`1. 2. 3.` convention. **Content verified IDENTICAL** — normalizing markup away, **48/48 are
+markup-only, 0 are content differences.**
+
+Affected (16): SCH-BLOCK-01 · SCH-COLOR-01 · SCH-CONF-01 · SCH-DEL-01 · SCH-DND-01 · SCH-MCAL-01
+· SCH-MODAL-01 · SCH-NAV-04 · SCH-NAV-06 · SCH-NAV-07 · SCH-PERM-01 · SCH-REAS-01 · SCH-START-01
+· SCH-TIP-01 · SCH-TOOL-01 · SCH-WOL-01.
+
+**We deliberately did NOT touch those body fields** — pushing our plain text would silently
+**revert someone else's formatting**, out of scope here. The executor sends **PARTIAL payloads**
+(only fields this pass changed) and treats markup-only as no-change; **3 cases dropped out of the
+push entirely** (SCH-COLOR-01, SCH-MCAL-01, SCH-TOOL-01), taking 87 candidates → **84**.
+**Consequence to decide: local and live differ in MARKUP for those 16, so any future FULL-BODY
+push would revert them.** Options: (a) adopt the HTML in our local mirror, (b) keep plain text
+and accept the divergence, (c) re-normalize TestRail back to plain. **Not decided by us.**
+
+#### Standing facts confirmed by this pass
+
+- **164 ACTIVE**, all `VIU-Pending`. **Week Export scope is CLOSED** — Branko: *"Not in V1, not
+  even in future considerations"*; SCH-EXP-01 (C38853) retired + deleted 2026-07-31, and its
+  TestRail **section 5406 "Week Export and Printing" is now EMPTY** (left in place, flagged as a
+  removal candidate — not deleted without authorization).
+- **NQ-5 (own-data write scoping) is re-routed to ENGINEERING with NO case authored.** §14 of the
+  spec is silent on write-scoping (Rule 15), so nothing may be asserted. The adjacent
+  **SCH-PERM-09 (C30082)** covers only the **READ** side ("no own-only restriction: a View user
+  sees ALL technicians' shifts"). A write-scoping case can only be authored once engineering
+  answers.
+- **`requirements.md` is at Confluence v23.** **Epic SV-8685 unchanged** since ingest.
+- **QA Assignee = Ayesha Khan** (run 357 is hers).
+- ⚠️ **Jira SV-8695 is STALE vs v23** — its text still lists a modal **Reassign** action, which
+  Confluence v23 (2026-07-30) deleted and Branko confirmed absent ("B - No button"). Our
+  SCH-MODAL-08 (C30015) is correct; **the ticket is the stale artefact — tell Branko/dev.**
+- **Spec-internal contradiction X1 (§4.5 vs §12) still live and flagged** — Branko NQ-1.
+- **STILL OPEN: OQ-3 — no QA branch/environment.** Nothing in this suite is build-verified;
+  every case stays `VIU-Pending` (Rule 12). Live VIU is the next real milestone.
+- **PENDING (unchanged):** the 8-question Branko sheet
+  `PO-Questions-Branko-Schedule-TechPlan_2026-07-30.md`/`.xlsx` is **READY TO SEND**.
+
+
 ### 0.0-SPEC-V23 `requirements.md` PROMOTED TO CONFLUENCE v23 + PO SHEET REVISED (2026-07-31, LATEST — read this first)
 
 **LOCAL DOC WORK ONLY — 0 case edits, 0 TestRail writes, 0 result writes. Tally untouched by
