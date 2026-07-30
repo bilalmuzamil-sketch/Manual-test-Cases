@@ -21,6 +21,9 @@
 **Last updated:** 2026-07-31
 **Active projects:** Report Suite · Schedule · Filters (user ruling 2026-07-27)
 **Predecessor snapshot (kept for the record):** `build/PROJECTS-NEEDS-2026-07-27.md`
+**Companion retrospective:** `build/LESSONS-2026-07-31.md` — what went wrong on 2026-07-31, what it
+cost, and the five standing rules (**40–44**) that now prevent each. Several items in this register
+are the *asks* those lessons generated (a spec correction from Chris, one live WIP observation).
 
 **Categories used in the tables:** `SOURCE` (a spec, epic, design, tech plan or promised artefact
 we do not have) · `QUESTION` (asked, not answered) · `GO-AHEAD` (your authorization needed before
