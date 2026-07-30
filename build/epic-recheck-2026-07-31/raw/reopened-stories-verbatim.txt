@@ -1,0 +1,109 @@
+==========================================================================================
+SV-8589 | In Progress | [Reports Suite][PR-1] inventory_changes INT→DECIMAL precision fix + QB correction
+  updated: 2026-07-30T09:44:17.587-0500  resolution: None
+Plan: Reports Suite Tech Plan — Phase 0 / PR-1 (ships as its own PR, ahead of the suite).
+Goal: Fix the live QuickBooks-corruption bug caused by inventory_changes.old_quantity/new_quantity being mapped integer while the domain types them float — fractional units are truncated at hydrate/persist and QB journal-entry sync multiplies these into dollar amounts.
+Scope:
+Hand-written migration: ALTER TABLE inventory_changes MODIFY old_quantity/new_quantity DECIMAL(10,2) (ALGORITHM=COPY, ~10–40s write-pause; measured 714,814 rows / 517 MB → single off-peak migration, no online-DDL tooling).
+
+Update mapping InventoryChanges.orm.xml:20-21 integer → decimal so migrations:diff stays a no-op.
+
+Verify QB sync read paths (JournalEntry/Services/ReportGenerator.php, JournalEntrySyncService.php) receive un-truncated quantities.
+
+Forward-only (historical truncation unreconstructible).
+
+Tests: fractional-quantity round-trip regression; QB journal amount exact from fractional movement.
+DoD gates: cs-fix / phpstan / pest (Inventory + JournalEntry mirrors); migration gate (migrations:diff --allow-empty-diff = "No changes detected"); smoke.
+Depends on: nothing. Blocks: B3 (PV — Units Sold precision).
+==========================================================================================
+SV-8594 | Open | [Reports Suite][B1] Work In Progress (WIP) report + nightly snapshot cron
+  updated: 2026-07-29T06:21:00.002-0500  resolution: None
+Plan: Reports Suite Tech Plan — Part B / B1. Spec: WIP page 703660034. Depends on A2, A5. First report built. Complexity: High (new money model + first cross-tenant snapshot cron).
+Architecture note: WIP does NOT use the paged table — it loads the entire bounded open-WO set in one fetch and does tabs/counts/summary/filters client-side (plain TanStack useQuery, not useReportTableQuery). Still consumes the rest of the shell (all-white theme, remembered-view, LocationFilter, DateRange 366, ColumnSelector, export).
+Scope:
+DB: work_order_wip_snapshot table (one row per open WO per date; join org-purge path; no FK; no reader this version).
+
+BE fetcher: open-WO set (type=SERVICE, open statuses), date anchor = work_order.start_date; earned/remaining money model (Labor Earned = Σ min(clocked value, quoted); Parts Earned/Remaining by request status); 4-tab placement; Last Activity from entity_event. Delete dead WIP code (segment handler + Dashboard sections).
+
+🔴 Nightly snapshot cron app:reporting:capture-wip-snapshots — cross-tenant Golden-Rule exemption (record in PR "Golden Rule Exemptions" block); EventBridge→ECS RunTask ~08:00 UTC; idempotent delete+reinsert per (workplace, WO, date).
+
+FE: WorkInProgressReport.vue (4 tabs), WipSummaryStrip.vue (7-figure band), two-line asset cell, status badge (reuse WO tokens), per-tab Totals row, client filters (advisor/customer/asset), export per tab. Reuse route name/path WorkInProgress. formatLastActivity added to formatter module.
+
+E2E (hard-block): reference-breakage scan (deleted table_work_in_progress_report test-id + old nav ids) + happy paths + edge (empty per tab, Estimates all-$0.00, permission-denied nav).
+Depends on: A2, A5.
+==========================================================================================
+SV-8595 | Open | [Reports Suite][B2] Technician Utilization (TU) report
+  updated: 2026-07-29T06:21:09.560-0500  resolution: None
+Plan: Reports Suite Tech Plan — Part B / B2. Spec: TU page 641400833. Depends on A2, A5. Complexity: Medium-High (must reconcile to the cent with the existing Timesheet Activities report).
+Architecture note: reuse the existing Timesheet Activities methodology (TimesheetActivity/Services/DataProvider + ReportGenerator) and add a per-technician grouping layer — do NOT re-derive. Compute every displayed number from unrounded values and round once (avoids the Timesheet two-methodology trap). Server-paginate technician rows; per-day rows lazy on expand.
+Scope:
+DB: none (read-only over technician_task_record, labour_type, workplace, staff).
+
+BE fetcher: one row per staff who clocked time in range at selected location(s); Total / WO Hours (work_order_id) / Internal Hours (department_id); day-grouping + windowing in ONE report-level timezone (active workplace's); Est. Lost Labor = Σ per contributing location (default labor rate × internal hours) — default rate is a labour_type row with is_default=1 (no unique constraint — pick deterministically; workplace may have none → partial/"—"). NULL workplace_id records excluded from valuation. Reconcile to the cent vs Timesheet Activities.
+
+FE: technician rows + pinned Est. Lost Labor column + tooltip; Summary over visible techs; per-day lazy expand; tech filter on-screen only, location filter reloads; sort resets to Technician A–Z on reload (NOT remembered); Total Hours deep-links to Timesheet Activities filtered to tech+range. All-white theme.
+
+⚠️ Re-verify at implementation: Timesheet methodology alignment + labour_type default-rate query (TU-BE agent stalled during planning).
+E2E: reference-breakage scan + happy paths (load, expand tech, deep-link, tech filter, CSV) + edge (no-clocked-time, "—" Est. Lost Labor).
+Depends on: A2, A5.
+==========================================================================================
+SV-8596 | Open | [Reports Suite][B3] Parts Velocity (PV) report + part.last_sold_at
+  updated: 2026-07-29T06:21:17.547-0500  resolution: None
+Plan: Reports Suite Tech Plan — Part B / B3. Spec: PV page 620888066. Depends on A1/PR-1 (inventory_changes DECIMAL — Units Sold precision), A2, A5. Complexity: High (multi-source movement math, per-location vs merged rows).
+Scope:
+DB: new composite index inventory_changes (workplace_id, inventory_part_id, origin, created_at) (+ catalog_part_id variant); new part.last_sold_at (nullable) denorm column killing the all-time MAX() sub-select; backfill command app:inventory:backfill-last-sold-at; maintain on invoice create + reversal.
+
+BE fetcher: INVENTORY parts = per-(part, workplace) rows; CATALOGUE parts = one merged row; core parts excluded; Type filter Both/Inventory/Catalogue. Units Sold = net over invoicing origins (WorkOrderInvoiceCreate +, WorkOrderInvoiceReverse −) — origin filter mandatory. Demand = count of in-window invoicing events. Returns via work_order_part_return_request + part_sale_credit. Profitability from billed part lines (work_order_part + invoice_statement_item), net reversals via void predicate. Last Sale from denorm column. Permission: existing Inventory Reports→View (no new atom).
+
+FE: two-tone theme, new Parts nav group, 20 columns/14 default (column picker), catalogue rows render "—" for stock; server pagination; export; page-local search.
+
+⚠️ Re-verify at implementation: movement queries + InventoryQueryHandler discriminators (PV-BE agent stalled). Do NOT copy its WO-type IN-list heuristic or workplace_location_id hack.
+E2E: reference-breakage scan + happy paths (Parts nav, Type=Catalogue "—" cells, filters, search, column picker, CSV) + edge (bin+catalogue empty, >10k cap toast).
+Depends on: PR-1, A2, A5.
+==========================================================================================
+SV-8597 | Open | [Reports Suite][B4] Inventory Value (IV) report + nightly snapshot + retention
+  updated: 2026-07-29T06:21:36.647-0500  resolution: None
+Plan: Reports Suite Tech Plan — Part B / B4. Spec: IV page 720142338. Depends on A2, A3, A5. Complexity: High (pricing-matrix sell in SQL + second cross-tenant snapshot cron + retention).
+Scope:
+DB: inventory_value_snapshot table (denormalized category/vendor names to survive rename/delete on as-of replay; join org-purge path). ⚠️ Sizing gate before locking: COUNT(*) FROM part WHERE quantity>0 AND is_core=0 per workplace — fleet-wide could be 50–200M/yr; retention bounds it, else month-RANGE partition. Verify pricing_rule.matrix_id index exists.
+
+BE fetcher: one row per (part, workplace), is_core=0, in-stock; join skeleton = DbalPartListFetcher::searchParts with multi-location. Qty = AVAILABLE_QUANTITY_SQL (positive-bins-only, agrees with Parts page — do NOT copy Dashboard's raw p.quantity). Unit sell = ONE shared SQL sell expression (used by live query AND capture INSERT…SELECT): fixed / no-category=cost / matrix markup via part_category.pricing_matrix_id → org default → interval clamp. Ship cent-parity test vs PricingRulesApplier. As-of resolution (live today / nearest snapshot / none→empty). Permission ROLE_REPORT_VIEW.
+
+🔴 Nightly snapshot app:reporting:capture-inventory-value-snapshots — cross-tenant Golden-Rule exemption (record in PR block); set-based DELETE+INSERT…SELECT with shared sell expression; likely no session-injection hack (pure DBAL). Retention prune (≤13mo daily → monthly last-capture) as in-command step. EventBridge→ECS nightly.
+
+FE: all-white theme, Parts nav (shared w/ PV), server-paginated, Total Cost pinned + default sort desc, column picker (Margin/Total Sell off by default), date-range as "as-of" anchor + "As of X" indicator, category/vendor filters + page-local search, export.
+
+E2E: reference-breakage scan + happy paths (Parts nav, filters, search, column toggle, CSV) + edge (past date before first capture empty, >10k cap, qty-drift positive-bins).
+Depends on: A2, A3, A5.
+==========================================================================================
+SV-8598 | Open | [Reports Suite][B5] Sales By Customer (SBC) report + dedicated permission
+  updated: 2026-07-29T06:21:49.270-0500  resolution: None
+Plan: Reports Suite Tech Plan — Part B / B5. Spec: SBC page 577634305. Depends on A2, A4 (invoice financial columns), A5. Complexity: High (3-level tree + lazy drill-down + dedicated permission).
+Scope:
+DB: no new report tables (aggregates A4 columns). One new permission atom.
+
+BE fetcher: customer rows GROUP BY company_id (NOT customer_id/contact) over A4 columns, filtered by (work_place_id IN, created_on range, status != void via A2 predicate). Subtotal = labor_sell+parts_sell+shop_supplies_charge; Margin excludes shop supplies. Sort-by-Date = MAX(created_on). Totals over full filtered set. Customer type-ahead. Lazy asset drill-down (group by COALESCE(vehicle_id, snapshot key); "Parts Sales" bucket = vehicle_id IS NULL; labels from invoice_vehicle_details text; dup-label tiebreaker). Invoice rows emit workOrderId + type. Exports flat (Customer→Invoice); 10k cap counts customers + invoices (two-level).
+
+🔴 Multi-location tenant scoping: intersect requested workplaceIds with WorkplaceFetcher::getByUserId() (admin→getAllForOrganization) AND keep OrganizationDecorator. Do NOT copy TimesheetActivity precedent that skips validation. Backfill-NULL guard (COALESCE or gate on backfill completion).
+
+Dedicated view permission (SV-5319 model, must land in one commit or be-permission-drift CI fails): atom ROLE_SALES_BY_CUSTOMER_REPORT::VIEW, bundle decision (43rd bundle vs ride existing — product call), FEPermissionMappings, IntentionalAtomChanges, seeder CLIs, FE bundleCatalog.ts. Every SBC endpoint gates on the new atom via #[IsGranted], NOT ROLE_REPORT_VIEW.
+
+FE: two-tone theme, 3-level tree Customer→Asset→Invoice (server-paged customers, lazy asset+invoice on expand, expand-all bounded to page), type-ahead all-customers state flag, product-type dropdown, Inv. Hrs colored, invoice link by type, column selector, remembered-view.
+
+E2E: reference-breakage scan + happy paths (permission-gated nav, expand tree, invoice link, filter, CSV/PDF) + edge (empty, Parts Sales bucket, permission-denied nav hidden + direct-link denied).
+Depends on: A2, A4, A5.
+==========================================================================================
+SV-8599 | Open | [Reports Suite][B6] Sales By Representative (SBR) report + rep schema + staff dialog
+  updated: 2026-07-29T06:20:45.195-0500  resolution: None
+Plan: Reports Suite Tech Plan — Part B / B6. Spec: SBR page 585629698. Depends on A2, A4, A5. Complexity: Highest (net-new rep schema chain + WO field + staff dialog + 4-format export). Built last.
+Scope:
+DB (net-new, forward-only, NO backfill): staff.is_sales_rep BOOLEAN; work_order.sales_rep_id (+ index); invoice.sales_rep_id + invoice.sales_rep_name (+ index). 🔴 No dual parts/service rep fields exist (spec build-note describes a dead prototype) — build single-rep chain fresh.
+
+🔴 Identity decision (most bug-prone point): work_order.service_advisor_id = staff.id but company.sales_rep_id = user.id. Pick ONE identity for the new rep columns (staff.id recommended) + translate customer fallback via staff.user_id.
+
+BE: rep snapshot write at invoice creation (WO rep → customer rep → null); must NOT recompute in updateInvoice (immutable). Per-rep rows GROUP BY sales_rep_id; Unassigned pinned top; contributor gate; (Inactive) marker. 🔴 Payment 5→3 mapping — balance_owed ≠ total_balance − paid_balance (deposits excluded from paid_balance per SV-6616); prepaid branch needs deposit-contribution join or every prepaid invoice misclassifies (coordinate with Minja's payments rewrite). WO rep assignment endpoint (clone ChangeServiceAdvisor); rep selector listing (is_sales_rep=1); staff-deactivation precondition count (keys on user.id). Sales Rep Assignments export stays on legacy JSON-wrapped convention (NOT D5). Summary/Expanded PDF+CSV via A3 scaffold.
+
+FE: all-white theme, per-rep lazy detail, payment badge (feed MAPPED display key — colorCoding('overpaid') is wrong), responsive grand totals (desktop sticky row / mobile external bar), 4-item export menu. WO "Sales Rep" field in OrderStatusCard.vue (save via mutation, gate Part-Sale WOs). Staff deactivation type-YES dialog (net-new) — 🔴 S13-R8 wants Esc-to-dismiss but Golden Rule #9 forbids Esc — surface as decision. is_sales_rep toggle in StaffDialog.vue. Nav at bottom of Performance group + padding fix.
+
+E2E: reference-breakage scan + happy paths (expand rep, badge, filter, sort, 4 exports, assign WO rep→credited, assignments CSV) + edge (Unassigned, (Inactive) still credited, deactivation dialog blocks until yes, empty).
+Depends on: A2, A4, A5.
