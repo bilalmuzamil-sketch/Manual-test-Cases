@@ -67,6 +67,11 @@ MANUAL = {
 # active cases that trace to the ENGINEERING TECH PLAN rather than a v23 PRD statement
 TECHPLAN_ONLY = ['SCH-REG-01','SCH-REG-02','SCH-REG-03','SCH-REG-04','SCH-API-04','SCH-EDGE-07']
 
+# Phase 5 closures - the case(s) that now assert each gap statement
+CLOSED = {'R-4.3-05': ['SCH-DND-07','SCH-LINE-04','SCH-SCOPE-01'],
+          'R-14.1-04': ['SCH-PERM-13','SCH-PERM-01','SCH-PERM-02'],
+          'R-14.1-08': ['SCH-PERM-13','SCH-PERM-04']}
+
 out = []
 for r in reqs:
     rid = r['id']
@@ -80,7 +85,8 @@ for r in reqs:
         rec.update(verdict='NOT-TESTABLE', subtype='(b) lead-in fragment', cases=[], note=NT_LEADIN[rid])
     elif rid in GAPS:
         g = GAPS[rid]
-        rec.update(verdict='GAP', subtype=g['kind'], cases=MANUAL.get(rid, []), note=g['why'] + ' || CLOSURE: ' + g['close'])
+        rec.update(verdict='GAP-CLOSED', subtype=g['kind'],
+                   cases=CLOSED[rid], note=g['why'] + ' || CLOSED 2026-07-31 BY: ' + g['close'])
     else:
         cl = MANUAL.get(rid) or [c['case'] for c in r['candidates'] if c['anchor'] and c['score'] >= 0.30] \
              or [c['case'] for c in r['candidates'] if c['anchor']][:1] \

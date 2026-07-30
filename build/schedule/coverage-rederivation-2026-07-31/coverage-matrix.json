@@ -851,10 +851,14 @@
   "section": "4.3",
   "kind": "PROSE",
   "text": "There is no technician cap and no swap flow.",
-  "verdict": "GAP",
+  "verdict": "GAP-CLOSED",
   "subtype": "(a) genuine gap - PARTIAL",
-  "cases": [],
-  "note": "\"no technician cap\" IS covered (SCH-LINE-04, SCH-SCOPE-01 avatar-stack \"no cap\"), but \"no swap flow\" is asserted NOWHERE: no case observes that scheduling a SECOND technician onto a line that already has one ADDS them alongside rather than replacing/prompting to swap. A build that replaced the incumbent would pass every existing case. || CLOSURE: EXTEND SCH-DND-07"
+  "cases": [
+   "SCH-DND-07",
+   "SCH-LINE-04",
+   "SCH-SCOPE-01"
+  ],
+  "note": "\"no technician cap\" IS covered (SCH-LINE-04, SCH-SCOPE-01 avatar-stack \"no cap\"), but \"no swap flow\" is asserted NOWHERE: no case observes that scheduling a SECOND technician onto a line that already has one ADDS them alongside rather than replacing/prompting to swap. A build that replaced the incumbent would pass every existing case. || CLOSED 2026-07-31 BY: EXTEND SCH-DND-07"
  },
  {
   "id": "R-4.3-06",
@@ -2997,13 +3001,14 @@
   "section": "14.1",
   "kind": "PROSE",
   "text": "This is the experience for roles like Technician, Parts Manager, Parts Tech, Office, and Time Clock.",
-  "verdict": "GAP",
+  "verdict": "GAP-CLOSED",
   "subtype": "(a) genuine gap",
   "cases": [
+   "SCH-PERM-13",
    "SCH-PERM-01",
    "SCH-PERM-02"
   ],
-  "note": "No case asserts WHICH default roles sit at which Schedule tier. The role names Technician / Parts Manager / Parts Tech / Office / Time Clock appear nowhere in the 164-case corpus. SCH-PERM-01..06 test the tiers abstractly (\"a user whose role has View\"). || CLOSURE: NEW case SCH-PERM-13"
+  "note": "No case asserts WHICH default roles sit at which Schedule tier. The role names Technician / Parts Manager / Parts Tech / Office / Time Clock appear nowhere in the 164-case corpus. SCH-PERM-01..06 test the tiers abstractly (\"a user whose role has View\"). || CLOSED 2026-07-31 BY: NEW case SCH-PERM-13"
  },
  {
   "id": "R-14.1-05",
@@ -3053,12 +3058,13 @@
   "section": "14.1",
   "kind": "PROSE",
   "text": "This is the level for Service Manager, Senior Service Advisor, Service Advisor, and Foreman roles.",
-  "verdict": "GAP",
+  "verdict": "GAP-CLOSED",
   "subtype": "(a) genuine gap",
   "cases": [
+   "SCH-PERM-13",
    "SCH-PERM-04"
   ],
-  "note": "Same gap, Edit side: Service Manager / Senior Service Advisor / Service Advisor / Foreman appear nowhere in the corpus. || CLOSURE: NEW case SCH-PERM-13 (same case)"
+  "note": "Same gap, Edit side: Service Manager / Senior Service Advisor / Service Advisor / Foreman appear nowhere in the corpus. || CLOSED 2026-07-31 BY: NEW case SCH-PERM-13 (same case)"
  },
  {
   "id": "R-14.1-09",

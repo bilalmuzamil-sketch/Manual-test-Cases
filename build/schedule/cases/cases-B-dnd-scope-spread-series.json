@@ -183,18 +183,22 @@
   ],
   "steps": [
    "1. Drag that line onto the technician's cell and create the shift.",
-   "2. Open the same work order's line (in the sidebar drill-down and/or on the Work Orders page) and check its technician roster."
+   "2. Open the same work order's line (in the sidebar drill-down and/or on the Work Orders page) and check its technician roster.",
+   "3. Drag the SAME line onto a different technician's cell and create a second shift.",
+   "4. Look at that line's technician roster again."
   ],
   "expected": [
    "1. The technician now appears on that line's labor roster - the schedule and the work order stay in sync automatically.",
    "2. The sidebar line row's avatar stack/count updates to include the technician.",
-   "3. If the line previously showed 'Needs techs', the badge is gone."
+   "3. If the line previously showed 'Needs techs', the badge is gone.",
+   "4. Dragging the same line onto a second technician adds that technician to the line's roster as well - the technician who was already there stays on it.",
+   "5. Nothing asks you to swap or replace the technician who was already there, and no limit is reached on how many technicians a line can have."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
-  "spec_ref": "requirements.md §1.2 (Goals - roster sync), §4.3 (roster add), §7",
-  "refs": "SV-8688 (§1.2 (Goals - roster sync), §4.3 (roster add), §7)",
+  "spec_ref": "requirements.md §1.2 (Goals - roster sync) · §4.3 (roster add + no swap flow) · §7",
+  "refs": "SV-8688 (§1.2 Goals - roster sync · §4.3 roster add + no swap flow · §7; spec v23 2026-07-30)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "EXTENDED 2026-07-31 (coverage re-derivation vs Confluence v23) - closes gap G1. §4.3 says \"There is no technician cap and no swap flow. Scheduling a technician onto a line simply adds them to that line's roster.\" The 'no cap' half was already covered (SCH-LINE-04 / SCH-SCOPE-01 avatar stack 'no cap'), but NO case observed that a SECOND technician is ADDED alongside the first rather than replacing them or prompting a swap - a build that silently replaced the incumbent would have passed every case. Steps 3-4 and expected 4-5 close that. Extended rather than authored as a new case because it is the same observable behaviour as the roster sync this case already covers (Rule 28 - no near-duplicates).",
   "api_related": false
  },
  {

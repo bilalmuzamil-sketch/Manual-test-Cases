@@ -123,7 +123,7 @@ higher-precedence ruling — see §6) · **GAP** · **NOT-TESTABLE** (with the r
 
 - **R-4.2-12** — lead-in ("Both use the same pattern:"), the pattern bullets follow
 
-### §4.3 — 6 statements (COVERED 5, GAP 1)
+### §4.3 — 6 statements (COVERED 5, GAP-CLOSED 1)
 
 | # | Kind | Statement (verbatim) | Verdict | Case(s) |
 |---|---|---|---|---|
@@ -131,10 +131,10 @@ higher-precedence ruling — see §6) · **GAP** · **NOT-TESTABLE** (with the r
 | R-4.3-02 | BULLET | "Schedule whole work order" is pinned at the top, visually distinct, and labeled with the line count and total hours. It assigns the technician to all lines and creates one whole-order shift. | COVERED | SCH-SCOPE-01, SCH-SCOPE-05, SCH-SCOPE-02, SCH-DND-02, SCH-DND-07, SCH-SCOPE-03 |
 | R-4.3-03 | BULLET | Individual line rows. Tapping a row is the fast path: it immediately creates a single-line shift with no confirmation step. Each row shows the line title, estimated hours, and current technician roster (avatar stack plus count). | COVERED | SCH-SCOPE-01, SCH-SCOPE-03 |
 | R-4.3-04 | BULLET | "Select multiple" is an opt-in control that switches the line rows into checkboxes and shows a confirm bar with a running tally ("Create shift · 2 lines · 6h"), a "Select all" shortcut (equivalent to whole order), and Cancel (returns to the fast single-tap list). | COVERED | SCH-SCOPE-05 |
-| R-4.3-05 | PROSE | There is no technician cap and no swap flow. | GAP — (a) genuine gap - PARTIAL | — |
+| R-4.3-05 | PROSE | There is no technician cap and no swap flow. | GAP-CLOSED — (a) genuine gap - PARTIAL | SCH-DND-07, SCH-LINE-04, SCH-SCOPE-01 |
 | R-4.3-06 | PROSE | Scheduling a technician onto a line simply adds them to that line's roster. | COVERED | SCH-DND-07, SCH-DND-02, SCH-SCOPE-01, SCH-SCOPE-02, SCH-SCOPE-03, SCH-SCOPE-05 |
 
-- **R-4.3-05** — "no technician cap" IS covered (SCH-LINE-04, SCH-SCOPE-01 avatar-stack "no cap"), but "no swap flow" is asserted NOWHERE: no case observes that scheduling a SECOND technician onto a line that already has one ADDS them alongside rather than replacing/prompting to swap. A build that replaced the incumbent would pass every existing case. || CLOSURE: EXTEND SCH-DND-07
+- **R-4.3-05** — "no technician cap" IS covered (SCH-LINE-04, SCH-SCOPE-01 avatar-stack "no cap"), but "no swap flow" is asserted NOWHERE: no case observes that scheduling a SECOND technician onto a line that already has one ADDS them alongside rather than replacing/prompting to swap. A build that replaced the incumbent would pass every existing case. || CLOSED 2026-07-31 BY: EXTEND SCH-DND-07
 
 ### §4.4 — 7 statements (COVERED 7)
 
@@ -418,27 +418,27 @@ higher-precedence ruling — see §6) · **GAP** · **NOT-TESTABLE** (with the r
 | R-14-02 | PROSE | Access is controlled by three independent permission levels (View, Edit, Delete), where Delete requires Edit and Edit requires View. | COVERED | SCH-PERM-07, SCH-API-01 |
 | R-14-03 | PROSE | The schedule also depends on permissions from other areas, particularly Work Orders. | COVERED | SCH-API-03 |
 
-### §14.1 — 12 statements (COVERED 8, COVERED-FLAGGED 2, GAP 2)
+### §14.1 — 12 statements (COVERED 8, COVERED-FLAGGED 2, GAP-CLOSED 2)
 
 | # | Kind | Statement (verbatim) | Verdict | Case(s) |
 |---|---|---|---|---|
 | R-14.1-01 | PROSE | Schedule: View. | COVERED | SCH-PERM-02, SCH-PERM-04, SCH-PERM-01, SCH-PERM-03, SCH-PERM-05, SCH-PERM-06, SCH-REAS-03 |
 | R-14.1-02 | PROSE | The user can see the schedule page, navigate between day/week/month views, use the mini calendar, search, filter, view all technicians' shifts and events, hover for tooltips, and open shift/event detail modals in read-only mode. | COVERED | SCH-PERM-01, SCH-PERM-02, SCH-PERM-04, SCH-REAS-03, SCH-PERM-05 |
 | R-14.1-03 | PROSE | All editing affordances (drag handles, drop targets, right-click context menu, resize handles, creation entry points, edit fields in modals, reassign and delete actions) are hidden or disabled. | COVERED-FLAGGED — F3 | SCH-PERM-02 |
-| R-14.1-04 | PROSE | This is the experience for roles like Technician, Parts Manager, Parts Tech, Office, and Time Clock. | GAP — (a) genuine gap | SCH-PERM-01, SCH-PERM-02 |
+| R-14.1-04 | PROSE | This is the experience for roles like Technician, Parts Manager, Parts Tech, Office, and Time Clock. | GAP-CLOSED — (a) genuine gap | SCH-PERM-13, SCH-PERM-01, SCH-PERM-02 |
 | R-14.1-05 | PROSE | When Schedule: View is OFF, the Schedule top-level nav item is hidden entirely. | COVERED | SCH-PERM-03, SCH-PERM-02, SCH-REAS-03 |
 | R-14.1-06 | PROSE | Schedule: Edit (requires View). | COVERED | SCH-PERM-01, SCH-PERM-02, SCH-PERM-04, SCH-PERM-03, SCH-PERM-05, SCH-REAS-03 |
 | R-14.1-07 | PROSE | Unlocks all creation and modification interactions: drag-and-drop from the sidebar, the scope picker, the spread modal, shift and event creation (including via right-click context menu and day-view click-to-create), shift reassignment between technicians, edge-resize and horizontal drag in day vi… | COVERED-FLAGGED — F3 | SCH-PERM-04 |
-| R-14.1-08 | PROSE | This is the level for Service Manager, Senior Service Advisor, Service Advisor, and Foreman roles. | GAP — (a) genuine gap | SCH-PERM-04 |
+| R-14.1-08 | PROSE | This is the level for Service Manager, Senior Service Advisor, Service Advisor, and Foreman roles. | GAP-CLOSED — (a) genuine gap | SCH-PERM-13, SCH-PERM-04 |
 | R-14.1-09 | PROSE | Schedule: Delete (requires Edit). | COVERED | SCH-PERM-02, SCH-PERM-05, SCH-PERM-01, SCH-PERM-04, SCH-PERM-06 |
 | R-14.1-10 | PROSE | Unlocks deleting shifts and events, including series-aware deletion with its three scopes (this shift / this and after / whole series). | COVERED | SCH-PERM-06, SCH-DEL-01, SCH-DEL-05 |
 | R-14.1-11 | PROSE | Without Delete, a user with Edit can create and modify but cannot remove shifts or events. | COVERED | SCH-PERM-05, SCH-PERM-02, SCH-PERM-01, SCH-PERM-04, SCH-PERM-06 |
 | R-14.1-12 | PROSE | The delete action and the trash icon are hidden. | COVERED | SCH-PERM-05, SCH-PERM-06 |
 
 - **R-14.1-03** — §14.1 still lists a "right-click context menu" among the editing affordances; Branko ruled 2026-07-31 "there is no right click, only left click" and §4.10/§7 were rewritten to left-click in v22. Our cases follow left-click. NO case change; §14.1 wording flagged for upstream tidy.
-- **R-14.1-04** — No case asserts WHICH default roles sit at which Schedule tier. The role names Technician / Parts Manager / Parts Tech / Office / Time Clock appear nowhere in the 164-case corpus. SCH-PERM-01..06 test the tiers abstractly ("a user whose role has View"). || CLOSURE: NEW case SCH-PERM-13
+- **R-14.1-04** — No case asserts WHICH default roles sit at which Schedule tier. The role names Technician / Parts Manager / Parts Tech / Office / Time Clock appear nowhere in the 164-case corpus. SCH-PERM-01..06 test the tiers abstractly ("a user whose role has View"). || CLOSED 2026-07-31 BY: NEW case SCH-PERM-13
 - **R-14.1-07** — Same residue: §14.1 Edit tier says creation "including via right-click context menu". Cases follow the left-click ruling.
-- **R-14.1-08** — Same gap, Edit side: Service Manager / Senior Service Advisor / Service Advisor / Foreman appear nowhere in the corpus. || CLOSURE: NEW case SCH-PERM-13 (same case)
+- **R-14.1-08** — Same gap, Edit side: Service Manager / Senior Service Advisor / Service Advisor / Foreman appear nowhere in the corpus. || CLOSED 2026-07-31 BY: NEW case SCH-PERM-13 (same case)
 
 ### §14.2 — 3 statements (COVERED 3)
 
