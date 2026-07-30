@@ -16,6 +16,12 @@
 >   current case_ids with the new ones (a partial `update_run` DELETES tests + results), snapshot
 >   first, and get the user's authorization since the runs belong to other testers. Checker:
 >   `build/testrail-run-sync-2026-07-31/run_sync_audit.py`.**
+>   **AT EVERY SESSION START (and before/after any project or design work): CHECK FOR OPEN
+>   DESIGN-FETCH QUEUES (Rule 35) — `ls build/*/design-*/PENDING-FIGMA-FETCH.md`; if a queue is
+>   OPEN and now >= its DUE-AT, run its fetch command IMMEDIATELY without asking (no
+>   authorization needed), and on another rate limit append the attempt + re-arm DUE-AT = new
+>   error time + 9 h. OPEN NOW: `build/filters/design-2026-07-31/PENDING-FIGMA-FETCH.md`
+>   (73/85 PNGs, DUE-AT `2026-07-30T23:27:02Z`).**
 > - **PROCESS CATALOG (the table of every reusable process + how to call it for any project):
 >   build/PROCESS-CATALOG.md — READ THIS to pick/name a process; it lists all of them with
 >   trigger phrases and the deliverable each produces. Keep it updated when a process is
@@ -1540,6 +1546,55 @@ deliver the 7-tab management report.
     reusable read-only checker + union executor:
     `build/testrail-run-sync-2026-07-31/` (`RUN-SYNC-AUDIT.md`, `run_sync_audit.py`,
     `sync_runs_EXECUTOR.py`). Ties to Standing Rules 6/8/17/20/29/31/33.
+35. **Never leave design frames unfetched — auto-retry rate-limited Figma fetches until 100%
+    complete (all projects).** USER DIRECTIVE (2026-07-31, verbatim): *"Do not forget to fetch
+    the frames from Figma which you could not because of the limit reached issue. You do not need
+    my authorization for that, for every figma frams which were/are left due to the rate limit
+    auto set the timer to fetch them after 9 hours of the rate limit error time and date, set it
+    as a rule permanently. And keep on repeating the same unless you fetch ALL the frames
+    needed."* **THE RULE:** when a Figma (or ANY design-source) fetch is blocked by a rate limit
+    — `HTTP 429 {"err":"Rate limit exceeded"}` on `GET /v1/images/{file_key}` is the usual one —
+    **do NOT abandon it and do NOT ask permission to retry.** Instead: (1) record the exact
+    MISSING node ids + the **UTC error timestamp** + the fresh `retry-after` in a
+    **`PENDING-FIGMA-FETCH.md` queue file inside that project's design folder**; (2) set
+    **DUE-AT = error time + 9 HOURS**; (3) re-attempt **at or after DUE-AT, automatically,
+    without asking**; (4) if it fails again, **append the attempt to the queue's RETRY LOG and
+    re-arm DUE-AT = new error time + 9 hours**; (5) **repeat until EVERY needed frame is
+    downloaded.** "All the frames needed" means **100%, not "enough"** (Standing Rule 17
+    completeness — no sampling, no "the important ones are done"). **WHEN TO CHECK THE QUEUE:**
+    at **every session start**, and **before AND after any work touching that project or any
+    design ingest**. **A design pass may NOT be reported as complete while a queue file is
+    OPEN** — the deliverable (design notes + the project's PROJECT-STATE.md) must state the exact
+    shortfall, e.g. *"73/85 PNGs; 12 pending, due-at 2026-07-30T23:27:02Z"*. **QUEUE FILE
+    CONTENTS (convention):** OPEN/CLOSED status header with the check-and-run instruction · file
+    key · the exact missing node ids + target filenames · the error timestamp (UTC) · DUE-AT ·
+    the fresh `retry-after` for reference · the **exact resumable command** · a RETRY LOG table
+    (attempt #, timestamp, outcome, frames obtained, still missing, `retry-after`, next DUE-AT)
+    between `<!-- RETRY-LOG-START -->` / `<!-- RETRY-LOG-END -->` markers so the fetcher can
+    append rows and re-arm DUE-AT itself · the post-success checklist (update the counts, the
+    inventory's `png_source`, flag any NEW information the render reveals, close the queue).
+    **INTERIM HONESTY:** missing frames are described from the **node tree** (their own visible
+    TEXT layers, component/variant names, layer names) — **never guessed, never silently
+    omitted** (Rules 12/17); the *nodes* endpoint is a SEPARATE budget from *images* and usually
+    still works when images is capped, and `scale=1` is capped by the SAME budget (not a
+    workaround). Any NEW information a late render reveals is recorded as a **FLAG** in the
+    design notes — no test-case edit without user authorization (Rule 6). **HONESTY NOTE (say
+    this plainly, don't imply magic): there is NO live scheduler or background timer across
+    sessions/containers — the mechanism is this DUE-DATED QUEUE FILE plus the MANDATORY check at
+    session start / before-and-after related work.** The fetcher must be **resumable and
+    idempotent** (skip boards that already have a file, cache render URLs, work off the canonical
+    frame inventory, runnable from any cwd) so a killed or rate-limited run costs nothing —
+    canonical implementation `build/filters/design-2026-07-31/tools/fetch_all.py` (exit 0 =
+    complete / 2 = rate-limited, queue re-armed / 3 = short for another reason). Design-source
+    tokens stay in `/tmp` (`/tmp/figma-token`) and are **never committed**; `/tmp` is ephemeral,
+    so on a fresh container ASK the user to re-supply the token, then continue the queue.
+    **Rationale, 2026-07-31 (Filters):** the complete-Figma-extraction pass got 73 of 85 boards
+    and the last 12 were blocked by a ~10.5 h image-endpoint cap; the user directed a permanent
+    auto-retry so no design frame is ever quietly left behind. Canonical example:
+    `build/filters/design-2026-07-31/PENDING-FIGMA-FETCH.md`. Method/recipe cross-reference:
+    `build/APP-ACTIONS-PLAYBOOK.md` §M "Figma: extract ALL frames from a design link". Ties to
+    Standing Rules 17 (complete data in/out), 27 (reuse recorded recipes), 29 (no work loss —
+    the queue file is committed to git, the only durable store), 31 and 32 (latest source wins).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

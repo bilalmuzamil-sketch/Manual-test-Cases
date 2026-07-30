@@ -11,6 +11,14 @@ written to TestRail and no test case was edited. Everything below is read from t
 design source — it is **NOT** a live-build verification. Anything that still needs
 checking against the real build is called out as such.
 
+> ⚠️ **THIS DESIGN PASS IS NOT COMPLETE — 73 of 85 boards have a PNG.**
+> The Figma image endpoint is still rate-limited. The 12 remaining boards are tracked in an
+> OPEN retry queue: **`PENDING-FIGMA-FETCH.md`** (node ids, the resumable command, and
+> **DUE-AT `2026-07-30T23:27:02Z`** = the last 429 + 9 hours per **Standing Rule 35**).
+> Per Rule 35 this pass may **not** be reported as complete until that queue is closed at
+> 85/85. Latest re-attempt: **2026-07-30T14:27:02Z → HTTP 429, `retry-after: 36098`s
+> (~10.03 h), 0 of the 12 obtained.**
+
 ---
 
 ## 1. Method that worked
@@ -45,6 +53,20 @@ described from the node tree** (their text layers, component variants and layer 
 were read directly from the design source — nothing below is guessed). To finish the
 PNGs, re-run `tools/fetch_all.py` after the reset — it is **resumable** and skips boards
 already downloaded.
+
+**Re-attempt history (Standing Rule 35 — the retry is automatic, no authorization needed):**
+
+| Attempt | UTC | Result | Frames obtained | `retry-after` |
+|---|---|---|---|---|
+| 1 (initial pass) | 2026-07-30 ~13:58Z | HTTP 429 | stopped at 73/85 | 37874 s |
+| 2 (probe, all 12 ids in one call) | 2026-07-30T14:24:38Z | HTTP 429 | 0 | 36242 s |
+| 3 (resumable fetcher, exit 2) | 2026-07-30T14:27:02Z | HTTP 429 | 0 | 36098 s |
+
+**Next due-at: `2026-07-30T23:27:02Z`** (last 429 + 9 h). The full queue — node ids, the
+exact command, the running log, and the re-arm rule (every new 429 → DUE-AT = that error
+time + 9 h, repeat until 85/85) — lives in **`PENDING-FIGMA-FETCH.md`**, which stays
+**OPEN** until every board has a PNG. No render came back on attempts 2–3, so **nothing new
+was learned** about the 12 boards and **no DESIGN vs CASES flag changed** this run.
 
 ---
 
@@ -379,7 +401,10 @@ mistake them for the spec:
 ## 6. Honest limits of this pass
 
 1. **12 of 85 boards have no PNG yet** (listed in section 3) because the Figma image
-   render endpoint is rate-limited for ~10.5 hours. Their descriptions come from the design
+   render endpoint is rate-limited (~10 h cap; re-attempted 2026-07-30T14:24:38Z and
+   14:27:02Z — both HTTP 429, 0 obtained). **Tracked in the OPEN queue
+   `PENDING-FIGMA-FETCH.md`, DUE-AT `2026-07-30T23:27:02Z`; per Standing Rule 35 this design
+   pass is NOT complete until that queue closes at 85/85.** Their descriptions come from the design
    source's own text layers, component variant names and layer names — accurate, but I have
    **not seen those 12 rendered**. The four **Sorting** boards are among them, so the exact
    visual layout of the Sort dropdown is described from its layers ("Sort dropdown", field

@@ -436,14 +436,35 @@ and do not assume the Figma MCP is connected — it usually is not.
   make the fetcher **resumable** (skip any file already on disk, cache the signed URLs to json), and
   when capped, fall back to (a) PNGs already exported for the same node ids in an earlier pass, and
   (b) the Step-2 text/variant extraction — then state the honest split in the deliverable.
+- **⚠️ AND YOU MUST STILL GO BACK FOR THE MISSING FRAMES — Standing Rule 35 (mandatory, no
+  authorization needed).** A rate limit is a DELAY, never an end state: "all the frames needed"
+  means **100%**. When capped, create/update a **`PENDING-FIGMA-FETCH.md` queue file in that
+  project's design folder** holding: an **OPEN** status header with the check-and-run instruction ·
+  the file key · the exact **missing node ids + target filenames** · the **UTC error timestamp** ·
+  **DUE-AT = error time + 9 HOURS** · the fresh `retry-after` for reference · the **exact resumable
+  command** · and a **RETRY LOG** table (attempt #, timestamp, outcome, frames obtained, still
+  missing, `retry-after`, next DUE-AT) wrapped in `<!-- RETRY-LOG-START -->` /
+  `<!-- RETRY-LOG-END -->` markers so the fetcher appends its own rows and re-arms DUE-AT. Then
+  **re-attempt at/after DUE-AT automatically without asking**; on another 429, append + re-arm
+  (new error time + 9 h) and **repeat until every board has a PNG**. Check the queue at **every
+  session start** and **before/after any work on that project or any design ingest**
+  (`ls build/*/design-*/PENDING-FIGMA-FETCH.md`). **A design pass may NOT be called complete while
+  a queue is OPEN** — state the shortfall ("73/85 PNGs; 12 pending, due-at <ts>") in the design
+  notes AND the project's PROJECT-STATE.md. There is **no background timer** across sessions — the
+  queue file + that mandatory check IS the mechanism. Live example (open):
+  `build/filters/design-2026-07-31/PENDING-FIGMA-FETCH.md`.
 - **Naming (Rule 19):** `<Section-Name>__<Board-Name>__<node-id-with-dash>.png` — board names repeat
   constantly ("Mobile" ×4, "Step 1" ×3), so the node id is mandatory to disambiguate.
 - **Python gotcha:** do NOT name a helper script `enum.py` — it shadows stdlib `enum` and breaks
   `import json` with a circular-import error.
 - **Helpers (copy these):** `build/filters/design-2026-07-31/tools/` — `enumerate_frames.py`
   (tree walk + dedupe), `texts.py` (visible-text per board), `render.py` (batch image request),
-  `fetch_all.py` (resumable download with backoff). Canonical example output:
-  `build/filters/design-2026-07-31/DESIGN-NOTES.md` (85-board inventory + design-vs-cases flags).
+  `fetch_all.py` (**the resumable/idempotent fetcher — reads `frame-inventory.json`, skips boards
+  already on disk, caches signed URLs in `imgurls.json`, runs from any cwd, and on a 429 prints +
+  logs the error time / `retry-after` / DUE-AT into `PENDING-FIGMA-FETCH.md`; exit 0 = complete,
+  2 = rate-limited & re-armed, 3 = short for another reason**). Canonical example output:
+  `build/filters/design-2026-07-31/DESIGN-NOTES.md` (85-board inventory + design-vs-cases flags)
+  and `build/filters/design-2026-07-31/PENDING-FIGMA-FETCH.md` (the Rule-35 retry queue).
 
 ## Jira/Confluence access
 - Live browser login (headless Chromium via a fresh MITM bridge → id.atlassian.com email+password →

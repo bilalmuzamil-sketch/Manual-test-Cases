@@ -6,6 +6,16 @@ USEFULNESS AUDIT**). The user authorized a deliberately partial execution of
 `quality-audit-2026-07-31/` (audit report + `MERGE-PLAN.md`, both now carry
 EXECUTED / HELD markers per portion).
 
+> ⚠️ **OPEN FIGMA FETCH QUEUE — `build/filters/design-2026-07-31/PENDING-FIGMA-FETCH.md`**
+> **73 of 85 design boards have a PNG; 12 still missing** (Figma image endpoint rate-limited).
+> **DUE-AT = `2026-07-30T23:27:02Z`** (last HTTP 429 `2026-07-30T14:27:02Z` + 9 h).
+> **Standing Rule 35:** if now >= DUE-AT, run
+> `python3 build/filters/design-2026-07-31/tools/fetch_all.py --scale 2 --batch 6`
+> **immediately, without asking** (no authorization needed); if it 429s again the script
+> appends the attempt and re-arms DUE-AT = new error time + 9 h. Repeat until 85/85.
+> Check this at every session start and before/after any Filters or Figma work. The Filters
+> design pass may **not** be reported complete while this queue is OPEN.
+
 **TEST RUN SYNCED 2026-07-31 (Standing Rule 34, user-authorized):** Ahtesham's run **352
 "Filters - Ahtasham (Awaiting QA- ENV)"** now contains the COMPLETE active Filters suite —
 **+15 cases, 79 → 94 tests**, result records unchanged (395 → 395, nothing lost), and the run's
