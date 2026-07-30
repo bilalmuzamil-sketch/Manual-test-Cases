@@ -7,6 +7,12 @@
 
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-31)
 
+**TEST RUN SYNCED 2026-07-31 (Standing Rule 34, user-authorized):** run **357 "Schedule -
+Ayesha (VIU Pending)"** now contains the COMPLETE active Schedule suite — **+22 cases, 143 →
+165 tests**, result records unchanged (429 → 429, nothing lost), and the run's case set is
+**EQUAL both ways** to the 165 live cases in `testrail-id-map.csv` (0 missing, 0 extra).
+Evidence: `build/testrail-run-sync-2026-07-31/run-sync-execution-log-2026-07-31.md`.
+
 ### 0.0-CONSOLIDATION-EXECUTED CONSOLIDATION + WORDING REPAIRS EXECUTED (2026-07-31, LATEST — user-authorized TestRail writes DONE)
 
 **The Rule-28 usefulness-audit recommendations are now EXECUTED (user authorization

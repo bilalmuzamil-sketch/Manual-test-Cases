@@ -1,14 +1,50 @@
 # TestRail Run-vs-Cases Sync Audit — 2026-07-31
 
+> ## STATUS: EXECUTED for 3 runs / HELD for the rest (updated 2026-07-31)
+>
+> **EXECUTED (user-authorized 2026-07-31, verified live):**
+> | Run | Project | Tests before -> after | Cases added | Result records before -> after | Completeness |
+> |---|---|---|---|---|---|
+> | **352** | Filters (Ahtasham) | **79 -> 94** | +15 | 395 -> 395 (unchanged) | **EQUAL to the active suite (94/94)** |
+> | **357** | Schedule (Ayesha) | **143 -> 165** | +22 | 429 -> 429 (unchanged) | **EQUAL to the active suite (165/165)** |
+> | **359** | Reports Suite (Nebojsa/Viktoria) | **458 -> 465** | +7 | 539 -> 539 (unchanged) | **EQUAL to the active suite (465/465)** |
+>
+> Add-only UNION writes (`update_run` with the FULL union case-id list), one per run.
+> Every previously-present case id still in its run; no result record lost; no
+> `add_result`, no run close/delete, no case writes. Executor
+> `exec_run_sync_2026-07-31.py`; per-run audit trail
+> `run-sync-execution-log-2026-07-31.md`; pre-write snapshots `pre-write-snapshot-live/`.
+> Post-sync read-only re-audit (`post-sync-audit/audit.json`) confirms **0 missing-active**
+> for 352 / 357 / 359 and leaves every other run unchanged.
+>
+> **HELD BY USER RULING 2026-07-31 — do not sync (COMPLETED projects):** user ruling,
+> verbatim: *"For now do not do anything for the completed test runs."*
+> - **Run 324** — "Fees and Discount - Ahtasham (Specs 6/7/2026)" — 25 active cases
+>   missing, **185 graded results**; project **Fees & Discounts = COMPLETED**. NOT synced.
+> - **Run 325** — "Simple Flow - Ayesha Khan" — 35 active cases missing, **147 graded
+>   results**; project **Simple Flow = COMPLETED**. NOT synced.
+>
+> **NOT AUTHORIZED (separate future decision, not a completed-project hold):**
+> - **Run 278** — "Custom Permissions" — 9 active cases missing, **3,521 graded results**.
+>   Custom Roles is an **ACTIVE recurring project** (after-every-release regression rule),
+>   so this is not covered by the completed-projects ruling — **the user has not ruled on
+>   it yet**. Left untouched pending an explicit decision.
+>
+> **Standing position (user ruling, not a rule change):** newly added cases for
+> **COMPLETED** projects are **not** retro-fitted into their finished runs. If such a
+> project is ever reopened, create a **FRESH run** rather than mutating the historical one
+> — that preserves the graded record. Standing Rule 34's sync duty **continues to apply in
+> full to ACTIVE projects' runs**.
+
 **Scope:** every test run in TestRail project 1 (suite 1 "Master") checked against our
 CURRENT active case sets, to find test cases that exist in TestRail but are MISSING from
 the tester's run (the false-"no case exists" coverage gap).
 
-**Method (100% READ-ONLY):** `get_runs/1` (open + closed) -> `get_run`/`get_tests/{run_id}` for
+**Method (100% READ-ONLY for the audit):** `get_runs/1` (open + closed) -> `get_run`/`get_tests/{run_id}` for
 every fixed-selection run -> `get_cases/1&suite_id=1` + `get_sections/1&suite_id=1` for the live
 case/section tree -> compared against each project `testrail-id-map.csv`.
-**ZERO TestRail writes were made. No `update_run`, no `add_result`, no case writes.**
-Execution of the sync plan in §6 **awaits explicit user authorization** (Standing Rule 6).
+**The audit itself made ZERO TestRail writes.** The only writes ever made from this folder
+are the three authorized `update_run` calls recorded in the STATUS block above.
 
 ---
 
@@ -38,13 +74,17 @@ Execution of the sync plan in §6 **awaits explicit user authorization** (Standi
 
 | Run | Name | Owner (from name) | include_all | Tests now | Active cases for that project | Missing (active, not in run) | Result records (graded) | Verdict |
 |---|---|---|---|---|---|---|---|---|
-| 359 | Reports Suite - Nebojsa/Viktoria (VIU Pending) | Nebojsa / Viktoria | False | 458 | 465 | **7** | 539 (0 graded) | NEEDS SYNC (+7) |
-| 357 | Schedule - Ayesha (VIU Pending) | Ayesha | False | 143 | 165 | **22** | 429 (0 graded) | NEEDS SYNC (+22) |
-| 352 | Filters - Ahtasham (Awaiting QA- ENV) | Ahtasham | False | 79 | 94 | **15** | 395 (0 graded) | NEEDS SYNC (+15) |
+| 359 | Reports Suite - Nebojsa/Viktoria (VIU Pending) | Nebojsa / Viktoria | False | 458 -> **465** | 465 | 7 -> **0** | 539 -> 539 (0 graded) | **SYNCED 2026-07-31 (+7)** |
+| 357 | Schedule - Ayesha (VIU Pending) | Ayesha | False | 143 -> **165** | 165 | 22 -> **0** | 429 -> 429 (0 graded) | **SYNCED 2026-07-31 (+22)** |
+| 352 | Filters - Ahtasham (Awaiting QA- ENV) | Ahtasham | False | 79 -> **94** | 94 | 15 -> **0** | 395 -> 395 (0 graded) | **SYNCED 2026-07-31 (+15)** |
 | 347 | Global Search - Mudassir (Awaiting QA- ENV) | Mudassir | False | 86 | 86 | **0** | 258 (0 graded) | IN SYNC - no action |
-| 325 | Simple Flow - Ayesha Khan | Ayesha Khan | False | 152 | 187 | **35** | 342 (**147 graded**) | NEEDS SYNC (+35) |
-| 324 | Fees and Discount - Ahtasham (Specs 6/7/2026) | Ahtasham | False | 178 | 203 | **25** | 363 (**185 graded**) | NEEDS SYNC (+25) |
-| 278 | Custom Permissions | (unlabelled - Custom Roles suite run) | False | 746 | 755 | **9** | 3537 (**3521 graded**) | NEEDS SYNC (+9) |
+| 325 | Simple Flow - Ayesha Khan | Ayesha Khan | False | 152 | 187 | **35** | 342 (**147 graded**) | **HELD by user ruling 2026-07-31 - COMPLETED project, do not sync** |
+| 324 | Fees and Discount - Ahtasham (Specs 6/7/2026) | Ahtasham | False | 178 | 203 | **25** | 363 (**185 graded**) | **HELD by user ruling 2026-07-31 - COMPLETED project, do not sync** |
+| 278 | Custom Permissions | (unlabelled - Custom Roles suite run) | False | 746 | 755 | **9** | 3537 (**3521 graded**) | **NOT AUTHORIZED - ACTIVE project, separate future decision (user has not ruled)** |
+
+*"Result records" for the three synced runs are comment / status-reset records, not graded
+outcomes (every test in them still sits Untested) — they were preserved exactly all the same
+(395 / 429 / 539 before and after).*
 
 ### Deliberately-scoped Custom Roles runs (NOT sync candidates)
 
@@ -256,7 +296,7 @@ Sending a partial list **DELETES the omitted tests and their recorded results**.
 is always: read the run's CURRENT case ids -> **UNION** with the new ids -> send the FULL union.
 Never send just the new ids. Always snapshot the run's tests + results first.
 
-## 6. Ready-to-execute plan (AWAITING USER AUTHORIZATION - nothing executed)
+## 6. The plan — items 1-3 EXECUTED 2026-07-31 / items 4-6 HELD
 
 For each run below, in this exact order:
 
@@ -271,16 +311,27 @@ For each run below, in this exact order:
 
 | Order | Run | Operation | Cases to add | Before | After (expected) | Result records at risk | Care level |
 |---|---|---|---|---|---|---|---|
-| 1 | 352 (Filters) | union `update_run` | 15 | 79 | 94 | 395 (0 graded) | standard - union still mandatory |
-| 2 | 357 (Schedule) | union `update_run` | 22 | 143 | 165 | 429 (0 graded) | standard - union still mandatory |
-| 3 | 359 (Report Suite) | union `update_run` | 7 | 458 | 465 | 539 (0 graded) | standard - union still mandatory |
-| 4 | 324 (Fees & Discounts) | union `update_run` | 25 | 178 | 203 | 363 (**185 graded**) | **HIGH - union must be exact** |
-| 5 | 325 (Simple Flow) | union `update_run` | 35 | 152 | 187 | 342 (**147 graded**) | **HIGH - union must be exact** |
-| 6 | 278 (Custom Roles) | union `update_run` | 9 | 746 | 755 | 3,537 (**3,521 graded**) | **HIGHEST - union must be exact** |
+| Order | Run | Operation | Cases to add | Before | After (expected) | Result records at risk | Status |
+|---|---|---|---|---|---|---|---|
+| 1 | 352 (Filters) | union `update_run` | 15 | 79 | 94 | 395 (0 graded) | **EXECUTED 2026-07-31 - HTTP 200, verified 94 tests, 395 results intact** |
+| 2 | 357 (Schedule) | union `update_run` | 22 | 143 | 165 | 429 (0 graded) | **EXECUTED 2026-07-31 - HTTP 200, verified 165 tests, 429 results intact** |
+| 3 | 359 (Report Suite) | union `update_run` | 7 | 458 | 465 | 539 (0 graded) | **EXECUTED 2026-07-31 - HTTP 200, verified 465 tests, 539 results intact** |
+| 4 | 324 (Fees & Discounts) | union `update_run` | 25 | 178 | 203 | 363 (**185 graded**) | **HELD - user ruling 2026-07-31, COMPLETED project** |
+| 5 | 325 (Simple Flow) | union `update_run` | 35 | 152 | 187 | 342 (**147 graded**) | **HELD - user ruling 2026-07-31, COMPLETED project** |
+| 6 | 278 (Custom Roles) | union `update_run` | 9 | 746 | 755 | 3,537 (**3,521 graded**) | **NOT AUTHORIZED - ACTIVE project, awaiting a user decision** |
 
-**Total adds across the 6 runs: 113 tests.** No deletes, no result writes, no case writes.
+**Executed: 44 tests added across the 3 active-project runs** (15 + 22 + 7), all verified.
+**Not executed: 69 tests** across runs 324 / 325 / 278. No deletes, no result writes, no
+case writes were made at any point.
 
 Run 347 (Global Search - Mudassir) needs nothing.
+
+**Extra completeness proof requested by the user for Ahtesham's run:** after the sync, each
+synced run's case-id set was compared **both ways** against its project's active case set
+from `testrail-id-map.csv`. All three came back **EQUAL** — `(active − run)` empty **and**
+`(run − active)` empty: Filters 94/94, Schedule 165/165, Reports Suite 465/465. So run 352
+(Ahtesham's Filters run) now holds the **complete** active Filters suite, including the 7
+page-search cases and the rest of the 30 July push — the coverage he reported as missing.
 
 ### Recommended long-term fix (needs a user decision)
 
@@ -290,7 +341,21 @@ Run 347 (Global Search - Mudassir) needs nothing.
   include_all-style auto-updates**, so this can never drift again.
 - Cheapest durable habit: the run-sync check becomes the last step of every push manifest.
 
-### Decisions the user needs to make before we execute
+### Decisions — how the user ruled (2026-07-31)
+
+- **352 / 357 / 359 — AUTHORIZED and SYNCED.** See the STATUS block at the top.
+- **324 and 325 — HELD.** User ruling, verbatim: *"For now do not do anything for the
+  completed test runs."* Both belong to projects marked **COMPLETED** (Fees & Discounts,
+  Simple Flow) and both hold graded results (185 and 147). Nothing was written to them.
+- **278 — still NOT AUTHORIZED, and NOT covered by the completed-project hold**, because
+  Custom Roles is an **ACTIVE recurring project**. The user has not ruled on it; it stays a
+  separate future decision.
+- **Standing position (a user ruling, not a rule change):** new cases for **COMPLETED**
+  projects are not retro-fitted into their finished runs; if such a project is reopened,
+  create a **FRESH run** instead of mutating the historical one, so the graded record stays
+  intact. **Standing Rule 34's sync duty still applies in full to ACTIVE projects' runs.**
+
+### Original decision framing (kept for the record)
 
 | Run | Question | Why it matters |
 |---|---|---|
@@ -299,10 +364,11 @@ Run 347 (Global Search - Mudassir) needs nothing.
 | 278 (Custom Roles) | **Sync or leave alone?** | Only 9 missing, but this run holds 3,521 graded results - the largest history in the project. Lowest benefit, highest blast radius. |
 | 352 / 357 / 359 | **Sync - recommended yes** | Filters / Schedule / Report Suite are the 3 **ACTIVE** projects, all VIU-pending, 0 graded results. These are the runs the testers are about to work in, and the ones causing the false "no case exists" reports. Safe and high value. |
 
-**Our recommendation:** sync **352, 357, 359 first** (active projects, zero graded results, this is
-where the reported problem actually happened). Ask the user explicitly about 324 / 325 / 278
-before touching them, because a "completed" run becoming incomplete is a reporting decision,
-not a QA-correctness one.
+**Our recommendation (as given, and what the user then authorized):** sync **352, 357, 359 first**
+(active projects, zero graded results, this is where the reported problem actually happened).
+Ask the user explicitly about 324 / 325 / 278 before touching them, because a "completed" run
+becoming incomplete is a reporting decision, not a QA-correctness one. → The user authorized
+352/357/359 (done) and ruled 324/325 HELD; 278 remains open.
 
 ## 7. Side observations (not part of the ask, no action taken)
 

@@ -53,6 +53,13 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
+**TEST RUN SYNCED 2026-07-31 (Standing Rule 34, user-authorized):** run **R359 "Reports Suite -
+Nebojsa/Viktoria (VIU Pending)"** now contains the COMPLETE active Reports Suite — **+7 cases,
+458 → 465 tests**, result records unchanged (539 → 539, nothing lost), and the run's case set is
+**EQUAL both ways** to the 465 live cases in `testrail-id-map.csv` (0 missing, 0 extra). This is
+an add-only `update_run` union write; **no results were written to R359**. Evidence:
+`build/testrail-run-sync-2026-07-31/run-sync-execution-log-2026-07-31.md`.
+
 **UPDATE 2026-07-30-C (LATEST — COMPANION VIDEO INGESTED + DELTA PASS + AUTHORIZED PUSH
 EXECUTED):** Chris Ward's promised **PRD/Spec Companion video** arrived 2026-07-30 (Loom
 https://www.loom.com/share/e4a3ad01912048c0bba88f1a02677004 — canonical pointer; mp4 NOT

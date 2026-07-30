@@ -100,3 +100,39 @@ Authorized runs (in order): 352 Filters, 357 Schedule, 359 Reports Suite. Blocke
 | 359 | Report Suite | 458 | 465 | 7 | 539 | 539 | HTTP 200 | EQUAL |
 
 No `add_result*`, no `close_run`, no `delete_run`, no case writes were made. Runs 324 / 325 / 278 untouched.
+
+## Post-sync confirmation (read-only re-audit, same day)
+
+`run_sync_audit.py --outdir post-sync-audit` re-read TestRail live:
+
+- **352 Filters: 94/94 — missing 0** · **357 Schedule: 165/165 — missing 0** ·
+  **359 Reports Suite: 465/465 — missing 0**
+- Untouched runs unchanged and still reporting exactly their pre-sync gaps:
+  **325 Simple Flow 152 tests / 35 missing**, **324 Fees & Discounts 178 tests / 25 missing**,
+  **278 Custom Permissions 746 tests / 9 missing**. Also unchanged: 347 Global Search (86/86,
+  in sync) and the deliberately-scoped Custom Roles runs 303 / 304 / 311 / 323 / 331.
+- Completeness equality (both directions) vs each project's `testrail-id-map.csv` active set:
+  **EQUAL for all three** — `(active − run)` empty and `(run − active)` empty. Run 352
+  (Ahtesham's Filters run) therefore holds the COMPLETE active Filters suite, including the
+  7 page-search cases and the rest of the 2026-07-30 push.
+
+## Runs deliberately NOT written
+
+**HELD BY USER RULING 2026-07-31 — do not sync (COMPLETED projects).** User ruling, verbatim:
+*"For now do not do anything for the completed test runs."*
+
+- **Run 324** "Fees and Discount - Ahtasham (Specs 6/7/2026)" — 25 active cases missing,
+  **185 graded results**; project Fees & Discounts = COMPLETED. Not written.
+- **Run 325** "Simple Flow - Ayesha Khan" — 35 active cases missing, **147 graded results**;
+  project Simple Flow = COMPLETED. Not written.
+
+**NOT AUTHORIZED — separate future decision (not a completed-project hold):**
+
+- **Run 278** "Custom Permissions" — 9 active cases missing, **3,521 graded results**. Custom
+  Roles is an **ACTIVE recurring project**, so the completed-projects ruling does not cover it
+  and **the user has not ruled on it**. Left untouched.
+
+**Standing position (user ruling, not a rule change):** newly added cases for COMPLETED
+projects are not retro-fitted into their finished runs; if such a project is ever reopened,
+create a **FRESH run** rather than mutating the historical one, preserving the graded record.
+**Standing Rule 34's sync duty continues to apply in full to ACTIVE projects' runs.**

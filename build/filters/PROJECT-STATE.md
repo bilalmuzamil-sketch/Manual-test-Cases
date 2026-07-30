@@ -6,6 +6,14 @@ USEFULNESS AUDIT**). The user authorized a deliberately partial execution of
 `quality-audit-2026-07-31/` (audit report + `MERGE-PLAN.md`, both now carry
 EXECUTED / HELD markers per portion).
 
+**TEST RUN SYNCED 2026-07-31 (Standing Rule 34, user-authorized):** Ahtesham's run **352
+"Filters - Ahtasham (Awaiting QA- ENV)"** now contains the COMPLETE active Filters suite —
+**+15 cases, 79 → 94 tests**, result records unchanged (395 → 395, nothing lost), and the run's
+case set is **EQUAL both ways** to the 94 live cases in `testrail-id-map.csv` (0 missing, 0
+extra). The 15 added include the **7 page-search cases** plus the rest of the 2026-07-30 push —
+the coverage the reviewer reported as missing. Evidence:
+`build/testrail-run-sync-2026-07-31/run-sync-execution-log-2026-07-31.md`.
+
 **NEW TALLY: 137 authored → 110 ACTIVE / 27 Retired** (all 110 still VIU-Pending;
 94 of them live in TestRail, 16 blank C-ids). Live count under group 4110 = **94,
 UNCHANGED** (expected 94, actual 94, reconciled 0 live-not-in-map / 0 map-not-live)
