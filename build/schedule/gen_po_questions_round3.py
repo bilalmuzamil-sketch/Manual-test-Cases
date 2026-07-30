@@ -435,6 +435,121 @@ def scan_jargon(pairs):
     return hits
 
 
+MD_OUT = "build/schedule/PO-Questions-Branko-Schedule-2026-07-31-Round-3.md"
+
+MD_HEADER = """# Schedule — Questions for Branko — 2026-07-31 *(Round 3)*
+
+> *(QA STATUS NOTE — internal; not part of what Branko reads. The reader-facing content
+> starts at "Plain-language product questions only" below and is mirrored 1:1 in the
+> workbook's "Questions for PO" sheet.)*
+>
+> **STATUS: ROUND 3, 2026-07-31 — 7 questions. This SUPERSEDES the never-sent Round 2
+> (`PO-Questions-Branko-Schedule-TechPlan_2026-07-30`). Send only this sheet.**
+>
+> **No new PO input drove this revision.** The sheet Branko was sent for the sibling
+> Filters project **came back BLANK** — all three Google export endpoints returned a valid
+> workbook, it is provably our own sheet (104 of 104 content cells identical), and the
+> "Your answer" column is empty on all 8 questions with no cell comments. **0 answers were
+> ingested, and nothing was inferred from our own question text** (Standing Rule 12). Full
+> forensics: `build/filters/branko-sheet-check-2026-07-31/ANSWERS-INGEST-2026-07-31.md`.
+>
+> **What changed from Round 2 — every change is a re-derivation against the LIVE product
+> write-up (Confluence version 23, 2026-07-30), quoted verbatim on the QA-only tab:**
+>
+> * **3 questions WITHDRAWN because his own write-up already answers them** — where working
+>   hours live, split working days, and whether double-bookings count in the problem
+>   counter. Asking him to re-confirm what his document states, twice over, is exactly the
+>   re-ask we must not make. Their engineering-build-plan mismatches are **DEV** alignment
+>   items (Standing Rule 30: engineering intent never overrules product truth), not PO
+>   questions. Nothing was lost — all three are preserved verbatim in the QA-only section
+>   and can be restored unchanged if the QA lead disagrees.
+> * **1 question ADDED (Q7)** — three sentences in the write-up now contradict rulings
+>   Branko has **already given us**, so a reader of the write-up would judge our tests
+>   wrong. Found by `coverage-rederivation-2026-07-31` (flags F2/F3) plus the section-9 VIN
+>   mismatch. It is a **request, not a decision**; no test changes either way.
+> * **old Q2's write-up-silent sub-ask survives as the new Q2** — closure days are said to
+>   be set "at the shop level" and **no screen is named anywhere** in the write-up.
+> * The remaining four (meeting hours vs the "OT" tag · whole-department meetings ·
+>   all-day meetings · hiding meetings) are **unchanged and still genuinely open** — each
+>   re-verified silent against the live write-up this pass.
+>
+> **Zero test cases were edited and zero TestRail writes were made by this pass.**
+
+Plain-language product questions only (no bugs, no test jargon). These came up because a few points are not covered anywhere in the product write-up, because one point is described two opposite ways in it, and because a few sentences in it no longer match decisions you have already given us.
+Please pick an option (or write your own answer) for each.
+"""
+
+
+def write_md():
+    """Emit the .md twin from the SAME data as the workbook, so they cannot drift."""
+    out = [MD_HEADER]
+    for i, (topic, now, q, opts) in enumerate(QUESTIONS, 1):
+        out.append(f"## Question {i} — {topic}\n")
+        out.append(f"**What happens now:** {now}\n")
+        out.append(f"**The question:** {q}\n")
+        out.append("**Options:**\n")
+        for line in opts.split("\n"):
+            out.append(f"- {line}")
+        out.append("")
+        out.append("**Your answer:** ____________________\n")
+    out.append("---\n")
+    out.append("## QA Internal Mapping (QA-only — not for the PO)\n")
+    out.append(
+        "TestRail C-ids are from the project's `testrail-id-map.csv` (Standing Rule 8, **165 "
+        "rows**). Links: https://shopview.testrail.io/index.php?/cases/view/<id>\n"
+    )
+    out.append(
+        "**Round-3 revision note (2026-07-31):** revised against the live product write-up — "
+        "Confluence page 713031682 **version 23** (2026-07-30), verbatim body in "
+        "`spec-current-2026-07-31/Schedule-spec-current.md`; line numbers below refer to that "
+        "file. Sources: `coverage-rederivation-2026-07-31/COVERAGE-REDERIVATION.md` (flags "
+        "F1/F2/F3), `branko-answers-2026-07-31/answers-ingested.md`, "
+        "`tech-plan-2026-07-29/TECH-PLAN-DELTAS.md`, and "
+        "`../filters/branko-sheet-check-2026-07-31/ANSWERS-INGEST-2026-07-31.md`.\n"
+    )
+    out.append("| Q# | Affected internal case IDs (TestRail C-id) | Source refs | What each answer resolves to |")
+    out.append("|---|---|---|---|")
+    for qn, ids, refs, res in QA_ROWS:
+        cells = [
+            c.replace("\n", "<br>").replace("|", "\\|")
+            for c in (qn, ids, refs, res)
+        ]
+        out.append("| " + " | ".join(cells) + " |")
+    out.append("")
+    out.append(
+        "**Why the withdrawals matter:** we have already embarrassed ourselves once by asking "
+        "Branko questions a source had answered (the Filters W1/W2/W3 withdrawals). Every "
+        "question on this sheet was re-checked against the **live** write-up body AND every "
+        "prior answer file before it was allowed to survive — that check is what removed three "
+        "of Round 2's eight.\n"
+    )
+    out.append("---\n")
+    out.append("## OUTSTANDING — what I need from you\n")
+    out.append(
+        "1. **Send this sheet** (Round 3, 7 questions). It supersedes the never-sent Round 2 — "
+        "send only this one, so Branko is never holding two versions.\n"
+        "2. **Confirm how Branko actually replied to the sibling Filters sheet.** The file we "
+        "were given is blank. If he answered elsewhere, please paste or forward it. If he used a "
+        "copy, get it via **File → Download → Microsoft Excel (.xlsx)** — the link we hold is an "
+        "uploaded Excel file, so an edit made in a converted copy would never show up in it.\n"
+        "3. **Three items now belong to engineering, not Branko** — the build plan must change on "
+        "where working hours live, on split working days, and on double-bookings counting in the "
+        "problem counter. His write-up already settles all three.\n"
+        "4. **The QA branch / environment + feature-flag state.** All **165** cases are still "
+        "`VIU-Pending`; roughly 18 on-screen labels are design-pinned rather than build-confirmed, "
+        "and design-pinned is **not** verified (Standing Rule 12).\n"
+        "5. **Two small go-aheads still waiting:** the now-empty \"Week Export and Printing\" "
+        "folder in TestRail, and the one-character import defect that leaves a stray `(/02)` in "
+        "`SCH-HRS-04`'s first precondition.\n"
+        "6. **One question is still owed by dev, not Branko** — whether a technician-type user with "
+        "\"own data only\" may change *other* technicians' shifts. A real behaviour has **no test "
+        "case at all** and we will not author one against a guess.\n"
+    )
+    with open(MD_OUT, "w") as fh:
+        fh.write("\n".join(out))
+    print(f"WROTE {MD_OUT}")
+
+
 def main():
     # ---- reader-facing jargon gate (title + all 4 content columns of every row)
     pairs = [("A1 title", TITLE)]
