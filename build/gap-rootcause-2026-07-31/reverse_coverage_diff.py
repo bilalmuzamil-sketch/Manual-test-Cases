@@ -194,9 +194,40 @@ def normalise(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
-def tokens(text):
-    return {t.rstrip(".") for t in normalise(text).split()
-            if t.rstrip(".") not in STOP and len(t.rstrip(".")) > 2}
+PROCEDURAL = set("""download downloads again wait waits turn turns toggle toggles reload reloads
+refresh refreshes navigate navigates isolate isolates seeded seed exists carries carry reads read
+starts start lands land inspect inspects reopen reopens repeat repeats default defaults context
+browser session admin owner access least accessible org project storage state api unique via""".split())
+
+
+def stem(tok):
+    """Crude but sufficient: 'locations' and 'location' must not read as different
+    coverage. Only touches trailing plurals on tokens long enough to be safe."""
+    tok = tok.rstrip(".")
+    if len(tok) > 4 and tok.endswith("ies"):
+        return tok[:-3] + "y"
+    if len(tok) > 4 and tok.endswith("es") and not tok.endswith("ses"):
+        return tok[:-2]
+    if len(tok) > 4 and tok.endswith("s") and not tok.endswith("ss"):
+        return tok[:-1]
+    return tok
+
+
+def tokens(text, drop_procedural=False):
+    out = set()
+    for raw in normalise(text).split():
+        t = stem(raw)
+        if t in STOP or len(t) <= 2:
+            continue
+        if drop_procedural and t in PROCEDURAL:
+            continue
+        out.add(t)
+    return out
+
+
+def domain_tokens(text):
+    """Content words only - what the case is ABOUT, not how it is driven."""
+    return tokens(text, drop_procedural=True)
 
 
 def build_idf(our_cases):
@@ -216,7 +247,7 @@ def signature(unit_text, idf, size):
     interesting case ("no case of ours ever uses this word").
     """
     maxw = (max(idf.values()) + 1.0) if idf else 2.0
-    scored = sorted(tokens(unit_text), key=lambda t: (-idf.get(t, maxw), t))
+    scored = sorted(domain_tokens(unit_text), key=lambda t: (-idf.get(t, maxw), t))
     return scored[:size]
 
 
@@ -312,6 +343,44 @@ def diff_unit(unit_text, sig, our_index, our_tokens_by_id):
             f"{[t for t in sig if t != best_missing]}", strength)
 
 
+CLOSED_LIST = re.compile(
+    r"\b(exactly|in order(?:,| are|:)|only these|no other|nothing else|"
+    r"the complete list|are as follows|and no more)\b", re.I)
+
+
+def closed_list_collisions(foreign_case, our_pool, min_shared=2):
+    """THE detector for the 2026-07-31 defect shape, and it is deliberately narrow.
+
+    A CLOSED LIST of ours ("the headers, in order, are exactly: ...") is a time bomb
+    (Standing Rule 42). If a FOREIGN case asserts a domain term about the same
+    subject and OUR closed list never contains that term, one of two things is true:
+    our list is stale, or their case is wrong. Either way a human must look.
+
+    This is what would have caught C38923 vs SBR-EXP-10 = C30285 / SBR-EXP-11 =
+    C30286 on the day, with no spec reading and no similarity threshold to tune.
+    """
+    ftitle = domain_tokens(foreign_case.get("title") or "")
+    fall = domain_tokens(case_text(foreign_case))
+    hits = []
+    for our in our_pool:
+        text = case_text(our)
+        if not CLOSED_LIST.search(normalise(text)):
+            continue
+        ours_tok = domain_tokens(text)
+        shared = (ftitle | fall) & ours_tok
+        if len(ftitle & ours_tok) < min_shared and len(shared) < min_shared + 2:
+            continue  # not about the same subject at all
+        # Terms their case asserts, on a shared subject, that our closed list
+        # never mentions anywhere.
+        absent = sorted(t for t in ftitle if t not in ours_tok)
+        if absent:
+            hits.append({"our_case": our["id"], "our_title": our.get("title"),
+                         "shared_subject": sorted(ftitle & ours_tok),
+                         "asserted_but_absent_from_our_closed_list": absent,
+                         "our_refs": our.get("refs")})
+    return sorted(hits, key=lambda h: -len(h["shared_subject"]))[:8]
+
+
 def main():
     ap = argparse.ArgumentParser(
         description="READ-ONLY reverse coverage diff: foreign assertions with no counterpart in ours.")
@@ -320,7 +389,7 @@ def main():
     ap.add_argument("--project", type=int, default=1)
     ap.add_argument("--suite", type=int, default=1)
     ap.add_argument("--ours-uid", type=int, default=None)
-    ap.add_argument("--sig-size", type=int, default=4)
+    ap.add_argument("--sig-size", type=int, default=3)
     ap.add_argument("--scope-to-section", action="store_true",
                     help="Compare only against OUR cases in the same top-level folder")
     ap.add_argument("--md"), ap.add_argument("--csv"), ap.add_argument("--json")
@@ -404,18 +473,25 @@ def main():
                 urows.append({"where": where, "assertion": text, "signature": sig,
                               "verdict": verdict, "strength": strength, "our_cases": hits,
                               "missing_token": missing, "why": why})
+            collisions = closed_list_collisions(c, pool)
             strong = [u for u in urows if u["strength"] == "STRONG"]
             results.append({
                 "group": group, "case_id": c["id"], "title": c.get("title"),
                 "section": section_path(c["section_id"], by_id),
                 "author": resolve_user(c.get("created_by"), headers),
                 "refs": c.get("refs"), "case_verdict": worst,
-                "units_total": len(urows), "units_strong": len(strong), "units": urows})
+                "units_total": len(urows), "units_strong": len(strong),
+                "closed_list_collisions": collisions, "units": urows})
             print(f"  C{c['id']} [{worst}] {(c.get('title') or '')[:66]}  "
                   f"(STRONG units: {sum(1 for u in strong if u['verdict']==GAP)} gap / "
                   f"{sum(1 for u in strong if u['verdict']==CONTRA)} contra / "
                   f"{sum(1 for u in strong if u['verdict']==COVERED)} covered; "
                   f"{len(urows)-len(strong)} phrasing-only)", flush=True)
+            for h in collisions:
+                print(f"      !! CLOSED-LIST COLLISION with our C{h['our_case']}: it "
+                      f"enumerates a closed list on subject "
+                      f"{h['shared_subject']} and never mentions "
+                      f"{h['asserted_but_absent_from_our_closed_list']}", flush=True)
 
     if args.json:
         with open(args.json, "w") as fh:
@@ -449,6 +525,15 @@ def main():
                          f"*{r['title']}*  \nSection: {r['section']}  \n"
                          f"Author: **{r['author']}** · refs: `{r['refs'] or 'None'}` · "
                          f"[open](https://shopview.testrail.io/index.php?/cases/view/{r['case_id']})\n\n")
+                if r.get("closed_list_collisions"):
+                    fh.write("**CLOSED-LIST COLLISIONS (read these first - Rule 42 shape):**\n\n")
+                    fh.write("| Our case | Our title | Shared subject | Their term(s) absent from our closed list | Our refs |\n|---|---|---|---|---|\n")
+                    for h in r["closed_list_collisions"]:
+                        fh.write(f"| [C{h['our_case']}](https://shopview.testrail.io/index.php?/cases/view/{h['our_case']}) "
+                                 f"| {(h['our_title'] or '')[:70]} | `{' '.join(h['shared_subject'])}` "
+                                 f"| **`{' '.join(h['asserted_but_absent_from_our_closed_list'])}`** "
+                                 f"| {(h['our_refs'] or 'None')[:70]} |\n")
+                    fh.write("\n")
                 fh.write("| # | Verdict | Strength | Signature | Missing | Our nearest | Assertion |\n"
                          "|---|---|---|---|---|---|---|\n")
                 order = {"STRONG": 0, "PHRASING": 1}
