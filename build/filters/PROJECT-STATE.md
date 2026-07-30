@@ -1,7 +1,25 @@
 # Filters (Work Order List Filtering) — PROJECT STATE
 **Canonical cold-resume doc. Read this first to resume the Filters project.**
 
-Last updated: 2026-07-29 (**LATEST — TECH-PLAN RECONCILIATION APPLIED, LOCAL ONLY,
+Last updated: 2026-07-30 (**LATEST — TECH-PLAN PUSH QUEUE EXECUTED, user-authorized
+"Push all three"**): the ChangeList §E queue is now LIVE in TestRail — **15
+`add_case` + 1 `update_case` (FLT-PERS-02 = C29614) + 1 `add_section` ("Page Search
+Toolbar" = 5410, per §E), ALL HTTP 200 + re-GET MATCH; 0 deletes, run(s) untouched,
+only group 4110 touched.** New C-ids: FLT-TAB-06=C38876, FLT-STAT-07=C38877,
+FLT-ASSET-07=C38878, FLT-URL-05=C38879, FLT-PERS-05=C38880, FLT-PERS-06=C38881,
+FLT-RPTS-23=C38882 (temporarily in section 4117 — "Reports Page Filters" not live
+yet; move when the Parts/Reports queue pushes), FLT-PSRCH-01..07 =
+C38883/C38884/C38886/C38888/C38889/C38891/C38893 (section 5410), FLT-API-06=C38895
+(section 4124). **Live count under group 4110 = 94** (79 + 15, per-section
+re-count). id-map: 137 rows, 94 C-ids populated, 43 blank (the pending
+design-level Parts/Reports/⌘K queue). Import regenerated (137 rows, header
+byte-identical, hygiene clean, C-ids re-merged 94/94). Audit =
+`tech-plan-2026-07-29/testrail-execution-log-2026-07-30.md`; executor
+`exec_sync_2026-07-30.py`; C29614 pre-push snapshot saved. Follow-ups: FLT-RPTS-23
+section move; FLT-PERS-02 title 151 chars — shorten at the next authorized
+tester-facing touch.
+
+Prior update: 2026-07-29 (**TECH-PLAN RECONCILIATION APPLIED, LOCAL ONLY,
 NO TestRail writes**). The user provided the engineering tech plan for the
 app-wide filter redesign (`tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md`,
 verbatim ingest). Full analysis = `tech-plan-2026-07-29/TECH-PLAN-DELTAS.md`;

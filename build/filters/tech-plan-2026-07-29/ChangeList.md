@@ -1,7 +1,12 @@
 # Filters — Tech-Plan Reconciliation Change List (2026-07-29)
 
-**LOCAL ONLY — nothing pushed to TestRail. The push queue below awaits explicit
-authorization.** Driving source: `TechPlan-AppWide-Filter-Redesign.md` (engineering
+**§E PUSH QUEUE EXECUTED 2026-07-30 (user authorization "Push all three"):** 15
+`add_case` + 1 `update_case` (C29614) + 1 `add_section` ("Page Search Toolbar" =
+5410) all HTTP 200 + re-GET MATCH; live count under group 4110 = 94 (79+15); 0
+deletes, runs untouched. New C-ids C38876–C38895 (non-contiguous) — full per-case
+table + placement notes in `testrail-execution-log-2026-07-30.md`. FLT-RPTS-23
+placed temporarily in section 4117 (see log). Driving source:
+`TechPlan-AppWide-Filter-Redesign.md` (engineering
 tech plan, user upload 2026-07-29); classification detail in `TECH-PLAN-DELTAS.md`;
 quality gate in `RULE28-AUDIT-2026-07-29.md`. TestRail links:
 https://shopview.testrail.io/index.php?/cases/view/<id>.
@@ -67,11 +72,18 @@ per-filter sheet Apply vs real-time, Q5 default tab Estimates, Q6 Parts Vendors 
 Q7 request the spec v1.3 export (drives the follow-up SPEC-RELEVANCE-RECONCILIATION —
 Rule-11 ask first).
 
-## E. PUSH QUEUE (awaiting explicit authorization — Standing Rule 6)
+## E. PUSH QUEUE — **EXECUTED 2026-07-30** (user-authorized "Push all three")
 
-- **15 × `add_case`** (section A; FLT-PSRCH-01..07 need a new TestRail section
-  "Page Search Toolbar"; FLT-API-06 goes to existing section 4124).
-- **1 × `update_case`** (FLT-PERS-02 = C29614).
+- **15 × `add_case` DONE** (section A; FLT-PSRCH-01..07 in the NEW section
+  "Page Search Toolbar" = 5410; FLT-API-06 in existing section 4124; FLT-RPTS-23
+  temporarily in 4117 — "Reports Page Filters" not live, second add_section not
+  authorized; move when the Parts/Reports queue pushes). New C-ids:
+  FLT-TAB-06=C38876, FLT-STAT-07=C38877, FLT-ASSET-07=C38878, FLT-URL-05=C38879,
+  FLT-PERS-05=C38880, FLT-PERS-06=C38881, FLT-RPTS-23=C38882,
+  FLT-PSRCH-01..07=C38883/C38884/C38886/C38888/C38889/C38891/C38893,
+  FLT-API-06=C38895.
+- **1 × `update_case` DONE** (FLT-PERS-02 = C29614; pre-push snapshot saved).
+- All ops HTTP 200 + re-GET MATCH (audit: `testrail-execution-log-2026-07-30.md`).
 - 0 deletes. Run(s) untouched. NOTE: the 43 earlier design-level cases
   (Parts/Reports/⌘K) also still await their own authorized add_case — that queue
   predates this pass and stands separately (FLT-SRCH-01..09 within it should be held
