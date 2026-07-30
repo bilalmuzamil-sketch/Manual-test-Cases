@@ -6,7 +6,11 @@
 >    real, reportable bug that no other case catches? Verdict: **KEEP / MERGE / WEAK-KEEP / CUT**.
 > 2. **MAKES SENSE** — would a competent manual QA tester, reading the case COLD (as the critic
 >    would, without our context), find it coherent and runnable? Verdict: **SENSIBLE /
->    FIX-WORDING / NONSENSE** (the 6 fail conditions below).
+>    FIX-WORDING / NONSENSE / CONTRADICTION** (the 6 fail conditions below). Scored in **TWO
+>    MANDATORY STAGES**: (2a) the per-case cold read, then (2b) the **CROSS-CASE CONSISTENCY
+>    SWEEP** — cases checked AGAINST EACH OTHER, because a suite can be 100%
+>    individually-sensible and still be self-contradictory, and that contradiction is the FIRST
+>    thing a reviewer or a tester hits.
 > 3. **GENUINE + LAYMAN-RUNNABLE** — is the case provably traceable to its ticket + spec/video
 >    source (Standing Rule 20 authenticity), AND easily executable by a NON-TECHNICAL manual QA
 >    tester (Standing Rules 7/9: build-accurate labels, no jargon, numbered steps a layman can
@@ -34,10 +38,12 @@
 ## Kickoff prompt (copy/paste, fill the brackets)
 > "Run the **Ruthless Usefulness Audit** on **[project / suite / the N cases just authored]**.
 > Score 100% of the cases on all THREE dimensions — KEEP / MERGE / WEAK-KEEP / CUT (usefulness),
-> SENSIBLE / FIX-WORDING / NONSENSE (the cold sense-check), and the genuine + layman-runnable
-> check — hunt the named slop patterns, credit the load-bearing coverage, and give me the
-> per-case verdicts CSV (with the sense columns) + the audit report (with the NONSENSE list) +
-> the merge plan. Do NOT change anything in TestRail — recommendations only until I approve."
+> SENSIBLE / FIX-WORDING / NONSENSE / CONTRADICTION (the cold sense-check **plus the cross-case
+> consistency sweep — check the cases against each other, including title-vs-expected**), and the
+> genuine + layman-runnable check — hunt the named slop patterns, credit the load-bearing
+> coverage, and give me the per-case verdicts CSV (with the sense columns) + the audit report
+> (with the NONSENSE list **and the CONTRADICTION list with its resolution**) + the merge plan.
+> Do NOT change anything in TestRail — recommendations only until I approve."
 
 ## Originating instructions + corrections (Rule 18 — verbatim)
 Captured verbatim from the user's directive of 2026-07-28:
@@ -89,6 +95,15 @@ What these directives mean, folded in:
 
 ## Dimension 2 — the SENSE-CHECK (mandatory; exactly one verdict per case, 100% of the suite)
 
+**Dimension 2 runs in TWO MANDATORY STAGES, and BOTH must be completed before delivery:**
+- **Stage 2a — the per-case cold read** (below): is each case, on its own, coherent and runnable?
+- **Stage 2b — the CROSS-CASE CONSISTENCY SWEEP** (below): do the cases agree WITH EACH OTHER?
+
+**Stage 2a alone is not enough.** A suite can score 100% SENSIBLE case-by-case and still tell the
+tester two opposite things about the same control. Stage 2b is the stage that catches that.
+
+### Stage 2a — the per-case cold read
+
 **The question, per case: "Would a competent manual QA tester read this and find it makes
 sense?" READ EACH CASE COLD, AS THE CRITIC WOULD — without our context, without the spec open,
 without knowing why the case exists.** Recompute any worked math in the case. A case FAILS if any
@@ -105,9 +120,10 @@ of these 6 fail conditions holds:
 
 | Sense verdict | Meaning |
 |---|---|
-| **SENSIBLE** | A cold reader can execute it and knows what pass looks like. No fail condition triggered. |
+| **SENSIBLE** | A cold reader can execute it and knows what pass looks like. No fail condition triggered, and it does not contradict any other case. |
 | **FIX-WORDING** | The underlying test is sound, but specific wording would confuse/mislead a cold tester — repairable; the reason states EXACTLY what to fix (wrong unit-words, a vague probe step, an Expected broader than the steps drive, a px assertion without stated tooling). |
 | **NONSENSE** | Fails one or more of F1–F6 — QUOTE the offending text + name the fail condition; recommend CUT or a full rewrite. |
+| **CONTRADICTION** | Individually readable, but it asserts something **another case in the suite (or its OWN title) asserts the opposite of** — the two cannot both be true. Found by Stage 2b. Name the counterpart case(s) (internal ID + C-id), quote BOTH assertions, and state the resolution (which side wins, by which ruling). Every member of a contradiction group carries this verdict until the group is aligned. |
 
 Rules for this dimension:
 - **Cross-check against the usefulness verdicts:** any KEEP case that scores NONSENSE is the
@@ -117,7 +133,79 @@ Rules for this dimension:
   that is the honest pattern. Coherent-but-worthless cases (no-op assertions, literal duplicates)
   are SENSIBLE here and die on Dimension 1 — the two dimensions are independent.
 - Every NONSENSE reason quotes the case's own words; every FIX-WORDING reason is directly
-  actionable as an edit instruction.
+  actionable as an edit instruction; every CONTRADICTION names its counterpart(s) and its winner.
+
+### Stage 2b — the CROSS-CASE CONSISTENCY SWEEP (mandatory; suite-wide, after Stage 2a)
+
+**The question, suite-wide: "Do any two cases in this suite tell the tester OPPOSITE things about
+the same control?"** Stage 2a reads each case in isolation and therefore CANNOT catch this. Run
+Stage 2b over 100% of the suite (Rule 17) — it is not optional and not sample-based.
+
+**Method — group, then diff:**
+1. **Group by the CONTROL / BEHAVIOUR asserted on**, not by section. Build a map
+   `control → [cases]` keyed on the concrete thing under test: the field/button/chip/column/
+   screen/state named in the case (e.g. "Status filter chip on the Estimates tab", "Apply filters
+   button in the mobile sheet", "Total column on the WIP grid"). One case can join several groups.
+   Cases sitting in DIFFERENT sections routinely land in the SAME group — that is the point.
+2. **Diff the expected results within each group.** For every pair in a group, ask: *can both of
+   these be true of the same build at the same time?* If NO → the pair is a **CONTRADICTION**.
+   Record the group, both quotes, and the winner.
+3. **Align the whole group to the winner** — see "Resolution" below. Never leave the suite split.
+
+**Mechanical helpers — cheap sweeps that catch most of it (run all three):**
+- **(i) Opposite-assertion keyword-pair sweep.** For each control group, grep both sides of the
+  common opposites and flag any group where both sides appear: **hidden vs shown / displayed /
+  greyed-out / disabled** · **enabled vs greyed out / disabled / not clickable** · **present vs
+  absent / not shown / removed** · **real-time / as you type vs on Apply / after clicking Apply**
+  · **editable vs locked / read-only / cannot be changed** · **included vs excluded / ignored** ·
+  **persists vs resets / cleared** · **required vs optional** · **enabled-by-default vs
+  off-by-default**. (Extend the list per project — any pair of words the suite uses to mean
+  opposite build states.)
+- **(ii) TITLE vs EXPECTED RESULT check — inside every single case.** Compare each case's title
+  against its own preconditions/steps/expected. **A title asserting one behaviour while the
+  expected asserts (or implies) another is a CONTRADICTION even with no second case involved** —
+  and a title is what a reviewer and a tester read FIRST, so a stale title mis-sells the case
+  before anyone reaches the steps. **This is precisely the class of miss that created this stage:**
+  cases carried "hidden" in the TITLE while their expected results were neutral or said
+  shown-but-disabled. Titles are edited less often than bodies, so they go stale silently — check
+  every one, every pass.
+- **(iii) Same-anchor clustering.** Group by the spec/requirement anchor recorded in `refs`
+  (Rule 20 — `<TICKET(S)> (<spec-anchor>)`) and diff the expectations of every case sharing an
+  anchor. Cases derived from the SAME requirement must assert the SAME behaviour; if they don't,
+  either one is stale against a spec revision or one misread the requirement. This also catches
+  contradictions the keyword sweep misses (different words, same requirement).
+
+**Resolution — by the Rule-33 authority precedence order (never by whichever case was written last):**
+1. **PO's product ruling** (per project: Branko = Filters / Schedule / Global Search; Chris Ward =
+   Report Suite / Fees & Discounts; Milos = Simple Flow) →
+2. **QA lead's (the user's) ruling** →
+3. **our own live-observed, evidence-backed findings** (Rule 12) →
+4. **a reviewer's / other QA's spec-reading claim** (lowest — an input to evaluate, never
+   self-executing).
+
+Within the same tier the most recent authoritative source wins (Rule 32). Then **align EVERY
+member of the contradiction group to the winner** — titles included — and log the driving ruling +
+date per case (Rules 20/25). **Spec PROSE does not outrank a PO or QA-lead ruling that postdates
+it** (the PRD may simply not have been updated yet); cite the ruling verbatim.
+**If NO ruling exists on either side, the contradiction becomes a PO QUESTION** (Rule 7 layman
+wording) and every member of the group is **flagged PENDING** in the deliverable — we never
+silently pick a side to make the tally look clean.
+
+**Reporting + the delivery bar:**
+- The audit tally now reports **contradictions FOUND and contradictions RESOLVED** (plus any left
+  PENDING on a PO answer, listed by case with the open question).
+- **A suite MAY NOT BE DELIVERED with an unresolved contradiction.** Either the group is aligned
+  to the precedence winner, or the group is explicitly flagged PENDING a named PO question in the
+  delivered tally. Silence is not an option.
+
+**Rationale (2026-07-31 — the miss that created this stage):** our own Rule-28 audit scored 110
+Filters cases and rated them SENSIBLE, yet a junior QA reading the same suite COLD immediately
+spotted that different cases asserted CONTRADICTORY expectations for the same control — some said
+the Status filter chip is shown-but-disabled on certain tabs, others said it is hidden (two cases
+even carried "hidden" in the TITLE while their expected results said otherwise). Root cause: the
+sense dimension was applied case-by-case in isolation; nothing checked the cases against each
+other. Canonical example (including the precedence-based resolution):
+`build/filters/ahtesham-review-2026-07-31/VERIFICATION.md`.
 
 ## Dimension 3 — GENUINE + LAYMAN-RUNNABLE (mandatory; pass/fail per case)
 
@@ -183,12 +271,19 @@ canonical worked example is the Report Suite's 515-case audit produced 2026-07-2
    - the method (this doc, summarised) + what was in scope (total case count — Rule 17 counts:
      total / scored / excluded-with-reason) + the snapshot SHA the case bodies were read from;
    - a **per-area verdict table** (area/section × KEEP / MERGE / WEAK-KEEP / CUT counts) AND a
-     **per-area sense table** (SENSIBLE / FIX-WORDING / NONSENSE counts);
+     **per-area sense table** (SENSIBLE / FIX-WORDING / NONSENSE / CONTRADICTION counts);
    - the **headline: current count → recommended count** after merges + cuts, combined with the
-     sense tally (the three-dimension tally the suite ships with);
+     sense tally **and the contradiction tally (found / resolved / pending a PO answer)** — the
+     three-dimension tally the suite ships with;
    - the **full NONSENSE list** — case ID + C-id + link + the QUOTED offending text + the fail
      condition + the recommendation (CUT or rewrite) — and the **FIX-WORDING list** (case + what
      exactly to fix); "none found" is stated only if genuinely none;
+   - the **CONTRADICTION list** (Stage 2b) — one block per contradiction GROUP: the control/
+     behaviour it is about, every member case (internal ID + C-id + link), BOTH conflicting
+     assertions quoted verbatim, which mechanical helper found it (opposite-keyword /
+     title-vs-expected / same-anchor), the **precedence winner + the ruling cited with its date**,
+     and the exact alignment edit each member needs — or, where no ruling exists, the **PO question
+     and the PENDING flag**; "none found" is stated only if the full sweep genuinely found none;
    - the **KEEP-but-NONSENSE embarrassment check** result (explicitly, even when empty);
    - the named slop patterns found (which pattern, where, how many cases);
    - the load-bearing coverage credited (which families, where) + the genuine/layman confirmation
@@ -200,9 +295,12 @@ canonical worked example is the Report Suite's 515-case audit produced 2026-07-2
      can forward to management as-is.
 2. **`per-case-verdicts.csv`** — one row per case, 100% of the suite:
    `internal_id, testrail_case_id, testrail_link, section, title, verdict, reason, merge_group,
-   merge_survivor, …, sense_verdict, sense_reason` (TestRail C-id + clickable link per Rule 8;
-   blank C-id = "new, no C-ID yet"; reason = one plain sentence; merge_group/merge_survivor filled
-   only on MERGE rows; **sense_verdict + sense_reason are MANDATORY columns** — regenerate via the
+   merge_survivor, …, sense_verdict, sense_reason, contradiction_group, contradiction_counterparts,
+   contradiction_resolution` (TestRail C-id + clickable link per Rule 8; blank C-id = "new, no C-ID
+   yet"; reason = one plain sentence; merge_group/merge_survivor filled only on MERGE rows;
+   **sense_verdict + sense_reason are MANDATORY columns**; the three `contradiction_*` columns are
+   **MANDATORY columns too** — filled on every CONTRADICTION row with the group ID, the counterpart
+   case IDs (+ C-ids), and the winner/ruling-or-PENDING, blank elsewhere — regenerate via the
    generator script so nothing drifts, keeping all prior columns). Optional extra columns (e.g. a
    value tier) may be appended, never removed.
 3. **`MERGE-PLAN.md`** — the merge groups, each with: group ID, the survivor (internal ID + C-id),
@@ -210,7 +308,15 @@ canonical worked example is the Report Suite's 515-case audit produced 2026-07-2
    approve **wholesale or per-group**.
 4. A generator script (e.g. `gen_verdicts.py` + `gen_sense_verdicts.py`) so the CSV/report
    regenerate deterministically from the verdict data — mirror the canonical example's generator
-   pattern, including the automated `KEEP-but-NONSENSE` embarrassment check.
+   pattern, including the automated `KEEP-but-NONSENSE` embarrassment check **and the automated
+   Stage-2b sweeps: the opposite-assertion keyword-pair scan over the control groups, the
+   title-vs-expected scan (every case), and the same-`refs`-anchor expectation diff. The script
+   must FAIL LOUDLY (non-zero exit / printed blocker) while any CONTRADICTION row is neither
+   aligned nor flagged PENDING — the delivery bar is enforced in code, not by memory.**
+5. **`CONTRADICTION-SWEEP-<date>.md`** (or the CONTRADICTION section of the audit report, as the
+   NONSENSE list is handled) — the control→cases grouping actually used, the three helper sweeps'
+   output, and each group's resolution. Written so the user can approve the alignment edits
+   **wholesale or per-group**, exactly like the merge plan.
 
 ## Numbered steps
 1. **Enumerate the FULL population** (Rule 17): every active case in the suite (local `cases/`
@@ -229,11 +335,20 @@ canonical worked example is the Report Suite's 515-case audit produced 2026-07-2
    failure = real reportable bug / not covered elsewhere). Anything failing a prong goes to MERGE,
    WEAK-KEEP, or CUT per the table above. Every reason is one concrete plain sentence; every
    CUT-duplicate NAMES the duplicated case; every MERGE names group + survivor.
-4a. **Sense-check case-by-case (Dimension 2):** read every case's FULL body (title +
+4a. **Sense-check case-by-case (Dimension 2, Stage 2a):** read every case's FULL body (title +
    preconditions + steps + expected + notes) COLD, as the critic would; recompute worked math;
    apply the 6 fail conditions; assign SENSIBLE / FIX-WORDING / NONSENSE with the quoted offending
    text on every NONSENSE. Then run the cross-check: list any KEEP that scored NONSENSE (the
    embarrassment check) and say so explicitly.
+4a-ii. **CROSS-CASE CONSISTENCY SWEEP (Dimension 2, Stage 2b) — MANDATORY, never skipped:** build
+   the `control → [cases]` groups, diff the expected results within each group, and run all three
+   mechanical helpers — (i) the opposite-assertion keyword-pair sweep, (ii) the **title-vs-expected
+   check on EVERY case**, (iii) the same-`refs`-anchor expectation diff. Mark every member of a
+   conflicting pair/group **CONTRADICTION**, quote both assertions, resolve by the Rule-33
+   precedence order (PO ruling → QA-lead ruling → our live-verified findings → reviewer claim;
+   Rule 32 newest-wins within a tier), align the WHOLE group to the winner, and where no ruling
+   exists raise a PO question (Rule 7) and flag the group PENDING. **Stage 2a passing does not
+   clear Dimension 2 — both stages must complete.**
 4b. **Genuine + layman check (Dimension 3):** verify every case's `refs` traceability (Rule 20)
    and layman-runnability (Rules 7/9); route failures to FIX-WORDING (repair/backfill) or CUT.
 5. **Sweep pattern-by-pattern:** run the 7 named slop patterns across the whole suite (they hide
@@ -245,8 +360,10 @@ canonical worked example is the Report Suite's 515-case audit produced 2026-07-2
 7. **Adversarial self-audit (Rule 15):** before delivering, independently re-derive a
    cross-section of verdicts (all of them for release-critical suites) and diff against the CSV;
    fix any drift; verify the counts reconcile on BOTH scored dimensions (total = KEEP + MERGE +
-   WEAK-KEEP + CUT = SENSIBLE + FIX-WORDING + NONSENSE, and the headline recommended count =
-   KEEP + WEAK-KEEP + merge-survivors).
+   WEAK-KEEP + CUT = SENSIBLE + FIX-WORDING + NONSENSE + CONTRADICTION, and the headline
+   recommended count = KEEP + WEAK-KEEP + merge-survivors). **Then re-assert the delivery bar:
+   every CONTRADICTION row is either ALIGNED to its precedence winner or FLAGGED PENDING a named
+   PO question — if any is neither, the suite is NOT deliverable; stop and resolve it.**
 8. **Produce the deliverables** (the 4 files above, exact format), checkpoint-commit (no secrets).
 9. **Deliver the recommendation — execute NOTHING in TestRail.** Present the headline + the merge
    plan; the user approves wholesale or per-group. Only after explicit authorization (Rule 6) run
@@ -256,7 +373,8 @@ canonical worked example is the Report Suite's 515-case audit produced 2026-07-2
 10. **Ship the THREE-DIMENSION tally with the suite:** whatever deliverable the authoring pass
     produces (import, workbook, status update) states the audit tally alongside it — the
     usefulness headline (current → recommended), the sense tally (SENSIBLE / FIX-WORDING /
-    NONSENSE), and the genuine/layman confirmation — a suite never ships silent. This tally is
+    NONSENSE / CONTRADICTION **with contradictions found / resolved / pending**), and the
+    genuine/layman confirmation — a suite never ships silent. This tally is
     the standing proof that the "AI makes useless test cases" claim cannot be substantiated
     against the delivered suite.
 
@@ -269,7 +387,16 @@ probe endpoints, ZZAUTOTEST tags, clean up after) rather than leaving the verdic
 ## Guardrails
 - **Rule 6 absolute:** the audit RECOMMENDS; nothing is merged/deleted/edited in TestRail without
   explicit user authorization. Deleted cases keep their local bodies marked Retired.
-- **Rule 17:** 100% of the population scored — no sampling, no "top N", counts stated.
+- **Rule 17:** 100% of the population scored — no sampling, no "top N", counts stated. The
+  cross-case sweep (Stage 2b) is suite-wide by definition: it cannot be run on a subset, because a
+  contradiction lives in the PAIR, not in either case.
+- **NO DELIVERY WITH AN UNRESOLVED CONTRADICTION (hard bar):** every contradiction group is either
+  aligned to its Rule-33 precedence winner or explicitly flagged PENDING a named PO question in the
+  shipped tally. Never resolve one by picking the newest-written case, and never leave half a group
+  edited — a half-aligned suite is still self-contradictory.
+- **Rule 33:** a reviewer's/other QA's reading is an INPUT that can SURFACE a contradiction; it
+  never decides one. Judge the claim, not the claimant — and when a review claim is correct, adopt
+  it and say so plainly.
 - **Rule 8:** every case named anywhere (CSV, report, merge plan, chat) carries its TestRail C-id
   + /cases/view/ link (or "new, no C-ID yet").
 - **Rule 7:** the exec paragraph + anything PO/management-facing is plain layman words.
@@ -298,9 +425,14 @@ probe endpoints, ZZAUTOTEST tags, clean up after) rather than leaving the verdic
 - `build/PROCESS-AUTHORING-STANDARD.md` — governs this doc; `build/PROCESS-CATALOG.md` row #11.
 - Standing Rules 7 (layman wording), 9 (build-accurate wording), 20 (traceability/authenticity) —
   Dimension 3 applies these by cross-reference; their full text governs.
+- Standing Rules 32 (latest information wins) + 33 (review findings are inputs; the authority
+  precedence order) — these GOVERN the Stage-2b resolution step; their full text applies.
 - Canonical worked example: `build/report-suite/quality-audit-2026-07-28/` (Report Suite, 515
   cases — `USEFULNESS-AUDIT-2026-07-28.md` + `SENSE-CHECK-2026-07-28.md` +
   `per-case-verdicts.csv` with both verdict sets + `gen_verdicts.py`/`gen_sense_verdicts.py`).
+- Canonical worked example for the **cross-case consistency sweep (Stage 2b)** and its
+  precedence-based resolution: `build/filters/ahtesham-review-2026-07-31/VERIFICATION.md` (+
+  `FIX-PLAN.md`) — the Filters Status-chip contradiction our own case-by-case audit missed.
 
 ## Post-delivery loop — tester feedback via Blocked (the audit's runtime counterpart)
 The audit is the pre-delivery gate; this loop is its runtime counterpart, and it is a STANDING

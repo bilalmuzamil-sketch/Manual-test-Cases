@@ -1398,14 +1398,25 @@ deliver the 7-tab management report.
     sources; domain nonsense (impossible math, wrong calculation direction, cost/sell conflation,
     impossible snapshot logic); not actionable (a tester can't tell what to DO or what PASS looks
     like). Every NONSENSE quotes the offending text + fail condition; cross-check for
-    KEEP-but-NONSENSE (the embarrassment check) explicitly. **(3) GENUINE + LAYMAN-RUNNABLE** —
+    KEEP-but-NONSENSE (the embarrassment check) explicitly. **Dimension 2 also includes a MANDATORY
+    CROSS-CASE CONSISTENCY SWEEP (a suite can be 100% individually-sensible and still be
+    self-contradictory):** group the cases by the control/behaviour they assert on and diff their
+    expected results — plus an opposite-assertion keyword sweep (hidden vs shown/disabled, real-time
+    vs on-Apply, editable vs locked…), a **TITLE-vs-EXPECTED check on every case**, and a
+    same-`refs`-anchor diff; any pair that cannot both be true = **CONTRADICTION**, resolved by the
+    Rule-33 precedence order (PO ruling → QA-lead ruling → our live-verified findings → reviewer
+    claim) with the WHOLE group aligned to the winner, or flagged PENDING a PO question if no ruling
+    exists — **a suite may not be delivered with an unresolved contradiction**, and the count found/
+    resolved ships in the tally (rationale 2026-07-31: our audit rated 110 Filters cases SENSIBLE
+    while they contradicted each other on the Status chip — a junior QA caught it cold; canonical
+    example `build/filters/ahtesham-review-2026-07-31/VERIFICATION.md`). **(3) GENUINE + LAYMAN-RUNNABLE** —
     every case traceable to its ticket + spec/video source (Rule 20 authenticity) AND executable
     by a NON-TECHNICAL manual QA tester easily (Rules 7/9 plain wording: build-accurate labels,
     no jargon, numbered steps a layman can follow); a case failing this dimension gets FIX-WORDING
     or CUT. **The stated purpose: no suite we deliver can ever substantiate the "AI makes useless
     test cases" claim — every delivered suite carries the three-dimension tally as proof.** The
     suite SHIPS WITH that tally (usefulness headline current → recommended + sense counts +
-    genuine/layman confirmation) + an honest "is the critic right?" answer covering BOTH halves of
+    contradictions found/resolved + genuine/layman confirmation) + an honest "is the critic right?" answer covering BOTH halves of
     the claim (waste % AND makes-no-sense %); the audit only RECOMMENDS — no merge/cut/delete/edit
     is executed in TestRail without explicit user authorization (Rule 6). Also runs on demand for
     any existing suite and as a sub-step of major spec reconciliations. Rationale, 2026-07-28:

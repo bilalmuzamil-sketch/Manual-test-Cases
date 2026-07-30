@@ -69,7 +69,9 @@ sampling — on three dimensions together**:
 - **Makes sense:** each case is read cold, the way a critic would — **SENSIBLE / FIX-WORDING /
   NONSENSE** — against six concrete fail conditions (steps not executable in order, expected
   result doesn't follow, internal contradiction, phantom controls, domain nonsense, not
-  actionable).
+  actionable). We also check the cases **against each other, not just individually**, so that no
+  two tests can contradict each other about the same button, field or screen — and no case's title
+  can say one thing while its expected result says another.
 - **Genuine + layman-runnable:** each case is traceable to its ticket + spec (step 2) and
   executable by a non-technical tester (step 3); failures get fixed or cut.
 
