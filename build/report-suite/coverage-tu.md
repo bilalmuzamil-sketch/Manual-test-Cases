@@ -292,3 +292,9 @@ C30485 + WIP-EXP-07 C30516 caveat; the VIN → Unit # → plate chain is now the
 reports going forward, with the non-vehicle VIN-vs-serial terminology tester note); SBR/IV = the
 all-reports items only. Spec changelog expected ~2026-07-30 — re-verify then (Chris's spec edit is
 NOT hand-reviewed; confirm the WIP identifier text too).
+
+## Addendum 2026-07-30 — tech-plan reconciliation (PUSHED)
+Source: `tech-plan-2026-07-29/TECH-PLAN-DELTAS.md` + `ChangeList-2026-07-30.md` (engineering plan reconciliation; push executed 2026-07-30, user authorization "Push all three"). Every tech-plan-only expectation is labeled engineering-plan-sourced and VIU-confirm; spec-silent items flagged to Chris (Questions-for-Chris-dev.md Q3).
+- **NEW TU-EXP-09 = C38887** (SV-8654; plan A3/FR-F4 suite-wide export cap — the TU spec page is
+  silent on the cap): over-cap export refused with the too-large message; narrowing re-enables.
+  Section "TU — Exports" (4346).

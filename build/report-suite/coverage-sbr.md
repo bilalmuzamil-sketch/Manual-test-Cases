@@ -537,3 +537,13 @@ C30485 + WIP-EXP-07 C30516 caveat; the VIN → Unit # → plate chain is now the
 reports going forward, with the non-vehicle VIN-vs-serial terminology tester note); SBR/IV = the
 all-reports items only. Spec changelog expected ~2026-07-30 — re-verify then (Chris's spec edit is
 NOT hand-reviewed; confirm the WIP identifier text too).
+
+## Addendum 2026-07-30 — tech-plan reconciliation (PUSHED)
+Source: `tech-plan-2026-07-29/TECH-PLAN-DELTAS.md` + `ChangeList-2026-07-30.md` (engineering plan reconciliation; push executed 2026-07-30, user authorization "Push all three"). Every tech-plan-only expectation is labeled engineering-plan-sourced and VIU-confirm; spec-silent items flagged to Chris (Questions-for-Chris-dev.md Q3).
+- **SBR-STAT-02 C30209 extended** (plan B6.2 deposit handling): precondition added — seed the
+  prepaid-zero-balance invoice via a customer DEPOSIT that fully covers the work (the bug-prone
+  path where a naive balance calc shows "Partially Paid"). Pushed 2026-07-30.
+- **SBR-BADGE-01 C30226** — local note only (watch the deposit-covered prepaid badge), NOT pushed.
+- **NEW SBR-CALC-09 = C38894** (SV-8626, SBR §3 + S9-R2; plan Phase 4 FR-F7 clock-change rebuild):
+  a clock-record edit AFTER invoicing updates Inv. Hrs; billed sell values stay put. Section
+  "SBR — Inv. Hrs & Calculations" (4314). Guards SBC's shared stored values too (kept single, Rule 28).

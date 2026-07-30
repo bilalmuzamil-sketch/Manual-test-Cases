@@ -4,7 +4,14 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-30** (TECH-PLAN RECONCILIATION applied locally — 7 edits + 5 new cases, tally 465, push queue 5 update + 5 add awaiting authorization; see §0 UPDATE 2026-07-30). Prior: **2026-07-29, fourth update** (WAVE-2 PUSH EXECUTED — the 4 WIP VIN-chain
+Last updated: **2026-07-30, second update** (TECH-PLAN PUSH EXECUTED — the ChangeList-2026-07-30 §C
+queue is LIVE under explicit user authorization "Push all three": 5 update_case [WIP-API-01 C30528 /
+SBR-STAT-02 C30209 / PV-CALC-07 C30365 / SBC-API-02 C30191 / IV-EXP-07 C30593] + 5 add_case
+[PV-EXP-11 = C38885 / TU-EXP-09 = C38887 / WIP-CALC-10 = C38890 / IV-DATE-09 = C38892 /
+SBR-CALC-09 = C38894], 10/10 HTTP 200 + re-GET MATCH, 0 deletes, R359 untouched; **suite 465 active
+LIVE under group 4281 == id-map 465/465, 0 blanks**; tech-plan push authorization CONSUMED; audit =
+`reconciliation-2026-07-28/testrail-execution-log-2026-07-28.md` § "TECH-PLAN PUSH 2026-07-30"
+ops 163–172; see §0 UPDATE 2026-07-30-B). Prior earlier same day: TECH-PLAN RECONCILIATION applied locally — 7 edits + 5 new cases, tally 465, push queue 5 update + 5 add awaiting authorization; see §0 UPDATE 2026-07-30. Prior: **2026-07-29, fourth update** (WAVE-2 PUSH EXECUTED — the 4 WIP VIN-chain
 update_case [WIP-COL-05 C30470 / WIP-FLT-03 C30500 / WIP-SORT-03 C30485 / WIP-EXP-07 C30516]
 pushed under explicit user authorization "Push", 4/4 HTTP 200 + re-GET MATCH, live count under
 group 4281 = 460 == id-map, R359 untouched; **suite 460 active, ALL current with Chris's
@@ -39,7 +46,32 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
-**UPDATE 2026-07-30 (LATEST — TECH-PLAN RECONCILIATION APPLIED LOCALLY; NO TestRail writes; read
+**UPDATE 2026-07-30-B (LATEST — TECH-PLAN PUSH EXECUTED; explicit user authorization "Push all
+three" 2026-07-30):** the staged ChangeList-2026-07-30 §C queue is now LIVE in TestRail —
+**5 update_case** (WIP-API-01 C30528 re-run idempotency; SBR-STAT-02 C30209 deposit-seeding
+precondition; PV-CALC-07 C30365 Last-Sale re-anchor on reversal; SBC-API-02 C30191 sort-whitelist
+safety; IV-EXP-07 C30593 title trim 128→83) + **5 add_case** with new C-ids: **PV-EXP-11 = C38885**
+(sec 4335 PV — Exports), **TU-EXP-09 = C38887** (sec 4346 TU — Exports), **WIP-CALC-10 = C38890**
+(sec 4354 WIP — Earned & Remaining), **IV-DATE-09 = C38892** (sec 4368 IV — As-of Date &
+Snapshots), **SBR-CALC-09 = C38894** (sec 4314 SBR — Inv. Hrs & Calculations), all
+custom_atmstatus:3 + custom_automation_type:0. **10/10 HTTP 200 + re-GET verified MATCH, 0
+failures; 0 deletes, 0 section writes, run R359 untouched (458 tests all Untested before AND
+after). Live count under group 4281 = 465 == id-map.** SBR-BADGE-01 C30226 + WIP-FLT-05 C30502 =
+notes-only, NOT pushed (per the ChangeList). Pre-push live snapshots of the 5 update targets:
+`tech-plan-2026-07-29/pre-push-snapshot/` (a desired-vs-live diff confirmed each update changes
+ONLY its ChangeList fields). Executor `tech-plan-2026-07-29/exec_techplan_push_2026-07-30.py`;
+machine result `testrail-execution-result-techplan-2026-07-30.json`; audit log =
+`reconciliation-2026-07-28/testrail-execution-log-2026-07-28.md` § "TECH-PLAN PUSH 2026-07-30"
+(ops 163–172); ChangeList header = EXECUTED. **Reconciled deliverables:** id-map 465/465 C-ids
+(0 blanks); unified import + 6 splits regenerated over 465 (SBC 82 / SBR 110 / PV 68 / TU 59 /
+WIP 77 / IV 69; header byte-identical; hygiene clean — 0 VIU/flag words, 0 internal-id leaks,
+29 API cases in API sections, no dup titles); coverage addenda ×6 appended (tech-plan section).
+Push authorization CONSUMED. Still open: Chris changelog re-diff (SPEC-WATCH 2026-08-04),
+Questions-for-Chris-dev.md Q1–Q3 (drafts, not sent), live VIU pending the QA branch. Honesty note
+(Rule 12): all 12 tech-plan-touched cases remain VIU-Pending — every engineering-plan-sourced
+expectation is labeled VIU-confirm, nothing live-verified this pass.
+
+**PRIOR UPDATE 2026-07-30 (TECH-PLAN RECONCILIATION APPLIED LOCALLY; NO TestRail writes; read
 `tech-plan-2026-07-29/TECH-PLAN-DELTAS.md` + `tech-plan-2026-07-29/ChangeList-2026-07-30.md`
 first):** the engineering tech plan (user upload 2026-07-29; verbatim copy =
 `tech-plan-2026-07-29/TechPlan-Reports-Suite-Full-Implementation.md`) was reconciled against the

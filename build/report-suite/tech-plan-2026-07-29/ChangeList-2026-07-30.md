@@ -1,7 +1,13 @@
 # Report Suite — Tech-Plan Reconciliation Change List (2026-07-30)
 
-> **Status: STAGED — LOCAL ONLY. NOTHING pushed to TestRail.** The push queue below awaits
-> explicit user authorization (Standing Rule 6). Run R359 is never written to.
+> **Status: EXECUTED 2026-07-30 (explicit user authorization "Push all three").** The section-C
+> push queue is LIVE in TestRail: 5 update_case + 5 add_case, 10/10 HTTP 200 + re-GET MATCH,
+> 0 failures; 0 deletes, 0 section writes, run R359 untouched. New C-ids: PV-EXP-11 = C38885,
+> TU-EXP-09 = C38887, WIP-CALC-10 = C38890, IV-DATE-09 = C38892, SBR-CALC-09 = C38894. Live count
+> under group 4281 = 465 == id-map. Audit: `../reconciliation-2026-07-28/
+> testrail-execution-log-2026-07-28.md` (tech-plan push section, ops 163–172); executor
+> `exec_techplan_push_2026-07-30.py`; result `testrail-execution-result-techplan-2026-07-30.json`;
+> pre-push snapshots `pre-push-snapshot/`.
 > Source analysis: `TECH-PLAN-DELTAS.md` (same folder). Backups: `backup/` + MANIFEST.md.
 > TestRail links: https://shopview.testrail.io/index.php?/cases/view/<id-number>.
 

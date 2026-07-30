@@ -295,3 +295,12 @@ C30485 + WIP-EXP-07 C30516 caveat; the VIN → Unit # → plate chain is now the
 reports going forward, with the non-vehicle VIN-vs-serial terminology tester note); SBR/IV = the
 all-reports items only. Spec changelog expected ~2026-07-30 — re-verify then (Chris's spec edit is
 NOT hand-reviewed; confirm the WIP identifier text too).
+
+## Addendum 2026-07-30 — tech-plan reconciliation (PUSHED)
+Source: `tech-plan-2026-07-29/TECH-PLAN-DELTAS.md` + `ChangeList-2026-07-30.md` (engineering plan reconciliation; push executed 2026-07-30, user authorization "Push all three"). Every tech-plan-only expectation is labeled engineering-plan-sourced and VIU-confirm; spec-silent items flagged to Chris (Questions-for-Chris-dev.md Q3).
+- **IV-EXP-07 C30593 title trimmed** — dropped "(exact cap value pending owner confirmation)"; the
+  plan records 10,000 as the suite-wide cap locked by Chris 2026-07-21 (still VIU-confirm live).
+  Pushed 2026-07-30.
+- **NEW IV-DATE-09 = C38892** (SV-8678, S11-R2; plan B4.1 denormalized names): a recorded day keeps
+  its category/vendor names after a rename or delete — history unchanged, live view shows the new
+  name. Section "IV — As-of Date & Snapshots" (4368).

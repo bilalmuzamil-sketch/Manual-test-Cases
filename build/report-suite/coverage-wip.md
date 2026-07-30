@@ -307,3 +307,13 @@ C30485 + WIP-EXP-07 C30516 caveat; the VIN → Unit # → plate chain is now the
 reports going forward, with the non-vehicle VIN-vs-serial terminology tester note); SBR/IV = the
 all-reports items only. Spec changelog expected ~2026-07-30 — re-verify then (Chris's spec edit is
 NOT hand-reviewed; confirm the WIP identifier text too).
+
+## Addendum 2026-07-30 — tech-plan reconciliation (PUSHED)
+Source: `tech-plan-2026-07-29/TECH-PLAN-DELTAS.md` + `ChangeList-2026-07-30.md` (engineering plan reconciliation; push executed 2026-07-30, user authorization "Push all three"). Every tech-plan-only expectation is labeled engineering-plan-sourced and VIU-confirm; spec-silent items flagged to Chris (Questions-for-Chris-dev.md Q3).
+- **WIP-API-01 C30528 extended** (plan B1.2 idempotent re-run — WIP spec Story 11 silent; IV's
+  S11-R3 twin has it): re-running the nightly capture for the same date REPLACES that date's rows,
+  never duplicates. Pushed 2026-07-30.
+- **WIP-FLT-05 C30502** — local seeding note only (WO "created" date = its START date), NOT pushed.
+- **NEW WIP-CALC-10 = C38890** (SV-8660, Story 4 S4-R15 — spec silent on running clocks; plan B1.2
+  open-clock policy): a technician STILL clocked in counts toward Labor Earned, capped at the quote
+  (regression guard — the old report dropped open clock records). Section "WIP — Earned & Remaining" (4354).

@@ -114,7 +114,7 @@ SBR-CALC-05,C30233,"Margin % renders to one decimal with a % sign, shows an em d
 SBR-CALC-06,C30234,"Money columns use the standardized labels and definitions: Subtotal is pre-tax Labor plus Parts Invoiced, Margin is the two margins combined",SBR — Inv. Hrs & Calculations
 SBR-CALC-07,C30235,"Negative dollar values render in accounting parentheses on screen, in money columns only",SBR — Inv. Hrs & Calculations
 SBR-CALC-08,C30236,Half-up rounding at each precision; totals may differ by one last-decimal unit,SBR — Inv. Hrs & Calculations
-SBR-CALC-09,,A clock-record edit after invoicing updates Inv. Hrs; billed money stays put,SBR — Inv. Hrs & Calculations
+SBR-CALC-09,C38894,A clock-record edit after invoicing updates Inv. Hrs; billed money stays put,SBR — Inv. Hrs & Calculations
 SBR-TOT-01,C30237,"Subtotal: rightmost, pinned right, bold everywhere; header row sticky on scroll",SBR — Subtotal & Totals
 SBR-TOT-02,C30238,"Desktop Totals row merges the four identifier columns, aggregates every metric over the full filtered set, and sticks to the bottom",SBR — Subtotal & Totals
 SBR-TOT-03,C30239,Mobile shows a simplified external totals bar below the table with Totals left and the grand Subtotal right,SBR — Subtotal & Totals
@@ -251,7 +251,7 @@ PV-EXP-06,C30380,CSV: named velocity-report.csv with full untruncated text value
 PV-EXP-07,C30381,"Null values render as an em-dash in both exports, and Last Sale renders as 'N days' in the PDF",PV — Exports
 PV-EXP-08,C30382,"PDF export alignment: Type centered, text left, numeric and money right",PV — Exports
 PV-EXP-10,C30384,Export toasts: exact success texts; server or fallback error text on failure,PV — Exports
-PV-EXP-11,,An over-cap Parts Velocity export is refused with the too-large message,PV — Exports
+PV-EXP-11,C38885,An over-cap Parts Velocity export is refused with the too-large message,PV — Exports
 PV-VIS-01,C30385,The report uses the standard two-tone layout: white card surfaces on a soft blue-grey backdrop with an edge-to-edge table,PV — Visual Conformance
 PV-VIS-02,C30386,"Toolbar and table detail styling: paddings, white header with 1px top border, white body cells, 2rem edge padding",PV — Visual Conformance
 PV-VIS-03,C30387,Dark mode is supported and the grey info icon keeps at least 3:1 contrast in both modes,PV — Visual Conformance
@@ -307,7 +307,7 @@ TU-EXP-05,C30438,"Downloads keep the on-screen column order and number formats b
 TU-EXP-06,C30439,"The shop logo shows at the top of both PDF views when set, no logo shows when unset, and the CSV never includes it",TU — Exports
 TU-EXP-07,C30440,Choosing a download with no technician selected is a silent no-op - no file and no message,TU — Exports
 TU-EXP-08,C30441,A starting download shows the Download started notification and a failed download shows Failed to download report,TU — Exports
-TU-EXP-09,,An over-cap Technician Utilization export is refused with the too-large message,TU — Exports
+TU-EXP-09,C38887,An over-cap Technician Utilization export is refused with the too-large message,TU — Exports
 TU-LOC-01,C30442,The Location filter is the rightmost multi-select; All Locations = select-all,TU — Location Filter
 TU-LOC-02,C30443,Location changes reload with hours pooled into one row per technician,TU — Location Filter
 TU-LOC-03,C30444,The saved location selection restores defensively - inaccessible locations are dropped and an empty remainder falls back to the active location,TU — Location Filter
@@ -346,7 +346,7 @@ WIP-CALC-06,C30479,"Earned = Labor Earned + Parts Earned, Remaining = Labor Rema
 WIP-CALC-07,C30480,Lines that are not yet approved contribute nothing to any money figure,WIP — Earned & Remaining
 WIP-CALC-08,C30481,"Inv. Hrs shows quoted minus worked labor hours as a signed one-decimal number, colored green/red, with ""0.0"" unsigned in the default color",WIP — Earned & Remaining
 WIP-CALC-09,C30482,"An open estimate with no approved work shows ""$0.00"" in every money column, including Total",WIP — Earned & Remaining
-WIP-CALC-10,,"A technician still clocked in counts toward Labor Earned, capped at the quote",WIP — Earned & Remaining
+WIP-CALC-10,C38890,"A technician still clocked in counts toward Labor Earned, capped at the quote",WIP — Earned & Remaining
 WIP-SORT-01,C30483,The initial sort is Days Open with the longest-open work order first,WIP — Sorting
 WIP-SORT-02,C30484,"Clicking a header sorts ascending, clicking again toggles descending, with no third cleared state and one sort column at a time",WIP — Sorting
 WIP-SORT-03,C30485,Columns sort by underlying values; Asset sorts by the identifier shown,WIP — Sorting
@@ -424,7 +424,7 @@ IV-DATE-04,C30564,For a past date the report replays the closest recorded day on
 IV-DATE-05,C30565,"An ""As of"" indicator names the day actually shown when it is earlier than the date asked for, and is hidden when they match",IV — As-of Date & Snapshots
 IV-DATE-06,C30566,"A Custom range lets the user pick start and end dates, values as of the picked end date, is capped at today, and reloads on change",IV — As-of Date & Snapshots
 IV-DATE-08,C30568,"History accrues forward only — a date before the first nightly recording cannot be reconstructed — expected, do not file",IV — As-of Date & Snapshots
-IV-DATE-09,,A recorded day keeps its category and vendor names after a rename or delete,IV — As-of Date & Snapshots
+IV-DATE-09,C38892,A recorded day keeps its category and vendor names after a rename or delete,IV — As-of Date & Snapshots
 IV-FLT-01,C30569,The Category and Vendor filters are multi-selects that reload the report to only the matching parts,IV — Filters & Part Search
 IV-FLT-02,C30570,"Category, Vendor and part search are server-side; each change returns page 1",IV — Filters & Part Search
 IV-FLT-03,C30571,"With no category or vendor selected all parts show, and an empty part search applies no narrowing",IV — Filters & Part Search
