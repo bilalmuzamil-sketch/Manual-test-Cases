@@ -85,6 +85,24 @@ separate time ranges (a split shift), or just one range per day?
 
 ## Question NQ-5 — May a technician change other technicians' shifts?
 
+> **⚠️ NOW NEEDS A DEV ANSWER — RE-ROUTED FROM THE PO, 2026-07-31.** This question was
+> also on the PO sheet (`PO-Questions-Branko-Schedule-TechPlan_2026-07-30`) as its
+> Question 5. It has been **REMOVED from that PO sheet**: asked the sibling
+> backend-scope question, Branko replied "**I'm not sure if this question is for me
+> Bilal.**" — and he is right, this is a write-enforcement/scoping question, not a
+> product decision. The current product spec (re-verified against the **live Confluence
+> v23 body, 2026-07-31**) rules out an own-only restriction on **VIEWING** (§14.3) and is
+> **completely silent on WRITING**, so there is no product ruling to find. The engineering
+> plan is the only artefact that describes the behaviour (`ManageShiftVoter` own-data
+> scoping, "cross-tech own-data violation → 403").
+>
+> **So: this one is for ENGINEERING / the QA lead, not Branko.** What we need from dev:
+> (a) does the shipped build enforce own-data scoping on shift **writes**, (b) for exactly
+> which users/roles (what sets `isRestrictedToOwnData()`), and (c) is that intended for V1
+> — because if it is, it needs a permission test case and it also contradicts nothing in
+> the spec but is invisible in it. **Do NOT re-ask Branko.**
+> *Sources: `branko-answers-2026-07-31/answers-ingested.md` Q7 + `spec-current-2026-07-31/SPEC-DIFF.md` §4; ties to Rule 15 (spec silent stays silent) and Rule 7 (plain wording).*
+
 **What happens now:** Everyone who can see the schedule sees ALL technicians'
 shifts. For making changes, the engineering plan adds a restriction for certain
 technician-type users: if their account is set to "own data only", they can
@@ -112,7 +130,17 @@ setting) be able to change only their OWN shifts, while seeing everyone's?
 | NQ-2 | SCH-CONF-01 (C30023, /cases/view/30023), SCH-CONF-05 (C30027, /cases/view/30027) | Tech plan D4: double-booking = FE soft warning, "not a hard 'conflict' per the locked definition"; BE detector = outside-window/closure/non-working only. vs SV-8697 §4.11 "Double-booked" conflict type + our pill-count expectations. | A → cases stand. B → rewrite SCH-CONF-01 expected #3/#4 (icon yes, pill no) and adjust SCH-CONF-05's count basis. |
 | NQ-3 | SCH-HRS-01 (C38846, /cases/view/38846), SCH-HRS-02 (C38847, /cases/view/38847) | Tech plan Phase 2 (`ScheduleSettings.vue` in Administration + closures CRUD + View-Options link) vs design/SV-8699 Edit-Location toggle. Plan itself says the design's Hours Settings file was an empty SHELL. | A → re-home SCH-HRS-01/02 to the Schedule Settings page + author a closures-CRUD case. B → cases stand; closures UI location TBD. |
 | NQ-4 | SCH-HRS-05 (C38850, /cases/view/38850), SCH-HRS-06 (C38851, /cases/view/38851), SCH-HRS-07 (C38852, /cases/view/38852) | Tech plan §3 `staff_working_hours` = one `start_minute/end_minute` per weekday, unique (staff, workplace, day) — no split ranges. vs SV-8699 verbatim "Add hours appends more to support split shifts". | A → retire/park SCH-HRS-05..07 (pending authorization). B → cases stand and the build plan's model must change. |
-| NQ-5 | SCH-PERM-09 (C30082, /cases/view/30082) context; a new negative case would be authored only on answer A | Tech plan NFR-003/§4: `ManageShiftVoter` own-data scoping for `isRestrictedToOwnData()` users; error "cross-tech own-data violation → 403". Spec §14 is silent on WRITE scoping (SCH-PERM-09 covers VIEW only — no contradiction, but unconfirmed). | A → author the own-data write-negative (UI + API halves). B → no case; confirm no 403 surprises at VIU. |
+| NQ-5 | SCH-PERM-09 (C30082, /cases/view/30082) context; a new negative case would be authored only on answer A | Tech plan NFR-003/§4: `ManageShiftVoter` own-data scoping for `isRestrictedToOwnData()` users; error "cross-tech own-data violation → 403". Spec §14 is silent on WRITE scoping (SCH-PERM-09 covers VIEW only — no contradiction, but unconfirmed); **re-verified silent against the live Confluence v23 body 2026-07-31**. | A → author the own-data write-negative (UI + API halves). B → no case; confirm no 403 surprises at VIU. **⚠️ OWNER CHANGED 2026-07-31: RE-ROUTED FROM THE PO TO ENGINEERING/DEV** — removed from `PO-Questions-Branko-Schedule-TechPlan_2026-07-30` (was its Q5) because Branko declined the sibling backend-scope question ("I'm not sure if this question is for me Bilal."). Do NOT re-ask him. |
+
+### Status of these five questions as of 2026-07-31 (after Branko's answers + the Confluence v23 spec pull)
+
+| Q# | Owner now | Status | Note |
+|---|---|---|---|
+| NQ-1 | PO (Branko) | **REFRAMED to a confirmation** on the PO sheet (its Q1) | Spec §4.5 (v22, still in v23) now says closures are NOT skipped = our cases are right. Two counter-artefacts: spec §12 still says closures block the spread (spec-internal contradiction), and the tech plan builds real skipping. |
+| NQ-2 | PO (Branko) | **UNCHANGED — still a genuine open choice** (PO sheet Q4) | v23 did not touch §4.11's "Double-booked" conflict type; the plan still calls it a soft FE warning. |
+| NQ-3 | PO (Branko) | **REFRAMED to a confirmation** (PO sheet Q2) | Spec §4.2 (v19) says hours live in **Edit Staff Member** + **Edit Location** = our cases are right; the plan's `ScheduleSettings.vue` conflicts. Closure-day location is still spec-silent → asked as a sub-question. |
+| NQ-4 | PO (Branko) | **REFRAMED to a confirmation** (PO sheet Q3) | Spec §4.2 (v19) explicitly says "'Add hours' appends more to **support split shifts**" = our cases are right; the plan's one-range-per-weekday model conflicts. |
+| NQ-5 | **ENGINEERING / dev** | **RE-ROUTED off the PO sheet** (see the banner on the question above) | Spec silent on write scoping in v23; not a product decision. |
 
 Related updates recorded the same day in `PO-Questions-Branko-Schedule-2026-07-27.md`
 (QA-internal appendix): the tech plan informs pending Q1 (events→capacity: plan builds

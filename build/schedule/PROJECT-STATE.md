@@ -7,7 +7,117 @@
 
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-31)
 
-### 0.0-BRANKO-ANSWERS BRANKO'S ANSWERS INGESTED + APPLIED + PUSHED (2026-07-31, LATEST — read this first)
+### 0.0-SPEC-V23 `requirements.md` PROMOTED TO CONFLUENCE v23 + PO SHEET REVISED (2026-07-31, LATEST — read this first)
+
+**LOCAL DOC WORK ONLY — 0 case edits, 0 TestRail writes, 0 result writes. Tally UNCHANGED:
+165 ACTIVE, all VIU-Pending.**
+
+Closes two items that were left open by §0.0-BRANKO-ANSWERS (its OPEN items 10 and 6).
+
+**1. `requirements.md` is now at Confluence version 23 — it is no longer stale.**
+It was the v18 text; it is now the v23 text. **Read `requirements.md` again as the current
+spec** (the "read `spec-current-2026-07-31/` instead" instruction in §0.0-BRANKO-ANSWERS is
+**superseded**; that folder remains the verbatim source + version-attributed diff).
+
+- **Spec-currency header added at the top of the file:** source page id 713031682, Confluence
+  **version 23**, upstream last-updated **2026-07-30T10:40:32Z by Branko Cicovic**, and our
+  ingest date **2026-07-31**.
+- **⚠️ THE STALENESS GOTCHA IS NOW RECORDED IN THE FILE ITSELF** — the page **BODY's** own
+  `Version` field has read **1.0 / "July 15, 2026"** since Confluence v1 because Branko never
+  bumps it. **Only the Confluence version number is a reliable currency marker.** That is
+  exactly how we drifted 5 versions behind: we re-read the body header, saw "1.0", and
+  concluded "unchanged". The gotcha is called out in the new header AND again beside the body
+  header table.
+- **All 9 substantive deltas folded in, each tagged inline `[v19]`…`[v23]`:** §4.2 Hours
+  settings block · §4.4 default blue + per-shift custom colour · §4.5 closures/holidays NOT
+  skipped in V1 · §4.6 series-banner breaks removed · §4.8 now-line "over the grid" · §4.9
+  **Reassign DELETED (v23)** · §4.10/§7 left-click menu · §4.11 events not conflict-checked ·
+  §4.12 capacity includes event time · §11 Dark theme · header Design + Epic rows.
+- **Nothing silently dropped** — new **"APPENDIX — Removed upstream (v19–v23)"** keeps all
+  **8** deleted/replaced sentences **verbatim** (R1–R8) with what replaced them and the
+  introducing version, plus the additive-only list. Two source typos ("not skipped in V1..",
+  "'New work order'..") are reproduced on purpose — do not "fix" them in case wording.
+- **Branko's 6 answers folded in as `[PO 2026-07-31]` notes**, each with source + date on the
+  record (Rule 32): events consume capacity · no Reassign button · no week export in V1 ·
+  left-click only, menu = Create event + New work order · default hours 7:00 AM–7:00 PM · VIN
+  always visible on hover.
+- **Open-questions section refreshed:** OQ-1/OQ-2 (epic = SV-8685) / OQ-4 (design exists) /
+  OQ-6 (tooltip VIN) **RESOLVED**; **OQ-3 (QA branch/env) still open**. Two **spec-internal
+  contradictions flagged, not resolved** (Rule 15): **X1** §4.5 "closures not skipped in V1"
+  vs §12 "closures block the spread step" — both live in v23; **X2** §9 vs §4.13 on tooltip
+  VIN (resolved by Branko, §9 text still needs an upstream tidy). Six **spec-silent** items
+  recorded as S1–S6, never assumed either way.
+- **New find this pass: contradiction X1.** §12 Edge cases still says shop closures "block the
+  spread step from placing shifts on those days", directly contradicting §4.5's "not skipped in
+  V1". Branko changed §4.5 in v22 and never updated §12. This makes the closures confirmation
+  question **more** valuable, not less — it is now a spec-vs-spec conflict, not just
+  spec-vs-plan.
+
+**2. The unsent PO sheet is revised and READY TO SEND — `PO-Questions-Branko-Schedule-TechPlan_2026-07-30.md`/`.xlsx`, now 8 questions.**
+
+| # | Reader-facing question | Kind |
+|---|---|---|
+| 1 | Shop closure days: does a multi-day job skip them? | **confirm** (was NQ-1) |
+| 2 | Where do the shop's and technicians' working hours live? | **confirm** (was NQ-3) |
+| 3 | Can a technician have a split working day (two time ranges)? | **confirm** (was NQ-4) |
+| 4 | Does the problem counter include double-bookings? | **open choice** (was NQ-2, unchanged) |
+| 5 | Do meeting hours also count toward the "OT" tag and the hover breakdown? | **NEW** (A1) |
+| 6 | Can a meeting be created for a whole department instead of one technician? | **NEW** (A2) |
+| 7 | Can a meeting cover a whole day, and how should it show? | **NEW** (A3) |
+| 8 | If a user hides meetings from the view, do those hours stop counting? | **NEW** (A7) |
+
+- **WITHDRAWN — 2 now-answered re-asks removed from the reader-facing sheet** (its old Q6
+  events→capacity and Q7 modal Reassign). They are kept in the **QA-only** section marked
+  **ANSWERED 2026-07-31** with Branko's **verbatim words**, so they can never be re-asked.
+  *(We have already embarrassed ourselves once by asking a question a source had answered.)*
+- **REFRAMED — Q1/Q2/Q3 became confirmations**, because the live v23 spec now sides with our
+  cases on all three. Each states in plain words what the current write-up says and asks him to
+  confirm it stands (and that the engineering build plan should change). A confirmation is
+  cheap and protects us.
+- **RE-ROUTED — NQ-5 (own-data write scoping) REMOVED from the PO sheet.** Branko replied to
+  the sibling backend-scope question "**I'm not sure if this question is for me Bilal.**" — and
+  he is right, it is not a product question. It is logged as needing a **DEV** answer in
+  `tech-plan-2026-07-29/Questions-for-Branko-dev.md` (banner on the NQ-5 question + owner
+  change in its QA table + a new per-question status table). Spec §14.3 rules out own-only
+  **viewing** and is **silent on writing** — re-verified against the live v23 body.
+- **Format kept 1:1** (Rule 16): same two-sheet workbook — `Questions for PO` (A1 title, blank
+  row 2, header row 3, freeze A4, cols # / Topic / What happens now / The question / Options /
+  **blank "Your answer"**, widths 4/24/48/42/46/20) + `QA Internal Mapping` (red QA-only
+  banner, freeze A4, widths 4/34/52/60). Verified column-by-column against
+  `PO-Questions-Branko-Schedule-2026-07-27.xlsx`.
+- **Generator (new, reusable):** `gen_po_questions_techplan.py` — regenerates the `.xlsx` and
+  **fails the build** if the reader-facing surfaces contain jargon. Its `scan_jargon()` checks
+  22 banned patterns (C-ids, internal case IDs, SV-#### keys, `§`, section numbers, S#-R#
+  anchors, PRD/spec/story/Figma/TestRail/Jira/API/HTTP/VIU/endpoint/epic/Confluence, "Rule N",
+  "test case") across all 33 reader-facing surfaces. **PASSED**, and the same scanner was run
+  over the `.md` reader-facing region (lines 22–139) — **PASSED**.
+
+**⚠️ STILL AWAITING YOUR AUTHORIZATION (unchanged): the SCH-EXP-01 (C38853) Week Export
+retire.** Branko descoped Week Export ("nothing about this in the PRD, not in the future
+requirements") and the Rule-28 audit rates it CUT, but **nothing has been deleted**. Retiring it
+is still the same 3 linked ops: `delete_case` C38853 + a decision on the then-empty section
+**5406 "Week Export and Printing"** + a **run-357 resync** (Rule 34).
+
+**⚠️ Tell Branko/dev: Jira SV-8695 is now STALE versus spec v23.** The story text still lists a
+modal **Reassign** action, but Confluence **v23 (2026-07-30)** deleted "and Reassign to another
+technician" from §4.9 and Branko answered "**B - No button**". Our cases are already correct
+(SCH-MODAL-08 = C30015 "Delete only"); **SV-8695 is the artefact that needs correcting** — we do
+not edit Jira ourselves.
+
+**⚠️ Minor id-map gap noticed, NOT fixed this pass (not my files):** `SCH-EXP-01` is **absent
+from `testrail-id-map.csv`** because its local case body is flagged `Retired`, yet the TestRail
+case **C38853 still exists** (the retire is held). Quote **C38853** from
+`quality-audit-2026-07-31/testrail-execution-log-2026-07-31.md` / the manifest until the map is
+reconciled. Its local `viu_status` string also reads "user-authorized retire", which does not
+match the execution log's "HELD for explicit user authorization" — worth a one-line correction
+when the case files are next touched.
+
+**Files changed this pass:** `requirements.md` (v18 → v23) ·
+`PO-Questions-Branko-Schedule-TechPlan_2026-07-30.md` + `.xlsx` (revised) ·
+`gen_po_questions_techplan.py` (new) · `tech-plan-2026-07-29/Questions-for-Branko-dev.md` (NQ-5
+re-route) · this file.
+
+### 0.0-BRANKO-ANSWERS BRANKO'S ANSWERS INGESTED + APPLIED + PUSHED (2026-07-31 — see §0.0-SPEC-V23 for what changed after it)
 
 **Branko answered the 2026-07-27 question sheet. Both long-HELD items are settled, the local spec
 was 5 Confluence versions stale, 24 cases were edited, and 16 `update_case` writes are live in
@@ -21,12 +131,14 @@ answers) → `DELTAS.md` (consequences, §10 = what got pushed, §11 = the new q
 **SPEC WAS STALE — now current.** `requirements.md` corresponded to Confluence **version 18**
 (2026-07-22); live is **version 23** (2026-07-30, Branko). **We were 5 versions behind.** The live
 body + a per-version attributed diff are in `spec-current-2026-07-31/`
-(`Schedule-spec-current.md`, `SPEC-DIFF.md`). ⚠️ **`requirements.md` itself is still the v18 text** —
-the 2026-07-27 epic pass and the 2026-07-30 tech-plan pass edited CASES from Jira/the plan but never
-re-ingested the page, which is exactly why it lagged. Nine body deltas found; **seven were already
-reflected in our cases**; the two that were not are the two HELD items. ⚠️ **Read
-`spec-current-2026-07-31/` (not `requirements.md`) as the current spec** until requirements.md is
-re-ingested. **The page-body "Version" field always reads 1.0 — use the Confluence version number.**
+(`Schedule-spec-current.md`, `SPEC-DIFF.md`). ~~⚠️ `requirements.md` itself is still the v18 text~~ —
+**SUPERSEDED 2026-07-31 by §0.0-SPEC-V23: `requirements.md` is NOW AT v23.** (Why it had lagged: the
+2026-07-27 epic pass and the 2026-07-30 tech-plan pass edited CASES from Jira/the plan but never
+re-ingested the page.) Nine body deltas found; **seven were already reflected in our cases**; the two
+that were not are the two HELD items. ~~⚠️ Read `spec-current-2026-07-31/` (not `requirements.md`) as
+the current spec~~ — **SUPERSEDED: read `requirements.md` (now v23); `spec-current-2026-07-31/` remains
+the verbatim source + version-attributed diff.** **The page-body "Version" field always reads 1.0 —
+use the Confluence version number.**
 
 **His answers (7 asked, 6 answered, 1 declined):**
 | Q | Topic | Answer |
@@ -91,20 +203,23 @@ SCH-SER-02 117→72, SCH-CAP-01 125→80, SCH-MODAL-08 82→60) — **title-trim
    SCH-REAS-06 (C38855) passes either way.
 5. **A6 — migration heads-up for product:** now that events count, ~9,684 migrated legacy events will
    raise capacity bars at cutover. Expected, not a bug.
-6. **NQ-1..NQ-5 still unanswered** — `PO-Questions-Branko-Schedule-TechPlan_2026-07-30` looks unsent.
-   Its Q6/Q7 were re-asks of the 07-27 Q1/Q2 and are now answered, so **send it trimmed to
-   NQ-1..NQ-5, plus A1/A2/A3.** The live spec now sides with our existing cases on **NQ-1** (closures
-   NOT skipped in V1), **NQ-3** (hours live in Edit Staff Member + Edit Location) and **NQ-4**
-   ("Add hours" explicitly "supports split shifts") — so reframe those three as "please confirm the
-   PRD stands and the build plan should change". NQ-2 is genuinely split; NQ-5 the spec is silent on.
+6. **NQ-1..NQ-5 still unanswered** — ✅ **DONE 2026-07-31 (§0.0-SPEC-V23): the sheet is REVISED and
+   READY TO SEND with 8 questions** — NQ-1/NQ-3/NQ-4 reframed as confirmations (the live v23 spec
+   sides with our cases on all three), NQ-2 kept as a genuine open choice, A1/A2/A3/A7 added, the 2
+   now-answered re-asks (old Q6/Q7) withdrawn to the QA-only section with Branko's verbatim words, and
+   **NQ-5 re-routed to engineering/dev** (Branko: "I'm not sure if this question is for me Bilal.").
+   Remaining action: **SEND IT.**
 7. **Doc hygiene for Branko:** live v23 **§9 still** ties the tooltip VIN to the 'VIN Number' toggle,
    contradicting §4.13 and his own Q6 answer.
 8. **Latent import defect (needs its own authorized write):** `SCH-HRS-04` precondition 1 carries a
    bare `(SCH-HRS-01/02)`; `clean()` strips only the ID and leaves a stray `(/02)` in the pushed
    text. Harden `clean()` in `gen_import.py` to drop the whole parenthetical.
 9. **75 over-80-character titles** (was 79) — still needs its own authorized pass.
-10. **`requirements.md` re-ingest to v23** — not done this pass; `spec-current-2026-07-31/` is the
-    current-spec reference in the meantime.
+10. **`requirements.md` re-ingest to v23** — ✅ **DONE 2026-07-31 (§0.0-SPEC-V23).** `requirements.md`
+    is now the v23 text with a spec-currency header, the body-"Version 1.0" staleness gotcha recorded,
+    all 9 deltas tagged inline, a "Removed upstream (v19–v23)" appendix (R1–R8 verbatim), Branko's
+    answers as `[PO 2026-07-31]` notes, and 2 spec-internal contradictions + 6 spec-silent items
+    flagged. Read `requirements.md` as the current spec again.
 11. **Live VIU still pending the QA branch (OQ-3)** and the Epic key is known (SV-8685). **Rule 12:
     PO-, spec-, design- and tech-plan-pinned ≠ VIU-Verified.**
 
@@ -561,7 +676,13 @@ feature-flag/settings status = ⚠️ NOT AVAILABLE — ask the user at VIU.**
 ## 0.5 What is blocking / awaiting
 
 Onboarding + authoring are done; remaining items:
-- **⚠️ Epic / Jira key (OQ-2)** — ASK THE USER when VIU begins.
+- ⚠️ **This §0.5 block is HISTORICAL (2026-07-21 onboarding view). The current blocking list
+  is §0.0-SPEC-V23 + §0.0-BRANKO-ANSWERS "OPEN AFTER THIS PASS".** Since it was written:
+  **OQ-2 is RESOLVED (Epic = SV-8685)**, **OQ-4 is RESOLVED (a design exists — the Claude
+  prototype, per Branko Q0)**, and `requirements.md` is at **Confluence v23**. Only **OQ-3
+  (QA branch / env + flag/settings status)** is genuinely still open, plus the held
+  SCH-EXP-01 (C38853) retire authorization and sending the revised PO sheet.
+- **⚠️ Epic / Jira key (OQ-2)** — ~~ASK THE USER when VIU begins~~ **RESOLVED = SV-8685.**
 - **⚠️ QA branch / env + feature-flag/settings status (OQ-3)** — ASK THE USER; VIU +
   TestRail push wait on this.
 - **Figma/designs (OQ-4)** — NONE at the moment (user-confirmed). If tighter
@@ -671,8 +792,19 @@ role-based. No API endpoints appear in the spec.
 
 ## 3. Deliverables index (this folder: `build/schedule/`)
 
-- `requirements.md` — COMPLETE structured spec (§1–§15) + onboarding metadata + open
-  questions (PO resolved = Branko; Epic key + QA branch = ask at VIU; no designs).
+- `requirements.md` — COMPLETE structured spec (§1–§15) **at Confluence version 23**
+  (promoted from v18 on 2026-07-31; spec-currency header + the body-"Version 1.0"
+  staleness gotcha + inline `[v19]`…`[v23]` delta tags + "Removed upstream (v19–v23)"
+  appendix + Branko's `[PO 2026-07-31]` notes) + onboarding metadata + refreshed open
+  questions (PO = Branko Cicovic; Epic = SV-8685; QA branch/env = still ask; designs
+  exist), 2 flagged spec-internal contradictions (X1/X2) and 6 spec-silent items (S1–S6).
+- `spec-current-2026-07-31/Schedule-spec-current.md` + `SPEC-DIFF.md` — the verbatim live
+  v23 Confluence body + the per-version-attributed v18→v23 diff (evidence for the above).
+- `PO-Questions-Branko-Schedule-TechPlan_2026-07-30.md`/`.xlsx` — **revised 2026-07-31,
+  READY TO SEND: 8 questions** (3 confirmations + 1 open choice + 4 new spec-silent), 2
+  now-answered re-asks withdrawn to the QA-only section with Branko's verbatim words, NQ-5
+  re-routed to dev. Generated by `gen_po_questions_techplan.py`, which fails the build on
+  reader-facing jargon.
 - `cases/cases-A..F-*.json` — **166 authored cases / 26 sections** (SPEC-ONLY,
   2026-07-21), IDs `SCH-<AREA>-NN`, all `VIU-Pending`.
 - `coverage-matrix.md` — every spec §1–§14 requirement → case IDs; §C explicit
