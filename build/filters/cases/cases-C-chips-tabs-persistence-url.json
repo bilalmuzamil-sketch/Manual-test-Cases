@@ -653,7 +653,7 @@
    "3. Report tabs likewise keep separate filter choices, each remembered and restored on its own tab."
   ],
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D20",
-  "spec_ref": "Filters (Epic key TBD) (spec v1.6 S10-R4; §4 Key Decisions -> \"Parts and Reports selections are scoped to their view/tab and persist there\"); Branko answers 2026-07-31 Q5 exception 1 (filters do not carry across Parts views or Report tabs); tech plan 2026-07-29 D20",
+  "spec_ref": "Filters (Epic key TBD) (spec v1.6 S10-R4; §4 \"Parts and Reports selections are scoped to their view/tab and persist there\"); Branko answers 2026-07-31 Q5 exception 1; tech plan 2026-07-29 D20",
   "viu_status": "VIU-Pending",
   "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): state is scoped per view AND per tab, not per route (saved under a per-view key). Applies once the Parts/Reports rollout ships - hold until then. TRACEABILITY UPGRADE 2026-07-31: the expectation is no longer sourced from an engineering decision ID alone - Branko's Q5 exception 1 (\"filters don't carry across Parts views or Report tabs; each view keeps its own set\") and spec v1.6 S10-R4 + §4 Key Decisions now say the same thing, so PO and spec agree (Rule 32(i) - duplication raises confidence). No behaviour change. This case is the SINGLE home of per-view/per-tab scoping - FLT-PARTS-12 deliberately does not duplicate it.",
   "api_related": false
