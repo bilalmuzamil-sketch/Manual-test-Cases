@@ -29,6 +29,22 @@ Branko Cicovic**; pulled live 2026-07-31, verbatim body in
 - **TWO NEW items added — Q8 (sorting scope) and Q9 (`S13-R23` searchable-field list)**, see
   the end of this file.
 
+**⚠️ SECOND UPDATE 2026-07-31 — Branko's 2026-07-27 answers ingested** (source:
+`../branko-answers-2026-07-31/answers-ingested.md` + `DELTAS.md`, from
+`../PO-Questions-Branko-PartsReports-2026-07-27`). Net effect on THIS file:
+
+- **The page-search / pop-up-search OWNERSHIP item — ✅ ANSWERED, CLOSED. Never re-ask it.**
+  See the "ANSWERED" block replacing the old ruling note at the bottom of this file for his
+  verbatim words. This is the answer the user's 2026-07-31 hold ruling was waiting on.
+- **TWO MORE new items — Q10 (page toolbar search box still in scope?) and Q11 (six filter
+  buttons never shown opened)** — see the end of this file. They are the only two flags from
+  his answers that cannot be resolved by inference.
+- **Q8 (sorting) SHARPENED** with two evidenced sub-points + a RETRACTION — see the update
+  block inside Q8.
+- Both new items are now **Questions 7 and 8 of the reader-facing sheet**, which is at **8
+  questions total**. Q1–Q6 of that sheet were NOT renumbered. **No case edits, no id-map /
+  import writes, no TestRail writes** in this pass.
+
 The reader-facing sheet was revised the same day:
 **`../PO-Questions-Branko-Filters-TechPlan_2026-07-30.md`/`.xlsx` (revised 2026-07-31)** —
 6 reader-facing questions, renumbered; the 3 withdrawals are recorded (with the verbatim
@@ -280,6 +296,29 @@ queue `../design-2026-07-31/PENDING-FIGMA-FETCH.md` still OPEN) — the panel is
 from its own text/layer names, not from a picture. Source:
 `../design-2026-07-31/DESIGN-NOTES.md` §5.1.
 
+**⚠️ SHARPENED 2026-07-31 — new design evidence** (`../design-2026-07-31/DESIGN-NOTES.md`
+commit `174b9d1`, 7 boards read in full via the layer-tree endpoint). The reader-facing
+question now carries **two precise sub-points**, and one earlier claim is **retracted**:
+
+- **RETRACTION — say this plainly: our earlier read of sorting steps 1–2 was WRONG and is
+  WITHDRAWN.** There is **no sort control of any kind** on step 1 (`11985:9686`) or step 2
+  (`11985:10428`). The earlier *"sort arrow on the Status heading / sort button in the
+  toolbar"* reading does not exist on those boards. **The sort entry point FIRST appears on
+  step 3** (`11985:11259`), as a **Switch-vertical (up/down arrows) icon** in the bar. Step 2
+  adds only the field-picker menu listing *"Status"* and *"WO Number"*.
+- **Sub-point (1) — is two the maximum?** *"Add Sort"* (plus icon) is present on **step 3**
+  (one sort row) but **ABSENT on step 4** (`11985:13334`, two stacked rows), while the
+  panel-level *"Delete sort"* (trash icon) remains. Either a deliberate **2-sort cap** or an
+  unfinished board — unresolvable from the design.
+- **Sub-point (2) — how do you reverse a sort, and is there an indicator?** The direction box
+  reads **"Ascending" in every row on every board**. There is **no Descending state anywhere**,
+  **no drawn control to flip it**, and **no sort indicator on the sorted column heading**. Both
+  boxes are `Input Textfield` instances with a trailing chevron (= dropdowns), so a Descending
+  option probably sits behind the field but is **never drawn**.
+- **Authoring consequence:** even under answer **A** or **B**, the **direction-toggle** and
+  **column-indicator** expectations remain **un-authorable** until his answer or a live build
+  check lands (Rules 1/9/12) — do not invent them.
+
 ---
 
 **Question 9 — The per-page list of searchable fields (NEW 2026-07-31)**
@@ -319,6 +358,108 @@ mechanics, negatives) are **not** blocked by this and still need authoring autho
 
 ---
 
+**Question 10 — The page toolbar search box, versus the pop-up search (NEW 2026-07-31)**
+
+*(= reader-facing **Question 7** of `../PO-Questions-Branko-Filters-TechPlan_2026-07-30.md`;
+driving flag **F2** of `../branko-answers-2026-07-31/DELTAS.md`.)*
+
+What happens now: You told us the pop-up search box (*"Search or ask a question"*) belongs
+with the global search work, not here — so those tests have been moved out. But the written
+requirements for THIS project also describe a **different** search box: a small one on the
+page's own toolbar. You type in it and the list below narrows, with no separate results
+window. We have tests written for that page toolbar search box here.
+
+The question: Is that search box on the page toolbar still part of this project?
+
+- **A)** Yes — the page toolbar search box stays in this project; only the pop-up search moves
+  to the global search work
+- **B)** No — everything to do with searching moves to the global search work, including the
+  page toolbar search box
+
+Answer: ______________________________________________
+
+**Please note (in the reader sheet too):** if the answer is B, a sizeable set of already-written
+tests moves out of this project, so we want to be sure before moving them.
+
+**QA context.** His **Q6 = A** (verbatim below, in the ANSWERED block) settles the *pop-up
+palette* — that satisfies the user's 2026-07-31 hold condition for `FLT-SRCH-01..09`. The
+residue is his **sentence 2**: *"This release only removes global search's page-filtering
+behaviour (Story 14)."* Read **literally and in isolation** that would also descope **Story 13
+Page Search**, which spec **v1.6 ratifies with 29 requirements** (`S13-R1..R29`, incl.
+`S13-R14`, `S13-R23`) and which **13 `FLT-PSRCH` cases** test. Almost certainly not what he
+means — he was answering about the pop-up box — but his answer is **NEWER than v1.6** and
+Rule 32 makes the newest source win, so it must be **confirmed, not inferred** (Rule 1).
+**Cases riding on this:** FLT-PSRCH-01 = C38883
+https://shopview.testrail.io/index.php?/cases/view/38883 · FLT-PSRCH-02 = C38884
+https://shopview.testrail.io/index.php?/cases/view/38884 · FLT-PSRCH-03 = C38886
+https://shopview.testrail.io/index.php?/cases/view/38886 · FLT-PSRCH-04 = C38888
+https://shopview.testrail.io/index.php?/cases/view/38888 · FLT-PSRCH-05 = C38889
+https://shopview.testrail.io/index.php?/cases/view/38889 · FLT-PSRCH-06 = C38891
+https://shopview.testrail.io/index.php?/cases/view/38891 · FLT-PSRCH-07 = C38893
+https://shopview.testrail.io/index.php?/cases/view/38893 · **plus the 6 added 2026-07-31 by a
+sibling worker** (FLT-PSRCH-08..13, blank C-ids, not yet in `../testrail-id-map.csv` —
+**re-derive from `../cases/*.json` before quoting them**). **A** → the 13 stay in Filters; only
+`FLT-SRCH-01..09` move. **B** → all 13 + the ~20 un-authored Story-13 gaps leave Filters for
+the Global Search project and Story 13 comes out of the Filters coverage-matrix. **Do NOT
+delete / transfer / retire ANY page-search case before this answer** (user ruling 2026-07-31 +
+Rule 6).
+
+---
+
+**Question 11 — Six of the newer filter buttons are never shown opened (NEW 2026-07-31)**
+
+*(= reader-facing **Question 8** of `../PO-Questions-Branko-Filters-TechPlan_2026-07-30.md`;
+driving flag **F1** of `../branko-answers-2026-07-31/DELTAS.md`.)*
+
+What happens now: You told us the filter behaviour and the filter types are fully shown in the
+designs. For **one** of them that is exactly right — the Parts **"Part type"** button is drawn
+**opened**, showing *Core / Non Core / Clear selection*, so we have what we need there. For
+**six** others the design shows only the **button name** in the toolbar and **never opens it**:
+**Location, Transaction Type, Invoice Status, Type, User, Mention**. We have now been through
+**all 85 boards**, so there is no unopened board left to find. A tester therefore cannot tell
+what happens when one of those six is used — what choices it offers, or what picking one does
+to the list.
+
+The question: For those six buttons, can we get a one-or-two-line written description of each
+— what choices it offers, and what happens to the list when you pick one?
+
+- **A)** Yes — a short written description will be added for those six
+- **B)** No — treat the designs as the source, and ask me about each one as you come to it
+
+Answer: ______________________________________________
+
+**QA context.** His **Q4** was answered **by pointer only** (*"fully displayed in the
+design"*). Verified against the completed design read
+(`../design-2026-07-31/DESIGN-NOTES.md` commit `174b9d1`) by a text search across **ALL 85
+boards** — **his claim holds for 1 of the 7 named types and fails for the other 6**:
+
+| Filter type | Behaviour / option list shown in the design? |
+|---|---|
+| **Core / Non Core** (Parts › Returns) | **YES** — board **"Part type" `11902:9973`** is an OPEN dropdown showing exactly *"Core / Non Core / Clear selection"*. **He is right about this one — say so.** |
+| **Location** | **NO** — button name only, on the 4 Aging/Unpaid Reports boards (`11955:31802`, `11955:32097`, `11955:31901`, `11955:32215`) |
+| **Transaction Type** | **NO** — button name only, same 4 boards |
+| **Invoice Status** | **NO** — button name only (`11955:31458`, `11955:31573`) |
+| **Type** and **User** (QB Unexported) | **NO** — button names only |
+| **Mention** (Notes) | **NO** — button name only (`11982:9225`) |
+
+The only OPEN filter dropdowns in the entire file are the **19 Work-Order-page** ones plus that
+single Parts board. **None of the six is defined in spec v1.6 either** — no `S#-R#` gives their
+options or behaviour. **The earlier "12 boards un-rendered, so a behaviour board may still
+exist" caveat is CLOSED** (all 12 accounted for 2026-07-30: 7 read in full via the layer-tree
+endpoint, 5 already covered by extracted text) and there are **ZERO Reports or Parts
+filter-behaviour boards in the file** — so *"maybe there's a board you haven't seen"* is no
+longer available as a deflection, and this question can **no longer self-resolve** on a pending
+render. **Deliberately NOT asked about Core / Non Core** — a blanket *"the designs don't show
+behaviour"* would be wrong and easy to deflect. **Cases affected:** none blocked, but none
+strengthenable either — the six are covered only at button-name/presence level by FLT-PARTS-01,
+-09, -11, -12 and FLT-RPTS-01, -21, -22 (all blank C-ids, never pushed) + FLT-RPTS-23 = C38882
+https://shopview.testrail.io/index.php?/cases/view/38882. **A** → author per-type behavioural
+cases for the six with proper Rule-20 anchors (needs `add_case` authorization). **B** → record
+in the coverage-matrix that per-type behaviour for those six is covered at
+button-name/presence level only, by PO ruling.
+
+---
+
 ## QA-ONLY section (internal mapping — not for the PO)
 
 | Q | Status (2026-07-31) | Deltas / spec ref | Cases affected (TestRail C-id) |
@@ -332,9 +473,38 @@ mechanics, negatives) are **not** blocked by this and still need authoring autho
 | Q7 | **SELF-RESOLVED** — v1.6 pulled live 2026-07-31; remaining ask = confirm-current + notify-on-change | C9 (spec drift; 8 Confluence versions behind) | whole suite (110 active; 94 live, 16 blank C-ids) — triggers the SPEC-RELEVANCE-RECONCILIATION already in flight (Rule 11 ask first); C6/C8 page-search ownership rides on Branko's PartsReports Q6 |
 | **Q8** | **NEW 2026-07-31 — OPEN** (sorting scope) | design `11985:9686` / `10428` / `11259` / `13334` + mobile `11884:20807`/`15901`/`12867:12201` + Reports Notes/Reminders; **no sorting requirement in spec v1.6** (only `S13-R14` in passing) | **none — zero sorting cases in the suite**; A → new FLT-SORT area (needs `add_case` auth, after Branko adds it to the spec); C → record out-of-scope |
 | **Q9** | **NEW 2026-07-31 — OPEN** (spec's own pending item) | spec **`S13-R23`** — *"Pending: the per-table list of fields currently covered, from engineering. Until it exists the searchable set is undocumented and QA has no baseline to test against"* | FLT-PSRCH-01 = C38883 https://shopview.testrail.io/index.php?/cases/view/38883 · FLT-PSRCH-06 = C38891 https://shopview.testrail.io/index.php?/cases/view/38891 · plus the ~20 un-authored Story-13 cases |
+| **Q10** | **NEW 2026-07-31 — OPEN** (= reader sheet **Q7**; driving flag **F2**) | His **Q6 = A** (2026-07-27, verbatim in the ANSWERED block below) settles the pop-up palette; residue = sentence 2 *"This release only removes global search's page-filtering behaviour (Story 14)"*, whose literal reading would descope **Story 13 = 29 ratified requirements in v1.6** (`S13-R1..R29`). Rule 32 newest-wins ⇒ confirm, never infer (Rule 1). | **13 `FLT-PSRCH` cases:** FLT-PSRCH-01 = C38883 https://shopview.testrail.io/index.php?/cases/view/38883 · FLT-PSRCH-02 = C38884 https://shopview.testrail.io/index.php?/cases/view/38884 · FLT-PSRCH-03 = C38886 https://shopview.testrail.io/index.php?/cases/view/38886 · FLT-PSRCH-04 = C38888 https://shopview.testrail.io/index.php?/cases/view/38888 · FLT-PSRCH-05 = C38889 https://shopview.testrail.io/index.php?/cases/view/38889 · FLT-PSRCH-06 = C38891 https://shopview.testrail.io/index.php?/cases/view/38891 · FLT-PSRCH-07 = C38893 https://shopview.testrail.io/index.php?/cases/view/38893 · **+ FLT-PSRCH-08..13** (new 2026-07-31 by a sibling worker, blank C-ids, not yet in `../testrail-id-map.csv` — re-derive from `../cases/*.json`). **A** → all 13 stay in Filters, only `FLT-SRCH-01..09` move. **B** → all 13 + ~20 un-authored Story-13 gaps transfer to Global Search. **Freeze: no delete/transfer/retire before the answer.** |
+| **Q11** | **NEW 2026-07-31 — OPEN** (= reader sheet **Q8**; driving flag **F1**) | His **Q4** answered by pointer only (*"fully displayed in the design"*). Text search over **ALL 85 boards** (`../design-2026-07-31/DESIGN-NOTES.md` commit `174b9d1`): **1 of 7 types IS shown** — "Part type" `11902:9973` = *Core / Non Core / Clear selection*; **6 are button-name-only, never opened** — Location + Transaction Type (`11955:31802`/`32097`/`31901`/`32215`), Invoice Status (`11955:31458`/`31573`), Type + User (QB Unexported), Mention (`11982:9225`). **ZERO Reports/Parts filter-behaviour boards exist**, and the 12-un-rendered caveat is CLOSED ⇒ no deflection and no self-resolve. None of the 6 is defined in spec v1.6 (no `S#-R#`). | None blocked; none strengthenable — the six sit at button-name/presence level in FLT-PARTS-01, -09, -11, -12 and FLT-RPTS-01, -21, -22 (blank C-ids, never pushed) + FLT-RPTS-23 = C38882 https://shopview.testrail.io/index.php?/cases/view/38882. **A** → author per-type behavioural cases for the six (needs `add_case` auth). **B** → coverage-matrix records button-name/presence level only, by PO ruling. **Core / Non Core deliberately excluded from the ask.** |
 
 
-> **QA-INTERNAL NOTE — USER RULING 2026-07-31 (page-search ownership).** Verbatim: *"OK do not delete those cases unless Branko confirms that they are related to Global search only."* The nine page-search cases **FLT-SRCH-01..09** (new, no C-IDs yet — none is in TestRail) **STAY in the Filters suite** unless Branko confirms Global-Search-only ownership; **his answer decides move-vs-keep.** Do NOT delete or transfer them before that. Note on numbering: in THIS sheet Q6 is the *Vendors design* question and the page-search-ownership item rides on the Q7 / C6-C8 row above; the reader-facing search/ownership question the ruling refers to is **Question 6 of `../PO-Questions-Branko-PartsReports-2026-07-27.md`** ("The pop-up search box"). The 2026-07-31 Ruthless Usefulness Audit's CUT recommendation for all nine (and its NONSENSE verdict on FLT-SRCH-09) is a RECOMMENDATION ONLY, re-tabled on his answer.
+> ### ✅ ANSWERED + CLOSED 2026-07-31 — page-search / pop-up-search OWNERSHIP. **DO NOT RE-ASK.**
+>
+> **Branko answered this on 2026-07-27** (Question 6 of
+> `../PO-Questions-Branko-PartsReports-2026-07-27.md`, *"The pop-up search box"*). His answer,
+> **verbatim**:
+>
+> > **"A - Test it under Global Search, not here. This release only removes global search's
+> > page-filtering behaviour (Story 14). \"Ask a question\" is not in this PRD's scope."**
+>
+> Source of record: `../branko-answers-2026-07-31/answers-ingested.md` §Q6 (ingested
+> 2026-07-31) · consequence analysis `../branko-answers-2026-07-31/DELTAS.md` §Verdict 2.
+>
+> **What this closes.** The user's hold ruling of 2026-07-31 — verbatim: *"OK do not delete
+> those cases unless Branko confirms that they are related to Global search only."* — **is now
+> satisfied for the nine palette cases `FLT-SRCH-01..09`** (new, no C-IDs; none in TestRail):
+> Branko has confirmed the pop-up *"Search or ask a question"* palette belongs to **Global
+> Search**, not Filters. The 2026-07-31 Ruthless Usefulness Audit's CUT recommendation for all
+> nine (and its NONSENSE verdict on FLT-SRCH-09) is therefore **re-tabled and actionable** — but
+> it is still a **RECOMMENDATION ONLY**: any delete/transfer needs explicit user authorization
+> (Rule 6). *"Ask a question"* / AI is **out of this PRD's scope** and belongs to the Global
+> Search project (its OQ-3), not Filters.
+>
+> **What it does NOT close — the one residue, now asked as Q10 above.** His sentence 2 read
+> literally would also descope **Story 13 Page Search** (29 ratified requirements in spec v1.6,
+> tested by **13 `FLT-PSRCH` cases** — a different set from the nine `FLT-SRCH` palette cases).
+> That is almost certainly not his meaning, but Rule 32 makes his newer answer win over v1.6, so
+> it is confirmed rather than inferred. **The 13 `FLT-PSRCH` cases remain FROZEN — no delete,
+> transfer or retire — until Q10 is answered.**
 
 Verify the C-ids for the Q2/Q3/Q4/Q9 rows against `build/filters/testrail-id-map.csv`
 before sending anything that quotes them.
