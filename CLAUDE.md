@@ -3,9 +3,10 @@
 > **Before any staging or TestRail testing, read `build/TESTING-RUNBOOK.md`.**
 > That runbook holds the full, proven method; this file is a concise index +
 > durable memory. **No secrets in this repo — ever** (secrets live in `/tmp`).
-> - **PRE-FLIGHT FOR ANY TEST-CASE WORK (Standing Rules 31 + 32): ESTABLISH THE CURRENCY OF **ALL
->   SOURCES** — not just the spec — BEFORE authoring, editing, auditing, reconciling, or reviewing
->   any test case (Rule 31, strengthened 2026-07-31): (1) the **spec** (live Confluence version +
+> - **PRE-FLIGHT — THE FIRST ACTION OF ANY PROJECT TASK (Standing Rules 31 + 32): ESTABLISH THE
+>   CURRENCY OF **ALL SOURCES** — not just the spec — BEFORE doing ANYTHING on a project (test cases,
+>   question sheets, reports, audits, TestRail pushes, reconciliations, bug work, or even answering a
+>   question about the project's state) (Rule 31, scope broadened 2026-07-31): (1) the **spec** (live Confluence version +
 >   last-updated vs our baseline), (2) the **epic + its child stories** (story set, statuses,
 >   description/comment changes), (3) the **designs** (Figma file/nodes; an OPEN Rule-35 fetch queue
 >   means the design source is NOT current — say so), (4) the **engineering tech plan** (Rule 30),
@@ -1488,18 +1489,32 @@ deliver the 7-tab management report.
     build/schedule/tech-plan-2026-07-29/. Ties to Standing Rules 1 (complete inputs before
     work), 11 (ask which process on new inputs), 17 (complete data in/out), and the
     new-project onboarding convention (tech plan is part of the required input set).
-31. **Establish the CURRENCY OF EVERY SOURCE before creating or touching any test case (all
-    projects).** *(Originally "always pull the latest spec"; **STRENGTHENED 2026-07-31** to cover
-    EVERY source, keeping the rule number so existing cross-references stay valid.)*
-    USER DIRECTIVE (2026-07-31, verbatim): **"I want the test cases to be current with specs and
+31. **Establish the CURRENCY OF EVERY SOURCE before doing ANYTHING on a project (all projects).**
+    *(Originally "always pull the latest spec"; **STRENGTHENED 2026-07-31** to cover EVERY source;
+    **SCOPE BROADENED 2026-07-31** from test-case work to ANY project task — the rule number is kept
+    so existing cross-references stay valid.)*
+    USER DIRECTIVE (2026-07-31, verbatim — the third and BROADEST statement of the same
+    requirement): **"Going forward the first thing you do whenever you are about to do anything for
+    your projects is to get the updated version of all the sources you have for that project and
+    ONLY then do what you are asked to do."**
+    Earlier directive (2026-07-31, verbatim): **"I want the test cases to be current with specs and
     epics and you must have the current version of epics and specs and every other doc you are
     using alwyas first make sure that you have the current source for the test cases before doing
     anything with the test cases."** Earlier directive (2026-07-31, verbatim): "everytime you are
     making the test cases or looking at the test cases for any reason make a rule that you pull the
     latest version of Specs from the URL, I see that the specs have been updated on 28th. But I
     believe you are unaware of that and due to that you left a few tests uncovered."
-    **THE PRE-FLIGHT (MANDATORY, before authoring / editing / auditing / reconciling / reviewing
-    ANY test case) — establish and record the currency of ALL FIVE source types:**
+    **THE PRE-FLIGHT (MANDATORY — BEFORE DOING ANYTHING ON A PROJECT; the FIRST action of any
+    project task, without exception) — establish and record the currency of ALL FIVE source types.**
+    This covers **not only test-case work** (authoring / editing / auditing / reconciling /
+    reviewing cases) but ALSO: **writing or revising PO/dev question sheets; status reports and
+    management deliverables; audits; coverage analyses; TestRail pushes and run syncs; spec/epic
+    reconciliations; bug investigations; and answering the user's questions about a project's
+    state.** The sequence is FIXED: **(1) refresh every source → (2) diff against our baseline →
+    (3) fold in any deltas → (4) only then do the thing that was asked.**
+    **If a task looks trivial or read-only, the currency check is STILL first** — a stale answer
+    about a project's state is as damaging as a stale test case (we once told the user a suite was
+    current while its spec was 8 versions ahead).
     **(1) THE SPEC** — fetch it LIVE from its canonical URL (Confluence via the Atlassian MCP
     `getConfluencePage` when available, else the REST API with session cookies); compare the **live
     version number + last-updated date** against our ingested `requirements.md` baseline.
