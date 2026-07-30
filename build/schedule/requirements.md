@@ -1,22 +1,51 @@
-# Schedule — Requirements (COMPLETE spec, verbatim-structured)
+# Schedule — Requirements (COMPLETE spec, verbatim-structured) — **Confluence version 23**
 
-> **Project onboarding metadata (recorded 2026-07-21):**
+> ## Spec-currency header (READ FIRST)
+>
+> | Field | Value |
+> |---|---|
+> | **Source page** | Confluence page id **713031682** — "Schedule", space **SHOPVIEW** (`/wiki/spaces/shopviewapp/pages/713031682/Schedule`) |
+> | **Confluence version this doc reflects** | **23** |
+> | **Upstream last updated** | **2026-07-30T10:40:32Z** by **Branko Cicovic** (PO) — no version comment |
+> | **We ingested / promoted to v23 on** | **2026-07-31** |
+> | **Previous baseline** | Confluence **version 18** (2026-07-22T09:18Z) — we were **5 versions behind** (19, 20, 21, 22, 23) |
+> | **Live pull method** | `GET /wiki/rest/api/content/713031682?expand=body.storage,version,history.lastUpdated` (HTTP 200) — verbatim body in `spec-current-2026-07-31/Schedule-spec-current.md`; version-attributed delta in `spec-current-2026-07-31/SPEC-DIFF.md` |
+>
+> ### ⚠️ STALENESS GOTCHA — the page body's own "Version" field is a LIE
+>
+> The page-body header table below reads **`Version | 1.0`** and **`Last Updated | July
+> 15, 2026`** — and it has read exactly that since Confluence version 1. **Branko never
+> bumps those fields.** They are NOT staleness markers.
+>
+> **Only the Confluence version number (and `version.when` from the REST API) is a
+> reliable currency marker for this page.** This is precisely why our baseline silently
+> drifted 5 versions behind: we re-read the body header, saw "Version 1.0 / July 15",
+> concluded "unchanged", and missed nine substantive requirement changes. **Before
+> trusting this file, re-check the live Confluence version number against the "23" above
+> (Rule 23).**
+>
+> ---
+>
+> **Project onboarding metadata (recorded 2026-07-21, refreshed 2026-07-31):**
 > - **Project:** Schedule — ShopView App · Technician Scheduling Module.
 > - **Canonical spec URL (Confluence):**
 >   https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule
->   (Atlassian-SSO login-walled — **REFERENCE POINTER ONLY, do NOT fetch**; content
->   below was ingested from the exported `.doc` MHTML file the user provided).
-> - **Spec doc metadata (from the export header):** Status = Complete · Author =
+>   — **now readable LIVE via the Atlassian MCP / Confluence REST** (Rule 23); the
+>   2026-07-31 promotion to v23 was pulled directly from it. The original 2026-07-21
+>   ingest came from an exported `.doc` MHTML file the user provided (method below).
+> - **Spec doc metadata (from the page-body header table):** Status = Complete · Author =
 >   Product Team · Last Updated = July 15, 2026 · Version = 1.0 · Stakeholders =
->   Engineering, Design, Shop Operations.
-> - **PO:** **Branko** (confirmed 2026-07-21 — same PO as Global Search and Filters;
->   full name TBC). Never mix PO attributions across projects: Schedule = Branko,
->   Global Search = Branko, Filters = Branko, Fees & Discounts = Chris Ward, Simple
->   Flow = Milos.
-> - **Epic / Jira key:** ⚠️ **NOT AVAILABLE — ASK THE USER when VIU begins** (do NOT
->   invent).
-> - **QA branch / environment + feature-flag status:** ⚠️ **NOT AVAILABLE — ASK THE
->   USER when VIU begins.**
+>   Engineering, Design, Shop Operations. ⚠️ **These body fields are stale-by-design —
+>   see the gotcha above.**
+> - **PO:** **Branko** (confirmed 2026-07-21; full name **Branko Cicovic**, confirmed
+>   2026-07-31 from the Confluence author field — same PO as Global Search and Filters).
+>   Never mix PO attributions across projects: Schedule = Branko, Global Search = Branko,
+>   Filters = Branko, Fees & Discounts = Chris Ward, Simple Flow = Milos.
+> - **Epic / Jira key:** **SV-8685** — RESOLVED 2026-07-27 (15 stories SV-8686..SV-8700).
+>   The spec page itself gained an `Epic` header row in Confluence v21 (2026-07-27).
+> - **QA branch / environment + feature-flag status:** ⚠️ **STILL NOT AVAILABLE — ASK THE
+>   USER when VIU begins.** Every case remains **VIU-Pending**: spec-pinned, design-pinned
+>   and PO-pinned are all ≠ VIU-Verified (Rule 12).
 > - **Design / Figma:** **UPDATED 2026-07-22 — a design NOW EXISTS.** spec_1
 >   (`66b5d64f-Schedule_1.doc`) added a **Design link** to the doc header (the body is
 >   otherwise unchanged vs spec_0 — a word-level diff found ZERO substantive
@@ -34,7 +63,31 @@
 >   `Subject: Exported From Confluence`). Decoded with Python `email` (MIME walk to the
 >   `text/html` part, `get_payload(decode=True)` handles the quoted-printable) +
 >   BeautifulSoup, preserving all headings, lists, and tables. Same family as every
->   prior ShopView spec.
+>   prior ShopView spec. **The 2026-07-31 v23 promotion instead used the live Confluence
+>   REST body (storage format XHTML → markdown), which is now the preferred route.**
+>
+> ### What changed in this file when it was promoted v18 → v23 (2026-07-31)
+>
+> Nine substantive upstream changes were folded in. Each is marked inline below with a
+> **`[v19]` … `[v23]`** tag naming the Confluence version that introduced it:
+>
+> | Where | Change | Version |
+> |---|---|---|
+> | Header table | `Design` row (2 designs) + `Epic` row added | v20, v21 |
+> | §4.2 | **NEW** "Hours settings (tech and business hours)" block | v19 |
+> | §4.4 | Shift colour: work-order-tied → **default blue + optional per-shift custom colour** | v22 |
+> | §4.5 | Spread: weekends skipped **only when business hours are not set for them**; **shop closures and public holidays are NOT skipped in V1** | v22 |
+> | §4.6 | Series banners: "breaks around skipped or booked days" removed | v22 |
+> | §4.8 | Now-line label "on hover **over the grid**" | v22 |
+> | §4.9 | Modal Actions: **"and Reassign to another technician" DELETED** | **v23** |
+> | §4.10 / §7 | Cell menu: right-click {New Shift, New Event, View Day} → **left-click {Create event, New work order}** | v22 |
+> | §4.11 | **NEW** "Events are not conflict-checked for now" paragraph | v19 |
+> | §4.12 | Capacity **includes event time** ("shifts plus events") | v19 |
+> | §11 | **NEW** "Dark theme" non-functional requirement | v19 |
+>
+> Nothing was silently dropped: every sentence the upstream edits removed is preserved
+> verbatim in the **"Removed upstream (v19–v23)"** appendix at the end of this file.
+> Branko's 2026-07-31 answers are folded in as **`[PO 2026-07-31]`** notes.
 
 ---
 
@@ -48,6 +101,12 @@ ShopView · Technician Scheduling Module
 | Last Updated | July 15, 2026 |
 | Version | 1.0 |
 | Stakeholders | Engineering, Design, Shop Operations |
+| Design | Schedule , Business and Tech hours settings | *(2 design links) `[v20]`* |
+| Epic | SV-8685 *(Jira macro in the page)* | *`[v21]`* |
+
+> ⚠️ **The `Last Updated` and `Version` rows above are the page author's own fields and
+> are NEVER updated** (they have said "July 15, 2026 / 1.0" since Confluence v1). The real
+> currency marker is the **Confluence version number = 23**, see the header at the top.
 
 ## 1. Overview
 The Schedule module gives shop managers a visual calendar to assign technicians to
@@ -144,9 +203,14 @@ working days skips it and creates a single shift.
 
 ### 4.2 Shift start times and unassigned shifts
 Every shift has a start time. It is derived from a hierarchy:
-- The technician's configured working hours take precedence.
-- If those are not set, the shop's business hours are used.
-- If neither is set, a general default of 7:00 AM to 7:00 PM applies.
+1. The technician's configured working hours take precedence.
+2. If those are not set, the shop's business hours are used.
+3. If neither is set, a general default of 7:00 AM to 7:00 PM applies.
+
+> **`[PO 2026-07-31]`** Branko confirmed the general default is **7:00 AM to 7:00 PM**
+> (answer B to the 2026-07-27 sheet Q5, restating this hierarchy verbatim). The design
+> prototype's hard-coded 8 AM–5 PM is the outlier and is **not** the requirement.
+> *Source: `branko-answers-2026-07-31/answers-ingested.md` Q5, 2026-07-31.*
 
 In day view, the start time instead comes from where the shift is dropped on the
 timeline.
@@ -156,6 +220,35 @@ Unassigned placeholder row (an in-grid lane, not a separate tray). They follow t
 same start-time rules except technician hours (there is no technician yet), so they
 fall back to business hours or the default. When an unassigned shift is later dragged
 onto a technician row in the grid, that technician's hours apply.
+
+**Hours settings (tech and business hours).** *`[v19 — NEW]`* Working hours are defined
+in two places: a technician's custom schedule in Edit Staff Member, and the shop's
+business hours in Edit Location. Both use the same pattern:
+- **Behind a toggle, off by default.** Each section sits behind a toggle ("Set custom
+  hours for this technician" / "Set business hours for this shop"). The per-day editor
+  appears only when the toggle is on. A technician with no custom hours inherits the
+  shop's business hours (per the hierarchy above).
+- **Per-day editor.** One row per day (Mon–Sun): day name, with From → To ranges on the
+  right. Each day starts with a single range; "Add hours" appends more to support split
+  shifts, each removable. Added ranges start empty so the user explicitly sets the times.
+- **Overlap validation.** If a day's ranges overlap, the offending range is flagged in
+  red with an inline message ("These hours overlap. Adjust the times so they don't
+  conflict.") and Save is disabled until it is resolved. Incomplete rows (empty From/To)
+  are ignored by the check.
+
+> **QA note — two live conflicts with the engineering tech plan, both still open with
+> Branko** (the spec text above is the newer artefact and currently wins, Rule 15
+> last-update-wins):
+> - **Where the hours live.** This spec says **Edit Staff Member** + **Edit Location**.
+>   The engineering tech plan builds a separate **"Schedule Settings"** page in
+>   Administration. Our cases follow the spec. *(open question — see the PO sheet)*
+> - **Split shifts.** This spec explicitly says "'Add hours' appends more to **support
+>   split shifts**". The tech plan's data model stores **one range per weekday**. Our
+>   cases follow the spec. *(open question — see the PO sheet)*
+>
+> This block is the source text behind story **SV-8699**, from which SCH-HRS-01..07 were
+> authored 2026-07-27 — i.e. we already had this requirement from Jira before we caught it
+> in the spec.
 
 ### 4.3 Scope picker
 When a multi-line work order is dropped, a popover anchored to the drop cell lets the
@@ -176,7 +269,8 @@ simply adds them to that line's roster.
 
 ### 4.4 Shift block anatomy and scope labeling
 Every shift block on the grid shows three lines of text (four when VIN is toggled on),
-with color tied to the work order (so blocks from the same order share a color):
+with a default blue color (users can optionally assign a custom color per shift via the
+color picker in the detail modal, see §10): *`[v22 — changed]`*
 - Line 1: customer name, plus the conflict icon if the shift is conflicted.
 - Line 2: unit number.
 - Line 3 (optional): VIN number, visible only when the VIN toggle is on in Filter and
@@ -205,8 +299,18 @@ showing the chosen scope and a "Change scope" back-link.
 - **Start date.** Defaults to the earliest working day. Adjusting it is how a second
   technician's series can be made sequential (starting after the first) rather than
   parallel.
-- **Uses the technician's own working hours.** Automatically skips weekends and shop
-  closures, so the end date is emergent.
+- **Uses the technician's own working hours.** Automatically skips weekends when
+  business hours are not set for them. Shop closures and public holidays are not skipped
+  in V1.. *`[v22 — changed]`* *(the doubled full stop is the spec's own typo — reproduced
+  verbatim, do NOT "fix" it in case wording)*
+
+  > ⚠️ **SPEC-INTERNAL CONTRADICTION (flagged, not resolved — Rule 15).** §4.5 above says
+  > shop closures are **NOT skipped in V1**, but **§12 Edge cases** still says closures
+  > "**block the spread step from placing shifts on those days**". Both sentences are live
+  > in Confluence v23. We do NOT pick a side: our cases follow §4.5 ("not skipped"), and
+  > this contradiction is an open confirmation question for Branko. The engineering tech
+  > plan takes the §12 side (it builds real closure-skipping), which is the second half of
+  > the same open question.
 - **Preview**, collapsed by default: a one-line summary ("20 shifts · Jun 15 to Jul 13
   · skips weekends + 2 days"), expandable to a week-by-week breakdown with skipped days
   struck through and their reasons.
@@ -227,10 +331,10 @@ overtime, and conflict logic all operate on the individual shifts unchanged.
 Shifts sharing a technician plus series id render as one connected banner:
 - **Month view:** a continuous bar wrapping across week rows, labeled once at the start
   (with the technician), with a faded "continues" label on later weeks, empty weekend
-  columns, and visible breaks around skipped or booked days.
+  columns (when business hours are not set for weekends). *`[v22 — changed]`*
 - **Week view:** one banner spanning the working days of that week in the technician's
   row, with chevrons at the edges indicating continuation beyond the visible week, a
-  "week N of M" cue, and a break around any day the technician is otherwise booked.
+  "week N of M" cue. *`[v22 — changed]`*
 - **Day view:** that day's single time-positioned block with a "part of an M-week job"
   cue (only one day is visible, so there is no spanning bar).
 
@@ -264,7 +368,8 @@ Overlapping shifts for the same technician never visually collide:
 - **Lane stacking.** Overlapping shifts split into parallel lanes per §4.7.
 - **Lane height with VIN.** When the VIN toggle is on (§9), lane heights in day view
   grow to accommodate the additional VIN line so block text is not clipped.
-- **Now line.** A vertical indicator showing the current time, with a label on hover.
+- **Now line.** A vertical indicator showing the current time, with a label on hover over
+  the grid. *`[v22 — changed]`*
 - **Business-hours shading.** An optional grey overlay outside working hours.
 
 ### 4.9 Shift detail modal
@@ -279,13 +384,28 @@ Clicking a shift block opens a detail panel showing:
 - Color picker (see §10).
 - Notes: add, edit, and delete per work order.
 - A conflict banner with an "Adjust" action when the shift is conflicted.
-- Actions: Delete (series-aware, §7) and Reassign to another technician.
+- Actions: Delete (series-aware, §7) *`[v23 — "and Reassign to another technician" DELETED]`*
+
+> **`[PO 2026-07-31]`** Branko confirmed **no 'Reassign' button in the shift pop-up** —
+> moving a shift to another technician is done **only by dragging it** (answer B, verbatim
+> "B - No button"). Confluence **v23 (2026-07-30)** deleted the Reassign action from this
+> list, so spec + design prototype + engineering tech plan + PO now all agree. **Jira story
+> SV-8695 still lists a modal Reassign action and is now the stale artefact** — worth
+> telling Branko/dev.
+> *Source: `branko-answers-2026-07-31/answers-ingested.md` Q2 + `spec-current-2026-07-31/SPEC-DIFF.md` R1, 2026-07-31.*
 
 ### 4.10 Events
 Non-work-order time blocks (meetings, training, stand-ups) that occupy technician
 time:
-- Create via a right-click context menu on any cell, or by clicking empty grid space
-  in day view.
+- Create via left-click on empty grid space, which opens a menu with 'Create event' and
+  'New work order'.. *`[v22 — changed]`* *(the doubled full stop is the spec's own typo —
+  reproduced verbatim)*
+
+  > **`[PO 2026-07-31]`** Branko confirmed (answer C, correcting our question's premise):
+  > "**there is no right click, only left click.** when clicked it opens dropdown menu with
+  > two options (**Create event, New work order**) as mentioned in prd." So the shortcut IS
+  > in V1 and those are the exact two menu items.
+  > *Source: `branko-answers-2026-07-31/answers-ingested.md` Q4, 2026-07-31.*
 - Event modal: name, date, start/end time, all-day toggle, color category.
 - Drag-and-drop to reassign between technicians or move between days.
 - Day view shows a live preview block while creating, with drag-to-resize.
@@ -317,14 +437,44 @@ from the toolbar. Clicking a conflict navigates to the relevant technician and d
 Red and other alarming styling is reserved for conflicts and genuine errors, never for
 overtime.
 
+Events are not conflict-checked for now: an event overlapping a shift (or another event)
+does not raise a conflict. Their time still counts toward capacity (see §4.12).
+*`[v19 — NEW]`*
+
+> **QA note — open with Branko:** the table above lists **Double-booked** as a conflict
+> type (so it should count in the toolbar pill and list). The engineering tech plan treats
+> double-booking as a **milder front-end warning only**, excluded from the conflict count.
+> The spec text above is what our cases follow; the discrepancy is an open question.
+
 ### 4.12 Capacity visualization
 When enabled in View Options, each day column header shows a capacity bar. Fill
 represents aggregate utilization; overtime is a separate per-technician signal, and
-the two are independent.
-- **Blue fill:** aggregate technician-hours booked divided by total available (the sum
-  of all techs' working hours). Clamped at 100%. The track width equals capacity and is
-  identical across all days, so bars stay comparable at a glance (no per-day
-  rescaling).
+the two are independent. Event time is included in the utilization total alongside
+shifts, so meetings and training consume capacity even though they are not
+conflict-checked (see §4.11). *`[v19 — NEW sentence]`*
+
+> **`[PO 2026-07-31]`** Branko confirmed **event hours DO consume capacity** (answer A,
+> quoting this section: "A 2-hour meeting consumes 2 hours of capacity. Note the split in
+> §4.11: events count toward capacity but are not conflict-checked."). This **reverses** his
+> earlier "currently No, will check" — newest-wins. Spec + design + engineering plan + PO
+> now all agree. *Source: `branko-answers-2026-07-31/answers-ingested.md` Q1, 2026-07-31.*
+>
+> **Still spec-silent (open questions, do NOT assert either way in cases):**
+> 1. Do event hours also feed the **"OT" overtime tag** and the **per-technician hover
+>    breakdown**, or only the aggregate bar? §4.12 calls overtime "a separate
+>    per-technician signal, and the two are independent" and never says.
+> 2. Does an event placed on a **whole department** consume each of those technicians'
+>    capacity? Not in the spec at all.
+> 3. Does an **all-day** event (no start/end time) consume a full working day, or is it
+>    visual-only? Not in the spec at all.
+> 4. When the **Events** view option is switched OFF, do those hours come back out of the
+>    capacity bar, or are the events merely hidden while the bar keeps counting them? Not in
+>    the spec.
+
+- **Blue fill:** aggregate technician-hours booked (shifts plus events) divided by total
+  available (the sum of all techs' working hours). Clamped at 100%. The track width equals
+  capacity and is identical across all days, so bars stay comparable at a glance (no
+  per-day rescaling). *`[v19 — changed]`*
 - **Amber spill:** when aggregate hours exceed capacity, an amber segment extends past
   the right edge of the track, with a tick at the 100% line.
 - **"OT" tag:** appears whenever any individual technician exceeds their own daily
@@ -393,7 +543,9 @@ yet), plus a line-name search (see §3.1).
 - **Shift reassignment.** Dragging a shift block from one technician row to another
   reassigns it: the target technician is added to the affected line's roster and the
   source technician is removed. A confirmation modal handles cross-tech moves.
-- **Right-click context menu** on any grid cell: New Shift, New Event, View Day.
+- **Left-click on empty grid space** opens a menu with: Create event, New work order.
+  *`[v22 — changed; was "Right-click context menu on any grid cell: New Shift, New Event,
+  View Day"]`* — confirmed by Branko 2026-07-31 (see §4.10).
 - **Toast notifications.** Every create, delete, move, and reassign action produces a
   toast with an Undo option. The toast persists for 4 to 7 seconds, stays while the
   cursor is over it, and dismisses on mouse-leave.
@@ -455,6 +607,14 @@ Display settings are split across two toolbar controls:
 | My Shifts | Off | Filters the grid to show only shifts assigned to the current user. All other technician rows and their shifts are hidden. This is a personal convenience filter, not a permission boundary. |
 | VIN | Off | Shows the VIN number as an additional line on shift blocks (day and week views) and in hover tooltips. The VIN is always visible in the shift detail modal regardless of this toggle. |
 
+> **`[PO 2026-07-31]`** ⚠️ **The "and in hover tooltips" wording above is loose and Branko has
+> overruled it.** He confirmed (answer A): "**Vin is always visible on hover regardless of the
+> toggle.**" So the **VIN toggle gates the shift BLOCK only**; the hover tooltip always shows
+> VIN (matching §4.13). This resolves the long-standing §4.13-vs-§9 inconsistency in favour of
+> §4.13 and **closes OQ-6(a)**. The §9 prose is still loosely worded upstream in v23 — a
+> spec-text tidy-up to raise with Branko, not a case change.
+> *Source: `branko-answers-2026-07-31/answers-ingested.md` Q6, 2026-07-31.*
+
 **View Options popover:**
 
 | Option | Default | Effect |
@@ -489,6 +649,14 @@ defaults above.
   text tag; the overflow uses shape).
 - **Undo.** Every destructive action (delete, move, reassign) is undoable for 4 to 7
   seconds via a toast that persists while hovered.
+- **Dark theme.** *`[v19 — NEW]`* The Schedule supports a user-selectable Light / Dark
+  theme, chosen from the user menu and persisted per user. It is built on the design-system
+  color tokens, so surfaces, borders, text, and accents remap automatically;
+  elevation/shadow tokens also swap so depth reads correctly on dark surfaces.
+
+  > **QA note:** this confirms SCH-EDGE-08 (C38866) is **spec-backed**, not merely
+  > tech-plan-pinned — it was authored 2026-07-30 from the engineering plan before we saw
+  > this spec text.
 
 ## 12. Edge cases and constraints
 - A technician can have multiple shifts on the same day (different work orders);
@@ -498,7 +666,11 @@ defaults above.
   position in day view; unassigned shifts use the same rules minus technician hours
   until they are assigned.
 - Shop closures (holidays, inventory days) are defined at the shop level and block the
-  spread step from placing shifts on those days.
+  spread step from placing shifts on those days. ⚠️ **CONTRADICTS §4.5** ("Shop closures
+  and public holidays are not skipped in V1"). Both sentences are live in Confluence v23 —
+  unchanged here since our v18 baseline, i.e. Branko updated §4.5 in v22 and did not update
+  this bullet. **Flagged, not resolved** (Rule 15): our cases follow §4.5, and this is an
+  open confirmation question for Branko.
 - Dropping the same work order on multiple technicians creates independent series, each
   spreading the full estimate, so planned hours across technicians may exceed the
   estimate. This is expected, since clocked-in time drives progress.
@@ -559,6 +731,15 @@ managers use to orchestrate work across the team. The "My Shifts" toggle in the 
 and Display dropdown (§9) provides this as an optional personal convenience filter, not
 a security boundary.
 
+> **QA note — the spec is SILENT on WRITE scoping (re-verified against the live v23 body
+> 2026-07-31).** §14.3 above rules out an "own only" restriction on **viewing**. It says
+> nothing about whether a technician-type user may **change** another technician's shifts.
+> The engineering tech plan builds own-data write scoping (a cross-technician edit is
+> refused). This is a genuinely open question — and Branko has said it is **not his**
+> ("I'm not sure if this question is for me Bilal." on the related backend-scope question),
+> so it is **re-routed to engineering / the QA lead**, not re-asked of the PO.
+> *Source: `tech-plan-2026-07-29/Questions-for-Branko-dev.md` NQ-5 + `branko-answers-2026-07-31/answers-ingested.md` Q7, 2026-07-31.*
+
 ### 14.4 Technician grid rows are department-based
 Whether a user appears as a row in the schedule grid is controlled by their department
 assignment on their staff record, not by their role permission. Any staff member
@@ -567,7 +748,20 @@ regardless of their role. Similarly, the ability to clock into work order line t
 controlled by the "Time Clock" setting on the staff record, not by the permission
 model.
 
-## 15. Future considerations (OUT OF SCOPE for this spec / V1)
+## 15. Future considerations
+
+*(The spec's own heading is just "15. Future considerations"; our earlier copy appended
+"(OUT OF SCOPE for this spec / V1)" as a QA annotation. Everything in this list is out of
+V1 scope.)*
+
+> **`[PO 2026-07-31]`** A **printable / exportable week view** is **NOT** in V1 — and not
+> even in this future-considerations list. Branko: "**No. There is nothing about this in the
+> PRD, not in the future requirements.**" Independently corroborated by a full-text scan of
+> Confluence v23: no export/print item in §6 Grid toolbar, §9 View options, or §15.
+> Consequence: **SCH-EXP-01 (C38853) is a retire candidate — held, AWAITING USER
+> AUTHORIZATION** (Rule 6; nothing deleted without it).
+> *Source: `branko-answers-2026-07-31/answers-ingested.md` Q3, 2026-07-31.*
+
 - **Technician availability and PTO.** Block out vacation, sick time, and training that
   are not Events, and have the spread step flow around them.
 - **Auto-scheduling.** Suggest optimal technician assignments based on skills,
@@ -585,40 +779,112 @@ model.
 
 ---
 
-## OPEN QUESTIONS / ITEMS TO CONFIRM (onboarding)
+## OPEN QUESTIONS / ITEMS TO CONFIRM (refreshed 2026-07-31 against Confluence v23)
 
-- **OQ-1 — PO name. RESOLVED 2026-07-21 = Branko** (same PO as Global Search and
-  Filters; full name TBC). Spec author field only says "Product Team".
-- **OQ-2 — Epic / Jira key.** NOT available. **ASK THE USER when VIU begins.** The spec
-  contains no Jira/Epic key.
-- **OQ-3 — QA branch / environment + feature-flag / settings status.** NOT available.
-  **ASK THE USER when VIU begins** (is Schedule behind a feature flag, a settings
-  toggle, or a QA branch/deployment? Unknown).
-- **OQ-4 — Designs / Figma. NONE at the moment (user confirmed 2026-07-21).** Project
-  is SPEC-ONLY for authoring right now. The spec has no Figma link, no images, no
-  screenshot references. Several requirements describe visual rendering in prose only
-  (block/banner/lane-stacking/capacity-bar visuals, event vs shift card styling, color
-  tones). Build-accurate wording comes from the spec text where present; anything the
-  spec does not pin down is marked "VIU-confirm" and confirmed live at VIU. See
-  `PROJECT-STATE.md` §0.6 (authoring-readiness assessment).
-- **OQ-5 — Spec-internal ambiguities to resolve at authoring/VIU** (all from the spec
-  text itself):
-  - The exact on-screen wording of many labels is stated in the PRD but MUST be
-    confirmed against the real build during VIU (Standing Rule 9) — e.g. "Needs techs"
-    badge, "Schedule whole work order", "Select multiple", "Select all", "Change scope",
-    the spread options ("Full estimate", "1 week", "2 weeks", "Until a date…",
-    "Specific hours…"), "+N more", the conflict-pill copy, toast/undo copy, right-click
-    menu items ("New Shift", "New Event", "View Day"), and the "Filter and Display" /
-    "View Options" control names.
-  - Department group header examples ("SERVICE/PARTS", "ADMINISTRATION") are
-    illustrative — actual department names come from the tenant's data.
-  - "Work order statuses currently supported in the app" (§5.1 Status filter) — the
-    concrete status list is not enumerated in this spec; source it from the app during
-    VIU.
-  - No API endpoints, HTTP methods, or status codes appear anywhere in this spec (unlike
-    Global Search / Simple Flow / Fees & Discounts). If backend contracts exist they are
-    not in this document — confirm whether API-level cases are in scope (would need the
-    endpoint contract) per Standing Rule 4.
-  - No dev plan / phasing / rollout section is present in this spec (unlike Global
-    Search's 5-phase plan). Confirm delivery phasing with the PO if it matters for
-    scoping.
+- **OQ-1 — PO name. RESOLVED** = **Branko Cicovic** (2026-07-21 as "Branko"; full name
+  confirmed 2026-07-31 from the Confluence author field). Same PO as Global Search and
+  Filters. The spec's own author field still only says "Product Team".
+- **OQ-2 — Epic / Jira key. RESOLVED 2026-07-27 = SV-8685** (15 stories
+  SV-8686..SV-8700). Confluence v21 added an `Epic` row to the page header. Rule-20 refs
+  are backfilled on every case.
+- **OQ-3 — QA branch / environment + feature-flag / settings status. STILL OPEN — NOT
+  available.** **ASK THE USER when VIU begins** (is Schedule behind a feature flag, a
+  settings toggle, or a QA branch/deployment? Unknown). Consequence: **no case has been
+  live-verified**; the whole suite is VIU-Pending (Rule 12).
+- **OQ-4 — Designs. RESOLVED / SUPERSEDED.** A design now exists: per Branko (Q0) the
+  Claude prototype `Schedule.dc.html` is authoritative (captured in
+  `spec-v1-2026-07-22/design-notes-claude.md`); Confluence v20 added a **second** design
+  link, "Business and Tech hours settings". ~48 previously-"VIU-confirm" labels were folded
+  to the design's wording on 2026-07-22, ~18 still need a LIVE confirm. **Rule 12:
+  design-pinned ≠ VIU-Verified.**
+- **OQ-5 — Spec-internal ambiguities to resolve at authoring/VIU** (all from the spec text
+  itself):
+  - The exact on-screen wording of many labels is stated in the PRD but MUST be confirmed
+    against the real build during VIU (Standing Rule 9) — e.g. "Needs techs" badge,
+    "Schedule whole work order", "Select multiple", "Select all", "Change scope", the spread
+    options ("Full estimate", "1 week", "2 weeks", "Until a date…", "Specific hours…"), "+N
+    more", the conflict-pill copy, toast/undo copy, the left-click cell-menu items ("Create
+    event", "New work order" — **updated: the old "New Shift / New Event / View Day"
+    right-click menu was removed in v22**), and the "Filter and Display" / "View Options"
+    control names.
+  - Department group header examples ("SERVICE/PARTS", "ADMINISTRATION") are illustrative —
+    actual department names come from the tenant's data.
+  - "Work order statuses currently supported in the app" (§5.1 Status filter) — the concrete
+    status list is not enumerated in this spec; source it from the app during VIU.
+  - No API endpoints, HTTP methods, or status codes appear anywhere in this spec (§8 Data
+    model is entity-level only). **The engineering tech plan (ingested 2026-07-29) IS the
+    backend description** — 17 endpoints + an error contract — and 4 lean API cases exist
+    (SCH-API-01..04 = C38872–C38875). Whether backend coverage is formally in V1 QA scope is
+    a question Branko declined ("I'm not sure if this question is for me Bilal.") →
+    **re-routed to engineering / the QA lead.**
+  - No dev plan / phasing / rollout section is present in this spec. The separate
+    engineering tech plan supplies phasing.
+- **OQ-6 — Hover-tooltip VIN. RESOLVED 2026-07-31** — Branko: VIN is **always** visible on
+  hover regardless of the toggle (answer A). §9's "and in hover tooltips" wording is loose
+  upstream and should be tidied by Branko; §4.13 is authoritative.
+
+### Spec-internal contradictions live in Confluence v23 (flagged, NOT resolved — Rule 15)
+
+| # | Contradiction | Our position | Status |
+|---|---|---|---|
+| X1 | **Shop closures on spread.** §4.5 "**not skipped in V1**" vs §12 Edge cases "**block the spread step from placing shifts on those days**" | cases follow §4.5 (not skipped) | Confirmation question to Branko; the engineering plan takes the §12 side |
+| X2 | **VIN in tooltips.** §9 implies the VIN toggle gates the tooltip; §4.13 says the tooltip always shows VIN | cases follow §4.13 | **RESOLVED by Branko 2026-07-31** (always visible); §9 text needs an upstream tidy |
+
+### Questions the spec does not answer at all (spec-silent → asked, never assumed)
+
+| # | Question | Why it matters |
+|---|---|---|
+| S1 | Do **event** hours also count toward the **"OT" overtime tag** and the **per-technician hover breakdown**, or only the aggregate capacity bar? | §4.12 now includes events in the aggregate but calls overtime "a separate per-technician signal, and the two are independent" |
+| S2 | Can an event be created for a **whole department** rather than one technician — and if so does it consume every one of those technicians' capacity? | Not in the spec at all; the engineering plan's default is "no" (an engineering default, not a product ruling) |
+| S3 | Can an event cover a **whole day** (no start/end time), and does it then consume a full working day? | Not in the spec; the engineering plan's default is "visual only" |
+| S4 | If a user switches the **Events** view option OFF, do those hours come **out of** the capacity bars, or are the events merely hidden while the bars keep counting them? | Only became a question once events started consuming capacity (v19) |
+| S5 | May a technician-type user **change** another technician's shifts? | §14.3 rules out own-only **viewing** but is silent on **writing**; the engineering plan builds own-data write scoping. **Re-routed to engineering/dev** — Branko says it is not his question |
+| S6 | Does **double-booking** count in the conflicts pill/list, or is it only a milder on-block warning? | §4.11 lists "Double-booked" as a conflict type; the engineering plan treats it as a soft front-end warning only |
+
+---
+
+## APPENDIX — Removed upstream (v19–v23)
+
+Every sentence/clause that Branko **deleted or replaced** between Confluence v18 (our old
+baseline) and v23, kept verbatim so the history is not lost. **None of this is a current
+requirement** — do not write cases to it.
+
+| # | Section | Removed / replaced text (verbatim from v18) | Replaced by | Version |
+|---|---|---|---|---|
+| R1 | §4.9 Shift detail modal | "Actions: Delete (series-aware, §7) **and Reassign to another technician**." | "Actions: Delete (series-aware, §7)" — the Reassign action is gone; drag-only reassignment | **v23** |
+| R2 | §4.4 Shift block anatomy | "…with **color tied to the work order (so blocks from the same order share a color)**:" | "…with a **default blue color** (users can optionally assign a custom color per shift via the color picker in the detail modal, see §10):" | v22 |
+| R3 | §4.5 Multi-day spread | "Uses the technician's own working hours. **Automatically skips weekends and shop closures, so the end date is emergent.**" | "Uses the technician's own working hours. Automatically skips weekends **when business hours are not set for them**. **Shop closures and public holidays are not skipped in V1..**" | v22 |
+| R4 | §4.6 Linked series — month view | "…a faded 'continues' label on later weeks, empty weekend columns, **and visible breaks around skipped or booked days**." | "…a faded 'continues' label on later weeks, empty weekend columns **(when business hours are not set for weekends)**." | v22 |
+| R5 | §4.6 Linked series — week view | "…a 'week N of M' cue, **and a break around any day the technician is otherwise booked**." | "…a 'week N of M' cue." | v22 |
+| R6 | §4.8 Day view | "**Now line.** A vertical indicator showing the current time, with a label on hover." | "…with a label on hover **over the grid**." | v22 |
+| R7 | §4.10 Events | "Create via a **right-click context menu on any cell, or by clicking empty grid space in day view**." | "Create via **left-click on empty grid space, which opens a menu with 'Create event' and 'New work order'..**" | v22 |
+| R8 | §7 Interactions | "**Right-click context menu** on any grid cell: **New Shift, New Event, View Day**." | "**Left-click on empty grid space** opens a menu with: **Create event, New work order**." | v22 |
+
+**Additive-only upstream changes** (nothing removed, listed here for completeness): §4.2
+Hours settings block *(v19)*; §4.11 "Events are not conflict-checked for now" *(v19)*; §4.12
+"Event time is included in the utilization total…" + "(shifts plus events)" *(v19)*; §11 Dark
+theme *(v19)*; header `Design` second link *(v20)*; header `Epic` row *(v21)*.
+
+**Two source typos are reproduced verbatim on purpose** — "not skipped in V1.." (§4.5, double
+full stop) and "'New work order'.." (§4.10). Do NOT silently "fix" them in case wording; they
+are the spec's own text.
+
+---
+
+## APPENDIX — Branko's answers folded into this doc (2026-07-31)
+
+All six are marked inline as **`[PO 2026-07-31]`** notes. Verbatim source of record:
+`build/schedule/branko-answers-2026-07-31/answers-ingested.md`.
+
+| Topic | Branko's ruling | Where folded in | Effect on our cases |
+|---|---|---|---|
+| Events consume capacity | **Yes** — "A 2-hour meeting consumes 2 hours of capacity"; counts toward capacity but **not** conflict-checked | §4.12 | **Reverses** his earlier "No" — newest-wins; capacity cases updated |
+| Shift-modal 'Reassign' button | **No button** — dragging only | §4.9 | Confirms our cases; **Jira SV-8695 is now stale** |
+| Printable / exportable week view | **Not in V1, not even in future considerations** | §15 | SCH-EXP-01 (C38853) = retire candidate, **awaiting user authorization** |
+| Cell menu | **Left-click only** (no right-click); menu = **Create event**, **New work order** | §4.10, §7 | Confirms our cases |
+| Default working day | **7:00 AM – 7:00 PM** | §4.2 | Confirms our cases; design prototype's 8–5 is the outlier |
+| VIN on hover | **Always visible, regardless of the toggle** | §9, §4.13 | Confirms our cases; closes OQ-6 |
+
+**Not answered / re-routed:** backend-coverage scope and own-data write scoping — Branko: "I'm
+not sure if this question is for me Bilal." Both go to **engineering / the QA lead**, not back
+to the PO.
