@@ -47,6 +47,16 @@
 >   if that is true — never omit it). Sweep all six categories: missing sources · unanswered PO/dev
 >   questions · missing go-aheads/authorizations · access/credentials · deferred or HELD decisions ·
 >   what another team owes. Unresolved inputs are the main threat to 100% authentic tests.**
+> - **THE 2026-07-31 LESSONS (Standing Rules 40–44) — read `build/LESSONS-2026-07-31.md` before any
+>   spec-delta, authoring, or case-edit pass. In one line each: **40** trace a requirement across
+>   EVERY surface (screen · PDF · CSV · print · API · mobile) and ship the SURFACE MATRIX, not a case
+>   list · **41** touch a case → re-verify the WHOLE case against the current spec and log
+>   "re-verified whole against <spec+version>" · **42** no closed "exactly these …" enumerations
+>   without a version-pinned anchor — write them scope-conditionally · **43** every spec-diff
+>   requirement gets its OWN coverage-verdict row (narrative summaries are not acceptable; matrices
+>   are RE-DERIVED, never patched) · **44** someone else's contradicting case is a bug report
+>   against OUR suite until we re-derive our own position — a missing `refs` is never a reason to
+>   dismiss it.**
 > - **PROCESS CATALOG (the table of every reusable process + how to call it for any project):
 >   build/PROCESS-CATALOG.md — READ THIS to pick/name a process; it lists all of them with
 >   trigger phrases and the deliverable each produces. Keep it updated when a process is
@@ -1835,6 +1845,142 @@ deliver the 7-tab management report.
     `build/contradiction-analysis-2026-07-31/SBR-CSV-LOCATION.md`. Ties to Standing Rules 12
     (observed, never inferred), 20 (traceability), 25 (verbatim citation of the source deviated
     from), 32 (latest source wins), 33 (authority precedence) and 38 (foreign cases are hands-off).
+40. **A requirement that spans SURFACES must be traced across EVERY surface — produce a surface
+    matrix, not a case list (all projects).** A requirement almost never lives on one screen. When a
+    requirement, PO ruling, spec delta, or design change is applied, **ENUMERATE THE SURFACES IT CAN
+    TOUCH and give EACH ONE ITS OWN VERDICT** — "applied" is not an answer, and neither is a list of
+    the cases you happened to edit.
+    **THE SURFACE CHECKLIST (walk ALL of it, every time; mark N/A explicitly rather than skipping):**
+    **on-screen** (the grid/list/table/detail view) · **PDF export** · **CSV export** (and any other
+    download format) · **print view** · **API / response payload** · **mobile / responsive layout** ·
+    **email or scheduled delivery** · **column/field selector or settings surface** · **filter and
+    sort surfaces** · **empty / error / zero-state**. Add any surface the project has (a portal, a
+    terminal, a QuickBooks push, a document template).
+    **PER SURFACE, EXACTLY ONE VERDICT:** *covered by case X (internal ID + C-id)* · *case X extended
+    (name the field changed)* · *new case authored* · *not applicable (state WHY, from the spec)* ·
+    *blocked (state the blocker)*. **The change-list / delta deliverable MUST SHOW THE SURFACE MATRIX**
+    — requirement anchor down the side, surfaces across the top — so a reader can see at a glance
+    that no surface was left unexamined. A delta document that names only the cases it touched is
+    **incomplete by definition** and may not be delivered.
+    **THE TELL TO WATCH FOR:** a requirement whose own text says *"…in all four exports"*, *"every
+    download"*, *"wherever it is shown"*, *"and in the API"*, *"on screen and in print"* is
+    **explicitly multi-surface** — those phrases are a hard trigger for this rule. Also treat any
+    requirement that CROSS-REFERENCES another requirement (*"in the same position it occupies on
+    screen (S21-R7)"*) as multi-surface: the cross-reference is the surface link.
+    **RATIONALE (2026-07-31 — the worst defect of the day, and it was ours):** the 2026-07-29
+    suite-wide **Location column** ruling was worked through
+    `build/report-suite/chris-answers-2026-07-31/DELTAS.md` **D11**, which authored **six new
+    ON-SCREEN cases** (SBC-LOC-04 = C38912, SBR-LOC-05 = C38913, PV-FILT-14 = C38914, TU-LOC-06 =
+    C38915, WIP-FLT-09 = C38916, IV-LOC-06 = C38917) and **never revisited the EXPORT cases** — the
+    anchor **`S14-R20`** appears **nowhere in DELTAS.md** (verified: 0 occurrences). Consequence:
+    **SBR-EXP-10 = [C30285](https://shopview.testrail.io/index.php?/cases/view/30285)** and
+    **SBR-EXP-11 = [C30286](https://shopview.testrail.io/index.php?/cases/view/30286)** kept
+    enumerating CSV headers *"exactly"* **without** Location, so a tester on a correct multi-location
+    build would have **failed a passing build**. The **same on-screen/export split** existed on three
+    more reports — PV **S6-R11**, TU **S7-R13**, IV **S10-R15** (each export case covered only the
+    `"Locations:"` metadata line). **We did not find it by auditing; we found it because an automation
+    engineer's case disagreed with ours** (Rule 44). Evidence:
+    `build/contradiction-analysis-2026-07-31/SBR-CSV-LOCATION.md` +
+    `build/report-suite/coverage-rederivation-2026-07-31/COVERAGE-REDERIVATION.md` rows 2–5. Ties to
+    Standing Rules 17 (complete data in/out), 20 (traceability), 28 (the audit's Stage-2b sweep now
+    groups by requirement anchor and checks every surface it names), 31 (source currency), 41
+    (re-verify a whole case when you touch it) and 43 (per-requirement coverage verdicts).
+41. **Touch a case, RE-VERIFY THE WHOLE CASE — there are no surgical edits (all projects).** Any test
+    case you open for **ANY** reason — a one-word label rename, a title trim, a `refs` backfill, a
+    merge, a note addition, a status flip — gets **RE-READ END-TO-END against the CURRENT spec before
+    it is saved**, and its `refs` re-validated. **Opening a case is the cheapest opportunity we will
+    ever get to catch that it is stale; a surgical edit throws that opportunity away and, worse,
+    stamps the case with a fresh "Updated" date that makes it LOOK current.**
+    **METHOD (checkable — the pass must be able to prove it did this):** per touched case, record in
+    the execution log a line **"re-verified whole against `<spec document + version + date>`"** plus
+    the fields checked — **title · preconditions · steps · expected results · refs · notes** — and
+    any second finding the re-read produced. **A push log whose entries name only the edited field is
+    non-compliant.** Where the re-read finds a further problem the pass was not chartered to fix,
+    **RECORD IT** (in the manifest and the Outstanding register) rather than silently leaving it;
+    where it finds nothing, the recorded line is the positive evidence that it was looked at.
+    **RATIONALE (2026-07-31):** **SBR-EXP-10 = C30285** and **SBR-EXP-11 = C30286** were touched that
+    same day — **ops 46 and 47** of the authorized push
+    (`build/report-suite/chris-answers-2026-07-31/testrail-execution-log-2026-07-31.md`) — **purely to
+    apply Chris's Q5 `Sales Rep` → `Sales Representative` rename on the first header**. The pass had
+    both cases open, edited the very line that lists the headers, and **did not notice the header LIST
+    itself was already stale** against `S14-R20`. One end-to-end re-read of either case would have
+    caught the day's worst defect hours earlier and for free. Ties to Standing Rules 20, 28, 31, 40
+    and 43.
+42. **NO ABSOLUTE ENUMERATIONS without a version-pinned anchor — prefer scope-conditional wording
+    (all projects).** A closed list in an expected result is a **time bomb**: it is correct until the
+    spec adds one item, and then it makes a tester **fail a correct build**. Any expected result that
+    CLOSES a list — *"the headers, in order, are exactly …"*, *"the options are exactly …"*, *"only
+    these columns appear"*, *"the menu contains exactly …"*, *"no other field is shown"* — MUST:
+    **(a) CITE ITS GOVERNING REQUIREMENT + THE SPEC VERSION in `refs`** (Rule 20 format, extended
+    with the version: `<TICKET(S)> (<spec-anchor>, spec v<N> <date>)`), so that when that requirement
+    changes, **every case citing it is re-checked** (this is what makes the same-anchor clustering in
+    Rule 28's Stage 2b actually work); and
+    **(b) BE WRITTEN SCOPE-CONDITIONALLY WHEREVER THE SPEC MAKES THE LIST CONDITIONAL** — prefer
+    **"includes X in position Y when Z"** (plus, where useful, "and is absent when not-Z") over a
+    closed list. Only keep a closed list when **the closed list IS the requirement** (the spec itself
+    says "exactly these and no others") — and then say so in the case notes, citing the anchor.
+    **Give the tester the plain conditional too** (Rule 7), e.g. *"If you are looking at only one
+    location there is no Location column — that is correct."* — otherwise a correct build reads as a
+    failure to a layman tester.
+    **SWEEP DUTY:** the word **"exactly"** (and "only", "no other", "the complete list") in a
+    tester-facing field is a **grep-able audit target**; every hit must show a version-pinned anchor
+    or be rewritten. This is a Dimension-2 fail condition in Rule 28.
+    **RATIONALE (2026-07-31):** *"The headers, in order, are **exactly**: Sales Representative,
+    # Invoices, …, Subtotal."* (SBR-EXP-10 = C30285, and its twin C30286) **broke the moment the spec
+    added a column** — `S14-R20`, 2026-07-29. The enumerations dated from the **2026-07-11** "Exports
+    hardened" change and the cases' `refs` cited only **S14-R15 / S14-R16 / S14-R18**, so nothing
+    connected them to the requirement that changed. Ties to Standing Rules 7 (plain tester wording),
+    20 (refs), 25 (verbatim citation), 28 (Dimension 2), 32 (latest wins), 40 and 43.
+43. **Spec-diff processing must emit a PER-REQUIREMENT COVERAGE VERDICT — a narrative summary is not
+    acceptable (all projects).** For **EVERY** added / changed / removed requirement in a spec diff,
+    the deliverable carries **its own explicit ROW**: the **requirement id** + the **VERBATIM
+    requirement text** → **one** verdict from: **covered by case(s)** (internal ID + C-id) ·
+    **case extended** (name the case + the field changed) · **new case authored** (or *authoring
+    proposed, awaiting authorization*) · **not independently testable** (state the reason — e.g. it
+    is rationale prose, or it duplicates another requirement's assertion) · **blocked** (state the
+    blocker and who owns it). **The diff pass is NOT COMPLETE until every row has a verdict**, and
+    the row count must reconcile with the number of deltas the diff itself found (state both totals —
+    Rule 17).
+    **COVERAGE MATRICES ARE RE-DERIVED PER SPEC VERSION, NEVER INCREMENTALLY PATCHED.** Rebuild the
+    requirement → case map from the CURRENT spec body and the CURRENT case source every time, and run
+    it in **BOTH directions**: requirement → case(s) (finds uncovered requirements) **and** case →
+    requirement (finds cases whose anchor no longer exists, i.e. orphaned or stale-anchored cases).
+    Patching last version's matrix preserves last version's blind spots — which is exactly how this
+    rule was earned.
+    **RATIONALE (2026-07-31):** **`S14-R20` WAS PRESENT** in our own v15 spec diff
+    (`build/report-suite/spec-current-2026-07-31/SPEC-DIFF-2026-07-31.md` §2.2 lists it explicitly)
+    and yet **appears NOWHERE** in the deltas document that acted on that diff
+    (`chris-answers-2026-07-31/DELTAS.md` — 0 occurrences). **The narrative summary let a
+    correctly-detected requirement slip between detection and action**, and it took a **formal
+    re-derivation** (`build/report-suite/coverage-rederivation-2026-07-31/COVERAGE-REDERIVATION.md`)
+    to surface it — along with the same gap on **PV S6-R11, TU S7-R13, IV S10-R15**. A per-requirement
+    verdict table makes that class of slip structurally impossible: an un-verdicted row is a visible
+    hole. Ties to Standing Rules 11 (ask which process), 15 (verbatim truth-table), 17, 20, 31, 40
+    and 42; the required table format lives in
+    `build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md` step 1.
+44. **Another author's CONTRADICTING case is a BUG REPORT AGAINST OUR SUITE until disproven (all
+    projects).** When anyone else's test case — automation or manual, senior or junior, referenced or
+    unreferenced — disagrees with one of ours, the **FIRST** move is **NOT** to defend ours or to
+    question theirs. It is to **RE-DERIVE OUR OWN POSITION FROM THE CURRENT SOURCES**: re-pull the
+    spec (Rule 31), find the governing requirement, read it verbatim (Rule 25), and check the DATE of
+    the text our case actually cites. **If our source is stale or was misread, OURS IS THE DEFECT and
+    we fix ours** — and we say so plainly. **Only after our side is verified sound** does the
+    disagreement become a question to them, escalated with **both sides' sources** per Rule 39.
+    **NEVER dismiss the other case on grounds of seniority, authorship, job title, automation-vs-
+    manual, or ABSENCE OF REFERENCES.** A missing `refs` field is a **traceability** shortcoming of
+    their case; it is **not evidence about the build**, and it must never be used as the reason to
+    wave the disagreement away. Rule 38 still stands absolutely: **we do not touch their cases** — we
+    fix ours and present the evidence.
+    **RATIONALE (2026-07-31 — the uncomfortable one):** Vladimir Tomovic's automated
+    **[C38923](https://shopview.testrail.io/index.php?/cases/view/38923)** ("SBR Summary and Expanded
+    CSV exports carry the Location column at its designated slot") was **RIGHT**, and **our two cases
+    — SBR-EXP-10 = C30285 and SBR-EXP-11 = C30286 — were WRONG, against OUR OWN spec** (SBR v15
+    `S14-R20`, live since 2026-07-29, one day before he authored). **His case carried NO `refs` at
+    all** — precisely the signal we might have used to dismiss it. It was the only thing that exposed
+    a four-report export gap. Evidence:
+    `build/contradiction-analysis-2026-07-31/SBR-CSV-LOCATION.md` +
+    `build/testrail-foreign-cases-2026-07-31/FOREIGN-CASES.md`. Ties to Standing Rules 12, 25, 31, 32,
+    33 (precedence — judge the claim, not the claimant), 38, 39, 40 and 43.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
