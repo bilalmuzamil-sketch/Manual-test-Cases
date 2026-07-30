@@ -99,7 +99,9 @@ re-derived Schedule coverage from **zero** against the CURRENT spec.
 6. **Spec-silent S1–S6** (events → OT tag · department-wide events · all-day capacity · Events
    toggle vs capacity · technician editing others' shifts · double-booking severity) — questions,
    not cases, until answered.
-7. **User go-ahead** for the **79 pending title trims** (carried over) — not touched by this pass.
+7. **Title trims: NOTHING OUTSTANDING — verified done.** Live check this pass: **0 of 165** titles
+   exceed 80 characters (they were pushed in the 2026-07-31 authenticity pass), so the old
+   "75/79 pending title trims" go-ahead is **cleared**, not carried.
 
 ---
 

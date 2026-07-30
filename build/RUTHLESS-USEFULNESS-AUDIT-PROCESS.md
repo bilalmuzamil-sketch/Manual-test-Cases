@@ -175,6 +175,43 @@ Stage 2b over 100% of the suite (Rule 17) — it is not optional and not sample-
   anchor. Cases derived from the SAME requirement must assert the SAME behaviour; if they don't,
   either one is stale against a spec revision or one misread the requirement. This also catches
   contradictions the keyword sweep misses (different words, same requirement).
+- **(iv) SURFACE-SPLIT CHECK — group by requirement anchor, then verify EVERY surface the
+  requirement NAMES has a case (Standing Rule 40). MANDATORY.** Same-anchor clustering (iii) asks
+  *"do the cases sharing an anchor AGREE?"*; this asks the harder question *"is any surface that
+  requirement reaches MISSING a case altogether?"* — the failure mode where the on-screen half of a
+  requirement is fully covered and its export/print/API half is silently stale or absent. **A
+  contradiction between two cases is visible; a missing surface is invisible, which is why it must
+  be swept mechanically.**
+  **Method, per anchor cluster:**
+  1. **Read the requirement text and extract the surfaces it NAMES.** Walk the full checklist —
+     **on-screen** · **PDF export** · **CSV export** (and any other download) · **print view** ·
+     **API / response payload** · **mobile / responsive** · **email or scheduled delivery** ·
+     **column/field selector or settings surface** · **filter and sort surfaces** · **empty / error /
+     zero-state** — plus any project-specific surface (portal, terminal, QuickBooks push, document
+     template).
+  2. **HARD TRIGGER PHRASES** — a requirement saying *"in all four exports"*, *"every download"*,
+     *"wherever it is shown"*, *"and in the API"*, *"on screen and in print"*, or CROSS-REFERENCING
+     another requirement for its position (*"in the same position it occupies on screen (S21-R7)"*)
+     is **explicitly multi-surface**. Grep the spec for these; every hit gets a cluster.
+  3. **Emit one verdict PER SURFACE, not per anchor:** *covered by case X (internal ID + C-id)* ·
+     *case X extended* · *new case needed (authoring recommendation)* · *not applicable (state WHY,
+     from the spec)* · *blocked (state the blocker + owner)*.
+  4. **Report it as a SURFACE MATRIX** in the audit deliverable — requirement anchors down the side,
+     surfaces across the top, one verdict per cell. **A cell with no verdict is a visible hole; a
+     "new case needed" cell is a coverage gap that must appear in the tally**, counted and named
+     alongside the contradictions.
+  5. Where a surface IS covered, still **diff its expectation against the on-screen case's** — a
+     covered-but-stale export case is the exact defect this check exists for, and it usually shows up
+     as an unanchored closed list (Dimension 2 fail condition **F7**, Rule 42).
+  **Rationale (2026-07-31 — the day's worst defect):** the suite-wide Location-column ruling was
+  applied by authoring six new **on-screen** cases and the **export** cases were never revisited —
+  `S14-R20` appears nowhere in the deltas document that acted on the spec diff. **SBR-EXP-10 = C30285**
+  and **SBR-EXP-11 = C30286** kept listing the CSV headers *"exactly"* without Location (so a tester
+  would have failed a correct build), with the identical on-screen/export split on **PV `S6-R11`, TU
+  `S7-R13`, IV `S10-R15`**. It was found not by an audit but because another author's case disagreed
+  with ours. Evidence: `build/contradiction-analysis-2026-07-31/SBR-CSV-LOCATION.md` +
+  `build/report-suite/coverage-rederivation-2026-07-31/COVERAGE-REDERIVATION.md` rows 2–5; full
+  retrospective `build/LESSONS-2026-07-31.md` §1.4.
 
 **Resolution — by the Rule-33 authority precedence order (never by whichever case was written last):**
 1. **PO's product ruling** (per project: Branko = Filters / Schedule / Global Search; Chris Ward =
