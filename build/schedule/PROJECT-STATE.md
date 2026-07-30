@@ -7,7 +7,103 @@
 
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-31)
 
-### 0.0-AUTHENTICITY CLOSING AUTHENTICITY PASS — DONE + PUSHED (2026-07-31, LATEST — read this first)
+### 0.0-COVERAGE  COVERAGE RE-DERIVATION vs spec v23 — DONE + PUSHED (2026-07-31, **LATEST — read this first**)
+
+**Deliverables: `build/schedule/coverage-rederivation-2026-07-31/`** — `COVERAGE-REDERIVATION.md`
+(the report) · `APPENDIX-A-full-matrix.md` (all 243 statements) · `AUTHORED.md` · `RULE-28-AUDIT.md`
+· `testrail-sync-manifest-2026-07-31.md` (EXECUTED) · `testrail-execution-log-2026-07-31.md` ·
+`coverage-matrix.json` · `tools/` (re-runnable) · `pre-push-snapshot/`.
+
+**TALLY: 164 → 165 ACTIVE** (192 authored − 27 Retired), all `VIU-Pending`.
+**+1 case (SCH-PERM-13 = C38926) · 1 case extended (SCH-DND-07 = C29961) · 0 retired · 0 deleted.**
+
+**WHY:** our coverage matrix was built against Confluence **v18**. Earlier the same day we worked
+from the **v18→v23 DIFF**, which proves the CHANGES are covered but **not** that nothing was
+already missing. On **Filters** that same exercise found ~26 uncovered requirements. This pass
+re-derived Schedule coverage from **zero** against the CURRENT spec.
+
+- **Enumerated 243 atomic statements** from the live v23 body with a **completeness proof**:
+  242 non-blank body lines consumed == 242 (every line lands in exactly one statement).
+  Per-section totals in the report.
+- **Mapped every statement** to case(s) by **anchor + text overlap**, then read every section by
+  hand (an anchor proves citation, not assertion), backed by 3 mechanical detectors and a
+  50-label spec-string sweep (49/50 present).
+- **RESULT: 206 COVERED · 4 COVERED-FLAGGED · 30 NOT-TESTABLE (itemised, with reasons) ·
+  3 GENUINE GAPS** = **210 of the 213 testable statements covered (98.6%)**.
+- **The 3 gaps, all CLOSED this pass:**
+  **G1** §4.3 *"no swap flow"* — only the "no cap" half was covered; nothing observed that a
+  SECOND technician dragged onto a line is **added alongside** rather than replacing the
+  incumbent → **SCH-DND-07 (C29961) EXTENDED** (+2 steps, +2 expected).
+  **G2+G3** §14.1 **default role → Schedule tier mapping** — the 9 role names appear in **no**
+  case; SCH-PERM-01..06 test the tiers abstractly, so a build shipping Technicians with Edit
+  would have passed the whole permission set → **NEW SCH-PERM-13 = C38926** (one case, not two —
+  one observable behaviour).
+- **REVERSE CHECK CLEAN:** 0 dangling `§` anchors across all 165 cases; **no** case anchored to
+  removed-upstream text (all 8 R1–R8 clauses checked — the only mentions are negative assertions
+  or history notes); **6** cases cite no v23 statement and all 6 are **tech-plan-derived**
+  (SCH-REG-01..04, SCH-API-04, SCH-EDGE-07) — 0 orphans.
+- **3 spec-residue FLAGS for Branko — no case changed** (each resolved by an explicit precedence
+  rule, none guessed): **F1** §12 "closures block the spread step" vs §4.5 "not skipped in V1"
+  (= contradiction **X1** / his **NQ-1**; §4.5 is the v22 edit → latest-wins, SCH-EDGE-05 is on
+  the right side); **F2** §4.9 "line(s) **with labor/total figures**" vs SCH-MODAL-04's no-money
+  assertion (his 2026-07-22 Q3 ruling + design + tech-plan D6/NFR-002 win, Rule 33);
+  **F3** §14.1 still says "**right-click** context menu" (he ruled left-click only).
+- **Rule 28 (3 dimensions + Stage-2b):** 2 KEEP / 2 SENSIBLE / 2 traceable+layman-runnable;
+  **0 contradictions**; **1 near-miss pre-empted** — SCH-DND-07 E4 ("the first technician stays")
+  vs SCH-REAS-01 E3 ("the source technician is removed") are two different actions, so step 3 now
+  says *"drag the line from the sidebar again — do NOT drag the shift block"*.
+  **X1–X7 all re-verified STILL RESOLVED.**
+- **TestRail (group 4254 + run 357 ONLY): 3 ops, all HTTP 200 + verified, 0 deletes, 0 result
+  writes.** 1 `add_case` (C38926, section 4279, `custom_atmstatus` 3 / `custom_automation_type` 0)
+  + 1 **PARTIAL** `update_case` (C29961 — steps/expected/refs only; `title` not sent; live body
+  re-read and confirmed plain text, so none of the **16 HTML-reformatted** cases was clobbered)
+  + **Rule 34 union** of run 357.
+- **Rule 34 — run 357** `include_all=false` (the gotcha applies): **164 → 165 tests**, all 164
+  prior case_ids still present, **results 429 → 429 UNCHANGED**. Union + length guards asserted
+  before the write; tests **and** results snapshotted first.
+- **COUNT EQUALITY (all four, live): local active 165 == live under 4254 165 == id-map 165 ==
+  import rows 165**; id-map C-ids are exactly the live set (0 missing / 0 extra). Import header
+  sha1 byte-identical to all five peer imports; 0 dup titles, 0 titles >80, 0 VIU/flag words,
+  4 API cases all in "API — Schedule", 0 API content outside it.
+- **SUPERSEDED (banner-marked, kept as prior art):** `build/schedule/coverage-matrix.md` and the
+  coverage claims in `epic-sv8685/RECONCILIATION.md` — both v18-era. **The authoritative coverage
+  statement is now `coverage-rederivation-2026-07-31/COVERAGE-REDERIVATION.md`.**
+- ⚠️ `gen_import.py` blanks the id-map C-ids on every rerun (known) — all 165 were re-merged.
+- **Still `VIU-Pending` across the board: there is no QA branch/environment (OQ-3).** This pass
+  proves **spec-to-case coverage**, never verified behaviour (Rules 12/22).
+
+#### SOURCE-CURRENCY (Rule 31) — re-verified for this pass
+
+| Source | Identifier | Version / last-updated | Checked | Verdict |
+|---|---|---|---|---|
+| Spec | Confluence **713031682** | **version 23**, 2026-07-30T10:40:32Z (body "Version" field still reads 1.0 — never trust it) | 2026-07-31 | **CURRENT** |
+| Epic + stories | **SV-8685** + SV-8686..SV-8700 | UNCHANGED (`build/epic-recheck-2026-07-31/SCHEDULE-EPIC-DELTA.md`, Rule-37 Tier-1) | 2026-07-31 | **CURRENT** |
+| Designs | Claude prototype `Schedule.dc.html` (Branko Q0); no Figma for Schedule | `spec-v1-2026-07-22/design-notes-claude.md` | 2026-07-31 | **CURRENT** — no Rule-35 queue open |
+| Tech plan | `tech-plan-2026-07-29/` | supplied 2026-07-30 | 2026-07-31 | **CURRENT** |
+| PO answers | Branko ×6 (2026-07-31) | `branko-answers-2026-07-31/answers-ingested.md` | 2026-07-31 | **CURRENT** — NQ-1..NQ-5 still unanswered |
+| Live build | — | **no QA branch / environment (OQ-3)** | 2026-07-31 | **NOT AVAILABLE** — nothing build-verified |
+
+#### OUTSTANDING — what we need (Rule 36)
+
+1. **Branko — NQ-1..NQ-5** on `PO-Questions-Branko-Schedule-TechPlan_2026-07-30`, incl. **NQ-1 =
+   the §12-vs-§4.5 closures contradiction (F1)**. Blocks: SCH-EDGE-05/SCH-SPREAD-07 sit on the
+   v22 side by Rule 32 rather than on a ruling.
+2. **Branko — 3 spec tidies (F1/F2/F3)** so the PRD stops contradicting his own rulings.
+   Blocks nothing today; each mismatch is a future re-review cost.
+3. **Jira **SV-8695** is stale** — its text still lists a modal *Reassign* action that v23 deleted.
+   Owner: Branko/dev.
+4. **Engineering — own-data WRITE scoping (NQ-5).** §14 is silent, so **no case may be authored**;
+   SCH-PERM-09 covers only the read side.
+5. **QA branch / environment + flag state (OQ-3)** — the big one: **nothing in these 165 cases is
+   live-verified**, so the whole suite stays `VIU-Pending`.
+6. **Spec-silent S1–S6** (events → OT tag · department-wide events · all-day capacity · Events
+   toggle vs capacity · technician editing others' shifts · double-booking severity) — questions,
+   not cases, until answered.
+7. **User go-ahead** for the **79 pending title trims** (carried over) — not touched by this pass.
+
+---
+
+### 0.0-AUTHENTICITY CLOSING AUTHENTICITY PASS — DONE + PUSHED (2026-07-31; superseded as "latest" by 0.0-COVERAGE above, still valid)
 
 **Deliverables: `build/schedule/authenticity-2026-07-31/`.**
 **TALLY: 164 ACTIVE, all `VIU-Pending`. Unchanged by this pass — 0 cases added, 0 retired.**
