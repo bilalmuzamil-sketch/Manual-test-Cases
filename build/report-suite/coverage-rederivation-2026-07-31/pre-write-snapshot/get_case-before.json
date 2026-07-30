@@ -1,0 +1,332 @@
+{
+ "IV-COL-01": {
+  "case_id": 30551,
+  "title": "With every column on they appear in the fixed order with the set alignment",
+  "refs": "SV-8670 (specs/inventory-value.md Story 3 S3-R1; S3-R2)",
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open with rows loaded.\n3. Every column (including Margin and Total Sell) is turned on in the column-selection control.",
+  "custom_steps": "1. Read the column headers from left to right.\n2. Look at how the values in each column are aligned.",
+  "custom_expected": "1. The columns appear in this order: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.\n2. Part #, Description, Category, and Vendor are left-aligned.\n3. Every other column is right-aligned.",
+  "section_id": 4366,
+  "updated_on": 1785428254
+ },
+ "IV-COL-04": {
+  "case_id": 30554,
+  "title": "On a first visit the default columns show and the rest stay available",
+  "refs": "SV-8670 (specs/inventory-value.md Story 3 S3-R12; S3-R13; Story 8 S8-R3)",
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).",
+  "custom_steps": "1. Open the Inventory Value report and read the visible column headers.\n2. Open the column-selection control and read which columns are on and off.\n3. Turn Margin and Total Sell on and check they appear.",
+  "custom_expected": "1. On first visit, the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost.\n2. The Margin and Total Sell columns are hidden by default.\n3. Both can be turned on from the column-selection control and then appear in their fixed positions.",
+  "section_id": 4366,
+  "updated_on": 1785428257
+ },
+ "IV-LOC-06": {
+  "case_id": 38917,
+  "title": "The Location column is automatic, sits after Vendor, and never reads Multiple",
+  "refs": "SV-8674 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10 \u2014 Location column inserted between Vendor and Qty on Hand; automatic visibility; never \"Multiple\")",
+  "custom_preconds": "1. You are signed in on a desktop browser as a user with access to at least two locations.\n2. The same part is in stock at two of those locations.\n3. The Inventory Value report is open with rows loaded.",
+  "custom_steps": "1. Select two or more locations and read the column headers from the left.\n2. Read the Location cell on each of the two rows for the part stocked at both locations.\n3. Look for any row showing \"Multiple\".\n4. Open the column-selection control and look for Location in the list.\n5. Narrow to a single location and read the headers again.\n6. Change the selection between one location, several, and \"All locations\", watching the filter control's width.",
+  "custom_expected": "1. With more than one location in scope a Location column is shown, inserted between Vendor and Qty on Hand.\n2. Each row names the location that row's stock is held at.\n3. NO row ever shows \"Multiple\" \u2014 each row is one part at one location.\n4. Location is NOT offered in the column-selection control \u2014 its visibility follows the location scope automatically.\n5. With a single location in scope the Location column is hidden and the surrounding columns close up.\n6. The Location filter control keeps the same width whichever label it shows \u2014 one location, several, or \"All locations\" \u2014 so the toolbar does not shift as you change the selection.",
+  "section_id": 4370,
+  "updated_on": 1785428286
+ },
+ "IV-NAV-06": {
+  "case_id": 30539,
+  "title": "No qualifying parts, day or location: the no-data message shows and no totals",
+  "refs": "SV-8668 (specs/inventory-value.md Story 1 S1-N2; Story 5 S5-N1; Story 7 S7-N2; Story 12; \u00a77 User Feedback Summary)",
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. Three causes can be produced: (a) a location you can access holds no in-stock parts, (b) a past range ends entirely before nightly recording began (or its covered dates were pruned by retention), (c) the filters can be set so nothing qualifies.",
+  "custom_steps": "1. Scope the report to the empty location and read the data area.\n2. Select a Custom range ending before nightly recording began and read the data area and the bottom of the report.\n3. Set the filters so nothing qualifies and re-read.",
+  "custom_expected": "1. In every case the report shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows.\n2. No totals row is shown in any of the cases.",
+  "section_id": 4364,
+  "updated_on": 1785428292
+ },
+ "IV-PERS-02": {
+  "case_id": 30580,
+  "title": "Toggling columns never reorders them",
+  "refs": "SV-8675 (specs/inventory-value.md Story 8 S8-R4; Story 3 S3-R1)",
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open with rows loaded.",
+  "custom_steps": "1. Turn several columns on and off in different orders (for example, turn on Total Sell, then Margin).\n2. Read the resulting column order after each change.",
+  "custom_expected": "1. Whatever columns are shown, they appear in the fixed left-to-right order (Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) \u2014 toggling visibility never reorders columns.\n2. Total Cost is always the last column.",
+  "section_id": 4371,
+  "updated_on": 1785428297
+ },
+ "PV-COL-02": {
+  "case_id": 30352,
+  "title": "First visit shows exactly the 14 default columns in the specified order",
+  "refs": "SV-8644 (specs/parts-velocity.md S4-R2; S4-R3)",
+  "custom_preconds": "1. You are on the Parts Velocity report on a first visit (no saved column selection).",
+  "custom_steps": "1. Read the visible column headers left to right without touching the picker.",
+  "custom_expected": "1. Exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand.\n2. The other 6 columns start hidden: Units Returned, Sold (WO), Sold (Parts Sale), Turns / Yr, Min, Max.",
+  "section_id": 4333,
+  "updated_on": 1785425067
+ },
+ "PV-COL-03": {
+  "case_id": 30353,
+  "title": "A re-enabled column returns to its canonical slot, with no reload",
+  "refs": "SV-8644 (specs/parts-velocity.md S4-R4; S4-R5)",
+  "custom_preconds": "1. You are on the Parts Velocity report with data loaded.",
+  "custom_steps": "1. In the column picker, enable Min, then Units Returned, then Turns / Yr - in that (non-canonical) order.\n2. Watch the table as each toggle is flipped.\n3. Read the resulting header order.",
+  "custom_expected": "1. Each toggle takes effect immediately - the table re-renders without a page reload.\n2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns / Yr, Min, Max.\n3. So Units Returned slots in right after Units Sold, Turns / Yr after On Hand, and Min before Max - not appended at the end.",
+  "section_id": 4333,
+  "updated_on": 1785425068
+ },
+ "PV-FILT-14": {
+  "case_id": 38914,
+  "title": "The Location column shows only with more than one location, leftmost before Type",
+  "refs": "SV-8642 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8 \u2014 per-row Location column; leftmost before Type; \"Multiple\" on the merged special-order row; not in the picker)",
+  "custom_preconds": "1. You are on the Parts Velocity report as a user with access to two or more locations, with data loaded.\n2. The same inventory part is stocked at two of those locations, and at least one Special Order part has vendor requests at two of them.",
+  "custom_steps": "1. Select two or more locations and read the column headers from the left.\n2. Read the Location cell on each of the two inventory rows for the part stocked at both locations.\n3. Read the Location cell on the merged Special Order row.\n4. Open the column picker and look for Location in the list.\n5. Narrow to a single location and read the headers again.\n6. Change the selection between one location, several, and \"All Locations\", watching the filter control's width.",
+  "custom_expected": "1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Type.\n2. Each inventory row shows its own location's name (an inventory row is one part at one location).\n3. The merged Special Order row shows \"Multiple\", because it is summed across the selected locations.\n4. Location is NOT one of the 20 columns in the picker \u2014 it is managed by the location scope, not by you.\n5. With a single location in scope the Location column is hidden.\n6. The Location filter control keeps the same width whichever label it shows \u2014 one location, several, or \"All locations\" \u2014 so the toolbar does not shift as you change the selection.",
+  "section_id": 4331,
+  "updated_on": 1785428351
+ },
+ "SBC-EXP-02": {
+  "case_id": 30160,
+  "title": "Download file names carry the version and the active date range",
+  "refs": "SV-8612; SV-8613 (SBC spec v12 2026-07-29 S14-R14; S15-R6 \u2014 file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded)",
+  "custom_preconds": "1. You are on the report with data.",
+  "custom_steps": "1. Set the range to This Month, choose \"Download Summary (CSV)\" and note the downloaded file name.\n2. Choose \"Download Expanded View (CSV)\" and note that file name.\n3. Repeat both for at least Today, Last Quarter, and a Custom range.\n4. Open a downloaded file in a text editor and in a spreadsheet.\n5. Repeat steps 1-3 for \"Download Summary (PDF)\" and \"Download Expanded View (PDF)\".",
+  "custom_expected": "1. The Summary file name is sales-by-customer-summary-{range}.csv and the Expanded file name is sales-by-customer-expanded-{range}.csv \u2014 so the file says which version it is.\n2. {range} follows this map: Today \u2192 today; Yesterday \u2192 yesterday; This Week \u2192 this_week; Last Week \u2192 last_week; This Month \u2192 this_month; Last Month \u2192 last_month; This Year \u2192 this_year; Last Year \u2192 last_year; This Quarter \u2192 this_quarter; Last Quarter \u2192 last_quarter; Custom \u2192 custom.\n3. For Custom the literal word \"custom\" is used \u2014 the actual start and end dates are not in the file name.\n4. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet \u2014 not an .xlsx workbook and not a JSON file.\n5. The two PDF downloads follow the same names with a .pdf extension \u2014 for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf.",
+  "section_id": 4300,
+  "updated_on": 1785425082
+ },
+ "SBC-EXP-03": {
+  "case_id": 30161,
+  "title": "Expanded View CSV: column order, blank-cell rules, and the Locations line",
+  "refs": "SV-8612 (SBC spec v12 2026-07-29 Story 14 S14-R5; S14-R6; S14-R7; S14-R13 \u2014 the Expanded CSV now has thirteen columns INCLUDING Asset; with per-level blank-cell rules; the old flat twelve-column shape is superseded)",
+  "custom_preconds": "1. You have downloaded the CSV for a view with at least one customer with several invoices.",
+  "custom_steps": "1. Read the header row.\n2. Read a customer row and an invoice row.\n3. Look for any asset-level rows.",
+  "custom_expected": "1. The Expanded View CSV has these thirteen columns in this exact order: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.\n2. A customer row fills the Customer cell and leaves Asset, Invoice # and Date blank.\n3. An asset row leaves Customer blank, fills Asset, and leaves Invoice # and Date blank.\n4. An invoice row leaves Customer and Asset blank and fills Invoice # and Date.\n5. Customer names are plain \u2014 the \"(N)\" invoice count is not included.\n6. Work with no vehicle appears as an asset row named \"Parts Sales\".\n7. The file carries a \"Locations:\" line naming the location or locations the report was scoped to, or \"All locations\" when every location you can access is selected \u2014 as a leading line above the column headers.",
+  "section_id": 4300,
+  "updated_on": 1785428399
+ },
+ "SBC-EXP-04": {
+  "case_id": 30162,
+  "title": "CSV formats: Margin % plain; dates mm-dd-yyyy; currency plain; no color",
+  "refs": "SV-8612 (specs/sbc-sales-by-customer.md Story 14 S14-R10; S14-R11; S14-R12; S14-R13)",
+  "custom_preconds": "1. You have downloaded a CSV containing rows with real values, including (if seedable) a row whose Subtotal is zero or below.",
+  "custom_steps": "1. Read a Margin % cell, a Date cell, and a currency cell in a text editor.\n2. Check the row whose Subtotal is \u2264 0.",
+  "custom_expected": "1. Margin % is a plain number to one decimal with no percent sign (for example, 64.7); it is EMPTY when the row's Subtotal is zero or below.\n2. Dates export as mm-dd-yyyy \u2014 for example, 05-14-2026.\n3. Currency values are plain numbers with no dollar sign and no thousands separators.\n4. The CSV has no color; the signed Inv. Hrs value still conveys direction.",
+  "section_id": 4300,
+  "updated_on": 1785428400
+ },
+ "SBC-EXP-08": {
+  "case_id": 30166,
+  "title": "PDF page: A4 landscape, uniform margins, ShopView footer and page numbers",
+  "refs": "SV-8613 (specs/sbc-sales-by-customer.md Story 15 S15-R5; S15-R6)",
+  "custom_preconds": "1. You have downloaded the PDF for a view with enough rows to span more than one page.",
+  "custom_steps": "1. Open the PDF and check the page setup.\n2. Read the footer on each page.",
+  "custom_expected": "1. The PDF is A4 landscape using the application's standard font; the page margins look uniform on all sides. (The spec's exact 25px margin needs a PDF inspector \u2014 check the number only if you have one; otherwise uniform margins pass.)\n2. The footer has a centered \"Software Powered by ShopView\" label and a right-aligned page number \"Page X of Y.\"",
+  "section_id": 4300,
+  "updated_on": 1785428404
+ },
+ "SBC-EXP-10": {
+  "case_id": 30168,
+  "title": "PDF logo is embedded, scales without distortion",
+  "refs": "SV-8613 (specs/sbc-sales-by-customer.md Story 15 S15-R12; S15-R13; S15-R14; S15-R15)",
+  "custom_preconds": "1. You can toggle the organization's uploaded logo on/off in administration (restore it afterwards).",
+  "custom_steps": "1. With an uploaded org logo, download the PDF and check the top-right.\n2. Remove the uploaded logo, download again, and check.\n3. Open a PDF while offline to confirm the logo still renders.",
+  "custom_expected": "1. With an uploaded logo, that logo appears pinned to the top-right, scaled to fit its area without distortion.\n2. With no uploaded logo, the bundled ShopView logo is used.\n3. When no logo is available at all, the logo column is not rendered and the text column fills the full width.\n4. The logo is embedded in the PDF (renders offline, not loaded from a network address).",
+  "section_id": 4300,
+  "updated_on": 1785428406
+ },
+ "SBC-EXP-11": {
+  "case_id": 30169,
+  "title": "Expanded View PDF body matches the CSV's columns and on-screen rules",
+  "refs": "SV-8613 (SBC spec v12 2026-07-29 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 \u2014 Expanded PDF body = the Expanded columns with the asset layer; one block per customer; the title is the same for both versions)",
+  "custom_preconds": "1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal \u2264 0 row.",
+  "custom_steps": "1. Read the body table's columns and row structure.\n2. Check a date cell, a customer row's Date cell, a Margin % dash, the Subtotal column weight, and the Inv. Hrs colors (use a color picker on the PDF if available).",
+  "custom_expected": "1. The Expanded View PDF's body table has the same thirteen columns, in the same order and with the same labels, as the Expanded View CSV \u2014 including the Asset column \u2014 and shows the full Customer, then Asset, then Invoice breakdown, one block per customer.\n2. Body dates show as \"Mon DD YYYY\" - for example, \"May 14 2026.\"\n3. The Date cell is blank on customer rows and on asset rows, matching the screen.\n4. Margin % shows an em dash when the row's Subtotal is zero or below.\n5. The Subtotal column is bold - header, every row, and the totals row.\n6. Inv. Hrs uses the same signs and coloring as on screen, with green rendered as #21ba45 and red as #c10015.\n7. The PDF header title reads \"Sales By Customer Report\" on the Summary and Expanded versions alike \u2014 which version you have is told by the file name and the contents, not by a different title.",
+  "section_id": 4300,
+  "updated_on": 1785428407
+ },
+ "SBC-EXP-14": {
+  "case_id": 30172,
+  "title": "An export over 10,000 data rows is refused with the too-large toast",
+  "refs": "SV-8612; SV-8613 (specs/sbc-sales-by-customer.md Story 14 S14-R14; Story 15 S15-R22; \u00a77 \u2014 the Print leg REMOVED per kickoff video P25 31:14 / SV-8614 overridden; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
+  "custom_preconds": "1. A filter combination exists whose customer rows plus invoice rows exceed 10,000 (widest range, all locations, all customers). If the environment cannot reach 10,000 rows even fully widened, record the max reachable and mark Blocked-Env with reason.",
+  "custom_steps": "1. With the over-cap filter set, choose \"Download (CSV)\".\n2. Choose \"Download (PDF)\".\n3. Narrow the filters below the cap and re-try one export.",
+  "custom_expected": "1. For both CSV and PDF: no file is generated and no download starts.\n2. An error toast is shown each time: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).\n3. The cap counts customer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.\n4. Below the cap the export succeeds normally.",
+  "section_id": 4300,
+  "updated_on": 1785428408
+ },
+ "SBC-EXP-16": {
+  "case_id": 38856,
+  "title": "Summary and Expanded View downloads exist for both PDF and CSV",
+  "refs": "SV-8612; SV-8613 (SBC spec v12 2026-07-29 Story 14 S14-R1/R2/R4 + Story 15 S15-R1/R2/R4/R5 \u2014 the four-item Summary/Expanded menu and the Summary column list are now spec-ratified)",
+  "custom_preconds": "1. You are on the Sales By Customer report with at least one customer and several invoices in the chosen date range.",
+  "custom_steps": "1. Open the download (overflow) menu and read the four items.\n2. Download the Summary version in both formats (Download Summary (PDF) and Download Summary (CSV)) and open the files.\n3. Download the Expanded View version in both formats and compare against the Summary files.",
+  "custom_expected": "1. The menu offers exactly four items: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\".\n2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows.\n3. Each Expanded View file contains the full Customer, then Asset, then Invoice breakdown.\n4. All four files reflect exactly the filtered data shown on screen.\n5. The Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal \u2014 no Asset, Invoice # or Date columns.",
+  "section_id": 4300,
+  "updated_on": 1785425089
+ },
+ "SBC-LOC-04": {
+  "case_id": 38912,
+  "title": "The Location column shows only with more than one location; Multiple on totals",
+  "refs": "SV-8603 (SBC spec v12 2026-07-29 S4-R12; S4-R12a; S20-R19 \u2014 per-row Location column with automatic visibility; \"Multiple\" on aggregating rows)",
+  "custom_preconds": "1. You are on the Sales By Customer report as a user with access to two or more locations.\n2. At least one customer has invoices at two different locations, and at least one asset has invoices at two different locations.",
+  "custom_steps": "1. Select two or more locations in the Location filter and read the column headers.\n2. Read the Location cell on a customer row whose invoices are all at one location.\n3. Read the Location cell on a customer row and an asset row whose invoices span two locations.\n4. Expand to an invoice row and read its Location cell.\n5. Open the column selector and look for Location in the list.\n6. Narrow the Location filter to a single location and read the headers again.\n7. Change the Location selection between one location, several, and \"All locations\", watching the filter control's width.",
+  "custom_expected": "1. With more than one location in scope a Location column is shown, positioned immediately after the Date column.\n2. A customer or asset row whose invoices are all at one location shows that location's name.\n3. A customer or asset row whose invoices come from more than one location shows \"Multiple\".\n4. An invoice row always shows its own exact location \u2014 never \"Multiple\".\n5. Location is NOT offered in the column selector \u2014 it appears and disappears on its own, following the location scope.\n6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.\n7. The Location filter control keeps the same width whichever label it shows \u2014 one location, several, or \"All locations\" \u2014 so the toolbar does not shift as you change the selection.",
+  "section_id": 4292,
+  "updated_on": 1785428418
+ },
+ "SBR-EXP-03": {
+  "case_id": 30278,
+  "title": "Summary PDF: one rolled-up row per rep with a recomputed grand totals row",
+  "refs": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R3; S14-R5; Story 2 S2-R5; \u00a73 Margin % definition)",
+  "custom_preconds": "1. You are on the report with at least two reps showing, one of them a toggled-off (\"(Inactive)\") contributor if one can be arranged.\n2. A date range is selected.",
+  "custom_steps": "1. Choose \"Download Summary (PDF)\" from the \u22ef menu and open the file.\n2. Read the top of the first page, the column headers, one rep row, and the last row.\n3. Compare the totals row's Margin % against the child rows.",
+  "custom_expected": "1. The PDF is A4 portrait, edge-to-edge, with a header strip on the first page showing the workplace name and address, the organization logo, the report title \"Sales By Representative,\" and the selected date range.\n2. There is one rolled-up row per rep, in the report's currently-active order; a toggled-off contributor's name carries the \"(Inactive)\" tag.\n3. The columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.\n4. Subtotal is bolded across the header, the body rows, and the grand totals row; Inv. Hrs keeps its green/red/default coloring.\n5. The grand totals row reads \"Totals\" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin \u00f7 total Subtotal (shown \"\u2014\" when that Subtotal is zero or below), never the sum or average of the rows' percentages.",
+  "section_id": 4322,
+  "updated_on": 1785428487
+ },
+ "SBR-EXP-04": {
+  "case_id": 30279,
+  "title": "Expanded View PDF: one page-block per rep with its own totals; no grand",
+  "refs": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R6; S14-R8; Story 6 S6-R9)",
+  "custom_preconds": "1. You are on the report with at least two reps showing, each with at least one invoice.",
+  "custom_steps": "1. Choose \"Download Expanded View (PDF)\" from the \u22ef menu and open the file.\n2. Check how each rep's section starts and what its table contains.\n3. Read the last row of one rep's block and the end of the document.\n4. Compare the order of one rep's invoices against the on-screen expanded order.",
+  "custom_expected": "1. There is one page-block per rep, in the report's currently-active order, with a page break before each new rep after the first.\n2. Each block shows the header strip (workplace name and address, organization logo, title \"Sales By Representative,\" the selected date range), the rep's name, and a per-invoice table with columns: Date / Invoice / Customer / Status / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.\n3. The Status column renders the same colored badge as on screen, vertically centered.\n4. Invoices are ordered newest first (the same order as the on-screen expansion: invoice date descending, numeric invoice-number tie-break).\n5. Each block ends with a per-rep totals row \u2014 \"Totals\" in the Date cell; Invoice/Customer/Status blank; each metric aggregated; Margin % recomputed.\n6. There is NO grand-totals row across all reps at the end of the document.",
+  "section_id": 4322,
+  "updated_on": 1785428488
+ },
+ "SBR-EXP-10": {
+  "case_id": 30285,
+  "title": "Summary CSV: file name, UTF-8 BOM, verbatim headers, one row per rep",
+  "refs": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R15; S14-R18)",
+  "custom_preconds": "1. You are on the report with at least two reps showing; one rep has invoices for the same customer more than once (to check de-duplication).",
+  "custom_steps": "1. Choose \"Download Summary (CSV)\" from the \u22ef menu and note the saved file's name.\n2. Open the file in a text editor and read the header row.\n3. Count the data rows against the on-screen rep rows and compare their order.\n4. For one rep, compare \"# Invoices\" with the on-screen (N) count, and \"# Customers\" with the number of DISTINCT customers across that rep's matching invoices.",
+  "custom_expected": "1. The file is named \"sales-by-representative-summary.csv\" and starts with a UTF-8 BOM.\n2. The headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.\n3. There is one header row plus one row per rep in the current filtered view, in the report's currently-active order.\n4. \"# Invoices\" equals the on-screen (N); \"# Customers\" counts distinct customers across those invoices (de-duplicated across locations when several are selected).\n5. The CSV has NO totals row.\n6. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename \u2014 do not change the test.",
+  "section_id": 4322,
+  "updated_on": 1785425113
+ },
+ "SBR-EXP-11": {
+  "case_id": 30286,
+  "title": "Expanded CSV: file name, verbatim headers, one row per invoice",
+  "refs": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R16)",
+  "custom_preconds": "1. You are on the report with at least two reps showing, each with at least one invoice.",
+  "custom_steps": "1. Choose \"Download Expanded View (CSV)\" from the \u22ef menu and note the saved file's name.\n2. Open the file in a text editor and read the header row.\n3. Compare the rows against the on-screen invoices (all reps, expanded).",
+  "custom_expected": "1. The file is named \"sales-by-representative-expanded.csv\" and starts with a UTF-8 BOM.\n2. The headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.\n3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.\n4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename \u2014 do not change the test.",
+  "section_id": 4322,
+  "updated_on": 1785425114
+ },
+ "SBR-LOC-05": {
+  "case_id": 38913,
+  "title": "The Location column shows only with more than one location; rep rows Multiple",
+  "refs": "SV-8638 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13 \u2014 per-row Location column; \"Multiple\" verbatim on a rep row spanning locations; position after Status; constant-width filter)",
+  "custom_preconds": "1. You are on the Sales By Representative report as a user with access to two or more locations.\n2. One rep has invoices at a single location and another rep has invoices at two different locations.\n3. Show Unassigned is turned on and at least one unassigned invoice exists.",
+  "custom_steps": "1. Select two or more locations and read the column headers.\n2. Read the Location cell on the single-location rep's summary row.\n3. Read the Location cell on the rep whose invoices span two locations.\n4. Expand that rep and read an invoice detail row's Location cell.\n5. Read the Location cell on the Unassigned summary row.\n6. Check that the pinned Subtotal column is still the rightmost column.\n7. Narrow to a single location and read the headers again.\n8. Change the selection between one location, several, and \"All Locations\", watching the filter control's width.",
+  "custom_expected": "1. With more than one location in scope a Location column is shown, positioned immediately after the Status column and before Inv. Hrs.\n2. A rep summary row whose invoices are all at one location shows that location's name.\n3. A rep summary row whose invoices span more than one location shows \"Multiple\".\n4. An invoice detail row shows that invoice's own exact location \u2014 never \"Multiple\".\n5. The Unassigned summary row follows the same rule as any rep summary row.\n6. The pinned Subtotal column is still rightmost \u2014 the Location column never displaces it.\n7. With a single location in scope the Location column is hidden.\n8. The Location filter control keeps the same width whichever label it shows \u2014 one location, several, or \"All locations\" \u2014 so the toolbar does not shift as you change the selection.",
+  "section_id": 4311,
+  "updated_on": 1785428503
+ },
+ "SBR-PERS-04": {
+  "case_id": 30274,
+  "title": "First visit or cleared storage yields all defaults; no server-side profile",
+  "refs": "SV-8640 (specs/sbr-sales-by-representative.md Story 23 S23-R4; S23-N1; Story 2 S2-R4; Story 21 S21-R2)",
+  "custom_preconds": "1. You have distinctive saved settings, then clear the browser's site data (or use a fresh profile).\n2. You are working in a known active location (the application's location switcher).",
+  "custom_steps": "1. Open the report and read every setting.",
+  "custom_expected": "1. Date range = This Month; Product Type = \"Parts & Service\"; Invoice Status = \"All Statuses\"; Location = your currently active location only (the one location you are working in); Show Unassigned = off; all seven metric columns visible; sort = the A\u2192Z default.\n2. Clearing browser storage fully returns the report to first-visit defaults \u2014 no server-side profile brings the old settings back.",
+  "section_id": 4321,
+  "updated_on": 1785428515
+ },
+ "SBR-ROW-02": {
+  "case_id": 30218,
+  "title": "Row layout: 12 columns in order, blanks in position, bold summary rows",
+  "refs": "SV-8623 (specs/sbr-sales-by-representative.md Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a)",
+  "custom_preconds": "1. You are on the report with at least one rep expanded.",
+  "custom_steps": "1. Read the column headers left to right.\n2. Read a rep summary row cell by cell.\n3. Compare the font weight of a summary row and a detail row.\n4. Look for any cell whose content has shifted into a neighbouring column or wrapped; check the desktop Totals row's leading cells.",
+  "custom_expected": "1. The columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (12 columns).\n2. On a rep summary row the Date cell holds the chevron control followed by the rep's display name (\"First Last\"); the date value is intentionally blank.\n3. The Invoice, Customer, and Status cells are blank on summary rows; the metric cells carry the rep's totals across all matching invoices.\n4. Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) \u2014 row type is distinguished by font weight, not background color.\n5. Every row renders exactly the report's column count with blanks in position \u2014 a cell with nothing to show is blank, never shifted or wrapped (a drifted row is a defect). The grand Totals indicator is exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row.",
+  "section_id": 4312,
+  "updated_on": 1785428519
+ },
+ "SBR-STATE-01": {
+  "case_id": 30298,
+  "title": "Empty state: verbatim message, no grand Totals, toolbar stays interactive",
+  "refs": "SV-8633 (specs/sbr-sales-by-representative.md Story 16 S16-R1; S16-R2; S16-R3; S16-N1; \u00a77)",
+  "custom_preconds": "1. You are on the report.",
+  "custom_steps": "1. Apply a filter set that matches no invoices for any rep (for example, a date range with no activity), with Show Unassigned OFF or with no matching unassigned invoices either.\n2. Read the data area and look for the grand Totals indicator.\n3. If checkable: view an organization/location state where NO staff member has ever been credited with an invoice, and compare the message.\n4. Look at the toolbar, then change the date range to a period WITH activity.",
+  "custom_expected": "1. The table shows no data rows and the empty-state message \"No sales activity matches the current filters.\"\n2. The grand Totals indicator is NOT shown.\n3. The same message appears when no staff member has ever been credited \u2014 there is no separate \"no reps configured\" message; the report is contributor-driven.\n4. Whenever at least one rep row (or the Unassigned row) IS in the result set, the rep list renders and no empty/error message shows.\n5. In the empty state the toolbar \u2014 filters, column selector, and the \u22ef exports \u2014 stays visible and interactive; widening the range re-fetches and renders the matching reps normally.",
+  "section_id": 4324,
+  "updated_on": 1785428531
+ },
+ "TU-COL-01": {
+  "case_id": 38859,
+  "title": "Column Selection: Technician always on, the other five toggleable, remembered",
+  "refs": "SV-8582 (TU spec v5 2026-07-29 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 column selector \u2014 NO OWNING JIRA STORY: epic SV-8582 carries no TU Story-10 ticket and the spec's own Jira field reads TBD; epic key used and FLAGGED)",
+  "custom_preconds": "1. You are on the Technician Utilization report with rows loaded.\n2. This browser has never saved settings for this report (fresh visit), so every column is at its default.",
+  "custom_steps": "1. Find the column-selection button in the toolbar and hover it to read its tooltip.\n2. Note its position relative to the three-dot download menu.\n3. Open it and read every toggle in the list, and which ones are on.\n4. Turn Est. Lost Labor off, then turn Internal Hours off, watching the table each time.\n5. Turn both back on and check where each column lands.\n6. Reload the page, then close the browser, reopen it and return to the report.",
+  "custom_expected": "1. The control is an icon button whose tooltip reads \"Column Selection\", sitting immediately after the three-dot download menu in the toolbar.\n2. The list offers five toggles \u2014 Total Hours, WO Hours, Internal Hours, Utilization % and Est. Lost Labor \u2014 and all five are on by default.\n3. Technician is always shown and cannot be turned off (it is not offered as a toggle).\n4. The Location column is never listed here \u2014 it appears on its own whenever more than one location is in scope.\n5. Turning a toggle off hides that column (header and cells) immediately, with no reload; turning it back on returns it to its usual place in the fixed left-to-right order \u2014 the remaining columns never reorder.\n6. Est. Lost Labor can now be hidden like any other column (it used to be always on).\n7. Your column choice is remembered in this browser and is still applied when you come back.",
+  "section_id": 4348,
+  "updated_on": 1785428553
+ },
+ "TU-HRS-02": {
+  "case_id": 30401,
+  "title": "Headers in fixed order; Total, WO and Internal Hours show clocked hours (2 dp)",
+  "refs": "SV-8649 (specs/technician-utilization.md S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; \u00a73)",
+  "custom_preconds": "1. A technician with known clocked time in the range: some clocked to work orders and some to an internal, non-billable activity (e.g. shop cleanup or a staff meeting).\n2. Part of the internal time was clocked at a location with NO default labor rate configured (for the completeness check).",
+  "custom_steps": "1. Read the column headers left to right.\n2. Read the technician's Total Hours, WO Hours, and Internal Hours.\n3. Compare against the known clock records.\n4. Check the number format on a value over 100 hours.",
+  "custom_expected": "1. The headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor.\n2. Total Hours = all time the technician was clocked in for the range.\n3. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.\n4. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.\n5. Hours show two decimal places with NO thousands separator (e.g. \"107.70\"), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 \u2192 0.01).",
+  "section_id": 4339,
+  "updated_on": 1785428573
+ },
+ "TU-LOC-06": {
+  "case_id": 38915,
+  "title": "The Location column shows only with more than one location; Summary row blank",
+  "refs": "SV-8656 (TU spec v5 2026-07-29 S9-R9; S9-R10; S8-R15; S10-R4 \u2014 per-row Location column; leftmost before Technician; \"Multiple\" on a spanning row; Summary row blank; never in the selector)",
+  "custom_preconds": "1. You are on the Technician Utilization report as a user with access to two or more locations.\n2. One technician clocked time at a single location in the range and another clocked time at two different locations.\n3. One of those days has hours at two locations (for the per-day check).",
+  "custom_steps": "1. Select two or more locations and read the column headers from the left.\n2. Read the Location cell on the single-location technician's row.\n3. Read the Location cell on the technician whose hours span two locations.\n4. Expand that technician and read the Location cell on a single-location day and on the mixed day.\n5. Read the Location cell on the Summary row at the bottom.\n6. Open the Column Selection control and look for Location in the list.\n7. Narrow to a single location and read the headers again.\n8. Change the selection between one location, several, and \"All Locations\", watching the filter control's width.",
+  "custom_expected": "1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Technician.\n2. A technician whose hours were all clocked at one location shows that location's name.\n3. A technician whose hours span more than one selected location shows \"Multiple\".\n4. An expanded day row shows the exact location when that day's hours were all at one location, and \"Multiple\" when the day spans more than one.\n5. The Summary row leaves the Location cell blank.\n6. Location is never listed in the Column Selection control \u2014 it follows the location scope on its own.\n7. With a single location in scope the Location column is hidden.\n8. The Location filter control keeps the same width whichever label it shows \u2014 one location, several, or \"All locations\" \u2014 so the toolbar does not shift as you change the selection.",
+  "section_id": 4347,
+  "updated_on": 1785428589
+ },
+ "TU-NAV-03": {
+  "case_id": 30394,
+  "title": "First visit defaults to the This Month preset and the user's active location",
+  "refs": "SV-8648 (specs/technician-utilization.md S1-R3; S9-R2)",
+  "custom_preconds": "1. You are using a browser with NO saved settings for this report (fresh profile or cleared site storage).",
+  "custom_steps": "1. Open the Technician Utilization report.\n2. Read the date-range picker value and the location filter value.",
+  "custom_expected": "1. The date range defaults to the current calendar month (the date picker's \"This Month\" preset).\n2. Because a range never extends past now, the current-month default effectively shows the month to date.\n3. The location filter defaults to the user's currently active location (the one in the application's global location switcher).",
+  "section_id": 4338,
+  "updated_on": 1785428592
+ },
+ "WIP-EXP-02": {
+  "case_id": 30511,
+  "title": "Downloads keep shown columns, honor filters, include the tab's Totals row",
+  "refs": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R2; S9-R3; S9-R4 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The report is open with a non-default column selection (for example, Inv. Hrs on and Advisor off), a chosen date range and location, and an advisor/customer/asset filter applied that hides some rows.",
+  "custom_steps": "1. Download the current tab as a CSV and open it.\n2. Compare its columns to the screen's visible columns and order.\n3. Compare its rows to the jobs left visible by the filters.\n4. Compare its Totals row to the on-screen Totals row.\n5. Repeat the same checks in the PDF.",
+  "custom_expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.\n2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.\n3. Both downloads include a Totals row matching the on-screen Totals row for the tab.\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
+  "section_id": 4360,
+  "updated_on": 1785428772
+ },
+ "WIP-FLT-09": {
+  "case_id": 38916,
+  "title": "The Location column is automatic and never reads Multiple on a work-order row",
+  "refs": "SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; \u00a74 Location (column) \u2014 automatic visibility; never \"Multiple\"; export header \"Branch\")",
+  "custom_preconds": "1. You are signed in on a desktop browser as a user with access to at least two locations.\n2. Open work orders exist at two different locations.\n3. The Work In Progress report is open.",
+  "custom_steps": "1. Select two or more locations in the Location filter and read the column headers.\n2. Read the Location cell on rows from each of the two locations, on every tab.\n3. Look for any row showing \"Multiple\".\n4. Open the column-selection control and look for Location in the list.\n5. Narrow to a single location and read the headers again.\n6. Download the tab as a CSV and a PDF and read the Location column's header in the files.\n7. Change the selection between one location, several, and \"All locations\", watching the filter control's width.",
+  "custom_expected": "1. With more than one location in scope a Location column is shown, in its fixed position between VIN and Advisor, left-aligned.\n2. Each row names its own work order's location.\n3. NO row ever shows \"Multiple\" \u2014 a work order belongs to exactly one location, and this report has no grouped or drill-down rows.\n4. Location is NOT offered in the column-selection control \u2014 its visibility follows the location scope automatically.\n5. With a single location in scope the Location column is hidden.\n6. In both downloads the column is headed \"Branch\" (a known naming difference from the screen \u2014 do not raise it as a bug).\n7. The Location filter control keeps the same width whichever label it shows \u2014 one location, several, or \"All locations\" \u2014 so the toolbar does not shift as you change the selection.",
+  "section_id": 4358,
+  "updated_on": 1785428925
+ },
+ "WIP-SCOPE-05": {
+  "case_id": 30460,
+  "title": "No qualifying work orders: every tab shows the no-data message and no Totals",
+  "refs": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-N1; S2-N2; \u00a77 User Feedback Summary)",
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Work In Progress report is open.\n3. Separately, a state can be produced where some tabs have work orders but at least one tab (for example, Completed) has none.",
+  "custom_steps": "1. Set the date range and location so that no open work order qualifies (for example, a Custom range over dates with no work orders created).\n2. Open each of the four tabs and read the data area.\n3. Then, with work orders in some tabs only, open the empty tab and a populated tab.",
+  "custom_expected": "1. Each tab shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" in place of rows.\n2. No tab shows a Totals row.\n3. Every tab label count reads \"(0)\".\n4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a \"(0)\" count while the populated tabs still show their rows normally.",
+  "section_id": 4351,
+  "updated_on": 1785428939
+ },
+ "WIP-TAB-01": {
+  "case_id": 30451,
+  "title": "Work In Progress appears in the reports navigation under the Performance group",
+  "refs": "SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R1 \u2014 Performance group; below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05)",
+  "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. Your role has the permission that grants access to Work In Progress reports.",
+  "custom_steps": "1. Open the reports navigation.\n2. Look inside the Performance group of reports.\n3. Click the \"Work In Progress\" entry.\n4. Read the browser tab's page title.",
+  "custom_expected": "1. The reports navigation lists a report labeled \"Work In Progress\" under the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency).\n2. Clicking it opens the Work In Progress report.\n3. The browser page title is exactly \"Work In Progress - Report | ShopView\" \u2014 a plain hyphen with one space on each side.",
+  "section_id": 4350,
+  "updated_on": 1785428951
+ }
+}
