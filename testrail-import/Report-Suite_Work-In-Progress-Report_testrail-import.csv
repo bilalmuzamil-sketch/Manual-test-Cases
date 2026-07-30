@@ -5,45 +5,45 @@ Work In Progress appears in the reports navigation under the Performance group,W
 3. Click the ""Work In Progress"" entry.
 4. Read the browser tab's page title.","1. The reports navigation lists a report labeled ""Work In Progress"" under the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency).
 2. Clicking it opens the Work In Progress report.
-3. The browser page title is exactly ""Work In Progress - Report | ShopView"" — a plain hyphen with one space on each side.","SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R1 — Performance group; below the named anchor items [Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05)",,
-"The report opens with four tabs in a fixed order and ""Approved - partially completed"" selected by default",WIP — Tabs,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+3. The browser page title is exactly ""Work In Progress - Report | ShopView"" — a plain hyphen with one space on each side.",SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R1 — Performance group; below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05),,
+Four tabs in a fixed order with the partially-completed tab selected,WIP — Tabs,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have not visited the report before in this browser (no saved active-tab setting).","1. Open the Work In Progress report.
 2. Read the tab labels from left to right.
 3. Look at which tab is selected when the report loads.","1. Four tabs are shown, labeled in this order: ""Approved - partially completed"", ""Approved - not started"", ""Completed"", and ""Estimates"".
 2. The ""Approved - partially completed"" tab is selected by default on load.
-3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).",specs/wip-work-in-progress.md Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter),,
-"Each tab label shows the count of work orders in that tab in parentheses, including ""(0)"" for an empty tab",WIP — Tabs,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).",SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter)),,
+Each tab label shows its work-order count in parentheses,WIP — Tabs,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Open work orders exist in at least one tab for the current date range and location (seed ZZAUTOTEST work orders if needed).
 3. At least one tab currently has no work orders.","1. Open the Work In Progress report.
 2. Read each tab's label.
 3. Count the rows shown in each tab and compare to that tab's label.","1. Each tab's label shows the count of work orders currently in that tab, in parentheses — for example, ""Completed (22)"".
 2. The count matches the number of work-order rows actually listed in that tab.
-3. A tab with no work orders shows ""(0)"".",specs/wip-work-in-progress.md Story 1 S1-R4; Story 2 S2-N2 (count portion),,
-"There is no Trend / over-time tab or chart — expected in this version, do not file as a defect",WIP — Tabs,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+3. A tab with no work orders shows ""(0)"".",SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R4; Story 2 S2-N2 (count portion)),,
+There is no Trend / over-time tab or chart,WIP — Tabs,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open.","1. Look through the report's tabs, toolbar, and menus for any trend, history, or over-time view.
 2. Confirm the report only shows the floor as it stands right now.","1. Only the four progress tabs exist — there is no Trend tab and no chart of work-in-progress dollars over time.
-2. No screen in the report reads or displays the nightly snapshot history.",specs/wip-work-in-progress.md §2 Out of scope; §2 Known Limitations (v1); Story 11 S11-R7,,
-"Every open service work order (Estimate, Approved, In Progress, Review, Complete) at a selected location appears in the report",WIP — Scope & Loading,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. No screen in the report reads or displays the nightly snapshot history.",SV-8667 (specs/wip-work-in-progress.md §2 Out of scope; §2 Known Limitations (v1); Story 11 S11-R7),,
+Every open service WO at a selected location appears in the report,WIP — Scope & Loading,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Five ZZAUTOTEST service work orders exist at your active location, created within the current date range — one in each status: Estimate, Approved, In Progress, Review, and Complete.","1. Open the Work In Progress report with the seeded work orders' creation dates inside the selected date range.
 2. Look through all four tabs for each of the five seeded work orders.","1. All five seeded work orders appear in the report — each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.
-2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases).",specs/wip-work-in-progress.md Story 2 S2-R1,,
-"Invoiced, Paid, and Declined work orders and part-sale work orders never appear anywhere in the report",WIP — Scope & Loading,Negative,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases).",SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R1),,
+Invoiced; Paid; Declined and part-sale work orders never appear,WIP — Scope & Loading,Negative,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. ZZAUTOTEST work orders exist at your active location within the current date range: one Invoiced, one Paid, one Declined, and one part-sale work order.","1. Open the Work In Progress report.
 2. Look for the Invoiced, Paid, and Declined work orders and the part-sale work order in every tab.
 3. Check the summary strip and each tab's Totals row for their money.
 4. Download the current tab as a CSV and search the file for them.","1. The Invoiced, Paid, and Declined work orders do not appear in any tab, any Totals row, the summary strip, or the download.
 2. The part-sale work order does not appear anywhere either.
-3. No excluded work order's money is counted in any figure.",specs/wip-work-in-progress.md Story 2 S2-R2; S2-R3,,
-"Each qualifying work order appears exactly once in exactly one tab, including an open job with nothing approved yet",WIP — Scope & Loading,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. No excluded work order's money is counted in any figure.",SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R2; S2-R3),,
+Each qualifying work order appears exactly once in exactly one tab,WIP — Scope & Loading,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Several open ZZAUTOTEST service work orders exist within the current date range, including one open estimate with no approved line items at all.","1. Open the Work In Progress report.
 2. For each seeded work order, count how many times its work order number appears across all four tabs.
 3. Find the estimate with nothing approved and read its money columns.","1. Each qualifying work order appears exactly once, in exactly one tab.
-2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing ""$0.00"".",specs/wip-work-in-progress.md Story 2 S2-R4; §3 Key Decisions (every open job is listed),,
-"While loading, the standard reports loading indicator shows and existing rows are replaced only when new data returns",WIP — Scope & Loading,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing ""$0.00"".",SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R4; §3 Key Decisions (every open job is listed)),,
+While loading the standard indicator shows and old rows stay until data,WIP — Scope & Loading,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Change the date range to a different preset and watch the data area while the report reloads.
 2. Change the location selection and watch the data area again.","1. While the report is loading, the data area shows the standard reports loading indicator.
 2. The existing rows are replaced only when the new data returns (the table does not go blank and stay blank mid-load).
-3. Both a date-range change and a location change reload the report's rows.",specs/wip-work-in-progress.md Story 2 S2-R5; S2-R6,,
+3. Both a date-range change and a location change reload the report's rows.",SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R5; S2-R6),,
 No qualifying work orders: every tab shows the no-data message and no Totals,WIP — Scope & Loading,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open.
 3. Separately, a state can be produced where some tabs have work orders but at least one tab (for example, Completed) has none.","1. Set the date range and location so that no open work order qualifies (for example, a Custom range over dates with no work orders created).
@@ -51,40 +51,40 @@ No qualifying work orders: every tab shows the no-data message and no Totals,WIP
 3. Then, with work orders in some tabs only, open the empty tab and a populated tab.","1. Each tab shows the standard reports no-data message ""Empty bays, endless possibilities. Get Going!"" in place of rows.
 2. No tab shows a Totals row.
 3. Every tab label count reads ""(0)"".
-4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a ""(0)"" count while the populated tabs still show their rows normally.",specs/wip-work-in-progress.md Story 2 S2-N1; S2-N2; §7 User Feedback Summary,,
+4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a ""(0)"" count while the populated tabs still show their rows normally.",SV-8658 (specs/wip-work-in-progress.md Story 2 S2-N1; S2-N2; §7 User Feedback Summary),,
 "Status-to-tab mapping: Estimate, Complete, In Progress and Review work orders",WIP — Tab Placement,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Four ZZAUTOTEST service work orders exist within the current date range and location: one in Estimate status, one in Complete status, one in In Progress status, and one in Review status.","1. Open the Work In Progress report.
 2. Look for each seeded work order in each tab.","1. The Estimate work order appears in the ""Estimates"" tab and nowhere else.
 2. The Complete work order appears in the ""Completed"" tab and nowhere else.
-3. The In Progress and Review work orders appear in the ""Approved - partially completed"" tab and nowhere else.",specs/wip-work-in-progress.md Story 3 S3-R1; S3-R2; S3-R3,,
+3. The In Progress and Review work orders appear in the ""Approved - partially completed"" tab and nowhere else.",SV-8659 (specs/wip-work-in-progress.md Story 3 S3-R1; S3-R2; S3-R3),,
 Approved started-boundary: time or part received vs neither decides the tab,WIP — Tab Placement,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Three ZZAUTOTEST service work orders in Approved status exist within the current date range and location: one where a technician has clocked time, one where a part has been received (and no time clocked), and one with neither.","1. Open the Work In Progress report.
 2. Look for each of the three Approved work orders in each tab.","1. The Approved work order with clocked labor time appears in the ""Approved - partially completed"" tab.
 2. The Approved work order with a received part (and no clocked time) also appears in the ""Approved - partially completed"" tab — either kind of started work counts.
-3. The Approved work order with no clocked time and no received part appears in the ""Approved - not started"" tab and nowhere else.",specs/wip-work-in-progress.md Story 3 S3-R4 (started + not-started branches + context note),,
+3. The Approved work order with no clocked time and no received part appears in the ""Approved - not started"" tab and nowhere else.",SV-8659 (specs/wip-work-in-progress.md Story 3 S3-R4 (started + not-started branches + context note)),,
 "With all toggleable columns on, the fixed column order and alignment hold",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.
 3. Every toggleable column is turned on in the column-selection control.
 4. More than one location is in scope, so the automatic Location column is showing.","1. Read the column headers from left to right.
 2. Look at how the values in each column are aligned.","1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.
 2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.
-3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.",SV-8659 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope),,
+3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope),,
 First visit shows the default columns; the rest are in the column selector,WIP — Columns & Rows,Functional,High,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (use a fresh browser profile or clear the site's saved data).,"1. Open the Work In Progress report.
 2. Read the visible column headers.
 3. Open the column-selection control and read which columns are offered and which are on.","1. The visible columns on first visit are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, and Total.
 2. Every other column (VIN, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default.
-3. Location is NOT offered in the column-selection control — it appears on its own whenever more than one location is in scope, and is hidden when a single location is in scope.","SV-8659; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: ""The Location column is not offered in the column selector; its visibility is automatic"")",,
-"The WO # is a link that opens the work order in the same browser tab, with browser back returning to the report",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. Location is NOT offered in the column-selection control — it appears on its own whenever more than one location is in scope, and is hidden when a single location is in scope.","SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: ""The Location column is not offered in the column selector; its visibility is automatic"")",,
+The WO # is a link that opens the WO in the same browser tab,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Click a row's WO # link.
 2. Confirm where the work order opens.
 3. Use the browser's back navigation.","1. The WO # is shown as a link.
 2. Clicking it opens that work order in the SAME browser tab (not a new tab).
-3. The browser's back navigation returns you to the report.",specs/wip-work-in-progress.md Story 4 S4-R5 (+ context note),,
-Status shows as a color-coded badge whose label text is always present (color is never the only signal),WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. The browser's back navigation returns you to the report.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R5 (+ context note)),,
+Status shows as a color-coded badge whose label text is always present,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows work orders in several statuses (Estimate, Approved, In Progress, Review, Complete).","1. Read the Status column across rows in each tab.
 2. Compare each badge's color against the application's standard status colors used elsewhere.","1. Status is shown as a badge using the status's label: ""Estimate"", ""Approved"", ""In Progress"", ""Review"", or ""Complete"".
 2. The badge is color-coded per the application's standard status colors.
-3. The label text is always present, so color is never the sole signal of the status.",specs/wip-work-in-progress.md Story 4 S4-R6; Story 10 S10-R8,,
+3. The label text is always present, so color is never the sole signal of the status.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R6; Story 10 S10-R8),,
 "Asset cell identifies the asset by VIN, falling back to Unit #, then plate",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows work orders including: one whose asset has a VIN recorded, one with no VIN but a Unit # recorded, and one with no VIN or Unit # but a plate recorded.","1. Read the Asset cell of the row whose asset has a VIN.
 2. Read the Asset cell of the row with no VIN, then the one with no VIN or Unit #.
@@ -92,59 +92,59 @@ Status shows as a color-coded badge whose label text is always present (color is
 2. When the asset has no VIN, the cell shows its Unit # instead; when it has no VIN or Unit #, it shows its plate instead.
 3. Note what the cell's second line shows now that the VIN is the main identifier (the older layout put the VIN on a muted second line) - the exact rendering is confirmed in the build; record what you see.
 4. The VIN column (off by default) shows the VIN on its own line as a separate, sortable column.
-5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.","SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to VIN, falling back to Unit #, then plate, by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; NEWEST source, last-update-wins), superseding the kickoff video's serial-number ruling P24 AND the spec's unit-number rule)",,
-"Customer shows the customer's company name, and is blank when no customer name exists",WIP — Columns & Rows,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.",SV-8660 (WIP spec Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's unit-number rule),,
+Customer shows the customer's company name,WIP — Columns & Rows,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a work order with a customer that has a company name, and one with no customer name.","1. Read the Customer cell of the row whose customer has a company name.
 2. Read the Customer cell of the row with no customer name.","1. The Customer column shows the customer's company name.
-2. The cell is blank when no customer name exists.",specs/wip-work-in-progress.md Story 4 S4-R11,,
-"Days Open shows whole days since creation and reads ""0 days"" / ""1 days"" (not pluralized) — expected, do not file",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The cell is blank when no customer name exists.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R11),,
+Days Open shows whole days since creation and reads 0 days / 1 days,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a work order created today, one created exactly one day ago, and one created several days ago.","1. Read the Days Open cell of the work order created today.
 2. Read the Days Open cell of the one-day-old work order.
 3. Read the Days Open cell of the older work order and compare against its creation date.","1. Days Open is the whole number of days since the work order was created — elapsed time divided by 24 hours, floored, never negative — rendered as ""X days"".
 2. A same-day work order shows ""0 days"" and a one-day-old work order shows ""1 days"".
-3. The value is NOT grammatically pluralized: ""1 days"" (not ""1 day"") is the correct, expected rendering.",specs/wip-work-in-progress.md Story 4 S4-R12; §2 Known Limitations (v1),,
-"Last Activity shows ""Today"", ""Xd ago"", or ""—"" when the work order has no recorded activity",WIP — Columns & Rows,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+3. The value is NOT grammatically pluralized: ""1 days"" (not ""1 day"") is the correct, expected rendering.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R12; §2 Known Limitations (v1)),,
+Last Activity shows Today; Xd ago; or an em-dash when there is none,WIP — Columns & Rows,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Last Activity column is turned on in the column-selection control.
 3. The report shows a work order touched today, one last touched some days ago, and one with no recorded activity.","1. Read the Last Activity cell of the work order touched today.
 2. Read the Last Activity cell of the work order last touched days ago.
 3. Read the Last Activity cell of the work order with no recorded activity.","1. A work order whose most recent activity was today shows ""Today"".
 2. Otherwise it shows ""Xd ago"" (for example ""3d ago"").
-3. A work order with no recorded activity shows ""—"".",specs/wip-work-in-progress.md Story 4 S4-R13,,
-"Money columns show US-dollar currency with two decimals, thousands separators, a leading minus for negatives, and ""$0.00"" for zero",WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. A work order with no recorded activity shows ""—"".",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R13),,
+Money columns show US dollars to two decimals with thousands separators,WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. All money columns (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) are turned on.
 3. The report shows rows with values over $1,000, a genuine zero value, and (if producible) a negative value.","1. Read a money value over one thousand dollars.
 2. Read a genuine zero money value.
 3. Read a negative money value if one exists.","1. Money values show a leading ""$"", two decimal places, and thousands separators — for example ""$1,234.56"".
 2. A negative value shows a leading minus before the ""$"" — for example ""-$1,234.56"".
-3. A genuine zero shows ""$0.00"".",specs/wip-work-in-progress.md Story 4 S4-R14,,
-"Labor Earned is the clocked share of each approved line's quoted labor value, capped at the full quoted value per line",WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+3. A genuine zero shows ""$0.00"".",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R14),,
+Labor Earned is the clocked share of each approved line's quoted value,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Labor Earned column is turned on.
 3. A ZZAUTOTEST open work order exists with one approved labor line quoted at a known time and rate (for example 4.0 hours at $100/hour = $400 quoted), with exactly 1.0 hour clocked to it.
 4. A second ZZAUTOTEST open work order exists with an approved labor line where MORE time has been clocked than was quoted (for example 5.0 hours clocked against a 4.0-hour quote).","1. Open the Work In Progress report and find the first work order's row.
 2. Read its Labor Earned value and compare to the clocked share of the quoted labor value (1.0 of 4.0 hours = $100.00 in the example).
 3. Find the second (over-clocked) work order's row and read its Labor Earned.","1. Labor Earned equals the share of the approved line's quoted labor value covered by the time clocked to it (in the example, $100.00).
 2. For the over-clocked line, Labor Earned never exceeds the full quoted value of that line ($400.00 in the example) — the earned share is capped at the quote per line.
-3. With several approved labor lines, Labor Earned is the sum of each line's capped earned share.",specs/wip-work-in-progress.md Story 4 S4-R15; §4 Terminology (Earned),,
-Labor Remaining is the total quoted value of the approved labor minus Labor Earned,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+3. With several approved labor lines, Labor Earned is the sum of each line's capped earned share.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R15; §4 Terminology (Earned)),,
+Labor Remaining is the approved labor's quoted value minus Labor Earned,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Labor Earned and Labor Remaining columns are turned on.
 3. A ZZAUTOTEST open work order exists with approved labor of a known total quoted value and a known amount of time clocked (for example $400 quoted, $100 earned).","1. Open the Work In Progress report and find the seeded work order's row.
 2. Read Labor Earned and Labor Remaining.
 3. Add the two together and compare to the total quoted value of the approved labor.","1. Labor Remaining equals the total quoted value of the approved labor minus Labor Earned (in the example, $400.00 − $100.00 = $300.00).
-2. Labor Earned + Labor Remaining always equals the total quoted value of the approved labor.",specs/wip-work-in-progress.md Story 4 S4-R16,,
+2. Labor Earned + Labor Remaining always equals the total quoted value of the approved labor.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R16),,
 Parts Earned is the sell value of approved-line parts already received,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Parts Earned column is turned on.
 3. A ZZAUTOTEST open work order exists with an approved parts line of a known quantity and sell price, where part of the quantity has been received (for example 2 of 4 units at $50 sell each).","1. Open the Work In Progress report and find the seeded work order's row.
 2. Read its Parts Earned value.
 3. Compare it to the received quantity valued at the line's sell price (2 × $50 = $100.00 in the example).","1. Parts Earned equals the sell value of the approved-line parts already received (in the example, $100.00).
-2. Parts not yet received contribute nothing to Parts Earned.",specs/wip-work-in-progress.md Story 4 S4-R17,,
-Parts Remaining is the outstanding (not yet received) quantity valued at its sell price including any core charge,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. Parts not yet received contribute nothing to Parts Earned.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R17),,
+Parts Remaining values the not-yet-received quantity at its sell price,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Parts Remaining column is turned on.
 3. A ZZAUTOTEST open work order exists with an approved parts line partly received (for example 2 of 4 units received, $50 sell each).
 4. A second ZZAUTOTEST open work order exists with an approved, not-yet-received parts line for a part that carries a core charge.","1. Open the Work In Progress report and find the first work order's row; read Parts Remaining.
 2. Compare it to the outstanding quantity valued at the sell price (2 outstanding × $50 = $100.00 in the example).
 3. Find the core-charge work order's row and read its Parts Remaining.","1. Parts Remaining equals the sell value of approved-line parts ordered but not yet received (in the example, $100.00).
-2. For the core-charge part, Parts Remaining values the outstanding quantity at its sell price INCLUDING the core charge.",specs/wip-work-in-progress.md Story 4 S4-R18,,
-"Earned = Labor Earned + Parts Earned, Remaining = Labor Remaining + Parts Remaining, and Total = Earned + Remaining (not the work order's grand total)",WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. For the core-charge part, Parts Remaining values the outstanding quantity at its sell price INCLUDING the core charge.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R18),,
+Earned + Remaining make Total; not the WO's grand total,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. All money columns are turned on.
 3. A ZZAUTOTEST open work order exists with known approved labor (partly clocked) and approved parts (partly received), plus tax and/or a fee or discount on the work order so its stored grand total differs from the approved labor+parts sum.","1. Open the Work In Progress report and find the seeded work order's row.
 2. Check Earned against Labor Earned + Parts Earned.
@@ -153,24 +153,24 @@ Parts Remaining is the outstanding (not yet received) quantity valued at its sel
 5. Open the work order itself and compare the report's Total to the work order's stored grand total.","1. Earned equals Labor Earned plus Parts Earned.
 2. Remaining equals Labor Remaining plus Parts Remaining.
 3. Total equals Earned plus Remaining.
-4. The Total is NOT the work order's stored grand total — it excludes tax, fees, discounts, and non-approved lines, so a difference from the work order's own grand total is EXPECTED, not a data error.",specs/wip-work-in-progress.md Story 4 S4-R19; S4-R20; S4-R21; §3 Key Decisions,,
+4. The Total is NOT the work order's stored grand total — it excludes tax, fees, discounts, and non-approved lines, so a difference from the work order's own grand total is EXPECTED, not a data error.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R19; S4-R20; S4-R21; §3 Key Decisions),,
 Lines that are not yet approved contribute nothing to any money figure,WIP — Earned & Remaining,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. A ZZAUTOTEST open work order exists with known approved lines and known report money values.","1. Note the work order's Earned, Remaining, and Total in the report.
 2. Add a new labor line and a new parts line to the work order WITHOUT approving them (leave them not authorized).
 3. Reload the Work In Progress report and read the same row's money columns.","1. The work order's Labor/Parts Earned, Labor/Parts Remaining, Earned, Remaining, and Total are unchanged.
-2. Only approved lines (line status authorized or complete) contribute to the report's money — not-yet-approved lines contribute nothing.",specs/wip-work-in-progress.md §2 Relationship to the work order; §4 Terminology (Approved line / approved work),,
-"Inv. Hrs shows quoted minus worked labor hours as a signed one-decimal number, colored green/red, with ""0.0"" unsigned in the default color",WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Only approved lines (line status authorized or complete) contribute to the report's money — not-yet-approved lines contribute nothing.",SV-8660 (WIP spec Story 4 S4-R15 verbatim 'summed across the work order's approved lines' + §2 Relationship to the work order; §4 Terminology Approved line),,
+Inv. Hrs shows quoted minus worked hours; signed to one decimal,WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inv. Hrs column is turned on.
 3. The report shows: a job under its labor estimate (fewer hours clocked than quoted), a job that has overrun its estimate (more hours clocked than quoted), and a job at exactly its quote.","1. Read the Inv. Hrs value of the under-estimate job.
 2. Read the Inv. Hrs value of the overrun job.
 3. Read the Inv. Hrs value of the exactly-on-quote job.","1. Inv. Hrs shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place — for example ""+2.0"" or ""-14.0"".
 2. On screen it is colored green when positive and red when negative; the overrun job shows a negative red value, the under-estimate job a positive green value.
-3. A value of exactly zero shows unsigned as ""0.0"" (never ""+0.0"" or blank) in the default text color.",specs/wip-work-in-progress.md Story 4 S4-R23; S4-R24; S4-E2,,
-"An open estimate with no approved work shows ""$0.00"" in every money column, including Total",WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. A value of exactly zero shows unsigned as ""0.0"" (never ""+0.0"" or blank) in the default text color.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R23; S4-R24; S4-E2),,
+An open estimate with no approved work shows $0.00 in every money column,WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. All money columns are turned on.
 3. A ZZAUTOTEST open estimate exists with no approved line items.","1. Open the Work In Progress report and open the Estimates tab.
 2. Find the seeded estimate's row and read every money column.","1. Every money column — Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, and Total — shows ""$0.00"".
-2. The row still appears in the Estimates tab (it is not hidden for having no value).",specs/wip-work-in-progress.md Story 4 S4-E1; Story 2 S2-R4,,
+2. The row still appears in the Estimates tab (it is not hidden for having no value).",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-E1; Story 2 S2-R4),,
 "A technician still clocked in counts toward Labor Earned, capped at the quote",WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Labor Earned column is turned on.
 3. A ZZAUTOTEST open work order exists with one approved labor line quoted at a known time and rate (for example 2.0 hours at $100/hour = $200 quoted).
@@ -181,15 +181,15 @@ Lines that are not yet approved contribute nothing to any money figure,WIP — E
 3. Labor Earned never exceeds the line's full quoted value, no matter how long the clock keeps running — the per-line cap still applies.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R15; §4 Terminology (Earned) — spec silent on running clocks; tech-plan-2026-07-29 B1.2 open-clock policy),,
 The initial sort is Days Open with the longest-open work order first,WIP — Sorting,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab shows several work orders created on different dates.","1. Open the Work In Progress report without clicking any column header.
-2. Read the Days Open values from the top row down.","1. The rows are sorted by Days Open, longest-open first (descending).",specs/wip-work-in-progress.md Story 4 S4-R25,,
-"Clicking a header sorts ascending, clicking again toggles descending, with no third cleared state and one sort column at a time",WIP — Sorting,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Read the Days Open values from the top row down.","1. The rows are sorted by Days Open, longest-open first (descending).",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R25),,
+"Clicking a header sorts ascending, clicking again toggles descending",WIP — Sorting,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab shows several work orders with differing values.","1. Click the Customer column header and note the order.
 2. Click the Customer header again and note the order.
 3. Click the Customer header a third time and note the order.
 4. Click a different column header (for example Earned) and check whether the Customer sort still applies.","1. The first click sorts the column ascending.
 2. The second click toggles it to descending.
 3. The third click returns to ascending — there is no third ""cleared"" state.
-4. Only one column sorts at a time: clicking another header replaces the previous sort.",specs/wip-work-in-progress.md Story 4 S4-R26,,
+4. Only one column sorts at a time: clicking another header replaces the previous sort.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R26),,
 Columns sort by underlying values; Asset sorts by the identifier shown,WIP — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab shows several work orders with a spread of money values (including values over $1,000), differing statuses, and differing asset identifiers (VIN, or Unit # / plate where the VIN is missing).","1. Sort by a money column (for example Total) and check the order of values like $900.00 vs $1,100.00.
 2. Sort by Days Open and check the order of the day counts.
@@ -199,39 +199,39 @@ Columns sort by underlying values; Asset sorts by the identifier shown,WIP — S
 2. Days Open sorts by its day count.
 3. Status sorts by its displayed label.
 4. The Asset column sorts by the identifier it shows - the VIN, falling back to Unit #, then plate.
-5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.","SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN, then Unit #, then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins), superseding the video P24 serial ruling AND the spec's 'sorts by unit number')",,
-Sorting reorders only the active tab's rows and the Totals row stays at the bottom,WIP — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.",SV-8660 (WIP spec Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's 'sorts by unit number' rule),,
+Sorting reorders only the active tab's rows; Totals stays at the bottom,WIP — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. At least two tabs have several rows each.","1. In the active tab, sort by a column and note the new order.
 2. Check the position of the Totals row.
 3. Switch to another tab and check its row order.","1. Sorting reorders the rows within the active tab only.
 2. The Totals row stays pinned at the bottom, out of the sort.
-3. The other tab's order is not changed by the first tab's sort action.",specs/wip-work-in-progress.md Story 4 S4-R28,,
-"The summary strip shows seven figures in a fixed order, each as US-dollar currency",WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+3. The other tab's order is not changed by the first tab's sort action.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R28),,
+The summary strip shows seven figures in a fixed order as US dollars,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Read the summary strip across the top of the report, left to right.
 2. Read each figure's number format.","1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.
-2. Every figure shows US-dollar currency with a leading ""$"", two decimals, and thousands separators.",specs/wip-work-in-progress.md Story 5 S5-R1; S5-R10,,
-"Total Earned is the hero figure (larger, colored underline) and equals Started — Earned plus Ready to Invoice",WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. Every figure shows US-dollar currency with a leading ""$"", two decimals, and thousands separators.",SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R1; S5-R10),,
+Total Earned is the hero figure and equals the started-stage figures summed,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs in the ""Approved - partially completed"" tab and the ""Completed"" tab with non-zero earned values.","1. Look at how the Total Earned figure is styled compared to the other six figures.
 2. Add the Started — Earned figure to the Ready to Invoice figure.
 3. Compare the sum to Total Earned.","1. Total Earned is shown larger than the other figures and with a colored underline — it is the strip's hero figure.
-2. Total Earned equals Started — Earned plus Ready to Invoice, to the cent.",specs/wip-work-in-progress.md Story 5 S5-R2,,
+2. Total Earned equals Started — Earned plus Ready to Invoice, to the cent.",SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R2),,
 Total Remaining equals Not Started plus Started — Remaining,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs in the ""Approved - not started"" and ""Approved - partially completed"" tabs with non-zero remaining values.","1. Add the Not Started figure to the Started — Remaining figure.
-2. Compare the sum to Total Remaining.","1. Total Remaining equals Not Started plus Started — Remaining, to the cent.",specs/wip-work-in-progress.md Story 5 S5-R3,,
-"The per-stage figures each equal the matching tab's money: Not Started, Started — Earned, Started — Remaining, and Ready to Invoice",WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. Compare the sum to Total Remaining.","1. Total Remaining equals Not Started plus Started — Remaining, to the cent.",SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R3),,
+Each per-stage figure equals the matching tab's money total,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. All four tabs contain at least one job with non-zero money.
 3. The Earned and Remaining columns are visible.","1. In the ""Approved - not started"" tab, add up each job's Earned + Remaining (its approved value) and compare to the Not Started figure.
 2. In the ""Approved - partially completed"" tab, compare the tab's total Earned to the Started — Earned figure and the tab's total Remaining to the Started — Remaining figure.
 3. In the ""Completed"" tab, compare the tab's total Earned to the Ready to Invoice figure.","1. Not Started equals the total approved value (earned + remaining) of the jobs in the ""Approved - not started"" tab.
 2. Started — Earned equals the total Earned of the jobs in the ""Approved - partially completed"" tab, and Started — Remaining equals that tab's total Remaining.
-3. Ready to Invoice equals the total Earned of the jobs in the ""Completed"" tab.",specs/wip-work-in-progress.md Story 5 S5-R4; S5-R5; S5-R6; S5-R7,,
-"The Estimates figure is the Estimates tab's total quoted value, shown muted, and excluded from Total Earned and Total Remaining",WIP — Summary Strip,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. Ready to Invoice equals the total Earned of the jobs in the ""Completed"" tab.",SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R4; S5-R5; S5-R6; S5-R7),,
+"The Estimates figure is the Estimates tab's total quoted value, shown muted",WIP — Summary Strip,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Estimates tab contains at least one job with a non-zero quoted value.","1. Compare the Estimates figure to the total quoted value of the jobs in the Estimates tab.
 2. Look at how the Estimates figure is styled compared to the others.
 3. Check whether the Estimates amount is included in Total Earned or Total Remaining (their component sums should not contain it).","1. The Estimates figure equals the total quoted value of the jobs in the Estimates tab.
 2. It is shown in a muted style.
-3. The Estimates figure is excluded from Total Earned and from Total Remaining.",specs/wip-work-in-progress.md Story 5 S5-R8; S5-R9,,
-"Each summary figure's information icon reveals its plain-language explanation, verbatim per the spec",WIP — Summary Strip,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. The Estimates figure is excluded from Total Earned and from Total Remaining.",SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R8; S5-R9),,
+Each summary figure's information icon reveals its plain explanation,WIP — Summary Strip,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with the summary strip visible.","1. Hover (or focus, or tap) the small information icon next to each of the seven summary figures, one at a time.
 2. Read each revealed explanation and compare it word-for-word to the expected text.","1. Total Earned — ""Work you have already done but have not billed yet — the money waiting to be collected.""
 2. Total Remaining — ""Approved work you still have to do — the money that comes in once it is finished.""
@@ -240,34 +240,34 @@ Total Remaining equals Not Started plus Started — Remaining,WIP — Summary St
 5. Started — Remaining — ""Jobs in progress: the work still left to finish.""
 6. Ready to Invoice — ""Finished jobs, ready to bill the customer.""
 7. Estimates — ""Quotes the customer has not approved yet — not counted in the totals.""
-8. Each explanation appears on hover, on keyboard focus, and on tap.",specs/wip-work-in-progress.md Story 5 S5-R12,,
-"Each tab has a Totals row pinned to the bottom, labeled ""Totals"", with a bold pinned Total cell and the same number formats as data rows",WIP — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+8. Each explanation appears on hover, on keyboard focus, and on tap.",SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R12),,
+"Each tab has a Totals row pinned to the bottom, labeled ""Totals""",WIP — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Each tab has at least one visible job.","1. In each tab, look at the bottom of the table.
 2. Read the Totals row's leftmost cell and its Total cell.
 3. Compare the Totals row's number formats to the data rows.","1. Each tab's table has a Totals row pinned to the bottom, labeled ""Totals"" in its leftmost cell.
 2. The Totals row's Total cell is pinned far right and shown in bold, matching the column.
-3. The Totals row uses the same number formats as the data rows.",specs/wip-work-in-progress.md Story 6 S6-R1; S6-R4; S6-R5,,
-"The Totals row sums each visible money column, and the Inv. Hrs total keeps the signed one-decimal format and coloring",WIP — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. The Totals row uses the same number formats as the data rows.",SV-8662 (specs/wip-work-in-progress.md Story 6 S6-R1; S6-R4; S6-R5),,
+The Totals row sums each visible money column and the Inv. Hrs column,WIP — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab shows several jobs with known money values.
 3. All money columns and the Inv. Hrs column are turned on.","1. Add up each money column (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) across the tab's visible jobs.
 2. Compare each sum to the Totals row.
 3. Add up the jobs' Inv. Hrs values and compare to the Totals row's Inv. Hrs cell, including its sign and color.","1. The Totals row sums each visible money column across the tab's visible jobs, to the cent.
 2. The Totals row's Inv. Hrs shows the sum of the visible jobs' Inv. Hrs, in the same signed one-decimal format (""+2.0"" / ""-14.0"" / ""0.0"").
-3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row.",specs/wip-work-in-progress.md Story 6 S6-R2; S6-R3,,
-The Advisor filter is a multi-select of the advisors present in the loaded jobs and narrows rows on screen only,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row.",SV-8662 (specs/wip-work-in-progress.md Story 6 S6-R2; S6-R3),,
+The Advisor filter lists the advisors in the loaded jobs; screen only,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs for at least two different advisors.","1. Open the Advisor filter in the toolbar and read its options.
 2. Select one advisor and watch the rows.
 3. Add a second advisor to the selection.","1. The Advisor filter is a multi-select listing the advisors present in the loaded jobs.
 2. Selecting one or more advisors narrows the visible jobs to those advisors instantly, on screen only — no reload and no loading indicator.
-3. With two advisors selected, jobs for either advisor are shown.",specs/wip-work-in-progress.md Story 7 S7-R1,,
-"The Customer filter is a searchable type-ahead multi-select reading ""All customers"" when empty, with a ""Clear"" action once a customer is selected",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. With two advisors selected, jobs for either advisor are shown.",SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R1),,
+"Customer filter is a type-ahead multi-select reading ""All customers""",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs for at least two different customers.","1. Read the Customer filter's label before selecting anything, and check whether a Clear action is offered.
 2. Open the filter and type part of a customer's name to narrow the list.
 3. Select one or more customers and watch the rows.
 4. Use the ""Clear"" action.","1. With no customer selected, the filter reads ""All customers"", every job is shown, and no Clear action is offered.
 2. Typing narrows the option list (type-ahead); the options are the customers present in the loaded jobs.
 3. Selecting customers narrows the visible jobs on screen only (no reload); a single ""Clear"" action appears once at least one customer is selected.
-4. Clear returns the filter to ""All customers"" and every job is shown again.",specs/wip-work-in-progress.md Story 7 S7-R2; S7-R3,,
+4. Clear returns the filter to ""All customers"" and every job is shown again.",SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R2; S7-R3),,
 "Asset filter matches VIN, Unit #, or plate; ""All assets"" when empty",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs for at least two assets whose VINs (and Unit #s or plates) you know.","1. Read the Asset filter's label before selecting anything.
 2. Open the filter and read how each option is presented.
@@ -276,17 +276,17 @@ The Advisor filter is a multi-select of the advisors present in the loaded jobs 
 2. Each option identifies the asset by its VIN, falling back to Unit #, then plate (the exact option text is confirmed in the build).
 3. The typed text matches against the asset's identifier - the VIN, and the Unit # where the asset has one (the exact fields matched are confirmed in the build).
 4. Selecting assets narrows the visible jobs on screen only (no reload); a single ""Clear"" action appears once at least one asset is selected and returns the filter to ""All assets"".
-5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.","SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R4; S7-R5 - option text + type-ahead match fields RE-RULED to the VIN chain (VIN, then Unit #, then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins), superseding the video P24 serial ruling; the spec's original unit-number+VIN matching partially survives via the chain)",,
-"The date-range control offers the standard presets plus Custom, defaults to ""This Week"", and does not offer ""All Time""",WIP — Filters,Functional,Critical,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).,"1. Open the Work In Progress report and read the date-range control's current value.
+5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.",SV-8663 (WIP spec Story 7 S7-R4; S7-R5 - option text + match fields RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [supersedes video P24]),,
+The date range offers the presets plus Custom; This Week default; no All Time,WIP — Filters,Functional,Critical,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).,"1. Open the Work In Progress report and read the date-range control's current value.
 2. Open the date-range control and read every option offered.","1. On a fresh visit the date range defaults to ""This Week"".
 2. The options offered are: ""Today"", ""Yesterday"", ""This Week"", ""Last Week"", ""This Month"", ""Last Month"", ""This Year"", ""Last Year"", ""This Quarter"", ""Last Quarter"", and ""Custom"".
-3. ""All Time"" is NOT offered.",specs/wip-work-in-progress.md Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week),,
-"The date range filters by the work order's created date, reloads the report on change, and a Custom range is capped at 366 days",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. ""All Time"" is NOT offered.",SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week)),,
+The date range filters on the WO's created date and reloads on change,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Open work orders exist with created dates both inside and outside the current week.","1. With ""This Week"" selected, check which work orders are listed.
 2. Change the preset to ""This Month"" and watch the data area.
 3. Open ""Custom"" and try to pick a start and end date more than 366 days apart.","1. Each preset (or Custom) filters the report to work orders whose CREATED date falls within the selected range — an open work order created outside the range is not listed.
 2. Changing the range reloads the report (the loading indicator shows).
-3. A Custom range is capped at a 366-day maximum span from start to end — a longer span cannot be applied.",specs/wip-work-in-progress.md Story 7 S7-R7; S7-R8,,
+3. A Custom range is capped at a 366-day maximum span from start to end — a longer span cannot be applied.",SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R7; S7-R8),,
 "Location filter: rightmost multi-select with All locations, reloads on change",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. This browser has never saved settings for this report (fresh visit).
 3. Open work orders exist at two different locations.","1. Open the Work In Progress report and read the Location filter's position and default value.
@@ -297,19 +297,19 @@ The Advisor filter is a multi-select of the advisors present in the loaded jobs 
 2. On a first visit it defaults to the user's currently active location.
 3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).
 4. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).
-5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.","SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator, spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A)",,
-"The location scope never includes an inaccessible location, and an empty selection falls back to the user's active location",WIP — Filters,Negative,High,"1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.
+5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.",SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator; spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A),,
+The location scope never includes an inaccessible location,WIP — Filters,Negative,High,"1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.
 2. The Work In Progress report is open.","1. Open the Location filter and read the locations offered.
 2. Use ""Clear all"" so the selection resolves to no location, and watch what the report loads.
 3. If possible, revisit the report after your saved location selection has been made invalid (for example, access to a saved location was removed).","1. Only the locations the user can access are offered — a location the user cannot access is never included in the scope.
 2. If the selection resolves to none, the report falls back to the user's currently active location rather than showing everything or erroring.
-3. A saved selection that no longer resolves also falls back to the active location.",specs/wip-work-in-progress.md Story 7 S7-R11; Story 8 S8-R8,,
+3. A saved selection that no longer resolves also falls back to the active location.",SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R11; Story 8 S8-R8),,
 "Advisor, customer and asset filters AND together and recompute strip and Totals",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows several jobs with a known mix of advisors, customers, and assets.","1. Select an advisor, then also a customer that advisor has a job for, then also an asset from one of those jobs — checking the rows after each step.
 2. Read the summary strip and the active tab's Totals row after the three selections.
 3. Change one selection so that NO job passes all three filters.","1. A job must pass all three filters to remain visible (the filters combine with AND).
 2. The summary strip and each tab's Totals row recompute immediately from the still-visible jobs after every advisor, customer, or asset change — on screen, with no page reload.
-3. When the combination leaves no visible jobs, every tab shows the no-data message ""Empty bays, endless possibilities. Get Going!"" and no Totals row.",specs/wip-work-in-progress.md Story 7 S7-R12; S7-N1; Story 5 S5-R11; Story 6 S6-R6; §3 Key Decisions,,
+3. When the combination leaves no visible jobs, every tab shows the no-data message ""Empty bays, endless possibilities. Get Going!"" and no Totals row.",SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R12; S7-N1; Story 5 S5-R11; Story 6 S6-R6; §3 Key Decisions),,
 The Location column is automatic and never reads Multiple on a work-order row,WIP — Filters,Functional,High,"1. You are signed in on a desktop browser as a user with access to at least two locations.
 2. Open work orders exist at two different locations.
 3. The Work In Progress report is open.","1. Select two or more locations in the Location filter and read the column headers.
@@ -324,34 +324,34 @@ The Location column is automatic and never reads Multiple on a work-order row,WI
 4. Location is NOT offered in the column-selection control — its visibility follows the location scope automatically.
 5. With a single location in scope the Location column is hidden.
 6. In both downloads the column is headed ""Branch"" (a known naming difference from the screen — do not raise it as a bug).
-7. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.","SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; §4 Location (column) — automatic visibility, never ""Multiple"", export header ""Branch"")",,
-"The column-selection icon button (tooltip ""Column Selection"") toggles columns, and Total is not offered and cannot be turned off",WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+7. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.","SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; §4 Location (column) — automatic visibility; never ""Multiple""; export header ""Branch"")",,
+Column Selection toggles columns; Total is not offered at all,WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
 2. Open the control and toggle a column off, then on again, watching the table.
 3. Look for the Total column in the control's list.","1. The icon button's tooltip reads ""Column Selection"".
 2. Toggling a column off hides it from the table; toggling it on shows it again.
-3. The Total column is always shown and cannot be turned off — it is not offered in the control at all.",specs/wip-work-in-progress.md Story 8 S8-R1; S8-R2,,
-"Toggling columns never reorders them (Total always last), and the column selection applies to all four tabs at once",WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. The Total column is always shown and cannot be turned off — it is not offered in the control at all.",SV-8664 (specs/wip-work-in-progress.md Story 8 S8-R1; S8-R2),,
+Toggling columns never reorders them (Total always last),WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows in at least two tabs.","1. Turn several optional columns on and off in different orders (for example, turn on Inv. Hrs, then VIN, then Location).
 2. Read the resulting column order after each change.
 3. Switch to each of the other tabs and read their columns.","1. Whatever columns are shown, they always appear in the fixed left-to-right order (WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total) — the order you toggled them in never changes their position.
 2. Total is always the last column.
-3. The column selection applies to every tab at once — all four tabs show the same set of columns.",specs/wip-work-in-progress.md Story 8 S8-R5; S8-R6; Story 4 S4-R1,,
-"The report remembers the date range, filter selections, location, columns, and active tab per browser and restores them on return",WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. The column selection applies to every tab at once — all four tabs show the same set of columns.",SV-8664 (specs/wip-work-in-progress.md Story 8 S8-R5; S8-R6; Story 4 S4-R1),,
+"Remembers the date range, filter selections, location, columns",WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open.","1. Change the date range, select an advisor, a customer, and an asset, change the location selection, change the column selection, and switch to a different tab.
 2. Navigate away to another screen, then return to the report.
 3. Reload the browser page and check again.
 4. If practical, open the report in a different browser (or private window) and read its settings.","1. On return and after a reload, the report restores the saved date range, advisor selection, customer selection, asset selection, location selection, column selection, and active tab.
-2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account.",specs/wip-work-in-progress.md Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence),,
-A saved setting that is no longer valid falls back to its default instead of breaking the view,WIP — Column Selection & Persistence,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account.",SV-8664 (specs/wip-work-in-progress.md Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence)),,
+A saved setting that is no longer valid falls back to its default,WIP — Column Selection & Persistence,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report has saved settings in this browser that can be made stale (for example, a saved advisor/customer/asset selection whose jobs no longer load, or a saved location you no longer access).","1. Make a saved value invalid (for example, remove your access to the saved location, or reload after the saved customer no longer appears in the loaded jobs).
 2. Open the Work In Progress report.","1. The report loads normally — the invalid saved value falls back to that setting's default rather than breaking the view.
-2. All other saved settings are still restored.",specs/wip-work-in-progress.md Story 8 S8-R8,,
-"A three-dot toolbar menu holds ""Download (PDF)"" and ""Download (CSV)""",WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. All other saved settings are still restored.",SV-8664 (specs/wip-work-in-progress.md Story 8 S8-R8),,
+Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV),WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Find and open the three-dot button in the toolbar.
 2. Read the menu options.
 3. Choose ""Download (PDF)"", then repeat with ""Download (CSV)"".","1. The menu holds the download options ""Download (PDF)"" and ""Download (CSV)"".
-2. Each option downloads a file of the current tab in the chosen format.",specs/wip-work-in-progress.md Story 9 S9-R1,,
+2. Each option downloads a file of the current tab in the chosen format.",SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R1),,
 "Downloads keep shown columns, honor filters, include the tab's Totals row",WIP — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report is open with a non-default column selection (for example, Inv. Hrs on and Advisor off), a chosen date range and location, and an advisor/customer/asset filter applied that hides some rows.","1. Download the current tab as a CSV and open it.
 2. Compare its columns to the screen's visible columns and order.
@@ -360,117 +360,117 @@ A saved setting that is no longer valid falls back to its default instead of bre
 5. Repeat the same checks in the PDF.","1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.
 2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.
 3. Both downloads include a Totals row matching the on-screen Totals row for the tab.
-4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).","SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R2; S9-R3; S9-R4 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",,
-"Downloaded money and Inv. Hrs values keep the on-screen formats, and CSV values containing commas are double-quoted",WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R2; S9-R3; S9-R4 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
+Downloaded money and Inv. Hrs values keep the on-screen formats,WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current tab includes money values over $1,000 and, if producible, a negative value; the Inv. Hrs column is on.","1. Download the current tab as a CSV and open it in a plain-text editor.
 2. Read a money value over one thousand dollars and check its quoting.
 3. Read a money value under one thousand dollars and check it is unquoted.
 4. Read the Inv. Hrs values.
 5. Repeat the format checks in the PDF.","1. Money values use the same ""$1,234.56"" / ""-$1,234.56"" format as on screen; Inv. Hrs uses the same signed one-decimal format.
 2. In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.
-3. A value without a comma is written unquoted.",specs/wip-work-in-progress.md Story 9 S9-R5; S9-R6,,
-The Inv. Hrs green/red coloring appears on screen and in the PDF only — the CSV is monochrome,WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+3. A value without a comma is written unquoted.",SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R5; S9-R6),,
+Inv. Hrs green/red coloring appears on screen and in the PDF; not the CSV,WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inv. Hrs column is on and the current tab includes positive and negative Inv. Hrs values.","1. Download the current tab as a PDF and look at the Inv. Hrs values' coloring.
 2. Download the current tab as a CSV and inspect the Inv. Hrs values.","1. In the PDF, Inv. Hrs keeps the green (positive) / red (negative) coloring.
-2. In the CSV, the Inv. Hrs column is monochrome — plain signed numbers with no color or markup.",specs/wip-work-in-progress.md Story 9 S9-R7,,
-Days Open in a download is frozen at the moment the file is generated (and can be one day higher than the screen),WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. In the CSV, the Inv. Hrs column is monochrome — plain signed numbers with no color or markup.",SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R7),,
+Days Open in a download is frozen at the moment the file is generated,WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current tab shows rows with known creation dates and the Days Open column visible.","1. Note a row's on-screen Days Open value.
 2. Download the current tab as a CSV and read the same row's Days Open.
 3. Compare the two values.","1. In the download, Days Open is the whole number of days as of the moment the file is generated.
-2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.",specs/wip-work-in-progress.md Story 9 S9-R8; Story 4 context note (Days Open live vs frozen),,
-"The downloaded files are named ""wip-2-report.pdf"" and ""wip-2-report.csv"" — expected current names, do not file",WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.",SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R8; Story 4 context note (Days Open live vs frozen)),,
+"The downloaded files are named ""wip-2-report.pdf"" and ""wip-2-report.csv""",WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Download the current tab as a PDF and read the saved file's name.
 2. Download the current tab as a CSV and read the saved file's name.","1. The PDF is named ""wip-2-report.pdf"".
 2. The CSV is named ""wip-2-report.csv"".
-3. These exact names (including the ""-2-"") are the specified current behavior.",specs/wip-work-in-progress.md Story 9 S9-R9,,
+3. These exact names (including the ""-2-"") are the specified current behavior.",SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R9),,
 "Export headers read ""Unit"" and ""Branch"" — documented limitation, do not file",WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Asset and Location columns are both turned on.","1. Read the two columns' headers on screen.
 2. Download the current tab as a CSV and read the same two columns' headers.
 3. Download the PDF and read them there too.","1. On screen the headers read ""Asset"" and ""Location"".
 2. In BOTH the PDF and the CSV, the same two columns are headed ""Unit"" and ""Branch"".
 3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.
-4. Note: the on-screen Asset cell now identifies the asset by its VIN (falling back to Unit #, then plate); whether the export header text changes from ""Unit"" is confirmed in the build - record what it shows, do not file a bug either way.","SV-8665 (specs/wip-work-in-progress.md Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN, then Unit #, then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins), superseding the video P24 serial ruling; export header text at export unpinned)",,
-The PDF shows the shop logo at the top when one is set; the CSV never includes a logo,WIP — Exports,Functional,Low,"1. You are signed in to the ShopView App on a desktop browser.
+4. Note: the on-screen Asset cell now identifies the asset by its VIN (falling back to Unit #, then plate); whether the export header text changes from ""Unit"" is confirmed in the build - record what it shows, do not file a bug either way.",SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned),,
+The PDF shows the shop logo at the top when one is set,WIP — Exports,Functional,Low,"1. You are signed in to the ShopView App on a desktop browser.
 2. The shop has a logo set in its settings.","1. Download the current tab as a PDF and look at the top of the document.
 2. Download the current tab as a CSV and inspect the file.","1. The PDF shows the shop logo at the top.
-2. The CSV never includes a logo (plain data only).",specs/wip-work-in-progress.md Story 9 S9-R10,,
-"Export notifications: success caption, ""Empty export"" warning, and the failure error message",WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The CSV never includes a logo (plain data only).",SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R10),,
+"Export notifications: success caption, ""Empty export"" warning",WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report can be put in three states: rows present, no rows visible (filters leave nothing), and (if simulatable) a failing download, for example by disconnecting the network before the download.","1. With rows present, download the current tab and read the notification.
 2. Filter the report until no rows are visible, download again, and read the notification.
 3. If simulatable, force a download failure (for example, drop the network) and read the notification.","1. On a successful download, a success notification shows with the caption ""Data exported successfully.""
 2. When a download yields no rows, a warning notification shows titled ""Empty export"" with the caption ""Export didn't yield any results"".
-3. When a download fails, an error notification shows: ""An error occurred while exporting the report. Please try again.""",specs/wip-work-in-progress.md Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary,,
+3. When a download fails, an error notification shows: ""An error occurred while exporting the report. Please try again.""",SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary),,
 An over-cap Work In Progress download is refused with the too-large message,WIP — Exports,Negative,Medium,"1. A filter combination exists whose work-order rows on one tab exceed 10,000 (widest date range, all locations, no advisor/customer/asset narrowing). If the environment cannot reach 10,000 rows even fully widened, record the maximum reachable and mark the case Blocked-Env with that reason.","1. With the over-cap filter set, download the tab as a CSV.
 2. Download the same tab as a PDF.
 3. Narrow the filters below the cap and download once more.","1. For both the CSV and the PDF: no file is generated and no download starts.
 2. An error toast is shown each time, reading exactly: ""This report is too large to export. Narrow the date range or filters, then try again."" (dismissed by the user).
-3. Below the cap the download works normally.","SV-8665 (WIP spec Story 9 — the 10,000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line, his spec edit is pending)",,
+3. Below the cap the download works normally.",SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending),,
 Each tab uses an all-white table with no alternating row shading,WIP — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with several rows in each tab.","1. Look at the column headers and the data cells in each tab.
 2. Compare the background of consecutive rows.","1. Each tab uses an all-white table: white column headers and white data cells.
-2. There is no alternating row shading (no zebra striping).",specs/wip-work-in-progress.md Story 10 S10-R1,,
-"The summary strip is a bold band delineated by a top and bottom rule, above the tabs — not separate cards",WIP — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. There is no alternating row shading (no zebra striping).",SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R1),,
+The summary strip is a bold band ruled top and bottom above the tabs,WIP — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Look at where the summary strip sits relative to the four tabs.
 2. Look at how the strip is visually delineated.","1. The summary strip appears above the tabs.
-2. It is shown as a bold band delineated by a top and bottom rule — not as a row of separate cards.",specs/wip-work-in-progress.md Story 10 S10-R2,,
-The Total column (header and cells) is bold and stays pinned to the right edge while scrolling the rows sideways,WIP — Visual & Accessibility,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. It is shown as a bold band delineated by a top and bottom rule — not as a row of separate cards.",SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R2),,
+The Total column is bold and stays pinned right on sideways scroll,WIP — Visual & Accessibility,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Enough columns are turned on that the table scrolls horizontally.","1. Look at the Total column header and its cells.
 2. Scroll the rows sideways and watch the Total column.","1. The Total column header is bold and pinned to the far right, matching its cells.
-2. The Total column (header and cells, shown in bold) stays fixed to the right edge while the rest of the columns scroll underneath.",specs/wip-work-in-progress.md Story 4 S4-R22; Story 10 S10-R3,,
-"The Totals row stays visible at the bottom while scrolling, the report fills the height, and only the active tab's table body scrolls",WIP — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Total column (header and cells, shown in bold) stays fixed to the right edge while the rest of the columns scroll underneath.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R22; Story 10 S10-R3),,
+The Totals row stays visible while only the active tab's body scrolls,WIP — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A tab has more rows than fit on the screen.","1. Scroll the rows up and down and watch the Totals row.
 2. Look at the page for a second scrollbar outside the table.","1. The Totals row stays visible at the bottom while the rows scroll.
-2. The report fills the available height and only the active tab's table body scrolls — the page itself does not add a second scrollbar.",specs/wip-work-in-progress.md Story 10 S10-R4; S10-R5,,
-The WO # link is keyboard-focusable with a visible focus indicator and opens the work order on activation,WIP — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The report fills the available height and only the active tab's table body scrolls — the page itself does not add a second scrollbar.",SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R4; S10-R5),,
+The WO # link is keyboard-focusable and opens the work order,WIP — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Using only the keyboard (Tab key), move focus to a row's WO # link.
 2. Look for a visible focus indicator on the link.
 3. Press Enter to activate it.","1. The WO # link can receive keyboard focus.
 2. A visible focus indicator shows when it is focused.
-3. Activating it opens the work order (in the same browser tab).",specs/wip-work-in-progress.md Story 10 S10-R6,,
-Each summary figure's information icon is reachable by keyboard and exposes its explanation to assistive technology,WIP — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+3. Activating it opens the work order (in the same browser tab).",SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R6),,
+Each summary figure's info icon is keyboard-reachable and screen-read,WIP — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The summary strip is visible; a screen reader (or the browser's accessibility inspector) is available.","1. Using only the keyboard, move focus to each summary figure's information icon.
 2. Check that the explanation is revealed on focus (not hover alone).
 3. With the screen reader or accessibility inspector, check that the explanation text is exposed to assistive technology.","1. Each information icon is reachable by keyboard focus.
 2. Its explanation is revealed on focus, not by hover alone.
-3. The explanation text is exposed to assistive technology.",specs/wip-work-in-progress.md Story 10 S10-R7; Story 5 S5-R12,,
-"In dark mode the table, summary strip, WO # link, Inv. Hrs coloring, and two-line asset cell remain legible with adequate contrast",WIP — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+3. The explanation text is exposed to assistive technology.",SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R7; Story 5 S5-R12),,
+In dark mode every table; strip; link and coloring stays legible,WIP — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The application is switched to dark mode.
 3. The report shows rows including positive and negative Inv. Hrs values and a two-line asset cell.","1. Read the table headers and cells in dark mode.
 2. Read the summary strip, the WO # link, the Inv. Hrs colors, and the two-line asset cell (bold unit over muted VIN).","1. The report supports dark mode.
-2. The table, the summary strip, the WO # link, the Inv. Hrs green/red coloring, and the two-line asset cell all use dark-mode-legible colors meeting contrast.",specs/wip-work-in-progress.md Story 10 S10-R9,,
-A user with the Work In Progress reports permission can open the report and download it — the one permission covers both,WIP — Permissions,Functional,Critical,"1. A test user exists whose role has the permission that grants access to Work In Progress reports (assign the Tech user a suitable role if needed; restore the original role afterward).
+2. The table, the summary strip, the WO # link, the Inv. Hrs green/red coloring, and the two-line asset cell all use dark-mode-legible colors meeting contrast.",SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R9),,
+The Work In Progress reports permission covers opening and downloading,WIP — Permissions,Functional,Critical,"1. A test user exists whose role has the permission that grants access to Work In Progress reports (assign the Tech user a suitable role if needed; restore the original role afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the reports navigation and find ""Work In Progress"".
 2. Open the report.
 3. Download the current tab as a CSV.","1. The report is listed and opens normally.
-2. The download works with the same permission — the report reuses one existing reporting permission, adds no new one, and the same permission covers the report and its downloads.",specs/wip-work-in-progress.md Story 1 Prerequisites (+ context note),,
-A user without the required permission does not see Work In Progress in the reports navigation,WIP — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have the permission that grants access to Work In Progress reports (assign the Tech user such a role; restore the original role afterward).
+2. The download works with the same permission — the report reuses one existing reporting permission, adds no new one, and the same permission covers the report and its downloads.",SV-8657 (specs/wip-work-in-progress.md Story 1 Prerequisites (+ context note)),,
+Without the permission Work In Progress is absent from the reports navigation,WIP — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have the permission that grants access to Work In Progress reports (assign the Tech user such a role; restore the original role afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the reports navigation.
-2. Look for ""Work In Progress"" under the Performance group.",1. The report does not appear in the navigation for this user.,specs/wip-work-in-progress.md Story 1 S1-N1,,
-"Nightly snapshot: once per day the system records one row per then-open work order, per calendar date",WIP — API,Functional,High,"1. Open work orders exist across the organization on the capture date.
+2. Look for ""Work In Progress"" under the Performance group.",1. The report does not appear in the navigation for this user.,SV-8657 (specs/wip-work-in-progress.md Story 1 S1-N1),,
+Nightly snapshot records one row per then-open job per calendar date,WIP — API,Functional,High,"1. Open work orders exist across the organization on the capture date.
 2. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).","1. Note the set of open work orders before the nightly capture runs.
 2. After the capture, inspect the stored snapshot rows for that calendar date.
 3. Let the capture run again the next day and inspect again.
 4. If a manual re-run of the capture is available, re-run it for the same date and inspect that date's rows again.","1. Once per day the system records one row per then-open work order — one row per work order per calendar date.
 2. The next day's capture adds a new row per open work order under the new date; a work order open on both days has one row for each date, never two rows for the same date.
-3. Re-running the capture for the SAME date replaces that date's rows — the day's existing rows are removed and re-recorded from current data, never duplicated.",specs/wip-work-in-progress.md Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs),,
-"Nightly snapshot: each row captures the work order, status, Earned, Remaining, location, organization, and the snapshot's calendar date",WIP — API,Functional,High,"1. At least one open work order with known status, location, and organization existed when the nightly capture ran.
+3. Re-running the capture for the SAME date replaces that date's rows — the day's existing rows are removed and re-recorded from current data, never duplicated.",SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs)),,
+Each snapshot row captures the WO; status; money; location and the date,WIP — API,Functional,High,"1. At least one open work order with known status, location, and organization existed when the nightly capture ran.
 2. You can inspect that date's stored snapshot rows.","1. Find the seeded work order's snapshot row for the capture date.
-2. Read each captured field and compare to the work order.","1. The snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.",specs/wip-work-in-progress.md Story 11 S11-R2,,
-Nightly snapshot: captured Earned and Remaining use the identical computation as the on-screen report for the capture date,WIP — API,Functional,Critical,"1. An open ZZAUTOTEST work order with known approved labor (partly clocked) and approved parts (partly received) exists and is left UNCHANGED across the capture.
+2. Read each captured field and compare to the work order.","1. The snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.",SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R2),,
+Captured Earned and Remaining use the same maths as the on-screen report,WIP — API,Functional,Critical,"1. An open ZZAUTOTEST work order with known approved labor (partly clocked) and approved parts (partly received) exists and is left UNCHANGED across the capture.
 2. You can read the on-screen report on the capture date and the stored snapshot row afterward.","1. On the capture date, note the work order's Earned and Remaining on the Work In Progress report.
 2. After the nightly capture, read the same work order's captured Earned and Remaining in the snapshot row.
-3. Compare the pairs.","1. The captured Earned equals the on-screen Earned and the captured Remaining equals the on-screen Remaining, to the cent — the snapshot uses the identical computation (Earned per S4-R19, Remaining per S4-R20), so the two can never diverge for a given work order on the capture date.",specs/wip-work-in-progress.md Story 11 S11-R3,,
-"Nightly snapshot: the capture uses the report's service-type and open-status conditions and spans every location, with no user location filter",WIP — API,Functional,High,"1. Open service work orders exist at two or more different locations.
+3. Compare the pairs.","1. The captured Earned equals the on-screen Earned and the captured Remaining equals the on-screen Remaining, to the cent — the snapshot uses the identical computation for both figures, so the two can never diverge for a given work order on the capture date.",SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R3),,
+Nightly snapshot spans every location with no user location filter,WIP — API,Functional,High,"1. Open service work orders exist at two or more different locations.
 2. An Invoiced (or Paid/Declined) work order and a part-sale work order also exist.
 3. You can inspect the capture date's snapshot rows.","1. After the nightly capture, list the snapshot rows for the date.
 2. Check that open service work orders from EVERY location are present.
 3. Look for the Invoiced/Paid/Declined work order and the part-sale work order.","1. The captured set uses the same service-type and open-status conditions as the report (service work orders in Estimate, Approved, In Progress, Review, or Complete).
 2. The capture spans every location — there is no user-selected-location filter.
-3. Invoiced, Paid, and Declined work orders and part-sale work orders are not captured.",specs/wip-work-in-progress.md Story 11 S11-R4; Story 2 S2-R1 (first two conditions),,
+3. Invoiced, Paid, and Declined work orders and part-sale work orders are not captured.",SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R4; Story 2 S2-R1 (first two conditions)),,
 Nightly snapshot: captured dollar values are stored to the cent,WIP — API,Functional,Medium,"1. An open work order whose Earned/Remaining include non-round cent values (for example $123.45) existed at capture time.
 2. You can inspect the stored snapshot rows.","1. Read the captured Earned and Remaining values for the work order.
-2. Compare their precision to the on-screen values.",1. Captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents.,specs/wip-work-in-progress.md Story 11 S11-R5,,
-"Nightly snapshot: a work order with nothing approved is captured with Earned $0.00 and Remaining $0.00, not skipped",WIP — API,Functional,Medium,"1. An open ZZAUTOTEST estimate with no approved line items existed at capture time.
+2. Compare their precision to the on-screen values.",1. Captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents.,SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R5),,
+Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped,WIP — API,Functional,Medium,"1. An open ZZAUTOTEST estimate with no approved line items existed at capture time.
 2. You can inspect the capture date's snapshot rows.","1. After the nightly capture, look for the nothing-approved work order among the date's snapshot rows.
 2. Read its captured Earned and Remaining values.","1. The work order IS captured (not skipped).
-2. Its Earned is $0.00 and its Remaining is $0.00, matching the on-screen S4-E1 behavior.",specs/wip-work-in-progress.md Story 11 S11-R6; Story 4 S4-E1,,
+2. Its Earned is $0.00 and its Remaining is $0.00, matching what the report shows on screen for a job with nothing approved.",SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R6; Story 4 S4-E1),,

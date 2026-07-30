@@ -404,6 +404,10 @@ Terse entries; where the full detail already lives elsewhere in this playbook, t
   `?`** (`get_tests/352?` → HTTP 400 *"Invalid characters in URI"*).
   *(both refs gotchas proven on the Filters push 2026-07-31: the comma one on the morning pass,
   the 250-char one mid-run on FLT-PARTS-13 at 298 chars)*
+  **SHARPENED (Report Suite push 2026-07-30): the boundary is EXCLUSIVE — a refs string of
+  EXACTLY 250 chars is REJECTED (SBR-NAV-01 / C30195, HTTP 400), while 243 chars pushes fine
+  (IV-EXP-02 / C30588). So the real ceiling is ≤249; the "≤240 for margin" rule above is the one
+  to assert on, and asserting `<= 250` is NOT safe.**
 
 ## L. Git practice with parallel workers
 - **⚠️ Parallel workers SHARE ONE git index** — a bare `git commit` after `git add <own paths>` also

@@ -90,7 +90,9 @@ UPDATES, ADDS, NOOP = [], [], []
 for iid in sorted(cases):
     c = cases[iid]; want = desired(c)
     assert len(want["title"]) <= 80, (iid, len(want["title"]))
-    assert len(want["refs"]) <= 250, (iid, len(want["refs"]))
+    # 250 EXACTLY is REJECTED by TestRail (HTTP 400 "does not match the required pattern") —
+    # observed live 2026-07-30 on SBR-NAV-01/C30195; 243 chars pushes fine. Cap at 245.
+    assert len(want["refs"]) <= 245, (iid, len(want["refs"]))
     assert re.match(r"^SV-\d+", want["refs"]), iid
     assert "," not in want["refs"], iid
     for k in ("custom_preconds", "custom_steps", "custom_expected"):
@@ -105,7 +107,9 @@ for iid in sorted(cases):
             and want["custom_expected"] == unhtml(L.get("custom_expected"))
             and norm_refs(want["refs"]) == norm_refs(L.get("refs")))
     (NOOP if same else UPDATES).append((iid, cid.lstrip("C")))
-assert ADDS == ["PV-PREC-01", "PV-PREC-02"], ADDS
+# Before the push this is exactly the 2 new QuickBooks cases; AFTER the push the id-map
+# carries their C-ids so ADDS is empty and a re-run is a pure verification diff.
+assert ADDS in ([], ["PV-PREC-01", "PV-PREC-02"]), ADDS
 print("pre-flight OK — updates %d · adds %d · no-op %d" % (len(UPDATES), len(ADDS), len(NOOP)), flush=True)
 
 if DRY:
@@ -151,9 +155,18 @@ while len(tests) % 250 == 0 and len(tests) > 0:
     chunk = more["tests"] if isinstance(more, dict) else more
     if not chunk: break
     tests += chunk; off += 250
-code, res = api("GET", "get_results_for_run/%d&limit=250" % RUN)
-rr = res["results"] if isinstance(res, dict) else res
-res_total = res.get("size", len(rr)) if isinstance(res, dict) else len(rr)
+def count_results():
+    """Paginate properly — get_results_for_run's `size` is the PAGE size, not the total."""
+    total, offset = 0, 0
+    while True:
+        c, r = api("GET", "get_results_for_run/%d&limit=250&offset=%d" % (RUN, offset))
+        assert c == "200", (c, r)
+        chunk = r["results"] if isinstance(r, dict) else r
+        total += len(chunk)
+        if len(chunk) < 250: break
+        offset += 250
+    return total
+res_total = count_results()
 PRIOR = sorted({t["case_id"] for t in tests})
 json.dump({"run": r359, "test_case_ids": PRIOR, "test_count": len(tests),
            "results_count": res_total},
@@ -227,9 +240,7 @@ while True:
     chunk = more["tests"] if isinstance(more, dict) else more
     if not chunk: break
     tests2 += chunk; off += 250
-code, res2 = api("GET", "get_results_for_run/%d&limit=250" % RUN)
-rr2 = res2["results"] if isinstance(res2, dict) else res2
-res2_total = res2.get("size", len(rr2)) if isinstance(res2, dict) else len(rr2)
+res2_total = count_results()
 after_ids = {t["case_id"] for t in tests2}
 verify = {"count": len(tests2) == len(union),
           "prior_cases_present": set(PRIOR).issubset(after_ids),

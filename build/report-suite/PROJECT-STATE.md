@@ -4,8 +4,7 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-31** (SPEC RE-DIFF + CHRIS'S 5 ANSWERS APPLIED + AUTHORIZED PUSH EXECUTED
-+ RUN-359 SYNCED — see §0 UPDATE 2026-07-31 immediately below). Prior: **2026-07-30, third update** (COMPANION VIDEO INGESTED + DELTA PASS + AUTHORIZED
+Last updated: **2026-07-31** (CLOSING AUTHENTICITY PASS — 474 active, Rule-20 traceability 114/472 -> 474/474, 288 over-cap titles -> 0, the SV-8589 QuickBooks gap CLOSED, Rule-28 three-dimension audit 474/474 with 0 contradictions, 414 update_case + 2 add_case EXECUTED and verified zero-diff, run 359 synced 472 -> 474 with results unchanged; **5 FOREIGN cases C38919-C38923 found inside group 4281 and left untouched pending a decision** — see §0 UPDATE 2026-07-31-CLOSING immediately below). Prior: SPEC RE-DIFF + CHRIS'S 5 ANSWERS APPLIED + AUTHORIZED PUSH EXECUTED + RUN-359 SYNCED — see §0 UPDATE 2026-07-31. Prior: **2026-07-30, third update** (COMPANION VIDEO INGESTED + DELTA PASS + AUTHORIZED
 PUSH EXECUTED — Chris Ward's PRD companion video arrived (Loom e4a3ad0191…; transcript + 20-point
 delta analysis in `chris-update-2026-07-29/`); 3 FIRM deltas → 7 update_case pushed under the
 user's same-day authorization ("do update the test cases if you learn that the video is warranting
@@ -53,6 +52,125 @@ import REGENERATED post-review.)
 ---
 
 ## 0. STATUS
+
+### UPDATE 2026-07-31-CLOSING — CLOSING AUTHENTICITY PASS: every case traceable, sensible, layman-runnable, in its run
+
+**One line: the suite is 474 active cases, all 474 now carry BOTH a Jira ticket and a spec anchor
+(114 did before), no title exceeds 80 characters (288 did), the one genuine gap in epic SV-8582 is
+closed, and live TestRail is byte-equal to the local source — verified by a zero-diff re-run.**
+
+| | Before this pass | After |
+|---|---|---|
+| Active cases | 472 | **474** |
+| Rule-20 compliant `refs` (ticket **and** spec anchor) | 114 / 472 | **474 / 474** |
+| Titles over 80 characters | 288 | **0** |
+| Duplicate titles | 2 groups (6 cases) | **0** |
+| `refs` over the TestRail cap / carrying a comma | 17 / 52 | **0 / 0** |
+| Stale spec anchors | 1 | **0** |
+| QuickBooks / fractional-quantity coverage | **0 cases** | 2 |
+| Run 359 tests · recorded results | 472 · 539 | **474 · 539 (unchanged)** |
+
+**Deliverables (all under `build/report-suite/authenticity-2026-07-31/`):**
+`TRACEABILITY-AUDIT.md` · `QUICKBOOKS-GAP-CLOSED.md` · `TITLE-TRIM-REPORT.md` ·
+`audit/RUTHLESS-AUDIT-2026-07-31-CLOSING.md` + `audit/per-case-verdicts-2026-07-31.csv` ·
+`testrail-push-manifest-closing-2026-07-31.md` (EXECUTED) ·
+`testrail-execution-log-closing-2026-07-31.md` · scripts `audit_traceability.py`,
+`backfill_refs.py`, `add_qb_precision_cases.py`, `trim_titles.py`,
+`audit/consistency_sweep.py`, `audit/gen_verdicts.py`, `audit/apply_repairs.py`,
+`exec_push_closing_2026-07-31.py` · logs `refs-backfill-log.json`, `title-trim-log.json`,
+`audit/repair-log-2026-07-31.md` · 415 pre-push `get_case` snapshots.
+
+**Phase 1 — traceability (the big one).** All 472 audited; 358 had a spec anchor but no ticket.
+Backfilled with per-story precision from the live SV-8582 epic ingest (80 story keys parsed
+programmatically out of the story titles — **no ticket invented**). Also found and fixed **5
+MIS-CITED tickets** the earlier pass had counted compliant (SBC-LOC-01 = C30109 and
+SBC-LOC-04 = C38912 → SV-8603; TU-ELL-02 = C30405 → SV-8649; WIP-COL-01 = C30466 and
+WIP-COL-02 = C30467 → SV-8660) and **1 stale anchor** (SBC-API-05 = C30194 cited SBC Story 16 /
+S16-R6 = Print, which the current spec v12 marks "(removed — Print retired)").
+**5 cases genuinely have no single owning story and now say so in the ref text** — chief among them
+**TU-COL-01 = C38859**, whose TU Story 10 has **no Jira ticket in the epic at all** (the spec's own
+Jira field reads `TBD`); it had been mis-cited to SV-8655. A 6th §-only case, WIP-CALC-07 = C30480,
+turned out to HAVE an owner (SV-8660, S4-R15 verbatim) and is now cited per-story.
+Every one of the 80 per-story tickets is cited by at least one case except SV-8614 (SBC Story 16 —
+Print), correctly, because that story is retired.
+
+**Phase 2 — the QuickBooks gap.** SV-8589 (In Progress since 2026-07-29) names two tests verbatim —
+*"fractional-quantity round-trip regression; QB journal amount exact from fractional movement"* —
+and a grep of all 529 local bodies returned **0** hits for "quickbooks" and **0** for "fractional".
+Authored exactly two cases, justified in `QUICKBOOKS-GAP-CLOSED.md`:
+**PV-PREC-01 = C38924** (PV — Columns & Calculations; the ShopView-side round-trip) and
+**PV-PREC-02 = C38925** (PV — API per Rule 4; the QuickBooks journal-amount side). A third
+"negative/reversed fractional" variant was considered and **rejected as padding**. PV-PREC-02 has
+**no report-spec anchor** — none of the six specs mention QuickBooks — so its `refs` says so and
+anchors on SV-8589 + `tech-plan-2026-07-29` Phase 0 / PR-1 D2.
+
+**Phase 3 — titles + the epic premise.** 294 titles changed (288 over-cap → 0, plus 6 re-worded for
+uniqueness): 206 hand-written, 77 cut only at a STRONG clause boundary, 3 compressed, 8
+de-duplicated. **No distinguishing detail lost — proven**: the dropped words of every trimmed title
+were searched in that case's own Preconditions/Steps/Expected/notes; the 51 that flagged were
+hand-checked by assertion and all 51 already carried the content. Rule-9 guardrail: a first draft
+compressed report names to `SBC`/`SBR`/`WIP` — **removed** after confirming those strings appear in
+**0** existing titles (internal jargon, not build labels).
+`epic-sv8582/RECONCILIATION.md` **corrected**: it called SV-8594–8599 "OBSOLETE … superseded /
+historical detail only", but a developer reopened all six OBSOLETE→Open on 2026-07-29 and moved
+SV-8589 to In Progress. Status table, by-status counts (now OBSOLETE 6 / Open 90 / In Progress 1),
+all six per-row statuses and the framing are fixed. **What the re-activation requires of the suite
+was VERIFIED, not repeated** — a per-report sweep over all 474 cases against every testable item
+the reopened stories put back in force: 1 genuine gap (closed in Phase 2), everything else already
+covered **including the negative** ("no reader this version" — no WIP case asserts an as-of/history
+reader), 0 contradictions introduced.
+
+**Phase 4 — Rule-28 three-dimension re-verify, all 474.**
+**D1 USEFUL: KEEP 424 / WEAK-KEEP 50 (user-retained, flagged) / MERGE 0 / CUT 0.**
+**D2a SENSE: SENSIBLE 474 / NONSENSE 0.**
+**D2b CROSS-CASE: 33 mechanical flags raised, all 33 adjudicated, CONTRADICTIONS 0 remaining and 0
+PENDING.** **D3 GENUINE + LAYMAN: 474/474 on both halves.** KEEP-but-NONSENSE: empty.
+**14 real defects found in our own work and repaired before delivery** — 8 spec-anchor leaks in
+tester-facing text (`(per S3-N1)`, `matches §3:`, `(S2-E4)`, `(per S1-R8)`, `(Earned per S4-R19…)`,
+`the on-screen S4-E1 behavior`, `(consistency goal, §1)`, `excluded per S3-N1`) which the push
+script's `clean()` does **not** strip; 3 trimmed titles that had stopped naming their own report
+(SBR-PERM-01 = C30198, WIP-PERM-02 = C30527, TU-NAV-07 = C30398); 1 non-actionable expected line
+(PV-EXP-05 = C30379, "confirmed in the build"); and **2 of the 3 deliberately-failing permission
+cases were missing their plain tester note** — verified against LIVE TestRail that only
+SBC-PERM-01 = C30098 had it, so the identical note was added to SBC-PERM-02 = C30099 and
+SBC-NAV-01 = C30096.
+Two honest cluster rulings: the 6 per-row Location columns are KEEP (position, "Multiple" rule and
+export header genuinely differ per report), and the 4 single-table over-cap export cases are KEEP on
+engineering evidence — SV-8591 verbatim says the guard *"Takes a count callable/query per report"*,
+so each report's cap can fail independently.
+
+**Phase 5 — push + run 359 + reconcile.** **414 `update_case` + 2 `add_case` + 0 deletes, all HTTP
+200 + re-GET verified.** Final proof: a re-run of the executor's diff against a fresh live snapshot
+reports **`updates 0 · adds 0 · no-op 474`**. Run **359** union-synced 472 → **474 tests** with
+**539 recorded results UNCHANGED** and every prior case still present; no result was ever written,
+no other run touched. Deliverables regenerated over 474 (id-map 474 rows / 0 blanks; unified import
+474 rows; 6 splits 83+111+71+60+79+70 = 474; **import header byte-identical across all five project
+imports**; 0 VIU words, 0 flag phrases, 0 internal-id leaks, 0 duplicate titles, 30 API cases none
+outside an "API" section).
+**One real push failure, diagnosed:** `update_case/30195` (SBR-NAV-01) returned **HTTP 400** because
+its `refs` was **exactly 250 characters** — the cap boundary is **EXCLUSIVE**, so 250 is rejected
+while 243 passes. Ref compressed to 208 (all requirement tokens kept), assertion tightened to ≤245,
+and the sharpened boundary written back to `build/APP-ACTIONS-PLAYBOOK.md`.
+
+**⚠️ OPEN — 5 FOREIGN CASES INSIDE OUR GROUP, LEFT UNTOUCHED, NEEDS A DECISION.** Live count under
+group 4281 is **479**, not 474. Five cases — **C38919 · C38920 · C38921 · C38922 · C38923** —
+appeared at 2026-07-30 15:54Z with **no trace anywhere in this repository**. They are not ours, they
+carry **no `refs` at all**, every title is **over 80 characters**, `custom_atmstatus` is **1** (our
+convention is 3), and their subjects read like **duplicates of cases we own** (TU-COL-01 = C38859,
+PV-FILT-14 = C38914, and the IV/WIP/SBR export-`Locations:` assertions already in IV-EXP-02 = C30588,
+WIP-EXP-01 = C30510, SBR-EXP-02 = C30277). They were **not edited, not deleted and not added to run
+359.** Reconciliation therefore reads **479 live = 474 ours + 5 foreign**, itemised in
+`testrail-execution-log-closing-2026-07-31.md` rather than absorbed. **Three-way match on our own
+population: live 474 == id-map 474 == import 474.**
+
+**Still open after this pass (unchanged by it):** Chris Ward's ruling on the **SBR Escape-key**
+conflict (SBR-DEACT-04 = C30255 asserts Escape does NOT dismiss per Golden Rule #9, while spec
+S13-R8 wants it to — engineering escalated it as an open decision) and the **SBC permission-bundle**
+question; the SPEC-WATCH changelog deadline **2026-08-04**; and **live VIU for all 474 cases, still
+blocked on a QA branch that does not exist** — every case remains `VIU-Pending` and **nothing in
+this pass is live-build-observed** (Rule 22: no step here required it).
+
+---
 
 ### UPDATE 2026-07-31 — SPEC RE-DIFF (all six specs now CURRENT) + CHRIS'S 5 ANSWERS APPLIED + PUSH EXECUTED + RUN 359 SYNCED
 
