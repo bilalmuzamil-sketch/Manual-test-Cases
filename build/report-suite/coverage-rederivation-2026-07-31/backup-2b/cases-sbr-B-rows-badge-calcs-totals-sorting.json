@@ -43,16 +43,16 @@
    "4. Look for any cell whose content has shifted into a neighbouring column or wrapped; check the desktop Totals row's leading cells."
   ],
   "expected": [
-   "1. With a single location in scope the columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (12 columns). When more than one location is in scope the automatic Location column is added immediately after Status, making 13.",
+   "1. The columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (12 columns).",
    "2. On a rep summary row the Date cell holds the chevron control followed by the rep's display name (\"First Last\"); the date value is intentionally blank.",
    "3. The Invoice, Customer, and Status cells are blank on summary rows; the metric cells carry the rep's totals across all matching invoices.",
    "4. Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) — row type is distinguished by font weight, not background color.",
    "5. Every row renders exactly the report's column count with blanks in position — a cell with nothing to show is blank, never shifted or wrapped (a drifted row is a defect). The grand Totals indicator is exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8623; SV-8638 (SBR spec v15 2026-07-29 Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a + Story 21 S21-R7 — plus the Location column after Status)",
+  "spec_ref": "SV-8623 (specs/sbr-sales-by-representative.md Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a)",
   "viu_status": "VIU-Pending",
-  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-ROWLAYOUT): absorbed SBR-ROW-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-ROWLAYOUT): absorbed SBR-ROW-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
  },
  {

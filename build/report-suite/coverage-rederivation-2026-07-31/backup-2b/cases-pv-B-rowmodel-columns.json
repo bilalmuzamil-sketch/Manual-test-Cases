@@ -315,14 +315,13 @@
    "1. Read the visible column headers left to right without touching the picker."
   ],
   "expected": [
-   "1. With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand.",
-   "2. The other 6 columns start hidden: Units Returned, Sold (WO), Sold (Parts Sale), Turns / Yr, Min, Max.",
-   "3. When more than one location is in scope the automatic Location column shows as well, leftmost before Type — 15 columns. It is not part of the 14-column default set and is not in the column picker, so its presence is expected and is not a failure of this test."
+   "1. Exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand.",
+   "2. The other 6 columns start hidden: Units Returned, Sold (WO), Sold (Parts Sale), Turns / Yr, Min, Max."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R2; S4-R3 + Story 3 S3-R10 — the 14 default-visible columns and the 6 hidden ones; plus the automatic Location column leftmost when more than one location is in scope)",
+  "spec_ref": "SV-8644 (specs/parts-velocity.md S4-R2; S4-R3)",
   "viu_status": "VIU-Pending",
-  "notes": "COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins.",
   "api_related": false
  },
  {
@@ -342,13 +341,13 @@
   ],
   "expected": [
    "1. Each toggle takes effect immediately - the table re-renders without a page reload.",
-   "2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on (with the automatic Location column, when shown, sitting leftmost before Type): Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns / Yr, Min, Max.",
+   "2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns / Yr, Min, Max.",
    "3. So Units Returned slots in right after Units Sold, Turns / Yr after On Hand, and Min before Max - not appended at the end."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R4; S4-R5 + Story 3 S3-R10 — canonical column order and immediate re-render; plus the automatic Location column leftmost when shown)",
+  "spec_ref": "SV-8644 (specs/parts-velocity.md S4-R4; S4-R5)",
   "viu_status": "VIU-Pending",
-  "notes": "The EXPORT currently has a known build-delta on this (appends re-enabled columns at the end) - that is PV-EXP-03; on screen the canonical order is expected to hold. COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "The EXPORT currently has a known build-delta on this (appends re-enabled columns at the end) - that is PV-EXP-03; on screen the canonical order is expected to hold. COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins.",
   "api_related": false
  },
  {

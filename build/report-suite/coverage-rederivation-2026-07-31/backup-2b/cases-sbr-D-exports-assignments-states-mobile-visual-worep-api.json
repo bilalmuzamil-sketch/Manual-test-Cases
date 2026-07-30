@@ -74,14 +74,14 @@
   "expected": [
    "1. The PDF is A4 portrait, edge-to-edge, with a header strip on the first page showing the workplace name and address, the organization logo, the report title \"Sales By Representative,\" and the selected date range.",
    "2. There is one rolled-up row per rep, in the report's currently-active order; a toggled-off contributor's name carries the \"(Inactive)\" tag.",
-   "3. With a single location in scope the columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. When more than one location is in scope a Location column is added with the identifying columns ahead of Inv. Hrs, and a rep who spans more than one location reads \"Multiple\" (this file has no Status column for it to follow — confirm its exact position in the build).",
+   "3. The columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.",
    "4. Subtotal is bolded across the header, the body rows, and the grand totals row; Inv. Hrs keeps its green/red/default coloring.",
    "5. The grand totals row reads \"Totals\" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin ÷ total Subtotal (shown \"—\" when that Subtotal is zero or below), never the sum or average of the rows' percentages."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3; S14-R5; S14-R20; Story 2 S2-R5; §3 Margin % definition — Summary PDF; plus the automatic Location column in all four exports)",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R3; S14-R5; Story 2 S2-R5; §3 Margin % definition)",
   "viu_status": "VIU-Pending",
-  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "",
   "api_related": false
  },
  {
@@ -102,16 +102,16 @@
   ],
   "expected": [
    "1. There is one page-block per rep, in the report's currently-active order, with a page break before each new rep after the first.",
-   "2. Each block shows the header strip (workplace name and address, organization logo, title \"Sales By Representative,\" the selected date range), the rep's name, and a per-invoice table with columns: Date / Invoice / Customer / Status / (Location, only when more than one location is in scope, carrying that invoice's own location) / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.",
+   "2. Each block shows the header strip (workplace name and address, organization logo, title \"Sales By Representative,\" the selected date range), the rep's name, and a per-invoice table with columns: Date / Invoice / Customer / Status / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.",
    "3. The Status column renders the same colored badge as on screen, vertically centered.",
    "4. Invoices are ordered newest first (the same order as the on-screen expansion: invoice date descending, numeric invoice-number tie-break).",
    "5. Each block ends with a per-rep totals row — \"Totals\" in the Date cell; Invoice/Customer/Status blank; each metric aggregated; Margin % recomputed.",
    "6. There is NO grand-totals row across all reps at the end of the document."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R6; S14-R8; S14-R20; Story 6 S6-R9 — Expanded PDF page-block per rep; plus the automatic Location column after Status)",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R6; S14-R8; Story 6 S6-R9)",
   "viu_status": "VIU-Pending",
-  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "",
   "api_related": false
  },
  {
@@ -261,17 +261,16 @@
   ],
   "expected": [
    "1. The file is named \"sales-by-representative-summary.csv\" and starts with a UTF-8 BOM.",
-   "2. With a single location in scope the headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
+   "2. The headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
    "3. There is one header row plus one row per rep in the current filtered view, in the report's currently-active order.",
    "4. \"# Invoices\" equals the on-screen (N); \"# Customers\" counts distinct customers across those invoices (de-duplicated across locations when several are selected).",
    "5. The CSV has NO totals row.",
-   "6. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "7. When more than one location is in scope the file also carries a Location column, with the identifying columns ahead of the metric columns; a rep whose invoices span more than one location reads \"Multiple\". (This file has no Status column for it to follow — confirm its exact position in the build.)"
+   "6. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R15; S14-R18; S14-R20 — Summary CSV headers; plus the automatic Location column in all four exports; S14-R15's header list was left un-updated when S14-R20 was added — spec correction pending)",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R15; S14-R18)",
   "viu_status": "VIU-Pending",
-  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
@@ -291,15 +290,14 @@
   ],
   "expected": [
    "1. The file is named \"sales-by-representative-expanded.csv\" and starts with a UTF-8 BOM.",
-   "2. With a single location in scope the headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
+   "2. The headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
    "3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.",
-   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "5. When more than one location is in scope the file also carries a Location column immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never \"Multiple\"."
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R16; S14-R20 — Expanded CSV headers; plus the automatic Location column after Status; S14-R16's header list was left un-updated when S14-R20 was added — spec correction pending)",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R16)",
   "viu_status": "VIU-Pending",
-  "notes": "BUILD-DELTA (spec's own build note): the current build populates a single mislabeled hours column here; the spec target is the three hours columns (Hrs Worked / Hrs Invoiced / Inv. Hrs) matching the Summary CSV — record a deviation if the build still ships one column. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "BUILD-DELTA (spec's own build note): the current build populates a single mislabeled hours column here; the spec target is the three hours columns (Hrs Worked / Hrs Invoiced / Inv. Hrs) matching the Summary CSV — record a deviation if the build still ships one column. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {

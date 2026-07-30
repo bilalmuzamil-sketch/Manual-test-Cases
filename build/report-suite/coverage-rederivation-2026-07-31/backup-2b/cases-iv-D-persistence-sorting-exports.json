@@ -42,13 +42,13 @@
    "2. Read the resulting column order after each change."
   ],
   "expected": [
-   "1. Whatever columns are shown, they appear in the fixed left-to-right order — with the automatic Location column, when more than one location is in scope, between Vendor and Qty on Hand (Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) — toggling visibility never reorders columns.",
+   "1. Whatever columns are shown, they appear in the fixed left-to-right order (Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) — toggling visibility never reorders columns.",
    "2. Total Cost is always the last column."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand)",
+  "spec_ref": "SV-8675 (specs/inventory-value.md Story 8 S8-R4; Story 3 S3-R1)",
   "viu_status": "VIU-Pending",
-  "notes": "The default on/off split (Margin and Total Sell off, the rest on — S8-R3) is covered by IV-COL-04. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "The default on/off split (Margin and Total Sell off, the rest on — S8-R3) is covered by IV-COL-04.",
   "api_related": false
  },
  {

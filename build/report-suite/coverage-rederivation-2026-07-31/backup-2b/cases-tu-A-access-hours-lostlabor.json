@@ -247,17 +247,16 @@
    "4. Check the number format on a value over 100 hours."
   ],
   "expected": [
-   "1. With a single location in scope the headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor.",
+   "1. The headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor.",
    "2. Total Hours = all time the technician was clocked in for the range.",
    "3. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.",
    "4. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.",
-   "5. Hours show two decimal places with NO thousands separator (e.g. \"107.70\"), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 → 0.01).",
-   "6. When more than one location is in scope the automatic Location column also appears, leftmost before Technician — it is not in the Column Selection control and its presence is expected."
+   "5. Hours show two decimal places with NO thousands separator (e.g. \"107.70\"), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 → 0.01)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8649; SV-8656 (TU spec v5 2026-07-29 S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3 + Story 9 S9-R9 — header order and the hours columns; plus the automatic Location column leftmost when shown)",
+  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3)",
   "viu_status": "VIU-Pending",
-  "notes": "Seeding: controlled clock records (work-order + internal) so the sums are checkable. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-TU-COLS): absorbed TU-HRS-01. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "Seeding: controlled clock records (work-order + internal) so the sums are checkable. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-TU-COLS): absorbed TU-HRS-01. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
  },
  {

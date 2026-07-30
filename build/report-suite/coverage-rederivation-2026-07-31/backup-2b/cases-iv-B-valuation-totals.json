@@ -16,15 +16,14 @@
    "2. Look at how the values in each column are aligned."
   ],
   "expected": [
-   "1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.",
+   "1. The columns appear in this order: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.",
    "2. Part #, Description, Category, and Vendor are left-aligned.",
-   "3. Every other column is right-aligned.",
-   "4. When more than one location is in scope the automatic Location column also appears, between Vendor and Qty on Hand, left-aligned. It is not in the column-selection control, so its presence is expected and is not a failure of this test."
+   "3. Every other column is right-aligned."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand)",
+  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R1; S3-R2)",
   "viu_status": "VIU-Pending",
-  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "",
   "api_related": false
  },
  {
@@ -255,15 +254,14 @@
    "3. Turn Margin and Total Sell on and check they appear."
   ],
   "expected": [
-   "1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost.",
+   "1. On first visit, the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost.",
    "2. The Margin and Total Sell columns are hidden by default.",
-   "3. Both can be turned on from the column-selection control and then appear in their fixed positions.",
-   "4. When more than one location is in scope the automatic Location column also shows, between Vendor and Qty on Hand — it is not one of the toggleable columns and its presence is expected."
+   "3. Both can be turned on from the column-selection control and then appear in their fixed positions."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope)",
+  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R12; S3-R13; Story 8 S8-R3)",
   "viu_status": "VIU-Pending",
-  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "",
   "api_related": false
  },
  {

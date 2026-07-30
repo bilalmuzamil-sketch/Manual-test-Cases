@@ -1,0 +1,245 @@
+==============================================================================
+1. CONTROL GROUPING - every active case asserting on the Location column
+
+  [IV] IV-COL-01 = C30551
+      4. When more than one location is in scope the automatic Location column also appears, between Vendor and Qty on Hand, left-aligned. It is not in the column-selection control, so its presence is expec
+
+  [IV] IV-COL-04 = C30554
+      4. When more than one location is in scope the automatic Location column also shows, between Vendor and Qty on Hand — it is not one of the toggleable columns and its presence is expected.
+
+  [IV] IV-LOC-06 = C38917
+      1. With more than one location in scope a Location column is shown, inserted between Vendor and Qty on Hand.
+      5. With a single location in scope the Location column is hidden and the surrounding columns close up.
+      7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty on Hand), naming each row's own location.
+
+  [IV] IV-PERS-02 = C30580
+      1. Whatever columns are shown, they appear in the fixed left-to-right order — with the automatic Location column, when more than one location is in scope, between Vendor and Qty on Hand (Part #, Descr
+
+  [PV] PV-COL-02 = C30352
+      3. When more than one location is in scope the automatic Location column shows as well, leftmost before Type — 15 columns. It is not part of the 14-column default set and is not in the column picker, 
+
+  [PV] PV-COL-03 = C30353
+      2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on (with the automatic Location column, when shown, sitting leftmost before Type): Type, P
+
+  [PV] PV-FILT-14 = C38914
+      1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Type.
+      5. With a single location in scope the Location column is hidden.
+      7. Both downloads include the Location column in the same position it holds on screen (leftmost, before Type), with the same values — each inventory row's own location, and "Multiple" on the merged Sp
+
+  [SBC] SBC-EXP-03 = C30161
+      1. With a single location in scope the Expanded View CSV has these thirteen columns in this exact order: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts
+
+  [SBC] SBC-EXP-11 = C30169
+      1. The Expanded View PDF's body table has the same columns, in the same order and with the same labels, as the Expanded View CSV — thirteen with a single location in scope, plus the Location column af
+
+  [SBC] SBC-EXP-16 = C38856
+      5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, 
+
+  [SBC] SBC-LOC-04 = C38912
+      1. With more than one location in scope a Location column is shown, positioned immediately after the Date column.
+      6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.
+      8. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at
+
+  [SBR] SBR-EXP-03 = C30278
+      3. With a single location in scope the columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. When more than one location is in sco
+
+  [SBR] SBR-EXP-10 = C30285
+      7. When more than one location is in scope the file also carries a Location column, with the identifying columns ahead of the metric columns; a rep whose invoices span more than one location reads "Mu
+
+  [SBR] SBR-EXP-11 = C30286
+      5. When more than one location is in scope the file also carries a Location column immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, n
+
+  [SBR] SBR-LOC-05 = C38913
+      1. With more than one location in scope a Location column is shown, positioned immediately after the Status column and before Inv. Hrs.
+      6. The pinned Subtotal column is still rightmost — the Location column never displaces it.
+      7. With a single location in scope the Location column is hidden.
+      9. All four downloads include the Location column in the same position it occupies on screen. In the Summary files a rep's row carries that rep's location and reads "Multiple" when the rep spans more 
+
+  [SBR] SBR-ROW-02 = C30218
+      1. With a single location in scope the columns appear left to right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal (
+
+  [TU] TU-COL-01 = C38859
+      5. The Location column is never listed here — it appears on its own whenever more than one location is in scope.
+
+  [TU] TU-HRS-02 = C30401
+      6. When more than one location is in scope the automatic Location column also appears, leftmost before Technician — it is not in the Column Selection control and its presence is expected.
+
+  [TU] TU-LOC-06 = C38915
+      1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Technician.
+      7. With a single location in scope the Location column is hidden.
+      9. Every download — both PDF views and the CSV — includes the Location column in its on-screen leftmost position, carrying the same values you just read on screen.
+
+  [WIP] WIP-FLT-09 = C38916
+      1. With more than one location in scope a Location column is shown, in its fixed position between VIN and Advisor, left-aligned.
+      5. With a single location in scope the Location column is hidden.
+
+==============================================================================
+   ... and every active case asserting the Location column INSIDE an export
+  IV-EXP-02    C30588   4. Each download (PDF and CSV) carries a "Locations:" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
+  IV-LOC-06    C38917   7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty on Hand), naming each row's own location.
+  PV-EXP-02    C30376   3. Each file (PDF and CSV) carries a "Locations:" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
+  PV-FILT-14   C38914   7. Both downloads include the Location column in the same position it holds on screen (leftmost, before Type), with the same values — each inventory row's own location, and "Multiple" on the
+  SBC-EXP-03   C30161   1. With a single location in scope the Expanded View CSV has these thirteen columns in this exact order: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoi
+  SBC-EXP-03   C30161   7. The file carries a "Locations:" line naming the location or locations the report was scoped to, or "All locations" when every location you can access is selected — as a leading line above
+  SBC-EXP-11   C30169   1. The Expanded View PDF's body table has the same columns, in the same order and with the same labels, as the Expanded View CSV — thirteen with a single location in scope, plus the Location
+  SBC-EXP-16   C38856   5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies
+  SBC-LOC-04   C38912   8. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices 
+  SBR-EXP-02   C30277   5. Every file (all four downloads, PDF and CSV) carries a "Locations:" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
+  SBR-EXP-03   C30278   3. With a single location in scope the columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. When more than one location
+  SBR-EXP-10   C30285   7. When more than one location is in scope the file also carries a Location column, with the identifying columns ahead of the metric columns; a rep whose invoices span more than one location
+  SBR-EXP-11   C30286   5. When more than one location is in scope the file also carries a Location column immediately after Status — the position it holds on screen — and every row shows that invoice's own exact l
+  SBR-LOC-05   C38913   9. All four downloads include the Location column in the same position it occupies on screen. In the Summary files a rep's row carries that rep's location and reads "Multiple" when the rep s
+  TU-EXP-04    C30437   4. Every download (each PDF and the CSV) carries a "Locations:" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
+  TU-LOC-06    C38915   9. Every download — both PDF views and the CSV — includes the Location column in its on-screen leftmost position, carrying the same values you just read on screen.
+  WIP-EXP-02   C30511   4. Each download (PDF and CSV) carries a "Locations:" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
+  WIP-FLT-09   C38916   6. In both downloads the column is headed "Branch" (a known naming difference from the screen — do not raise it as a bug).
+
+==============================================================================
+2. OPPOSITE-ASSERTION SWEEP over the touched cases and their report siblings
+
+  CHECK  SBC-LOC-04=C38912  vs  SBC-LOC-03=C30111
+    A: 6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.
+    B: 4. With "All locations" active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirm
+
+  CHECK  SBC-LOC-04=C38912  vs  SBC-LOC-03=C30111
+    A: 6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.
+    B: 5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the bui
+
+  CHECK  SBC-LOC-04=C38912  vs  SBC-EMPTY-01=C30181
+    A: 6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.
+    B: 3. The same empty state appears whichever filter caused it (date range, Product Type, or location).
+
+  CHECK  SBR-LOC-05=C38913  vs  SBR-LOC-03=C30215
+    A: 7. With a single location in scope the Location column is hidden.
+    B: 4. With "All Locations" active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirm
+
+  CHECK  SBR-LOC-05=C38913  vs  SBR-LOC-03=C30215
+    A: 7. With a single location in scope the Location column is hidden.
+    B: 5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the bui
+
+  CHECK  SBR-LOC-05=C38913  vs  SBR-LOC-04=C30216
+    A: 7. With a single location in scope the Location column is hidden.
+    B: 2. For the user with access to two or more locations the Location filter IS shown.
+
+  CHECK  PV-FILT-14=C38914  vs  PV-FILT-10=C30337
+    A: 5. With a single location in scope the Location column is hidden.
+    B: 6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirm
+
+  CHECK  PV-FILT-14=C38914  vs  PV-FILT-10=C30337
+    A: 5. With a single location in scope the Location column is hidden.
+    B: 7. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the bui
+
+  CHECK  PV-FILT-14=C38914  vs  PV-FILT-13=C30340
+    A: 5. With a single location in scope the Location column is hidden.
+    B: 2. For the user with access to two or more locations the Location filter IS shown.
+
+  CHECK  PV-FILT-14=C38914  vs  PV-ROW-01=C30341
+    A: 5. With a single location in scope the Location column is hidden.
+    B: 1. The part appears as TWO inventory rows - one per selected location (an inventory part is a per-location stock record).
+
+  CHECK  TU-LOC-06=C38915  vs  TU-HRS-02=C30401
+    A: 6. Location is never listed in the Column Selection control — it follows the location scope on its own.
+    B: 6. When more than one location is in scope the automatic Location column also appears, leftmost before Technician — it is not in the Column Selection control and its pres
+
+  CHECK  TU-LOC-06=C38915  vs  TU-LOC-01=C30442
+    A: 6. Location is never listed in the Column Selection control — it follows the location scope on its own.
+    B: 4. With all locations selected you can tell which location the shown data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirme
+
+  CHECK  TU-LOC-06=C38915  vs  TU-LOC-02=C30443
+    A: 6. Location is never listed in the Column Selection control — it follows the location scope on its own.
+    B: 5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the bui
+
+  CHECK  TU-LOC-06=C38915  vs  TU-LOC-05=C30446
+    A: 6. Location is never listed in the Column Selection control — it follows the location scope on its own.
+    B: 2. For the user with access to two or more locations the Location filter IS shown.
+
+  CHECK  TU-LOC-06=C38915  vs  TU-COL-01=C38859
+    A: 6. Location is never listed in the Column Selection control — it follows the location scope on its own.
+    B: 5. The Location column is never listed here — it appears on its own whenever more than one location is in scope.
+
+  CHECK  IV-LOC-06=C38917  vs  IV-SCOPE-02=C30541
+    A: 5. With a single location in scope the Location column is hidden and the surrounding columns close up.
+    B: 1. The part appears twice — one row per location, each with that location's own quantity and values.
+
+  CHECK  IV-LOC-06=C38917  vs  IV-COL-01=C30551
+    A: 5. With a single location in scope the Location column is hidden and the surrounding columns close up.
+    B: 4. When more than one location is in scope the automatic Location column also appears, between Vendor and Qty on Hand, left-aligned. It is not in the column-selection con
+
+  CHECK  IV-LOC-06=C38917  vs  IV-LOC-01=C30574
+    A: 5. With a single location in scope the Location column is hidden and the surrounding columns close up.
+    B: 3. With "All locations" active you can tell which location each row's stock belongs to — a location label or marking is shown. (Exactly where and how it appears is confir
+
+  CHECK  IV-LOC-06=C38917  vs  IV-LOC-02=C30575
+    A: 5. With a single location in scope the Location column is hidden and the surrounding columns close up.
+    B: 3. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the bui
+
+  CHECK  IV-LOC-06=C38917  vs  IV-LOC-04=C30577
+    A: 5. With a single location in scope the Location column is hidden and the surrounding columns close up.
+    B: 2. For the user with access to two or more locations the Location filter IS shown.
+
+  CHECK  TU-COL-01=C38859  vs  TU-HRS-02=C30401
+    A: 5. The Location column is never listed here — it appears on its own whenever more than one location is in scope.
+    B: 6. When more than one location is in scope the automatic Location column also appears, leftmost before Technician — it is not in the Column Selection control and its pres
+
+  CHECK  TU-COL-01=C38859  vs  TU-LOC-01=C30442
+    A: 5. The Location column is never listed here — it appears on its own whenever more than one location is in scope.
+    B: 4. With all locations selected you can tell which location the shown data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirme
+
+  CHECK  TU-COL-01=C38859  vs  TU-LOC-02=C30443
+    A: 5. The Location column is never listed here — it appears on its own whenever more than one location is in scope.
+    B: 5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the bui
+
+  CHECK  TU-COL-01=C38859  vs  TU-LOC-05=C30446
+    A: 5. The Location column is never listed here — it appears on its own whenever more than one location is in scope.
+    B: 2. For the user with access to two or more locations the Location filter IS shown.
+
+  CHECK  TU-COL-01=C38859  vs  TU-LOC-06=C38915
+    A: 5. The Location column is never listed here — it appears on its own whenever more than one location is in scope.
+    B: 1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Technician.
+
+  CHECK  WIP-FLT-09=C38916  vs  WIP-COL-02=C30467
+    A: 5. With a single location in scope the Location column is hidden.
+    B: 3. Location is NOT offered in the column-selection control — it appears on its own whenever more than one location is in scope, and is hidden when a single location is in
+
+  CHECK  WIP-FLT-09=C38916  vs  WIP-FLT-06=C30503
+    A: 5. With a single location in scope the Location column is hidden.
+    B: 4. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the bui
+
+  candidate pairs surfaced for hand review: 27
+
+==============================================================================
+3. TITLE-vs-EXPECTED on every touched case (title len must be <= 80)
+  SBC-LOC-04   C38912   len= 78  The Location column shows only with more than one location; Multiple on totals
+  SBR-LOC-05   C38913   len= 77  The Location column shows only with more than one location; rep rows Multiple
+  PV-FILT-14   C38914   len= 80  The Location column shows only with more than one location, leftmost before Type
+  TU-LOC-06    C38915   len= 77  The Location column shows only with more than one location; Summary row blank
+  IV-LOC-06    C38917   len= 77  The Location column is automatic, sits after Vendor, and never reads Multiple
+  TU-COL-01    C38859   len= 77  Column Selection: Technician always on, the other five toggleable, remembered
+  SBC-EXP-02   C30160   len= 63  Download file names carry the version and the active date range
+  SBC-EXP-03   C30161   len= 73  Expanded View CSV: column order, blank-cell rules, and the Locations line
+  SBC-EXP-04   C30162   len= 71  CSV formats: Margin % plain; dates mm-dd-yyyy; currency plain; no color
+  SBC-EXP-10   C30168   len= 47  PDF logo is embedded, scales without distortion
+  SBC-EXP-14   C30172   len= 67  An export over 10,000 data rows is refused with the too-large toast
+  SBR-PERS-04  C30274   len= 74  First visit or cleared storage yields all defaults; no server-side profile
+  SBR-STATE-01 C30298   len= 73  Empty state: verbatim message, no grand Totals, toolbar stays interactive
+  TU-NAV-03    C30394   len= 76  First visit defaults to the This Month preset and the user's active location
+  WIP-TAB-01   C30451   len= 78  Work In Progress appears in the reports navigation under the Performance group
+  WIP-SCOPE-05 C30460   len= 76  No qualifying work orders: every tab shows the no-data message and no Totals
+  WIP-EXP-02   C30511   len= 73  Downloads keep shown columns, honor filters, include the tab's Totals row
+  WIP-FLT-09   C38916   len= 77  The Location column is automatic and never reads Multiple on a work-order row
+  IV-NAV-06    C30539   len= 77  No qualifying parts, day or location: the no-data message shows and no totals
+
+==============================================================================
+4. SAME-ANCHOR CLUSTERS touching the changed requirements
+
+  SBC S4-R13 cited by 4: SBC-EXP-03=C30161, SBC-EXP-11=C30169, SBC-EXP-16=C38856, SBC-LOC-04=C38912
+
+  SBR S14-R20 cited by 5: SBR-EXP-03=C30278, SBR-EXP-04=C30279, SBR-EXP-10=C30285, SBR-EXP-11=C30286, SBR-LOC-05=C38913
+
+  SBR S21-R7 cited by 2: SBR-LOC-05=C38913, SBR-ROW-02=C30218
+
+  PV S3-R10 cited by 3: PV-COL-02=C30352, PV-COL-03=C30353, PV-FILT-14=C38914
+
+  TU S9-R9 cited by 2: TU-HRS-02=C30401, TU-LOC-06=C38915
+
+  IV S7-R6 cited by 4: IV-COL-01=C30551, IV-COL-04=C30554, IV-LOC-06=C38917, IV-PERS-02=C30580
