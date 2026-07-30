@@ -102,7 +102,7 @@
    "4. The 'Clear filters' link disappears."
   ],
   "design_ref": "design-notes.md B.1 #4 (11854:26246)",
-  "spec_ref": "requirements.md Story 8 S8-R1; §4 Key Decisions ; S13-R13 (clearing filters does not clear a typed search) [spec v1.6 2026-07-28]",
+  "spec_ref": "Filters epic (key TBD) (S8-R1; §4 Key Decisions; S13-R13 (clearing filters does not clear a typed search)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Cross-case consistency repair 2026-07-31 (Rule 28 dimension 2 sweep): precondition 4 + expected 3 now say the Search box must be empty, so this case no longer reads as contradicting S13-R13 / FLT-PSRCH-02 = C38884 (clearing filters leaves a typed search applied). Checked against spec v1.6 (Confluence v12, 2026-07-28).",
   "api_related": false
@@ -212,7 +212,7 @@
    "3. The chips return to their default state."
   ],
   "design_ref": "design-notes.md B.1 (empty state not drawn in the final WO frames)",
-  "spec_ref": "requirements.md Story 8 S8-R4 ; S8-R5 (with a query active each is cleared independently - FLT-EMPTY-03) [spec v1.6 2026-07-28]",
+  "spec_ref": "Filters epic (key TBD) (S8-R4; S8-R5 (with a query active each is cleared independently - FLT-EMPTY-03)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "The exact prompt wording and whether it clears ALL filters in one click are not in the design set - VIU-confirm. | Cross-case consistency repair 2026-07-31 (Rule 28 dimension 2 sweep): precondition 3 added so this filters-only case cannot be read as contradicting the v1.6 reworded S8-R3/S8-R4/S8-R5 behaviour covered by FLT-EMPTY-03 (new this pass), where a search is also active.",
   "api_related": false
@@ -242,7 +242,7 @@
    "4. Clearing the filters leaves your typed word in the box and still applied - each is cleared on its own without wiping the other."
   ],
   "design_ref": "Spec-sourced (S8-R3/R4/R5 as reworded in v1.6, S13-N1, S13-N2); the exact on-screen message is not pinned in any design frame - VIU-confirm.",
-  "spec_ref": "Filters epic (key TBD) (S8-R3 (empty state covers filters AND any active query); S8-R4 (prompt to clear filters and, where active, the query); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v1.6 2026-07-28]",
+  "spec_ref": "Filters epic (key TBD) (S8-R3 (empty state covers filters AND any active query); S8-R4 (prompt to clear filters and the query where active); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "New in spec v1.6: S8-R3 and S8-R4 were BROADENED from filters-only to 'filters and any active search query'. FLT-EMPTY-01 = C29606 and FLT-EMPTY-02 = C29607 stay valid for the filters-only case (no contradiction - they simply cover the narrower situation); this case covers the both-active situation the reworded requirements added. Overlap: FLT-PSRCH-02 = C38884 covers independent clearing from the chips and the Search box; this case covers it from the no-results empty state, which is what S8-R5 specifically requires. Exact message wording VIU-confirm.",
   "api_related": false
@@ -712,7 +712,7 @@
    "6. Returning normally later still shows your own saved filters, untouched by the link visit."
   ],
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md G7 / section 4-3.4",
-  "spec_ref": "Filters epic (key TBD) (S11-R6 (URL state runtime-only, no write-back); S11-R7 (Back to my view, also clears the query); S11-R8 (rationale: the query is never saved)) [spec v1.6 2026-07-28]",
+  "spec_ref": "Filters epic (key TBD) (S11-R6 (URL state runtime-only with no write-back); S11-R7 (Back to my view - also clears the query); S11-R8 (rationale: the query is never saved)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "RESOLVED by spec v1.4/v1.5 (2026-07-27): S11-R6 ratifies runtime-only with no write-back, exactly as tested; S11-R7 ratifies the control label as \"Back to my view\" (deliberately \"my view\" not \"my filters\" because it affects filters AND search). Branko Q2 and the naming question both withdrawn. The negative direction (control absent on a normal visit, S11-N3) is FLT-URL-06. Updated 2026-07-31 (FIX-PLAN F4+F5, user-authorized) against spec v1.6 (Confluence v12, 2026-07-28); the on-screen label is still (VIU-confirm) - no Filters QA branch exists yet.",
   "api_related": false
