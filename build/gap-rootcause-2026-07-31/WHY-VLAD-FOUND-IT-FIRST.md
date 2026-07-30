@@ -11,7 +11,8 @@ created which others can raise like Vlad did today."*
 
 **What this document is.** A verified root-cause analysis. Every link in the chain below was
 re-checked against the actual files in this repository, with file and line evidence, before it was
-written down. Two claims in the earlier account did **not** hold up and are corrected in §7.
+written down. **Two claims in the earlier account did not hold up, and one claim in this document's
+own first draft did not either — all three are corrected in §7.**
 
 **Honesty notes up front.**
 - **Nothing here is live-build verified** (Standing Rule 12). The Report Suite has no QA branch we
@@ -232,9 +233,9 @@ most certain, and it cost nothing but the discipline to read a whole case we alr
 
 ---
 
-## 7. Corrections to the earlier account
+## 7. Corrections to the earlier account — and to this document's own first draft
 
-Two claims did not survive verification. Both are stated here rather than quietly fixed.
+Three claims did not survive verification. All are stated here rather than quietly fixed.
 
 **7.1 — The defect spanned FIVE reports, not four.**
 `build/LESSONS-2026-07-31.md:122-124` says the split existed on *"three further reports (Parts
@@ -257,8 +258,21 @@ id **1**, we are id **3** (both resolved live via `get_user`) ✓.
 repaired** — ops 20/21 of the `2b-repair` pass, `2026-07-30 19:56:44Z`, verified live this session.
 Both now carry scope-conditional wording *("With a single location in scope the headers, in order,
 are exactly: … / When more than one location is in scope the file also carries a Location column…")*
-and `S14-R20` in `refs`. The `OUTSTANDING` item asking for go-ahead to fix them is **satisfied for
-SBR**; the sibling reports and Chris's spec correction remain open.
+and `S14-R20` in `refs`.
+
+**And the four sibling reports are closed too — corrected after checking, rather than assumed.** An
+earlier draft of this analysis listed them as still open. They are not: they were closed as
+**extensions to the on-screen Location cases** rather than edits to the export cases — **SBC-LOC-04 =
+[C38912](https://shopview.testrail.io/index.php?/cases/view/38912)** (*"Every one of the four
+downloads also contains the Location column, in the same position it holds on screen…"*), **PV-FILT-14
+= [C38914](https://shopview.testrail.io/index.php?/cases/view/38914)**, **TU-LOC-06 =
+[C38915](https://shopview.testrail.io/index.php?/cases/view/38915)** and **IV-LOC-06 =
+[C38917](https://shopview.testrail.io/index.php?/cases/view/38917)**, each carrying its export anchor
+(`S4-R13` / `S6-R11` / `S7-R13` / `S10-R15`) in `refs`. **All four re-read live via `get_case` this
+session.** So the export defect is **fully closed across all five reports**, and only **Chris's spec
+correction** remains open from that thread. *This correction is itself a small instance of Rule 44:
+the register said the gaps were closed, our draft said they were open, and the honest move was to go
+and look rather than to trust either document.*
 
 ---
 
@@ -298,18 +312,14 @@ one row per assertion.** Not done without your say-so.
    assertion). *Blocks:* until then the `N2` failure mode is closed only via Rule 45's audit stage,
    not at the point the spec diff is processed — which is where it is cheapest to catch. *Since:*
    2026-07-31.
-2. **Go-ahead to close the four sibling export gaps** — **SBC `S4-R13`**, **PV `S6-R11`**, **TU
-   `S7-R13`**, **IV `S10-R15`**. SBR is already repaired; the other four reports' export cases still
-   assert only the `"Locations:"` line. *Blocks:* four reports' export coverage stays short of the
-   current spec. *Since:* 2026-07-31.
-3. **A QA branch for the three active projects** — the single largest reason an outsider working from
+2. **A QA branch for the three active projects** — the single largest reason an outsider working from
    the build can out-see us (§5.1). *Blocks:* Rule 45's automation-engineer lens is limited to what
    the document says, and **nothing in any of today's documents is live-verified** (Rules 12/22).
    *Since:* 2026-07-31.
-4. **One question to Vladimir Tomovic** — what source he authored **C38923** and **C38922 step 3**
+3. **One question to Vladimir Tomovic** — what source he authored **C38923** and **C38922 step 3**
    from (spec version, or the shipped build). *Blocks:* Rule 39 requires the other author's basis to
    be established, and "unknown" is only acceptable after asking. *Since:* 2026-07-31.
-5. **One spec correction from Chris Ward** — SBR v15 `S14-R15`/`S14-R16` still enumerate CSV headers
+4. **One spec correction from Chris Ward** — SBR v15 `S14-R15`/`S14-R16` still enumerate CSV headers
    *"in order"* without the conditional Location column that its own `S14-R20` adds. *Blocks:*
    nothing directly (newer text wins), but it will keep regenerating this confusion. *Since:*
    2026-07-31.
