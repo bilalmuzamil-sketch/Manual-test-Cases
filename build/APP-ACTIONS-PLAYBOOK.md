@@ -388,6 +388,22 @@ Terse entries; where the full detail already lives elsewhere in this playbook, t
   *(proven 2026-07-29, SV-8721 comment 74275)*
 - **TestRail import gotcha (angle brackets):** `<placeholders>` get swallowed as HTML — full entry:
   §J. *(proven 2026-07-29)*
+- **⚠️ TestRail `refs` (References) field — TWO hard gotchas, both cost a failed push:**
+  **(1) MAX LENGTH 250 CHARACTERS.** Over it, `add_case`/`update_case` returns **HTTP 400
+  `{"error":"Field :refs does not match the required pattern."}`** — a misleading message that
+  looks like a charset problem but is purely length. Keep refs **≤240 chars** for margin; when a
+  Rule-20 ref won't fit, trim it and move the overflow detail into the case's internal `notes`
+  (never drop the ticket half or the spec anchor). **(2) TestRail NORMALIZES `refs` as a
+  comma-separated reference list and STRIPS THE SPACE AFTER EVERY COMMA** — so a re-GET
+  verification of a refs string containing `", "` will FALSELY MISMATCH (content identical,
+  spacing only). **Write refs COMMA-FREE**: use `;` and ` + ` as separators. Check both before a
+  batch push — `assert len(refs) <= 240 and "," not in refs` — rather than discovering them
+  mid-run. Also: **`update_case` does NOT move a case between sections** — use
+  `POST move_cases_to_section/{section_id}` with `{"suite_id":1,"case_ids":[...]}` and verify with
+  a re-GET of `section_id`. And **`tr.paged` helpers must join the 2nd query param with `&`, not
+  `?`** (`get_tests/352?` → HTTP 400 *"Invalid characters in URI"*).
+  *(both refs gotchas proven on the Filters push 2026-07-31: the comma one on the morning pass,
+  the 250-char one mid-run on FLT-PARTS-13 at 298 chars)*
 
 ## L. Git practice with parallel workers
 - **⚠️ Parallel workers SHARE ONE git index** — a bare `git commit` after `git add <own paths>` also
