@@ -1763,6 +1763,30 @@ deliver the 7-tab management report.
     170 SV epics enumerated to prove Filters has none). Ties to Standing Rules 1 (complete inputs),
     11 (ask which process), 12 (observed not inferred), 17 (complete data in/out), 22 (ask up
     front), 25 (verbatim citations), 31 (source currency) and 33 (authority precedence).
+38. **FOREIGN test cases (created by someone other than us) are HANDS-OFF — identify, exclude from
+    our counts, raise with the author (all projects).** USER RULING 2026-07-31: this hands-off
+    approach is the CORRECT strategy and must be kept. **We NEVER edit, update, delete, move, or add
+    to a run any case we did not author** — not to tidy a title, not to add `refs`, not to merge an
+    apparent duplicate. **HOW TO TELL:** a case page's bottom-left **"People & Dates"** panel shows
+    **Created** and **Updated** (name + date); via the API `get_case`/`get_cases` return
+    **`created_by` / `updated_by` as user ids**, resolved with **`get_user/{id}`** (`get_users` is
+    admin-only for our account). **We are user id 3 (Bilal Muzamil); id 1 = Vladimir Tomovic**, who
+    authored the 5 automated Report Suite cases **C38919–C38923** found 2026-07-31. Supporting tells:
+    **no `refs`** (ours always carry a Rule-20 reference), `template_id` 2 vs our 1, no expected
+    results, titles over 80 chars, `custom_automation_type` unset — but **`custom_atmstatus` is NOT a
+    tell** (3 = "Automated" on his cases and on 16 of ours). **REPORTING:** always state **BOTH
+    numbers — "ours N / live total M"** (e.g. Report Suite = **ours 474 / live 479**) so our counts
+    stay honest without claiming or hiding anyone else's work; per-project tallies count OURS only.
+    **OVERLAP:** after any authorized push, re-check the group for new foreign cases and for overlaps
+    with our cases (read-only checker
+    `build/testrail-foreign-cases-2026-07-31/foreign_overlap_check.py`, method in
+    build/APP-ACTIONS-PLAYBOOK.md §J), classify each as **DUPLICATE / AUTOMATED EQUIVALENT / NEW
+    COVERAGE** on the assertion text, and **present the evidence rather than acting** — a duplicate
+    is a QA-lead + author conversation (keep both / retire ours / their automation is redundant),
+    never our unilateral decision. Where a foreign case CONTRADICTS one of ours about the build, that
+    is a question for its author, not a licence to change either side. Canonical evidence pack:
+    `build/testrail-foreign-cases-2026-07-31/FOREIGN-CASES.md`. Ties to Standing Rules 6 (never write
+    to TestRail without permission), 8 (always give the C-id), 17, 20, 25, 33 and 34.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

@@ -41,7 +41,7 @@ else owes).
 
 ---
 
-## 1. REPORT SUITE — PO: Chris Ward · Epic **SV-8582** · **474 active cases, all VIU-Pending**
+## 1. REPORT SUITE — PO: Chris Ward · Epic **SV-8582** · **ours: 474 active cases, all VIU-Pending** (live folder total 479 — the other 5 are Vladimir Tomovic's automation cases, hands-off per Standing Rule 38)
 
 | Item | Category | Who owes it | What it blocks | Outstanding since |
 |---|---|---|---|---|
@@ -55,6 +55,7 @@ else owes).
 | **Go-ahead for a title-trim pass.** **288 of the 474** case titles are still over 80 characters and get cut off in the TestRail case page. | GO-AHEAD | **You** | Cosmetic but it hurts the tester every day. Needs its own authorized `update_case` pass. | 2026-07-28 |
 | **Designs.** There are none anywhere — 0 attachments on the epic and all 97 stories, no Figma. All cases are spec-only (plus his companion video, which we do have). | SOURCE | **Chris Ward / you** — confirm none exist | Every visual detail (spacing, exact control style) stays "VIU-confirm" rather than pinned. Low impact **if** confirmed absent; we mainly need the confirmation so we stop treating it as a gap. | 2026-07-22 |
 | **Suite-wide logo inconsistency** found by our own sweep: TU says the bundled ShopView default always, SBC has a three-step chain ending in *no logo*, PV has no logo requirement at all — yet Chris promised "same logo treatment all reports". | OTHER TEAM | **Chris Ward** | Flagged, no case changed. Export-header cases across three reports cannot all be right. | 2026-07-31 |
+| **5 foreign cases sit in our Report Suite folder — author now IDENTIFIED as Vladimir Tomovic** (C38919–C38923, all created 2026-07-30 15:54, all **Automated**, all with **no References**). The user has confirmed they are **automation coverage**. Live folder total is therefore **479 = ours 474 + his 5**; they are in **no run**. Overlap read: 2 duplicate ours (C38920 ≡ **PV-FILT-14 = C38914**; C38922 ≡ **WIP-EXP-02 = C30511** + **WIP-EXP-07 = C30516**), 1 bundles ours (C38919 = **TU-COL-01 = C38859** + **TU-EXP-04 = C30437**), 2 are genuine new coverage (C38921, C38923). **The ask is now: talk to Vlad**, specifically about the **two places his cases and ours disagree about the build** — his C38922 step toggles Location in the Column Selection menu while our **WIP-FLT-09 = C38916** says Location is not offered there; and his C38923 asserts a Location column inside the SBR Summary/Expanded CSVs while our **SBR-EXP-10 = C30285** and **SBR-EXP-11 = C30286** list the headers verbatim with **no Location**. | QUESTION | **You to ask · Vladimir Tomovic to answer** | Two of our cases may be asserting the wrong header list — a tester following them would report a false Failure. We changed **nothing** (foreign cases are hands-off, Standing Rule 38) and we will not touch our two SBR cases without your go-ahead. Evidence pack: `build/testrail-foreign-cases-2026-07-31/FOREIGN-CASES.md`. | 2026-07-31 |
 
 **In one line:** *Get us the QA branch so 474 cases stop being theoretical — and nudge Chris for the WIP identifier fix and the 4 open questions.*
 

@@ -338,6 +338,41 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   placeholder). Confirmed live 2026-07-29: TU-DAY-01/C30418's expected result imported 2026-07-22 as
   "Expand 's daily breakdown" — the placeholder was eaten as an HTML tag. Sweep any import/push
   payload for `<` before sending.
+- **WHO CREATED / LAST UPDATED A CASE (how to spot FOREIGN cases — not ours)** *(proven 2026-07-31;
+  this is how Vladimir Tomovic's 5 Report Suite cases C38919–C38923 were identified)*
+  - **In the UI:** case page → **bottom-left "People & Dates" panel** → **Created** (name + date) and
+    **Updated** (name + date).
+  - **Via the API:** `get_case/{id}` returns **`created_by` / `updated_by` as USER IDS** (+
+    `created_on` / `updated_on` epoch). `get_cases` returns them in bulk too, so one paged pull covers
+    a whole suite. Resolve ids with **`get_user/{id}`** — **`get_users` is ADMIN-ONLY** for our Lead
+    account (`Access Denied. You are not a TestRail administrator. Field:project_id is a required
+    field.`, and adding `&project_id=1` does NOT fix it). Our own id: `get_user_by_email&email=…`.
+  - **User map (project 1):** 1 Vladimir Tomovic · 2 Nebojsa Glavinic · **3 Bilal Muzamil = US (the
+    account we push with)** · 4 Viktoria Videnovic · 5 Ayesha Khan · 6 Mudassir Qamar · 7 Ahtasham
+    Amjad · 8 Chris Amani · 9 Sasha Grossman. Ids 10+ do not exist.
+  - **Practical tells beyond `created_by`** (measured over 474 of our Report Suite cases vs his 5):
+    **`refs` empty** (ours: 474/474 populated — Rule 20 means we never ship a case without one) ·
+    **`template_id` 2 = Steps** (ours: 1 = Text, 474/474) · **`custom_automation_type` unset** (ours:
+    always 0) · **`type_id` 7 "Other"** (ours: 6/5/1/2) · **titles over 80 chars** (ours: 0/474 —
+    the ≤80 title rule) · **no expected results at all** (automated cases keep the assertion in code).
+    **⚠️ `custom_atmstatus` is NOT a usable tell** — it is 3 ("Automated") on his cases AND on 16 of
+    ours. Field decode from `get_case_fields`: atmstatus `1 Not Automated · 2 Cannot be automated ·
+    3 Automated · 4 Pending`; automation_type `0 None · 1 Ranorex`.
+  - **The reusable READ-ONLY checker:** `build/testrail-foreign-cases-2026-07-31/foreign_overlap_check.py`
+    — pulls every live case under a group, splits ours vs foreign by `created_by`, and ranks the
+    best-matching OF-OURS cases per foreign case on **normalised assertion text** (title + preconds +
+    steps + expected, not the title alone), printing the tells + a verdict-ready table.
+    `source /tmp/tr-creds.env && python3 foreign_overlap_check.py --group 4281` (Report Suite; Filters
+    **4110**, Schedule **4254**; `--top N --min-score X --csv out.csv --refresh`). Similarity only
+    **suggests candidates — a human confirms** DUPLICATE / AUTOMATED EQUIVALENT / NEW COVERAGE (the
+    true duplicate found on 2026-07-31 scored just 0.264, because his cases carry no expected results
+    to match on; trust the RANK, not the value, and read the top handful).
+  - **STANDING EXPECTATION — re-check after every authorized push.** As the last step of any push
+    manifest/execution log (right next to the Rule-34 run-sync), re-run the checker on the group to
+    (1) catch **new foreign cases** and (2) catch **new overlaps** between someone else's cases and
+    ours, so drift is found the same day instead of at audit time. Always report **"ours N / live
+    total M"**. **Never edit/delete/move a foreign case or add one to a run** — identify it, exclude
+    it from our counts, raise it with the author (see CLAUDE.md standing convention).
 
 ## K. PRODUCTION access & fix-verification (SV-8721, proven 2026-07-29)
 One indexed block for verifying a bug fix on PRODUCTION (`app.shopview.com` / `api.shopview.com`).
