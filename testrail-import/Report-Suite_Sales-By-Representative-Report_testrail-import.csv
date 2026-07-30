@@ -12,12 +12,12 @@ The navigation entry's padding fits the full Sales By Representative label witho
 2. The label is not shortened to fit — the fix is the entry's horizontal padding, not the name.",specs/sbr-sales-by-representative.md Story 1 S1-R7; §1 naming note,,
 Every user who can see any other Performance report also sees Sales By Representative,SBR — Permissions,Functional,High,"1. A test user exists whose role can see another Performance-group report (create/assign a ZZAUTOTEST role if needed; restore afterwards).
 2. You are signed in as that user.",1. Open the Reports navigation and read the Performance group.,"1. ""Sales By Representative"" appears in the Performance group for this user — the entry is visible to every user who can see any other report in the same group.",specs/sbr-sales-by-representative.md Story 1 S1-R1,,
-"A user without Reports access sees no Reports navigation, no export menu, and cannot reach the Export Reports dialog",SBR — Permissions,Negative,High,"1. A test user exists whose role has no Reports access (use/create a ZZAUTOTEST role; restore afterwards).
+"Without Reports access: no navigation, no export menu, no Export dialog",SBR — Permissions,Negative,High,"1. A test user exists whose role has no Reports access (use/create a ZZAUTOTEST role; restore afterwards).
 2. You are signed in as that user.","1. Look for the Reports navigation.
 2. Try to open the report by direct link (address copied from a permitted session).
 3. Try to reach the Export Reports dialog.","1. The entire Reports navigation — including the ""Sales By Representative"" entry — is not shown.
 2. The report (and its ⋯ export menu) is not reachable.
-3. The Export Reports dialog and the Sales Rep Assignments download are not reachable.",specs/sbr-sales-by-representative.md Story 1 S1-N1; Story 14 S14-N3; Story 15 S15-N1,,
+3. The Export Reports dialog and the Sales Representative Assignments download are not reachable.",SV-8619 (specs/sbr-sales-by-representative.md Story 1 S1-N1; Story 14 S14-N3; Story 15 S15-N1),,
 A user without staff-administration access cannot reach the sales-rep deactivation flow,SBR — Permissions,Negative,Medium,1. You are signed in as a user without staff-administration access.,1. Try to reach staff administration and open a staff member for editing.,"1. The staff-editing surface is not reachable, so the deactivation flow (and its warning dialog) cannot be reached.",specs/sbr-sales-by-representative.md Story 13 S13-N1,,
 Date range picker is in the toolbar and offers the standard presets plus Custom,SBR — Date Range Filter,Functional,High,1. You are on the Sales By Representative report.,"1. Find the date range picker in the report toolbar.
 2. Open it and read the options.","1. A date range picker is visible in the report toolbar.
@@ -31,7 +31,7 @@ Custom range uses the date-picker dialog and holds the user to a 366-day maximum
 3. Download both PDFs (Summary and Expanded View) and read their header strips.","1. The invoices dated on the start and end dates are INCLUDED (inclusive endpoints); the invoice outside the range is excluded.
 2. The date used is the invoice's own date — the value shown in the Date column.
 3. The chosen date range is reflected in both PDF exports' header strips.",specs/sbr-sales-by-representative.md Story 2 S2-R5; S2-R8; §3,,
-"Product Type: three options, Parts & Service default, each option filters right",SBR — Product Type Filter,Functional,High,"1. A rep has both a P (parts) and an S (service) invoice in the range (seed ZZAUTOTEST data via the WO Sales Rep field).
+"Product Type: three options, Parts & Service default, each option filters right",SBR — Product Type Filter,Functional,High,"1. A rep has both a P (parts) and an S (service) invoice in the range (seed ZZAUTOTEST data via the WO Sales Representative field).
 2. No remembered settings for this report (first visit or cleared storage), so the default can be read.","1. Find the ""Product Type"" dropdown in the toolbar; read its default value, then open it and read the options.
 2. Select ""Parts only,"" expand the rep, and read the invoice numbers.
 3. Select ""Service only"" and read them again.
@@ -39,7 +39,7 @@ Custom range uses the date-picker dialog and holds the user to a 366-day maximum
 2. ""Parts only"" includes only invoices whose number starts with P.
 3. ""Service only"" includes only invoices whose number starts with S.
 4. ""Parts & Service"" applies no product-type filter — both appear again.
-5. Each change re-fetches and re-renders the report.",specs/sbr-sales-by-representative.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7,,
+5. Each change re-fetches and re-renders the report.",SV-8621 (specs/sbr-sales-by-representative.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7),,
 Invoice Status dropdown offers exactly four options with All Statuses as the default,SBR — Invoice Status Filter,Functional,High,1. You are on the report with no remembered settings.,"1. Find the ""Invoice Status"" dropdown in the toolbar and read its default value.
 2. Open it and read the options.
 3. Change the selection and watch the table.","1. An ""Invoice Status"" dropdown is visible in the toolbar.
@@ -76,7 +76,24 @@ Location selection cascades; an inaccessible location's data is never included,S
 5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).","SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins)",,
 The Location filter is hidden for a user with access to only one location,SBR — Location Filter,Negative,Low,1. You are signed in as a user assigned to exactly one location.,"1. Open the report and look for the Location filter in the toolbar.
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
-2. For the user with access to two or more locations the Location filter IS shown.","SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
+2. For the user with access to two or more locations the Location filter IS shown.","SV-8638 (SBR spec S21-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S21-N1 ""still sees the filter"" note is stale, spec edit pending)",,
+The Location column shows only with more than one location; rep rows Multiple,SBR — Location Filter,Functional,High,"1. You are on the Sales By Representative report as a user with access to two or more locations.
+2. One rep has invoices at a single location and another rep has invoices at two different locations.
+3. Show Unassigned is turned on and at least one unassigned invoice exists.","1. Select two or more locations and read the column headers.
+2. Read the Location cell on the single-location rep's summary row.
+3. Read the Location cell on the rep whose invoices span two locations.
+4. Expand that rep and read an invoice detail row's Location cell.
+5. Read the Location cell on the Unassigned summary row.
+6. Check that the pinned Subtotal column is still the rightmost column.
+7. Narrow to a single location and read the headers again.
+8. Change the selection between one location, several, and ""All Locations"", watching the filter control's width.","1. With more than one location in scope a Location column is shown, positioned immediately after the Status column and before Inv. Hrs.
+2. A rep summary row whose invoices are all at one location shows that location's name.
+3. A rep summary row whose invoices span more than one location shows ""Multiple"".
+4. An invoice detail row shows that invoice's own exact location — never ""Multiple"".
+5. The Unassigned summary row follows the same rule as any rep summary row.
+6. The pinned Subtotal column is still rightmost — the Location column never displaces it.
+7. With a single location in scope the Location column is hidden.
+8. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.","SV-8638 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13 — per-row Location column, ""Multiple"" verbatim on a rep row spanning locations, position after Status, constant-width filter)",,
 Contributors only: a rep row appears if and only if the rep has at least one non-reversed invoice matching all active filters,SBR — Rep Rows & Tree,Functional,Critical,1. Rep A has invoices in the current filtered view; rep B (sales-rep toggle on) has NONE; rep C has only a reversed invoice (seed ZZAUTOTEST data).,"1. Open the report and read the summary rows.
 2. Look for reps B and C.
 3. Read the count in parentheses after rep A's name.","1. Rep A occupies exactly one summary row.
@@ -228,11 +245,11 @@ Detail-row invoice number and customer name links navigate in the current tab,SB
 An unavailable invoice or customer destination shows the standard not-found/access-denied state and back still returns,SBR — Links & Navigation,Negative,Medium,"1. The report is open with detail rows visible; in another session the target invoice is reversed/deleted (and, for the customer leg, a customer record is made unavailable if the app allows).","1. Without refreshing, click the now-unavailable invoice's link; read the destination, then press back.
 2. If producible, repeat for an unavailable customer record.","1. The tab navigates to the application's standard not-found/access-denied state.
 2. Pressing back still returns to the report.",specs/sbr-sales-by-representative.md Story 12 S12-N1; S12-N2,,
-"Deactivating a rep with assignments opens the Deactivate dialog with the counted, pluralized headline and reassurance line, trapping focus",SBR — Staff Deactivation,Functional,High,"1. ZZAUTOTEST rep ""A"" is active, toggle on, and assigned as sales rep to exactly 1 customer; ZZAUTOTEST rep ""B"" likewise to 3 customers.","1. Toggle rep B's active status off and read the dialog before confirming anything.
+"Deactivate dialog: counted pluralized headline, reassurance, focus trap",SBR — Staff Deactivation,Functional,High,"1. ZZAUTOTEST rep ""A"" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep ""B"" likewise to 3 customers.","1. Toggle rep B's active status off and read the dialog before confirming anything.
 2. Press Tab repeatedly and watch where focus goes; dismiss and watch where focus returns.
 3. Repeat step 1 for rep A (1 customer) and read the headline's noun.","1. A warning dialog titled ""Deactivate {Staff Name}?"" opens BEFORE any change is applied; the deactivation does not commit until confirmed.
-2. The body shows ""{Staff Name} is the sales rep on {N} customer{s}."" — singular for N=1 (""1 customer""), plural otherwise (""3 customers"") — followed by the reassurance line ""Their customer assignments will stay where they are.""
-3. Focus is trapped within the dialog while open and returns to the invoking control on dismiss.",specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R3; S13-R4; S13-R12,,
+2. The body shows ""{Staff Name} is the sales representative on {N} customer{s}."" — singular for N=1 (""1 customer""), plural otherwise (""3 customers"") — followed by the reassurance line ""Their customer assignments will stay where they are.""
+3. Focus is trapped within the dialog while open and returns to the invoking control on dismiss.",SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R3; S13-R4; S13-R12),,
 "Type-YES gate: auto-focused input, case-insensitive whitespace-tolerant match, disabled-button tooltip, Enter submits",SBR — Staff Deactivation,Functional,High,1. The Deactivate dialog is open for a rep with assignments.,"1. Read the instruction text and check which element holds focus.
 2. Hover the disabled ""Deactivate"" button and read the tooltip.
 3. Type ""no"" — check the button; clear and type ""  yes  "" (with spaces), then ""Yes"", then ""YES"" — check the button each time.
@@ -250,21 +267,21 @@ Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not,S
 4. Clicking outside the dialog does NOT close it.
 5. When the dialog closes via Cancel or X, the staff member's active status is unchanged - no deactivation happens.",SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R8),,
 "Valid submit locks the dialog, then deactivates keeping assignments",SBR — Staff Deactivation,Functional,High,1. The Deactivate dialog is open for a ZZAUTOTEST rep with known customer assignments.,"1. Type YES and submit; during the request try Cancel, X, and Escape.
-2. After success, check the staff member's status and each previously assigned customer's Sales Rep.","1. The ""Deactivate"" button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and the Cancel and X controls are non-interactive during the request (pressing the ""Esc"" key never closes the dialog at any time).
+2. After success, check the staff member's status and each previously assigned customer's Sales Representative.","1. The ""Deactivate"" button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and the Cancel and X controls are non-interactive during the request (pressing the ""Esc"" key never closes the dialog at any time).
 2. On success the dialog closes and the change applies.
 3. Customer assignments are NOT modified — every customer stays assigned to this rep; denormalized rep names and past invoice snapshots are preserved.
 4. Deactivation never forces reassignment, blocks on assignments, or auto-reassigns.",SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R9; S13-R10; S13-E1),,
-"After deactivation the sales-rep toggle is unchanged, the Assignments CSV shows Rep is active? = No, and report credit stays intact",SBR — Staff Deactivation,Functional,Medium,1. A ZZAUTOTEST rep with assignments AND matching invoices was just deactivated via the dialog flow.,"1. Re-open the staff member and read the sales-rep toggle.
-2. Download the Sales Rep Assignments CSV and read the rep's rows.
-3. Open the report and find the rep's row.","1. The sales-rep toggle state is unchanged by the deactivation flow.
-2. In the Sales Rep Assignments CSV the rep's customers show ""Rep is active?"" = ""No"" — that column is driven by staff-active status, not the toggle.
-3. In the report the rep still appears with credit intact; the ""(Inactive)"" marker appears only if the sales-rep TOGGLE is off (a separate flag from staff-active status).",specs/sbr-sales-by-representative.md Story 13 S13-R11; Story 15 S15-R6; Story 5 S5-R9,,
-"No dialog: toggle off, no assignments, already inactive, or reactivation",SBR — Staff Deactivation,Negative,Medium,1. ZZAUTOTEST staff member X is active WITHOUT the sales-rep toggle; ZZAUTOTEST rep Y (with assignments) is currently inactive; ZZAUTOTEST rep Z is active with the sales-rep toggle ON and NO customers assigned.,"1. Deactivate X and watch for a dialog.
+"After deactivation: toggle unchanged, CSV shows No, report credit intact",SBR — Staff Deactivation,Functional,Medium,1. A ZZAUTOTEST rep with assignments AND matching invoices was just deactivated via the dialog flow.,"1. Re-open the staff member and read the sales-representative toggle.
+2. Download the Sales Representative Assignments CSV and read the rep's rows.
+3. Open the report and find the rep's row.","1. The sales-representative toggle state is unchanged by the deactivation flow.
+2. In the Sales Representative Assignments CSV the rep's customers show ""Rep is active?"" = ""No"" — that column is driven by staff-active status, not the toggle.
+3. In the report the rep still appears with credit intact; the ""(Inactive)"" marker appears only if the sales-representative TOGGLE is off (a separate flag from staff-active status).",SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R11; Story 15 S15-R6; Story 5 S5-R9),,
+"No dialog: toggle off, no assignments, already inactive, or reactivation",SBR — Staff Deactivation,Negative,Medium,1. ZZAUTOTEST staff member X is active WITHOUT the sales-representative toggle; ZZAUTOTEST rep Y (with assignments) is currently inactive; ZZAUTOTEST rep Z is active with the sales-representative toggle ON and NO customers assigned.,"1. Deactivate X and watch for a dialog.
 2. Reactivate rep Y via the standard toggle and watch for a dialog; check Y's customer assignments afterwards.
-3. Deactivate rep Z (sales-rep toggle on, no assignments) and watch for a dialog.","1. For a staff member without the sales-rep toggle, the precondition check is skipped and no warning is shown.
+3. Deactivate rep Z (sales-representative toggle on, no assignments) and watch for a dialog.","1. For a staff member without the sales-representative toggle, the precondition check is skipped and no warning is shown.
 2. Reactivation never shows the warning dialog (the flow does not apply to an already-inactive member).
 3. After reactivation the assignments re-surface immediately with no extra action.
-4. Deactivating a sales rep with NO customer assignments applies silently — no warning dialog.",specs/sbr-sales-by-representative.md Story 13 S13-R2; S13-N2; S13-N3; S13-E3,,
+4. Deactivating a sales representative with NO customer assignments applies silently — no warning dialog.",SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R2; S13-N2; S13-N3; S13-E3),,
 "A server-side deactivation failure shows the canonical error toast, leaves the status unchanged, and clears the input on the next open",SBR — Staff Deactivation,Negative,Medium,1. The Deactivate dialog is open for a rep with assignments; you can force the request to fail (go offline just before submitting).,"1. Type YES, force the failure condition, and submit.
 2. Read the toast; check the staff member's active status.
 3. Dismiss, re-open the dialog, and look at the confirmation input.","1. An error toast is shown: ""Ooooops! An error occured"" with the caption ""For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance."" — it persists 120 seconds or until dismissed.
@@ -274,9 +291,9 @@ Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not,S
 2. You can force the pre-deactivation assignment check to fail (for example, cut the network exactly when toggling active off) — if not forceable, mark Blocked with the reason.","1. Toggle the staff member's active status off while forcing the check to fail.
 2. Read the dialog that opens.","1. The system NEVER silently deactivates — the warning dialog still opens (fallback), so the type-to-confirm gate still applies.
 2. Because the customer count is unavailable, the dialog OMITS the count headline and shows only the reassurance line ""Their customer assignments will stay where they are."" above the ""Type YES to confirm"" gate.",specs/sbr-sales-by-representative.md Story 13 S13-N4,,
-"Show Unassigned sits between the column selector and the date picker, is off by default, and while off unassigned invoices contribute nothing",SBR — Show Unassigned,Functional,High,1. No remembered settings; at least one matching invoice with NO assigned rep exists (seed via a WO with no Sales Rep whose customer also has no rep).,"1. Find the ""Show Unassigned"" toggle in the toolbar and note its position and default state.
+"Show Unassigned sits between the column selector and the date picker, off",SBR — Show Unassigned,Functional,High,1. No remembered settings; at least one matching invoice with NO assigned rep exists (seed via a WO with no Sales Representative whose customer also has no rep).,"1. Find the ""Show Unassigned"" toggle in the toolbar and note its position and default state.
 2. With it off, look for an Unassigned row and check the grand Totals against the rep rows only.","1. A ""Show Unassigned"" toggle sits between the column selector and the date range picker; it is OFF by default.
-2. While off, invoices with no assigned rep contribute to nothing — no row, and not counted in any total.",specs/sbr-sales-by-representative.md Story 22 S22-R1; S22-R2; Story 18 S18-R7.2,,
+2. While off, invoices with no assigned rep contribute to nothing — no row, and not counted in any total.",SV-8639 (specs/sbr-sales-by-representative.md Story 22 S22-R1; S22-R2; Story 18 S18-R7.2),,
 Show Unassigned adds one top-pinned Unassigned row that acts like a rep row,SBR — Show Unassigned,Functional,High,1. Matching unassigned invoices exist; the grand Totals with the toggle off are noted.,"1. Turn ""Show Unassigned"" on and read the new row and its position.
 2. Read the grand Totals indicator.
 3. Read the Unassigned row's columns and (N) count, click its chevron, and look for any ""(Inactive)"" tag.
@@ -372,78 +389,85 @@ PDF body font steps down as the longest dollar value grows; no overflow,SBR — 
 3. In each file, check whether any value overflows or wraps its column.","1. As the longest positive dollar value in the document grows past each length bracket, the PDF body text visibly steps DOWN in size — the relative step-downs are the pass criterion for this manual test.
 2. Column widths are fixed for the worst case regardless of tier — the layout never breaks and no value overflows or wraps its column.
 3. Both PDF formats adapt the same way.",specs/sbr-sales-by-representative.md Story 14 S14-R12; S14-R13,,
-"Summary CSV: filename, UTF-8 BOM, verbatim headers in order, one row per rep, and the # Invoices / # Customers counts",SBR — Exports,Functional,High,1. You are on the report with at least two reps showing; one rep has invoices for the same customer more than once (to check de-duplication).,"1. Choose ""Download Summary (CSV)"" from the ⋯ menu and note the saved file's name.
+"Summary CSV: file name, UTF-8 BOM, verbatim headers, one row per rep",SBR — Exports,Functional,High,1. You are on the report with at least two reps showing; one rep has invoices for the same customer more than once (to check de-duplication).,"1. Choose ""Download Summary (CSV)"" from the ⋯ menu and note the saved file's name.
 2. Open the file in a text editor and read the header row.
 3. Count the data rows against the on-screen rep rows and compare their order.
 4. For one rep, compare ""# Invoices"" with the on-screen (N) count, and ""# Customers"" with the number of DISTINCT customers across that rep's matching invoices.","1. The file is named ""sales-by-representative-summary.csv"" and starts with a UTF-8 BOM.
-2. The headers, in order, are exactly: Sales Rep, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
+2. The headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
 3. There is one header row plus one row per rep in the current filtered view, in the report's currently-active order.
 4. ""# Invoices"" equals the on-screen (N); ""# Customers"" counts distinct customers across those invoices (de-duplicated across locations when several are selected).
-5. The CSV has NO totals row.",specs/sbr-sales-by-representative.md Story 14 S14-R15; S14-R18,,
-"Expanded CSV: filename, verbatim headers including the three hours columns, one row per invoice flattened across reps",SBR — Exports,Functional,High,"1. You are on the report with at least two reps showing, each with at least one invoice.","1. Choose ""Download Expanded View (CSV)"" from the ⋯ menu and note the saved file's name.
+5. The CSV has NO totals row.
+6. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.",SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R15; S14-R18),,
+"Expanded CSV: file name, verbatim headers, one row per invoice",SBR — Exports,Functional,High,"1. You are on the report with at least two reps showing, each with at least one invoice.","1. Choose ""Download Expanded View (CSV)"" from the ⋯ menu and note the saved file's name.
 2. Open the file in a text editor and read the header row.
 3. Compare the rows against the on-screen invoices (all reps, expanded).","1. The file is named ""sales-by-representative-expanded.csv"" and starts with a UTF-8 BOM.
-2. The headers, in order, are exactly: Sales Rep, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
-3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.",specs/sbr-sales-by-representative.md Story 14 S14-R16,,
-"CSV cell formatting: plain re-pivotable numbers, signed Inv. Hrs, Margin % empty when undefined, (Inactive) in the name, no (N)",SBR — Exports,Functional,Medium,"1. You have downloaded both report CSVs from a view that includes a negative money value, a rep whose Margin % shows ""—"" on screen (Subtotal ≤ 0), and an ""(Inactive)"" contributor (seed what is missing).","1. Open each CSV in a text editor (not a spreadsheet).
-2. Read a money cell, the negative value's cell, an Inv. Hrs cell, the undefined Margin % cell, and the (Inactive) rep's ""Sales Rep"" cell.","1. Numeric columns are plain numbers — NO currency symbol, thousands separators, or parentheses; a negative uses a leading minus (for example, -1234.56).
+2. The headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
+3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.
+4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.",SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R16),,
+"CSV cells: plain numbers, signed Inv. Hrs, empty Margin %, (Inactive)",SBR — Exports,Functional,Medium,"1. You have downloaded both report CSVs from a view that includes a negative money value, a rep whose Margin % shows ""—"" on screen (Subtotal ≤ 0), and an ""(Inactive)"" contributor (seed what is missing).","1. Open each CSV in a text editor (not a spreadsheet).
+2. Read a money cell, the negative value's cell, an Inv. Hrs cell, the undefined Margin % cell, and the (Inactive) rep's ""Sales Representative"" cell.","1. Numeric columns are plain numbers — NO currency symbol, thousands separators, or parentheses; a negative uses a leading minus (for example, -1234.56).
 2. Money values carry two decimals; Hrs Worked / Hrs Invoiced / Inv. Hrs carry their full stored precision; Inv. Hrs keeps its leading + or - sign.
 3. Margin % is a plain number to one decimal (for example, 45.2) with no % sign, and the cell is EMPTY where Margin % is undefined (Subtotal ≤ 0).
-4. The ""Sales Rep"" name carries the ""(Inactive)"" tag when applicable; the on-screen (N) count is NOT embedded in the name.
-5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Inv. Hrs conveys direction only by its sign).",specs/sbr-sales-by-representative.md Story 14 S14-R17; §3 Key Decisions (CSVs monochrome / plain signed numbers),,
-"The Unassigned row appears in all four downloads when Show Unassigned is on, and in none of them when it is off",SBR — Exports,Functional,Medium,1. The current filter set includes at least one invoice with no assigned sales rep (seed one if needed).,"1. Turn Show Unassigned ON and download all four files.
+4. The ""Sales Representative"" name carries the ""(Inactive)"" tag when applicable; the on-screen (N) count is NOT embedded in the name.
+5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Inv. Hrs conveys direction only by its sign).
+6. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.",SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R17; §3 Key Decisions (CSVs monochrome / plain signed numbers)),,
+The Unassigned row appears in all four downloads only when the toggle is on,SBR — Exports,Functional,Medium,1. The current filter set includes at least one invoice with no assigned sales representative (seed one if needed).,"1. Turn Show Unassigned ON and download all four files.
 2. Find the Unassigned entry in each file.
 3. Turn Show Unassigned OFF and download all four files again.
-4. Search each file for the unassigned invoices.","1. With the toggle ON: the Summary PDF and Summary CSV each carry one rolled-up row whose Rep / ""Sales Rep"" cell reads the literal ""Unassigned"", sorted to the top; the Expanded CSV rows for those invoices carry ""Sales Rep"" = ""Unassigned""; the Expanded View PDF has its own TOP page-block titled ""Unassigned"".
+4. Search each file for the unassigned invoices.","1. With the toggle ON: the Summary PDF and Summary CSV each carry one rolled-up row whose Rep / ""Sales Representative"" cell reads the literal ""Unassigned"", sorted to the top; the Expanded CSV rows for those invoices carry ""Sales Representative"" = ""Unassigned""; the Expanded View PDF has its own TOP page-block titled ""Unassigned"".
 2. The Summary PDF grand-totals row aggregates across all summary rows INCLUDING Unassigned; in the Summary CSV the Unassigned row is simply one of the data rows (no totals row exists).
-3. With the toggle OFF: no Unassigned row and no unassigned invoices appear in ANY of the four files.",specs/sbr-sales-by-representative.md Story 14 S14-R19; Story 22 S22-R2; S22-R4,,
+3. With the toggle OFF: no Unassigned row and no unassigned invoices appear in ANY of the four files.
+4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.",SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R19; Story 22 S22-R2; S22-R4),,
 "A failed download shows the canonical error toast, and a generating download shows a non-interactive loading state",SBR — Exports,Negative,Medium,"1. You are on the report with data showing.
 2. You can force a download failure (for example, cut the network just after triggering the download) — if not forceable, mark this Blocked with the reason.","1. Trigger a PDF download and watch the menu action while the file is being generated.
 2. Force a failure on a download (PDF or CSV) and read the toast.","1. While a PDF is generating, the action shows a loading state and is non-interactive until the file is delivered.
 2. A failed download shows the error toast ""Ooooops! An error occured"" (the typo is as-shipped) — it persists 120 seconds or until dismissed.
 3. A genuine failure downloads nothing — never a malformed file.",specs/sbr-sales-by-representative.md Story 14 S14-N1; S14-N2; S14-E1; §7,,
-"An Expanded View PDF over the 10,000-row cap is refused with the specific too-large message — no truncated file",SBR — Exports,Negative,Medium,"1. A filter set exists (or can be seeded) whose invoice detail rows exceed 10,000 — if this volume cannot be produced in the environment, mark Blocked-Env with the reason.","1. Apply the over-cap filter set.
+Over-cap Expanded View PDF is refused with the too-large message,SBR — Exports,Negative,Medium,"1. A filter set exists (or can be seeded) whose invoice detail rows exceed 10,000 — if this volume cannot be produced in the environment, mark Blocked-Env with the reason.","1. Apply the over-cap filter set.
 2. Choose ""Download Expanded View (PDF)"" and read the toast.","1. No file is produced — the server declines rather than generating a truncated file.
-2. An error toast reads exactly: ""This export is too large to generate. Narrow the date range or filters and try again."" (persists 120 seconds or until dismissed).
-3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected).",specs/sbr-sales-by-representative.md Story 14 S14-E2; §7,,
+2. An error toast reads exactly: ""This report is too large to export. Narrow the date range or filters, then try again."" (persists 120 seconds or until dismissed).
+3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected).",SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E2; §7),,
 "An empty-data export still generates: zeroed Summary PDF totals, header-strip-only Expanded PDF, header-row-only CSVs",SBR — Exports,Functional,Medium,"1. The current filter set matches ZERO invoices (for example, a date range with no activity) — the report shows its empty state.","1. Download all four files from the ⋯ menu.
 2. Open each and inspect its contents.","1. All four downloads produce a FILE, not an error.
 2. The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Inv. Hrs columns and ""—"" for Margin %.
 3. The Expanded View PDF renders just the header strip with no per-rep blocks (it has no grand-totals row).
 4. Both CSVs generate a header-row-only file, still starting with the UTF-8 BOM.
 5. No special ""empty"" treatment or message appears inside the files.",specs/sbr-sales-by-representative.md Story 14 S14-E3,,
-"The Export Report dialog's Report Name dropdown includes ""Sales Rep Assignments"" at the bottom, hiding the date picker and showing the snapshot note",SBR — Sales Rep Assignments Export,Functional,High,"1. You are signed in with Reports access.
+Report Name dropdown lists Sales Representative Assignments at the bottom,SBR — Sales Rep Assignments Export,Functional,High,"1. You are signed in with Reports access.
 2. Note the current order of the Report Name dropdown entries before checking.","1. In the Reports left sidebar, under the Accounting header, click the ""Export Reports"" entry — a dialog titled ""Export Report"" opens.
 2. Open the Report Name dropdown and read the list top to bottom.
-3. Select ""Sales Rep Assignments"" and look at the dialog body.","1. ""Sales Rep Assignments"" appears in the Report Name dropdown, appended at the BOTTOM of the list (additive — no existing entry moved or removed).
+3. Select ""Sales Representative Assignments"" and look at the dialog body.","1. ""Sales Representative Assignments"" appears in the Report Name dropdown, appended at the BOTTOM of the list (additive — no existing entry moved or removed).
 2. Selecting it HIDES the date range picker.
-3. The dialog shows the note: ""Snapshot of current sales rep assignments. Both active and inactive reps with assignments are listed.""",specs/sbr-sales-by-representative.md Story 15 S15-R1; S15-R2,,
-Exporting Sales Rep Assignments downloads sales-rep-assignments.csv with the verbatim headers and shows the success toast,SBR — Sales Rep Assignments Export,Functional,High,"1. At least one customer in the organization has an assigned sales rep.
-2. The Export Report dialog is open with ""Sales Rep Assignments"" selected.","1. Click the Export action.
+3. The dialog shows the note: ""Snapshot of current sales representative assignments. Both active and inactive reps with assignments are listed.""
+4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.",SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R1; S15-R2),,
+"Sales Representative Assignments CSV: file name, headers, success toast",SBR — Sales Rep Assignments Export,Functional,High,"1. At least one customer in the organization has an assigned sales representative.
+2. The Export Report dialog is open with ""Sales Representative Assignments"" selected.","1. Click the Export action.
 2. Note the saved file's name and read the toast.
-3. Open the file in a text editor and read the header row.","1. The file downloads as ""sales-rep-assignments.csv"".
+3. Open the file in a text editor and read the header row.","1. The file downloads as ""sales-representative-assignments.csv (the short form ""rep"" is gone from the file name — confirm the exact final file name in the build)"".
 2. A success toast shows ""Success"" with the caption ""Report downloaded."" and auto-fades after 5 seconds.
-3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Rep, Rep is active?.",specs/sbr-sales-by-representative.md Story 15 S15-R3; S15-R4; §7,,
-"The Assignments CSV holds one row per customer with an assigned rep, sorted customer A→Z then rep A→Z; unassigned customers are excluded",SBR — Sales Rep Assignments Export,Functional,High,1. The organization has several customers with assigned reps and at least one customer with NO assigned rep (seed as needed).,"1. Download the Sales Rep Assignments CSV.
+3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?.
+4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.",SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R3; S15-R4; §7),,
+"Assignments CSV: one row per assigned customer, sorted customer then rep",SBR — Sales Rep Assignments Export,Functional,High,1. The organization has several customers with assigned reps and at least one customer with NO assigned rep (seed as needed).,"1. Download the Sales Representative Assignments CSV.
 2. Count the rows against the customers with assigned reps.
 3. Search for the no-rep customer.
-4. Read the row order.","1. Every customer with an assigned sales rep produces exactly ONE row (single-rep model: one rep per customer).
+4. Read the row order.","1. Every customer with an assigned sales representative produces exactly ONE row (single-rep model: one rep per customer).
 2. Customers with no assigned rep are NOT included.
-3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary).",specs/sbr-sales-by-representative.md Story 15 S15-R5; S15-R7; S15-R10,,
-"""Rep is active?"" tracks the staff-active status (Yes/No), not the sales-rep toggle",SBR — Sales Rep Assignments Export,Functional,Medium,"1. Arrange (and afterward restore): one assigned rep whose staff record is ACTIVE but whose sales-rep toggle is OFF, and one assigned rep whose staff record is INACTIVE but whose toggle is ON.","1. Download the Sales Rep Assignments CSV.
+3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary).",SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R5; S15-R7; S15-R10),,
+"""Rep is active?"" tracks the staff-active status, not the toggle",SBR — Sales Rep Assignments Export,Functional,Medium,"1. Arrange (and afterward restore): one assigned rep whose staff record is ACTIVE but whose sales-representative toggle is OFF, and one assigned rep whose staff record is INACTIVE but whose toggle is ON.","1. Download the Sales Representative Assignments CSV.
 2. Read the ""Rep is active?"" value on both reps' customer rows.","1. The staff-ACTIVE / toggle-off rep shows ""Rep is active?"" = ""Yes"" — the toggle does not drive this column.
 2. The staff-INACTIVE / toggle-on rep shows ""Rep is active?"" = ""No"".
-3. The value is always ""Yes"" or ""No"" (never ""Deactivated"" or another word).",specs/sbr-sales-by-representative.md Story 15 S15-R6; Story 13 S13-R11,,
-"Legacy robustness: a customer whose rep's staff record was deleted still exports one row from the customer-side stored name, marked No",SBR — Sales Rep Assignments Export,Functional,Medium,1. A customer exists whose assigned rep's staff record has been cleared or deleted while the customer still references it (seed and delete a throwaway ZZAUTOTEST rep if needed).,"1. Download the Sales Rep Assignments CSV.
-2. Find that customer's row and read its ""Sales Rep"" and ""Rep is active?"" cells.
+3. The value is always ""Yes"" or ""No"" (never ""Deactivated"" or another word).",SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R6; Story 13 S13-R11),,
+"A deleted rep record still exports one row from the stored name, marked No",SBR — Sales Rep Assignments Export,Functional,Medium,1. A customer exists whose assigned rep's staff record has been cleared or deleted while the customer still references it (seed and delete a throwaway ZZAUTOTEST rep if needed).,"1. Download the Sales Representative Assignments CSV.
+2. Find that customer's row and read its ""Sales Representative"" and ""Rep is active?"" cells.
 3. If two customers carry different stored name spellings for the same underlying rep, compare their rows.","1. The customer still produces a row — the export never silently drops it.
-2. The ""Sales Rep"" name comes from the customer-side stored (denormalized) rep name, and ""Rep is active?"" = ""No"".
-3. When stored names differ across customers for the same rep (name drift), each customer's row uses its OWN stored name — drift never adds extra rows for a customer and never overwrites one customer's stored name with another's.",specs/sbr-sales-by-representative.md Story 15 S15-R8; S15-R9,,
-Assignments export failure and nothing-to-export paths use the Export dialog's own messages,SBR — Sales Rep Assignments Export,Negative,Medium,"1. For the empty path: no customer in the organization has an assigned rep (or use a state where the export yields zero rows).
-2. For the failure path: you can force a generation failure (for example, cut the network on Export) — if not forceable, mark that step Blocked with the reason.","1. With zero assigned customers, select ""Sales Rep Assignments"" in the Export Report dialog and click Export.
+2. The ""Sales Representative"" name comes from the customer-side stored (denormalized) rep name, and ""Rep is active?"" = ""No"".
+3. When stored names differ across customers for the same rep (name drift), each customer's row uses its OWN stored name — drift never adds extra rows for a customer and never overwrites one customer's stored name with another's.
+4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.",SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R8; S15-R9),,
+Assignments export failure and nothing-to-export use the dialog's messages,SBR — Sales Rep Assignments Export,Negative,Medium,"1. For the empty path: no customer in the organization has an assigned rep (or use a state where the export yields zero rows).
+2. For the failure path: you can force a generation failure (for example, cut the network on Export) — if not forceable, mark that step Blocked with the reason.","1. With zero assigned customers, select ""Sales Representative Assignments"" in the Export Report dialog and click Export.
 2. Read the dialog warning and inspect any downloaded file.
 3. Force a generation failure and read the toast.","1. With zero assigned customers, the CSV downloads with a header row and no data rows, and the dialog shows its empty-export warning: ""There is no data to export for the selected report.""
-2. On a generation failure, an error toast reads ""An error occurred while exporting the report. Please try again."" and auto-fades after 5 seconds.",specs/sbr-sales-by-representative.md Story 15 S15-R11; S15-N2; §7,,
+2. On a generation failure, an error toast reads ""An error occurred while exporting the report. Please try again."" and auto-fades after 5 seconds.",SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R11; S15-N2; §7),,
 "Empty state: verbatim message, no grand Totals, toolbar stays interactive","SBR — Loading, Empty & Error States",Functional,High,1. You are on the report.,"1. Apply a filter set that matches no invoices for any rep (for example, a date range with no activity), with Show Unassigned OFF or with no matching unassigned invoices either.
 2. Read the data area and look for the grand Totals indicator.
 3. If checkable: view an organization/location state where NO staff member has ever been credited with an invoice, and compare the message.
@@ -504,38 +528,42 @@ Chevrons and sortable headers are keyboard-operable and expose their expanded/so
 "The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast, and no information is conveyed by color alone",SBR — Visual Conformance & Accessibility,Accessibility,Medium,"1. You are on the report with a rep row showing a (N) count and — if arrangeable — an ""(Inactive)"" tag; a contrast-checking tool is available.","1. Measure the contrast ratio of the subdued-grey (N) count and ""(Inactive)"" tag against the white body surface in light mode, and against the dark surface in dark mode.
 2. Review how Inv. Hrs, the status badges, and the links convey their meaning.","1. The subdued grey meets at least WCAG AA contrast (4.5:1 or better) against the body surface in BOTH modes — the reduced font size does not drop it below that ratio.
 2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.",specs/sbr-sales-by-representative.md Story 18 S18-R11; S18-R12,,
-"The Sales Rep selector shows in the left panel on standard Work Orders and Part Sale WOs, and is hidden on imported WOs and in History mode",SBR — Work Order Sales Rep,Functional,High,"1. You have: an open standard Work Order, an open Part Sale WO, an imported Work Order, and a way to view a WO in History mode.","1. Open the standard Work Order and look at the left panel.
+"Sales Representative selector shows on WO and Part Sale, not on imported",SBR — Work Order Sales Rep,Functional,High,"1. You have: an open standard Work Order, an open Part Sale WO, an imported Work Order, and a way to view a WO in History mode.","1. Open the standard Work Order and look at the left panel.
 2. Open the Part Sale WO and look at the left panel.
 3. Open the imported Work Order and look for the same field.
-4. View a WO in History mode and look for the field.","1. The left panel includes a ""Sales Rep"" selector on the standard Work Order.
-2. The left panel includes the same ""Sales Rep"" selector on the Part Sale WO.
+4. View a WO in History mode and look for the field.","1. The left panel includes a ""Sales Representative"" selector on the standard Work Order.
+2. The left panel includes the same ""Sales Representative"" selector on the Part Sale WO.
 3. The selector is NOT present on the imported Work Order.
-4. The selector is NOT present in History mode.",specs/sbr-sales-by-representative.md Story 19 S19-R1; S19-N1,,
-Sales Rep selector offers only reps whose sales-rep toggle is on,SBR — Work Order Sales Rep,Functional,High,"1. At least one staff member has the sales-rep toggle ON and at least one has it OFF. To arrange this: open Settings, go to Staff, edit the staff member, and use the sales-rep toggle there (restore both afterward).","1. Open a Work Order and open the ""Sales Rep"" selector.
+4. The selector is NOT present in History mode.
+5. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.",SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R1; S19-N1),,
+Selector offers only reps whose sales-representative toggle is on,SBR — Work Order Sales Rep,Functional,High,"1. At least one staff member has the sales-representative toggle ON and at least one has it OFF. To arrange this: open Settings, go to Staff, edit the staff member, and use the sales-representative toggle there (restore both afterward).","1. Open a Work Order and open the ""Sales Representative"" selector.
 2. Search the option list for both staff members.
 3. Inspect the selector's accessible name.","1. The toggle-ON staff member is offered as a selectable rep.
 2. The toggle-OFF staff member is NOT offered as a new selection.
-3. The selector carries the accessible name ""Sales Rep"".",SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R2; S19-R8 — toggle entry path Settings -> Staff -> edit the staff member per the PRD companion video 2026-07-30 09:17-09:41; exact toggle label to confirm live in the build),,
-"A new Work Order or Part Sale WO opens with Sales Rep unassigned, and a change saves immediately with no Save step",SBR — Work Order Sales Rep,Functional,High,1. At least one staff member is offered as a sales rep.,"1. Create a new Work Order (mark it ZZAUTOTEST) and read the Sales Rep field before touching it.
+3. The selector carries the accessible name ""Sales Representative"".
+4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.",SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R2; S19-R8 — toggle entry path Settings -> Staff -> edit the staff member per the PRD companion video 2026-07-30 09:17-09:41; exact toggle label to confirm live in the build),,
+A new WO opens with Sales Representative unassigned; a change saves at once,SBR — Work Order Sales Rep,Functional,High,1. At least one staff member is offered as a sales representative.,"1. Create a new Work Order (mark it ZZAUTOTEST) and read the Sales Representative field before touching it.
 2. Select a rep in the field, then navigate away WITHOUT any explicit save and reopen the WO.
-3. Repeat the unassigned-open check on a new Part Sale WO.","1. The new Work Order opens with the Sales Rep field UNASSIGNED — it is not pre-filled at creation.
-2. Changing the Sales Rep persists immediately (save-on-change): the selection survives leaving and reopening the WO with no separate Save step.
-3. A new Part Sale WO also opens with the field unassigned.",specs/sbr-sales-by-representative.md Story 19 S19-R3; S19-R4,,
-The Sales Rep selector is read-only when the Work Order status is Invoiced or Paid,SBR — Work Order Sales Rep,Functional,Medium,"1. One Work Order is in ""Invoiced"" status and one is in ""Paid"" status (drive throwaway ZZAUTOTEST WOs into these states if needed).","1. Open the Invoiced WO and try to change the Sales Rep field.
-2. Open the Paid WO and try the same.","1. On the Invoiced WO the Sales Rep selector is read-only (non-interactive) — the assignment cannot be changed.
-2. On the Paid WO the selector is also read-only.",specs/sbr-sales-by-representative.md Story 19 S19-R5,,
-"Invoice crediting snapshot: WO rep, else the customer's rep, else unassigned — and a later WO change never rewrites past invoices",SBR — Work Order Sales Rep,Functional,Critical,1. Three throwaway ZZAUTOTEST setups: (a) a WO WITH a Sales Rep assigned; (b) a WO with NO rep whose customer HAS an assigned rep; (c) a WO with NO rep whose customer has NO assigned rep.,"1. Invoice all three WOs.
+3. Repeat the unassigned-open check on a new Part Sale WO.","1. The new Work Order opens with the Sales Representative field UNASSIGNED — it is not pre-filled at creation.
+2. Changing the Sales Representative persists immediately (save-on-change): the selection survives leaving and reopening the WO with no separate Save step.
+3. A new Part Sale WO also opens with the field unassigned.",SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R3; S19-R4),,
+The Sales Representative selector is read-only when Invoiced or Paid,SBR — Work Order Sales Rep,Functional,Medium,"1. One Work Order is in ""Invoiced"" status and one is in ""Paid"" status (drive throwaway ZZAUTOTEST WOs into these states if needed).","1. Open the Invoiced WO and try to change the Sales Representative field.
+2. Open the Paid WO and try the same.","1. On the Invoiced WO the Sales Representative selector is read-only (non-interactive) — the assignment cannot be changed.
+2. On the Paid WO the selector is also read-only.
+3. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.",SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R5),,
+"Invoice credit snapshot: WO rep, else customer rep, else unassigned",SBR — Work Order Sales Rep,Functional,Critical,1. Three throwaway ZZAUTOTEST setups: (a) a WO WITH a Sales Representative assigned; (b) a WO with NO rep whose customer HAS an assigned rep; (c) a WO with NO rep whose customer has NO assigned rep.,"1. Invoice all three WOs.
 2. On the report (Show Unassigned on, filters covering the invoices), find each invoice and note which row it sits under.
-3. Go back to WO (a), change its Sales Rep to a different rep, and re-check the already-created invoice on the report.","1. Invoice (a) is credited to the WO's Sales Rep.
+3. Go back to WO (a), change its Sales Representative to a different rep, and re-check the already-created invoice on the report.","1. Invoice (a) is credited to the WO's Sales Representative.
 2. Invoice (b) falls back to the CUSTOMER's assigned rep.
 3. Invoice (c) is unassigned — it appears only under the ""Unassigned"" row.
-4. Changing WO (a)'s Sales Rep afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation.",specs/sbr-sales-by-representative.md Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3,,
-"Customer record shows a ""Sales Representative"" row; ""Unassigned"" when none",SBR — Work Order Sales Rep,Functional,Medium,"1. One customer HAS an assigned sales rep and one customer has NONE.
-2. A Work Order exists whose bound Sales Rep can have their toggle turned off (arrange and restore afterward).","1. Open the assigned customer's record and read the left-panel sidebar.
+4. Changing WO (a)'s Sales Representative afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation.",SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3),,
+"Customer record shows a ""Sales Representative"" row; ""Unassigned"" when none",SBR — Work Order Sales Rep,Functional,Medium,"1. One customer HAS an assigned sales representative and one customer has NONE.
+2. A Work Order exists whose bound Sales Representative can have their toggle turned off (arrange and restore afterward).","1. Open the assigned customer's record and read the left-panel sidebar.
 2. Open the unassigned customer's record and read the same row.
-3. Turn the bound rep's sales-rep toggle OFF, reopen the Work Order, and read the Sales Rep selector; then open its option list.","1. The customer record's left-panel sidebar shows a single row labeled ""Sales Representative"" (the full word — the product owner explicitly corrected the short-form ""Sales Rep"" label here) with the customer's assigned rep.
+3. Turn the bound rep's sales-representative toggle OFF, reopen the Work Order, and read the Sales Representative selector; then open its option list.","1. The customer record's left-panel sidebar shows a single row labeled ""Sales Representative"" (the full word — the product owner explicitly corrected the short-form ""Sales Representative"" label here) with the customer's assigned rep.
 2. When no rep is assigned, the row renders ""Unassigned"".
-3. On the WO, the selector renders the bound rep's name with an ""(Inactive)"" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list.","SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R7; S19-E1 — customer-card row label RE-RULED to the full 'Sales Representative' per the PRD companion video 2026-07-30 10:53-11:12, superseding the spec's 'Sales Rep'; video authoritative, newest-wins)",,
+3. On the WO, the selector renders the bound rep's name with an ""(Inactive)"" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list.
+4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.","SV-8636 (SBR spec Story 19 S19-R7; S19-E1 — customer-card label RE-RULED to the full ""Sales Representative"" per the PRD companion video 2026-07-30 + Chris Ward answer 2026-07-31 Q5=A; the spec text still says ""Sales Rep"")",,
 "A rep's invoice detail rows are fetched from the server only on the first expand, and are paginated per rep",SBR — API,Functional,Medium,"1. You are on the report with at least two rep rows, one with a large invoice count if seedable.
 2. The browser's network panel is open.","1. Load the report and note which requests deliver the summary rows.
 2. Expand one rep and watch the network panel; collapse and re-expand it.
@@ -560,9 +588,9 @@ The grand totals are server-computed over the full filtered result set and deliv
 2. Check whether any file arrives.","1. The server counts the rows against the 10,000-data-row cap and DECLINES to generate — the refusal happens pre-generation, observed in the export response.
 2. NO file (truncated or otherwise) is delivered; the client shows the specific too-large toast.
 3. A filter set just below the cap still generates a complete (possibly very large) PDF.",specs/sbr-sales-by-representative.md Story 14 S14-E2,,
-Toggling a sales rep's active status off first runs a server pre-check returning the assigned-customer count and an assignments flag,SBR — API,Functional,Medium,"1. A staff member is active with the sales-rep toggle on and at least one customer assigned (seed a throwaway ZZAUTOTEST assignment if needed).
+Deactivating a rep first runs a server pre-check returning the count,SBR — API,Functional,Medium,"1. A staff member is active with the sales-representative toggle on and at least one customer assigned (seed a throwaway ZZAUTOTEST assignment if needed).
 2. The network panel is open.","1. In staff administration, toggle that staff member's active status off and watch the network panel BEFORE the dialog appears.
 2. Read the pre-check response and compare it with the dialog's ""{N} customer{s}"" headline.
-3. Cancel the dialog (leave the staff member active).","1. A precondition-check request runs FIRST, before any change is applied, returning the count of distinct customers currently assigned to that staff member as their sales rep, plus a flag indicating whether any assignments exist.
-2. The dialog's ""{Staff Name} is the sales rep on {N} customer{s}."" headline matches the returned count.
-3. No deactivation is committed by the pre-check itself — cancelling leaves the staff member's active status unchanged.",specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R4,,
+3. Cancel the dialog (leave the staff member active).","1. A precondition-check request runs FIRST, before any change is applied, returning the count of distinct customers currently assigned to that staff member as their sales representative, plus a flag indicating whether any assignments exist.
+2. The dialog's ""{Staff Name} is the sales representative on {N} customer{s}."" headline matches the returned count.
+3. No deactivation is committed by the pre-check itself — cancelling leaves the staff member's active status unchanged.",SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R4),,

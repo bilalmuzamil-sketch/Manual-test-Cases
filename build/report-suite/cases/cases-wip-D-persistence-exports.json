@@ -346,5 +346,31 @@
   "viu_status": "VIU-Pending",
   "notes": "All three notification texts are verbatim from the spec/§7.",
   "api_related": false
+ },
+ {
+  "id": "WIP-EXP-10",
+  "area": "WIP — Exports",
+  "title": "An over-cap Work In Progress download is refused with the too-large message",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A user with access to the Work In Progress reports permission.",
+  "preconditions": [
+   "1. A filter combination exists whose work-order rows on one tab exceed 10,000 (widest date range, all locations, no advisor/customer/asset narrowing). If the environment cannot reach 10,000 rows even fully widened, record the maximum reachable and mark the case Blocked-Env with that reason."
+  ],
+  "steps": [
+   "1. With the over-cap filter set, download the tab as a CSV.",
+   "2. Download the same tab as a PDF.",
+   "3. Narrow the filters below the cap and download once more."
+  ],
+  "expected": [
+   "1. For both the CSV and the PDF: no file is generated and no download starts.",
+   "2. An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).",
+   "3. Below the cap the download works normally."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8665 (WIP spec Story 9 — the 10,000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line, his spec edit is pending)",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW 2026-07-31. Q3 RULED 2026-07-31 (Chris Ward answer, option A, verbatim: \"this was not well thought out by me (the specs were written at different times)\"): the 10,000-row export cap applies to all six reports, including the three whose spec pages never mentioned it. Parts Velocity (PV-EXP-11 = C38885) and Technician Utilization (TU-EXP-09 = C38887) already had a cap case from the tech-plan pass; Work In Progress had none. The message is the one ruled suite-wide by his Q2 answer. The exact cap counting basis for a per-tab WIP download is not spelled out in the spec — confirm it live at VIU. Not live-verified (Rule 12).",
+  "api_related": false
  }
 ]

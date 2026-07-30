@@ -30,27 +30,27 @@
  {
   "id": "PV-CALC-02",
   "area": "PV — Columns & Calculations",
-  "title": "Units Sold for a catalogue part is the total in-window vendor-request quantity, net of reversed sales",
+  "title": "Special Order Units Sold = in-window request quantity, net of reversals",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
   "preconditions": [
-   "1. A catalogue (vendor-sourced, special-order) part is requested on invoiced or paid work orders in the window - e.g. 3 units on one work order and 2 on another.",
-   "2. One further in-window sale of the same catalogue part has been reversed/voided."
+   "1. A special-order (vendor-sourced) part is requested on invoiced or paid work orders in the window - e.g. 3 units on one work order and 2 on another.",
+   "2. One further in-window sale of the same special-order part has been reversed/voided."
   ],
   "steps": [
-   "1. Find the catalogue part's row and read Units Sold.",
+   "1. Find the special-order part's row and read Units Sold.",
    "2. Compare against the sum of the in-window vendor-request quantities, leaving out the reversed sale."
   ],
   "expected": [
    "1. Units Sold equals the total quantity across the part's in-window vendor requests (3 + 2 = 5.00 in the example), summed across the selected locations.",
-   "2. The reversed/voided sale is EXCLUDED from the total (net of reversals, per S5-R4b).",
+   "2. The reversed/voided sale is EXCLUDED from the total (net of reversals).",
    "3. Only requests on work orders at status Invoiced or Paid count; the window is anchored to the work-order date."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R2; S5-R4 (Units Sold, catalogue); S5-R4b",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R2; S5-R4 (Units Sold, catalogue); S5-R4b)",
   "viu_status": "VIU-Pending",
-  "notes": "KNOWN-DELTA WATCH: reversal netting on the billed-line columns is a documented build-delta (the current billed-side queries do not net reversals) - see PV-CALC-11. HEAVY SEEDING: vendor part requests on invoiced/paid work orders plus one reversed sale.",
+  "notes": "KNOWN-DELTA WATCH: reversal netting on the billed-line columns is a documented build-delta (the current billed-side queries do not net reversals) - see PV-CALC-11. HEAVY SEEDING: vendor part requests on invoiced/paid work orders plus one reversed sale. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
@@ -79,7 +79,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "specs/parts-velocity.md S5-R3; S5-R4 (Units Returned); §3 Key Decisions",
   "viu_status": "VIU-Pending",
-  "notes": "Counted the same way for inventory and catalogue parts. HEAVY SEEDING: return + credit + cancellation flows in one window.",
+  "notes": "Counted the same way for inventory and special-order parts. HEAVY SEEDING: return + credit + cancellation flows in one window.",
   "api_related": false
  },
  {
@@ -115,64 +115,64 @@
  {
   "id": "PV-CALC-05",
   "area": "PV — Columns & Calculations",
-  "title": "Sold via WO counts Service-type work orders and Sold via Parts Sale counts Parts-type work orders, windowed by work-order date",
+  "title": "Sold (WO) counts Service work orders, Sold (Parts Sale) counts Parts",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
   "preconditions": [
    "1. A part sold in the window on an invoiced SERVICE work order (e.g. 4 units) and on an invoiced PARTS SALE / Parts-type work order created in Parts → Parts Sale (e.g. 3 units).",
-   "2. The Sold via WO and Sold via Parts Sale columns are enabled."
+   "2. The Sold (WO) and Sold (Parts Sale) columns are enabled."
   ],
   "steps": [
-   "1. Read the part's Sold via WO value.",
-   "2. Read the part's Sold via Parts Sale value.",
+   "1. Read the part's Sold (WO) value.",
+   "2. Read the part's Sold (Parts Sale) value.",
    "3. Move the date range so the work orders' end dates fall outside the window and re-read both."
   ],
   "expected": [
-   "1. Sold via WO shows the total part quantity on Service-type invoiced/paid work orders whose work-order date is in the window (4.00 in the example), net of reversed/voided sales.",
-   "2. Sold via Parts Sale shows the total on Parts-type invoiced/paid work orders (counter sales) in the window (3.00), net of reversed/voided sales.",
+   "1. Sold (WO) shows the total part quantity on Service-type invoiced/paid work orders whose work-order date is in the window (4.00 in the example), net of reversed/voided sales.",
+   "2. Sold (Parts Sale) shows the total on Parts-type invoiced/paid work orders (counter sales) in the window (3.00), net of reversed/voided sales.",
    "3. Both are windowed by the WORK-ORDER date (its end date) - with the range moved off those dates, both drop out.",
    "4. Both workflows feed the report - a parts sale is a separate workflow from a service work order but counts fully."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R4 (Sold via WO / Sold via Parts Sale); §5 Assumptions",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4 (Sold via WO / Sold via Parts Sale); §5 Assumptions)",
   "viu_status": "VIU-Pending",
-  "notes": "Because work orders are only Service- or Parts-type, these two together cover every billed work order (their sum equals the billed-units basis - see PV-CALC-15).",
+  "notes": "Because work orders are only Service- or Parts-type, these two together cover every billed work order (their sum equals the billed-units basis - see PV-CALC-15). COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins.",
   "api_related": false
  },
  {
   "id": "PV-CALC-06",
   "area": "PV — Columns & Calculations",
-  "title": "Demand counts each transaction once regardless of quantity, and a reversal neither adds nor subtracts",
+  "title": "Demand counts each transaction once; a reversal neither adds nor subtracts",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
   "preconditions": [
    "1. An inventory part sold in the window on two invoiced work orders - one for 1 unit, one for 10 units.",
-   "2. A catalogue part with two in-window vendor requests.",
+   "2. A special-order part with two in-window vendor requests.",
    "3. One of the inventory part's in-window sales is then reversed/voided."
   ],
   "steps": [
    "1. Read the inventory part's Demand before the reversal.",
    "2. Reverse/void one of its invoices and re-read Demand.",
-   "3. Read the catalogue part's Demand."
+   "3. Read the special-order part's Demand."
   ],
   "expected": [
    "1. The inventory part's Demand is 2 - each stock-decrementing invoicing event counts ONCE no matter how many units were on it (1 unit and 10 units each count as one).",
    "2. After the reversal, Demand is STILL 2 - a reversal event neither adds to nor subtracts from the count (while Units Sold nets down).",
-   "3. The catalogue part's Demand is 2 - the count of its in-window vendor part requests.",
+   "3. The special-order part's Demand is 2 - the count of its in-window vendor part requests.",
    "4. Demand is the report's default ranking signal (a whole number, never null - 0 when none)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R4 (Demand); §4; §3 Key Decisions",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4 (Demand); §4; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
   "id": "PV-CALC-07",
   "area": "PV — Columns & Calculations",
-  "title": "Last Sale shows whole days since the most recent sale over ALL-TIME history, scoped to the selected locations",
+  "title": "Last Sale is whole days since the most recent sale over all-time history",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -191,13 +191,13 @@
    "1. Last Sale shows the whole days between today and the part's most recent sale measured over ALL-TIME history - it IGNORES the selected date range (e.g. '42 days' even though the range is This Month).",
    "2. It IS scoped to the selected location(s): with only location B selected, Last Sale reflects B's own most recent sale.",
    "3. Format is 'N days' (e.g. 42 days); a part with no recorded sale ever shows —.",
-   "4. For a catalogue part, the anchor is its most recent vendor-sourced invoiced/paid request.",
+   "4. For a special-order part, the anchor is its most recent vendor-sourced invoiced/paid request.",
    "5. When the most recent sale is reversed, Last Sale re-anchors to the previous remaining sale (the day count grows accordingly); if no other sale remains it shows —."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R4 (Last Sale); §4; S5-R5; tech-plan-2026-07-29 B3.1 (last-sale re-anchor on reversal — spec-silent)",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4 (Last Sale); §4; S5-R5; tech-plan-2026-07-29 B3.1 (last-sale re-anchor on reversal — spec-silent))",
   "viu_status": "VIU-Pending",
-  "notes": "This all-time lookback is a per-part calculation, unrelated to the absent 'All Time' date range (§2). TECH-PLAN EDIT 2026-07-30: the reversal re-anchor expectation comes from the engineering plan B3.1 (the spec's Last Sale rule is silent on reversal) — confirm live and flag any deviation.",
+  "notes": "This all-time lookback is a per-part calculation, unrelated to the absent 'All Time' date range (§2). TECH-PLAN EDIT 2026-07-30: the reversal re-anchor expectation comes from the engineering plan B3.1 (the spec's Last Sale rule is silent on reversal) — confirm live and flag any deviation. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
@@ -229,7 +229,7 @@
  {
   "id": "PV-CALC-09",
   "area": "PV — Columns & Calculations",
-  "title": "Turns / Yr annualizes the in-window sales rate against On Hand, shows 0.00 at zero stock, and can be negative",
+  "title": "Turns / Yr annualizes the sales rate, is 0.00 at zero stock, can be negative",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -242,24 +242,24 @@
   "steps": [
    "1. Compute the expected value for part A: (Units Sold ÷ Window days × 365) ÷ On Hand - e.g. (10 ÷ 30 × 365) ÷ 5 = 24.33.",
    "2. Compare against the displayed Turns / Yr for part A.",
-   "3. Read Turns / Yr for parts B and C, and for any catalogue row."
+   "3. Read Turns / Yr for parts B and C, and for any special-order row."
   ],
   "expected": [
    "1. Part A's Turns / Yr matches the formula (two decimals, e.g. 24.33); the window is the whole-day span inclusive of both dates with a floor of 1 day.",
    "2. Part B shows 0.00 (renders 0.00 when On Hand is 0 - not an error, not —).",
    "3. Part C shows a NEGATIVE Turns / Yr with a leading minus (because Units Sold can be negative).",
-   "4. Catalogue rows always show — (not applicable)."
+   "4. Special Order rows always show — (not applicable)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R4 (Turns / Yr); S5 Definitions (Window)",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4 (Turns / Yr); S5 Definitions (Window))",
   "viu_status": "VIU-Pending",
-  "notes": "Tooltip text on the Turns / Yr header is covered by PV-ROW-06.",
+  "notes": "Tooltip text on the Turns / Yr header is covered by PV-ROW-06. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
   "id": "PV-CALC-10",
   "area": "PV — Columns & Calculations",
-  "title": "Revenue, Margin, Unit Cost, Sell Price, and Margin % follow the billed-line formulas, computed unrounded and rounded once",
+  "title": "Revenue, Margin, Unit Cost, Sell Price and Margin % use the billed formulas",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -277,18 +277,18 @@
    "3. Unit Cost = COGS ÷ billed units; Sell Price = Revenue ÷ billed units.",
    "4. Margin % = (Revenue − COGS) ÷ Revenue × 100, shown to one decimal.",
    "5. All five are computed from the RAW (unrounded) Revenue / COGS / billed-units totals and rounded ONCE at the end - not built from already-rounded intermediates.",
-   "6. The same formulas apply to inventory and catalogue rows (for catalogue, from the vendor part requests)."
+   "6. The same formulas apply to inventory and special-order rows (for special-order, from the vendor part requests)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R4a; §4",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4a; §4)",
   "viu_status": "VIU-Pending",
-  "notes": "Windowed by work-order (end) date; only Invoiced/Paid work orders count. HEAVY SEEDING: controlled sell/cost/quantity lines to make the arithmetic checkable.",
+  "notes": "Windowed by work-order (end) date; only Invoiced/Paid work orders count. HEAVY SEEDING: controlled sell/cost/quantity lines to make the arithmetic checkable. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
   "id": "PV-CALC-11",
   "area": "PV — Columns & Calculations",
-  "title": "A reversed/voided sale is excluded from every billed-line column (Revenue, Margin, Unit Cost, Sell Price, Sold via WO, Sold via Parts Sale, catalogue Units Sold)",
+  "title": "A reversed or voided sale is excluded from every billed-line column",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -297,19 +297,19 @@
    "2. All movement and profitability columns are visible."
   ],
   "steps": [
-   "1. Record the part's Revenue, Margin, Unit Cost, Sell Price, Margin %, Sold via WO / Sold via Parts Sale (and Units Sold for a catalogue part).",
+   "1. Record the part's Revenue, Margin, Unit Cost, Sell Price, Margin %, Sold (WO) / Sold (Parts Sale) (and Units Sold for a special-order part).",
    "2. Reverse/void one of the two sales.",
    "3. Reload the report and re-read every column."
   ],
   "expected": [
-   "1. After the reversal, ALL the billed-line columns drop to reflect only the remaining sale - the reversed/voided sale is excluded from Revenue, Margin, Unit Cost, Sell Price, Margin %, Sold via WO, Sold via Parts Sale, and (for catalogue) Units Sold.",
+   "1. After the reversal, ALL the billed-line columns drop to reflect only the remaining sale - the reversed/voided sale is excluded from Revenue, Margin, Unit Cost, Sell Price, Margin %, Sold (WO), Sold (Parts Sale), and (for special-order) Units Sold.",
    "2. This netting is consistent with inventory Units Sold, which already nets reversals via the stock add-back.",
    "3. A voided sale therefore inflates NO column."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R4b; S5-R4a; §3 Key Decisions",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4b; S5-R4a; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
-  "notes": "KNOWN BUILD-DELTA (spec ahead of build, by owner decision 2026-07-11): the current billed-side queries do NOT net reversals - until dev ships the fix, expect a deviation here across all the listed columns together. Author-to-spec case; record the build behavior at VIU.",
+  "notes": "KNOWN BUILD-DELTA (spec ahead of build, by owner decision 2026-07-11): the current billed-side queries do NOT net reversals - until dev ships the fix, expect a deviation here across all the listed columns together. Author-to-spec case; record the build behavior at VIU. COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
@@ -344,7 +344,7 @@
  {
   "id": "PV-CALC-13",
   "area": "PV — Columns & Calculations",
-  "title": "On-screen number formats match the spec for every column type, and rounding is half away from zero",
+  "title": "Number formats match the spec per column; rounding is half away from zero",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -356,22 +356,22 @@
    "2. Seed a Margin % that lands exactly on a rounding tie (e.g. computes to 8.45% / -8.45%) and read the display."
   ],
   "expected": [
-   "1. Units Sold, Units Returned, Sold via WO, Sold via Parts Sale, On Hand, Turns / Yr: two decimals with thousands separators (1,250.00); negatives with a leading minus (-3.00).",
+   "1. Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), On Hand, Turns / Yr: two decimals with thousands separators (1,250.00); negatives with a leading minus (-3.00).",
    "2. Unit Cost, Sell Price, Revenue, Margin: currency with $, two decimals, thousands separators ($1,250.00); negatives with a leading minus and NO parentheses (-$45.00).",
    "3. Margin %: one decimal with a trailing % (33.8%); negatives with a leading minus, no + on positives (-8.4%).",
    "4. Demand: whole number. Min, Max: whole numbers (— when null). Last Sale: 'N days' (42 days), — when null.",
    "5. Rounding is half AWAY from zero: 8.45% displays 8.5% and -8.45% displays -8.5% (a tie rounds up in magnitude); this applies to all money and one-decimal values."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R5; S5-R7 (rounding)",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R5; S5-R7 (rounding))",
   "viu_status": "VIU-Pending",
-  "notes": "HEAVY SEEDING: values crossing 1,000, negatives, and an exact .x45 tie for the rounding check.",
+  "notes": "HEAVY SEEDING: values crossing 1,000, negatives, and an exact .x45 tie for the rounding check. COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins.",
   "api_related": false
  },
  {
   "id": "PV-CALC-14",
   "area": "PV — Columns & Calculations",
-  "title": "Core parts are excluded from both the inventory and catalogue result sets",
+  "title": "Core parts are excluded from both the inventory and special-order result sets",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -381,51 +381,51 @@
   ],
   "steps": [
    "1. Search the report for the inventory core part (Type = Both).",
-   "2. Search for the catalogue core part."
+   "2. Search for the special-order core part."
   ],
   "expected": [
    "1. The inventory core part does NOT appear in the report despite its activity and stock.",
-   "2. The catalogue core part does NOT appear either.",
+   "2. The special-order core part does NOT appear either.",
    "3. Parts flagged as a core are excluded from both result sets by design."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R1; S5-R2; §3 Key Decisions",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R1; S5-R2; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
-  "notes": "Seeding: a genuine cored part with core_charge set (see the Simple Flow playbook's cored-part recipes) sold/invoiced in the window.",
+  "notes": "Seeding: a genuine cored part with core_charge set (see the Simple Flow playbook's cored-part recipes) sold/invoiced in the window. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
   "id": "PV-CALC-15",
   "area": "PV — Columns & Calculations",
-  "title": "Movement and billed bases may differ for an inventory row (expected), while Sold via WO + Sold via Parts Sale equals the billed units",
+  "title": "Movement and billed bases may differ; Sold (WO) + Sold (Parts Sale) = billed",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
   "preconditions": [
    "1. An inventory part with a billed sale that produced NO matching stock decrement (e.g. a drop-ship or negative-stock sale) plus normal stocked sales in the window.",
-   "2. A catalogue part with in-window vendor requests.",
-   "3. Units Sold, Sold via WO, Sold via Parts Sale, and the profitability columns are visible."
+   "2. A special-order part with in-window vendor requests.",
+   "3. Units Sold, Sold (WO), Sold (Parts Sale), and the profitability columns are visible."
   ],
   "steps": [
    "1. On the inventory row, compare Units Sold against Revenue ÷ Sell Price (the billed units).",
-   "2. On the same row, add Sold via WO + Sold via Parts Sale and compare against the billed units.",
-   "3. On the catalogue row, compare Units Sold, Sold via WO + Sold via Parts Sale, and the billed units."
+   "2. On the same row, add Sold (WO) + Sold (Parts Sale) and compare against the billed units.",
+   "3. On the special-order row, compare Units Sold, Sold (WO) + Sold (Parts Sale), and the billed units."
   ],
   "expected": [
    "1. On the inventory row, Units Sold (stock movement) DIFFERS from the billed units behind Revenue/Sell Price - this is CORRECT behavior, not a defect (the Units Sold tooltip calls it out).",
-   "2. Sold via WO + Sold via Parts Sale together DO equal the billed-units basis (work orders are only Service- or Parts-type) - but neither equals the movement-based Units Sold.",
-   "3. On the catalogue row, everything reconciles: Units Sold = Sold via WO + Sold via Parts Sale = billed units (they share the vendor-request quantity as one source)."
+   "2. Sold (WO) + Sold (Parts Sale) together DO equal the billed-units basis (work orders are only Service- or Parts-type) - but neither equals the movement-based Units Sold.",
+   "3. On the special-order row, everything reconciles: Units Sold = Sold (WO) + Sold (Parts Sale) = billed units (they share the vendor-request quantity as one source)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5-R7; §3 Key Decisions",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R7; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
-  "notes": "Expected-behavior case. A 'Units Billed' column was considered and deferred in favor of the tooltip (spec build note). HEAVY SEEDING: drop-ship/negative-stock billed sale.",
+  "notes": "Expected-behavior case. A 'Units Billed' column was considered and deferred in favor of the tooltip (spec build note). HEAVY SEEDING: drop-ship/negative-stock billed sale. COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
   "id": "PV-CALC-16",
   "area": "PV — Columns & Calculations",
-  "title": "Window anchors: inventory movement metrics use the movement event date while billed columns use the work-order date",
+  "title": "Window anchors: movement uses the event date, billed uses the WO date",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -434,20 +434,20 @@
    "2. Both W1 and W2 are selectable ranges."
   ],
   "steps": [
-   "1. Select window W1 and read the part's Units Sold / Demand vs its Revenue / Sold via WO.",
+   "1. Select window W1 and read the part's Units Sold / Demand vs its Revenue / Sold (WO).",
    "2. Select window W2 and read the same columns.",
    "3. Select a single-day range (Today) and check the report still computes (window floor)."
   ],
   "expected": [
-   "1. In W1 (work-order date in window): the billed columns (Revenue, Margin, Unit Cost, Sell Price, Margin %, Sold via WO, Sold via Parts Sale) count the sale, while inventory Units Sold / Demand do NOT (their movement event is outside W1).",
+   "1. In W1 (work-order date in window): the billed columns (Revenue, Margin, Unit Cost, Sell Price, Margin %, Sold (WO), Sold (Parts Sale)) count the sale, while inventory Units Sold / Demand do NOT (their movement event is outside W1).",
    "2. In W2 (movement date in window): Units Sold / Demand count it, the billed columns do not - the two anchors CAN differ for an inventory part and that is intended.",
    "3. The window is the whole-day span inclusive of BOTH the start and end dates, with a floor of 1 day - a single-day range (Today) computes normally (Window = 1 for the Turns / Yr divisor).",
    "4. Last Sale is not windowed at all (all-time, see PV-CALC-07)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S5 Definitions (Window / Work-order date); S5-R7",
+  "spec_ref": "SV-8645 (specs/parts-velocity.md S5 Definitions (Window / Work-order date); S5-R7)",
   "viu_status": "VIU-Pending",
-  "notes": "HEAVY SEEDING: a work order whose end date and invoicing date fall in different windows (backdated end date).",
+  "notes": "HEAVY SEEDING: a work order whose end date and invoicing date fall in different windows (backdated end date). COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins.",
   "api_related": false
  }
 ]

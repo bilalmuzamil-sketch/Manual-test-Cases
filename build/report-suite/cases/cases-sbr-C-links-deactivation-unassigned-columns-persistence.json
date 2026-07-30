@@ -149,12 +149,12 @@
  {
   "id": "SBR-DEACT-02",
   "area": "SBR — Staff Deactivation",
-  "title": "Deactivating a rep with assignments opens the Deactivate dialog with the counted, pluralized headline and reassurance line, trapping focus",
+  "title": "Deactivate dialog: counted pluralized headline, reassurance, focus trap",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
   "preconditions": [
-   "1. ZZAUTOTEST rep \"A\" is active, toggle on, and assigned as sales rep to exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers."
+   "1. ZZAUTOTEST rep \"A\" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers."
   ],
   "steps": [
    "1. Toggle rep B's active status off and read the dialog before confirming anything.",
@@ -163,13 +163,13 @@
   ],
   "expected": [
    "1. A warning dialog titled \"Deactivate {Staff Name}?\" opens BEFORE any change is applied; the deactivation does not commit until confirmed.",
-   "2. The body shows \"{Staff Name} is the sales rep on {N} customer{s}.\" — singular for N=1 (\"1 customer\"), plural otherwise (\"3 customers\") — followed by the reassurance line \"Their customer assignments will stay where they are.\"",
+   "2. The body shows \"{Staff Name} is the sales representative on {N} customer{s}.\" — singular for N=1 (\"1 customer\"), plural otherwise (\"3 customers\") — followed by the reassurance line \"Their customer assignments will stay where they are.\"",
    "3. Focus is trapped within the dialog while open and returns to the invoking control on dismiss."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R3; S13-R4; S13-R12",
+  "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R3; S13-R4; S13-R12)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
@@ -242,7 +242,7 @@
   ],
   "steps": [
    "1. Type YES and submit; during the request try Cancel, X, and Escape.",
-   "2. After success, check the staff member's status and each previously assigned customer's Sales Rep."
+   "2. After success, check the staff member's status and each previously assigned customer's Sales Representative."
   ],
   "expected": [
    "1. The \"Deactivate\" button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and the Cancel and X controls are non-interactive during the request (pressing the \"Esc\" key never closes the dialog at any time).",
@@ -253,13 +253,13 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R9; S13-R10; S13-E1)",
   "viu_status": "VIU-Pending",
-  "notes": "Restore the rep afterwards (reactivate). Consistency edit 2026-07-28 (PO Q1 = B): clarified that the Esc key never closes the deactivate dialog (aligns with SBR-DEACT-04).",
+  "notes": "Restore the rep afterwards (reactivate). Consistency edit 2026-07-28 (PO Q1 = B): clarified that the Esc key never closes the deactivate dialog (aligns with SBR-DEACT-04). Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
   "id": "SBR-DEACT-06",
   "area": "SBR — Staff Deactivation",
-  "title": "After deactivation the sales-rep toggle is unchanged, the Assignments CSV shows Rep is active? = No, and report credit stays intact",
+  "title": "After deactivation: toggle unchanged, CSV shows No, report credit intact",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Owner/Administrator/Manager profile with staff administration and Reports access.",
@@ -267,19 +267,19 @@
    "1. A ZZAUTOTEST rep with assignments AND matching invoices was just deactivated via the dialog flow."
   ],
   "steps": [
-   "1. Re-open the staff member and read the sales-rep toggle.",
-   "2. Download the Sales Rep Assignments CSV and read the rep's rows.",
+   "1. Re-open the staff member and read the sales-representative toggle.",
+   "2. Download the Sales Representative Assignments CSV and read the rep's rows.",
    "3. Open the report and find the rep's row."
   ],
   "expected": [
-   "1. The sales-rep toggle state is unchanged by the deactivation flow.",
-   "2. In the Sales Rep Assignments CSV the rep's customers show \"Rep is active?\" = \"No\" — that column is driven by staff-active status, not the toggle.",
-   "3. In the report the rep still appears with credit intact; the \"(Inactive)\" marker appears only if the sales-rep TOGGLE is off (a separate flag from staff-active status)."
+   "1. The sales-representative toggle state is unchanged by the deactivation flow.",
+   "2. In the Sales Representative Assignments CSV the rep's customers show \"Rep is active?\" = \"No\" — that column is driven by staff-active status, not the toggle.",
+   "3. In the report the rep still appears with credit intact; the \"(Inactive)\" marker appears only if the sales-representative TOGGLE is off (a separate flag from staff-active status)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R11; Story 15 S15-R6; Story 5 S5-R9",
+  "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R11; Story 15 S15-R6; Story 5 S5-R9)",
   "viu_status": "VIU-Pending",
-  "notes": "Staff-active status and the sales-rep toggle are independent flags (§5) — the CSV column and the report marker track DIFFERENT flags by design.",
+  "notes": "Staff-active status and the sales-rep toggle are independent flags (§5) — the CSV column and the report marker track DIFFERENT flags by design. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
@@ -290,23 +290,23 @@
   "type": "Negative",
   "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
   "preconditions": [
-   "1. ZZAUTOTEST staff member X is active WITHOUT the sales-rep toggle; ZZAUTOTEST rep Y (with assignments) is currently inactive; ZZAUTOTEST rep Z is active with the sales-rep toggle ON and NO customers assigned."
+   "1. ZZAUTOTEST staff member X is active WITHOUT the sales-representative toggle; ZZAUTOTEST rep Y (with assignments) is currently inactive; ZZAUTOTEST rep Z is active with the sales-representative toggle ON and NO customers assigned."
   ],
   "steps": [
    "1. Deactivate X and watch for a dialog.",
    "2. Reactivate rep Y via the standard toggle and watch for a dialog; check Y's customer assignments afterwards.",
-   "3. Deactivate rep Z (sales-rep toggle on, no assignments) and watch for a dialog."
+   "3. Deactivate rep Z (sales-representative toggle on, no assignments) and watch for a dialog."
   ],
   "expected": [
-   "1. For a staff member without the sales-rep toggle, the precondition check is skipped and no warning is shown.",
+   "1. For a staff member without the sales-representative toggle, the precondition check is skipped and no warning is shown.",
    "2. Reactivation never shows the warning dialog (the flow does not apply to an already-inactive member).",
    "3. After reactivation the assignments re-surface immediately with no extra action.",
-   "4. Deactivating a sales rep with NO customer assignments applies silently — no warning dialog."
+   "4. Deactivating a sales representative with NO customer assignments applies silently — no warning dialog."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R2; S13-N2; S13-N3; S13-E3",
+  "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R2; S13-N2; S13-N3; S13-E3)",
   "viu_status": "VIU-Pending",
-  "notes": "Restore the ZZAUTOTEST staff members afterwards. The precondition check behind the silent branch is covered by the API case. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-NODIALOG): absorbed SBR-DEACT-01. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "notes": "Restore the ZZAUTOTEST staff members afterwards. The precondition check behind the silent branch is covered by the API case. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-NODIALOG): absorbed SBR-DEACT-01. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
@@ -338,12 +338,12 @@
  {
   "id": "SBR-UNAS-01",
   "area": "SBR — Show Unassigned",
-  "title": "Show Unassigned sits between the column selector and the date picker, is off by default, and while off unassigned invoices contribute nothing",
+  "title": "Show Unassigned sits between the column selector and the date picker, off",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
   "preconditions": [
-   "1. No remembered settings; at least one matching invoice with NO assigned rep exists (seed via a WO with no Sales Rep whose customer also has no rep)."
+   "1. No remembered settings; at least one matching invoice with NO assigned rep exists (seed via a WO with no Sales Representative whose customer also has no rep)."
   ],
   "steps": [
    "1. Find the \"Show Unassigned\" toggle in the toolbar and note its position and default state.",
@@ -354,9 +354,9 @@
    "2. While off, invoices with no assigned rep contribute to nothing — no row, and not counted in any total."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 22 S22-R1; S22-R2; Story 18 S18-R7.2",
+  "spec_ref": "SV-8639 (specs/sbr-sales-by-representative.md Story 22 S22-R1; S22-R2; Story 18 S18-R7.2)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {

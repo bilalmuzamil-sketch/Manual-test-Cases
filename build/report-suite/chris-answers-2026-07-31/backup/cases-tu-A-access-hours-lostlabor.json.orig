@@ -1,0 +1,443 @@
+[
+ {
+  "id": "TU-NAV-01",
+  "area": "TU — Access & Display",
+  "title": "Technician Utilization sits under Performance, below existing report links",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (the same permission as the existing Timesheet Activities report - this report adds no new permission).",
+  "preconditions": [
+   "1. You are signed in as a user whose role has the timesheet-reports permission."
+  ],
+  "steps": [
+   "1. Open the reports navigation.",
+   "2. Look under the Performance group.",
+   "3. Click the entry labeled Technician Utilization.",
+   "4. Note where the entry sits relative to the report links that existed before this release."
+  ],
+  "expected": [
+   "1. The report is listed under the Performance group, labeled \"Technician Utilization\".",
+   "2. Clicking it opens the report.",
+   "3. The entry sits BELOW the pre-existing report links — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency — the new reports are added below those items without moving or disturbing them."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R1 — below the named anchor items [Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05, refining kickoff video P3; video authoritative, newest-wins)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU-confirm the exact timesheet-reports permission name as shown in the roles screen (the spec names it only by reference to the Timesheet Activities report). VIDEO-AUTHORITATIVE (P3, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 05:11-05:19: 'technician utilization is actually in a really bad spot right now. So, we want to move these down below what's already there.' The spec is order-agnostic among the six reports (order relax kept); the below-existing rule is the video's addition. Title shortened to fit. COMPANION-VIDEO 2026-07-30 (C4, 01:18-02:05): the anchor items are now NAMED — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency 'normally live in a spot that everybody's used to clicking on'; TU was 'in absolutely the wrong spot' and moves below them. Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins).",
+  "api_related": false
+ },
+ {
+  "id": "TU-NAV-02",
+  "area": "TU — Access & Display",
+  "title": "The report shows one row for each technician who clocked time in the range at the selected locations",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. Technician A clocked time (work-order and/or internal) in the selected date range at the selected location.",
+   "2. Technician B clocked NO time in that range."
+  ],
+  "steps": [
+   "1. Open the Technician Utilization report for that range and location.",
+   "2. Look for rows for technicians A and B."
+  ],
+  "expected": [
+   "1. Technician A has exactly ONE row.",
+   "2. Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) appear."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S1-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "Seeding: clock work-order and internal time for one technician; leave another with no clock records in the window.",
+  "api_related": false
+ },
+ {
+  "id": "TU-NAV-03",
+  "area": "TU — Access & Display",
+  "title": "First visit defaults to the This Month preset and the user's active location",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are using a browser with NO saved settings for this report (fresh profile or cleared site storage)."
+  ],
+  "steps": [
+   "1. Open the Technician Utilization report.",
+   "2. Read the date-range picker value and the location filter value."
+  ],
+  "expected": [
+   "1. The date range defaults to the current calendar month (the date picker's \"This Month\" preset).",
+   "2. Because a range never extends past now, the current-month default effectively shows the month to date.",
+   "3. The location filter defaults to the user's currently active location (the one in the application's global location switcher)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S1-R3; S9-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "The 'current month' boundary is evaluated in the active workplace's report-level time zone (S1-R7).",
+  "api_related": false
+ },
+ {
+  "id": "TU-NAV-04",
+  "area": "TU — Access & Display",
+  "title": "Changing the date range reloads the rows, and a Custom range is capped at 366 days",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with rows loaded."
+  ],
+  "steps": [
+   "1. Change the date range with the report's date-range picker (e.g. to Last Month).",
+   "2. Choose a Custom range within 366 days (start to end).",
+   "3. Try a Custom range wider than 366 days."
+  ],
+  "expected": [
+   "1. Each range change reloads the report's rows for the new range.",
+   "2. A valid Custom range applies normally.",
+   "3. A Custom span wider than 366 days (matching the largest preset) is rejected - it cannot be applied."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S1-R4; S1-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "KNOWN-DELTA WATCH: the 366-day cap (and All-Time removal) came in the 2026-07-16 spec round - the build may lag. VIU-confirm the date-picker preset labels and how the rejection is presented.",
+  "api_related": false
+ },
+ {
+  "id": "TU-NAV-05",
+  "area": "TU — Access & Display",
+  "title": "The standard loading indicator shows on load and reload, rows swap only when data returns, and the toolbar stays interactive",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with rows loaded."
+  ],
+  "steps": [
+   "1. Watch the data area during the initial load.",
+   "2. Change the date range and watch the data area during the reload.",
+   "3. While it loads, try interacting with a toolbar control."
+  ],
+  "expected": [
+   "1. On the initial load and on every reload (date-range or location change), the data area shows the standard reports loading indicator.",
+   "2. The existing rows are replaced only when the new data returns.",
+   "3. The toolbar remains interactive during the load."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S1-R10",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "TU-NAV-06",
+  "area": "TU — Access & Display",
+  "title": "All clock records are day-grouped and windowed in one report-level time zone, with partial and cross-midnight records split correctly",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to locations in different time zones for the multi-zone check.",
+  "preconditions": [
+   "1. A technician has a clock record that starts before the selected range and ends inside it.",
+   "2. A technician has a clock record that crosses midnight.",
+   "3. For the multi-zone check: locations in two different time zones are selected, with clock records at each."
+  ],
+  "steps": [
+   "1. Open the report and expand the technician with the cross-midnight record; read the two day rows.",
+   "2. Check the technician whose record straddles the range boundary.",
+   "3. With two differently-zoned locations selected, check which day each record lands on."
+  ],
+  "expected": [
+   "1. A record that crosses midnight is split by day - each day counts only its own hours; the midnight split is evaluated in the active workplace's time zone.",
+   "2. A record that starts before the range (or ends after it) counts only the part inside the range.",
+   "3. EVERY record is day-grouped and windowed in a SINGLE report-level time zone - the active workplace's - regardless of the location where it was clocked (a record's day, the current-month boundary, and the midnight split all use that one zone).",
+   "4. This matches the Timesheet Activities report's single-time-zone grouping."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S1-R7; S1 context notes",
+  "viu_status": "VIU-Pending",
+  "notes": "KNOWN-DELTA WATCH: the single report-level timezone model was set in the 2026-07-16 round (Milan's option 1) - the build may lag. HEAVY SEEDING: cross-midnight and boundary-straddling clock records; two locations in different time zones.",
+  "api_related": false
+ },
+ {
+  "id": "TU-NAV-07",
+  "area": "TU — Access & Display",
+  "title": "A user without the timesheet-reports permission does not see the report in the navigation",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role WITHOUT the timesheet-reports permission.",
+  "preconditions": [
+   "1. You are signed in as a user whose role lacks the permission that controls the Timesheet Activities report."
+  ],
+  "steps": [
+   "1. Open the reports navigation.",
+   "2. Look for Technician Utilization under Performance."
+  ],
+  "expected": [
+   "1. The Technician Utilization report does NOT appear in the navigation."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S1-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "Role seeding per Standing Rule 5: assign the Tech user a role without the permission, observe, restore afterwards.",
+  "api_related": false
+ },
+ {
+  "id": "TU-NAV-08",
+  "area": "TU — Access & Display",
+  "title": "Standard no-data message when no time in scope or all technicians cleared",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. A date range exists in which no technician clocked any time at the selected location(s), or a selectable location has no clocked time for the range.",
+   "2. For the cleared-filter check: the report can also be loaded with rows showing."
+  ],
+  "steps": [
+   "1. Select that empty date range (or the empty location) and let the report load.",
+   "2. Read the message in the data area and look for the Summary row.",
+   "3. Separately, with rows loaded, use \"Clear all\" in the Filter by Technician filter and re-read the data area and the Summary row."
+  ],
+  "expected": [
+   "1. Instead of rows, the data area shows exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).",
+   "2. The Summary row is hidden.",
+   "3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S1-N2; S9-N2; S5-N1; S3-N1; §7",
+  "viu_status": "VIU-Pending",
+  "notes": "The cleared-technician-filter trigger for the same message is TU-TECH-05. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-TU-EMPTY): absorbed TU-TECH-05. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "api_related": false
+ },
+ {
+  "id": "TU-HRS-01",
+  "area": "TU — Hours & Utilization",
+  "title": "Column headers appear in the fixed order ending with Est. Lost Labor",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with rows loaded."
+  ],
+  "steps": [
+   "1. Read the column headers left to right."
+  ],
+  "expected": [
+   "1. The headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-R1",
+  "viu_status": "Retired 2026-07-28 (merged into TU-HRS-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "Header labels pinned verbatim in S2-R1.",
+  "api_related": false
+ },
+ {
+  "id": "TU-HRS-02",
+  "area": "TU — Hours & Utilization",
+  "title": "Headers in fixed order; Total, WO and Internal Hours show clocked hours (2 dp)",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. A technician with known clocked time in the range: some clocked to work orders and some to an internal, non-billable activity (e.g. shop cleanup or a staff meeting).",
+   "2. Part of the internal time was clocked at a location with NO default labor rate configured (for the completeness check)."
+  ],
+  "steps": [
+   "1. Read the column headers left to right.",
+   "2. Read the technician's Total Hours, WO Hours, and Internal Hours.",
+   "3. Compare against the known clock records.",
+   "4. Check the number format on a value over 100 hours."
+  ],
+  "expected": [
+   "1. The headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor.",
+   "2. Total Hours = all time the technician was clocked in for the range.",
+   "3. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.",
+   "4. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.",
+   "5. Hours show two decimal places with NO thousands separator (e.g. \"107.70\"), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 → 0.01)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3",
+  "viu_status": "VIU-Pending",
+  "notes": "Seeding: controlled clock records (work-order + internal) so the sums are checkable. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-TU-COLS): absorbed TU-HRS-01. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "api_related": false
+ },
+ {
+  "id": "TU-HRS-03",
+  "area": "TU — Hours & Utilization",
+  "title": "Utilization % is WO hours over total hours computed from unrounded values, shown to one decimal with round-half-up",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. A technician whose unrounded WO and total hours produce a checkable percentage - ideally one landing on a rounding tie (e.g. computing to 66.65%)."
+  ],
+  "steps": [
+   "1. Compute the expected value by hand: work-order hours ÷ total clocked hours × 100, from the UNROUNDED hours.",
+   "2. Read the technician's Utilization % and compare."
+  ],
+  "expected": [
+   "1. Utilization % = work-order hours as a percentage of total clocked hours, computed from the unrounded hours (not from the already-rounded displays).",
+   "2. It shows one decimal place followed by a percent sign, rounded round-half-up (66.65% → 66.7%)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-R6; S2-R7; §3",
+  "viu_status": "VIU-Pending",
+  "notes": "Seeding: clock durations that produce an exact .x5 tie to prove the rounding direction.",
+  "api_related": false
+ },
+ {
+  "id": "TU-HRS-04",
+  "area": "TU — Hours & Utilization",
+  "title": "A technician with only internal hours shows 0.0% utilization, and utilization never exceeds 100%",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. A technician with internal hours but ZERO work-order hours in the range.",
+   "2. Other technicians with mixed hours for the upper-bound check."
+  ],
+  "steps": [
+   "1. Read the internal-only technician's Utilization %.",
+   "2. Scan every row's Utilization %."
+  ],
+  "expected": [
+   "1. The internal-only technician shows \"0.0%\".",
+   "2. No row shows more than 100% - work-order hours are always part of total clocked hours.",
+   "3. The \"—\" (undefined, total = 0) state is unreachable on a rendered technician or day row, because only technicians with clocked time get rows."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-E1; S2-R7; S2 context note",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "TU-ELL-01",
+  "area": "TU — Est. Lost Labor",
+  "title": "Est. Lost Labor values internal hours at each location's default labor rate, summed at full precision and rounded once",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to two rated locations for the multi-location check.",
+  "preconditions": [
+   "1. Location A has default labor rate $R1 and location B has a different default labor rate $R2.",
+   "2. A technician clocked known internal hours at A and known internal hours at B in the range.",
+   "3. Both locations are selected in the location filter."
+  ],
+  "steps": [
+   "1. Compute by hand: (R1 × internal hours at A) + (R2 × internal hours at B), keeping full precision, rounding only the final total (round-half-up).",
+   "2. Read the technician's Est. Lost Labor and compare.",
+   "3. Repeat with only one location selected."
+  ],
+  "expected": [
+   "1. Est. Lost Labor = the sum, per contributing location, of that location's default labor rate × the technician's internal hours clocked there - summed at full precision, with the technician's total rounded ONCE (round-half-up).",
+   "2. In a single-location view it is simply that one location's rate × the technician's internal hours.",
+   "3. The value shows as dollars with two decimals and commas between thousands (e.g. \"$1,234.50\")."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-R8; S2-R9; §3",
+  "viu_status": "VIU-Pending",
+  "notes": "KNOWN BUILD-DELTA (owner decision 2026-07-11): the current rollup applies a single (first-encountered) location rate to the technician's TOTAL internal hours - multi-location values will deviate until dev ships the per-location accumulation; single-location views are already exact. HEAVY SEEDING: two rated locations with distinct rates + internal clock time at each.",
+  "api_related": false
+ },
+ {
+  "id": "TU-ELL-02",
+  "area": "TU — Est. Lost Labor",
+  "title": "Est. Lost Labor is pinned far right and bold, and only its header carries the info icon with the exact tooltip text",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report with rows loaded."
+  ],
+  "steps": [
+   "1. Look at the position and weight of the Est. Lost Labor column (header and cells).",
+   "2. Hover the information icon on the Est. Lost Labor header and read the text; also reach it by keyboard focus and by tap on a touch device.",
+   "3. Check every other column header for an information icon."
+  ],
+  "expected": [
+   "1. The Est. Lost Labor column is pinned to the far right; its cells are bold and its header is bold, matching.",
+   "2. The information icon shows exactly: \"Internal hours valued at each location's default labor rate\" - on hover, on keyboard focus, and on tap; it is dismissible.",
+   "3. NO column header other than Est. Lost Labor shows the information icon."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "KNOWN BUILD-DELTA: the shipped tooltip currently reads \"Default labor rate multiplied by internal hours\" (single-rate wording) - the spec requires the S8-R7 per-location wording; expect a deviation until dev updates it.",
+  "api_related": false
+ },
+ {
+  "id": "TU-ELL-03",
+  "area": "TU — Est. Lost Labor",
+  "title": "Zero internal hours - or a configured $0.00 rate - shows $0.00, never an em-dash",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. Technician A has zero internal hours in the range (all time on work orders).",
+   "2. Technician B has internal hours at a location whose default labor rate is configured as exactly $0.00."
+  ],
+  "steps": [
+   "1. Read technician A's Est. Lost Labor.",
+   "2. Read technician B's Est. Lost Labor."
+  ],
+  "expected": [
+   "1. Technician A shows \"$0.00\" - there is nothing to value, regardless of whether the location has a rate configured.",
+   "2. Technician B also shows \"$0.00\" - a configured rate of exactly $0.00 is a KNOWN rate that values the hours at $0.00, not \"—\".",
+   "3. \"$0.00\" means 'the rate is known and there is nothing (or $0) to value' - a different state from \"—\" ('the rate is unknown')."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-E2; §5 Assumptions; S2 context note",
+  "viu_status": "VIU-Pending",
+  "notes": "Seeding: set a location's default labor rate to exactly $0.00 (restore the original rate afterwards - shared env).",
+  "api_related": false
+ },
+ {
+  "id": "TU-ELL-04",
+  "area": "TU — Est. Lost Labor",
+  "title": "Internal hours with no default labor rate at any contributing location show an em-dash with the correct assistive-technology label",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+  "preconditions": [
+   "1. A technician's in-range internal hours were all clocked at location(s) with NO default labor rate configured (rate absent, not $0.00)."
+  ],
+  "steps": [
+   "1. Read that technician's Est. Lost Labor.",
+   "2. Inspect the cell with a screen reader or the accessibility tree."
+  ],
+  "expected": [
+   "1. Est. Lost Labor shows \"—\" (an em-dash), NOT \"$0.00\" - the rate is unknown, so the value cannot be computed.",
+   "2. The \"—\" cell carries the assistive-technology label \"No default labor rate configured\" (distinguishing it from \"$0.00\", which reads as its dollar value).",
+   "3. The technician's Internal Hours column still shows all the internal hours (they are counted even though they cannot be valued)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-E3; S8-R11; S2-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "Seeding: remove/blank a test location's default labor rate (restore afterwards - shared env).",
+  "api_related": false
+ },
+ {
+  "id": "TU-ELL-05",
+  "area": "TU — Est. Lost Labor",
+  "title": "Internal hours split across rated and unrated locations show a partial dollar value with no indicator - expected, not a defect",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to a rated and an unrated location.",
+  "preconditions": [
+   "1. A technician clocked internal hours at BOTH a location with a configured default labor rate and a location with NO rate, in the range.",
+   "2. Both locations are selected."
+  ],
+  "steps": [
+   "1. Read the technician's Internal Hours and Est. Lost Labor.",
+   "2. Compare the dollar value against rate × (internal hours at the RATED location only)."
+  ],
+  "expected": [
+   "1. Est. Lost Labor is the sum of the valued (rated-location) portions only - the unrated-location hours are excluded from the dollar amount.",
+   "2. The amount shows as a normal \"$X.XX\" with NO partial-value indicator in this version - so the row's Est. Lost Labor values fewer hours than its Internal Hours column shows.",
+   "3. This is a documented known limitation (a partial-value indicator is a possible follow-up) - expected behavior, not a defect."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "specs/technician-utilization.md S2-E4",
+  "viu_status": "VIU-Pending",
+  "notes": "Expected-behavior case. HEAVY SEEDING: rated + unrated locations with internal clock time at each for one technician.",
+  "api_related": false
+ }
+]

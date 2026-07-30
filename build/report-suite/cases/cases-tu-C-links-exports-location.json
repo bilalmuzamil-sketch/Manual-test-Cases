@@ -158,7 +158,7 @@
  {
   "id": "TU-EXP-01",
   "area": "TU — Exports",
-  "title": "The three-dot menu sits leftmost in the toolbar's action cluster and holds the three verbatim download options",
+  "title": "Three-dot menu is leftmost, then Column Selection; three download options",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -170,14 +170,14 @@
    "2. Open it and read the options."
   ],
   "expected": [
-   "1. The three-dot download menu sits LEFTMOST in the toolbar's action cluster.",
+   "1. The three-dot download menu sits LEFTMOST in the toolbar's action cluster, with the Column Selection control immediately after it.",
    "2. The menu holds: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", and \"Download (CSV)\".",
    "3. The labels match exactly - only the expanded option carries the word \"View\" (the shipped strings, documented as-is)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S7-R1; S7-R2; S7-R3; S7-R4; S8-R2; S7-R12 note",
+  "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R1; S7-R2; S7-R3; S7-R4; S8-R2 — S8-R2 now adds \"followed by the Column Selection control\")",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "CHANGED by the TU spec v5 2026-07-29 S8-R2 (\"…sits leftmost in the toolbar's action cluster, followed by the Column Selection control\").",
   "api_related": false
  },
  {
@@ -245,18 +245,20 @@
    "1. Deselect one technician, select a specific location set, and set a distinctive date range.",
    "2. Download the Summary PDF, the Expanded PDF, and the CSV.",
    "3. Check each file's technicians, the data scope, and the covered range.",
-   "4. Re-select all technicians and download once more."
+   "4. Re-select all technicians and download once more.",
+   "5. Hide one column in the Column Selection control, download again and compare the file's columns."
   ],
   "expected": [
    "1. Every download includes ONLY the technicians currently selected in the technician filter - the deselected technician is absent from all three files.",
    "2. Every download covers the location(s) currently selected in the location filter and the date range currently active on the report.",
    "3. With every technician selected, the download covers all technicians for the range at the selected location(s).",
-   "4. Every download (each PDF and the CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build)."
+   "4. Every download (each PDF and the CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
+   "5. Every download also mirrors the columns currently shown on screen — a column hidden in the Column Selection control is absent from the files, and a re-shown column comes back."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8654 (specs/technician-utilization.md S7-R8; S7-R9; S7-E1; S9-R8 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-E1; S9-R8 — S7-R10 now says the downloads include the columns currently shown, mirroring the column selector)",
   "viu_status": "VIU-Pending",
-  "notes": "LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 102 chars; meaning unchanged; awaiting push authorization.",
+  "notes": "LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 102 chars; meaning unchanged; awaiting push authorization. CHANGED by the TU spec v5 2026-07-29 S7-R10 (\"The downloaded files include the same columns that are currently shown on screen — mirroring the column-selector visibility (Story 10)…\").",
   "api_related": false
  },
  {
@@ -288,7 +290,7 @@
  {
   "id": "TU-EXP-06",
   "area": "TU — Exports",
-  "title": "The shop logo shows at the top of both PDF views when set, no logo shows when unset, and the CSV never includes it",
+  "title": "PDF logo: the uploaded logo, else the bundled ShopView logo; CSV never",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); ability to set/unset the shop logo in settings.",
@@ -301,14 +303,14 @@
    "3. Remove the shop logo and download both PDFs again."
   ],
   "expected": [
-   "1. With a logo set, BOTH PDF views show that logo at the top of the report.",
+   "1. With an uploaded logo, BOTH PDF views show that logo at the top of the report.",
    "2. The CSV never includes the logo.",
-   "3. With no logo set, the PDF views show no logo (no placeholder, no error)."
+   "3. With NO uploaded logo, the PDF views show the bundled ShopView logo instead — not a blank space and not an error."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S7-R11; S7-N2; S7-N3",
+  "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R11; S7-N2; S7-N3 — logo now resolved by the shared resolver: the organization's uploaded logo, else the bundled ShopView default)",
   "viu_status": "VIU-Pending",
-  "notes": "Restore the shop logo state after the test (shared environment).",
+  "notes": "Restore the shop logo state after the test (shared environment). INVERTED by the TU spec v5 2026-07-29. Was S7-N2 \"If the shop has no logo set, the PDF views show no logo\"; now S7-N2 \"If the organization has no uploaded logo, the PDF views show the bundled ShopView default logo (not a blank space)\" and S7-R11 names the shared resolver.",
   "api_related": false
  },
  {
@@ -489,9 +491,9 @@
    "2. For the user with access to two or more locations the Location filter IS shown."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8656 (specs/technician-utilization.md S9-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+  "spec_ref": "SV-8656 (TU spec S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S9-N1 \"still sees the filter\" note is stale, spec edit pending)",
   "viu_status": "VIU-Pending",
-  "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S9-N1): 'A user with access to only one location still sees the filter with a single selectable location.' Seeding: a fresh ZZAUTOTEST staff member scoped to one location if none exists.",
+  "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S9-N1): 'A user with access to only one location still sees the filter with a single selectable location.' Seeding: a fresh ZZAUTOTEST staff member scoped to one location if none exists. Q1 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A \"classic spec drift\"): the Location filter is HIDDEN for a user with access to only one location. This CONFIRMS the video-based flip and closes the \"pending his answer\" caveat; the tester-facing wording did not change. The four spec notes that still say the opposite need Chris's edit.",
   "api_related": false
  },
  {
@@ -520,6 +522,44 @@
   "spec_ref": "SV-8654 (specs/technician-utilization.md Story 7 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10,000-row export cap, locked by Chris 2026-07-21)",
   "viu_status": "VIU-Pending",
   "notes": "SPEC-SILENT: the Technician Utilization spec page carries no export-cap text; the cap comes from the engineering plan's suite-wide 10,000-row export guard (locked by Chris 2026-07-21; the plan's FR-F4 explicitly lists TU Story 7). Flagged to Chris to ratify into the spec (Questions-for-Chris-dev Q3). VIU-confirm the behavior, the exact message text, and the actual cap value.",
+  "api_related": false
+ },
+ {
+  "id": "TU-LOC-06",
+  "area": "TU — Location Filter",
+  "title": "The Location column shows only with more than one location; Summary row blank",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities).",
+  "preconditions": [
+   "1. You are on the Technician Utilization report as a user with access to two or more locations.",
+   "2. One technician clocked time at a single location in the range and another clocked time at two different locations.",
+   "3. One of those days has hours at two locations (for the per-day check)."
+  ],
+  "steps": [
+   "1. Select two or more locations and read the column headers from the left.",
+   "2. Read the Location cell on the single-location technician's row.",
+   "3. Read the Location cell on the technician whose hours span two locations.",
+   "4. Expand that technician and read the Location cell on a single-location day and on the mixed day.",
+   "5. Read the Location cell on the Summary row at the bottom.",
+   "6. Open the Column Selection control and look for Location in the list.",
+   "7. Narrow to a single location and read the headers again.",
+   "8. Change the selection between one location, several, and \"All Locations\", watching the filter control's width."
+  ],
+  "expected": [
+   "1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Technician.",
+   "2. A technician whose hours were all clocked at one location shows that location's name.",
+   "3. A technician whose hours span more than one selected location shows \"Multiple\".",
+   "4. An expanded day row shows the exact location when that day's hours were all at one location, and \"Multiple\" when the day spans more than one.",
+   "5. The Summary row leaves the Location cell blank.",
+   "6. Location is never listed in the Column Selection control — it follows the location scope on its own.",
+   "7. With a single location in scope the Location column is hidden.",
+   "8. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8656 (TU spec v5 2026-07-29 S9-R9; S9-R10; S8-R15; S10-R4 — per-row Location column, leftmost before Technician, \"Multiple\" on a spanning row, Summary row blank, never in the selector)",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (TU v5 change-log row: \"added a per-row Location column (shown when more than one location is in scope)\"). The blank Summary cell is explicit in S9-R10 (\"The Summary row leaves the Location column blank\"). The \"Locations:\" export line is already covered by TU-EXP-04. Not live-verified (Rule 12). TRACEABILITY NOTE: the TU spec's NEW Story 10 (Column Selection and Persistence, added 2026-07-29) has NO Jira story ticket in epic SV-8582 — the TU story tickets stop at SV-8656 (Story 9, Location Filter). This case is cited to the nearest owning story; ASK for the new Story-10 ticket key and re-cite when it exists.",
   "api_related": false
  }
 ]

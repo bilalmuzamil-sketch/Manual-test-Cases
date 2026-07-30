@@ -1,0 +1,288 @@
+[
+ {
+  "id": "IV-NAV-01",
+  "area": "IV — Access & Display",
+  "title": "Inventory Value appears in the reports navigation under the Parts group",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (the report reuses it and adds no new permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Your role has the existing inventory-reports permission."
+  ],
+  "steps": [
+   "1. Open the reports navigation.",
+   "2. Look inside the Parts group of reports.",
+   "3. Click the \"Inventory Value\" entry."
+  ],
+  "expected": [
+   "1. The reports navigation lists a report labeled \"Inventory Value\" under the Parts group.",
+   "2. Clicking it opens the Inventory Value report."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 1 S1-R1",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU-confirm the exact reports-navigation structure and the Parts group's on-screen label live. COMPANION-VIDEO 2026-07-30 (C2a/C3, 00:35-01:18): IV under the new Parts section confirmed ('Parts Velocity and Inventory Value will live under here'); order inside the section PO-flexible — do not fail on PV-vs-IV order.",
+  "api_related": false
+ },
+ {
+  "id": "IV-NAV-02",
+  "area": "IV — Access & Display",
+  "title": "Opening the report shows one row per in-stock part at the selected location(s), valued as of the resolved date",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Several ZZAUTOTEST parts with positive on-hand quantity exist at your active location."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report.",
+   "2. Compare the rows shown to the in-stock parts at the selected location(s).",
+   "3. Note the date range in the toolbar and which date the values represent."
+  ],
+  "expected": [
+   "1. The report shows one row for each in-stock part at the selected location(s).",
+   "2. The values are valued as of the resolved date (the current stock for a range reaching today, or the closest recorded nightly snapshot for an earlier date — see the IV — As-of Date & Snapshots cases)."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 1 S1-R2; S1-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-NAV-03",
+  "area": "IV — Access & Display",
+  "title": "On a first visit the report defaults to the current calendar month and the user's currently active location",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh browser profile or cleared site data)."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report.",
+   "2. Read the date-range control's value.",
+   "3. Read the Location filter's selection."
+  ],
+  "expected": [
+   "1. The date range defaults to the current calendar month.",
+   "2. The location defaults to the user's currently active location."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 1 S1-R3; Story 7 S7-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-NAV-04",
+  "area": "IV — Access & Display",
+  "title": "Changing the date, location, Category, Vendor, part search, or sort reloads the rows from the server with the standard loading indicator",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Inventory Value report is open with rows loaded."
+  ],
+  "steps": [
+   "1. Change the date range and watch the data area.",
+   "2. Change the location selection, then the Category filter, then the Vendor filter.",
+   "3. Type in the part search, then click a column header to change the sort — watching the data area each time."
+  ],
+  "expected": [
+   "1. Each change — date range, location, Category, Vendor, part search, sort — reloads the report's rows from the server.",
+   "2. While loading, the data area shows the standard reports loading indicator.",
+   "3. Existing rows are replaced only when the new data returns."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 1 S1-R4; S1-R5; S1-R7",
+  "viu_status": "Retired 2026-07-28 (merged into IV-FLT-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "Every filter on this report is server-side (Story 6 context note) — only the column selection is client-side. VIU-confirm the loading indicator's appearance.",
+  "api_related": false
+ },
+ {
+  "id": "IV-NAV-05",
+  "area": "IV — Access & Display",
+  "title": "The report is server-paginated: one page of rows at a time, and any filter/search/sort change returns to the first page",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed)."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report and find the pagination control.",
+   "2. Move to page 2 (and further) and watch the rows.",
+   "3. From a later page, change a server-side filter (for example select a Category), then check which page is shown.",
+   "4. Repeat from a later page with a part search and with a sort change."
+  ],
+  "expected": [
+   "1. The server returns one page of rows at a time; the user moves through pages with the reports suite's standard pagination control.",
+   "2. Changing any server-side filter (Date, Location, Category, Vendor), the part search, or the sort returns the FIRST page of the new result set."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 1 S1-R8; §2 Scale and data model",
+  "viu_status": "VIU-Pending",
+  "notes": "The report is built for ~50–60k parts per org across locations, fully server-side (§2). VIU-confirm the page size and the pagination control's exact appearance (suite standard).",
+  "api_related": false
+ },
+ {
+  "id": "IV-NAV-06",
+  "area": "IV — Access & Display",
+  "title": "No qualifying parts, day or location: the no-data message shows and no totals",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Three causes can be produced: (a) a location you can access holds no in-stock parts, (b) a past range ends entirely before nightly recording began (or its covered dates were pruned by retention), (c) the filters can be set so nothing qualifies."
+  ],
+  "steps": [
+   "1. Scope the report to the empty location and read the data area.",
+   "2. Select a Custom range ending before nightly recording began and read the data area and the bottom of the report.",
+   "3. Set the filters so nothing qualifies and re-read."
+  ],
+  "expected": [
+   "1. In every case the report shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" instead of rows.",
+   "2. No totals row is shown in any of the cases."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 1 S1-N2; Story 5 S5-N1; Story 7 S7-N2; Story 12; §7 User Feedback Summary",
+  "viu_status": "VIU-Pending",
+  "notes": "No-data message text is verbatim from §7. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-EMPTY): absorbed IV-DATE-07, IV-LOC-05. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "api_related": false
+ },
+ {
+  "id": "IV-SCOPE-01",
+  "area": "IV — Row Scope",
+  "title": "A part appears only if not a core charge and on-hand quantity is above zero",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. ZZAUTOTEST parts exist at your active location: a normal part with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report scoped to the location.",
+   "2. Look for the normal in-stock part.",
+   "3. Search for the core-charge part, the zero-quantity part, and the negative-quantity part by part number; check the totals row."
+  ],
+  "expected": [
+   "1. The normal, positive-quantity, non-core part appears as one row.",
+   "2. The core-charge part is never listed — even with a positive quantity — and its value is not counted in the totals row.",
+   "3. The zero-quantity and negative-quantity parts are not listed — only quantities greater than zero are valued.",
+   "4. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions",
+  "viu_status": "VIU-Pending",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-SCOPE): absorbed IV-SCOPE-03, IV-SCOPE-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "api_related": false
+ },
+ {
+  "id": "IV-SCOPE-02",
+  "area": "IV — Row Scope",
+  "title": "A part stocked at two selected locations appears as two rows (one per location), not merged — expected, do not file",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with access to at least two locations and the inventory-reports permission.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.",
+   "2. The same ZZAUTOTEST part is in stock (positive quantity) at two of those locations."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report and select both locations in the Location filter.",
+   "2. Search for the part and count its rows."
+  ],
+  "expected": [
+   "1. The part appears twice — one row per location, each with that location's own quantity and values.",
+   "2. The rows are NOT merged into one combined row; this is the documented v1 behavior."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 2 S2-R3; §2 Known Limitations (v1)",
+  "viu_status": "VIU-Pending",
+  "notes": "DOCUMENTED LIMITATION — DO NOT FILE. One row per part per location is a deliberate v1 boundary.",
+  "api_related": false
+ },
+ {
+  "id": "IV-SCOPE-03",
+  "area": "IV — Row Scope",
+  "title": "A core-charge part is never shown, regardless of its quantity",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A core-charge part with a positive on-hand quantity exists at the selected location."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report scoped to that location.",
+   "2. Search for the core-charge part by its part number.",
+   "3. Check the totals row for its value."
+  ],
+  "expected": [
+   "1. The core-charge part is not listed, even though its quantity is positive.",
+   "2. Its value is not counted in the totals row."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 2 S2-N1",
+  "viu_status": "Retired 2026-07-28 (merged into IV-SCOPE-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-SCOPE-04",
+  "area": "IV — Row Scope",
+  "title": "A part with zero or negative on-hand quantity is never shown",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A part with exactly zero on-hand quantity exists at the selected location, and (if producible) one with a negative on-hand quantity."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report scoped to that location.",
+   "2. Search for the zero-quantity part by its part number.",
+   "3. Search for the negative-quantity part if one exists."
+  ],
+  "expected": [
+   "1. The zero-quantity part is not listed.",
+   "2. The negative-quantity part is not listed either — only quantities greater than zero are valued."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 2 S2-N2",
+  "viu_status": "Retired 2026-07-28 (merged into IV-SCOPE-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-SCOPE-05",
+  "area": "IV — Row Scope",
+  "title": "There is no dead-stock exclusion — long-sitting stock still contributes to the on-hand value",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A part with positive, non-core stock exists that has had no movement for a long time (or the oldest-stocked part at the location is known)."
+  ],
+  "steps": [
+   "1. Open the Inventory Value report scoped to the location.",
+   "2. Search for the long-sitting part."
+  ],
+  "expected": [
+   "1. The long-sitting part appears and its value is counted — every part currently holding positive, non-core stock contributes to the on-hand value, however long it has sat."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 2 context note (no dead-stock exclusion)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ }
+]

@@ -63,11 +63,14 @@ Standard no-data message when no time in scope or all technicians cleared,TU —
 3. Repeat with only one location selected.","1. Est. Lost Labor = the sum, per contributing location, of that location's default labor rate × the technician's internal hours clocked there - summed at full precision, with the technician's total rounded ONCE (round-half-up).
 2. In a single-location view it is simply that one location's rate × the technician's internal hours.
 3. The value shows as dollars with two decimals and commas between thousands (e.g. ""$1,234.50"").",specs/technician-utilization.md S2-R8; S2-R9; §3,,
-"Est. Lost Labor is pinned far right and bold, and only its header carries the info icon with the exact tooltip text",TU — Est. Lost Labor,Functional,High,1. You are on the Technician Utilization report with rows loaded.,"1. Look at the position and weight of the Est. Lost Labor column (header and cells).
+"Est. Lost Labor, when shown, is pinned right and bold with the info icon",TU — Est. Lost Labor,Functional,High,"1. You are on the Technician Utilization report with rows loaded.
+2. Est. Lost Labor is turned ON in the Column Selection control (it is on by default).","1. Look at the position and weight of the Est. Lost Labor column (header and cells).
 2. Hover the information icon on the Est. Lost Labor header and read the text; also reach it by keyboard focus and by tap on a touch device.
-3. Check every other column header for an information icon.","1. The Est. Lost Labor column is pinned to the far right; its cells are bold and its header is bold, matching.
-2. The information icon shows exactly: ""Internal hours valued at each location's default labor rate"" - on hover, on keyboard focus, and on tap; it is dismissible.
-3. NO column header other than Est. Lost Labor shows the information icon.",specs/technician-utilization.md S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1,,
+3. Check every other column header for an information icon.
+4. Turn Est. Lost Labor off in the Column Selection control and look at the table again.","1. While Est. Lost Labor is shown, the column is pinned to the far right; its cells are bold and its header is bold, matching.
+2. The information icon shows exactly: ""Internal hours valued at each location's default labor rate"" — on hover, on keyboard focus, and on tap; it is dismissible.
+3. NO column header other than Est. Lost Labor shows the information icon.
+4. Est. Lost Labor can be turned OFF in the Column Selection control; when it is off the column, its bold styling and its information icon are all absent, and the report still works normally.","SV-8652 (TU spec v5 2026-07-29 S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1 — each re-worded ""When shown"" now that Est. Lost Labor is a hideable column, new Story 10 S10-R3)",,
 "Zero internal hours - or a configured $0.00 rate - shows $0.00, never an em-dash",TU — Est. Lost Labor,Functional,High,"1. Technician A has zero internal hours in the range (all time on work orders).
 2. Technician B has internal hours at a location whose default labor rate is configured as exactly $0.00.","1. Read technician A's Est. Lost Labor.
 2. Read technician B's Est. Lost Labor.","1. Technician A shows ""$0.00"" - there is nothing to value, regardless of whether the location has a rate configured.
@@ -213,10 +216,10 @@ Reconciliation exception (a): an open clock is snapshotted at each report's own 
 A day row's Total Hours links to Timesheet Activities for that technician on that single day,TU — Deep Links,Functional,Medium,1. A technician row is expanded and shows day rows.,"1. Click the Total Hours value on one day row.
 2. Read the technician filter and the date range on the opened Timesheet Activities report.","1. Timesheet Activities opens filtered to that technician.
 2. The date range covers ONLY that single day.",specs/technician-utilization.md S6-R5,,
-The three-dot menu sits leftmost in the toolbar's action cluster and holds the three verbatim download options,TU — Exports,Functional,High,1. You are on the Technician Utilization report with rows loaded.,"1. Find the three-dot button in the toolbar and note its position in the action cluster.
-2. Open it and read the options.","1. The three-dot download menu sits LEFTMOST in the toolbar's action cluster.
+"Three-dot menu is leftmost, then Column Selection; three download options",TU — Exports,Functional,High,1. You are on the Technician Utilization report with rows loaded.,"1. Find the three-dot button in the toolbar and note its position in the action cluster.
+2. Open it and read the options.","1. The three-dot download menu sits LEFTMOST in the toolbar's action cluster, with the Column Selection control immediately after it.
 2. The menu holds: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", and ""Download (CSV)"".
-3. The labels match exactly - only the expanded option carries the word ""View"" (the shipped strings, documented as-is).",specs/technician-utilization.md S7-R1; S7-R2; S7-R3; S7-R4; S8-R2; S7-R12 note,,
+3. The labels match exactly - only the expanded option carries the word ""View"" (the shipped strings, documented as-is).","SV-8654 (TU spec v5 2026-07-29 S7-R1; S7-R2; S7-R3; S7-R4; S8-R2 — S8-R2 now adds ""followed by the Column Selection control"")",,
 "The Summary PDF holds the technician rows plus the Summary, and the Expanded PDF adds every per-day breakdown",TU — Exports,Functional,High,1. You are on the Technician Utilization report with several technicians who have multi-day clock records.,"1. Choose ""Download Summary (PDF)"" and open the file; check its filename.
 2. Choose ""Download Expanded View (PDF)"" and open the file; check its filename.","1. The Summary PDF shows the technician rows and the Summary row (no day rows); it downloads as ""Technician-Utilization-Summary.pdf"".
 2. The Expanded PDF shows the technician rows, EACH technician's per-day breakdown, and the Summary row; it downloads as ""Technician-Utilization-Expanded.pdf"".
@@ -229,20 +232,22 @@ The three-dot menu sits leftmost in the toolbar's action cluster and holds the t
 "Downloads cover only selected technicians, locations, and date range",TU — Exports,Functional,High,1. Several technicians are listed and the user has access to more than one location.,"1. Deselect one technician, select a specific location set, and set a distinctive date range.
 2. Download the Summary PDF, the Expanded PDF, and the CSV.
 3. Check each file's technicians, the data scope, and the covered range.
-4. Re-select all technicians and download once more.","1. Every download includes ONLY the technicians currently selected in the technician filter - the deselected technician is absent from all three files.
+4. Re-select all technicians and download once more.
+5. Hide one column in the Column Selection control, download again and compare the file's columns.","1. Every download includes ONLY the technicians currently selected in the technician filter - the deselected technician is absent from all three files.
 2. Every download covers the location(s) currently selected in the location filter and the date range currently active on the report.
 3. With every technician selected, the download covers all technicians for the range at the selected location(s).
-4. Every download (each PDF and the CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).","SV-8654 (specs/technician-utilization.md S7-R8; S7-R9; S7-E1; S9-R8 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",,
+4. Every download (each PDF and the CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
+5. Every download also mirrors the columns currently shown on screen — a column hidden in the Column Selection control is absent from the files, and a re-shown column comes back.","SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-E1; S9-R8 — S7-R10 now says the downloads include the columns currently shown, mirroring the column selector)",,
 "Downloads keep the on-screen column order and number formats but always order rows Technician A to Z, ignoring the on-screen sort",TU — Exports,Functional,Medium,"1. Rows exist including a ""—"" Est. Lost Labor value.
 2. The on-screen rows are sorted by something OTHER than Technician A to Z (e.g. Est. Lost Labor descending).","1. With the non-default sort applied, download the CSV and a PDF.
 2. Read each file's column order, number formats, and the ""—"" cell.
 3. Read each file's row order.","1. The downloaded files use the same column order and number formats as the on-screen report, including the ""—"" rendering for an unknown Est. Lost Labor.
 2. Rows in EVERY download are ordered by Technician name A to Z (the default order) - the on-screen column sort is client-side only and is NOT carried into the export.",specs/technician-utilization.md S7-R10; S7-R10a,,
-"The shop logo shows at the top of both PDF views when set, no logo shows when unset, and the CSV never includes it",TU — Exports,Functional,Low,1. You can toggle the shop's logo in the shop settings (restore the original state afterwards - shared env).,"1. With a shop logo set, download the Summary PDF and the Expanded PDF and look at the top of each.
+"PDF logo: the uploaded logo, else the bundled ShopView logo; CSV never",TU — Exports,Functional,Low,1. You can toggle the shop's logo in the shop settings (restore the original state afterwards - shared env).,"1. With a shop logo set, download the Summary PDF and the Expanded PDF and look at the top of each.
 2. Download the CSV and inspect it.
-3. Remove the shop logo and download both PDFs again.","1. With a logo set, BOTH PDF views show that logo at the top of the report.
+3. Remove the shop logo and download both PDFs again.","1. With an uploaded logo, BOTH PDF views show that logo at the top of the report.
 2. The CSV never includes the logo.
-3. With no logo set, the PDF views show no logo (no placeholder, no error).",specs/technician-utilization.md S7-R11; S7-N2; S7-N3,,
+3. With NO uploaded logo, the PDF views show the bundled ShopView logo instead — not a blank space and not an error.","SV-8654 (TU spec v5 2026-07-29 S7-R11; S7-N2; S7-N3 — logo now resolved by the shared resolver: the organization's uploaded logo, else the bundled ShopView default)",,
 Choosing a download with no technician selected is a silent no-op - no file and no message,TU — Exports,Negative,Medium,1. You are on the Technician Utilization report with rows loaded.,"1. Use ""Clear all"" in the Filter by Technician filter so no technician is selected.
 2. Choose each download option in turn (Summary PDF, Expanded PDF, CSV).
 3. Watch for any file download and any notification.","1. Nothing happens: NO file downloads and NO message appears (not even an error).
@@ -285,17 +290,42 @@ Deselecting every location falls back to the active location instead of showing 
 The Location filter is hidden for a user with access to only one location,TU — Location Filter,Functional,Low,"1. You are signed in as a user with access to exactly one location.
 2. You are on the Technician Utilization report.","1. Look for the Location filter in the toolbar.
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
-2. For the user with access to two or more locations the Location filter IS shown.","SV-8656 (specs/technician-utilization.md S9-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
-A column selector lets the user choose which columns show,TU — Visual & Accessibility,Functional,Medium,1. You are on the Technician Utilization report with rows loaded.,"1. Find the column selector control in the toolbar (on the other reports it is a separate button next to the download menu).
-2. Open it and read the list of column toggles.
-3. Turn one column off, then back on, watching the table.","1. The report has a column selector control, styled and placed like the other reports in the suite (this control was just added - the exact placement, tooltip, and list of toggleable columns are confirmed from the updated spec and the build).
-2. Turning a toggle off hides that column (header and cells); turning it back on restores the column to its usual place in the order.
-3. The change applies immediately with no reload - that is the suite convention on the other reports; confirm it holds here.","SV-8655 (specs/technician-utilization.md Story 8 Visual Conformance and Accessibility - column selector ADDED per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ['Column selector added for visual/natural conformance']; no spec anchor yet - confirm from the updated spec changelog)",,
-"All-white table with no alternating row shading, and the toolbar controls run in the specified left-to-right order",TU — Visual & Accessibility,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded, in light mode.","1. Look at the column headers and the data rows' backgrounds.
+2. For the user with access to two or more locations the Location filter IS shown.","SV-8656 (TU spec S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S9-N1 ""still sees the filter"" note is stale, spec edit pending)",,
+The Location column shows only with more than one location; Summary row blank,TU — Location Filter,Functional,High,"1. You are on the Technician Utilization report as a user with access to two or more locations.
+2. One technician clocked time at a single location in the range and another clocked time at two different locations.
+3. One of those days has hours at two locations (for the per-day check).","1. Select two or more locations and read the column headers from the left.
+2. Read the Location cell on the single-location technician's row.
+3. Read the Location cell on the technician whose hours span two locations.
+4. Expand that technician and read the Location cell on a single-location day and on the mixed day.
+5. Read the Location cell on the Summary row at the bottom.
+6. Open the Column Selection control and look for Location in the list.
+7. Narrow to a single location and read the headers again.
+8. Change the selection between one location, several, and ""All Locations"", watching the filter control's width.","1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Technician.
+2. A technician whose hours were all clocked at one location shows that location's name.
+3. A technician whose hours span more than one selected location shows ""Multiple"".
+4. An expanded day row shows the exact location when that day's hours were all at one location, and ""Multiple"" when the day spans more than one.
+5. The Summary row leaves the Location cell blank.
+6. Location is never listed in the Column Selection control — it follows the location scope on its own.
+7. With a single location in scope the Location column is hidden.
+8. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.","SV-8656 (TU spec v5 2026-07-29 S9-R9; S9-R10; S8-R15; S10-R4 — per-row Location column, leftmost before Technician, ""Multiple"" on a spanning row, Summary row blank, never in the selector)",,
+"Column Selection: Technician always on, the other five toggleable, remembered",TU — Visual & Accessibility,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded.
+2. This browser has never saved settings for this report (fresh visit), so every column is at its default.","1. Find the column-selection button in the toolbar and hover it to read its tooltip.
+2. Note its position relative to the three-dot download menu.
+3. Open it and read every toggle in the list, and which ones are on.
+4. Turn Est. Lost Labor off, then turn Internal Hours off, watching the table each time.
+5. Turn both back on and check where each column lands.
+6. Reload the page, then close the browser, reopen it and return to the report.","1. The control is an icon button whose tooltip reads ""Column Selection"", sitting immediately after the three-dot download menu in the toolbar.
+2. The list offers five toggles — Total Hours, WO Hours, Internal Hours, Utilization % and Est. Lost Labor — and all five are on by default.
+3. Technician is always shown and cannot be turned off (it is not offered as a toggle).
+4. The Location column is never listed here — it appears on its own whenever more than one location is in scope.
+5. Turning a toggle off hides that column (header and cells) immediately, with no reload; turning it back on returns it to its usual place in the fixed left-to-right order — the remaining columns never reorder.
+6. Est. Lost Labor can now be hidden like any other column (it used to be always on).
+7. Your column choice is remembered in this browser and is still applied when you come back.","SV-8655 (TU spec v5 2026-07-29 NEW Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 — column selector RATIFIED, replacing the placeholder written from the 2026-07-29 group message)",,
+All-white table with no row shading; toolbar controls in the fixed order,TU — Visual & Accessibility,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded, in light mode.","1. Look at the column headers and the data rows' backgrounds.
 2. Read the toolbar controls left to right.
 3. Look for the expand/collapse-all control's position.","1. The report uses an all-white table: white column headers and white data cells, with NO alternating row shading.
-2. The toolbar controls run, left to right: the three-dot download menu, the technician filter, the date-range picker, and the location filter (rightmost).
-3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (Technician column, per S4-R4).",specs/technician-utilization.md S8-R1; S8-R2; S8-R3,,
+2. The toolbar controls run, left to right: the three-dot download menu, the Column Selection control, the date-range picker, the technician filter, and the Location filter (rightmost).
+3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (in the Technician column).","SV-8655 (TU spec v5 2026-07-29 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu, and the date-range picker now precedes the technician filter)",,
 "Dark mode keeps every report element legible, with the info icon at 3:1 contrast and the link affordance intact in both modes",TU — Visual & Accessibility,Functional,Low,"1. You are on the Technician Utilization report with rows loaded, including a ""—"" Est. Lost Labor cell.
 2. Dark mode is available in the application.","1. Switch the application to dark mode.
 2. Check each element: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and a ""—"" glyph.

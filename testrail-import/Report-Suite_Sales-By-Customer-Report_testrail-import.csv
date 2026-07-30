@@ -1,22 +1,24 @@
 Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
 "Sales By Customer listed under Performance, below existing links; titles correct",SBC — Access & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. Your role has the Sales By Customer report View permission.","1. Open the Reports area from the main navigation.
+2. Your role has the ordinary reports access (the standard ""can this person see reports"" setting).","1. Open the Reports area from the main navigation.
 2. Find the Performance group and read its entries from top to bottom.
 3. Click the ""Sales By Customer"" entry.
 4. Read the page title at the top of the report and the browser tab's title.","1. ""Sales By Customer"" is listed in the Performance group of the Reports left-side navigation, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the new reports are added below those items without moving them.
 2. Clicking it opens the Sales By Customer report in the main content area.
 3. The page title reads ""Sales By Customer.""
-4. The browser tab title reads ""Sales By Customer - Report | ShopView"".",SV-8600 (specs/sbc-sales-by-customer.md Story 1 S1-R1; S1-R3; S1-R4 — Performance group + below-the-anchors placement per the PRD companion video 2026-07-30 01:18-02:05; the SBC spec names no nav group),,
-A user with the dedicated Sales By Customer View permission can see and open the report,SBC — Permissions,Functional,Critical,"1. A test user exists whose role has the dedicated Sales By Customer report View permission (create a ZZAUTOTEST custom role if needed).
+4. The browser tab title reads ""Sales By Customer - Report | ShopView"".",SV-8600 (SBC spec Story 1 S1-R1; S1-R3; S1-R4 — Performance group + below-the-anchors placement per the PRD companion video 2026-07-30; access = ordinary reports permission per Chris Ward answer 2026-07-31 Q4=A),,
+Ordinary reports access opens Sales By Customer — no separate permission,SBC — Permissions,Functional,Critical,"1. A test user exists whose role has the ordinary reports access (the standard ""can this person see reports"" setting) and NO report-specific permission (create a ZZAUTOTEST custom role if needed; restore afterwards).
 2. You are signed in as that user.","1. Open the Reports area.
 2. Click ""Sales By Customer"" in the left-side navigation.","1. The ""Sales By Customer"" entry is visible in the Reports navigation.
 2. The report opens and shows its data.
-3. Access is granted by the dedicated Sales By Customer permission itself — the report is not tied to a generic ""all reports"" permission.",specs/sbc-sales-by-customer.md Story 1 S1-R2,,
-A user without the Sales By Customer View permission cannot see or open the report,SBC — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have the Sales By Customer report View permission (use/create a ZZAUTOTEST role).
+3. Ordinary reports access alone is enough — this report does NOT need a permission of its own.
+4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it as the known pending change — do not change the test.","SV-8600 (SBC spec Story 1 S1-R2 — OVERRULED by Chris Ward answer 2026-07-31 Q4=A ""the intention is to not hide these from normal reports access""; S1-R2 + the build still use a dedicated permission, dev change ticket raised)",,
+"Without reports access, Sales By Customer is not listed and cannot open",SBC — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have reports access (use/create a ZZAUTOTEST role; restore afterwards).
 2. You know the report's direct page address (copy it from a permitted session first).
 3. You are signed in as the unpermitted user.","1. Open the Reports area and look through the left-side navigation.
 2. Paste the report's direct page address into the browser and try to open it.","1. ""Sales By Customer"" does not appear in the Reports navigation.
-2. Opening the report by direct link does not show the report (the application blocks it with its standard access-denied handling).",specs/sbc-sales-by-customer.md Story 1 S1-N1,,
+2. Opening the report by direct link does not show the report (the application blocks it with its standard access-denied handling).
+3. The gate is the ordinary reports access — there is no separate Sales By Customer permission to remove.",SV-8600 (SBC spec Story 1 S1-N1 — permission model RULED to the ordinary reports access by Chris Ward answer 2026-07-31 Q4=A; the build still ships a dedicated permission),,
 Opening an invoice you lack permission for shows the standard access-denied state and back returns to the report,SBC — Permissions,Negative,Medium,"1. You are signed in as a user who can view the report but lacks permission to open the underlying invoice destination.
 2. The report shows at least one customer; you have expanded down to an invoice detail row.","1. Click the invoice number link on a detail row.
 2. Look at the destination page.
@@ -53,12 +55,14 @@ Product Type: three options with Parts & Service default; S/P prefix filtering,S
 3. Under ""Parts only,"" every invoice shown has a number starting with P; service invoices are gone and all counts/totals reflect only P invoices.
 4. With ""Parts & Service"" selected, no product-type filter is applied — both S and P invoices are included and counts/totals cover both.
 5. The whole invoice is classified by its number prefix — there is no per-line-item split.",specs/sbc-sales-by-customer.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6,,
-"Location filter is the rightmost filter, lists accessible locations, and pins All locations to the top",SBC — Location Filter,Functional,High,1. You are on the Sales By Customer report as a user with access to two or more locations.,"1. Look at the report toolbar's filters from left to right.
+"Location filter: rightmost, lists accessible locations, All locations on top",SBC — Location Filter,Functional,High,1. You are on the Sales By Customer report as a user with access to two or more locations.,"1. Look at the report toolbar's filters from left to right.
 2. Open the location filter and read its options.
-3. Click the ""All locations"" option, then click it again.","1. The location filter is the rightmost filter in the toolbar.
+3. Click the ""All locations"" option, then click it again.
+4. Then sign in as a user with access to only ONE location, open the report and look for the Location filter again.","1. The location filter is the rightmost filter in the toolbar.
 2. It lists the locations the signed-in user has access to.
 3. An ""All locations"" option is pinned to the top.
-4. Activating ""All locations"" selects every listed location at once; activating it again clears them all at once.",specs/sbc-sales-by-customer.md Story 4 S4-R1; S4-R2; S4-R3,,
+4. Activating ""All locations"" selects every listed location at once; activating it again clears them all at once.
+5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data.","SV-8600 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A, applied suite-wide)",,
 Selecting locations scopes the data; All locations covers every accessible one,SBC — Location Filter,Functional,High,"1. At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed).
 2. You are on the Sales By Customer report.","1. Select only location A in the location filter and note the customers/totals.
 2. Select locations A and B together and note the change.
@@ -68,6 +72,20 @@ Selecting locations scopes the data; All locations covers every accessible one,S
 3. With ""All locations,"" the report includes data from every location the user has access to.
 4. With ""All locations"" active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)
 5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).","SV-8603 (specs/sbc-sales-by-customer.md Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)) + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins)",,
+The Location column shows only with more than one location; Multiple on totals,SBC — Location Filter,Functional,High,"1. You are on the Sales By Customer report as a user with access to two or more locations.
+2. At least one customer has invoices at two different locations, and at least one asset has invoices at two different locations.","1. Select two or more locations in the Location filter and read the column headers.
+2. Read the Location cell on a customer row whose invoices are all at one location.
+3. Read the Location cell on a customer row and an asset row whose invoices span two locations.
+4. Expand to an invoice row and read its Location cell.
+5. Open the column selector and look for Location in the list.
+6. Narrow the Location filter to a single location and read the headers again.
+7. Change the Location selection between one location, several, and ""All locations"", watching the filter control's width.","1. With more than one location in scope a Location column is shown, positioned immediately after the Date column.
+2. A customer or asset row whose invoices are all at one location shows that location's name.
+3. A customer or asset row whose invoices come from more than one location shows ""Multiple"".
+4. An invoice row always shows its own exact location — never ""Multiple"".
+5. Location is NOT offered in the column selector — it appears and disappears on its own, following the location scope.
+6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.
+7. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.","SV-8600 (SBC spec v12 2026-07-29 S4-R12; S4-R12a; S20-R19 — per-row Location column with automatic visibility, ""Multiple"" on aggregating rows)",,
 "Customer filter sits between Product Type and Location, carries a search icon, and shows the Search customers… hint",SBC — Customer Filter,Functional,High,1. You are on the Sales By Customer report with at least one customer in the current results.,"1. Look at the toolbar filters from left to right.
 2. Open the Customer filter without typing anything.
 3. Read what the dropdown shows before any query is typed.","1. A Customer filter labeled ""Customer"" sits between the Product Type filter and the Location filter.
@@ -272,21 +290,24 @@ The overflow menu holds exactly the four download items - no Print,SBC — Expor
 3. Look around the toolbar for any separate always-visible export buttons.","1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.
 2. The menu items read, in order: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", ""Download Summary (CSV)"", ""Download Expanded View (CSV)"" - and there is NO ""Print"" item anywhere in the menu.
 3. There are no separate always-visible export buttons - all exports live behind this one menu.","SV-8612; SV-8613 (specs/sbc-sales-by-customer.md S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 - menu RESHAPED to the four Summary/Expanded items by Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) [ratifies + extends video P21]; 'Print' REMOVED per video P25 31:14, CONFIRMED by the same message)",,
-CSV and PDF downloads are named by the active date range per the filename map,SBC — Exports,Functional,High,1. You are on the report with data.,"1. Set the range to This Month and choose ""Download (CSV)""; note the downloaded filename.
-2. Repeat for at least Today, Last Quarter, and a Custom range.
-3. Open a downloaded file in a text editor and in a spreadsheet.
-4. Repeat steps 1-2 choosing ""Download (PDF)"" and note the filenames.","1. The filename follows the range map: Today → sales-by-customer-today.csv; Yesterday → sales-by-customer-yesterday.csv; This Week → sales-by-customer-this_week.csv; Last Week → sales-by-customer-last_week.csv; This Month → sales-by-customer-this_month.csv; Last Month → sales-by-customer-last_month.csv; This Year → sales-by-customer-this_year.csv; Last Year → sales-by-customer-last_year.csv; This Quarter → sales-by-customer-this_quarter.csv; Last Quarter → sales-by-customer-last_quarter.csv; Custom → sales-by-customer-custom.csv.
-2. For Custom the literal word ""custom"" is used — the actual start/end dates are not in the filename.
-3. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet — not an .xlsx workbook and not a JSON file.
-4. The PDF download follows the same range-to-filename map with a .pdf extension — for example, sales-by-customer-this_month.pdf, sales-by-customer-custom.pdf.",specs/sbc-sales-by-customer.md Story 14 S14-R4; S14-R5; Story 15 S15-R4,,
+Download file names carry the version and the active date range,SBC — Exports,Functional,High,1. You are on the report with data.,"1. Set the range to This Month, choose ""Download Summary (CSV)"" and note the downloaded file name.
+2. Choose ""Download Expanded View (CSV)"" and note that file name.
+3. Repeat both for at least Today, Last Quarter, and a Custom range.
+4. Open a downloaded file in a text editor and in a spreadsheet.
+5. Repeat steps 1-3 for ""Download Summary (PDF)"" and ""Download Expanded View (PDF)"".","1. The Summary file name is sales-by-customer-summary-{range}.csv and the Expanded file name is sales-by-customer-expanded-{range}.csv — so the file says which version it is.
+2. {range} follows this map: Today → today; Yesterday → yesterday; This Week → this_week; Last Week → last_week; This Month → this_month; Last Month → last_month; This Year → this_year; Last Year → last_year; This Quarter → this_quarter; Last Quarter → last_quarter; Custom → custom.
+3. For Custom the literal word ""custom"" is used — the actual start and end dates are not in the file name.
+4. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet — not an .xlsx workbook and not a JSON file.
+5. The two PDF downloads follow the same names with a .pdf extension — for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf.",SV-8612; SV-8613 (SBC spec v12 2026-07-29 S14-R14; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded),,
 "Expanded View CSV: column order, blank-cell rules, and the Locations line",SBC — Exports,Functional,High,1. You have downloaded the CSV for a view with at least one customer with several invoices.,"1. Read the header row.
 2. Read a customer row and an invoice row.
-3. Look for any asset-level rows.","1. The Expanded View CSV has the twelve columns in this exact order: Customer, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.
-2. On customer rows the Invoice # and Date cells are blank.
-3. On invoice rows the Customer cell is blank and the Invoice # and Date cells are filled.
-4. Customer names are plain - the ""(N)"" invoice count is not included.
-5. The rows follow the Expanded View's Customer, then Asset, then Invoice breakdown - note how the asset level appears (this level is NEW; its exact representation is confirmed from the updated spec and the build - the older spec had no asset rows in the file).
-6. The file carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).","SV-8612 (specs/sbc-sales-by-customer.md Story 14 S14-R6; S14-R7; S14-R8; S14-R9 - file now the Expanded View CSV with a Customer->Asset->Invoice breakdown + a Locations: line per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins); the old S14-R10 flat/no-asset-layer rule is superseded)",,
+3. Look for any asset-level rows.","1. The Expanded View CSV has these thirteen columns in this exact order: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.
+2. A customer row fills the Customer cell and leaves Asset, Invoice # and Date blank.
+3. An asset row leaves Customer blank, fills Asset, and leaves Invoice # and Date blank.
+4. An invoice row leaves Customer and Asset blank and fills Invoice # and Date.
+5. Customer names are plain — the ""(N)"" invoice count is not included.
+6. Work with no vehicle appears as an asset row named ""Parts Sales"".
+7. The file carries a ""Locations:"" line naming the location or locations the report was scoped to, or ""All locations"" when every location you can access is selected — as a leading line above the column headers.","SV-8612 (SBC spec v12 2026-07-29 Story 14 S14-R5; S14-R6; S14-R7; S14-R13 — the Expanded CSV now has thirteen columns INCLUDING Asset, with per-level blank-cell rules; the old flat twelve-column shape is superseded)",,
 "CSV value formats: Margin % plain number, dates mm-dd-yyyy, currency plain numbers, no color",SBC — Exports,Functional,Medium,"1. You have downloaded a CSV containing rows with real values, including (if seedable) a row whose Subtotal is zero or below.","1. Read a Margin % cell, a Date cell, and a currency cell in a text editor.
 2. Check the row whose Subtotal is ≤ 0.","1. Margin % is a plain number to one decimal with no percent sign (for example, 64.7); it is EMPTY when the row's Subtotal is zero or below.
 2. Dates export as mm-dd-yyyy — for example, 05-14-2026.
@@ -297,11 +318,11 @@ CSV and PDF downloads are named by the active date range per the filename map,SB
 3. Compare each file's contents against the on-screen rows.","1. Each export contains exactly the customers matching the active filters — the selected customers, within the active date range, Product Type, and location — in the active sort order.
 2. When every customer is selected, the export contains the full set of customers under those filters.
 3. The chosen date range and Product Type are reflected in both exports.",specs/sbc-sales-by-customer.md Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7,,
-CSV and PDF actions show a loading state and their own export failed toast,SBC — Exports,Negative,Medium,1. You are on the report with a large enough data set that the export takes a visible moment.,"1. Choose ""Download (CSV)"" and immediately look at the menu action.
-2. To provoke a failure, disconnect the network (or use browser dev tools offline mode) and choose ""Download (CSV)"" again.
-3. Repeat both checks for ""Download (PDF)"".","1. While an export is in progress, that menu action shows a loading state and is non-interactive (CSV and PDF alike).
-2. If the CSV export fails, an error toast is shown: ""CSV export failed."" (dismissed by the user).
-3. If the PDF export fails, the toast reads ""PDF export failed."" — identical behavior, different wording.",specs/sbc-sales-by-customer.md Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7,,
+Each download item shows a loading state and its own export-failed toast,SBC — Exports,Negative,Medium,1. You are on the report with a large enough data set that a download takes a visible moment.,"1. Choose ""Download Summary (CSV)"" and immediately look at that menu item.
+2. To provoke a failure, disconnect the network (or use the browser's offline mode) and choose ""Download Summary (CSV)"" again.
+3. Repeat both checks for ""Download Expanded View (CSV)"", ""Download Summary (PDF)"" and ""Download Expanded View (PDF)"".","1. While a download is in progress, ONLY that menu item shows a loading state and is non-interactive; the other three items are unaffected.
+2. If a CSV download fails, an error toast is shown: ""CSV export failed."" (dismissed by the user).
+3. If a PDF download fails, the toast reads ""PDF export failed."" — identical behaviour, different wording.","SV-8612; SV-8613 (SBC spec v12 2026-07-29 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item, four items)",,
 "PDF page: A4 landscape, uniform margins, ShopView footer and page numbers",SBC — Exports,Functional,Medium,1. You have downloaded the PDF for a view with enough rows to span more than one page.,"1. Open the PDF and check the page setup.
 2. Read the footer on each page.","1. The PDF is A4 landscape using the application's standard font; the page margins look uniform on all sides. (The spec's exact 25px margin needs a PDF inspector — check the number only if you have one; otherwise uniform margins pass.)
 2. The footer has a centered ""Software Powered by ShopView"" label and a right-aligned page number ""Page X of Y.""",specs/sbc-sales-by-customer.md Story 15 S15-R5; S15-R6,,
@@ -317,16 +338,17 @@ CSV and PDF actions show a loading state and their own export failed toast,SBC �
 3. When no logo is available at all, the logo column is not rendered and the text column fills the full width.
 4. The logo is embedded in the PDF (renders offline, not loaded from a network address).",specs/sbc-sales-by-customer.md Story 15 S15-R12; S15-R13; S15-R14; S15-R15,,
 Expanded View PDF body matches the CSV's columns and on-screen rules,SBC — Exports,Functional,Medium,1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal ≤ 0 row.,"1. Read the body table's columns and row structure.
-2. Check a date cell, a customer row's Date cell, a Margin % dash, the Subtotal column weight, and the Inv. Hrs colors (use a color picker on the PDF if available).","1. The Expanded View PDF's body table has the twelve columns in the same exact order and labels as the Expanded View CSV, with the same Customer, then Asset, then Invoice breakdown (the asset level is NEW - its exact representation is confirmed from the updated spec and the build).
+2. Check a date cell, a customer row's Date cell, a Margin % dash, the Subtotal column weight, and the Inv. Hrs colors (use a color picker on the PDF if available).","1. The Expanded View PDF's body table has the same thirteen columns, in the same order and with the same labels, as the Expanded View CSV — including the Asset column — and shows the full Customer, then Asset, then Invoice breakdown, one block per customer.
 2. Body dates show as ""Mon DD YYYY"" - for example, ""May 14 2026.""
-3. The Date cell is blank on customer rows, matching the screen.
+3. The Date cell is blank on customer rows and on asset rows, matching the screen.
 4. Margin % shows an em dash when the row's Subtotal is zero or below.
 5. The Subtotal column is bold - header, every row, and the totals row.
-6. Inv. Hrs uses the same signs and coloring as on screen, with green rendered as #21ba45 and red as #c10015.","SV-8613 (specs/sbc-sales-by-customer.md Story 15 S15-R16; S15-R17; S15-R18; S15-R19; S15-R20; S15-R21 - body now the Expanded View with a Customer->Asset->Invoice breakdown per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins); the old flat/no-asset-layer shape is superseded)",,
+6. Inv. Hrs uses the same signs and coloring as on screen, with green rendered as #21ba45 and red as #c10015.
+7. The PDF header title reads ""Sales By Customer Report"" on the Summary and Expanded versions alike — which version you have is told by the file name and the contents, not by a different title.","SV-8613 (SBC spec v12 2026-07-29 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 — Expanded PDF body = the Expanded columns with the asset layer, one block per customer; the title is the same for both versions)",,
 "An export over 10,000 data rows is refused with the too-large toast",SBC — Exports,Negative,High,"1. A filter combination exists whose customer rows plus invoice rows exceed 10,000 (widest range, all locations, all customers). If the environment cannot reach 10,000 rows even fully widened, record the max reachable and mark Blocked-Env with reason.","1. With the over-cap filter set, choose ""Download (CSV)"".
 2. Choose ""Download (PDF)"".
 3. Narrow the filters below the cap and re-try one export.","1. For both CSV and PDF: no file is generated and no download starts.
-2. An error toast is shown each time: ""This export is too large to generate. Narrow the date range or filters, then try again."" (dismissed by the user).
+2. An error toast is shown each time: ""This report is too large to export. Narrow the date range or filters, then try again."" (dismissed by the user).
 3. The cap counts customer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.
 4. Below the cap the export succeeds normally.","SV-8612; SV-8613 (specs/sbc-sales-by-customer.md Story 14 S14-R14; Story 15 S15-R22; §7 — the Print leg REMOVED per kickoff video P25 31:14 / SV-8614 overridden, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
 "Exporting with no matching customers still downloads a file with headers and a zero totals row, with no warning",SBC — Exports,Functional,Medium,"1. The Customer filter selection is empty (""Clear all"") or the filters otherwise match no customers.","1. Choose ""Download (CSV)"" and open the file.
@@ -337,7 +359,8 @@ Summary and Expanded View downloads exist for both PDF and CSV,SBC — Exports,F
 3. Download the Expanded View version in both formats and compare against the Summary files.","1. The menu offers exactly four items: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", ""Download Summary (CSV)"", ""Download Expanded View (CSV)"".
 2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows.
 3. Each Expanded View file contains the full Customer, then Asset, then Invoice breakdown.
-4. All four files reflect exactly the filtered data shown on screen.","SV-8612; SV-8613 (specs/sbc-sales-by-customer.md Stories 14/15 - Summary/Expanded split for both PDF and CSV per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ['matching Sales By Rep'], ratifying + extending kickoff video P21 32:10-33:03 + 48:39; overrides the old single-flat-export S14-R6; S14-R10; S15-R16)",,
+4. All four files reflect exactly the filtered data shown on screen.
+5. The Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns.",SV-8612; SV-8613 (SBC spec v12 2026-07-29 Story 14 S14-R1/R2/R4 + Story 15 S15-R1/R2/R4/R5 — the four-item Summary/Expanded menu and the Summary column list are now spec-ratified),,
 "Filters, sort and visible columns are saved and restored on the next visit, shown immediately without a default flash",SBC — Saved View & Persistence,Functional,Critical,1. You are on the report in a browser you can revisit.,"1. Set a non-default date range, Product Type, location selection, a two-customer Customer selection, a non-default sort, and hide one column.
 2. Navigate away to another part of the application, then return to the report.
 3. Watch the report as it loads.","1. The saved view is restored: the date range, the Product Type, the location selection, the Customer filter selection, the sort column and direction, and the visible columns.

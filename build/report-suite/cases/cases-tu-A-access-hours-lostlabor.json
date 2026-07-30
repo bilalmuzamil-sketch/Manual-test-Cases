@@ -340,27 +340,30 @@
  {
   "id": "TU-ELL-02",
   "area": "TU — Est. Lost Labor",
-  "title": "Est. Lost Labor is pinned far right and bold, and only its header carries the info icon with the exact tooltip text",
+  "title": "Est. Lost Labor, when shown, is pinned right and bold with the info icon",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
   "preconditions": [
-   "1. You are on the Technician Utilization report with rows loaded."
+   "1. You are on the Technician Utilization report with rows loaded.",
+   "2. Est. Lost Labor is turned ON in the Column Selection control (it is on by default)."
   ],
   "steps": [
    "1. Look at the position and weight of the Est. Lost Labor column (header and cells).",
    "2. Hover the information icon on the Est. Lost Labor header and read the text; also reach it by keyboard focus and by tap on a touch device.",
-   "3. Check every other column header for an information icon."
+   "3. Check every other column header for an information icon.",
+   "4. Turn Est. Lost Labor off in the Column Selection control and look at the table again."
   ],
   "expected": [
-   "1. The Est. Lost Labor column is pinned to the far right; its cells are bold and its header is bold, matching.",
-   "2. The information icon shows exactly: \"Internal hours valued at each location's default labor rate\" - on hover, on keyboard focus, and on tap; it is dismissible.",
-   "3. NO column header other than Est. Lost Labor shows the information icon."
+   "1. While Est. Lost Labor is shown, the column is pinned to the far right; its cells are bold and its header is bold, matching.",
+   "2. The information icon shows exactly: \"Internal hours valued at each location's default labor rate\" — on hover, on keyboard focus, and on tap; it is dismissible.",
+   "3. NO column header other than Est. Lost Labor shows the information icon.",
+   "4. Est. Lost Labor can be turned OFF in the Column Selection control; when it is off the column, its bold styling and its information icon are all absent, and the report still works normally."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1",
+  "spec_ref": "SV-8652 (TU spec v5 2026-07-29 S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1 — each re-worded \"When shown\" now that Est. Lost Labor is a hideable column, new Story 10 S10-R3)",
   "viu_status": "VIU-Pending",
-  "notes": "KNOWN BUILD-DELTA: the shipped tooltip currently reads \"Default labor rate multiplied by internal hours\" (single-rate wording) - the spec requires the S8-R7 per-location wording; expect a deviation until dev updates it.",
+  "notes": "KNOWN BUILD-DELTA: the shipped tooltip currently reads \"Default labor rate multiplied by internal hours\" (single-rate wording) - the spec requires the S8-R7 per-location wording; expect a deviation until dev updates it. CHANGED by the TU spec v5 2026-07-29: S2-R10/S2-R11/S8-R4/S8-R6 all now read \"When shown…\" and S10-R3 makes Est. Lost Labor hideable (verbatim: \"Est. Lost Labor was previously always-on; it is now a hideable column like the others\").",
   "api_related": false
  },
  {

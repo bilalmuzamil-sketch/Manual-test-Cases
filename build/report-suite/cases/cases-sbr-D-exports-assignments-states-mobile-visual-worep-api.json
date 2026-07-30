@@ -246,7 +246,7 @@
  {
   "id": "SBR-EXP-10",
   "area": "SBR — Exports",
-  "title": "Summary CSV: filename, UTF-8 BOM, verbatim headers in order, one row per rep, and the # Invoices / # Customers counts",
+  "title": "Summary CSV: file name, UTF-8 BOM, verbatim headers, one row per rep",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -261,21 +261,22 @@
   ],
   "expected": [
    "1. The file is named \"sales-by-representative-summary.csv\" and starts with a UTF-8 BOM.",
-   "2. The headers, in order, are exactly: Sales Rep, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
+   "2. The headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
    "3. There is one header row plus one row per rep in the current filtered view, in the report's currently-active order.",
    "4. \"# Invoices\" equals the on-screen (N); \"# Customers\" counts distinct customers across those invoices (de-duplicated across locations when several are selected).",
-   "5. The CSV has NO totals row."
+   "5. The CSV has NO totals row.",
+   "6. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R15; S14-R18",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R15; S14-R18)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
   "id": "SBR-EXP-11",
   "area": "SBR — Exports",
-  "title": "Expanded CSV: filename, verbatim headers including the three hours columns, one row per invoice flattened across reps",
+  "title": "Expanded CSV: file name, verbatim headers, one row per invoice",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -289,19 +290,20 @@
   ],
   "expected": [
    "1. The file is named \"sales-by-representative-expanded.csv\" and starts with a UTF-8 BOM.",
-   "2. The headers, in order, are exactly: Sales Rep, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
-   "3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view."
+   "2. The headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
+   "3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.",
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R16",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R16)",
   "viu_status": "VIU-Pending",
-  "notes": "BUILD-DELTA (spec's own build note): the current build populates a single mislabeled hours column here; the spec target is the three hours columns (Hrs Worked / Hrs Invoiced / Inv. Hrs) matching the Summary CSV — record a deviation if the build still ships one column.",
+  "notes": "BUILD-DELTA (spec's own build note): the current build populates a single mislabeled hours column here; the spec target is the three hours columns (Hrs Worked / Hrs Invoiced / Inv. Hrs) matching the Summary CSV — record a deviation if the build still ships one column. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
   "id": "SBR-EXP-12",
   "area": "SBR — Exports",
-  "title": "CSV cell formatting: plain re-pivotable numbers, signed Inv. Hrs, Margin % empty when undefined, (Inactive) in the name, no (N)",
+  "title": "CSV cells: plain numbers, signed Inv. Hrs, empty Margin %, (Inactive)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -310,30 +312,31 @@
   ],
   "steps": [
    "1. Open each CSV in a text editor (not a spreadsheet).",
-   "2. Read a money cell, the negative value's cell, an Inv. Hrs cell, the undefined Margin % cell, and the (Inactive) rep's \"Sales Rep\" cell."
+   "2. Read a money cell, the negative value's cell, an Inv. Hrs cell, the undefined Margin % cell, and the (Inactive) rep's \"Sales Representative\" cell."
   ],
   "expected": [
    "1. Numeric columns are plain numbers — NO currency symbol, thousands separators, or parentheses; a negative uses a leading minus (for example, -1234.56).",
    "2. Money values carry two decimals; Hrs Worked / Hrs Invoiced / Inv. Hrs carry their full stored precision; Inv. Hrs keeps its leading + or - sign.",
    "3. Margin % is a plain number to one decimal (for example, 45.2) with no % sign, and the cell is EMPTY where Margin % is undefined (Subtotal ≤ 0).",
-   "4. The \"Sales Rep\" name carries the \"(Inactive)\" tag when applicable; the on-screen (N) count is NOT embedded in the name.",
-   "5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Inv. Hrs conveys direction only by its sign)."
+   "4. The \"Sales Representative\" name carries the \"(Inactive)\" tag when applicable; the on-screen (N) count is NOT embedded in the name.",
+   "5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Inv. Hrs conveys direction only by its sign).",
+   "6. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R17; §3 Key Decisions (CSVs monochrome / plain signed numbers)",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R17; §3 Key Decisions (CSVs monochrome / plain signed numbers))",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
   "id": "SBR-EXP-13",
   "area": "SBR — Exports",
-  "title": "The Unassigned row appears in all four downloads when Show Unassigned is on, and in none of them when it is off",
+  "title": "The Unassigned row appears in all four downloads only when the toggle is on",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
   "preconditions": [
-   "1. The current filter set includes at least one invoice with no assigned sales rep (seed one if needed)."
+   "1. The current filter set includes at least one invoice with no assigned sales representative (seed one if needed)."
   ],
   "steps": [
    "1. Turn Show Unassigned ON and download all four files.",
@@ -342,14 +345,15 @@
    "4. Search each file for the unassigned invoices."
   ],
   "expected": [
-   "1. With the toggle ON: the Summary PDF and Summary CSV each carry one rolled-up row whose Rep / \"Sales Rep\" cell reads the literal \"Unassigned\", sorted to the top; the Expanded CSV rows for those invoices carry \"Sales Rep\" = \"Unassigned\"; the Expanded View PDF has its own TOP page-block titled \"Unassigned\".",
+   "1. With the toggle ON: the Summary PDF and Summary CSV each carry one rolled-up row whose Rep / \"Sales Representative\" cell reads the literal \"Unassigned\", sorted to the top; the Expanded CSV rows for those invoices carry \"Sales Representative\" = \"Unassigned\"; the Expanded View PDF has its own TOP page-block titled \"Unassigned\".",
    "2. The Summary PDF grand-totals row aggregates across all summary rows INCLUDING Unassigned; in the Summary CSV the Unassigned row is simply one of the data rows (no totals row exists).",
-   "3. With the toggle OFF: no Unassigned row and no unassigned invoices appear in ANY of the four files."
+   "3. With the toggle OFF: no Unassigned row and no unassigned invoices appear in ANY of the four files.",
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R19; Story 22 S22-R2; S22-R4",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R19; Story 22 S22-R2; S22-R4)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
@@ -381,7 +385,7 @@
  {
   "id": "SBR-EXP-15",
   "area": "SBR — Exports",
-  "title": "An Expanded View PDF over the 10,000-row cap is refused with the specific too-large message — no truncated file",
+  "title": "Over-cap Expanded View PDF is refused with the too-large message",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -394,13 +398,13 @@
   ],
   "expected": [
    "1. No file is produced — the server declines rather than generating a truncated file.",
-   "2. An error toast reads exactly: \"This export is too large to generate. Narrow the date range or filters and try again.\" (persists 120 seconds or until dismissed).",
+   "2. An error toast reads exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (persists 120 seconds or until dismissed).",
    "3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-E2; §7",
+  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E2; §7)",
   "viu_status": "VIU-Pending",
-  "notes": "The row-cap message is a deliberate exception to the canonical \"Ooooops!\" fallback — it is a pre-generation refusal with its own verbatim wording.",
+  "notes": "The row-cap message is a deliberate exception to the canonical \"Ooooops!\" fallback — it is a pre-generation refusal with its own verbatim wording. Q2 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A 'great catch'): ONE message across all six reports — \"This report is too large to export. Narrow the date range or filters, then try again.\" The Sales By Customer spec text still carries the retired \"This export is too large to generate…\" wording; Chris's spec edit is pending.",
   "api_related": false
  },
  {
@@ -433,7 +437,7 @@
  {
   "id": "SBR-ASGN-01",
   "area": "SBR — Sales Rep Assignments Export",
-  "title": "The Export Report dialog's Report Name dropdown includes \"Sales Rep Assignments\" at the bottom, hiding the date picker and showing the snapshot note",
+  "title": "Report Name dropdown lists Sales Representative Assignments at the bottom",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A user with Reports access.",
@@ -444,29 +448,30 @@
   "steps": [
    "1. In the Reports left sidebar, under the Accounting header, click the \"Export Reports\" entry — a dialog titled \"Export Report\" opens.",
    "2. Open the Report Name dropdown and read the list top to bottom.",
-   "3. Select \"Sales Rep Assignments\" and look at the dialog body."
+   "3. Select \"Sales Representative Assignments\" and look at the dialog body."
   ],
   "expected": [
-   "1. \"Sales Rep Assignments\" appears in the Report Name dropdown, appended at the BOTTOM of the list (additive — no existing entry moved or removed).",
+   "1. \"Sales Representative Assignments\" appears in the Report Name dropdown, appended at the BOTTOM of the list (additive — no existing entry moved or removed).",
    "2. Selecting it HIDES the date range picker.",
-   "3. The dialog shows the note: \"Snapshot of current sales rep assignments. Both active and inactive reps with assignments are listed.\""
+   "3. The dialog shows the note: \"Snapshot of current sales representative assignments. Both active and inactive reps with assignments are listed.\"",
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 15 S15-R1; S15-R2",
+  "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R1; S15-R2)",
   "viu_status": "VIU-Pending",
-  "notes": "Note text is verbatim from the spec.",
+  "notes": "Note text is verbatim from the spec. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
   "id": "SBR-ASGN-02",
   "area": "SBR — Sales Rep Assignments Export",
-  "title": "Exporting Sales Rep Assignments downloads sales-rep-assignments.csv with the verbatim headers and shows the success toast",
+  "title": "Sales Representative Assignments CSV: file name, headers, success toast",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A user with Reports access.",
   "preconditions": [
-   "1. At least one customer in the organization has an assigned sales rep.",
-   "2. The Export Report dialog is open with \"Sales Rep Assignments\" selected."
+   "1. At least one customer in the organization has an assigned sales representative.",
+   "2. The Export Report dialog is open with \"Sales Representative Assignments\" selected."
   ],
   "steps": [
    "1. Click the Export action.",
@@ -474,20 +479,21 @@
    "3. Open the file in a text editor and read the header row."
   ],
   "expected": [
-   "1. The file downloads as \"sales-rep-assignments.csv\".",
+   "1. The file downloads as \"sales-representative-assignments.csv (the short form \"rep\" is gone from the file name — confirm the exact final file name in the build)\".",
    "2. A success toast shows \"Success\" with the caption \"Report downloaded.\" and auto-fades after 5 seconds.",
-   "3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Rep, Rep is active?."
+   "3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?.",
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 15 S15-R3; S15-R4; §7",
+  "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R3; S15-R4; §7)",
   "viu_status": "VIU-Pending",
-  "notes": "This export deliberately uses the shared Export Reports dialog's own toast strings (5s auto-fade), not the canonical 120s \"Ooooops!\" fallback.",
+  "notes": "This export deliberately uses the shared Export Reports dialog's own toast strings (5s auto-fade), not the canonical 120s \"Ooooops!\" fallback. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
   "id": "SBR-ASGN-03",
   "area": "SBR — Sales Rep Assignments Export",
-  "title": "The Assignments CSV holds one row per customer with an assigned rep, sorted customer A→Z then rep A→Z; unassigned customers are excluded",
+  "title": "Assignments CSV: one row per assigned customer, sorted customer then rep",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A user with Reports access.",
@@ -495,34 +501,34 @@
    "1. The organization has several customers with assigned reps and at least one customer with NO assigned rep (seed as needed)."
   ],
   "steps": [
-   "1. Download the Sales Rep Assignments CSV.",
+   "1. Download the Sales Representative Assignments CSV.",
    "2. Count the rows against the customers with assigned reps.",
    "3. Search for the no-rep customer.",
    "4. Read the row order."
   ],
   "expected": [
-   "1. Every customer with an assigned sales rep produces exactly ONE row (single-rep model: one rep per customer).",
+   "1. Every customer with an assigned sales representative produces exactly ONE row (single-rep model: one rep per customer).",
    "2. Customers with no assigned rep are NOT included.",
    "3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 15 S15-R5; S15-R7; S15-R10",
+  "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R5; S15-R7; S15-R10)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
   "id": "SBR-ASGN-04",
   "area": "SBR — Sales Rep Assignments Export",
-  "title": "\"Rep is active?\" tracks the staff-active status (Yes/No), not the sales-rep toggle",
+  "title": "\"Rep is active?\" tracks the staff-active status, not the toggle",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access; staff-administration access to arrange the rep states.",
   "preconditions": [
-   "1. Arrange (and afterward restore): one assigned rep whose staff record is ACTIVE but whose sales-rep toggle is OFF, and one assigned rep whose staff record is INACTIVE but whose toggle is ON."
+   "1. Arrange (and afterward restore): one assigned rep whose staff record is ACTIVE but whose sales-representative toggle is OFF, and one assigned rep whose staff record is INACTIVE but whose toggle is ON."
   ],
   "steps": [
-   "1. Download the Sales Rep Assignments CSV.",
+   "1. Download the Sales Representative Assignments CSV.",
    "2. Read the \"Rep is active?\" value on both reps' customer rows."
   ],
   "expected": [
@@ -531,15 +537,15 @@
    "3. The value is always \"Yes\" or \"No\" (never \"Deactivated\" or another word)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 15 S15-R6; Story 13 S13-R11",
+  "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R6; Story 13 S13-R11)",
   "viu_status": "VIU-Pending",
-  "notes": "Staff-active status and the sales-rep toggle are independent flags; this column tracks staff-active status ONLY. The report's on-screen \"(Inactive)\" marker is driven by the TOGGLE instead — the two can differ. Restore both staff members afterward.",
+  "notes": "Staff-active status and the sales-rep toggle are independent flags; this column tracks staff-active status ONLY. The report's on-screen \"(Inactive)\" marker is driven by the TOGGLE instead — the two can differ. Restore both staff members afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
   "id": "SBR-ASGN-05",
   "area": "SBR — Sales Rep Assignments Export",
-  "title": "Legacy robustness: a customer whose rep's staff record was deleted still exports one row from the customer-side stored name, marked No",
+  "title": "A deleted rep record still exports one row from the stored name, marked No",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access.",
@@ -547,25 +553,26 @@
    "1. A customer exists whose assigned rep's staff record has been cleared or deleted while the customer still references it (seed and delete a throwaway ZZAUTOTEST rep if needed)."
   ],
   "steps": [
-   "1. Download the Sales Rep Assignments CSV.",
-   "2. Find that customer's row and read its \"Sales Rep\" and \"Rep is active?\" cells.",
+   "1. Download the Sales Representative Assignments CSV.",
+   "2. Find that customer's row and read its \"Sales Representative\" and \"Rep is active?\" cells.",
    "3. If two customers carry different stored name spellings for the same underlying rep, compare their rows."
   ],
   "expected": [
    "1. The customer still produces a row — the export never silently drops it.",
-   "2. The \"Sales Rep\" name comes from the customer-side stored (denormalized) rep name, and \"Rep is active?\" = \"No\".",
-   "3. When stored names differ across customers for the same rep (name drift), each customer's row uses its OWN stored name — drift never adds extra rows for a customer and never overwrites one customer's stored name with another's."
+   "2. The \"Sales Representative\" name comes from the customer-side stored (denormalized) rep name, and \"Rep is active?\" = \"No\".",
+   "3. When stored names differ across customers for the same rep (name drift), each customer's row uses its OWN stored name — drift never adds extra rows for a customer and never overwrites one customer's stored name with another's.",
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 15 S15-R8; S15-R9",
+  "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R8; S15-R9)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
   "id": "SBR-ASGN-06",
   "area": "SBR — Sales Rep Assignments Export",
-  "title": "Assignments export failure and nothing-to-export paths use the Export dialog's own messages",
+  "title": "Assignments export failure and nothing-to-export use the dialog's messages",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "A user with Reports access.",
@@ -574,7 +581,7 @@
    "2. For the failure path: you can force a generation failure (for example, cut the network on Export) — if not forceable, mark that step Blocked with the reason."
   ],
   "steps": [
-   "1. With zero assigned customers, select \"Sales Rep Assignments\" in the Export Report dialog and click Export.",
+   "1. With zero assigned customers, select \"Sales Representative Assignments\" in the Export Report dialog and click Export.",
    "2. Read the dialog warning and inspect any downloaded file.",
    "3. Force a generation failure and read the toast."
   ],
@@ -583,9 +590,9 @@
    "2. On a generation failure, an error toast reads \"An error occurred while exporting the report. Please try again.\" and auto-fades after 5 seconds."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 15 S15-R11; S15-N2; §7",
+  "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R11; S15-N2; §7)",
   "viu_status": "VIU-Pending",
-  "notes": "Both strings are the shared Export Reports dialog's own (5s auto-fade) — a deliberate exception to the canonical \"Ooooops!\" fallback.",
+  "notes": "Both strings are the shared Export Reports dialog's own (5s auto-fade) — a deliberate exception to the canonical \"Ooooops!\" fallback. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
@@ -906,7 +913,7 @@
  {
   "id": "SBR-WO-01",
   "area": "SBR — Work Order Sales Rep",
-  "title": "The Sales Rep selector shows in the left panel on standard Work Orders and Part Sale WOs, and is hidden on imported WOs and in History mode",
+  "title": "Sales Representative selector shows on WO and Part Sale, not on imported",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A user who can open Work Orders and Part Sale WOs.",
@@ -920,73 +927,75 @@
    "4. View a WO in History mode and look for the field."
   ],
   "expected": [
-   "1. The left panel includes a \"Sales Rep\" selector on the standard Work Order.",
-   "2. The left panel includes the same \"Sales Rep\" selector on the Part Sale WO.",
+   "1. The left panel includes a \"Sales Representative\" selector on the standard Work Order.",
+   "2. The left panel includes the same \"Sales Representative\" selector on the Part Sale WO.",
    "3. The selector is NOT present on the imported Work Order.",
-   "4. The selector is NOT present in History mode."
+   "4. The selector is NOT present in History mode.",
+   "5. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R1; S19-N1",
+  "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R1; S19-N1)",
   "viu_status": "VIU-Pending",
-  "notes": "COMPANION-VIDEO 2026-07-30 (C15/C16, 09:41-10:53): WO-card dropdown confirmed (default Unassigned, assignable). PENDING Q5: the 'Sales Rep' label may flip to the full word 'Representative' per the no-short-forms ruling — do not edit until Chris answers.",
+  "notes": "COMPANION-VIDEO 2026-07-30 (C15/C16, 09:41-10:53): WO-card dropdown confirmed (default Unassigned, assignable). PENDING Q5: the 'Sales Rep' label may flip to the full word 'Representative' per the no-short-forms ruling — do not edit until Chris answers. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
   "id": "SBR-WO-02",
   "area": "SBR — Work Order Sales Rep",
-  "title": "Sales Rep selector offers only reps whose sales-rep toggle is on",
+  "title": "Selector offers only reps whose sales-representative toggle is on",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A user who can open Work Orders; staff-administration access to arrange the toggles.",
   "preconditions": [
-   "1. At least one staff member has the sales-rep toggle ON and at least one has it OFF. To arrange this: open Settings, go to Staff, edit the staff member, and use the sales-rep toggle there (restore both afterward)."
+   "1. At least one staff member has the sales-representative toggle ON and at least one has it OFF. To arrange this: open Settings, go to Staff, edit the staff member, and use the sales-representative toggle there (restore both afterward)."
   ],
   "steps": [
-   "1. Open a Work Order and open the \"Sales Rep\" selector.",
+   "1. Open a Work Order and open the \"Sales Representative\" selector.",
    "2. Search the option list for both staff members.",
    "3. Inspect the selector's accessible name."
   ],
   "expected": [
    "1. The toggle-ON staff member is offered as a selectable rep.",
    "2. The toggle-OFF staff member is NOT offered as a new selection.",
-   "3. The selector carries the accessible name \"Sales Rep\"."
+   "3. The selector carries the accessible name \"Sales Representative\".",
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R2; S19-R8 — toggle entry path Settings -> Staff -> edit the staff member per the PRD companion video 2026-07-30 09:17-09:41; exact toggle label to confirm live in the build)",
   "viu_status": "VIU-Pending",
-  "notes": "Restore any changed toggles afterward (shared-env rule). COMPANION-VIDEO 2026-07-30 (C14, 09:17-09:41): entry point confirmed — 'We're going to go into settings. We're going to go staff, we're going to edit the staff member, and we have a new toggle here.' Exact on-screen toggle label not in the transcript — VIU-confirm. PENDING (C15/Q5): the selector's 'Sales Rep' label/accessible name may flip to the full word 'Representative' per the no-short-forms ruling — question Q5 to Chris; do not edit until answered. Title shortened to fit (was >80 chars).",
+  "notes": "Restore any changed toggles afterward (shared-env rule). COMPANION-VIDEO 2026-07-30 (C14, 09:17-09:41): entry point confirmed — 'We're going to go into settings. We're going to go staff, we're going to edit the staff member, and we have a new toggle here.' Exact on-screen toggle label not in the transcript — VIU-confirm. PENDING (C15/Q5): the selector's 'Sales Rep' label/accessible name may flip to the full word 'Representative' per the no-short-forms ruling — question Q5 to Chris; do not edit until answered. Title shortened to fit (was >80 chars). Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
   "id": "SBR-WO-03",
   "area": "SBR — Work Order Sales Rep",
-  "title": "A new Work Order or Part Sale WO opens with Sales Rep unassigned, and a change saves immediately with no Save step",
+  "title": "A new WO opens with Sales Representative unassigned; a change saves at once",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A user who can create and edit Work Orders.",
   "preconditions": [
-   "1. At least one staff member is offered as a sales rep."
+   "1. At least one staff member is offered as a sales representative."
   ],
   "steps": [
-   "1. Create a new Work Order (mark it ZZAUTOTEST) and read the Sales Rep field before touching it.",
+   "1. Create a new Work Order (mark it ZZAUTOTEST) and read the Sales Representative field before touching it.",
    "2. Select a rep in the field, then navigate away WITHOUT any explicit save and reopen the WO.",
    "3. Repeat the unassigned-open check on a new Part Sale WO."
   ],
   "expected": [
-   "1. The new Work Order opens with the Sales Rep field UNASSIGNED — it is not pre-filled at creation.",
-   "2. Changing the Sales Rep persists immediately (save-on-change): the selection survives leaving and reopening the WO with no separate Save step.",
+   "1. The new Work Order opens with the Sales Representative field UNASSIGNED — it is not pre-filled at creation.",
+   "2. Changing the Sales Representative persists immediately (save-on-change): the selection survives leaving and reopening the WO with no separate Save step.",
    "3. A new Part Sale WO also opens with the field unassigned."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R3; S19-R4",
+  "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R3; S19-R4)",
   "viu_status": "VIU-Pending",
-  "notes": "Delete the throwaway ZZAUTOTEST WO afterward.",
+  "notes": "Delete the throwaway ZZAUTOTEST WO afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
   "id": "SBR-WO-04",
   "area": "SBR — Work Order Sales Rep",
-  "title": "The Sales Rep selector is read-only when the Work Order status is Invoiced or Paid",
+  "title": "The Sales Representative selector is read-only when Invoiced or Paid",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user who can open Work Orders.",
@@ -994,44 +1003,45 @@
    "1. One Work Order is in \"Invoiced\" status and one is in \"Paid\" status (drive throwaway ZZAUTOTEST WOs into these states if needed)."
   ],
   "steps": [
-   "1. Open the Invoiced WO and try to change the Sales Rep field.",
+   "1. Open the Invoiced WO and try to change the Sales Representative field.",
    "2. Open the Paid WO and try the same."
   ],
   "expected": [
-   "1. On the Invoiced WO the Sales Rep selector is read-only (non-interactive) — the assignment cannot be changed.",
-   "2. On the Paid WO the selector is also read-only."
+   "1. On the Invoiced WO the Sales Representative selector is read-only (non-interactive) — the assignment cannot be changed.",
+   "2. On the Paid WO the selector is also read-only.",
+   "3. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R5",
+  "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R5)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
   "id": "SBR-WO-05",
   "area": "SBR — Work Order Sales Rep",
-  "title": "Invoice crediting snapshot: WO rep, else the customer's rep, else unassigned — and a later WO change never rewrites past invoices",
+  "title": "Invoice credit snapshot: WO rep, else customer rep, else unassigned",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A user who can create Work Orders, invoice them, and view the report.",
   "preconditions": [
-   "1. Three throwaway ZZAUTOTEST setups: (a) a WO WITH a Sales Rep assigned; (b) a WO with NO rep whose customer HAS an assigned rep; (c) a WO with NO rep whose customer has NO assigned rep."
+   "1. Three throwaway ZZAUTOTEST setups: (a) a WO WITH a Sales Representative assigned; (b) a WO with NO rep whose customer HAS an assigned rep; (c) a WO with NO rep whose customer has NO assigned rep."
   ],
   "steps": [
    "1. Invoice all three WOs.",
    "2. On the report (Show Unassigned on, filters covering the invoices), find each invoice and note which row it sits under.",
-   "3. Go back to WO (a), change its Sales Rep to a different rep, and re-check the already-created invoice on the report."
+   "3. Go back to WO (a), change its Sales Representative to a different rep, and re-check the already-created invoice on the report."
   ],
   "expected": [
-   "1. Invoice (a) is credited to the WO's Sales Rep.",
+   "1. Invoice (a) is credited to the WO's Sales Representative.",
    "2. Invoice (b) falls back to the CUSTOMER's assigned rep.",
    "3. Invoice (c) is unassigned — it appears only under the \"Unassigned\" row.",
-   "4. Changing WO (a)'s Sales Rep afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation."
+   "4. Changing WO (a)'s Sales Representative afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3",
+  "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3)",
   "viu_status": "VIU-Pending",
-  "notes": "BUILD-DELTA (§3 build note): the shipped database stores separate parts-side and service-side reps; the spec locks the single-rep model — record a deviation if the build still credits from dual fields. Clean up the ZZAUTOTEST data afterward.",
+  "notes": "BUILD-DELTA (§3 build note): the shipped database stores separate parts-side and service-side reps; the spec locks the single-rep model — record a deviation if the build still credits from dual fields. Clean up the ZZAUTOTEST data afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
@@ -1042,23 +1052,24 @@
   "type": "Functional",
   "permissions_required": "A user who can open customer records and Work Orders; staff-administration access to arrange the toggle.",
   "preconditions": [
-   "1. One customer HAS an assigned sales rep and one customer has NONE.",
-   "2. A Work Order exists whose bound Sales Rep can have their toggle turned off (arrange and restore afterward)."
+   "1. One customer HAS an assigned sales representative and one customer has NONE.",
+   "2. A Work Order exists whose bound Sales Representative can have their toggle turned off (arrange and restore afterward)."
   ],
   "steps": [
    "1. Open the assigned customer's record and read the left-panel sidebar.",
    "2. Open the unassigned customer's record and read the same row.",
-   "3. Turn the bound rep's sales-rep toggle OFF, reopen the Work Order, and read the Sales Rep selector; then open its option list."
+   "3. Turn the bound rep's sales-representative toggle OFF, reopen the Work Order, and read the Sales Representative selector; then open its option list."
   ],
   "expected": [
-   "1. The customer record's left-panel sidebar shows a single row labeled \"Sales Representative\" (the full word — the product owner explicitly corrected the short-form \"Sales Rep\" label here) with the customer's assigned rep.",
+   "1. The customer record's left-panel sidebar shows a single row labeled \"Sales Representative\" (the full word — the product owner explicitly corrected the short-form \"Sales Representative\" label here) with the customer's assigned rep.",
    "2. When no rep is assigned, the row renders \"Unassigned\".",
-   "3. On the WO, the selector renders the bound rep's name with an \"(Inactive)\" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list."
+   "3. On the WO, the selector renders the bound rep's name with an \"(Inactive)\" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list.",
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R7; S19-E1 — customer-card row label RE-RULED to the full 'Sales Representative' per the PRD companion video 2026-07-30 10:53-11:12, superseding the spec's 'Sales Rep'; video authoritative, newest-wins)",
+  "spec_ref": "SV-8636 (SBR spec Story 19 S19-R7; S19-E1 — customer-card label RE-RULED to the full \"Sales Representative\" per the PRD companion video 2026-07-30 + Chris Ward answer 2026-07-31 Q5=A; the spec text still says \"Sales Rep\")",
   "viu_status": "VIU-Pending",
-  "notes": "Restore the rep's toggle afterward (shared-env rule). COMPANION-VIDEO 2026-07-30 (C17, 10:53-11:12) FIRM: 'In the customer card, this actually should say sales representative ... I will flag this immediately, label this as sales representative.' Deviation basis (Rule 25): spec S19-R7 verbatim = 'a single \"Sales Rep\" row' — superseded newest-wins; spec ratification pending (SPEC-WATCH). Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins).",
+  "notes": "Restore the rep's toggle afterward (shared-env rule). COMPANION-VIDEO 2026-07-30 (C17, 10:53-11:12) FIRM: 'In the customer card, this actually should say sales representative ... I will flag this immediately, label this as sales representative.' Deviation basis (Rule 25): spec S19-R7 verbatim = 'a single \"Sales Rep\" row' — superseded newest-wins; spec ratification pending (SPEC-WATCH). Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins). Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
@@ -1218,12 +1229,12 @@
  {
   "id": "SBR-API-06",
   "area": "SBR — API",
-  "title": "Toggling a sales rep's active status off first runs a server pre-check returning the assigned-customer count and an assignments flag",
+  "title": "Deactivating a rep first runs a server pre-check returning the count",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Owner/Administrator/Manager profile (or equivalent staff-administration access); browser dev tools.",
   "preconditions": [
-   "1. A staff member is active with the sales-rep toggle on and at least one customer assigned (seed a throwaway ZZAUTOTEST assignment if needed).",
+   "1. A staff member is active with the sales-representative toggle on and at least one customer assigned (seed a throwaway ZZAUTOTEST assignment if needed).",
    "2. The network panel is open."
   ],
   "steps": [
@@ -1232,14 +1243,14 @@
    "3. Cancel the dialog (leave the staff member active)."
   ],
   "expected": [
-   "1. A precondition-check request runs FIRST, before any change is applied, returning the count of distinct customers currently assigned to that staff member as their sales rep, plus a flag indicating whether any assignments exist.",
-   "2. The dialog's \"{Staff Name} is the sales rep on {N} customer{s}.\" headline matches the returned count.",
+   "1. A precondition-check request runs FIRST, before any change is applied, returning the count of distinct customers currently assigned to that staff member as their sales representative, plus a flag indicating whether any assignments exist.",
+   "2. The dialog's \"{Staff Name} is the sales representative on {N} customer{s}.\" headline matches the returned count.",
    "3. No deactivation is committed by the pre-check itself — cancelling leaves the staff member's active status unchanged."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R4",
+  "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R4)",
   "viu_status": "VIU-Pending",
-  "notes": "The spec defines the check's behavior, not its REST shape — observe the real request; no endpoint invented. Restore the staff member and remove ZZAUTOTEST data afterward.",
+  "notes": "The spec defines the check's behavior, not its REST shape — observe the real request; no endpoint invented. Restore the staff member and remove ZZAUTOTEST data afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": true
  }
 ]

@@ -1,0 +1,398 @@
+[
+ {
+  "id": "IV-VIS-01",
+  "area": "IV — Visual & Accessibility",
+  "title": "The report uses an all-white table with no alternating row shading on the standard soft blue-grey report backdrop",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Inventory Value report is open with several rows."
+  ],
+  "steps": [
+   "1. Look at the column headers and the data cells.",
+   "2. Compare the background of consecutive rows.",
+   "3. Look at the page background around the table."
+  ],
+  "expected": [
+   "1. The table has white column headers and white data cells, with no alternating row shading.",
+   "2. The table sits on the standard soft blue-grey report backdrop."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 12 S12-R1",
+  "viu_status": "VIU-Pending",
+  "notes": "Per the Story 12 context note, finer styling details are deferred to the companion video/screenshots when available. COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact).",
+  "api_related": false
+ },
+ {
+  "id": "IV-VIS-02",
+  "area": "IV — Visual & Accessibility",
+  "title": "Toolbar layout: three-dot menu leftmost in the action cluster then Column Selection; filters run date range, part search, Category, Vendor, Location",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Inventory Value report is open."
+  ],
+  "steps": [
+   "1. Look at the toolbar's action cluster and read the order of its controls.",
+   "2. Read the toolbar filters from left to right."
+  ],
+  "expected": [
+   "1. In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.",
+   "2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost)."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 12 S12-R2; S12-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-VIS-03",
+  "area": "IV — Visual & Accessibility",
+  "title": "The totals row stays visible at the bottom while the user scrolls the rows",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The page shows more rows than fit on the screen."
+  ],
+  "steps": [
+   "1. Scroll the rows up and down.",
+   "2. Watch the totals row."
+  ],
+  "expected": [
+   "1. The totals row stays visible at the bottom while the rows scroll."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 12 S12-R5",
+  "viu_status": "Retired 2026-07-28 (merged into IV-TOT-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-VIS-04",
+  "area": "IV — Visual & Accessibility",
+  "title": "Long Description, Category, and Vendor values truncate with an ellipsis and show the full value on hover; the Part # is never truncated",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A ZZAUTOTEST part exists with a very long description (and, if possible, long category/vendor names) and a long part number."
+  ],
+  "steps": [
+   "1. Narrow the browser window (or turn on more columns) so the text columns overflow.",
+   "2. Read the long Description, Category, and Vendor cells and hover each.",
+   "3. Read the long Part # cell."
+  ],
+  "expected": [
+   "1. Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column.",
+   "2. The full value is available on hover.",
+   "3. The Part # is never truncated."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 12 S12-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-VIS-05",
+  "area": "IV — Visual & Accessibility",
+  "title": "In dark mode the page background, toolbar, cells, and the \"—\" glyph remain legible",
+  "priority": "Medium",
+  "type": "Accessibility",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The application is switched to dark mode.",
+   "3. The report shows rows including a part with an em-dash (\"—\") Category or Vendor cell."
+  ],
+  "steps": [
+   "1. Read the page background, toolbar, and table cells in dark mode.",
+   "2. Find a \"—\" cell and check its legibility."
+  ],
+  "expected": [
+   "1. The report supports dark mode.",
+   "2. The page background, toolbar, cells, and the \"—\" glyph all use dark-mode-legible colors."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 12 S12-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-VIS-06",
+  "area": "IV — Visual & Accessibility",
+  "title": "Each sortable column header exposes its sort state to assistive technology and shows the active direction visually",
+  "priority": "Medium",
+  "type": "Accessibility",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A screen reader or the browser's accessibility inspector is available.",
+   "3. The Inventory Value report is open with rows loaded."
+  ],
+  "steps": [
+   "1. Sort by a column and look at its header for a visual direction indicator.",
+   "2. With the accessibility inspector or screen reader, check what sort state the header exposes.",
+   "3. Toggle the direction and check both again."
+  ],
+  "expected": [
+   "1. The active sort direction is indicated visually on the header.",
+   "2. Each sortable column header exposes its sort state to assistive technology (for example, ascending/descending/none).",
+   "3. The exposed state updates when the direction toggles."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 12 S12-R8",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "IV-VIS-07",
+  "area": "IV — Visual & Accessibility",
+  "title": "The icon-only controls (three-dot download button and Column Selection button) each carry an accessible name",
+  "priority": "Medium",
+  "type": "Accessibility",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A screen reader or the browser's accessibility inspector is available.",
+   "3. The Inventory Value report is open."
+  ],
+  "steps": [
+   "1. Inspect the three-dot download button's accessible name.",
+   "2. Inspect the Column Selection button's accessible name."
+  ],
+  "expected": [
+   "1. Each icon-only control carries an accessible name exposed to assistive technology (it is not announced as an unnamed button)."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 12 S12-R9",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU-confirm the exact accessible-name strings (unpinned by the spec).",
+  "api_related": false
+ },
+ {
+  "id": "IV-PERM-01",
+  "area": "IV — Permissions",
+  "title": "A user with the existing inventory-reports permission can open the report — no new permission is added",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission.",
+  "preconditions": [
+   "1. A test user exists whose role has the existing inventory-reports permission (assign the Tech user a suitable role if needed; restore the original role afterward).",
+   "2. You are signed in as that user on a desktop browser."
+  ],
+  "steps": [
+   "1. Open the reports navigation and find \"Inventory Value\" under the Parts group.",
+   "2. Open the report and confirm it loads rows.",
+   "3. Download the current view as a CSV."
+  ],
+  "expected": [
+   "1. The report is listed and opens normally for a user holding the existing inventory-reports permission.",
+   "2. No additional, report-specific permission is required — the report reuses the existing inventory-reports permission."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 1 Prerequisites",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU-confirm WHICH permission is \"the existing inventory-reports permission\" in the build's role editor — the spec does not name its exact label; capture it live and tighten this case then. Do not invent a permission name.",
+  "api_related": false
+ },
+ {
+  "id": "IV-PERM-02",
+  "area": "IV — Permissions",
+  "title": "A user without the required permission does not see Inventory Value in the reports navigation",
+  "priority": "Critical",
+  "type": "Negative",
+  "permissions_required": "A role WITHOUT the inventory-reports permission.",
+  "preconditions": [
+   "1. A test user exists whose role does NOT have the inventory-reports permission (assign the Tech user such a role; restore the original role afterward).",
+   "2. You are signed in as that user on a desktop browser."
+  ],
+  "steps": [
+   "1. Open the reports navigation.",
+   "2. Look for \"Inventory Value\" under the Parts group."
+  ],
+  "expected": [
+   "1. The report does not appear in the navigation for this user."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 1 S1-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "Per Standing Rule 10, verify live AS the role — never derive from role definitions. Also probe direct navigation to the report's URL at VIU and record the observed behavior (the spec pins only the navigation hiding).",
+  "api_related": false
+ },
+ {
+  "id": "IV-API-01",
+  "area": "IV — API",
+  "title": "Nightly snapshot: once per day, for every location, one row per in-stock non-core part is recorded with its identity, quantity, and values to the cent",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Backend/database (or dev-support) access to inspect the stored inventory snapshot rows — this is a backend behavior that runs with no logged-in user.",
+  "preconditions": [
+   "1. In-stock, non-core parts exist at two or more locations, including a part with non-round cent values.",
+   "2. A location with NO in-stock parts also exists.",
+   "3. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers)."
+  ],
+  "steps": [
+   "1. After the overnight capture, inspect the stored snapshot rows for that calendar date.",
+   "2. For a known part, read every captured field.",
+   "3. Check the rows for each location, including the empty one."
+  ],
+  "expected": [
+   "1. Once per day, overnight, one row per then-in-stock, non-core part is recorded for every location across every organization, under that day's calendar date.",
+   "2. Each row captures the part's identity (part, category, vendor), on-hand quantity, unit cost, unit sell, total cost, and total sell, stored to the cent.",
+   "3. A location with no in-stock parts on the date simply has no rows for that date — this is valid, not an error."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 11 S11-R1; S11-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "The spec defines job behavior only — NO endpoint or table name is specified and none is invented here. VIU-confirm with dev how to trigger/inspect the capture. The cross-tenant capture is a reviewed, documented exception to request-scoped tenant filtering (Story 11 context note); every read path keeps full tenant scoping.",
+  "api_related": true
+ },
+ {
+  "id": "IV-API-02",
+  "area": "IV — API",
+  "title": "Nightly snapshot: the captured scope and valuation are identical to the live report, so a recorded day equals what the live report showed that day",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Backend/database (or dev-support) access to inspect the stored snapshot rows, plus the inventory-reports permission for the on-screen comparison.",
+  "preconditions": [
+   "1. ZZAUTOTEST parts with known quantities, costs, and sell resolutions (fixed price, matrix markup, and no-category fallback) are in stock and left UNCHANGED across the capture.",
+   "2. A core-charge part and a zero-quantity part also exist.",
+   "3. You can read the live report on the capture date and the stored rows afterward."
+  ],
+  "steps": [
+   "1. On the capture date, note the live report's rows and values for the seeded parts.",
+   "2. After the overnight capture, read the same parts' captured rows.",
+   "3. Look for the core-charge and zero-quantity parts among the captured rows.",
+   "4. The next day, view the report as of the captured date and compare to the noted live values."
+  ],
+  "expected": [
+   "1. The captured parts use the same in-stock, non-core scope as the live report (Story 2) — the core-charge and zero-quantity parts are NOT captured.",
+   "2. The captured values use the same valuation as the live report (Story 3), including the sell-price fallback chain.",
+   "3. A recorded day equals what the live report would have shown that day — the as-of view of the captured date matches the noted live values."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 11 S11-R2; §2 Relationship to nightly history",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": true
+ },
+ {
+  "id": "IV-API-03",
+  "area": "IV — API",
+  "title": "Nightly snapshot: re-running the capture for a date replaces that date's rows — idempotent, no duplicates",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Backend/database (or dev-support) access to re-run the capture and inspect the stored snapshot rows.",
+  "preconditions": [
+   "1. A capture has already run for the current date.",
+   "2. The capture can be re-run for that date (arrange with the developers)."
+  ],
+  "steps": [
+   "1. Count the stored rows per location for the date.",
+   "2. Re-run the capture for the same date.",
+   "3. Count and inspect the rows again."
+  ],
+  "expected": [
+   "1. Re-running the capture for a date replaces that date's rows for each location — the existing rows for that location and date are removed, then re-inserted from current data.",
+   "2. No duplicate rows exist for the same part, location, and date.",
+   "3. The capture is idempotent and self-healing from current data."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 11 S11-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": true
+ },
+ {
+  "id": "IV-API-04",
+  "area": "IV — API",
+  "title": "Nightly snapshot: history accrues forward only — a re-run records current truth under the current date and cannot reconstruct a past date",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Backend/database (or dev-support) access to inspect the stored snapshot rows.",
+  "preconditions": [
+   "1. The date the first capture ran is known.",
+   "2. Stock levels have changed since a past captured date."
+  ],
+  "steps": [
+   "1. Check the stored history for any rows dated before the first capture.",
+   "2. Re-run the capture and check which date its rows are recorded under.",
+   "3. Compare a past date's stored rows to confirm they were not rewritten by the re-run."
+  ],
+  "expected": [
+   "1. No rows exist for dates before capture began — there is no backfill.",
+   "2. A re-run always records current truth under the CURRENT date; it cannot reconstruct a past date.",
+   "3. Past dates' stored rows are unchanged by a current re-run."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 11 S11-R5; Story 5 S5-E1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": true
+ },
+ {
+  "id": "IV-API-05",
+  "area": "IV — API",
+  "title": "Snapshot retention: daily captures are kept for 0–13 months; older history is reduced to the last capture of each calendar month",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Backend/database (or dev-support) access to inspect the stored snapshot rows across ages.",
+  "preconditions": [
+   "1. Snapshot history exists (or is seeded/simulated with dev help) spanning both the 0–13-month band and the older-than-13-months band.",
+   "2. The nightly capture (with its pruning) has run."
+  ],
+  "steps": [
+   "1. Inspect the retained captures for dates within the last 13 months.",
+   "2. Inspect the retained captures for dates older than 13 months.",
+   "3. Check when pruning runs relative to the nightly capture."
+  ],
+  "expected": [
+   "1. For ages 0–13 months (measured from the current date), every daily capture is kept — full daily per-part detail, covering the report's longest date preset (366 days / This Year / Last Year) entirely at daily resolution.",
+   "2. For ages older than 13 months, only the last capture of each calendar month is retained; the other daily captures in that band are pruned.",
+   "3. Pruning runs as part of, or alongside, the nightly capture."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 11 S11-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "The 13-month daily band is OWNER-DECIDED per the spec's bracketed note — confirm it is still current with the owner at VIU before failing anything against it. Verifying the >13-month band on a fresh environment requires dev-seeded/aged history.",
+  "api_related": true
+ },
+ {
+  "id": "IV-API-06",
+  "area": "IV — API",
+  "title": "Thinned history is served unchanged: the closest-recorded-day rule bridges retention gaps, the \"As of\" indicator names the day shown, and a fully-pruned range shows the empty state",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Backend/database (or dev-support) access to confirm the retained capture dates, plus the inventory-reports permission for the on-screen checks.",
+  "preconditions": [
+   "1. Thinned history exists (dates older than 13 months where only the monthly last-capture remains — dev-seeded if needed).",
+   "2. The retained capture dates around the requested date are known."
+  ],
+  "steps": [
+   "1. On the report, select a range ending on a pruned date between two retained monthly captures.",
+   "2. Read which day the values represent and the \"As of\" indicator.",
+   "3. Select a range whose covering captures have ALL been pruned and no earlier retained capture remains."
+  ],
+  "expected": [
+   "1. The as-of resolution serves the thinned history unchanged: the report resolves to the nearest earlier retained capture (\"closest recorded day on or before\"), even when adjacent retained captures are up to a month apart.",
+   "2. The \"As of\" indicator names the day actually shown.",
+   "3. A requested date whose covering captures have all been pruned resolves to the nearest earlier retained capture, or shows the empty state if none remains."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/inventory-value.md Story 11 S11-E1; S11-R6; Story 5 S5-R4; S5-R5; S5-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": true
+ }
+]

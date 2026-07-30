@@ -78,12 +78,12 @@
  {
   "id": "PV-EXP-04",
   "area": "PV — Exports",
-  "title": "Exports reflect the active sort - including Min/Max sorts, the default Demand order, and identical null placement",
+  "title": "Exports reflect the active sort, including Min/Max and null placement",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
   "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded, including rows with — values in a sortable column (e.g. On Hand on catalogue rows).",
+   "1. You are on the Parts Velocity report with data loaded, including rows with — values in a sortable column (e.g. On Hand on special-order rows).",
    "2. Min and Max are enabled."
   ],
   "steps": [
@@ -97,9 +97,9 @@
    "3. The export renders the EXACT server order, including null placement (nulls first on ascending, last on descending) - the export and the on-screen grid match; there is no on-screen-vs-export null-sorting difference."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R4; S3-R3",
+  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R4; S3-R3)",
   "viu_status": "VIU-Pending",
-  "notes": "Depends on the server-side sort model (2026-07-16 spec round; spec ahead of code by design) - record the build behavior at VIU.",
+  "notes": "Depends on the server-side sort model (2026-07-16 spec round; spec ahead of code by design) - record the build behavior at VIU. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
@@ -159,12 +159,12 @@
  {
   "id": "PV-EXP-07",
   "area": "PV — Exports",
-  "title": "Null values render as an em-dash in both exports, and Last Sale renders as 'N days' in the PDF",
+  "title": "Em-dash in both exports; Last Sale reads \"N days\" in the PDF",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
   "preconditions": [
-   "1. Rows with null values exist (a catalogue row for On Hand / Turns / Yr / Min / Max; a row with billed units 0 for Unit Cost / Sell Price; a never-sold row for Last Sale).",
+   "1. Rows with null values exist (a special-order row for On Hand / Turns / Yr / Min / Max; a row with billed units 0 for Unit Cost / Sell Price; a never-sold row for Last Sale).",
    "2. All nullable columns are enabled."
   ],
   "steps": [
@@ -178,9 +178,9 @@
    "3. In the PDF, Last Sale renders as 'N days' (e.g. 42 days)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S6-R7; S6-R8; S3-R9",
+  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R7; S6-R8; S3-R9)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {

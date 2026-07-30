@@ -1,0 +1,97 @@
+active 472 in scope 77
+
+=== (i) opposite-assertion candidate groups: 19
+
+[Column Selection control (TU)] "persists|remembered|restored" vs "resets|cleared|not remembered"
+   A: TU-COL-01
+   B: SBC-COL-01
+
+[Column Selection control (TU)] "off by default|not offered" vs "on by default|is offered"
+   A: WIP-PERS-01
+   B: SBC-COL-01 TU-ELL-02
+
+[Est. Lost Labor column] "hidden|not shown|NOT shown|absen" vs "shown|displayed|IS shown|appears"
+   A: TU-ELL-04
+   B: TU-SUM-04
+
+[Est. Lost Labor column] "excluded|ignored|never includes" vs "included|includes"
+   A: TU-ELL-05
+   B: TU-HRS-02
+
+[Est. Lost Labor column] "persists|remembered|restored" vs "resets|cleared|not remembered"
+   A: TU-COL-01
+   B: TU-SORT-02 TU-SORT-03
+
+[Location filter control] "no reload|with no reload|immedia" vs "reloads|re-fetch"
+   A: SBC-LOC-04 SBR-LOC-05
+   B: PV-FILT-10 WIP-FLT-06
+
+[PDF logo] "no logo|shows no logo" vs "bundled ShopView|shows that logo"
+   A: PV-EXP-05
+   B: TU-EXP-06
+
+[Sales Representative label] "no reload|with no reload|immedia" vs "reloads|re-fetch"
+   A: SBR-WO-03
+   B: SBR-TYPE-02
+
+[Sales Representative label] "persists|remembered|restored" vs "resets|cleared|not remembered"
+   A: SBR-UNAS-01 SBR-WO-03
+   B: SBR-ASGN-05
+
+[Type filter / Type column] "greyed|disabled|non-interactive" vs "enabled|clickable|interactive"
+   A: SBR-DEACT-03
+   B: PV-COL-03 SBC-EMPTY-01
+
+[Type filter / Type column] "no reload|with no reload|immedia" vs "reloads|re-fetch"
+   A: PV-COL-03 SBC-PERS-01 WIP-FLT-03
+   B: PV-NAV-03 SBC-TREE-09 SBR-TYPE-02
+
+[Type filter / Type column] "excluded|ignored|never includes" vs "included|includes"
+   A: PV-FILT-09 PV-CALC-14 SBC-TREE-12
+   B: SBC-TYPE-02 SBR-TYPE-02 SBR-EXP-02
+
+[Type filter / Type column] "persists|remembered|restored" vs "resets|cleared|not remembered"
+   A: PV-COL-04 SBC-LINK-02 SBC-PERS-01 SBC-PERS-02 SBR-DEACT-08
+   B: SBC-TYPE-02 SBC-EMPTY-01 SBR-PERS-04
+
+[WIP column-selection control] "hidden|not shown|NOT shown|absen" vs "shown|displayed|IS shown|appears"
+   A: SBC-COL-02 SBR-COL-04 SBR-COL-05
+   B: SBC-COL-01 SBC-MOB-01 SBR-MOB-01
+
+[WIP column-selection control] "no reload|with no reload|immedia" vs "reloads|re-fetch"
+   A: SBC-LOC-04
+   B: SBR-STATE-01
+
+[WIP column-selection control] "persists|remembered|restored" vs "resets|cleared|not remembered"
+   A: SBR-UNAS-01 SBR-COL-05
+   B: SBC-COL-01
+
+[WIP column-selection control] "off by default|not offered" vs "on by default|is offered"
+   A: WIP-COL-02 WIP-COL-05
+   B: SBC-COL-01
+
+[download overflow menu] "no reload|with no reload|immedia" vs "reloads|re-fetch"
+   A: TU-EXP-01 TU-COL-01
+   B: SBR-STATE-01
+
+[download overflow menu] "persists|remembered|restored" vs "resets|cleared|not remembered"
+   A: TU-COL-01
+   B: SBC-COL-01
+
+=== (ii) TITLE-vs-EXPECTED (all 472 cases) ===
+  IV-LOC-06 (new) title asserts [never Multiple] not echoed in steps/expected: The Location column is automatic, sits after Vendor, and never reads Multiple
+  IV-NAV-01 (C30534) title asserts [shown] not echoed in steps/expected: Inventory Value appears in the reports navigation under the Parts group
+  PV-NAV-01 (C30322) title asserts [shown] not echoed in steps/expected: Parts Velocity appears under a new Parts section in the Reports navigation
+  SBC-API-01 (C30190) title asserts [shown] not echoed in steps/expected: A customer's asset and invoice rows are fetched from the server only on first expand, an
+  SBR-EXP-13 (C30288) title asserts [shown] not echoed in steps/expected: The Unassigned row appears in all four downloads only when the toggle is on
+  SBR-ROW-01 (C30217) title asserts [shown] not echoed in steps/expected: Contributors only: a rep row appears if and only if the rep has at least one non-reverse
+  TU-SUM-02 (C30415) title asserts [shown] not echoed in steps/expected: Summary totals visible technicians from unrounded hours; 0.01 drift expected
+  WIP-EXP-04 (C30513) title asserts [shown] not echoed in steps/expected: The Inv. Hrs green/red coloring appears on screen and in the PDF only — the CSV is monoc
+  WIP-FLT-09 (new) title asserts [never Multiple] not echoed in steps/expected: The Location column is automatic and never reads Multiple on a work-order row
+  WIP-TAB-01 (C30451) title asserts [shown] not echoed in steps/expected: Work In Progress appears in the reports navigation under the Performance group
+  count 10
+
+=== (iii) same-anchor clusters with opposite state words ===
+  SBR S10-N1: A=['SBR-TOT-02'] vs B=['SBR-TOT-01']  ("hidden|not shown|NOT shown" vs "shown|displayed|IS shown|a")
+  SBR S10-R5: A=['SBR-TOT-02'] vs B=['SBR-TOT-03', 'SBR-MOB-02']  ("hidden|not shown|NOT shown" vs "shown|displayed|IS shown|a")
+  clusters flagged 2

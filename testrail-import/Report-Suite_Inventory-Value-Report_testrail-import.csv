@@ -220,7 +220,20 @@ The Location filter is a rightmost multi-select with an All locations toggle,IV 
 The Location filter is hidden for a user with access to only one location,IV — Location Filter,Functional,Medium,"1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the Inventory Value report and look for the Location filter in the toolbar.
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's stock.
-2. For the user with access to two or more locations the Location filter IS shown.","SV-8674 (specs/inventory-value.md Story 7 S7-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",,
+2. For the user with access to two or more locations the Location filter IS shown.","SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S7-N1 ""still sees the filter"" note is stale, spec edit pending)",,
+"The Location column is automatic, sits after Vendor, and never reads Multiple",IV — Location Filter,Functional,High,"1. You are signed in on a desktop browser as a user with access to at least two locations.
+2. The same part is in stock at two of those locations.
+3. The Inventory Value report is open with rows loaded.","1. Select two or more locations and read the column headers from the left.
+2. Read the Location cell on each of the two rows for the part stocked at both locations.
+3. Look for any row showing ""Multiple"".
+4. Open the column-selection control and look for Location in the list.
+5. Narrow to a single location and read the headers again.
+6. Change the selection between one location, several, and ""All locations"", watching the filter control's width.","1. With more than one location in scope a Location column is shown, inserted between Vendor and Qty on Hand.
+2. Each row names the location that row's stock is held at.
+3. NO row ever shows ""Multiple"" — each row is one part at one location.
+4. Location is NOT offered in the column-selection control — its visibility follows the location scope automatically.
+5. With a single location in scope the Location column is hidden and the surrounding columns close up.
+6. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.","SV-8674 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10 — Location column inserted between Vendor and Qty on Hand, automatic visibility, never ""Multiple"")",,
 "The column-selection icon button (tooltip ""Column Selection"") toggles columns, and Total Cost cannot be turned off",IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
 2. Open the control and toggle a column off, then on again, watching the table.

@@ -185,7 +185,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R1; S3-R5 - 'Catalogue' RENAMED to the exact label 'Special Order' [Type filter, Type column, export] per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins), confirming kickoff video P31)",
   "viu_status": "VIU-Pending",
-  "notes": "RENAME CONFIRMED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'The part type \"Catalogue\" is renamed to \"Special Order\" (the Type filter, the Type column, and the export)... No data changes - splay/label only.' The label is now spec-stated (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. VIU-confirm the filter control's own name ('Type' is the spec's name). Seeding for the reload leg: at least one invoiced sale of an inventory part AND at least one vendor-sourced (Special Order) part request on an invoiced/paid work order in the window. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-PV-TYPE): absorbed PV-FILT-02. TITLE unchanged (already label-neutral). NOTE: the same rename on the Parts Sales report's dropdown is OUT of this suite's scope (different feature) - recorded as an FYI in the change-list, no case here.",
+  "notes": "RENAME CONFIRMED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'The part type \"Special Order\" is renamed to \"Special Order\" (the Type filter, the Type column, and the export)... No data changes - splay/label only.' The label is now spec-stated (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. VIU-confirm the filter control's own name ('Type' is the spec's name). Seeding for the reload leg: at least one invoiced sale of an inventory part AND at least one vendor-sourced (Special Order) part request on an invoiced/paid work order in the window. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-PV-TYPE): absorbed PV-FILT-02. TITLE unchanged (already label-neutral). NOTE: the same rename on the Parts Sales report's dropdown is OUT of this suite's scope (different feature) - recorded as an FYI in the change-list, no case here.",
   "api_related": false
  },
  {
@@ -377,7 +377,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "specs/parts-velocity.md S2-R8",
   "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm the exact filter label ('Bin' is the spec's name). Catalogue exclusion under a Bin filter is PV-FILT-09.",
+  "notes": "VIU-confirm the exact filter label ('Bin' is the spec's name). Special Order exclusion under a Bin filter is PV-FILT-09.",
   "api_related": false
  },
  {
@@ -511,9 +511,42 @@
    "2. For the user with access to two or more locations the Location filter IS shown."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-E4 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+  "spec_ref": "SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S2-E4 \"still sees the filter\" note is stale, spec edit pending)",
   "viu_status": "VIU-Pending",
-  "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S2-E4): 'A user with access to only one location STILL SEES the Location filter with a single selectable location.' Seeding: create a fresh ZZAUTOTEST staff member scoped to one location if none exists (Standing Rule 14 pattern).",
+  "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S2-E4): 'A user with access to only one location STILL SEES the Location filter with a single selectable location.' Seeding: create a fresh ZZAUTOTEST staff member scoped to one location if none exists (Standing Rule 14 pattern). Q1 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A \"classic spec drift\"): the Location filter is HIDDEN for a user with access to only one location. This CONFIRMS the video-based flip and closes the \"pending his answer\" caveat; the tester-facing wording did not change. The four spec notes that still say the opposite need Chris's edit.",
+  "api_related": false
+ },
+ {
+  "id": "PV-FILT-14",
+  "area": "PV — Filters",
+  "title": "The Location column shows only with more than one location, leftmost before Type",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission.",
+  "preconditions": [
+   "1. You are on the Parts Velocity report as a user with access to two or more locations, with data loaded.",
+   "2. The same inventory part is stocked at two of those locations, and at least one Special Order part has vendor requests at two of them."
+  ],
+  "steps": [
+   "1. Select two or more locations and read the column headers from the left.",
+   "2. Read the Location cell on each of the two inventory rows for the part stocked at both locations.",
+   "3. Read the Location cell on the merged Special Order row.",
+   "4. Open the column picker and look for Location in the list.",
+   "5. Narrow to a single location and read the headers again.",
+   "6. Change the selection between one location, several, and \"All Locations\", watching the filter control's width."
+  ],
+  "expected": [
+   "1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Type.",
+   "2. Each inventory row shows its own location's name (an inventory row is one part at one location).",
+   "3. The merged Special Order row shows \"Multiple\", because it is summed across the selected locations.",
+   "4. Location is NOT one of the 20 columns in the picker — it is managed by the location scope, not by you.",
+   "5. With a single location in scope the Location column is hidden.",
+   "6. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8 — per-row Location column, leftmost before Type, \"Multiple\" on the merged special-order row, not in the picker)",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (PV v4 change-log row: \"added a per-row Location column (shown when more than one location is in scope; 'Multiple' on rows spanning locations)\"). The per-row rule follows the report's row model (S3-R1a): inventory rows are per-location, special-order rows are merged. The \"Locations:\" export line is already covered by PV-EXP-02. Not live-verified (Rule 12).",
   "api_related": false
  }
 ]

@@ -5,7 +5,7 @@
   "title": "Empty state shows in the table body; toolbar interactive; kept selection returns",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with data on screen."
   ],
@@ -35,7 +35,7 @@
   "title": "The empty-state message never appears while the table is still loading",
   "priority": "Medium",
   "type": "Negative",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report; a slow network helps (throttle via browser dev tools if needed)."
   ],
@@ -59,7 +59,7 @@
   "title": "A narrowed customer selection with no data shows the empty state but the selection is kept and the customers reappear",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. The Customer filter is narrowed to specific customers who have data in the current range but none in an adjacent range."
   ],
@@ -85,7 +85,7 @@
   "title": "A failed data fetch shows the fetching-error toast which auto-fades after 5 seconds",
   "priority": "Medium",
   "type": "Negative",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You can interrupt the network (browser dev tools offline mode)."
   ],
@@ -109,7 +109,7 @@
   "title": "Page and toolbar match the suite theme: paddings, surfaces, alignment, separator, arrow size and square corners",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report in light mode on a desktop browser with dev tools available."
   ],
@@ -140,7 +140,7 @@
   "title": "Row surfaces alternate by tree level: white header/customer/totals rows, blue-grey asset/invoice rows, pinned Subtotal matching its row",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report in light mode with a customer expanded down to invoice rows."
   ],
@@ -168,7 +168,7 @@
   "title": "Dark mode swaps every surface for its dark equivalent while the PDF always renders in light-mode colors",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You can switch the application to dark mode."
   ],
@@ -192,7 +192,7 @@
   "title": "On a phone every toolbar control works on touch and below 1024px the toolbar splits into two rows",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You open the report on a phone-sized viewport (real device or browser device emulation)."
   ],
@@ -218,7 +218,7 @@
   "title": "On touch the table scrolls sideways with the Subtotal pinned, chevrons toggle, and invoice links open in the same tab",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report on a phone-sized viewport with data."
   ],
@@ -244,7 +244,7 @@
   "title": "A customer's asset and invoice rows are fetched from the server only on first expand, and expand-all fetches at most one request per visible customer",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with several customers, with the browser's network activity panel open."
   ],
@@ -271,7 +271,7 @@
   "title": "Sorting is applied on the server: a header click re-fetches the customer rows ordered by that column as a fresh first page",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Enough customers exist to span more than one page; the browser's network panel is open."
   ],
@@ -298,7 +298,7 @@
   "title": "The Customer filter's type-ahead fetches matching customers from the server per query instead of loading the full list up front",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with the browser's network panel open."
   ],
@@ -324,7 +324,7 @@
   "title": "Customer rows are server-paginated and the totals row is server-computed over the full filtered set",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Enough customers exist to span more than one page; the browser's network panel is open."
   ],
@@ -350,7 +350,7 @@
   "title": "Exports are generated on the server and the 10,000-row cap is counted server-side before any file is produced",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. The browser's network panel is open; an over-cap filter combination is available if the environment allows (see SBC-EXP-14)."
   ],

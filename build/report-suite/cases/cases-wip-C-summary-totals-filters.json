@@ -445,18 +445,20 @@
    "1. Open the Work In Progress report and read the Location filter's position and default value.",
    "2. Open the Location filter and read its options and its toggle.",
    "3. Select a second location and watch the data area.",
-   "4. Use \"All locations\", then \"Clear all\"."
+   "4. Use \"All locations\", then \"Clear all\".",
+   "5. Then sign in as a user with access to only ONE location, open the report and look for the Location filter again."
   ],
   "expected": [
    "1. The Location filter is the rightmost toolbar filter, a multi-select listing the locations the signed-in user can access, with an \"All locations\" / \"Clear all\" toggle.",
    "2. On a first visit it defaults to the user's currently active location.",
    "3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).",
-   "4. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build)."
+   "4. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
+   "5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R9; S7-R10 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins))",
+  "spec_ref": "SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator, spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A)",
   "viu_status": "VIU-Pending",
-  "notes": "SCOPE-INDICATOR added 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now shows which location(s) it's scoped to... on screen') - distinct from the per-row location label (video P10), which stays. Spec anchor pending the updated spec changelog. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 150 chars; meaning unchanged; awaiting push authorization.",
+  "notes": "SCOPE-INDICATOR added 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now shows which location(s) it's scoped to... on screen') - distinct from the per-row location label (video P10), which stays. Spec anchor pending the updated spec changelog. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 150 chars; meaning unchanged; awaiting push authorization. Q1 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): the Location filter is hidden for a one-location user — applied suite-wide; folded into this existing filter case (Rule 28).",
   "api_related": false
  },
  {
@@ -511,6 +513,42 @@
   "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R12; S7-N1; Story 5 S5-R11; Story 6 S6-R6; §3 Key Decisions",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-WIP-RECOMPUTE): absorbed WIP-SUM-06, WIP-TOT-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "api_related": false
+ },
+ {
+  "id": "WIP-FLT-09",
+  "area": "WIP — Filters",
+  "title": "The Location column is automatic and never reads Multiple on a work-order row",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with access to at least two locations and the Work In Progress reports permission.",
+  "preconditions": [
+   "1. You are signed in on a desktop browser as a user with access to at least two locations.",
+   "2. Open work orders exist at two different locations.",
+   "3. The Work In Progress report is open."
+  ],
+  "steps": [
+   "1. Select two or more locations in the Location filter and read the column headers.",
+   "2. Read the Location cell on rows from each of the two locations, on every tab.",
+   "3. Look for any row showing \"Multiple\".",
+   "4. Open the column-selection control and look for Location in the list.",
+   "5. Narrow to a single location and read the headers again.",
+   "6. Download the tab as a CSV and a PDF and read the Location column's header in the files.",
+   "7. Change the selection between one location, several, and \"All locations\", watching the filter control's width."
+  ],
+  "expected": [
+   "1. With more than one location in scope a Location column is shown, in its fixed position between VIN and Advisor, left-aligned.",
+   "2. Each row names its own work order's location.",
+   "3. NO row ever shows \"Multiple\" — a work order belongs to exactly one location, and this report has no grouped or drill-down rows.",
+   "4. Location is NOT offered in the column-selection control — its visibility follows the location scope automatically.",
+   "5. With a single location in scope the Location column is hidden.",
+   "6. In both downloads the column is headed \"Branch\" (a known naming difference from the screen — do not raise it as a bug).",
+   "7. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; §4 Location (column) — automatic visibility, never \"Multiple\", export header \"Branch\")",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW 2026-07-31. WIP already HAD a Location column, but spec v6 2026-07-29 changed it from a user-toggled column to an automatic, scope-driven one and pinned the never-\"Multiple\" rule (§3 Key Decision verbatim: \"Because a work order belongs to exactly one location, each WIP row names its own location — a WIP row never shows 'Multiple'\"). The \"Branch\" export header is the pre-existing documented difference also covered by WIP-EXP-07. Not live-verified (Rule 12).",
   "api_related": false
  }
 ]

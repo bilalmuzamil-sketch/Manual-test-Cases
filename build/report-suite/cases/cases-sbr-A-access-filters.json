@@ -102,7 +102,7 @@
  {
   "id": "SBR-PERM-02",
   "area": "SBR — Permissions",
-  "title": "A user without Reports access sees no Reports navigation, no export menu, and cannot reach the Export Reports dialog",
+  "title": "Without Reports access: no navigation, no export menu, no Export dialog",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "A role WITHOUT permission to access Reports.",
@@ -118,12 +118,12 @@
   "expected": [
    "1. The entire Reports navigation — including the \"Sales By Representative\" entry — is not shown.",
    "2. The report (and its ⋯ export menu) is not reachable.",
-   "3. The Export Reports dialog and the Sales Rep Assignments download are not reachable."
+   "3. The Export Reports dialog and the Sales Representative Assignments download are not reachable."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 1 S1-N1; Story 14 S14-N3; Story 15 S15-N1",
+  "spec_ref": "SV-8619 (specs/sbr-sales-by-representative.md Story 1 S1-N1; Story 14 S14-N3; Story 15 S15-N1)",
   "viu_status": "VIU-Pending",
-  "notes": "The direct-link blocked behavior is not pinned by the spec — VIU-confirm and record it.",
+  "notes": "The direct-link blocked behavior is not pinned by the spec — VIU-confirm and record it. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
@@ -280,7 +280,7 @@
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
   "preconditions": [
-   "1. A rep has both a P (parts) and an S (service) invoice in the range (seed ZZAUTOTEST data via the WO Sales Rep field).",
+   "1. A rep has both a P (parts) and an S (service) invoice in the range (seed ZZAUTOTEST data via the WO Sales Representative field).",
    "2. No remembered settings for this report (first visit or cleared storage), so the default can be read."
   ],
   "steps": [
@@ -297,9 +297,9 @@
    "5. Each change re-fetches and re-renders the report."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7",
+  "spec_ref": "SV-8621 (specs/sbr-sales-by-representative.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7)",
   "viu_status": "VIU-Pending",
-  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-TYPE): absorbed SBR-TYPE-01. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-TYPE): absorbed SBR-TYPE-01. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
   "api_related": false
  },
  {
@@ -553,9 +553,47 @@
    "2. For the user with access to two or more locations the Location filter IS shown."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8638 (specs/sbr-sales-by-representative.md Story 21 S21-N1 — expectation FLIPPED by kickoff video P33 46:10-46:28, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+  "spec_ref": "SV-8638 (SBR spec S21-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S21-N1 \"still sees the filter\" note is stale, spec edit pending)",
   "viu_status": "VIU-Pending",
-  "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S21-N1): 'A single-location user STILL SEES the filter with one selectable location' — the case previously asserted exactly that. Ties to the Q2 permission-model question.",
+  "notes": "VIDEO-AUTHORITATIVE FLIP (P33, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 46:10-46:28: 'if you, say you only had QA testing, you would not see this at all. This- the filter's just gone. If you had... QA testing and QB location, then of course you'd see the filter.' OVERRIDDEN spec wording (S21-N1): 'A single-location user STILL SEES the filter with one selectable location' — the case previously asserted exactly that. Ties to the Q2 permission-model question. Q1 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A \"classic spec drift\"): the Location filter is HIDDEN for a user with access to only one location. This CONFIRMS the video-based flip and closes the \"pending his answer\" caveat; the tester-facing wording did not change. The four spec notes that still say the opposite need Chris's edit.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-LOC-05",
+  "area": "SBR — Location Filter",
+  "title": "The Location column shows only with more than one location; rep rows Multiple",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports access (Reports section View).",
+  "preconditions": [
+   "1. You are on the Sales By Representative report as a user with access to two or more locations.",
+   "2. One rep has invoices at a single location and another rep has invoices at two different locations.",
+   "3. Show Unassigned is turned on and at least one unassigned invoice exists."
+  ],
+  "steps": [
+   "1. Select two or more locations and read the column headers.",
+   "2. Read the Location cell on the single-location rep's summary row.",
+   "3. Read the Location cell on the rep whose invoices span two locations.",
+   "4. Expand that rep and read an invoice detail row's Location cell.",
+   "5. Read the Location cell on the Unassigned summary row.",
+   "6. Check that the pinned Subtotal column is still the rightmost column.",
+   "7. Narrow to a single location and read the headers again.",
+   "8. Change the selection between one location, several, and \"All Locations\", watching the filter control's width."
+  ],
+  "expected": [
+   "1. With more than one location in scope a Location column is shown, positioned immediately after the Status column and before Inv. Hrs.",
+   "2. A rep summary row whose invoices are all at one location shows that location's name.",
+   "3. A rep summary row whose invoices span more than one location shows \"Multiple\".",
+   "4. An invoice detail row shows that invoice's own exact location — never \"Multiple\".",
+   "5. The Unassigned summary row follows the same rule as any rep summary row.",
+   "6. The pinned Subtotal column is still rightmost — the Location column never displaces it.",
+   "7. With a single location in scope the Location column is hidden.",
+   "8. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8638 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13 — per-row Location column, \"Multiple\" verbatim on a rep row spanning locations, position after Status, constant-width filter)",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW 2026-07-31. Added by Chris Ward's 2026-07-29 spec changelog (SBR v15 change-log row: \"Added a per-row Location column, shown only when the current view spans more than one location…\"). \"Multiple\" is used verbatim per S21-R8. The \"Locations:\" export line is already covered by SBR-EXP-02. Not live-verified (Rule 12).",
   "api_related": false
  }
 ]

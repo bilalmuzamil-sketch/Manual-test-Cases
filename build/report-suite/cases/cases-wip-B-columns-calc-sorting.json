@@ -2,14 +2,15 @@
  {
   "id": "WIP-COL-01",
   "area": "WIP — Columns & Rows",
-  "title": "With every column turned on, the columns appear in the fixed left-to-right order with the specified alignment",
+  "title": "With all toggleable columns on, the fixed column order and alignment hold",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. The Work In Progress report is open with rows loaded.",
-   "3. Every column is turned on in the column-selection control."
+   "3. Every toggleable column is turned on in the column-selection control.",
+   "4. More than one location is in scope, so the automatic Location column is showing."
   ],
   "steps": [
    "1. Read the column headers from left to right.",
@@ -21,15 +22,15 @@
    "3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R1; S4-R4",
+  "spec_ref": "SV-8659 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "CHANGED by the WIP spec v6 2026-07-29 S4-R3 (verbatim: \"The Location column is not offered in the column selector; its visibility is automatic — shown only when more than one location is in scope (Story 7)\").",
   "api_related": false
  },
  {
   "id": "WIP-COL-02",
   "area": "WIP — Columns & Rows",
-  "title": "On a first visit only the default columns show; the rest are available in the column selector and off by default",
+  "title": "First visit shows the default columns; the rest are in the column selector",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -43,12 +44,13 @@
   ],
   "expected": [
    "1. The visible columns on first visit are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, and Total.",
-   "2. Every other column (VIN, Location, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default."
+   "2. Every other column (VIN, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default.",
+   "3. Location is NOT offered in the column-selection control — it appears on its own whenever more than one location is in scope, and is hidden when a single location is in scope."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R2; S4-R3; Story 8 S8-R3; S8-R4",
+  "spec_ref": "SV-8659; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: \"The Location column is not offered in the column selector; its visibility is automatic\")",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "CHANGED by the WIP spec v6 2026-07-29 S4-R3 (verbatim: \"The Location column is not offered in the column selector; its visibility is automatic — shown only when more than one location is in scope (Story 7)\").",
   "api_related": false
  },
  {

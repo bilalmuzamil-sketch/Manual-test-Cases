@@ -5,7 +5,7 @@
   "title": "Each customer gets one summary row with its name followed by the invoice count in parentheses",
   "priority": "Critical",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report.",
    "2. A customer has a known number of matching invoices in the current date range (seed ZZAUTOTEST data so the count is predictable)."
@@ -33,7 +33,7 @@
   "title": "A customer with no matching invoices in the current view is not shown",
   "priority": "High",
   "type": "Negative",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. A customer exists whose invoices all fall OUTSIDE the current date range (seed if needed).",
    "2. You are on the Sales By Customer report."
@@ -57,7 +57,7 @@
   "title": "Expanding a customer reveals asset rows; chevrons toggle and are independent",
   "priority": "Critical",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. A customer in the current view has invoices on at least two different vehicles (seed ZZAUTOTEST work orders on two assets if needed).",
    "2. At least two customers with assets are in the current view."
@@ -88,7 +88,7 @@
   "title": "Expanding an asset reveals its invoice detail rows with number link, date and per-invoice columns",
   "priority": "Critical",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You have expanded a customer and can see its asset rows."
   ],
@@ -113,7 +113,7 @@
   "title": "Invoices group into one asset row per vehicle record, with a snapshot fallback for older invoices with no vehicle id",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. A customer has two or more invoices on the SAME vehicle record and at least one invoice on a different vehicle (seed ZZAUTOTEST data)."
   ],
@@ -138,7 +138,7 @@
   "title": "Asset rows order A to Z case-insensitively with the Parts Sales bucket always last, regardless of column sort",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. A customer has invoices on at least two vehicles AND at least one no-vehicle invoice (counter/parts sale) in the current view (seed ZZAUTOTEST data)."
   ],
@@ -163,7 +163,7 @@
   "title": "Chevrons toggle closed on a second click and every customer's and asset's expansion is independent",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. At least two customers with assets are in the current view."
   ],
@@ -190,7 +190,7 @@
   "title": "Header-row chevron expands or collapses every customer on the current page, with matching icon and tooltip",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Several customers are visible on the current page."
   ],
@@ -216,7 +216,7 @@
   "title": "Reload-causing changes collapse expansion; Customer filter typing does not",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with at least one customer expanded down to invoice rows.",
    "2. Enough customers exist to fill more than one page of results (seed ZZAUTOTEST customers if needed)."
@@ -243,7 +243,7 @@
   "title": "Edge: a single-invoice asset can still be expanded, and a customer with only no-vehicle work shows a single Parts Sales row",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Customer A has an asset with exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the current view (seed ZZAUTOTEST data)."
   ],
@@ -267,7 +267,7 @@
   "title": "A service (S) invoice with no vehicle also lands in the Parts Sales bucket — absence of a vehicle decides, not the prefix",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. A customer has an invoice whose number starts with S but whose work order has NO vehicle (seed a ZZAUTOTEST no-vehicle service work order and invoice it, if the app allows)."
   ],
@@ -290,7 +290,7 @@
   "title": "Reversed and voided invoices are excluded from every row, count and total under every Product Type",
   "priority": "Critical",
   "type": "Negative",
-  "permissions_required": "Sales By Customer report View permission; permission to reverse/void an invoice for seeding.",
+  "permissions_required": "the ordinary reports access (Reports section View); permission to reverse/void an invoice for seeding.",
   "preconditions": [
    "1. A customer has a known set of invoices in the current range, one of which you then reverse (or void) — seed ZZAUTOTEST data and note the totals before and after."
   ],
@@ -317,7 +317,7 @@
   "title": "Every row type renders the same columns in the same order, blank cells keep their position, and summary rows use the specified font weights",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with a customer expanded down to invoice rows and the totals row visible."
   ],
@@ -344,7 +344,7 @@
   "title": "Asset identified by VIN, falling back to Unit #, then plate",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
+  "permissions_required": "the ordinary reports access (Reports section View); ability to edit assets for seeding.",
   "preconditions": [
    "1. One customer has ZZAUTOTEST assets with invoices in range: (a) one with a VIN recorded, (b) one with no VIN but a Unit # recorded, (c) one with no VIN or Unit # but a plate recorded, (d) one with no VIN, Unit #, or plate (blank the fields as far as the asset form allows)."
   ],
@@ -370,7 +370,7 @@
   "title": "An asset with no year, make or model is labeled with the VIN on its own",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
+  "permissions_required": "the ordinary reports access (Reports section View); ability to edit assets for seeding.",
   "preconditions": [
    "1. A ZZAUTOTEST asset exists with a VIN but no year, make, or model, and has an invoice in range."
   ],
@@ -392,7 +392,7 @@
   "title": "An asset with no year, make, model or VIN is labeled Unknown Asset",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
+  "permissions_required": "the ordinary reports access (Reports section View); ability to edit assets for seeding.",
   "preconditions": [
    "1. A ZZAUTOTEST asset exists with no year, make, model, or VIN, and has an invoice in range (if the app's asset form forces a value, blank the fields as far as it allows)."
   ],
@@ -414,7 +414,7 @@
   "title": "Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
+  "permissions_required": "the ordinary reports access (Reports section View); ability to edit assets for seeding.",
   "preconditions": [
    "1. One customer has TWO ZZAUTOTEST assets whose labels come out identical (same year/make/model and same identifier situation), each with an invoice in range."
   ],
@@ -439,7 +439,7 @@
   "title": "Invoice number opens in the same tab: S invoices to the work order Finance tab, P invoices to the part sale Part Requests tab",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission plus permission to open the destination invoice.",
+  "permissions_required": "the ordinary reports access (Reports section View) plus permission to open the destination invoice.",
   "preconditions": [
    "1. You have expanded an asset and can see at least one S invoice and (under another customer/asset if needed) one P invoice."
   ],
@@ -464,7 +464,7 @@
   "title": "Browser back from an invoice returns to the report with filters, sort and columns restored and rows collapsed",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission plus permission to open the destination invoice.",
+  "permissions_required": "the ordinary reports access (Reports section View) plus permission to open the destination invoice.",
   "preconditions": [
    "1. You are on the report with non-default filters set (for example Last Month + Service only), a non-default sort, and one column hidden.",
    "2. You have expanded down to an invoice detail row."
@@ -491,7 +491,7 @@
   "title": "Customer name is plain text; the invoice link keeps the primary color with no underline and never turns visited-purple",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You have expanded down to invoice detail rows and have already clicked at least one invoice link earlier in the session."
   ],
@@ -517,7 +517,7 @@
   "title": "Clicking an invoice deleted or reversed after the report loaded shows the standard not-found state and back returns",
   "priority": "Medium",
   "type": "Negative",
-  "permissions_required": "Sales By Customer report View permission plus permission to reverse/delete an invoice for seeding.",
+  "permissions_required": "the ordinary reports access (Reports section View) plus permission to reverse/delete an invoice for seeding.",
   "preconditions": [
    "1. The report is open with an invoice detail row visible.",
    "2. In another tab/session, that invoice is deleted or reversed AFTER the report loaded (do not refresh the report)."
@@ -542,7 +542,7 @@
   "title": "All columns sortable except chevron; text alphabetical, numbers by value",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Several customers with differing values are in the current view.",
    "2. A customer with multiple assets and invoices is in the view."
@@ -570,7 +570,7 @@
   "title": "Default sort is Customer name ascending case-insensitive; clicking a header replaces it",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. No saved view exists (first visit or cleared storage).",
    "2. Customer names with mixed upper/lower-case first letters exist in the view (seed ZZAUTOTEST names like \"acme test\" and \"Best Test\")."
@@ -595,7 +595,7 @@
   "title": "Missing values sort to the bottom ascending and to the top descending; a Margin % em dash counts as missing",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. At least one customer row shows an em dash (—) in Margin % (Subtotal zero or below — seed a zero-subtotal case if possible) alongside rows with real Margin % values."
   ],
@@ -619,7 +619,7 @@
   "title": "Sorting by Date orders customers by their most recent invoice date even though the Date cell is blank on customer rows",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Two customers exist whose most recent invoice dates differ clearly (seed ZZAUTOTEST invoices on different dates)."
   ],
@@ -643,7 +643,7 @@
   "title": "Sorting reorders only the customer summary rows; asset and invoice ordering is untouched",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. A customer with multiple assets and invoices is in the view."
   ],
@@ -667,7 +667,7 @@
   "title": "Changing the sort shows the loading state, collapses expanded rows, and can change which customers are on the page",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Enough customers exist to fill more than one page of results (seed ZZAUTOTEST customers if needed).",
    "2. At least one customer is expanded."
@@ -693,7 +693,7 @@
   "title": "With no customer rows the sort headers are still present and produce no visible change",
   "priority": "Low",
   "type": "Negative",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. The current filters produce no matching customers (the empty state is showing)."
   ],

@@ -5,10 +5,10 @@
   "title": "Sales By Customer listed under Performance, below existing links; titles correct",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission (dedicated per S1-R2 — exact permission name in the roles screen is VIU-confirm).",
+  "permissions_required": "the ordinary reports access (Reports section View) (dedicated per S1-R2 — exact permission name in the roles screen is VIU-confirm).",
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. Your role has the Sales By Customer report View permission."
+   "2. Your role has the ordinary reports access (the standard \"can this person see reports\" setting)."
   ],
   "steps": [
    "1. Open the Reports area from the main navigation.",
@@ -23,9 +23,9 @@
    "4. The browser tab title reads \"Sales By Customer - Report | ShopView\"."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8600 (specs/sbc-sales-by-customer.md Story 1 S1-R1; S1-R3; S1-R4 — Performance group + below-the-anchors placement per the PRD companion video 2026-07-30 01:18-02:05; the SBC spec names no nav group)",
+  "spec_ref": "SV-8600 (SBC spec Story 1 S1-R1; S1-R3; S1-R4 — Performance group + below-the-anchors placement per the PRD companion video 2026-07-30; access = ordinary reports permission per Chris Ward answer 2026-07-31 Q4=A)",
   "viu_status": "VIU-Pending",
-  "notes": "COMPANION-VIDEO 2026-07-30 (C4, 01:18-02:05): the SBC spec names no navigation group; the video places SBC in the Performance section, below Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency ('add ... sales by customer ... below those items, rather than interrupting those items'). Order among the four NEW reports is not fixed. Exact rendering VIU-confirm. Spec ratification pending (SPEC-WATCH). Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-NAV): absorbed SBC-NAV-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "notes": "COMPANION-VIDEO 2026-07-30 (C4, 01:18-02:05): the SBC spec names no navigation group; the video places SBC in the Performance section, below Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency ('add ... sales by customer ... below those items, rather than interrupting those items'). Order among the four NEW reports is not fixed. Exact rendering VIU-confirm. Spec ratification pending (SPEC-WATCH). Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-NAV): absorbed SBC-NAV-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. Q4 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A, verbatim: \"the intention is to not hide these from normal reports access. These were specced before CRP was built\"): every report in the suite is gated by the ORDINARY reports permission; no report gets its own. THE BUILD DIFFERS — the engineering tech plan §B5.3 gates every Sales By Customer endpoint on a new dedicated atom ROLE_SALES_BY_CUSTOMER_REPORT::VIEW, and SBC spec S1-R2 still states the dedicated model. Dev change ticket + spec correction raised in chris-answers-2026-07-31/Q4-permission-dev-note-2026-07-31.md. Not live-verified (Rule 12).",
   "api_related": false
  },
  {
@@ -34,7 +34,7 @@
   "title": "Page title and browser tab title read Sales By Customer",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are signed in with the Sales By Customer report View permission.",
    "2. You have opened the Sales By Customer report."
@@ -56,12 +56,12 @@
  {
   "id": "SBC-PERM-01",
   "area": "SBC — Permissions",
-  "title": "A user with the dedicated Sales By Customer View permission can see and open the report",
+  "title": "Ordinary reports access opens Sales By Customer — no separate permission",
   "priority": "Critical",
   "type": "Functional",
-  "permissions_required": "A role holding ONLY the dedicated Sales By Customer report View permission (not a generic all-reports permission).",
+  "permissions_required": "A role holding ONLY the ordinary reports access (Reports section View).",
   "preconditions": [
-   "1. A test user exists whose role has the dedicated Sales By Customer report View permission (create a ZZAUTOTEST custom role if needed).",
+   "1. A test user exists whose role has the ordinary reports access (the standard \"can this person see reports\" setting) and NO report-specific permission (create a ZZAUTOTEST custom role if needed; restore afterwards).",
    "2. You are signed in as that user."
   ],
   "steps": [
@@ -71,23 +71,24 @@
   "expected": [
    "1. The \"Sales By Customer\" entry is visible in the Reports navigation.",
    "2. The report opens and shows its data.",
-   "3. Access is granted by the dedicated Sales By Customer permission itself — the report is not tied to a generic \"all reports\" permission."
+   "3. Ordinary reports access alone is enough — this report does NOT need a permission of its own.",
+   "4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it as the known pending change — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 1 S1-R2",
+  "spec_ref": "SV-8600 (SBC spec Story 1 S1-R2 — OVERRULED by Chris Ward answer 2026-07-31 Q4=A \"the intention is to not hide these from normal reports access\"; S1-R2 + the build still use a dedicated permission, dev change ticket raised)",
   "viu_status": "VIU-Pending",
-  "notes": "Exact permission name and where it sits in the role editor are VIU-confirm. Per Standing Rule 10, verify by actually logging in as the role and observing.",
+  "notes": "Exact permission name and where it sits in the role editor are VIU-confirm. Per Standing Rule 10, verify by actually logging in as the role and observing. Q4 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A, verbatim: \"the intention is to not hide these from normal reports access. These were specced before CRP was built\"): every report in the suite is gated by the ORDINARY reports permission; no report gets its own. THE BUILD DIFFERS — the engineering tech plan §B5.3 gates every Sales By Customer endpoint on a new dedicated atom ROLE_SALES_BY_CUSTOMER_REPORT::VIEW, and SBC spec S1-R2 still states the dedicated model. Dev change ticket + spec correction raised in chris-answers-2026-07-31/Q4-permission-dev-note-2026-07-31.md. Not live-verified (Rule 12).",
   "api_related": false
  },
  {
   "id": "SBC-PERM-02",
   "area": "SBC — Permissions",
-  "title": "A user without the Sales By Customer View permission cannot see or open the report",
+  "title": "Without reports access, Sales By Customer is not listed and cannot open",
   "priority": "Critical",
   "type": "Negative",
-  "permissions_required": "A role WITHOUT the Sales By Customer report View permission.",
+  "permissions_required": "A role WITHOUT the the ordinary reports access (Reports section View).",
   "preconditions": [
-   "1. A test user exists whose role does NOT have the Sales By Customer report View permission (use/create a ZZAUTOTEST role).",
+   "1. A test user exists whose role does NOT have reports access (use/create a ZZAUTOTEST role; restore afterwards).",
    "2. You know the report's direct page address (copy it from a permitted session first).",
    "3. You are signed in as the unpermitted user."
   ],
@@ -97,12 +98,13 @@
   ],
   "expected": [
    "1. \"Sales By Customer\" does not appear in the Reports navigation.",
-   "2. Opening the report by direct link does not show the report (the application blocks it with its standard access-denied handling)."
+   "2. Opening the report by direct link does not show the report (the application blocks it with its standard access-denied handling).",
+   "3. The gate is the ordinary reports access — there is no separate Sales By Customer permission to remove."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 1 S1-N1",
+  "spec_ref": "SV-8600 (SBC spec Story 1 S1-N1 — permission model RULED to the ordinary reports access by Chris Ward answer 2026-07-31 Q4=A; the build still ships a dedicated permission)",
   "viu_status": "VIU-Pending",
-  "notes": "The exact blocked-state behavior (redirect vs access-denied page) is not pinned by the spec — VIU-confirm and record it.",
+  "notes": "The exact blocked-state behavior (redirect vs access-denied page) is not pinned by the spec — VIU-confirm and record it. Q4 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A, verbatim: \"the intention is to not hide these from normal reports access. These were specced before CRP was built\"): every report in the suite is gated by the ORDINARY reports permission; no report gets its own. THE BUILD DIFFERS — the engineering tech plan §B5.3 gates every Sales By Customer endpoint on a new dedicated atom ROLE_SALES_BY_CUSTOMER_REPORT::VIEW, and SBC spec S1-R2 still states the dedicated model. Dev change ticket + spec correction raised in chris-answers-2026-07-31/Q4-permission-dev-note-2026-07-31.md. Not live-verified (Rule 12).",
   "api_related": false
  },
  {
@@ -111,7 +113,7 @@
   "title": "Opening an invoice you lack permission for shows the standard access-denied state and back returns to the report",
   "priority": "Medium",
   "type": "Negative",
-  "permissions_required": "Sales By Customer report View permission, but WITHOUT permission to open the destination invoice (work order / part sale).",
+  "permissions_required": "the ordinary reports access (Reports section View), but WITHOUT permission to open the destination invoice (work order / part sale).",
   "preconditions": [
    "1. You are signed in as a user who can view the report but lacks permission to open the underlying invoice destination.",
    "2. The report shows at least one customer; you have expanded down to an invoice detail row."
@@ -167,7 +169,7 @@
   "title": "Date range picker offers eleven options in the specified order",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report."
   ],
@@ -192,7 +194,7 @@
   "title": "Date range defaults to This Month when nothing is saved and no range is in the page link",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Your browser has no saved view for this report (first visit, or clear the browser's site data first).",
    "2. You open the report by its plain address with no date range in the page link."
@@ -216,7 +218,7 @@
   "title": "Custom range opens a start/end date dialog and cannot exceed a 366-day span",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report."
   ],
@@ -242,7 +244,7 @@
   "title": "Changing the date range writes the chosen value to the page link for sharing and bookmarking",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report."
   ],
@@ -267,7 +269,7 @@
   "title": "Product Type dropdown offers exactly three options with Parts & Service as the default",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report with no saved view (first visit or cleared browser storage)."
   ],
@@ -293,7 +295,7 @@
   "title": "Product Type: three options with Parts & Service default; S/P prefix filtering",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report with no saved view (first visit or cleared browser storage), so the first-load default can be read.",
    "2. The date range contains at least one service invoice (number starting with S) and one parts invoice (number starting with P) — seed ZZAUTOTEST data if needed."
@@ -323,7 +325,7 @@
   "title": "Parts & Service applies no product-type filter",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report with both S and P invoices in the date range."
   ],
@@ -343,28 +345,30 @@
  {
   "id": "SBC-LOC-01",
   "area": "SBC — Location Filter",
-  "title": "Location filter is the rightmost filter, lists accessible locations, and pins All locations to the top",
+  "title": "Location filter: rightmost, lists accessible locations, All locations on top",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission; user with access to at least two locations.",
+  "permissions_required": "the ordinary reports access (Reports section View); user with access to at least two locations.",
   "preconditions": [
    "1. You are on the Sales By Customer report as a user with access to two or more locations."
   ],
   "steps": [
    "1. Look at the report toolbar's filters from left to right.",
    "2. Open the location filter and read its options.",
-   "3. Click the \"All locations\" option, then click it again."
+   "3. Click the \"All locations\" option, then click it again.",
+   "4. Then sign in as a user with access to only ONE location, open the report and look for the Location filter again."
   ],
   "expected": [
    "1. The location filter is the rightmost filter in the toolbar.",
    "2. It lists the locations the signed-in user has access to.",
    "3. An \"All locations\" option is pinned to the top.",
-   "4. Activating \"All locations\" selects every listed location at once; activating it again clears them all at once."
+   "4. Activating \"All locations\" selects every listed location at once; activating it again clears them all at once.",
+   "5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 4 S4-R1; S4-R2; S4-R3",
+  "spec_ref": "SV-8600 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A, applied suite-wide)",
   "viu_status": "VIU-Pending",
-  "notes": "Exact on-screen capitalisation of \"All locations\" is VIU-confirm.",
+  "notes": "Exact on-screen capitalisation of \"All locations\" is VIU-confirm. Q1 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): the Location filter is hidden for a one-location user. His ruling is suite-wide; Sales By Customer had no case for it, so the assertion is folded into this existing filter case rather than authored as a near-duplicate (Rule 28).",
   "api_related": false
  },
  {
@@ -373,7 +377,7 @@
   "title": "Location filter defaults to the user's active location on first load",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission; user with access to at least two locations.",
+  "permissions_required": "the ordinary reports access (Reports section View); user with access to at least two locations.",
   "preconditions": [
    "1. Your browser has no saved view for this report.",
    "2. You are working in a known active location (check the application's location switcher)."
@@ -397,7 +401,7 @@
   "title": "Selecting locations scopes the data; All locations covers every accessible one",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission; user with access to at least two locations.",
+  "permissions_required": "the ordinary reports access (Reports section View); user with access to at least two locations.",
   "preconditions": [
    "1. At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed).",
    "2. You are on the Sales By Customer report."
@@ -427,7 +431,7 @@
   "title": "Customer filter sits between Product Type and Location, carries a search icon, and shows the Search customers… hint",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report with at least one customer in the current results."
   ],
@@ -454,7 +458,7 @@
   "title": "Typing in the Customer filter lists matching customers by contains match, with checkmarks on selected ones",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report.",
    "2. At least two customers with distinct names have invoices in the current date range/Product Type/location (seed ZZAUTOTEST customers if needed)."
@@ -481,7 +485,7 @@
   "title": "Pinned control toggles All customers and Clear all; clearing shows empty state",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report with several customers in the current results."
   ],
@@ -508,7 +512,7 @@
   "title": "First load starts in the all-customers state and the report shows every customer",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Your browser has no saved view for this report.",
    "2. Several customers have invoices in the default date range.",
@@ -538,7 +542,7 @@
   "title": "Collapsed label reads None, the customer's name, or N selected, and shows the query text while typing",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report with at least three customers in the current results."
   ],
@@ -566,7 +570,7 @@
   "title": "Changing the customer selection narrows the table to the selected customers and refreshes the totals",
   "priority": "Critical",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report with at least three customers in the current results."
   ],
@@ -592,7 +596,7 @@
   "title": "Clearing every customer shows the empty state with a zero totals row",
   "priority": "Medium",
   "type": "Negative",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report with data on screen."
   ],
@@ -617,7 +621,7 @@
   "title": "In the all-customers state a filter change keeps every customer included, including newly-appearing ones",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report in the all-customers state.",
    "2. A customer exists that has invoices ONLY in a wider date range than the current one (seed a ZZAUTOTEST invoice dated last month if needed)."
@@ -643,7 +647,7 @@
   "title": "A subset selection reconciles on a filter change: kept if present, dropped if absent, new customers not auto-added",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with three customers A, B, C where: A has invoices in both this month and last month; B has invoices only in this month; C has invoices only in last month (seed ZZAUTOTEST data as needed).",
    "2. Date range is This Month; you have selected exactly customers A and B in the Customer filter."
@@ -662,6 +666,41 @@
   "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R9; S18-E1",
   "viu_status": "VIU-Pending",
   "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-LOC-04",
+  "area": "SBC — Location Filter",
+  "title": "The Location column shows only with more than one location; Multiple on totals",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The ordinary reports access (Reports section View).",
+  "preconditions": [
+   "1. You are on the Sales By Customer report as a user with access to two or more locations.",
+   "2. At least one customer has invoices at two different locations, and at least one asset has invoices at two different locations."
+  ],
+  "steps": [
+   "1. Select two or more locations in the Location filter and read the column headers.",
+   "2. Read the Location cell on a customer row whose invoices are all at one location.",
+   "3. Read the Location cell on a customer row and an asset row whose invoices span two locations.",
+   "4. Expand to an invoice row and read its Location cell.",
+   "5. Open the column selector and look for Location in the list.",
+   "6. Narrow the Location filter to a single location and read the headers again.",
+   "7. Change the Location selection between one location, several, and \"All locations\", watching the filter control's width."
+  ],
+  "expected": [
+   "1. With more than one location in scope a Location column is shown, positioned immediately after the Date column.",
+   "2. A customer or asset row whose invoices are all at one location shows that location's name.",
+   "3. A customer or asset row whose invoices come from more than one location shows \"Multiple\".",
+   "4. An invoice row always shows its own exact location — never \"Multiple\".",
+   "5. Location is NOT offered in the column selector — it appears and disappears on its own, following the location scope.",
+   "6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.",
+   "7. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8600 (SBC spec v12 2026-07-29 S4-R12; S4-R12a; S20-R19 — per-row Location column with automatic visibility, \"Multiple\" on aggregating rows)",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW 2026-07-31. The per-row Location column is a suite-wide addition in Chris Ward's 2026-07-29 spec changelog (SBC v12 change-log row: \"added a per-row Location column (shown when more than one location is in scope; 'Multiple' on aggregating rows, exact on invoice rows) plus a 'Locations:' export line\"). The suite had NO coverage of this column. The \"Locations:\" export line itself is already covered by SBC-EXP-03 and SBC-EXP-09. Exact on-screen header capitalisation is VIU-confirm. Not live-verified (Rule 12).",
   "api_related": false
  }
 ]

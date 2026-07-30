@@ -28,69 +28,69 @@
  {
   "id": "PV-ROW-02",
   "area": "PV — Row Model",
-  "title": "A catalogue part shows as one merged row with values summed across the selected locations",
+  "title": "A Special Order part is one merged row summed across selected locations",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4); user with access to at least two locations.",
   "preconditions": [
-   "1. The same catalogue (special-order, vendor-sourced) part was requested on invoiced/paid work orders at two locations the user can access, inside the window.",
+   "1. The same special-order (vendor-sourced) part was requested on invoiced/paid work orders at two locations the user can access, inside the window.",
    "2. You are on the Parts Velocity report with both locations selected."
   ],
   "steps": [
-   "1. Search for the catalogue part.",
+   "1. Search for the special-order part.",
    "2. Count its rows and read its movement and money values.",
    "3. Compare against the per-location values with only one location selected at a time."
   ],
   "expected": [
-   "1. The catalogue part appears as a SINGLE row (one row per catalogue part, merged across the selected locations).",
+   "1. The special-order part appears as a SINGLE row (one row per special-order part, merged across the selected locations).",
    "2. Its movement and profitability values are the SUM of the per-location values.",
-   "3. Its inventory-only columns (On Hand, Turns / Yr, Min, Max) show — (em-dash), because catalogue parts are not stocked."
+   "3. Its inventory-only columns (On Hand, Turns / Yr, Min, Max) show — (em-dash), because special-order parts are not stocked."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S3-R1a; §3 Key Decisions",
+  "spec_ref": "SV-8643 (specs/parts-velocity.md S3-R1a; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
-  "notes": "HEAVY SEEDING: vendor-sourced part requests for the same catalogue part on invoiced/paid work orders at two locations.",
+  "notes": "HEAVY SEEDING: vendor-sourced part requests for the same catalogue part on invoiced/paid work orders at two locations. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
   "id": "PV-ROW-03",
   "area": "PV — Row Model",
-  "title": "Rows load ranked by Demand descending with the descending indicator on the Demand header",
+  "title": "Rows load ranked by Demand descending, indicator on the Demand header",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
   "preconditions": [
    "1. You are on the Parts Velocity report on a first visit (no saved sort).",
-   "2. Several parts have different Demand counts in the window; at least one inventory and one catalogue part share the same Demand count."
+   "2. Several parts have different Demand counts in the window; at least one inventory and one special-order part share the same Demand count."
   ],
   "steps": [
    "1. Let the report load without clicking any header.",
    "2. Read the Demand column top to bottom.",
-   "3. Find the inventory and catalogue rows with equal Demand and note their relative order.",
+   "3. Find the inventory and special-order rows with equal Demand and note their relative order.",
    "4. Look at the Demand column header."
   ],
   "expected": [
    "1. Rows are ranked by Demand, descending - the most-active parts first.",
-   "2. Inventory and catalogue rows are ranked together in one list.",
-   "3. Rows with equal Demand keep inventory-before-catalogue order.",
+   "2. Inventory and special-order rows are ranked together in one list.",
+   "3. Rows with equal Demand keep inventory-before-special-order order.",
    "4. The Demand header shows the descending sort indicator - this initial order IS the active sort (it is what the remembered view saves until you click another header)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S3-R2",
+  "spec_ref": "SV-8643 (specs/parts-velocity.md S3-R2)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
   "id": "PV-ROW-04",
   "area": "PV — Row Model",
-  "title": "Clicking a column header sorts ascending first, toggles on re-click, and places null values first-ascending / last-descending",
+  "title": "A header click sorts ascending first, toggles, and places nulls by direction",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
   "preconditions": [
    "1. You are on the Parts Velocity report with data loaded.",
-   "2. Both inventory and catalogue rows are present (so a nullable column such as On Hand has both values and — cells)."
+   "2. Both inventory and special-order rows are present (so a nullable column such as On Hand has both values and — cells)."
   ],
   "steps": [
    "1. Click the header of a column that is not currently sorted (for example On Hand).",
@@ -105,9 +105,9 @@
    "4. Every column is sortable; each header click re-fetches the data (server-resolved) and shows the first page of the re-sorted result; ties keep a stable order."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S3-R3",
+  "spec_ref": "SV-8643 (specs/parts-velocity.md S3-R3)",
   "viu_status": "VIU-Pending",
-  "notes": "KNOWN-DELTA WATCH: server-side sorting is the committed build target from the 2026-07-16 spec round (spec ahead of current code by design) - the build may still sort client-side until dev ships it.",
+  "notes": "KNOWN-DELTA WATCH: server-side sorting is the committed build target from the 2026-07-16 spec round (spec ahead of current code by design) - the build may still sort client-side until dev ships it. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
@@ -199,35 +199,35 @@
  {
   "id": "PV-ROW-08",
   "area": "PV — Row Model",
-  "title": "Null values render as an em-dash only in the nullable fields; counts and Revenue/Margin are never null",
+  "title": "Em-dash only in nullable fields; counts and Revenue/Margin are never null",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
   "preconditions": [
    "1. You are on the Parts Velocity report with all 20 columns enabled.",
-   "2. A catalogue row is visible, plus an inventory row with no in-window activity that stays in the report via on-hand stock."
+   "2. A special-order row is visible, plus an inventory row with no in-window activity that stays in the report via on-hand stock."
   ],
   "steps": [
-   "1. On the catalogue row, read On Hand, Turns / Yr, Min, and Max.",
-   "2. On the no-activity inventory row, read Units Sold, Units Returned, Sold via WO, Sold via Parts Sale, Demand, Revenue, and Margin.",
+   "1. On the special-order row, read On Hand, Turns / Yr, Min, and Max.",
+   "2. On the no-activity inventory row, read Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Demand, Revenue, and Margin.",
    "3. On the same row, read Unit Cost, Sell Price, Margin %, and Last Sale (assuming no billed units, no revenue, and no recorded sale ever)."
   ],
   "expected": [
-   "1. On Hand, Turns / Yr, Min, and Max show — (em-dash) on catalogue rows - always.",
-   "2. The count metrics and money totals are NEVER null: Units Sold / Units Returned / Sold via WO / Sold via Parts Sale show 0.00, Demand shows 0, Revenue and Margin show $0.00.",
+   "1. On Hand, Turns / Yr, Min, and Max show — (em-dash) on special-order rows - always.",
+   "2. The count metrics and money totals are NEVER null: Units Sold / Units Returned / Sold (WO) / Sold (Parts Sale) show 0.00, Demand shows 0, Revenue and Margin show $0.00.",
    "3. Unit Cost and Sell Price show — when billed units are zero or less; Margin % shows — when Revenue is zero or less; Last Sale shows — when the row has no recorded sale.",
    "4. Every null renders as the same — (em-dash) glyph, in the table and in all exports."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S3-R9; S5-R5",
+  "spec_ref": "SV-8643 (specs/parts-velocity.md S3-R9; S5-R5)",
   "viu_status": "VIU-Pending",
-  "notes": "Full per-column formatting is covered in PV-CALC-13; the independent null triggers for Unit Cost / Sell Price / Margin % are covered in PV-CALC-12.",
+  "notes": "Full per-column formatting is covered in PV-CALC-13; the independent null triggers for Unit Cost / Sell Price / Margin % are covered in PV-CALC-12. COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
   "id": "PV-ROW-09",
   "area": "PV — Row Model",
-  "title": "An inventory part is excluded only when it has no movement, under one unit on hand, AND no billed revenue",
+  "title": "An inventory part drops out only with no movement, no stock and no revenue",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -242,12 +242,12 @@
   "expected": [
    "1. Part A does NOT appear - it fails all three keep-criteria (no movement, under one on hand, no revenue) so it carries nothing to act on.",
    "2. Part B DOES appear - a part with billed Revenue > 0 is always kept even with no stock movement and no on-hand stock.",
-   "3. (Catalogue parts have no such rule: a never-requested catalogue part simply produces no row.)"
+   "3. (Special Order parts have no such rule: a never-requested special-order part simply produces no row.)"
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S3-N1",
+  "spec_ref": "SV-8643 (specs/parts-velocity.md S3-N1)",
   "viu_status": "VIU-Pending",
-  "notes": "KNOWN-DELTA WATCH: the broadened exclusion rule was implemented per the 2026-07-11 change-log but marked LOCAL/uncommitted on the suite branch - confirm it made the deployed build. HEAVY SEEDING: part B needs a billed sale with no matching stock decrement (drop-ship / negative-stock sale).",
+  "notes": "KNOWN-DELTA WATCH: the broadened exclusion rule was implemented per the 2026-07-11 change-log but marked LOCAL/uncommitted on the suite branch - confirm it made the deployed build. HEAVY SEEDING: part B needs a billed sale with no matching stock decrement (drop-ship / negative-stock sale). CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {
@@ -279,7 +279,7 @@
  {
   "id": "PV-COL-01",
   "area": "PV — Columns & Remembered View",
-  "title": "Column picker lists all 20 available columns with toggles and never offers the internal on-hand cost",
+  "title": "Column picker lists all 20 columns and never offers the internal cost",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -292,13 +292,13 @@
    "3. Look for any on-hand cost / inventory-value entry."
   ],
   "expected": [
-   "1. The picker lists all 20 available columns, each with a toggle: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold via WO, Sold via Parts Sale, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns / Yr, Min, Max.",
+   "1. The picker lists all 20 available columns, each with a toggle: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns / Yr, Min, Max.",
    "2. No on-hand cost column is offered - the report computes one internally but it is never selectable and never displayed."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S4-R1; S4-R4; S5-R6",
+  "spec_ref": "SV-8644 (specs/parts-velocity.md S4-R1; S4-R4; S5-R6)",
   "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm the exact column-picker button label/icon (unpinned in the spec).",
+  "notes": "VIU-confirm the exact column-picker button label/icon (unpinned in the spec). COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins.",
   "api_related": false
  },
  {
@@ -316,18 +316,18 @@
   ],
   "expected": [
    "1. Exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand.",
-   "2. The other 6 columns start hidden: Units Returned, Sold via WO, Sold via Parts Sale, Turns / Yr, Min, Max."
+   "2. The other 6 columns start hidden: Units Returned, Sold (WO), Sold (Parts Sale), Turns / Yr, Min, Max."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S4-R2; S4-R3",
+  "spec_ref": "SV-8644 (specs/parts-velocity.md S4-R2; S4-R3)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins.",
   "api_related": false
  },
  {
   "id": "PV-COL-03",
   "area": "PV — Columns & Remembered View",
-  "title": "A re-enabled column returns to its canonical slot and toggling takes effect immediately without a reload",
+  "title": "A re-enabled column returns to its canonical slot, with no reload",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -341,13 +341,13 @@
   ],
   "expected": [
    "1. Each toggle takes effect immediately - the table re-renders without a page reload.",
-   "2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold via WO, Sold via Parts Sale, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns / Yr, Min, Max.",
+   "2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns / Yr, Min, Max.",
    "3. So Units Returned slots in right after Units Sold, Turns / Yr after On Hand, and Min before Max - not appended at the end."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S4-R4; S4-R5",
+  "spec_ref": "SV-8644 (specs/parts-velocity.md S4-R4; S4-R5)",
   "viu_status": "VIU-Pending",
-  "notes": "The EXPORT currently has a known build-delta on this (appends re-enabled columns at the end) - that is PV-EXP-03; on screen the canonical order is expected to hold.",
+  "notes": "The EXPORT currently has a known build-delta on this (appends re-enabled columns at the end) - that is PV-EXP-03; on screen the canonical order is expected to hold. COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins.",
   "api_related": false
  },
  {
@@ -410,7 +410,7 @@
   "type": "Functional",
   "permissions_required": "Two users who can open the report (Manager or Office User + Inventory Reports → View).",
   "preconditions": [
-   "1. User 1 has saved a clearly non-default view on this browser (e.g. Type = Catalogue, Last Quarter).",
+   "1. User 1 has saved a clearly non-default view on this browser (e.g. Type = Special Order, Last Quarter).",
    "2. User 2 can open the report."
   ],
   "steps": [
@@ -418,13 +418,13 @@
    "2. Open the Parts Velocity report."
   ],
   "expected": [
-   "1. User 2 sees user 1's saved view (Type = Catalogue, Last Quarter, the saved columns and sort).",
+   "1. User 2 sees user 1's saved view (Type = Special Order, Last Quarter, the saved columns and sort).",
    "2. This is by design: storage is per browser, not tied to the account - there is no per-account separation."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S4-R6",
+  "spec_ref": "SV-8644 (specs/parts-velocity.md S4-R6)",
   "viu_status": "VIU-Pending",
-  "notes": "Expected-behavior case (documented limitation), not a defect.",
+  "notes": "Expected-behavior case (documented limitation), not a defect. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
   "api_related": false
  },
  {

@@ -5,7 +5,7 @@
   "title": "Financial columns appear in the specified order and Subtotal/Margin follow the spec's composition rules",
   "priority": "Critical",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. A ZZAUTOTEST invoice exists with known labor, parts, and shop-supply amounts and known costs, in the current range."
   ],
@@ -32,7 +32,7 @@
   "title": "Margin % = Margin over Subtotal to one decimal with a percent sign, em dash when Subtotal is zero or below, monochrome on all row types",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Rows with a normal positive Subtotal exist, and (if seedable) one row whose Subtotal is zero or below."
   ],
@@ -59,7 +59,7 @@
   "title": "Inv. Hrs heading is verbatim and the value shows +green / -red / 0.0 default on every row type",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Invoices exist where billed hours exceed worked hours, where worked exceeds billed, and where they are equal (seed ZZAUTOTEST work orders with clocked time)."
   ],
@@ -87,7 +87,7 @@
   "title": "Inv. Hrs is never blank: no-labor rows show 0.0 and values that round to zero show 0.0 in the default color",
   "priority": "Medium",
   "type": "Negative",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. A parts-only invoice (no labor at all) exists in range; if possible also an invoice whose delta rounds to zero (for example +0.04)."
   ],
@@ -112,7 +112,7 @@
   "title": "Invoice subtotals sum exactly to their asset row and asset subtotals sum exactly to the customer row",
   "priority": "Critical",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. A customer with two or more assets, each with two or more invoices, is in the current view (seed ZZAUTOTEST data)."
   ],
@@ -138,7 +138,7 @@
   "title": "Subtotal is the rightmost column, pinned during horizontal scroll and bold everywhere, unconditionally",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with data, on a window narrow enough to force horizontal scrolling (or with all columns visible)."
   ],
@@ -165,7 +165,7 @@
   "title": "The totals row covers the full filtered set of customers, not only the customers on the current page",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Enough customers exist to span more than one page of results, with known amounts (seed ZZAUTOTEST data)."
   ],
@@ -190,7 +190,7 @@
   "title": "Column selector is a separate toolbar button with the Column Selection tooltip and nine toggles in order, all on by default",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with no saved column selection (first visit or cleared storage)."
   ],
@@ -217,7 +217,7 @@
   "title": "Column toggles hide header+cells; Customer, Subtotal and chevron never in list",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with data and the column selector open."
   ],
@@ -243,7 +243,7 @@
   "title": "Hiding all nine toggleable columns is allowed and the table still shows Customer, Subtotal and the totals Subtotal",
   "priority": "Medium",
   "type": "Negative",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with data."
   ],
@@ -268,7 +268,7 @@
   "title": "The overflow menu holds exactly the four download items - no Print",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report."
   ],
@@ -291,29 +291,31 @@
  {
   "id": "SBC-EXP-02",
   "area": "SBC — Exports",
-  "title": "CSV and PDF downloads are named by the active date range per the filename map",
+  "title": "Download file names carry the version and the active date range",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with data."
   ],
   "steps": [
-   "1. Set the range to This Month and choose \"Download (CSV)\"; note the downloaded filename.",
-   "2. Repeat for at least Today, Last Quarter, and a Custom range.",
-   "3. Open a downloaded file in a text editor and in a spreadsheet.",
-   "4. Repeat steps 1-2 choosing \"Download (PDF)\" and note the filenames."
+   "1. Set the range to This Month, choose \"Download Summary (CSV)\" and note the downloaded file name.",
+   "2. Choose \"Download Expanded View (CSV)\" and note that file name.",
+   "3. Repeat both for at least Today, Last Quarter, and a Custom range.",
+   "4. Open a downloaded file in a text editor and in a spreadsheet.",
+   "5. Repeat steps 1-3 for \"Download Summary (PDF)\" and \"Download Expanded View (PDF)\"."
   ],
   "expected": [
-   "1. The filename follows the range map: Today → sales-by-customer-today.csv; Yesterday → sales-by-customer-yesterday.csv; This Week → sales-by-customer-this_week.csv; Last Week → sales-by-customer-last_week.csv; This Month → sales-by-customer-this_month.csv; Last Month → sales-by-customer-last_month.csv; This Year → sales-by-customer-this_year.csv; Last Year → sales-by-customer-last_year.csv; This Quarter → sales-by-customer-this_quarter.csv; Last Quarter → sales-by-customer-last_quarter.csv; Custom → sales-by-customer-custom.csv.",
-   "2. For Custom the literal word \"custom\" is used — the actual start/end dates are not in the filename.",
-   "3. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet — not an .xlsx workbook and not a JSON file.",
-   "4. The PDF download follows the same range-to-filename map with a .pdf extension — for example, sales-by-customer-this_month.pdf, sales-by-customer-custom.pdf."
+   "1. The Summary file name is sales-by-customer-summary-{range}.csv and the Expanded file name is sales-by-customer-expanded-{range}.csv — so the file says which version it is.",
+   "2. {range} follows this map: Today → today; Yesterday → yesterday; This Week → this_week; Last Week → last_week; This Month → this_month; Last Month → last_month; This Year → this_year; Last Year → last_year; This Quarter → this_quarter; Last Quarter → last_quarter; Custom → custom.",
+   "3. For Custom the literal word \"custom\" is used — the actual start and end dates are not in the file name.",
+   "4. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet — not an .xlsx workbook and not a JSON file.",
+   "5. The two PDF downloads follow the same names with a .pdf extension — for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 14 S14-R4; S14-R5; Story 15 S15-R4",
+  "spec_ref": "SV-8612; SV-8613 (SBC spec v12 2026-07-29 S14-R14; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded)",
   "viu_status": "VIU-Pending",
-  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPNAME): absorbed SBC-EXP-07. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPNAME): absorbed SBC-EXP-07. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. CHANGED by the SBC spec v12 2026-07-29 S14-R14 / S15-R6 (Summary and Expanded file names). SPEC-WATCH item 3 CLOSED — the Summary/Expanded split is now spec-ratified.",
   "api_related": false
  },
  {
@@ -322,7 +324,7 @@
   "title": "Expanded View CSV: column order, blank-cell rules, and the Locations line",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You have downloaded the CSV for a view with at least one customer with several invoices."
   ],
@@ -332,17 +334,18 @@
    "3. Look for any asset-level rows."
   ],
   "expected": [
-   "1. The Expanded View CSV has the twelve columns in this exact order: Customer, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.",
-   "2. On customer rows the Invoice # and Date cells are blank.",
-   "3. On invoice rows the Customer cell is blank and the Invoice # and Date cells are filled.",
-   "4. Customer names are plain - the \"(N)\" invoice count is not included.",
-   "5. The rows follow the Expanded View's Customer, then Asset, then Invoice breakdown - note how the asset level appears (this level is NEW; its exact representation is confirmed from the updated spec and the build - the older spec had no asset rows in the file).",
-   "6. The file carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build)."
+   "1. The Expanded View CSV has these thirteen columns in this exact order: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.",
+   "2. A customer row fills the Customer cell and leaves Asset, Invoice # and Date blank.",
+   "3. An asset row leaves Customer blank, fills Asset, and leaves Invoice # and Date blank.",
+   "4. An invoice row leaves Customer and Asset blank and fills Invoice # and Date.",
+   "5. Customer names are plain — the \"(N)\" invoice count is not included.",
+   "6. Work with no vehicle appears as an asset row named \"Parts Sales\".",
+   "7. The file carries a \"Locations:\" line naming the location or locations the report was scoped to, or \"All locations\" when every location you can access is selected — as a leading line above the column headers."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612 (specs/sbc-sales-by-customer.md Story 14 S14-R6; S14-R7; S14-R8; S14-R9 - file now the Expanded View CSV with a Customer->Asset->Invoice breakdown + a Locations: line per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins); the old S14-R10 flat/no-asset-layer rule is superseded)",
+  "spec_ref": "SV-8612 (SBC spec v12 2026-07-29 Story 14 S14-R5; S14-R6; S14-R7; S14-R13 — the Expanded CSV now has thirteen columns INCLUDING Asset, with per-level blank-cell rules; the old flat twelve-column shape is superseded)",
   "viu_status": "VIU-Pending",
-  "notes": "RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): exports split Summary/Expanded and the Expanded View is 'the full Customer -> Asset -> Invoice breakdown', so the old 'no asset layer by design' known-limitation note is STALE and removed. Column order + blank-cell rules kept from the current spec until the changelog lands - reconcile then. Locations: line = all-reports change, same message.",
+  "notes": "RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): exports split Summary/Expanded and the Expanded View is 'the full Customer -> Asset -> Invoice breakdown', so the old 'no asset layer by design' known-limitation note is STALE and removed. Column order + blank-cell rules kept from the current spec until the changelog lands - reconcile then. Locations: line = all-reports change, same message. RATIFIED + EXTENDED by the SBC spec v12 2026-07-29: S14-R5 gives the exact thirteen-column Expanded order (Asset added), S14-R6 the per-level row shape, S14-R7 the \"Parts Sales\" asset row, S14-R13 the \"Locations:\" line.",
   "api_related": false
  },
  {
@@ -351,7 +354,7 @@
   "title": "CSV value formats: Margin % plain number, dates mm-dd-yyyy, currency plain numbers, no color",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You have downloaded a CSV containing rows with real values, including (if seedable) a row whose Subtotal is zero or below."
   ],
@@ -377,7 +380,7 @@
   "title": "CSV and PDF contain exactly the customers matching the active filters and sort, including the Customer filter selection",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Data exists across two locations, both product types, and several customers."
   ],
@@ -400,27 +403,27 @@
  {
   "id": "SBC-EXP-06",
   "area": "SBC — Exports",
-  "title": "CSV and PDF actions show a loading state and their own export failed toast",
+  "title": "Each download item shows a loading state and its own export-failed toast",
   "priority": "Medium",
   "type": "Negative",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
-   "1. You are on the report with a large enough data set that the export takes a visible moment."
+   "1. You are on the report with a large enough data set that a download takes a visible moment."
   ],
   "steps": [
-   "1. Choose \"Download (CSV)\" and immediately look at the menu action.",
-   "2. To provoke a failure, disconnect the network (or use browser dev tools offline mode) and choose \"Download (CSV)\" again.",
-   "3. Repeat both checks for \"Download (PDF)\"."
+   "1. Choose \"Download Summary (CSV)\" and immediately look at that menu item.",
+   "2. To provoke a failure, disconnect the network (or use the browser's offline mode) and choose \"Download Summary (CSV)\" again.",
+   "3. Repeat both checks for \"Download Expanded View (CSV)\", \"Download Summary (PDF)\" and \"Download Expanded View (PDF)\"."
   ],
   "expected": [
-   "1. While an export is in progress, that menu action shows a loading state and is non-interactive (CSV and PDF alike).",
-   "2. If the CSV export fails, an error toast is shown: \"CSV export failed.\" (dismissed by the user).",
-   "3. If the PDF export fails, the toast reads \"PDF export failed.\" — identical behavior, different wording."
+   "1. While a download is in progress, ONLY that menu item shows a loading state and is non-interactive; the other three items are unaffected.",
+   "2. If a CSV download fails, an error toast is shown: \"CSV export failed.\" (dismissed by the user).",
+   "3. If a PDF download fails, the toast reads \"PDF export failed.\" — identical behaviour, different wording."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7",
+  "spec_ref": "SV-8612; SV-8613 (SBC spec v12 2026-07-29 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item, four items)",
   "viu_status": "VIU-Pending",
-  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPTOAST): absorbed SBC-EXP-12. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPTOAST): absorbed SBC-EXP-12. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. CHANGED by the SBC spec v12 2026-07-29 (S14-E1/S15-E1 now read \"While a CSV/PDF download is in progress, THAT menu item shows a loading state\").",
   "api_related": false
  },
  {
@@ -429,7 +432,7 @@
   "title": "PDF download uses the same range-based filename map with a .pdf extension",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with data."
   ],
@@ -452,7 +455,7 @@
   "title": "PDF page: A4 landscape, uniform margins, ShopView footer and page numbers",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You have downloaded the PDF for a view with enough rows to span more than one page."
   ],
@@ -476,7 +479,7 @@
   "title": "PDF header: title, organization, date range, Product Type and Locations lines",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You have downloaded the PDF with a known date range, Product Type, and a specific location selected."
   ],
@@ -502,7 +505,7 @@
   "title": "PDF logo is embedded, scales without distortion, and falls back from the uploaded logo to the ShopView logo to none",
   "priority": "Low",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission; admin access to change the organization logo for seeding.",
+  "permissions_required": "the ordinary reports access (Reports section View); admin access to change the organization logo for seeding.",
   "preconditions": [
    "1. You can toggle the organization's uploaded logo on/off in administration (restore it afterwards)."
   ],
@@ -529,7 +532,7 @@
   "title": "Expanded View PDF body matches the CSV's columns and on-screen rules",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal ≤ 0 row."
   ],
@@ -538,17 +541,18 @@
    "2. Check a date cell, a customer row's Date cell, a Margin % dash, the Subtotal column weight, and the Inv. Hrs colors (use a color picker on the PDF if available)."
   ],
   "expected": [
-   "1. The Expanded View PDF's body table has the twelve columns in the same exact order and labels as the Expanded View CSV, with the same Customer, then Asset, then Invoice breakdown (the asset level is NEW - its exact representation is confirmed from the updated spec and the build).",
+   "1. The Expanded View PDF's body table has the same thirteen columns, in the same order and with the same labels, as the Expanded View CSV — including the Asset column — and shows the full Customer, then Asset, then Invoice breakdown, one block per customer.",
    "2. Body dates show as \"Mon DD YYYY\" - for example, \"May 14 2026.\"",
-   "3. The Date cell is blank on customer rows, matching the screen.",
+   "3. The Date cell is blank on customer rows and on asset rows, matching the screen.",
    "4. Margin % shows an em dash when the row's Subtotal is zero or below.",
    "5. The Subtotal column is bold - header, every row, and the totals row.",
-   "6. Inv. Hrs uses the same signs and coloring as on screen, with green rendered as #21ba45 and red as #c10015."
+   "6. Inv. Hrs uses the same signs and coloring as on screen, with green rendered as #21ba45 and red as #c10015.",
+   "7. The PDF header title reads \"Sales By Customer Report\" on the Summary and Expanded versions alike — which version you have is told by the file name and the contents, not by a different title."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8613 (specs/sbc-sales-by-customer.md Story 15 S15-R16; S15-R17; S15-R18; S15-R19; S15-R20; S15-R21 - body now the Expanded View with a Customer->Asset->Invoice breakdown per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins); the old flat/no-asset-layer shape is superseded)",
+  "spec_ref": "SV-8613 (SBC spec v12 2026-07-29 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 — Expanded PDF body = the Expanded columns with the asset layer, one block per customer; the title is the same for both versions)",
   "viu_status": "VIU-Pending",
-  "notes": "RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) (Summary/Expanded split - this case covers the Expanded View PDF; the Summary PDF's one-row-per-customer shape is covered by SBC-EXP-16). Color extends to the PDF but never the CSV (S3 Key Decision) - unchanged.",
+  "notes": "RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) (Summary/Expanded split - this case covers the Expanded View PDF; the Summary PDF's one-row-per-customer shape is covered by SBC-EXP-16). Color extends to the PDF but never the CSV (S3 Key Decision) - unchanged. RATIFIED by the SBC spec v12 2026-07-29 (S15-R5 Expanded body \"one block per customer\", S15-R13 same header title for both versions, S15-R19 column labels match the CSV, S15-R21 Date blank on customer AND asset rows).",
   "api_related": false
  },
  {
@@ -557,7 +561,7 @@
   "title": "PDF action shows a loading state while exporting and a PDF export failed toast on failure",
   "priority": "Medium",
   "type": "Negative",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with data."
   ],
@@ -581,7 +585,7 @@
   "title": "Print fetches the report PDF and opens the native print dialog in the current tab, disabled while the table is first loading",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with data fully loaded."
   ],
@@ -610,7 +614,7 @@
   "title": "An export over 10,000 data rows is refused with the too-large toast",
   "priority": "High",
   "type": "Negative",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. A filter combination exists whose customer rows plus invoice rows exceed 10,000 (widest range, all locations, all customers). If the environment cannot reach 10,000 rows even fully widened, record the max reachable and mark Blocked-Env with reason."
   ],
@@ -621,14 +625,14 @@
   ],
   "expected": [
    "1. For both CSV and PDF: no file is generated and no download starts.",
-   "2. An error toast is shown each time: \"This export is too large to generate. Narrow the date range or filters, then try again.\" (dismissed by the user).",
+   "2. An error toast is shown each time: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).",
    "3. The cap counts customer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.",
    "4. Below the cap the export succeeds normally."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8612; SV-8613 (specs/sbc-sales-by-customer.md Story 14 S14-R14; Story 15 S15-R22; §7 — the Print leg REMOVED per kickoff video P25 31:14 / SV-8614 overridden, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
   "viu_status": "VIU-Pending",
-  "notes": "Server-side enforcement is covered by SBC-API-05. BUILD-DELTA: the 10,000-row cap is the 2026-07-21 spec round — the current build may lack it at VIU. Video P25 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the Print step/expectation was removed with the Print control (spec S16-R6 had capped Print too); title shortened to fit.",
+  "notes": "Server-side enforcement is covered by SBC-API-05. BUILD-DELTA: the 10,000-row cap is the 2026-07-21 spec round — the current build may lack it at VIU. Video P25 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the Print step/expectation was removed with the Print control (spec S16-R6 had capped Print too); title shortened to fit. Q2 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A 'great catch'): ONE message across all six reports — \"This report is too large to export. Narrow the date range or filters, then try again.\" The Sales By Customer spec text still carries the retired \"This export is too large to generate…\" wording; Chris's spec edit is pending.",
   "api_related": false
  },
  {
@@ -637,7 +641,7 @@
   "title": "Exporting with no matching customers still downloads a file with headers and a zero totals row, with no warning",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. The Customer filter selection is empty (\"Clear all\") or the filters otherwise match no customers."
   ],
@@ -661,7 +665,7 @@
   "title": "Filters, sort and visible columns are saved and restored on the next visit, shown immediately without a default flash",
   "priority": "Critical",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report in a browser you can revisit."
   ],
@@ -686,7 +690,7 @@
   "title": "Type-ahead search text, expansion state and scroll position are not saved; a reload clears all expansion",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the report with data."
   ],
@@ -713,7 +717,7 @@
   "title": "A saved value that is no longer valid is discarded and that setting falls back to its default",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission; admin help to remove a location assignment for seeding.",
+  "permissions_required": "the ordinary reports access (Reports section View); admin help to remove a location assignment for seeding.",
   "preconditions": [
    "1. You have a saved view that includes a specific location selection.",
    "2. An administrator then removes your access to that location (restore afterwards)."
@@ -739,7 +743,7 @@
   "title": "The saved view is specific to this report and does not affect any other report",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission plus access to at least one other report in the suite.",
+  "permissions_required": "the ordinary reports access (Reports section View) plus access to at least one other report in the suite.",
   "preconditions": [
    "1. You have set a distinctive saved view on Sales By Customer (for example Last Year + Parts only)."
   ],
@@ -763,7 +767,7 @@
   "title": "With no saved view every setting uses its own default",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Clear the browser's site data for the application (or use a fresh browser profile).",
    "2. You open the report by its plain address with no date range in the page link.",
@@ -793,7 +797,7 @@
   "title": "When both a saved view and a page-link range exist, the saved view wins and the link value is ignored",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You have a saved view with a known date range (for example Last Month).",
    "2. You have a page link carrying a DIFFERENT date range (for example This Year), captured earlier."
@@ -818,7 +822,7 @@
   "title": "Customer filter restore: the all-customers state restores as all (including new customers); an id set is intersected and never forces an empty view",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. Scenario A: leave the report in the all-customers state, then seed a NEW ZZAUTOTEST customer with an invoice in range.",
    "2. Scenario B: leave the report with two specific customers selected, then remove one of those customers' matching data (or shift the range so one no longer matches)."
@@ -843,7 +847,7 @@
   "title": "Summary and Expanded View downloads exist for both PDF and CSV",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Sales By Customer report View permission.",
+  "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
    "1. You are on the Sales By Customer report with at least one customer and several invoices in the chosen date range."
   ],
@@ -856,12 +860,13 @@
    "1. The menu offers exactly four items: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\".",
    "2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows.",
    "3. Each Expanded View file contains the full Customer, then Asset, then Invoice breakdown.",
-   "4. All four files reflect exactly the filtered data shown on screen."
+   "4. All four files reflect exactly the filtered data shown on screen.",
+   "5. The Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612; SV-8613 (specs/sbc-sales-by-customer.md Stories 14/15 - Summary/Expanded split for both PDF and CSV per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ['matching Sales By Rep'], ratifying + extending kickoff video P21 32:10-33:03 + 48:39; overrides the old single-flat-export S14-R6; S14-R10; S15-R16)",
+  "spec_ref": "SV-8612; SV-8613 (SBC spec v12 2026-07-29 Story 14 S14-R1/R2/R4 + Story 15 S15-R1/R2/R4/R5 — the four-item Summary/Expanded menu and the Summary column list are now spec-ratified)",
   "viu_status": "VIU-Pending",
-  "notes": "RATIFIED + EXTENDED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'Exports now come in Summary and Expanded versions, for both PDF and CSV (matching Sales By Rep). Summary = one row per customer; Expanded = the full Customer -> Asset -> Invoice breakdown.' Menu labels now spec-stated (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. Exact Summary column set pending the updated spec changelog. Added to TestRail 2026-07-28 as C38856; this reshape is LOCAL, awaiting push authorization.",
+  "notes": "RATIFIED + EXTENDED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'Exports now come in Summary and Expanded versions, for both PDF and CSV (matching Sales By Rep). Summary = one row per customer; Expanded = the full Customer -> Asset -> Invoice breakdown.' Menu labels now spec-stated (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. Exact Summary column set pending the updated spec changelog. Added to TestRail 2026-07-28 as C38856; this reshape is LOCAL, awaiting push authorization. RATIFIED by the SBC spec v12 2026-07-29 (S14-R4 Summary columns). SPEC-WATCH item 3 CLOSED.",
   "api_related": false
  }
 ]

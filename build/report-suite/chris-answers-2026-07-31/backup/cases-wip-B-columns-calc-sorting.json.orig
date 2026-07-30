@@ -1,0 +1,606 @@
+[
+ {
+  "id": "WIP-COL-01",
+  "area": "WIP — Columns & Rows",
+  "title": "With every column turned on, the columns appear in the fixed left-to-right order with the specified alignment",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Work In Progress report is open with rows loaded.",
+   "3. Every column is turned on in the column-selection control."
+  ],
+  "steps": [
+   "1. Read the column headers from left to right.",
+   "2. Look at how the values in each column are aligned."
+  ],
+  "expected": [
+   "1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.",
+   "2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.",
+   "3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R1; S4-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "WIP-COL-02",
+  "area": "WIP — Columns & Rows",
+  "title": "On a first visit only the default columns show; the rest are available in the column selector and off by default",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (use a fresh browser profile or clear the site's saved data)."
+  ],
+  "steps": [
+   "1. Open the Work In Progress report.",
+   "2. Read the visible column headers.",
+   "3. Open the column-selection control and read which columns are offered and which are on."
+  ],
+  "expected": [
+   "1. The visible columns on first visit are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, and Total.",
+   "2. Every other column (VIN, Location, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R2; S4-R3; Story 8 S8-R3; S8-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "WIP-COL-03",
+  "area": "WIP — Columns & Rows",
+  "title": "The WO # is a link that opens the work order in the same browser tab, with browser back returning to the report",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Work In Progress report is open with rows loaded."
+  ],
+  "steps": [
+   "1. Click a row's WO # link.",
+   "2. Confirm where the work order opens.",
+   "3. Use the browser's back navigation."
+  ],
+  "expected": [
+   "1. The WO # is shown as a link.",
+   "2. Clicking it opens that work order in the SAME browser tab (not a new tab).",
+   "3. The browser's back navigation returns you to the report."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R5 (+ context note)",
+  "viu_status": "VIU-Pending",
+  "notes": "KNOWN-DELTA WATCH: this report previously opened the work order in a NEW tab; the 2026-07-21 spec change (change log) makes it same-tab to match Sales By Customer and Sales By Rep. If the build still opens a new tab, record it as a build deviation from the current spec.",
+  "api_related": false
+ },
+ {
+  "id": "WIP-COL-04",
+  "area": "WIP — Columns & Rows",
+  "title": "Status shows as a color-coded badge whose label text is always present (color is never the only signal)",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The report shows work orders in several statuses (Estimate, Approved, In Progress, Review, Complete)."
+  ],
+  "steps": [
+   "1. Read the Status column across rows in each tab.",
+   "2. Compare each badge's color against the application's standard status colors used elsewhere."
+  ],
+  "expected": [
+   "1. Status is shown as a badge using the status's label: \"Estimate\", \"Approved\", \"In Progress\", \"Review\", or \"Complete\".",
+   "2. The badge is color-coded per the application's standard status colors.",
+   "3. The label text is always present, so color is never the sole signal of the status."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R6; Story 10 S10-R8",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU-confirm the exact standard status colors live against the rest of the application.",
+  "api_related": false
+ },
+ {
+  "id": "WIP-COL-05",
+  "area": "WIP — Columns & Rows",
+  "title": "Asset cell identifies the asset by VIN, falling back to Unit #, then plate",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The report shows work orders including: one whose asset has a VIN recorded, one with no VIN but a Unit # recorded, and one with no VIN or Unit # but a plate recorded."
+  ],
+  "steps": [
+   "1. Read the Asset cell of the row whose asset has a VIN.",
+   "2. Read the Asset cell of the row with no VIN, then the one with no VIN or Unit #.",
+   "3. Open the column-selection control, turn on the VIN column, and read it."
+  ],
+  "expected": [
+   "1. The Asset cell identifies the asset by its VIN.",
+   "2. When the asset has no VIN, the cell shows its Unit # instead; when it has no VIN or Unit #, it shows its plate instead.",
+   "3. Note what the cell's second line shows now that the VIN is the main identifier (the older layout put the VIN on a muted second line) - the exact rendering is confirmed in the build; record what you see.",
+   "4. The VIN column (off by default) shows the VIN on its own line as a separate, sortable column.",
+   "5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to VIN, falling back to Unit #, then plate, by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; NEWEST source, last-update-wins), superseding the kickoff video's serial-number ruling P24 AND the spec's unit-number rule)",
+  "viu_status": "VIU-Pending",
+  "notes": "RE-RULED 2026-07-29 per Chris Ward's answer to the WIP-identifier question: 'A is the correct answer' - WIP uses the same VIN -> Unit # -> plate chain as Sales By Customer (mirrors SBC-LBL-01 C30134). Chris's standing note: the chain is the STANDARD for all reports and all future work ('Not just for these specs though -- really good to keep this in mind for all actions moving forward'), with the terminology caution that for non-vehicle assets (e.g. a generator) the VIN field is effectively the serial number - hence the plain tester note (label stays 'VIN' per Rule 9). Supersedes the video P24 serial ruling applied 2026-07-28 (pre-edit body in chris-update-2026-07-29/backup/WIP-COL-05.json; pre-video body in video-promotion-backup-2026-07-28/). Second-line rendering + the all-identifiers-missing fallback are unpinned - Chris updated the spec before bed but has NOT hand-reviewed it; confirm from his spec changelog + the build at VIU, do not invent (Rule 9).",
+  "api_related": false
+ },
+ {
+  "id": "WIP-COL-06",
+  "area": "WIP — Columns & Rows",
+  "title": "Customer shows the customer's company name, and is blank when no customer name exists",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The report shows a work order with a customer that has a company name, and one with no customer name."
+  ],
+  "steps": [
+   "1. Read the Customer cell of the row whose customer has a company name.",
+   "2. Read the Customer cell of the row with no customer name."
+  ],
+  "expected": [
+   "1. The Customer column shows the customer's company name.",
+   "2. The cell is blank when no customer name exists."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R11",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "WIP-COL-07",
+  "area": "WIP — Columns & Rows",
+  "title": "Days Open shows whole days since creation and reads \"0 days\" / \"1 days\" (not pluralized) — expected, do not file",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The report shows a work order created today, one created exactly one day ago, and one created several days ago."
+  ],
+  "steps": [
+   "1. Read the Days Open cell of the work order created today.",
+   "2. Read the Days Open cell of the one-day-old work order.",
+   "3. Read the Days Open cell of the older work order and compare against its creation date."
+  ],
+  "expected": [
+   "1. Days Open is the whole number of days since the work order was created — elapsed time divided by 24 hours, floored, never negative — rendered as \"X days\".",
+   "2. A same-day work order shows \"0 days\" and a one-day-old work order shows \"1 days\".",
+   "3. The value is NOT grammatically pluralized: \"1 days\" (not \"1 day\") is the correct, expected rendering."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R12; §2 Known Limitations (v1)",
+  "viu_status": "VIU-Pending",
+  "notes": "DOCUMENTED LIMITATION — DO NOT FILE. The \"1 days\" / \"0 days\" grammar is a documented v1 limitation and must not be filed as a defect.",
+  "api_related": false
+ },
+ {
+  "id": "WIP-COL-08",
+  "area": "WIP — Columns & Rows",
+  "title": "Last Activity shows \"Today\", \"Xd ago\", or \"—\" when the work order has no recorded activity",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Last Activity column is turned on in the column-selection control.",
+   "3. The report shows a work order touched today, one last touched some days ago, and one with no recorded activity."
+  ],
+  "steps": [
+   "1. Read the Last Activity cell of the work order touched today.",
+   "2. Read the Last Activity cell of the work order last touched days ago.",
+   "3. Read the Last Activity cell of the work order with no recorded activity."
+  ],
+  "expected": [
+   "1. A work order whose most recent activity was today shows \"Today\".",
+   "2. Otherwise it shows \"Xd ago\" (for example \"3d ago\").",
+   "3. A work order with no recorded activity shows \"—\"."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R13",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "WIP-CALC-01",
+  "area": "WIP — Earned & Remaining",
+  "title": "Money columns show US-dollar currency with two decimals, thousands separators, a leading minus for negatives, and \"$0.00\" for zero",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. All money columns (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) are turned on.",
+   "3. The report shows rows with values over $1,000, a genuine zero value, and (if producible) a negative value."
+  ],
+  "steps": [
+   "1. Read a money value over one thousand dollars.",
+   "2. Read a genuine zero money value.",
+   "3. Read a negative money value if one exists."
+  ],
+  "expected": [
+   "1. Money values show a leading \"$\", two decimal places, and thousands separators — for example \"$1,234.56\".",
+   "2. A negative value shows a leading minus before the \"$\" — for example \"-$1,234.56\".",
+   "3. A genuine zero shows \"$0.00\"."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R14",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "WIP-CALC-02",
+  "area": "WIP — Earned & Remaining",
+  "title": "Labor Earned is the clocked share of each approved line's quoted labor value, capped at the full quoted value per line",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Labor Earned column is turned on.",
+   "3. A ZZAUTOTEST open work order exists with one approved labor line quoted at a known time and rate (for example 4.0 hours at $100/hour = $400 quoted), with exactly 1.0 hour clocked to it.",
+   "4. A second ZZAUTOTEST open work order exists with an approved labor line where MORE time has been clocked than was quoted (for example 5.0 hours clocked against a 4.0-hour quote)."
+  ],
+  "steps": [
+   "1. Open the Work In Progress report and find the first work order's row.",
+   "2. Read its Labor Earned value and compare to the clocked share of the quoted labor value (1.0 of 4.0 hours = $100.00 in the example).",
+   "3. Find the second (over-clocked) work order's row and read its Labor Earned."
+  ],
+  "expected": [
+   "1. Labor Earned equals the share of the approved line's quoted labor value covered by the time clocked to it (in the example, $100.00).",
+   "2. For the over-clocked line, Labor Earned never exceeds the full quoted value of that line ($400.00 in the example) — the earned share is capped at the quote per line.",
+   "3. With several approved labor lines, Labor Earned is the sum of each line's capped earned share."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R15; §4 Terminology (Earned)",
+  "viu_status": "VIU-Pending",
+  "notes": "Core money-model case — the per-line cap is the key semantic (clocked value counts only up to the quoted amount per line).",
+  "api_related": false
+ },
+ {
+  "id": "WIP-CALC-03",
+  "area": "WIP — Earned & Remaining",
+  "title": "Labor Remaining is the total quoted value of the approved labor minus Labor Earned",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Labor Earned and Labor Remaining columns are turned on.",
+   "3. A ZZAUTOTEST open work order exists with approved labor of a known total quoted value and a known amount of time clocked (for example $400 quoted, $100 earned)."
+  ],
+  "steps": [
+   "1. Open the Work In Progress report and find the seeded work order's row.",
+   "2. Read Labor Earned and Labor Remaining.",
+   "3. Add the two together and compare to the total quoted value of the approved labor."
+  ],
+  "expected": [
+   "1. Labor Remaining equals the total quoted value of the approved labor minus Labor Earned (in the example, $400.00 − $100.00 = $300.00).",
+   "2. Labor Earned + Labor Remaining always equals the total quoted value of the approved labor."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R16",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "WIP-CALC-04",
+  "area": "WIP — Earned & Remaining",
+  "title": "Parts Earned is the sell value of approved-line parts already received",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Parts Earned column is turned on.",
+   "3. A ZZAUTOTEST open work order exists with an approved parts line of a known quantity and sell price, where part of the quantity has been received (for example 2 of 4 units at $50 sell each)."
+  ],
+  "steps": [
+   "1. Open the Work In Progress report and find the seeded work order's row.",
+   "2. Read its Parts Earned value.",
+   "3. Compare it to the received quantity valued at the line's sell price (2 × $50 = $100.00 in the example)."
+  ],
+  "expected": [
+   "1. Parts Earned equals the sell value of the approved-line parts already received (in the example, $100.00).",
+   "2. Parts not yet received contribute nothing to Parts Earned."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R17",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "WIP-CALC-05",
+  "area": "WIP — Earned & Remaining",
+  "title": "Parts Remaining is the outstanding (not yet received) quantity valued at its sell price including any core charge",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Parts Remaining column is turned on.",
+   "3. A ZZAUTOTEST open work order exists with an approved parts line partly received (for example 2 of 4 units received, $50 sell each).",
+   "4. A second ZZAUTOTEST open work order exists with an approved, not-yet-received parts line for a part that carries a core charge."
+  ],
+  "steps": [
+   "1. Open the Work In Progress report and find the first work order's row; read Parts Remaining.",
+   "2. Compare it to the outstanding quantity valued at the sell price (2 outstanding × $50 = $100.00 in the example).",
+   "3. Find the core-charge work order's row and read its Parts Remaining."
+  ],
+  "expected": [
+   "1. Parts Remaining equals the sell value of approved-line parts ordered but not yet received (in the example, $100.00).",
+   "2. For the core-charge part, Parts Remaining values the outstanding quantity at its sell price INCLUDING the core charge."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R18",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "WIP-CALC-06",
+  "area": "WIP — Earned & Remaining",
+  "title": "Earned = Labor Earned + Parts Earned, Remaining = Labor Remaining + Parts Remaining, and Total = Earned + Remaining (not the work order's grand total)",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. All money columns are turned on.",
+   "3. A ZZAUTOTEST open work order exists with known approved labor (partly clocked) and approved parts (partly received), plus tax and/or a fee or discount on the work order so its stored grand total differs from the approved labor+parts sum."
+  ],
+  "steps": [
+   "1. Open the Work In Progress report and find the seeded work order's row.",
+   "2. Check Earned against Labor Earned + Parts Earned.",
+   "3. Check Remaining against Labor Remaining + Parts Remaining.",
+   "4. Check Total against Earned + Remaining.",
+   "5. Open the work order itself and compare the report's Total to the work order's stored grand total."
+  ],
+  "expected": [
+   "1. Earned equals Labor Earned plus Parts Earned.",
+   "2. Remaining equals Labor Remaining plus Parts Remaining.",
+   "3. Total equals Earned plus Remaining.",
+   "4. The Total is NOT the work order's stored grand total — it excludes tax, fees, discounts, and non-approved lines, so a difference from the work order's own grand total is EXPECTED, not a data error."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R19; S4-R20; S4-R21; §3 Key Decisions",
+  "viu_status": "VIU-Pending",
+  "notes": "Do NOT file a Total-vs-grand-total difference as a defect — the spec makes the difference deliberate (§3).",
+  "api_related": false
+ },
+ {
+  "id": "WIP-CALC-07",
+  "area": "WIP — Earned & Remaining",
+  "title": "Lines that are not yet approved contribute nothing to any money figure",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A ZZAUTOTEST open work order exists with known approved lines and known report money values."
+  ],
+  "steps": [
+   "1. Note the work order's Earned, Remaining, and Total in the report.",
+   "2. Add a new labor line and a new parts line to the work order WITHOUT approving them (leave them not authorized).",
+   "3. Reload the Work In Progress report and read the same row's money columns."
+  ],
+  "expected": [
+   "1. The work order's Labor/Parts Earned, Labor/Parts Remaining, Earned, Remaining, and Total are unchanged.",
+   "2. Only approved lines (line status authorized or complete) contribute to the report's money — not-yet-approved lines contribute nothing."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md §2 Relationship to the work order; §4 Terminology (Approved line / approved work)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "WIP-CALC-08",
+  "area": "WIP — Earned & Remaining",
+  "title": "Inv. Hrs shows quoted minus worked labor hours as a signed one-decimal number, colored green/red, with \"0.0\" unsigned in the default color",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Inv. Hrs column is turned on.",
+   "3. The report shows: a job under its labor estimate (fewer hours clocked than quoted), a job that has overrun its estimate (more hours clocked than quoted), and a job at exactly its quote."
+  ],
+  "steps": [
+   "1. Read the Inv. Hrs value of the under-estimate job.",
+   "2. Read the Inv. Hrs value of the overrun job.",
+   "3. Read the Inv. Hrs value of the exactly-on-quote job."
+  ],
+  "expected": [
+   "1. Inv. Hrs shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place — for example \"+2.0\" or \"-14.0\".",
+   "2. On screen it is colored green when positive and red when negative; the overrun job shows a negative red value, the under-estimate job a positive green value.",
+   "3. A value of exactly zero shows unsigned as \"0.0\" (never \"+0.0\" or blank) in the default text color."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R23; S4-R24; S4-E2",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "WIP-CALC-09",
+  "area": "WIP — Earned & Remaining",
+  "title": "An open estimate with no approved work shows \"$0.00\" in every money column, including Total",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. All money columns are turned on.",
+   "3. A ZZAUTOTEST open estimate exists with no approved line items."
+  ],
+  "steps": [
+   "1. Open the Work In Progress report and open the Estimates tab.",
+   "2. Find the seeded estimate's row and read every money column."
+  ],
+  "expected": [
+   "1. Every money column — Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, and Total — shows \"$0.00\".",
+   "2. The row still appears in the Estimates tab (it is not hidden for having no value)."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-E1; Story 2 S2-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "WIP-SORT-01",
+  "area": "WIP — Sorting",
+  "title": "The initial sort is Days Open with the longest-open work order first",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A tab shows several work orders created on different dates."
+  ],
+  "steps": [
+   "1. Open the Work In Progress report without clicking any column header.",
+   "2. Read the Days Open values from the top row down."
+  ],
+  "expected": [
+   "1. The rows are sorted by Days Open, longest-open first (descending)."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R25",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "WIP-SORT-02",
+  "area": "WIP — Sorting",
+  "title": "Clicking a header sorts ascending, clicking again toggles descending, with no third cleared state and one sort column at a time",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A tab shows several work orders with differing values."
+  ],
+  "steps": [
+   "1. Click the Customer column header and note the order.",
+   "2. Click the Customer header again and note the order.",
+   "3. Click the Customer header a third time and note the order.",
+   "4. Click a different column header (for example Earned) and check whether the Customer sort still applies."
+  ],
+  "expected": [
+   "1. The first click sorts the column ascending.",
+   "2. The second click toggles it to descending.",
+   "3. The third click returns to ascending — there is no third \"cleared\" state.",
+   "4. Only one column sorts at a time: clicking another header replaces the previous sort."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R26",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "WIP-SORT-03",
+  "area": "WIP — Sorting",
+  "title": "Columns sort by underlying values; Asset sorts by the identifier shown",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A tab shows several work orders with a spread of money values (including values over $1,000), differing statuses, and differing asset identifiers (VIN, or Unit # / plate where the VIN is missing)."
+  ],
+  "steps": [
+   "1. Sort by a money column (for example Total) and check the order of values like $900.00 vs $1,100.00.",
+   "2. Sort by Days Open and check the order of the day counts.",
+   "3. Sort by Status and check the order against the displayed labels.",
+   "4. Sort by Asset and check the order against the identifiers shown in the Asset cells.",
+   "5. Sort by WO #, Customer, and Advisor and check they order as text."
+  ],
+  "expected": [
+   "1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 is treated as more than $900.00, not compared as text).",
+   "2. Days Open sorts by its day count.",
+   "3. Status sorts by its displayed label.",
+   "4. The Asset column sorts by the identifier it shows - the VIN, falling back to Unit #, then plate.",
+   "5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN, then Unit #, then plate) by Chris Ward answer A 2026-07-29 (chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md; last-update-wins), superseding the video P24 serial ruling AND the spec's 'sorts by unit number')",
+  "viu_status": "VIU-Pending",
+  "notes": "RE-RULED 2026-07-29 per Chris Ward's answer A ('A is the correct answer'): the asset identifier is the VIN chain (VIN -> Unit # -> plate; standard for all reports going forward per his standing note), so the Asset column's sort key follows the identifier it shows. Supersedes the video P24 serial ruling (pre-edit body in chris-update-2026-07-29/backup/WIP-SORT-03.json). Exact sort key when rows mix VIN/Unit #/plate identifiers is unpinned - confirm in the build at VIU. Title kept 80 chars or fewer.",
+  "api_related": false
+ },
+ {
+  "id": "WIP-SORT-04",
+  "area": "WIP — Sorting",
+  "title": "Sorting reorders only the active tab's rows and the Totals row stays at the bottom",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. At least two tabs have several rows each."
+  ],
+  "steps": [
+   "1. In the active tab, sort by a column and note the new order.",
+   "2. Check the position of the Totals row.",
+   "3. Switch to another tab and check its row order."
+  ],
+  "expected": [
+   "1. Sorting reorders the rows within the active tab only.",
+   "2. The Totals row stays pinned at the bottom, out of the sort.",
+   "3. The other tab's order is not changed by the first tab's sort action."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "specs/wip-work-in-progress.md Story 4 S4-R28",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU-confirm whether the sort choice is shared across tabs or per-tab — the spec pins only that the reorder applies within the active tab.",
+  "api_related": false
+ },
+ {
+  "id": "WIP-CALC-10",
+  "area": "WIP — Earned & Remaining",
+  "title": "A technician still clocked in counts toward Labor Earned, capped at the quote",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The Labor Earned column is turned on.",
+   "3. A ZZAUTOTEST open work order exists with one approved labor line quoted at a known time and rate (for example 2.0 hours at $100/hour = $200 quoted).",
+   "4. A technician is CURRENTLY CLOCKED IN on that line and has not clocked out."
+  ],
+  "steps": [
+   "1. Read the work order's Labor Earned value while the technician is still clocked in.",
+   "2. Wait a while (let more time accrue on the running clock), refresh the report, and re-read Labor Earned.",
+   "3. Leave the clock running well past the line's quoted time (or simulate it), refresh, and re-read."
+  ],
+  "expected": [
+   "1. The running (not-yet-clocked-out) time counts toward Labor Earned — the line's earned share reflects the time clocked up to now, not only closed clock records.",
+   "2. After more time accrues, a refresh shows a larger earned share for that line.",
+   "3. Labor Earned never exceeds the line's full quoted value, no matter how long the clock keeps running — the per-line cap still applies."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R15; §4 Terminology (Earned) — spec silent on running clocks; tech-plan-2026-07-29 B1.2 open-clock policy)",
+  "viu_status": "VIU-Pending",
+  "notes": "REGRESSION GUARD: the old WIP report's clocked-time math DROPPED still-open clock records entirely (the engineering plan B1.2 warns the legacy sums lose open rows) — a still-clocked-in technician contributing $0.00 is exactly the failure to catch. The spec is silent on running clocks; the expectation (value running time up to now, capped at the quote) comes from the engineering plan — confirm live.",
+  "api_related": false
+ }
+]

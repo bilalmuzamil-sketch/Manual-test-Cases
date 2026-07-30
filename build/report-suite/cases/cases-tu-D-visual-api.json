@@ -2,7 +2,7 @@
  {
   "id": "TU-VIS-01",
   "area": "TU — Visual & Accessibility",
-  "title": "All-white table with no alternating row shading, and the toolbar controls run in the specified left-to-right order",
+  "title": "All-white table with no row shading; toolbar controls in the fixed order",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -16,13 +16,13 @@
   ],
   "expected": [
    "1. The report uses an all-white table: white column headers and white data cells, with NO alternating row shading.",
-   "2. The toolbar controls run, left to right: the three-dot download menu, the technician filter, the date-range picker, and the location filter (rightmost).",
-   "3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (Technician column, per S4-R4)."
+   "2. The toolbar controls run, left to right: the three-dot download menu, the Column Selection control, the date-range picker, the technician filter, and the Location filter (rightmost).",
+   "3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (in the Technician column)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/technician-utilization.md S8-R1; S8-R2; S8-R3",
+  "spec_ref": "SV-8655 (TU spec v5 2026-07-29 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu, and the date-range picker now precedes the technician filter)",
   "viu_status": "VIU-Pending",
-  "notes": "S8 context note: the requirements do not spell out every icon/styling detail - the spec's companion video was removed by the 2026-07-16 header cleanup while S8's context note still cites it (spec self-inconsistency, flagged for Chris - do not block on it); anything the requirements do not state is VIU-confirm. COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact).",
+  "notes": "S8 context note: the requirements do not spell out every icon/styling detail - the spec's companion video was removed by the 2026-07-16 header cleanup while S8's context note still cites it (spec self-inconsistency, flagged for Chris - do not block on it); anything the requirements do not state is VIU-confirm. COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact). CHANGED by the TU spec v5 2026-07-29 S8-R3 (was: \"the three-dot download menu, the technician filter, the date-range picker, and the location filter\"; now: \"the three-dot download menu, the Column Selection control, the date-range picker, the technician filter, and the location filter (rightmost)\").",
   "api_related": false
  },
  {
@@ -56,27 +56,35 @@
  {
   "id": "TU-COL-01",
   "area": "TU — Visual & Accessibility",
-  "title": "A column selector lets the user choose which columns show",
+  "title": "Column Selection: Technician always on, the other five toggleable, remembered",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
   "preconditions": [
-   "1. You are on the Technician Utilization report with rows loaded."
+   "1. You are on the Technician Utilization report with rows loaded.",
+   "2. This browser has never saved settings for this report (fresh visit), so every column is at its default."
   ],
   "steps": [
-   "1. Find the column selector control in the toolbar (on the other reports it is a separate button next to the download menu).",
-   "2. Open it and read the list of column toggles.",
-   "3. Turn one column off, then back on, watching the table."
+   "1. Find the column-selection button in the toolbar and hover it to read its tooltip.",
+   "2. Note its position relative to the three-dot download menu.",
+   "3. Open it and read every toggle in the list, and which ones are on.",
+   "4. Turn Est. Lost Labor off, then turn Internal Hours off, watching the table each time.",
+   "5. Turn both back on and check where each column lands.",
+   "6. Reload the page, then close the browser, reopen it and return to the report."
   ],
   "expected": [
-   "1. The report has a column selector control, styled and placed like the other reports in the suite (this control was just added - the exact placement, tooltip, and list of toggleable columns are confirmed from the updated spec and the build).",
-   "2. Turning a toggle off hides that column (header and cells); turning it back on restores the column to its usual place in the order.",
-   "3. The change applies immediately with no reload - that is the suite convention on the other reports; confirm it holds here."
+   "1. The control is an icon button whose tooltip reads \"Column Selection\", sitting immediately after the three-dot download menu in the toolbar.",
+   "2. The list offers five toggles — Total Hours, WO Hours, Internal Hours, Utilization % and Est. Lost Labor — and all five are on by default.",
+   "3. Technician is always shown and cannot be turned off (it is not offered as a toggle).",
+   "4. The Location column is never listed here — it appears on its own whenever more than one location is in scope.",
+   "5. Turning a toggle off hides that column (header and cells) immediately, with no reload; turning it back on returns it to its usual place in the fixed left-to-right order — the remaining columns never reorder.",
+   "6. Est. Lost Labor can now be hidden like any other column (it used to be always on).",
+   "7. Your column choice is remembered in this browser and is still applied when you come back."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8655 (specs/technician-utilization.md Story 8 Visual Conformance and Accessibility - column selector ADDED per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ['Column selector added for visual/natural conformance']; no spec anchor yet - confirm from the updated spec changelog)",
+  "spec_ref": "SV-8655 (TU spec v5 2026-07-29 NEW Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 — column selector RATIFIED, replacing the placeholder written from the 2026-07-29 group message)",
   "viu_status": "VIU-Pending",
-  "notes": "NEW 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) - reverses the earlier no-column-selector state (kickoff video P18 had vetoed one for TU; the message adds it 'for visual/natural conformance' = Story 8, SV-8655). Modeled on the suite's existing column-selector cases (SBC-COL-01 C30156 / SBR-COL-01 C30265) but kept to ONE case - the per-column list, defaults, and persistence behaviour are unpinned until the spec changelog lands; do not invent (Rule 9). No C-ID yet (needs authorized add_case; section = TU — Visual & Accessibility, sits with Story 8).",
+  "notes": "NEW 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) - reverses the earlier no-column-selector state (kickoff video P18 had vetoed one for TU; the message adds it 'for visual/natural conformance' = Story 8, SV-8655). Modeled on the suite's existing column-selector cases (SBC-COL-01 C30156 / SBR-COL-01 C30265) but kept to ONE case - the per-column list, defaults, and persistence behaviour are unpinned until the spec changelog lands; do not invent (Rule 9). No C-ID yet (needs authorized add_case; section = TU — Visual & Accessibility, sits with Story 8). RATIFIED by the TU spec v5 changelog 2026-07-29 (\"Added the suite-standard column selector; made Est. Lost Labor a toggleable (hideable) column\") — the group-message placeholder is superseded. Persistence is per browser, not per account. TRACEABILITY NOTE: the TU spec's NEW Story 10 (Column Selection and Persistence, added 2026-07-29) has NO Jira story ticket in epic SV-8582 — the TU story tickets stop at SV-8656 (Story 9, Location Filter). This case is cited to the nearest owning story; ASK for the new Story-10 ticket key and re-cite when it exists.",
   "api_related": false
  },
  {
