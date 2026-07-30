@@ -24,6 +24,11 @@
 >   **Review findings are INPUTS, not overrides (Rule 33) — precedence: PO ruling → QA lead's
 >   ruling → our own live-verified findings → a reviewer's/other QA's claims; judge the claim,
 >   not the claimant, and never let a review silently reverse a recorded ruling.**
+>   **WHEN ANOTHER AUTHOR'S CASE CONTRADICTS OURS (Rule 39): RETAIN our sourced position (spec /
+>   tech plan / Loom video / PO answer), NEVER edit their case, and ESCALATE to the QA lead with
+>   BOTH bases on the table — our document+version+anchor+date AND what source THEY worked from
+>   (establish it; ASK them if it can't be determined). Check our OWN newer sources FIRST — the
+>   conflict is often our older case vs a newer ruling we already ingested.**
 >   **AFTER EVERY authorized `add_case` push, RUN-SYNC the project's test run (Rule 34) — a
 >   fixed-selection run (`include_all: false`) never auto-picks up new cases; UNION the run's
 >   current case_ids with the new ones (a partial `update_run` DELETES tests + results), snapshot
@@ -1787,6 +1792,49 @@ deliver the 7-tab management report.
     is a question for its author, not a licence to change either side. Canonical evidence pack:
     `build/testrail-foreign-cases-2026-07-31/FOREIGN-CASES.md`. Ties to Standing Rules 6 (never write
     to TestRail without permission), 8 (always give the C-id), 17, 20, 25, 33 and 34.
+39. **When someone else's test cases CONTRADICT ours, establish BOTH sides' sources and bring them
+    to the QA lead (all projects).** USER DIRECTIVE (2026-07-31, verbatim): *"If what we have done
+    is based on the specs/technical Plan/Loom Videos/Answers of the questins, then retain the latest
+    information from our own sources, and if in future again the test cases of someone else
+    contradicts with us, you need to come back to me with your sources and references and also you
+    need to tell me here the otehr person who is creating the contradicting cases with ours is
+    getting the reference to create those cases from"*.
+    **DEFAULT POSITION — RETAIN OUR SOURCED LATEST INFORMATION.** Where OUR case is grounded in a
+    legitimate source — **the spec, the engineering tech plan, a walkthrough/Loom video, or a PO's
+    written answer** — we **KEEP our latest information** and do **NOT** change the case merely
+    because another author's case disagrees. Another author's disagreement is not evidence.
+    **BUT EVERY SUCH CONTRADICTION IS ESCALATED TO THE QA LEAD — NEVER RESOLVED SILENTLY**, and the
+    escalation MUST put **BOTH SIDES** on the table: **(a) OUR source and reference** for the
+    assertion — the **named document, its version, the section/anchor, and the date**; and **(b) WHAT
+    SOURCE THE OTHER AUTHOR BASED THEIR CASE ON** — and this must be **ACTIVELY ESTABLISHED**, not
+    shrugged at: their case's `refs` if it has any, **the spec version that was live on the date they
+    authored it** (compare their created/updated timestamps against the spec's version history), the
+    ticket / branch / build they were working from, the shipped-build behaviour their automation runs
+    against — **or ASK THEM DIRECTLY**. **"Unknown" is only acceptable AFTER asking.**
+    **RESOLUTION ORDER IS UNCHANGED:** Rule 33 (PO ruling → QA-lead ruling → our live-verified
+    findings → another's claim) and Rule 32 (**newest authoritative product source wins**). A
+    contradiction is **NEVER settled by seniority, job title, or who wrote first** — it is settled by
+    **whose source is the most recent authoritative one**, which is precisely why **both bases must be
+    visible** before anyone decides.
+    **NEVER EDIT, DELETE OR MOVE THE OTHER AUTHOR'S CASES** (Rule 38 stands, absolutely) — we
+    **present evidence** and let the **QA lead and the author** decide.
+    **ALSO CHECK OUR OWN NEWER SOURCES FIRST.** An apparent conflict with another author is often
+    **our own older case contradicting a newer ruling WE OURSELVES already ingested** (a spec version
+    bump, a PO answer, a video). **Verify that before attributing the disagreement to anyone** — the
+    honest outcome is frequently *"they are right, and our case is stale against our own source"*.
+    Report which of the three it is: **(i) no change to ours** · **(ii) ours needs updating because
+    of OUR OWN newer source** · **(iii) genuinely unresolvable without a PO ruling**.
+    **RATIONALE, 2026-07-31:** Vladimir Tomovic's automated case
+    **[C38923](https://shopview.testrail.io/index.php?/cases/view/38923)** asserted a **Location
+    column in the SBR CSV exports** while two of our cases — **SBR-EXP-10 =
+    [C30285](https://shopview.testrail.io/index.php?/cases/view/30285)** and **SBR-EXP-11 =
+    [C30286](https://shopview.testrail.io/index.php?/cases/view/30286)** — stated the CSV headers
+    were *"exactly"* a list **without it**. On inspection the likelier cause was **OUR OWN older
+    cases not yet reflecting the 2026-07-29 SBR spec v15 export ruling (S14-R20)**, not a mistake by
+    the other author. Canonical evidence pack:
+    `build/contradiction-analysis-2026-07-31/SBR-CSV-LOCATION.md`. Ties to Standing Rules 12
+    (observed, never inferred), 20 (traceability), 25 (verbatim citation of the source deviated
+    from), 32 (latest source wins), 33 (authority precedence) and 38 (foreign cases are hands-off).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
