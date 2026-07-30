@@ -186,6 +186,55 @@ fixes are listed with exact corrections. Every case is traceable to the requirem
 design it tests. Nothing has been changed yet — this is a recommendation awaiting
 approval, group by group.
 
+## Adversarial self-audit (Rule 15 / process step 7)
+
+Before delivery the audit was re-checked against itself, mechanically and by hand. The
+mechanical half is codified in **`verify_audit.py`** (run it to reproduce: **40 checks, 0
+drift**) so the audit cannot ship internally inconsistent:
+
+- **Population + tallies:** 137 case bodies = 137 CSV rows, no extras/gaps; both scored
+  dimensions sum to 137 (71+52+3+11 and 124+12+1); only legal verdicts used.
+- **Merge integrity:** 14 groups / 14 survivors, every survivor is itself KEEP (so no case
+  is double-counted in the headline), every MERGE row carries group+survivor, no stray
+  groups; the plan names every MERGE, CUT and WEAK-KEEP case, so nothing is recommended
+  without an approvable line item.
+- **Headline arithmetic:** recommended 74 = KEEP 71 + WEAK-KEEP 3, re-derived from the CSV.
+- **Embarrassment check:** KEEP-but-NONSENSE = empty, asserted programmatically.
+- **Evidence checks:** every NONSENSE quote re-matched verbatim against the case body;
+  C-ids reconciled against `testrail-id-map.csv` (0 mismatches); the 43 blank C-ids are
+  exactly the design-level pending set; the per-area tables re-computed from the CSV (all 18
+  areas match); case bodies + id-map confirmed unchanged since the cited snapshot SHA.
+- **The two in-suite duplicate CUTs were verified by reading the alleged supersets,** not
+  asserted: FLT-BAR-03's whole content ("the filter bar is still shown", "the remaining
+  filter chips … are displayed and usable") sits inside FLT-TAB-02 (C29609) expected 1–2;
+  FLT-COLL-03's both directions sit inside FLT-PERS-01 (C29613) expected 2–3.
+- **The 9-case cross-project CUT was verified against the other suite:** the Global Search
+  project has **exactly 86 authored cases** covering that component, and engineering's own
+  answer is on record (tech plan G8/D22: "spotlight = Global Search v2; toolbar search =
+  Filters"). It remains Branko's ruling (Q6) — this audit flags, the PO decides.
+
+**Independent re-derivation:** all 11 CUTs, all 3 WEAK-KEEPs, all 14 merge survivors and a
+sampled cross-section of KEEP rows were re-scored cold from the case bodies and diffed
+against the CSV — **0 verdicts overturned.**
+
+**Honest counter-finding (the diff was not empty in one direction):** the re-derivation
+found the audit is **conservative — it under-merges**. Three KEEP pairs would arguably MERGE
+under the same "two halves of one interaction" logic the audit applied to MG4/MG7:
+FLT-CHIP-03 (C29596) + FLT-CHIP-04 (C29597) — the appearance and the action of the same
+'Clear filters' control, where CHIP-04's expected 4 already re-asserts CHIP-03's expected 3
+(the clearest of the three); FLT-COLL-04 (C29604) + FLT-COLL-05 (C29605); FLT-PARTS-11 +
+FLT-PARTS-12 (both design-level). They are listed as **optional borderline groups in
+`MERGE-PLAN.md`, deliberately NOT counted in the headline** — taking all three would make it
+137 → 71. The direction matters for trust: the error is toward keeping too much, so **74 is a
+ceiling, not a floor** — no case that earns its place was cut or merged away. Left as KEEP
+because each half can fail independently with a different bug (a missing indicator vs
+filtering silently pausing while the bar is collapsed).
+
+**Not verified this run (Rule 12):** no live build was driven, so build-dependent judgements
+(above all "the five dropdowns are one shared component", which underpins MG1/MG2/MG5/MG6)
+rest on the design set + tech plan and are labelled recommendations. If the shared-component
+assumption turns out false on the build, MG1/MG2/MG5/MG6 must be re-opened before any push.
+
 ## Deliverables in this folder
 
 - `USEFULNESS-AUDIT-2026-07-31.md` — this report (sense-check inline).
@@ -193,7 +242,10 @@ approval, group by group.
   (`refs_ok`, `title_len`); regenerate deterministically via `gen_verdicts.py` (which also
   asserts tally reconciliation + the empty KEEP-but-NONSENSE list).
 - `MERGE-PLAN.md` — the 14 groups + 11 cuts + 3 weak-keeps, approvable per-group, every
-  case with its C-id/link or "new, no C-ID yet" (via `gen_merge_plan.py`).
+  case with its C-id/link or "new, no C-ID yet" (via `gen_merge_plan.py`), plus the 3
+  optional borderline groups from the adversarial self-audit (not in the headline).
+- `verify_audit.py` — the adversarial self-audit verifier (40 mechanical checks; exits
+  non-zero on any drift). Re-run it after any regeneration.
 
 ## Appendix — the 39 title-length violators (Dimension 3; fix on next authorized touch)
 

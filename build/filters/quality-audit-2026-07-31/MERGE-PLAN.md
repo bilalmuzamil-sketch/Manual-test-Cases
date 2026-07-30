@@ -156,3 +156,33 @@ Execution note (if approved): 25 of the 52 merge members and 2 of the 11 cuts ar
 - FLT-MOB-09 (C29629, https://shopview.testrail.io/index.php?/cases/view/29629) — "Mobile has no collapse toggle: the filter chip row is always visible" — Absence assertion (no collapse toggle on mobile) — spec'd (S12-R4) but a failure is cosmetic-severity; kept, flagged low-value.
 - FLT-MOB-10 (C29630, https://shopview.testrail.io/index.php?/cases/view/29630) — "Filters matching no work orders on mobile show the same empty state as desktop" — Mobile repeat of the filtered empty state — the mobile surface can genuinely render differently, but the yield beyond FLT-EMPTY-01 is low; kept, flagged.
 - FLT-API-05 (C29635, https://shopview.testrail.io/index.php?/cases/view/29635) — "A filter combination matching nothing returns a successful empty list, not an error" — Empty-match-returns-200 is thin — largely implied by FLT-API-02 (combination request) + FLT-EMPTY-01 (page renders the state); kept for the explicit no-error backend contract, flagged low-value.
+
+## Optional borderline groups (from the adversarial self-audit — NOT counted in the 137 → 74 headline)
+
+The self-audit's independent re-derivation found the main pass **under-merges** in three
+places: these pairs would merge under the same "two halves of one interaction" logic used for
+MG4 (collapse/expand) and MG7 (tag select/remove). They are left as KEEP in the headline
+because each half can fail independently with a different bug, so approving them is a
+judgement call, not a correction. **Approving all three takes the suite 74 → 71.**
+Approve/decline each on its own.
+
+### MG16-CLEAR-FILTERS-CONTROL *(optional — the clearest of the three)*
+- **Survivor:** FLT-CHIP-04 (C29597, https://shopview.testrail.io/index.php?/cases/view/29597) — "'Clear filters' removes every active filter at once and all chips return to default"
+- **Absorbs:** FLT-CHIP-03 (C29596, https://shopview.testrail.io/index.php?/cases/view/29596) — "'Clear filters' appears to the right of the chips only when at least one filter is active"
+- **Why it is a candidate:** one control, and the overlap is already visible in the case text — FLT-CHIP-04's expected 4 ("The 'Clear filters' link disappears") re-asserts FLT-CHIP-03's expected 3.
+- **What the survivor gains:** the conditional-appearance checks — not shown with no filters active, appears at the right end of the chip row as soon as one filter is active, disappears again when the last filter is removed (which the bulk-clear step already produces).
+- **Reason to decline:** the appearance rule and the bulk-clear action are separately spec'd behaviours; a tester loses the explicit "nothing to click when nothing is active" check as a named line.
+
+### MG17-COLLAPSED-BAR-WITH-ACTIVE-FILTERS *(optional — mild)*
+- **Survivor:** FLT-COLL-05 (C29605, https://shopview.testrail.io/index.php?/cases/view/29605) — "Active filters keep filtering the table while the filter bar is collapsed"
+- **Absorbs:** FLT-COLL-04 (C29604, https://shopview.testrail.io/index.php?/cases/view/29604) — "The funnel button shows a blue indicator when filters are active while the bar is collapsed, and none when no filters are active"
+- **Why it is a candidate:** same setup (filters active + bar collapsed), asserted twice; natural co-runners in one sitting.
+- **What the survivor gains:** the funnel-icon indicator checks (no indicator when no filters are active; primary-blue filters icon when they are).
+- **Reason to decline (why the main pass kept both):** the failures are different severities — a missing indicator is cosmetic, filtering silently pausing while the bar is hidden is a wrong-results bug. Keeping them apart keeps that distinction visible.
+
+### MG18-PARTS-FILTER-BEHAVIOUR *(optional — mild, design-level pending)*
+- **Survivor:** FLT-PARTS-11 (new, no C-ID yet — design-level pending queue) — "Choosing a Parts filter narrows the list on that page"
+- **Absorbs:** FLT-PARTS-12 (new, no C-ID yet — design-level pending queue) — "Parts filters support multiple choices and can be cleared"
+- **Why it is a candidate:** both are the same generic "Parts filters behave like Work Orders filters" walk, and both are still hedged pending Branko's PRD.
+- **What the survivor gains:** the multi-select check, per-filter Clear selection, and the overall Clear filters action.
+- **Reason to decline:** applying a filter and the multi-select/clear semantics are different behaviours; better re-judged once Branko's PRD pins what Parts filters actually do.
