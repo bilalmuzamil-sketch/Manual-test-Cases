@@ -1,0 +1,835 @@
+# SBC (Sales By Customer) Report
+
+> **VERBATIM CAPTURE — current Confluence spec**
+> - pageId: 577634305
+> - Page title: SBC (Sales By Customer) Report
+> - Current version: v12
+> - Last updated: 2026-07-29T06:44:06.010Z by Chris Ward
+> - Confluence space: ~712020aa00b8d6a71f4259891982a304227c20
+> - Captured: 2026-07-31 (REST storage-format -> markdown via html2text, unicode-preserving; escape-normalized to match the 2026-07-28 capture pipeline — validated 6/6 byte-identical on the prior versions)
+
+---
+|
+---|---
+**Epic**|  TBD
+**Owner**|  TBD
+**Status**|  In review — 2026-07-16
+**Branch**|  TBD
+
+# Sales By Customer Report
+
+## 1. Business Case
+
+Shop owners and managers need to see quickly how much revenue each customer drove over a chosen time window, and what that revenue is made of — labor, parts, shop supplies, and profit. Today that question means exporting raw invoice data and building a spreadsheet summary by hand: slow, error-prone, and too hard for non-technical users. The Sales By Customer report makes that a single click, and adds a drill-down so a manager can open the individual invoices behind each customer's total, and the individual vehicles those invoices were done on, without leaving the report.
+
+A second goal is consistency. The report looks and behaves like the rest of the reporting suite, so a user never has to re-learn the layout when moving between reports.
+
+## 2. Feature Overview
+
+### Core ShopView
+
+  * A report named Sales By Customer is available in the Reports navigation.
+  * The report groups revenue by customer over a chosen date range.
+  * The report is a three-level tree: Customer → Asset → Invoice. A customer row expands to that customer's assets (the vehicles the work was done on); an asset row expands to the individual invoices for that vehicle. Work with no vehicle (counter / parts sales) collects under a per-customer "Parts Sales" bucket. Each asset row is labeled by the vehicle's VIN, falling back to Unit number, then plate.
+  * Invoice numbers in the expanded view are clickable and open the underlying invoice in the same browser tab. Pressing the browser back button returns to the report with its filters, sort, and columns restored.
+  * The user can filter by date range, by product type (Parts & Service / Parts only / Service only), by customer (a multi-select filter with search-as-you-type, all customers selected by default), and by location (one, several, or all of the locations the user has access to). The Customer filter is how the user narrows the table to a specific customer.
+  * When more than one location is in scope, each row shows a Location column — the row's location, or "Multiple" for a customer or asset row that spans more than one location; the column is hidden when only one location is in scope. Every export names the location or locations in scope on a "Locations:" line.
+  * The report remembers the user's filters, sort, and visible columns between visits, so returning to the report restores the same view.
+  * The report shows these financial columns, in this order: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, and Margin %.
+  * The user can download the report from a single overflow menu in the toolbar — a Summary version (customer totals only) or an Expanded version (the full Customer → Asset → Invoice tree), each as a PDF or a CSV — and can show or hide individual columns from a column selector.
+  * The report matches the visual theme of the rest of the reporting suite.
+
+
+
+### Out of Scope
+
+  * QuickBooks sync of any data shown in this report.
+  * Per-line-item classification within a single invoice. The report classifies a whole invoice as Service or Parts by its invoice-number prefix.
+  * A separate parts-only report. A distinct "Parts Sales" report exists elsewhere in the suite; it is not this report and is not covered here.
+  * A mobile-optimized layout. The report works on phones, but the dense table is not redesigned for small screens.
+  * Aging or days-since logic. Dates are shown as plain calendar dates.
+  * Editing invoices from this report.
+  * Bulk actions against multiple customers or invoices.
+  * Side-by-side asset (vehicle) comparison. Comparing individual vehicles against each other is a distinct analysis deferred to a future dedicated report (see the Key Decision below).
+
+
+
+## 3. Key Decisions
+
+  * **Subtotal is the headline column.** It carries the strongest visual weight (bold and pinned) because it is the number users scan for first.
+  * **The report is a three-level tree (Customer → Asset → Invoice).** Grouping invoices by the vehicle they were done on lets a manager see per-vehicle revenue without a separate report.
+  * **Work with no vehicle groups under a "Parts Sales" bucket.** A work order with a vehicle is service work; a work order with no vehicle is a counter / parts sale, so no-vehicle work is collected on its own.
+  * **The Date cell is blank on customer and asset rows.** A rolled-up date on a summary row was misleading, so dates are shown only on invoice rows.
+  * **The invoice count is shown after the customer name, not as its own column.** It saves a column while still telling the user how many invoices are behind the total.
+  * **Reversed and voided invoices are excluded.** They do not represent real sales, so they are never counted.
+  * **Service vs. Parts is decided by the invoice-number prefix.** Per-line classification was out of scope, so the whole invoice is classified by its number.
+  * **Margin % is monochrome; Inv. Hrs is color-coded.** Inv. Hrs (the Labor Delta) carries a green/red signal because direction matters at a glance; Margin % does not.
+  * **Color extends to the PDF, not the CSV.** The PDF is the presentation copy; CSV users re-style and re-pivot, so baked-in color has no value there.
+  * **Exports live behind one overflow menu.** This matches the suite standard and keeps the toolbar clean.
+  * **Exports come in Summary and Expanded versions.** Summary is one row per customer; Expanded includes the full Customer → Asset → Invoice tree. Both are offered as CSV and PDF, matching Sales By Rep.
+  * **Assets are identified by VIN.** The asset label is the vehicle's VIN, falling back to Unit number, then plate — the identifier a shop uses to track a vehicle across its fleet — rather than a year/make/model description.
+  * **Location is a per-row column, shown only when more than one location is in scope.** A single-location view has no need for it, so the column appears only when the scope spans more than one location. Because a customer or asset row can aggregate invoices from more than one location, such rows read "Multiple"; invoice rows always show their exact location. Every export names the scope on a "Locations:" line so a saved or printed copy is unambiguous.
+  * **The report remembers the user's view between visits.** Returning to a report a user uses daily should not reset their filters.
+  * **Narrowing to specific customers is a filter, not a "compare."** Choosing which customers to show is done with a standard multi-select Customer filter (search, all selected by default) — the same filter pattern used elsewhere in the suite — rather than a bespoke compare/pin control.
+  * **Side-by-side asset comparison is deferred to its own report.** Comparing individual vehicles against each other is a distinct analysis (closer in shape to Parts Velocity) that also depends on standardizing asset naming; it belongs in a dedicated report rather than nested inside this one, so it is out of scope here.
+
+
+
+## 4. Terminology
+
+  * **Subtotal** — A row's total of Labor Invoiced plus Parts Invoiced plus Shop Supplies, before tax. It is the report's headline number and the denominator of Margin %.
+  * **Shop Supplies** — The total of shop-supply charges (miscellaneous shop materials and consumables fees) billed across the row's invoices. No separate cost is tracked for shop supplies, so they add no profit to Margin.
+  * **Labor Invoiced** — The labor dollars billed across the row's invoices.
+  * **Labor Margin** — Labor Invoiced minus the cost of that labor, in dollars.
+  * **Parts Invoiced** — The parts dollars billed across the row's invoices.
+  * **Parts Margin** — Parts Invoiced minus the cost of those parts, in dollars.
+  * **Margin** — The row's total profit in dollars. It is Labor Margin plus Parts Margin. It does not include any Shop Supplies amount. It is the numerator of Margin %.
+  * **Margin %** — Margin divided by the row's Subtotal, times 100. Because Subtotal includes Shop Supplies but Margin does not, Margin % is profit measured against total sales.
+  * **Labor Delta** — Hours invoiced minus hours worked for a row. A positive value means the shop billed more time than it spent; a negative value means it spent more than it billed. It is shown under the heading "Inv. Hrs."
+  * **Asset** — A vehicle the customer's work was done on. Invoices are grouped by asset between the customer and invoice levels.
+  * **Parts Sales (bucket)** — The single per-customer asset row that collects that customer's work with no vehicle. It is labeled "Parts Sales."
+  * **Service invoice** — An invoice whose number starts with S.
+  * **Parts invoice** — An invoice whose number starts with P.
+  * **Customer filter** — A multi-select toolbar filter that narrows the report to a chosen set of customers. It offers search-as-you-type over the customer names and defaults to all customers selected.
+  * **Summary export** — A CSV or PDF containing one row per customer (customer totals only), with no asset or invoice rows.
+  * **Expanded export** — A CSV or PDF containing the full Customer → Asset → Invoice tree.
+  * **Location (column)** — A per-row column naming the location a row's data belongs to. It is shown only when more than one location is in scope and hidden when a single location is in scope. A customer or asset row that aggregates invoices from more than one location shows "Multiple"; an invoice row shows its exact location.
+
+
+
+## 5. Assumptions
+
+  * Invoice numbers follow the ShopView numbering rules: a number starting with S is a service invoice, a number starting with P is a parts invoice. These are the only two prefixes in use.
+  * Every invoice has one customer and one location. An invoice missing either cannot be grouped.
+
+
+
+## 6. Requirements
+
+### Story 1: Report access and navigation placement
+
+Where the report lives in the Reports navigation, and who can open it.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is signed in to ShopView.
+  * User has the Sales By Customer report View permission.
+
+
+
+**Requirements:**
+
+  * **S1-R1:** "Sales By Customer" appears in the Reports left-side navigation.
+  * **S1-R2:** The report is gated by a dedicated Sales By Customer report View permission — it is not tied to a generic "all reports" permission.
+  * **S1-R3:** The page title reads "Sales By Customer."
+  * **S1-R4:** The browser tab title reads "Sales By Customer - Report | ShopView" — the report name inside the application-standard tab-title template.
+
+
+
+**Negative cases:**
+
+  * **S1-N1:** A user without the Sales By Customer report View permission does not see the report in navigation and cannot open it by direct link.
+
+
+
+### Story 2: Filter by date range
+
+Set the time window the report covers.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report.
+
+
+
+**Requirements:**
+
+  * **S2-R1:** A date range picker is visible in the report toolbar.
+  * **S2-R2:** The picker offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
+  * **S2-R3:** The Custom range is capped at a maximum span of 366 days from start date to end date — the same length as the largest preset (This Year / Last Year).
+  * **S2-R4:** When the user picks "Custom," the report opens a date-picker dialog for a start and end date.
+  * **S2-R5:** The picker defaults to "This Month" when the report is opened with no saved date range and no date range in the page link.
+  * **S2-R6:** When the user changes the date range, the chosen value is written to the page link so the report can be shared or bookmarked at that range.
+  * **S2-R7:** The chosen date range is reflected in the CSV and PDF exports.
+  * **S2-R8:** Changing the date range is remembered between visits — see Story 6.
+  * **S2-R9:** When the report is opened with both a saved view and a date range in the page link, the saved view is applied and the link value is ignored.
+
+> _* Context note: the remembered view (Story 6) was given priority over the link so a returning user always lands on their own last view. A shared link therefore restores the sender's range only for a recipient who has no saved range of their own for this report._
+
+
+
+
+**Negative cases:**
+
+  * **S2-N1:** If the chosen date range contains no matching invoices, the table shows the empty-state message (see Story 17).
+  * **S2-N2:** A Custom range wider than 366 days cannot be applied. If the user picks a start and end date more than 366 days apart, the report prevents the selection rather than loading the wider range.
+
+
+
+### Story 3: Filter by product type
+
+Limit the report to service invoices, parts invoices, or both.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report.
+
+
+
+**Requirements:**
+
+  * **S3-R1:** A "Product Type" dropdown is visible in the report toolbar.
+  * **S3-R2:** The dropdown offers exactly three options, in this order: "Parts & Service," "Parts only," "Service only."
+  * **S3-R3:** "Parts & Service" is the default selection on first load.
+  * **S3-R4:** When "Parts & Service" is selected, no product-type filter is applied.
+  * **S3-R5:** When "Service only" is selected, the report includes only invoices whose number starts with S.
+  * **S3-R6:** When "Parts only" is selected, the report includes only invoices whose number starts with P.
+  * **S3-R7:** The chosen Product Type is reflected in the CSV export, the PDF export, and the PDF's filter summary line.
+  * **S3-R8:** Changing the Product Type is remembered between visits — see Story 6.
+
+
+
+**Negative cases:**
+
+  * **S3-N1:** If the selection produces no matching invoices, the table shows the empty-state message (see Story 17).
+
+
+
+### Story 4: Filter by location
+
+Scope the report to one, several, or all of the locations the user has access to.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report.
+
+
+
+**Requirements:**
+
+  * **S4-R1:** A location filter is visible in the report toolbar, as the rightmost filter.
+  * **S4-R2:** The filter lists the locations the signed-in user has access to.
+  * **S4-R3:** The filter also offers an "All locations" option, pinned to the top, that selects or clears every listed location at once.
+  * **S4-R4:** On first load, the filter defaults to the location the user is currently working in (their active location) — a single location.
+  * **S4-R5:** When the user selects one or more locations, the report includes only data from those locations.
+  * **S4-R6:** When the user selects "All locations," the report includes data from every location the user has access to.
+  * **S4-R7:** An administrator has access to every location in the organization.
+  * **S4-R8:** A non-administrator has access to the locations assigned to them.
+  * **S4-R9:** The report never includes data from a location the user does not have access to, regardless of what is requested.
+  * **S4-R10:** The chosen location selection is applied to the on-screen report and to the CSV and PDF exports.
+  * **S4-R11:** Changing the location selection is remembered between visits — see Story 6.
+  * **S4-R12:** When more than one location is in scope, the report shows a per-row Location column; the column is hidden when a single location is in scope.
+  * **S4-R12a:** In the Location column, a customer or asset row whose invoices are all at one location shows that location's name; a customer or asset row that aggregates invoices from more than one location shows "Multiple"; an invoice detail row always shows its exact location.
+  * **S4-R13:** Every export — each CSV and each PDF, Summary and Expanded — includes a "Locations:" line naming the currently selected location or locations, or "All locations" when every location the user has access to is selected. When the Location column is shown on screen (more than one location in scope, S4-R12), every export also includes that Location column.
+
+
+
+**Negative cases:**
+
+  * **S4-N1:** If the user requests a location they do not have access to, that location is ignored; the report does not widen to the whole organization.
+  * **S4-N2:** If the selected locations contain no matching invoices, the table shows the empty-state message (see Story 17).
+
+
+
+### Story 5: (removed — search consolidated into the Customer filter)
+
+> _* This report no longer uses the application's global search bar. Narrowing to a specific customer is done entirely with the multi-select Customer filter (Story 18), which offers search-as-you-type over customer names. The export-narrowing behavior that previously lived here (an export contains exactly the customers currently shown; an empty selection still downloads a headers-plus-zero-totals file) moved into Story 18 (S18-R7, S18-R10). The story number is retained as a placeholder so the later story numbers and every "See Story 20" design reference remain stable._
+
+### Story 6: Remember filters and view between visits
+
+Restore the user's last filters, sort, and columns when they return to the report.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report.
+
+
+
+**Requirements:**
+
+  * **S6-R1:** The report saves the user's view to the browser so it can be restored on the next visit.
+  * **S6-R2:** The saved view includes: the date range, the Product Type, the location selection, the Customer filter selection, the sort column and direction, and the visible columns.
+  * **S6-R3:** The saved view does not include the Customer filter's type-ahead search text, expansion state, or scroll position.
+
+> _* Context note: the Customer filter's search text is a transient way to find a name in the dropdown, not a saved setting — only the resulting customer selection is saved (S18-R8); expansion is treated as fresh each visit so a returning user is not faced with rows expanded against data they have not looked at yet._
+
+  * **S6-R4:** On load, the report shows the restored view immediately — the default view is never shown first and then replaced.
+  * **S6-R5:** On restore, any saved value that is no longer valid is discarded, and that setting uses its default instead.
+  * **S6-R6:** A saved value is treated as no longer valid when it is an unknown date range, a location the user no longer has access to, a sort column that no longer exists, or a column set that does not match the current columns.
+  * **S6-R7:** The saved view is specific to this report and does not affect any other report.
+
+
+
+**Negative cases:**
+
+  * **S6-N1:** If no saved view exists (first visit, or cleared browser storage), every setting uses the default defined in its own story: date range (S2-R5), Product Type (S3-R3), location (S4-R4), the Customer filter (S18-R4 — all customers selected), sort (S10-R4), and visible columns (S13-R7).
+
+
+
+### Story 7: View customer summary rows
+
+Show one row per customer that rolls up their revenue.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report with at least one customer in the set of customers.
+
+
+
+**Requirements:**
+
+  * **S7-R1:** Each customer occupies one summary row at the top level of the table.
+  * **S7-R2:** The customer's name is shown at the start of the row.
+  * **S7-R3:** The number of invoices contributing to that customer's totals in the current view is shown in parentheses immediately after the name — for example, Acme Corp (5).
+  * **S7-R4:** That invoice count is rendered in the color #616161 at font-weight 600, the same font size as the name.
+  * **S7-R5:** The count reflects the active date range, Product Type, and location; it is not a lifetime count.
+  * **S7-R6:** The summary row totals the customer's matching invoices for each financial column: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, and Subtotal.
+  * **S7-R7:** A reversed or voided invoice is excluded from every row, count, and total, regardless of the Product Type filter.
+  * **S7-R8:** The Date cell on the summary row is blank.
+  * **S7-R9:** Every cell on a customer summary row uses font-weight 600, except the Subtotal cell.
+  * **S7-R10:** The Subtotal cell on a customer summary row uses font-weight 700.
+  * **S7-R11 (Margin %):** The Margin % column shows the row's Margin divided by its Subtotal, times 100, to one decimal with a percent sign — for example, 64.7%.
+  * **S7-R12:** When the row's Subtotal is zero or below, the Margin % cell shows an em dash.
+  * **S7-R13:** Margin % is monochrome — it has no green or red coloring.
+  * **S7-R14:** The Margin % calculation and format (S7-R11, S7-R12) apply the same way to customer rows, asset rows, and invoice rows.
+  * **S7-R15:** Every row type — customer, asset, invoice, totals — renders the same columns in the same left-to-right order.
+  * **S7-R16:** A cell with no value for its row (for example, the Date cell on a customer or asset row) is left blank and keeps its column position; no value moves into another column.
+
+
+
+**Negative cases:**
+
+  * **S7-N1:** A customer with no matching invoices in the current view is not shown.
+  * **S7-N2:** A reversed or voided invoice never appears as an invoice row and never adds to any count or total, even under "Parts & Service."
+
+
+
+### Story 8: Expand a customer to its assets, and an asset to its invoices
+
+Drill from a customer down to the vehicles the work was done on, then to the individual invoices.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report.
+
+
+
+**Requirements:**
+
+  * **S8-R1:** Each customer summary row has a chevron control that toggles its asset rows.
+  * **S8-R2:** Activating a customer's chevron reveals that customer's asset rows beneath the summary row — one row per vehicle the customer's invoices were done on, plus the "Parts Sales" bucket (S8-R6) when there is no-vehicle work.
+  * **S8-R3:** Invoices are grouped into one asset row when they reference the same vehicle record (the same vehicle id). For an older invoice that has no vehicle id on file, the invoice's own stored vehicle snapshot is used as the grouping key instead of a vehicle id.
+  * **S8-R4:** Each asset row has its own chevron; activating it reveals the invoice detail rows for that asset.
+  * **S8-R5:** An asset row shows a vehicle icon, the asset label (S8-R7), and the asset's invoice count in parentheses.
+  * **S8-R5a:** An asset row shows the same financial columns as the customer row, rolled up for that asset.
+  * **S8-R5b:** The Date cell is blank on asset rows.
+  * **S8-R5c:** Asset rows are indented one level under the customer.
+  * **S8-R6:** A customer's work with no vehicle collects under a single row labeled "Parts Sales," always sorted last among that customer's assets.
+
+> _* Context note: a service work order always has a vehicle, so no-vehicle work is treated as a parts sale._
+
+  * **S8-R6a:** A customer's real asset rows are ordered A→Z by their label, case-insensitive; the "Parts Sales" bucket is always last, whatever the active column sort.
+  * **S8-R7 (asset label — primary):** The asset label is the vehicle's VIN.
+  * **S8-R8 (asset label — first fallback):** When the vehicle has no VIN, the label is the vehicle's Unit number.
+  * **S8-R9 (asset label — second fallback):** When the vehicle has no VIN and no Unit number, the label is the vehicle's plate.
+  * **S8-R10 (asset label — nothing on file):** When the vehicle has no VIN, Unit number, or plate, the label reads "Unknown Asset."
+  * **S8-R11 (asset label — duplicates):** When two of a customer's assets still produce the same label, a suffix " (#1)," " (#2)," and so on is added, numbered in a fixed, repeatable order so the same vehicle always keeps the same number across reloads.
+  * **S8-R12:** Each invoice detail row shows the invoice number (as a link, see Story 9), the invoice date, and the per-invoice Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, and Subtotal.
+  * **S8-R12a:** The invoice date on screen shows in the format "Mon DD YYYY" — for example, May 14 2026.
+  * **S8-R13:** An asset's invoice subtotals sum exactly to that asset's row total, and a customer's asset subtotals sum exactly to the customer's row total.
+  * **S8-R14 (lazy drill-down):** A customer's asset and invoice rows are fetched from the server the first time that customer is expanded; they are not preloaded with the customer summary rows. Expanding a customer that has not been expanded in the current view triggers that fetch.
+  * **S8-R15:** Each chevron toggles back to collapsed on a second activation, and each customer's and each asset's expansion state is independent.
+  * **S8-R16:** A header-row chevron expands every customer on the current page in one action, and collapses them all when activated again. Because each customer's asset and invoice rows are fetched lazily on expand (S8-R14), expanding all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number of fetches never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.
+  * **S8-R17:** The header-row chevron shows the "expand" icon when at least one visible customer is collapsed, and the "collapse" icon when all visible customers are expanded.
+  * **S8-R18:** Hovering the header-row chevron shows an "Expand all" or "Collapse all" tooltip that matches its current action.
+  * **S8-R19:** The header-row chevron acts on the currently visible customers only.
+  * **S8-R20:** Any change that re-fetches customer rows from the server — the date range, Product Type, location, the Customer filter, or the sort — collapses all expanded rows.
+  * **S8-R21:** Typing in the Customer filter's type-ahead — which only narrows the filter's own dropdown list, not the table — does not collapse expanded rows.
+  * **S8-R22:** Reloading the browser clears all expansion state.
+
+
+
+**Negative cases:**
+
+  * **S8-N1:** The header-row chevron is hidden when the table has no visible rows.
+
+
+
+**Edge cases:**
+
+  * **S8-E1:** An asset with a single invoice can still be expanded; one invoice detail row is shown.
+  * **S8-E2:** A customer with only no-vehicle work shows a single "Parts Sales" row and no vehicle rows.
+  * **S8-E3:** No-vehicle work collects under "Parts Sales" based on the absence of a vehicle, not on the invoice-number prefix; a service (S) invoice with no vehicle therefore also appears in that customer's "Parts Sales" row.
+
+
+
+### Story 9: Open an invoice
+
+Click into an invoice from the report without losing filters or expansion.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User has expanded an asset and is viewing invoice detail rows.
+
+
+
+**Requirements:**
+
+  * **S9-R1:** Each invoice number on a detail row is a clickable link.
+  * **S9-R2:** Activating the link opens the invoice in the same browser tab.
+  * **S9-R2a:** A service invoice opens the associated work order's Finance tab.
+  * **S9-R2b:** A parts invoice opens the associated part sale's Part Requests tab.
+  * **S9-R3:** Before navigating, the active date range and Product Type are written to the page link so the report can be restored.
+  * **S9-R4:** Pressing the browser back button returns to the report with its filters, sort, and columns restored; expanded rows are shown collapsed again (expansion is not restored).
+  * **S9-R5:** The customer name on each summary row is plain text, not a link.
+  * **S9-R6:** The invoice number link is shown in the application's primary color at rest, on hover, and after it has been clicked.
+  * **S9-R7:** The invoice number link has no underline at rest, on hover, or after it has been clicked.
+  * **S9-R8:** The invoice number link never recolors to the browser's visited-link color.
+
+
+
+**Negative cases:**
+
+  * **S9-N1:** If the underlying invoice has been deleted or reversed after the report loaded, the destination page shows the application's standard "not found" state; the user can press back to return to the report.
+  * **S9-N2:** If the user lacks permission to open the destination invoice, the destination page shows the application's standard access-denied state; the user can press back to return to the report.
+
+
+
+### Story 10: Sort the report
+
+Rank customers by any meaningful column.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report with at least one customer in the set of customers.
+
+
+
+**Requirements:**
+
+  * **S10-R1:** Every column is sortable except the chevron column.
+  * **S10-R2:** Text columns sort alphabetically; numeric columns sort by value.
+  * **S10-R3:** A missing value sorts to the bottom in ascending order and to the top in descending order; a Margin % em-dash cell (S7-R12) counts as a missing value.
+  * **S10-R4:** The default sort on first load is Customer name, ascending, case-insensitive.
+  * **S10-R5:** Sorting by the Date column orders customer rows by each customer's most recent invoice date, even though the Date cell is blank on customer rows.
+  * **S10-R6:** Sorting reorders only the customer summary rows; asset rows keep their own order (per S8-R6a) and invoice rows keep their order under their asset.
+  * **S10-R7:** Clicking a column header replaces the default with that column's sort.
+  * **S10-R8:** Sorting is applied on the server. Clicking a column header re-fetches the customer rows ordered by that column and returns the first page of results in the new order.
+  * **S10-R8a:** Because sorting re-fetches from the server, changing the sort collapses any expanded customer rows; a customer's assets and invoices are re-fetched lazily on the next expand (Story 8).
+  * **S10-R8b:** The full filtered set of customers is re-ordered on the server and re-paginated, so changing the sort can change which customers appear on the current page.
+  * **S10-R8c:** While the re-fetch is in flight, the table shows the standard loading state; it clears when the re-ordered page arrives.
+  * **S10-R9:** The sort column and direction are remembered between visits — see Story 6.
+
+
+
+**Negative cases:**
+
+  * **S10-N1:** When the table has no customer rows, the sort controls on the headers are still present but produce no visible change.
+
+
+
+### Story 11: Subtotal column behavior
+
+Keep the headline number unmistakable and always on screen.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report with at least one customer in the set of customers.
+
+
+
+**Requirements:**
+
+  * **S11-R1:** The Subtotal column is the rightmost column in the table.
+  * **S11-R2:** The Subtotal column is pinned — it stays visible at the right edge while the user scrolls horizontally.
+  * **S11-R3:** Subtotal values are rendered at font-weight 700 on the column header, every customer row, every asset row, every invoice row, and the totals row.
+
+
+
+**Negative cases:**
+
+  * **S11-N1:** No applicable user-visible negative cases. The Subtotal column is always present, always pinned, and always bold, regardless of permission, data, filters, or sort.
+
+
+
+### Story 12: Inv. Hrs (Labor Delta) display
+
+Show whether a customer or invoice was billed for more time than was worked.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report with at least one customer in the set of customers.
+
+
+
+**Requirements:**
+
+  * **S12-R1:** The column heading reads "Inv. Hrs" (including the period after "Inv").
+  * **S12-R2:** The value on each row is hours invoiced minus hours worked, rounded to one decimal.
+  * **S12-R3:** A positive value is shown with a leading + sign, in the application's standard positive (green) color — for example, +1.5.
+  * **S12-R4:** A negative value is shown with a leading - sign, in the application's standard negative (red) color — for example, -1.5.
+  * **S12-R5:** A zero or break-even value is shown as 0.0 in the default text color.
+  * **S12-R6:** The same calculation, label, format, and coloring apply to customer, asset, and invoice rows.
+
+
+
+**Negative cases:**
+
+  * **S12-N1:** A customer, asset, or invoice with no labor (for example, a parts-only invoice) shows 0.0 in the default color. It is never blank, "N/A," an em dash, or omitted.
+
+
+
+**Edge cases:**
+
+  * **S12-E1:** A value that rounds to 0.0 (for example, +0.04) is shown as 0.0 in the default text color.
+  * **S12-E2:** A negative value is shown with a minus sign and one decimal — for example, -0.5.
+
+
+
+### Story 13: Show or hide columns
+
+Hide columns the user does not need.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report.
+
+
+
+**Requirements:**
+
+  * **S13-R1:** A column selector button is in the toolbar's action area, next to the overflow menu. It is a separate control, not an item inside the overflow menu.
+  * **S13-R2:** Hovering the column selector shows the tooltip "Column Selection."
+  * **S13-R3:** Activating it opens a panel with one toggle per toggleable column.
+  * **S13-R4:** The nine toggleable columns are, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %.
+  * **S13-R5:** Each toggle hides or shows that column's header and body cells together.
+  * **S13-R6:** The Customer and Subtotal columns, and the chevron control column, are always present and do not appear in the toggle list.
+  * **S13-R7:** When no saved selection exists, all nine toggleable columns default to visible.
+  * **S13-R8:** The user's column selection is remembered between visits — see Story 6.
+
+
+
+**Negative cases:**
+
+  * **S13-N1:** Hiding all nine toggleable columns is allowed. The table still renders the Customer and Subtotal columns, and the totals row still shows its Subtotal.
+
+
+
+### Story 14: Download as CSV (Summary and Expanded)
+
+Download the report as a CSV file, in a Summary version or an Expanded version.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report.
+
+
+
+**Requirements:**
+
+  * **S14-R1:** CSV downloads are started from two items in the toolbar's overflow menu — "Download Summary (CSV)" and "Download Expanded View (CSV)." There are no separate always-visible export buttons.
+  * **S14-R2:** The two menu items read exactly "Download Summary (CSV)" and "Download Expanded View (CSV)."
+  * **S14-R3:** Both CSVs are generated on the server from the active date range, Product Type, location, Customer filter (Story 18), and sort, and contain the customers matching those filters (S18-R7).
+  * **S14-R4 (Summary contents):** The Summary CSV has one row per customer and no asset or invoice rows. Its columns, in this exact order, are: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.
+  * **S14-R5 (Expanded contents):** The Expanded CSV contains the full Customer → Asset → Invoice tree. Its columns, in this exact order, are: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.
+  * **S14-R6 (Expanded row shape):** In the Expanded CSV, a customer row fills the Customer cell and leaves Asset, Invoice #, and Date blank; an asset row leaves Customer blank, fills Asset, and leaves Invoice # and Date blank; an invoice row leaves Customer and Asset blank and fills Invoice # and Date.
+  * **S14-R7:** The "Parts Sales" bucket (S8-R6) appears as an asset row named "Parts Sales" in the Expanded CSV.
+  * **S14-R8:** Customer names in either CSV are plain — the "(N)" invoice count is not included.
+  * **S14-R9:** The Margin % cell is a plain number to one decimal with no percent sign (for example, 64.7); it is empty when the row's Subtotal is zero or below.
+  * **S14-R10:** Dates export as mm-dd-yyyy — for example, 05-14-2026 — matching the ShopView-wide CSV date format.
+  * **S14-R11:** Currency values export as plain numbers with no dollar sign and no thousands separators.
+  * **S14-R12:** Neither CSV has color. The signed Inv. Hrs value still conveys direction.
+  * **S14-R13:** Each CSV includes a "Locations:" line naming the location or locations the report is scoped to, or "All locations" when every location the user has access to is selected (S4-R13).
+  * **S14-R14:** The files are named for the report, the version, and the active date range: the Summary CSV is sales-by-customer-summary-{range}.csv and the Expanded CSV is sales-by-customer-expanded-{range}.csv. {range} uses this map from range label: Today → today; Yesterday → yesterday; This Week → this_week; Last Week → last_week; This Month → this_month; Last Month → last_month; This Year → this_year; Last Year → last_year; This Quarter → this_quarter; Last Quarter → last_quarter; Custom → custom.
+
+> _* Context note: for the Custom range the literal word "custom" is used; the actual start and end dates are not put in the filename._
+
+  * **S14-R15:** Each downloaded file is plain comma-separated text with a .csv extension and opens as rows and columns in a spreadsheet; it is not an .xlsx workbook and not a JSON file.
+  * **S14-R16:** Each CSV is capped at 10,000 data rows — for the Summary CSV the customer rows; for the Expanded CSV the customer, asset, and invoice rows combined — not counting the header row or the totals row, counted on the server against the active date range, Product Type, location, Customer filter, and sort. When the result would exceed the cap, the server does not generate the file, no download starts, and the user is shown an error toast: "This export is too large to generate. Narrow the date range or filters, then try again."
+
+> _* Context note: the cap is a guardrail against runaway exports; it is enforced server-side against the same filters and sort that produce the on-screen report, so the count the cap checks is the count the file would contain._
+
+
+
+
+**Negative cases:**
+
+  * **S14-N1:** If a CSV download fails, the user is shown an error toast: "CSV export failed."
+
+
+
+**Edge cases:**
+
+  * **S14-E1:** While a CSV download is in progress, that menu item shows a loading state and is non-interactive.
+
+
+
+### Story 15: Download as PDF (Summary and Expanded)
+
+Download a printable copy of the report, in a Summary version or an Expanded version.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report.
+
+
+
+**Requirements:**
+
+  * **S15-R1:** PDF downloads are started from two items in the toolbar's overflow menu — "Download Summary (PDF)" and "Download Expanded View (PDF)."
+  * **S15-R2:** The two menu items read exactly "Download Summary (PDF)" and "Download Expanded View (PDF)."
+  * **S15-R3:** Both PDFs are generated on the server from the active date range, Product Type, location, Customer filter (Story 18), and sort, and contain the customers matching those filters (S18-R7).
+  * **S15-R4 (Summary contents):** The Summary PDF body table has one row per customer and no asset or invoice rows.
+  * **S15-R5 (Expanded contents):** The Expanded PDF body contains the full Customer → Asset → Invoice tree, one block per customer.
+  * **S15-R6:** The files follow the same version-and-range naming as the CSV (S14-R14) with a .pdf extension — for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-this_month.pdf.
+  * **S15-R7:** The PDF is A4 landscape with 25px margins on all sides, using the application's standard font.
+  * **S15-R8:** The footer has a centered "Software Powered by ShopView" label and a right-aligned page number, "Page X of Y."
+  * **S15-R9:** The PDF header is two columns: a text block on the left (70% width) and the organization logo on the right (30% width).
+  * **S15-R10:** The header text block shows, in order: the report title "Sales By Customer Report"; the organization name; the date range; the filter summary line "Product Type: {value}" where value is "Parts & Service," "Parts only," or "Service only"; and the location line "Locations: {value}" (S15-R14).
+  * **S15-R11:** The header date range shows the start and end dates in the format "Mon D, YYYY," joined by an em dash — for example, "May 1, 2026 — May 31, 2026."
+
+> _* Context note: the header range uses this comma form on purpose; the body Date cells use "Mon DD YYYY" (S15-R20). The header-versus-cell difference is intentional._
+
+  * **S15-R12:** Every date range is bounded, so the PDF header date range always shows a start and end date (per S15-R11); there is no unbounded-range wording.
+  * **S15-R13:** The header title reads "Sales By Customer Report" for both versions; the version (Summary or Expanded) is conveyed by the file name (S15-R6) and the body contents (S15-R4, S15-R5), not by a change to the title.
+  * **S15-R14:** The header shows a "Locations:" line naming the location or locations the report is scoped to, or "All locations" when every location the user has access to is selected (S4-R13). The names shown match the Location filter's current selection.
+
+> _* Context note: this reverses the earlier rule that hid the location from the PDF header; the export must now carry its own location context so a printed copy is not ambiguous about which location's data it shows._
+
+  * **S15-R15:** The organization logo is embedded in the PDF, not loaded from a network address, so it renders offline.
+  * **S15-R16:** The logo scales to fit its area without distortion, pinned to the top-right.
+  * **S15-R17:** The logo is chosen in this order: (1) the organization's uploaded logo; (2) the bundled ShopView logo when none is uploaded; (3) no logo.
+  * **S15-R18:** When no logo is available, the logo column is not rendered and the text column fills the full width.
+  * **S15-R19:** The Summary PDF body table has the Summary columns and order (S14-R4); the Expanded PDF body has the Expanded columns and order (S14-R5), with the asset layer shown. Column labels match the CSV.
+  * **S15-R20:** Dates in the PDF body show in the format "Mon DD YYYY" — for example, "May 14 2026."
+  * **S15-R21:** The Date cell is blank on customer and asset rows in the PDF, matching the screen.
+  * **S15-R22:** The Margin % cell shows an em dash when the row's Subtotal is zero or below, matching the screen.
+  * **S15-R23:** The Subtotal column is bold in the PDF — header, every row, and the totals row.
+  * **S15-R24:** Inv. Hrs in the PDF uses the same signs and coloring as on screen (S12-R3, S12-R4, S12-R5), with green rendered as #21ba45 and red as #c10015.
+  * **S15-R25:** Each PDF is capped at 10,000 data rows — for the Summary PDF the customer rows; for the Expanded PDF the customer, asset, and invoice rows combined — not counting the header row or the totals row, counted on the server against the active date range, Product Type, location, Customer filter, and sort. When the result would exceed the cap, the server does not generate the file, no download starts, and the user is shown an error toast: "This export is too large to generate. Narrow the date range or filters, then try again."
+
+
+
+**Negative cases:**
+
+  * **S15-N1:** If a PDF download fails, the user is shown an error toast: "PDF export failed."
+
+
+
+**Edge cases:**
+
+  * **S15-E1:** While a PDF download is in progress, that menu item shows a loading state and is non-interactive.
+
+
+
+### Story 16: (removed — Print retired)
+
+> _* The Print action that previously occupied this story has been removed from this report. Users produce a printable copy with the "Download Summary (PDF)" or "Download Expanded View (PDF)" item (Story 15) and print from their PDF viewer. The story number is retained as a placeholder so the later story numbers (17, 18, 20, 21) and every "See Story 20" design reference remain stable._
+
+### Story 17: Empty state
+
+Give clear feedback when the filters produce no data.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report.
+  * The current combination of date range, Product Type, location, and Customer filter produces no matching customers.
+
+
+
+**Requirements:**
+
+  * **S17-R1:** When no customers match, the table body shows the message "No sales data found for the selected filters."
+  * **S17-R2:** The toolbar stays visible and interactive in the empty state (its filters — including the Customer filter — and the action controls), so the user can adjust filters without leaving the page.
+  * **S17-R3:** The empty-state message appears in the table body where customer rows would appear — not in the toolbar, the totals row, or a modal.
+
+
+
+**Negative cases:**
+
+  * **S17-N1:** The empty-state message does not appear while the table is loading — only after the table finishes its initial loading and shows zero customers.
+
+
+
+**Edge cases:**
+
+  * **S17-E1:** If the Customer filter is narrowed to specific customers and the date range, Product Type, or location is then changed so that none of the selected customers have data, the empty-state message is shown. The Customer filter selection is kept; those customers reappear when the filters change back to a range where they have data. Clearing the Customer filter to no customers ("Clear all," S18-R3) also produces the empty state (S18-N1).
+
+
+
+### Story 18: Filter by customer
+
+Narrow the report to a chosen set of customers with a multi-select Customer filter.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report with at least one customer in the current set of customers.
+
+
+
+**Requirements:**
+
+  * **S18-R1:** The toolbar has a Customer filter, labeled "Customer," positioned between the Product Type filter and the Location filter.
+  * **S18-R2:** The filter is a multi-select with server-backed type-ahead. The control carries a search (magnifier) icon marking it as searchable. The dropdown does not load the full customer list into the browser; instead, as the user types, it fetches matching customers from the server — case-insensitive "contains" matching on the customer name, scoped to the active date range, Product Type, and location — and lists the returned customers, each shown with a checkmark when selected. A "Search customers…" hint is pinned to the top of the dropdown before any query is typed, and yields to the typed query while the user is searching. Before the user types, the dropdown shows the pinned all/clear control (S18-R3) and the hint; the user types to reveal individual customers to select or deselect.
+
+> _* Context note: the customer list is fetched on demand as the user types rather than loaded into the browser up front, so the report does not depend on the full customer list being small enough to ship to the client. The all-customers state is stored as an explicit state (S18-R4), not an enumeration of the fetched ids, so "all customers" — including customers not currently listed in the dropdown — can be represented without loading them._
+
+  * **S18-R3:** A control pinned to the top of the dropdown selects or clears every customer at once. It reads "All customers" when the filter is not in the all-customers state (activating it puts the filter in the all-customers state, S18-R4) and "Clear all" when the filter is in the all-customers state (activating it clears the selection to an empty set).
+  * **S18-R4:** On first load, with no saved selection, the filter is in the all-customers state — an explicit state meaning "all customers," stored as a flag rather than an enumeration of the current customer ids — and the report shows every customer. While the filter is in the all-customers state, every customer matching the other active filters is included, including any customer that appears later (S18-R8, S18-R9).
+  * **S18-R5:** The report shows only the customers currently selected in the filter. The collapsed filter label reads "All customers" when the filter is in the all-customers state (S18-R4), "None" when the selection is an empty set, the customer's name when exactly one customer is selected, and "N selected" when more than one customer is selected (N is the number of selected customers). While the user is typing a search query in the filter, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus.
+
+> _* Context note: the label no longer uses an "N of M" form because, with server-backed type-ahead (S18-R2), the total customer count M is not held in the browser; the all-customers state is conveyed by the "All customers" label driven by the explicit all-state flag (S18-R4) rather than by comparing a selected count to a total._
+
+  * **S18-R6:** The totals row is computed on the server over the full set of customers matching the active filters (date range, Product Type, location, and the Customer filter), not only the customers on the current page.
+  * **S18-R7:** Exports (CSV, PDF, Print) are generated on the server and contain exactly the customers matching the active filters — the customers selected in the Customer filter, within the active date range, Product Type, and location. When every customer is selected, the export contains the full set of customers under those filters.
+  * **S18-R8:** The Customer filter selection is remembered between visits (Story 6), saved as either the all-customers state (S18-R4) or an explicit set of selected customer ids. On restore: if the saved state is the all-customers state, the filter restores to the all-customers state and the report shows every customer present in the current results, including any customer that appeared since the selection was saved. If the saved state is an explicit set of ids, the saved ids are intersected with the customers present in the current results — still-present ids are re-selected, any saved id no longer present is dropped (a stale saved id never forces an empty view), and a customer that appeared since the set was saved is not auto-selected.
+  * **S18-R9:** When a date-range, Product Type, or location change re-loads the results, the selection reconciles against the new set of present customers: if the filter is in the all-customers state (S18-R4), it stays in the all-customers state — every present customer, including every newly-present customer, is included; otherwise the still-present selected ids are kept, ids no longer present are dropped, and newly-present customers are not added.
+  * **S18-R10:** If an export (CSV, PDF, or Print) is triggered while the active filters match no customers — for example, no customer is selected — the export still downloads, containing the column headers and a totals row of zeros, with no data rows and no warning.
+  * **S18-R11:** The Customer filter is applied on the server. Changing the selection re-fetches the matching customers as a fresh first page (customer rows are server-paginated), and the server-computed totals (S18-R6) update to the new selection.
+
+
+
+**Negative cases:**
+
+  * **S18-N1:** When no customer is selected (every customer cleared), the report shows the empty state (Story 17) and the totals row shows zeros.
+
+
+
+**Edge cases:**
+
+  * **S18-E1:** Changing the date range, Product Type, or location does not clear the Customer filter, but it re-reconciles the selection against the new results (S18-R9): in the all-selected state the view stays all-inclusive, so a customer with no data under the new filters is simply not shown and is included again once it has data; in a subset selection, a selected customer that is no longer present is dropped from the selection and must be re-selected to appear if it later returns.
+
+
+
+### Story 19: (removed — asset comparison deferred)
+
+> _* The side-by-side asset (vehicle) comparison that previously occupied this story has been removed from this report and deferred to a future dedicated report — see §2 Out of Scope and the §3 Key Decision "Side-by-side asset comparison is deferred to its own report." The story number is retained as a placeholder so the later story numbers (20, 21) and every "See Story 20" design reference remain stable._
+
+### Story 20: Visual conformance with the reports suite
+
+Make the report look and feel like the rest of the suite.
+
+**Design:** TBD **Jira:** TBD
+
+> _* Context note: the report's visual design used Technician Efficiency — the most recently updated report in the suite — as the reference. Sales By Customer is the canonical implementation of this theme; every report that adopts the theme inherits these rules._
+
+**Prerequisites:**
+
+  * User is on the Sales By Customer report.
+
+
+
+**Requirements:**
+
+  * **S20-R1:** The page has no padding.
+  * **S20-R2:** The page background is the application's standard blue-grey (#f9fafb in light mode; the application's dark background in dark mode).
+  * **S20-R3:** The toolbar touches the top of the page with no gap above it, and the table reaches the left and right edges next to the side navigation.
+  * **S20-R4:** The toolbar surface is white (#ffffff) in light mode and the application's dark surface in dark mode.
+  * **S20-R5:** The toolbar padding is 32px top, 24px bottom, and 2rem left and right.
+  * **S20-R6:** The left edge of the title and the right edge of the action cluster line up with the leftmost and rightmost data-cell positions.
+  * **S20-R7:** A 1px horizontal line in the application's standard table-header border color separates the toolbar from the column headers.
+  * **S20-R8:** Column-header cells and customer summary rows use the white surface (#ffffff), or the dark surface in dark mode.
+  * **S20-R9:** Asset rows and invoice rows use the blue-grey background (#f9fafb), or the dark background in dark mode.
+  * **S20-R10:** The totals row uses the white surface (#ffffff), or the dark surface in dark mode, with a top border and bold text.
+
+> _* Context note: the totals row was set to white on purpose, not the tinted background, to match Technician Efficiency, the suite's visual reference._
+
+  * **S20-R11:** The pinned Subtotal cell on any row uses that row's own background — it is never a contrasting strip.
+  * **S20-R12:** The leftmost cell (header, body, totals) has 2rem of left padding; the rightmost cell has 2rem of right padding.
+  * **S20-R13:** The table has no rounded corners.
+  * **S20-R14:** The three tree levels are shown by indentation: the customer row is at the base; asset rows are indented one level (their chevron and vehicle icon sit in from the customer); invoice rows are indented one level deeper.
+  * **S20-R15:** The date-range picker's dropdown arrow is 24px, the same size as the other filter dropdown arrows.
+  * **S20-R16:** The overflow (export) menu is the leftmost control in the toolbar's action area, and is the application's standard overflow-menu control.
+  * **S20-R17:** When the table content does not fill the viewport, the blue-grey page background shows through below the table; there is no white strip below the table.
+  * **S20-R18:** In dark mode, every rule above applies with the dark equivalent of each color, and the PDF export always renders in light-mode colors regardless of the user's app mode.
+  * **S20-R19:** When shown (S4-R12), the Location column appears with the identifier columns on the left of the financial block, immediately after the Date column, and every row type renders it in that position; when it is hidden (a single location in scope), the surrounding columns close up with no gap. The Location filter control keeps a constant width regardless of the label it shows.
+
+
+
+**Negative cases:**
+
+  * **S20-N1:** No applicable user-visible negative cases. The visual conformance rules apply whenever the report is rendered.
+
+
+
+### Story 21: Mobile usability
+
+Keep every control usable on a phone even though the table is dense.
+
+**Design:** See Story 20 **Jira:** TBD
+
+**Prerequisites:**
+
+  * User opens the report on a phone-sized viewport.
+
+
+
+**Requirements:**
+
+  * **S21-R1:** Every toolbar control — date range, Product Type, the Customer filter, location, the overflow menu, and the column selector — is visible and works on touch.
+  * **S21-R2:** Below a 1024px viewport width, the toolbar uses two rows: the action controls (overflow menu and column selector) on the first row, and the filter dropdowns on the second row, stacked at full width.
+  * **S21-R3:** At 1024px width and above, the toolbar uses the desktop single-row layout.
+
+> _* Context note: the two-row layout keeps a filter dropdown's expand arrow from overlapping the action controls._
+
+  * **S21-R4:** The data table scrolls sideways to show all columns, and the pinned Subtotal column stays visible during that scroll.
+  * **S21-R5:** The chevron expand and collapse control on each row works on touch.
+  * **S21-R6:** The invoice number link opens the invoice in the same tab on touch, the same as on desktop.
+
+
+
+## 7. User Feedback Summary
+
+Trigger | Message | Behavior
+---|---|---
+The filters produce no results | "No sales data found for the selected filters." | Inline empty-state message in the table body; persists until filters change
+Initial data fetch fails | "An error occurred while fetching the report data." | Error toast, auto-fades after 5 seconds
+CSV export fails | "CSV export failed." | Error toast, dismissed by the user
+PDF download fails | "PDF export failed." | Error toast, dismissed by the user
+An export (CSV or PDF, Summary or Expanded) exceeds the 10,000-row cap | "This export is too large to generate. Narrow the date range or filters, then try again." | Error toast, dismissed by the user; no file is generated and no download starts
+A CSV download starts | (no toast) | That overflow-menu item shows a loading state until the download resolves
+A PDF download starts | (no toast) | That overflow-menu item shows a loading state until the download resolves
+
+## 8. Change Log
+
+Date | Reporter | Change
+---|---|---
+2026-07-07 | @claude | Full rewrite against a ground-truth code verification of the current suite build. Added Story 4 (location filter) and Story 6 (remember filters and view between visits). Corrected Product Type wording to "Parts & Service / Parts only / Service only." Corrected report access to a dedicated Sales By Customer view permission. Reframed search as the application global search bar with a clean match contract. Set the totals row to white, matching Technician Efficiency. Specified that the totals row follows the narrowed customer list in every case, including "Show only comparing" with an empty search. Added the 24px filter-arrow conformance rule.
+2026-07-07 | @claude | Hardening pass after a 10-reviewer audit. Defined Subtotal and Shop Supplies in Terminology; gave the reversed/voided exclusion its own requirement (S7-R7, S7-N2); pinned the expand gate to 366 days (S8-R14); pinned on-screen and PDF date formats to "Mon DD YYYY" and CSV to mm-dd-yyyy; gave the full range-to-filename map (S14-R4); set exact Inv. Hrs PDF colors (#21ba45 / #c10015) and surface hex; split bundled requirements into one behavior each; promoted behavior out of context notes into requirements; removed "Show only comparing" and search from the saved view; defined the location default, asset ordering under sort, sort-by-Date, and the two-chip order.
+2026-07-12 | @chris / @claude | Comparison rework (Head-of-Product review, Sasha Grosman). Removed the customer comparison list and "Show only comparing" (old Story 18) and replaced them with a multi-select Customer filter — search-as-you-type, all customers selected by default, persisted between visits (new Story 18). Removed the side-by-side asset comparison entirely (old Story 19 — the modal, asset pins, the "Compare N" chip, and its CSV/PDF exports); asset comparison is deferred to a future dedicated report. Kept the Customer → Asset → Invoice grouping. Swept every comparison cross-reference (§2, §3, §4, Stories 5/6/10/13/14/15/17) and the feedback table. Story 19 is retained as a placeholder so later story numbers and "See Story 20" references stay stable.
+2026-07-15 | @chris / @claude | Removed the report's use of the application's global search bar. Narrowing to a specific customer is now done solely with the multi-select Customer filter (Story 18); its search-as-you-type finds a customer by name. Retired Story 5 (global-search narrowing) to a placeholder and re-homed its export-narrowing contract into Story 18 (S18-R7 for the narrowed/full export, new S18-R10 for the empty-selection export). Swept every "search" / "global search bar" cross-reference (§2, §7, Stories 6/8/14/15/17/18). Matches the code change that replaced the global-search dependency with the report-local Customer filter.
+2026-07-16 | @chris / @claude | Removed the "All Time" date range (D1) and all All-Time-specific behavior. Capped the Custom range at a 366-day maximum span (D3), matching the largest preset (This Year / Last Year). Moved data fetching to the server: customer rows are server-paginated, sort (Story 10) and the Customer filter (Story 18) are applied server-side, the totals row (S18-R6) is server-computed over the full filtered set, and customer drill-down is lazy-loaded on expand (deleted the S8-R14 expand gate, S8-R14a, S8-R14b). Exports (CSV, PDF, Print) are now generated server-side against the current filters and sort. Header Status date bumped. Per Milan Zivanovic's 2026-07-15 engineering review; the server-side model is the committed build target (spec ahead of current code by design).
+2026-07-21 | @chris / @claude | Milan Zivanovic review resolution. Story 18 Customer filter changed to server-backed type-ahead: the dropdown fetches matching customers from the server as the user types rather than loading the full customer list into the browser (S18-R2). The "all customers" selection is now stored as an explicit all-customers state — a flag, not an enumeration — that always includes newly-appearing customers, both when a filter change reloads the results and on restore between visits (S18-R3, S18-R4, S18-R5, S18-R8, S18-R9); this resolves the prior S18-R8/S18-R9 contradiction (R9's behavior wins) by removing S18-R8's blanket "newly-appeared customer is not auto-selected on restore" carve-out and making it state-specific, and drops the "N of M selected" label in favor of "N selected." Added an export row cap of 10,000 data rows, enforced server-side against the active filters and sort, with a friendly toast when exceeded, on CSV (S14-R14), PDF (S15-R22), and Print (S16-R6). Reworded the asset-grouping rule to group by the vehicle record (same vehicle id), falling back to the invoice's stored vehicle snapshot for older data with no id (S8-R3). Scoped "expand all" to the current page's customers with a bounded number of lazy drill-down fetches, not the whole result set (S8-R16). Verified the 2026-07-16 server-side rearchitecture (server pagination/sort/filter, lazy drill-down, dropped All Time, 366-day cap, server-side exports) is present and unchanged.
+2026-07-29 | @chris / @claude | Assets identified by VIN (VIN → Unit # → plate → "Unknown Asset"); removed Print; split exports into Summary and Expanded (CSV + PDF, four menu items); added a per-row Location column (shown when more than one location is in scope; "Multiple" on aggregating rows, exact on invoice rows) plus a "Locations:" export line.

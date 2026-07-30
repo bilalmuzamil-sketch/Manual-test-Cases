@@ -1,5 +1,49 @@
 # Report Suite — SPEC-WATCH (video-driven items awaiting Chris Ward's spec ratification)
 
+## ✅⚠️ RE-DIFF RUN 2026-07-31 — THE PROMISED CHANGELOG LANDED; 6 OF 12 ITEMS STILL OPEN
+
+Full evidence: **`spec-current-2026-07-31/SPEC-DIFF-2026-07-31.md`** (+ the six `*-current.md`
+captures and `*-raw-unified.diff` files). Live Confluence read verified (`/rest/api/3/myself` →
+200); capture pipeline validated 6/6 byte-identical against the 2026-07-28 baseline, so every
+difference is a real Chris edit.
+
+**All six pages moved on 2026-07-29, each with a new dated Change Log row** — SBC v11→**v12**,
+SBR v14→**v15**, PV v3→**v4**, TU v4→**v5**, WIP v5→**v6**, IV v2→**v3**.
+
+| # | Item | Verdict 2026-07-31 |
+|---|---|---|
+| 1a | Asset identifier VIN → Unit # → plate — **SBC** | ✅ **RATIFIED** (S8-R7…R10 rewritten) — CLOSED |
+| 1b | Asset identifier — **WIP** | ❌ **STILL-MISSING / spec text contradicts** — §4, S4-R7/R8/R9, S7-R4 still unit-number-first. **He believed he had made this edit; he had not.** His later 2026-07-29 answer ("A is the correct answer") is the newer source and STANDS. **STAYS OPEN.** |
+| 2 | SBC Print removed | ✅ **RATIFIED** (`Story 16: (removed — Print retired)`) — CLOSED |
+| 3 | SBC Summary/compressed download | ✅ **RATIFIED + EXTENDED** to four menu items — CLOSED |
+| 4 | Location FILTER hidden when ≤1 location | ❌ **CONTRADICTED in spec text** (SBR S21-N1, TU S9-N1, IV S7-N1, PV S2-E4 all still "still sees the filter") — **but Chris's Q1 answer 2026-07-31 = A (hidden), which WINS.** Spec text needs his fix. **STAYS OPEN.** |
+| 5 | Per-row Location label in the all-locations view | ✅ **RATIFIED on all six** + "Locations:" export line + constant-width filter — CLOSED |
+| 6 | Nav placement (TU below existing links) | ⚠️ **PARTIAL** — Performance group named, "additive/below existing" wording absent. **STAYS OPEN.** |
+| 7 | Catalogue rename | ✅ **RATIFIED as "Special Order"** — CLOSED |
+| 8 | WIP asset-dropdown native style + toggle | ❌ **STILL-MISSING** (note-only, zero case impact). **STAYS OPEN.** |
+| 9 | Customer-card "Sales Representative" | ❌ **STILL-MISSING** — S19-R7 still "Sales Rep". Chris's Q5 answer = A (full word everywhere) WINS. **STAYS OPEN.** |
+| 10 | SBC Performance group + named nav anchors | ❌ **STILL-MISSING**. **STAYS OPEN.** |
+| 11 | PV S1-R1 "only report" inconsistency | ❌ **STILL-MISSING**. **STAYS OPEN.** |
+| 12 | Rep-label scope | ✅ **ANSWERED by Chris (Q5 = A)**, not by the spec — CLOSED as a question |
+
+**DEADLINE 2026-08-04 — verdict: partly met.** The changelog he promised DID land on time on all
+six pages. **But the watch CANNOT retire:** items **1b, 4, 6, 8, 9, 10, 11** still need spec text.
+**The one to put in front of him first is 1b** — he told us he had already updated the WIP
+identifier text and he had not; our WIP cases follow his answer, so the spec and the cases are out
+of step until he edits it. Items 4 and 9 are the other two where the spec text now actively
+CONTRADICTS a ruling he gave us afterwards.
+
+**NEW deltas found in this changelog that were never on the watch list** (they drive case work —
+see `chris-answers-2026-07-31/DELTAS.md`): PV "Sold via WO"→**"Sold (WO)"** / "Sold via Parts
+Sale"→**"Sold (Parts Sale)"**; TU **Story 10 Column Selection** + Est. Lost Labor now hideable +
+toolbar order changed + PDF **bundled-default logo**; SBC export **filenames** + PDF header
+"Locations:" line (reversing old S15-R11); WIP Location column **removed from the column
+selector**; the suite-wide per-row Location column; and **mojibake** in the SBR/PV spec text
+(`â‹¯`, `â “˜`) to report to Chris (cosmetic, no case change).
+
+---
+
+
 > **STANDING INSTRUCTION: on ANY Report Suite touch, re-check the 6 Confluence spec pages for
 > the items below. If by the DEADLINE = 2026-08-04 (1 week from 2026-07-28) they are still NOT
 > in the specs, REMIND THE USER and offer the backup-recovery option** (restore the original

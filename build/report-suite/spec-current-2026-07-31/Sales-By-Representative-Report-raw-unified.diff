@@ -1,0 +1,113 @@
+--- nprev/Sales-By-Representative-Report.md	2026-07-30 14:53:38.022293672 +0000
++++ ncur/Sales-By-Representative-Report.md	2026-07-30 14:53:38.022443980 +0000
+@@ -26,8 +26,9 @@
+   * For each invoice on an expanded row, the user sees: the invoice's date and number (a clickable link to the underlying work order or parts sale in the same tab); the customer name (also clickable, styled as plain text); the invoice's **payment status** as a colored badge; the per-invoice **Inv. Hrs** (Labor Delta) value with green/red coloring; and the per-invoice money columns (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal). (The authoritative left-to-right column order is S5-R2.)
+   * A **grand Totals indicator** is shown at the bottom of the report whenever there is at least one summary row (a rep row or the Unassigned row) (desktop: a full Totals row inside the table; mobile: a Subtotal-only bar below the table — see S10-R5).
+   * The user can filter the on-screen report by **date range** , **product type** (Parts & Service / Parts only / Service only), **invoice payment status** (All Statuses / Unpaid / Partially Paid / Paid), and **location** (one, several, or all of the locations the user has access to). A **Show Unassigned** toggle adds a rolled-up "Unassigned" row for invoices with no assigned rep.
++  * The report shows a per-row **Location** column whenever the current view spans more than one location; the column is hidden when the view is scoped to a single location. A rep summary row that spans more than one location reads **Multiple** ; an invoice detail row reads its own exact location. Every export names the location scope on a "Locations:" line.
+   * The user can sort the report by any of the financial columns.
+-  * The user can download the report in four formats via the ⋯ overflow menu: **Download Summary (PDF)** , **Download Expanded View (PDF)** , **Download Summary (CSV)** , and **Download Expanded View (CSV)**. Both PDF formats adapt their font size to the data in the export.
++  * The user can download the report in four formats via the â‹¯ overflow menu: **Download Summary (PDF)** , **Download Expanded View (PDF)** , **Download Summary (CSV)** , and **Download Expanded View (CSV)**. Both PDF formats adapt their font size to the data in the export.
+   * Work Orders include a **Sales Rep** field (Story 19) that lets service writers assign the correct rep before the WO is invoiced. This WO-level assignment determines whose totals the resulting invoice contributes to.
+   * Managers can **deactivate a sales rep** from staff administration (Story 13); when the rep still has customer assignments, a type-to-confirm warning is shown before the change commits.
+   * The **customer record** shows the customer's assigned sales rep (S19-R7).
+@@ -88,6 +89,7 @@
+   * **Invoice and customer links navigate in the same tab; browser back restores full state** (Story 12).
+   * **The report has no on-screen search bar.** Drilldown is via chevron expansion.
+   * **Placement: additive at the bottom of the "Performance" group** in the Reports left sidebar (S1-R2).
++  * **Location is surfaced per row, not as a standalone scope stamp.** A **Location** column is shown only when the current view spans more than one location; when the view is scoped to a single location the column is hidden, because that one location is already unambiguous. On a rep summary row the cell reads the location's name when all of that rep's matching invoices are at one location, or the literal **Multiple** when they span more than one; on an invoice detail row the cell reads that invoice's own exact location. Every export additionally carries a "Locations:" line naming the scope (or "All locations" when the full accessible set is selected), so a multi-location export is never ambiguous about which locations it covers.
+ 
+ 
+ 
+@@ -101,6 +103,7 @@
+   * **Invoice detail row** — a row inside a rep's expanded view, representing one contributing invoice.
+   * **Parts invoice / Service invoice** — the Product Type classification, by invoice number prefix (`P` = Parts, `S` = Service).
+   * **Snapshot** — the rep captured onto the invoice at creation time — the Work Order's rep, or (when the WO has no rep) the customer's assigned rep — stored as the rep's id **and a denormalized rep display name**. Immutable on past invoices. The denormalized name is what the report displays (and sorts on) for a rep whose staff record is later deleted (S5-R9).
++  * **Location (column)** — A per-row column showing the location a row belongs to, displayed only when the current view spans more than one location (hidden for a single-location view). On a rep summary row it reads the single location's name, or the literal **Multiple** when that rep's matching invoices span more than one location; on an invoice detail row it reads that invoice's own exact location (the location of its originating work order / parts sale, §3).
+ 
+ 
+ 
+@@ -498,7 +501,7 @@
+ 
+ **Requirements:**
+ 
+-  * **S14-R1:** The toolbar's ⋯ overflow menu lists exactly four actions: "Download Summary (PDF)", "Download Expanded View (PDF)", "Download Summary (CSV)", "Download Expanded View (CSV)".
++  * **S14-R1:** The toolbar's â‹¯ overflow menu lists exactly four actions: "Download Summary (PDF)", "Download Expanded View (PDF)", "Download Summary (CSV)", "Download Expanded View (CSV)".
+ 
+   * **S14-R2:** All four downloads respect the currently-active filters (date range, product type, invoice status, location, Show Unassigned) and reflect the full result set for those filters, not the on-screen expansion state.
+ 
+@@ -549,6 +552,8 @@
+ 
+   * **S14-R19:** **Unassigned row in exports.** When Show Unassigned is on, the Unassigned row is emitted in all four downloads exactly as it appears on screen: in the Summary PDF and Summary CSV as one rolled-up row whose Rep / `Sales Rep` cell reads the literal "Unassigned" (sorted to the top per S22-R4); in the Expanded CSV, its invoices carry `Sales Rep` = "Unassigned"; in the Expanded View PDF as its own top page-block titled "Unassigned". The Summary PDF grand-totals row aggregates across all summary rows including Unassigned (S14-R5); in the Summary CSV, the Unassigned row is simply one of the data rows (the CSV has no totals row, S14-R15). When Show Unassigned is off, no Unassigned row or unassigned invoices appear in any export.
+ 
++  * **S14-R20:** **Location in exports.** Whenever the Location column is shown on screen (S21-R7), it is included in all four exports in the same position it occupies on screen — Summary and Expanded, PDF and CSV: a Summary (rolled-up) row carries the rep's location, reading **Multiple** when that rep spans more than one location; an Expanded (per-invoice) row carries that invoice's own exact location. In addition, every export (each PDF and each CSV, Summary and Expanded) includes a "Locations:" line naming the location or locations the report is scoped to, or "All locations" when every location the user has access to is selected — matching the on-screen scope. In a PDF the "Locations:" line appears in the header strip; in a CSV it appears as a leading metadata line above the column-header row.
++
+ 
+ 
+ 
+@@ -556,7 +561,7 @@
+ 
+   * **S14-N1:** If a PDF fails to generate, an error toast is shown (§7).
+   * **S14-N2:** All four exports are generated **server-side** against the active filters and sort, not from loaded screen data, so the former client-side "export from unloaded or partially-loaded data" failure mode no longer exists. A genuine server-side export failure (no file produced) shows an error toast (§7) and downloads nothing — never a malformed file. (This is distinct from an empty-but-loaded result, which produces a valid header-row-only file — S14-E3.)
+-  * **S14-N3:** Users without Reports-section access do not see the ⋯ menu.
++  * **S14-N3:** Users without Reports-section access do not see the â‹¯ menu.
+ 
+ 
+ 
+@@ -639,12 +644,12 @@
+ 
+ **Requirements:**
+ 
+-  * **S17-R1:** All toolbar controls (⋯ exports, column selector, Show Unassigned toggle, date range picker, Product Type, Invoice Status, Location) are visible and operable on touch.
++  * **S17-R1:** All toolbar controls (â‹¯ exports, column selector, Show Unassigned toggle, date range picker, Product Type, Invoice Status, Location) are visible and operable on touch.
+   * **S17-R2:** Below 1024px the toolbar controls stack vertically at full width; at 1024px and above the desktop layout applies.
+-  * **S17-R3:** The ⋯ exports button is the first control in the toolbar's action cluster (leftmost of the actions). On mobile it wraps to a partial row above the stacked controls.
++  * **S17-R3:** The â‹¯ exports button is the first control in the toolbar's action cluster (leftmost of the actions). On mobile it wraps to a partial row above the stacked controls.
+   * **S17-R4:** The data table scrolls horizontally to expose all columns; the pinned Subtotal column stays visible at the right edge during horizontal scroll. The mobile external totals bar is outside the horizontal scroll container and does not scroll horizontally (S10-R5).
+   * **S17-R5:** The chevron expand/collapse control works on touch.
+-  * **S17-R6:** All interactive controls in the dense table (chevrons, toggles, the ⋯ button, the dialog's X) present a touch target of at least 44×44 px.
++  * **S17-R6:** All interactive controls in the dense table (chevrons, toggles, the â‹¯ button, the dialog's X) present a touch target of at least 44×44 px.
+ 
+ 
+ 
+@@ -675,7 +680,7 @@
+   * **S18-R6a:** Column alignment holds on every table row type (S5-R10); Subtotal is always rightmost. Both forms of the grand Totals indicator are exempt.
+   * **S18-R7:** Normative visual rules (self-contained; no external lookup):
+     * **S18-R7.1:** Page background = standard blue-grey (light) / standard dark (dark); zero horizontal page padding so the toolbar and table are edge-to-edge.
+-    * **S18-R7.2:** Toolbar surface white (light) / dark (dark); toolbar contents padded per S18-R1. Toolbar control order, left to right within the action cluster: ⋯ exports, Column Selection, Show Unassigned, Date Range, Product Type, Invoice Status, Location.
++    * **S18-R7.2:** Toolbar surface white (light) / dark (dark); toolbar contents padded per S18-R1. Toolbar control order, left to right within the action cluster: â‹¯ exports, Column Selection, Show Unassigned, Date Range, Product Type, Invoice Status, Location.
+     * **S18-R7.3:** A thin separator between toolbar and column-header row.
+     * **S18-R7.4:** Column-header cells and all body cells render on white (dark equivalents in dark mode); the grand Totals indicator also renders on the white/dark card surface with a thin top border.
+     * **S18-R7.5:** The pinned Subtotal column matches the row background (white on body rows), not a contrasting strip.
+@@ -686,10 +691,11 @@
+ 
+ **Requirements — accessibility:**
+ 
+-  * **S18-R9:** Every icon-only control has an accessible name: ⋯ exports = "Report actions"; column selector = "Show or hide columns"; per-row chevron = "Expand {rep name}" / "Collapse {rep name}"; header chevron = "Expand all reps" / "Collapse all reps"; dialog X = "Close".
++  * **S18-R9:** Every icon-only control has an accessible name: â‹¯ exports = "Report actions"; column selector = "Show or hide columns"; per-row chevron = "Expand {rep name}" / "Collapse {rep name}"; header chevron = "Expand all reps" / "Collapse all reps"; dialog X = "Close".
+   * **S18-R10:** The row chevrons and the sortable column headers are keyboard-focusable and activate on Enter/Space; a chevron exposes its expanded/collapsed state and a sortable header exposes its current sort state to assistive technology.
+   * **S18-R11:** The subdued-grey used for the `(N)` count and the "(Inactive)" tag meets at least WCAG AA contrast (≥ 4.5:1) against the white body surface in light mode and against the dark surface in dark mode; the reduced font size does not drop it below that ratio.
+   * **S18-R12:** No information is conveyed by color alone: Inv. Hrs carries its `+`/`-` sign, status badges carry their text label (S8-R6), and links carry a hover/focus underline (S12-R4/R5).
++  * **S18-R13:** When shown (S21-R7), the **Location** column appears at the end of the leading identifier group — immediately after the **Status** column and before the first metric column (Inv. Hrs) — on every rep summary row and invoice detail row, matching the Location column's placement across the reports suite; it never displaces the pinned **Subtotal** column, which stays rightmost (S10-R1). The toolbar's **Location filter** control keeps a **constant width** regardless of the selected label (a single location name, several names, or "All Locations"), so the toolbar layout does not shift as the selection changes.
+ 
+ 
+ 
+@@ -783,6 +789,8 @@
+   * **S21-R4:** Location is part of the contributor gate and cascades through every metric (like S3-R8): a rep appears only if they have ≥1 matching invoice at the selected location(s); rep totals, detail rows, the grand Totals indicator, and the (N)/# counts all reflect only invoices at those locations. An invoice's location is its originating work order's / parts sale's location (§3).
+   * **S21-R5:** Scoping is always constrained to the user's accessible locations; "All Locations" means all locations the user can access, never beyond. A location the user cannot access is never included.
+   * **S21-R6:** All four exports respect the active location filter.
++  * **S21-R7:** A per-row **Location** column is shown on the report **only when the current view spans more than one location** — i.e., when more than one location is in scope (several locations selected, or "All Locations" resolving to more than one accessible location). When the view is scoped to a single location the column is **hidden** ; the one location is already unambiguous.
++  * **S21-R8:** When the Location column is shown (S21-R7), its cell reads: on a **rep summary row** , that rep's single location name when all of the rep's matching invoices are at one location, or the literal **Multiple** when they span more than one location; on an **invoice detail row** , that invoice's own exact location (its originating work order's / parts sale's location, §3). "Multiple" is used verbatim. The Unassigned summary row (Story 22) follows the same rule as any rep summary row.
+ 
+ 
+ 
+@@ -880,7 +888,8 @@
+ 2026-07-11 | @claude | **Single sales-rep model locked** (per owner decision, reaffirming the 2026-05-19 intent): one rep per customer/WO/invoice; snapshot = WO rep → customer rep → Unassigned (§3, Assumptions, S19-R6/R7, S13, S15). _(Build delta: shipped schema stores dual parts/service reps → collapse to one + rework invoice crediting.)_
+ 2026-07-11 | @claude | Story 19: dropped the create-time "default to customer's rep" (ambiguous, redundant with the invoice-time fallback); field opens unassigned (S19-R3), invoice-time fallback stated (S19-R6). WO selector save-on-change (S19-R4) and read-only-when-Invoiced/Paid (S19-R5) now stated inline (no reference to another feature).
+ 2026-07-11 | @claude | Exports hardened: server-rendered PDFs; totals-row Margin % recomputed (S14-R5/R6); font-tier scan includes totals values and clamps at the 8px floor (S14-R12/R14); Expanded CSV given the same three hours columns as the Summary CSV (S14-R16, build-delta noted); CSV numeric formatting rule added (S14-R17, plain numbers, `Margin %` empty when undefined); `# Invoices`/`# Customers` defined (S14-R18); on-screen invoice numbers not truncated (S14-R7).
+-2026-07-11 | @claude | Contradiction fixes from the 10-reviewer audit: desktop Totals merged cell spans **four** leading identifier columns, not five (S5-R10, S10-R5); Assignments "Rep is active?" value is **Yes/No** , not "Deactivated" (§3/S13-R11/S15-R6); §7 error-toast note scoped truthfully; deactivation dialog pluralizes "customer/customers" (S13-R4); sort direction/toggle/indicator + tie-break specified (S11-R5/R7); mobile totals-bar scroll behavior clarified (S10-R5); ⋯/Location toolbar positions reconciled (S18-R1, S18-R7.2).
++2026-07-11 | @claude | Contradiction fixes from the 10-reviewer audit: desktop Totals merged cell spans **four** leading identifier columns, not five (S5-R10, S10-R5); Assignments "Rep is active?" value is **Yes/No** , not "Deactivated" (§3/S13-R11/S15-R6); §7 error-toast note scoped truthfully; deactivation dialog pluralizes "customer/customers" (S13-R4); sort direction/toggle/indicator + tie-break specified (S11-R5/R7); mobile totals-bar scroll behavior clarified (S10-R5); â‹¯/Location toolbar positions reconciled (S18-R1, S18-R7.2).
+ 2026-07-11 | @claude | New: **Story 16 rewritten** to cover loading, empty, and error states with verbatim strings (§7); **Story 18 accessibility block** added (icon-control names, keyboard, focus trap, contrast, touch targets, no-color-only); §1 softened (no bulk-reassignment feature); §2 Feature Overview now lists the deactivation flow and the customer-record rep display.
+ 2026-07-21 | @chris / @claude | Milan re-review resolution: **payment status** now maps all five canonical system states (`unpaid`, `prepaid`, `partially_paid`, `paid`, `overpaid`) to the three display values, with `prepaid` = **Paid** when balance owed is zero, else **Partially Paid** (`overpaid` = **Paid**); mapping made the single source of truth for both the status badge (S8-R2) and the Invoice Status filter predicate (S4-R4) (§3). Added an Expanded View PDF **row-cap guardrail** (10,000 data rows) with a verbatim "too large / narrow the date range or filters" message (S14-E2, §7). Added tech-plan context notes for per-rep detail page size and bounded expand-all (S6-R2). Verified the S14-R12 font-size tier table is intact (all four rows, 8px floor / 11px ceiling) — no loss found in local files, the 2026-07-16 snapshot, or live.
+ 2026-07-16 | @chris / @claude | Removed **All Time** (D1); capped **Custom** at a **366-day** max span (D3); moved data fetching **server-side** — lazy per-rep invoice drill-down (S6-R2), all four exports server-generated against filters + sort (S14-R2a/R15/R16), server-side sort (S11-R5), server-computed grand totals over the full filtered set (S10-R5); removed the S14-N2 client-side failure mode; header cleanup (removed the loose Companion Video and status-badge paragraphs, unified to the 4-row header table). Per Milan Zivanovic's 2026-07-15 engineering review; the server-side model is the committed build target (spec ahead of current code by design).
++2026-07-29| @chris / @claude| Added a per-row **Location** column, shown only when the current view spans more than one location: a rep summary row spanning more than one location reads **Multiple** , a single-location rep row reads that location's name, and each invoice detail row reads its exact location (§2, §3, §4, S21-R7/R8, S18-R13); the column is carried into all four exports and every export gains a "Locations:" line naming the scope (S14-R20); the Location filter control is constant-width (S18-R13). Padding watch: the report's display label "Sales By Representative" is longer than the "Sales By Rep" shorthand — verify the nav entry, toolbar title, and PDF header strip fit the full label without truncation (S1-R7).

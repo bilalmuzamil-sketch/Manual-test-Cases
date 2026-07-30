@@ -1,0 +1,201 @@
+--- nprev/Technician-Utilization-Report.md	2026-07-30 14:53:38.851807038 +0000
++++ ncur/Technician-Utilization-Report.md	2026-07-30 14:53:38.851956376 +0000
+@@ -31,7 +31,11 @@
+ 
+   * Each technician's Total Hours value links to the Timesheet Activities report, already filtered to that technician and date range.
+ 
+-  * The user can download the report as a PDF (summary or expanded) or CSV.
++  * The user can download the report as a PDF (summary or expanded) or CSV; the exports mirror the columns currently shown on screen.
++
++  * When the current scope spans **more than one location** , the report shows a per-row **Location** column identifying each row's location; the column is hidden when a single location is in scope. Every export names the location scope in a **" Locations:"** line regardless.
++
++  * The user can show or hide individual columns from a **column selector** ; Est. Lost Labor is one of the hideable columns (shown by default), while Technician is always shown. The column selection is remembered per browser.
+ 
+ 
+ 
+@@ -60,19 +64,23 @@
+ 
+   * **The technician filter works on screen only and does not reload the report** (Story 5); the **location filter reloads the report from the server** (Story 9).
+ 
+-  * **The report remembers the user's selected date range, technician selection, and location selection** (per browser), and restores them when the user returns. **Sort is not remembered** — it resets to Technician A→Z on every load (S2-R15).
++  * **The report remembers the user's selected date range, technician selection, location selection, and column selection** (per browser), and restores them when the user returns. **Sort is not remembered** — it resets to Technician A→Z on every load (S2-R15).
+ 
+ 
+ 
+ 
+ _* Context note: the report saves these in the user's browser only, not on the user's account. They persist across visits and page reloads in the same browser, but do not follow the user to another browser or device._
+ 
+-  * **Est. Lost Labor is the pinned, bold headline column** (S2-R10, S2-R11) — it is the report's main takeaway.
++  * **Est. Lost Labor is the bold, pinned headline column when shown** (S2-R10, S2-R11) — it is the report's main takeaway — but it is now a user-hideable column (shown by default; S10-R3).
+ 
+   * **Est. Lost Labor is valued per location.** Each technician's internal hours are valued at the default labor rate of the location where those hours were clocked, and the per-location amounts are summed for the technician's Est. Lost Labor (S2-R8). In the common single-location view this is simply that one location's rate × the technician's internal hours.
+ 
+   * **Every displayed number is computed from the unrounded underlying values and rounded only for display, using round-half-up** (a tie rounds away from zero — 0.005 → 0.01). This covers the hours columns, Utilization %, and Est. Lost Labor, at every level (rows, day rows, and the Summary). Computing from unrounded values (rather than from the already-rounded per-row displays) is what lets the totals reconcile to the Timesheet Activities report to the cent.
+ 
++  * **The report's columns are user-selectable.** A column selector lets the user show or hide individual columns; the selection is remembered per browser. Technician is always shown; Est. Lost Labor — previously always-on — is now a hideable column shown by default. Both exports mirror the columns currently shown (Story 10, S7-R10).
++
++  * **A per-row Location column appears only when more than one location is in scope.** When the scope spans a single location the column is hidden (the scope is unambiguous); when it spans more than one, each row shows its location — a technician (or per-day) row whose hours are all at one location shows that location's name, while a row aggregating more than one location shows the literal **Multiple**. Every export additionally carries a "Locations:" line naming the scope, so a multi-location export is never ambiguous about which locations it covers.
++
+ 
+ 
+ 
+@@ -92,6 +100,8 @@
+ 
+   * **Location** → A shop/workplace the user has access to. The report can be scoped to one, several, or all of them (Story 9).
+ 
++  * **Location (column)** → A per-row column, shown only when the current scope spans more than one location, naming the location a row belongs to. A row whose hours are all at one location shows that location's name; a row aggregating more than one location shows the literal **Multiple**. Hidden entirely when a single location is in scope. Separately, every export carries a "Locations:" line naming the scope, reading "All locations" when every location the user has access to is selected.
++
+ 
+ 
+ 
+@@ -137,7 +147,7 @@
+ 
+   * **S1-R7:** Every clock record is day-grouped and windowed in a **single report-level time zone — the active workplace's** — regardless of the location where each record was clocked (a record's day, the current-month default boundary, and the midnight split of a record are all evaluated in that one report-level time zone). This matches the Timesheet Activities report's single-time-zone grouping (S1-R9).
+ 
+-  * **S1-R8:** On later visits, the report opens with the date range and location selection the user last used, and the technicians the user previously **deselected** stay deselected (all others, including technicians who appear for the first time, are selected — S5-R9/R10). The report restores its own saved location selection independent of the application's current global location switcher; the switcher's active location seeds the selection on a first visit (S9-R2) and serves as the defensive fallback on return when the saved location set resolves to empty (S9-R6, S9-R7).
++  * **S1-R8:** On later visits, the report opens with the date range, location selection, and column selection the user last used, and the technicians the user previously **deselected** stay deselected (all others, including technicians who appear for the first time, are selected — S5-R9/R10). The report restores its own saved location selection independent of the application's current global location switcher; the switcher's active location seeds the selection on a first visit (S9-R2) and serves as the defensive fallback on return when the saved location set resolves to empty (S9-R6, S9-R7).
+ 
+   * **S1-R9: Reconciliation guarantee (scope).** For the **same date range and the same single location** , and counting **closed** clock records, this report's Total Hours for a technician equals the Timesheet Activities report's total for that technician to the cent. Two deliberate scope differences are **not** defects: (a) an **open** (not-yet-clocked-out) record is snapshotted at each report's own load instant, so two reports loaded at different moments can differ by the elapsed open time (S1-E1); (b) when **multiple** locations are selected here, the Total Hours drill-through opens Timesheet Activities for the active shop only and therefore reflects one location's portion, not the multi-location total (S6-R6).
+ 
+@@ -181,7 +191,7 @@
+ 
+ **Requirements:**
+ 
+-  * **S2-R1:** The column headers appear in this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor.
++  * **S2-R1:** The column headers appear in this fixed left-to-right order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor. When shown (more than one location in scope — S9-R9), the per-row **Location** column precedes them all as the leftmost column. Showing or hiding columns via the column selector (Story 10) never reorders the remaining columns.
+ 
+   * **S2-R2:** Total Hours shows the technician's total clocked hours for the range.
+ 
+@@ -199,9 +209,9 @@
+ 
+   * **S2-R9:** Est. Lost Labor shows a dollar value with two decimal places and commas between thousands (for example, "$1,234.50").
+ 
+-  * **S2-R10:** The Est. Lost Labor column is pinned to the far right of the row.
++  * **S2-R10:** When shown, the Est. Lost Labor column is pinned to the far right of the row.
+ 
+-  * **S2-R11:** The Est. Lost Labor column is shown in bold.
++  * **S2-R11:** When shown, the Est. Lost Labor column is displayed in bold.
+ 
+   * **S2-R12:** When the report first loads (and after any data reload — S2-R15), the technician rows are sorted by Technician name, from A to Z, and the Technician header shows the ascending sort indicator (S8-R8).
+ 
+@@ -433,14 +443,16 @@
+ 
+   * **S7-R9:** Every download covers the date range that is currently active on the report.
+ 
+-  * **S7-R10:** The downloaded files use the same column order and number formats as the on-screen report, including the "—" rendering for an unknown Est. Lost Labor. In the CSV, any value containing a comma (e.g., "$1,234.50") is wrapped in double quotes per standard CSV escaping so the columns parse correctly.
++  * **S7-R10:** The downloaded files include the same columns that are currently shown on screen — mirroring the column-selector visibility (Story 10) and including the per-row Location column whenever it is shown (S9-R9) — in the same left-to-right column order and number formats as the on-screen report, including the "—" rendering for an unknown Est. Lost Labor. In the CSV, any value containing a comma (e.g., "$1,234.50") is wrapped in double quotes per standard CSV escaping so the columns parse correctly.
+ 
+   * **S7-R10a:** Rows in every download are ordered by **Technician name A →Z** (the default order). The on-screen column sort (S2-R13) is applied client-side only and is **not** carried into the export.
+ 
+-  * **S7-R11:** When the shop has a logo set, both PDF views show that logo at the top of the report.
++  * **S7-R11:** Both PDF views show a logo at the top of the report, resolved by the shared organization-logo resolver: the organization's uploaded logo when it has one, otherwise the bundled ShopView default logo. (Only if even the bundled default is unavailable does a PDF render with no logo.)
+ 
+   * **S7-R12:** The downloaded files are named "Technician-Utilization-Summary.pdf", "Technician-Utilization-Expanded.pdf", and "technician-utilization.csv". _(The CSV filename is lower-case and the PDF filenames Title-Case, as shipped; the "(PDF)" menu labels likewise carry "View" on the expanded option only, matching the shipped strings.)_
+ 
++  * **S7-R13:** Every download (both PDF views and the CSV) includes the per-row **Location** column whenever it is shown on screen (more than one location in scope — S9-R9), in its on-screen leftmost position. Every download also includes a "Locations:" line naming the location or locations the report is scoped to, or "All locations" when every location the user has access to is selected. In a PDF it appears in the header area; in the CSV it appears as a leading metadata line above the column-header row.
++
+ 
+ 
+ 
+@@ -448,7 +460,7 @@
+ 
+   * **S7-N1:** If no technician is selected, choosing a download option does nothing: no file downloads and no message appears.
+ 
+-  * **S7-N2:** If the shop has no logo set, the PDF views show no logo.
++  * **S7-N2:** If the organization has no uploaded logo, the PDF views show the bundled ShopView default logo (not a blank space).
+ 
+   * **S7-N3:** The CSV file never includes the logo.
+ 
+@@ -490,15 +502,15 @@
+ 
+   * **S8-R1:** The report uses an all-white table: white column headers and white data cells, with no alternating row shading.
+ 
+-  * **S8-R2:** The three-dot download menu sits leftmost in the toolbar's action cluster.
++  * **S8-R2:** The three-dot download menu sits leftmost in the toolbar's action cluster, followed by the Column Selection control.
+ 
+-  * **S8-R3:** The toolbar controls run, left to right: the three-dot download menu, the technician filter, the date-range picker, and the location filter (rightmost). (The expand/collapse-all control is not a toolbar control — it lives in the table header per S4-R4.)
++  * **S8-R3:** The toolbar controls run, left to right: the three-dot download menu, the Column Selection control, the date-range picker, the technician filter, and the location filter (rightmost). (The expand/collapse-all control is not a toolbar control — it lives in the table header per S4-R4.)
+ 
+-  * **S8-R4:** The Est. Lost Labor column header is bold and pinned to the far right, matching its cells.
++  * **S8-R4:** When shown, the Est. Lost Labor column header is bold and pinned to the far right, matching its cells.
+ 
+   * **S8-R5:** The Summary row stays visible at the bottom while the user scrolls the rows.
+ 
+-  * **S8-R6:** The Est. Lost Labor column header shows an information icon.
++  * **S8-R6:** When shown, the Est. Lost Labor column header shows an information icon.
+ 
+   * **S8-R7:** The information icon shows the text "Internal hours valued at each location's default labor rate" on hover, on keyboard focus, and on tap (touch); it is dismissible. _(This wording covers the per-location model of S2-R8; in a single-location view it is simply that location's rate × internal hours.)_
+ 
+@@ -506,6 +518,8 @@
+ 
+   * **S8-R9:** The report supports dark mode; the page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the "—" glyph all use dark-mode-legible colors meeting contrast.
+ 
++  * **S8-R15:** When shown (more than one location in scope — S9-R9), the per-row **Location** column renders as the **leftmost** column, before Technician, using the suite's standard column treatment so its placement matches the same column on the other reports in the suite. The Location filter control (S9-R1) keeps a **constant width** regardless of the selected label (a single location name, several, or "All Locations"), so the toolbar layout does not shift when the selection changes.
++
+ 
+ 
+ 
+@@ -521,6 +535,8 @@
+ 
+   * **S8-R14:** The Total Hours link's non-color affordance and focus indicator (S6-R1) apply in both light and dark mode.
+ 
++  * **S8-R16:** The icon-only Column Selection control carries an accessible name exposed to assistive technology.
++
+ 
+ 
+ 
+@@ -562,6 +578,10 @@
+ 
+   * **S9-R8:** Both PDF exports and the CSV export cover the location(s) currently selected here.
+ 
++  * **S9-R9:** When the selected scope spans **more than one location** , the report shows a per-row **Location** column; when the scope is a single location, the column is hidden (the scope is unambiguous). This auto-visibility applies on screen and in every export (S7-R13).
++
++  * **S9-R10:** In the Location column (when shown, S9-R9): a technician row whose hours were all clocked at a single location shows that location's name; a technician row whose hours span more than one selected location shows the literal **Multiple** ; an expanded per-day detail row shows the exact location when that day's hours were all at one location, or **Multiple** when that day spans more than one. The Summary row leaves the Location column blank.
++
+ 
+ 
+ 
+@@ -574,6 +594,38 @@
+ 
+ 
+ 
++### Story 10: Column Selection and Persistence
++
++The user can choose which columns show, and the report remembers its setup.
++
++**Design:** See Story 8 **Jira:** TBD
++
++**Prerequisites:**
++
++  * The report has loaded rows for the selected date range and location(s) (Story 1).
++
++
++
++
++**Requirements:**
++
++  * **S10-R1:** A column-selection control — an icon button whose tooltip reads "Column Selection" — lets the user toggle each toggleable column on or off. It sits in the toolbar action cluster immediately after the three-dot download menu (S8-R2/S8-R3).
++
++  * **S10-R2:** The **Technician** column is always shown and cannot be turned off.
++
++  * **S10-R3:** Every other data column — Total Hours, WO Hours, Internal Hours, Utilization %, and Est. Lost Labor — is available in the control and can be toggled on or off. All five are shown by default on a first visit. (Est. Lost Labor was previously always-on; it is now a hideable column like the others.)
++
++  * **S10-R4:** The per-row Location column is not one of the toggleable columns: it is auto-managed by the location scope (shown only when more than one location is in scope — S9-R9) and is never listed in the column selector.
++
++  * **S10-R5:** Whatever columns are shown, they appear in the fixed left-to-right order of S2-R1 (toggling visibility never reorders columns), with the Location column — when shown — leftmost (S8-R15) and Est. Lost Labor last.
++
++  * **S10-R6:** The report remembers the user's column selection in the browser, alongside the date range, technician selection, and location selection (§3, S1-R8), and restores it on the next visit. Restore is defensive: a saved selection that no longer resolves to valid columns falls back to the default-visible set rather than breaking the view.
++
++
++
++
++_* Context note: persistence is per-browser (not tied to the user's account); it persists across visits in the same browser but does not follow the user to another browser or device._
++
+ ## 7. User Feedback Summary
+ 
+ Trigger| Message| Behavior
+@@ -592,3 +644,4 @@
+ 2026-07-11| @claude| **Suite-alignment rewrite (code-verified) + 10-reviewer ESL audit hardening, as part of the 5-spec lockdown.** Added the **multi-location filter** (Story 9; rightmost, default active location, server-side reload, accessible-locations-constrained, hours pooled per technician and per day across locations, defensive restore, All-Locations shortcut, empty→active fallback). Added the **" All Time"** date range as its own Story 10 (the prior draft referenced it only in the change log). Added a **Loading state** (S1-R10), a **reconciliation-scope** requirement (S1-R9: same range + same single location + closed records; open-clock and multi-location drill-through are deliberate scope differences, not defects) and scoped the §2 "mismatch = defect" note to match. **Est. Lost Labor** documented **per location** (S2-R8/S3-R5), with the **null vs $0.00 vs partial** cases pinned (S2-E2/E3/E4: "$0.00" for zero internal hours or a known $0 rate; "—" only when no rate at any contributing location; partial amounts value only rated-location hours, unmarked in this version) and the summary computed from unrounded values. Extended the **round-half-up** rule to cover Utilization % and made it a requirement (S2-R5/R7). Pinned **sort** behavior (S2-R13: all six columns sortable, first-click-on-Technician→descending, no third state, indicator on load, tiebreak + stable order for duplicate names, nulls-to-bottom S2-R17). Clarified persistence (deselected-technician set; sort not persisted; per-day pooling; expansion not persisted, S4-R5). Reworded the **info-icon tooltip** to the per-location model (S8-R7) and added an **accessibility block** (S8-R10..R14: aria-sort, "—" AT text, keyboard expand controls, contrast, touch tooltip, link affordance). CSV comma-quoting (S7-R10). Stripped the sibling-report ("Technician Efficiency") reference (S1-R1, Story 8) so the spec stands alone; the Timesheet Activities dependency (shared clock data + deep-link target) is retained as a functional dependency. §2 "shop totals" → "visible technicians".|
+ 2026-07-11| @chris| **Owner decision — Est. Lost Labor valued per location** (S2-R8, S3-R5, §3). Each technician's internal hours are valued at the default labor rate of the location where they were clocked, then summed. _Build-delta: the current rollup applies a single (first-encountered, chronologically-earliest) location rate to the technician's total internal hours, and the shipped info-icon tooltip reads "Default labor rate multiplied by internal hours" (single-rate); the rollup must be changed to accumulate lost-labor dollars per location and the tooltip updated to the S8-R7 wording. Single-location views are already exact._|
+ 2026-07-16| @chris / @claude| Removed All Time (deleted Story 10; simplified S6-R4); capped Custom at 366 days; per-day breakdown now loads lazily on expand (Story 4); **timezone model changed to a single report-level time zone (active workplace) matching Timesheet Activities (S1-R7), resolving the S1-R7/S1-R9 multi-location divergence** ; header cleanup (removed Companion Video row).| Per Milan Zivanovic's 2026-07-15 engineering review (timezone = his option 1).
++2026-07-29| @chris / @claude| Added the suite-standard column selector; made Est. Lost Labor a toggleable (hideable) column; the PDF export logo now uses the shared resolver (org logo → bundled ShopView default → none); added a per-row Location column (shown when more than one location is in scope) plus a "Locations:" export line; exports now mirror the selected columns.|

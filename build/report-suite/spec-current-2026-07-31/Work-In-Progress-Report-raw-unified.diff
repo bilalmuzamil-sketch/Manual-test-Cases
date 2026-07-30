@@ -1,0 +1,65 @@
+--- nprev/Work-In-Progress-Report.md	2026-07-30 14:53:39.259010640 +0000
++++ ncur/Work-In-Progress-Report.md	2026-07-30 14:53:39.259094587 +0000
+@@ -25,6 +25,7 @@
+   * A summary strip across the top shows the whole floor as headline figures — Total Earned (the hero), Total Remaining, and a per-stage breakdown — and recomputes as the user filters.
+   * Each tab is a flat table with a pinned **Total** column on the far right and a Totals row at the bottom summing the jobs in that tab.
+   * The user can choose which columns show, filter by advisor / customer / asset / date range / location, and download the current tab as a PDF or CSV.
++  * A per-row **Location** column appears automatically only when the report is scoped to more than one location, naming each work order's location; it is hidden when a single location is in scope. Every export includes the Location column when it is shown, plus a "Locations:" line naming the scope.
+ 
+ 
+ 
+@@ -66,6 +67,7 @@
+   * **The report remembers the user's date range, advisor / customer / asset selections, location selection, column selection, and active tab** (per browser) and restores them on return.
+   * **" Est." labor hours are the measuring stick on this not-yet-invoiced report.** The Inv. Hrs column compares the hours quoted on the approved work against the hours actually worked, so a manager can see whether a job is beating or overrunning its labor estimate before it is billed (Story 4).
+   * **The nightly WIP snapshot is in scope.** Once per day the report captures each open work order's earned and remaining value, keyed per work order per day, using the same money model as the on-screen report (Story 11). No screen reads it in this version; it is captured now so a future Trend view reads a consistent history.
++  * **The per-row Location column is automatic, not a manual toggle.** It appears only when the current scope spans more than one location and is hidden for a single location, so a single-location view is never cluttered with a redundant column. Because a work order belongs to exactly one location, each WIP row names its own location — a WIP row never shows "Multiple". Every export still names the scope on a "Locations:" line.
+ 
+ 
+ 
+@@ -84,6 +86,7 @@
+   * **Days Open** → Whole days since the work order was created: elapsed time divided by 24 hours, floored (never negative).
+   * **Asset** → The vehicle or unit the job is for, identified by its unit number and its vehicle identification number.
+   * **Snapshot** → A once-daily recorded set of per-work-order earned/remaining figures for a given calendar date (Story 11), captured for a future Trend view.
++  * **Location (column)** → A per-row column naming the work order's location, shown automatically only when the report is scoped to more than one location and hidden when a single location is in scope. In every export it is headed "Branch" (S9-E1) and is accompanied by a "Locations:" line naming the scope.
+ 
+ 
+ 
+@@ -196,7 +199,7 @@
+ 
+   * **S4-R1:** The columns, in left-to-right order, are: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.
+   * **S4-R2:** On first visit, the visible columns are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, and Total.
+-  * **S4-R3:** Every other column (VIN, Location, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column selector and off by default (Story 8).
++  * **S4-R3:** Every other column (VIN, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column selector and off by default (Story 8). The **Location** column is not offered in the column selector; its visibility is automatic — shown only when more than one location is in scope (Story 7).
+   * **S4-R4:** WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned; every other column is right-aligned.
+   * **S4-R5:** WO # is shown as a link that opens the work order in the same browser tab; the user returns via the browser's back navigation.
+   * **S4-R6:** Status is shown as a badge using the status's label ("Estimate", "Approved", "In Progress", "Review", "Complete"), color-coded per the application's standard status colors; the label text is always present, so color is never the sole signal.
+@@ -331,6 +334,8 @@
+   * **S7-R10:** Selecting one, several, or all locations reloads the report scoped to that set.
+   * **S7-R11:** The location scope is always constrained to the locations the user can access; a location the user cannot access is never included, and if the selection resolves to none, the report falls back to the user's currently active location.
+   * **S7-R12:** The advisor, customer, and asset filters combine: a job must pass all three to remain visible, and each also feeds the summary strip and each tab's Totals row (Story 5, Story 6).
++  * **S7-R13:** The per-row **Location** column is shown automatically whenever the current scope spans more than one location, and is hidden whenever a single location is in scope; the user does not toggle it in the column selector.
++  * **S7-R14:** When the Location column is shown, each work-order row names that work order's location. Because a work order belongs to exactly one location, a WIP row never shows "Multiple"; there are no drill-down or aggregating rows on this report (every row is already a single work order).
+ 
+ 
+ 
+@@ -395,6 +400,7 @@
+   * **S9-R8:** In a download, Days Open is the whole number of days as of the moment the file is generated.
+   * **S9-R9:** The downloaded files are named "wip-2-report.pdf" and "wip-2-report.csv".
+   * **S9-R10:** The PDF shows the shop logo at the top when one is set; the CSV never includes a logo.
++  * **S9-R10a:** Both downloads include a "Locations:" line naming the location or locations the report is scoped to, or "All locations" when every location the user has access to is selected. In the PDF it appears in the header area; in the CSV it appears as a leading metadata line above the column-header row. When the Location column is shown on screen (more than one location in scope), the download includes it too, headed "Branch" (S9-E1).
+ 
+ 
+ 
+@@ -431,6 +437,7 @@
+   * **S10-R3:** The Total column header is bold and pinned to the far right, matching its cells.
+   * **S10-R4:** The Totals row stays visible at the bottom while the user scrolls the rows.
+   * **S10-R5:** The report fills the available height and only the active tab's table body scrolls; the page itself does not add a second scrollbar.
++  * **S10-R5a:** The **Location** filter control keeps a constant width regardless of the selected label — a single location, several, or "All locations" — so the toolbar layout does not shift as the selection changes. When the Location column is shown, it appears in its fixed position (S4-R1), left-aligned like the other identifier columns, matching the suite's placement of this column.
+ 
+ 
+ 
+@@ -485,3 +492,4 @@
+ 2026-07-19 | @chris / @claude | Initial specification — authored from the built "Work In Progress" report (the earned-vs-remaining rebuild that supersedes the original WIP report), code-verified against the front-end and back-end. Captures the four progress tabs, the seven-figure summary strip, the earned/remaining/Total money model (Total = Earned + Remaining, not the grand total), the two-line Asset cell, the type-ahead Customer/Asset filters (empty = "All"), the Inv. Hrs labor-hours delta, and the export behavior. Trend/over-time view recorded as out of scope (nightly capture runs but has no reader in this version). | Supersedes the original WIP report specification on this page.
+ 2026-07-19 | @chris / @claude | Date range now **defaults to "All Time"** so a fresh visit shows every open work order (a bounded range still filters by created date) — S7-R6/R7/R7a, §3. **Simplified all seven summary-strip tooltips** to plain, non-technical language (S5-R12). **Removed the export-only "Lead Tech" column** (dropped S9-E2 and its Known-Limitations entry). | Code-verified; front-end + back-end updated and browser-verified (All Time load shows data, 0 console errors).
+ 2026-07-21 | @chris / @claude | Resolved Milan Zivanovic's review plus one Chris override. (1) **Nightly WIP snapshot capture moved IN SCOPE** with a locked schema — earned/remaining per work order per day, using the same money model as the on-screen report so a future Trend view reads consistent data (new **Story 11**); removed the "out of scope / runs in the background / no reader" framing from §2 (Out of scope, Known Limitations). (2) **WO # drill-through now opens in the SAME browser tab** with browser back-navigation, matching Sales By Customer and Sales By Rep (**S4-R5**). (3) **Removed "All Time"** from the date range and set the default to **" This Week"** (**S7-R6/R7** ; dropped **S7-R7a** and reworded the §3 Key Decision + the Story 7 context note). | The "All Time" removal is a Chris product/UX decision, not a scalability fix — Milan had approved keeping All Time (its population is bounded to currently-open work orders, not a historical scan, so it was never a scalability risk). Local spec `.md`/`.txt` were also re-synced from the current Confluence four-tab design (they had held the superseded two-tab Live/Trend draft). Not yet pushed to Confluence.
++2026-07-29| @chris / @claude| Aligned the per-row Location column to the suite auto-visibility rule (shown only when more than one location is in scope) and added a "Locations:" export line and a constant-width Location filter.| Suite location-column consistency.

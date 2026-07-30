@@ -1,0 +1,65 @@
+--- nprev/Inventory-Value-Report.md	2026-07-30 14:53:39.625520821 +0000
++++ ncur/Inventory-Value-Report.md	2026-07-30 14:53:39.625598298 +0000
+@@ -24,6 +24,7 @@
+   * A pinned **Total Cost** column (far right, bold) is the row's headline number; a totals row sums the whole filtered shelf.
+   * The report can be valued **as of** a chosen date: the current stock right now, or the closest recorded nightly snapshot on or before the chosen date (Story 5).
+   * The user can choose which columns show, filter by category, vendor, and location, search for a part by number or description, sort by any column, and download the current view as a PDF or CSV.
++  * When the report is scoped to more than one location, each row shows a **Location** column naming the location that part's stock is held at; the column is hidden when only a single location is in scope.
+   * **Scale and data model.** The report is one row per in-stock part per location — up to roughly **50 –60k parts** at the largest organizations, multiplied across locations. It is therefore **server-paginated** : paging, sorting, the Category / Vendor / Location filters, and the part search are all resolved on the server, which returns one page of rows at a time. The **totals row is computed on the server over the full filtered set** (not just the visible page), so it always reflects the true whole-shelf value for the current filters and search.
+ 
+ 
+@@ -66,6 +67,7 @@
+   * **The as-of value is the latest recorded day on or before the chosen date, with a live fallback for today.** When the chosen window reaches today and today has not been recorded yet, the report values the current live stock; otherwise it replays the closest recorded day on or before the chosen end date (Story 5).
+   * **The report runs server-side at scale.** Because it lists one row per in-stock part per location (~50–60k parts at large orgs), paging, sorting, the Category filter, the Vendor filter, the Location filter, the part search, and the totals row are all resolved on the server; the browser renders one page at a time (Story 1, Story 4, Story 6, Story 9). Only the column selection is a purely client-side view choice.
+   * **The report remembers the user's filters, columns, and sort per browser** and restores them on return (Story 8).
++  * **The per-row Location column appears only when it adds information.** Because each row is one part at one location, a row's Location cell names that location; the column is shown only when the current scope spans more than one location and is hidden for a single-location scope. It is governed by scope automatically — it is not a user-toggled column in the column-selection control. Every export names the scope on a "Locations:" line.
+ 
+ 
+ 
+@@ -83,6 +85,7 @@
+   * **As of (date)** → The date the displayed values represent: either right now (live) or the closest recorded day on or before the chosen date.
+   * **Snapshot** → A once-daily recorded set of per-part inventory values for a location, used to serve the as-of view.
+   * **Location** → A shop/workplace the user has access to. The report can be scoped to one, several, or all of them (Story 7).
++  * **Location (column)** → A per-row column, shown only when the current scope spans more than one location, naming the location that row's part stock is held at. Because each Inventory Value row is one part at one location, every row maps to exactly one location name — this report never shows an aggregated "Multiple" value in the column.
+   * **Filtered set** → Every qualifying part row for the current Date, Location, Category, Vendor, and part-search selection, across all pages — the basis for the server-computed totals row (Story 4) and for exports (Story 10).
+ 
+ 
+@@ -180,7 +183,7 @@
+ 
+ **Requirements:**
+ 
+-  * **S3-R1:** The columns appear in this left-to-right order: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.
++  * **S3-R1:** The columns appear in this left-to-right order: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost. When the report is scoped to more than one location, a **Location** column (S7-R6) is inserted between Vendor and Qty on Hand; it is hidden for a single-location scope.
+   * **S3-R2:** Part #, Description, Category, and Vendor are left-aligned; every other column is right-aligned.
+   * **S3-R3:** Qty on Hand shows the on-hand quantity to two decimal places, with no currency symbol.
+   * **S3-R4:** Unit Cost shows the per-unit cost as US-dollar currency.
+@@ -332,6 +335,8 @@
+   * **S7-R3:** Selecting one, several, or all locations **reloads** the report scoped to that set.
+   * **S7-R4:** Scoping is always constrained to the user's accessible locations; a location the user cannot access is never included.
+   * **S7-R5:** If the requested location set resolves to none the user can access, the report falls back to the user's currently active location.
++  * **S7-R6:** The report includes a per-row **Location** column that is shown only when the current scope spans more than one location; when a single location is in scope the column is hidden. Its visibility follows the location scope automatically and it is not one of the columns offered in the column-selection control (Story 8).
++  * **S7-R7:** When the Location column is shown, each row's Location cell names the location that row's part stock is held at. Because each row is one part at one location (S2-R2, S2-R3), every row maps to exactly one location — the report never shows an aggregated "Multiple" value in this column.
+ 
+ 
+ 
+@@ -423,6 +428,7 @@
+   * **S10-R10:** The downloaded files are named "inventory-value-report.pdf" and "inventory-value-report.csv".
+   * **S10-R11: Server-side generation.** Both exports are generated **server-side** against the current filters, part search, and sort — the full filtered set, not only the loaded page. The export is not built from the rows currently in the browser.
+   * **S10-R12: Export size guardrail.** To keep a single-shot export renderable, an export is capped at a maximum of **10,000 rows** in the filtered set. When the current filtered set exceeds the cap, neither the PDF nor the CSV is produced; instead the user sees the message: **" This report is too large to export. Narrow the date range or filters, then try again."** [Cap value 10,000 is a proposed default — confirm the exact suite-standard value with the owner before dev.]
++  * **S10-R15:** Every export (each CSV and each PDF) includes the **Location** column whenever it is shown on screen (S7-R6), and always includes a "Locations:" line naming the location or locations the report is scoped to, or "All locations" when every location the user has access to is selected — matching the on-screen scope. In a PDF the "Locations:" line appears in the header area; in a CSV it appears as a leading metadata line above the column-header row.
+ 
+ 
+ 
+@@ -502,6 +508,7 @@
+   * **S12-R5:** The totals row stays visible at the bottom while the user scrolls the rows.
+   * **S12-R6:** Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column, with the full value available on hover; the Part # is never truncated.
+   * **S12-R7:** The report supports dark mode; the page background, toolbar, cells, and the "—" glyph all use dark-mode-legible colors.
++  * **S12-R10:** When shown, the **Location** column appears in the left-hand identifier group, immediately after Vendor and before Qty on Hand (S3-R1), using the suite's standard column styling. The **Location** filter control in the toolbar keeps a constant width regardless of the selected location label — a long location name or "All locations" does not resize the control — matching the Location column and filter treatment used across the reports suite.
+ 
+ 
+ 
+@@ -533,3 +540,4 @@
+ ---|---|---|---
+ 2026-07-19 | @chris / @claude | Initial specification — per-part on-hand inventory valuation with an as-of date served from nightly history and a live fallback for today; authored from the built code and matched to the suite canonical PRD layout. | Owner decisions baked in: value only non-core, positive-quantity stock; unit sell resolved via fixed price then pricing-matrix markup on cost; Margin is the extended (Total Sell − Total Cost) figure and Margin % its share of Total Sell; Total Cost the pinned bold headline + default sort; per-browser persistence of filters/columns/sort. Known v1 limitations recorded in §2.
+ 2026-07-21 | @chris / @claude | Moved to **server-side data model** (per Milan Zivanovic's 2026-07-20 engineering review, mirroring the Parts Velocity resolution): report is **server-paginated** (§2, S1-R8); **sorting is server-side** — each header click re-fetches in the new order (S9-R2); the **Category and Vendor filters apply server-side** — removed the "on-screen only" Known Limitation (S6-R3/R5, §2); the **totals row is computed server-side over the full filtered set** (true whole-shelf value, not just the visible page) (S4-R2/R8). Added a **page-level part search** over part # / description, built on the reports suite's shared toolbar-search pattern, server-side (S6-R8, S12-R3). Exports are **generated server-side** against the current filters + sort, with a **row-cap guardrail** and friendly "narrow the range or filters" message (S10-R11/R12). Added **snapshot retention** (S11-R6): full daily per-part detail for ~13 months, then the last capture of each month beyond that; the "closest recorded day on or before" rule serves the thinned history unchanged. Valuation rules (fixed price → matrix markup → cost fallback) unchanged — approved by Milan. |
++2026-07-29 | @chris / @claude | Added a per-row Location column (shown only when more than one location is in scope) plus a "Locations:" line and a constant-width Location filter. | Suite location-column consistency.
