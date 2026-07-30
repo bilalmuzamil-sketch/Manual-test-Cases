@@ -441,5 +441,33 @@
   "viu_status": "VIU-Pending",
   "notes": "Generic backend-behavior case - the spec pins no REST contract or status codes; record the observed denial responses at VIU, do not assert invented codes. Role seeding per Standing Rule 5 (restore afterwards).",
   "api_related": true
+ },
+ {
+  "id": "PV-EXP-11",
+  "area": "PV — Exports",
+  "title": "An over-cap Parts Velocity export is refused with the too-large message",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set)."
+  ],
+  "steps": [
+   "1. Set the filters so the filtered set exceeds the export row cap.",
+   "2. Request the CSV download and read what happens.",
+   "3. Request the PDF download and read what happens.",
+   "4. Narrow the date range or filters below the cap and request a download again."
+  ],
+  "expected": [
+   "1. Neither the CSV nor the PDF is produced — no download starts.",
+   "2. A clear too-large message appears telling the user to narrow the date range or filters, then try again — the standard wording is \"This report is too large to export. Narrow the date range or filters, then try again.\"",
+   "3. After narrowing below the cap, the downloads work again."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+  "spec_ref": "SV-8646 (specs/parts-velocity.md Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10,000-row export cap, locked by Chris 2026-07-21)",
+  "viu_status": "VIU-Pending",
+  "notes": "SPEC-SILENT: the Parts Velocity spec page carries no export-cap text; the cap comes from the engineering plan's suite-wide 10,000-row export guard (locked by Chris 2026-07-21; the plan's own PV test list includes the over-cap toast). Flagged to Chris to ratify into the spec (Questions-for-Chris-dev Q3). VIU-confirm the behavior, the exact message text, and the actual cap value.",
+  "api_related": false
  }
 ]

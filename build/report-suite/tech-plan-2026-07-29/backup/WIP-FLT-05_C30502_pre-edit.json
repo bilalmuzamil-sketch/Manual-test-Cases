@@ -1,0 +1,27 @@
+{
+ "id": "WIP-FLT-05",
+ "area": "WIP — Filters",
+ "title": "The date range filters by the work order's created date, reloads the report on change, and a Custom range is capped at 366 days",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. Open work orders exist with created dates both inside and outside the current week."
+ ],
+ "steps": [
+  "1. With \"This Week\" selected, check which work orders are listed.",
+  "2. Change the preset to \"This Month\" and watch the data area.",
+  "3. Open \"Custom\" and try to pick a start and end date more than 366 days apart."
+ ],
+ "expected": [
+  "1. Each preset (or Custom) filters the report to work orders whose CREATED date falls within the selected range — an open work order created outside the range is not listed.",
+  "2. Changing the range reloads the report (the loading indicator shows).",
+  "3. A Custom range is capped at a 366-day maximum span from start to end — a longer span cannot be applied."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R7; S7-R8",
+ "viu_status": "VIU-Pending",
+ "notes": "The date range narrows by created date — it is NOT a way to see what work-in-progress was on a past date (Story 7 context note). VIU-confirm how the 366-day cap is enforced on screen (disabled dates vs an error).",
+ "api_related": false
+}

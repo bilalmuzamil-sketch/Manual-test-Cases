@@ -1,369 +1,371 @@
 [
-  {
-    "id": "SBC-EMPTY-01",
-    "area": "SBC — Empty & Edge States",
-    "title": "Empty state shows in the table body; toolbar interactive; kept selection returns",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. You are on the report with data on screen."
-    ],
-    "steps": [
-      "1. Set a date range that contains no invoices (for example a Custom range over a quiet week far back).",
-      "2. Read the table body and try each toolbar control.",
-      "3. Also provoke the empty state via Product Type and via a location with no data, and re-check.",
-      "4. Look at the table header row's chevron.",
-      "5. Narrow the Customer filter to specific customers, change the date range so none of them have data, read the table and the filter, then change the range back."
-    ],
-    "expected": [
-      "1. The table body shows the message \"No sales data found for the selected filters.\" where customer rows would appear — not in the toolbar, the totals row, or a modal.",
-      "2. The toolbar stays visible and interactive (all filters including the Customer filter, and the action controls), so you can adjust filters without leaving the page.",
-      "3. The same empty state appears whichever filter caused it (date range, Product Type, or location).",
-      "4. The header-row chevron is hidden when the table has no visible rows.",
-      "5. With a narrowed customer selection and no data, the empty state shows but the selection is KEPT (not cleared) — when the filters change back, the selected customers reappear."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1",
-    "viu_status": "VIU-Pending",
-    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EMPTYSEL): absorbed SBC-EMPTY-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
-    "api_related": false
-  },
-  {
-    "id": "SBC-EMPTY-02",
-    "area": "SBC — Empty & Edge States",
-    "title": "The empty-state message never appears while the table is still loading",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. You are on the report; a slow network helps (throttle via browser dev tools if needed)."
-    ],
-    "steps": [
-      "1. Change a filter and watch the table area during the load.",
-      "2. Watch what appears once loading finishes with zero customers."
-    ],
-    "expected": [
-      "1. While the table is loading, the empty-state message is NOT shown (the loading state is shown instead).",
-      "2. The message appears only after the table finishes its initial loading and shows zero customers."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 17 S17-N1",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBC-EMPTY-03",
-    "area": "SBC — Empty & Edge States",
-    "title": "A narrowed customer selection with no data shows the empty state but the selection is kept and the customers reappear",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. The Customer filter is narrowed to specific customers who have data in the current range but none in an adjacent range."
-    ],
-    "steps": [
-      "1. Change the date range so that none of the selected customers have data.",
-      "2. Read the table and the Customer filter.",
-      "3. Change the range back."
-    ],
-    "expected": [
-      "1. The empty-state message is shown.",
-      "2. The Customer filter selection is kept (not cleared).",
-      "3. When the filters change back to a range where the selected customers have data, they reappear."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 17 S17-E1",
-    "viu_status": "Retired 2026-07-28 (merged into SBC-EMPTY-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBC-EMPTY-04",
-    "area": "SBC — Empty & Edge States",
-    "title": "A failed data fetch shows the fetching-error toast which auto-fades after 5 seconds",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. You can interrupt the network (browser dev tools offline mode)."
-    ],
-    "steps": [
-      "1. Go offline, then open the report (or change a filter to force a re-fetch).",
-      "2. Read the toast and time how long it stays."
-    ],
-    "expected": [
-      "1. An error toast is shown: \"An error occurred while fetching the report data.\"",
-      "2. The toast auto-fades after 5 seconds."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md §7 User Feedback Summary",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBC-VIS-01",
-    "area": "SBC — Visual Conformance",
-    "title": "Page and toolbar match the suite theme: paddings, surfaces, alignment, separator, arrow size and square corners",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. You are on the report in light mode on a desktop browser with dev tools available."
-    ],
-    "steps": [
-      "1. Inspect the page background, toolbar surface, and paddings with dev tools.",
-      "2. Check the toolbar's position against the top of the page and the table against the side edges.",
-      "3. Compare the title's left edge and the action cluster's right edge with the leftmost/rightmost data-cell positions.",
-      "4. Check the line between the toolbar and the headers, the date-range picker's dropdown arrow size, the table corners, and the outermost cell paddings."
-    ],
-    "expected": [
-      "1. The page has no padding; the page background is the standard blue-grey (#f9fafb in light mode).",
-      "2. The toolbar surface is white (#ffffff); its padding is 32px top, 24px bottom, and 2rem left and right; it touches the top of the page with no gap, and the table reaches the left and right edges next to the side navigation.",
-      "3. The left edge of the title and the right edge of the action cluster line up with the leftmost and rightmost data-cell positions.",
-      "4. A 1px horizontal line in the standard table-header border color separates the toolbar from the column headers.",
-      "5. The date-range picker's dropdown arrow is 24px, the same size as the other filter dropdown arrows.",
-      "6. The table has no rounded corners; the leftmost cell (header, body, totals) has 2rem left padding and the rightmost cell 2rem right padding.",
-      "7. When the table content does not fill the viewport, the blue-grey page background shows through below the table — no white strip."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17",
-    "viu_status": "VIU-Pending",
-    "notes": "Technician Efficiency is the suite's visual reference (Story 20 context note) — compare side-by-side at VIU if in doubt.",
-    "api_related": false
-  },
-  {
-    "id": "SBC-VIS-02",
-    "area": "SBC — Visual Conformance",
-    "title": "Row surfaces alternate by tree level: white header/customer/totals rows, blue-grey asset/invoice rows, pinned Subtotal matching its row",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. You are on the report in light mode with a customer expanded down to invoice rows."
-    ],
-    "steps": [
-      "1. Inspect the background of the header cells, a customer row, an asset row, an invoice row, and the totals row.",
-      "2. Check the pinned Subtotal cell's background on each row type.",
-      "3. Check the tree indentation levels."
-    ],
-    "expected": [
-      "1. Column-header cells and customer summary rows use the white surface (#ffffff).",
-      "2. Asset rows and invoice rows use the blue-grey background (#f9fafb).",
-      "3. The totals row uses the white surface with a top border and bold text (white on purpose, matching Technician Efficiency).",
-      "4. The pinned Subtotal cell on any row uses that row's own background — never a contrasting strip.",
-      "5. The three tree levels show by indentation: customer at the base, asset rows one level in (chevron and vehicle icon sit in from the customer), invoice rows one level deeper."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBC-VIS-03",
-    "area": "SBC — Visual Conformance",
-    "title": "Dark mode swaps every surface for its dark equivalent while the PDF always renders in light-mode colors",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. You can switch the application to dark mode."
-    ],
-    "steps": [
-      "1. Switch to dark mode and review the page background, toolbar, header cells, customer rows, asset/invoice rows, and totals row.",
-      "2. While still in dark mode, download the PDF and open it."
-    ],
-    "expected": [
-      "1. In dark mode every visual rule applies with the dark equivalent of each color (dark background, dark surfaces).",
-      "2. The PDF export always renders in light-mode colors regardless of the user's app mode."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 20 S20-R18",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBC-MOB-01",
-    "area": "SBC — Mobile",
-    "title": "On a phone every toolbar control works on touch and below 1024px the toolbar splits into two rows",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. You open the report on a phone-sized viewport (real device or browser device emulation)."
-    ],
-    "steps": [
-      "1. Try each toolbar control by touch: date range, Product Type, the Customer filter, location, the overflow menu, and the column selector.",
-      "2. At a width below 1024px, look at the toolbar rows.",
-      "3. Widen the window to 1024px or more and look again."
-    ],
-    "expected": [
-      "1. Every toolbar control is visible and works on touch.",
-      "2. Below 1024px the toolbar uses two rows: the action controls (overflow menu and column selector) on the first row, and the filter dropdowns on the second row, stacked at full width.",
-      "3. At 1024px and above the toolbar uses the desktop single-row layout."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 21 S21-R1; S21-R2; S21-R3",
-    "viu_status": "VIU-Pending",
-    "notes": "A mobile-optimized layout is out of scope (§2) — the dense table itself is not redesigned; only control usability is asserted.",
-    "api_related": false
-  },
-  {
-    "id": "SBC-MOB-02",
-    "area": "SBC — Mobile",
-    "title": "On touch the table scrolls sideways with the Subtotal pinned, chevrons toggle, and invoice links open in the same tab",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. You are on the report on a phone-sized viewport with data."
-    ],
-    "steps": [
-      "1. Swipe the table sideways to reach the far columns.",
-      "2. Tap a customer chevron and an asset chevron.",
-      "3. Tap an invoice number link."
-    ],
-    "expected": [
-      "1. The data table scrolls sideways to show all columns, and the pinned Subtotal column stays visible during that scroll.",
-      "2. The chevron expand and collapse control on each row works on touch.",
-      "3. The invoice number link opens the invoice in the same tab, the same as on desktop."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 21 S21-R4; S21-R5; S21-R6",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBC-API-01",
-    "area": "SBC — API",
-    "title": "A customer's asset and invoice rows are fetched from the server only on first expand, and expand-all fetches at most one request per visible customer",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. You are on the report with several customers, with the browser's network activity panel open."
-    ],
-    "steps": [
-      "1. Load the report and note the requests made for the summary rows.",
-      "2. Expand one customer for the first time and watch the network panel.",
-      "3. Collapse and re-expand the same customer without changing filters.",
-      "4. Use the header chevron's expand-all and count the drill-down requests."
-    ],
-    "expected": [
-      "1. Customer summary rows load WITHOUT the asset/invoice detail — the drill-down data is not preloaded.",
-      "2. The first expand of a customer triggers a server fetch for that customer's asset and invoice rows.",
-      "3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R14; S8-R16",
-    "viu_status": "VIU-Pending",
-    "notes": "The spec defines no REST contract — observe the browser's real requests; do NOT assume endpoint shapes. BUILD-DELTA: lazy drill-down is the 2026-07-16 committed server-side target (spec ahead of code by design) — the current build may still preload client-side at VIU.",
-    "api_related": true
-  },
-  {
-    "id": "SBC-API-02",
-    "area": "SBC — API",
-    "title": "Sorting is applied on the server: a header click re-fetches the customer rows ordered by that column as a fresh first page",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. Enough customers exist to span more than one page; the browser's network panel is open."
-    ],
-    "steps": [
-      "1. Click a column header and watch the network panel.",
-      "2. Compare the returned first page with the previous page contents."
-    ],
-    "expected": [
-      "1. Clicking a column header issues a server request that returns the customer rows ordered by that column.",
-      "2. The full filtered set is re-ordered and re-paginated on the server — the response is the first page of results in the new order, so page membership can change.",
-      "3. The ordering is not done by re-shuffling rows already in the browser."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R8; S10-R8b",
-    "viu_status": "VIU-Pending",
-    "notes": "Generic wording on purpose — no endpoint invented. BUILD-DELTA: server-side sort is the 2026-07-16 committed target.",
-    "api_related": true
-  },
-  {
-    "id": "SBC-API-03",
-    "area": "SBC — API",
-    "title": "The Customer filter's type-ahead fetches matching customers from the server per query instead of loading the full list up front",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. You are on the report with the browser's network panel open."
-    ],
-    "steps": [
-      "1. Open the Customer filter WITHOUT typing and check whether a full customer list was downloaded.",
-      "2. Type a query and watch the network panel.",
-      "3. Change the query and watch again."
-    ],
-    "expected": [
-      "1. The dropdown does not load the full customer list into the browser up front.",
-      "2. As you type, the browser fetches matching customers from the server — case-insensitive \"contains\" matching on the name, scoped to the active date range, Product Type, and location — and lists the returned customers.",
-      "3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R2; S18-R4",
-    "viu_status": "VIU-Pending",
-    "notes": "Verify the flag-vs-enumeration point by observing what a filter change/restore sends, not by reading source. BUILD-DELTA: server-backed type-ahead is the 2026-07-21 committed target.",
-    "api_related": true
-  },
-  {
-    "id": "SBC-API-04",
-    "area": "SBC — API",
-    "title": "Customer rows are server-paginated and the totals row is server-computed over the full filtered set",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. Enough customers exist to span more than one page; the browser's network panel is open."
-    ],
-    "steps": [
-      "1. Load the report and inspect the summary-row response and the totals values.",
-      "2. Change the Customer filter selection and watch the requests.",
-      "3. Move between pages and watch the totals."
-    ],
-    "expected": [
-      "1. Customer rows arrive page by page from the server (server-paginated), not as one full client-side list.",
-      "2. Changing the Customer selection re-fetches the matching customers as a fresh first page.",
-      "3. The totals are computed on the server over the full set of matching customers — they arrive with the data and do not change as you page."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R6; S18-R11",
-    "viu_status": "VIU-Pending",
-    "notes": "BUILD-DELTA: server pagination/totals are the 2026-07-16 committed target (spec ahead of code by design).",
-    "api_related": true
-  },
-  {
-    "id": "SBC-API-05",
-    "area": "SBC — API",
-    "title": "Exports are generated on the server and the 10,000-row cap is counted server-side before any file is produced",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Sales By Customer report View permission.",
-    "preconditions": [
-      "1. The browser's network panel is open; an over-cap filter combination is available if the environment allows (see SBC-EXP-14)."
-    ],
-    "steps": [
-      "1. Trigger \"Download (CSV)\" and \"Download (PDF)\" and observe where the file content comes from.",
-      "2. If an over-cap set is available, trigger an export and observe the server's refusal."
-    ],
-    "expected": [
-      "1. The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort — not assembled from the rows already loaded in the browser.",
-      "2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download — the count the cap checks is the count the file would contain, against the same filters and sort as the screen."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbc-sales-by-customer.md Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22; Story 16 S16-R6",
-    "viu_status": "VIU-Pending",
-    "notes": "No endpoint or status code is pinned by the spec — record what is actually observed. BUILD-DELTA: server-side exports (2026-07-16) and the cap (2026-07-21) are committed targets ahead of code.",
-    "api_related": true
-  }
+ {
+  "id": "SBC-EMPTY-01",
+  "area": "SBC — Empty & Edge States",
+  "title": "Empty state shows in the table body; toolbar interactive; kept selection returns",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You are on the report with data on screen."
+  ],
+  "steps": [
+   "1. Set a date range that contains no invoices (for example a Custom range over a quiet week far back).",
+   "2. Read the table body and try each toolbar control.",
+   "3. Also provoke the empty state via Product Type and via a location with no data, and re-check.",
+   "4. Look at the table header row's chevron.",
+   "5. Narrow the Customer filter to specific customers, change the date range so none of them have data, read the table and the filter, then change the range back."
+  ],
+  "expected": [
+   "1. The table body shows the message \"No sales data found for the selected filters.\" where customer rows would appear — not in the toolbar, the totals row, or a modal.",
+   "2. The toolbar stays visible and interactive (all filters including the Customer filter, and the action controls), so you can adjust filters without leaving the page.",
+   "3. The same empty state appears whichever filter caused it (date range, Product Type, or location).",
+   "4. The header-row chevron is hidden when the table has no visible rows.",
+   "5. With a narrowed customer selection and no data, the empty state shows but the selection is KEPT (not cleared) — when the filters change back, the selected customers reappear."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EMPTYSEL): absorbed SBC-EMPTY-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "api_related": false
+ },
+ {
+  "id": "SBC-EMPTY-02",
+  "area": "SBC — Empty & Edge States",
+  "title": "The empty-state message never appears while the table is still loading",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You are on the report; a slow network helps (throttle via browser dev tools if needed)."
+  ],
+  "steps": [
+   "1. Change a filter and watch the table area during the load.",
+   "2. Watch what appears once loading finishes with zero customers."
+  ],
+  "expected": [
+   "1. While the table is loading, the empty-state message is NOT shown (the loading state is shown instead).",
+   "2. The message appears only after the table finishes its initial loading and shows zero customers."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 17 S17-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-EMPTY-03",
+  "area": "SBC — Empty & Edge States",
+  "title": "A narrowed customer selection with no data shows the empty state but the selection is kept and the customers reappear",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. The Customer filter is narrowed to specific customers who have data in the current range but none in an adjacent range."
+  ],
+  "steps": [
+   "1. Change the date range so that none of the selected customers have data.",
+   "2. Read the table and the Customer filter.",
+   "3. Change the range back."
+  ],
+  "expected": [
+   "1. The empty-state message is shown.",
+   "2. The Customer filter selection is kept (not cleared).",
+   "3. When the filters change back to a range where the selected customers have data, they reappear."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 17 S17-E1",
+  "viu_status": "Retired 2026-07-28 (merged into SBC-EMPTY-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-EMPTY-04",
+  "area": "SBC — Empty & Edge States",
+  "title": "A failed data fetch shows the fetching-error toast which auto-fades after 5 seconds",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You can interrupt the network (browser dev tools offline mode)."
+  ],
+  "steps": [
+   "1. Go offline, then open the report (or change a filter to force a re-fetch).",
+   "2. Read the toast and time how long it stays."
+  ],
+  "expected": [
+   "1. An error toast is shown: \"An error occurred while fetching the report data.\"",
+   "2. The toast auto-fades after 5 seconds."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md §7 User Feedback Summary",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-VIS-01",
+  "area": "SBC — Visual Conformance",
+  "title": "Page and toolbar match the suite theme: paddings, surfaces, alignment, separator, arrow size and square corners",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You are on the report in light mode on a desktop browser with dev tools available."
+  ],
+  "steps": [
+   "1. Inspect the page background, toolbar surface, and paddings with dev tools.",
+   "2. Check the toolbar's position against the top of the page and the table against the side edges.",
+   "3. Compare the title's left edge and the action cluster's right edge with the leftmost/rightmost data-cell positions.",
+   "4. Check the line between the toolbar and the headers, the date-range picker's dropdown arrow size, the table corners, and the outermost cell paddings."
+  ],
+  "expected": [
+   "1. The page has no padding; the page background is the standard blue-grey (#f9fafb in light mode).",
+   "2. The toolbar surface is white (#ffffff); its padding is 32px top, 24px bottom, and 2rem left and right; it touches the top of the page with no gap, and the table reaches the left and right edges next to the side navigation.",
+   "3. The left edge of the title and the right edge of the action cluster line up with the leftmost and rightmost data-cell positions.",
+   "4. A 1px horizontal line in the standard table-header border color separates the toolbar from the column headers.",
+   "5. The date-range picker's dropdown arrow is 24px, the same size as the other filter dropdown arrows.",
+   "6. The table has no rounded corners; the leftmost cell (header, body, totals) has 2rem left padding and the rightmost cell 2rem right padding.",
+   "7. When the table content does not fill the viewport, the blue-grey page background shows through below the table — no white strip."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17",
+  "viu_status": "VIU-Pending",
+  "notes": "Technician Efficiency is the suite's visual reference (Story 20 context note) — compare side-by-side at VIU if in doubt.",
+  "api_related": false
+ },
+ {
+  "id": "SBC-VIS-02",
+  "area": "SBC — Visual Conformance",
+  "title": "Row surfaces alternate by tree level: white header/customer/totals rows, blue-grey asset/invoice rows, pinned Subtotal matching its row",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You are on the report in light mode with a customer expanded down to invoice rows."
+  ],
+  "steps": [
+   "1. Inspect the background of the header cells, a customer row, an asset row, an invoice row, and the totals row.",
+   "2. Check the pinned Subtotal cell's background on each row type.",
+   "3. Check the tree indentation levels."
+  ],
+  "expected": [
+   "1. Column-header cells and customer summary rows use the white surface (#ffffff).",
+   "2. Asset rows and invoice rows use the blue-grey background (#f9fafb).",
+   "3. The totals row uses the white surface with a top border and bold text (white on purpose, matching Technician Efficiency).",
+   "4. The pinned Subtotal cell on any row uses that row's own background — never a contrasting strip.",
+   "5. The three tree levels show by indentation: customer at the base, asset rows one level in (chevron and vehicle icon sit in from the customer), invoice rows one level deeper."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-VIS-03",
+  "area": "SBC — Visual Conformance",
+  "title": "Dark mode swaps every surface for its dark equivalent while the PDF always renders in light-mode colors",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You can switch the application to dark mode."
+  ],
+  "steps": [
+   "1. Switch to dark mode and review the page background, toolbar, header cells, customer rows, asset/invoice rows, and totals row.",
+   "2. While still in dark mode, download the PDF and open it."
+  ],
+  "expected": [
+   "1. In dark mode every visual rule applies with the dark equivalent of each color (dark background, dark surfaces).",
+   "2. The PDF export always renders in light-mode colors regardless of the user's app mode."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 20 S20-R18",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-MOB-01",
+  "area": "SBC — Mobile",
+  "title": "On a phone every toolbar control works on touch and below 1024px the toolbar splits into two rows",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You open the report on a phone-sized viewport (real device or browser device emulation)."
+  ],
+  "steps": [
+   "1. Try each toolbar control by touch: date range, Product Type, the Customer filter, location, the overflow menu, and the column selector.",
+   "2. At a width below 1024px, look at the toolbar rows.",
+   "3. Widen the window to 1024px or more and look again."
+  ],
+  "expected": [
+   "1. Every toolbar control is visible and works on touch.",
+   "2. Below 1024px the toolbar uses two rows: the action controls (overflow menu and column selector) on the first row, and the filter dropdowns on the second row, stacked at full width.",
+   "3. At 1024px and above the toolbar uses the desktop single-row layout."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 21 S21-R1; S21-R2; S21-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "A mobile-optimized layout is out of scope (§2) — the dense table itself is not redesigned; only control usability is asserted.",
+  "api_related": false
+ },
+ {
+  "id": "SBC-MOB-02",
+  "area": "SBC — Mobile",
+  "title": "On touch the table scrolls sideways with the Subtotal pinned, chevrons toggle, and invoice links open in the same tab",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You are on the report on a phone-sized viewport with data."
+  ],
+  "steps": [
+   "1. Swipe the table sideways to reach the far columns.",
+   "2. Tap a customer chevron and an asset chevron.",
+   "3. Tap an invoice number link."
+  ],
+  "expected": [
+   "1. The data table scrolls sideways to show all columns, and the pinned Subtotal column stays visible during that scroll.",
+   "2. The chevron expand and collapse control on each row works on touch.",
+   "3. The invoice number link opens the invoice in the same tab, the same as on desktop."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 21 S21-R4; S21-R5; S21-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-API-01",
+  "area": "SBC — API",
+  "title": "A customer's asset and invoice rows are fetched from the server only on first expand, and expand-all fetches at most one request per visible customer",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You are on the report with several customers, with the browser's network activity panel open."
+  ],
+  "steps": [
+   "1. Load the report and note the requests made for the summary rows.",
+   "2. Expand one customer for the first time and watch the network panel.",
+   "3. Collapse and re-expand the same customer without changing filters.",
+   "4. Use the header chevron's expand-all and count the drill-down requests."
+  ],
+  "expected": [
+   "1. Customer summary rows load WITHOUT the asset/invoice detail — the drill-down data is not preloaded.",
+   "2. The first expand of a customer triggers a server fetch for that customer's asset and invoice rows.",
+   "3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R14; S8-R16",
+  "viu_status": "VIU-Pending",
+  "notes": "The spec defines no REST contract — observe the browser's real requests; do NOT assume endpoint shapes. BUILD-DELTA: lazy drill-down is the 2026-07-16 committed server-side target (spec ahead of code by design) — the current build may still preload client-side at VIU.",
+  "api_related": true
+ },
+ {
+  "id": "SBC-API-02",
+  "area": "SBC — API",
+  "title": "Sorting is applied on the server: a header click re-fetches the customer rows ordered by that column as a fresh first page",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. Enough customers exist to span more than one page; the browser's network panel is open."
+  ],
+  "steps": [
+   "1. Click a column header and watch the network panel.",
+   "2. Compare the returned first page with the previous page contents.",
+   "3. Optional (API tooling): repeat the request with a made-up sort column name and read the response."
+  ],
+  "expected": [
+   "1. Clicking a column header issues a server request that returns the customer rows ordered by that column.",
+   "2. The full filtered set is re-ordered and re-paginated on the server — the response is the first page of results in the new order, so page membership can change.",
+   "3. The ordering is not done by re-shuffling rows already in the browser.",
+   "4. A sort request naming a column the report does not offer is safely refused or ignored — never an error page or a crash; sorting works only on the report's own columns."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist)",
+  "viu_status": "VIU-Pending",
+  "notes": "Generic wording on purpose — no endpoint invented. BUILD-DELTA: server-side sort is the 2026-07-16 committed target.",
+  "api_related": true
+ },
+ {
+  "id": "SBC-API-03",
+  "area": "SBC — API",
+  "title": "The Customer filter's type-ahead fetches matching customers from the server per query instead of loading the full list up front",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You are on the report with the browser's network panel open."
+  ],
+  "steps": [
+   "1. Open the Customer filter WITHOUT typing and check whether a full customer list was downloaded.",
+   "2. Type a query and watch the network panel.",
+   "3. Change the query and watch again."
+  ],
+  "expected": [
+   "1. The dropdown does not load the full customer list into the browser up front.",
+   "2. As you type, the browser fetches matching customers from the server — case-insensitive \"contains\" matching on the name, scoped to the active date range, Product Type, and location — and lists the returned customers.",
+   "3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R2; S18-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "Verify the flag-vs-enumeration point by observing what a filter change/restore sends, not by reading source. BUILD-DELTA: server-backed type-ahead is the 2026-07-21 committed target.",
+  "api_related": true
+ },
+ {
+  "id": "SBC-API-04",
+  "area": "SBC — API",
+  "title": "Customer rows are server-paginated and the totals row is server-computed over the full filtered set",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. Enough customers exist to span more than one page; the browser's network panel is open."
+  ],
+  "steps": [
+   "1. Load the report and inspect the summary-row response and the totals values.",
+   "2. Change the Customer filter selection and watch the requests.",
+   "3. Move between pages and watch the totals."
+  ],
+  "expected": [
+   "1. Customer rows arrive page by page from the server (server-paginated), not as one full client-side list.",
+   "2. Changing the Customer selection re-fetches the matching customers as a fresh first page.",
+   "3. The totals are computed on the server over the full set of matching customers — they arrive with the data and do not change as you page."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R6; S18-R11",
+  "viu_status": "VIU-Pending",
+  "notes": "BUILD-DELTA: server pagination/totals are the 2026-07-16 committed target (spec ahead of code by design).",
+  "api_related": true
+ },
+ {
+  "id": "SBC-API-05",
+  "area": "SBC — API",
+  "title": "Exports are generated on the server and the 10,000-row cap is counted server-side before any file is produced",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. The browser's network panel is open; an over-cap filter combination is available if the environment allows (see SBC-EXP-14)."
+  ],
+  "steps": [
+   "1. Trigger \"Download (CSV)\" and \"Download (PDF)\" and observe where the file content comes from.",
+   "2. If an over-cap set is available, trigger an export and observe the server's refusal."
+  ],
+  "expected": [
+   "1. The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort — not assembled from the rows already loaded in the browser.",
+   "2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download — the count the cap checks is the count the file would contain, against the same filters and sort as the screen."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22; Story 16 S16-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "No endpoint or status code is pinned by the spec — record what is actually observed. BUILD-DELTA: server-side exports (2026-07-16) and the cap (2026-07-21) are committed targets ahead of code.",
+  "api_related": true
+ }
 ]

@@ -1,0 +1,27 @@
+{
+ "id": "SBR-STAT-02",
+ "area": "SBR — Invoice Status Filter",
+ "title": "Status filtering matches on the mapped display value: five system states collapse into Paid, Partially Paid and Unpaid",
+ "priority": "Critical",
+ "type": "Functional",
+ "permissions_required": "Reports/Performance access plus ability to take payments for seeding.",
+ "preconditions": [
+  "1. ZZAUTOTEST invoices exist under one rep covering the payment situations: fully paid; overpaid; prepaid with zero balance owed; prepaid with a balance still owed; partially paid; unpaid."
+ ],
+ "steps": [
+  "1. Filter to \"Paid\" and read which invoices appear.",
+  "2. Filter to \"Partially Paid\" and read again.",
+  "3. Filter to \"Unpaid\" and read again."
+ ],
+ "expected": [
+  "1. \"Paid\" includes the paid, the overpaid, AND the prepaid-with-zero-balance invoices.",
+  "2. \"Partially Paid\" includes the partially-paid AND the prepaid-with-a-balance-owed invoices.",
+  "3. \"Unpaid\" includes only the unpaid invoice.",
+  "4. The filter matches on the mapped display value, the same mapping the status badge uses — prepaid is the only state whose display value depends on the balance owed."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbr-sales-by-representative.md Story 4 S4-R4; §3 payment-status mapping",
+ "viu_status": "VIU-Pending",
+ "notes": "The 5→3 mapping is the 2026-07-21 spec round's single source of truth for both the filter and the badge. A zero-total invoice with no payment maps to Unpaid; a negative-total invoice with no balance owed maps to Paid (§3) — seed if producible.",
+ "api_related": false
+}

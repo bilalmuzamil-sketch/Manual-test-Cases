@@ -1,0 +1,27 @@
+{
+ "id": "IV-EXP-07",
+ "area": "IV — Exports",
+ "title": "An over-cap filtered set produces no file and shows the too-large-to-export message (exact cap value pending owner confirmation)",
+ "priority": "High",
+ "type": "Negative",
+ "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set)."
+ ],
+ "steps": [
+  "1. Set the filters so the filtered set exceeds the export row cap.",
+  "2. Request \"Download (PDF)\" and read what happens.",
+  "3. Request \"Download (CSV)\" and read what happens."
+ ],
+ "expected": [
+  "1. Neither the PDF nor the CSV is produced.",
+  "2. The user sees the message: \"This report is too large to export. Narrow the date range or filters, then try again.\" (a blocking notification; no file).",
+  "3. After narrowing the filters below the cap, the download works again."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "specs/inventory-value.md Story 10 S10-R12; §7 User Feedback Summary",
+ "viu_status": "VIU-Pending",
+ "notes": "OPEN QUESTION / VIU-CONFIRM: the spec's 10,000-row cap is a PROPOSED default — the spec itself says to confirm the exact suite-standard value with the owner before dev. Do NOT assert a specific number when executing; verify the capped BEHAVIOR and the verbatim message, and record the actual cap value observed for the owner.",
+ "api_related": false
+}

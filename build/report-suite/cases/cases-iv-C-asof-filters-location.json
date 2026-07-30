@@ -472,5 +472,33 @@
   "viu_status": "Retired 2026-07-28 (merged into IV-NAV-06 per user-authorized consolidation; delete_case authorized 2026-07-28)",
   "notes": "",
   "api_related": false
+ },
+ {
+  "id": "IV-DATE-09",
+  "area": "IV — As-of Date & Snapshots",
+  "title": "A recorded day keeps its category and vendor names after a rename or delete",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite) plus rights to manage part categories and vendors.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A recorded (overnight-captured) day exists that includes ZZAUTOTEST parts under a known category and a known vendor."
+  ],
+  "steps": [
+   "1. Rename that part category (and/or rename or delete the vendor) in administration.",
+   "2. Set the report's date range so it shows the earlier recorded day (the \"As of\" indicator names that earlier date).",
+   "3. Read the affected rows' Category and Vendor cells on the recorded day.",
+   "4. Move the range back to include today (live view) and re-read a renamed category's rows."
+  ],
+  "expected": [
+   "1. The earlier recorded day still shows the category and vendor names AS THEY WERE RECORDED that day — a recorded day equals what the live report showed that day, even after the rename/delete.",
+   "2. The rename/delete causes no blank Category/Vendor cells and no dropped rows on the recorded day.",
+   "3. The live view (window reaching today) shows the NEW name for the renamed category."
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8678 (specs/inventory-value.md Story 11 S11-R2; Story 5 S5-R4; tech-plan-2026-07-29 B4.1 — names stored with the recorded rows on purpose)",
+  "viu_status": "VIU-Pending",
+  "notes": "The recorded rows carry their own copies of the category/vendor names (engineering plan B4.1: denormalized on purpose — survive category/vendor rename/delete on as-of replay), so later renames/deletes cannot corrupt history. Derived from S11-R2 (a recorded day equals what the live report showed that day); confirm live.",
+  "api_related": false
  }
 ]

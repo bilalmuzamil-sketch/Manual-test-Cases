@@ -1,0 +1,25 @@
+{
+ "id": "SBC-API-02",
+ "area": "SBC — API",
+ "title": "Sorting is applied on the server: a header click re-fetches the customer rows ordered by that column as a fresh first page",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Sales By Customer report View permission.",
+ "preconditions": [
+  "1. Enough customers exist to span more than one page; the browser's network panel is open."
+ ],
+ "steps": [
+  "1. Click a column header and watch the network panel.",
+  "2. Compare the returned first page with the previous page contents."
+ ],
+ "expected": [
+  "1. Clicking a column header issues a server request that returns the customer rows ordered by that column.",
+  "2. The full filtered set is re-ordered and re-paginated on the server — the response is the first page of results in the new order, so page membership can change.",
+  "3. The ordering is not done by re-shuffling rows already in the browser."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R8; S10-R8b",
+ "viu_status": "VIU-Pending",
+ "notes": "Generic wording on purpose — no endpoint invented. BUILD-DELTA: server-side sort is the 2026-07-16 committed target.",
+ "api_related": true
+}

@@ -373,7 +373,7 @@
  {
   "id": "IV-EXP-07",
   "area": "IV — Exports",
-  "title": "An over-cap filtered set produces no file and shows the too-large-to-export message (exact cap value pending owner confirmation)",
+  "title": "An over-cap filtered set produces no file and shows the too-large-to-export message",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -394,7 +394,7 @@
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "specs/inventory-value.md Story 10 S10-R12; §7 User Feedback Summary",
   "viu_status": "VIU-Pending",
-  "notes": "OPEN QUESTION / VIU-CONFIRM: the spec's 10,000-row cap is a PROPOSED default — the spec itself says to confirm the exact suite-standard value with the owner before dev. Do NOT assert a specific number when executing; verify the capped BEHAVIOR and the verbatim message, and record the actual cap value observed for the owner.",
+  "notes": "CAP VALUE: the spec's 10,000-row cap was written as a proposed default; the engineering plan (2026-07-21, A3/FR-F4) records 10,000 as the single suite-wide export cap \"locked by Chris 07-21\". Verify the capped BEHAVIOR and the verbatim message live, and record the actual cap value observed. TECH-PLAN EDIT 2026-07-30 (title trimmed — the pending-confirmation clause is resolved by the plan; still VIU-confirm).",
   "api_related": false
  },
  {

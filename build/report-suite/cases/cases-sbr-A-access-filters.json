@@ -362,7 +362,8 @@
   "type": "Functional",
   "permissions_required": "Reports/Performance access plus ability to take payments for seeding.",
   "preconditions": [
-   "1. ZZAUTOTEST invoices exist under one rep covering the payment situations: fully paid; overpaid; prepaid with zero balance owed; prepaid with a balance still owed; partially paid; unpaid."
+   "1. ZZAUTOTEST invoices exist under one rep covering the payment situations: fully paid; overpaid; prepaid with zero balance owed; prepaid with a balance still owed; partially paid; unpaid.",
+   "2. Seed the prepaid-with-zero-balance situation the realistic way: the customer pays a DEPOSIT up front that fully covers the work, so the invoice is created with nothing left to pay."
   ],
   "steps": [
    "1. Filter to \"Paid\" and read which invoices appear.",
@@ -378,7 +379,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "specs/sbr-sales-by-representative.md Story 4 S4-R4; §3 payment-status mapping",
   "viu_status": "VIU-Pending",
-  "notes": "The 5→3 mapping is the 2026-07-21 spec round's single source of truth for both the filter and the badge. A zero-total invoice with no payment maps to Unpaid; a negative-total invoice with no balance owed maps to Paid (§3) — seed if producible.",
+  "notes": "The 5→3 mapping is the 2026-07-21 spec round's single source of truth for both the filter and the badge. A zero-total invoice with no payment maps to Unpaid; a negative-total invoice with no balance owed maps to Paid (§3) — seed if producible. TECH-PLAN NOTE 2026-07-30: the balance-owed math behind \"prepaid\" is the bug-prone spot — deposits are handled specially in the app's payment totals, so a deposit-covered prepaid invoice wrongly showing \"Partially Paid\" is exactly the failure to watch for (engineering plan B6.2).",
   "api_related": false
  },
  {

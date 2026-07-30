@@ -1,0 +1,28 @@
+{
+ "id": "PV-CALC-07",
+ "area": "PV — Columns & Calculations",
+ "title": "Last Sale shows whole days since the most recent sale over ALL-TIME history, scoped to the selected locations",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+ "preconditions": [
+  "1. A part whose most recent sale was N days ago, OUTSIDE the currently selected date range (e.g. range = This Month, last sale 42 days ago).",
+  "2. The part still appears in the report (it has on-hand stock).",
+  "3. For the location check: the part's most recent sale at location A is more recent than at location B."
+ ],
+ "steps": [
+  "1. Read the part's Last Sale value with the narrow date range selected.",
+  "2. Switch the Location filter between location A and location B and re-read Last Sale."
+ ],
+ "expected": [
+  "1. Last Sale shows the whole days between today and the part's most recent sale measured over ALL-TIME history - it IGNORES the selected date range (e.g. '42 days' even though the range is This Month).",
+  "2. It IS scoped to the selected location(s): with only location B selected, Last Sale reflects B's own most recent sale.",
+  "3. Format is 'N days' (e.g. 42 days); a part with no recorded sale ever shows —.",
+  "4. For a catalogue part, the anchor is its most recent vendor-sourced invoiced/paid request."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/parts-velocity.md S5-R4 (Last Sale); §4; S5-R5",
+ "viu_status": "VIU-Pending",
+ "notes": "This all-time lookback is a per-part calculation, unrelated to the absent 'All Time' date range (§2).",
+ "api_related": false
+}

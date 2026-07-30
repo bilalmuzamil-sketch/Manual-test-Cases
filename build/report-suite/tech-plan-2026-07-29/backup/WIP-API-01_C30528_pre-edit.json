@@ -1,0 +1,26 @@
+{
+ "id": "WIP-API-01",
+ "area": "WIP — API",
+ "title": "Nightly snapshot: once per day the system records one row per then-open work order, per calendar date",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows — this is a backend capture behavior that runs without a signed-in user.",
+ "preconditions": [
+  "1. Open work orders exist across the organization on the capture date.",
+  "2. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers)."
+ ],
+ "steps": [
+  "1. Note the set of open work orders before the nightly capture runs.",
+  "2. After the capture, inspect the stored snapshot rows for that calendar date.",
+  "3. Let the capture run again the next day and inspect again."
+ ],
+ "expected": [
+  "1. Once per day the system records one row per then-open work order — one row per work order per calendar date.",
+  "2. The next day's capture adds a new row per open work order under the new date; a work order open on both days has one row for each date, never two rows for the same date."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "specs/wip-work-in-progress.md Story 11 S11-R1",
+ "viu_status": "VIU-Pending",
+ "notes": "The spec defines job behavior only — NO endpoint or table name is specified and none is invented here. VIU-confirm with dev how to trigger/inspect the capture (schedule time, storage, any manual re-run).",
+ "api_related": true
+}
