@@ -1,5 +1,13 @@
 # Schedule — Tech-Plan Reconciliation Change List — 2026-07-29
 
+> **STATUS: EXECUTED 2026-07-30 (user-authorized "Push all three").** The §A push
+> queue is now LIVE in TestRail: 2 add_section (Cross-Module and Rewrite Regression
+> = 5408, API — Schedule = 5409) + 13 add_case (C38863–C38875) + 2 update_case
+> (C29940, C30044), ALL HTTP 200 + re-GET MATCH; nothing else written (no deletes,
+> no run writes). Live count under group 4254 = 190 == id-map (190/190 C-ids).
+> Audit: `testrail-execution-log-2026-07-30.md`. §C blocked items + HELD items
+> remain untouched.
+
 Plain summary: the engineering build plan for the Schedule rewrite was compared against
 all 177 Schedule test cases. Result: **13 new test cases** (staged locally), **2 small
 wording improvements** to existing cases, **14 internal caution notes** (nothing the

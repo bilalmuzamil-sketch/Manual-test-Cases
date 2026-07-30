@@ -5,9 +5,42 @@
 > (staging/QA access method, harness scripts, TestRail API patterns, the two process
 > docs) across all projects.
 
-## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-29)
+## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-30)
 
-### 0.0-TECHPLAN ENGINEERING TECH PLAN RECONCILED (2026-07-29, LATEST — LOCAL only, NO TestRail writes)
+### 0.0-TECHPLAN-EXECUTED TECH-PLAN PUSH EXECUTED (2026-07-30, LATEST — user-authorized TestRail writes DONE)
+
+**The §0.0-TECHPLAN push queue is now EXECUTED (user authorization "Push all three",
+2026-07-30): exactly 2 add_section + 13 add_case + 2 update_case per
+`tech-plan-2026-07-29/Schedule_TechPlan_ChangeList_2026-07-29.md` §A — ALL HTTP 200,
+ALL re-GET verified MATCH, 0 failures. Nothing else written: no deletes, no run
+writes (run 325/all runs untouched), no other cases/sections touched.**
+- **2 add_section** under group 4254: **Cross-Module and Rewrite Regression = 5408**,
+  **API — Schedule = 5409** (Rule 4 — the first API section/cases for Schedule).
+- **2 update_case** (pre-push get_case snapshots in
+  `tech-plan-2026-07-29/pre-push-snapshot/`; live titles confirmed unchanged):
+  SCH-WOL-05 = C29940 (added expected #3 — paged loading of the sidebar list is
+  expected, not a fault) + SCH-VIEW-03 = C30044 (added expected #4 — a user with no
+  technician record does not see 'My Shifts' at all).
+- **13 add_case** (all `custom_atmstatus:3`+`custom_automation_type:0`, VIU-Pending):
+  SCH-SPREAD-11 = **C38863** (sec 4263), SCH-DEL-10 = **C38864** (4276),
+  SCH-EDGE-07 = **C38865** / SCH-EDGE-08 = **C38866** (4280),
+  SCH-REG-01..05 = **C38867–C38871** (5408),
+  SCH-API-01..04 = **C38872–C38875** (5409).
+- **Live count under group 4254 subtree = 190** (paginated get_cases read-back) ==
+  the 190-row id-map. `testrail-id-map.csv` = **190/190 C-ids, 0 blanks** (177
+  re-merged + 13 new). Import regenerated over 190 (header byte-identical, 0
+  VIU/flag words, no dup titles/ids, 4 API cases in "API — Schedule").
+- **HELD/blocked items untouched** per the ChangeList: SCH-EVT-08 (C30615),
+  SCH-CAP-01..04 (C30030–C30033), SCH-MODAL-08 (C30015), SCH-EXP-01/02
+  (C38853/C38854), and all §C blocked-on-an-answer items (NQ-1..5, Q1/Q2/Q3).
+- Executor `exec_sync_techplan_2026-07-30.py`; audit
+  `tech-plan-2026-07-29/testrail-execution-log-2026-07-30.md`; ChangeList header =
+  EXECUTED.
+- **NEXT:** send NQ-1..5 with the open Q1/Q2/Q3 sheet to Branko/dev; live VIU of the
+  13 new + 2 edited cases when the QA branch exists (OQ-3) — SCH-REG-01..04 need the
+  CUTOVER build.
+
+### 0.0-TECHPLAN ENGINEERING TECH PLAN RECONCILED (2026-07-29 — push EXECUTED 2026-07-30, see §0.0-TECHPLAN-EXECUTED)
 
 **The engineering "Schedule Module Rewrite — Technical Implementation Plan" (user upload
 2026-07-29) was ingested VERBATIM + reconciled against the 177-case suite.** Sources of
