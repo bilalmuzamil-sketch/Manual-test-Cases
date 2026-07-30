@@ -101,6 +101,9 @@ project details ahead of time):** for each new project create a
 - `testrail-id-map.csv` — the internal-ID ↔ TestRail Case-ID map (Standing Rule 8).
 - Record the project's **canonical spec URL + PO name** (never mix PO attributions
   across projects).
+- The **ENGINEERING TECH PLAN is part of the required input set** (alongside
+  spec/designs/epic) — if the user has not provided it by project start (or when
+  authoring/VIU begins), **REMIND the user to supply it** (Standing Rule 30).
 Then add a **per-project CLAUDE.md entry** with a concise STATUS line that points at
 that project's `PROJECT-STATE.md` as the canonical resume doc. Per **Standing Rule
 11**, whenever a new/updated spec arrives OR a VIU is requested, ALWAYS ASK which
@@ -1412,6 +1415,21 @@ deliver the 7-tab management report.
     across the 2026-07-28/29 daily-limit hits — because every step was committed+pushed and
     state-saved, ZERO work was lost across the resets. Ties to Standing Rules 6/17/20 and the
     two-session shared-brain convention (CLAUDE.md + PROJECT-STATE.md are the resume anchors).
+30. **Tech plan is a standard project input — remind the user if missing (all projects).**
+    USER DIRECTIVE (2026-07-29, verbatim): "Also, going forward if I miss to provide you the
+    tech plan for the project, please remind me of that. Save it as a rule". Every project's
+    STANDARD INPUT SET includes the ENGINEERING TECH PLAN alongside the spec, designs, and
+    epic/tickets. If the tech plan has not been provided at project start — or at the latest
+    by the time authoring or a VIU pass begins — REMIND the user to supply it (do not
+    silently proceed without asking). Tech plans STRENGTHEN test cases: they reveal edge
+    cases, API contracts, and states/state machines the spec glosses over. But engineering
+    intent NEVER overrules product truth from the spec/PO — where a tech plan conflicts with
+    the spec/PO position, the conflict becomes a PO/dev QUESTION (Rules 7/11/15), never a
+    silent case change. Canonical example: the 2026-07-29 tech-plan reconciliations —
+    build/filters/tech-plan-2026-07-29/, build/report-suite/tech-plan-2026-07-29/,
+    build/schedule/tech-plan-2026-07-29/. Ties to Standing Rules 1 (complete inputs before
+    work), 11 (ask which process on new inputs), 17 (complete data in/out), and the
+    new-project onboarding convention (tech plan is part of the required input set).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
