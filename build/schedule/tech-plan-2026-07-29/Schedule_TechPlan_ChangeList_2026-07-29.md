@@ -76,3 +76,12 @@ byte-identical, 0 VIU/flag words, no dup titles/ids, API cases in "API — Sched
 `testrail-id-map.csv` (190 rows; 177 C-ids re-merged, 13 blank pending add_case).
 Rule-28 audit: 12 KEEP / 1 WEAK-KEEP / 0 CUT · 15/15 SENSIBLE · all traceable
 (RULE28-AUDIT-2026-07-29.md).
+
+---
+*Git provenance note (2026-07-29): Phase 1 = commit 229a601 (plan ingested verbatim);
+Phase 2 = 9d93c79 (TECH-PLAN-DELTAS); Phase 3 = 621d8d1 (13 new cases + 16 edits +
+question drafts + backups). The Phase-4 deliverables (this change list + xlsx,
+RULE28-AUDIT, regenerated import/id-map over 190, PROJECT-STATE §0.0-TECHPLAN) were
+swept into commit **02fdadb** by a concurrent worker's commit on the shared branch —
+the content is exactly as staged for Schedule Phase 4; only the commit message says
+"Report Suite".*
