@@ -133,9 +133,9 @@ QUESTIONS = [
         "If a user hides meetings from the view, do those hours stop counting?",
         "There is a display switch called \"Events\" that shows or hides meetings on the schedule. "
         "Meeting hours now count toward each day's busy bar. Your written description says only that "
-        "this switch \"shows non-WO event blocks on the grid\" - it does not say what should happen "
-        "to the counting when someone switches meetings off. So the busy bars could either shrink or "
-        "stay the same, and we cannot tell which is correct.",
+        "this switch shows or hides the meeting blocks on the schedule - it does not say what should "
+        "happen to the counting when someone switches meetings off. So the busy bars could either "
+        "shrink or stay the same, and we cannot tell which is correct.",
         "When a user hides meetings from the view, should those hours also come OUT of the day's "
         "busy bars, or should the bars keep counting them and only the meetings disappear from the "
         "screen?",
@@ -499,6 +499,7 @@ def main():
     qa.freeze_panes = "A4"
 
     wb.save(OUT)
+    write_md()
     print(f"WROTE {OUT}")
     print(f"  'Questions for PO'     : {len(QUESTIONS)} questions "
           f"(rows 4-{3 + len(QUESTIONS)}), 'Your answer' column blank")
