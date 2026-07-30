@@ -180,12 +180,11 @@ AND the current Confluence version before it goes out.
 
 ### Other QA-side follow-ups from the 2026-07-31 answers (not questions for this sheet)
 
-- **Week Export descoped.** Branko: "No. There is nothing about this in the PRD, not in the future requirements." → **SCH-EXP-01 ([C38853](https://shopview.testrail.io/index.php?/cases/view/38853)) is a retire candidate, HELD — AWAITING EXPLICIT USER AUTHORIZATION** (Rule 6). Nothing deleted. (SCH-EXP-02 / C38854 was already merged away + deleted in the 2026-07-31 consolidation.)
+- **Week Export descoped → RETIRED.** Branko: "No. There is nothing about this in the PRD, not in the future requirements." → **SCH-EXP-01 (C38853) was RETIRED + DELETED 2026-07-31, user-authorized** by a parallel pass: `delete_case`/38853 → HTTP 200, re-GET → HTTP 400 = verified gone; run 357 165 → 164 tests, 429 result records intact; section **5406 "Week Export and Printing" now empty but deliberately NOT deleted** (cleanup candidate). Active tally 165 → **164**. Audit: `week-export-retire-2026-07-31/`. (SCH-EXP-02 / C38854 was already merged away + deleted in the 2026-07-31 consolidation.)
 - **Cell menu, default hours, hover VIN** — all three confirmed our existing cases; no reader-facing question needed. Folded into `requirements.md` as `[PO 2026-07-31]` notes.
 - **Backend-coverage scope** (old 2026-07-27 Q7) — declined by Branko, **re-routed to engineering / the QA lead**, do not re-ask him. The tech plan IS the written backend description (17 endpoints + error contract); SCH-API-01..04 ([C38872](https://shopview.testrail.io/index.php?/cases/view/38872)–[C38875](https://shopview.testrail.io/index.php?/cases/view/38875)) already exist.
 - **Live verification still blocked** — Schedule has no QA branch/environment (OQ-3). Every case stays VIU-Pending; spec-, design- and PO-pinned all ≠ VIU-Verified (Rule 12).
 
-Verify the C-ids against `build/schedule/testrail-id-map.csv` before quoting them onward.
-⚠️ Known id-map gap 2026-07-31: **SCH-EXP-01 (C38853) is absent from `testrail-id-map.csv`**
-because its local body is flagged Retired, yet the TestRail case is **NOT deleted** (the retire
-is held). Quote C38853 from the execution log/manifest until the map is reconciled.
+Verify the C-ids against `build/schedule/testrail-id-map.csv` (**164 rows** after the Week Export
+retire) before quoting them onward. SCH-EXP-01 / C38853 is intentionally absent — it was deleted
+2026-07-31; see `week-export-retire-2026-07-31/`.

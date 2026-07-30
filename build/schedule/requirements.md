@@ -758,9 +758,11 @@ V1 scope.)*
 > even in this future-considerations list. Branko: "**No. There is nothing about this in the
 > PRD, not in the future requirements.**" Independently corroborated by a full-text scan of
 > Confluence v23: no export/print item in §6 Grid toolbar, §9 View options, or §15.
-> Consequence: **SCH-EXP-01 (C38853) is a retire candidate — held, AWAITING USER
-> AUTHORIZATION** (Rule 6; nothing deleted without it).
-> *Source: `branko-answers-2026-07-31/answers-ingested.md` Q3, 2026-07-31.*
+> Consequence: **SCH-EXP-01 (C38853) was RETIRED + DELETED 2026-07-31, user-authorized** —
+> `delete_case`/38853 → HTTP 200, re-GET → HTTP 400 = verified gone; run 357 165 → 164 tests,
+> 429 result records intact; section 5406 "Week Export and Printing" now empty but NOT deleted.
+> Active tally 165 → **164**. Audit: `week-export-retire-2026-07-31/`.
+> *Sources: `branko-answers-2026-07-31/answers-ingested.md` Q3 + `week-export-retire-2026-07-31/testrail-execution-log-2026-07-31.md`, 2026-07-31.*
 
 - **Technician availability and PTO.** Block out vacation, sick time, and training that
   are not Events, and have the spread step flow around them.
@@ -880,7 +882,7 @@ All six are marked inline as **`[PO 2026-07-31]`** notes. Verbatim source of rec
 |---|---|---|---|
 | Events consume capacity | **Yes** — "A 2-hour meeting consumes 2 hours of capacity"; counts toward capacity but **not** conflict-checked | §4.12 | **Reverses** his earlier "No" — newest-wins; capacity cases updated |
 | Shift-modal 'Reassign' button | **No button** — dragging only | §4.9 | Confirms our cases; **Jira SV-8695 is now stale** |
-| Printable / exportable week view | **Not in V1, not even in future considerations** | §15 | SCH-EXP-01 (C38853) = retire candidate, **awaiting user authorization** |
+| Printable / exportable week view | **Not in V1, not even in future considerations** | §15 | SCH-EXP-01 (C38853) **RETIRED + DELETED 2026-07-31**, user-authorized; active tally 165 → **164** |
 | Cell menu | **Left-click only** (no right-click); menu = **Create event**, **New work order** | §4.10, §7 | Confirms our cases |
 | Default working day | **7:00 AM – 7:00 PM** | §4.2 | Confirms our cases; design prototype's 8–5 is the outlier |
 | VIN on hover | **Always visible, regardless of the toggle** | §9, §4.13 | Confirms our cases; closes OQ-6 |

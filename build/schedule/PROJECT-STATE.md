@@ -9,8 +9,9 @@
 
 ### 0.0-SPEC-V23 `requirements.md` PROMOTED TO CONFLUENCE v23 + PO SHEET REVISED (2026-07-31, LATEST — read this first)
 
-**LOCAL DOC WORK ONLY — 0 case edits, 0 TestRail writes, 0 result writes. Tally UNCHANGED:
-165 ACTIVE, all VIU-Pending.**
+**LOCAL DOC WORK ONLY — 0 case edits, 0 TestRail writes, 0 result writes. Tally untouched by
+this pass; it is **164 ACTIVE**, all VIU-Pending (165 → 164 via the parallel Week Export retire,
+see below).**
 
 Closes two items that were left open by §0.0-BRANKO-ANSWERS (its OPEN items 10 and 6).
 
@@ -92,11 +93,23 @@ spec** (the "read `spec-current-2026-07-31/` instead" instruction in §0.0-BRANK
   "test case") across all 33 reader-facing surfaces. **PASSED**, and the same scanner was run
   over the `.md` reader-facing region (lines 22–139) — **PASSED**.
 
-**⚠️ STILL AWAITING YOUR AUTHORIZATION (unchanged): the SCH-EXP-01 (C38853) Week Export
-retire.** Branko descoped Week Export ("nothing about this in the PRD, not in the future
-requirements") and the Rule-28 audit rates it CUT, but **nothing has been deleted**. Retiring it
-is still the same 3 linked ops: `delete_case` C38853 + a decision on the then-empty section
-**5406 "Week Export and Printing"** + a **run-357 resync** (Rule 34).
+**✅ THE SCH-EXP-01 (C38853) WEEK EXPORT RETIRE IS DONE — executed by a PARALLEL pass, NOT by
+this one** (commit `ac089c0`, folder `week-export-retire-2026-07-31/`, user-authorized: "Retire
+from test cases and test run"). Verified from its execution log, not assumed: **1
+`delete_case`/38853 → HTTP 200, re-GET → HTTP 400 "not a valid test case" = gone**; run 357 165 →
+164 tests with set-diff of removed case_ids `{38853}` only and **429 → 429 result records
+intact**; live count under group 4254 165 → **164** == id-map == import rows. Section **5406
+"Week Export and Printing" is now EMPTY but deliberately NOT deleted** — an empty-section cleanup
+candidate for a later authorized pass. Local body kept + marked Retired with the ruling quoted
+(backup in that folder).
+
+> **Correction to this section as first written:** it said the retire was "still awaiting your
+> authorization" and the tally was 165. Both were **stale** — the parallel pass landed the
+> authorized retire while this doc pass was in flight. Facts above re-verified against
+> `week-export-retire-2026-07-31/testrail-execution-log-2026-07-31.md` (Rule 12: observed, not
+> assumed). **The earlier `branko-answers-2026-07-31/testrail-execution-log-2026-07-31.md`
+> "HELD" note is the EARLIER pass and is superseded** — read the `week-export-retire-…` log for
+> C38853's final state.
 
 **⚠️ Tell Branko/dev: Jira SV-8695 is now STALE versus spec v23.** The story text still lists a
 modal **Reassign** action, but Confluence **v23 (2026-07-30)** deleted "and Reassign to another
@@ -104,13 +117,10 @@ technician" from §4.9 and Branko answered "**B - No button**". Our cases are al
 (SCH-MODAL-08 = C30015 "Delete only"); **SV-8695 is the artefact that needs correcting** — we do
 not edit Jira ourselves.
 
-**⚠️ Minor id-map gap noticed, NOT fixed this pass (not my files):** `SCH-EXP-01` is **absent
-from `testrail-id-map.csv`** because its local case body is flagged `Retired`, yet the TestRail
-case **C38853 still exists** (the retire is held). Quote **C38853** from
-`quality-audit-2026-07-31/testrail-execution-log-2026-07-31.md` / the manifest until the map is
-reconciled. Its local `viu_status` string also reads "user-authorized retire", which does not
-match the execution log's "HELD for explicit user authorization" — worth a one-line correction
-when the case files are next touched.
+**(An earlier draft of this section flagged an "id-map gap" — `SCH-EXP-01` absent from
+`testrail-id-map.csv` while C38853 appeared to still exist. NOT a gap: the parallel retire had
+already deleted C38853 and regenerated the map to 164 with all C-ids re-merged, 0 blanks. Its
+local `viu_status` "user-authorized retire" is also correct. Nothing to fix.)**
 
 **Files changed this pass:** `requirements.md` (v18 → v23) ·
 `PO-Questions-Branko-Schedule-TechPlan_2026-07-30.md` + `.xlsx` (revised) ·

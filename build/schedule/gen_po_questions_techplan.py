@@ -292,12 +292,13 @@ QA_ROWS = [
         "Week Export DESCOPED by Branko 2026-07-31, VERBATIM: 'No. There is nothing about this in "
         "the PRD, not in the future requirements.' Independently corroborated by a full-text scan of "
         "Confluence v23 (no export/print item in 6 Grid toolbar, 9 View options, or 15 Future "
-        "considerations). NOT a question - a pending retire decision.",
-        "RETIRE CANDIDATE - HELD, AWAITING EXPLICIT USER AUTHORIZATION (Rule 6). Nothing deleted. "
-        "(SCH-EXP-02/C38854 was already merged away + deleted in the 2026-07-31 consolidation.) "
-        "Known id-map gap: C38853 is absent from testrail-id-map.csv because its local body is "
-        "flagged Retired while the TestRail case still exists - quote C38853 from the execution "
-        "log/manifest until the map is reconciled.",
+        "considerations). NOT a question - a closed retire decision.",
+        "RETIRED + DELETED 2026-07-31, user-authorized (executed by a parallel pass, folder "
+        "week-export-retire-2026-07-31): delete_case/38853 -> HTTP 200, re-GET -> HTTP 400 = "
+        "verified gone; run 357 165 -> 164 tests, 429 result records intact; section 5406 'Week "
+        "Export and Printing' now empty but deliberately NOT deleted (cleanup candidate). Active "
+        "tally 165 -> 164; id-map regenerated to 164, all C-ids re-merged. (SCH-EXP-02/C38854 was "
+        "already merged away + deleted in the 2026-07-31 consolidation.)",
     ),
 ]
 
