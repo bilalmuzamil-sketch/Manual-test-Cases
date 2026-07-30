@@ -6,7 +6,7 @@
 >    real, reportable bug that no other case catches? Verdict: **KEEP / MERGE / WEAK-KEEP / CUT**.
 > 2. **MAKES SENSE** — would a competent manual QA tester, reading the case COLD (as the critic
 >    would, without our context), find it coherent and runnable? Verdict: **SENSIBLE /
->    FIX-WORDING / NONSENSE / CONTRADICTION** (the 6 fail conditions below). Scored in **TWO
+>    FIX-WORDING / NONSENSE / CONTRADICTION** (the 7 fail conditions below). Scored in **TWO
 >    MANDATORY STAGES**: (2a) the per-case cold read, then (2b) the **CROSS-CASE CONSISTENCY
 >    SWEEP** — cases checked AGAINST EACH OTHER, because a suite can be 100%
 >    individually-sensible and still be self-contradictory, and that contradiction is the FIRST
@@ -107,7 +107,7 @@ tester two opposite things about the same control. Stage 2b is the stage that ca
 **The question, per case: "Would a competent manual QA tester read this and find it makes
 sense?" READ EACH CASE COLD, AS THE CRITIC WOULD — without our context, without the spec open,
 without knowing why the case exists.** Recompute any worked math in the case. A case FAILS if any
-of these 6 fail conditions holds:
+of these 7 fail conditions holds:
 
 | # | Fail condition (the NONSENSE tests) |
 |---|---|
@@ -117,12 +117,13 @@ of these 6 fail conditions holds:
 | F4 | References a control/screen/field that exists in NEITHER the spec NOR the design/kickoff-video sources. |
 | F5 | Domain nonsense — wrong for how the real business/product works (impossible math, wrong direction of a calculation, conflating cost/sell, snapshot logic that can't happen). |
 | F6 | Not actionable — a tester cannot tell what to DO or what PASS looks like (vague verbs, missing data — e.g. "edit the stored value" with no key/format given, ambiguous target, a pass criterion needing tooling the case doesn't provide). |
+| **F7** | **UNANCHORED ABSOLUTE ENUMERATION (Standing Rule 42).** The expected result **CLOSES a list** — *"the headers, in order, are **exactly** …"*, *"the options are exactly …"*, *"**only** these columns appear"*, *"the menu contains exactly …"*, *"**no other** field is shown"* — **without** (a) a **version-pinned governing anchor** in `refs` (`<TICKET(S)> (<spec-anchor>, spec v<N> <date>)`) **and** (b) **scope-conditional wording wherever the spec makes the list conditional**. A closed list is correct until the spec adds one item, and then it makes a tester **FAIL A CORRECT BUILD** — so an unanchored one is a sense failure, not a style preference. **Mechanical sweep:** grep every tester-facing field for **`exactly`**, **`only`**, **`no other`**, **`the complete list`**, **`in order, are`**; every hit must either show a version-pinned anchor or be rewritten as *"includes X in position Y when Z"* (+ the plain tester conditional per Rule 7, e.g. *"if you are looking at only one location there is no Location column — that is correct"*). Keep a closed list ONLY when the closed list **IS** the requirement, and say so in the case notes citing the anchor. **Verdict:** FIX-WORDING when the underlying test is sound (the normal case); NONSENSE only if the enumeration itself is wrong against the current spec. *Rationale 2026-07-31: SBR-EXP-10 = C30285 / SBR-EXP-11 = C30286 said the CSV headers "are **exactly**" a 13-item list whose anchors dated from 2026-07-11, and broke the moment `S14-R20` added a column on 2026-07-29.* |
 
 | Sense verdict | Meaning |
 |---|---|
 | **SENSIBLE** | A cold reader can execute it and knows what pass looks like. No fail condition triggered, and it does not contradict any other case. |
 | **FIX-WORDING** | The underlying test is sound, but specific wording would confuse/mislead a cold tester — repairable; the reason states EXACTLY what to fix (wrong unit-words, a vague probe step, an Expected broader than the steps drive, a px assertion without stated tooling). |
-| **NONSENSE** | Fails one or more of F1–F6 — QUOTE the offending text + name the fail condition; recommend CUT or a full rewrite. |
+| **NONSENSE** | Fails one or more of F1–F7 — QUOTE the offending text + name the fail condition; recommend CUT or a full rewrite. |
 | **CONTRADICTION** | Individually readable, but it asserts something **another case in the suite (or its OWN title) asserts the opposite of** — the two cannot both be true. Found by Stage 2b. Name the counterpart case(s) (internal ID + C-id), quote BOTH assertions, and state the resolution (which side wins, by which ruling). Every member of a contradiction group carries this verdict until the group is aligned. |
 
 Rules for this dimension:
@@ -337,7 +338,7 @@ canonical worked example is the Report Suite's 515-case audit produced 2026-07-2
    CUT-duplicate NAMES the duplicated case; every MERGE names group + survivor.
 4a. **Sense-check case-by-case (Dimension 2, Stage 2a):** read every case's FULL body (title +
    preconditions + steps + expected + notes) COLD, as the critic would; recompute worked math;
-   apply the 6 fail conditions; assign SENSIBLE / FIX-WORDING / NONSENSE with the quoted offending
+   apply the 7 fail conditions; assign SENSIBLE / FIX-WORDING / NONSENSE with the quoted offending
    text on every NONSENSE. Then run the cross-check: list any KEEP that scored NONSENSE (the
    embarrassment check) and say so explicitly.
 4a-ii. **CROSS-CASE CONSISTENCY SWEEP (Dimension 2, Stage 2b) — MANDATORY, never skipped:** build
