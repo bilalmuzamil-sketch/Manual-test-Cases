@@ -88,7 +88,8 @@
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. You are on the Work Orders page on the All tab.",
-   "3. Values are selected in at least three different filters (for example a status, a customer and Asset on site Yes)."
+   "3. Values are selected in at least three different filters (for example a status, a customer and Asset on site Yes).",
+   "4. The page's own Search box is empty (no text typed in it) - a typed search is cleared by its own control, not by 'Clear filters'."
   ],
   "steps": [
    "1. Click the 'Clear filters' link at the right end of the chip row.",
@@ -97,13 +98,13 @@
   "expected": [
    "1. Every active filter is cleared in one click.",
    "2. All chips return to their default (inactive) look with no values shown.",
-   "3. The table shows the full unfiltered list again.",
+   "3. The table shows the full unfiltered list again (no text is in the page Search box, so nothing else is narrowing it).",
    "4. The 'Clear filters' link disappears."
   ],
   "design_ref": "design-notes.md B.1 #4 (11854:26246)",
-  "spec_ref": "requirements.md Story 8 S8-R1; §4 Key Decisions",
+  "spec_ref": "requirements.md Story 8 S8-R1; §4 Key Decisions ; S13-R13 (clearing filters does not clear a typed search) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Cross-case consistency repair 2026-07-31 (Rule 28 dimension 2 sweep): precondition 4 + expected 3 now say the Search box must be empty, so this case no longer reads as contradicting S13-R13 / FLT-PSRCH-02 = C38884 (clearing filters leaves a typed search applied). Checked against spec v1.6 (Confluence v12, 2026-07-28).",
   "api_related": false
  },
  {
@@ -197,7 +198,8 @@
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. You are on the Work Orders page showing the filtered empty state (a filter combination matching no work orders is applied)."
+   "2. You are on the Work Orders page showing the filtered empty state (a filter combination matching no work orders is applied).",
+   "3. The page's own Search box is empty (no text typed in it)."
   ],
   "steps": [
    "1. Read the empty state content.",
@@ -206,13 +208,13 @@
   ],
   "expected": [
    "1. The empty state includes a prompt or link to clear the filters.",
-   "2. Clicking it removes the active filters and the full work order list is shown again.",
+   "2. Clicking it removes the active filters and the full work order list is shown again (with no text in the Search box, nothing else is narrowing the list).",
    "3. The chips return to their default state."
   ],
   "design_ref": "design-notes.md B.1 (empty state not drawn in the final WO frames)",
-  "spec_ref": "requirements.md Story 8 S8-R4",
+  "spec_ref": "requirements.md Story 8 S8-R4 ; S8-R5 (with a query active each is cleared independently - FLT-EMPTY-03) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
-  "notes": "The exact prompt wording and whether it clears ALL filters in one click are not in the design set - VIU-confirm.",
+  "notes": "The exact prompt wording and whether it clears ALL filters in one click are not in the design set - VIU-confirm. | Cross-case consistency repair 2026-07-31 (Rule 28 dimension 2 sweep): precondition 3 added so this filters-only case cannot be read as contradicting the v1.6 reworded S8-R3/S8-R4/S8-R5 behaviour covered by FLT-EMPTY-03 (new this pass), where a search is also active.",
   "api_related": false
  },
  {
