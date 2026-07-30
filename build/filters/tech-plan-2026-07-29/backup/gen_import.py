@@ -71,7 +71,6 @@ SECTION_ORDER = [
     "Mobile Filters",
     "Parts Page Filters",
     "Reports Page Filters",
-    "Page Search Toolbar",
     "Page Search (Command-K)",
     "API — Work Orders List Filtering",
 ]

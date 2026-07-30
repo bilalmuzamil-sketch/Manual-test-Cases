@@ -1,0 +1,195 @@
+[
+ {
+  "id": "FLT-PSRCH-01",
+  "area": "Page Search Toolbar",
+  "title": "Page toolbar Search expands in place and narrows the list as you type",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the page being searched.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page with several work orders listed."
+  ],
+  "steps": [
+   "1. Find the Search control in the page toolbar (a magnifier icon with the word Search).",
+   "2. Click it.",
+   "3. Type part of a work order's text (for example part of a customer or asset name).",
+   "4. Clear the text with the round x in the box.",
+   "5. Click somewhere else on the page while the box is EMPTY.",
+   "6. Expand it again, type text, and click somewhere else."
+  ],
+  "expected": [
+   "1. The control expands in place into a small search box inviting you to type (engineering copy: 'Type to search').",
+   "2. The list narrows as you type, after a brief pause - and ONLY this page's list changes, nothing else in the app.",
+   "3. The round x clears the text and the full list returns.",
+   "4. Clicking away with an empty box collapses it back to the Search button; with text in it, the box stays open."
+  ],
+  "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D18; Figma 11829:8908 (page search component, 4 states)",
+  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 D18; spec v1.3 S13-R1..R7, S13-R9, S13-R15 (export awaited)",
+  "viu_status": "VIU-Pending",
+  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): typing is debounced about 300 ms (some pages differ, e.g. Inventory 750 ms); the box sends the page's own existing search request; exact copy/placeholder to capture live.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PSRCH-02",
+  "area": "Page Search Toolbar",
+  "title": "Page search combines with filters and is cleared separately",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the page being searched.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page with work orders for several customers and statuses."
+  ],
+  "steps": [
+   "1. Apply one filter (for example a Status).",
+   "2. Type a search term in the page search box.",
+   "3. Clear ONLY the search (the round x).",
+   "4. Re-type the search, then clear ONLY the filter."
+  ],
+  "expected": [
+   "1. With both active, the results match the filter AND the search together (both narrow the list at once).",
+   "2. Clearing the search keeps the filter applied.",
+   "3. Clearing the filter keeps the search applied - each is cleared by its own control without wiping the other."
+  ],
+  "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D18",
+  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 D18; spec v1.3 S13-R10/R13 + S8-R5 (export awaited)",
+  "viu_status": "VIU-Pending",
+  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): whether the bar's 'Clear filters' link ALSO clears the search box is not yet readable from our spec copy (S8-R5 text awaited) - observe live and tighten expected 3 then.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PSRCH-03",
+  "area": "Page Search Toolbar",
+  "title": "The page search text is remembered and restored like filters",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the page being searched.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page."
+  ],
+  "steps": [
+   "1. Type a search term that matches some work orders.",
+   "2. Go to another area of the app and come back to the Work Orders page.",
+   "3. Now type a search term that matches NOTHING, leave the page, and come back again."
+  ],
+  "expected": [
+   "1. The search box comes back with your text still in it and the list still narrowed by it - just like the filters.",
+   "2. A remembered search that matches nothing shows the no-results empty state - the remembered text is NOT silently thrown away."
+  ],
+  "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D18",
+  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 D18; spec v1.3 S10-R4/R5, S10-N2 (export awaited)",
+  "viu_status": "VIU-Pending",
+  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): the search text is saved per user exactly like the filters (account-level). Whether the text carries across a page's tabs follows that page's filter scoping - shared across the Work Orders tabs, separate per tab where filters are per tab (spec self-conflict flagged to the author; deltas C8) - observe live.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PSRCH-04",
+  "area": "Page Search Toolbar",
+  "title": "The search term is part of the shareable page link",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the page being searched.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page."
+  ],
+  "steps": [
+   "1. Type a search term and copy the page address.",
+   "2. Open the copied address in a fresh tab.",
+   "3. Hand-edit the search part of the address into something malformed and load it."
+  ],
+  "expected": [
+   "1. The address contains the search term after step 1.",
+   "2. The fresh tab opens with the search box filled and the list already narrowed.",
+   "3. The malformed part is ignored - the page loads cleanly without an error.",
+   "4. A search arriving via a link is view-only, the same as filters from a link - it does not overwrite your own remembered search."
+  ],
+  "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D18 / G7",
+  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 D18 + G7; spec v1.3 S11-R4/R5, S11-N2 (export awaited)",
+  "viu_status": "VIU-Pending",
+  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): the view-only rule (expected 4) follows G7 which is pending Branko's spec-text ratification (deltas C1) - same caveat as FLT-URL-05.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PSRCH-05",
+  "area": "Page Search Toolbar",
+  "title": "On mobile the search expands in the toolbar and buttons make room",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the page being searched.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a mobile device.",
+   "2. You are on the Work Orders page."
+  ],
+  "steps": [
+   "1. Tap the Search control in the page toolbar.",
+   "2. Type a term and watch the list.",
+   "3. Visit a page that has several small icon-only toolbar buttons (for example Parts Inventory or Purchase Orders) and look at its toolbar."
+  ],
+  "expected": [
+   "1. The search expands inline inside the toolbar - no separate popup window opens.",
+   "2. The list narrows as you type, same as desktop.",
+   "3. To make room, the page's main button no longer stretches full-width, and pages with two or more small icon buttons collapse them into a single 'more' menu."
+  ],
+  "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D18 / D21",
+  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 D21; spec v1.3 S13-R16..R21 (export awaited)",
+  "viu_status": "VIU-Pending",
+  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): pages named for the icon-collapse: Inventory, Purchase Orders, Timesheet Activities, both Technician Efficiency reports, Sales Tax (Collected), plus any page with 2+ icon actions. Exact mobile layout to capture live.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PSRCH-06",
+  "area": "Page Search Toolbar",
+  "title": "Every list page keeps its own search box (Parts, Reports, detail tabs)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the page being searched.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. The page-search rollout has shipped (same programme as the Work Orders filters)."
+  ],
+  "steps": [
+   "1. Visit several list surfaces: a Parts view (for example Inventory), a report, a customer's Notes tab on the customer page, and any pop-up list that used to be searchable.",
+   "2. On each, look for that surface's own search box and use it."
+  ],
+  "expected": [
+   "1. Every list surface that could be text-searched before still offers its own search control - no list silently lost its search.",
+   "2. Each search box narrows only its own list, not any other page."
+  ],
+  "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md Phase 9.1 / risk 9",
+  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 Phase 9.1 (built-in table search, opt-out); spec v1.3 S13-R22 + S14-R5/R6 (export awaited)",
+  "viu_status": "VIU-Pending",
+  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): engineering's safety net is a built-in search on every list table (opt-out) precisely so nothing is forgotten - this case is the release sweep for it. Pull the exact page list (S13-R22) from the spec v1.3 export when it arrives.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PSRCH-07",
+  "area": "Page Search Toolbar",
+  "title": "The top navigation search no longer filters page lists",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the page being searched.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page with several work orders listed."
+  ],
+  "steps": [
+   "1. Type a term into the TOP NAVIGATION search (the app-wide search at the top), not the page's own search box.",
+   "2. Watch the Work Orders list while typing.",
+   "3. Repeat on the Parts Inventory page.",
+   "4. Pick one of the results offered in the navigation search's dropdown."
+  ],
+  "expected": [
+   "1. The page list does NOT narrow while you type in the navigation search - only its dropdown of matching records appears.",
+   "2. The same holds on the other pages checked.",
+   "3. Picking a dropdown result still takes you to that record - the navigation search keeps its find-and-open role."
+  ],
+  "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md Phase 9 / D22",
+  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 Phase 9 (search decoupling); spec v1.3 Story 14 S14-R2/R3 (export awaited)",
+  "viu_status": "VIU-Pending",
+  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): the old behaviour (nav search silently filtering the open page's list) is REMOVED for real, app-wide. Its replacement on each page is the page's own search box (FLT-PSRCH-01/06). Do not run before the pages have their own boxes - engineering lands the page boxes first.",
+  "api_related": false
+ }
+]

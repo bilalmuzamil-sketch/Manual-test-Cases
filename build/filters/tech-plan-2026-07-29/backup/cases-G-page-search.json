@@ -1,0 +1,237 @@
+[
+  {
+    "id": "FLT-SRCH-01",
+    "area": "Page Search (Command-K)",
+    "title": "Page search opens with the 'Search or ask a question' box",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user of the ShopView App. Whether search results are scoped by role is to confirm — pending Branko's PRD.",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Some sample work orders, customers, assets, parts and vendors exist."
+    ],
+    "steps": [
+      "1. From anywhere in the app, open the page search (the Search box in the top bar, or press Command-K / Ctrl-K).",
+      "2. Look at the search panel that opens."
+    ],
+    "expected": [
+      "1. A search panel opens with an empty search box at the top.",
+      "2. The box shows the placeholder text 'Search or ask a question' with a magnifier icon on the left and a clear (X) button on the right.",
+      "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (whether 'ask a question' means an AI search — this is out of scope for now)."
+    ],
+    "design_ref": "design-2026-07-27/design-system/page-search/recent searches.png",
+    "spec_ref": "Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D",
+    "viu_status": "VIU-Pending",
+    "notes": "Design-only. The 'ask a question' placeholder implies AI, which is out of scope; confirm live once available. OVERLAP: this page-search / Command-K component is also covered by the Global Search project (86 cases already authored there, currently postponed). Reconcile / de-duplicate with Global Search before any TestRail push so the same component is not tested twice.",
+    "api_related": false
+  },
+  {
+    "id": "FLT-SRCH-02",
+    "area": "Page Search (Command-K)",
+    "title": "Page search shows entity tabs All, Work Orders, Customers, Assets, Parts...",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user of the ShopView App. Whether search results are scoped by role is to confirm — pending Branko's PRD.",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Some sample work orders, customers, assets, parts and vendors exist."
+    ],
+    "steps": [
+      "1. Open the page search panel.",
+      "2. Look at the row of tabs under the search box."
+    ],
+    "expected": [
+      "1. A row of tabs is shown: All, Work Orders, Customers, Assets, Parts, Vendors and Part Sales.",
+      "2. The All tab is selected by default.",
+      "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (whether choosing a tab limits results to that type only)."
+    ],
+    "design_ref": "design-2026-07-27/design-system/page-search/search results.png",
+    "spec_ref": "Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D",
+    "viu_status": "VIU-Pending",
+    "notes": "Design-only (tab labels). Tab-filtering behaviour pending confirmation. OVERLAP: this page-search / Command-K component is also covered by the Global Search project (86 cases already authored there, currently postponed). Reconcile / de-duplicate with Global Search before any TestRail push so the same component is not tested twice.",
+    "api_related": false
+  },
+  {
+    "id": "FLT-SRCH-03",
+    "area": "Page Search (Command-K)",
+    "title": "Typing a term shows grouped results with counts and highlighting",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user of the ShopView App. Whether search results are scoped by role is to confirm — pending Branko's PRD.",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Some sample work orders, customers, assets, parts and vendors exist."
+    ],
+    "steps": [
+      "1. Open the page search panel.",
+      "2. Type a few letters (for example 'Fib') into the search box.",
+      "3. Look at the results."
+    ],
+    "expected": [
+      "1. Results are grouped by type with a count next to each group heading, for example 'Work orders (2)', 'Customers (2)', 'Vendors (1)', 'Assets (2)', 'Parts (1)'.",
+      "2. The matching part of each result is highlighted in yellow.",
+      "3. Each work order row shows its number, name, a status pill (for example Approved or Estimate), the person and a date.",
+      "4. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (how matching works — exact vs fuzzy — and the ranking order)."
+    ],
+    "design_ref": "design-2026-07-27/design-system/page-search/search results.png",
+    "spec_ref": "Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D",
+    "viu_status": "VIU-Pending",
+    "notes": "Design-only (grouped results + highlighting). Matching/ranking behaviour pending confirmation. OVERLAP: this page-search / Command-K component is also covered by the Global Search project (86 cases already authored there, currently postponed). Reconcile / de-duplicate with Global Search before any TestRail push so the same component is not tested twice.",
+    "api_related": false
+  },
+  {
+    "id": "FLT-SRCH-04",
+    "area": "Page Search (Command-K)",
+    "title": "Recent searches are shown grouped by Today, Yesterday, Past week...",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user of the ShopView App. Whether search results are scoped by role is to confirm — pending Branko's PRD.",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Some sample work orders, customers, assets, parts and vendors exist."
+    ],
+    "steps": [
+      "1. Open the page search panel without typing anything.",
+      "2. Look at the list shown under the tabs."
+    ],
+    "expected": [
+      "1. A list of recent items is shown, grouped under headings: Today, Yesterday, Past week and Past 30 days.",
+      "2. Each item shows a type icon, its name and a short detail line (for example a customer address or a date).",
+      "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (how many recent items are kept and how long they persist)."
+    ],
+    "design_ref": "design-2026-07-27/design-system/page-search/recent searches.png",
+    "spec_ref": "Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D",
+    "viu_status": "VIU-Pending",
+    "notes": "Design-only (recent-searches grouping). Persistence rules pending confirmation. OVERLAP: this page-search / Command-K component is also covered by the Global Search project (86 cases already authored there, currently postponed). Reconcile / de-duplicate with Global Search before any TestRail push so the same component is not tested twice.",
+    "api_related": false
+  },
+  {
+    "id": "FLT-SRCH-05",
+    "area": "Page Search (Command-K)",
+    "title": "Re-opening page search keeps the last typed text and its results",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user of the ShopView App. Whether search results are scoped by role is to confirm — pending Branko's PRD.",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Some sample work orders, customers, assets, parts and vendors exist."
+    ],
+    "steps": [
+      "1. Open the page search and type a term (for example 'Fibridge').",
+      "2. Close the panel, then open it again.",
+      "3. Look at the search box and the results."
+    ],
+    "expected": [
+      "1. The previous search text is still in the box (shown selected/highlighted) and its results are shown.",
+      "2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (whether the last search is remembered per person and for how long — this is the 'persisting search' state)."
+    ],
+    "design_ref": "design-2026-07-27/design-system/page-search/Persisting search dropdown.png",
+    "spec_ref": "Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D",
+    "viu_status": "VIU-Pending",
+    "notes": "Design-only (persisting-search state). Persistence scope pending confirmation. OVERLAP: this page-search / Command-K component is also covered by the Global Search project (86 cases already authored there, currently postponed). Reconcile / de-duplicate with Global Search before any TestRail push so the same component is not tested twice.",
+    "api_related": false
+  },
+  {
+    "id": "FLT-SRCH-06",
+    "area": "Page Search (Command-K)",
+    "title": "Hovering a search result shows quick-action buttons",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user of the ShopView App. Whether search results are scoped by role is to confirm — pending Branko's PRD.",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Some sample work orders, customers, assets, parts and vendors exist."
+    ],
+    "steps": [
+      "1. Open the page search panel (recent items or results shown).",
+      "2. Move the mouse over a result row.",
+      "3. Look at the right side of that row."
+    ],
+    "expected": [
+      "1. Quick-action buttons appear on the row, depending on the result type — for example 'Add new line' on a work order, 'New work order' on an asset or customer, 'Add part' on a part sale, 'Add contact' on a vendor and 'Add to work order' on a part.",
+      "2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (exactly which quick actions show for which result type, and what each one does)."
+    ],
+    "design_ref": "design-2026-07-27/design-system/page-search/Quick Actions on Hover.png",
+    "spec_ref": "Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D",
+    "viu_status": "VIU-Pending",
+    "notes": "Design-only (hover quick-actions). Which action shows per type + behaviour pending confirmation. OVERLAP: this page-search / Command-K component is also covered by the Global Search project (86 cases already authored there, currently postponed). Reconcile / de-duplicate with Global Search before any TestRail push so the same component is not tested twice.",
+    "api_related": false
+  },
+  {
+    "id": "FLT-SRCH-07",
+    "area": "Page Search (Command-K)",
+    "title": "Page search shows keyboard hints and supports keyboard navigation",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user of the ShopView App. Whether search results are scoped by role is to confirm — pending Branko's PRD.",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Some sample work orders, customers, assets, parts and vendors exist."
+    ],
+    "steps": [
+      "1. Open the page search panel.",
+      "2. Look at the bar along the bottom of the panel.",
+      "3. Use the up/down arrow keys, Enter and Esc."
+    ],
+    "expected": [
+      "1. The bottom bar shows keyboard hints: up/down arrows labelled 'Navigate', the Enter key labelled 'Select', and 'Close esc'.",
+      "2. Arrow keys move the highlight between results, Enter opens the highlighted result, and Esc closes the panel (to be checked live once available).",
+      "3. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (exact keyboard behaviour)."
+    ],
+    "design_ref": "design-2026-07-27/design-system/page-search/search results.png",
+    "spec_ref": "Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D",
+    "viu_status": "VIU-Pending",
+    "notes": "Design-only (keyboard footer). Keyboard behaviour pending live confirmation. OVERLAP: this page-search / Command-K component is also covered by the Global Search project (86 cases already authored there, currently postponed). Reconcile / de-duplicate with Global Search before any TestRail push so the same component is not tested twice.",
+    "api_related": false
+  },
+  {
+    "id": "FLT-SRCH-08",
+    "area": "Page Search (Command-K)",
+    "title": "Page search results include a Refresh action",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user of the ShopView App. Whether search results are scoped by role is to confirm — pending Branko's PRD.",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Some sample work orders, customers, assets, parts and vendors exist."
+    ],
+    "steps": [
+      "1. Open the page search and type a term so grouped results appear.",
+      "2. Look at the top right of the results area."
+    ],
+    "expected": [
+      "1. A 'Refresh' link is shown at the top right of the results.",
+      "2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (what Refresh reloads and when it is shown)."
+    ],
+    "design_ref": "design-2026-07-27/design-system/page-search/search results.png",
+    "spec_ref": "Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D",
+    "viu_status": "VIU-Pending",
+    "notes": "Design-only (Refresh link). Behaviour pending confirmation. OVERLAP: this page-search / Command-K component is also covered by the Global Search project (86 cases already authored there, currently postponed). Reconcile / de-duplicate with Global Search before any TestRail push so the same component is not tested twice.",
+    "api_related": false
+  },
+  {
+    "id": "FLT-SRCH-09",
+    "area": "Page Search (Command-K)",
+    "title": "Page search scope belongs to Filters or Global Search (to decide)",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Any signed-in user of the ShopView App. Whether search results are scoped by role is to confirm — pending Branko's PRD.",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Some sample work orders, customers, assets, parts and vendors exist."
+    ],
+    "steps": [
+      "1. Review where the page search / Command-K component is owned for testing.",
+      "2. Compare against the Global Search project's existing cases."
+    ],
+    "expected": [
+      "1. The page-search component is agreed to belong to either the Filters test suite or the Global Search test suite, not both.",
+      "2. Behaviour to confirm — pending Branko's product write-up; to be checked live once the feature is available. (product/QA decision on which project owns page search)."
+    ],
+    "design_ref": "design-2026-07-27/design-system/page-search/DESIGN-INGEST-2026-07-27.md",
+    "spec_ref": "Filters (Epic key TBD); Figma 11829-8908 (page-search component); design-2026-07-27/DESIGN-INGEST-2026-07-27.md §1/§3.D",
+    "viu_status": "VIU-Pending",
+    "notes": "SCOPE case — Global Search already has 86 authored cases for this component. This case exists to force a de-duplication decision before any push. OVERLAP: this page-search / Command-K component is also covered by the Global Search project (86 cases already authored there, currently postponed). Reconcile / de-duplicate with Global Search before any TestRail push so the same component is not tested twice.",
+    "api_related": false
+  }
+]

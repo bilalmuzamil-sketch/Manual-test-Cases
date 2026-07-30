@@ -136,7 +136,7 @@
   "design_ref": "design-notes.md B.1 #11 (11854:19595)",
   "spec_ref": "requirements.md Story 3 S3-R6; Story 2 S2-R6 (real-time pattern)",
   "viu_status": "VIU-Pending",
-  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): 'Customer' here means the customer ACCOUNT/company shown in the grid's Customer column, not the contact person on the work order (G3) - seed test data accordingly.",
+  "notes": "",
   "api_related": false
  },
  {
@@ -432,7 +432,7 @@
   "design_ref": "design-notes.md B.1 #8 (11854:24452)",
   "spec_ref": "requirements.md Story 4 S4-E1",
   "viu_status": "VIU-Pending",
-  "notes": "How the app marks a staff member inactive is env-specific - use the staff administration screen; restore the staff member's state after the test (Standing Rule 5). Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): the technician list shows only active, clockable staff for the CURRENT location; after switching location, selected technicians who are not in the new location silently drop from the chip (section 4-3.2).",
+  "notes": "How the app marks a staff member inactive is env-specific - use the staff administration screen; restore the staff member's state after the test (Standing Rule 5).",
   "api_related": false
  },
  {
@@ -617,7 +617,7 @@
   "design_ref": "design-notes.md B.1 #9 (11854:24553)",
   "spec_ref": "requirements.md Story 5 S5-E1",
   "viu_status": "VIU-Pending",
-  "notes": "Restore the staff member's state after the test (Standing Rule 5). Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): mechanism = the filter dropdown requests active advisors only (activeOnly=1, G5). The advisor dropdown on the Work Order detail page and the Advisor Analysis report INTENTIONALLY still include inactive advisors - do not raise those as bugs. Advisor options are location-scoped and change on location switch.",
+  "notes": "Restore the staff member's state after the test (Standing Rule 5).",
   "api_related": false
  },
  {
@@ -776,34 +776,6 @@
   "spec_ref": "requirements.md Story 6 S6-N1; Story 8 S8-R3",
   "viu_status": "VIU-Pending",
   "notes": "",
-  "api_related": false
- },
- {
-  "id": "FLT-ASSET-07",
-  "area": "Asset on Site Filter",
-  "title": "Choosing No shows only work orders whose asset is not on site",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Any signed-in user with access to the Work Orders page (filter lists are role-independent per Branko Round-2 Q3=A).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. Work orders exist both with the asset on site and with the asset not on site (create one of each if needed).",
-   "3. You are on the Work Orders page."
-  ],
-  "steps": [
-   "1. Open the Asset on site filter.",
-   "2. Choose No.",
-   "3. Look at the table (and its On Site column)."
-  ],
-  "expected": [
-   "1. Only work orders whose asset is NOT on site remain in the list.",
-   "2. Every work order with the asset on site is excluded.",
-   "3. The chip shows the active No selection."
-  ],
-  "design_ref": "design-notes.md (Asset on site dropdown 11880:12460); tech-plan-2026-07-29 G4 / section 4-1.6",
-  "spec_ref": "requirements.md Story 6 S6-R2; Filters (Epic key TBD); tech plan 2026-07-29 G4 (filtering No is new capability)",
-  "viu_status": "VIU-Pending",
-  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): filtering by 'No' is BRAND-NEW (the old Asset Here toggle could only show on-site assets); engineering explicitly flags the No path for functional verification (section 4-1.6) - regression-watch this case.",
   "api_related": false
  }
 ]

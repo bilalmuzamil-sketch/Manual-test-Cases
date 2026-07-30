@@ -158,7 +158,7 @@
   "design_ref": "design-notes.md B.1 #4/#7 (11854:26246, 11854:24194)",
   "spec_ref": "requirements.md Story 2 S2-R2; §4 Key Decisions (no selection limit)",
   "viu_status": "VIU-Pending",
-  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): the Imported status may be MUTUALLY EXCLUSIVE with the other statuses/filters (G1) - see FLT-STAT-07; pending Branko confirmation (spec S2-R1 lists it as a plain status).",
+  "notes": "",
   "api_related": false
  },
  {
@@ -375,36 +375,6 @@
   "spec_ref": "requirements.md Story 7 S7-R5",
   "viu_status": "VIU-Pending",
   "notes": "",
-  "api_related": false
- },
- {
-  "id": "FLT-STAT-07",
-  "area": "Status Filter",
-  "title": "Imported works alone: picking it greys out the other filters",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Any signed-in user with access to the Work Orders page (filter lists are role-independent per Branko Round-2 Q3=A).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. Imported work orders exist, plus some normal work orders.",
-   "3. You are on the Work Orders page, All tab, no filters applied."
-  ],
-  "steps": [
-   "1. Open the Status filter and tick Imported.",
-   "2. Look at the other filter chips (Customer, Lead Technician, Service Advisor, Asset on site).",
-   "3. Try to combine Imported with another status.",
-   "4. Untick Imported."
-  ],
-  "expected": [
-   "1. The table switches to showing imported work orders only.",
-   "2. While Imported is ticked, the other filter chips are greyed out and cannot be used.",
-   "3. Imported cannot be combined with other statuses - selecting it works alone.",
-   "4. Unticking Imported re-enables the other chips and the normal list returns."
-  ],
-  "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md G1 / section 4-3.2",
-  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 G1 (Imported exclusivity); spec S2-R1 (conflict raised with the author - export of spec v1.3 awaited)",
-  "viu_status": "VIU-Pending",
-  "notes": "PENDING BRANKO (Questions Q3 / deltas C2): spec S2-R1 lists Imported as a plain status; engineering G1 builds it mutually exclusive with all other chips disabled (byte-identical to today's behaviour - imported comes from a separate service without filters). Exact disabled look/tooltip to capture live. A saved or shared state combining imported with other filters must also normalize back to imported-only on load (tech plan risk 4).",
   "api_related": false
  }
 ]

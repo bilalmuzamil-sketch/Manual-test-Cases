@@ -185,7 +185,7 @@
   "design_ref": "design-notes.md B.1 (empty state not drawn in the final WO frames - message text to be captured from the build)",
   "spec_ref": "requirements.md Story 8 S8-R3",
   "viu_status": "VIU-Pending",
-  "notes": "Exact empty-state message text is not in the final design set - VIU-confirm the real on-screen wording. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): engineering copy for the filtered empty state is 'No work orders match your filters' with a clear-filters action shown only while filters are active (section 4-3.5) - capture the real on-screen text live, do not fail on wording before that.",
+  "notes": "Exact empty-state message text is not in the final design set - VIU-confirm the real on-screen wording.",
   "api_related": false
  },
  {
@@ -399,18 +399,16 @@
    "2. Return to the Work Orders page and look at the chips and the table.",
    "3. Close the browser completely (all windows).",
    "4. Open the browser again, sign in as the same person, and go to the Work Orders page.",
-   "5. Look at the chips and the table.",
-   "6. On a different computer (or a different browser profile), sign in as the same person and open the Work Orders page."
+   "5. Look at the chips and the table."
   ],
   "expected": [
    "1. After moving around the app (step 2) the filter selections are still applied - you do not have to re-apply them.",
-   "2. After closing the browser completely and signing back in (step 5) the same filter selections are still applied - the app remembers your filters for you permanently, not just for one browser session.",
-   "3. The same filter selections are applied on the other computer too - the filters are saved to your account, not to one computer or browser (to confirm live once built)."
+   "2. After closing the browser completely and signing back in (step 5) the same filter selections are still applied - the app remembers your filters for you permanently, not just for one browser session."
   ],
   "design_ref": "design-notes.md B.1 #4 (11854:26246)",
   "spec_ref": "requirements.md Story 10 S10-R2 (session-only wording superseded by PO ruling 2026-07-17: permanent per-user persistence); §2/§4 (persist across navigation, saved per user)",
   "viu_status": "VIU-Pending",
-  "notes": "RESOLVED (was OQ-5): Branko ruled 2026-07-17 (answer B) that filter selections are remembered PERMANENTLY per user - still there after closing the browser entirely and signing back in (and after logging out). The S10-R2 'for the duration of the browser session' sentence is superseded by the §2/§4 'saved per user' reading (last-update-wins); flag the stale S10-R2 text for Branko's PRD update. Exact on-screen labels still VIU-confirm. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): persistence is server-side per user account - cross-device, survives logout, last-write-wins when two devices save (G6). NOTE the 2026-07-28 cross-squad decision: this account-level layer is also what the Report Suite will reuse for its reports.",
+  "notes": "RESOLVED (was OQ-5): Branko ruled 2026-07-17 (answer B) that filter selections are remembered PERMANENTLY per user - still there after closing the browser entirely and signing back in (and after logging out). The S10-R2 'for the duration of the browser session' sentence is superseded by the §2/§4 'saved per user' reading (last-update-wins); flag the stale S10-R2 text for Branko's PRD update. Exact on-screen labels still VIU-confirm.",
   "api_related": false
  },
  {
@@ -515,7 +513,7 @@
   "design_ref": "requirements.md Story 11 (no design frame - behavior requirement)",
   "spec_ref": "requirements.md Story 11 S11-R2; §2 Feature Overview (share or bookmark)",
   "viu_status": "VIU-Pending",
-  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): opening a filtered link is a VIEW-ONLY state - it must never overwrite your own saved filters (G7 runtime-only); see FLT-URL-05. Pending Branko: one spec sentence says the opposite ('URL wins on load, then persists') - Questions Q2 / deltas C1.",
+  "notes": "",
   "api_related": false
  },
  {
@@ -570,115 +568,6 @@
   "spec_ref": "requirements.md Story 11 S11-N1",
   "viu_status": "VIU-Pending",
   "notes": "",
-  "api_related": false
- },
- {
-  "id": "FLT-TAB-06",
-  "area": "Tab Behaviour",
-  "title": "First visit opens the Estimates tab; your last-used tab is remembered",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Any signed-in user with access to the Work Orders page (filter lists are role-independent per Branko Round-2 Q3=A).",
-  "preconditions": [
-   "1. You can sign in as a user who has never used the redesigned Work Orders page (no saved page choices for that account)."
-  ],
-  "steps": [
-   "1. Sign in as that fresh user and open the Work Orders page.",
-   "2. Note which tab is selected and the tab order.",
-   "3. Switch to the All tab.",
-   "4. Go to another area of the app and come back to the Work Orders page."
-  ],
-  "expected": [
-   "1. On the very first visit the Estimates tab is the selected one, even though All is the FIRST tab in the row (order and default are different on purpose).",
-   "2. After switching to All and returning, the All tab is selected - the app remembers your last-used tab per account."
-  ],
-  "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D10 / section 4-3.1",
-  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists); not in the ratified product spec - confirmation requested",
-  "viu_status": "VIU-Pending",
-  "notes": "PENDING BRANKO (Questions Q5 / deltas C5): the Estimates-first-visit default is an ENGINEERING decision (D10, database-load driven), product-visible but not in any ratified spec we hold. If Branko rules the default should be All, flip expected 1.",
-  "api_related": false
- },
- {
-  "id": "FLT-PERS-05",
-  "area": "Persistence",
-  "title": "Each page and tab remembers its own filters separately",
-  "priority": "Medium",
-  "type": "Functional",
-  "permissions_required": "Any signed-in user with access to the Parts and Reports pages.",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The new filter bar has rolled out to the Parts views and to a report that has tabs (part of the same programme as the Work Orders filters)."
-  ],
-  "steps": [
-   "1. On one Parts view (for example Inventory) apply a filter.",
-   "2. Switch to a different Parts view (for example Purchase Orders).",
-   "3. Return to the first Parts view.",
-   "4. On a report with tabs, apply a filter on one tab, switch to another tab, then switch back."
-  ],
-  "expected": [
-   "1. The second Parts view does NOT show the first view's selections - each view keeps its own.",
-   "2. Returning to the first view restores that view's own selections.",
-   "3. Report tabs likewise keep separate filter choices, each remembered and restored on its own tab."
-  ],
-  "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D20",
-  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 D20 (per-view/per-tab state scoping); spec v1.3 Key Decisions (export awaited)",
-  "viu_status": "VIU-Pending",
-  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): state is scoped per view AND per tab, not per route (saved under a per-view key). Applies once the Parts/Reports rollout ships - hold until then.",
-  "api_related": false
- },
- {
-  "id": "FLT-PERS-06",
-  "area": "Persistence",
-  "title": "Filters saved before the redesign carry over after the update",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Any signed-in user who used the OLD Work Orders page with saved choices before the redesign.",
-  "preconditions": [
-   "1. In one browser, the account was used on the OLD Work Orders page with choices saved there (a tab, status selections, the asset-here toggle, column choices, sorting) BEFORE the redesign was installed."
-  ],
-  "steps": [
-   "1. In that same browser, open the updated app and go to the Work Orders page.",
-   "2. Check the selected tab, the filter chips, the table columns and the sorting.",
-   "3. Sign in as the same person on a DIFFERENT computer or browser and open the Work Orders page."
-  ],
-  "expected": [
-   "1. The old saved choices appear in the new filter bar on the first visit - the update does not lose them (old status choices show in the Status chip, the old asset-here choice shows as Asset on site: Yes, the old My-Work-Orders toggle maps to the My Work Orders tab, columns and sorting stay).",
-   "2. Those carried-over choices are now saved to the account: the other computer shows them too."
-  ],
-  "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md section 4-3.3 (migration mapping table)",
-  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 section 4-3.3 (one-time browser-storage to account-preference migration)",
-  "viu_status": "VIU-Pending",
-  "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): one-time migration, release-critical (existing users must not lose saved filters). Needs a browser profile with pre-update saved state - prepare one BEFORE the build lands on the test environment, or seed the old-format saved state deliberately. Exact mapping per the tech plan 3.3 table.",
-  "api_related": false
- },
- {
-  "id": "FLT-URL-05",
-  "area": "URL State and Shareable Links",
-  "title": "Opening a filtered link never overwrites your saved filters",
-  "priority": "High",
-  "type": "Functional",
-  "permissions_required": "Any signed-in user with access to the Work Orders page (filter lists are role-independent per Branko Round-2 Q3=A).",
-  "preconditions": [
-   "1. You are signed in and have your OWN filters saved on the Work Orders page (for example one customer).",
-   "2. You have a Work Orders link that carries a DIFFERENT filter state (made by another user or another browser)."
-  ],
-  "steps": [
-   "1. Note your own saved filters on the Work Orders page.",
-   "2. Open the shared link.",
-   "3. While on the link view, change one more filter.",
-   "4. Use the on-screen option to go back to your own saved filters.",
-   "5. Leave the page and return to Work Orders normally (via the menu)."
-  ],
-  "expected": [
-   "1. The link's filters apply for viewing only - the page shows the shared view.",
-   "2. Changes made during the link visit are also NOT saved to your account.",
-   "3. The go-back option restores your own saved filters and removes the filter part from the address bar.",
-   "4. Returning normally later still shows your own saved filters, untouched by the link visit."
-  ],
-  "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md G7 / section 4-3.4",
-  "spec_ref": "Filters (Epic key TBD); tech plan 2026-07-29 G7 (URL state runtime-only + back-to-saved affordance); spec closing-note conflict raised with the author (spec v1.3 export awaited)",
-  "viu_status": "VIU-Pending",
-  "notes": "PENDING BRANKO (Questions Q2 / deltas C1): one spec sentence floats 'URL wins on load, then persists'; engineering builds runtime-only and reports the spec author agreed in page comments. The 'back to my saved filters' control name is engineering intent - capture the real on-screen text live.",
   "api_related": false
  }
 ]
