@@ -373,6 +373,48 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
     ours, so drift is found the same day instead of at audit time. Always report **"ours N / live
     total M"**. **Never edit/delete/move a foreign case or add one to a run** — identify it, exclude
     it from our counts, raise it with the author (see CLAUDE.md standing convention).
+  - **⚠️ THE OVERLAP CHECKER ONLY FINDS HALF THE PROBLEM — ALWAYS RUN THE REVERSE ONE TOO
+    (Standing Rule 45a).** `foreign_overlap_check.py` answers *"do THEIR cases duplicate OURS?"*.
+    It **cannot** find the shape that actually cost us on 2026-07-31: an assertion of theirs with
+    **NO counterpart in ours**. **Their case existing where ours does not is a COVERAGE SIGNAL, not
+    a nuisance.** The reverse checker is
+    **`build/gap-rootcause-2026-07-31/reverse_coverage_diff.py`** (READ-ONLY, `get_*` only, no POST
+    code path):
+    ```
+    source /tmp/tr-creds.env
+    python3 build/gap-rootcause-2026-07-31/reverse_coverage_diff.py \
+      --group 4281 --group 4110 --group 4254 --scope-to-section \
+      --md OUT.md --csv OUT.csv --json OUT.json
+    ```
+    Flags: `--scope-to-section` (compare only against OUR cases in the same report/area folder —
+    **use it**, it cuts most cross-report noise) · `--sig-size N` (signature tokens, default 3) ·
+    `--ours-uid 3` · `--cache-dir /tmp/trrcd` · `--refresh`. Groups: Report Suite **4281**, Filters
+    **4110**, Schedule **4254**.
+    **How to read the output — the useful block first.** It splits each foreign case into
+    **assertion units** (a single foreign case routinely mixes one assertion we cover with one we do
+    not) and labels each **COVERED-BY / CANDIDATE GAP / CONTRADICTS-OURS**, naming the **missing
+    token**. Two things make it readable rather than noisy:
+    - **`STRENGTH`** — **STRONG** = the missing word IS in our own vocabulary, it just never
+      co-occurs with the rest (a meaningful absence); **PHRASING** = a word we never use anywhere
+      (*"refetch"*, *"widened"*) = their wording, not our gap. **Only STRONG units set the
+      case-level verdict.**
+    - **`CLOSED-LIST COLLISIONS`** — **read this block first.** It finds OUR cases that enumerate a
+      closed list (*"exactly"*, *"in order"*, *"only these"* — the Rule 42 time-bomb shape) on the
+      same subject as a foreign case, and names the term their case asserts that our closed list
+      never mentions. **This is the detector for the actual 2026-07-31 defect:** for **C38923** it
+      narrowed **474 of our cases to 8** with the two real defects — **SBR-EXP-10 = C30285** and
+      **SBR-EXP-11 = C30286** — ranked **3rd and 4th**.
+    **Honest limits (say them when quoting it):** lexical, not semantic — a gap phrased in words we
+    use elsewhere can read as COVERED-BY, and a synonym can read as a gap; the per-unit verdicts on
+    step-only automated cases carry real false-alarm noise from setup prose (**that is why the
+    collision block and the STRONG filter exist**); it compares written text on both sides and
+    **proves nothing about the running build** (Rule 12). It **suggests — a human rules.** A
+    CANDIDATE GAP goes to the QA lead; **never author or push from it unasked** (Rule 6), and
+    **never touch the foreign case** (Rule 38).
+    **Live baseline 2026-07-30T20:20Z** (read-only, zero writes): Report Suite **4281** = live 479 =
+    ours 474 + **foreign 5, all Vladimir Tomovic (user id 1; we are id 3)**; Filters **4110** = 110 =
+    ours 110 + **0 foreign**; Schedule **4254** = 165 = ours 165 + **0 foreign**. Output kept at
+    `build/gap-rootcause-2026-07-31/REVERSE-DIFF-2026-07-31.md`.
 
 ## K. PRODUCTION access & fix-verification (SV-8721, proven 2026-07-29)
 One indexed block for verifying a bug fix on PRODUCTION (`app.shopview.com` / `api.shopview.com`).
