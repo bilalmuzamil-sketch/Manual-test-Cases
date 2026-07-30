@@ -255,13 +255,13 @@
   "expected": [
    "1. The Status column sits between the Customer column and the Inv. Hrs column.",
    "2. Every detail row renders a small colored badge reading \"Paid,\" \"Partially Paid,\" or \"Unpaid\" — badge rendering is unconditional on detail rows.",
-   "3. The mapping matches §3: paid → Paid; overpaid → Paid; prepaid with zero balance → Paid; prepaid with a balance owed → Partially Paid; partially_paid → Partially Paid; unpaid → Unpaid.",
+   "3. The mapping is: paid → Paid; overpaid → Paid; prepaid with zero balance → Paid; prepaid with a balance owed → Partially Paid; partially_paid → Partially Paid; unpaid → Unpaid.",
    "4. Badges are vertically centered in their cells; on rep summary rows the Status cell is blank; the badge's text is the accessible label — status is never conveyed by color alone."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8625 (specs/sbr-sales-by-representative.md Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6)",
   "viu_status": "VIU-Pending",
-  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-BADGE): absorbed SBR-BADGE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. TECH-PLAN NOTE 2026-07-30: include the deposit-covered prepaid invoice from SBR-STAT-02's seeding — that badge reading \"Partially Paid\" instead of \"Paid\" is the known bug-prone failure (engineering plan B6.2).",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-BADGE): absorbed SBR-BADGE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. TECH-PLAN NOTE 2026-07-30: include the deposit-covered prepaid invoice from SBR-STAT-02's seeding — that badge reading \"Partially Paid\" instead of \"Paid\" is the known bug-prone failure (engineering plan B6.2). AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs.",
   "api_related": false
  },
  {

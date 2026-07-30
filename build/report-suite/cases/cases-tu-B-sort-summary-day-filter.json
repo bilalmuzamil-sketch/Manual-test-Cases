@@ -218,7 +218,7 @@
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
   "preconditions": [
-   "1. Visible technicians include: one with a normal Est. Lost Labor, one showing \"—\" (no rate anywhere), and (if possible) one partially valued (S2-E4)."
+   "1. Visible technicians include: one with a normal Est. Lost Labor, one showing \"—\" (no rate anywhere), and (if possible) one partially valued."
   ],
   "steps": [
    "1. Read the Summary Est. Lost Labor and compare against the sum of the visible rows' valued (rated-location) contributions.",
@@ -232,7 +232,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8650 (specs/technician-utilization.md S3-R5)",
   "viu_status": "VIU-Pending",
-  "notes": "HEAVY SEEDING: rated, unrated, and mixed-location technicians in one view.",
+  "notes": "HEAVY SEEDING: rated, unrated, and mixed-location technicians in one view. AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing preconditions - the assertion is unchanged; the anchor stays in this case's References field where it belongs.",
   "api_related": false
  },
  {
@@ -470,12 +470,12 @@
   "expected": [
    "1. The two deselected technicians are STILL deselected on return - the deselected set is what persists (saved in this browser, not on the account).",
    "2. All other technicians - including any who appear for the first time - are selected.",
-   "3. The saved date range and location selection are restored alongside (per S1-R8)."
+   "3. The saved date range and location selection are restored alongside."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8652 (specs/technician-utilization.md S5-R10; S1-R8; §3)",
   "viu_status": "VIU-Pending",
-  "notes": "Persistence is per browser only - it does not follow the user to another browser or device (§3 context note).",
+  "notes": "Persistence is per browser only - it does not follow the user to another browser or device (§3 context note). AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs.",
   "api_related": false
  },
  {

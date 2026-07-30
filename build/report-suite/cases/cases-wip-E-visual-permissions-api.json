@@ -208,7 +208,7 @@
  {
   "id": "WIP-PERM-02",
   "area": "WIP — Permissions",
-  "title": "Without the permission the report is absent from the reports navigation",
+  "title": "Without the permission Work In Progress is absent from the reports navigation",
   "priority": "Critical",
   "type": "Negative",
   "permissions_required": "A role WITHOUT the permission that grants access to Work In Progress reports.",
@@ -298,12 +298,12 @@
    "3. Compare the pairs."
   ],
   "expected": [
-   "1. The captured Earned equals the on-screen Earned and the captured Remaining equals the on-screen Remaining, to the cent — the snapshot uses the identical computation (Earned per S4-R19, Remaining per S4-R20), so the two can never diverge for a given work order on the capture date."
+   "1. The captured Earned equals the on-screen Earned and the captured Remaining equals the on-screen Remaining, to the cent — the snapshot uses the identical computation for both figures, so the two can never diverge for a given work order on the capture date."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R3)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs.",
   "api_related": true
  },
  {
@@ -375,12 +375,12 @@
   ],
   "expected": [
    "1. The work order IS captured (not skipped).",
-   "2. Its Earned is $0.00 and its Remaining is $0.00, matching the on-screen S4-E1 behavior."
+   "2. Its Earned is $0.00 and its Remaining is $0.00, matching what the report shows on screen for a job with nothing approved."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R6; Story 4 S4-E1)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs.",
   "api_related": true
  }
 ]

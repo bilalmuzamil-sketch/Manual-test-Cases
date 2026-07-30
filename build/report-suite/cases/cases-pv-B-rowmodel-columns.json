@@ -268,12 +268,12 @@
   "expected": [
    "1. Part C shows Demand 1 (the reversal does not decrement the Demand count) with Units Sold 0.00 (the reversal nets the movement to zero).",
    "2. Part D shows a NEGATIVE Units Sold with a leading minus (e.g. -3.00) - negative movement is not floored to zero.",
-   "3. A fully-reversed part with zero net movement, no on-hand stock, and no residual revenue would be excluded per S3-N1 (Demand alone is not a keep-criterion)."
+   "3. A fully-reversed part with zero net movement, no on-hand stock, and no residual revenue would be excluded altogether (a Demand count alone does not keep a row)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (specs/parts-velocity.md S3-E1; S5-R5)",
   "viu_status": "VIU-Pending",
-  "notes": "HEAVY SEEDING: invoice a work order with the part, then reverse/void the invoice inside the same window; for part D make the reversal larger than the in-window sales.",
+  "notes": "HEAVY SEEDING: invoice a work order with the part, then reverse/void the invoice inside the same window; for part D make the reversal larger than the in-window sales. AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs.",
   "api_related": false
  },
  {

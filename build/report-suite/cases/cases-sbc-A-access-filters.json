@@ -20,7 +20,8 @@
    "1. \"Sales By Customer\" is listed in the Performance group of the Reports left-side navigation, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the new reports are added below those items without moving them.",
    "2. Clicking it opens the Sales By Customer report in the main content area.",
    "3. The page title reads \"Sales By Customer.\"",
-   "4. The browser tab title reads \"Sales By Customer - Report | ShopView\"."
+   "4. The browser tab title reads \"Sales By Customer - Report | ShopView\".",
+   "5. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it as the known pending change — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8600 (SBC spec Story 1 S1-R1; S1-R3; S1-R4 — Performance group + below-the-anchors placement per the PRD companion video 2026-07-30; access = ordinary reports permission per Chris Ward answer 2026-07-31 Q4=A)",
@@ -99,7 +100,8 @@
   "expected": [
    "1. \"Sales By Customer\" does not appear in the Reports navigation.",
    "2. Opening the report by direct link does not show the report (the application blocks it with its standard access-denied handling).",
-   "3. The gate is the ordinary reports access — there is no separate Sales By Customer permission to remove."
+   "3. The gate is the ordinary reports access — there is no separate Sales By Customer permission to remove.",
+   "4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it as the known pending change — do not change the test."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8600 (SBC spec Story 1 S1-N1 — permission model RULED to the ordinary reports access by Chris Ward answer 2026-07-31 Q4=A; the build still ships a dedicated permission)",

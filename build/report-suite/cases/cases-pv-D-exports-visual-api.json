@@ -122,12 +122,12 @@
    "2. The PDF is formatted for A3 landscape and titled Parts Velocity.",
    "3. Description, Category, and Vendor are truncated to 18 characters in the PDF.",
    "4. Part # is NOT truncated.",
-   "5. The shop logo shows at the top of the PDF when one is set, with the same logo treatment as the other reports in the suite (fallback behaviour when no logo is set is confirmed in the build; the CSV never includes a logo)."
+   "5. The shop logo shows at the top of the PDF when one is set. With no uploaded logo the PDF shows the bundled ShopView default logo instead of a blank space, the same as the other reports in this suite. The CSV never includes a logo."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
   "viu_status": "VIU-Pending",
-  "notes": "LOGO ADDED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now ensures the same \"logo\" treatment') - the PV spec had NO logo mention, so this report genuinely lacked coverage; the other five reports already carry logo cases (SBC-EXP-10 C30168, SBR-EXP-06 C30281, TU-EXP-06 C30439, WIP-EXP-08 C30517, IV-EXP-04 C30590). Exact treatment pending the updated spec changelog. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 125 chars; meaning unchanged; awaiting push authorization.",
+  "notes": "LOGO ADDED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now ensures the same \"logo\" treatment') - the PV spec had NO logo mention, so this report genuinely lacked coverage; the other five reports already carry logo cases (SBC-EXP-10 C30168, SBR-EXP-06 C30281, TU-EXP-06 C30439, WIP-EXP-08 C30517, IV-EXP-04 C30590). Exact treatment pending the updated spec changelog. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 125 chars; meaning unchanged; awaiting push authorization. AUDIT 2026-07-31 (Rule 9/Dimension 2): the tester-facing line used to read \"fallback behaviour when no logo is set is confirmed in the build\", which is not something a tester can check. The PV spec v4 is SILENT on the no-logo fallback; the wording now follows the SHARED organisation-logo resolver documented in the TU spec S7-R11/S7-N2 (\"the shared organization-logo resolver ... otherwise the bundled ShopView default logo\") and the 2026-07-29 changelog (\"org logo -> bundled ShopView default -> none\"). VIU-confirm live on the Parts Velocity PDF; if PV behaves differently that is a spec-silence finding for Chris Ward, not a bug.",
   "api_related": false
  },
  {
@@ -279,12 +279,12 @@
   "expected": [
    "1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).",
    "2. There is NO card border-radius - the table runs edge to edge.",
-   "3. The layout matches the application's other reports (consistency goal, §1)."
+   "3. The layout matches the application's other reports."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8647 (specs/parts-velocity.md S7-R1; §2)",
   "viu_status": "VIU-Pending",
-  "notes": "Story 7 is the normative visual spec for this report as built (S7-R7). COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact).",
+  "notes": "Story 7 is the normative visual spec for this report as built (S7-R7). COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact). AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs.",
   "api_related": false
  },
  {
