@@ -163,5 +163,8 @@ it looks like it already exists as spec v1.3.
 | Q6 | C7 (Vendors design missing) | FLT-PARTS-08 (new, no C-ID yet) |
 | Q7 | C9 (spec v1.3 drift) | whole suite — triggers a SPEC-RELEVANCE-RECONCILIATION run (Rule 11 ask first); also settles C6/C8 (page-search ownership → FLT-SRCH-01..09 transfer/retire; query-per-tab) |
 
+
+> **QA-INTERNAL NOTE — USER RULING 2026-07-31 (page-search ownership).** Verbatim: *"OK do not delete those cases unless Branko confirms that they are related to Global search only."* The nine page-search cases **FLT-SRCH-01..09** (new, no C-IDs yet — none is in TestRail) **STAY in the Filters suite** unless Branko confirms Global-Search-only ownership; **his answer decides move-vs-keep.** Do NOT delete or transfer them before that. Note on numbering: in THIS sheet Q6 is the *Vendors design* question and the page-search-ownership item rides on the Q7 / C6-C8 row above; the reader-facing search/ownership question the ruling refers to is **Question 6 of `../PO-Questions-Branko-PartsReports-2026-07-27.md`** ("The pop-up search box"). The 2026-07-31 Ruthless Usefulness Audit's CUT recommendation for all nine (and its NONSENSE verdict on FLT-SRCH-09) is a RECOMMENDATION ONLY, re-tabled on his answer.
+
 Verify the C-ids for Q2/Q3/Q4 rows against `build/filters/testrail-id-map.csv`
 before sending anything that quotes them.

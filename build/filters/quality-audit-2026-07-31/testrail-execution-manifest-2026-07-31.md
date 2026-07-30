@@ -66,7 +66,7 @@ retired in this pass has a **blank C-id** — verified twice against `testrail-i
 
 - MG14 members (8): FLT-PARTS-02, -03, -04, -05, -06, -07, -08, -10 — all blank.
 - MG15 members (19): FLT-RPTS-02 … FLT-RPTS-20 — all blank.
-- NONSENSE cut (1): FLT-SRCH-09 — blank.
+- NONSENSE cut (1): FLT-SRCH-09 — blank. (Retirement later REVERTED — see the addendum; it is ACTIVE again.)
 
 All 43 design-level Filters cases (Parts 12 / Reports 22 / Command-K 9) carry blank C-ids; the 94
 live cases are C29557–C29635 + C38876–C38895. **0 deletes required, 0 deletes issued.**
@@ -84,16 +84,28 @@ live cases are C29557–C29635 + C38876–C38895. **0 deletes required, 0 delete
 | Held item | Cases | Why |
 |---|---|---|
 | MG1 / MG2 / MG5 / MG6 dropdown merges | 19 | Await live VIU of the "five dropdowns are one shared component" assumption (audit "Not verified this run"). All 19 untouched. |
-| Command-K cross-project CUTs FLT-SRCH-01..08 | 8 | Await Branko's Q6 ownership ruling — on his answer they either move to the Global Search suite or stay here. Untouched. |
+| Command-K cross-project CUTs **FLT-SRCH-01..09** | **9** | **USER RULING 2026-07-31: do NOT delete unless Branko confirms they are Global-Search-only** (Q6 pending) — all nine stay in the Filters suite. None has a C-id, so no TestRail op exists either way. See the addendum. |
 | The ≤80-char title trims | 39 | Not authorized this pass. |
 | Optional MG16 / MG17 / MG18 under-merges | 6 | Not authorized this pass. |
 | In-suite duplicate CUTs FLT-BAR-03 (C29559) / FLT-COLL-03 (C29603) | 2 | Not in this authorization (only the single NONSENSE cut was authorized). Both remain live. |
 | Merge groups MG3 / MG4 / MG7 / MG8 / MG10 / MG11 / MG12 / MG13 | — | Not in this authorization. |
 
-**Note on FLT-SRCH-09 vs the held Command-K block:** the authorization lists the 9-case Command-K
-CUT block as HELD *and* the single NONSENSE case as authorized. FLT-SRCH-09 is both. It was treated
-as authorized because its CUT reason is *not* the cross-project duplication that Branko's Q6 decides
-— it is "not a test case at all" (a QA/PO scope agreement dressed as a case), and the decision it
-was standing in for already lives in Branko's question sheet. Its 8 siblings FLT-SRCH-01..08 —
-the actual cross-project duplicates — are untouched. Both cases are local-only either way (no
-C-id), so nothing was destroyed in TestRail.
+## ADDENDUM — FLT-SRCH-09 retirement REVERTED (same day, user ruling)
+
+The authorization listed the 9-case Command-K CUT block as HELD *and* the single NONSENSE case as
+authorized; FLT-SRCH-09 is both, and it was initially treated as authorized (its CUT reason is "not
+a test case at all", not the cross-project duplication that Branko's Q6 decides). **A later
+same-day USER RULING settled it the other way, verbatim:**
+
+> "OK do not delete those cases unless Branko confirms that they are related to Global search only."
+
+**Action taken: the FLT-SRCH-09 retirement was REVERTED.** Its exact pre-edit body was restored from
+`../consolidation-backup-2026-07-31/pre-edit-bodies/FLT-SRCH-09.json` (only the internal `notes`
+field carries the added audit-trail paragraph) and the case is **ACTIVE** again. All nine
+FLT-SRCH-01..09 now stay in the Filters suite until Branko explicitly confirms Global-Search-only
+ownership (Q6 of `../PO-Questions-Branko-PartsReports-2026-07-27.md`).
+
+**TestRail impact: NONE.** No FLT-SRCH case has ever had a C-id, so nothing was ever deleted, and
+the revert needed no TestRail op. The 2 `update_case` ops above are unaffected and remain the only
+writes of this pass. **Final tally: 137 authored → 110 ACTIVE** (27 retired = the MG14 + MG15 merge
+members only).

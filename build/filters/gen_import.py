@@ -95,6 +95,17 @@ def load_cases():
     cases = []
     for f in sorted(glob.glob(os.path.join(CASES_DIR, "cases-*.json"))):
         cases += json.load(open(f))
+    print("Total cases loaded (incl. retired):", len(cases))
+    # Active cases only: retired cases (viu_status 'Retired — …') are EXCLUDED
+    # from the import + id-map + tally, exactly as in the fees-discounts /
+    # simple-flow / schedule generators. Their bodies stay in cases/*.json for
+    # the record. Retired 2026-07-31 (user-authorized partial execution of the
+    # Ruthless Usefulness Audit): 27 MG14/MG15 presence-matrix merge members +
+    # the single NONSENSE cut FLT-SRCH-09 — all had blank C-ids (never in
+    # TestRail), so no delete_case was required.
+    cases = [c for c in cases
+             if not (c.get("viu_status") or "").startswith("Retired")]
+    print("Active cases (retired excluded):", len(cases))
     return cases
 
 

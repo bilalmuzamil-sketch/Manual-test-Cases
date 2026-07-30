@@ -1,7 +1,96 @@
 # Filters (Work Order List Filtering) — PROJECT STATE
 **Canonical cold-resume doc. Read this first to resume the Filters project.**
 
-Last updated: 2026-07-30 (**LATEST — TECH-PLAN PUSH QUEUE EXECUTED, user-authorized
+Last updated: 2026-07-31 (**LATEST — AUTHORIZED *PARTIAL* EXECUTION OF THE RULE-28
+USEFULNESS AUDIT**). The user authorized a deliberately partial execution of
+`quality-audit-2026-07-31/` (audit report + `MERGE-PLAN.md`, both now carry
+EXECUTED / HELD markers per portion).
+
+**NEW TALLY: 137 authored → 110 ACTIVE / 27 Retired** (all 110 still VIU-Pending;
+94 of them live in TestRail, 16 blank C-ids). Live count under group 4110 = **94,
+UNCHANGED** (expected 94, actual 94, reconciled 0 live-not-in-map / 0 map-not-live)
+— because everything consolidated this pass had a blank C-id.
+
+**WHAT WAS EXECUTED**
+- **The 12 FIX-WORDING repairs.** 3 applied directly: **FLT-BAR-02 = C29558**
+  (https://shopview.testrail.io/index.php?/cases/view/29558 — new precondition 3
+  "You are on the All tab"), **FLT-ASSET-02 = C29590**
+  (https://shopview.testrail.io/index.php?/cases/view/29590 — dropped the over-broad
+  expected 3; the "No" direction is FLT-ASSET-07 = C38878), and **FLT-RPTS-21** (new,
+  no C-ID yet — added the missing choose-a-value step + grammar fix). The other **9**
+  (FLT-RPTS-04/09/11/12/13/14/15/16/20, all new/no C-ID) were delivered BY the MG15
+  merge exactly as the audit predicted (clean 1–22 expected numbering + explicit
+  switch-tab steps).
+- **The presence-matrix merges, LOCAL-ONLY.** **MG14-PARTS-CHIP-MATRIX** — survivor
+  **FLT-PARTS-01** (new, no C-ID yet) retitled "Every Parts list page shows its
+  designed filter buttons", absorbing 8 members (FLT-PARTS-02/03/04/05/06/07/08/10).
+  **MG15-REPORTS-CHIP-MATRIX** — survivor **FLT-RPTS-01** (new, no C-ID yet) retitled
+  "Every report page shows its designed filter buttons", absorbing 19 members
+  (FLT-RPTS-02..20). All 29 cases carry blank C-ids and were never in TestRail, so
+  **no `delete_case` was needed** — these consolidations are purely local. Table-column
+  and "New …" button assertions were demoted to reference notes inside the survivors'
+  internal notes (nothing lost).
+- **TestRail: 2 `update_case`, both HTTP 200 + re-GET MATCH. 0 add, 0 delete, 0
+  section ops, 0 run/result writes.** Nothing outside group 4110 touched (C29558 →
+  section 4111, C29590 → section 4116, both direct children of 4110). Manifest
+  (written before the first write) =
+  `quality-audit-2026-07-31/testrail-execution-manifest-2026-07-31.md`; per-op log =
+  `.../testrail-execution-log-2026-07-31.md`; pre/post snapshots =
+  `.../pre-push-snapshot/` + `.../post-push-verify/`; executor `exec_push_2026-07-31.py`.
+- **Backups + recovery:** `consolidation-backup-2026-07-31/` (33 pre-edit case bodies +
+  5 whole-file copies + `MANIFEST.md` with group → members → survivor → what it gained,
+  and step-by-step recovery). The local edit is reproducible via
+  `quality-audit-2026-07-31/apply_consolidation_2026-07-31.py` (refuses to re-run).
+- **Generator change:** `gen_import.py` now EXCLUDES `viu_status` "Retired — …" cases
+  (same convention as fees-discounts / simple-flow / schedule). Import + id-map
+  regenerated over **110** (header byte-identical to the other project imports, 0
+  VIU/flag words, no duplicate titles, no C-id column, 6 API cases in the API section);
+  id-map C-ids re-merged **94/94** (⚠️ `gen_import.py` still blanks the id-map C-id
+  column on every run — always re-merge after regenerating).
+
+**⚠️ STILL PENDING — NOTHING BELOW WAS TOUCHED**
+1. **The 19-case dropdown merges MG1 / MG2 / MG5 / MG6 — HELD awaiting a LIVE VIU.**
+   They rest on the audit's own not-live-verified assumption that "the five filter
+   dropdowns are one shared component". Re-open only after the QA branch lets us verify
+   it live. Cases untouched: MG1 = FLT-CHIP-05 **C29599** (survivor) + FLT-STAT-04
+   **C29563**, FLT-CUST-06 **C29571**, FLT-TECH-04 **C29578**, FLT-ADV-04 **C29585**,
+   FLT-ASSET-04 **C29592**; MG2 = FLT-STAT-05 **C29564** (survivor) + FLT-CUST-07
+   **C29572**, FLT-TECH-05 **C29579**, FLT-ADV-05 **C29586**, FLT-ASSET-05 **C29593**;
+   MG5 = FLT-CUST-01 **C29566** (survivor) + FLT-TECH-01 **C29575**, FLT-ADV-01
+   **C29582**; MG6 = FLT-CUST-02 **C29567** (survivor) + FLT-TECH-02 **C29576**,
+   FLT-ADV-02 **C29583**.
+2. **The 9 page-search cases — HELD by USER RULING 2026-07-31**, verbatim: *"OK do not
+   delete those cases unless Branko confirms that they are related to Global search
+   only."* **FLT-SRCH-01, FLT-SRCH-02, FLT-SRCH-03, FLT-SRCH-04, FLT-SRCH-05,
+   FLT-SRCH-06, FLT-SRCH-07, FLT-SRCH-08, FLT-SRCH-09 — all nine "new, no C-ID yet"
+   (none has ever been pushed to TestRail).** They STAY in the Filters suite and must
+   NOT be deleted or moved unless and until **Branko explicitly confirms they belong to
+   Global Search only**; his answer to **Q6** of
+   `PO-Questions-Branko-PartsReports-2026-07-27.md` ("The pop-up search box") decides
+   move-vs-keep. Honesty note: FLT-SRCH-09 was briefly retired locally earlier the same
+   day under the audit's "single NONSENSE case" item; that retirement was **REVERTED**
+   on this ruling and the case is ACTIVE again (it was never in TestRail, so nothing was
+   deleted anywhere). The audit's CUT recommendation for all nine — and its NONSENSE
+   verdict on FLT-SRCH-09 — stand as RECOMMENDATIONS ONLY, re-tabled on Branko's answer.
+   Recorded in `MERGE-PLAN.md` (Cuts), the audit-report headline footnote, and both
+   Branko sheets.
+3. **The 39 over-80-char title trims — NOT authorized this pass.** Full list in the
+   audit report appendix; worst offenders FLT-TAB-02 **C29609** (179), FLT-TAB-03
+   **C29610** (177), FLT-PERS-02 **C29614** (151), FLT-COLL-04 **C29604** (128).
+   FLT-BAR-02 **C29558** (87) was touched this pass but NOT retitled.
+4. **The optional under-merge findings MG16 / MG17 / MG18 — NOT authorized.** MG16 =
+   FLT-CHIP-04 **C29597** + FLT-CHIP-03 **C29596**; MG17 = FLT-COLL-05 **C29605** +
+   FLT-COLL-04 **C29604**; MG18 = FLT-PARTS-11 + FLT-PARTS-12 (both new, no C-ID yet).
+5. Also untouched (not in the authorization): the 2 in-suite duplicate CUTs FLT-BAR-03
+   **C29559** and FLT-COLL-03 **C29603** (both still live), and merge groups MG3 / MG4 /
+   MG7 / MG8 / MG10 / MG11 / MG12 / MG13.
+6. Everything from the 2026-07-30 entry below still stands: the **spec v1.3 export**
+   request (Branko Q7) → Rule-11 ask → SPEC-RELEVANCE-RECONCILIATION; the FLT-RPTS-23
+   **C38882** section move; **live VIU is still pending the QA branch + Epic key** (no
+   live-build check was run in this pass either — the audit and this execution are
+   desk work on case text, per Rule 12).
+
+Prior update: 2026-07-30 (**TECH-PLAN PUSH QUEUE EXECUTED, user-authorized
 "Push all three"**): the ChangeList §E queue is now LIVE in TestRail — **15
 `add_case` + 1 `update_case` (FLT-PERS-02 = C29614) + 1 `add_section` ("Page Search
 Toolbar" = 5410, per §E), ALL HTTP 200 + re-GET MATCH; 0 deletes, run(s) untouched,

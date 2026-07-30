@@ -5,8 +5,20 @@ Companions in this folder: `per-case-verdicts.csv` (one row per case, both verdi
 Dimension-3 columns, regenerate via `gen_verdicts.py`) and `MERGE-PLAN.md` (approvable
 per-group, via `gen_merge_plan.py`).
 
-**Status: RECOMMENDATION ONLY.** No TestRail writes, no case-JSON edits, no run touched
-(Standing Rule 6). Nothing changes until the user approves — wholesale or per-group.
+**Status: PARTIALLY EXECUTED 2026-07-31 (user-authorized).** The audit itself is unchanged below —
+it remains the recommendation of record. What has since been ACTED ON is a deliberately **partial**
+subset; see `MERGE-PLAN.md` (every group now carries EXECUTED / HELD),
+`testrail-execution-manifest-2026-07-31.md` and `testrail-execution-log-2026-07-31.md`.
+
+- **EXECUTED:** the 12 FIX-WORDING repairs (3 direct — 2 of them pushed to TestRail as
+  `update_case`, both HTTP 200 + re-GET MATCH — and 9 delivered by the MG15 merge) and the two
+  presence-matrix merges **MG14** (Parts) + **MG15** (Reports), which were **LOCAL-ONLY** because
+  every case in them has a blank C-id and was never in TestRail. **0 deletes, 0 run writes.**
+- **HELD:** the 19-case dropdown merges MG1/MG2/MG5/MG6 (pending a live check of the shared-component
+  assumption), the FLT-SRCH-01..09 cuts (**user ruling**, see the footnote under the headline), the
+  2 in-suite duplicate cuts, MG3/MG4/MG7/MG8/MG10/MG11/MG12/MG13, the 39 title trims and the optional
+  MG16-18 groups.
+- **Suite today: 137 authored → 110 ACTIVE** (27 retired = the MG14 + MG15 merge members).
 
 ## Method
 
@@ -44,6 +56,16 @@ about case text — they are not evidence any behaviour works (that is VIU's job
 | **Dimension 2 (SENSE)** | **SENSIBLE 124 / FIX-WORDING 12 / NONSENSE 1** |
 | **KEEP-but-NONSENSE** | **EMPTY** — the one NONSENSE case (FLT-SRCH-09) is already a CUT |
 | **Dimension 3** | **Missing-traceability: 0 of 137** (every case carries a spec/design/tech-plan anchor). Suite-wide gap: Jira ticket refs are all "Epic key TBD" (the epic key is a known open question — stated, never invented; backfill obligation when it arrives, per the Schedule SV-8685 precedent). **39 titles exceed the ≤80 bar** (pre-date the 2026-07-27 rule; fix on next authorized touch — list below). Layman wording: pass suite-wide; API content only in the 'API'-titled section (Rule 4). |
+
+**Footnote on the headline count (added 2026-07-31, both numbers stated honestly).** The
+**137 → 74** figure assumes *every* recommendation is taken, including the 9-case Command-K block
+(FLT-SRCH-01..09) being cut from this suite. The user has since ruled — verbatim: *"OK do not delete
+those cases unless Branko confirms that they are related to Global search only."* — so those 9 stay
+in the Filters suite pending Branko's Q6 answer. With them **retained**, the audit's recommended
+count is **137 → 83**, not 74; if the 2 in-suite duplicate cuts are also left alone (they are
+currently HELD) it is **137 → 85**. The behavioural-coverage argument is unchanged either way — the
+9 cases are duplicated in the Global Search project's own 86-case suite, so the question is which
+suite owns them, not whether the coverage exists. **Actually executed so far: 137 → 110 active.**
 
 ## Per-area verdict + sense tables
 
@@ -245,7 +267,17 @@ assumption turns out false on the build, MG1/MG2/MG5/MG6 must be re-opened befor
   case with its C-id/link or "new, no C-ID yet" (via `gen_merge_plan.py`), plus the 3
   optional borderline groups from the adversarial self-audit (not in the headline).
 - `verify_audit.py` — the adversarial self-audit verifier (40 mechanical checks; exits
-  non-zero on any drift). Re-run it after any regeneration.
+  non-zero on any drift). Re-run it after any regeneration. **Post-execution note (2026-07-31):**
+  after the authorized partial execution it reports exactly **2 expected drifts**, both caused by
+  the execution itself and neither an audit error — (1) *"case bodies + id-map unchanged since the
+  cited snapshot SHA"* fails because the bodies have legitimately changed (the merges/repairs were
+  applied; the audit remains a snapshot of the pre-execution suite), and (2) *"report contains the
+  recommendation-only guardrail"* fails because that line was deliberately replaced with the
+  PARTIALLY EXECUTED status block at the top. All other 38 checks still pass.
+- `apply_consolidation_2026-07-31.py` — the deterministic local applier for the authorized subset
+  (refuses to run twice); `exec_push_2026-07-31.py` — the 2-op TestRail executor;
+  `testrail-execution-manifest-2026-07-31.md` + `testrail-execution-log-2026-07-31.md` +
+  `pre-push-snapshot/` + `post-push-verify/` — the execution record.
 
 ## Appendix — the 39 title-length violators (Dimension 3; fix on next authorized touch)
 
