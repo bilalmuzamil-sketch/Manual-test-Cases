@@ -1,8 +1,81 @@
 # Filters (Work Order List Filtering) — PROJECT STATE
 **Canonical cold-resume doc. Read this first to resume the Filters project.**
 
-Last updated: 2026-07-31 (**LATEST — AUTHORIZED *PARTIAL* EXECUTION OF THE RULE-28
-USEFULNESS AUDIT**). The user authorized a deliberately partial execution of
+---
+
+## 0. LATEST — SPEC v1.6 FIX + AUTHORING PASS **EXECUTED** (2026-07-31)
+
+**Read this section first.** Source docs: `fixes-2026-07-31/` (manifest, execution log,
+authoring coverage, Rule-28 audit, backups, snapshots, run-352 evidence),
+`ahtesham-review-2026-07-31/FIX-PLAN.md` + `VERIFICATION.md`,
+`spec-current-2026-07-31/Filters-spec-current.md` + `SPEC-DIFF.md`.
+
+**SPEC BASELINE IS NOW v1.6** — Confluence page **572030978**, version **12**, updated
+**2026-07-28** by Branko Cicovic. Every case touched this pass records
+`[spec v1.6 2026-07-28]` in its References. ⚠️ `build/filters/requirements.md` is still
+the **stale V1.0 ingest** and should be re-ingested from the v1.6 pull.
+
+### NEW TALLY: **145 authored → 118 ACTIVE / 27 Retired** (all 118 `VIU-Pending`)
+**102 live in TestRail** under group 4110 (id-map 118 rows, **102 C-ids, 16 deliberately
+blank** = FLT-PARTS ×4, FLT-RPTS ×3, FLT-SRCH ×9). Live count reconciles **equal both
+ways** with the id-map (0 live-not-in-map / 0 map-not-live).
+
+### What was executed
+1. **The 4 immediate FIX-PLAN fixes.** Status-chip consistency **FLT-BAR-03 = C29559** +
+   **FLT-TAB-05 = C29612** (the word "hidden" removed; both now say *shown greyed out,
+   pre-filled, not clickable* per Branko Q4=B + the QA-lead ruling); **FLT-URL-05 =
+   C38879** now uses the ratified label **"Back to my view"** and tests the `S11-R7`
+   query-clearing clause; **NEW FLT-URL-06 = C38896** covers the `S11-N3` negative.
+   **FLT-BAR-02 = C29558 was already correct and was not touched** (its precondition
+   already said "shown greyed out and already filled in").
+2. **8 new cases for the v1.6 gaps** (honest number — not padded to the ~25 in the brief;
+   26 uncovered requirements collapse into 8 distinct behaviours + 7 extensions):
+   FLT-URL-06 = C38896, FLT-EMPTY-03 = C38897, FLT-PSRCH-08 = C38898, FLT-PSRCH-09 =
+   C38899, FLT-PSRCH-10 = C38900, FLT-PSRCH-11 = C38901, FLT-PSRCH-12 = C38902,
+   FLT-PSRCH-13 = C38903. Rationale per case: `fixes-2026-07-31/AUTHORING-COVERAGE-2026-07-31.md`.
+3. **7 existing cases extended/corrected instead of duplicated.** Most important:
+   **FLT-PSRCH-03 = C38886 was WRONG** — it asserted the search text is saved per account
+   "just like the filters"; `S13-R25` ratifies the opposite (browser-tab session only,
+   never saved, each tab independent, gone after the session). Rewritten. Also
+   FLT-PSRCH-05 = C38889 (+`S13-R17`/`R20`), FLT-PSRCH-06 = C38891 (extended to the
+   ratified `S14-R6` 42-surface / 39-component sweep), and the FIX-PLAN **F7 refs sweep**
+   on FLT-PSRCH-01/02/04/07 = C38883/C38884/C38888/C38893.
+4. **Rule-28 three-dimension audit + the first CROSS-CASE consistency sweep.**
+   20 KEEP / 0 CUT / 0 MERGE; 20 SENSIBLE / 0 NONSENSE; 20 GENUINE+layman PASS. Sweep of
+   all 118 cases across 6 behaviour groups closed the Status-chip, query-persistence and
+   "Clear filters" contradictions (2 extra repairs: **FLT-CHIP-04 = C29598** and
+   **FLT-EMPTY-02 = C29607** now require an empty Search box). **Zero contradictions
+   remain among the 102 cases in TestRail.** Report:
+   `fixes-2026-07-31/RULE28-AUDIT-2026-07-31.md`.
+5. **TestRail: 15 `update_case` calls over 12 cases + 8 `add_case`, every op HTTP 200 +
+   re-GET verified. 0 delete, 0 add_section, 0 result writes.** Two self-corrected
+   deviations are logged honestly (TestRail strips the space after commas in `refs` → all
+   refs rewritten comma-free and re-pushed; 3 tester-facing "(VIU-confirm …)" phrases
+   reworded and re-pushed). Log: `fixes-2026-07-31/testrail-execution-log-2026-07-31.md`.
+6. **Run 352 synced (Standing Rule 34): 94 → 102 tests**, all 94 prior case_ids still
+   present, 0 extra, **result records unchanged 395 → 395**, `include_all` still false.
+   No other run touched. Evidence: `fixes-2026-07-31/run352/`.
+
+### STILL PENDING after this pass
+- **No live VIU is possible yet** — there is still **no Filters QA branch/env (OQ-3)** and
+  **no epic key (OQ-2)**. All 118 cases are `VIU-Pending`; every spec-sourced on-screen
+  label is flagged VIU-confirm in the internal notes.
+- **Blocked on the spec:** `S13-R23` — the per-table searchable-field list is marked
+  *Pending* from engineering in the PRD itself, and 5 client-side surfaces have no field
+  list at all. **No per-page "searching X finds Y" case was invented.**
+- **Branko / spec-watch items** (question sheet owned separately): align the PRD's
+  "hidden" Status-chip prose (6 places) to his own Q4=B answer; Story 12 vs the mobile
+  "All Filters" + "Apply filters" sheet; ownership of the 9 `FLT-SRCH` palette cases;
+  `S13-R23` field list; FLT-TAB-06 = C38876's Estimates default tab (absent from v1.6).
+- **Not authorized this pass:** FIX-PLAN **F2** (mobile Apply-button flag parity on
+  C29622/C29623) and **F3** (C38877 refs/note). **Sorting** cases still held.
+- **39 pre-existing over-length titles** (Rule 19) — standing trim queue.
+- **12 Figma boards still have no PNG** — see the open queue note below (Rule 35).
+
+---
+
+Last updated: 2026-07-31 (**earlier the same day — AUTHORIZED *PARTIAL* EXECUTION OF THE
+RULE-28 USEFULNESS AUDIT**). The user authorized a deliberately partial execution of
 `quality-audit-2026-07-31/` (audit report + `MERGE-PLAN.md`, both now carry
 EXECUTED / HELD markers per portion).
 

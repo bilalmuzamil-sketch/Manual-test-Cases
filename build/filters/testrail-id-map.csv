@@ -1,7 +1,7 @@
 internal_id,testrail_case_id,title,section
 FLT-BAR-01,C29557,Filter bar is shown below the tab row on the Work Orders page,Filter Bar Layout and Visibility
 FLT-BAR-02,C29558,"Five filter chips appear in a fixed order, each with an icon, its name and a down arrow",Filter Bar Layout and Visibility
-FLT-BAR-03,C29559,The filter bar still shows the remaining chips on a tab where the Status filter is hidden,Filter Bar Layout and Visibility
+FLT-BAR-03,C29559,The filter bar still shows the other four chips on the Estimates tab,Filter Bar Layout and Visibility
 FLT-STAT-01,C29560,Status chip opens a checkbox list of all nine work order statuses with a Clear selection action,Status Filter
 FLT-STAT-02,C29561,"Ticking one status filters the table immediately, with no apply button",Status Filter
 FLT-STAT-03,C29562,Ticking several statuses shows work orders matching any of them,Status Filter
@@ -52,11 +52,12 @@ FLT-COLL-04,C29604,"The funnel button shows a blue indicator when filters are ac
 FLT-COLL-05,C29605,Active filters keep filtering the table while the filter bar is collapsed,Collapse and Expand
 FLT-EMPTY-01,C29606,A filter combination with no matching work orders shows a no-results empty state instead of a blank table,Empty State
 FLT-EMPTY-02,C29607,"The filtered empty state offers a way to clear the filters, and using it brings the list back",Empty State
+FLT-EMPTY-03,C38897,"When filters and a search find nothing, each can be cleared on its own",Empty State
 FLT-TAB-01,C29608,"The All tab shows all five filter chips, all working",Tab Behaviour
 FLT-TAB-02,C29609,"On the Estimates tab the Status chip is shown greyed out, pre-filled with 'Status: Estimate', and cannot be changed; the other four filters work on top of the Estimates pre-filter",Tab Behaviour
 FLT-TAB-03,C29610,"On the Completed tab the Status chip is shown greyed out, pre-filled with the tab's status, and cannot be changed; the other four filters work on top of the Completed pre-filter",Tab Behaviour
 FLT-TAB-04,C29611,On the My Work Orders tab all five filters are shown and narrow the already user-scoped list,Tab Behaviour
-FLT-TAB-05,C29612,Filter selections survive tab switching; a Status selection hidden on Estimates/Completed comes back on the All tab,Tab Behaviour
+FLT-TAB-05,C29612,A Status choice is kept while you switch tabs and comes back on the All tab,Tab Behaviour
 FLT-TAB-06,C38876,First visit opens the Estimates tab; your last-used tab is remembered,Tab Behaviour
 FLT-PERS-01,C29613,Leaving the Work Orders page and coming back restores the filters and the bar state exactly,Persistence
 FLT-PERS-02,C29614,Filter selections are remembered for you permanently - still applied after moving around the app and even after closing the browser and signing back in,Persistence
@@ -69,6 +70,7 @@ FLT-URL-02,C29618,Opening a shared or bookmarked URL loads the Work Orders page 
 FLT-URL-03,C29619,A URL containing a filter value that no longer exists loads without that value,URL State and Shareable Links
 FLT-URL-04,C29620,A malformed filter URL loads the page unfiltered without showing an error,URL State and Shareable Links
 FLT-URL-05,C38879,Opening a filtered link never overwrites your saved filters,URL State and Shareable Links
+FLT-URL-06,C38896,'Back to my view' is not shown when you are on your own view,URL State and Shareable Links
 FLT-MOB-01,C29621,"On mobile the filter chips sit in a horizontally scrollable row below the tabs, starting with All Filters",Mobile Filters
 FLT-MOB-02,C29622,Tapping All Filters opens a bottom sheet listing every filter as an expandable row with an Apply filters button,Mobile Filters
 FLT-MOB-03,C29623,Selecting statuses in the mobile sheet and tapping Apply filters filters the list and counts on the sheet title,Mobile Filters
@@ -89,11 +91,17 @@ FLT-RPTS-22,,"New Reports filter types behave correctly (Location, Transaction T
 FLT-RPTS-23,C38882,Date range filter: results update when both start and end dates are picked,Reports Page Filters
 FLT-PSRCH-01,C38883,Page toolbar Search expands in place and narrows the list as you type,Page Search Toolbar
 FLT-PSRCH-02,C38884,Page search combines with filters and is cleared separately,Page Search Toolbar
-FLT-PSRCH-03,C38886,The page search text is remembered and restored like filters,Page Search Toolbar
+FLT-PSRCH-03,C38886,Your typed search stays in this browser tab only and is never saved,Page Search Toolbar
 FLT-PSRCH-04,C38888,The search term is part of the shareable page link,Page Search Toolbar
 FLT-PSRCH-05,C38889,On mobile the search expands in the toolbar and buttons make room,Page Search Toolbar
 FLT-PSRCH-06,C38891,"Every list page keeps its own search box (Parts, Reports, detail tabs)",Page Search Toolbar
 FLT-PSRCH-07,C38893,The top navigation search no longer filters page lists,Page Search Toolbar
+FLT-PSRCH-08,C38898,"The Search box changes look as you hover over it, open it and type",Page Search Toolbar
+FLT-PSRCH-09,C38899,"The list narrows shortly after you stop typing, with no button to press",Page Search Toolbar
+FLT-PSRCH-10,C38900,One search box serves all Work Orders tabs and searches the tab you are on,Page Search Toolbar
+FLT-PSRCH-11,C38901,Each Report tab and each Parts view keeps its own separate search,Page Search Toolbar
+FLT-PSRCH-12,C38902,An old link carrying a top-search word no longer narrows the page list,Page Search Toolbar
+FLT-PSRCH-13,C38903,Collapsing the filter bar keeps an active search working,Page Search Toolbar
 FLT-SRCH-01,,Page search opens with the 'Search or ask a question' box,Page Search (Command-K)
 FLT-SRCH-02,,"Page search shows entity tabs All, Work Orders, Customers, Assets, Parts...",Page Search (Command-K)
 FLT-SRCH-03,,Typing a term shows grouped results with counts and highlighting,Page Search (Command-K)

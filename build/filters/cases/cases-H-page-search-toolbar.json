@@ -351,13 +351,13 @@
   "expected": [
    "1. The page opens with the normal list for your own saved filters - the old search word does NOT narrow the list.",
    "2. The page's own Search box is empty; nothing was carried into it.",
-   "3. No error is shown - the leftover search part in the address is simply ignored. (VIU-confirm whether it is also dropped from the address.)",
+   "3. No error is shown - the leftover search part in the address is simply ignored. (Whether it also disappears from the address is not important; note what you see.)",
    "4. After typing in the top-of-screen search and reloading, the list is still not narrowed and nothing about that word was remembered for the list."
   ],
   "design_ref": "Spec-sourced (S14-R3); no design image required.",
   "spec_ref": "Filters epic (key TBD) (S14-R3 (state / URL parameters / persisted values carrying a global search term into page filtering are removed with it); S14-R2; S14-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
-  "notes": "Covers the leftover-state half of Story 14. Overlap: FLT-PSRCH-07 = C38893 covers typing in the top-of-screen search LIVE; this case covers a word arriving from an old link, bookmark or saved value. S14-R2's 'removed, not hidden behind a flag or left dormant' is a code-level statement that a tester cannot see - evidence comes from engineering/code review, so it is not asserted as a step here. Authored against spec v1.6 (Confluence v12, 2026-07-28).",
+  "notes": "Covers the leftover-state half of Story 14. Overlap: FLT-PSRCH-07 = C38893 covers typing in the top-of-screen search LIVE; this case covers a word arriving from an old link, bookmark or saved value. S14-R2's 'removed, not hidden behind a flag or left dormant' is a code-level statement that a tester cannot see - evidence comes from engineering/code review, so it is not asserted as a step here. Authored against spec v1.6 (Confluence v12, 2026-07-28). | (VIU-confirm whether the leftover search parameter is also stripped from the address - flag kept here, out of the tester-facing text.)",
   "api_related": false
  },
  {

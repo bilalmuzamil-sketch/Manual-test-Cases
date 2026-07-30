@@ -706,7 +706,7 @@
   "expected": [
    "1. The link's filters apply for viewing only - the page shows the shared view.",
    "2. Changes made during the link visit are also NOT saved to your account.",
-   "3. A 'Back to my view' option is shown while you are looking at the shared link. (VIU-confirm the exact wording on screen.)",
+   "3. A 'Back to my view' option is shown while you are looking at the shared link. (If the wording on screen is slightly different, note what it says and carry on.)",
    "4. Clicking 'Back to my view' brings back your own saved filters and removes the filter part from the web address.",
    "5. It also empties the Search box and removes your typed text - the search is not something that gets saved, so there is nothing to bring back.",
    "6. Returning normally later still shows your own saved filters, untouched by the link visit."
@@ -714,7 +714,7 @@
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md G7 / section 4-3.4",
   "spec_ref": "Filters epic (key TBD) (S11-R6 (URL state runtime-only with no write-back); S11-R7 (Back to my view - also clears the query); S11-R8 (rationale: the query is never saved)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
-  "notes": "RESOLVED by spec v1.4/v1.5 (2026-07-27): S11-R6 ratifies runtime-only with no write-back, exactly as tested; S11-R7 ratifies the control label as \"Back to my view\" (deliberately \"my view\" not \"my filters\" because it affects filters AND search). Branko Q2 and the naming question both withdrawn. The negative direction (control absent on a normal visit, S11-N3) is FLT-URL-06. Updated 2026-07-31 (FIX-PLAN F4+F5, user-authorized) against spec v1.6 (Confluence v12, 2026-07-28); the on-screen label is still (VIU-confirm) - no Filters QA branch exists yet.",
+  "notes": "RESOLVED by spec v1.4/v1.5 (2026-07-27): S11-R6 ratifies runtime-only with no write-back, exactly as tested; S11-R7 ratifies the control label as \"Back to my view\" (deliberately \"my view\" not \"my filters\" because it affects filters AND search). Branko Q2 and the naming question both withdrawn. The negative direction (control absent on a normal visit, S11-N3) is FLT-URL-06. Updated 2026-07-31 (FIX-PLAN F4+F5, user-authorized) against spec v1.6 (Confluence v12, 2026-07-28); the on-screen label is still (VIU-confirm) - no Filters QA branch exists yet. | (VIU-confirm the exact on-screen wording of 'Back to my view' - flag kept here, out of the tester-facing text.)",
   "api_related": false
  },
  {

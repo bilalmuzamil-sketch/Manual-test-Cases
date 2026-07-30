@@ -9,10 +9,11 @@ Filter bar is shown below the tab row on the Work Orders page,Filter Bar Layout 
 2. Look at what each chip shows.","1. Exactly five filter chips appear, in this order: Status, Customer, Lead Technician, Service Advisor, Asset on site.
 2. Each chip shows a small icon, the filter name and a down arrow (chevron) indicating it opens a dropdown.
 3. In the design the icons are: a spinner for Status, a person for Customer, a wrench for Lead Technician, a headset for Service Advisor and a truck for Asset on site.",requirements.md Story 1 S1-R2; S1-R3,,
-The filter bar still shows the remaining chips on a tab where the Status filter is hidden,Filter Bar Layout and Visibility,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+The filter bar still shows the other four chips on the Estimates tab,Filter Bar Layout and Visibility,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.","1. Click the Estimates tab.
-2. Look at the filter bar.","1. The filter bar is still shown (it does not disappear).
-2. The remaining filter chips (Customer, Lead Technician, Service Advisor, Asset on site) are displayed and usable.",requirements.md Story 1 S1-N1,,
+2. Look at the filter bar.","1. The filter bar is still shown - it does not disappear on this tab.
+2. The Customer, Lead Technician, Service Advisor and Asset on site chips are all displayed and usable.
+3. The Status chip is not usable on this tab: it is shown greyed out and already filled in with the tab's own status, and cannot be clicked.","Filters epic (key TBD) (S1-N1; S9-R2; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled) [spec v1.6 2026-07-28]",,
 Status chip opens a checkbox list of all nine work order statuses with a Clear selection action,Status Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All or My Work Orders tab.
 3. No filters are currently selected.","1. Click the Status filter chip.
@@ -259,11 +260,12 @@ A chip with several values shows the first values and shortens the rest with an 
 3. When the last active filter is removed, 'Clear filters' disappears again.",requirements.md Story 7 S7-R3; S7-N1; Story 8 S8-N1,,
 'Clear filters' removes every active filter at once and all chips return to default,Active Filter Chips and Clear Filters,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
-3. Values are selected in at least three different filters (for example a status, a customer and Asset on site Yes).","1. Click the 'Clear filters' link at the right end of the chip row.
+3. Values are selected in at least three different filters (for example a status, a customer and Asset on site Yes).
+4. The page's own Search box is empty (no text typed in it) - a typed search is cleared by its own control, not by 'Clear filters'.","1. Click the 'Clear filters' link at the right end of the chip row.
 2. Look at all the chips and the table.","1. Every active filter is cleared in one click.
 2. All chips return to their default (inactive) look with no values shown.
-3. The table shows the full unfiltered list again.
-4. The 'Clear filters' link disappears.",requirements.md Story 8 S8-R1; §4 Key Decisions,,
+3. The table shows the full unfiltered list again (no text is in the page Search box, so nothing else is narrowing it).
+4. The 'Clear filters' link disappears.",Filters epic (key TBD) (S8-R1; §4 Key Decisions; S13-R13 (clearing filters does not clear a typed search)) [spec v1.6 2026-07-28],,
 'Clear selection' inside one dropdown clears only that filter and leaves the others active,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Values are selected in at least two different filters (for example a status and a customer).","1. Open the Status dropdown and click 'Clear selection'.
@@ -312,11 +314,21 @@ A filter combination with no matching work orders shows a no-results empty state
 2. The empty state shows a message indicating no results were found for the current filters.
 3. No error message or broken layout appears.",requirements.md Story 8 S8-R3,,
 "The filtered empty state offers a way to clear the filters, and using it brings the list back",Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page showing the filtered empty state (a filter combination matching no work orders is applied).","1. Read the empty state content.
+2. You are on the Work Orders page showing the filtered empty state (a filter combination matching no work orders is applied).
+3. The page's own Search box is empty (no text typed in it).","1. Read the empty state content.
 2. Click the clear-filters prompt/link inside the empty state.
 3. Look at the table and the chips.","1. The empty state includes a prompt or link to clear the filters.
-2. Clicking it removes the active filters and the full work order list is shown again.
-3. The chips return to their default state.",requirements.md Story 8 S8-R4,,
+2. Clicking it removes the active filters and the full work order list is shown again (with no text in the Search box, nothing else is narrowing the list).
+3. The chips return to their default state.",Filters epic (key TBD) (S8-R4; S8-R5 (with a query active each is cleared independently - FLT-EMPTY-03)) [spec v1.6 2026-07-28],,
+"When filters and a search find nothing, each can be cleared on its own",Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page.
+3. One filter is active (for example a Status) and some work orders match it.","1. With that filter still active, type a word in the page Search box that matches none of the work orders left in the list.
+2. Read the message shown where the table was.
+3. Use the option the message offers for clearing the search only.
+4. Type the same word again, then use the option the message offers for clearing the filters only.","1. The table is replaced by a no-results message that mentions BOTH the current filters and the search - not the filters alone.
+2. The message offers a way to clear the filters and, because a search is active, a separate way to clear the search.
+3. Clearing the search brings back the list as narrowed by the filter only - the filter is still on.
+4. Clearing the filters leaves your typed word in the box and still applied - each is cleared on its own without wiping the other.",Filters epic (key TBD) (S8-R3 (empty state covers filters AND any active query); S8-R4 (prompt to clear filters and the query where active); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v1.6 2026-07-28],,
 "The All tab shows all five filter chips, all working",Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.","1. Click the All tab.
 2. Count the filter chips and click each one briefly.","1. All five chips are shown: Status, Customer, Lead Technician, Service Advisor, Asset on site.
@@ -346,12 +358,12 @@ On the My Work Orders tab all five filters are shown and narrow the already user
 3. Look at the table.","1. All five filter chips are shown on the My Work Orders tab.
 2. The table only ever shows work orders assigned to you (the tab's own scope stays).
 3. After step 2 it shows only YOUR work orders in the ticked status - the filters narrow the user-scoped list, they do not widen it to other users' work orders.",requirements.md Story 9 S9-R4; §4 Key Decisions (My Work Orders tab does not remove filters),,
-Filter selections survive tab switching; a Status selection hidden on Estimates/Completed comes back on the All tab,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+A Status choice is kept while you switch tabs and comes back on the All tab,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. A Status selection (for example Approved) and a Customer selection are active.","1. Click the Estimates tab and look at the filter bar and the table.
-2. Click back to the All tab and look again.","1. On the Estimates tab the Status selection is not applied and not shown as an editable filter (incompatible with the tab), but the Customer selection is still shown and still filters the list.
+2. Click back to the All tab and look again.","1. On the Estimates tab your Status choice is not applied and cannot be changed - the Status chip is greyed out and pre-filled with the tab's own status. The Customer selection is still shown and still filters the list.
 2. Back on the All tab the Status chip reappears with the SAME selection (Approved) still applied - the selection was retained in memory, not lost.
-3. The Customer selection is unchanged throughout.",requirements.md Story 9 S9-R5; S9-N1,,
+3. The Customer selection is unchanged throughout.",Filters epic (key TBD) (S9-R5; S9-N1; S9-R2 - behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30) [spec v1.6 2026-07-28],,
 First visit opens the Estimates tab; your last-used tab is remembered,Tab Behaviour,Functional,High,1. You can sign in as a user who has never used the redesigned Work Orders page (no saved page choices for that account).,"1. Sign in as that fresh user and open the Work Orders page.
 2. Note which tab is selected and the tab order.
 3. Switch to the All tab.
@@ -418,14 +430,28 @@ A malformed filter URL loads the page unfiltered without showing an error,URL St
 2. No filters are applied (chips in default state, full list shown) - the unrecognizable state is discarded.
 3. No error message or broken page appears.",requirements.md Story 11 S11-N1,,
 Opening a filtered link never overwrites your saved filters,URL State and Shareable Links,Functional,High,"1. You are signed in and have your OWN filters saved on the Work Orders page (for example one customer).
-2. You have a Work Orders link that carries a DIFFERENT filter state (made by another user or another browser).","1. Note your own saved filters on the Work Orders page.
+2. You have a Work Orders link that carries a DIFFERENT filter state (made by another user or another browser).
+3. You know how to use the page's own Search box on the Work Orders page (the Search button in the toolbar row).","1. Note your own saved filters on the Work Orders page.
 2. Open the shared link.
 3. While on the link view, change one more filter.
-4. Use the on-screen option to go back to your own saved filters.
-5. Leave the page and return to Work Orders normally (via the menu).","1. The link's filters apply for viewing only - the page shows the shared view.
+4. Still on the link view, type something into the page's Search box so the list is narrowed by text as well.
+5. Click 'Back to my view'.
+6. Leave the page and return to Work Orders normally (via the menu).","1. The link's filters apply for viewing only - the page shows the shared view.
 2. Changes made during the link visit are also NOT saved to your account.
-3. The go-back option restores your own saved filters and removes the filter part from the address bar.
-4. Returning normally later still shows your own saved filters, untouched by the link visit.",Filters (Epic key TBD); tech plan 2026-07-29 G7 (URL state runtime-only + back-to-saved affordance); spec closing-note conflict raised with the author (spec v1.3 export awaited),,
+3. A 'Back to my view' option is shown while you are looking at the shared link. (If the wording on screen is slightly different, note what it says and carry on.)
+4. Clicking 'Back to my view' brings back your own saved filters and removes the filter part from the web address.
+5. It also empties the Search box and removes your typed text - the search is not something that gets saved, so there is nothing to bring back.
+6. Returning normally later still shows your own saved filters, untouched by the link visit.",Filters epic (key TBD) (S11-R6 (URL state runtime-only with no write-back); S11-R7 (Back to my view - also clears the query); S11-R8 (rationale: the query is never saved)) [spec v1.6 2026-07-28],,
+'Back to my view' is not shown when you are on your own view,URL State and Shareable Links,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. You have your OWN filters saved on the Work Orders page (for example one customer).
+3. You are NOT using a shared link - you have not opened a Work Orders web address that someone sent you.","1. Open the Work Orders page from the main menu.
+2. Look at the filter bar and the toolbar row for a 'Back to my view' option.
+3. Change one of your filters and look again.
+4. Open a Work Orders link that carries someone else's filters, and look again.
+5. Click 'Back to my view', then look one more time.","1. On your own view there is no 'Back to my view' option anywhere - it only belongs to a shared-link visit.
+2. Changing your own filters does not make it appear.
+3. When you open the shared link, 'Back to my view' does appear.
+4. After you click it and you are back on your own view, the option disappears again.",Filters epic (key TBD) (S11-N3; S11-R7) [spec v1.6 2026-07-28],,
 "On mobile the filter chips sit in a horizontally scrollable row below the tabs, starting with All Filters",Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device (or a mobile-size browser window).
 2. You are on the Work Orders page.","1. Look at the row below the tab row (All, Estimates, Completed, My Work Orders).
 2. Swipe the chip row sideways.","1. A filter chip row is shown below the tabs, starting with an 'All Filters' chip (with a funnel icon) followed by the individual filter chips (Status, Customer, Lead Technician, ...).
@@ -587,46 +613,116 @@ Page toolbar Search expands in place and narrows the list as you type,Page Searc
 3. Type part of a work order's text (for example part of a customer or asset name).
 4. Clear the text with the round x in the box.
 5. Click somewhere else on the page while the box is EMPTY.
-6. Expand it again, type text, and click somewhere else.","1. The control expands in place into a small search box inviting you to type (engineering copy: 'Type to search').
+6. Expand it again, type text, and click somewhere else.","1. The control expands in place into a small search box showing the placeholder 'Type to search'.
 2. The list narrows as you type, after a brief pause - and ONLY this page's list changes, nothing else in the app.
 3. The round x clears the text and the full list returns.
-4. Clicking away with an empty box collapses it back to the Search button; with text in it, the box stays open.","Filters (Epic key TBD); tech plan 2026-07-29 D18; spec v1.3 S13-R1..R7, S13-R9, S13-R15 (export awaited)",,
+4. Clicking away with an empty box collapses it back to the Search button; with text in it, the box stays open.",Filters epic (key TBD) (S13-R1 (placement in the toolbar action group); S13-R9 (scoped to this table only); S13-R12; S13-R15 (blur rules)) [spec v1.6 2026-07-28],,
 Page search combines with filters and is cleared separately,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with work orders for several customers and statuses.","1. Apply one filter (for example a Status).
 2. Type a search term in the page search box.
 3. Clear ONLY the search (the round x).
 4. Re-type the search, then clear ONLY the filter.","1. With both active, the results match the filter AND the search together (both narrow the list at once).
 2. Clearing the search keeps the filter applied.
-3. Clearing the filter keeps the search applied - each is cleared by its own control without wiping the other.",Filters (Epic key TBD); tech plan 2026-07-29 D18; spec v1.3 S13-R10/R13 + S8-R5 (export awaited),,
-The page search text is remembered and restored like filters,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page.","1. Type a search term that matches some work orders.
-2. Go to another area of the app and come back to the Work Orders page.
-3. Now type a search term that matches NOTHING, leave the page, and come back again.","1. The search box comes back with your text still in it and the list still narrowed by it - just like the filters.
-2. A remembered search that matches nothing shows the no-results empty state - the remembered text is NOT silently thrown away.","Filters (Epic key TBD); tech plan 2026-07-29 D18; spec v1.3 S10-R4/R5, S10-N2 (export awaited)",,
+3. Clearing the filter keeps the search applied - each is cleared by its own control without wiping the other.",Filters epic (key TBD) (S13-R10 (search and filters are additive); S13-R13 (each cleared independently); S8-R5) [spec v1.6 2026-07-28],,
+Your typed search stays in this browser tab only and is never saved,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page with several work orders listed.
+3. You know how to open a second browser tab on the same page.","1. Type a search term in the page Search box that matches some work orders.
+2. Sort the table by a column, then move to the next page of results.
+3. Go to another area of the app and come back to the Work Orders page.
+4. Open the Work Orders page in a SECOND browser tab and look at its Search box.
+5. Close every browser tab, open the browser again and go back to the Work Orders page.","1. Sorting and paging keep your search applied - your text stays in the box and the list stays narrowed.
+2. Leaving the page and coming back also keeps your text in the box and the list still narrowed.
+3. The second browser tab starts clean: its Search box is empty and it shows the full list. Each tab keeps its own search.
+4. After closing the browser and coming back, the Search box is empty and the list is unsearched - a typed search is never remembered for next time (your filters, unlike the search, ARE remembered).",Filters epic (key TBD) (S13-R14 (retained for the browser tab session); S13-R25 (never stored against the account; each tab independent); S13-N4 (not restored on a later visit); S10-R5) [spec v1.6 2026-07-28],,
 The search term is part of the shareable page link,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.","1. Type a search term and copy the page address.
 2. Open the copied address in a fresh tab.
 3. Hand-edit the search part of the address into something malformed and load it.","1. The address contains the search term after step 1.
 2. The fresh tab opens with the search box filled and the list already narrowed.
 3. The malformed part is ignored - the page loads cleanly without an error.
-4. A search arriving via a link is view-only, the same as filters from a link - it does not overwrite your own remembered search.","Filters (Epic key TBD); tech plan 2026-07-29 D18 + G7; spec v1.3 S11-R4/R5, S11-N2 (export awaited)",,
+4. A search arriving via a link is view-only, the same as filters from a link - it does not overwrite your own remembered search.",Filters epic (key TBD) (S11-R4 (query reflected in the URL); S11-R5 (URL query pre-applied with the control filled); S11-N2 (malformed query ignored with no error); S11-R8 (rationale: no saved value to overwrite)) [spec v1.6 2026-07-28],,
 On mobile the search expands in the toolbar and buttons make room,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page.","1. Tap the Search control in the page toolbar.
 2. Type a term and watch the list.
-3. Visit a page that has several small icon-only toolbar buttons (for example Parts Inventory or Purchase Orders) and look at its toolbar.","1. The search expands inline inside the toolbar - no separate popup window opens.
+3. Visit a page that has several small icon-only toolbar buttons (for example Parts Inventory or Purchase Orders) and look at its toolbar.
+4. With text in the box, tap somewhere else on the screen; then clear the text and tap somewhere else again.","1. The search expands inline inside the toolbar - no separate popup window opens.
 2. The list narrows as you type, same as desktop.
-3. To make room, the page's main button no longer stretches full-width, and pages with two or more small icon buttons collapse them into a single 'more' menu.",Filters (Epic key TBD); tech plan 2026-07-29 D21; spec v1.3 S13-R16..R21 (export awaited),,
+3. To make room, the page's main button no longer stretches full-width, and pages with two or more small icon buttons collapse them into a single 'more' menu.
+4. The box stretches to fill the space left in the action row instead of staying the narrow desktop size, and every other toolbar button stays visible and in the same place while you search.
+5. There is no extra 'search is on' badge on mobile: with text in it the box simply stays open showing your text, and an empty box closes back to the Search button when you tap elsewhere - exactly as on desktop.","Filters epic (key TBD) (S13-R16 (inline expansion with no modal); S13-R17 (field fills the remaining width); S13-R18 (CTA hug width); S13-R19 (2+ icon actions -> ""more"" kebab); S13-R20 (no active-query indicator); S12-R5) [spec v1.6 2026-07-28]",,
 "Every list page keeps its own search box (Parts, Reports, detail tabs)",Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. The page-search rollout has shipped (same programme as the Work Orders filters).","1. Visit several list surfaces: a Parts view (for example Inventory), a report, a customer's Notes tab on the customer page, and any pop-up list that used to be searchable.
-2. On each, look for that surface's own search box and use it.","1. Every list surface that could be text-searched before still offers its own search control - no list silently lost its search.
-2. Each search box narrows only its own list, not any other page.","Filters (Epic key TBD); tech plan 2026-07-29 Phase 9.1 (built-in table search, opt-out); spec v1.3 S13-R22 + S14-R5/R6 (export awaited)",,
+2. The page-search rollout has finished everywhere (run this sweep at the end of the rollout, not part-way through).
+3. You can reach Work Orders, Customers, Parts, Administration, Reports and the Dashboard.","1. Work Orders surfaces: the Work Orders list, a work order's History tab, the Work Order Log dialog opened from that tab's kebab menu, a line's Line Log dialog opened from the Lines tab, and the work order's Notes tab.
+2. Customer and asset surfaces: the Customers list, then on one customer - Contacts, Assets, Invoices, Work Orders, Part Sales, Fees & Discounts, Notes; then on one asset - Work Orders, Invoices, Notes.
+3. Parts surfaces: Inventory, Catalog, Part Sales, Purchase Orders, Returns, Credits, Vendors, Vendor Invoices (web address /parts/deliveries), a vendor's Unpaid Invoices, and Part History.
+4. Administration surfaces: Locations, Roles & Permissions, Staff, Departments, Taxes, Labor Rates, Canned Lines, Payment Methods, Fees & Discounts, Asset Types, Categories, Pricing.
+5. Reports and Dashboard surfaces: IBS Batch Transactions, Sales Tax Invoices, the Dashboard, and one dashboard report drill-down.
+6. On each surface, find that table's own Search box and type something that matches one of its rows. Then open a work order's Parts tab and look at the search input it already has.","1. Every table listed above has its own Search box - no table lost the ability to narrow by text.
+2. Each Search box narrows only its own table; nothing else in the app changes.
+3. Where the table sits inside a dialog (the Work Order Log, the Line Log, the audit log dialog), the Search box is inside that dialog and works there.
+4. The work order Parts tab keeps the local search input it already had - it was deliberately left as it is.",Filters epic (key TBD) (S14-R6 (audit: 42 surfaces across 39 components; Work Order Parts excluded); S14-R5 (app-wide sweep); S13-R22 (every table carries a search control); S14-N1 (verify once at the end)) [spec v1.6 2026-07-28],,
 The top navigation search no longer filters page lists,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.","1. Type a term into the TOP NAVIGATION search (the app-wide search at the top), not the page's own search box.
 2. Watch the Work Orders list while typing.
 3. Repeat on the Parts Inventory page.
 4. Pick one of the results offered in the navigation search's dropdown.","1. The page list does NOT narrow while you type in the navigation search - only its dropdown of matching records appears.
 2. The same holds on the other pages checked.
-3. Picking a dropdown result still takes you to that record - the navigation search keeps its find-and-open role.",Filters (Epic key TBD); tech plan 2026-07-29 Phase 9 (search decoupling); spec v1.3 Story 14 S14-R2/R3 (export awaited),,
+3. Picking a dropdown result still takes you to that record - the navigation search keeps its find-and-open role.",Filters epic (key TBD) (S14-R1 (navigational results only); S14-R2 (the page-filtering code path is removed rather than dormant); S14-R4 (the list is left untouched); S14-R5) [spec v1.6 2026-07-28],,
+"The Search box changes look as you hover over it, open it and type",Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page with several work orders listed.","1. Look at the right-hand end of the toolbar row, before the small icon buttons and before the 'New Work Order' button.
+2. Move the mouse pointer over the 'Search' button without clicking.
+3. Click the 'Search' button, then look at the box that opens and at the other toolbar buttons.
+4. Type a few letters.
+5. Delete what you typed and type a very long sentence instead.","1. A 'Search' button is shown with a small magnifier icon next to the word 'Search'; it is plain text on a see-through background, with no border and no fill.
+2. Hovering over it gives it a light grey background; the word 'Search' keeps its own colour.
+3. Clicking it turns the button into a small text box in the same spot (the design sets it at 180 pixels wide), the typing cursor is already inside it, and the box grows towards the left so the other toolbar buttons do not move.
+4. While the box is empty it shows the magnifier icon and the grey placeholder text 'Type to search'.
+5. As soon as you type, your text shows in a dark grey and a small round x appears at the right-hand end of the box.
+6. A very long sentence does not make the box grow and does not cut the text off - the text scrolls sideways inside the box and the cursor stays where you are typing.","Filters epic (key TBD) (S13-R2 (default text button); S13-R3 (hover fill); S13-R4 (expands in place at 180px); S13-R5 (placeholder ""Type to search""); S13-R6 (typed text + X-circle clear); S13-R8 (long queries scroll)) [spec v1.6 2026-07-28]",,
+"The list narrows shortly after you stop typing, with no button to press",Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page with several work orders listed.
+3. You can also open the Parts Inventory page.","1. On the Work Orders page open the Search box and type a few letters that match some work orders. Do NOT press Enter.
+2. Watch the work order table for a second or two.
+3. Look around the Search box for an Apply or Submit button.
+4. Now press Enter while your text is still in the box.
+5. Do the same on the Parts Inventory page.","1. The list narrows on its own a moment after you stop typing (about a third of a second) - you never press Enter or any button.
+2. The matching rows appear in the table you were already looking at; no separate results page, results list or pop-up window opens.
+3. There is no Apply or Submit button anywhere next to the Search box.
+4. Pressing Enter changes nothing that has not already happened - the same rows stay listed and no page reload happens.
+5. Parts Inventory behaves the same way, only it waits a fraction longer before reacting; that longer wait is on purpose because that page carries more data.",Filters epic (key TBD) (S13-R7 (applies as you type; debounced 300ms; no apply/submit; Enter not required; Inventory 350ms); S13-R12 (results replace the table in place)) [spec v1.6 2026-07-28],,
+One search box serves all Work Orders tabs and searches the tab you are on,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Work orders exist in several statuses, so the All, Estimates and Completed tabs each have rows.
+3. You have a word (for example part of a customer name) that matches work orders on more than one of those tabs.","1. On the All tab, type that word into the page Search box.
+2. Click the Estimates tab and look at the Search box and the list.
+3. Click the Completed tab and look again.
+4. Still on the Completed tab, clear the search with the round x, then go back to the All tab.","1. On the All tab only the rows matching your word remain.
+2. On the Estimates tab your word is still in the Search box, and the list shows only Estimates rows that match it - no rows from the other tabs appear.
+3. The Completed tab behaves the same way: your word is still there and only that tab's matching rows are listed.
+4. Clearing the search clears it for all the Work Orders tabs - they share one search - and each tab shows its full list again.",Filters epic (key TBD) (S13-R11 (search applies within the active tab only); S13-R24 (the Work Orders tabs share a single query - views of one dataset)) [spec v1.6 2026-07-28],,
+Each Report tab and each Parts view keeps its own separate search,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. You can open at least two Parts views (for example Inventory and Purchase Orders).
+3. You can open a report that has more than one tab.","1. On a Parts view (for example Inventory) type a word into that page's Search box.
+2. Switch to another Parts view (for example Purchase Orders) and look at its Search box and list.
+3. Type a different word there, then switch back to the first view.
+4. Do the same on a report with tabs: search on one tab, then switch to another tab of the same report.","1. The second Parts view opens with an empty Search box and its full list - the word you typed on the first view is not carried over.
+2. Going back to the first view brings its own word back and narrows its list again.
+3. Each report tab behaves the same way: a word typed on one tab stays on that tab only, and each tab remembers its own.
+4. No search is ever applied to a table it was not typed on.",Filters epic (key TBD) (S13-R24 (Reports sub-tabs and Parts views each keep their own query); S13-R11; S10-R4 (each view/tab keeps its own set)) [spec v1.6 2026-07-28],,
+An old link carrying a top-search word no longer narrows the page list,Page Search Toolbar,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You have a Work Orders web address from BEFORE this change that still carries a word typed into the top-of-screen search (a bookmark, or a link someone sent). If you do not have one, hand-type that old search part onto the end of the Work Orders address.","1. Open that old web address.
+2. Look at the work order list and at the page's own Search box.
+3. Look at the web address once the page has loaded.
+4. Type a word into the top-of-screen search, then reload the page.","1. The page opens with the normal list for your own saved filters - the old search word does NOT narrow the list.
+2. The page's own Search box is empty; nothing was carried into it.
+3. No error is shown - the leftover search part in the address is simply ignored. (Whether it also disappears from the address is not important; note what you see.)
+4. After typing in the top-of-screen search and reloading, the list is still not narrowed and nothing about that word was remembered for the list.",Filters epic (key TBD) (S14-R3 (state / URL parameters / persisted values carrying a global search term into page filtering are removed with it); S14-R2; S14-R1) [spec v1.6 2026-07-28],,
+Collapsing the filter bar keeps an active search working,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page and the filter bar is expanded.
+3. A word is typed in the page Search box and the list is narrowed by it.","1. With the search still active, click the funnel button in the toolbar to collapse the filter bar.
+2. Look at the table and at the toolbar row.
+3. Expand the filter bar again.","1. The list stays narrowed by your word - collapsing the filter bar does not cancel the search.
+2. The Search box stays in the toolbar row with your word still showing; it is not tucked away with the filter bar, because the search sits in the toolbar row and the chips sit in the row below.
+3. Expanding the bar again changes nothing about the search or the narrowed list.",Filters epic (key TBD) (S13-E1 (a collapsed filter bar keeps an active query applying and the search control stays in the toolbar); §4 Key Decisions (page search is separate from the filter bar)) [spec v1.6 2026-07-28],,
 Page search opens with the 'Search or ask a question' box,Page Search (Command-K),Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Some sample work orders, customers, assets, parts and vendors exist.","1. From anywhere in the app, open the page search (the Search box in the top bar, or press Command-K / Ctrl-K).
 2. Look at the search panel that opens.","1. A search panel opens with an empty search box at the top.
