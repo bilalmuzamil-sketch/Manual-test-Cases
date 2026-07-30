@@ -1,0 +1,744 @@
+{
+  "generated": "2026-07-30T20:17:40Z",
+  "ours_uid": 3,
+  "groups": [
+    {
+      "group": 4281,
+      "group_name": "Reports Suite",
+      "live_total": 479,
+      "ours": 474,
+      "foreign": 5,
+      "foreign_authors": {
+        "Vladimir Tomovic": 5
+      }
+    },
+    {
+      "group": 4110,
+      "group_name": "Filters - (VIU Pending)",
+      "live_total": 110,
+      "ours": 110,
+      "foreign": 0,
+      "foreign_authors": {}
+    },
+    {
+      "group": 4254,
+      "group_name": "Schedule - 2026 (VIU Pending)",
+      "live_total": 165,
+      "ours": 165,
+      "foreign": 0,
+      "foreign_authors": {}
+    }
+  ],
+  "cases": [
+    {
+      "group": 4281,
+      "case_id": 38923,
+      "title": "SBR Summary and Expanded CSV exports carry the Location column at its designated slot",
+      "section": "Reports Suite > Sales By Representative Report > SBR \u2014 Exports",
+      "author": "Vladimir Tomovic",
+      "refs": null,
+      "case_verdict": "CONTRADICTS-OURS",
+      "units": [
+        {
+          "where": "custom_preconds",
+          "assertion": "Admin with the SBR view permission (reports project storage state)",
+          "signature": [
+            "admin",
+            "project",
+            "sbr",
+            "storage"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "admin"
+          ],
+          "why": "no case of ours contains 'admin' together with ['project', 'sbr', 'storage']"
+        },
+        {
+          "where": "custom_preconds",
+          "assertion": "The org has at least two accessible workplaces",
+          "signature": [
+            "workplaces",
+            "org",
+            "accessible",
+            "least"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "workplaces"
+          ],
+          "why": "no case of ours contains 'workplaces' together with ['org', 'accessible', 'least']"
+        },
+        {
+          "where": "custom_preconds",
+          "assertion": "ONE sales rep is credited on invoiced service WOs at BOTH workplaces, so the rep's summary row aggregates across locations and carries one invoice detail row per workplace (seeded via API)",
+          "signature": [
+            "workplaces",
+            "api",
+            "wos",
+            "aggregates"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "workplaces"
+          ],
+          "why": "no case of ours contains 'workplaces' together with ['api', 'wos', 'aggregates']"
+        },
+        {
+          "where": "step1.content",
+          "assertion": "At the default single-location scope, download Summary (CSV)",
+          "signature": [
+            "scope",
+            "single",
+            "summary",
+            "default"
+          ],
+          "verdict": "COVERED-BY",
+          "our_cases": [
+            30218,
+            30278
+          ],
+          "missing_token": [],
+          "why": "all of ['scope', 'single', 'summary', 'default'] co-occur in a case of ours"
+        },
+        {
+          "where": "step2.content",
+          "assertion": "Turn on All Locations, wait for the refetch, and download Summary (CSV) again",
+          "signature": [
+            "refetch",
+            "wait",
+            "turn",
+            "locations"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "refetch"
+          ],
+          "why": "no case of ours contains 'refetch' together with ['wait', 'turn', 'locations']"
+        },
+        {
+          "where": "step3.content",
+          "assertion": "Download Expanded (CSV) in the same widened scope",
+          "signature": [
+            "widened",
+            "scope",
+            "expanded",
+            "csv"
+          ],
+          "verdict": "CONTRADICTS-OURS",
+          "our_cases": [
+            30286,
+            38913
+          ],
+          "missing_token": [
+            "widened"
+          ],
+          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'widened'"
+        },
+        {
+          "where": "step4.content",
+          "assertion": "Inspect the Expanded footer totals row",
+          "signature": [
+            "footer",
+            "inspect",
+            "expanded",
+            "totals"
+          ],
+          "verdict": "CONTRADICTS-OURS",
+          "our_cases": [
+            30291,
+            30318
+          ],
+          "missing_token": [
+            "footer"
+          ],
+          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'footer'"
+        }
+      ]
+    },
+    {
+      "group": 4281,
+      "case_id": 38920,
+      "title": "PV Location column is scope-governed \u2014 hidden at one location, Multiple on a merged special-order row",
+      "section": "Reports Suite > Parts Velocity Report > PV \u2014 Row Model",
+      "author": "Vladimir Tomovic",
+      "refs": null,
+      "case_verdict": "CONTRADICTS-OURS",
+      "units": [
+        {
+          "where": "custom_preconds",
+          "assertion": "Owner/admin with PV access and at least two accessible workplaces",
+          "signature": [
+            "admin",
+            "workplaces",
+            "accessible",
+            "owner"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "admin"
+          ],
+          "why": "no case of ours contains 'admin' together with ['workplaces', 'accessible', 'owner']"
+        },
+        {
+          "where": "custom_preconds",
+          "assertion": "One inventory part sold on an invoiced WO at the active workplace (seeded via API)",
+          "signature": [
+            "api",
+            "workplace",
+            "seeded",
+            "sold"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "api"
+          ],
+          "why": "no case of ours contains 'api' together with ['workplace', 'seeded', 'sold']"
+        },
+        {
+          "where": "custom_preconds",
+          "assertion": "The SAME vendor special-order part sold on invoiced WOs at BOTH workplaces, so PV merges them into one special-order row (seeded via API)",
+          "signature": [
+            "workplaces",
+            "api",
+            "merges",
+            "wos"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "workplaces"
+          ],
+          "why": "no case of ours contains 'workplaces' together with ['api', 'merges', 'wos']"
+        },
+        {
+          "where": "step1.content",
+          "assertion": "Open PV at the default single-location scope",
+          "signature": [
+            "scope",
+            "single",
+            "default",
+            "location"
+          ],
+          "verdict": "COVERED-BY",
+          "our_cases": [
+            30352
+          ],
+          "missing_token": [],
+          "why": "all of ['scope', 'single', 'default', 'location'] co-occur in a case of ours"
+        },
+        {
+          "where": "step2.content",
+          "assertion": "Turn on All Locations and wait for the server refetch",
+          "signature": [
+            "refetch",
+            "wait",
+            "turn",
+            "server"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "refetch"
+          ],
+          "why": "no case of ours contains 'refetch' together with ['wait', 'turn', 'server']"
+        },
+        {
+          "where": "step3.content",
+          "assertion": "Set Type = Special Order and search the merged part number",
+          "signature": [
+            "merged",
+            "special",
+            "search",
+            "number"
+          ],
+          "verdict": "CONTRADICTS-OURS",
+          "our_cases": [
+            30342
+          ],
+          "missing_token": [
+            "number"
+          ],
+          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'number'"
+        },
+        {
+          "where": "step4.content",
+          "assertion": "Set Type = Inventory and search the seeded inventory part number",
+          "signature": [
+            "seeded",
+            "search",
+            "number",
+            "type"
+          ],
+          "verdict": "CONTRADICTS-OURS",
+          "our_cases": [
+            30333
+          ],
+          "missing_token": [
+            "seeded"
+          ],
+          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'seeded'"
+        },
+        {
+          "where": "step5.content",
+          "assertion": "Open the Column Selection menu",
+          "signature": [
+            "menu",
+            "selection",
+            "column"
+          ],
+          "verdict": "CONTRADICTS-OURS",
+          "our_cases": [
+            30328,
+            30352,
+            30358,
+            38914
+          ],
+          "missing_token": [
+            "menu"
+          ],
+          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'menu'"
+        }
+      ]
+    },
+    {
+      "group": 4281,
+      "case_id": 38919,
+      "title": "TU column selector hides Est. Lost Labor, persists across reload, and the export mirrors it",
+      "section": "Reports Suite > Technician Utilization > TU \u2014 Visual & Accessibility",
+      "author": "Vladimir Tomovic",
+      "refs": null,
+      "case_verdict": "CONTRADICTS-OURS",
+      "units": [
+        {
+          "where": "custom_preconds",
+          "assertion": "Owner/admin logged in with TU access (reports project storage state)",
+          "signature": [
+            "admin",
+            "logged",
+            "project",
+            "storage"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "admin"
+          ],
+          "why": "no case of ours contains 'admin' together with ['logged', 'project', 'storage']"
+        },
+        {
+          "where": "custom_preconds",
+          "assertion": "A technician with a 3h WO clock and a 1h internal clock exists in the current calendar month (seeded via API), so the report is non-empty and Est.",
+          "signature": [
+            "api",
+            "calendar",
+            "clock",
+            "est"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "api"
+          ],
+          "why": "no case of ours contains 'api' together with ['calendar', 'clock', 'est']"
+        },
+        {
+          "where": "custom_preconds",
+          "assertion": "Lost Labor is non-zero",
+          "signature": [
+            "lost",
+            "non",
+            "zero",
+            "labor"
+          ],
+          "verdict": "COVERED-BY",
+          "our_cases": [
+            30401
+          ],
+          "missing_token": [],
+          "why": "all of ['lost', 'non', 'zero', 'labor'] co-occur in a case of ours"
+        },
+        {
+          "where": "custom_preconds",
+          "assertion": "No saved TU view in this browser context, so the default five visible metric columns apply",
+          "signature": [
+            "context",
+            "five",
+            "metric",
+            "apply"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "context"
+          ],
+          "why": "no case of ours contains 'context' together with ['five', 'metric', 'apply']"
+        },
+        {
+          "where": "step1.expected",
+          "assertion": "Performance nav entry",
+          "signature": [
+            "nav",
+            "performance",
+            "entry"
+          ],
+          "verdict": "CONTRADICTS-OURS",
+          "our_cases": [
+            30392
+          ],
+          "missing_token": [
+            "nav"
+          ],
+          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'nav'"
+        },
+        {
+          "where": "step2.content",
+          "assertion": "Open the Column Selection menu",
+          "signature": [
+            "menu",
+            "selection",
+            "column"
+          ],
+          "verdict": "COVERED-BY",
+          "our_cases": [
+            30434,
+            30447,
+            38859
+          ],
+          "missing_token": [],
+          "why": "all of ['menu', 'selection', 'column'] co-occur in a case of ours"
+        },
+        {
+          "where": "step3.content",
+          "assertion": "Lost Labor OFF (and only that one column)",
+          "signature": [
+            "lost",
+            "off",
+            "labor",
+            "column"
+          ],
+          "verdict": "COVERED-BY",
+          "our_cases": [
+            30405,
+            38859
+          ],
+          "missing_token": [],
+          "why": "all of ['lost', 'off', 'labor', 'column'] co-occur in a case of ours"
+        },
+        {
+          "where": "step5.content",
+          "assertion": "Download Summary (CSV) from the export menu",
+          "signature": [
+            "menu",
+            "export",
+            "summary",
+            "csv"
+          ],
+          "verdict": "CONTRADICTS-OURS",
+          "our_cases": [
+            30434
+          ],
+          "missing_token": [
+            "export"
+          ],
+          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'export'"
+        },
+        {
+          "where": "step6.content",
+          "assertion": "Re-open the selector and toggle Est.",
+          "signature": [
+            "est",
+            "selector",
+            "toggle"
+          ],
+          "verdict": "CONTRADICTS-OURS",
+          "our_cases": [
+            30410,
+            38859
+          ],
+          "missing_token": [
+            "selector"
+          ],
+          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'selector'"
+        },
+        {
+          "where": "step6.content",
+          "assertion": "Lost Labor back ON",
+          "signature": [
+            "lost",
+            "back",
+            "labor"
+          ],
+          "verdict": "COVERED-BY",
+          "our_cases": [
+            30411,
+            38859
+          ],
+          "missing_token": [],
+          "why": "all of ['lost', 'back', 'labor'] co-occur in a case of ours"
+        }
+      ]
+    },
+    {
+      "group": 4281,
+      "case_id": 38922,
+      "title": "WIP CSV export gains the Locations line while its column semantics stay exactly as shipped",
+      "section": "Reports Suite > Work In Progress > WIP \u2014 Exports",
+      "author": "Vladimir Tomovic",
+      "refs": null,
+      "case_verdict": "CANDIDATE GAP",
+      "units": [
+        {
+          "where": "custom_preconds",
+          "assertion": "Owner/admin with WIP access (reports project storage state)",
+          "signature": [
+            "admin",
+            "project",
+            "wip",
+            "storage"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "admin"
+          ],
+          "why": "no case of ours contains 'admin' together with ['project', 'wip', 'storage']"
+        },
+        {
+          "where": "custom_preconds",
+          "assertion": "The org has at least two accessible workplaces",
+          "signature": [
+            "workplaces",
+            "org",
+            "accessible",
+            "least"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "workplaces"
+          ],
+          "why": "no case of ours contains 'workplaces' together with ['org', 'accessible', 'least']"
+        },
+        {
+          "where": "custom_preconds",
+          "assertion": "One approved WO with clocked time on a unique-VIN vehicle exists in the default (This Week) range, so it lands in the default \"Approved",
+          "signature": [
+            "unique",
+            "lands",
+            "vehicle",
+            "week"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "unique"
+          ],
+          "why": "no case of ours contains 'unique' together with ['lands', 'vehicle', 'week']"
+        },
+        {
+          "where": "custom_preconds",
+          "assertion": "partially completed\" tab (seeded via API)",
+          "signature": [
+            "api",
+            "completed",
+            "partially",
+            "seeded"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [
+            30462
+          ],
+          "missing_token": [
+            "api"
+          ],
+          "why": "no case of ours contains 'api' together with ['completed', 'partially', 'seeded']"
+        },
+        {
+          "where": "custom_preconds",
+          "assertion": "The browser context carries NO saved WIP view, so Location starts default-hidden",
+          "signature": [
+            "context",
+            "wip",
+            "starts",
+            "hidden"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "context"
+          ],
+          "why": "no case of ours contains 'context' together with ['wip', 'starts', 'hidden']"
+        },
+        {
+          "where": "step1.content",
+          "assertion": "Open WIP from the Performance nav, isolate to the unique VIN via the asset filter, and download the CSV",
+          "signature": [
+            "isolate",
+            "unique",
+            "nav",
+            "wip"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "isolate"
+          ],
+          "why": "no case of ours contains 'isolate' together with ['unique', 'nav', 'wip']"
+        },
+        {
+          "where": "step2.content",
+          "assertion": "Turn on All Locations, wait for the refetch, and download again",
+          "signature": [
+            "refetch",
+            "wait",
+            "turn",
+            "locations"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "refetch"
+          ],
+          "why": "no case of ours contains 'refetch' together with ['wait', 'turn', 'locations']"
+        },
+        {
+          "where": "step3.content",
+          "assertion": "Toggle Location ON in the Column Selection menu and download again",
+          "signature": [
+            "menu",
+            "toggle",
+            "selection",
+            "download"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "menu"
+          ],
+          "why": "no case of ours contains 'menu' together with ['toggle', 'selection', 'download']"
+        }
+      ]
+    },
+    {
+      "group": 4281,
+      "case_id": 38921,
+      "title": "IV CSV export carries the As of and Locations metadata lines above the header, plus a scope-conditional Location column",
+      "section": "Reports Suite > Inventory Value > IV \u2014 Exports",
+      "author": "Vladimir Tomovic",
+      "refs": null,
+      "case_verdict": "CONTRADICTS-OURS",
+      "units": [
+        {
+          "where": "custom_preconds",
+          "assertion": "Owner/admin with IV access and at least two accessible workplaces",
+          "signature": [
+            "admin",
+            "workplaces",
+            "accessible",
+            "owner"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "admin"
+          ],
+          "why": "no case of ours contains 'admin' together with ['workplaces', 'accessible', 'owner']"
+        },
+        {
+          "where": "custom_preconds",
+          "assertion": "One in-stock, non-core, fixed-price part valued at the active workplace (seeded via API)",
+          "signature": [
+            "api",
+            "workplace",
+            "core",
+            "valued"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "api"
+          ],
+          "why": "no case of ours contains 'api' together with ['workplace', 'core', 'valued']"
+        },
+        {
+          "where": "step1.content",
+          "assertion": "Open the report at the default scope and search the seeded part number so the export is a single known row",
+          "signature": [
+            "seeded",
+            "search",
+            "scope",
+            "export"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "seeded"
+          ],
+          "why": "no case of ours contains 'seeded' together with ['search', 'scope', 'export']"
+        },
+        {
+          "where": "step2.content",
+          "assertion": "Download the CSV from the export menu",
+          "signature": [
+            "menu",
+            "export",
+            "csv",
+            "download"
+          ],
+          "verdict": "CONTRADICTS-OURS",
+          "our_cases": [
+            30589,
+            30592,
+            30593,
+            30595
+          ],
+          "missing_token": [
+            "menu"
+          ],
+          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'menu'"
+        },
+        {
+          "where": "step3.content",
+          "assertion": "Turn on All Locations, wait for the refetch, and download again",
+          "signature": [
+            "refetch",
+            "wait",
+            "turn",
+            "locations"
+          ],
+          "verdict": "CANDIDATE GAP",
+          "our_cases": [],
+          "missing_token": [
+            "refetch"
+          ],
+          "why": "no case of ours contains 'refetch' together with ['wait', 'turn', 'locations']"
+        },
+        {
+          "where": "step4.content",
+          "assertion": "Inspect the data row's Location cell",
+          "signature": [
+            "inspect",
+            "cell",
+            "location",
+            "data"
+          ],
+          "verdict": "CONTRADICTS-OURS",
+          "our_cases": [
+            30607
+          ],
+          "missing_token": [
+            "cell"
+          ],
+          "why": "our case(s) share the topic but carry a closed-list/negation marker, and never mention 'cell'"
+        }
+      ]
+    }
+  ]
+}
