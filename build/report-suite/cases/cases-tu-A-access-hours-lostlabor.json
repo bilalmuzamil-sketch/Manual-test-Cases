@@ -29,7 +29,7 @@
  {
   "id": "TU-NAV-02",
   "area": "TU — Access & Display",
-  "title": "The report shows one row for each technician who clocked time in the range at the selected locations",
+  "title": "One row per technician who clocked time in the range at those locations",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -79,7 +79,7 @@
  {
   "id": "TU-NAV-04",
   "area": "TU — Access & Display",
-  "title": "Changing the date range reloads the rows, and a Custom range is capped at 366 days",
+  "title": "Changing the date range reloads the rows; a Custom range is capped at 366 days",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -105,7 +105,7 @@
  {
   "id": "TU-NAV-05",
   "area": "TU — Access & Display",
-  "title": "The standard loading indicator shows on load and reload, rows swap only when data returns, and the toolbar stays interactive",
+  "title": "The loading indicator shows on load and reload; rows swap only on data",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -131,7 +131,7 @@
  {
   "id": "TU-NAV-06",
   "area": "TU — Access & Display",
-  "title": "All clock records are day-grouped and windowed in one report-level time zone, with partial and cross-midnight records split correctly",
+  "title": "All clock records are day-grouped and windowed in one report-level time zone",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to locations in different time zones for the multi-zone check.",
@@ -160,7 +160,7 @@
  {
   "id": "TU-NAV-07",
   "area": "TU — Access & Display",
-  "title": "A user without the timesheet-reports permission does not see the report in the navigation",
+  "title": "Without the timesheet-reports permission the report is absent from the nav",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "A role WITHOUT the timesheet-reports permission.",
@@ -262,7 +262,7 @@
  {
   "id": "TU-HRS-03",
   "area": "TU — Hours & Utilization",
-  "title": "Utilization % is WO hours over total hours computed from unrounded values, shown to one decimal with round-half-up",
+  "title": "Utilization % is WO hours over total hours from unrounded values",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -286,7 +286,7 @@
  {
   "id": "TU-HRS-04",
   "area": "TU — Hours & Utilization",
-  "title": "A technician with only internal hours shows 0.0% utilization, and utilization never exceeds 100%",
+  "title": "A technician with only internal hours shows 0.0% utilization",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -312,7 +312,7 @@
  {
   "id": "TU-ELL-01",
   "area": "TU — Est. Lost Labor",
-  "title": "Est. Lost Labor values internal hours at each location's default labor rate, summed at full precision and rounded once",
+  "title": "Est. Lost Labor values internal hours at each location's default rate",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to two rated locations for the multi-location check.",
@@ -395,7 +395,7 @@
  {
   "id": "TU-ELL-04",
   "area": "TU — Est. Lost Labor",
-  "title": "Internal hours with no default labor rate at any contributing location show an em-dash with the correct assistive-technology label",
+  "title": "Internal hours with no default labor rate anywhere show an em-dash",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -420,7 +420,7 @@
  {
   "id": "TU-ELL-05",
   "area": "TU — Est. Lost Labor",
-  "title": "Internal hours split across rated and unrated locations show a partial dollar value with no indicator - expected, not a defect",
+  "title": "Internal hours split across rated and unrated locations show a part value",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to a rated and an unrated location.",

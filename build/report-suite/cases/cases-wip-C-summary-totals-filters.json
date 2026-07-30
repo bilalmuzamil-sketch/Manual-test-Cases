@@ -2,7 +2,7 @@
  {
   "id": "WIP-SUM-01",
   "area": "WIP — Summary Strip",
-  "title": "The summary strip shows seven figures in a fixed order, each as US-dollar currency",
+  "title": "The summary strip shows seven figures in a fixed order as US dollars",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -27,7 +27,7 @@
  {
   "id": "WIP-SUM-02",
   "area": "WIP — Summary Strip",
-  "title": "Total Earned is the hero figure (larger, colored underline) and equals Started — Earned plus Ready to Invoice",
+  "title": "Total Earned is the hero figure and equals the started-stage figures summed",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -77,7 +77,7 @@
  {
   "id": "WIP-SUM-04",
   "area": "WIP — Summary Strip",
-  "title": "The per-stage figures each equal the matching tab's money: Not Started, Started — Earned, Started — Remaining, and Ready to Invoice",
+  "title": "Each per-stage figure equals the matching tab's money total",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -105,7 +105,7 @@
  {
   "id": "WIP-SUM-05",
   "area": "WIP — Summary Strip",
-  "title": "The Estimates figure is the Estimates tab's total quoted value, shown muted, and excluded from Total Earned and Total Remaining",
+  "title": "The Estimates figure is the Estimates tab's total quoted value, shown muted",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -158,7 +158,7 @@
  {
   "id": "WIP-SUM-07",
   "area": "WIP — Summary Strip",
-  "title": "Each summary figure's information icon reveals its plain-language explanation, verbatim per the spec",
+  "title": "Each summary figure's information icon reveals its plain explanation",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -189,7 +189,7 @@
  {
   "id": "WIP-TOT-01",
   "area": "WIP — Totals Row",
-  "title": "Each tab has a Totals row pinned to the bottom, labeled \"Totals\", with a bold pinned Total cell and the same number formats as data rows",
+  "title": "Each tab has a Totals row pinned to the bottom, labeled \"Totals\"",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -216,7 +216,7 @@
  {
   "id": "WIP-TOT-02",
   "area": "WIP — Totals Row",
-  "title": "The Totals row sums each visible money column, and the Inv. Hrs total keeps the signed one-decimal format and coloring",
+  "title": "The Totals row sums each visible money column and the Inv. Hrs column",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -294,7 +294,7 @@
  {
   "id": "WIP-FLT-01",
   "area": "WIP — Filters",
-  "title": "The Advisor filter is a multi-select of the advisors present in the loaded jobs and narrows rows on screen only",
+  "title": "The Advisor filter lists the advisors in the loaded jobs; screen only",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -321,7 +321,7 @@
  {
   "id": "WIP-FLT-02",
   "area": "WIP — Filters",
-  "title": "The Customer filter is a searchable type-ahead multi-select reading \"All customers\" when empty, with a \"Clear\" action once a customer is selected",
+  "title": "Customer filter is a type-ahead multi-select reading \"All customers\"",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -380,7 +380,7 @@
  {
   "id": "WIP-FLT-04",
   "area": "WIP — Filters",
-  "title": "The date-range control offers the standard presets plus Custom, defaults to \"This Week\", and does not offer \"All Time\"",
+  "title": "The date range offers the presets plus Custom; This Week default; no All Time",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -405,7 +405,7 @@
  {
   "id": "WIP-FLT-05",
   "area": "WIP — Filters",
-  "title": "The date range filters by the work order's created date, reloads the report on change, and a Custom range is capped at 366 days",
+  "title": "The date range filters on the WO's created date and reloads on change",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -464,7 +464,7 @@
  {
   "id": "WIP-FLT-07",
   "area": "WIP — Filters",
-  "title": "The location scope never includes an inaccessible location, and an empty selection falls back to the user's active location",
+  "title": "The location scope never includes an inaccessible location",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "A user with access to a limited set of locations and the Work In Progress reports permission.",

@@ -2,7 +2,7 @@
  {
   "id": "PV-EXP-01",
   "area": "PV — Exports",
-  "title": "The overflow button opens an export menu with Download (PDF) and Download (CSV) in that order",
+  "title": "The overflow button opens Download (PDF) then Download (CSV) in that order",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -133,7 +133,7 @@
  {
   "id": "PV-EXP-06",
   "area": "PV — Exports",
-  "title": "CSV: named velocity-report.csv with full untruncated text values and Last Sale as a raw integer",
+  "title": "CSV is named velocity-report.csv and holds full untruncated text values",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -265,7 +265,7 @@
  {
   "id": "PV-VIS-01",
   "area": "PV — Visual Conformance",
-  "title": "The report uses the standard two-tone layout: white card surfaces on a soft blue-grey backdrop with an edge-to-edge table",
+  "title": "The report uses the standard two-tone layout",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -290,7 +290,7 @@
  {
   "id": "PV-VIS-02",
   "area": "PV — Visual Conformance",
-  "title": "Toolbar and table detail styling: paddings, white header with 1px top border, white body cells, 2rem edge padding",
+  "title": "Toolbar and table detail styling matches the suite paddings and borders",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -317,7 +317,7 @@
  {
   "id": "PV-VIS-03",
   "area": "PV — Visual Conformance",
-  "title": "Dark mode is supported and the grey info icon keeps at least 3:1 contrast in both modes",
+  "title": "Dark mode is supported and the grey info icon keeps 3:1 contrast in both",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -393,7 +393,7 @@
  {
   "id": "PV-API-03",
   "area": "PV — API",
-  "title": "Header-click sorting re-queries the server with nulls first on ascending and last on descending as a server sort semantic",
+  "title": "Header-click sorting re-queries the server; nulls first asc and last desc",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
@@ -419,7 +419,7 @@
  {
   "id": "PV-API-04",
   "area": "PV — API",
-  "title": "The backend denies both the report data and the export to a user without Inventory Reports → View",
+  "title": "The backend denies report data AND export without Inventory Reports View",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "Manager or Office User role (Reports section access) WITHOUT the Inventory Reports → View permission.",

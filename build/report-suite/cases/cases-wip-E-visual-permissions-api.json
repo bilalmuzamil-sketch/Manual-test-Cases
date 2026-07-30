@@ -27,7 +27,7 @@
  {
   "id": "WIP-VIS-02",
   "area": "WIP — Visual & Accessibility",
-  "title": "The summary strip is a bold band delineated by a top and bottom rule, above the tabs — not separate cards",
+  "title": "The summary strip is a bold band ruled top and bottom above the tabs",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -52,7 +52,7 @@
  {
   "id": "WIP-VIS-03",
   "area": "WIP — Visual & Accessibility",
-  "title": "The Total column (header and cells) is bold and stays pinned to the right edge while scrolling the rows sideways",
+  "title": "The Total column is bold and stays pinned right on sideways scroll",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -77,7 +77,7 @@
  {
   "id": "WIP-VIS-04",
   "area": "WIP — Visual & Accessibility",
-  "title": "The Totals row stays visible at the bottom while scrolling, the report fills the height, and only the active tab's table body scrolls",
+  "title": "The Totals row stays visible while only the active tab's body scrolls",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -102,7 +102,7 @@
  {
   "id": "WIP-VIS-05",
   "area": "WIP — Visual & Accessibility",
-  "title": "The WO # link is keyboard-focusable with a visible focus indicator and opens the work order on activation",
+  "title": "The WO # link is keyboard-focusable and opens the work order",
   "priority": "Medium",
   "type": "Accessibility",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -129,7 +129,7 @@
  {
   "id": "WIP-VIS-06",
   "area": "WIP — Visual & Accessibility",
-  "title": "Each summary figure's information icon is reachable by keyboard and exposes its explanation to assistive technology",
+  "title": "Each summary figure's info icon is keyboard-reachable and screen-read",
   "priority": "Medium",
   "type": "Accessibility",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -156,7 +156,7 @@
  {
   "id": "WIP-VIS-07",
   "area": "WIP — Visual & Accessibility",
-  "title": "In dark mode the table, summary strip, WO # link, Inv. Hrs coloring, and two-line asset cell remain legible with adequate contrast",
+  "title": "In dark mode every table; strip; link and coloring stays legible",
   "priority": "Medium",
   "type": "Accessibility",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -182,7 +182,7 @@
  {
   "id": "WIP-PERM-01",
   "area": "WIP — Permissions",
-  "title": "A user with the Work In Progress reports permission can open the report and download it — the one permission covers both",
+  "title": "The Work In Progress reports permission covers opening and downloading",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports.",
@@ -208,7 +208,7 @@
  {
   "id": "WIP-PERM-02",
   "area": "WIP — Permissions",
-  "title": "A user without the required permission does not see Work In Progress in the reports navigation",
+  "title": "Without the permission the report is absent from the reports navigation",
   "priority": "Critical",
   "type": "Negative",
   "permissions_required": "A role WITHOUT the permission that grants access to Work In Progress reports.",
@@ -232,7 +232,7 @@
  {
   "id": "WIP-API-01",
   "area": "WIP — API",
-  "title": "Nightly snapshot: once per day the system records one row per then-open work order, per calendar date",
+  "title": "Nightly snapshot records one row per then-open job per calendar date",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows — this is a backend capture behavior that runs without a signed-in user.",
@@ -260,7 +260,7 @@
  {
   "id": "WIP-API-02",
   "area": "WIP — API",
-  "title": "Nightly snapshot: each row captures the work order, status, Earned, Remaining, location, organization, and the snapshot's calendar date",
+  "title": "Each snapshot row captures the WO; status; money; location and the date",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows.",
@@ -284,7 +284,7 @@
  {
   "id": "WIP-API-03",
   "area": "WIP — API",
-  "title": "Nightly snapshot: captured Earned and Remaining use the identical computation as the on-screen report for the capture date",
+  "title": "Captured Earned and Remaining use the same maths as the on-screen report",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows, plus the Work In Progress reports permission for the on-screen comparison.",
@@ -309,7 +309,7 @@
  {
   "id": "WIP-API-04",
   "area": "WIP — API",
-  "title": "Nightly snapshot: the capture uses the report's service-type and open-status conditions and spans every location, with no user location filter",
+  "title": "Nightly snapshot spans every location with no user location filter",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows.",
@@ -361,7 +361,7 @@
  {
   "id": "WIP-API-06",
   "area": "WIP — API",
-  "title": "Nightly snapshot: a work order with nothing approved is captured with Earned $0.00 and Remaining $0.00, not skipped",
+  "title": "Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Backend/database (or dev-support) access to inspect the stored WIP snapshot rows.",

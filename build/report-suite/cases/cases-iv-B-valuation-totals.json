@@ -2,7 +2,7 @@
  {
   "id": "IV-COL-01",
   "area": "IV — Valuation & Columns",
-  "title": "With every column turned on, the columns appear in the fixed left-to-right order with the specified alignment",
+  "title": "With every column on they appear in the fixed order with the set alignment",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -29,7 +29,7 @@
  {
   "id": "IV-COL-02",
   "area": "IV — Valuation & Columns",
-  "title": "Value formats: Qty on Hand to two decimals with no currency symbol (fractional supported), money values as US-dollar currency",
+  "title": "Value formats: Qty on Hand to two decimals; money as US-dollar currency",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -82,7 +82,7 @@
  {
   "id": "IV-CALC-02",
   "area": "IV — Valuation & Columns",
-  "title": "With no fixed sell price, Unit Sell is the shop's pricing-matrix markup on cost for the part's category",
+  "title": "With no fixed sell price Unit Sell is the category's pricing-matrix markup",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -107,7 +107,7 @@
  {
   "id": "IV-CALC-03",
   "area": "IV — Valuation & Columns",
-  "title": "With no fixed sell price and no category, Unit Sell equals Unit Cost — the stock is valued at cost with a $0.00 / 0.0% margin",
+  "title": "With no fixed sell price and no category, Unit Sell equals Unit Cost",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -161,7 +161,7 @@
  {
   "id": "IV-CALC-05",
   "area": "IV — Valuation & Columns",
-  "title": "Margin is the extended figure — Total Sell minus Total Cost for the whole on-hand quantity, not a per-unit number",
+  "title": "Margin is Total Sell minus Total Cost for the whole on-hand quantity",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -188,7 +188,7 @@
  {
   "id": "IV-CALC-06",
   "area": "IV — Valuation & Columns",
-  "title": "Margin % is Margin as a share of Total Sell to one decimal with a percent sign, showing \"—\" when Total Sell is zero or negative",
+  "title": "Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -215,7 +215,7 @@
  {
   "id": "IV-COL-03",
   "area": "IV — Valuation & Columns",
-  "title": "The Total Cost column (header and cells) is bold and pinned to the far right, staying fixed while scrolling sideways",
+  "title": "Total Cost is bold and pinned far right; it stays put on sideways scroll",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -241,7 +241,7 @@
  {
   "id": "IV-COL-04",
   "area": "IV — Valuation & Columns",
-  "title": "On first visit the default columns show, with Margin and Total Sell hidden by default but available to turn on",
+  "title": "On a first visit the default columns show and the rest stay available",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -267,7 +267,7 @@
  {
   "id": "IV-COL-05",
   "area": "IV — Valuation & Columns",
-  "title": "Category and Vendor show their names, and an em dash (\"—\") when the part has none",
+  "title": "Category and Vendor show their names; an em dash (\"—\") when the part has none",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -355,7 +355,7 @@
  {
   "id": "IV-TOT-03",
   "area": "IV — Totals Row",
-  "title": "The totals-row Margin % is recomputed from the totals (total Margin ÷ total Total Sell), not the average of the row percentages",
+  "title": "Totals-row Margin % is recomputed from the totals; not an average of rows",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",

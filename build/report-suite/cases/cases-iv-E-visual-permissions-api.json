@@ -2,7 +2,7 @@
  {
   "id": "IV-VIS-01",
   "area": "IV — Visual & Accessibility",
-  "title": "The report uses an all-white table with no alternating row shading on the standard soft blue-grey report backdrop",
+  "title": "All-white table with no row shading on the standard report backdrop",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -28,7 +28,7 @@
  {
   "id": "IV-VIS-02",
   "area": "IV — Visual & Accessibility",
-  "title": "Toolbar layout: three-dot menu leftmost in the action cluster then Column Selection; filters run date range, part search, Category, Vendor, Location",
+  "title": "Toolbar layout: menu leftmost then Column Selection; then the 5 filters",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -77,7 +77,7 @@
  {
   "id": "IV-VIS-04",
   "area": "IV — Visual & Accessibility",
-  "title": "Long Description, Category, and Vendor values truncate with an ellipsis and show the full value on hover; the Part # is never truncated",
+  "title": "Long Description; Category and Vendor truncate on hover; Part # never does",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -104,7 +104,7 @@
  {
   "id": "IV-VIS-05",
   "area": "IV — Visual & Accessibility",
-  "title": "In dark mode the page background, toolbar, cells, and the \"—\" glyph remain legible",
+  "title": "In dark mode the page background, toolbar, cells; the \"—\" glyph remain legible",
   "priority": "Medium",
   "type": "Accessibility",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -130,7 +130,7 @@
  {
   "id": "IV-VIS-06",
   "area": "IV — Visual & Accessibility",
-  "title": "Each sortable column header exposes its sort state to assistive technology and shows the active direction visually",
+  "title": "Each sortable header exposes its sort state and shows the direction",
   "priority": "Medium",
   "type": "Accessibility",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -158,7 +158,7 @@
  {
   "id": "IV-VIS-07",
   "area": "IV — Visual & Accessibility",
-  "title": "The icon-only controls (three-dot download button and Column Selection button) each carry an accessible name",
+  "title": "The icon-only download and Column Selection buttons carry accessible names",
   "priority": "Medium",
   "type": "Accessibility",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -183,7 +183,7 @@
  {
   "id": "IV-PERM-01",
   "area": "IV — Permissions",
-  "title": "A user with the existing inventory-reports permission can open the report — no new permission is added",
+  "title": "User with the existing inventory-reports permission can open the report",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission.",
@@ -209,7 +209,7 @@
  {
   "id": "IV-PERM-02",
   "area": "IV — Permissions",
-  "title": "A user without the required permission does not see Inventory Value in the reports navigation",
+  "title": "Without the permission Inventory Value is absent from the reports navigation",
   "priority": "Critical",
   "type": "Negative",
   "permissions_required": "A role WITHOUT the inventory-reports permission.",
@@ -233,7 +233,7 @@
  {
   "id": "IV-API-01",
   "area": "IV — API",
-  "title": "Nightly snapshot: once per day, for every location, one row per in-stock non-core part is recorded with its identity, quantity, and values to the cent",
+  "title": "Nightly snapshot records one row per in-stock non-core part per location",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Backend/database (or dev-support) access to inspect the stored inventory snapshot rows — this is a backend behavior that runs with no logged-in user.",
@@ -261,7 +261,7 @@
  {
   "id": "IV-API-02",
   "area": "IV — API",
-  "title": "Nightly snapshot: the captured scope and valuation are identical to the live report, so a recorded day equals what the live report showed that day",
+  "title": "A recorded snapshot day equals what the live report showed that day",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Backend/database (or dev-support) access to inspect the stored snapshot rows, plus the inventory-reports permission for the on-screen comparison.",
@@ -290,7 +290,7 @@
  {
   "id": "IV-API-03",
   "area": "IV — API",
-  "title": "Nightly snapshot: re-running the capture for a date replaces that date's rows — idempotent, no duplicates",
+  "title": "Nightly snapshot: re-running the capture for a date replaces that date's rows",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Backend/database (or dev-support) access to re-run the capture and inspect the stored snapshot rows.",
@@ -317,7 +317,7 @@
  {
   "id": "IV-API-04",
   "area": "IV — API",
-  "title": "Nightly snapshot: history accrues forward only — a re-run records current truth under the current date and cannot reconstruct a past date",
+  "title": "Nightly snapshot: a re-run records today's truth; it cannot rebuild a past day",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Backend/database (or dev-support) access to inspect the stored snapshot rows.",
@@ -344,7 +344,7 @@
  {
   "id": "IV-API-05",
   "area": "IV — API",
-  "title": "Snapshot retention: daily captures are kept for 0–13 months; older history is reduced to the last capture of each calendar month",
+  "title": "Snapshot retention: daily captures are kept for 0–13 months",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Backend/database (or dev-support) access to inspect the stored snapshot rows across ages.",
@@ -371,7 +371,7 @@
  {
   "id": "IV-API-06",
   "area": "IV — API",
-  "title": "Thinned history is served unchanged: the closest-recorded-day rule bridges retention gaps, the \"As of\" indicator names the day shown, and a fully-pruned range shows the empty state",
+  "title": "Thinned history still served by the closest-recorded-day rule",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Backend/database (or dev-support) access to confirm the retained capture dates, plus the inventory-reports permission for the on-screen checks.",

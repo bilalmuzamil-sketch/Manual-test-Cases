@@ -56,7 +56,7 @@
  {
   "id": "WIP-COL-03",
   "area": "WIP — Columns & Rows",
-  "title": "The WO # is a link that opens the work order in the same browser tab, with browser back returning to the report",
+  "title": "The WO # is a link that opens the WO in the same browser tab",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -83,7 +83,7 @@
  {
   "id": "WIP-COL-04",
   "area": "WIP — Columns & Rows",
-  "title": "Status shows as a color-coded badge whose label text is always present (color is never the only signal)",
+  "title": "Status shows as a color-coded badge whose label text is always present",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -138,7 +138,7 @@
  {
   "id": "WIP-COL-06",
   "area": "WIP — Columns & Rows",
-  "title": "Customer shows the customer's company name, and is blank when no customer name exists",
+  "title": "Customer shows the customer's company name",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -163,7 +163,7 @@
  {
   "id": "WIP-COL-07",
   "area": "WIP — Columns & Rows",
-  "title": "Days Open shows whole days since creation and reads \"0 days\" / \"1 days\" (not pluralized) — expected, do not file",
+  "title": "Days Open shows whole days since creation and reads 0 days / 1 days",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -190,7 +190,7 @@
  {
   "id": "WIP-COL-08",
   "area": "WIP — Columns & Rows",
-  "title": "Last Activity shows \"Today\", \"Xd ago\", or \"—\" when the work order has no recorded activity",
+  "title": "Last Activity shows Today; Xd ago; or an em-dash when there is none",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -218,7 +218,7 @@
  {
   "id": "WIP-CALC-01",
   "area": "WIP — Earned & Remaining",
-  "title": "Money columns show US-dollar currency with two decimals, thousands separators, a leading minus for negatives, and \"$0.00\" for zero",
+  "title": "Money columns show US dollars to two decimals with thousands separators",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -246,7 +246,7 @@
  {
   "id": "WIP-CALC-02",
   "area": "WIP — Earned & Remaining",
-  "title": "Labor Earned is the clocked share of each approved line's quoted labor value, capped at the full quoted value per line",
+  "title": "Labor Earned is the clocked share of each approved line's quoted value",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -275,7 +275,7 @@
  {
   "id": "WIP-CALC-03",
   "area": "WIP — Earned & Remaining",
-  "title": "Labor Remaining is the total quoted value of the approved labor minus Labor Earned",
+  "title": "Labor Remaining is the approved labor's quoted value minus Labor Earned",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -329,7 +329,7 @@
  {
   "id": "WIP-CALC-05",
   "area": "WIP — Earned & Remaining",
-  "title": "Parts Remaining is the outstanding (not yet received) quantity valued at its sell price including any core charge",
+  "title": "Parts Remaining values the not-yet-received quantity at its sell price",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -357,7 +357,7 @@
  {
   "id": "WIP-CALC-06",
   "area": "WIP — Earned & Remaining",
-  "title": "Earned = Labor Earned + Parts Earned, Remaining = Labor Remaining + Parts Remaining, and Total = Earned + Remaining (not the work order's grand total)",
+  "title": "Earned + Remaining make Total; not the WO's grand total",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -414,7 +414,7 @@
  {
   "id": "WIP-CALC-08",
   "area": "WIP — Earned & Remaining",
-  "title": "Inv. Hrs shows quoted minus worked labor hours as a signed one-decimal number, colored green/red, with \"0.0\" unsigned in the default color",
+  "title": "Inv. Hrs shows quoted minus worked hours; signed to one decimal",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -442,7 +442,7 @@
  {
   "id": "WIP-CALC-09",
   "area": "WIP — Earned & Remaining",
-  "title": "An open estimate with no approved work shows \"$0.00\" in every money column, including Total",
+  "title": "An open estimate with no approved work shows $0.00 in every money column",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -492,7 +492,7 @@
  {
   "id": "WIP-SORT-02",
   "area": "WIP — Sorting",
-  "title": "Clicking a header sorts ascending, clicking again toggles descending, with no third cleared state and one sort column at a time",
+  "title": "Clicking a header sorts ascending, clicking again toggles descending",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
@@ -552,7 +552,7 @@
  {
   "id": "WIP-SORT-04",
   "area": "WIP — Sorting",
-  "title": "Sorting reorders only the active tab's rows and the Totals row stays at the bottom",
+  "title": "Sorting reorders only the active tab's rows; Totals stays at the bottom",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",

@@ -55,7 +55,7 @@
  {
   "id": "SBR-NAV-03",
   "area": "SBR — Access & Navigation",
-  "title": "The navigation entry's padding fits the full Sales By Representative label without crowding or truncation",
+  "title": "The nav entry fits the full Sales By Representative label; no truncation",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -79,7 +79,7 @@
  {
   "id": "SBR-PERM-01",
   "area": "SBR — Permissions",
-  "title": "Every user who can see any other Performance report also sees Sales By Representative",
+  "title": "Anyone who can see another Performance report also sees this report",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role that can see at least one other report in the Performance group.",
@@ -129,7 +129,7 @@
  {
   "id": "SBR-PERM-03",
   "area": "SBR — Permissions",
-  "title": "A user without staff-administration access cannot reach the sales-rep deactivation flow",
+  "title": "Without staff-administration access the deactivation flow is unreachable",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "A role WITHOUT staff-administration access.",
@@ -176,7 +176,7 @@
  {
   "id": "SBR-DATE-02",
   "area": "SBR — Date Range Filter",
-  "title": "Custom range uses the date-picker dialog and holds the user to a 366-day maximum span",
+  "title": "A Custom range uses the date-picker and holds a 366-day maximum span",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -224,7 +224,7 @@
  {
   "id": "SBR-DATE-04",
   "area": "SBR — Date Range Filter",
-  "title": "An invoice is placed in the range by its own invoice date with inclusive endpoints, and the range shows in both PDF headers",
+  "title": "An invoice sits in the range by its own invoice date; endpoints included",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -330,7 +330,7 @@
  {
   "id": "SBR-STAT-01",
   "area": "SBR — Invoice Status Filter",
-  "title": "Invoice Status dropdown offers exactly four options with All Statuses as the default",
+  "title": "Invoice Status offers exactly four options; All Statuses is the default",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -357,7 +357,7 @@
  {
   "id": "SBR-STAT-02",
   "area": "SBR — Invoice Status Filter",
-  "title": "Status filtering matches on the mapped display value: five system states collapse into Paid, Partially Paid and Unpaid",
+  "title": "Status filtering matches on the mapped display value",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Reports/Performance access plus ability to take payments for seeding.",
@@ -460,7 +460,7 @@
  {
   "id": "SBR-LOC-01",
   "area": "SBR — Location Filter",
-  "title": "Location filter is the rightmost toolbar control, a multi-select with an All Locations option",
+  "title": "Location filter is the rightmost control with an All Locations option",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Reports/Performance access; user with access to at least two locations.",
@@ -537,7 +537,7 @@
  {
   "id": "SBR-LOC-04",
   "area": "SBR — Location Filter",
-  "title": "The Location filter is hidden for a user with access to only one location",
+  "title": "Sales By Representative: Location filter hidden for a one-location user",
   "priority": "Low",
   "type": "Negative",
   "permissions_required": "Reports/Performance access; a user with access to exactly one location.",

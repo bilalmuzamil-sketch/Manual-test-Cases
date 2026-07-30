@@ -50,7 +50,7 @@
  {
   "id": "SBR-LINK-03",
   "area": "SBR — Links & Navigation",
-  "title": "Browser back from a drilldown restores ALL report state including expansion and scroll, without a full reload",
+  "title": "Browser back from a drilldown restores expansion and scroll; no reload",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -76,7 +76,7 @@
  {
   "id": "SBR-LINK-04",
   "area": "SBR — Links & Navigation",
-  "title": "Link styling: theme-primary invoice links and body-colored customer links, hover/focus underline, never browser-purple, in both modes",
+  "title": "Invoice links use theme-primary; customer links use the body color",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -103,7 +103,7 @@
  {
   "id": "SBR-LINK-05",
   "area": "SBR — Links & Navigation",
-  "title": "An unavailable invoice or customer destination shows the standard not-found/access-denied state and back still returns",
+  "title": "An unavailable link destination shows the standard not-found state",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Reports/Performance access; ability to delete/reverse a target for seeding.",
@@ -175,7 +175,7 @@
  {
   "id": "SBR-DEACT-03",
   "area": "SBR — Staff Deactivation",
-  "title": "Type-YES gate: auto-focused input, case-insensitive whitespace-tolerant match, disabled-button tooltip, Enter submits",
+  "title": "Type-YES gate: auto-focus; case-insensitive match; Enter submits",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
@@ -312,7 +312,7 @@
  {
   "id": "SBR-DEACT-08",
   "area": "SBR — Staff Deactivation",
-  "title": "A server-side deactivation failure shows the canonical error toast, leaves the status unchanged, and clears the input on the next open",
+  "title": "A deactivation failure shows the error toast and leaves the status alone",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
@@ -417,7 +417,7 @@
  {
   "id": "SBR-UNAS-04",
   "area": "SBR — Show Unassigned",
-  "title": "No empty Unassigned row is ever rendered, and toggling off while expanded removes the row which returns collapsed",
+  "title": "No empty Unassigned row is ever rendered",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Reports/Performance access.",
@@ -493,7 +493,7 @@
  {
   "id": "SBR-COL-03",
   "area": "SBR — Column Selector",
-  "title": "Toggling a column applies immediately across summary rows, detail rows and the grand Totals at once",
+  "title": "Toggling a column applies at once to summary; detail and Totals rows",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -517,7 +517,7 @@
  {
   "id": "SBR-COL-04",
   "area": "SBR — Column Selector",
-  "title": "Column visibility never affects the exports — all four downloads always include all metric columns",
+  "title": "Column visibility never affects the exports",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -540,7 +540,7 @@
  {
   "id": "SBR-COL-05",
   "area": "SBR — Column Selector",
-  "title": "Hiding the active sort column keeps the sort; showing it again reveals the sort indicator",
+  "title": "Hiding the active sort column keeps the sort",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -588,7 +588,7 @@
  {
   "id": "SBR-PERS-01",
   "area": "SBR — Persistence",
-  "title": "All filter and view settings are remembered per browser and restored before the first data fetch on the next visit",
+  "title": "All filter and view settings are restored before the first data fetch",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -637,7 +637,7 @@
  {
   "id": "SBR-PERS-03",
   "area": "SBR — Persistence",
-  "title": "Restoration is defensive: a stale saved value falls back to its default and never causes an error or invalid request",
+  "title": "A stale saved value falls back to its default and never errors",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access; admin help to remove a location assignment.",
@@ -686,7 +686,7 @@
  {
   "id": "SBR-PERS-05",
   "area": "SBR — Persistence",
-  "title": "The A to Z default is its own saved value: restoring a state with no financial sort returns to A to Z, not an arbitrary column",
+  "title": "The A to Z default is its own saved value",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",

@@ -2,7 +2,7 @@
  {
   "id": "IV-PERS-01",
   "area": "IV — Column Selection & Persistence",
-  "title": "The column-selection icon button (tooltip \"Column Selection\") toggles columns, and Total Cost cannot be turned off",
+  "title": "Column Selection toggles columns; Total Cost cannot be turned off",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -29,7 +29,7 @@
  {
   "id": "IV-PERS-02",
   "area": "IV — Column Selection & Persistence",
-  "title": "Toggling columns never reorders them — the fixed order is kept with Total Cost always last",
+  "title": "Toggling columns never reorders them",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -54,7 +54,7 @@
  {
   "id": "IV-PERS-03",
   "area": "IV — Column Selection & Persistence",
-  "title": "The report remembers the date range, category, vendor, part search text, location, columns, and sort per browser and restores them on return",
+  "title": "The report remembers all filters; columns and sort per browser",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -106,7 +106,7 @@
  {
   "id": "IV-SORT-01",
   "area": "IV — Sorting",
-  "title": "On first load and after any reload, rows are sorted by Total Cost, highest first, applied by the server",
+  "title": "Rows are sorted by Total Cost highest first on load and after any reload",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -131,7 +131,7 @@
  {
   "id": "IV-SORT-02",
   "area": "IV — Sorting",
-  "title": "Header clicks sort ascending then descending with no third state, re-fetching from the server and returning the first page",
+  "title": "Header clicks sort ascending then descending; no third state; page 1 returns",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -159,7 +159,7 @@
  {
   "id": "IV-SORT-03",
   "area": "IV — Sorting",
-  "title": "Money and numeric columns sort by value; text columns sort as text, case-insensitively",
+  "title": "Money and numeric columns sort by value; text columns sort as text",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -185,7 +185,7 @@
  {
   "id": "IV-SORT-04",
   "area": "IV — Sorting",
-  "title": "Sorting reorders only the data rows — the totals row stays at the bottom — and the chosen sort is remembered per browser",
+  "title": "Sorting reorders only the data rows — the totals row stays at the bottom",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -210,7 +210,7 @@
  {
   "id": "IV-EXP-01",
   "area": "IV — Exports",
-  "title": "A three-dot toolbar menu holds \"Download (PDF)\" and \"Download (CSV)\"",
+  "title": "Inventory Value: a three-dot menu holds Download (PDF) and Download (CSV)",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -266,7 +266,7 @@
  {
   "id": "IV-EXP-03",
   "area": "IV — Exports",
-  "title": "Export number formats: two-decimal money, one-decimal Margin % (\"—\" when undefined); CSV money as plain numbers, PDF with on-screen currency formatting",
+  "title": "Export number formats: money to 2 decimals; Margin % to 1 with em-dash",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -292,7 +292,7 @@
  {
   "id": "IV-EXP-04",
   "area": "IV — Exports",
-  "title": "The PDF header shows the report name, organization, selected period, and an \"as of\" line; the shop logo shows when set and the CSV never has one",
+  "title": "PDF header shows report name; org; period and an as-of line; logo if set",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -321,7 +321,7 @@
  {
   "id": "IV-EXP-05",
   "area": "IV — Exports",
-  "title": "The downloaded files are named \"inventory-value-report.pdf\" and \"inventory-value-report.csv\"",
+  "title": "Downloaded files are named inventory-value-report.pdf and .csv",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -346,7 +346,7 @@
  {
   "id": "IV-EXP-06",
   "area": "IV — Exports",
-  "title": "Exports are generated server-side over the full filtered set — rows beyond the loaded page are included",
+  "title": "Exports are generated server-side over the full filtered set",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -373,7 +373,7 @@
  {
   "id": "IV-EXP-07",
   "area": "IV — Exports",
-  "title": "An over-cap filtered set produces no file and shows the too-large-to-export message",
+  "title": "An over-cap set produces no file and shows the too-large-to-export message",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",

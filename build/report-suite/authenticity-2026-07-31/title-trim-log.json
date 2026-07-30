@@ -1,0 +1,3029 @@
+[
+ {
+  "id": "IV-LOC-04",
+  "before": "The Location filter is hidden for a user with access to only one location",
+  "after": "Inventory Value: the Location filter is hidden for a one-location user",
+  "how": "de-duplicated (identical title on another report's case)",
+  "before_len": 73,
+  "after_len": 70,
+  "lost_words": []
+ },
+ {
+  "id": "PV-FILT-13",
+  "before": "The Location filter is hidden for a user with access to only one location",
+  "after": "Parts Velocity: the Location filter is hidden for a one-location user",
+  "how": "de-duplicated (identical title on another report's case)",
+  "before_len": 73,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-LOC-04",
+  "before": "The Location filter is hidden for a user with access to only one location",
+  "after": "Sales By Representative: Location filter hidden for a one-location user",
+  "how": "de-duplicated (identical title on another report's case)",
+  "before_len": 73,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "TU-LOC-05",
+  "before": "The Location filter is hidden for a user with access to only one location",
+  "after": "Technician Utilization: Location filter hidden for a one-location user",
+  "how": "de-duplicated (identical title on another report's case)",
+  "before_len": 73,
+  "after_len": 70,
+  "lost_words": []
+ },
+ {
+  "id": "IV-EXP-01",
+  "before": "A three-dot toolbar menu holds \"Download (PDF)\" and \"Download (CSV)\"",
+  "after": "Inventory Value: a three-dot menu holds Download (PDF) and Download (CSV)",
+  "how": "de-duplicated (identical title on another report's case)",
+  "before_len": 68,
+  "after_len": 73,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-EXP-01",
+  "before": "A three-dot toolbar menu holds \"Download (PDF)\" and \"Download (CSV)\"",
+  "after": "Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV)",
+  "how": "de-duplicated (identical title on another report's case)",
+  "before_len": 68,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "IV-PERS-01",
+  "before": "The column-selection icon button (tooltip \"Column Selection\") toggles columns, and Total Cost cannot be turned off",
+  "after": "Column Selection toggles columns; Total Cost cannot be turned off",
+  "how": "de-duplicated (identical title on another report's case)",
+  "before_len": 114,
+  "after_len": 65,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-PERS-01",
+  "before": "The column-selection icon button (tooltip \"Column Selection\") toggles columns, and Total is not offered and cannot be turned off",
+  "after": "Column Selection toggles columns; Total is not offered at all",
+  "how": "de-duplicated (identical title on another report's case)",
+  "before_len": 128,
+  "after_len": 61,
+  "lost_words": []
+ },
+ {
+  "id": "IV-API-01",
+  "before": "Nightly snapshot: once per day, for every location, one row per in-stock non-core part is recorded with its identity, quantity, and values to the cent",
+  "after": "Nightly snapshot records one row per in-stock non-core part per location",
+  "how": "hand-written",
+  "before_len": 150,
+  "after_len": 72,
+  "lost_words": []
+ },
+ {
+  "id": "IV-API-02",
+  "before": "Nightly snapshot: the captured scope and valuation are identical to the live report, so a recorded day equals what the live report showed that day",
+  "after": "A recorded snapshot day equals what the live report showed that day",
+  "how": "hand-written",
+  "before_len": 146,
+  "after_len": 67,
+  "lost_words": [
+   "identical",
+   "nightly"
+  ]
+ },
+ {
+  "id": "IV-API-03",
+  "before": "Nightly snapshot: re-running the capture for a date replaces that date's rows — idempotent, no duplicates",
+  "after": "Nightly snapshot: re-running the capture for a date replaces that date's rows",
+  "how": "clause-cut",
+  "before_len": 105,
+  "after_len": 77,
+  "lost_words": [
+   "duplicates"
+  ]
+ },
+ {
+  "id": "IV-API-04",
+  "before": "Nightly snapshot: history accrues forward only — a re-run records current truth under the current date and cannot reconstruct a past date",
+  "after": "Nightly snapshot: a re-run records today's truth; it cannot rebuild a past day",
+  "how": "hand-written",
+  "before_len": 137,
+  "after_len": 78,
+  "lost_words": [
+   "accrues",
+   "forward"
+  ]
+ },
+ {
+  "id": "IV-API-05",
+  "before": "Snapshot retention: daily captures are kept for 0–13 months; older history is reduced to the last capture of each calendar month",
+  "after": "Snapshot retention: daily captures are kept for 0–13 months",
+  "how": "clause-cut",
+  "before_len": 128,
+  "after_len": 59,
+  "lost_words": [
+   "reduced"
+  ]
+ },
+ {
+  "id": "IV-API-06",
+  "before": "Thinned history is served unchanged: the closest-recorded-day rule bridges retention gaps, the \"As of\" indicator names the day shown, and a fully-pruned range shows the empty state",
+  "after": "Thinned history still served by the closest-recorded-day rule",
+  "how": "hand-written",
+  "before_len": 180,
+  "after_len": 61,
+  "lost_words": [
+   "bridges",
+   "fully-pruned",
+   "retention"
+  ]
+ },
+ {
+  "id": "IV-CALC-02",
+  "before": "With no fixed sell price, Unit Sell is the shop's pricing-matrix markup on cost for the part's category",
+  "after": "With no fixed sell price Unit Sell is the category's pricing-matrix markup",
+  "how": "hand-written",
+  "before_len": 103,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "IV-CALC-03",
+  "before": "With no fixed sell price and no category, Unit Sell equals Unit Cost — the stock is valued at cost with a $0.00 / 0.0% margin",
+  "after": "With no fixed sell price and no category, Unit Sell equals Unit Cost",
+  "how": "clause-cut",
+  "before_len": 125,
+  "after_len": 68,
+  "lost_words": []
+ },
+ {
+  "id": "IV-CALC-05",
+  "before": "Margin is the extended figure — Total Sell minus Total Cost for the whole on-hand quantity, not a per-unit number",
+  "after": "Margin is Total Sell minus Total Cost for the whole on-hand quantity",
+  "how": "hand-written",
+  "before_len": 113,
+  "after_len": 68,
+  "lost_words": [
+   "number"
+  ]
+ },
+ {
+  "id": "IV-CALC-06",
+  "before": "Margin % is Margin as a share of Total Sell to one decimal with a percent sign, showing \"—\" when Total Sell is zero or negative",
+  "after": "Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0",
+  "how": "hand-written",
+  "before_len": 127,
+  "after_len": 73,
+  "lost_words": [
+   "share",
+   "showing"
+  ]
+ },
+ {
+  "id": "IV-COL-01",
+  "before": "With every column turned on, the columns appear in the fixed left-to-right order with the specified alignment",
+  "after": "With every column on they appear in the fixed order with the set alignment",
+  "how": "hand-written",
+  "before_len": 109,
+  "after_len": 74,
+  "lost_words": [
+   "left-to-right",
+   "specified"
+  ]
+ },
+ {
+  "id": "IV-COL-02",
+  "before": "Value formats: Qty on Hand to two decimals with no currency symbol (fractional supported), money values as US-dollar currency",
+  "after": "Value formats: Qty on Hand to two decimals; money as US-dollar currency",
+  "how": "hand-written",
+  "before_len": 125,
+  "after_len": 71,
+  "lost_words": [
+   "supported"
+  ]
+ },
+ {
+  "id": "IV-COL-03",
+  "before": "The Total Cost column (header and cells) is bold and pinned to the far right, staying fixed while scrolling sideways",
+  "after": "Total Cost is bold and pinned far right; it stays put on sideways scroll",
+  "how": "hand-written",
+  "before_len": 116,
+  "after_len": 72,
+  "lost_words": [
+   "scrolling",
+   "staying"
+  ]
+ },
+ {
+  "id": "IV-COL-04",
+  "before": "On first visit the default columns show, with Margin and Total Sell hidden by default but available to turn on",
+  "after": "On a first visit the default columns show and the rest stay available",
+  "how": "hand-written",
+  "before_len": 110,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "IV-COL-05",
+  "before": "Category and Vendor show their names, and an em dash (\"—\") when the part has none",
+  "after": "Category and Vendor show their names; an em dash (\"—\") when the part has none",
+  "how": "compressed",
+  "before_len": 81,
+  "after_len": 77,
+  "lost_words": []
+ },
+ {
+  "id": "IV-DATE-01",
+  "before": "The date-range control offers the standard presets plus Custom and does not offer \"All Time\" — expected, do not file",
+  "after": "Date range offers the standard presets plus Custom; no All Time option",
+  "how": "hand-written",
+  "before_len": 116,
+  "after_len": 70,
+  "lost_words": [
+   "expected"
+  ]
+ },
+ {
+  "id": "IV-DATE-02",
+  "before": "The report values inventory as of the END of the selected range — the date is an as-of anchor, not a created-date filter",
+  "after": "The report values inventory as of the END of the selected range",
+  "how": "clause-cut",
+  "before_len": 120,
+  "after_len": 63,
+  "lost_words": [
+   "as-of"
+  ]
+ },
+ {
+  "id": "IV-DATE-03",
+  "before": "When the selected window reaches today and today has not been recorded yet, the report values the current live stock",
+  "after": "A window reaching today with today not yet recorded values live stock",
+  "how": "hand-written",
+  "before_len": 116,
+  "after_len": 69,
+  "lost_words": [
+   "selected"
+  ]
+ },
+ {
+  "id": "IV-DATE-04",
+  "before": "For a past date the report replays the closest recorded day on or before the end of the selected range",
+  "after": "For a past date the report replays the closest recorded day on or before it",
+  "how": "hand-written",
+  "before_len": 102,
+  "after_len": 75,
+  "lost_words": []
+ },
+ {
+  "id": "IV-DATE-05",
+  "before": "An \"As of\" indicator names the day actually shown when it is earlier than the date asked for, and is hidden when they match",
+  "after": "\"As of\" indicator names the day shown; hidden when it matches the ask",
+  "how": "hand-written",
+  "before_len": 123,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "IV-DATE-06",
+  "before": "A Custom range lets the user pick start and end dates, values as of the picked end date, is capped at today, and reloads on change",
+  "after": "A Custom range values stock as of the picked end date; capped at today",
+  "how": "hand-written",
+  "before_len": 130,
+  "after_len": 70,
+  "lost_words": [
+   "change",
+   "dates"
+  ]
+ },
+ {
+  "id": "IV-DATE-08",
+  "before": "History accrues forward only — a date before the first nightly recording cannot be reconstructed — expected, do not file",
+  "after": "History accrues forward only; a pre-first-recording date is not shown",
+  "how": "hand-written",
+  "before_len": 120,
+  "after_len": 69,
+  "lost_words": [
+   "cannot",
+   "expected",
+   "reconstructed"
+  ]
+ },
+ {
+  "id": "IV-EXP-03",
+  "before": "Export number formats: two-decimal money, one-decimal Margin % (\"—\" when undefined); CSV money as plain numbers, PDF with on-screen currency formatting",
+  "after": "Export number formats: money to 2 decimals; Margin % to 1 with em-dash",
+  "how": "hand-written",
+  "before_len": 151,
+  "after_len": 70,
+  "lost_words": [
+   "one-decimal",
+   "two-decimal"
+  ]
+ },
+ {
+  "id": "IV-EXP-04",
+  "before": "The PDF header shows the report name, organization, selected period, and an \"as of\" line; the shop logo shows when set and the CSV never has one",
+  "after": "PDF header shows report name; org; period and an as-of line; logo if set",
+  "how": "hand-written",
+  "before_len": 144,
+  "after_len": 72,
+  "lost_words": []
+ },
+ {
+  "id": "IV-EXP-05",
+  "before": "The downloaded files are named \"inventory-value-report.pdf\" and \"inventory-value-report.csv\"",
+  "after": "Downloaded files are named inventory-value-report.pdf and .csv",
+  "how": "hand-written",
+  "before_len": 92,
+  "after_len": 62,
+  "lost_words": []
+ },
+ {
+  "id": "IV-EXP-06",
+  "before": "Exports are generated server-side over the full filtered set — rows beyond the loaded page are included",
+  "after": "Exports are generated server-side over the full filtered set",
+  "how": "clause-cut",
+  "before_len": 103,
+  "after_len": 60,
+  "lost_words": [
+   "beyond",
+   "included"
+  ]
+ },
+ {
+  "id": "IV-EXP-07",
+  "before": "An over-cap filtered set produces no file and shows the too-large-to-export message",
+  "after": "An over-cap set produces no file and shows the too-large-to-export message",
+  "how": "hand-written",
+  "before_len": 83,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "IV-FLT-01",
+  "before": "The Category and Vendor filters are multi-selects that reload the report to only the matching parts",
+  "after": "Category and Vendor multi-selects reload the report to matching parts only",
+  "how": "hand-written",
+  "before_len": 99,
+  "after_len": 74,
+  "lost_words": [
+   "filters"
+  ]
+ },
+ {
+  "id": "IV-FLT-03",
+  "before": "With no category or vendor selected all parts show, and an empty part search applies no narrowing",
+  "after": "With no category or vendor selected all parts show",
+  "how": "clause-cut",
+  "before_len": 97,
+  "after_len": 50,
+  "lost_words": [
+   "applies"
+  ]
+ },
+ {
+  "id": "IV-FLT-04",
+  "before": "The part search is a page-local toolbar field matching part number OR description, case-insensitively, on the server",
+  "after": "Part search matches part number or description on the server; case-insensitive",
+  "how": "hand-written",
+  "before_len": 116,
+  "after_len": 78,
+  "lost_words": [
+   "case-insensitively"
+  ]
+ },
+ {
+  "id": "IV-LOC-03",
+  "before": "Scoping never includes an inaccessible location, and a selection resolving to none falls back to the user's active location",
+  "after": "Scoping never includes an inaccessible location",
+  "how": "clause-cut",
+  "before_len": 123,
+  "after_len": 47,
+  "lost_words": [
+   "resolving"
+  ]
+ },
+ {
+  "id": "IV-NAV-02",
+  "before": "Opening the report shows one row per in-stock part at the selected location(s), valued as of the resolved date",
+  "after": "One row per in-stock part at the selected locations valued at the resolved date",
+  "how": "hand-written",
+  "before_len": 110,
+  "after_len": 79,
+  "lost_words": [
+   "opening"
+  ]
+ },
+ {
+  "id": "IV-NAV-03",
+  "before": "On a first visit the report defaults to the current calendar month and the user's currently active location",
+  "after": "First visit defaults to the current calendar month and the active location",
+  "how": "hand-written",
+  "before_len": 107,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "IV-NAV-05",
+  "before": "The report is server-paginated: one page of rows at a time, and any filter/search/sort change returns to the first page",
+  "after": "The report is server-paginated: one page of rows at a time",
+  "how": "clause-cut",
+  "before_len": 119,
+  "after_len": 58,
+  "lost_words": []
+ },
+ {
+  "id": "IV-PERM-01",
+  "before": "A user with the existing inventory-reports permission can open the report — no new permission is added",
+  "after": "User with the existing inventory-reports permission can open the report",
+  "how": "clause-cut",
+  "before_len": 102,
+  "after_len": 71,
+  "lost_words": [
+   "added"
+  ]
+ },
+ {
+  "id": "IV-PERM-02",
+  "before": "A user without the required permission does not see Inventory Value in the reports navigation",
+  "after": "Without the permission Inventory Value is absent from the reports navigation",
+  "how": "hand-written",
+  "before_len": 93,
+  "after_len": 76,
+  "lost_words": [
+   "required"
+  ]
+ },
+ {
+  "id": "IV-PERS-02",
+  "before": "Toggling columns never reorders them — the fixed order is kept with Total Cost always last",
+  "after": "Toggling columns never reorders them",
+  "how": "clause-cut",
+  "before_len": 90,
+  "after_len": 36,
+  "lost_words": []
+ },
+ {
+  "id": "IV-PERS-03",
+  "before": "The report remembers the date range, category, vendor, part search text, location, columns, and sort per browser and restores them on return",
+  "after": "The report remembers all filters; columns and sort per browser",
+  "how": "hand-written",
+  "before_len": 140,
+  "after_len": 62,
+  "lost_words": []
+ },
+ {
+  "id": "IV-SCOPE-02",
+  "before": "A part stocked at two selected locations appears as two rows (one per location), not merged — expected, do not file",
+  "after": "A part stocked at two selected locations shows as two rows; never merged",
+  "how": "hand-written",
+  "before_len": 115,
+  "after_len": 72,
+  "lost_words": [
+   "expected"
+  ]
+ },
+ {
+  "id": "IV-SCOPE-05",
+  "before": "There is no dead-stock exclusion — long-sitting stock still contributes to the on-hand value",
+  "after": "There is no dead-stock exclusion - a slow-moving part still appears",
+  "how": "hand-written",
+  "before_len": 92,
+  "after_len": 67,
+  "lost_words": []
+ },
+ {
+  "id": "IV-SORT-01",
+  "before": "On first load and after any reload, rows are sorted by Total Cost, highest first, applied by the server",
+  "after": "Rows are sorted by Total Cost highest first on load and after any reload",
+  "how": "hand-written",
+  "before_len": 103,
+  "after_len": 72,
+  "lost_words": [
+   "applied"
+  ]
+ },
+ {
+  "id": "IV-SORT-02",
+  "before": "Header clicks sort ascending then descending with no third state, re-fetching from the server and returning the first page",
+  "after": "Header clicks sort ascending then descending; no third state; page 1 returns",
+  "how": "hand-written",
+  "before_len": 122,
+  "after_len": 76,
+  "lost_words": [
+   "re-fetching"
+  ]
+ },
+ {
+  "id": "IV-SORT-03",
+  "before": "Money and numeric columns sort by value; text columns sort as text, case-insensitively",
+  "after": "Money and numeric columns sort by value; text columns sort as text",
+  "how": "hand-written",
+  "before_len": 86,
+  "after_len": 66,
+  "lost_words": []
+ },
+ {
+  "id": "IV-SORT-04",
+  "before": "Sorting reorders only the data rows — the totals row stays at the bottom — and the chosen sort is remembered per browser",
+  "after": "Sorting reorders only the data rows — the totals row stays at the bottom",
+  "how": "clause-cut",
+  "before_len": 120,
+  "after_len": 72,
+  "lost_words": []
+ },
+ {
+  "id": "IV-TOT-03",
+  "before": "The totals-row Margin % is recomputed from the totals (total Margin ÷ total Total Sell), not the average of the row percentages",
+  "after": "Totals-row Margin % is recomputed from the totals; not an average of rows",
+  "how": "hand-written",
+  "before_len": 127,
+  "after_len": 73,
+  "lost_words": []
+ },
+ {
+  "id": "IV-VIS-01",
+  "before": "The report uses an all-white table with no alternating row shading on the standard soft blue-grey report backdrop",
+  "after": "All-white table with no row shading on the standard report backdrop",
+  "how": "hand-written",
+  "before_len": 113,
+  "after_len": 67,
+  "lost_words": []
+ },
+ {
+  "id": "IV-VIS-02",
+  "before": "Toolbar layout: three-dot menu leftmost in the action cluster then Column Selection; filters run date range, part search, Category, Vendor, Location",
+  "after": "Toolbar layout: menu leftmost then Column Selection; then the 5 filters",
+  "how": "hand-written",
+  "before_len": 148,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "IV-VIS-04",
+  "before": "Long Description, Category, and Vendor values truncate with an ellipsis and show the full value on hover; the Part # is never truncated",
+  "after": "Long Description; Category and Vendor truncate on hover; Part # never does",
+  "how": "hand-written",
+  "before_len": 135,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "IV-VIS-05",
+  "before": "In dark mode the page background, toolbar, cells, and the \"—\" glyph remain legible",
+  "after": "In dark mode the page background, toolbar, cells; the \"—\" glyph remain legible",
+  "how": "compressed",
+  "before_len": 82,
+  "after_len": 78,
+  "lost_words": []
+ },
+ {
+  "id": "IV-VIS-06",
+  "before": "Each sortable column header exposes its sort state to assistive technology and shows the active direction visually",
+  "after": "Each sortable header exposes its sort state and shows the direction",
+  "how": "hand-written",
+  "before_len": 114,
+  "after_len": 67,
+  "lost_words": []
+ },
+ {
+  "id": "IV-VIS-07",
+  "before": "The icon-only controls (three-dot download button and Column Selection button) each carry an accessible name",
+  "after": "The icon-only download and Column Selection buttons carry accessible names",
+  "how": "hand-written",
+  "before_len": 108,
+  "after_len": 74,
+  "lost_words": [
+   "controls"
+  ]
+ },
+ {
+  "id": "PV-API-03",
+  "before": "Header-click sorting re-queries the server with nulls first on ascending and last on descending as a server sort semantic",
+  "after": "Header-click sorting re-queries the server; nulls first asc and last desc",
+  "how": "hand-written",
+  "before_len": 121,
+  "after_len": 73,
+  "lost_words": []
+ },
+ {
+  "id": "PV-API-04",
+  "before": "The backend denies both the report data and the export to a user without Inventory Reports → View",
+  "after": "The backend denies report data AND export without Inventory Reports View",
+  "how": "hand-written",
+  "before_len": 97,
+  "after_len": 72,
+  "lost_words": []
+ },
+ {
+  "id": "PV-CALC-01",
+  "before": "Units Sold for an inventory part is net stock movement: invoicing adds, reversing subtracts, returns do not affect it",
+  "after": "Units Sold for an inventory part is net stock movement",
+  "how": "clause-cut",
+  "before_len": 117,
+  "after_len": 54,
+  "lost_words": [
+   "subtracts"
+  ]
+ },
+ {
+  "id": "PV-CALC-03",
+  "before": "Units Returned counts initiated part returns and parts-sale credits, and cancelling a return removes its quantity",
+  "after": "Units Returned counts initiated part returns and parts-sale credits",
+  "how": "clause-cut",
+  "before_len": 113,
+  "after_len": 67,
+  "lost_words": [
+   "cancelling",
+   "quantity",
+   "removes"
+  ]
+ },
+ {
+  "id": "PV-CALC-04",
+  "before": "Units Returned is windowed by initiation date, ignores invoice status, and excludes core-charge returns",
+  "after": "Units Returned is windowed by initiation date, ignores invoice status",
+  "how": "clause-cut",
+  "before_len": 103,
+  "after_len": 69,
+  "lost_words": [
+   "excludes"
+  ]
+ },
+ {
+  "id": "PV-CALC-08",
+  "before": "On Hand shows the row's own location stock, and Min / Max are read-only stored thresholds with no editing from the report",
+  "after": "On Hand shows the row's own location stock",
+  "how": "clause-cut",
+  "before_len": 121,
+  "after_len": 42,
+  "lost_words": []
+ },
+ {
+  "id": "PV-CALC-12",
+  "before": "Unit Cost / Sell Price and Margin % use independent null triggers, so mixed rows are valid",
+  "after": "Unit Cost / Sell Price and Margin % use independent null triggers",
+  "how": "clause-cut",
+  "before_len": 90,
+  "after_len": 65,
+  "lost_words": []
+ },
+ {
+  "id": "PV-COL-04",
+  "before": "Filters, column selection, and sort are remembered per browser and restored before the first data fetch",
+  "after": "Filters; columns and sort are remembered per browser before the first fetch",
+  "how": "hand-written",
+  "before_len": 103,
+  "after_len": 75,
+  "lost_words": [
+   "selection"
+  ]
+ },
+ {
+  "id": "PV-COL-05",
+  "before": "A saved value that is no longer valid falls back to that setting's default on restore",
+  "after": "A saved value that is no longer valid falls back to that setting's default",
+  "how": "hand-written",
+  "before_len": 85,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "PV-COL-08",
+  "before": "All 20 columns can be hidden; the empty selection is not restored and an export then contains no data columns",
+  "after": "All 20 columns can be hidden; the empty selection is never restored",
+  "how": "hand-written",
+  "before_len": 109,
+  "after_len": 67,
+  "lost_words": [
+   "contains"
+  ]
+ },
+ {
+  "id": "PV-EXP-01",
+  "before": "The overflow button opens an export menu with Download (PDF) and Download (CSV) in that order",
+  "after": "The overflow button opens Download (PDF) then Download (CSV) in that order",
+  "how": "hand-written",
+  "before_len": 93,
+  "after_len": 74,
+  "lost_words": [
+   "export"
+  ]
+ },
+ {
+  "id": "PV-EXP-06",
+  "before": "CSV: named velocity-report.csv with full untruncated text values and Last Sale as a raw integer",
+  "after": "CSV is named velocity-report.csv and holds full untruncated text values",
+  "how": "hand-written",
+  "before_len": 95,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "PV-FILT-04",
+  "before": "Custom date range requires valid start and end dates and rejects a span over 366 days",
+  "after": "A Custom date range needs valid dates and rejects a span over 366 days",
+  "how": "hand-written",
+  "before_len": 85,
+  "after_len": 70,
+  "lost_words": [
+   "requires"
+  ]
+ },
+ {
+  "id": "PV-FILT-06",
+  "before": "Toolbar search matches part number or description, case-insensitively, and is page-specific",
+  "after": "Toolbar search matches part number or description, case-insensitively",
+  "how": "clause-cut",
+  "before_len": 91,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "PV-FILT-08",
+  "before": "Bin multi-select filter limits the table to inventory parts stocked in the selected bins",
+  "after": "The Bin multi-select limits the table to parts stocked in those bins",
+  "how": "hand-written",
+  "before_len": 88,
+  "after_len": 68,
+  "lost_words": []
+ },
+ {
+  "id": "PV-FILT-12",
+  "before": "Parts with no category, vendor, or bin assigned are excluded when that filter is active",
+  "after": "Parts with no category; vendor or bin are excluded when that filter is on",
+  "how": "hand-written",
+  "before_len": 87,
+  "after_len": 73,
+  "lost_words": []
+ },
+ {
+  "id": "PV-NAV-03",
+  "before": "A loading indicator shows while data loads and old rows are replaced only when new data returns",
+  "after": "A loading indicator shows and old rows are replaced only when data returns",
+  "how": "hand-written",
+  "before_len": 95,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "PV-PERM-01",
+  "before": "A user with the Inventory Reports → View permission can load the report and export it",
+  "after": "A user with Inventory Reports View can load the report and export it",
+  "how": "hand-written",
+  "before_len": 85,
+  "after_len": 68,
+  "lost_words": []
+ },
+ {
+  "id": "PV-PERM-02",
+  "before": "A user without the Manager or Office User role does not see the Parts Velocity navigation entry",
+  "after": "Without the Manager or Office User role the report entry is not shown",
+  "how": "hand-written",
+  "before_len": 95,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "PV-PERM-03",
+  "before": "A user with Reports access but without Inventory Reports → View sees the entry but is denied the data and the export",
+  "after": "Reports access without Inventory Reports View: entry shows; data denied",
+  "how": "hand-written",
+  "before_len": 116,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "PV-ROW-01",
+  "before": "An inventory part stocked at two selected locations shows as two rows with per-location stock figures",
+  "after": "A part stocked at two selected locations shows as two per-location rows",
+  "how": "hand-written",
+  "before_len": 101,
+  "after_len": 71,
+  "lost_words": [
+   "figures"
+  ]
+ },
+ {
+  "id": "PV-ROW-06",
+  "before": "Info icons on Units Sold, Demand, and Turns / Yr show the exact spec descriptions and never trigger a sort",
+  "after": "Info icons sit on Units Sold; Demand and Turns / Yr with descriptions",
+  "how": "hand-written",
+  "before_len": 106,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "PV-ROW-07",
+  "before": "Description, Category, and Vendor truncate with an ellipsis and show in full on hover; Part # is never truncated",
+  "after": "Description; Category and Vendor truncate on hover; Part # never does",
+  "how": "hand-written",
+  "before_len": 112,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "PV-ROW-10",
+  "before": "A sale invoiced then fully reversed in-window shows Demand 1 with Units Sold 0.00, and negative movement shows a leading minus",
+  "after": "A sale invoiced then fully reversed shows Demand 1 with Units Sold 0.00",
+  "how": "hand-written",
+  "before_len": 126,
+  "after_len": 71,
+  "lost_words": [
+   "in-window"
+  ]
+ },
+ {
+  "id": "PV-VIS-01",
+  "before": "The report uses the standard two-tone layout: white card surfaces on a soft blue-grey backdrop with an edge-to-edge table",
+  "after": "The report uses the standard two-tone layout",
+  "how": "clause-cut",
+  "before_len": 121,
+  "after_len": 44,
+  "lost_words": [
+   "backdrop",
+   "edge-to-edge"
+  ]
+ },
+ {
+  "id": "PV-VIS-02",
+  "before": "Toolbar and table detail styling: paddings, white header with 1px top border, white body cells, 2rem edge padding",
+  "after": "Toolbar and table detail styling matches the suite paddings and borders",
+  "how": "hand-written",
+  "before_len": 113,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "PV-VIS-03",
+  "before": "Dark mode is supported and the grey info icon keeps at least 3:1 contrast in both modes",
+  "after": "Dark mode is supported and the grey info icon keeps 3:1 contrast in both",
+  "how": "hand-written",
+  "before_len": 87,
+  "after_len": 72,
+  "lost_words": [
+   "modes"
+  ]
+ },
+ {
+  "id": "SBC-API-01",
+  "before": "A customer's asset and invoice rows are fetched from the server only on first expand, and expand-all fetches at most one request per visible customer",
+  "after": "Asset and invoice rows are fetched on first expand; one call per customer",
+  "how": "hand-written",
+  "before_len": 149,
+  "after_len": 73,
+  "lost_words": [
+   "fetches",
+   "visible"
+  ]
+ },
+ {
+  "id": "SBC-API-02",
+  "before": "Sorting is applied on the server: a header click re-fetches the customer rows ordered by that column as a fresh first page",
+  "after": "Sorting is applied on the server and re-fetches the first page",
+  "how": "hand-written",
+  "before_len": 122,
+  "after_len": 62,
+  "lost_words": [
+   "fresh"
+  ]
+ },
+ {
+  "id": "SBC-API-03",
+  "before": "The Customer filter's type-ahead fetches matching customers from the server per query instead of loading the full list up front",
+  "after": "The Customer type-ahead queries the server instead of loading every name",
+  "how": "hand-written",
+  "before_len": 127,
+  "after_len": 72,
+  "lost_words": [
+   "filter's"
+  ]
+ },
+ {
+  "id": "SBC-API-04",
+  "before": "Customer rows are server-paginated and the totals row is server-computed over the full filtered set",
+  "after": "Customer rows are server-paginated; the totals row is server-computed",
+  "how": "hand-written",
+  "before_len": 99,
+  "after_len": 69,
+  "lost_words": [
+   "filtered"
+  ]
+ },
+ {
+  "id": "SBC-API-05",
+  "before": "Exports are generated on the server and the 10,000-row cap is counted server-side before any file is produced",
+  "after": "Exports are server-generated and the 10,000-row cap is counted first",
+  "how": "hand-written",
+  "before_len": 109,
+  "after_len": 68,
+  "lost_words": [
+   "produced",
+   "server-side"
+  ]
+ },
+ {
+  "id": "SBC-CALC-01",
+  "before": "Financial columns appear in the specified order and Subtotal/Margin follow the spec's composition rules",
+  "after": "Financial columns run in the specified order with Subtotal and Margin rules",
+  "how": "hand-written",
+  "before_len": 103,
+  "after_len": 75,
+  "lost_words": [
+   "composition",
+   "follow",
+   "spec's"
+  ]
+ },
+ {
+  "id": "SBC-CALC-02",
+  "before": "Margin % = Margin over Subtotal to one decimal with a percent sign, em dash when Subtotal is zero or below, monochrome on all row types",
+  "after": "Margin % is Margin over Subtotal to one decimal; em dash when Subtotal <= 0",
+  "how": "hand-written",
+  "before_len": 135,
+  "after_len": 75,
+  "lost_words": [
+   "types"
+  ]
+ },
+ {
+  "id": "SBC-CALC-03",
+  "before": "Inv. Hrs heading is verbatim and the value shows +green / -red / 0.0 default on every row type",
+  "after": "Inv. Hrs heading is verbatim; value shows +green / -red / 0.0 on every row",
+  "how": "hand-written",
+  "before_len": 94,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-CALC-04",
+  "before": "Inv. Hrs is never blank: no-labor rows show 0.0 and values that round to zero show 0.0 in the default color",
+  "after": "Inv. Hrs is never blank: no-labor rows and near-zero values both show 0.0",
+  "how": "hand-written",
+  "before_len": 107,
+  "after_len": 73,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-CALC-05",
+  "before": "Invoice subtotals sum exactly to their asset row and asset subtotals sum exactly to the customer row",
+  "after": "Invoice subtotals sum to their asset row and asset subtotals to the customer",
+  "how": "hand-written",
+  "before_len": 100,
+  "after_len": 76,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-CALC-06",
+  "before": "Subtotal is the rightmost column, pinned during horizontal scroll and bold everywhere, unconditionally",
+  "after": "Subtotal is the rightmost column; pinned on scroll and bold everywhere",
+  "how": "hand-written",
+  "before_len": 102,
+  "after_len": 70,
+  "lost_words": [
+   "unconditionally"
+  ]
+ },
+ {
+  "id": "SBC-CALC-07",
+  "before": "The totals row covers the full filtered set of customers, not only the customers on the current page",
+  "after": "The totals row covers the whole filtered set; not just the current page",
+  "how": "hand-written",
+  "before_len": 100,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-COL-01",
+  "before": "Column selector is a separate toolbar button with the Column Selection tooltip and nine toggles in order, all on by default",
+  "after": "Column selector is its own toolbar button with nine toggles all on",
+  "how": "hand-written",
+  "before_len": 123,
+  "after_len": 66,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-CUST-01",
+  "before": "Customer filter sits between Product Type and Location, carries a search icon, and shows the Search customers… hint",
+  "after": "Customer filter sits between Product Type and Location, carries a search icon",
+  "how": "clause-cut",
+  "before_len": 115,
+  "after_len": 77,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-CUST-02",
+  "before": "Typing in the Customer filter lists matching customers by contains match, with checkmarks on selected ones",
+  "after": "Typing in the Customer filter lists matching customers by contains match",
+  "how": "clause-cut",
+  "before_len": 106,
+  "after_len": 72,
+  "lost_words": [
+   "checkmarks"
+  ]
+ },
+ {
+  "id": "SBC-CUST-05",
+  "before": "Collapsed label reads None, the customer's name, or N selected, and shows the query text while typing",
+  "after": "Collapsed label reads None, the customer's name, or N selected",
+  "how": "clause-cut",
+  "before_len": 101,
+  "after_len": 62,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-CUST-06",
+  "before": "Changing the customer selection narrows the table to the selected customers and refreshes the totals",
+  "after": "Changing the customer selection narrows the table and refreshes the totals",
+  "how": "hand-written",
+  "before_len": 100,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-CUST-09",
+  "before": "A subset selection reconciles on a filter change: kept if present, dropped if absent, new customers not auto-added",
+  "after": "A subset customer selection reconciles on a filter change; kept if present",
+  "how": "hand-written",
+  "before_len": 114,
+  "after_len": 74,
+  "lost_words": [
+   "absent",
+   "auto-added"
+  ]
+ },
+ {
+  "id": "SBC-DATE-04",
+  "before": "Changing the date range writes the chosen value to the page link for sharing and bookmarking",
+  "after": "Changing the date range writes it into the page link for sharing",
+  "how": "hand-written",
+  "before_len": 92,
+  "after_len": 64,
+  "lost_words": [
+   "bookmarking"
+  ]
+ },
+ {
+  "id": "SBC-EMPTY-04",
+  "before": "A failed data fetch shows the fetching-error toast which auto-fades after 5 seconds",
+  "after": "A failed data fetch shows the error toast which fades after 5 seconds",
+  "how": "hand-written",
+  "before_len": 83,
+  "after_len": 69,
+  "lost_words": [
+   "fetching-error"
+  ]
+ },
+ {
+  "id": "SBC-EXP-04",
+  "before": "CSV value formats: Margin % plain number, dates mm-dd-yyyy, currency plain numbers, no color",
+  "after": "CSV formats: Margin % plain; dates mm-dd-yyyy; currency plain; no color",
+  "how": "hand-written",
+  "before_len": 92,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-EXP-05",
+  "before": "CSV and PDF contain exactly the customers matching the active filters and sort, including the Customer filter selection",
+  "after": "CSV and PDF hold exactly the customers matching the active filters and sort",
+  "how": "hand-written",
+  "before_len": 119,
+  "after_len": 75,
+  "lost_words": [
+   "including"
+  ]
+ },
+ {
+  "id": "SBC-EXP-10",
+  "before": "PDF logo is embedded, scales without distortion, and falls back from the uploaded logo to the ShopView logo to none",
+  "after": "PDF logo is embedded, scales without distortion",
+  "how": "clause-cut",
+  "before_len": 115,
+  "after_len": 47,
+  "lost_words": [
+   "falls"
+  ]
+ },
+ {
+  "id": "SBC-EXP-15",
+  "before": "Exporting with no matching customers still downloads a file with headers and a zero totals row, with no warning",
+  "after": "A no-match export still downloads headers and a zero totals row",
+  "how": "hand-written",
+  "before_len": 111,
+  "after_len": 63,
+  "lost_words": [
+   "exporting",
+   "matching"
+  ]
+ },
+ {
+  "id": "SBC-LINK-01",
+  "before": "Invoice number opens in the same tab: S invoices to the work order Finance tab, P invoices to the part sale Part Requests tab",
+  "after": "The invoice number opens the invoice in the same browser tab",
+  "how": "hand-written",
+  "before_len": 125,
+  "after_len": 60,
+  "lost_words": [
+   "invoices"
+  ]
+ },
+ {
+  "id": "SBC-LINK-02",
+  "before": "Browser back from an invoice returns to the report with filters, sort and columns restored and rows collapsed",
+  "after": "Browser back from an invoice restores filters; sort and columns; rows shut",
+  "how": "hand-written",
+  "before_len": 109,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-LINK-03",
+  "before": "Customer name is plain text; the invoice link keeps the primary color with no underline and never turns visited-purple",
+  "after": "Customer name is plain text; the invoice link never turns visited-purple",
+  "how": "hand-written",
+  "before_len": 118,
+  "after_len": 72,
+  "lost_words": [
+   "keeps"
+  ]
+ },
+ {
+  "id": "SBC-LINK-04",
+  "before": "Clicking an invoice deleted or reversed after the report loaded shows the standard not-found state and back returns",
+  "after": "An invoice deleted after load shows the not-found state and back returns",
+  "how": "hand-written",
+  "before_len": 115,
+  "after_len": 72,
+  "lost_words": [
+   "clicking"
+  ]
+ },
+ {
+  "id": "SBC-MOB-01",
+  "before": "On a phone every toolbar control works on touch and below 1024px the toolbar splits into two rows",
+  "after": "On a phone every toolbar control works on touch; the toolbar splits in two",
+  "how": "hand-written",
+  "before_len": 97,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-MOB-02",
+  "before": "On touch the table scrolls sideways with the Subtotal pinned, chevrons toggle, and invoice links open in the same tab",
+  "after": "On touch the table scrolls sideways with Subtotal pinned and chevrons work",
+  "how": "hand-written",
+  "before_len": 117,
+  "after_len": 74,
+  "lost_words": [
+   "links",
+   "toggle"
+  ]
+ },
+ {
+  "id": "SBC-PERM-03",
+  "before": "Opening an invoice you lack permission for shows the standard access-denied state and back returns to the report",
+  "after": "Opening an invoice you lack permission for shows access-denied; back works",
+  "how": "hand-written",
+  "before_len": 112,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-PERS-01",
+  "before": "Filters, sort and visible columns are saved and restored on the next visit, shown immediately without a default flash",
+  "after": "Filters; sort and visible columns are restored on the next visit",
+  "how": "hand-written",
+  "before_len": 117,
+  "after_len": 64,
+  "lost_words": [
+   "flash"
+  ]
+ },
+ {
+  "id": "SBC-PERS-02",
+  "before": "Type-ahead search text, expansion state and scroll position are not saved; a reload clears all expansion",
+  "after": "Type-ahead search text, expansion state and scroll position are not saved",
+  "how": "clause-cut",
+  "before_len": 104,
+  "after_len": 73,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-PERS-03",
+  "before": "A saved value that is no longer valid is discarded and that setting falls back to its default",
+  "after": "A saved value that is no longer valid is dropped and falls back to default",
+  "how": "hand-written",
+  "before_len": 93,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-PERS-06",
+  "before": "When both a saved view and a page-link range exist, the saved view wins and the link value is ignored",
+  "after": "When a saved view and a page-link range clash the saved view wins",
+  "how": "hand-written",
+  "before_len": 101,
+  "after_len": 65,
+  "lost_words": [
+   "exist"
+  ]
+ },
+ {
+  "id": "SBC-PERS-07",
+  "before": "Customer filter restore: the all-customers state restores as all (including new customers); an id set is intersected and never forces an empty view",
+  "after": "Customer filter restore: all-customers stays all; an id set is intersected",
+  "how": "hand-written",
+  "before_len": 147,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-SORT-02",
+  "before": "Default sort is Customer name ascending case-insensitive; clicking a header replaces it",
+  "after": "Default sort is Customer name ascending case-insensitive",
+  "how": "clause-cut",
+  "before_len": 87,
+  "after_len": 56,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-SORT-03",
+  "before": "Missing values sort to the bottom ascending and to the top descending; a Margin % em dash counts as missing",
+  "after": "Missing values sort to the bottom ascending and to the top descending",
+  "how": "clause-cut",
+  "before_len": 107,
+  "after_len": 69,
+  "lost_words": [
+   "counts"
+  ]
+ },
+ {
+  "id": "SBC-SORT-04",
+  "before": "Sorting by Date orders customers by their most recent invoice date even though the Date cell is blank on customer rows",
+  "after": "Sorting by Date orders customers by their most recent invoice date",
+  "how": "hand-written",
+  "before_len": 118,
+  "after_len": 66,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-TREE-01",
+  "before": "Each customer gets one summary row with its name followed by the invoice count in parentheses",
+  "after": "Each customer gets one summary row with its invoice count in parentheses",
+  "how": "hand-written",
+  "before_len": 93,
+  "after_len": 72,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-TREE-04",
+  "before": "Expanding an asset reveals its invoice detail rows with number link, date and per-invoice columns",
+  "after": "Expanding an asset reveals its invoice rows with number link and date",
+  "how": "hand-written",
+  "before_len": 97,
+  "after_len": 69,
+  "lost_words": [
+   "columns"
+  ]
+ },
+ {
+  "id": "SBC-TREE-05",
+  "before": "Invoices group into one asset row per vehicle record, with a snapshot fallback for older invoices with no vehicle id",
+  "after": "Invoices group into one asset row per vehicle record",
+  "how": "clause-cut",
+  "before_len": 116,
+  "after_len": 52,
+  "lost_words": [
+   "fallback"
+  ]
+ },
+ {
+  "id": "SBC-TREE-06",
+  "before": "Asset rows order A to Z case-insensitively with the Parts Sales bucket always last, regardless of column sort",
+  "after": "Asset rows order A to Z with the Parts Sales bucket always last",
+  "how": "hand-written",
+  "before_len": 109,
+  "after_len": 63,
+  "lost_words": [
+   "case-insensitively",
+   "regardless"
+  ]
+ },
+ {
+  "id": "SBC-TREE-08",
+  "before": "Header-row chevron expands or collapses every customer on the current page, with matching icon and tooltip",
+  "after": "Header-row chevron expands or collapses every customer on the current page",
+  "how": "clause-cut",
+  "before_len": 106,
+  "after_len": 74,
+  "lost_words": [
+   "matching"
+  ]
+ },
+ {
+  "id": "SBC-TREE-10",
+  "before": "Edge: a single-invoice asset can still be expanded, and a customer with only no-vehicle work shows a single Parts Sales row",
+  "after": "Edge: a single-invoice asset can still be expanded",
+  "how": "clause-cut",
+  "before_len": 123,
+  "after_len": 50,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-TREE-11",
+  "before": "A service (S) invoice with no vehicle also lands in the Parts Sales bucket — absence of a vehicle decides, not the prefix",
+  "after": "A service (S) invoice with no vehicle also lands in the Parts Sales bucket",
+  "how": "clause-cut",
+  "before_len": 121,
+  "after_len": 74,
+  "lost_words": [
+   "decides"
+  ]
+ },
+ {
+  "id": "SBC-TREE-12",
+  "before": "Reversed and voided invoices are excluded from every row, count and total under every Product Type",
+  "after": "Reversed and voided invoices are excluded from every row; count and total",
+  "how": "hand-written",
+  "before_len": 98,
+  "after_len": 73,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-TREE-13",
+  "before": "Every row type renders the same columns in the same order, blank cells keep their position, and summary rows use the specified font weights",
+  "after": "Every row type renders the same columns in the same order",
+  "how": "hand-written",
+  "before_len": 139,
+  "after_len": 57,
+  "lost_words": [
+   "cells",
+   "specified",
+   "their"
+  ]
+ },
+ {
+  "id": "SBC-VIS-01",
+  "before": "Page and toolbar match the suite theme: paddings, surfaces, alignment, separator, arrow size and square corners",
+  "after": "Page and toolbar match the suite theme in padding; surface and alignment",
+  "how": "hand-written",
+  "before_len": 111,
+  "after_len": 72,
+  "lost_words": [
+   "separator",
+   "square",
+   "surfaces"
+  ]
+ },
+ {
+  "id": "SBC-VIS-02",
+  "before": "Row surfaces alternate by tree level: white header/customer/totals rows, blue-grey asset/invoice rows, pinned Subtotal matching its row",
+  "after": "Row surfaces alternate by tree level; header and totals rows stay white",
+  "how": "hand-written",
+  "before_len": 135,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "SBC-VIS-03",
+  "before": "Dark mode swaps every surface for its dark equivalent while the PDF always renders in light-mode colors",
+  "after": "Dark mode darkens every surface while the PDF always renders light",
+  "how": "hand-written",
+  "before_len": 103,
+  "after_len": 66,
+  "lost_words": [
+   "swaps"
+  ]
+ },
+ {
+  "id": "SBR-API-01",
+  "before": "A rep's invoice detail rows are fetched from the server only on the first expand, and are paginated per rep",
+  "after": "A rep's invoice detail rows are fetched from the server only on the first expand",
+  "how": "clause-cut",
+  "before_len": 107,
+  "after_len": 80,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-API-02",
+  "before": "Sorting is performed server-side: a header click re-fetches the rep summary rows in the requested order",
+  "after": "Sorting is performed server-side and returns the first page",
+  "how": "hand-written",
+  "before_len": 103,
+  "after_len": 59,
+  "lost_words": [
+   "re-fetches"
+  ]
+ },
+ {
+  "id": "SBR-API-03",
+  "before": "The grand totals are server-computed over the full filtered result set and delivered with the summary payload",
+  "after": "Grand totals are server-computed over the full filtered set",
+  "how": "hand-written",
+  "before_len": 109,
+  "after_len": 59,
+  "lost_words": [
+   "delivered"
+  ]
+ },
+ {
+  "id": "SBR-API-04",
+  "before": "All four exports are generated server-side against the active filters and sort — a genuine failure yields a toast, never a malformed file",
+  "after": "All four exports are generated server-side against the active filters and sort",
+  "how": "clause-cut",
+  "before_len": 137,
+  "after_len": 78,
+  "lost_words": [
+   "yields"
+  ]
+ },
+ {
+  "id": "SBR-API-05",
+  "before": "The Expanded View PDF's 10,000-row cap is enforced server-side BEFORE generation — a refusal, not a truncated file",
+  "after": "The Expanded View PDF's 10,000-row cap is enforced server-side BEFORE generation",
+  "how": "clause-cut",
+  "before_len": 114,
+  "after_len": 80,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-BADGE-02",
+  "before": "Badge colors use the application's canonical payment-status tokens in both light and dark mode",
+  "after": "Badge colors use the canonical payment-status tokens in light and dark",
+  "how": "hand-written",
+  "before_len": 94,
+  "after_len": 70,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-CALC-01",
+  "before": "Inv. Hrs heading is verbatim and the value is hours invoiced minus hours worked, rounded half-up to one decimal",
+  "after": "Inv. Hrs is hours invoiced minus hours worked; half-up to one decimal",
+  "how": "hand-written",
+  "before_len": 111,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-CALC-03",
+  "before": "No-labor-no-time invoices show 0.0 but clocked-yet-unbilled work shows its negative delta, never suppressed",
+  "after": "No-labor-no-time invoices show 0.0; clocked-unbilled work shows negative",
+  "how": "hand-written",
+  "before_len": 107,
+  "after_len": 72,
+  "lost_words": [
+   "clocked-yet-unbilled"
+  ]
+ },
+ {
+  "id": "SBR-CALC-05",
+  "before": "Margin % renders to one decimal with a % sign, shows an em dash when Subtotal is zero or below, and is recomputed on every rollup",
+  "after": "Margin % to one decimal; em dash when Subtotal <= 0; recomputed on rollups",
+  "how": "hand-written",
+  "before_len": 129,
+  "after_len": 74,
+  "lost_words": [
+   "rollup",
+   "shows"
+  ]
+ },
+ {
+  "id": "SBR-CALC-06",
+  "before": "Money columns use the standardized labels and definitions: Subtotal is pre-tax Labor plus Parts Invoiced, Margin is the two margins combined",
+  "after": "Money columns use the standardized labels and definitions",
+  "how": "clause-cut",
+  "before_len": 140,
+  "after_len": 57,
+  "lost_words": [
+   "combined",
+   "margins",
+   "pre-tax"
+  ]
+ },
+ {
+  "id": "SBR-CALC-07",
+  "before": "Negative dollar values render in accounting parentheses on screen, in money columns only",
+  "after": "Negative dollar values render in accounting parentheses; money columns only",
+  "how": "hand-written",
+  "before_len": 88,
+  "after_len": 75,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-COL-03",
+  "before": "Toggling a column applies immediately across summary rows, detail rows and the grand Totals at once",
+  "after": "Toggling a column applies at once to summary; detail and Totals rows",
+  "how": "hand-written",
+  "before_len": 99,
+  "after_len": 68,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-COL-04",
+  "before": "Column visibility never affects the exports — all four downloads always include all metric columns",
+  "after": "Column visibility never affects the exports",
+  "how": "clause-cut",
+  "before_len": 98,
+  "after_len": 43,
+  "lost_words": [
+   "always"
+  ]
+ },
+ {
+  "id": "SBR-COL-05",
+  "before": "Hiding the active sort column keeps the sort; showing it again reveals the sort indicator",
+  "after": "Hiding the active sort column keeps the sort",
+  "how": "clause-cut",
+  "before_len": 89,
+  "after_len": 44,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-DATE-02",
+  "before": "Custom range uses the date-picker dialog and holds the user to a 366-day maximum span",
+  "after": "A Custom range uses the date-picker and holds a 366-day maximum span",
+  "how": "hand-written",
+  "before_len": 85,
+  "after_len": 68,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-DATE-04",
+  "before": "An invoice is placed in the range by its own invoice date with inclusive endpoints, and the range shows in both PDF headers",
+  "after": "An invoice sits in the range by its own invoice date; endpoints included",
+  "how": "hand-written",
+  "before_len": 123,
+  "after_len": 72,
+  "lost_words": [
+   "headers",
+   "placed",
+   "shows"
+  ]
+ },
+ {
+  "id": "SBR-DEACT-03",
+  "before": "Type-YES gate: auto-focused input, case-insensitive whitespace-tolerant match, disabled-button tooltip, Enter submits",
+  "after": "Type-YES gate: auto-focus; case-insensitive match; Enter submits",
+  "how": "hand-written",
+  "before_len": 117,
+  "after_len": 64,
+  "lost_words": [
+   "disabled-button",
+   "whitespace-tolerant"
+  ]
+ },
+ {
+  "id": "SBR-DEACT-08",
+  "before": "A server-side deactivation failure shows the canonical error toast, leaves the status unchanged, and clears the input on the next open",
+  "after": "A deactivation failure shows the error toast and leaves the status alone",
+  "how": "hand-written",
+  "before_len": 134,
+  "after_len": 72,
+  "lost_words": [
+   "canonical",
+   "server-side"
+  ]
+ },
+ {
+  "id": "SBR-DEACT-09",
+  "before": "If the assignment pre-check fails, the warning dialog still opens — without the count headline — and never silently deactivates",
+  "after": "If the assignment pre-check fails, the warning dialog still opens",
+  "how": "clause-cut",
+  "before_len": 127,
+  "after_len": 65,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-EXP-03",
+  "before": "Summary PDF: A4 header strip, one rolled-up row per rep, bold Subtotal, colored Inv. Hrs, and a recomputed grand totals row",
+  "after": "Summary PDF: one rolled-up row per rep with a recomputed grand totals row",
+  "how": "hand-written",
+  "before_len": 123,
+  "after_len": 73,
+  "lost_words": [
+   "colored"
+  ]
+ },
+ {
+  "id": "SBR-EXP-04",
+  "before": "Expanded View PDF: one page-block per rep with its own header strip, per-invoice table, per-rep totals row, and no grand totals",
+  "after": "Expanded View PDF: one page-block per rep with its own totals; no grand",
+  "how": "hand-written",
+  "before_len": 127,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-EXP-05",
+  "before": "Expanded View PDF truncates invoice numbers longer than 18 characters; on screen they are never truncated",
+  "after": "Expanded View PDF truncates invoice numbers longer than 18 characters",
+  "how": "clause-cut",
+  "before_len": 105,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-EXP-07",
+  "before": "PDFs render negative dollars in accounting parentheses, keep the (Inactive) tag, and omit the on-screen (N) count",
+  "after": "PDFs render negative dollars in accounting parentheses, keep the (Inactive) tag",
+  "how": "clause-cut",
+  "before_len": 113,
+  "after_len": 79,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-EXP-14",
+  "before": "A failed download shows the canonical error toast, and a generating download shows a non-interactive loading state",
+  "after": "A failed download shows the canonical error toast",
+  "how": "clause-cut",
+  "before_len": 114,
+  "after_len": 49,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-EXP-16",
+  "before": "An empty-data export still generates: zeroed Summary PDF totals, header-strip-only Expanded PDF, header-row-only CSVs",
+  "after": "An empty-data export still generates with zeroed Summary PDF totals",
+  "how": "hand-written",
+  "before_len": 117,
+  "after_len": 67,
+  "lost_words": [
+   "header-strip-only"
+  ]
+ },
+ {
+  "id": "SBR-LINK-03",
+  "before": "Browser back from a drilldown restores ALL report state including expansion and scroll, without a full reload",
+  "after": "Browser back from a drilldown restores expansion and scroll; no reload",
+  "how": "hand-written",
+  "before_len": 109,
+  "after_len": 70,
+  "lost_words": [
+   "including"
+  ]
+ },
+ {
+  "id": "SBR-LINK-04",
+  "before": "Link styling: theme-primary invoice links and body-colored customer links, hover/focus underline, never browser-purple, in both modes",
+  "after": "Invoice links use theme-primary; customer links use the body color",
+  "how": "hand-written",
+  "before_len": 133,
+  "after_len": 66,
+  "lost_words": [
+   "body-colored",
+   "modes",
+   "styling"
+  ]
+ },
+ {
+  "id": "SBR-LINK-05",
+  "before": "An unavailable invoice or customer destination shows the standard not-found/access-denied state and back still returns",
+  "after": "An unavailable link destination shows the standard not-found state",
+  "how": "hand-written",
+  "before_len": 118,
+  "after_len": 66,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-LOC-01",
+  "before": "Location filter is the rightmost toolbar control, a multi-select with an All Locations option",
+  "after": "Location filter is the rightmost control with an All Locations option",
+  "how": "hand-written",
+  "before_len": 93,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-MOB-01",
+  "before": "On a phone every toolbar control works on touch; below 1024px the controls stack vertically with the ⋯ button wrapped above",
+  "after": "On a phone every toolbar control works on touch",
+  "how": "clause-cut",
+  "before_len": 123,
+  "after_len": 47,
+  "lost_words": [
+   "wrapped"
+  ]
+ },
+ {
+  "id": "SBR-MOB-02",
+  "before": "On a phone the table scrolls sideways with Subtotal pinned, the totals bar sits outside the scroll area, and the chevrons work on touch",
+  "after": "On a phone the table scrolls sideways with Subtotal pinned outside it",
+  "how": "hand-written",
+  "before_len": 135,
+  "after_len": 69,
+  "lost_words": [
+   "chevrons"
+  ]
+ },
+ {
+  "id": "SBR-MOB-03",
+  "before": "Touch targets are at least 44×44 px and touch users get no hover-only tooltips — the icons carry accessible names instead",
+  "after": "Touch targets are at least 44×44 px and touch users get no hover-only tooltips",
+  "how": "clause-cut",
+  "before_len": 121,
+  "after_len": 78,
+  "lost_words": [
+   "carry",
+   "instead",
+   "names"
+  ]
+ },
+ {
+  "id": "SBR-NAV-03",
+  "before": "The navigation entry's padding fits the full Sales By Representative label without crowding or truncation",
+  "after": "The nav entry fits the full Sales By Representative label; no truncation",
+  "how": "hand-written",
+  "before_len": 105,
+  "after_len": 72,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-PERM-01",
+  "before": "Every user who can see any other Performance report also sees Sales By Representative",
+  "after": "Anyone who can see another Performance report also sees this report",
+  "how": "hand-written",
+  "before_len": 85,
+  "after_len": 67,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-PERM-03",
+  "before": "A user without staff-administration access cannot reach the sales-rep deactivation flow",
+  "after": "Without staff-administration access the deactivation flow is unreachable",
+  "how": "hand-written",
+  "before_len": 87,
+  "after_len": 72,
+  "lost_words": [
+   "sales-rep"
+  ]
+ },
+ {
+  "id": "SBR-PERS-01",
+  "before": "All filter and view settings are remembered per browser and restored before the first data fetch on the next visit",
+  "after": "All filter and view settings are restored before the first data fetch",
+  "how": "hand-written",
+  "before_len": 114,
+  "after_len": 69,
+  "lost_words": [
+   "remembered"
+  ]
+ },
+ {
+  "id": "SBR-PERS-03",
+  "before": "Restoration is defensive: a stale saved value falls back to its default and never causes an error or invalid request",
+  "after": "A stale saved value falls back to its default and never errors",
+  "how": "hand-written",
+  "before_len": 116,
+  "after_len": 62,
+  "lost_words": [
+   "causes",
+   "defensive",
+   "restoration"
+  ]
+ },
+ {
+  "id": "SBR-PERS-05",
+  "before": "The A to Z default is its own saved value: restoring a state with no financial sort returns to A to Z, not an arbitrary column",
+  "after": "The A to Z default is its own saved value",
+  "how": "clause-cut",
+  "before_len": 126,
+  "after_len": 41,
+  "lost_words": [
+   "restoring",
+   "returns"
+  ]
+ },
+ {
+  "id": "SBR-ROW-01",
+  "before": "Contributors only: a rep row appears if and only if the rep has at least one non-reversed invoice matching all active filters",
+  "after": "A rep row appears only when the rep has a matching non-reversed invoice",
+  "how": "hand-written",
+  "before_len": 125,
+  "after_len": 71,
+  "lost_words": [
+   "active",
+   "contributors",
+   "filters"
+  ]
+ },
+ {
+  "id": "SBR-ROW-03",
+  "before": "A toggled-off or deleted contributor still appears with credit intact, tagged (Inactive), named from the latest invoice snapshot when deleted",
+  "after": "A toggled-off or deleted contributor still appears; tagged (Inactive)",
+  "how": "hand-written",
+  "before_len": 141,
+  "after_len": 69,
+  "lost_words": [
+   "latest",
+   "named"
+  ]
+ },
+ {
+  "id": "SBR-SORT-01",
+  "before": "All eight financial columns are sortable; the identifier columns are not and the Date header carries the chevron instead",
+  "after": "All eight financial columns are sortable",
+  "how": "clause-cut",
+  "before_len": 120,
+  "after_len": 40,
+  "lost_words": [
+   "instead"
+  ]
+ },
+ {
+  "id": "SBR-SORT-02",
+  "before": "Default order is plain A to Z by display name, case-insensitive, with no active/inactive tiers",
+  "after": "Default order is plain A to Z by display name, case-insensitive",
+  "how": "clause-cut",
+  "before_len": 94,
+  "after_len": 63,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-SORT-03",
+  "before": "First click sorts ascending with an indicator, second click descending, no third cleared state, and no header path back to A to Z",
+  "after": "First header click sorts ascending; second descending; no third state",
+  "how": "hand-written",
+  "before_len": 129,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-SORT-04",
+  "before": "Sorting reorders rep summary rows only; detail rows stay under their rep and the Unassigned row stays pinned on top",
+  "after": "Sorting reorders rep rows only; Unassigned stays pinned on top",
+  "how": "hand-written",
+  "before_len": 115,
+  "after_len": 62,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-SORT-05",
+  "before": "Equal sorted values keep the A to Z order as tie-break and an em-dash Margin % sorts as zero",
+  "after": "Ties keep the A to Z order and an em-dash Margin % sorts as zero",
+  "how": "hand-written",
+  "before_len": 92,
+  "after_len": 64,
+  "lost_words": [
+   "tie-break"
+  ]
+ },
+ {
+  "id": "SBR-STAT-01",
+  "before": "Invoice Status dropdown offers exactly four options with All Statuses as the default",
+  "after": "Invoice Status offers exactly four options; All Statuses is the default",
+  "how": "hand-written",
+  "before_len": 84,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-STAT-02",
+  "before": "Status filtering matches on the mapped display value: five system states collapse into Paid, Partially Paid and Unpaid",
+  "after": "Status filtering matches on the mapped display value",
+  "how": "clause-cut",
+  "before_len": 118,
+  "after_len": 52,
+  "lost_words": [
+   "collapse",
+   "states",
+   "system"
+  ]
+ },
+ {
+  "id": "SBR-STATE-03",
+  "before": "Loading shows a centered spinner over the data area, hides the Totals, keeps the toolbar interactive, and never flashes a blank table",
+  "after": "Loading shows a centered spinner over the data area and hides the Totals",
+  "how": "hand-written",
+  "before_len": 133,
+  "after_len": 72,
+  "lost_words": [
+   "flashes",
+   "keeps"
+  ]
+ },
+ {
+  "id": "SBR-STATE-04",
+  "before": "A load failure shows the inline \"Couldn't load the report. Please try again.\" message with a working Retry, keeping the filters",
+  "after": "A load failure shows the inline could-not-load message with a Retry",
+  "how": "hand-written",
+  "before_len": 127,
+  "after_len": 67,
+  "lost_words": [
+   "keeping",
+   "working"
+  ]
+ },
+ {
+  "id": "SBR-TOT-02",
+  "before": "Desktop Totals row merges the four identifier columns, aggregates every metric over the full filtered set, and sticks to the bottom",
+  "after": "Desktop Totals row merges the identifier columns and sticks to the bottom",
+  "how": "hand-written",
+  "before_len": 131,
+  "after_len": 73,
+  "lost_words": [
+   "aggregates"
+  ]
+ },
+ {
+  "id": "SBR-TOT-03",
+  "before": "Mobile shows a simplified external totals bar below the table with Totals left and the grand Subtotal right",
+  "after": "Mobile shows a simplified totals bar below the table; Subtotal at right",
+  "how": "hand-written",
+  "before_len": 107,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-TREE-05",
+  "before": "Expanding a rep loads its invoices on demand with a brief row-level loading indicator and full detail-row contents",
+  "after": "Expanding a rep loads its invoices on demand with a row-level spinner",
+  "how": "hand-written",
+  "before_len": 114,
+  "after_len": 69,
+  "lost_words": [
+   "contents",
+   "detail-row"
+  ]
+ },
+ {
+  "id": "SBR-TREE-06",
+  "before": "Header chevron expands every visible rep in one action and its glyph tracks the expand/collapse state",
+  "after": "The header chevron expands every visible rep and its glyph tracks state",
+  "how": "hand-written",
+  "before_len": 101,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-TREE-07",
+  "before": "Each invoice appears under exactly one rep or the Unassigned row, never more than one",
+  "after": "Each invoice appears under exactly one rep or the Unassigned row",
+  "how": "hand-written",
+  "before_len": 85,
+  "after_len": 64,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-TREE-08",
+  "before": "Expansion survives filter and sort changes within the session, resets on reload, and a removed rep returns collapsed",
+  "after": "Expansion survives filter and sort changes within the session, resets on reload",
+  "how": "clause-cut",
+  "before_len": 116,
+  "after_len": 79,
+  "lost_words": [
+   "removed",
+   "returns"
+  ]
+ },
+ {
+  "id": "SBR-TREE-09",
+  "before": "Detail rows order newest first with a numeric invoice-number tie-break where P sorts before S",
+  "after": "Detail rows run newest first with a numeric invoice-number tie-break",
+  "how": "hand-written",
+  "before_len": 93,
+  "after_len": 68,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-UNAS-04",
+  "before": "No empty Unassigned row is ever rendered, and toggling off while expanded removes the row which returns collapsed",
+  "after": "No empty Unassigned row is ever rendered",
+  "how": "clause-cut",
+  "before_len": 113,
+  "after_len": 40,
+  "lost_words": [
+   "returns",
+   "toggling"
+  ]
+ },
+ {
+  "id": "SBR-VIS-01",
+  "before": "Layout conformance: white toolbar with the specified padding and alignment, blue-grey page, separator line, edge-to-edge white table",
+  "after": "Layout: white toolbar; blue-grey page; separator; edge-to-edge white table",
+  "how": "hand-written",
+  "before_len": 132,
+  "after_len": 74,
+  "lost_words": [
+   "alignment",
+   "conformance",
+   "specified"
+  ]
+ },
+ {
+  "id": "SBR-VIS-02",
+  "before": "Dark mode: page, toolbar, table, and Totals switch to dark equivalents; badges and Inv. Hrs stay legible; PDFs stay light",
+  "after": "Dark mode: page, toolbar, table; Totals switch to dark equivalents",
+  "how": "clause-cut",
+  "before_len": 121,
+  "after_len": 66,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-VIS-04",
+  "before": "Chevrons and sortable headers are keyboard-operable and expose their expanded/sort state to assistive technology",
+  "after": "Chevrons and sortable headers are keyboard-operable and expose their state",
+  "how": "hand-written",
+  "before_len": 112,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "SBR-VIS-05",
+  "before": "The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast, and no information is conveyed by color alone",
+  "after": "The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast",
+  "how": "clause-cut",
+  "before_len": 122,
+  "after_len": 75,
+  "lost_words": []
+ },
+ {
+  "id": "TU-API-01",
+  "before": "The per-day breakdown is fetched from the backend on demand when a row is expanded, not shipped with the initial payload",
+  "after": "The per-day breakdown is fetched only when a technician row is expanded",
+  "how": "hand-written",
+  "before_len": 120,
+  "after_len": 71,
+  "lost_words": [
+   "shipped"
+  ]
+ },
+ {
+  "id": "TU-API-02",
+  "before": "Date-range and location changes trigger a fresh server load, while the technician filter and column sorting stay on-screen only",
+  "after": "Date-range and location changes trigger a fresh server load",
+  "how": "clause-cut",
+  "before_len": 127,
+  "after_len": 59,
+  "lost_words": [
+   "on-screen"
+  ]
+ },
+ {
+  "id": "TU-DAY-02",
+  "before": "Expanding shows one row per clocked day in date order, loaded on demand, with days pooled across selected locations",
+  "after": "Expanding shows one row per clocked day in date order, loaded on demand",
+  "how": "clause-cut",
+  "before_len": 115,
+  "after_len": 71,
+  "lost_words": [
+   "pooled"
+  ]
+ },
+ {
+  "id": "TU-DAY-03",
+  "before": "Day rows use the same columns and formats as technician rows, including a per-day per-location Est. Lost Labor",
+  "after": "Day rows use the same columns and formats as the technician rows",
+  "how": "hand-written",
+  "before_len": 110,
+  "after_len": 64,
+  "lost_words": [
+   "including",
+   "per-location"
+  ]
+ },
+ {
+  "id": "TU-DAY-04",
+  "before": "A single control in the table header expands or collapses all technician rows with the correct accessible names",
+  "after": "One control in the table header expands or collapses all technician rows",
+  "how": "hand-written",
+  "before_len": 111,
+  "after_len": 72,
+  "lost_words": [
+   "correct",
+   "names",
+   "single"
+  ]
+ },
+ {
+  "id": "TU-DAY-05",
+  "before": "Expansion state is view-only: it resets on any reload and fresh visit, and the technician filter does not disturb it",
+  "after": "Expansion state is view-only: it resets on any reload and fresh visit",
+  "how": "clause-cut",
+  "before_len": 116,
+  "after_len": 69,
+  "lost_words": [
+   "disturb"
+  ]
+ },
+ {
+  "id": "TU-ELL-01",
+  "before": "Est. Lost Labor values internal hours at each location's default labor rate, summed at full precision and rounded once",
+  "after": "Est. Lost Labor values internal hours at each location's default rate",
+  "how": "hand-written",
+  "before_len": 118,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "TU-ELL-04",
+  "before": "Internal hours with no default labor rate at any contributing location show an em-dash with the correct assistive-technology label",
+  "after": "Internal hours with no default labor rate anywhere show an em-dash",
+  "how": "hand-written",
+  "before_len": 130,
+  "after_len": 66,
+  "lost_words": [
+   "contributing",
+   "correct"
+  ]
+ },
+ {
+  "id": "TU-ELL-05",
+  "before": "Internal hours split across rated and unrated locations show a partial dollar value with no indicator - expected, not a defect",
+  "after": "Internal hours split across rated and unrated locations show a part value",
+  "how": "hand-written",
+  "before_len": 126,
+  "after_len": 73,
+  "lost_words": []
+ },
+ {
+  "id": "TU-EXP-02",
+  "before": "The Summary PDF holds the technician rows plus the Summary, and the Expanded PDF adds every per-day breakdown",
+  "after": "The Summary PDF holds the technician rows plus the Summary",
+  "how": "clause-cut",
+  "before_len": 109,
+  "after_len": 58,
+  "lost_words": []
+ },
+ {
+  "id": "TU-EXP-03",
+  "before": "The CSV is always summary-level, quotes comma-containing values, and downloads with the lower-case filename",
+  "after": "The CSV is always summary-level, quotes comma-containing values",
+  "how": "clause-cut",
+  "before_len": 107,
+  "after_len": 63,
+  "lost_words": []
+ },
+ {
+  "id": "TU-EXP-05",
+  "before": "Downloads keep the on-screen column order and number formats but always order rows Technician A to Z, ignoring the on-screen sort",
+  "after": "Downloads always order rows Technician A to Z; the on-screen sort is ignored",
+  "how": "hand-written",
+  "before_len": 129,
+  "after_len": 76,
+  "lost_words": [
+   "ignoring"
+  ]
+ },
+ {
+  "id": "TU-EXP-07",
+  "before": "Choosing a download with no technician selected is a silent no-op - no file and no message",
+  "after": "Choosing a download with no technician selected is a silent no-op",
+  "how": "clause-cut",
+  "before_len": 90,
+  "after_len": 65,
+  "lost_words": []
+ },
+ {
+  "id": "TU-EXP-08",
+  "before": "A starting download shows the Download started notification and a failed download shows Failed to download report",
+  "after": "A starting download notifies; a failed one shows the failure message",
+  "how": "hand-written",
+  "before_len": 113,
+  "after_len": 68,
+  "lost_words": []
+ },
+ {
+  "id": "TU-HRS-03",
+  "before": "Utilization % is WO hours over total hours computed from unrounded values, shown to one decimal with round-half-up",
+  "after": "Utilization % is WO hours over total hours from unrounded values",
+  "how": "hand-written",
+  "before_len": 114,
+  "after_len": 64,
+  "lost_words": [
+   "shown"
+  ]
+ },
+ {
+  "id": "TU-HRS-04",
+  "before": "A technician with only internal hours shows 0.0% utilization, and utilization never exceeds 100%",
+  "after": "A technician with only internal hours shows 0.0% utilization",
+  "how": "clause-cut",
+  "before_len": 96,
+  "after_len": 60,
+  "lost_words": [
+   "exceeds"
+  ]
+ },
+ {
+  "id": "TU-LINK-01",
+  "before": "Total Hours is a real link with a non-color affordance and keyboard access, while the Summary's Total Hours is not a link",
+  "after": "Total Hours is a real link with a non-color affordance and keyboard access",
+  "how": "clause-cut",
+  "before_len": 121,
+  "after_len": 74,
+  "lost_words": [
+   "summary's"
+  ]
+ },
+ {
+  "id": "TU-LINK-02",
+  "before": "The Total Hours link opens Timesheet Activities in the same tab, pre-filtered to that technician and date range",
+  "after": "The Total Hours link opens Timesheet Activities in the same tab",
+  "how": "hand-written",
+  "before_len": 111,
+  "after_len": 63,
+  "lost_words": [
+   "pre-filtered"
+  ]
+ },
+ {
+  "id": "TU-LINK-04",
+  "before": "Reconciliation exception (a): an open clock is snapshotted at each report's own load instant - a difference of the elapsed time is expected",
+  "after": "Reconcile exception (a): an open clock is snapshotted at each load instant",
+  "how": "hand-written",
+  "before_len": 139,
+  "after_len": 74,
+  "lost_words": [
+   "report's"
+  ]
+ },
+ {
+  "id": "TU-LINK-05",
+  "before": "Reconciliation exception (b): the link passes no location, so with multiple locations selected the opened view shows only the active shop",
+  "after": "Reconciliation exception (b): the link passes no location",
+  "how": "clause-cut",
+  "before_len": 137,
+  "after_len": 57,
+  "lost_words": [
+   "multiple"
+  ]
+ },
+ {
+  "id": "TU-LINK-06",
+  "before": "A day row's Total Hours links to Timesheet Activities for that technician on that single day",
+  "after": "A day row's Total Hours links to that technician's single-day timesheet",
+  "how": "hand-written",
+  "before_len": 92,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "TU-LOC-03",
+  "before": "The saved location selection restores defensively - inaccessible locations are dropped and an empty remainder falls back to the active location",
+  "after": "The saved location selection restores defensively; bad ones are dropped",
+  "how": "hand-written",
+  "before_len": 143,
+  "after_len": 71,
+  "lost_words": [
+   "remainder"
+  ]
+ },
+ {
+  "id": "TU-LOC-04",
+  "before": "Deselecting every location falls back to the active location instead of showing nothing",
+  "after": "Deselecting every location falls back to the active location",
+  "how": "hand-written",
+  "before_len": 87,
+  "after_len": 60,
+  "lost_words": [
+   "instead"
+  ]
+ },
+ {
+  "id": "TU-NAV-02",
+  "before": "The report shows one row for each technician who clocked time in the range at the selected locations",
+  "after": "One row per technician who clocked time in the range at those locations",
+  "how": "hand-written",
+  "before_len": 100,
+  "after_len": 71,
+  "lost_words": [
+   "shows"
+  ]
+ },
+ {
+  "id": "TU-NAV-04",
+  "before": "Changing the date range reloads the rows, and a Custom range is capped at 366 days",
+  "after": "Changing the date range reloads the rows; a Custom range is capped at 366 days",
+  "how": "compressed",
+  "before_len": 82,
+  "after_len": 78,
+  "lost_words": []
+ },
+ {
+  "id": "TU-NAV-05",
+  "before": "The standard loading indicator shows on load and reload, rows swap only when data returns, and the toolbar stays interactive",
+  "after": "The loading indicator shows on load and reload; rows swap only on data",
+  "how": "hand-written",
+  "before_len": 124,
+  "after_len": 70,
+  "lost_words": [
+   "stays"
+  ]
+ },
+ {
+  "id": "TU-NAV-06",
+  "before": "All clock records are day-grouped and windowed in one report-level time zone, with partial and cross-midnight records split correctly",
+  "after": "All clock records are day-grouped and windowed in one report-level time zone",
+  "how": "clause-cut",
+  "before_len": 133,
+  "after_len": 76,
+  "lost_words": [
+   "correctly",
+   "partial"
+  ]
+ },
+ {
+  "id": "TU-NAV-07",
+  "before": "A user without the timesheet-reports permission does not see the report in the navigation",
+  "after": "Without the timesheet-reports permission the report is absent from the nav",
+  "how": "hand-written",
+  "before_len": 89,
+  "after_len": 74,
+  "lost_words": []
+ },
+ {
+  "id": "TU-SORT-01",
+  "before": "On load the rows are sorted by Technician A to Z with the ascending indicator and correct aria-sort exposure",
+  "after": "On load rows sort by Technician A to Z with the ascending indicator",
+  "how": "hand-written",
+  "before_len": 108,
+  "after_len": 67,
+  "lost_words": [
+   "correct",
+   "exposure"
+  ]
+ },
+ {
+  "id": "TU-SORT-02",
+  "before": "All six columns sort on screen: ascending first, toggling with no third state, and Technician's first click goes descending",
+  "after": "All six columns sort on screen: ascending first, toggling with no third state",
+  "how": "clause-cut",
+  "before_len": 123,
+  "after_len": 77,
+  "lost_words": [
+   "technician's"
+  ]
+ },
+ {
+  "id": "TU-SORT-03",
+  "before": "A data reload resets the sort to Technician A to Z, and sort is never persisted across visits",
+  "after": "A data reload resets the sort to Technician A to Z",
+  "how": "clause-cut",
+  "before_len": 93,
+  "after_len": 50,
+  "lost_words": [
+   "visits"
+  ]
+ },
+ {
+  "id": "TU-SORT-04",
+  "before": "Sorting reorders only the technician rows - the Summary stays at the bottom and day rows stay under their technician in date order",
+  "after": "Sorting reorders only the technician rows",
+  "how": "clause-cut",
+  "before_len": 130,
+  "after_len": 41,
+  "lost_words": [
+   "their"
+  ]
+ },
+ {
+  "id": "TU-SORT-05",
+  "before": "Sorting by Est. Lost Labor keeps the em-dash rows at the bottom in both directions, while $0.00 sorts as zero",
+  "after": "Sorting Est. Lost Labor keeps em-dash rows last both ways; $0.00 sorts as 0",
+  "how": "hand-written",
+  "before_len": 109,
+  "after_len": 75,
+  "lost_words": [
+   "directions"
+  ]
+ },
+ {
+  "id": "TU-SUM-01",
+  "before": "A pinned Summary row labeled Summary sits at the bottom, stays visible on scroll, and uses the row formats with no prefix",
+  "after": "A pinned Summary row labeled Summary sits at the bottom, stays visible on scroll",
+  "how": "clause-cut",
+  "before_len": 121,
+  "after_len": 80,
+  "lost_words": []
+ },
+ {
+  "id": "TU-SUM-03",
+  "before": "Summary Utilization % is the weighted rate, not the average of the per-technician percentages",
+  "after": "Summary Utilization % is the weighted rate; not an average of the rows",
+  "how": "hand-written",
+  "before_len": 93,
+  "after_len": 70,
+  "lost_words": []
+ },
+ {
+  "id": "TU-SUM-04",
+  "before": "Summary Est. Lost Labor sums the rated contributions only, and shows an em-dash only when every visible technician is an em-dash",
+  "after": "Summary Est. Lost Labor sums rated contributions; em-dash only if all are",
+  "how": "hand-written",
+  "before_len": 128,
+  "after_len": 73,
+  "lost_words": []
+ },
+ {
+  "id": "TU-TECH-01",
+  "before": "The Filter by Technician multi-select starts with every technician selected on a first visit",
+  "after": "Filter by Technician starts with every technician selected on a first visit",
+  "how": "hand-written",
+  "before_len": 92,
+  "after_len": 75,
+  "lost_words": []
+ },
+ {
+  "id": "TU-TECH-02",
+  "before": "Deselecting a technician hides the row and recalculates the Summary on screen without reloading; re-selecting restores it",
+  "after": "Deselecting a technician hides the row and recalculates the Summary",
+  "how": "hand-written",
+  "before_len": 121,
+  "after_len": 67,
+  "lost_words": [
+   "reloading",
+   "restores"
+  ]
+ },
+ {
+  "id": "TU-TECH-03",
+  "before": "Select all and Clear all controls work, and the deselected-set model keeps newly-appearing technicians selected",
+  "after": "Select all and Clear all controls set every technician on or off",
+  "how": "hand-written",
+  "before_len": 111,
+  "after_len": 64,
+  "lost_words": [
+   "deselected-set",
+   "keeps",
+   "model"
+  ]
+ },
+ {
+  "id": "TU-TECH-04",
+  "before": "Previously deselected technicians stay deselected when the user returns to the report",
+  "after": "Previously deselected technicians stay deselected on the next visit",
+  "how": "hand-written",
+  "before_len": 85,
+  "after_len": 67,
+  "lost_words": [
+   "returns"
+  ]
+ },
+ {
+  "id": "TU-VIS-02",
+  "before": "Dark mode keeps every report element legible, with the info icon at 3:1 contrast and the link affordance intact in both modes",
+  "after": "Dark mode keeps every report element legible",
+  "how": "clause-cut",
+  "before_len": 125,
+  "after_len": 44,
+  "lost_words": [
+   "intact"
+  ]
+ },
+ {
+  "id": "WIP-API-01",
+  "before": "Nightly snapshot: once per day the system records one row per then-open work order, per calendar date",
+  "after": "Nightly snapshot records one row per then-open job per calendar date",
+  "how": "hand-written",
+  "before_len": 101,
+  "after_len": 68,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-API-02",
+  "before": "Nightly snapshot: each row captures the work order, status, Earned, Remaining, location, organization, and the snapshot's calendar date",
+  "after": "Each snapshot row captures the WO; status; money; location and the date",
+  "how": "hand-written",
+  "before_len": 135,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-API-03",
+  "before": "Nightly snapshot: captured Earned and Remaining use the identical computation as the on-screen report for the capture date",
+  "after": "Captured Earned and Remaining use the same maths as the on-screen report",
+  "how": "hand-written",
+  "before_len": 122,
+  "after_len": 72,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-API-04",
+  "before": "Nightly snapshot: the capture uses the report's service-type and open-status conditions and spans every location, with no user location filter",
+  "after": "Nightly snapshot spans every location with no user location filter",
+  "how": "hand-written",
+  "before_len": 142,
+  "after_len": 66,
+  "lost_words": [
+   "report's"
+  ]
+ },
+ {
+  "id": "WIP-API-06",
+  "before": "Nightly snapshot: a work order with nothing approved is captured with Earned $0.00 and Remaining $0.00, not skipped",
+  "after": "Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped",
+  "how": "hand-written",
+  "before_len": 115,
+  "after_len": 79,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-CALC-01",
+  "before": "Money columns show US-dollar currency with two decimals, thousands separators, a leading minus for negatives, and \"$0.00\" for zero",
+  "after": "Money columns show US dollars to two decimals with thousands separators",
+  "how": "hand-written",
+  "before_len": 130,
+  "after_len": 71,
+  "lost_words": [
+   "currency",
+   "negatives",
+   "us-dollar"
+  ]
+ },
+ {
+  "id": "WIP-CALC-02",
+  "before": "Labor Earned is the clocked share of each approved line's quoted labor value, capped at the full quoted value per line",
+  "after": "Labor Earned is the clocked share of each approved line's quoted value",
+  "how": "hand-written",
+  "before_len": 118,
+  "after_len": 70,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-CALC-03",
+  "before": "Labor Remaining is the total quoted value of the approved labor minus Labor Earned",
+  "after": "Labor Remaining is the approved labor's quoted value minus Labor Earned",
+  "how": "hand-written",
+  "before_len": 82,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-CALC-05",
+  "before": "Parts Remaining is the outstanding (not yet received) quantity valued at its sell price including any core charge",
+  "after": "Parts Remaining values the not-yet-received quantity at its sell price",
+  "how": "hand-written",
+  "before_len": 113,
+  "after_len": 70,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-CALC-06",
+  "before": "Earned = Labor Earned + Parts Earned, Remaining = Labor Remaining + Parts Remaining, and Total = Earned + Remaining (not the work order's grand total)",
+  "after": "Earned + Remaining make Total; not the WO's grand total",
+  "how": "hand-written",
+  "before_len": 150,
+  "after_len": 55,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-CALC-08",
+  "before": "Inv. Hrs shows quoted minus worked labor hours as a signed one-decimal number, colored green/red, with \"0.0\" unsigned in the default color",
+  "after": "Inv. Hrs shows quoted minus worked hours; signed to one decimal",
+  "how": "hand-written",
+  "before_len": 138,
+  "after_len": 63,
+  "lost_words": [
+   "one-decimal"
+  ]
+ },
+ {
+  "id": "WIP-CALC-09",
+  "before": "An open estimate with no approved work shows \"$0.00\" in every money column, including Total",
+  "after": "An open estimate with no approved work shows $0.00 in every money column",
+  "how": "hand-written",
+  "before_len": 91,
+  "after_len": 72,
+  "lost_words": [
+   "including"
+  ]
+ },
+ {
+  "id": "WIP-COL-03",
+  "before": "The WO # is a link that opens the work order in the same browser tab, with browser back returning to the report",
+  "after": "The WO # is a link that opens the WO in the same browser tab",
+  "how": "clause-cut",
+  "before_len": 111,
+  "after_len": 60,
+  "lost_words": [
+   "returning"
+  ]
+ },
+ {
+  "id": "WIP-COL-04",
+  "before": "Status shows as a color-coded badge whose label text is always present (color is never the only signal)",
+  "after": "Status shows as a color-coded badge whose label text is always present",
+  "how": "hand-written",
+  "before_len": 103,
+  "after_len": 70,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-COL-06",
+  "before": "Customer shows the customer's company name, and is blank when no customer name exists",
+  "after": "Customer shows the customer's company name",
+  "how": "clause-cut",
+  "before_len": 85,
+  "after_len": 42,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-COL-07",
+  "before": "Days Open shows whole days since creation and reads \"0 days\" / \"1 days\" (not pluralized) — expected, do not file",
+  "after": "Days Open shows whole days since creation and reads 0 days / 1 days",
+  "how": "hand-written",
+  "before_len": 112,
+  "after_len": 67,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-COL-08",
+  "before": "Last Activity shows \"Today\", \"Xd ago\", or \"—\" when the work order has no recorded activity",
+  "after": "Last Activity shows Today; Xd ago; or an em-dash when there is none",
+  "how": "hand-written",
+  "before_len": 90,
+  "after_len": 67,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-EXP-03",
+  "before": "Downloaded money and Inv. Hrs values keep the on-screen formats, and CSV values containing commas are double-quoted",
+  "after": "Downloaded money and Inv. Hrs values keep the on-screen formats",
+  "how": "clause-cut",
+  "before_len": 115,
+  "after_len": 63,
+  "lost_words": [
+   "commas",
+   "double-quoted"
+  ]
+ },
+ {
+  "id": "WIP-EXP-04",
+  "before": "The Inv. Hrs green/red coloring appears on screen and in the PDF only — the CSV is monochrome",
+  "after": "Inv. Hrs green/red coloring appears on screen and in the PDF; not the CSV",
+  "how": "hand-written",
+  "before_len": 93,
+  "after_len": 73,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-EXP-05",
+  "before": "Days Open in a download is frozen at the moment the file is generated (and can be one day higher than the screen)",
+  "after": "Days Open in a download is frozen at the moment the file is generated",
+  "how": "hand-written",
+  "before_len": 113,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-EXP-06",
+  "before": "The downloaded files are named \"wip-2-report.pdf\" and \"wip-2-report.csv\" — expected current names, do not file",
+  "after": "The downloaded files are named \"wip-2-report.pdf\" and \"wip-2-report.csv\"",
+  "how": "clause-cut",
+  "before_len": 110,
+  "after_len": 72,
+  "lost_words": [
+   "expected"
+  ]
+ },
+ {
+  "id": "WIP-EXP-08",
+  "before": "The PDF shows the shop logo at the top when one is set; the CSV never includes a logo",
+  "after": "The PDF shows the shop logo at the top when one is set",
+  "how": "clause-cut",
+  "before_len": 85,
+  "after_len": 54,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-EXP-09",
+  "before": "Export notifications: success caption, \"Empty export\" warning, and the failure error message",
+  "after": "Export notifications: success caption, \"Empty export\" warning",
+  "how": "clause-cut",
+  "before_len": 92,
+  "after_len": 61,
+  "lost_words": [
+   "message"
+  ]
+ },
+ {
+  "id": "WIP-FLT-01",
+  "before": "The Advisor filter is a multi-select of the advisors present in the loaded jobs and narrows rows on screen only",
+  "after": "The Advisor filter lists the advisors in the loaded jobs; screen only",
+  "how": "hand-written",
+  "before_len": 111,
+  "after_len": 69,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-FLT-02",
+  "before": "The Customer filter is a searchable type-ahead multi-select reading \"All customers\" when empty, with a \"Clear\" action once a customer is selected",
+  "after": "Customer filter is a type-ahead multi-select reading \"All customers\"",
+  "how": "hand-written",
+  "before_len": 145,
+  "after_len": 68,
+  "lost_words": [
+   "empty",
+   "searchable"
+  ]
+ },
+ {
+  "id": "WIP-FLT-04",
+  "before": "The date-range control offers the standard presets plus Custom, defaults to \"This Week\", and does not offer \"All Time\"",
+  "after": "The date range offers the presets plus Custom; This Week default; no All Time",
+  "how": "hand-written",
+  "before_len": 118,
+  "after_len": 77,
+  "lost_words": [
+   "standard"
+  ]
+ },
+ {
+  "id": "WIP-FLT-05",
+  "before": "The date range filters by the work order's created date, reloads the report on change, and a Custom range is capped at 366 days",
+  "after": "The date range filters on the WO's created date and reloads on change",
+  "how": "hand-written",
+  "before_len": 127,
+  "after_len": 69,
+  "lost_words": [
+   "order's"
+  ]
+ },
+ {
+  "id": "WIP-FLT-07",
+  "before": "The location scope never includes an inaccessible location, and an empty selection falls back to the user's active location",
+  "after": "The location scope never includes an inaccessible location",
+  "how": "clause-cut",
+  "before_len": 123,
+  "after_len": 58,
+  "lost_words": [
+   "empty"
+  ]
+ },
+ {
+  "id": "WIP-PERM-01",
+  "before": "A user with the Work In Progress reports permission can open the report and download it — the one permission covers both",
+  "after": "The Work In Progress reports permission covers opening and downloading",
+  "how": "hand-written",
+  "before_len": 120,
+  "after_len": 70,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-PERM-02",
+  "before": "A user without the required permission does not see Work In Progress in the reports navigation",
+  "after": "Without the permission the report is absent from the reports navigation",
+  "how": "hand-written",
+  "before_len": 94,
+  "after_len": 71,
+  "lost_words": [
+   "required"
+  ]
+ },
+ {
+  "id": "WIP-PERS-02",
+  "before": "Toggling columns never reorders them (Total always last), and the column selection applies to all four tabs at once",
+  "after": "Toggling columns never reorders them (Total always last)",
+  "how": "clause-cut",
+  "before_len": 115,
+  "after_len": 56,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-PERS-03",
+  "before": "The report remembers the date range, filter selections, location, columns, and active tab per browser and restores them on return",
+  "after": "Remembers the date range, filter selections, location, columns",
+  "how": "clause-cut",
+  "before_len": 129,
+  "after_len": 62,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-PERS-04",
+  "before": "A saved setting that is no longer valid falls back to its default instead of breaking the view",
+  "after": "A saved setting that is no longer valid falls back to its default",
+  "how": "hand-written",
+  "before_len": 94,
+  "after_len": 65,
+  "lost_words": [
+   "instead"
+  ]
+ },
+ {
+  "id": "WIP-SCOPE-01",
+  "before": "Every open service work order (Estimate, Approved, In Progress, Review, Complete) at a selected location appears in the report",
+  "after": "Every open service WO at a selected location appears in the report",
+  "how": "hand-written",
+  "before_len": 126,
+  "after_len": 66,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-SCOPE-02",
+  "before": "Invoiced, Paid, and Declined work orders and part-sale work orders never appear anywhere in the report",
+  "after": "Invoiced; Paid; Declined and part-sale work orders never appear",
+  "how": "hand-written",
+  "before_len": 102,
+  "after_len": 63,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-SCOPE-03",
+  "before": "Each qualifying work order appears exactly once in exactly one tab, including an open job with nothing approved yet",
+  "after": "Each qualifying work order appears exactly once in exactly one tab",
+  "how": "hand-written",
+  "before_len": 115,
+  "after_len": 66,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-SCOPE-04",
+  "before": "While loading, the standard reports loading indicator shows and existing rows are replaced only when new data returns",
+  "after": "While loading the standard indicator shows and old rows stay until data",
+  "how": "hand-written",
+  "before_len": 117,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-SORT-02",
+  "before": "Clicking a header sorts ascending, clicking again toggles descending, with no third cleared state and one sort column at a time",
+  "after": "Clicking a header sorts ascending, clicking again toggles descending",
+  "how": "clause-cut",
+  "before_len": 127,
+  "after_len": 68,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-SORT-04",
+  "before": "Sorting reorders only the active tab's rows and the Totals row stays at the bottom",
+  "after": "Sorting reorders only the active tab's rows; Totals stays at the bottom",
+  "how": "hand-written",
+  "before_len": 82,
+  "after_len": 71,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-SUM-01",
+  "before": "The summary strip shows seven figures in a fixed order, each as US-dollar currency",
+  "after": "The summary strip shows seven figures in a fixed order as US dollars",
+  "how": "hand-written",
+  "before_len": 82,
+  "after_len": 68,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-SUM-02",
+  "before": "Total Earned is the hero figure (larger, colored underline) and equals Started — Earned plus Ready to Invoice",
+  "after": "Total Earned is the hero figure and equals the started-stage figures summed",
+  "how": "hand-written",
+  "before_len": 109,
+  "after_len": 75,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-SUM-04",
+  "before": "The per-stage figures each equal the matching tab's money: Not Started, Started — Earned, Started — Remaining, and Ready to Invoice",
+  "after": "Each per-stage figure equals the matching tab's money total",
+  "how": "hand-written",
+  "before_len": 131,
+  "after_len": 59,
+  "lost_words": [
+   "figures"
+  ]
+ },
+ {
+  "id": "WIP-SUM-05",
+  "before": "The Estimates figure is the Estimates tab's total quoted value, shown muted, and excluded from Total Earned and Total Remaining",
+  "after": "The Estimates figure is the Estimates tab's total quoted value, shown muted",
+  "how": "clause-cut",
+  "before_len": 127,
+  "after_len": 75,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-SUM-07",
+  "before": "Each summary figure's information icon reveals its plain-language explanation, verbatim per the spec",
+  "after": "Each summary figure's information icon reveals its plain explanation",
+  "how": "hand-written",
+  "before_len": 100,
+  "after_len": 68,
+  "lost_words": [
+   "plain-language",
+   "verbatim"
+  ]
+ },
+ {
+  "id": "WIP-TAB-02",
+  "before": "The report opens with four tabs in a fixed order and \"Approved - partially completed\" selected by default",
+  "after": "Four tabs in a fixed order with the partially-completed tab selected",
+  "how": "hand-written",
+  "before_len": 105,
+  "after_len": 68,
+  "lost_words": [
+   "opens"
+  ]
+ },
+ {
+  "id": "WIP-TAB-03",
+  "before": "Each tab label shows the count of work orders in that tab in parentheses, including \"(0)\" for an empty tab",
+  "after": "Each tab label shows its work-order count in parentheses",
+  "how": "hand-written",
+  "before_len": 106,
+  "after_len": 56,
+  "lost_words": [
+   "empty",
+   "including"
+  ]
+ },
+ {
+  "id": "WIP-TAB-05",
+  "before": "There is no Trend / over-time tab or chart — expected in this version, do not file as a defect",
+  "after": "There is no Trend / over-time tab or chart",
+  "how": "clause-cut",
+  "before_len": 94,
+  "after_len": 42,
+  "lost_words": [
+   "defect",
+   "expected",
+   "version"
+  ]
+ },
+ {
+  "id": "WIP-TOT-01",
+  "before": "Each tab has a Totals row pinned to the bottom, labeled \"Totals\", with a bold pinned Total cell and the same number formats as data rows",
+  "after": "Each tab has a Totals row pinned to the bottom, labeled \"Totals\"",
+  "how": "clause-cut",
+  "before_len": 136,
+  "after_len": 64,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-TOT-02",
+  "before": "The Totals row sums each visible money column, and the Inv. Hrs total keeps the signed one-decimal format and coloring",
+  "after": "The Totals row sums each visible money column and the Inv. Hrs column",
+  "how": "hand-written",
+  "before_len": 118,
+  "after_len": 69,
+  "lost_words": [
+   "keeps"
+  ]
+ },
+ {
+  "id": "WIP-VIS-02",
+  "before": "The summary strip is a bold band delineated by a top and bottom rule, above the tabs — not separate cards",
+  "after": "The summary strip is a bold band ruled top and bottom above the tabs",
+  "how": "hand-written",
+  "before_len": 105,
+  "after_len": 68,
+  "lost_words": []
+ },
+ {
+  "id": "WIP-VIS-03",
+  "before": "The Total column (header and cells) is bold and stays pinned to the right edge while scrolling the rows sideways",
+  "after": "The Total column is bold and stays pinned right on sideways scroll",
+  "how": "hand-written",
+  "before_len": 112,
+  "after_len": 66,
+  "lost_words": [
+   "scrolling"
+  ]
+ },
+ {
+  "id": "WIP-VIS-04",
+  "before": "The Totals row stays visible at the bottom while scrolling, the report fills the height, and only the active tab's table body scrolls",
+  "after": "The Totals row stays visible while only the active tab's body scrolls",
+  "how": "hand-written",
+  "before_len": 133,
+  "after_len": 69,
+  "lost_words": [
+   "scrolling"
+  ]
+ },
+ {
+  "id": "WIP-VIS-05",
+  "before": "The WO # link is keyboard-focusable with a visible focus indicator and opens the work order on activation",
+  "after": "The WO # link is keyboard-focusable and opens the work order",
+  "how": "hand-written",
+  "before_len": 105,
+  "after_len": 60,
+  "lost_words": [
+   "activation"
+  ]
+ },
+ {
+  "id": "WIP-VIS-06",
+  "before": "Each summary figure's information icon is reachable by keyboard and exposes its explanation to assistive technology",
+  "after": "Each summary figure's info icon is keyboard-reachable and screen-read",
+  "how": "hand-written",
+  "before_len": 115,
+  "after_len": 69,
+  "lost_words": [
+   "exposes"
+  ]
+ },
+ {
+  "id": "WIP-VIS-07",
+  "before": "In dark mode the table, summary strip, WO # link, Inv. Hrs coloring, and two-line asset cell remain legible with adequate contrast",
+  "after": "In dark mode every table; strip; link and coloring stays legible",
+  "how": "hand-written",
+  "before_len": 130,
+  "after_len": 64,
+  "lost_words": [
+   "adequate",
+   "remain"
+  ]
+ }
+]

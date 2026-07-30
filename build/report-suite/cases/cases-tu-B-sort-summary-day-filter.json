@@ -2,7 +2,7 @@
  {
   "id": "TU-SORT-01",
   "area": "TU — Sorting",
-  "title": "On load the rows are sorted by Technician A to Z with the ascending indicator and correct aria-sort exposure",
+  "title": "On load rows sort by Technician A to Z with the ascending indicator",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -28,7 +28,7 @@
  {
   "id": "TU-SORT-02",
   "area": "TU — Sorting",
-  "title": "All six columns sort on screen: ascending first, toggling with no third state, and Technician's first click goes descending",
+  "title": "All six columns sort on screen: ascending first, toggling with no third state",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -58,7 +58,7 @@
  {
   "id": "TU-SORT-03",
   "area": "TU — Sorting",
-  "title": "A data reload resets the sort to Technician A to Z, and sort is never persisted across visits",
+  "title": "A data reload resets the sort to Technician A to Z",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -83,7 +83,7 @@
  {
   "id": "TU-SORT-04",
   "area": "TU — Sorting",
-  "title": "Sorting reorders only the technician rows - the Summary stays at the bottom and day rows stay under their technician in date order",
+  "title": "Sorting reorders only the technician rows",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -109,7 +109,7 @@
  {
   "id": "TU-SORT-05",
   "area": "TU — Sorting",
-  "title": "Sorting by Est. Lost Labor keeps the em-dash rows at the bottom in both directions, while $0.00 sorts as zero",
+  "title": "Sorting Est. Lost Labor keeps em-dash rows last both ways; $0.00 sorts as 0",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -135,7 +135,7 @@
  {
   "id": "TU-SUM-01",
   "area": "TU — Summary",
-  "title": "A pinned Summary row labeled Summary sits at the bottom, stays visible on scroll, and uses the row formats with no prefix",
+  "title": "A pinned Summary row labeled Summary sits at the bottom, stays visible on scroll",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -188,7 +188,7 @@
  {
   "id": "TU-SUM-03",
   "area": "TU — Summary",
-  "title": "Summary Utilization % is the weighted rate, not the average of the per-technician percentages",
+  "title": "Summary Utilization % is the weighted rate; not an average of the rows",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -213,7 +213,7 @@
  {
   "id": "TU-SUM-04",
   "area": "TU — Summary",
-  "title": "Summary Est. Lost Labor sums the rated contributions only, and shows an em-dash only when every visible technician is an em-dash",
+  "title": "Summary Est. Lost Labor sums rated contributions; em-dash only if all are",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -264,7 +264,7 @@
  {
   "id": "TU-DAY-02",
   "area": "TU — Per-Day Breakdown",
-  "title": "Expanding shows one row per clocked day in date order, loaded on demand, with days pooled across selected locations",
+  "title": "Expanding shows one row per clocked day in date order, loaded on demand",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -293,7 +293,7 @@
  {
   "id": "TU-DAY-03",
   "area": "TU — Per-Day Breakdown",
-  "title": "Day rows use the same columns and formats as technician rows, including a per-day per-location Est. Lost Labor",
+  "title": "Day rows use the same columns and formats as the technician rows",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -319,7 +319,7 @@
  {
   "id": "TU-DAY-04",
   "area": "TU — Per-Day Breakdown",
-  "title": "A single control in the table header expands or collapses all technician rows with the correct accessible names",
+  "title": "One control in the table header expands or collapses all technician rows",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -347,7 +347,7 @@
  {
   "id": "TU-DAY-05",
   "area": "TU — Per-Day Breakdown",
-  "title": "Expansion state is view-only: it resets on any reload and fresh visit, and the technician filter does not disturb it",
+  "title": "Expansion state is view-only: it resets on any reload and fresh visit",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -373,7 +373,7 @@
  {
   "id": "TU-TECH-01",
   "area": "TU — Technician Filter",
-  "title": "The Filter by Technician multi-select starts with every technician selected on a first visit",
+  "title": "Filter by Technician starts with every technician selected on a first visit",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -399,7 +399,7 @@
  {
   "id": "TU-TECH-02",
   "area": "TU — Technician Filter",
-  "title": "Deselecting a technician hides the row and recalculates the Summary on screen without reloading; re-selecting restores it",
+  "title": "Deselecting a technician hides the row and recalculates the Summary",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -427,7 +427,7 @@
  {
   "id": "TU-TECH-03",
   "area": "TU — Technician Filter",
-  "title": "Select all and Clear all controls work, and the deselected-set model keeps newly-appearing technicians selected",
+  "title": "Select all and Clear all controls set every technician on or off",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -455,7 +455,7 @@
  {
   "id": "TU-TECH-04",
   "area": "TU — Technician Filter",
-  "title": "Previously deselected technicians stay deselected when the user returns to the report",
+  "title": "Previously deselected technicians stay deselected on the next visit",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",

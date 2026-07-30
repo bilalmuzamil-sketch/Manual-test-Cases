@@ -2,7 +2,7 @@
  {
   "id": "SBC-TREE-01",
   "area": "SBC — Tree & Rows",
-  "title": "Each customer gets one summary row with its name followed by the invoice count in parentheses",
+  "title": "Each customer gets one summary row with its invoice count in parentheses",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -85,7 +85,7 @@
  {
   "id": "SBC-TREE-04",
   "area": "SBC — Tree & Rows",
-  "title": "Expanding an asset reveals its invoice detail rows with number link, date and per-invoice columns",
+  "title": "Expanding an asset reveals its invoice rows with number link and date",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -110,7 +110,7 @@
  {
   "id": "SBC-TREE-05",
   "area": "SBC — Tree & Rows",
-  "title": "Invoices group into one asset row per vehicle record, with a snapshot fallback for older invoices with no vehicle id",
+  "title": "Invoices group into one asset row per vehicle record",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -135,7 +135,7 @@
  {
   "id": "SBC-TREE-06",
   "area": "SBC — Tree & Rows",
-  "title": "Asset rows order A to Z case-insensitively with the Parts Sales bucket always last, regardless of column sort",
+  "title": "Asset rows order A to Z with the Parts Sales bucket always last",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -187,7 +187,7 @@
  {
   "id": "SBC-TREE-08",
   "area": "SBC — Tree & Rows",
-  "title": "Header-row chevron expands or collapses every customer on the current page, with matching icon and tooltip",
+  "title": "Header-row chevron expands or collapses every customer on the current page",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -240,7 +240,7 @@
  {
   "id": "SBC-TREE-10",
   "area": "SBC — Tree & Rows",
-  "title": "Edge: a single-invoice asset can still be expanded, and a customer with only no-vehicle work shows a single Parts Sales row",
+  "title": "Edge: a single-invoice asset can still be expanded",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -264,7 +264,7 @@
  {
   "id": "SBC-TREE-11",
   "area": "SBC — Tree & Rows",
-  "title": "A service (S) invoice with no vehicle also lands in the Parts Sales bucket — absence of a vehicle decides, not the prefix",
+  "title": "A service (S) invoice with no vehicle also lands in the Parts Sales bucket",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -287,7 +287,7 @@
  {
   "id": "SBC-TREE-12",
   "area": "SBC — Tree & Rows",
-  "title": "Reversed and voided invoices are excluded from every row, count and total under every Product Type",
+  "title": "Reversed and voided invoices are excluded from every row; count and total",
   "priority": "Critical",
   "type": "Negative",
   "permissions_required": "the ordinary reports access (Reports section View); permission to reverse/void an invoice for seeding.",
@@ -314,7 +314,7 @@
  {
   "id": "SBC-TREE-13",
   "area": "SBC — Tree & Rows",
-  "title": "Every row type renders the same columns in the same order, blank cells keep their position, and summary rows use the specified font weights",
+  "title": "Every row type renders the same columns in the same order",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -436,7 +436,7 @@
  {
   "id": "SBC-LINK-01",
   "area": "SBC — Invoice Links & Navigation",
-  "title": "Invoice number opens in the same tab: S invoices to the work order Finance tab, P invoices to the part sale Part Requests tab",
+  "title": "The invoice number opens the invoice in the same browser tab",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View) plus permission to open the destination invoice.",
@@ -461,7 +461,7 @@
  {
   "id": "SBC-LINK-02",
   "area": "SBC — Invoice Links & Navigation",
-  "title": "Browser back from an invoice returns to the report with filters, sort and columns restored and rows collapsed",
+  "title": "Browser back from an invoice restores filters; sort and columns; rows shut",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View) plus permission to open the destination invoice.",
@@ -488,7 +488,7 @@
  {
   "id": "SBC-LINK-03",
   "area": "SBC — Invoice Links & Navigation",
-  "title": "Customer name is plain text; the invoice link keeps the primary color with no underline and never turns visited-purple",
+  "title": "Customer name is plain text; the invoice link never turns visited-purple",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -514,7 +514,7 @@
  {
   "id": "SBC-LINK-04",
   "area": "SBC — Invoice Links & Navigation",
-  "title": "Clicking an invoice deleted or reversed after the report loaded shows the standard not-found state and back returns",
+  "title": "An invoice deleted after load shows the not-found state and back returns",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "the ordinary reports access (Reports section View) plus permission to reverse/delete an invoice for seeding.",
@@ -567,7 +567,7 @@
  {
   "id": "SBC-SORT-02",
   "area": "SBC — Sorting",
-  "title": "Default sort is Customer name ascending case-insensitive; clicking a header replaces it",
+  "title": "Default sort is Customer name ascending case-insensitive",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -592,7 +592,7 @@
  {
   "id": "SBC-SORT-03",
   "area": "SBC — Sorting",
-  "title": "Missing values sort to the bottom ascending and to the top descending; a Margin % em dash counts as missing",
+  "title": "Missing values sort to the bottom ascending and to the top descending",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -616,7 +616,7 @@
  {
   "id": "SBC-SORT-04",
   "area": "SBC — Sorting",
-  "title": "Sorting by Date orders customers by their most recent invoice date even though the Date cell is blank on customer rows",
+  "title": "Sorting by Date orders customers by their most recent invoice date",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",

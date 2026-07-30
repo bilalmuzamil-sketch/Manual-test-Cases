@@ -2,7 +2,7 @@
  {
   "id": "TU-LINK-01",
   "area": "TU — Deep Links",
-  "title": "Total Hours is a real link with a non-color affordance and keyboard access, while the Summary's Total Hours is not a link",
+  "title": "Total Hours is a real link with a non-color affordance and keyboard access",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -28,7 +28,7 @@
  {
   "id": "TU-LINK-02",
   "area": "TU — Deep Links",
-  "title": "The Total Hours link opens Timesheet Activities in the same tab, pre-filtered to that technician and date range",
+  "title": "The Total Hours link opens Timesheet Activities in the same tab",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -81,7 +81,7 @@
  {
   "id": "TU-LINK-04",
   "area": "TU — Deep Links",
-  "title": "Reconciliation exception (a): an open clock is snapshotted at each report's own load instant - a difference of the elapsed time is expected",
+  "title": "Reconcile exception (a): an open clock is snapshotted at each load instant",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -107,7 +107,7 @@
  {
   "id": "TU-LINK-05",
   "area": "TU — Deep Links",
-  "title": "Reconciliation exception (b): the link passes no location, so with multiple locations selected the opened view shows only the active shop",
+  "title": "Reconciliation exception (b): the link passes no location",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to at least two locations.",
@@ -134,7 +134,7 @@
  {
   "id": "TU-LINK-06",
   "area": "TU — Deep Links",
-  "title": "A day row's Total Hours links to Timesheet Activities for that technician on that single day",
+  "title": "A day row's Total Hours links to that technician's single-day timesheet",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -183,7 +183,7 @@
  {
   "id": "TU-EXP-02",
   "area": "TU — Exports",
-  "title": "The Summary PDF holds the technician rows plus the Summary, and the Expanded PDF adds every per-day breakdown",
+  "title": "The Summary PDF holds the technician rows plus the Summary",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -208,7 +208,7 @@
  {
   "id": "TU-EXP-03",
   "area": "TU — Exports",
-  "title": "The CSV is always summary-level, quotes comma-containing values, and downloads with the lower-case filename",
+  "title": "The CSV is always summary-level, quotes comma-containing values",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -264,7 +264,7 @@
  {
   "id": "TU-EXP-05",
   "area": "TU — Exports",
-  "title": "Downloads keep the on-screen column order and number formats but always order rows Technician A to Z, ignoring the on-screen sort",
+  "title": "Downloads always order rows Technician A to Z; the on-screen sort is ignored",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -316,7 +316,7 @@
  {
   "id": "TU-EXP-07",
   "area": "TU — Exports",
-  "title": "Choosing a download with no technician selected is a silent no-op - no file and no message",
+  "title": "Choosing a download with no technician selected is a silent no-op",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -341,7 +341,7 @@
  {
   "id": "TU-EXP-08",
   "area": "TU — Exports",
-  "title": "A starting download shows the Download started notification and a failed download shows Failed to download report",
+  "title": "A starting download notifies; a failed one shows the failure message",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -425,7 +425,7 @@
  {
   "id": "TU-LOC-03",
   "area": "TU — Location Filter",
-  "title": "The saved location selection restores defensively - inaccessible locations are dropped and an empty remainder falls back to the active location",
+  "title": "The saved location selection restores defensively; bad ones are dropped",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); admin ability to change the test user's location access.",
@@ -450,7 +450,7 @@
  {
   "id": "TU-LOC-04",
   "area": "TU — Location Filter",
-  "title": "Deselecting every location falls back to the active location instead of showing nothing",
+  "title": "Deselecting every location falls back to the active location",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
@@ -474,7 +474,7 @@
  {
   "id": "TU-LOC-05",
   "area": "TU — Location Filter",
-  "title": "The Location filter is hidden for a user with access to only one location",
+  "title": "Technician Utilization: Location filter hidden for a one-location user",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission); user with access to exactly one location.",

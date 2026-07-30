@@ -82,7 +82,7 @@
  {
   "id": "SBC-EMPTY-04",
   "area": "SBC — Empty & Edge States",
-  "title": "A failed data fetch shows the fetching-error toast which auto-fades after 5 seconds",
+  "title": "A failed data fetch shows the error toast which fades after 5 seconds",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -106,7 +106,7 @@
  {
   "id": "SBC-VIS-01",
   "area": "SBC — Visual Conformance",
-  "title": "Page and toolbar match the suite theme: paddings, surfaces, alignment, separator, arrow size and square corners",
+  "title": "Page and toolbar match the suite theme in padding; surface and alignment",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -137,7 +137,7 @@
  {
   "id": "SBC-VIS-02",
   "area": "SBC — Visual Conformance",
-  "title": "Row surfaces alternate by tree level: white header/customer/totals rows, blue-grey asset/invoice rows, pinned Subtotal matching its row",
+  "title": "Row surfaces alternate by tree level; header and totals rows stay white",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -165,7 +165,7 @@
  {
   "id": "SBC-VIS-03",
   "area": "SBC — Visual Conformance",
-  "title": "Dark mode swaps every surface for its dark equivalent while the PDF always renders in light-mode colors",
+  "title": "Dark mode darkens every surface while the PDF always renders light",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -189,7 +189,7 @@
  {
   "id": "SBC-MOB-01",
   "area": "SBC — Mobile",
-  "title": "On a phone every toolbar control works on touch and below 1024px the toolbar splits into two rows",
+  "title": "On a phone every toolbar control works on touch; the toolbar splits in two",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -215,7 +215,7 @@
  {
   "id": "SBC-MOB-02",
   "area": "SBC — Mobile",
-  "title": "On touch the table scrolls sideways with the Subtotal pinned, chevrons toggle, and invoice links open in the same tab",
+  "title": "On touch the table scrolls sideways with Subtotal pinned and chevrons work",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -241,7 +241,7 @@
  {
   "id": "SBC-API-01",
   "area": "SBC — API",
-  "title": "A customer's asset and invoice rows are fetched from the server only on first expand, and expand-all fetches at most one request per visible customer",
+  "title": "Asset and invoice rows are fetched on first expand; one call per customer",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -268,7 +268,7 @@
  {
   "id": "SBC-API-02",
   "area": "SBC — API",
-  "title": "Sorting is applied on the server: a header click re-fetches the customer rows ordered by that column as a fresh first page",
+  "title": "Sorting is applied on the server and re-fetches the first page",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -295,7 +295,7 @@
  {
   "id": "SBC-API-03",
   "area": "SBC — API",
-  "title": "The Customer filter's type-ahead fetches matching customers from the server per query instead of loading the full list up front",
+  "title": "The Customer type-ahead queries the server instead of loading every name",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -321,7 +321,7 @@
  {
   "id": "SBC-API-04",
   "area": "SBC — API",
-  "title": "Customer rows are server-paginated and the totals row is server-computed over the full filtered set",
+  "title": "Customer rows are server-paginated; the totals row is server-computed",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -347,7 +347,7 @@
  {
   "id": "SBC-API-05",
   "area": "SBC — API",
-  "title": "Exports are generated on the server and the 10,000-row cap is counted server-side before any file is produced",
+  "title": "Exports are server-generated and the 10,000-row cap is counted first",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",

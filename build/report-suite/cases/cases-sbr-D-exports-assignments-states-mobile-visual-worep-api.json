@@ -58,7 +58,7 @@
  {
   "id": "SBR-EXP-03",
   "area": "SBR — Exports",
-  "title": "Summary PDF: A4 header strip, one rolled-up row per rep, bold Subtotal, colored Inv. Hrs, and a recomputed grand totals row",
+  "title": "Summary PDF: one rolled-up row per rep with a recomputed grand totals row",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -87,7 +87,7 @@
  {
   "id": "SBR-EXP-04",
   "area": "SBR — Exports",
-  "title": "Expanded View PDF: one page-block per rep with its own header strip, per-invoice table, per-rep totals row, and no grand totals",
+  "title": "Expanded View PDF: one page-block per rep with its own totals; no grand",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -117,7 +117,7 @@
  {
   "id": "SBR-EXP-05",
   "area": "SBR — Exports",
-  "title": "Expanded View PDF truncates invoice numbers longer than 18 characters; on screen they are never truncated",
+  "title": "Expanded View PDF truncates invoice numbers longer than 18 characters",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -169,7 +169,7 @@
  {
   "id": "SBR-EXP-07",
   "area": "SBR — Exports",
-  "title": "PDFs render negative dollars in accounting parentheses, keep the (Inactive) tag, and omit the on-screen (N) count",
+  "title": "PDFs render negative dollars in accounting parentheses, keep the (Inactive) tag",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -359,7 +359,7 @@
  {
   "id": "SBR-EXP-14",
   "area": "SBR — Exports",
-  "title": "A failed download shows the canonical error toast, and a generating download shows a non-interactive loading state",
+  "title": "A failed download shows the canonical error toast",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -410,7 +410,7 @@
  {
   "id": "SBR-EXP-16",
   "area": "SBR — Exports",
-  "title": "An empty-data export still generates: zeroed Summary PDF totals, header-strip-only Expanded PDF, header-row-only CSVs",
+  "title": "An empty-data export still generates with zeroed Summary PDF totals",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -651,7 +651,7 @@
  {
   "id": "SBR-STATE-03",
   "area": "SBR — Loading, Empty & Error States",
-  "title": "Loading shows a centered spinner over the data area, hides the Totals, keeps the toolbar interactive, and never flashes a blank table",
+  "title": "Loading shows a centered spinner over the data area and hides the Totals",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -678,7 +678,7 @@
  {
   "id": "SBR-STATE-04",
   "area": "SBR — Loading, Empty & Error States",
-  "title": "A load failure shows the inline \"Couldn't load the report. Please try again.\" message with a working Retry, keeping the filters",
+  "title": "A load failure shows the inline could-not-load message with a Retry",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -704,7 +704,7 @@
  {
   "id": "SBR-MOB-01",
   "area": "SBR — Mobile",
-  "title": "On a phone every toolbar control works on touch; below 1024px the controls stack vertically with the ⋯ button wrapped above",
+  "title": "On a phone every toolbar control works on touch",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -730,7 +730,7 @@
  {
   "id": "SBR-MOB-02",
   "area": "SBR — Mobile",
-  "title": "On a phone the table scrolls sideways with Subtotal pinned, the totals bar sits outside the scroll area, and the chevrons work on touch",
+  "title": "On a phone the table scrolls sideways with Subtotal pinned outside it",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -756,7 +756,7 @@
  {
   "id": "SBR-MOB-03",
   "area": "SBR — Mobile",
-  "title": "Touch targets are at least 44×44 px and touch users get no hover-only tooltips — the icons carry accessible names instead",
+  "title": "Touch targets are at least 44×44 px and touch users get no hover-only tooltips",
   "priority": "Medium",
   "type": "Accessibility",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -780,7 +780,7 @@
  {
   "id": "SBR-VIS-01",
   "area": "SBR — Visual Conformance & Accessibility",
-  "title": "Layout conformance: white toolbar with the specified padding and alignment, blue-grey page, separator line, edge-to-edge white table",
+  "title": "Layout: white toolbar; blue-grey page; separator; edge-to-edge white table",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -808,7 +808,7 @@
  {
   "id": "SBR-VIS-02",
   "area": "SBR — Visual Conformance & Accessibility",
-  "title": "Dark mode: page, toolbar, table, and Totals switch to dark equivalents; badges and Inv. Hrs stay legible; PDFs stay light",
+  "title": "Dark mode: page, toolbar, table; Totals switch to dark equivalents",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -863,7 +863,7 @@
  {
   "id": "SBR-VIS-04",
   "area": "SBR — Visual Conformance & Accessibility",
-  "title": "Chevrons and sortable headers are keyboard-operable and expose their expanded/sort state to assistive technology",
+  "title": "Chevrons and sortable headers are keyboard-operable and expose their state",
   "priority": "Medium",
   "type": "Accessibility",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -889,7 +889,7 @@
  {
   "id": "SBR-VIS-05",
   "area": "SBR — Visual Conformance & Accessibility",
-  "title": "The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast, and no information is conveyed by color alone",
+  "title": "The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast",
   "priority": "Medium",
   "type": "Accessibility",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
@@ -1075,7 +1075,7 @@
  {
   "id": "SBR-DEACT-09",
   "area": "SBR — Staff Deactivation",
-  "title": "If the assignment pre-check fails, the warning dialog still opens — without the count headline — and never silently deactivates",
+  "title": "If the assignment pre-check fails, the warning dialog still opens",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Owner/Administrator/Manager profile (or a custom role with equivalent staff-administration access).",
@@ -1100,7 +1100,7 @@
  {
   "id": "SBR-API-01",
   "area": "SBR — API",
-  "title": "A rep's invoice detail rows are fetched from the server only on the first expand, and are paginated per rep",
+  "title": "A rep's invoice detail rows are fetched from the server only on the first expand",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
@@ -1127,7 +1127,7 @@
  {
   "id": "SBR-API-02",
   "area": "SBR — API",
-  "title": "Sorting is performed server-side: a header click re-fetches the rep summary rows in the requested order",
+  "title": "Sorting is performed server-side and returns the first page",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
@@ -1152,7 +1152,7 @@
  {
   "id": "SBR-API-03",
   "area": "SBR — API",
-  "title": "The grand totals are server-computed over the full filtered result set and delivered with the summary payload",
+  "title": "Grand totals are server-computed over the full filtered set",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
@@ -1177,7 +1177,7 @@
  {
   "id": "SBR-API-04",
   "area": "SBR — API",
-  "title": "All four exports are generated server-side against the active filters and sort — a genuine failure yields a toast, never a malformed file",
+  "title": "All four exports are generated server-side against the active filters and sort",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
@@ -1203,7 +1203,7 @@
  {
   "id": "SBR-API-05",
   "area": "SBR — API",
-  "title": "The Expanded View PDF's 10,000-row cap is enforced server-side BEFORE generation — a refusal, not a truncated file",
+  "title": "The Expanded View PDF's 10,000-row cap is enforced server-side BEFORE generation",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",

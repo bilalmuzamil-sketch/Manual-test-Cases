@@ -2,7 +2,7 @@
  {
   "id": "IV-DATE-01",
   "area": "IV — As-of Date & Snapshots",
-  "title": "The date-range control offers the standard presets plus Custom and does not offer \"All Time\" — expected, do not file",
+  "title": "Date range offers the standard presets plus Custom; no All Time option",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -27,7 +27,7 @@
  {
   "id": "IV-DATE-02",
   "area": "IV — As-of Date & Snapshots",
-  "title": "The report values inventory as of the END of the selected range — the date is an as-of anchor, not a created-date filter",
+  "title": "The report values inventory as of the END of the selected range",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -54,7 +54,7 @@
  {
   "id": "IV-DATE-03",
   "area": "IV — As-of Date & Snapshots",
-  "title": "When the selected window reaches today and today has not been recorded yet, the report values the current live stock",
+  "title": "A window reaching today with today not yet recorded values live stock",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -80,7 +80,7 @@
  {
   "id": "IV-DATE-04",
   "area": "IV — As-of Date & Snapshots",
-  "title": "For a past date the report replays the closest recorded day on or before the end of the selected range",
+  "title": "For a past date the report replays the closest recorded day on or before it",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -106,7 +106,7 @@
  {
   "id": "IV-DATE-05",
   "area": "IV — As-of Date & Snapshots",
-  "title": "An \"As of\" indicator names the day actually shown when it is earlier than the date asked for, and is hidden when they match",
+  "title": "\"As of\" indicator names the day shown; hidden when it matches the ask",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -132,7 +132,7 @@
  {
   "id": "IV-DATE-06",
   "area": "IV — As-of Date & Snapshots",
-  "title": "A Custom range lets the user pick start and end dates, values as of the picked end date, is capped at today, and reloads on change",
+  "title": "A Custom range values stock as of the picked end date; capped at today",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -185,7 +185,7 @@
  {
   "id": "IV-DATE-08",
   "area": "IV — As-of Date & Snapshots",
-  "title": "History accrues forward only — a date before the first nightly recording cannot be reconstructed — expected, do not file",
+  "title": "History accrues forward only; a pre-first-recording date is not shown",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -210,7 +210,7 @@
  {
   "id": "IV-FLT-01",
   "area": "IV — Filters & Part Search",
-  "title": "The Category and Vendor filters are multi-selects that reload the report to only the matching parts",
+  "title": "Category and Vendor multi-selects reload the report to matching parts only",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -265,7 +265,7 @@
  {
   "id": "IV-FLT-03",
   "area": "IV — Filters & Part Search",
-  "title": "With no category or vendor selected all parts show, and an empty part search applies no narrowing",
+  "title": "With no category or vendor selected all parts show",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -292,7 +292,7 @@
  {
   "id": "IV-FLT-04",
   "area": "IV — Filters & Part Search",
-  "title": "The part search is a page-local toolbar field matching part number OR description, case-insensitively, on the server",
+  "title": "Part search matches part number or description on the server; case-insensitive",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -402,7 +402,7 @@
  {
   "id": "IV-LOC-03",
   "area": "IV — Location Filter",
-  "title": "Scoping never includes an inaccessible location, and a selection resolving to none falls back to the user's active location",
+  "title": "Scoping never includes an inaccessible location",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "A user with access to some, but not all, locations, and the inventory-reports permission.",
@@ -427,7 +427,7 @@
  {
   "id": "IV-LOC-04",
   "area": "IV — Location Filter",
-  "title": "The Location filter is hidden for a user with access to only one location",
+  "title": "Inventory Value: the Location filter is hidden for a one-location user",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user with access to exactly one location and the inventory-reports permission.",

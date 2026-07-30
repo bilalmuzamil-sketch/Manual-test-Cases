@@ -2,7 +2,7 @@
  {
   "id": "SBR-ROW-01",
   "area": "SBR — Rep Rows & Tree",
-  "title": "Contributors only: a rep row appears if and only if the rep has at least one non-reversed invoice matching all active filters",
+  "title": "A rep row appears only when the rep has a matching non-reversed invoice",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -58,7 +58,7 @@
  {
   "id": "SBR-ROW-03",
   "area": "SBR — Rep Rows & Tree",
-  "title": "A toggled-off or deleted contributor still appears with credit intact, tagged (Inactive), named from the latest invoice snapshot when deleted",
+  "title": "A toggled-off or deleted contributor still appears; tagged (Inactive)",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Reports/Performance access plus staff administration for seeding.",
@@ -112,7 +112,7 @@
  {
   "id": "SBR-TREE-05",
   "area": "SBR — Rep Rows & Tree",
-  "title": "Expanding a rep loads its invoices on demand with a brief row-level loading indicator and full detail-row contents",
+  "title": "Expanding a rep loads its invoices on demand with a row-level spinner",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -137,7 +137,7 @@
  {
   "id": "SBR-TREE-06",
   "area": "SBR — Rep Rows & Tree",
-  "title": "Header chevron expands every visible rep in one action and its glyph tracks the expand/collapse state",
+  "title": "The header chevron expands every visible rep and its glyph tracks state",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -163,7 +163,7 @@
  {
   "id": "SBR-TREE-07",
   "area": "SBR — Rep Rows & Tree",
-  "title": "Each invoice appears under exactly one rep or the Unassigned row, never more than one",
+  "title": "Each invoice appears under exactly one rep or the Unassigned row",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -187,7 +187,7 @@
  {
   "id": "SBR-TREE-08",
   "area": "SBR — Rep Rows & Tree",
-  "title": "Expansion survives filter and sort changes within the session, resets on reload, and a removed rep returns collapsed",
+  "title": "Expansion survives filter and sort changes within the session, resets on reload",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -213,7 +213,7 @@
  {
   "id": "SBR-TREE-09",
   "area": "SBR — Rep Rows & Tree",
-  "title": "Detail rows order newest first with a numeric invoice-number tie-break where P sorts before S",
+  "title": "Detail rows run newest first with a numeric invoice-number tie-break",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -267,7 +267,7 @@
  {
   "id": "SBR-BADGE-02",
   "area": "SBR — Payment Status Badge",
-  "title": "Badge colors use the application's canonical payment-status tokens in both light and dark mode",
+  "title": "Badge colors use the canonical payment-status tokens in light and dark",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -318,7 +318,7 @@
  {
   "id": "SBR-CALC-01",
   "area": "SBR — Inv. Hrs & Calculations",
-  "title": "Inv. Hrs heading is verbatim and the value is hours invoiced minus hours worked, rounded half-up to one decimal",
+  "title": "Inv. Hrs is hours invoiced minus hours worked; half-up to one decimal",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -371,7 +371,7 @@
  {
   "id": "SBR-CALC-03",
   "area": "SBR — Inv. Hrs & Calculations",
-  "title": "No-labor-no-time invoices show 0.0 but clocked-yet-unbilled work shows its negative delta, never suppressed",
+  "title": "No-labor-no-time invoices show 0.0; clocked-unbilled work shows negative",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "Reports/Performance access.",
@@ -419,7 +419,7 @@
  {
   "id": "SBR-CALC-05",
   "area": "SBR — Inv. Hrs & Calculations",
-  "title": "Margin % renders to one decimal with a % sign, shows an em dash when Subtotal is zero or below, and is recomputed on every rollup",
+  "title": "Margin % to one decimal; em dash when Subtotal <= 0; recomputed on rollups",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -445,7 +445,7 @@
  {
   "id": "SBR-CALC-06",
   "area": "SBR — Inv. Hrs & Calculations",
-  "title": "Money columns use the standardized labels and definitions: Subtotal is pre-tax Labor plus Parts Invoiced, Margin is the two margins combined",
+  "title": "Money columns use the standardized labels and definitions",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -471,7 +471,7 @@
  {
   "id": "SBR-CALC-07",
   "area": "SBR — Inv. Hrs & Calculations",
-  "title": "Negative dollar values render in accounting parentheses on screen, in money columns only",
+  "title": "Negative dollar values render in accounting parentheses; money columns only",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -549,7 +549,7 @@
  {
   "id": "SBR-TOT-02",
   "area": "SBR — Subtotal & Totals",
-  "title": "Desktop Totals row merges the four identifier columns, aggregates every metric over the full filtered set, and sticks to the bottom",
+  "title": "Desktop Totals row merges the identifier columns and sticks to the bottom",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -578,7 +578,7 @@
  {
   "id": "SBR-TOT-03",
   "area": "SBR — Subtotal & Totals",
-  "title": "Mobile shows a simplified external totals bar below the table with Totals left and the grand Subtotal right",
+  "title": "Mobile shows a simplified totals bar below the table; Subtotal at right",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -629,7 +629,7 @@
  {
   "id": "SBR-SORT-01",
   "area": "SBR — Sorting",
-  "title": "All eight financial columns are sortable; the identifier columns are not and the Date header carries the chevron instead",
+  "title": "All eight financial columns are sortable",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -654,7 +654,7 @@
  {
   "id": "SBR-SORT-02",
   "area": "SBR — Sorting",
-  "title": "Default order is plain A to Z by display name, case-insensitive, with no active/inactive tiers",
+  "title": "Default order is plain A to Z by display name, case-insensitive",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -677,7 +677,7 @@
  {
   "id": "SBR-SORT-03",
   "area": "SBR — Sorting",
-  "title": "First click sorts ascending with an indicator, second click descending, no third cleared state, and no header path back to A to Z",
+  "title": "First header click sorts ascending; second descending; no third state",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -705,7 +705,7 @@
  {
   "id": "SBR-SORT-04",
   "area": "SBR — Sorting",
-  "title": "Sorting reorders rep summary rows only; detail rows stay under their rep and the Unassigned row stays pinned on top",
+  "title": "Sorting reorders rep rows only; Unassigned stays pinned on top",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",
@@ -730,7 +730,7 @@
  {
   "id": "SBR-SORT-05",
   "area": "SBR — Sorting",
-  "title": "Equal sorted values keep the A to Z order as tie-break and an em-dash Margin % sorts as zero",
+  "title": "Ties keep the A to Z order and an em-dash Margin % sorts as zero",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Reports/Performance access.",

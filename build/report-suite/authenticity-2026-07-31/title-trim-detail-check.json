@@ -1,0 +1,1313 @@
+[
+ {
+  "id": "IV-API-02",
+  "before": "Nightly snapshot: the captured scope and valuation are identical to the live report, so a recorded day equals what the live report showed that day",
+  "after": "A recorded snapshot day equals what the live report showed that day",
+  "lost": [
+   "identical",
+   "nightly"
+  ]
+ },
+ {
+  "id": "IV-API-03",
+  "before": "Nightly snapshot: re-running the capture for a date replaces that date's rows — idempotent, no duplicates",
+  "after": "Nightly snapshot: re-running the capture for a date replaces that date's rows",
+  "lost": [
+   "duplicates"
+  ]
+ },
+ {
+  "id": "IV-API-04",
+  "before": "Nightly snapshot: history accrues forward only — a re-run records current truth under the current date and cannot reconstruct a past date",
+  "after": "Nightly snapshot: a re-run records today's truth; it cannot rebuild a past day",
+  "lost": [
+   "accrues",
+   "forward"
+  ]
+ },
+ {
+  "id": "IV-API-05",
+  "before": "Snapshot retention: daily captures are kept for 0–13 months; older history is reduced to the last capture of each calendar month",
+  "after": "Snapshot retention: daily captures are kept for 0–13 months",
+  "lost": [
+   "reduced"
+  ]
+ },
+ {
+  "id": "IV-API-06",
+  "before": "Thinned history is served unchanged: the closest-recorded-day rule bridges retention gaps, the \"As of\" indicator names the day shown, and a fully-pruned range shows the empty state",
+  "after": "Thinned history still served by the closest-recorded-day rule",
+  "lost": [
+   "bridges",
+   "fully-pruned",
+   "retention"
+  ]
+ },
+ {
+  "id": "IV-CALC-05",
+  "before": "Margin is the extended figure — Total Sell minus Total Cost for the whole on-hand quantity, not a per-unit number",
+  "after": "Margin is Total Sell minus Total Cost for the whole on-hand quantity",
+  "lost": [
+   "number"
+  ]
+ },
+ {
+  "id": "IV-CALC-06",
+  "before": "Margin % is Margin as a share of Total Sell to one decimal with a percent sign, showing \"—\" when Total Sell is zero or negative",
+  "after": "Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0",
+  "lost": [
+   "share",
+   "showing"
+  ]
+ },
+ {
+  "id": "IV-COL-01",
+  "before": "With every column turned on, the columns appear in the fixed left-to-right order with the specified alignment",
+  "after": "With every column on they appear in the fixed order with the set alignment",
+  "lost": [
+   "left-to-right",
+   "specified"
+  ]
+ },
+ {
+  "id": "IV-COL-02",
+  "before": "Value formats: Qty on Hand to two decimals with no currency symbol (fractional supported), money values as US-dollar currency",
+  "after": "Value formats: Qty on Hand to two decimals; money as US-dollar currency",
+  "lost": [
+   "supported"
+  ]
+ },
+ {
+  "id": "IV-COL-03",
+  "before": "The Total Cost column (header and cells) is bold and pinned to the far right, staying fixed while scrolling sideways",
+  "after": "Total Cost is bold and pinned far right; it stays put on sideways scroll",
+  "lost": [
+   "scrolling",
+   "staying"
+  ]
+ },
+ {
+  "id": "IV-DATE-01",
+  "before": "The date-range control offers the standard presets plus Custom and does not offer \"All Time\" — expected, do not file",
+  "after": "Date range offers the standard presets plus Custom; no All Time option",
+  "lost": [
+   "expected"
+  ]
+ },
+ {
+  "id": "IV-DATE-02",
+  "before": "The report values inventory as of the END of the selected range — the date is an as-of anchor, not a created-date filter",
+  "after": "The report values inventory as of the END of the selected range",
+  "lost": [
+   "as-of"
+  ]
+ },
+ {
+  "id": "IV-DATE-03",
+  "before": "When the selected window reaches today and today has not been recorded yet, the report values the current live stock",
+  "after": "A window reaching today with today not yet recorded values live stock",
+  "lost": [
+   "selected"
+  ]
+ },
+ {
+  "id": "IV-DATE-06",
+  "before": "A Custom range lets the user pick start and end dates, values as of the picked end date, is capped at today, and reloads on change",
+  "after": "A Custom range values stock as of the picked end date; capped at today",
+  "lost": [
+   "change",
+   "dates"
+  ]
+ },
+ {
+  "id": "IV-DATE-08",
+  "before": "History accrues forward only — a date before the first nightly recording cannot be reconstructed — expected, do not file",
+  "after": "History accrues forward only; a pre-first-recording date is not shown",
+  "lost": [
+   "cannot",
+   "expected",
+   "reconstructed"
+  ]
+ },
+ {
+  "id": "IV-EXP-03",
+  "before": "Export number formats: two-decimal money, one-decimal Margin % (\"—\" when undefined); CSV money as plain numbers, PDF with on-screen currency formatting",
+  "after": "Export number formats: money to 2 decimals; Margin % to 1 with em-dash",
+  "lost": [
+   "one-decimal",
+   "two-decimal"
+  ]
+ },
+ {
+  "id": "IV-EXP-06",
+  "before": "Exports are generated server-side over the full filtered set — rows beyond the loaded page are included",
+  "after": "Exports are generated server-side over the full filtered set",
+  "lost": [
+   "beyond",
+   "included"
+  ]
+ },
+ {
+  "id": "IV-FLT-01",
+  "before": "The Category and Vendor filters are multi-selects that reload the report to only the matching parts",
+  "after": "Category and Vendor multi-selects reload the report to matching parts only",
+  "lost": [
+   "filters"
+  ]
+ },
+ {
+  "id": "IV-FLT-03",
+  "before": "With no category or vendor selected all parts show, and an empty part search applies no narrowing",
+  "after": "With no category or vendor selected all parts show",
+  "lost": [
+   "applies"
+  ]
+ },
+ {
+  "id": "IV-FLT-04",
+  "before": "The part search is a page-local toolbar field matching part number OR description, case-insensitively, on the server",
+  "after": "Part search matches part number or description on the server; case-insensitive",
+  "lost": [
+   "case-insensitively"
+  ]
+ },
+ {
+  "id": "IV-LOC-03",
+  "before": "Scoping never includes an inaccessible location, and a selection resolving to none falls back to the user's active location",
+  "after": "Scoping never includes an inaccessible location",
+  "lost": [
+   "resolving"
+  ]
+ },
+ {
+  "id": "IV-NAV-02",
+  "before": "Opening the report shows one row per in-stock part at the selected location(s), valued as of the resolved date",
+  "after": "One row per in-stock part at the selected locations valued at the resolved date",
+  "lost": [
+   "opening"
+  ]
+ },
+ {
+  "id": "IV-PERM-01",
+  "before": "A user with the existing inventory-reports permission can open the report — no new permission is added",
+  "after": "User with the existing inventory-reports permission can open the report",
+  "lost": [
+   "added"
+  ]
+ },
+ {
+  "id": "IV-PERM-02",
+  "before": "A user without the required permission does not see Inventory Value in the reports navigation",
+  "after": "Without the permission Inventory Value is absent from the reports navigation",
+  "lost": [
+   "required"
+  ]
+ },
+ {
+  "id": "IV-SCOPE-02",
+  "before": "A part stocked at two selected locations appears as two rows (one per location), not merged — expected, do not file",
+  "after": "A part stocked at two selected locations shows as two rows; never merged",
+  "lost": [
+   "expected"
+  ]
+ },
+ {
+  "id": "IV-SORT-01",
+  "before": "On first load and after any reload, rows are sorted by Total Cost, highest first, applied by the server",
+  "after": "Rows are sorted by Total Cost highest first on load and after any reload",
+  "lost": [
+   "applied"
+  ]
+ },
+ {
+  "id": "IV-SORT-02",
+  "before": "Header clicks sort ascending then descending with no third state, re-fetching from the server and returning the first page",
+  "after": "Header clicks sort ascending then descending; no third state; page 1 returns",
+  "lost": [
+   "re-fetching"
+  ]
+ },
+ {
+  "id": "IV-VIS-07",
+  "before": "The icon-only controls (three-dot download button and Column Selection button) each carry an accessible name",
+  "after": "The icon-only download and Column Selection buttons carry accessible names",
+  "lost": [
+   "controls"
+  ]
+ },
+ {
+  "id": "PV-CALC-01",
+  "before": "Units Sold for an inventory part is net stock movement: invoicing adds, reversing subtracts, returns do not affect it",
+  "after": "Units Sold for an inventory part is net stock movement",
+  "lost": [
+   "subtracts"
+  ]
+ },
+ {
+  "id": "PV-CALC-03",
+  "before": "Units Returned counts initiated part returns and parts-sale credits, and cancelling a return removes its quantity",
+  "after": "Units Returned counts initiated part returns and parts-sale credits",
+  "lost": [
+   "cancelling",
+   "quantity",
+   "removes"
+  ]
+ },
+ {
+  "id": "PV-CALC-04",
+  "before": "Units Returned is windowed by initiation date, ignores invoice status, and excludes core-charge returns",
+  "after": "Units Returned is windowed by initiation date, ignores invoice status",
+  "lost": [
+   "excludes"
+  ]
+ },
+ {
+  "id": "PV-COL-04",
+  "before": "Filters, column selection, and sort are remembered per browser and restored before the first data fetch",
+  "after": "Filters; columns and sort are remembered per browser before the first fetch",
+  "lost": [
+   "selection"
+  ]
+ },
+ {
+  "id": "PV-COL-08",
+  "before": "All 20 columns can be hidden; the empty selection is not restored and an export then contains no data columns",
+  "after": "All 20 columns can be hidden; the empty selection is never restored",
+  "lost": [
+   "contains"
+  ]
+ },
+ {
+  "id": "PV-EXP-01",
+  "before": "The overflow button opens an export menu with Download (PDF) and Download (CSV) in that order",
+  "after": "The overflow button opens Download (PDF) then Download (CSV) in that order",
+  "lost": [
+   "export"
+  ]
+ },
+ {
+  "id": "PV-FILT-04",
+  "before": "Custom date range requires valid start and end dates and rejects a span over 366 days",
+  "after": "A Custom date range needs valid dates and rejects a span over 366 days",
+  "lost": [
+   "requires"
+  ]
+ },
+ {
+  "id": "PV-ROW-01",
+  "before": "An inventory part stocked at two selected locations shows as two rows with per-location stock figures",
+  "after": "A part stocked at two selected locations shows as two per-location rows",
+  "lost": [
+   "figures"
+  ]
+ },
+ {
+  "id": "PV-ROW-10",
+  "before": "A sale invoiced then fully reversed in-window shows Demand 1 with Units Sold 0.00, and negative movement shows a leading minus",
+  "after": "A sale invoiced then fully reversed shows Demand 1 with Units Sold 0.00",
+  "lost": [
+   "in-window"
+  ]
+ },
+ {
+  "id": "PV-VIS-01",
+  "before": "The report uses the standard two-tone layout: white card surfaces on a soft blue-grey backdrop with an edge-to-edge table",
+  "after": "The report uses the standard two-tone layout",
+  "lost": [
+   "backdrop",
+   "edge-to-edge"
+  ]
+ },
+ {
+  "id": "PV-VIS-03",
+  "before": "Dark mode is supported and the grey info icon keeps at least 3:1 contrast in both modes",
+  "after": "Dark mode is supported and the grey info icon keeps 3:1 contrast in both",
+  "lost": [
+   "modes"
+  ]
+ },
+ {
+  "id": "SBC-API-01",
+  "before": "A customer's asset and invoice rows are fetched from the server only on first expand, and expand-all fetches at most one request per visible customer",
+  "after": "Asset and invoice rows are fetched on first expand; one call per customer",
+  "lost": [
+   "fetches",
+   "visible"
+  ]
+ },
+ {
+  "id": "SBC-API-02",
+  "before": "Sorting is applied on the server: a header click re-fetches the customer rows ordered by that column as a fresh first page",
+  "after": "Sorting is applied on the server and re-fetches the first page",
+  "lost": [
+   "fresh"
+  ]
+ },
+ {
+  "id": "SBC-API-03",
+  "before": "The Customer filter's type-ahead fetches matching customers from the server per query instead of loading the full list up front",
+  "after": "The Customer type-ahead queries the server instead of loading every name",
+  "lost": [
+   "filter's"
+  ]
+ },
+ {
+  "id": "SBC-API-04",
+  "before": "Customer rows are server-paginated and the totals row is server-computed over the full filtered set",
+  "after": "Customer rows are server-paginated; the totals row is server-computed",
+  "lost": [
+   "filtered"
+  ]
+ },
+ {
+  "id": "SBC-API-05",
+  "before": "Exports are generated on the server and the 10,000-row cap is counted server-side before any file is produced",
+  "after": "Exports are server-generated and the 10,000-row cap is counted first",
+  "lost": [
+   "produced",
+   "server-side"
+  ]
+ },
+ {
+  "id": "SBC-CALC-01",
+  "before": "Financial columns appear in the specified order and Subtotal/Margin follow the spec's composition rules",
+  "after": "Financial columns run in the specified order with Subtotal and Margin rules",
+  "lost": [
+   "composition",
+   "follow",
+   "spec's"
+  ]
+ },
+ {
+  "id": "SBC-CALC-02",
+  "before": "Margin % = Margin over Subtotal to one decimal with a percent sign, em dash when Subtotal is zero or below, monochrome on all row types",
+  "after": "Margin % is Margin over Subtotal to one decimal; em dash when Subtotal <= 0",
+  "lost": [
+   "types"
+  ]
+ },
+ {
+  "id": "SBC-CALC-06",
+  "before": "Subtotal is the rightmost column, pinned during horizontal scroll and bold everywhere, unconditionally",
+  "after": "Subtotal is the rightmost column; pinned on scroll and bold everywhere",
+  "lost": [
+   "unconditionally"
+  ]
+ },
+ {
+  "id": "SBC-CUST-02",
+  "before": "Typing in the Customer filter lists matching customers by contains match, with checkmarks on selected ones",
+  "after": "Typing in the Customer filter lists matching customers by contains match",
+  "lost": [
+   "checkmarks"
+  ]
+ },
+ {
+  "id": "SBC-CUST-09",
+  "before": "A subset selection reconciles on a filter change: kept if present, dropped if absent, new customers not auto-added",
+  "after": "A subset customer selection reconciles on a filter change; kept if present",
+  "lost": [
+   "absent",
+   "auto-added"
+  ]
+ },
+ {
+  "id": "SBC-DATE-04",
+  "before": "Changing the date range writes the chosen value to the page link for sharing and bookmarking",
+  "after": "Changing the date range writes it into the page link for sharing",
+  "lost": [
+   "bookmarking"
+  ]
+ },
+ {
+  "id": "SBC-EMPTY-04",
+  "before": "A failed data fetch shows the fetching-error toast which auto-fades after 5 seconds",
+  "after": "A failed data fetch shows the error toast which fades after 5 seconds",
+  "lost": [
+   "fetching-error"
+  ]
+ },
+ {
+  "id": "SBC-EXP-05",
+  "before": "CSV and PDF contain exactly the customers matching the active filters and sort, including the Customer filter selection",
+  "after": "CSV and PDF hold exactly the customers matching the active filters and sort",
+  "lost": [
+   "including"
+  ]
+ },
+ {
+  "id": "SBC-EXP-10",
+  "before": "PDF logo is embedded, scales without distortion, and falls back from the uploaded logo to the ShopView logo to none",
+  "after": "PDF logo is embedded, scales without distortion",
+  "lost": [
+   "falls"
+  ]
+ },
+ {
+  "id": "SBC-EXP-15",
+  "before": "Exporting with no matching customers still downloads a file with headers and a zero totals row, with no warning",
+  "after": "A no-match export still downloads headers and a zero totals row",
+  "lost": [
+   "exporting",
+   "matching"
+  ]
+ },
+ {
+  "id": "SBC-LINK-01",
+  "before": "Invoice number opens in the same tab: S invoices to the work order Finance tab, P invoices to the part sale Part Requests tab",
+  "after": "The invoice number opens the invoice in the same browser tab",
+  "lost": [
+   "invoices"
+  ]
+ },
+ {
+  "id": "SBC-LINK-03",
+  "before": "Customer name is plain text; the invoice link keeps the primary color with no underline and never turns visited-purple",
+  "after": "Customer name is plain text; the invoice link never turns visited-purple",
+  "lost": [
+   "keeps"
+  ]
+ },
+ {
+  "id": "SBC-LINK-04",
+  "before": "Clicking an invoice deleted or reversed after the report loaded shows the standard not-found state and back returns",
+  "after": "An invoice deleted after load shows the not-found state and back returns",
+  "lost": [
+   "clicking"
+  ]
+ },
+ {
+  "id": "SBC-MOB-02",
+  "before": "On touch the table scrolls sideways with the Subtotal pinned, chevrons toggle, and invoice links open in the same tab",
+  "after": "On touch the table scrolls sideways with Subtotal pinned and chevrons work",
+  "lost": [
+   "links",
+   "toggle"
+  ]
+ },
+ {
+  "id": "SBC-PERS-01",
+  "before": "Filters, sort and visible columns are saved and restored on the next visit, shown immediately without a default flash",
+  "after": "Filters; sort and visible columns are restored on the next visit",
+  "lost": [
+   "flash"
+  ]
+ },
+ {
+  "id": "SBC-PERS-06",
+  "before": "When both a saved view and a page-link range exist, the saved view wins and the link value is ignored",
+  "after": "When a saved view and a page-link range clash the saved view wins",
+  "lost": [
+   "exist"
+  ]
+ },
+ {
+  "id": "SBC-SORT-03",
+  "before": "Missing values sort to the bottom ascending and to the top descending; a Margin % em dash counts as missing",
+  "after": "Missing values sort to the bottom ascending and to the top descending",
+  "lost": [
+   "counts"
+  ]
+ },
+ {
+  "id": "SBC-TREE-04",
+  "before": "Expanding an asset reveals its invoice detail rows with number link, date and per-invoice columns",
+  "after": "Expanding an asset reveals its invoice rows with number link and date",
+  "lost": [
+   "columns"
+  ]
+ },
+ {
+  "id": "SBC-TREE-05",
+  "before": "Invoices group into one asset row per vehicle record, with a snapshot fallback for older invoices with no vehicle id",
+  "after": "Invoices group into one asset row per vehicle record",
+  "lost": [
+   "fallback"
+  ]
+ },
+ {
+  "id": "SBC-TREE-06",
+  "before": "Asset rows order A to Z case-insensitively with the Parts Sales bucket always last, regardless of column sort",
+  "after": "Asset rows order A to Z with the Parts Sales bucket always last",
+  "lost": [
+   "case-insensitively",
+   "regardless"
+  ]
+ },
+ {
+  "id": "SBC-TREE-08",
+  "before": "Header-row chevron expands or collapses every customer on the current page, with matching icon and tooltip",
+  "after": "Header-row chevron expands or collapses every customer on the current page",
+  "lost": [
+   "matching"
+  ]
+ },
+ {
+  "id": "SBC-TREE-11",
+  "before": "A service (S) invoice with no vehicle also lands in the Parts Sales bucket — absence of a vehicle decides, not the prefix",
+  "after": "A service (S) invoice with no vehicle also lands in the Parts Sales bucket",
+  "lost": [
+   "decides"
+  ]
+ },
+ {
+  "id": "SBC-TREE-13",
+  "before": "Every row type renders the same columns in the same order, blank cells keep their position, and summary rows use the specified font weights",
+  "after": "Every row type renders the same columns in the same order",
+  "lost": [
+   "cells",
+   "specified",
+   "their"
+  ]
+ },
+ {
+  "id": "SBC-VIS-01",
+  "before": "Page and toolbar match the suite theme: paddings, surfaces, alignment, separator, arrow size and square corners",
+  "after": "Page and toolbar match the suite theme in padding; surface and alignment",
+  "lost": [
+   "separator",
+   "square",
+   "surfaces"
+  ]
+ },
+ {
+  "id": "SBC-VIS-03",
+  "before": "Dark mode swaps every surface for its dark equivalent while the PDF always renders in light-mode colors",
+  "after": "Dark mode darkens every surface while the PDF always renders light",
+  "lost": [
+   "swaps"
+  ]
+ },
+ {
+  "id": "SBR-API-02",
+  "before": "Sorting is performed server-side: a header click re-fetches the rep summary rows in the requested order",
+  "after": "Sorting is performed server-side and returns the first page",
+  "lost": [
+   "re-fetches"
+  ]
+ },
+ {
+  "id": "SBR-API-03",
+  "before": "The grand totals are server-computed over the full filtered result set and delivered with the summary payload",
+  "after": "Grand totals are server-computed over the full filtered set",
+  "lost": [
+   "delivered"
+  ]
+ },
+ {
+  "id": "SBR-API-04",
+  "before": "All four exports are generated server-side against the active filters and sort — a genuine failure yields a toast, never a malformed file",
+  "after": "All four exports are generated server-side against the active filters and sort",
+  "lost": [
+   "yields"
+  ]
+ },
+ {
+  "id": "SBR-CALC-03",
+  "before": "No-labor-no-time invoices show 0.0 but clocked-yet-unbilled work shows its negative delta, never suppressed",
+  "after": "No-labor-no-time invoices show 0.0; clocked-unbilled work shows negative",
+  "lost": [
+   "clocked-yet-unbilled"
+  ]
+ },
+ {
+  "id": "SBR-CALC-05",
+  "before": "Margin % renders to one decimal with a % sign, shows an em dash when Subtotal is zero or below, and is recomputed on every rollup",
+  "after": "Margin % to one decimal; em dash when Subtotal <= 0; recomputed on rollups",
+  "lost": [
+   "rollup",
+   "shows"
+  ]
+ },
+ {
+  "id": "SBR-CALC-06",
+  "before": "Money columns use the standardized labels and definitions: Subtotal is pre-tax Labor plus Parts Invoiced, Margin is the two margins combined",
+  "after": "Money columns use the standardized labels and definitions",
+  "lost": [
+   "combined",
+   "margins",
+   "pre-tax"
+  ]
+ },
+ {
+  "id": "SBR-COL-04",
+  "before": "Column visibility never affects the exports — all four downloads always include all metric columns",
+  "after": "Column visibility never affects the exports",
+  "lost": [
+   "always"
+  ]
+ },
+ {
+  "id": "SBR-DATE-04",
+  "before": "An invoice is placed in the range by its own invoice date with inclusive endpoints, and the range shows in both PDF headers",
+  "after": "An invoice sits in the range by its own invoice date; endpoints included",
+  "lost": [
+   "headers",
+   "placed",
+   "shows"
+  ]
+ },
+ {
+  "id": "SBR-DEACT-03",
+  "before": "Type-YES gate: auto-focused input, case-insensitive whitespace-tolerant match, disabled-button tooltip, Enter submits",
+  "after": "Type-YES gate: auto-focus; case-insensitive match; Enter submits",
+  "lost": [
+   "disabled-button",
+   "whitespace-tolerant"
+  ]
+ },
+ {
+  "id": "SBR-DEACT-08",
+  "before": "A server-side deactivation failure shows the canonical error toast, leaves the status unchanged, and clears the input on the next open",
+  "after": "A deactivation failure shows the error toast and leaves the status alone",
+  "lost": [
+   "canonical",
+   "server-side"
+  ]
+ },
+ {
+  "id": "SBR-EXP-03",
+  "before": "Summary PDF: A4 header strip, one rolled-up row per rep, bold Subtotal, colored Inv. Hrs, and a recomputed grand totals row",
+  "after": "Summary PDF: one rolled-up row per rep with a recomputed grand totals row",
+  "lost": [
+   "colored"
+  ]
+ },
+ {
+  "id": "SBR-EXP-16",
+  "before": "An empty-data export still generates: zeroed Summary PDF totals, header-strip-only Expanded PDF, header-row-only CSVs",
+  "after": "An empty-data export still generates with zeroed Summary PDF totals",
+  "lost": [
+   "header-strip-only"
+  ]
+ },
+ {
+  "id": "SBR-LINK-03",
+  "before": "Browser back from a drilldown restores ALL report state including expansion and scroll, without a full reload",
+  "after": "Browser back from a drilldown restores expansion and scroll; no reload",
+  "lost": [
+   "including"
+  ]
+ },
+ {
+  "id": "SBR-LINK-04",
+  "before": "Link styling: theme-primary invoice links and body-colored customer links, hover/focus underline, never browser-purple, in both modes",
+  "after": "Invoice links use theme-primary; customer links use the body color",
+  "lost": [
+   "body-colored",
+   "modes",
+   "styling"
+  ]
+ },
+ {
+  "id": "SBR-MOB-01",
+  "before": "On a phone every toolbar control works on touch; below 1024px the controls stack vertically with the ⋯ button wrapped above",
+  "after": "On a phone every toolbar control works on touch",
+  "lost": [
+   "wrapped"
+  ]
+ },
+ {
+  "id": "SBR-MOB-02",
+  "before": "On a phone the table scrolls sideways with Subtotal pinned, the totals bar sits outside the scroll area, and the chevrons work on touch",
+  "after": "On a phone the table scrolls sideways with Subtotal pinned outside it",
+  "lost": [
+   "chevrons"
+  ]
+ },
+ {
+  "id": "SBR-MOB-03",
+  "before": "Touch targets are at least 44×44 px and touch users get no hover-only tooltips — the icons carry accessible names instead",
+  "after": "Touch targets are at least 44×44 px and touch users get no hover-only tooltips",
+  "lost": [
+   "carry",
+   "instead",
+   "names"
+  ]
+ },
+ {
+  "id": "SBR-PERM-03",
+  "before": "A user without staff-administration access cannot reach the sales-rep deactivation flow",
+  "after": "Without staff-administration access the deactivation flow is unreachable",
+  "lost": [
+   "sales-rep"
+  ]
+ },
+ {
+  "id": "SBR-PERS-01",
+  "before": "All filter and view settings are remembered per browser and restored before the first data fetch on the next visit",
+  "after": "All filter and view settings are restored before the first data fetch",
+  "lost": [
+   "remembered"
+  ]
+ },
+ {
+  "id": "SBR-PERS-03",
+  "before": "Restoration is defensive: a stale saved value falls back to its default and never causes an error or invalid request",
+  "after": "A stale saved value falls back to its default and never errors",
+  "lost": [
+   "causes",
+   "defensive",
+   "restoration"
+  ]
+ },
+ {
+  "id": "SBR-PERS-05",
+  "before": "The A to Z default is its own saved value: restoring a state with no financial sort returns to A to Z, not an arbitrary column",
+  "after": "The A to Z default is its own saved value",
+  "lost": [
+   "restoring",
+   "returns"
+  ]
+ },
+ {
+  "id": "SBR-ROW-01",
+  "before": "Contributors only: a rep row appears if and only if the rep has at least one non-reversed invoice matching all active filters",
+  "after": "A rep row appears only when the rep has a matching non-reversed invoice",
+  "lost": [
+   "active",
+   "contributors",
+   "filters"
+  ]
+ },
+ {
+  "id": "SBR-ROW-03",
+  "before": "A toggled-off or deleted contributor still appears with credit intact, tagged (Inactive), named from the latest invoice snapshot when deleted",
+  "after": "A toggled-off or deleted contributor still appears; tagged (Inactive)",
+  "lost": [
+   "latest",
+   "named"
+  ]
+ },
+ {
+  "id": "SBR-SORT-01",
+  "before": "All eight financial columns are sortable; the identifier columns are not and the Date header carries the chevron instead",
+  "after": "All eight financial columns are sortable",
+  "lost": [
+   "instead"
+  ]
+ },
+ {
+  "id": "SBR-SORT-05",
+  "before": "Equal sorted values keep the A to Z order as tie-break and an em-dash Margin % sorts as zero",
+  "after": "Ties keep the A to Z order and an em-dash Margin % sorts as zero",
+  "lost": [
+   "tie-break"
+  ]
+ },
+ {
+  "id": "SBR-STAT-02",
+  "before": "Status filtering matches on the mapped display value: five system states collapse into Paid, Partially Paid and Unpaid",
+  "after": "Status filtering matches on the mapped display value",
+  "lost": [
+   "collapse",
+   "states",
+   "system"
+  ]
+ },
+ {
+  "id": "SBR-STATE-03",
+  "before": "Loading shows a centered spinner over the data area, hides the Totals, keeps the toolbar interactive, and never flashes a blank table",
+  "after": "Loading shows a centered spinner over the data area and hides the Totals",
+  "lost": [
+   "flashes",
+   "keeps"
+  ]
+ },
+ {
+  "id": "SBR-STATE-04",
+  "before": "A load failure shows the inline \"Couldn't load the report. Please try again.\" message with a working Retry, keeping the filters",
+  "after": "A load failure shows the inline could-not-load message with a Retry",
+  "lost": [
+   "keeping",
+   "working"
+  ]
+ },
+ {
+  "id": "SBR-TOT-02",
+  "before": "Desktop Totals row merges the four identifier columns, aggregates every metric over the full filtered set, and sticks to the bottom",
+  "after": "Desktop Totals row merges the identifier columns and sticks to the bottom",
+  "lost": [
+   "aggregates"
+  ]
+ },
+ {
+  "id": "SBR-TREE-05",
+  "before": "Expanding a rep loads its invoices on demand with a brief row-level loading indicator and full detail-row contents",
+  "after": "Expanding a rep loads its invoices on demand with a row-level spinner",
+  "lost": [
+   "contents",
+   "detail-row"
+  ]
+ },
+ {
+  "id": "SBR-TREE-08",
+  "before": "Expansion survives filter and sort changes within the session, resets on reload, and a removed rep returns collapsed",
+  "after": "Expansion survives filter and sort changes within the session, resets on reload",
+  "lost": [
+   "removed",
+   "returns"
+  ]
+ },
+ {
+  "id": "SBR-UNAS-04",
+  "before": "No empty Unassigned row is ever rendered, and toggling off while expanded removes the row which returns collapsed",
+  "after": "No empty Unassigned row is ever rendered",
+  "lost": [
+   "returns",
+   "toggling"
+  ]
+ },
+ {
+  "id": "SBR-VIS-01",
+  "before": "Layout conformance: white toolbar with the specified padding and alignment, blue-grey page, separator line, edge-to-edge white table",
+  "after": "Layout: white toolbar; blue-grey page; separator; edge-to-edge white table",
+  "lost": [
+   "alignment",
+   "conformance",
+   "specified"
+  ]
+ },
+ {
+  "id": "TU-API-01",
+  "before": "The per-day breakdown is fetched from the backend on demand when a row is expanded, not shipped with the initial payload",
+  "after": "The per-day breakdown is fetched only when a technician row is expanded",
+  "lost": [
+   "shipped"
+  ]
+ },
+ {
+  "id": "TU-API-02",
+  "before": "Date-range and location changes trigger a fresh server load, while the technician filter and column sorting stay on-screen only",
+  "after": "Date-range and location changes trigger a fresh server load",
+  "lost": [
+   "on-screen"
+  ]
+ },
+ {
+  "id": "TU-DAY-02",
+  "before": "Expanding shows one row per clocked day in date order, loaded on demand, with days pooled across selected locations",
+  "after": "Expanding shows one row per clocked day in date order, loaded on demand",
+  "lost": [
+   "pooled"
+  ]
+ },
+ {
+  "id": "TU-DAY-03",
+  "before": "Day rows use the same columns and formats as technician rows, including a per-day per-location Est. Lost Labor",
+  "after": "Day rows use the same columns and formats as the technician rows",
+  "lost": [
+   "including",
+   "per-location"
+  ]
+ },
+ {
+  "id": "TU-DAY-04",
+  "before": "A single control in the table header expands or collapses all technician rows with the correct accessible names",
+  "after": "One control in the table header expands or collapses all technician rows",
+  "lost": [
+   "correct",
+   "names",
+   "single"
+  ]
+ },
+ {
+  "id": "TU-DAY-05",
+  "before": "Expansion state is view-only: it resets on any reload and fresh visit, and the technician filter does not disturb it",
+  "after": "Expansion state is view-only: it resets on any reload and fresh visit",
+  "lost": [
+   "disturb"
+  ]
+ },
+ {
+  "id": "TU-ELL-04",
+  "before": "Internal hours with no default labor rate at any contributing location show an em-dash with the correct assistive-technology label",
+  "after": "Internal hours with no default labor rate anywhere show an em-dash",
+  "lost": [
+   "contributing",
+   "correct"
+  ]
+ },
+ {
+  "id": "TU-EXP-05",
+  "before": "Downloads keep the on-screen column order and number formats but always order rows Technician A to Z, ignoring the on-screen sort",
+  "after": "Downloads always order rows Technician A to Z; the on-screen sort is ignored",
+  "lost": [
+   "ignoring"
+  ]
+ },
+ {
+  "id": "TU-HRS-03",
+  "before": "Utilization % is WO hours over total hours computed from unrounded values, shown to one decimal with round-half-up",
+  "after": "Utilization % is WO hours over total hours from unrounded values",
+  "lost": [
+   "shown"
+  ]
+ },
+ {
+  "id": "TU-HRS-04",
+  "before": "A technician with only internal hours shows 0.0% utilization, and utilization never exceeds 100%",
+  "after": "A technician with only internal hours shows 0.0% utilization",
+  "lost": [
+   "exceeds"
+  ]
+ },
+ {
+  "id": "TU-LINK-01",
+  "before": "Total Hours is a real link with a non-color affordance and keyboard access, while the Summary's Total Hours is not a link",
+  "after": "Total Hours is a real link with a non-color affordance and keyboard access",
+  "lost": [
+   "summary's"
+  ]
+ },
+ {
+  "id": "TU-LINK-02",
+  "before": "The Total Hours link opens Timesheet Activities in the same tab, pre-filtered to that technician and date range",
+  "after": "The Total Hours link opens Timesheet Activities in the same tab",
+  "lost": [
+   "pre-filtered"
+  ]
+ },
+ {
+  "id": "TU-LINK-04",
+  "before": "Reconciliation exception (a): an open clock is snapshotted at each report's own load instant - a difference of the elapsed time is expected",
+  "after": "Reconcile exception (a): an open clock is snapshotted at each load instant",
+  "lost": [
+   "report's"
+  ]
+ },
+ {
+  "id": "TU-LINK-05",
+  "before": "Reconciliation exception (b): the link passes no location, so with multiple locations selected the opened view shows only the active shop",
+  "after": "Reconciliation exception (b): the link passes no location",
+  "lost": [
+   "multiple"
+  ]
+ },
+ {
+  "id": "TU-LOC-03",
+  "before": "The saved location selection restores defensively - inaccessible locations are dropped and an empty remainder falls back to the active location",
+  "after": "The saved location selection restores defensively; bad ones are dropped",
+  "lost": [
+   "remainder"
+  ]
+ },
+ {
+  "id": "TU-LOC-04",
+  "before": "Deselecting every location falls back to the active location instead of showing nothing",
+  "after": "Deselecting every location falls back to the active location",
+  "lost": [
+   "instead"
+  ]
+ },
+ {
+  "id": "TU-NAV-02",
+  "before": "The report shows one row for each technician who clocked time in the range at the selected locations",
+  "after": "One row per technician who clocked time in the range at those locations",
+  "lost": [
+   "shows"
+  ]
+ },
+ {
+  "id": "TU-NAV-05",
+  "before": "The standard loading indicator shows on load and reload, rows swap only when data returns, and the toolbar stays interactive",
+  "after": "The loading indicator shows on load and reload; rows swap only on data",
+  "lost": [
+   "stays"
+  ]
+ },
+ {
+  "id": "TU-NAV-06",
+  "before": "All clock records are day-grouped and windowed in one report-level time zone, with partial and cross-midnight records split correctly",
+  "after": "All clock records are day-grouped and windowed in one report-level time zone",
+  "lost": [
+   "correctly",
+   "partial"
+  ]
+ },
+ {
+  "id": "TU-SORT-01",
+  "before": "On load the rows are sorted by Technician A to Z with the ascending indicator and correct aria-sort exposure",
+  "after": "On load rows sort by Technician A to Z with the ascending indicator",
+  "lost": [
+   "correct",
+   "exposure"
+  ]
+ },
+ {
+  "id": "TU-SORT-02",
+  "before": "All six columns sort on screen: ascending first, toggling with no third state, and Technician's first click goes descending",
+  "after": "All six columns sort on screen: ascending first, toggling with no third state",
+  "lost": [
+   "technician's"
+  ]
+ },
+ {
+  "id": "TU-SORT-03",
+  "before": "A data reload resets the sort to Technician A to Z, and sort is never persisted across visits",
+  "after": "A data reload resets the sort to Technician A to Z",
+  "lost": [
+   "visits"
+  ]
+ },
+ {
+  "id": "TU-SORT-04",
+  "before": "Sorting reorders only the technician rows - the Summary stays at the bottom and day rows stay under their technician in date order",
+  "after": "Sorting reorders only the technician rows",
+  "lost": [
+   "their"
+  ]
+ },
+ {
+  "id": "TU-SORT-05",
+  "before": "Sorting by Est. Lost Labor keeps the em-dash rows at the bottom in both directions, while $0.00 sorts as zero",
+  "after": "Sorting Est. Lost Labor keeps em-dash rows last both ways; $0.00 sorts as 0",
+  "lost": [
+   "directions"
+  ]
+ },
+ {
+  "id": "TU-TECH-02",
+  "before": "Deselecting a technician hides the row and recalculates the Summary on screen without reloading; re-selecting restores it",
+  "after": "Deselecting a technician hides the row and recalculates the Summary",
+  "lost": [
+   "reloading",
+   "restores"
+  ]
+ },
+ {
+  "id": "TU-TECH-03",
+  "before": "Select all and Clear all controls work, and the deselected-set model keeps newly-appearing technicians selected",
+  "after": "Select all and Clear all controls set every technician on or off",
+  "lost": [
+   "deselected-set",
+   "keeps",
+   "model"
+  ]
+ },
+ {
+  "id": "TU-TECH-04",
+  "before": "Previously deselected technicians stay deselected when the user returns to the report",
+  "after": "Previously deselected technicians stay deselected on the next visit",
+  "lost": [
+   "returns"
+  ]
+ },
+ {
+  "id": "TU-VIS-02",
+  "before": "Dark mode keeps every report element legible, with the info icon at 3:1 contrast and the link affordance intact in both modes",
+  "after": "Dark mode keeps every report element legible",
+  "lost": [
+   "intact"
+  ]
+ },
+ {
+  "id": "WIP-API-04",
+  "before": "Nightly snapshot: the capture uses the report's service-type and open-status conditions and spans every location, with no user location filter",
+  "after": "Nightly snapshot spans every location with no user location filter",
+  "lost": [
+   "report's"
+  ]
+ },
+ {
+  "id": "WIP-CALC-01",
+  "before": "Money columns show US-dollar currency with two decimals, thousands separators, a leading minus for negatives, and \"$0.00\" for zero",
+  "after": "Money columns show US dollars to two decimals with thousands separators",
+  "lost": [
+   "currency",
+   "negatives",
+   "us-dollar"
+  ]
+ },
+ {
+  "id": "WIP-CALC-08",
+  "before": "Inv. Hrs shows quoted minus worked labor hours as a signed one-decimal number, colored green/red, with \"0.0\" unsigned in the default color",
+  "after": "Inv. Hrs shows quoted minus worked hours; signed to one decimal",
+  "lost": [
+   "one-decimal"
+  ]
+ },
+ {
+  "id": "WIP-CALC-09",
+  "before": "An open estimate with no approved work shows \"$0.00\" in every money column, including Total",
+  "after": "An open estimate with no approved work shows $0.00 in every money column",
+  "lost": [
+   "including"
+  ]
+ },
+ {
+  "id": "WIP-COL-03",
+  "before": "The WO # is a link that opens the work order in the same browser tab, with browser back returning to the report",
+  "after": "The WO # is a link that opens the WO in the same browser tab",
+  "lost": [
+   "returning"
+  ]
+ },
+ {
+  "id": "WIP-EXP-03",
+  "before": "Downloaded money and Inv. Hrs values keep the on-screen formats, and CSV values containing commas are double-quoted",
+  "after": "Downloaded money and Inv. Hrs values keep the on-screen formats",
+  "lost": [
+   "commas",
+   "double-quoted"
+  ]
+ },
+ {
+  "id": "WIP-EXP-06",
+  "before": "The downloaded files are named \"wip-2-report.pdf\" and \"wip-2-report.csv\" — expected current names, do not file",
+  "after": "The downloaded files are named \"wip-2-report.pdf\" and \"wip-2-report.csv\"",
+  "lost": [
+   "expected"
+  ]
+ },
+ {
+  "id": "WIP-EXP-09",
+  "before": "Export notifications: success caption, \"Empty export\" warning, and the failure error message",
+  "after": "Export notifications: success caption, \"Empty export\" warning",
+  "lost": [
+   "message"
+  ]
+ },
+ {
+  "id": "WIP-FLT-02",
+  "before": "The Customer filter is a searchable type-ahead multi-select reading \"All customers\" when empty, with a \"Clear\" action once a customer is selected",
+  "after": "Customer filter is a type-ahead multi-select reading \"All customers\"",
+  "lost": [
+   "empty",
+   "searchable"
+  ]
+ },
+ {
+  "id": "WIP-FLT-04",
+  "before": "The date-range control offers the standard presets plus Custom, defaults to \"This Week\", and does not offer \"All Time\"",
+  "after": "The date range offers the presets plus Custom; This Week default; no All Time",
+  "lost": [
+   "standard"
+  ]
+ },
+ {
+  "id": "WIP-FLT-05",
+  "before": "The date range filters by the work order's created date, reloads the report on change, and a Custom range is capped at 366 days",
+  "after": "The date range filters on the WO's created date and reloads on change",
+  "lost": [
+   "order's"
+  ]
+ },
+ {
+  "id": "WIP-FLT-07",
+  "before": "The location scope never includes an inaccessible location, and an empty selection falls back to the user's active location",
+  "after": "The location scope never includes an inaccessible location",
+  "lost": [
+   "empty"
+  ]
+ },
+ {
+  "id": "WIP-PERM-02",
+  "before": "A user without the required permission does not see Work In Progress in the reports navigation",
+  "after": "Without the permission the report is absent from the reports navigation",
+  "lost": [
+   "required"
+  ]
+ },
+ {
+  "id": "WIP-PERS-04",
+  "before": "A saved setting that is no longer valid falls back to its default instead of breaking the view",
+  "after": "A saved setting that is no longer valid falls back to its default",
+  "lost": [
+   "instead"
+  ]
+ },
+ {
+  "id": "WIP-SUM-04",
+  "before": "The per-stage figures each equal the matching tab's money: Not Started, Started — Earned, Started — Remaining, and Ready to Invoice",
+  "after": "Each per-stage figure equals the matching tab's money total",
+  "lost": [
+   "figures"
+  ]
+ },
+ {
+  "id": "WIP-SUM-07",
+  "before": "Each summary figure's information icon reveals its plain-language explanation, verbatim per the spec",
+  "after": "Each summary figure's information icon reveals its plain explanation",
+  "lost": [
+   "plain-language",
+   "verbatim"
+  ]
+ },
+ {
+  "id": "WIP-TAB-02",
+  "before": "The report opens with four tabs in a fixed order and \"Approved - partially completed\" selected by default",
+  "after": "Four tabs in a fixed order with the partially-completed tab selected",
+  "lost": [
+   "opens"
+  ]
+ },
+ {
+  "id": "WIP-TAB-03",
+  "before": "Each tab label shows the count of work orders in that tab in parentheses, including \"(0)\" for an empty tab",
+  "after": "Each tab label shows its work-order count in parentheses",
+  "lost": [
+   "empty",
+   "including"
+  ]
+ },
+ {
+  "id": "WIP-TAB-05",
+  "before": "There is no Trend / over-time tab or chart — expected in this version, do not file as a defect",
+  "after": "There is no Trend / over-time tab or chart",
+  "lost": [
+   "defect",
+   "expected",
+   "version"
+  ]
+ },
+ {
+  "id": "WIP-TOT-02",
+  "before": "The Totals row sums each visible money column, and the Inv. Hrs total keeps the signed one-decimal format and coloring",
+  "after": "The Totals row sums each visible money column and the Inv. Hrs column",
+  "lost": [
+   "keeps"
+  ]
+ },
+ {
+  "id": "WIP-VIS-03",
+  "before": "The Total column (header and cells) is bold and stays pinned to the right edge while scrolling the rows sideways",
+  "after": "The Total column is bold and stays pinned right on sideways scroll",
+  "lost": [
+   "scrolling"
+  ]
+ },
+ {
+  "id": "WIP-VIS-04",
+  "before": "The Totals row stays visible at the bottom while scrolling, the report fills the height, and only the active tab's table body scrolls",
+  "after": "The Totals row stays visible while only the active tab's body scrolls",
+  "lost": [
+   "scrolling"
+  ]
+ },
+ {
+  "id": "WIP-VIS-05",
+  "before": "The WO # link is keyboard-focusable with a visible focus indicator and opens the work order on activation",
+  "after": "The WO # link is keyboard-focusable and opens the work order",
+  "lost": [
+   "activation"
+  ]
+ },
+ {
+  "id": "WIP-VIS-06",
+  "before": "Each summary figure's information icon is reachable by keyboard and exposes its explanation to assistive technology",
+  "after": "Each summary figure's info icon is keyboard-reachable and screen-read",
+  "lost": [
+   "exposes"
+  ]
+ },
+ {
+  "id": "WIP-VIS-07",
+  "before": "In dark mode the table, summary strip, WO # link, Inv. Hrs coloring, and two-line asset cell remain legible with adequate contrast",
+  "after": "In dark mode every table; strip; link and coloring stays legible",
+  "lost": [
+   "adequate",
+   "remain"
+  ]
+ }
+]

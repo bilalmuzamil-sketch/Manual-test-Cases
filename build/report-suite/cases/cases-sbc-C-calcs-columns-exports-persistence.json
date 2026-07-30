@@ -2,7 +2,7 @@
  {
   "id": "SBC-CALC-01",
   "area": "SBC — Totals & Calculations",
-  "title": "Financial columns appear in the specified order and Subtotal/Margin follow the spec's composition rules",
+  "title": "Financial columns run in the specified order with Subtotal and Margin rules",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -29,7 +29,7 @@
  {
   "id": "SBC-CALC-02",
   "area": "SBC — Totals & Calculations",
-  "title": "Margin % = Margin over Subtotal to one decimal with a percent sign, em dash when Subtotal is zero or below, monochrome on all row types",
+  "title": "Margin % is Margin over Subtotal to one decimal; em dash when Subtotal <= 0",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -56,7 +56,7 @@
  {
   "id": "SBC-CALC-03",
   "area": "SBC — Totals & Calculations",
-  "title": "Inv. Hrs heading is verbatim and the value shows +green / -red / 0.0 default on every row type",
+  "title": "Inv. Hrs heading is verbatim; value shows +green / -red / 0.0 on every row",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -84,7 +84,7 @@
  {
   "id": "SBC-CALC-04",
   "area": "SBC — Totals & Calculations",
-  "title": "Inv. Hrs is never blank: no-labor rows show 0.0 and values that round to zero show 0.0 in the default color",
+  "title": "Inv. Hrs is never blank: no-labor rows and near-zero values both show 0.0",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -109,7 +109,7 @@
  {
   "id": "SBC-CALC-05",
   "area": "SBC — Totals & Calculations",
-  "title": "Invoice subtotals sum exactly to their asset row and asset subtotals sum exactly to the customer row",
+  "title": "Invoice subtotals sum to their asset row and asset subtotals to the customer",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -135,7 +135,7 @@
  {
   "id": "SBC-CALC-06",
   "area": "SBC — Totals & Calculations",
-  "title": "Subtotal is the rightmost column, pinned during horizontal scroll and bold everywhere, unconditionally",
+  "title": "Subtotal is the rightmost column; pinned on scroll and bold everywhere",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -162,7 +162,7 @@
  {
   "id": "SBC-CALC-07",
   "area": "SBC — Totals & Calculations",
-  "title": "The totals row covers the full filtered set of customers, not only the customers on the current page",
+  "title": "The totals row covers the whole filtered set; not just the current page",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -187,7 +187,7 @@
  {
   "id": "SBC-COL-01",
   "area": "SBC — Column Selector",
-  "title": "Column selector is a separate toolbar button with the Column Selection tooltip and nine toggles in order, all on by default",
+  "title": "Column selector is its own toolbar button with nine toggles all on",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -351,7 +351,7 @@
  {
   "id": "SBC-EXP-04",
   "area": "SBC — Exports",
-  "title": "CSV value formats: Margin % plain number, dates mm-dd-yyyy, currency plain numbers, no color",
+  "title": "CSV formats: Margin % plain; dates mm-dd-yyyy; currency plain; no color",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -377,7 +377,7 @@
  {
   "id": "SBC-EXP-05",
   "area": "SBC — Exports",
-  "title": "CSV and PDF contain exactly the customers matching the active filters and sort, including the Customer filter selection",
+  "title": "CSV and PDF hold exactly the customers matching the active filters and sort",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -502,7 +502,7 @@
  {
   "id": "SBC-EXP-10",
   "area": "SBC — Exports",
-  "title": "PDF logo is embedded, scales without distortion, and falls back from the uploaded logo to the ShopView logo to none",
+  "title": "PDF logo is embedded, scales without distortion",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View); admin access to change the organization logo for seeding.",
@@ -638,7 +638,7 @@
  {
   "id": "SBC-EXP-15",
   "area": "SBC — Exports",
-  "title": "Exporting with no matching customers still downloads a file with headers and a zero totals row, with no warning",
+  "title": "A no-match export still downloads headers and a zero totals row",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -662,7 +662,7 @@
  {
   "id": "SBC-PERS-01",
   "area": "SBC — Saved View & Persistence",
-  "title": "Filters, sort and visible columns are saved and restored on the next visit, shown immediately without a default flash",
+  "title": "Filters; sort and visible columns are restored on the next visit",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -687,7 +687,7 @@
  {
   "id": "SBC-PERS-02",
   "area": "SBC — Saved View & Persistence",
-  "title": "Type-ahead search text, expansion state and scroll position are not saved; a reload clears all expansion",
+  "title": "Type-ahead search text, expansion state and scroll position are not saved",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -714,7 +714,7 @@
  {
   "id": "SBC-PERS-03",
   "area": "SBC — Saved View & Persistence",
-  "title": "A saved value that is no longer valid is discarded and that setting falls back to its default",
+  "title": "A saved value that is no longer valid is dropped and falls back to default",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View); admin help to remove a location assignment for seeding.",
@@ -794,7 +794,7 @@
  {
   "id": "SBC-PERS-06",
   "area": "SBC — Saved View & Persistence",
-  "title": "When both a saved view and a page-link range exist, the saved view wins and the link value is ignored",
+  "title": "When a saved view and a page-link range clash the saved view wins",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
@@ -819,7 +819,7 @@
  {
   "id": "SBC-PERS-07",
   "area": "SBC — Saved View & Persistence",
-  "title": "Customer filter restore: the all-customers state restores as all (including new customers); an id set is intersected and never forces an empty view",
+  "title": "Customer filter restore: all-customers stays all; an id set is intersected",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",

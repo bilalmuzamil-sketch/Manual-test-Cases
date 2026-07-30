@@ -28,7 +28,7 @@
  {
   "id": "IV-NAV-02",
   "area": "IV — Access & Display",
-  "title": "Opening the report shows one row per in-stock part at the selected location(s), valued as of the resolved date",
+  "title": "One row per in-stock part at the selected locations valued at the resolved date",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -54,7 +54,7 @@
  {
   "id": "IV-NAV-03",
   "area": "IV — Access & Display",
-  "title": "On a first visit the report defaults to the current calendar month and the user's currently active location",
+  "title": "First visit defaults to the current calendar month and the active location",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -106,7 +106,7 @@
  {
   "id": "IV-NAV-05",
   "area": "IV — Access & Display",
-  "title": "The report is server-paginated: one page of rows at a time, and any filter/search/sort change returns to the first page",
+  "title": "The report is server-paginated: one page of rows at a time",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -187,7 +187,7 @@
  {
   "id": "IV-SCOPE-02",
   "area": "IV — Row Scope",
-  "title": "A part stocked at two selected locations appears as two rows (one per location), not merged — expected, do not file",
+  "title": "A part stocked at two selected locations shows as two rows; never merged",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A user with access to at least two locations and the inventory-reports permission.",
@@ -264,7 +264,7 @@
  {
   "id": "IV-SCOPE-05",
   "area": "IV — Row Scope",
-  "title": "There is no dead-stock exclusion — long-sitting stock still contributes to the on-hand value",
+  "title": "There is no dead-stock exclusion - a slow-moving part still appears",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
