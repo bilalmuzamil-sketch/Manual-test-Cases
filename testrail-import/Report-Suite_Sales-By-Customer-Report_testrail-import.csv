@@ -1,12 +1,12 @@
 Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
-Sales By Customer appears in Reports navigation and opens with correct titles,SBC — Access & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+"Sales By Customer listed under Performance, below existing links; titles correct",SBC — Access & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Your role has the Sales By Customer report View permission.","1. Open the Reports area from the main navigation.
-2. Look through the Reports left-side navigation for the report entry.
+2. Find the Performance group and read its entries from top to bottom.
 3. Click the ""Sales By Customer"" entry.
-4. Read the page title at the top of the report and the browser tab's title.","1. ""Sales By Customer"" is listed in the Reports left-side navigation.
+4. Read the page title at the top of the report and the browser tab's title.","1. ""Sales By Customer"" is listed in the Performance group of the Reports left-side navigation, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the new reports are added below those items without moving them.
 2. Clicking it opens the Sales By Customer report in the main content area.
 3. The page title reads ""Sales By Customer.""
-4. The browser tab title reads ""Sales By Customer - Report | ShopView"".",specs/sbc-sales-by-customer.md Story 1 S1-R1; S1-R3; S1-R4,,
+4. The browser tab title reads ""Sales By Customer - Report | ShopView"".",SV-8600 (specs/sbc-sales-by-customer.md Story 1 S1-R1; S1-R3; S1-R4 — Performance group + below-the-anchors placement per the PRD companion video 2026-07-30 01:18-02:05; the SBC spec names no nav group),,
 A user with the dedicated Sales By Customer View permission can see and open the report,SBC — Permissions,Functional,Critical,"1. A test user exists whose role has the dedicated Sales By Customer report View permission (create a ZZAUTOTEST custom role if needed).
 2. You are signed in as that user.","1. Open the Reports area.
 2. Click ""Sales By Customer"" in the left-side navigation.","1. The ""Sales By Customer"" entry is visible in the Reports navigation.

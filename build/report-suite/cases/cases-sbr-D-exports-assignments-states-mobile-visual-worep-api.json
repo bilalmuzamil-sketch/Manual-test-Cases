@@ -795,7 +795,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "specs/sbr-sales-by-representative.md Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1",
   "viu_status": "VIU-Pending",
-  "notes": "S18-R7 is self-contained and normative — if app-wide report styling has evolved, this spec is still the source of truth until a new spec round says otherwise (S18-R7.6).",
+  "notes": "S18-R7 is self-contained and normative — if app-wide report styling has evolved, this spec is still the source of truth until a new spec round says otherwise (S18-R7.6). COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact).",
   "api_related": false
  },
  {
@@ -928,18 +928,18 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R1; S19-N1",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "COMPANION-VIDEO 2026-07-30 (C15/C16, 09:41-10:53): WO-card dropdown confirmed (default Unassigned, assignable). PENDING Q5: the 'Sales Rep' label may flip to the full word 'Representative' per the no-short-forms ruling — do not edit until Chris answers.",
   "api_related": false
  },
  {
   "id": "SBR-WO-02",
   "area": "SBR — Work Order Sales Rep",
-  "title": "The Sales Rep selector offers only reps whose sales-rep toggle is currently on, and carries the accessible name \"Sales Rep\"",
+  "title": "Sales Rep selector offers only reps whose sales-rep toggle is on",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A user who can open Work Orders; staff-administration access to arrange the toggles.",
   "preconditions": [
-   "1. At least one staff member has the sales-rep toggle ON and at least one has it OFF (arrange and restore afterward)."
+   "1. At least one staff member has the sales-rep toggle ON and at least one has it OFF. To arrange this: open Settings, go to Staff, edit the staff member, and use the sales-rep toggle there (restore both afterward)."
   ],
   "steps": [
    "1. Open a Work Order and open the \"Sales Rep\" selector.",
@@ -952,9 +952,9 @@
    "3. The selector carries the accessible name \"Sales Rep\"."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R2; S19-R8",
+  "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R2; S19-R8 — toggle entry path Settings -> Staff -> edit the staff member per the PRD companion video 2026-07-30 09:17-09:41; exact toggle label to confirm live in the build)",
   "viu_status": "VIU-Pending",
-  "notes": "Restore any changed toggles afterward (shared-env rule).",
+  "notes": "Restore any changed toggles afterward (shared-env rule). COMPANION-VIDEO 2026-07-30 (C14, 09:17-09:41): entry point confirmed — 'We're going to go into settings. We're going to go staff, we're going to edit the staff member, and we have a new toggle here.' Exact on-screen toggle label not in the transcript — VIU-confirm. PENDING (C15/Q5): the selector's 'Sales Rep' label/accessible name may flip to the full word 'Representative' per the no-short-forms ruling — question Q5 to Chris; do not edit until answered. Title shortened to fit (was >80 chars).",
   "api_related": false
  },
  {
@@ -1037,7 +1037,7 @@
  {
   "id": "SBR-WO-06",
   "area": "SBR — Work Order Sales Rep",
-  "title": "The customer record shows a single Sales Rep row (\"Unassigned\" when none), and a toggled-off bound rep shows \"(Inactive)\" in the WO selector",
+  "title": "Customer record shows a \"Sales Representative\" row; \"Unassigned\" when none",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A user who can open customer records and Work Orders; staff-administration access to arrange the toggle.",
@@ -1051,14 +1051,14 @@
    "3. Turn the bound rep's sales-rep toggle OFF, reopen the Work Order, and read the Sales Rep selector; then open its option list."
   ],
   "expected": [
-   "1. The customer record's left-panel sidebar shows a single \"Sales Rep\" row with the customer's assigned rep.",
+   "1. The customer record's left-panel sidebar shows a single row labeled \"Sales Representative\" (the full word — the product owner explicitly corrected the short-form \"Sales Rep\" label here) with the customer's assigned rep.",
    "2. When no rep is assigned, the row renders \"Unassigned\".",
    "3. On the WO, the selector renders the bound rep's name with an \"(Inactive)\" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R7; S19-E1",
+  "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R7; S19-E1 — customer-card row label RE-RULED to the full 'Sales Representative' per the PRD companion video 2026-07-30 10:53-11:12, superseding the spec's 'Sales Rep'; video authoritative, newest-wins)",
   "viu_status": "VIU-Pending",
-  "notes": "Restore the rep's toggle afterward (shared-env rule).",
+  "notes": "Restore the rep's toggle afterward (shared-env rule). COMPANION-VIDEO 2026-07-30 (C17, 10:53-11:12) FIRM: 'In the customer card, this actually should say sales representative ... I will flag this immediately, label this as sales representative.' Deviation basis (Rule 25): spec S19-R7 verbatim = 'a single \"Sales Rep\" row' — superseded newest-wins; spec ratification pending (SPEC-WATCH). Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins).",
   "api_related": false
  },
  {

@@ -1,0 +1,27 @@
+{
+ "id": "TU-NAV-01",
+ "area": "TU — Access & Display",
+ "title": "Technician Utilization sits under Performance, below existing report links",
+ "priority": "Critical",
+ "type": "Functional",
+ "permissions_required": "The permission that grants access to the timesheet reports (the same permission as the existing Timesheet Activities report - this report adds no new permission).",
+ "preconditions": [
+  "1. You are signed in as a user whose role has the timesheet-reports permission."
+ ],
+ "steps": [
+  "1. Open the reports navigation.",
+  "2. Look under the Performance group.",
+  "3. Click the entry labeled Technician Utilization.",
+  "4. Note where the entry sits relative to the report links that existed before this release."
+ ],
+ "expected": [
+  "1. The report is listed under the Performance group, labeled \"Technician Utilization\".",
+  "2. Clicking it opens the report.",
+  "3. The entry sits BELOW the previously existing report links (toward the bottom) — the new reports are added without moving or disturbing the existing entries."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R1 — nav placement tightened per kickoff video P3 05:11-05:19 [below existing items, additive not interruptive], user ruling 2026-07-28: video overrides spec (video newer, last-update-wins))",
+ "viu_status": "VIU-Pending",
+ "notes": "VIU-confirm the exact timesheet-reports permission name as shown in the roles screen (the spec names it only by reference to the Timesheet Activities report). VIDEO-AUTHORITATIVE (P3, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 05:11-05:19: 'technician utilization is actually in a really bad spot right now. So, we want to move these down below what's already there.' The spec is order-agnostic among the six reports (order relax kept); the below-existing rule is the video's addition. Title shortened to fit.",
+ "api_related": false
+}

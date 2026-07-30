@@ -1,0 +1,26 @@
+{
+ "id": "IV-NAV-01",
+ "area": "IV — Access & Display",
+ "title": "Inventory Value appears in the reports navigation under the Parts group",
+ "priority": "Critical",
+ "type": "Functional",
+ "permissions_required": "A role with the existing inventory-reports permission (the report reuses it and adds no new permission — Story 1 prerequisite).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. Your role has the existing inventory-reports permission."
+ ],
+ "steps": [
+  "1. Open the reports navigation.",
+  "2. Look inside the Parts group of reports.",
+  "3. Click the \"Inventory Value\" entry."
+ ],
+ "expected": [
+  "1. The reports navigation lists a report labeled \"Inventory Value\" under the Parts group.",
+  "2. Clicking it opens the Inventory Value report."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "specs/inventory-value.md Story 1 S1-R1",
+ "viu_status": "VIU-Pending",
+ "notes": "VIU-confirm the exact reports-navigation structure and the Parts group's on-screen label live.",
+ "api_related": false
+}

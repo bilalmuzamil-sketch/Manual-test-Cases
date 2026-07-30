@@ -1,0 +1,27 @@
+{
+ "id": "SBC-CUST-02",
+ "area": "SBC — Customer Filter",
+ "title": "Typing in the Customer filter lists matching customers by contains match, with checkmarks on selected ones",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Sales By Customer report View permission.",
+ "preconditions": [
+  "1. You are on the Sales By Customer report.",
+  "2. At least two customers with distinct names have invoices in the current date range/Product Type/location (seed ZZAUTOTEST customers if needed)."
+ ],
+ "steps": [
+  "1. Open the Customer filter and type a fragment from the MIDDLE of a customer's name, in different letter case (for example type \"corp\" for \"Acme Corp\").",
+  "2. Read the list of customers shown.",
+  "3. Click one listed customer to select it and look at its row in the dropdown."
+ ],
+ "expected": [
+  "1. As you type, customers whose names contain the typed text appear in the list — matching is case-insensitive and matches anywhere in the name (a \"contains\" match, not starts-with).",
+  "2. The list is scoped to the active date range, Product Type, and location.",
+  "3. A selected customer is shown with a checkmark."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R2",
+ "viu_status": "VIU-Pending",
+ "notes": "The server-fetch aspect of the type-ahead is covered by SBC-API-03; this case verifies the visible matching behavior only. BUILD-DELTA: the server-backed type-ahead is the 2026-07-21 committed target (spec ahead of code by design) — the current build may still load a full client-side list at VIU.",
+ "api_related": false
+}

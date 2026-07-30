@@ -17,13 +17,13 @@
   ],
   "expected": [
    "1. A Parts section heading exists in the Reports navigation (this feature creates it - the application had no Parts reports before).",
-   "2. Under Parts there is an entry labeled Parts Velocity (the only Parts report in this release).",
+   "2. Under Parts there is an entry labeled Parts Velocity; Inventory Value also lives under Parts. The order of the two inside the Parts section is not fixed — do not fail the test on which of them comes first.",
    "3. Clicking it opens the Parts Velocity report."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "specs/parts-velocity.md S1-R1",
+  "spec_ref": "SV-8641 (specs/parts-velocity.md S1-R1 — the spec's 'only report' sentence is superseded: Parts Velocity and Inventory Value BOTH live under Parts per the PRD companion video 2026-07-30 00:35-01:18; PV S1-R1 vs IV S1-R1 inconsistency flagged to SPEC-WATCH)",
   "viu_status": "VIU-Pending",
-  "notes": "The spec is explicit that the Parts grouping does NOT exist today and must be added by this feature (S1-R1). VIU-confirm the exact placement and styling of the new Parts heading in the Reports navigation.",
+  "notes": "COMPANION-VIDEO 2026-07-30 (C2b/C3, 00:35-01:18): 'Parts Velocity and Inventory Value will live under here [the new Parts section]' — supersedes PV spec S1-R1's 'its first (and, in this release, only) report' (intra-suite inconsistency with IV S1-R1; flagged, Rule 15). Ordering inside the section is PO-flexible ('no alphabetical sort ... order that seems the most fitting'). The Parts grouping is still NEW (S1-R1 stands on that). VIU-confirm exact placement/styling. Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins).",
   "api_related": false
  },
  {

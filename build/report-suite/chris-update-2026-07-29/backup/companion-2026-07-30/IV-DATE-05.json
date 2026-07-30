@@ -1,0 +1,26 @@
+{
+ "id": "IV-DATE-05",
+ "area": "IV — As-of Date & Snapshots",
+ "title": "An \"As of\" indicator names the day actually shown when it is earlier than the date asked for, and is hidden when they match",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App on a desktop browser.",
+  "2. A past date exists that has NO snapshot of its own but has an earlier recorded day before it (for example, a gap day, or a date in the thinned monthly-retention band)."
+ ],
+ "steps": [
+  "1. Select a Custom range ending on the gap date (a date with no snapshot of its own).",
+  "2. Look for an \"As of\" indicator and read which day it names.",
+  "3. Then select a range ending on a day that IS recorded (or today with live values) and look for the indicator again."
+ ],
+ "expected": [
+  "1. When the displayed day is an earlier recorded day than the date asked for, the report shows an \"As of\" indicator naming the day actually shown.",
+  "2. When the displayed day matches the date asked for (the common current-view case), the \"As of\" indicator is not shown — the date control already communicates the date."
+ ],
+ "design_ref": "none — design not yet available (spec-only authoring)",
+ "spec_ref": "specs/inventory-value.md Story 5 S5-R5; S5-R6",
+ "viu_status": "VIU-Pending",
+ "notes": "VIU-confirm the indicator's exact on-screen wording — the spec pins \"As of \" plus the day but not the full label format.",
+ "api_related": false
+}

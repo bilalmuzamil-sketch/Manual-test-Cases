@@ -1,0 +1,27 @@
+{
+ "id": "PV-NAV-01",
+ "area": "PV — Access & Defaults",
+ "title": "Parts Velocity appears under a new Parts section in the Reports navigation",
+ "priority": "Critical",
+ "type": "Functional",
+ "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+ "preconditions": [
+  "1. You are signed in to the ShopView App as a user with the Manager or Office User role.",
+  "2. Your role has the Inventory Reports → View permission."
+ ],
+ "steps": [
+  "1. Open the Reports section from the main navigation.",
+  "2. Look through the report groupings for a section heading named Parts.",
+  "3. Click the entry labeled Parts Velocity."
+ ],
+ "expected": [
+  "1. A Parts section heading exists in the Reports navigation (this feature creates it - the application had no Parts reports before).",
+  "2. Under Parts there is an entry labeled Parts Velocity (the only Parts report in this release).",
+  "3. Clicking it opens the Parts Velocity report."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/parts-velocity.md S1-R1",
+ "viu_status": "VIU-Pending",
+ "notes": "The spec is explicit that the Parts grouping does NOT exist today and must be added by this feature (S1-R1). VIU-confirm the exact placement and styling of the new Parts heading in the Reports navigation.",
+ "api_related": false
+}

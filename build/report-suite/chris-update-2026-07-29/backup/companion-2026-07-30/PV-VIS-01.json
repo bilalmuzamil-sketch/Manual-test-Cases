@@ -1,0 +1,25 @@
+{
+ "id": "PV-VIS-01",
+ "area": "PV — Visual Conformance",
+ "title": "The report uses the standard two-tone layout: white card surfaces on a soft blue-grey backdrop with an edge-to-edge table",
+ "priority": "Low",
+ "type": "Functional",
+ "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
+ "preconditions": [
+  "1. You are on the Parts Velocity report with data loaded, in light mode."
+ ],
+ "steps": [
+  "1. Look at the page background, the toolbar, and the table surfaces.",
+  "2. Look at the card corners and the table's horizontal extent."
+ ],
+ "expected": [
+  "1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).",
+  "2. There is NO card border-radius - the table runs edge to edge.",
+  "3. The layout matches the application's other reports (consistency goal, §1)."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/parts-velocity.md S7-R1; §2",
+ "viu_status": "VIU-Pending",
+ "notes": "Story 7 is the normative visual spec for this report as built (S7-R7).",
+ "api_related": false
+}

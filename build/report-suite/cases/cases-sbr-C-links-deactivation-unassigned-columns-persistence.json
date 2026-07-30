@@ -1,710 +1,710 @@
 [
-  {
-    "id": "SBR-LINK-01",
-    "area": "SBR — Links & Navigation",
-    "title": "Detail-row invoice number and customer name links navigate in the current tab",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access plus permission to open the destination.",
-    "preconditions": [
-      "1. A rep row is expanded with at least one S and one P invoice visible."
-    ],
-    "steps": [
-      "1. Click a service invoice's number link and note the destination and tab.",
-      "2. Go back, then click a parts invoice's number link.",
-      "3. Click the customer name on a detail row."
-    ],
-    "expected": [
-      "1. Each invoice number is a clickable link.",
-      "2. Activating it navigates the CURRENT tab to the underlying invoice (work order or parts sale) — never a new tab.",
-      "3. The customer name is likewise a clickable link that navigates the current tab to the customer's record."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 12 S12-R1; S12-R2; S12-R3",
-    "viu_status": "VIU-Pending",
-    "notes": "Opening in a new tab (target=_blank) is explicitly listed as a defect (S12-N3). Contrast with Sales By Customer, where the customer name is plain text — the two reports differ by spec. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-LINKS): absorbed SBR-LINK-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
-    "api_related": false
-  },
-  {
-    "id": "SBR-LINK-02",
-    "area": "SBR — Links & Navigation",
-    "title": "Customer name on a detail row navigates the current tab to the customer's record",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access plus permission to open customer records.",
-    "preconditions": [
-      "1. A rep row is expanded with detail rows visible."
-    ],
-    "steps": [
-      "1. Click the customer name on a detail row."
-    ],
-    "expected": [
-      "1. The customer name is a clickable link that navigates the current tab to the customer's record."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 12 S12-R3",
-    "viu_status": "Retired 2026-07-28 (merged into SBR-LINK-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "Contrast with SBC where the customer name is plain text — the two reports differ by spec.",
-    "api_related": false
-  },
-  {
-    "id": "SBR-LINK-03",
-    "area": "SBR — Links & Navigation",
-    "title": "Browser back from a drilldown restores ALL report state including expansion and scroll, without a full reload",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. Non-default filters are set (date range, product type, invoice status, location, Show Unassigned on), two reps are expanded, and the table is scrolled partway down."
-    ],
-    "steps": [
-      "1. Click an invoice link, then press the browser back button; check every piece of state.",
-      "2. Repeat via a customer-name link.",
-      "3. Watch whether the report performs a full reload on back."
-    ],
-    "expected": [
-      "1. Back returns to the report with ALL state intact — date range, product type, invoice status, location, Show Unassigned, every rep's expansion state, and scroll position — exactly as they were.",
-      "2. Back-navigation does not trigger a full report reload.",
-      "3. This is deliberately different from a page reload, which restores persisted filters/columns/sort but resets expansion and scroll."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 12 S12-R3a; Story 23 S23-R2",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-LINK-04",
-    "area": "SBR — Links & Navigation",
-    "title": "Link styling: theme-primary invoice links and body-colored customer links, hover/focus underline, never browser-purple, in both modes",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. Detail rows are visible; at least one invoice and one customer link have been clicked earlier; you can switch to dark mode."
-    ],
-    "steps": [
-      "1. Inspect an invoice-number link at rest, on hover, on keyboard focus, and after a click.",
-      "2. Inspect a customer-name link the same way.",
-      "3. Switch to dark mode and repeat."
-    ],
-    "expected": [
-      "1. Invoice-number link: theme-primary color, no underline at rest; an underline appears on hover and on keyboard focus (visible focus indicator); it never recolors to browser-purple after a click.",
-      "2. Customer-name link: inherits the cell's body text color (never theme-blue), no underline at rest; underline on hover and keyboard focus; never browser-purple.",
-      "3. Both hold in light and dark mode and across return visits.",
-      "4. Underlined-at-rest links, browser-blue customer names, purple post-click links, and new-tab destinations are all defects."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 12 S12-R4; S12-R5; S12-R6; S12-N3",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-LINK-05",
-    "area": "SBR — Links & Navigation",
-    "title": "An unavailable invoice or customer destination shows the standard not-found/access-denied state and back still returns",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "Reports/Performance access; ability to delete/reverse a target for seeding.",
-    "preconditions": [
-      "1. The report is open with detail rows visible; in another session the target invoice is reversed/deleted (and, for the customer leg, a customer record is made unavailable if the app allows)."
-    ],
-    "steps": [
-      "1. Without refreshing, click the now-unavailable invoice's link; read the destination, then press back.",
-      "2. If producible, repeat for an unavailable customer record."
-    ],
-    "expected": [
-      "1. The tab navigates to the application's standard not-found/access-denied state.",
-      "2. Pressing back still returns to the report."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 12 S12-N1; S12-N2",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-DEACT-01",
-    "area": "SBR — Staff Deactivation",
-    "title": "Deactivating a sales rep with no customer assignments applies silently with no dialog",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Owner/Administrator/Manager profile (or equivalent custom role) with staff administration.",
-    "preconditions": [
-      "1. A ZZAUTOTEST staff member is active with the sales-rep toggle ON and NO customers assigned to them as sales rep."
-    ],
-    "steps": [
-      "1. Edit the staff member in staff administration and toggle their active status off."
-    ],
-    "expected": [
-      "1. The deactivation applies silently — no warning dialog is shown."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R2",
-    "viu_status": "Retired 2026-07-28 (merged into SBR-DEACT-07 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "Restore the staff member afterwards. The precondition check behind this branch is covered by SBR-API-06.",
-    "api_related": false
-  },
-  {
-    "id": "SBR-DEACT-02",
-    "area": "SBR — Staff Deactivation",
-    "title": "Deactivating a rep with assignments opens the Deactivate dialog with the counted, pluralized headline and reassurance line, trapping focus",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
-    "preconditions": [
-      "1. ZZAUTOTEST rep \"A\" is active, toggle on, and assigned as sales rep to exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers."
-    ],
-    "steps": [
-      "1. Toggle rep B's active status off and read the dialog before confirming anything.",
-      "2. Press Tab repeatedly and watch where focus goes; dismiss and watch where focus returns.",
-      "3. Repeat step 1 for rep A (1 customer) and read the headline's noun."
-    ],
-    "expected": [
-      "1. A warning dialog titled \"Deactivate {Staff Name}?\" opens BEFORE any change is applied; the deactivation does not commit until confirmed.",
-      "2. The body shows \"{Staff Name} is the sales rep on {N} customer{s}.\" — singular for N=1 (\"1 customer\"), plural otherwise (\"3 customers\") — followed by the reassurance line \"Their customer assignments will stay where they are.\"",
-      "3. Focus is trapped within the dialog while open and returns to the invoking control on dismiss."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R3; S13-R4; S13-R12",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-DEACT-03",
-    "area": "SBR — Staff Deactivation",
-    "title": "Type-YES gate: auto-focused input, case-insensitive whitespace-tolerant match, disabled-button tooltip, Enter submits",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
-    "preconditions": [
-      "1. The Deactivate dialog is open for a rep with assignments."
-    ],
-    "steps": [
-      "1. Read the instruction text and check which element holds focus.",
-      "2. Hover the disabled \"Deactivate\" button and read the tooltip.",
-      "3. Type \"no\" — check the button; clear and type \"  yes  \" (with spaces), then \"Yes\", then \"YES\" — check the button each time.",
-      "4. With a valid entry, press Enter."
-    ],
-    "expected": [
-      "1. Below the reassurance copy, instruction text reads \"Type YES to confirm\" (with \"YES\" emphasized) above a single auto-focused text input.",
-      "2. The primary \"Deactivate\" button is disabled until the input matches the confirmation word case-insensitively, ignoring leading/trailing whitespace — yes, YES, Yes (and padded variants) all enable it; \"no\" does not.",
-      "3. While disabled, hovering it shows the tooltip \"Type YES above to enable.\"",
-      "4. Pressing Enter while valid submits."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R6; S13-R7",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-DEACT-04",
-    "area": "SBR — Staff Deactivation",
-    "title": "Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
-    "preconditions": [
-      "1. The Deactivate dialog is open for a rep with assignments."
-    ],
-    "steps": [
-      "1. Click the \"Cancel\" button and watch the dialog; then re-open it.",
-      "2. Click the \"X\" close icon and watch the dialog; then re-open it.",
-      "3. Press the \"Esc\" key on the keyboard and watch the dialog.",
-      "4. Re-open the dialog and click outside it (on the greyed-out background).",
-      "5. After each action, check the staff member's active status."
-    ],
-    "expected": [
-      "1. The dialog has a \"Cancel\" button (red outline) and an \"X\" close icon.",
-      "2. Clicking \"Cancel\" closes the dialog; clicking the \"X\" icon closes the dialog.",
-      "3. Pressing the \"Esc\" key does NOT close the dialog - it stays open (the app's general rule is that pop-ups do not close with the Esc key).",
-      "4. Clicking outside the dialog does NOT close it.",
-      "5. When the dialog closes via Cancel or X, the staff member's active status is unchanged - no deactivation happens."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R8)",
-    "viu_status": "VIU-Pending",
-    "notes": "Reworded per PO Chris Ward's answer (2026-07-28, Q1 = B): the 'deactivate a sales rep' confirm dialog follows the app's general house rule (pop-ups do not close with Esc); dismissal is via Cancel and X only. This overrides the spec's S13-R8 'Esc dismisses' line (a spec issue Chris will correct). VIU-confirm the shipped behaviour on the QA branch before finalizing.",
-    "api_related": false
-  },
-  {
-    "id": "SBR-DEACT-05",
-    "area": "SBR — Staff Deactivation",
-    "title": "Valid submit locks the dialog, then deactivates keeping assignments",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
-    "preconditions": [
-      "1. The Deactivate dialog is open for a ZZAUTOTEST rep with known customer assignments."
-    ],
-    "steps": [
-      "1. Type YES and submit; during the request try Cancel, X, and Escape.",
-      "2. After success, check the staff member's status and each previously assigned customer's Sales Rep."
-    ],
-    "expected": [
-      "1. The \"Deactivate\" button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and the Cancel and X controls are non-interactive during the request (pressing the \"Esc\" key never closes the dialog at any time).",
-      "2. On success the dialog closes and the change applies.",
-      "3. Customer assignments are NOT modified — every customer stays assigned to this rep; denormalized rep names and past invoice snapshots are preserved.",
-      "4. Deactivation never forces reassignment, blocks on assignments, or auto-reassigns."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R9; S13-R10; S13-E1)",
-    "viu_status": "VIU-Pending",
-    "notes": "Restore the rep afterwards (reactivate). Consistency edit 2026-07-28 (PO Q1 = B): clarified that the Esc key never closes the deactivate dialog (aligns with SBR-DEACT-04).",
-    "api_related": false
-  },
-  {
-    "id": "SBR-DEACT-06",
-    "area": "SBR — Staff Deactivation",
-    "title": "After deactivation the sales-rep toggle is unchanged, the Assignments CSV shows Rep is active? = No, and report credit stays intact",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Owner/Administrator/Manager profile with staff administration and Reports access.",
-    "preconditions": [
-      "1. A ZZAUTOTEST rep with assignments AND matching invoices was just deactivated via the dialog flow."
-    ],
-    "steps": [
-      "1. Re-open the staff member and read the sales-rep toggle.",
-      "2. Download the Sales Rep Assignments CSV and read the rep's rows.",
-      "3. Open the report and find the rep's row."
-    ],
-    "expected": [
-      "1. The sales-rep toggle state is unchanged by the deactivation flow.",
-      "2. In the Sales Rep Assignments CSV the rep's customers show \"Rep is active?\" = \"No\" — that column is driven by staff-active status, not the toggle.",
-      "3. In the report the rep still appears with credit intact; the \"(Inactive)\" marker appears only if the sales-rep TOGGLE is off (a separate flag from staff-active status)."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R11; Story 15 S15-R6; Story 5 S5-R9",
-    "viu_status": "VIU-Pending",
-    "notes": "Staff-active status and the sales-rep toggle are independent flags (§5) — the CSV column and the report marker track DIFFERENT flags by design.",
-    "api_related": false
-  },
-  {
-    "id": "SBR-DEACT-07",
-    "area": "SBR — Staff Deactivation",
-    "title": "No dialog: toggle off, no assignments, already inactive, or reactivation",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
-    "preconditions": [
-      "1. ZZAUTOTEST staff member X is active WITHOUT the sales-rep toggle; ZZAUTOTEST rep Y (with assignments) is currently inactive; ZZAUTOTEST rep Z is active with the sales-rep toggle ON and NO customers assigned."
-    ],
-    "steps": [
-      "1. Deactivate X and watch for a dialog.",
-      "2. Reactivate rep Y via the standard toggle and watch for a dialog; check Y's customer assignments afterwards.",
-      "3. Deactivate rep Z (sales-rep toggle on, no assignments) and watch for a dialog."
-    ],
-    "expected": [
-      "1. For a staff member without the sales-rep toggle, the precondition check is skipped and no warning is shown.",
-      "2. Reactivation never shows the warning dialog (the flow does not apply to an already-inactive member).",
-      "3. After reactivation the assignments re-surface immediately with no extra action.",
-      "4. Deactivating a sales rep with NO customer assignments applies silently — no warning dialog."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R2; S13-N2; S13-N3; S13-E3",
-    "viu_status": "VIU-Pending",
-    "notes": "Restore the ZZAUTOTEST staff members afterwards. The precondition check behind the silent branch is covered by the API case. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-NODIALOG): absorbed SBR-DEACT-01. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
-    "api_related": false
-  },
-  {
-    "id": "SBR-DEACT-08",
-    "area": "SBR — Staff Deactivation",
-    "title": "A server-side deactivation failure shows the canonical error toast, leaves the status unchanged, and clears the input on the next open",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
-    "preconditions": [
-      "1. The Deactivate dialog is open for a rep with assignments; you can force the request to fail (go offline just before submitting)."
-    ],
-    "steps": [
-      "1. Type YES, force the failure condition, and submit.",
-      "2. Read the toast; check the staff member's active status.",
-      "3. Dismiss, re-open the dialog, and look at the confirmation input."
-    ],
-    "expected": [
-      "1. An error toast is shown: \"Ooooops! An error occured\" with the caption \"For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance.\" — it persists 120 seconds or until dismissed.",
-      "2. The active status is unchanged.",
-      "3. Each fresh dialog open requires a fresh confirmation entry — the input clears on open."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-N5; §7",
-    "viu_status": "VIU-Pending",
-    "notes": "KNOWN-LIMITATION ENCODING: \"Ooooops! An error occured\" (typo as shipped) is the canonical ShopView fallback wording per §7 — do NOT file the typo as a defect of this feature.",
-    "api_related": false
-  },
-  {
-    "id": "SBR-UNAS-01",
-    "area": "SBR — Show Unassigned",
-    "title": "Show Unassigned sits between the column selector and the date picker, is off by default, and while off unassigned invoices contribute nothing",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. No remembered settings; at least one matching invoice with NO assigned rep exists (seed via a WO with no Sales Rep whose customer also has no rep)."
-    ],
-    "steps": [
-      "1. Find the \"Show Unassigned\" toggle in the toolbar and note its position and default state.",
-      "2. With it off, look for an Unassigned row and check the grand Totals against the rep rows only."
-    ],
-    "expected": [
-      "1. A \"Show Unassigned\" toggle sits between the column selector and the date range picker; it is OFF by default.",
-      "2. While off, invoices with no assigned rep contribute to nothing — no row, and not counted in any total."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 22 S22-R1; S22-R2; Story 18 S18-R7.2",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-UNAS-02",
-    "area": "SBR — Show Unassigned",
-    "title": "Show Unassigned adds one top-pinned Unassigned row that acts like a rep row",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. Matching unassigned invoices exist; the grand Totals with the toggle off are noted."
-    ],
-    "steps": [
-      "1. Turn \"Show Unassigned\" on and read the new row and its position.",
-      "2. Read the grand Totals indicator.",
-      "3. Read the Unassigned row's columns and (N) count, click its chevron, and look for any \"(Inactive)\" tag.",
-      "4. Turn the toggle off again."
-    ],
-    "expected": [
-      "1. A single summary row labeled \"Unassigned\" (verbatim) rolls up every matching invoice that has no assigned rep, respecting all other active filters.",
-      "2. The row is pinned to the TOP of the table, above the A→Z reps, and stays pinned regardless of sort.",
-      "3. Toggling re-renders the report and recomputes the grand Totals to include or exclude the Unassigned row accordingly.",
-      "4. The Unassigned row shows the same metric columns and (N) count as any rep summary row, is expandable to its contributing invoices, is included in the grand Totals, and never carries an \"(Inactive)\" tag."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 22 S22-R3; S22-R4; S22-R5; S22-R6; Story 6 S6-R1",
-    "viu_status": "VIU-Pending",
-    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-UNASROW): absorbed SBR-UNAS-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
-    "api_related": false
-  },
-  {
-    "id": "SBR-UNAS-03",
-    "area": "SBR — Show Unassigned",
-    "title": "The Unassigned row behaves like a rep row — count, expandable, in the Totals — and never carries an (Inactive) tag",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. Show Unassigned is on with a populated Unassigned row."
-    ],
-    "steps": [
-      "1. Read the Unassigned row's columns and (N) count.",
-      "2. Click its chevron.",
-      "3. Look for any \"(Inactive)\" tag."
-    ],
-    "expected": [
-      "1. The Unassigned row shows the same metric columns and the (N) count like any rep summary row.",
-      "2. It is expandable to its contributing invoices.",
-      "3. It is included in the grand Totals indicator.",
-      "4. It never carries an \"(Inactive)\" tag."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 22 S22-R5; Story 6 S6-R1",
-    "viu_status": "Retired 2026-07-28 (merged into SBR-UNAS-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-UNAS-04",
-    "area": "SBR — Show Unassigned",
-    "title": "No empty Unassigned row is ever rendered, and toggling off while expanded removes the row which returns collapsed",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. Scenario A: a filter set with NO matching unassigned invoices (but some rep rows).",
-      "2. Scenario B: the Unassigned row is populated and expanded."
-    ],
-    "steps": [
-      "1. Scenario A: turn Show Unassigned on and look for the row; then narrow so no reps match either and read the table.",
-      "2. Scenario B: with the Unassigned row expanded, turn the toggle off, then back on."
-    ],
-    "expected": [
-      "1. With the toggle on but no matching unassigned invoices, no Unassigned row is shown — an empty Unassigned row is never rendered; with no rep rows either, the empty state applies.",
-      "2. Turning the toggle off removes the expanded row; turning it back on renders it collapsed."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 22 S22-N1; Story 6 S6-N2",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-COL-01",
-    "area": "SBR — Column Selector",
-    "title": "Column selector: seven metric toggles; five always-on columns cannot be hidden",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. No remembered column preference exists (first visit or cleared storage)."
-    ],
-    "steps": [
-      "1. Click the column selector button in the toolbar.",
-      "2. Read the toggle list.",
-      "3. Check the table's visible columns.",
-      "4. Look for Date, Invoice, Customer, Status, or Subtotal in the toggle list.",
-      "5. Hide all seven metric columns and read the table and the grand Totals indicator."
-    ],
-    "expected": [
-      "1. The dropdown lists the seven toggleable metric columns, each with a toggle switch: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %.",
-      "2. On first visit all seven metric columns are visible.",
-      "3. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.",
-      "4. With all seven metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1",
-    "viu_status": "VIU-Pending",
-    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-COLSEL): absorbed SBR-COL-02, SBR-COL-06. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
-    "api_related": false
-  },
-  {
-    "id": "SBR-COL-02",
-    "area": "SBR — Column Selector",
-    "title": "The five always-visible columns do not appear in the dropdown and cannot be hidden",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. The column selector dropdown is open."
-    ],
-    "steps": [
-      "1. Look for Date, Invoice, Customer, Status, or Subtotal in the toggle list."
-    ],
-    "expected": [
-      "1. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 20 S20-R3",
-    "viu_status": "Retired 2026-07-28 (merged into SBR-COL-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-COL-03",
-    "area": "SBR — Column Selector",
-    "title": "Toggling a column applies immediately across summary rows, detail rows and the grand Totals at once",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. A rep is expanded and the Totals indicator is visible."
-    ],
-    "steps": [
-      "1. Toggle \"Parts Margin\" off and immediately check the summary rows, detail rows, and the Totals row.",
-      "2. Toggle it back on."
-    ],
-    "expected": [
-      "1. The toggle takes effect immediately — no confirm step.",
-      "2. Hiding a metric column removes it from rep summary rows, invoice detail rows, and the grand Totals indicator simultaneously; showing restores it everywhere at once."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 20 S20-R4; S20-R7",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-COL-04",
-    "area": "SBR — Column Selector",
-    "title": "Column visibility never affects the exports — all four downloads always include all metric columns",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. Several metric columns are hidden via the column selector."
-    ],
-    "steps": [
-      "1. Download all four exports (Summary PDF, Expanded View PDF, Summary CSV, Expanded View CSV).",
-      "2. Check each file's columns."
-    ],
-    "expected": [
-      "1. All four downloads include ALL metric columns regardless of the on-screen column selector state."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 20 S20-R8",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-COL-05",
-    "area": "SBR — Column Selector",
-    "title": "Hiding the active sort column keeps the sort; showing it again reveals the sort indicator",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. The report is sorted by a metric column (e.g., Margin descending)."
-    ],
-    "steps": [
-      "1. Hide that column via the column selector and read the row order.",
-      "2. Show the column again and look at its header."
-    ],
-    "expected": [
-      "1. Hiding the active sort column does not clear the sort — rows stay ordered by the now-hidden metric until another sort is chosen or the A→Z default is restored.",
-      "2. Showing the column again reveals the sort indicator on it."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 20 S20-R9",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-COL-06",
-    "area": "SBR — Column Selector",
-    "title": "With all seven metric columns hidden the five always-on columns and the grand Totals still render — not an empty state",
-    "priority": "Medium",
-    "type": "Negative",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. You are on the report with data."
-    ],
-    "steps": [
-      "1. Hide all seven metric columns.",
-      "2. Read the table and the grand Totals indicator."
-    ],
-    "expected": [
-      "1. The table still renders the five always-on columns (Date, Invoice, Customer, Status, Subtotal) and the grand Totals indicator.",
-      "2. No empty or error state is shown."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 20 S20-N1",
-    "viu_status": "Retired 2026-07-28 (merged into SBR-COL-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-PERS-01",
-    "area": "SBR — Persistence",
-    "title": "All filter and view settings are remembered per browser and restored before the first data fetch on the next visit",
-    "priority": "Critical",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. You are on the report in a browser you can revisit."
-    ],
-    "steps": [
-      "1. Set a custom date range, \"Parts only,\" \"Paid,\" a specific location set, Show Unassigned on, hide two metric columns, and sort by Margin descending.",
-      "2. Leave the report and return; also try a full page reload.",
-      "3. Watch what data loads first."
-    ],
-    "expected": [
-      "1. Every setting is restored: date range (including the custom start/end), product type, invoice status, location, Show Unassigned, column visibility, and the active column sort (column + direction).",
-      "2. The settings are restored BEFORE the first data fetch — the report does not fetch defaults first and then re-fetch."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 23 S23-R1; Story 20 S20-R5",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  },
-  {
-    "id": "SBR-PERS-02",
-    "area": "SBR — Persistence",
-    "title": "Expansion state and scroll position are not remembered and reset on reload",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. Two reps are expanded and the table is scrolled partway."
-    ],
-    "steps": [
-      "1. Reload the page.",
-      "2. Check the rows and the scroll position."
-    ],
-    "expected": [
-      "1. All rows render collapsed and the scroll position resets.",
-      "2. This is the specified behavior (only back-navigation from a drilldown restores expansion/scroll — see SBR-LINK-03), not a defect."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 23 S23-R2; §2 Out of Scope",
-    "viu_status": "VIU-Pending",
-    "notes": "KNOWN-LIMITATION ENCODING per §2 Out of Scope.",
-    "api_related": false
-  },
-  {
-    "id": "SBR-PERS-03",
-    "area": "SBR — Persistence",
-    "title": "Restoration is defensive: a stale saved value falls back to its default and never causes an error or invalid request",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access; admin help to remove a location assignment.",
-    "preconditions": [
-      "1. Your saved settings include a location you are then un-assigned from (restore access afterwards)."
-    ],
-    "steps": [
-      "1. Return to the report after the access change.",
-      "2. Read the location filter, the data, and watch for any error."
-    ],
-    "expected": [
-      "1. The no-longer-valid location falls back to the default (your active location) rather than being sent to the server.",
-      "2. No error occurs — a stale saved setting can never cause an error or an invalid request.",
-      "3. Per the spec the same applies to a range or sort column that no longer exists and to a hidden-but-sorted column."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 23 S23-R3",
-    "viu_status": "VIU-Pending",
-    "notes": "Only the location leg is reliably provocable without a build change — record what could and could not be provoked.",
-    "api_related": false
-  },
-  {
-    "id": "SBR-PERS-04",
-    "area": "SBR — Persistence",
-    "title": "First visit or cleared storage yields all defaults; no server-side profile",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. You have distinctive saved settings, then clear the browser's site data (or use a fresh profile).",
-      "2. You are working in a known active location (the application's location switcher)."
-    ],
-    "steps": [
-      "1. Open the report and read every setting."
-    ],
-    "expected": [
-      "1. Date range = This Month; Product Type = \"Parts & Service\"; Invoice Status = \"All Statuses\"; Location = your currently active location only (the one location you are working in); Show Unassigned = off; all seven metric columns visible; sort = the A→Z default.",
-      "2. Clearing browser storage fully returns the report to first-visit defaults — no server-side profile brings the old settings back."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 23 S23-R4; S23-N1; Story 2 S2-R4; Story 21 S21-R2",
-    "viu_status": "VIU-Pending",
-    "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-DEFAULTS): absorbed SBR-DATE-03, SBR-LOC-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
-    "api_related": false
-  },
-  {
-    "id": "SBR-PERS-05",
-    "area": "SBR — Persistence",
-    "title": "The A to Z default is its own saved value: restoring a state with no financial sort returns to A to Z, not an arbitrary column",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Reports/Performance access.",
-    "preconditions": [
-      "1. You have never clicked a financial column header in this browser session/profile (the report is in the A→Z default)."
-    ],
-    "steps": [
-      "1. Change a few filters (no sort click), leave the report, and return.",
-      "2. Read the row order and the headers."
-    ],
-    "expected": [
-      "1. The report restores to the A→Z default order by rep display name.",
-      "2. No financial column shows a sort indicator — the saved \"no financial sort\" state restores as A→Z, not as an arbitrary column."
-    ],
-    "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-    "spec_ref": "specs/sbr-sales-by-representative.md Story 23 S23-R5; Story 11 S11-R4",
-    "viu_status": "VIU-Pending",
-    "notes": "",
-    "api_related": false
-  }
+ {
+  "id": "SBR-LINK-01",
+  "area": "SBR — Links & Navigation",
+  "title": "Detail-row invoice number and customer name links navigate in the current tab",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access plus permission to open the destination.",
+  "preconditions": [
+   "1. A rep row is expanded with at least one S and one P invoice visible."
+  ],
+  "steps": [
+   "1. Click a service invoice's number link and note the destination and tab.",
+   "2. Go back, then click a parts invoice's number link.",
+   "3. Click the customer name on a detail row."
+  ],
+  "expected": [
+   "1. Each invoice number is a clickable link.",
+   "2. Activating it navigates the CURRENT tab to the underlying invoice (work order or parts sale) — never a new tab.",
+   "3. The customer name is likewise a clickable link that navigates the current tab to the customer's record."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 12 S12-R1; S12-R2; S12-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "Opening in a new tab (target=_blank) is explicitly listed as a defect (S12-N3). Contrast with Sales By Customer, where the customer name is plain text — the two reports differ by spec. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-LINKS): absorbed SBR-LINK-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-LINK-02",
+  "area": "SBR — Links & Navigation",
+  "title": "Customer name on a detail row navigates the current tab to the customer's record",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access plus permission to open customer records.",
+  "preconditions": [
+   "1. A rep row is expanded with detail rows visible."
+  ],
+  "steps": [
+   "1. Click the customer name on a detail row."
+  ],
+  "expected": [
+   "1. The customer name is a clickable link that navigates the current tab to the customer's record."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 12 S12-R3",
+  "viu_status": "Retired 2026-07-28 (merged into SBR-LINK-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "Contrast with SBC where the customer name is plain text — the two reports differ by spec.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-LINK-03",
+  "area": "SBR — Links & Navigation",
+  "title": "Browser back from a drilldown restores ALL report state including expansion and scroll, without a full reload",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. Non-default filters are set (date range, product type, invoice status, location, Show Unassigned on), two reps are expanded, and the table is scrolled partway down."
+  ],
+  "steps": [
+   "1. Click an invoice link, then press the browser back button; check every piece of state.",
+   "2. Repeat via a customer-name link.",
+   "3. Watch whether the report performs a full reload on back."
+  ],
+  "expected": [
+   "1. Back returns to the report with ALL state intact — date range, product type, invoice status, location, Show Unassigned, every rep's expansion state, and scroll position — exactly as they were.",
+   "2. Back-navigation does not trigger a full report reload.",
+   "3. This is deliberately different from a page reload, which restores persisted filters/columns/sort but resets expansion and scroll."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 12 S12-R3a; Story 23 S23-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-LINK-04",
+  "area": "SBR — Links & Navigation",
+  "title": "Link styling: theme-primary invoice links and body-colored customer links, hover/focus underline, never browser-purple, in both modes",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. Detail rows are visible; at least one invoice and one customer link have been clicked earlier; you can switch to dark mode."
+  ],
+  "steps": [
+   "1. Inspect an invoice-number link at rest, on hover, on keyboard focus, and after a click.",
+   "2. Inspect a customer-name link the same way.",
+   "3. Switch to dark mode and repeat."
+  ],
+  "expected": [
+   "1. Invoice-number link: theme-primary color, no underline at rest; an underline appears on hover and on keyboard focus (visible focus indicator); it never recolors to browser-purple after a click.",
+   "2. Customer-name link: inherits the cell's body text color (never theme-blue), no underline at rest; underline on hover and keyboard focus; never browser-purple.",
+   "3. Both hold in light and dark mode and across return visits.",
+   "4. Underlined-at-rest links, browser-blue customer names, purple post-click links, and new-tab destinations are all defects."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 12 S12-R4; S12-R5; S12-R6; S12-N3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-LINK-05",
+  "area": "SBR — Links & Navigation",
+  "title": "An unavailable invoice or customer destination shows the standard not-found/access-denied state and back still returns",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Reports/Performance access; ability to delete/reverse a target for seeding.",
+  "preconditions": [
+   "1. The report is open with detail rows visible; in another session the target invoice is reversed/deleted (and, for the customer leg, a customer record is made unavailable if the app allows)."
+  ],
+  "steps": [
+   "1. Without refreshing, click the now-unavailable invoice's link; read the destination, then press back.",
+   "2. If producible, repeat for an unavailable customer record."
+  ],
+  "expected": [
+   "1. The tab navigates to the application's standard not-found/access-denied state.",
+   "2. Pressing back still returns to the report."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 12 S12-N1; S12-N2",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-DEACT-01",
+  "area": "SBR — Staff Deactivation",
+  "title": "Deactivating a sales rep with no customer assignments applies silently with no dialog",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Owner/Administrator/Manager profile (or equivalent custom role) with staff administration.",
+  "preconditions": [
+   "1. A ZZAUTOTEST staff member is active with the sales-rep toggle ON and NO customers assigned to them as sales rep."
+  ],
+  "steps": [
+   "1. Edit the staff member in staff administration and toggle their active status off."
+  ],
+  "expected": [
+   "1. The deactivation applies silently — no warning dialog is shown."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R2",
+  "viu_status": "Retired 2026-07-28 (merged into SBR-DEACT-07 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "Restore the staff member afterwards. The precondition check behind this branch is covered by SBR-API-06.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-DEACT-02",
+  "area": "SBR — Staff Deactivation",
+  "title": "Deactivating a rep with assignments opens the Deactivate dialog with the counted, pluralized headline and reassurance line, trapping focus",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
+  "preconditions": [
+   "1. ZZAUTOTEST rep \"A\" is active, toggle on, and assigned as sales rep to exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers."
+  ],
+  "steps": [
+   "1. Toggle rep B's active status off and read the dialog before confirming anything.",
+   "2. Press Tab repeatedly and watch where focus goes; dismiss and watch where focus returns.",
+   "3. Repeat step 1 for rep A (1 customer) and read the headline's noun."
+  ],
+  "expected": [
+   "1. A warning dialog titled \"Deactivate {Staff Name}?\" opens BEFORE any change is applied; the deactivation does not commit until confirmed.",
+   "2. The body shows \"{Staff Name} is the sales rep on {N} customer{s}.\" — singular for N=1 (\"1 customer\"), plural otherwise (\"3 customers\") — followed by the reassurance line \"Their customer assignments will stay where they are.\"",
+   "3. Focus is trapped within the dialog while open and returns to the invoking control on dismiss."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R3; S13-R4; S13-R12",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-DEACT-03",
+  "area": "SBR — Staff Deactivation",
+  "title": "Type-YES gate: auto-focused input, case-insensitive whitespace-tolerant match, disabled-button tooltip, Enter submits",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
+  "preconditions": [
+   "1. The Deactivate dialog is open for a rep with assignments."
+  ],
+  "steps": [
+   "1. Read the instruction text and check which element holds focus.",
+   "2. Hover the disabled \"Deactivate\" button and read the tooltip.",
+   "3. Type \"no\" — check the button; clear and type \"  yes  \" (with spaces), then \"Yes\", then \"YES\" — check the button each time.",
+   "4. With a valid entry, press Enter."
+  ],
+  "expected": [
+   "1. Below the reassurance copy, instruction text reads \"Type YES to confirm\" (with \"YES\" emphasized) above a single auto-focused text input.",
+   "2. The primary \"Deactivate\" button is disabled until the input matches the confirmation word case-insensitively, ignoring leading/trailing whitespace — yes, YES, Yes (and padded variants) all enable it; \"no\" does not.",
+   "3. While disabled, hovering it shows the tooltip \"Type YES above to enable.\"",
+   "4. Pressing Enter while valid submits."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R6; S13-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-DEACT-04",
+  "area": "SBR — Staff Deactivation",
+  "title": "Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
+  "preconditions": [
+   "1. The Deactivate dialog is open for a rep with assignments."
+  ],
+  "steps": [
+   "1. Click the \"Cancel\" button and watch the dialog; then re-open it.",
+   "2. Click the \"X\" close icon and watch the dialog; then re-open it.",
+   "3. Press the \"Esc\" key on the keyboard and watch the dialog.",
+   "4. Re-open the dialog and click outside it (on the greyed-out background).",
+   "5. After each action, check the staff member's active status."
+  ],
+  "expected": [
+   "1. The dialog has a \"Cancel\" button (red outline) and an \"X\" close icon.",
+   "2. Clicking \"Cancel\" closes the dialog; clicking the \"X\" icon closes the dialog.",
+   "3. Pressing the \"Esc\" key does NOT close the dialog - it stays open (the app's general rule is that pop-ups do not close with the Esc key).",
+   "4. Clicking outside the dialog does NOT close it.",
+   "5. When the dialog closes via Cancel or X, the staff member's active status is unchanged - no deactivation happens."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R8)",
+  "viu_status": "VIU-Pending",
+  "notes": "Reworded per PO Chris Ward's answer (2026-07-28, Q1 = B): the 'deactivate a sales rep' confirm dialog follows the app's general house rule (pop-ups do not close with Esc); dismissal is via Cancel and X only. This overrides the spec's S13-R8 'Esc dismisses' line (a spec issue Chris will correct). VIU-confirm the shipped behaviour on the QA branch before finalizing.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-DEACT-05",
+  "area": "SBR — Staff Deactivation",
+  "title": "Valid submit locks the dialog, then deactivates keeping assignments",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
+  "preconditions": [
+   "1. The Deactivate dialog is open for a ZZAUTOTEST rep with known customer assignments."
+  ],
+  "steps": [
+   "1. Type YES and submit; during the request try Cancel, X, and Escape.",
+   "2. After success, check the staff member's status and each previously assigned customer's Sales Rep."
+  ],
+  "expected": [
+   "1. The \"Deactivate\" button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and the Cancel and X controls are non-interactive during the request (pressing the \"Esc\" key never closes the dialog at any time).",
+   "2. On success the dialog closes and the change applies.",
+   "3. Customer assignments are NOT modified — every customer stays assigned to this rep; denormalized rep names and past invoice snapshots are preserved.",
+   "4. Deactivation never forces reassignment, blocks on assignments, or auto-reassigns."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R9; S13-R10; S13-E1)",
+  "viu_status": "VIU-Pending",
+  "notes": "Restore the rep afterwards (reactivate). Consistency edit 2026-07-28 (PO Q1 = B): clarified that the Esc key never closes the deactivate dialog (aligns with SBR-DEACT-04).",
+  "api_related": false
+ },
+ {
+  "id": "SBR-DEACT-06",
+  "area": "SBR — Staff Deactivation",
+  "title": "After deactivation the sales-rep toggle is unchanged, the Assignments CSV shows Rep is active? = No, and report credit stays intact",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Owner/Administrator/Manager profile with staff administration and Reports access.",
+  "preconditions": [
+   "1. A ZZAUTOTEST rep with assignments AND matching invoices was just deactivated via the dialog flow."
+  ],
+  "steps": [
+   "1. Re-open the staff member and read the sales-rep toggle.",
+   "2. Download the Sales Rep Assignments CSV and read the rep's rows.",
+   "3. Open the report and find the rep's row."
+  ],
+  "expected": [
+   "1. The sales-rep toggle state is unchanged by the deactivation flow.",
+   "2. In the Sales Rep Assignments CSV the rep's customers show \"Rep is active?\" = \"No\" — that column is driven by staff-active status, not the toggle.",
+   "3. In the report the rep still appears with credit intact; the \"(Inactive)\" marker appears only if the sales-rep TOGGLE is off (a separate flag from staff-active status)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R11; Story 15 S15-R6; Story 5 S5-R9",
+  "viu_status": "VIU-Pending",
+  "notes": "Staff-active status and the sales-rep toggle are independent flags (§5) — the CSV column and the report marker track DIFFERENT flags by design.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-DEACT-07",
+  "area": "SBR — Staff Deactivation",
+  "title": "No dialog: toggle off, no assignments, already inactive, or reactivation",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
+  "preconditions": [
+   "1. ZZAUTOTEST staff member X is active WITHOUT the sales-rep toggle; ZZAUTOTEST rep Y (with assignments) is currently inactive; ZZAUTOTEST rep Z is active with the sales-rep toggle ON and NO customers assigned."
+  ],
+  "steps": [
+   "1. Deactivate X and watch for a dialog.",
+   "2. Reactivate rep Y via the standard toggle and watch for a dialog; check Y's customer assignments afterwards.",
+   "3. Deactivate rep Z (sales-rep toggle on, no assignments) and watch for a dialog."
+  ],
+  "expected": [
+   "1. For a staff member without the sales-rep toggle, the precondition check is skipped and no warning is shown.",
+   "2. Reactivation never shows the warning dialog (the flow does not apply to an already-inactive member).",
+   "3. After reactivation the assignments re-surface immediately with no extra action.",
+   "4. Deactivating a sales rep with NO customer assignments applies silently — no warning dialog."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R2; S13-N2; S13-N3; S13-E3",
+  "viu_status": "VIU-Pending",
+  "notes": "Restore the ZZAUTOTEST staff members afterwards. The precondition check behind the silent branch is covered by the API case. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-NODIALOG): absorbed SBR-DEACT-01. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-DEACT-08",
+  "area": "SBR — Staff Deactivation",
+  "title": "A server-side deactivation failure shows the canonical error toast, leaves the status unchanged, and clears the input on the next open",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
+  "preconditions": [
+   "1. The Deactivate dialog is open for a rep with assignments; you can force the request to fail (go offline just before submitting)."
+  ],
+  "steps": [
+   "1. Type YES, force the failure condition, and submit.",
+   "2. Read the toast; check the staff member's active status.",
+   "3. Dismiss, re-open the dialog, and look at the confirmation input."
+  ],
+  "expected": [
+   "1. An error toast is shown: \"Ooooops! An error occured\" with the caption \"For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance.\" — it persists 120 seconds or until dismissed.",
+   "2. The active status is unchanged.",
+   "3. Each fresh dialog open requires a fresh confirmation entry — the input clears on open."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-N5; §7",
+  "viu_status": "VIU-Pending",
+  "notes": "KNOWN-LIMITATION ENCODING: \"Ooooops! An error occured\" (typo as shipped) is the canonical ShopView fallback wording per §7 — do NOT file the typo as a defect of this feature.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-UNAS-01",
+  "area": "SBR — Show Unassigned",
+  "title": "Show Unassigned sits between the column selector and the date picker, is off by default, and while off unassigned invoices contribute nothing",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. No remembered settings; at least one matching invoice with NO assigned rep exists (seed via a WO with no Sales Rep whose customer also has no rep)."
+  ],
+  "steps": [
+   "1. Find the \"Show Unassigned\" toggle in the toolbar and note its position and default state.",
+   "2. With it off, look for an Unassigned row and check the grand Totals against the rep rows only."
+  ],
+  "expected": [
+   "1. A \"Show Unassigned\" toggle sits between the column selector and the date range picker; it is OFF by default.",
+   "2. While off, invoices with no assigned rep contribute to nothing — no row, and not counted in any total."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 22 S22-R1; S22-R2; Story 18 S18-R7.2",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-UNAS-02",
+  "area": "SBR — Show Unassigned",
+  "title": "Show Unassigned adds one top-pinned Unassigned row that acts like a rep row",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. Matching unassigned invoices exist; the grand Totals with the toggle off are noted."
+  ],
+  "steps": [
+   "1. Turn \"Show Unassigned\" on and read the new row and its position.",
+   "2. Read the grand Totals indicator.",
+   "3. Read the Unassigned row's columns and (N) count, click its chevron, and look for any \"(Inactive)\" tag.",
+   "4. Turn the toggle off again."
+  ],
+  "expected": [
+   "1. A single summary row labeled \"Unassigned\" (verbatim) rolls up every matching invoice that has no assigned rep, respecting all other active filters.",
+   "2. The row is pinned to the TOP of the table, above the A→Z reps, and stays pinned regardless of sort.",
+   "3. Toggling re-renders the report and recomputes the grand Totals to include or exclude the Unassigned row accordingly.",
+   "4. The Unassigned row shows the same metric columns and (N) count as any rep summary row, is expandable to its contributing invoices, is included in the grand Totals, and never carries an \"(Inactive)\" tag."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 22 S22-R3; S22-R4; S22-R5; S22-R6; Story 6 S6-R1",
+  "viu_status": "VIU-Pending",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-UNASROW): absorbed SBR-UNAS-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-UNAS-03",
+  "area": "SBR — Show Unassigned",
+  "title": "The Unassigned row behaves like a rep row — count, expandable, in the Totals — and never carries an (Inactive) tag",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. Show Unassigned is on with a populated Unassigned row."
+  ],
+  "steps": [
+   "1. Read the Unassigned row's columns and (N) count.",
+   "2. Click its chevron.",
+   "3. Look for any \"(Inactive)\" tag."
+  ],
+  "expected": [
+   "1. The Unassigned row shows the same metric columns and the (N) count like any rep summary row.",
+   "2. It is expandable to its contributing invoices.",
+   "3. It is included in the grand Totals indicator.",
+   "4. It never carries an \"(Inactive)\" tag."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 22 S22-R5; Story 6 S6-R1",
+  "viu_status": "Retired 2026-07-28 (merged into SBR-UNAS-02 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-UNAS-04",
+  "area": "SBR — Show Unassigned",
+  "title": "No empty Unassigned row is ever rendered, and toggling off while expanded removes the row which returns collapsed",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. Scenario A: a filter set with NO matching unassigned invoices (but some rep rows).",
+   "2. Scenario B: the Unassigned row is populated and expanded."
+  ],
+  "steps": [
+   "1. Scenario A: turn Show Unassigned on and look for the row; then narrow so no reps match either and read the table.",
+   "2. Scenario B: with the Unassigned row expanded, turn the toggle off, then back on."
+  ],
+  "expected": [
+   "1. With the toggle on but no matching unassigned invoices, no Unassigned row is shown — an empty Unassigned row is never rendered; with no rep rows either, the empty state applies.",
+   "2. Turning the toggle off removes the expanded row; turning it back on renders it collapsed."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 22 S22-N1; Story 6 S6-N2",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-COL-01",
+  "area": "SBR — Column Selector",
+  "title": "Column selector: seven metric toggles; five always-on columns cannot be hidden",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. No remembered column preference exists (first visit or cleared storage)."
+  ],
+  "steps": [
+   "1. Click the column selector button in the toolbar.",
+   "2. Read the toggle list.",
+   "3. Check the table's visible columns.",
+   "4. Look for Date, Invoice, Customer, Status, or Subtotal in the toggle list.",
+   "5. Hide all seven metric columns and read the table and the grand Totals indicator."
+  ],
+  "expected": [
+   "1. The dropdown lists the seven toggleable metric columns, each with a toggle switch: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %.",
+   "2. On first visit all seven metric columns are visible.",
+   "3. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.",
+   "4. With all seven metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-COLSEL): absorbed SBR-COL-02, SBR-COL-06. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-COL-02",
+  "area": "SBR — Column Selector",
+  "title": "The five always-visible columns do not appear in the dropdown and cannot be hidden",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. The column selector dropdown is open."
+  ],
+  "steps": [
+   "1. Look for Date, Invoice, Customer, Status, or Subtotal in the toggle list."
+  ],
+  "expected": [
+   "1. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 20 S20-R3",
+  "viu_status": "Retired 2026-07-28 (merged into SBR-COL-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-COL-03",
+  "area": "SBR — Column Selector",
+  "title": "Toggling a column applies immediately across summary rows, detail rows and the grand Totals at once",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. A rep is expanded and the Totals indicator is visible."
+  ],
+  "steps": [
+   "1. Toggle \"Parts Margin\" off and immediately check the summary rows, detail rows, and the Totals row.",
+   "2. Toggle it back on."
+  ],
+  "expected": [
+   "1. The toggle takes effect immediately — no confirm step.",
+   "2. Hiding a metric column removes it from rep summary rows, invoice detail rows, and the grand Totals indicator simultaneously; showing restores it everywhere at once."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 20 S20-R4; S20-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-COL-04",
+  "area": "SBR — Column Selector",
+  "title": "Column visibility never affects the exports — all four downloads always include all metric columns",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. Several metric columns are hidden via the column selector."
+  ],
+  "steps": [
+   "1. Download all four exports (Summary PDF, Expanded View PDF, Summary CSV, Expanded View CSV).",
+   "2. Check each file's columns."
+  ],
+  "expected": [
+   "1. All four downloads include ALL metric columns regardless of the on-screen column selector state."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 20 S20-R8",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-COL-05",
+  "area": "SBR — Column Selector",
+  "title": "Hiding the active sort column keeps the sort; showing it again reveals the sort indicator",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. The report is sorted by a metric column (e.g., Margin descending)."
+  ],
+  "steps": [
+   "1. Hide that column via the column selector and read the row order.",
+   "2. Show the column again and look at its header."
+  ],
+  "expected": [
+   "1. Hiding the active sort column does not clear the sort — rows stay ordered by the now-hidden metric until another sort is chosen or the A→Z default is restored.",
+   "2. Showing the column again reveals the sort indicator on it."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 20 S20-R9",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-COL-06",
+  "area": "SBR — Column Selector",
+  "title": "With all seven metric columns hidden the five always-on columns and the grand Totals still render — not an empty state",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. You are on the report with data."
+  ],
+  "steps": [
+   "1. Hide all seven metric columns.",
+   "2. Read the table and the grand Totals indicator."
+  ],
+  "expected": [
+   "1. The table still renders the five always-on columns (Date, Invoice, Customer, Status, Subtotal) and the grand Totals indicator.",
+   "2. No empty or error state is shown."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 20 S20-N1",
+  "viu_status": "Retired 2026-07-28 (merged into SBR-COL-01 per user-authorized consolidation; delete_case authorized 2026-07-28)",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-PERS-01",
+  "area": "SBR — Persistence",
+  "title": "All filter and view settings are remembered per browser and restored before the first data fetch on the next visit",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. You are on the report in a browser you can revisit."
+  ],
+  "steps": [
+   "1. Set a custom date range, \"Parts only,\" \"Paid,\" a specific location set, Show Unassigned on, hide two metric columns, and sort by Margin descending.",
+   "2. Leave the report and return; also try a full page reload.",
+   "3. Watch what data loads first."
+  ],
+  "expected": [
+   "1. Every setting is restored: date range (including the custom start/end), product type, invoice status, location, Show Unassigned, column visibility, and the active column sort (column + direction).",
+   "2. The settings are restored BEFORE the first data fetch — the report does not fetch defaults first and then re-fetch."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 23 S23-R1; Story 20 S20-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-PERS-02",
+  "area": "SBR — Persistence",
+  "title": "Expansion state and scroll position are not remembered and reset on reload",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. Two reps are expanded and the table is scrolled partway."
+  ],
+  "steps": [
+   "1. Reload the page.",
+   "2. Check the rows and the scroll position."
+  ],
+  "expected": [
+   "1. All rows render collapsed and the scroll position resets.",
+   "2. This is the specified behavior (only back-navigation from a drilldown restores expansion/scroll — see SBR-LINK-03), not a defect."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 23 S23-R2; §2 Out of Scope",
+  "viu_status": "VIU-Pending",
+  "notes": "KNOWN-LIMITATION ENCODING per §2 Out of Scope.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-PERS-03",
+  "area": "SBR — Persistence",
+  "title": "Restoration is defensive: a stale saved value falls back to its default and never causes an error or invalid request",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access; admin help to remove a location assignment.",
+  "preconditions": [
+   "1. Your saved settings include a location you are then un-assigned from (restore access afterwards)."
+  ],
+  "steps": [
+   "1. Return to the report after the access change.",
+   "2. Read the location filter, the data, and watch for any error."
+  ],
+  "expected": [
+   "1. The no-longer-valid location falls back to the default (your active location) rather than being sent to the server.",
+   "2. No error occurs — a stale saved setting can never cause an error or an invalid request.",
+   "3. Per the spec the same applies to a range or sort column that no longer exists and to a hidden-but-sorted column."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 23 S23-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "Only the location leg is reliably provocable without a build change — record what could and could not be provoked.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-PERS-04",
+  "area": "SBR — Persistence",
+  "title": "First visit or cleared storage yields all defaults; no server-side profile",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. You have distinctive saved settings, then clear the browser's site data (or use a fresh profile).",
+   "2. You are working in a known active location (the application's location switcher)."
+  ],
+  "steps": [
+   "1. Open the report and read every setting."
+  ],
+  "expected": [
+   "1. Date range = This Month; Product Type = \"Parts & Service\"; Invoice Status = \"All Statuses\"; Location = your currently active location only (the one location you are working in); Show Unassigned = off; all seven metric columns visible; sort = the A→Z default.",
+   "2. Clearing browser storage fully returns the report to first-visit defaults — no server-side profile brings the old settings back."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 23 S23-R4; S23-N1; Story 2 S2-R4; Story 21 S21-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-DEFAULTS): absorbed SBR-DATE-03, SBR-LOC-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-PERS-05",
+  "area": "SBR — Persistence",
+  "title": "The A to Z default is its own saved value: restoring a state with no financial sort returns to A to Z, not an arbitrary column",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. You have never clicked a financial column header in this browser session/profile (the report is in the A→Z default)."
+  ],
+  "steps": [
+   "1. Change a few filters (no sort click), leave the report, and return.",
+   "2. Read the row order and the headers."
+  ],
+  "expected": [
+   "1. The report restores to the A→Z default order by rep display name.",
+   "2. No financial column shows a sort indicator — the saved \"no financial sort\" state restores as A→Z, not as an arbitrary column."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 23 S23-R5; Story 11 S11-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ }
 ]

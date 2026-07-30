@@ -31,8 +31,8 @@ CROSS-SQUAD · NO-IMPACT.
 | NO-IMPACT | 2 | C1 (ignore local noise/fake data), C5 (video "just for visual representation… not perfect") |
 | **TOTAL points** | **20** | |
 
-**Case-change roll-up:** 7 tester-facing case edits (push queue, awaiting authorization) +
-11 notes-only annotations (local metadata, no push) + **0 new cases** (both candidate gaps —
+**Case-change roll-up:** 7 tester-facing case edits (push queue) +
+13 notes-only annotations (local metadata, no push) + **0 new cases** (both candidate gaps —
 customer-card label, P/S prefixes — were already covered; edit/confirm only, Rule-28 no-slop) +
 1 new question appended to the unsent Chris sheet + SPEC-WATCH updated.
 
@@ -226,7 +226,7 @@ filters once on staging; build to spec for now, expect that portion to change. N
 | 6 | SBR-WO-06 (from id-map) | C17 | Customer-card row label → "Sales Representative" (supersedes S19-R7 "Sales Rep") |
 | 7 | SBR-WO-02 (from id-map) | C14 | Precondition tester-aid: the Settings → Staff → edit-staff-member path to the sales-rep toggle |
 
-**Notes-only annotations (11 — local metadata, NO push):** PV-NAV-01+IV-NAV-01 (C3 order-flex — PV-NAV-01's rides with its edit), TU-LINK-01 (C6 bold-vs-not), SBC-TYPE-02 + SBC-TREE-11 (C9), SBC-CUST-02 + SBC-EXP-05 (C11), SBR-VIS-01/PV-VIS-01/TU-VIS-01/WIP-VIS-01/IV-VIS-01 (C12), SBR-WO-01 (C15 label-pending; SBR-WO-02's rides with its edit), IV-DATE-05 (C20).
+**Notes-only annotations (13 — local metadata, NO push):** IV-NAV-01 (C3 order-flex; PV-NAV-01's note rides with its edit), TU-LINK-01 (C6 bold-vs-not), SBC-TYPE-02 + SBC-TREE-11 (C9), SBC-CUST-02 + SBC-EXP-05 (C11), SBR-VIS-01/PV-VIS-01/TU-VIS-01/WIP-VIS-01/IV-VIS-01 (C12), SBR-WO-01 (C15 label-pending; SBR-WO-02's rides with its edit), IV-DATE-05 (C20).
 
 **New cases: 0.** Both candidate gaps were already covered (C9 P/S prefixes → SBC-TYPE-02/
 SBC-TREE-11/SBR-TREE-09; C17 customer-card label → SBR-WO-06 edit). Rule-28 no-slop honored.

@@ -1,5 +1,5 @@
 internal_id,testrail_case_id,title,section
-SBC-NAV-01,C30096,Sales By Customer appears in Reports navigation and opens with correct titles,SBC — Access & Navigation
+SBC-NAV-01,C30096,"Sales By Customer listed under Performance, below existing links; titles correct",SBC — Access & Navigation
 SBC-PERM-01,C30098,A user with the dedicated Sales By Customer View permission can see and open the report,SBC — Permissions
 SBC-PERM-02,C30099,A user without the Sales By Customer View permission cannot see or open the report,SBC — Permissions
 SBC-PERM-03,C30100,Opening an invoice you lack permission for shows the standard access-denied state and back returns to the report,SBC — Permissions
@@ -81,7 +81,7 @@ SBC-API-02,C30191,Sorting is applied on the server: a header click re-fetches th
 SBC-API-03,C30192,The Customer filter's type-ahead fetches matching customers from the server per query instead of loading the full list up front,SBC — API
 SBC-API-04,C30193,Customer rows are server-paginated and the totals row is server-computed over the full filtered set,SBC — API
 SBC-API-05,C30194,"Exports are generated on the server and the 10,000-row cap is counted server-side before any file is produced",SBC — API
-SBR-NAV-01,C30195,Sales By Representative at the bottom of Performance group; titles correct,SBR — Access & Navigation
+SBR-NAV-01,C30195,"Sales By Representative under Performance, below existing links; titles correct",SBR — Access & Navigation
 SBR-NAV-03,C30197,The navigation entry's padding fits the full Sales By Representative label without crowding or truncation,SBR — Access & Navigation
 SBR-PERM-01,C30198,Every user who can see any other Performance report also sees Sales By Representative,SBR — Permissions
 SBR-PERM-02,C30199,"A user without Reports access sees no Reports navigation, no export menu, and cannot reach the Export Reports dialog",SBR — Permissions
@@ -180,11 +180,11 @@ SBR-VIS-03,C30307,Every icon-only control carries its specified accessible name,
 SBR-VIS-04,C30308,Chevrons and sortable headers are keyboard-operable and expose their expanded/sort state to assistive technology,SBR — Visual Conformance & Accessibility
 SBR-VIS-05,C30309,"The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast, and no information is conveyed by color alone",SBR — Visual Conformance & Accessibility
 SBR-WO-01,C30310,"The Sales Rep selector shows in the left panel on standard Work Orders and Part Sale WOs, and is hidden on imported WOs and in History mode",SBR — Work Order Sales Rep
-SBR-WO-02,C30311,"The Sales Rep selector offers only reps whose sales-rep toggle is currently on, and carries the accessible name ""Sales Rep""",SBR — Work Order Sales Rep
+SBR-WO-02,C30311,Sales Rep selector offers only reps whose sales-rep toggle is on,SBR — Work Order Sales Rep
 SBR-WO-03,C30312,"A new Work Order or Part Sale WO opens with Sales Rep unassigned, and a change saves immediately with no Save step",SBR — Work Order Sales Rep
 SBR-WO-04,C30313,The Sales Rep selector is read-only when the Work Order status is Invoiced or Paid,SBR — Work Order Sales Rep
 SBR-WO-05,C30314,"Invoice crediting snapshot: WO rep, else the customer's rep, else unassigned — and a later WO change never rewrites past invoices",SBR — Work Order Sales Rep
-SBR-WO-06,C30315,"The customer record shows a single Sales Rep row (""Unassigned"" when none), and a toggled-off bound rep shows ""(Inactive)"" in the WO selector",SBR — Work Order Sales Rep
+SBR-WO-06,C30315,"Customer record shows a ""Sales Representative"" row; ""Unassigned"" when none",SBR — Work Order Sales Rep
 SBR-API-01,C30316,"A rep's invoice detail rows are fetched from the server only on the first expand, and are paginated per rep",SBR — API
 SBR-API-02,C30317,Sorting is performed server-side: a header click re-fetches the rep summary rows in the requested order,SBR — API
 SBR-API-03,C30318,The grand totals are server-computed over the full filtered result set and delivered with the summary payload,SBR — API

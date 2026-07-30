@@ -3,8 +3,8 @@ Parts Velocity appears under a new Parts section in the Reports navigation,PV �
 2. Your role has the Inventory Reports → View permission.","1. Open the Reports section from the main navigation.
 2. Look through the report groupings for a section heading named Parts.
 3. Click the entry labeled Parts Velocity.","1. A Parts section heading exists in the Reports navigation (this feature creates it - the application had no Parts reports before).
-2. Under Parts there is an entry labeled Parts Velocity (the only Parts report in this release).
-3. Clicking it opens the Parts Velocity report.",specs/parts-velocity.md S1-R1,,
+2. Under Parts there is an entry labeled Parts Velocity; Inventory Value also lives under Parts. The order of the two inside the Parts section is not fixed — do not fail the test on which of them comes first.
+3. Clicking it opens the Parts Velocity report.",SV-8641 (specs/parts-velocity.md S1-R1 — the spec's 'only report' sentence is superseded: Parts Velocity and Inventory Value BOTH live under Parts per the PRD companion video 2026-07-30 00:35-01:18; PV S1-R1 vs IV S1-R1 inconsistency flagged to SPEC-WATCH),,
 First visit: date range defaults to This Year and data is fetched automatically,PV — Access & Defaults,Functional,High,"1. You are signed in as a user allowed to open the report.
 2. You are using a browser with NO saved view for this report (e.g. a fresh browser profile or after clearing the site's browser storage), so first-visit defaults apply.","1. Open Reports → Parts → Parts Velocity.
 2. Look at the date range selector and the table without touching anything.","1. The date range selector shows This Year.

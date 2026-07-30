@@ -1,0 +1,27 @@
+{
+ "id": "SBR-WO-06",
+ "area": "SBR — Work Order Sales Rep",
+ "title": "The customer record shows a single Sales Rep row (\"Unassigned\" when none), and a toggled-off bound rep shows \"(Inactive)\" in the WO selector",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "A user who can open customer records and Work Orders; staff-administration access to arrange the toggle.",
+ "preconditions": [
+  "1. One customer HAS an assigned sales rep and one customer has NONE.",
+  "2. A Work Order exists whose bound Sales Rep can have their toggle turned off (arrange and restore afterward)."
+ ],
+ "steps": [
+  "1. Open the assigned customer's record and read the left-panel sidebar.",
+  "2. Open the unassigned customer's record and read the same row.",
+  "3. Turn the bound rep's sales-rep toggle OFF, reopen the Work Order, and read the Sales Rep selector; then open its option list."
+ ],
+ "expected": [
+  "1. The customer record's left-panel sidebar shows a single \"Sales Rep\" row with the customer's assigned rep.",
+  "2. When no rep is assigned, the row renders \"Unassigned\".",
+  "3. On the WO, the selector renders the bound rep's name with an \"(Inactive)\" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R7; S19-E1",
+ "viu_status": "VIU-Pending",
+ "notes": "Restore the rep's toggle afterward (shared-env rule).",
+ "api_related": false
+}

@@ -56,6 +56,19 @@ Please pick an option (or write your own answer) for each.
 
 **Your answer:** ____________________
 
+## Question 5 — How far does "the full word Representative" go? *(added 2026-07-30 after your companion video)*
+
+**What happens now:** In your companion video you asked us to always write out the full word "Representative" instead of the short "Rep", and you specifically corrected the customer card label to "Sales Representative" (we have updated our checks for that). But some smaller labels still use the short form by design today: the box on the work order where the sales person is picked is called "Sales Rep", and the assignments download is called "Sales Rep Assignments" (its file and one of its columns also say "Sales Rep").
+
+**The question:** Should those smaller labels also spell out the full word, or can they keep the short form?
+
+**Options:**
+
+- A) Every label everywhere uses the full word "Representative" — including the work order box and the assignments download with its file and columns.
+- B) Only the report name and the customer card use the full word; the smaller "Sales Rep" labels can stay as they are.
+
+**Your answer:** ____________________
+
 ---
 
 ## QA Internal Mapping (QA-only — not for the PO)
@@ -68,6 +81,8 @@ TestRail C-ids are from the project's `testrail-id-map.csv` (Standing Rule 8). L
 | 2 | SBC-EXP-14 (C30172); IV-EXP-07 (C30593); new PV-EXP-11 / TU-EXP-09 (no C-ID yet) | Source: Questions-for-Chris-dev.md Q2 = conflict C2. SBC spec string ('export ... generate') vs IV spec + tech plan suite-wide string ('report ... export'). | Whichever answer, only the message wording in the expected lines changes (A -> IV/plan string everywhere incl. SBC-EXP-14; B -> SBC string everywhere; C -> both stand per report). |
 | 3 | new PV-EXP-11; new TU-EXP-09 (no C-ID yet) | Source: Questions-for-Chris-dev.md Q3 = conflict C3. 10,000-row cap is in the SBC/SBR/IV specs + the tech plan suite-wide; missing from the PV/TU/WIP spec pages. WIP's per-tab export was NOT given a cap case (the plan's own scope list is ambiguous on WIP) - probe at VIU. | A -> push PV-EXP-11/TU-EXP-09 (staged) + the three spec pages get the cap line; probe WIP at VIU. B -> drop the two staged cases; cap tested only where specified. |
 | 4 | SBC-PERM-01/02 (C30098/C30099); SBR-PERM-01/02 (C30198/C30199); PV-PERM-01/03 (C30325/C30327); TU-NAV-01/07 (C30392/C30397); WIP-PERM-01/02 (C30526/C30527); IV-PERM-01/02 (C30603/C30604) | SHARPENED re-ask of the permission question (Chris's 2026-07-28 Q2 answer = 'these should be gated by normal reports access' contradicts the shipped mixed model). Full technical mapping: chris-answers-2026-07-28/Q2-permission-discrepancy-for-Chris-dev.md (updated 2026-07-30 with the tech-plan citations). Tech plan §B5.3: every SBC endpoint gates on the NEW dedicated atom ROLE_SALES_BY_CUSTOMER_REPORT::VIEW, NOT ROLE_REPORT_VIEW; the plan flags the SBC bundle placement as a 'product-level decision to surface' (decision #5). Cases KEPT AS AUTHORED per user Ruling 1 until he answers. | A -> dev changes to the single normal-reports permission; revise the permission cases to the unified model + VIU-confirm live. B -> keep the mixed model; cases already match; VIU-confirm the exact per-report permission names live at the QA branch. |
+
+| 5 | SBR-WO-01 (C30310); SBR-WO-02 (C30311); SBR-ASGN-01 (C30292); SBR-ASGN-02 (C30293) | Source: companion video 2026-07-30 C15 (09:41-10:10 no-short-forms ruling; 10:53-11:12 customer-card correction applied as FIRM to SBR-WO-06 C30315). Spec still says "Sales Rep" for the WO selector (S19-R1/R8) + the Assignments export name/header/filename (S15). Chris demonstrated the WO dropdown WITHOUT flagging its label, so the small labels were NOT flipped on the principle alone. | A -> flip the "Sales Rep" labels in the four cases (WO selector label/accessible name; export dialog entry, filename, CSV header) to the full word + spec pages updated. B -> cases stand as authored. Either way VIU-confirm live. |
 
 ### Not re-asked here (for QA reference)
 

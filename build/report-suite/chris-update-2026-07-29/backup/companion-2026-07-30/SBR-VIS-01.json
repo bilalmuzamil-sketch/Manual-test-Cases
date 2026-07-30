@@ -1,0 +1,28 @@
+{
+ "id": "SBR-VIS-01",
+ "area": "SBR — Visual Conformance & Accessibility",
+ "title": "Layout conformance: white toolbar with the specified padding and alignment, blue-grey page, separator line, edge-to-edge white table",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+ "preconditions": [
+  "1. You are on the report on a desktop browser (light mode) with data showing."
+ ],
+ "steps": [
+  "1. Look at the toolbar's surface, padding, and how the title and the rightmost control line up with the table columns.",
+  "2. Look at the page background around the data area, the line between the toolbar and the column headers, and the table's side edges.",
+  "3. Look at the header cells, the body cells, the pinned Subtotal cells, and the grand Totals indicator's surface."
+ ],
+ "expected": [
+  "1. The toolbar has a solid white background with padding 32px top / 24px bottom / 2rem left and right; the title's left edge aligns with the leftmost data column, and the rightmost toolbar control (the Location filter) aligns its right edge with the rightmost data column.",
+  "2. The data area sits on the standard blue-grey page background with ZERO horizontal page padding — the toolbar and table run edge-to-edge against the side navigation.",
+  "3. A thin horizontal separator line sits between the toolbar and the column headers.",
+  "4. Column-header cells and all body cells render on white; the pinned Subtotal column matches the row background (not a contrasting strip); the grand Totals indicator renders on the white card surface with a thin top border.",
+  "5. Row types are differentiated by font weight and color, not background color. These rules apply unconditionally whenever the report is rendered."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbr-sales-by-representative.md Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1",
+ "viu_status": "VIU-Pending",
+ "notes": "S18-R7 is self-contained and normative — if app-wide report styling has evolved, this spec is still the source of truth until a new spec round says otherwise (S18-R7.6).",
+ "api_related": false
+}

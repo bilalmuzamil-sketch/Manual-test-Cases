@@ -2,7 +2,7 @@
  {
   "id": "SBR-NAV-01",
   "area": "SBR — Access & Navigation",
-  "title": "Sales By Representative at the bottom of Performance group; titles correct",
+  "title": "Sales By Representative under Performance, below existing links; titles correct",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A user who can see the reports in the Performance group of the Reports navigation.",
@@ -16,16 +16,16 @@
    "3. Read the page title at the top of the report and the browser tab's title."
   ],
   "expected": [
-   "1. \"Sales By Representative\" appears in the Performance group, at the BOTTOM of the group — the label is the full word \"Representative,\" not a \"Rep\" shorthand.",
+   "1. \"Sales By Representative\" appears in the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the label is the full word \"Representative,\" not a \"Rep\" shorthand. It need not be the very last entry: the other new reports (Technician Utilization, Work In Progress, Sales By Customer) are added in the same below-the-anchors block, in no set order.",
    "2. The rest of the navigation matches the previous release: no existing entry is moved, replaced, or reordered — if you can compare against production or an earlier build, the only difference is the added entry.",
    "3. Selecting the entry opens the report in the main content area.",
    "4. The page title reads \"Sales By Representative\".",
    "5. The browser tab title reads \"Sales By Representative - Report | ShopView\"."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 1 S1-R1; S1-R2; S1-R3; S1-R4; S1-R5; S1-R6",
+  "spec_ref": "SV-8619 (specs/sbr-sales-by-representative.md Story 1 S1-R1; S1-R2; S1-R3; S1-R4; S1-R5; S1-R6 — 'at the bottom' re-based to below-the-named-anchors [Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05; order among the four new reports not important)",
   "viu_status": "VIU-Pending",
-  "notes": "FIX-WORDING repair 2026-07-28 (sense-check): the additive-placement comparison now points at production/the prior release — a cold tester cannot observe the pre-add order on a build where the report already exists. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-NAV): absorbed SBR-NAV-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "notes": "FIX-WORDING repair 2026-07-28 (sense-check): the additive-placement comparison now points at production/the prior release — a cold tester cannot observe the pre-add order on a build where the report already exists. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-NAV): absorbed SBR-NAV-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. COMPANION-VIDEO 2026-07-30 (C4, 01:18-02:05): all four new Performance reports go below the named anchors; SBR being literally last is no longer asserted (order among the four is PO-flexible). Full-word 'Representative' re-confirmed (09:41-10:10). Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins).",
   "api_related": false
  },
  {

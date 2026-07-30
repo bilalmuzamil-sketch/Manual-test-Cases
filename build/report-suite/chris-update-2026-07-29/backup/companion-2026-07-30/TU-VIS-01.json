@@ -1,0 +1,26 @@
+{
+ "id": "TU-VIS-01",
+ "area": "TU — Visual & Accessibility",
+ "title": "All-white table with no alternating row shading, and the toolbar controls run in the specified left-to-right order",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+ "preconditions": [
+  "1. You are on the Technician Utilization report with rows loaded, in light mode."
+ ],
+ "steps": [
+  "1. Look at the column headers and the data rows' backgrounds.",
+  "2. Read the toolbar controls left to right.",
+  "3. Look for the expand/collapse-all control's position."
+ ],
+ "expected": [
+  "1. The report uses an all-white table: white column headers and white data cells, with NO alternating row shading.",
+  "2. The toolbar controls run, left to right: the three-dot download menu, the technician filter, the date-range picker, and the location filter (rightmost).",
+  "3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (Technician column, per S4-R4)."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/technician-utilization.md S8-R1; S8-R2; S8-R3",
+ "viu_status": "VIU-Pending",
+ "notes": "S8 context note: the requirements do not spell out every icon/styling detail - the spec's companion video was removed by the 2026-07-16 header cleanup while S8's context note still cites it (spec self-inconsistency, flagged for Chris - do not block on it); anything the requirements do not state is VIU-confirm.",
+ "api_related": false
+}

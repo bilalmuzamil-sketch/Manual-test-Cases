@@ -59,6 +59,35 @@ Message-level effect on the watch items (message = spec-INTENT confirmed; spec T
   authorization). His spec update is NOT hand-reviewed yet — verify the WIP identifier text in the
   changelog re-diff.
 
+## ⚡ UPDATE 2026-07-30 — COMPANION VIDEO DELIVERED (the expected artifact from the 2026-07-29 message)
+
+The PRD/Spec Companion video arrived 2026-07-30 (Loom
+https://www.loom.com/share/e4a3ad01912048c0bba88f1a02677004; transcript =
+`chris-update-2026-07-29/companion-video-transcript-2026-07-30.md`; delta analysis =
+`chris-update-2026-07-29/companion-video-deltas-2026-07-30.md`) — the "companion video expected"
+item CLOSES. **The spec changelog is STILL AWAITED — deadline 2026-08-04 stands.**
+New watch items from the companion video (added to the checklist below):
+- **#9 customer-card label "Sales Representative"** (video C17, 10:53–11:12 FIRM): S19-R7
+  currently says a "Sales Rep" row — must be re-worded in the changelog. Case edited:
+  SBR-WO-06 C30315.
+- **#10 SBC Performance group + named anchors** (video C4, 01:18–02:05): the SBC spec names NO
+  nav group; TU/WIP/SBR specs don't name the anchor items (Sales, Technician Efficiency,
+  Advisor Analysis, Shop Efficiency). Cases edited: SBC-NAV-01 C30096, TU-NAV-01 C30392,
+  SBR-NAV-01 C30195, WIP-TAB-01 C30451.
+- **#11 PV S1-R1 "only report" inconsistency** (video C2b, 00:35–01:18): PV S1-R1 says PV is
+  the Parts section's "first (and, in this release, only) report" but IV S1-R1 puts IV under
+  Parts too — intra-suite inconsistency, settled by the video (both under Parts); the PV
+  sentence needs correcting. Case edited: PV-NAV-01 C30322.
+- **#12 Rep-label scope** (video C15, 09:41–10:10 PENDING): how far "Representative, the full
+  word" reaches (WO selector "Sales Rep" S19-R1/R8; "Sales Rep Assignments" export S15) —
+  question Q5 on PO-Questions-Chris-ReportSuite-TechPlan_2026-07-30 awaiting Chris. No case
+  label flipped beyond the customer card.
+- **C20 note:** the video's soft snapshot-indicator ruling ("if snapshot data is taken, we
+  don't need to see this… only… offline… or no snapshot") CONFIRMS the current IV S5-R5/R6
+  conditional "As of" indicator + the ratified PV/WIP label removal — NO contradiction, no case
+  change; if the changelog touches the As-of indicator, re-diff against this ruling. The
+  "offline" nuance is spec-silent — VIU-watch only.
+
 ## Watch checklist
 
 | # | In spec? (re-check) | Item (video anchor) | What to look for in the spec | Affected cases (internal + C-id) |

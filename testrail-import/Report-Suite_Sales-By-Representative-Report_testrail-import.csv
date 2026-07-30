@@ -1,12 +1,12 @@
 Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
-Sales By Representative at the bottom of Performance group; titles correct,SBR — Access & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+"Sales By Representative under Performance, below existing links; titles correct",SBR — Access & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You can see the other reports in the Performance group.","1. Open the Reports area and read the Performance group of the left-side navigation top to bottom.
 2. Click the ""Sales By Representative"" entry.
-3. Read the page title at the top of the report and the browser tab's title.","1. ""Sales By Representative"" appears in the Performance group, at the BOTTOM of the group — the label is the full word ""Representative,"" not a ""Rep"" shorthand.
+3. Read the page title at the top of the report and the browser tab's title.","1. ""Sales By Representative"" appears in the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the label is the full word ""Representative,"" not a ""Rep"" shorthand. It need not be the very last entry: the other new reports (Technician Utilization, Work In Progress, Sales By Customer) are added in the same below-the-anchors block, in no set order.
 2. The rest of the navigation matches the previous release: no existing entry is moved, replaced, or reordered — if you can compare against production or an earlier build, the only difference is the added entry.
 3. Selecting the entry opens the report in the main content area.
 4. The page title reads ""Sales By Representative"".
-5. The browser tab title reads ""Sales By Representative - Report | ShopView"".",specs/sbr-sales-by-representative.md Story 1 S1-R1; S1-R2; S1-R3; S1-R4; S1-R5; S1-R6,,
+5. The browser tab title reads ""Sales By Representative - Report | ShopView"".","SV-8619 (specs/sbr-sales-by-representative.md Story 1 S1-R1; S1-R2; S1-R3; S1-R4; S1-R5; S1-R6 — 'at the bottom' re-based to below-the-named-anchors [Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency] per the PRD companion video 2026-07-30 01:18-02:05; order among the four new reports not important)",,
 The navigation entry's padding fits the full Sales By Representative label without crowding or truncation,SBR — Access & Navigation,Functional,Medium,1. You are on the Reports navigation with the entry visible.,"1. Look closely at the ""Sales By Representative"" entry's label against the entry's left and right edges.
 2. Compare its padding with the neighbouring entries.","1. The full ""Sales By Representative"" label renders without crowding against the entry's edges and without truncation.
 2. The label is not shortened to fit — the fix is the entry's horizontal padding, not the name.",specs/sbr-sales-by-representative.md Story 1 S1-R7; §1 naming note,,
@@ -511,11 +511,11 @@ Chevrons and sortable headers are keyboard-operable and expose their expanded/so
 2. The left panel includes the same ""Sales Rep"" selector on the Part Sale WO.
 3. The selector is NOT present on the imported Work Order.
 4. The selector is NOT present in History mode.",specs/sbr-sales-by-representative.md Story 19 S19-R1; S19-N1,,
-"The Sales Rep selector offers only reps whose sales-rep toggle is currently on, and carries the accessible name ""Sales Rep""",SBR — Work Order Sales Rep,Functional,High,1. At least one staff member has the sales-rep toggle ON and at least one has it OFF (arrange and restore afterward).,"1. Open a Work Order and open the ""Sales Rep"" selector.
+Sales Rep selector offers only reps whose sales-rep toggle is on,SBR — Work Order Sales Rep,Functional,High,"1. At least one staff member has the sales-rep toggle ON and at least one has it OFF. To arrange this: open Settings, go to Staff, edit the staff member, and use the sales-rep toggle there (restore both afterward).","1. Open a Work Order and open the ""Sales Rep"" selector.
 2. Search the option list for both staff members.
 3. Inspect the selector's accessible name.","1. The toggle-ON staff member is offered as a selectable rep.
 2. The toggle-OFF staff member is NOT offered as a new selection.
-3. The selector carries the accessible name ""Sales Rep"".",specs/sbr-sales-by-representative.md Story 19 S19-R2; S19-R8,,
+3. The selector carries the accessible name ""Sales Rep"".",SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R2; S19-R8 — toggle entry path Settings -> Staff -> edit the staff member per the PRD companion video 2026-07-30 09:17-09:41; exact toggle label to confirm live in the build),,
 "A new Work Order or Part Sale WO opens with Sales Rep unassigned, and a change saves immediately with no Save step",SBR — Work Order Sales Rep,Functional,High,1. At least one staff member is offered as a sales rep.,"1. Create a new Work Order (mark it ZZAUTOTEST) and read the Sales Rep field before touching it.
 2. Select a rep in the field, then navigate away WITHOUT any explicit save and reopen the WO.
 3. Repeat the unassigned-open check on a new Part Sale WO.","1. The new Work Order opens with the Sales Rep field UNASSIGNED — it is not pre-filled at creation.
@@ -530,12 +530,12 @@ The Sales Rep selector is read-only when the Work Order status is Invoiced or Pa
 2. Invoice (b) falls back to the CUSTOMER's assigned rep.
 3. Invoice (c) is unassigned — it appears only under the ""Unassigned"" row.
 4. Changing WO (a)'s Sales Rep afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation.",specs/sbr-sales-by-representative.md Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3,,
-"The customer record shows a single Sales Rep row (""Unassigned"" when none), and a toggled-off bound rep shows ""(Inactive)"" in the WO selector",SBR — Work Order Sales Rep,Functional,Medium,"1. One customer HAS an assigned sales rep and one customer has NONE.
+"Customer record shows a ""Sales Representative"" row; ""Unassigned"" when none",SBR — Work Order Sales Rep,Functional,Medium,"1. One customer HAS an assigned sales rep and one customer has NONE.
 2. A Work Order exists whose bound Sales Rep can have their toggle turned off (arrange and restore afterward).","1. Open the assigned customer's record and read the left-panel sidebar.
 2. Open the unassigned customer's record and read the same row.
-3. Turn the bound rep's sales-rep toggle OFF, reopen the Work Order, and read the Sales Rep selector; then open its option list.","1. The customer record's left-panel sidebar shows a single ""Sales Rep"" row with the customer's assigned rep.
+3. Turn the bound rep's sales-rep toggle OFF, reopen the Work Order, and read the Sales Rep selector; then open its option list.","1. The customer record's left-panel sidebar shows a single row labeled ""Sales Representative"" (the full word — the product owner explicitly corrected the short-form ""Sales Rep"" label here) with the customer's assigned rep.
 2. When no rep is assigned, the row renders ""Unassigned"".
-3. On the WO, the selector renders the bound rep's name with an ""(Inactive)"" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list.",specs/sbr-sales-by-representative.md Story 19 S19-R7; S19-E1,,
+3. On the WO, the selector renders the bound rep's name with an ""(Inactive)"" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list.","SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R7; S19-E1 — customer-card row label RE-RULED to the full 'Sales Representative' per the PRD companion video 2026-07-30 10:53-11:12, superseding the spec's 'Sales Rep'; video authoritative, newest-wins)",,
 "A rep's invoice detail rows are fetched from the server only on the first expand, and are paginated per rep",SBR — API,Functional,Medium,"1. You are on the report with at least two rep rows, one with a large invoice count if seedable.
 2. The browser's network panel is open.","1. Load the report and note which requests deliver the summary rows.
 2. Expand one rep and watch the network panel; collapse and re-expand it.

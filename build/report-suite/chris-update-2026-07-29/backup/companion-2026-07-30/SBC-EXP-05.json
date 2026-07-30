@@ -1,0 +1,26 @@
+{
+ "id": "SBC-EXP-05",
+ "area": "SBC — Exports",
+ "title": "CSV and PDF contain exactly the customers matching the active filters and sort, including the Customer filter selection",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "Sales By Customer report View permission.",
+ "preconditions": [
+  "1. Data exists across two locations, both product types, and several customers."
+ ],
+ "steps": [
+  "1. Set a specific date range, Product Type \"Service only\", one location, a two-customer selection in the Customer filter, and a Subtotal sort.",
+  "2. Download the CSV and the PDF.",
+  "3. Compare each file's contents against the on-screen rows."
+ ],
+ "expected": [
+  "1. Each export contains exactly the customers matching the active filters — the selected customers, within the active date range, Product Type, and location — in the active sort order.",
+  "2. When every customer is selected, the export contains the full set of customers under those filters.",
+  "3. The chosen date range and Product Type are reflected in both exports."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbc-sales-by-customer.md Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7",
+ "viu_status": "VIU-Pending",
+ "notes": "Server-side generation is covered by SBC-API-05.",
+ "api_related": false
+}

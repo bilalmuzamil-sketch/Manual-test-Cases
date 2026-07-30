@@ -2,7 +2,7 @@
  {
   "id": "SBC-NAV-01",
   "area": "SBC — Access & Navigation",
-  "title": "Sales By Customer appears in Reports navigation and opens with correct titles",
+  "title": "Sales By Customer listed under Performance, below existing links; titles correct",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Sales By Customer report View permission (dedicated per S1-R2 — exact permission name in the roles screen is VIU-confirm).",
@@ -12,20 +12,20 @@
   ],
   "steps": [
    "1. Open the Reports area from the main navigation.",
-   "2. Look through the Reports left-side navigation for the report entry.",
+   "2. Find the Performance group and read its entries from top to bottom.",
    "3. Click the \"Sales By Customer\" entry.",
    "4. Read the page title at the top of the report and the browser tab's title."
   ],
   "expected": [
-   "1. \"Sales By Customer\" is listed in the Reports left-side navigation.",
+   "1. \"Sales By Customer\" is listed in the Performance group of the Reports left-side navigation, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the new reports are added below those items without moving them.",
    "2. Clicking it opens the Sales By Customer report in the main content area.",
    "3. The page title reads \"Sales By Customer.\"",
    "4. The browser tab title reads \"Sales By Customer - Report | ShopView\"."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbc-sales-by-customer.md Story 1 S1-R1; S1-R3; S1-R4",
+  "spec_ref": "SV-8600 (specs/sbc-sales-by-customer.md Story 1 S1-R1; S1-R3; S1-R4 — Performance group + below-the-anchors placement per the PRD companion video 2026-07-30 01:18-02:05; the SBC spec names no nav group)",
   "viu_status": "VIU-Pending",
-  "notes": "The spec does not name a navigation group for this report (unlike SBR's Performance group) — VIU-confirm where in the Reports navigation the entry sits. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-NAV): absorbed SBC-NAV-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "notes": "COMPANION-VIDEO 2026-07-30 (C4, 01:18-02:05): the SBC spec names no navigation group; the video places SBC in the Performance section, below Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency ('add ... sales by customer ... below those items, rather than interrupting those items'). Order among the four NEW reports is not fixed. Exact rendering VIU-confirm. Spec ratification pending (SPEC-WATCH). Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-NAV): absorbed SBC-NAV-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
   "api_related": false
  },
  {
@@ -314,7 +314,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "specs/sbc-sales-by-customer.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6",
   "viu_status": "VIU-Pending",
-  "notes": "Per-line-item classification is explicitly out of scope (§2) — a mixed invoice classified whole by prefix is expected behavior, not a defect. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-TYPE): absorbed SBC-TYPE-01, SBC-TYPE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "notes": "Per-line-item classification is explicitly out of scope (§2) — a mixed invoice classified whole by prefix is expected behavior, not a defect. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-TYPE): absorbed SBC-TYPE-01, SBC-TYPE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. COMPANION-VIDEO 2026-07-30 (C9, 05:10-05:42): P = parts order, S = service/work order confirmed; under Parts Sales real data shows P numbers ('These would all be P's') — the all-S parts-sales rows in the PO's local were a fake-data artifact.",
   "api_related": false
  },
  {
@@ -472,7 +472,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "specs/sbc-sales-by-customer.md Story 18 S18-R2",
   "viu_status": "VIU-Pending",
-  "notes": "The server-fetch aspect of the type-ahead is covered by SBC-API-03; this case verifies the visible matching behavior only. BUILD-DELTA: the server-backed type-ahead is the 2026-07-21 committed target (spec ahead of code by design) — the current build may still load a full client-side list at VIU.",
+  "notes": "The server-fetch aspect of the type-ahead is covered by SBC-API-03; this case verifies the visible matching behavior only. BUILD-DELTA: the server-backed type-ahead is the 2026-07-21 committed target (spec ahead of code by design) — the current build may still load a full client-side list at VIU. COMPANION-VIDEO 2026-07-30 (C11, 06:41-07:09): the multi-select's product intent is COMPARISON — 'I want to compare accurate aerodynamics versus Baxter Mining Corp. inside that same time zone'; selecting customers puts exactly those on the page.",
   "api_related": false
  },
  {

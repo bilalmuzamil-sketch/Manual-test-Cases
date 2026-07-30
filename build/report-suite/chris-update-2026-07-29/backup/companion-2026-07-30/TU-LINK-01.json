@@ -1,0 +1,26 @@
+{
+ "id": "TU-LINK-01",
+ "area": "TU — Deep Links",
+ "title": "Total Hours is a real link with a non-color affordance and keyboard access, while the Summary's Total Hours is not a link",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
+ "preconditions": [
+  "1. You are on the Technician Utilization report with technician rows and the Summary row visible."
+ ],
+ "steps": [
+  "1. Look at a technician row's Total Hours value.",
+  "2. Tab to it with the keyboard and check the focus indicator; press Enter.",
+  "3. Go back and look at the Summary row's Total Hours value."
+ ],
+ "expected": [
+  "1. Every technician row's Total Hours is rendered as a link (every rendered row has clocked time > 0, so the link always applies).",
+  "2. The link is distinguished by more than color - it carries an underline (or equivalent non-color affordance), is keyboard-focusable with a visible focus indicator, and activates on Enter.",
+  "3. The Summary row's Total Hours value is NOT a link."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
+ "spec_ref": "specs/technician-utilization.md S6-R1; S6-N1; S8-R14",
+ "viu_status": "VIU-Pending",
+ "notes": "The affordance and focus indicator must hold in dark mode too (S8-R14 - dark-mode side in TU-VIS-02).",
+ "api_related": false
+}

@@ -1,0 +1,23 @@
+{
+ "id": "SBC-TREE-11",
+ "area": "SBC — Tree & Rows",
+ "title": "A service (S) invoice with no vehicle also lands in the Parts Sales bucket — absence of a vehicle decides, not the prefix",
+ "priority": "Medium",
+ "type": "Functional",
+ "permissions_required": "Sales By Customer report View permission.",
+ "preconditions": [
+  "1. A customer has an invoice whose number starts with S but whose work order has NO vehicle (seed a ZZAUTOTEST no-vehicle service work order and invoice it, if the app allows)."
+ ],
+ "steps": [
+  "1. Expand that customer.",
+  "2. Find which asset row the S invoice sits under."
+ ],
+ "expected": [
+  "1. The no-vehicle S invoice appears under that customer's \"Parts Sales\" row — the bucket collects work by the ABSENCE of a vehicle, not by the invoice-number prefix."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-E3",
+ "viu_status": "VIU-Pending",
+ "notes": "If the app cannot produce a no-vehicle service invoice, record the seeding path tried and mark Blocked-Env with reason (Standing Rule 14: attempt seeding first).",
+ "api_related": false
+}

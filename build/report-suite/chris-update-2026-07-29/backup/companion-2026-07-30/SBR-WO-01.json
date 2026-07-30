@@ -1,0 +1,28 @@
+{
+ "id": "SBR-WO-01",
+ "area": "SBR — Work Order Sales Rep",
+ "title": "The Sales Rep selector shows in the left panel on standard Work Orders and Part Sale WOs, and is hidden on imported WOs and in History mode",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "A user who can open Work Orders and Part Sale WOs.",
+ "preconditions": [
+  "1. You have: an open standard Work Order, an open Part Sale WO, an imported Work Order, and a way to view a WO in History mode."
+ ],
+ "steps": [
+  "1. Open the standard Work Order and look at the left panel.",
+  "2. Open the Part Sale WO and look at the left panel.",
+  "3. Open the imported Work Order and look for the same field.",
+  "4. View a WO in History mode and look for the field."
+ ],
+ "expected": [
+  "1. The left panel includes a \"Sales Rep\" selector on the standard Work Order.",
+  "2. The left panel includes the same \"Sales Rep\" selector on the Part Sale WO.",
+  "3. The selector is NOT present on the imported Work Order.",
+  "4. The selector is NOT present in History mode."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R1; S19-N1",
+ "viu_status": "VIU-Pending",
+ "notes": "",
+ "api_related": false
+}

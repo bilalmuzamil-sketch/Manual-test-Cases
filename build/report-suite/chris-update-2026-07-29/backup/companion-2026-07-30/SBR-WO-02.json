@@ -1,0 +1,26 @@
+{
+ "id": "SBR-WO-02",
+ "area": "SBR — Work Order Sales Rep",
+ "title": "The Sales Rep selector offers only reps whose sales-rep toggle is currently on, and carries the accessible name \"Sales Rep\"",
+ "priority": "High",
+ "type": "Functional",
+ "permissions_required": "A user who can open Work Orders; staff-administration access to arrange the toggles.",
+ "preconditions": [
+  "1. At least one staff member has the sales-rep toggle ON and at least one has it OFF (arrange and restore afterward)."
+ ],
+ "steps": [
+  "1. Open a Work Order and open the \"Sales Rep\" selector.",
+  "2. Search the option list for both staff members.",
+  "3. Inspect the selector's accessible name."
+ ],
+ "expected": [
+  "1. The toggle-ON staff member is offered as a selectable rep.",
+  "2. The toggle-OFF staff member is NOT offered as a new selection.",
+  "3. The selector carries the accessible name \"Sales Rep\"."
+ ],
+ "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+ "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R2; S19-R8",
+ "viu_status": "VIU-Pending",
+ "notes": "Restore any changed toggles afterward (shared-env rule).",
+ "api_related": false
+}
