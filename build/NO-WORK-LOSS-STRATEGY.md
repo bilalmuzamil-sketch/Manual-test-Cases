@@ -1,5 +1,11 @@
 # No-Work-Loss Strategy — never lose finished work
 
+> **2026-07-30: This is now STANDING RULE 29 in CLAUDE.md — PERMANENT, for every
+> project AND every side project.** USER DIRECTIVE (2026-07-29): "you have to make
+> sure that if we hit the daily limit we do not loose anything and this should be a
+> permanent rule for every project or side project you work on". Proven across the
+> 2026-07-28/29 daily-limit hits: zero work lost.
+
 Plain-English rules so a usage-limit kill, container restart, or dead worker never
 costs us finished work. Read this whenever a limit is near or a worker dies.
 
@@ -32,6 +38,31 @@ Keep both anchors current AS work completes — an anchor that lags is a resume 
 - Relaunch with only the REMAINING scope.
 - Workflow runs: resume with `resumeFromRunId`.
 - Agent workers: re-launch the remaining items (don't redo the finished ones).
+- **Killed-worker resume recipe (proven 2026-07-29 wave-completion):**
+  1. Check the worker's LAST OUTPUT (its per-op log / last pushed commit) to see
+     exactly which operations it reported complete.
+  2. VERIFY the live state (re-GET the TestRail cases / re-read the live system)
+     against that log — never trust the log alone, and never assume the last
+     logged op finished.
+  3. Complete ONLY what is verifiably missing — never redo verified writes.
+
+## RESUMABLE WRITE SEQUENCES (TestRail / Jira — proven 2026-07-28/29)
+Every in-flight TestRail/Jira write sequence must be resumable:
+- **Pre-write snapshots**: capture the current live state of every case/entity you
+  are about to touch BEFORE the first write (backup files committed to git).
+- **Per-operation logs**: log each op (case ID, verb, HTTP status, re-GET verify)
+  as it completes — one line per op, flushed immediately, committed to git — so a
+  killed run can be verified op-by-op and finished from exactly where it stopped.
+- **Per-op verification**: each write is verified (re-GET MATCH) before the next;
+  a resume can therefore trust the log's verified entries.
+
+## WORKER / COORDINATOR DISCIPLINE (proven 2026-07-28/29)
+- **Background workers commit + push their OWN work** — a worker never ends (or
+  risks a limit) holding uncommitted changes; its commits are its recovery points.
+- **The coordinator state-saves BEFORE limits**: when a limit/reset risk is known,
+  the coordinator writes the cold-resume block (what's DONE, what's IN FLIGHT with
+  its exact re-run recipe, what's AWAITING WHOM) into the relevant
+  PROJECT-STATE.md and pushes it, and tells in-flight workers to checkpoint-commit.
 
 ## SECRETS RE-SUPPLY (lost on every restart/limit)
 Cookies, tokens, and OTP codes live in `/tmp` ONLY and are LOST on restart/limit —

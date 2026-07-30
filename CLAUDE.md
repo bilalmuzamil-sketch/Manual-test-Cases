@@ -1391,6 +1391,27 @@ deliver the 7-tab management report.
     build/report-suite/quality-audit-2026-07-28/ (Report Suite, 515 cases — usefulness audit +
     SENSE-CHECK-2026-07-28.md supplement, per-case-verdicts.csv with both verdict sets). Ties to
     Standing Rules 6/7/8/9/16/17/20/21.
+29. **No-work-loss checkpoint discipline is permanent (all projects + side projects).**
+    USER DIRECTIVE (2026-07-29, permanent): "you have to make sure that if we hit the daily
+    limit we do not loose anything and this should be a permanent rule for every project or
+    side project you work on". Every task — on every project AND every side project —
+    commits + pushes durable work to git after EVERY completed step/phase; NEVER hold more
+    than one phase uncommitted. Long runs (VIU passes, sweeps, audits, multi-batch pushes)
+    checkpoint-commit MID-RUN, not just at the end. Before any known limit/reset risk, do a
+    state-save: write the cold-resume block — what's DONE, what's IN FLIGHT (with its exact
+    re-run recipe), what's AWAITING WHOM — into that project's PROJECT-STATE.md and push it.
+    Every in-flight TestRail/Jira write sequence MUST be resumable: take pre-write snapshots
+    + keep per-operation logs so a killed run can be verified against the live state and
+    completed from exactly where it stopped (proven on the 2026-07-29 wave-completion — the
+    killed worker's per-op log let the resume verify live TestRail and finish only the
+    missing writes). The container and `/tmp` are EPHEMERAL — git is the ONLY durable store;
+    `/tmp` secrets (cookies/tokens/OTP) are the ONLY acceptable loss, re-supplied by the user
+    on resume (never committed, Rule 6/secrets rule). Detailed method =
+    **build/NO-WORK-LOSS-STRATEGY.md** (golden rule, checkpoint granularity, resume anchors,
+    in-flight kill recovery, pre-limit checklist, post-reset resume steps). Rationale: proven
+    across the 2026-07-28/29 daily-limit hits — because every step was committed+pushed and
+    state-saved, ZERO work was lost across the resets. Ties to Standing Rules 6/17/20 and the
+    two-session shared-brain convention (CLAUDE.md + PROJECT-STATE.md are the resume anchors).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
