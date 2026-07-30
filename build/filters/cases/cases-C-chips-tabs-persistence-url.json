@@ -2,7 +2,7 @@
  {
   "id": "FLT-CHIP-01",
   "area": "Active Filter Chips and Clear Filters",
-  "title": "A chip with a selected value turns into the active blue state and shows the value",
+  "title": "A chip with a selected value turns blue and shows the value",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -28,7 +28,7 @@
  {
   "id": "FLT-CHIP-02",
   "area": "Active Filter Chips and Clear Filters",
-  "title": "A chip with several values shows the first values and shortens the rest with an ellipsis",
+  "title": "A chip with several values shows the first ones and shortens the rest",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -53,7 +53,7 @@
  {
   "id": "FLT-CHIP-03",
   "area": "Active Filter Chips and Clear Filters",
-  "title": "'Clear filters' appears to the right of the chips only when at least one filter is active",
+  "title": "'Clear filters' shows right of the chips only when a filter is active",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -81,7 +81,7 @@
  {
   "id": "FLT-CHIP-04",
   "area": "Active Filter Chips and Clear Filters",
-  "title": "'Clear filters' removes every active filter at once and all chips return to default",
+  "title": "'Clear filters' removes every active filter and resets all chips",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -110,7 +110,7 @@
  {
   "id": "FLT-CHIP-05",
   "area": "Active Filter Chips and Clear Filters",
-  "title": "'Clear selection' inside one dropdown clears only that filter and leaves the others active",
+  "title": "'Clear selection' in one dropdown clears only that filter",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -137,7 +137,7 @@
  {
   "id": "FLT-CHIP-06",
   "area": "Active Filter Chips and Clear Filters",
-  "title": "Several different filters combine: only work orders matching every active filter remain",
+  "title": "Different filters combine: only work orders matching every one remain",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -165,7 +165,7 @@
  {
   "id": "FLT-EMPTY-01",
   "area": "Empty State",
-  "title": "A filter combination with no matching work orders shows a no-results empty state instead of a blank table",
+  "title": "A filter combination with no matches shows a no-results empty state",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -192,7 +192,7 @@
  {
   "id": "FLT-EMPTY-02",
   "area": "Empty State",
-  "title": "The filtered empty state offers a way to clear the filters, and using it brings the list back",
+  "title": "The filtered empty state offers a way to clear the filters",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -275,7 +275,7 @@
  {
   "id": "FLT-TAB-02",
   "area": "Tab Behaviour",
-  "title": "On the Estimates tab the Status chip is shown greyed out, pre-filled with 'Status: Estimate', and cannot be changed; the other four filters work on top of the Estimates pre-filter",
+  "title": "Estimates tab: Status chip greyed out and pre-filled; other four still work",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -305,7 +305,7 @@
  {
   "id": "FLT-TAB-03",
   "area": "Tab Behaviour",
-  "title": "On the Completed tab the Status chip is shown greyed out, pre-filled with the tab's status, and cannot be changed; the other four filters work on top of the Completed pre-filter",
+  "title": "Completed tab: Status chip greyed out and pre-filled; other four still work",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -335,7 +335,7 @@
  {
   "id": "FLT-TAB-04",
   "area": "Tab Behaviour",
-  "title": "On the My Work Orders tab all five filters are shown and narrow the already user-scoped list",
+  "title": "My Work Orders tab shows all five filters and they narrow that list",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A signed-in user who has work orders assigned to them (the spec defines no role-based differences - OQ-4).",
@@ -390,7 +390,7 @@
  {
   "id": "FLT-PERS-01",
   "area": "Persistence",
-  "title": "Leaving the Work Orders page and coming back restores the filters and the bar state exactly",
+  "title": "Leaving the page and coming back restores the filters and the bar state",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -418,7 +418,7 @@
  {
   "id": "FLT-PERS-02",
   "area": "Persistence",
-  "title": "Filter selections are remembered for you permanently - still applied after moving around the app and even after closing the browser and signing back in",
+  "title": "Filters are remembered permanently, even after closing the browser",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -474,7 +474,7 @@
  {
   "id": "FLT-PERS-04",
   "area": "Persistence",
-  "title": "A remembered filter value that no longer exists is silently dropped when you return",
+  "title": "A remembered filter value that no longer exists is silently dropped",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Any signed-in user with access to the Work Orders page; rights to delete/deactivate the seeded test value.",
@@ -527,7 +527,7 @@
  {
   "id": "FLT-URL-02",
   "area": "URL State and Shareable Links",
-  "title": "Opening a shared or bookmarked URL loads the Work Orders page with those filters already applied",
+  "title": "Opening a shared or bookmarked link loads the page with those filters on",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",

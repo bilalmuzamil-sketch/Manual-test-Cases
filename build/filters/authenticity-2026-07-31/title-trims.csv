@@ -1,0 +1,38 @@
+internal_id,testrail_case_id,len_before,len_after,title_before,title_after
+FLT-TAB-02,C29609,179,75,"On the Estimates tab the Status chip is shown greyed out, pre-filled with 'Status: Estimate', and cannot be changed; the other four filters work on top of the Estimates pre-filter",Estimates tab: Status chip greyed out and pre-filled; other four still work
+FLT-TAB-03,C29610,177,75,"On the Completed tab the Status chip is shown greyed out, pre-filled with the tab's status, and cannot be changed; the other four filters work on top of the Completed pre-filter",Completed tab: Status chip greyed out and pre-filled; other four still work
+FLT-PERS-02,C29614,151,66,Filter selections are remembered for you permanently - still applied after moving around the app and even after closing the browser and signing back in,"Filters are remembered permanently, even after closing the browser"
+FLT-COLL-04,C29604,128,75,"The funnel button shows a blue indicator when filters are active while the bar is collapsed, and none when no filters are active",Collapsed funnel button shows a blue indicator only when filters are active
+FLT-MOB-02,C29622,111,71,Tapping All Filters opens a bottom sheet listing every filter as an expandable row with an Apply filters button,Mobile: All Filters opens a sheet of expandable rows with Apply filters
+FLT-MOB-03,C29623,111,72,Selecting statuses in the mobile sheet and tapping Apply filters filters the list and counts on the sheet title,Mobile: tapping Apply filters applies the statuses and updates the count
+FLT-API-02,C29632,107,77,"A combined multi-filter request returns only work orders matching all filters, any value within each filter",A combined multi-filter request returns only work orders matching all filters
+FLT-EMPTY-01,C29606,105,67,A filter combination with no matching work orders shows a no-results empty state instead of a blank table,A filter combination with no matches shows a no-results empty state
+FLT-MOB-01,C29621,105,74,"On mobile the filter chips sit in a horizontally scrollable row below the tabs, starting with All Filters","Mobile: chips sit in a scrollable row below the tabs, starting All Filters"
+FLT-MOB-04,C29624,103,74,Tapping an individual filter chip on mobile opens that filter's own sheet with an 'Apply filter' button,Mobile: tapping one chip opens its own sheet with an 'Apply filter' button
+FLT-URL-02,C29618,96,72,Opening a shared or bookmarked URL loads the Work Orders page with those filters already applied,Opening a shared or bookmarked link loads the page with those filters on
+FLT-STAT-01,C29560,95,75,Status chip opens a checkbox list of all nine work order statuses with a Clear selection action,Status chip opens a checkbox list of all nine statuses plus Clear selection
+FLT-CUST-09,C29574,94,74,A customer with no open work orders is still listed; filtering by them returns an empty result,A customer with no work orders is still listed; picking them shows no rows
+FLT-ASSET-01,C29589,94,72,"Asset on site chip opens a dropdown with exactly two options, Yes and No, plus Clear selection",Asset on site chip opens a dropdown with Yes and No plus Clear selection
+FLT-CUST-03,C29568,93,66,Selecting customers adds removable tags in the dropdown input area and checkmarks in the list,Selected customers show as removable tags and as ticks in the list
+FLT-EMPTY-02,C29607,93,58,"The filtered empty state offers a way to clear the filters, and using it brings the list back",The filtered empty state offers a way to clear the filters
+FLT-CUST-01,C29566,92,70,Customer chip opens a dropdown with a 'Search customer' field and a scrollable customer list,Customer chip opens a dropdown with a search field and a customer list
+FLT-TECH-01,C29575,92,68,Lead Technician chip opens a dropdown with a 'Search technician' field and a technician list,Lead Technician chip opens a dropdown with a search field and a list
+FLT-TAB-04,C29611,92,67,On the My Work Orders tab all five filters are shown and narrow the already user-scoped list,My Work Orders tab shows all five filters and they narrow that list
+FLT-MOB-06,C29626,92,75,The mobile Lead Technician and Service Advisor filters offer their search lists in the sheet,Mobile Lead Technician and Service Advisor filters offer their search lists
+FLT-COLL-03,C29603,91,68,The collapsed or expanded state of the filter bar is remembered after leaving and returning,The filter bar's collapsed or expanded state is remembered on return
+FLT-PERS-01,C29613,91,71,Leaving the Work Orders page and coming back restores the filters and the bar state exactly,Leaving the page and coming back restores the filters and the bar state
+FLT-COLL-02,C29602,90,71,"Expanding the filter bar brings it back exactly as it was, with active filters still shown",Expanding the filter bar brings it back with active filters still shown
+FLT-CHIP-05,C29599,90,57,'Clear selection' inside one dropdown clears only that filter and leaves the others active,'Clear selection' in one dropdown clears only that filter
+FLT-CHIP-03,C29597,89,69,'Clear filters' appears to the right of the chips only when at least one filter is active,'Clear filters' shows right of the chips only when a filter is active
+FLT-CHIP-02,C29596,88,69,A chip with several values shows the first values and shortens the rest with an ellipsis,A chip with several values shows the first ones and shortens the rest
+FLT-MOB-05,C29625,88,66,"The mobile Customer filter has search, multi-select and removable tags, matching desktop","Mobile Customer filter has search, multi-select and removable tags"
+FLT-BAR-02,C29558,87,70,"Five filter chips appear in a fixed order, each with an icon, its name and a down arrow","Five filter chips appear in a fixed order with an icon, name and arrow"
+FLT-ADV-01,C29582,87,68,Service Advisor chip opens a dropdown with a 'Search advisor' field and an advisor list,Service Advisor chip opens a dropdown with a search field and a list
+FLT-CHIP-06,C29600,87,69,Several different filters combine: only work orders matching every active filter remain,Different filters combine: only work orders matching every one remain
+FLT-API-03,C29633,87,70,A list request with a deleted or unknown filter value is handled without a server error,A request with a deleted or unknown filter value gives no server error
+FLT-COLL-01,C29601,83,73,The toolbar funnel button collapses the filter bar and the table reclaims the space,The toolbar funnel button collapses the bar and the table takes the space
+FLT-CHIP-04,C29598,83,64,'Clear filters' removes every active filter at once and all chips return to default,'Clear filters' removes every active filter and resets all chips
+FLT-PERS-04,C29616,83,67,A remembered filter value that no longer exists is silently dropped when you return,A remembered filter value that no longer exists is silently dropped
+FLT-API-05,C29635,83,73,"A filter combination matching nothing returns a successful empty list, not an error","A filter combination matching nothing returns an empty list, not an error"
+FLT-STAT-04,C29563,82,59,Clear selection in the Status dropdown unticks every status and removes the filter,Clear selection in the Status dropdown unticks every status
+FLT-CHIP-01,C29595,81,59,A chip with a selected value turns into the active blue state and shows the value,A chip with a selected value turns blue and shows the value

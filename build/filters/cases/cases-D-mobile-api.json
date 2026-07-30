@@ -2,7 +2,7 @@
  {
   "id": "FLT-MOB-01",
   "area": "Mobile Filters",
-  "title": "On mobile the filter chips sit in a horizontally scrollable row below the tabs, starting with All Filters",
+  "title": "Mobile: chips sit in a scrollable row below the tabs, starting All Filters",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -28,7 +28,7 @@
  {
   "id": "FLT-MOB-02",
   "area": "Mobile Filters",
-  "title": "Tapping All Filters opens a bottom sheet listing every filter as an expandable row with an Apply filters button",
+  "title": "Mobile: All Filters opens a sheet of expandable rows with Apply filters",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -54,7 +54,7 @@
  {
   "id": "FLT-MOB-03",
   "area": "Mobile Filters",
-  "title": "Selecting statuses in the mobile sheet and tapping Apply filters filters the list and counts on the sheet title",
+  "title": "Mobile: tapping Apply filters applies the statuses and updates the count",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -83,7 +83,7 @@
  {
   "id": "FLT-MOB-04",
   "area": "Mobile Filters",
-  "title": "Tapping an individual filter chip on mobile opens that filter's own sheet with an 'Apply filter' button",
+  "title": "Mobile: tapping one chip opens its own sheet with an 'Apply filter' button",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -110,7 +110,7 @@
  {
   "id": "FLT-MOB-05",
   "area": "Mobile Filters",
-  "title": "The mobile Customer filter has search, multi-select and removable tags, matching desktop",
+  "title": "Mobile Customer filter has search, multi-select and removable tags",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -140,7 +140,7 @@
  {
   "id": "FLT-MOB-06",
   "area": "Mobile Filters",
-  "title": "The mobile Lead Technician and Service Advisor filters offer their search lists in the sheet",
+  "title": "Mobile Lead Technician and Service Advisor filters offer their search lists",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -301,7 +301,7 @@
  {
   "id": "FLT-API-02",
   "area": "API - Work Orders List Filtering",
-  "title": "A combined multi-filter request returns only work orders matching all filters, any value within each filter",
+  "title": "A combined multi-filter request returns only work orders matching all filters",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A valid signed-in session; browser developer tools or an API client.",
@@ -327,7 +327,7 @@
  {
   "id": "FLT-API-03",
   "area": "API - Work Orders List Filtering",
-  "title": "A list request with a deleted or unknown filter value is handled without a server error",
+  "title": "A request with a deleted or unknown filter value gives no server error",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "A valid signed-in session; browser developer tools or an API client.",
@@ -379,7 +379,7 @@
  {
   "id": "FLT-API-05",
   "area": "API - Work Orders List Filtering",
-  "title": "A filter combination matching nothing returns a successful empty list, not an error",
+  "title": "A filter combination matching nothing returns an empty list, not an error",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A valid signed-in session; browser developer tools or an API client.",
