@@ -32,7 +32,7 @@ SCH-DND-03,C29957,Dragging a line from the drill-down creates a single-line shif
 SCH-DND-04,C29958,A job over the technician's daily hours opens the spread step,Drag-and-Drop Scheduling,"SV-8688 (§4.1 (Large job), §4.5)"
 SCH-DND-05,C29959,A scope that fits one working day skips the spread step,Drag-and-Drop Scheduling,SV-8688 (§4.1 (spread step is conditional))
 SCH-DND-06,C29960,"While dragging, target cells highlight and a ghost block follows",Drag-and-Drop Scheduling,SV-8688 (§7 (Drag feedback))
-SCH-DND-07,C29961,Scheduling a technician onto a line adds them to its labor roster,Drag-and-Drop Scheduling,"SV-8688 (§1.2 (Goals - roster sync), §4.3 (roster add), §7)"
+SCH-DND-07,C29961,Scheduling a technician onto a line adds them to its labor roster,Drag-and-Drop Scheduling,SV-8688 (§1.2 Goals - roster sync · §4.3 roster add + no swap flow · §7; spec v23 2026-07-30)
 SCH-DND-08,C29962,A click-to-arm alternative exists for scheduling without dragging,Drag-and-Drop Scheduling,"SV-8688 (§7 (Keyboard support - click-to-arm), §11 (Accessibility))"
 SCH-SCOPE-01,C29963,Scope picker contents: the pinned whole-order row and the line rows,Scope Picker,SV-8689 (§4.3)
 SCH-SCOPE-02,C29964,'Schedule whole work order' assigns all lines and creates one shift,Scope Picker,"SV-8689 (§4.3, §4.4)"
@@ -147,6 +147,7 @@ SCH-PERM-09,C30082,No own-only restriction: a View user sees ALL technicians' sh
 SCH-PERM-10,C30083,"Grid rows are department-based, not role-based",Permissions,SV-8686 (§14.4)
 SCH-PERM-11,C30084,Clocking into line tasks is gated by the staff 'Time Clock' setting,Permissions,SV-8686 (§14.4 (Time Clock setting))
 SCH-PERM-12,C30614,"With Work Orders: View OFF, work order details on shifts are hidden",Permissions,SV-8687 (§14.2 (Work Orders: View dependency))
+SCH-PERM-13,C38926,Default roles start at the Schedule level the spec names (view-only vs edit),Permissions,SV-8685 [epic - cross-cutting - no single-story owner] (§14.1 default role tiers - view-only role list + edit role list; spec v23 2026-07-30)
 SCH-EDGE-02,C30086,Below 960px the grid scrolls sideways and the sidebar collapses,Edge Cases and Responsiveness,"SV-8686,SV-8687 (§11 (Responsiveness - grid scrolls horizontally below 960px; sidebar collapses))"
 SCH-EDGE-03,C30087,The sidebar work order list and line drill-down stay smooth with 50+ items,Edge Cases and Responsiveness,SV-8687 (§11 (Performance - sidebar list and line drill-down virtualize at 50+ items))
 SCH-EDGE-04,C30088,The grid renders smoothly at full load - 15 technicians over 7 days,Edge Cases and Responsiveness,SV-8686 (§11 (Performance))

@@ -1,5 +1,12 @@
 # Schedule Epic SV-8685 — Reconciliation vs our 167 Schedule cases
 
+> ⚠️ **COVERAGE SECTIONS SUPERSEDED 2026-07-31** — any coverage/completeness claim in this file
+> was derived from the **v18-era** baseline. The authoritative coverage statement is
+> `build/schedule/coverage-rederivation-2026-07-31/COVERAGE-REDERIVATION.md` (spec **v23**).
+> The epic/story ingest and the story-by-story reconciliation below remain valid (epic SV-8685
+> re-verified UNCHANGED 2026-07-31).
+
+
 **Date:** 2026-07-28 · **PO:** Branko · **Scope of this doc:** ANALYSIS ONLY.
 No VIU (QA branch still pending, OQ-3), no TestRail writes, no case authoring.
 

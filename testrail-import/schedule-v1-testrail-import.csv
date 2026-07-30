@@ -213,9 +213,13 @@ A scope that fits one working day skips the spread step,Drag-and-Drop Scheduling
 Scheduling a technician onto a line adds them to its labor roster,Drag-and-Drop Scheduling,Functional,Critical,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A work order exists with an approved line where the target technician is NOT yet on the line's roster.
 3. You are on the Schedule page.","1. Drag that line onto the technician's cell and create the shift.
-2. Open the same work order's line (in the sidebar drill-down and/or on the Work Orders page) and check its technician roster.","1. The technician now appears on that line's labor roster - the schedule and the work order stay in sync automatically.
+2. Open the same work order's line (in the sidebar drill-down and/or on the Work Orders page) and check its technician roster.
+3. Drag the SAME line onto a different technician's cell and create a second shift (drag the line from the sidebar again - do NOT drag the shift block you just created, that would move it instead).
+4. Look at that line's technician roster again.","1. The technician now appears on that line's labor roster - the schedule and the work order stay in sync automatically.
 2. The sidebar line row's avatar stack/count updates to include the technician.
-3. If the line previously showed 'Needs techs', the badge is gone.","SV-8688 (§1.2 (Goals - roster sync), §4.3 (roster add), §7)",,
+3. If the line previously showed 'Needs techs', the badge is gone.
+4. Dragging the same line onto a second technician adds that technician to the line's roster as well - the technician who was already there stays on it.
+5. Nothing asks you to swap or replace the technician who was already there, and no limit is reached on how many technicians a line can have.",SV-8688 (§1.2 Goals - roster sync · §4.3 roster add + no swap flow · §7; spec v23 2026-07-30),,
 A click-to-arm alternative exists for scheduling without dragging,Drag-and-Drop Scheduling,Accessibility,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A work order with an approved line exists.
 3. You are on the Schedule page.","1. Instead of dragging, click (arm) the work order card or line in the sidebar.
@@ -990,6 +994,17 @@ Clocking into line tasks is gated by the staff 'Time Clock' setting,Permissions,
 3. Open the shift's detail modal and read the work-order-derived fields.","1. Work-order-derived details (customer, the scheduled line list, and any money-bearing fields) are hidden or masked wherever they would normally appear - on the block, in the tooltip, and in the modal.
 2. The schedule structure itself (the shift's day, time, and technician) stays visible so the grid remains usable.
 3. This extends the sidebar behavior (the work order list and drill-down are hidden) to the work-order data surfaced on the shifts themselves.",SV-8687 (§14.2 (Work Orders: View dependency)),,
+Default roles start at the Schedule level the spec names (view-only vs edit),Permissions,Functional,High,"1. You are signed in as an admin who can view and edit the roles and their permissions.
+2. You can sign in (or switch) to a user who holds each role you need to check.
+3. Write down each role's current Schedule permissions before you change anything, and put them back afterwards.","1. Open the roles screen where each role's permissions are listed.
+2. Take these roles one at a time - Technician, Parts Manager, Parts Tech, Office, Time Clock - use 'Reset To Template' so the role is back at its default, then read its Schedule permissions (View, Edit, Delete).
+3. Do the same for these roles - Service Manager, Senior Service Advisor, Service Advisor, Foreman - and read their Schedule permissions.
+4. Sign in as a user with one of the roles from step 2 and try to drag a work order onto the grid.
+5. Sign in as a user with one of the roles from step 3 and try the same drag.
+6. Put every role's permissions back the way you found them.","1. Technician, Parts Manager, Parts Tech, Office and Time Clock each have Schedule View turned ON and Schedule Edit and Schedule Delete turned OFF.
+2. Service Manager, Senior Service Advisor, Service Advisor and Foreman each have Schedule Edit turned ON (so they also have View).
+3. The user from step 4 gets the read-only schedule - nothing can be dragged onto the grid and no shift can be created.
+4. The user from step 5 can drag a work order onto the grid and create a shift.",SV-8685 [epic - cross-cutting - no single-story owner] (§14.1 default role tiers - view-only role list + edit role list; spec v23 2026-07-30),,
 Below 960px the grid scrolls sideways and the sidebar collapses,Edge Cases and Responsiveness,Functional,Medium,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page in week view with shifts visible.","1. Resize the browser window to just under 960px wide.
 2. Try to reach the right-hand days of the grid.

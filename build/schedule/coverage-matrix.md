@@ -1,3 +1,18 @@
+# ⚠️ SUPERSEDED 2026-07-31 — do not use this file as the coverage authority
+
+> **This matrix was built against Confluence spec version 18 and its counts (168 authored /
+> 167 active) are stale.** The authoritative statement of Schedule coverage is now
+> **`build/schedule/coverage-rederivation-2026-07-31/COVERAGE-REDERIVATION.md`**
+> (+ `APPENDIX-A-full-matrix.md`), which re-derived coverage from **zero** against the
+> **CURRENT spec, Confluence version 23** (2026-07-30): **243 atomic statements enumerated with a
+> line-accounting completeness proof**, each mapped to the case(s) that actually assert it —
+> **206 COVERED · 4 COVERED-FLAGGED · 30 NOT-TESTABLE (itemised) · 3 GAPS, all 3 now CLOSED**.
+> Current tally: **165 ACTIVE cases**, all in TestRail under group 4254, all in run 357.
+>
+> The text below is retained as prior art / history only.
+
+---
+
 # Schedule (v1) — Coverage Matrix
 
 > Proves completeness: every in-scope requirement of the spec
