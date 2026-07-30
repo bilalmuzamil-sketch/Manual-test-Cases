@@ -1,12 +1,11 @@
 Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
-Schedule appears as a top-level navigation item,Navigation and Layout,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser (window at least 960px wide).
-2. Your role has the Schedule: View permission.","1. Look at the app's main (top-level) navigation.
-2. Click the Schedule item.","1. Schedule is listed as a top-level navigation item alongside Work Orders, Customers, Parts, and Reports.
-2. Clicking it opens the Schedule screen.",SV-8686 (§3),,
-The Schedule screen is split into a left work order sidebar and a main schedule grid,Navigation and Layout,Functional,High,"1. You are signed in on a desktop browser (window at least 960px wide).
-2. Your role has Schedule: View and Work Orders: View.","1. Open the Schedule page.
-2. Look at the two regions of the screen.","1. The left panel is the work order sidebar: a mini calendar at the top and a work order list beneath it.
-2. The main area is the schedule grid showing technician rows and a toolbar above it.","SV-8686 (§3, §3.1, §3.2)",,
+Schedule opens from the top-level navigation into a sidebar + grid layout,Navigation and Layout,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser (window at least 960px wide).
+2. Your role has the Schedule: View permission (and Work Orders: View, so the sidebar work order list loads).","1. Look at the app's main (top-level) navigation.
+2. Click the Schedule item.
+3. Look at the two regions of the Schedule screen.","1. Schedule is listed as a top-level navigation item alongside Work Orders, Customers, Parts, and Reports.
+2. Clicking it opens the Schedule screen.
+3. The left panel is the work order sidebar: a mini calendar at the top and a work order list beneath it.
+4. The main area is the schedule grid showing technician rows, with a toolbar above it.","SV-8686 (§3, §3.1, §3.2)",,
 Day / Week / Month segmented control switches the grid between the three views,Navigation and Layout,Functional,Critical,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page.
 3. At least one shift exists on the current week (create one first if needed, or have a colleague with Edit permission create it).","1. In the grid toolbar, click Day on the Day / Week / Month segmented control.
@@ -72,19 +71,16 @@ A chevron toggle collapses and expands the mini calendar grid,Sidebar - Mini Cal
 3. Below: the customer name in bold, then the unit number.
 4. A lead technician row with the technician's avatar and name.
 5. A colored left border whose color reflects the work order's status.",SV-8687 (§3.1 (Work order card anatomy)),,
-'Search work orders' matches the work order number,Sidebar - Work Order List and Search,Functional,High,"1. You are signed in on a desktop browser.
-2. Several work orders exist with different numbers.
-3. You are on the Schedule page with the work order list visible.","1. Click the 'Search work orders' field at the top of the list.
-2. Type the number of one specific work order.","1. The list narrows to the card(s) whose work order number matches what you typed.
-2. Cards that do not match disappear from the list.",SV-8687 (§3.1 (Sidebar search)),,
-"'Search work orders' matches customer name, unit number, and technician name",Sidebar - Work Order List and Search,Functional,High,"1. You are signed in on a desktop browser.
-2. Work orders exist with distinct customer names, unit numbers, and lead technicians.
-3. You are on the Schedule page with the work order list visible.","1. In 'Search work orders', type part of a customer name; note the results, then clear.
-2. Type a unit number; note the results, then clear.
-3. Type a technician's name; note the results.","1. Customer-name search shows only cards for that customer.
-2. Unit-number search shows only cards with that unit.
-3. Technician-name search shows only cards where that technician appears on the card.
-4. All four searchable fields (WO number, customer, unit, technician) are fields visible on the card itself.","SV-8687 (§3.1 (Sidebar search, Work order card anatomy))",,
+"'Search work orders' matches work order number, customer, unit, and technician",Sidebar - Work Order List and Search,Functional,High,"1. You are signed in on a desktop browser.
+2. Work orders exist with different work order numbers and with distinct customer names, unit numbers, and lead technicians.
+3. You are on the Schedule page with the work order list visible.","1. Click the 'Search work orders' field at the top of the list and type the number of one specific work order; note the results, then clear.
+2. Type part of a customer name; note the results, then clear.
+3. Type a unit number; note the results, then clear.
+4. Type a technician's name; note the results.","1. Work-order-number search narrows the list to the card(s) whose work order number matches what you typed, and cards that do not match disappear.
+2. Customer-name search shows only cards for that customer.
+3. Unit-number search shows only cards with that unit.
+4. Technician-name search shows only cards where that technician appears on the card.
+5. All four searchable fields (WO number, customer, unit, technician) are fields visible on the card itself.","SV-8687 (§3.1 (Sidebar search, Work order card anatomy))",,
 Sidebar search filters the card list in real time as you type,Sidebar - Work Order List and Search,Functional,Medium,"1. You are signed in on a desktop browser.
 2. Several work orders exist.
 3. You are on the Schedule page with the work order list visible.","1. Type a search term into 'Search work orders' one character at a time.
@@ -135,18 +131,16 @@ Search and filter work together - both can be active at the same time,Sidebar - 
 2. With the search still applied, open 'Filter' and choose one status.
 3. Read the list.","1. The list shows only work orders that match BOTH the text search and the structured filter.
 2. Removing either the search text or the filter widens the list to the remaining condition.",SV-8687 (§5.1),,
-"Clicking a work order card replaces the list in place with that order's lines, with a back control",Sidebar - Line Drill-Down,Functional,High,"1. You are signed in on a desktop browser.
-2. A work order exists with at least two approved lines.
+"Work order card opens the line drill-down in place, with header and back control",Sidebar - Line Drill-Down,Functional,High,"1. You are signed in on a desktop browser.
+2. A work order exists with a known number of approved lines (at least two).
 3. You are on the Schedule page with the work order list visible.","1. Click that work order's card in the sidebar.
 2. Look at the sidebar.
-3. Click the back control.","1. The card list is replaced, in the same place, by that work order's lines (no new page or popup).
-2. A back control is shown to return to the card list.
-3. Clicking back restores the work order card list.",SV-8687 (§3.1 (Line drill-down)),,
-Drill-down header shows the work order id plus its line count,Sidebar - Line Drill-Down,Functional,Medium,"1. You are signed in on a desktop browser.
-2. A work order exists with a known number of approved lines.
-3. You are on the Schedule page.","1. Click the work order card to open the drill-down.
-2. Read the header of the drill-down.","1. The header shows the work order id.
-2. The header also shows the line count, and it matches the number of approved lines.",SV-8687 (§3.1 (Line drill-down)),,
+3. Read the header of the drill-down.
+4. Click the back control.","1. The card list is replaced, in the same place, by that work order's lines (no new page or popup).
+2. The header of the drill-down shows the work order id.
+3. The header also shows the line count, and it matches the number of approved lines.
+4. A back control is shown to return to the card list.
+5. Clicking back restores the work order card list.",SV-8687 (§3.1 (Line drill-down)),,
 Only approved work order lines appear in the drill-down - unapproved lines are not shown,Sidebar - Line Drill-Down,Negative,Critical,"1. You are signed in on a desktop browser.
 2. A ZZAUTOTEST work order exists with at least one APPROVED line and at least one UNAPPROVED line (create/adjust it first).
 3. You are on the Schedule page.","1. Open that work order's drill-down in the sidebar.
@@ -227,12 +221,15 @@ A click-to-arm alternative exists for scheduling without dragging,Drag-and-Drop 
 3. You are on the Schedule page.","1. Instead of dragging, click (arm) the work order card or line in the sidebar.
 2. Then click a technician cell in the grid.","1. The item can be placed onto a cell without holding a drag - clicking arms it, and clicking a cell places it.
 2. The result is the same as the equivalent drag-and-drop (scope picker / spread step rules apply the same way).","SV-8688 (§7 (Keyboard support - click-to-arm), §11 (Accessibility))",,
-"'Schedule whole work order' is pinned at the top, visually distinct, labeled with line count and total hours",Scope Picker,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. A work order exists with three approved lines with known estimated hours.
+Scope picker contents: the pinned whole-order row and the line rows,Scope Picker,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. A work order exists with three approved lines with known estimated hours, where at least one line already has technicians on its roster.
 3. You are on the Schedule page in week view.","1. Drag the work order onto a technician's cell to open the scope picker.
-2. Read the top option.","1. The 'Schedule whole work order' option sits pinned at the top of the picker and looks visually distinct from the line rows.
+2. Read the top option.
+3. Read each line row below it.","1. The 'Schedule whole work order' option sits pinned at the top of the picker and looks visually distinct from the line rows.
 2. It is labeled with the order's line count and total hours (matching the sum of the approved lines).
-3. The picker is anchored to the cell that was dropped on.",SV-8689 (§4.3),,
+3. The picker is anchored to the cell that was dropped on.
+4. Each line row shows the line title and its estimated hours.
+5. Rows for lines that already have technicians show the current roster as an avatar stack plus count.",SV-8689 (§4.3),,
 Choosing 'Schedule whole work order' assigns the technician to all lines and creates one whole-order shift,Scope Picker,Functional,Critical,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A ZZAUTOTEST work order exists with two or more approved lines whose TOTAL hours fit within the technician's working day (to avoid the spread step).
 3. You are on the Schedule page in week view.","1. Drag the work order onto a technician's cell.
@@ -246,25 +243,18 @@ Tapping an individual line row immediately creates a single-line shift with no c
 2. In the scope picker, click one line row (do not use 'Select multiple').","1. A single-line shift for that line is created immediately - no extra confirmation step.
 2. The picker closes.
 3. The block's last text line shows the line's name.",SV-8689 (§4.3 (Individual line rows - fast path)),,
-"Scope picker line rows show the line title, estimated hours, and current technician roster",Scope Picker,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. A multi-line work order exists where at least one line already has technicians on its roster.
-3. You are on the Schedule page in week view.","1. Drag the work order onto a technician's cell to open the scope picker.
-2. Read each line row.","1. Each row shows the line title and its estimated hours.
-2. Rows for lines that already have technicians show the current roster as an avatar stack plus count.",SV-8689 (§4.3),,
-'Select multiple' switches rows to checkboxes with a confirm bar showing a running tally,Scope Picker,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+"'Select multiple' checkbox mode: running tally, Select all, and Cancel",Scope Picker,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A work order exists with three or more approved lines.
 3. You are on the Schedule page in week view.","1. Drag the work order onto a technician's cell.
 2. Click 'Select multiple'.
 3. Tick two lines and read the confirm bar.
-4. Confirm.","1. The line rows switch into checkbox mode.
+4. Click 'Select all' and read the tally.
+5. Click Cancel instead of confirming, and look at the picker.
+6. Re-open 'Select multiple', tick two lines again, and confirm.","1. The line rows switch into checkbox mode.
 2. A confirm bar appears with a running tally of the selection - the count of lines and their combined hours (in the spec's example format, 'Create shift · 2 lines · 6h').
-3. Confirming creates ONE shift covering the ticked lines, and the technician is added to those lines' rosters only.",SV-8689 (§4.3 (Select multiple)),,
-'Select all' equals whole order; Cancel returns to the fast single-tap list,Scope Picker,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. A multi-line work order exists.
-3. You are on the Schedule page with the scope picker open in 'Select multiple' mode.","1. Click 'Select all' and read the tally.
-2. Click Cancel instead of confirming.
-3. Look at the picker.","1. 'Select all' ticks every line - the tally equals the whole order (same line count and hours as 'Schedule whole work order').
-2. Cancel leaves checkbox mode and returns to the normal single-tap line list without creating anything.","SV-8689 (§4.3 (Select all shortcut, Cancel))",,
+3. 'Select all' ticks every line - the tally equals the whole order (same line count and hours as 'Schedule whole work order').
+4. Cancel leaves checkbox mode and returns to the normal single-tap line list without creating anything.
+5. Confirming creates ONE shift covering the ticked lines, and the technician is added to those lines' rosters only.","SV-8689 (§4.3 (Select multiple, Select all shortcut, Cancel))",,
 A shift's start time uses the technician's configured working hours when they are set,Shift Start Times and Unassigned Shifts,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A technician has configured working hours that DIFFER from the shop's business hours (for example tech 6:00 AM start vs shop 8:00 AM) - set this up first and restore after.
 3. A schedulable work order line exists.
@@ -303,21 +293,16 @@ Unassigned shift start time skips the technician-hours rule and uses business ho
 2. Check the shift and the line's roster.","1. The shift is now assigned to that technician (it leaves the Unassigned row and sits in the technician's row).
 2. The technician is added to the affected line's roster.
 3. The technician's own working hours now apply to the shift's timing.","SV-8688 (§3.2 (Unassigned placeholder), §4.2)",,
-Every shift always has a start time - none is created without one,Shift Start Times and Unassigned Shifts,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. Work order lines are available to schedule.
-3. You are on the Schedule page.","1. Create shifts by each entry point available: week-view drop on a technician, day-view drop on the timeline, drop on the Unassigned row.
-2. Open each created shift's detail and read its start time.","1. Every created shift has a concrete start time - resolved from the hierarchy (technician hours, then business hours, then 7:00 AM default) or from the day-view drop position.
-2. No shift appears on the grid without a time.","SV-8688 (§4.2, §12)",,
-Spread step shows the chosen scope in its header with a 'Change scope' back-link,Multi-Day Spread Scheduling,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+Spread step header shows the scope; 'Change scope' returns to the picker,Multi-Day Spread Scheduling,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A multi-line work order exists with a scope that exceeds the technician's daily hours.
 3. You are on the Schedule page in week view.","1. Drop the work order on a technician, choose the large scope, and reach the spread step.
-2. Read the spread step's header.","1. The spread step appears as step 2 of the same modal.
+2. Read the spread step's header.
+3. Click 'Change scope'.
+4. Choose a different scope and continue.","1. The spread step appears as step 2 of the same modal.
 2. Its header shows the chosen scope (which lines / how many hours).
-3. A 'Change scope' back-link is present.",SV-8691 (§4.5),,
-'Change scope' returns from the spread step to the scope picker,Multi-Day Spread Scheduling,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. You are on the spread step (step 2) for a multi-line work order.","1. Click 'Change scope'.
-2. Choose a different scope and continue.","1. The modal goes back to the scope picker (step 1) without creating anything.
-2. Choosing a new scope updates the spread step's header and hours accordingly.",SV-8691 (§4.5),,
+3. A 'Change scope' back-link is present.
+4. Clicking 'Change scope' takes the modal back to the scope picker (step 1) without creating anything.
+5. Choosing a new scope updates the spread step's header and hours accordingly.",SV-8691 (§4.5),,
 "How-much selector defaults to Full estimate; Full estimate, 1 week, and 2 weeks apply immediately with no extra fields",Multi-Day Spread Scheduling,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. You are on the spread step for a large scope (for example 40+ hours).","1. Read the 'how much to schedule' selector's default value.
 2. Open the selector and read its options.
@@ -354,7 +339,7 @@ Spread uses the tech's working hours; skips weekends only when hours not set,Mul
 2. Expand the preview.
 3. Find a skipped day in the breakdown.","1. Collapsed: a one-line summary in the spirit of the spec's example '20 shifts · Jun 15 to Jul 13 · skips weekends + 2 days'.
 2. Expanded: a week-by-week breakdown of the planned shifts.
-3. Skipped days are struck through and show the reason they are skipped (weekend / closure).",SV-8691 (§4.5 (Preview)),,
+3. Skipped days are struck through and show the reason they are skipped - in V1 the only skip reason is a weekend day with no working hours set.",SV-8691 (§4.5 (Preview)),,
 Confirming the spread creates a linked series of daily shifts,Multi-Day Spread Scheduling,Functional,Critical,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. You are on the spread step for a multi-day scope with the preview showing several shifts.","1. Confirm the spread.
 2. Look at the grid across the affected days/weeks.
@@ -418,31 +403,20 @@ Whole-order and multi-line-subset shifts both read 'N Lines' on the block - the 
 3. Open each shift's detail modal.","1. The whole-order block reads '4 Lines'.
 2. The subset block reads '2 Lines' - the block does not distinguish whole-order from subset beyond the count.
 3. Each detail modal lists exactly which lines the shift covers.","SV-8690 (§4.4, §12)",,
-"VIN appears as an extra block line only when the VIN toggle is on, in day and week views only (month omits it)",Shift Block Anatomy,Functional,Medium,"1. You are signed in on a desktop browser.
-2. A shift exists for a unit that has a VIN.
-3. You are on the Schedule page; the VIN toggle in 'Filter and Display' is OFF.","1. In week view, read the shift block (VIN off).
-2. Turn the VIN toggle ON in 'Filter and Display'.
-3. Read the block again in week view, then in day view, then in month view.","1. VIN off: the block shows three lines, no VIN.
-2. VIN on: a VIN line is added to the block in week view and day view.
-3. Month view still omits the VIN line even with the toggle on (space constraints).","SV-8690 (§4.4, §9 (VIN option))",,
-Shift blocks default to blue; a custom colour can be set per shift,Shift Block Anatomy,Functional,Medium,"1. You are signed in on a desktop browser.
-2. Two shifts from the SAME work order exist (for example on different technicians), plus one shift from a different work order whose color has been changed.
-3. You are on the Schedule page in week view.","1. Look at a newly created shift block's colour.
-2. Open the shift detail modal and set a custom colour via the colour picker.
-3. Compare that shift with another shift from the same work order.","1. By default every shift block is blue (the default shift colour).
-2. A custom colour can be assigned per shift via the colour picker in the detail modal.
-3. Colour is per shift - it is NOT tied to the work order, so two shifts from the same order do not automatically share a colour.","SV-8690 (§4.4, §10)",,
 The conflict icon is the only icon on a shift block - no work order number and no scope icons,Shift Block Anatomy,Negative,Medium,"1. You are signed in on a desktop browser.
 2. One normal (unconflicted) shift and one conflicted shift exist (create an overlapping second shift to force a conflict).
 3. You are on the Schedule page in week view.","1. Inspect the unconflicted block for icons and a work order number.
 2. Inspect the conflicted block.","1. The unconflicted block shows NO icons and NO work order number - only its text lines.
 2. The conflicted block shows the conflict (warning) icon on its first line - and that is the only icon that ever appears on a block.
 3. No scope icons distinguish whole-order from subset shifts.",SV-8690 (§4.4),,
-Shifts whose times do not overlap share a single lane - the row keeps its normal height,Overlap and Lane Stacking,Functional,Medium,"1. You are signed in on a desktop browser.
-2. One technician has two shifts on the same day whose time ranges do NOT intersect (for example 8:00-10:00 and 10:00-12:00 back-to-back).
-3. You are on the Schedule page in day view.",1. Look at the technician's row on that day.,"1. Both shifts sit in the same single lane, one after the other.
-2. The row stays at its normal height.
-3. No conflict is flagged for back-to-back (non-intersecting) shifts.",SV-8693 (§4.7),,
+"Non-overlapping same-day shifts share one lane, even from different orders",Overlap and Lane Stacking,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. Two DIFFERENT work orders have schedulable lines.
+3. You are on the Schedule page.","1. Schedule a shift from work order 1 onto a technician for a given day (for example 8:00-10:00).
+2. Schedule a shift from work order 2 onto the SAME technician for the SAME day at a non-overlapping time (for example 10:00-12:00).
+3. Switch to day view and look at the technician's row on that day.","1. Both shifts are created and shown on the same day for the same technician - multiple same-day shifts from different work orders are allowed.
+2. Both shifts sit in the same single lane, one after the other.
+3. The row stays at its normal height.
+4. No conflict is flagged for back-to-back (non-intersecting) shifts.","SV-8693 (§4.7, §12 (edge case))",,
 Shifts whose times intersect split into stacked lanes and the row grows to fit,Overlap and Lane Stacking,Functional,High,"1. You are signed in on a desktop browser.
 2. One technician has two shifts on the same day whose time ranges DO intersect (for example 9:00-12:00 and 10:00-13:00).
 3. You are on the Schedule page in day view.",1. Look at the technician's row on that day.,"1. The two overlapping shifts render in separate stacked lanes - they never visually collide.
@@ -462,23 +436,16 @@ Visible lanes cap at 3 - additional overlapping shifts collapse into a '+N more'
 3. Switch to month view and look at the same day.","1. All three views handle the overlap without blocks visually colliding.
 2. Week and month views reach the '+N more' overflow sooner than day view (their cells are narrower), but the same cap-and-overflow model applies.
 3. The overflow affordance opens the hidden-shifts popover in each view.",SV-8693 (§4.7),,
-A technician can hold multiple shifts on the same day from different work orders,Overlap and Lane Stacking,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. Two different work orders have schedulable lines.
-3. You are on the Schedule page.","1. Schedule a shift from work order 1 onto a technician for a given day.
-2. Schedule a shift from work order 2 onto the SAME technician for the SAME day at a non-overlapping time.","1. Both shifts are created and shown on the same day for the same technician - multiple same-day shifts are allowed.
-2. With non-overlapping times, no conflict is raised and both share one lane.","SV-8693 (§12 (edge case), §4.7)",,
-Day view auto-scrolls on load and day navigation so the working-day start sits at the left edge (with a small buffer),Day View Timeline,Functional,Medium,"1. You are signed in on a desktop browser.
+Day view auto-scrolls to the working-day start; manual scrolling stands,Day View Timeline,Functional,Medium,"1. You are signed in on a desktop browser.
 2. Technicians have configured start times; note the EARLIEST one (or the business-hours start / 7:00 AM if none).
 3. You are on the Schedule page.","1. Switch to day view and look at where the timeline is scrolled to.
-2. Navigate to the next day with the toolbar arrow and look again.","1. On load and on each day navigation, the timeline is auto-scrolled so the working-day start sits at the left edge of the visible area, with a small buffer (roughly 30 to 60 minutes) before it.
+2. Manually scroll the timeline to a late-night hour (for example 11:00 PM).
+3. Wait a few seconds and interact with the page without changing the day (hover blocks, open/close a tooltip).
+4. Navigate to the next day with the toolbar arrow and look again.","1. On load and on each day navigation, the timeline is auto-scrolled so the working-day start sits at the left edge of the visible area, with a small buffer (roughly 30 to 60 minutes) before it.
 2. The start used is the earliest technician's configured start; if no tech hours are set, business hours; otherwise 7:00 AM - so no shifts sit off-screen to the left.
-3. The timeline is not stuck there - it remains a full 24-hour scrollable timeline.",SV-8694 (§4.8 (Auto-scroll to business hours)),,
-Manual scrolling is not overridden - auto-scroll fires only on load or day navigation,Day View Timeline,Negative,Medium,"1. You are signed in on a desktop browser.
-2. You are on the Schedule page in day view (already auto-scrolled).","1. Manually scroll the timeline to a late-night hour (for example 11:00 PM).
-2. Wait a few seconds and interact with the page without changing the day (hover blocks, open/close a tooltip).
-3. Then navigate to the next day.","1. Your manual scroll position stays put - nothing jumps you back to the morning while you remain on the same day.
-2. Scrolling works across the entire 24-hour timeline (midnight to midnight).
-3. Only navigating to another day re-triggers the auto-scroll.",SV-8694 (§4.8),,
+3. Your manual scroll position stays put - nothing jumps you back to the morning while you remain on the same day.
+4. The timeline is not stuck at the start - it remains a full 24-hour scrollable timeline (midnight to midnight).
+5. Only navigating to another day re-triggers the auto-scroll.",SV-8694 (§4.8 (Auto-scroll to business hours)),,
 Date and time headers stick to the top of the viewport during vertical scroll (day and week views),Day View Timeline,Functional,Medium,"1. You are signed in on a desktop browser.
 2. Enough technician rows exist that the grid scrolls vertically.
 3. You are on the Schedule page in day view.","1. Scroll the grid down so lower technician rows come into view.
@@ -507,12 +474,6 @@ Dragging a shift's left or right edge resizes its duration,Day View Timeline,Fun
 3. Hover over it.","1. A vertical line marks the current time on the timeline.
 2. Its position matches the actual clock time.
 3. Hovering it shows a label (the current time).",SV-8694 (§4.8 (Now line)),,
-"With the VIN toggle on, day-view lane heights grow so block text is not clipped",Day View Timeline,Functional,Low,"1. You are signed in on a desktop browser.
-2. A shift exists for a unit with a VIN.
-3. You are on the Schedule page in day view with the VIN toggle OFF.","1. Note the height of the shift's lane and that its text fits.
-2. Turn the VIN toggle ON in 'Filter and Display'.
-3. Look at the same lane.","1. With VIN on, the lane height grows to accommodate the additional VIN line.
-2. No block text is clipped or cut off.",SV-8694 (§4.8 (Lane height with VIN)),,
 "Clicking a shift opens its detail modal showing customer, unit, VIN (always visible), and the work order id",Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser.
 2. A shift exists for a unit that has a VIN; the VIN toggle in 'Filter and Display' is OFF.
 3. You are on the Schedule page.","1. Click the shift block.
@@ -580,17 +541,15 @@ Create an event via right-click 'Create Event' on a grid cell,Events,Functional,
 3. Complete the event creation.","1. Clicking empty day-view space starts event creation at that time.
 2. A live preview block is shown while creating, and dragging resizes it.
 3. Completing creates the event at the previewed time/duration.","SV-8696 (§4.10 (day-view click-to-create, live preview))",,
-"Event modal offers name, date, start/end time, an all-day toggle, and a color category",Events,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. You are on the Schedule page with the event modal open (via right-click 'New Event').","1. Read the fields the modal offers.
-2. Fill each: name, date, start and end time, and pick a color category.
-3. Save.","1. The modal contains: name, date, start/end time, an all-day toggle, and a color category.
+Event modal fields all save; the all-day toggle creates an all-day event,Events,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. You are on the Schedule page with the event modal open (via right-click 'Create Event').","1. Read the fields the modal offers.
+2. Fill each: name, date, start and end time, and pick a color category. Save, then re-open the event.
+3. Open the event modal again, turn the all-day toggle ON, and save.
+4. Look at how the all-day event renders in day and week views.","1. The modal contains: name, date, start/end time, an all-day toggle, and a color category.
 2. The event saves with the entered values.
-3. Re-opening the event shows the saved values.",SV-8696 (§4.10 (Event modal)),,
-The all-day toggle creates an all-day event,Events,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. You are on the Schedule page with the event modal open.","1. Turn the all-day toggle ON.
-2. Save the event.
-3. Look at how it renders in day and week views.","1. With all-day on, specific start/end times are not required (the time fields are disabled or hidden).
-2. The event is created as an all-day block for that technician and day.","SV-8696 (§4.10, §8.1 (Event allDay field))",,
+3. Re-opening the event shows the saved values.
+4. With all-day ON, specific start/end times are not required (the time fields are disabled or hidden).
+5. The event is created as an all-day block for that technician and day.","SV-8696 (§4.10 (Event modal), §8.1 (Event allDay field))",,
 Events can be dragged to another technician or another day,Events,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. An event exists on a technician's day.
 3. You are on the Schedule page in week view.","1. Drag the event block to a different technician's row.
@@ -631,18 +590,15 @@ Working-day conflict: a shift on a day outside the technician's configured worki
 2. Look at the block and the conflict pill.","1. The shift is created but flagged as a conflict because the day is outside the technician's configured working days (the design's reason sentence reads in the spirit of 'Scheduled on a weekend (outside Mon-Fri)').
 2. If the technician's working days DO include that day (for example Saturday hours are configured), a shift on that day is NOT flagged.
 3. The warning icon appears on the block and the conflict is listed in the toolbar dropdown.",SV-8697 (§4.11 (Weekend shift)),,
-Before hours: a shift starting before the technician's configured working-day start is flagged,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. A technician has a known working-day start (for example 8:00 AM).
-3. A shift exists for that technician.","1. In day view, drag the shift so it starts BEFORE the technician's working-day start (for example 6:00 AM).
-2. Look at the block and the conflict pill.","1. The shift is flagged as a before-hours conflict (the design's reason sentence reads in the spirit of 'Starts before working hours (8:00 AM)'), measured against the technician's configured working-day start.
-2. The working-day start follows the hierarchy technician hours, then business hours, then the default.
-3. Warning icon on the block; the conflict appears in the toolbar dropdown.",SV-8697 (§4.11 (Before hours)),,
-After hours: a shift extending past the technician's configured working-day end is flagged,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. A technician has a known working-day end (for example 5:00 PM).
-3. A shift exists for that technician ending before 5:00 PM.","1. In day view, drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM).
-2. Look at the block and the conflict pill.","1. The shift is flagged as an after-hours conflict (the design's reason sentence reads in the spirit of 'Extends past working hours (5:00 PM)'), measured against the technician's configured working-day end.
-2. The working-day end follows the hierarchy technician hours, then business hours, then the default.
-3. Warning icon on the block; the conflict appears in the toolbar dropdown.",SV-8697 (§4.11 (After hours)),,
+Before-hours and after-hours shifts are flagged against the tech's hours,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. A technician has a known working day (for example 8:00 AM to 5:00 PM).
+3. A shift exists for that technician inside those hours.","1. In day view, drag the shift so it starts BEFORE the technician's working-day start (for example 6:00 AM).
+2. Look at the block and the conflict pill.
+3. Now drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM).
+4. Look at the block and the conflict pill again.","1. The shift is flagged as a before-hours conflict (the design's reason sentence reads in the spirit of 'Starts before working hours (8:00 AM)'), measured against the technician's configured working-day start.
+2. The shift is flagged as an after-hours conflict (the design's reason sentence reads in the spirit of 'Extends past working hours (5:00 PM)'), measured against the technician's configured working-day end.
+3. Both the start and the end follow the hierarchy technician hours, then business hours, then the default.
+4. Warning icon on the block in each case; the conflict appears in the toolbar dropdown.","SV-8697 (§4.11 (Before hours, After hours))",,
 The toolbar conflict pill shows the issue count and opens a dropdown listing the conflicts,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser.
 2. At least two conflicts of different types exist (for example one double-booked overlap and one Saturday shift - create them first).
 3. You are on the Schedule page.","1. Read the conflict pill in the grid toolbar.
@@ -753,17 +709,25 @@ Department toggles show or hide individual department groups in the grid,Filter 
 2. Turning it off restores the full grid.
 3. This is a personal convenience filter only - it does not change what you are permitted to see (default is OFF, everyone's shifts visible).
 4. For a user who has no technician/staff record of their own, the 'My Shifts' option is not shown at all.","SV-8700 (§9 (My Shifts), §14.3)",,
-The 'VIN Number' toggle adds the VIN to shift blocks (day/week) only; the hover tooltip and the detail modal always show the VIN,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
+'VIN Number' toggle gates the block VIN only - tooltip and modal always show it,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
 2. A shift exists for a unit with a VIN; the VIN toggle is OFF.
-3. You are on the Schedule page in week view.","1. With 'VIN Number' off: read the block, hover for the tooltip, then open the detail modal.
-2. Turn 'VIN Number' ON in 'Filter and Display' and repeat.","1. 'VIN Number' off: no VIN line on the block - but the hover tooltip still shows the VIN, and the detail modal still shows the VIN.
-2. 'VIN Number' on: the VIN appears as an additional line on blocks in day and week views (and the day-view lane grows taller to fit it).
-3. The 'VIN Number' toggle affects the block only - the tooltip and the modal always show the VIN when the unit has one.
-4. Month view blocks never show the VIN.","SV-8700 (§9 (VIN), §4.4)",,
-"'View Options' popover offers Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday with the spec defaults",Filter and Display and View Options,Functional,High,"1. You are signed in on a desktop browser.
-2. You are on the Schedule page with no view options changed yet (fresh state).","1. Open 'View Options' in the grid toolbar.
-2. Read each toggle and its state.","1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday.
-2. Defaults: Business Hours OFF, Capacity Bars ON, Events ON, Tech Hours OFF, Saturday ON, Sunday ON.","SV-8700 (§6, §9 (View Options popover))",,
+3. You are on the Schedule page in week view.","1. With 'VIN Number' off: read the block in week view, hover for the tooltip, then open the detail modal.
+2. Turn 'VIN Number' ON in 'Filter and Display'.
+3. Read the block again in week view, then in day view, then in month view; hover for the tooltip and open the detail modal again.
+4. In day view, compare the height of the shift's lane with the toggle off and on.","1. 'VIN Number' off: no VIN line on the block (the block shows its three normal lines) - but the hover tooltip still shows the VIN, and the detail modal still shows the VIN.
+2. 'VIN Number' on: the VIN appears as an additional line on blocks in day and week views.
+3. Month view blocks never show the VIN, even with the toggle on (space constraints).
+4. In day view with the VIN on, the lane height grows to fit the extra VIN line and no block text is clipped or cut off.
+5. The 'VIN Number' toggle affects the block only - the tooltip and the modal always show the VIN when the unit has one.","SV-8700 (§9 (VIN), §4.4); SV-8690 (§4.4, §9 (VIN option)); SV-8694 (§4.8 (Lane height with VIN))",,
+'View Options': six toggles with defaults; Capacity Bars and Events flip,Filter and Display and View Options,Functional,High,"1. You are signed in on a desktop browser.
+2. You are on the Schedule page in week view with no view options changed yet (fresh state).
+3. At least one event and some shifts exist in the visible range, so capacity bars have fill.","1. Open 'View Options' in the grid toolbar.
+2. Read each toggle and its state.
+3. Turn OFF Capacity Bars, look at the day column headers, then turn it back ON.
+4. Turn OFF Events, look at the grid, then turn it back ON.","1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday.
+2. Defaults: Business Hours OFF, Capacity Bars ON, Events ON, Tech Hours OFF, Saturday ON, Sunday ON.
+3. Capacity Bars OFF: the capacity bars disappear from the column headers; ON: they reappear with the same values.
+4. Events OFF: event blocks disappear from the grid while shifts remain; ON: the events reappear unchanged.","SV-8700 (§6, §9 (View Options popover, Capacity Bars, Events), §4.12)",,
 Business Hours toggle shades non-working hours in day view,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
 2. The shop has working hours set.
 3. You are on the Schedule page in DAY view with Business Hours OFF.","1. Note the timeline background outside working hours.
@@ -771,18 +735,6 @@ Business Hours toggle shades non-working hours in day view,Filter and Display an
 3. Look at the timeline again.","1. With the toggle on, the hours OUTSIDE the working day are shaded with a grey overlay.
 2. Working hours remain unshaded.
 3. Turning it off removes the shading.","SV-8700 (§9 (Business Hours), §4.8 (Business-hours shading))",,
-Capacity Bars toggle shows and hides the per-day capacity bars,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
-2. Shifts exist so capacity bars have fill.
-3. You are on the Schedule page in week view with Capacity Bars ON (default).","1. Confirm the bars are visible in the day column headers.
-2. Turn OFF Capacity Bars in 'View Options'.
-3. Turn it back ON.","1. Off: the capacity bars disappear from the column headers.
-2. On: they reappear with the same values.","SV-8700 (§9 (Capacity Bars), §4.12)",,
-Events toggle shows and hides event blocks on the grid,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
-2. At least one event and one shift exist on the visible range.
-3. You are on the Schedule page with Events ON (default).","1. Turn OFF Events in 'View Options'.
-2. Look at the grid.
-3. Turn it back ON.","1. Off: event blocks disappear from the grid; shifts remain.
-2. On: the events reappear unchanged.",SV-8700 (§9 (Events)),,
 Tech Hours toggle displays each technician's working hours next to their name,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
 2. Technicians have configured working hours.
 3. You are on the Schedule page with Tech Hours OFF (default).","1. Turn ON Tech Hours in 'View Options'.
@@ -804,24 +756,17 @@ Saturday and Sunday toggles include or exclude the weekend columns,Filter and Di
 3. Technician B is added to the affected line's roster and technician A is removed from it.
 4. A toast with Undo appears.","SV-8695 (§7 (Shift reassignment), §12)",,
 Right-click a grid cell opens a menu with Create Event and New Work Order,Reassignment and Context Menu,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. You are on the Schedule page in week view.","1. Right-click a technician's grid cell.
+2. You are on the Schedule page in week view (the same menu is offered in month view).
+3. Schedulable work order lines exist.","1. Right-click a technician's grid cell.
 2. Read the menu items.","1. A context menu opens at the cell.
-2. It contains: 'Create Event' and 'New Work Order'.
-3. The browser's own right-click menu does not appear instead.",SV-8700 (§7 (Right-click context menu)),,
-'View Day' is no longer offered in the grid cell context menu,Reassignment and Context Menu,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. You are on the Schedule page in week or month view.","1. Right-click a technician's grid cell.
-2. Read the menu items.","1. The context menu shows only 'Create Event' and 'New Work Order'.
-2. There is no 'View Day' item - it was removed from the menu.",SV-8700 (§7 (Right-click context menu - View Day)),,
-'New Shift' is no longer offered in the grid cell context menu,Reassignment and Context Menu,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. Schedulable work order lines exist.
-3. You are on the Schedule page in week view.","1. Right-click a technician's grid cell.
-2. Read the menu items.","1. The context menu shows only 'Create Event' and 'New Work Order'.
-2. There is no 'New Shift' item - it was removed from the menu.","SV-8700 (§7 (Right-click context menu - New Shift), §14.1 (creation via context menu))",,
+2. It contains ONLY two items: 'Create Event' and 'New Work Order'.
+3. There is no 'View Day' item - it was removed from the menu.
+4. There is no 'New Shift' item - it was removed from the menu.
+5. The browser's own right-click menu does not appear instead.","SV-8700 (§7 (Right-click context menu; View Day and New Shift removed), §14.1 (creation via context menu))",,
 'New Work Order' in the cell menu points the user to the Work Orders tab,Reassignment and Context Menu,Functional,Medium,"1. You are on the Schedule grid.
 2. The cell context menu shows 'Create Event' and 'New Work Order' ().","1. Right-click an empty grid cell.
 2. Choose 'New Work Order' from the menu.","1. The menu offers a 'New Work Order' item.
-2. Choosing it directs the user to create a work order (a toast / prompt pointing to the Work Orders tab).
-3. The exact target flow (toast or navigation) is confirmed during live testing.",SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut),,
+2. Choosing it directs the user to create a work order (a toast / prompt pointing to the Work Orders tab).",SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut),,
 "Deleting a middle shift of a series asks for scope with all three options, each stating the hours returned","Deletion, Series Scopes and Undo",Functional,High,"1. You are signed in on a desktop browser with Schedule: Delete.
 2. A series of at least 3 shifts exists for one technician.
 3. You are on the Schedule page.","1. Delete a MIDDLE shift of the series (via the detail modal's Delete).
@@ -861,28 +806,23 @@ Deleting a standalone (non-series) shift does not ask for a series scope,"Deleti
 3. You are on the Schedule page.","1. Delete the standalone shift.
 2. Watch what is asked.","1. No series-scope prompt appears (the scope question is only for shifts that belong to a series).
 2. The shift is deleted and an undo toast appears.",SV-8692 (§7 (derived - scope prompt is for series shifts)),,
-"Every create, delete, move, and reassign action produces a toast with an Undo option","Deletion, Series Scopes and Undo",Functional,High,"1. You are signed in on a desktop browser with Schedule: Delete.
-2. Schedulable lines and an existing shift are available.
-3. You are on the Schedule page.","1. Create a shift - watch for a toast.
-2. Move a shift to another day - watch for a toast.
-3. Reassign a shift to another technician - watch for a toast.
-4. Delete a shift - watch for a toast.","1. Each of the four actions produces a toast notification.
-2. Every toast offers an Undo option.","SV-8688 (§7 (Toast notifications), §11 (Undo))",,
 "Toast lasts ~7s with Undo (about 4s without); stays on hover, goes on leave","Deletion, Series Scopes and Undo",Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. You are on the Schedule page.","1. Perform an action that shows a toast (for example move a shift) and let the toast sit untouched - time how long it stays.
 2. Trigger another toast and hold the cursor OVER it well past its normal lifetime.
 3. Move the cursor off the toast.","1. Untouched, a toast that has an Undo action persists about 7 seconds; a toast without Undo persists about 4 seconds, before dismissing.
 2. While the cursor is over it, the toast stays (does not auto-dismiss).
 3. After the cursor leaves, it dismisses.","SV-8688 (§7 (Toast notifications), §11 (Undo))",,
-"Undo restores the state before the action - for delete, move, and reassign","Deletion, Series Scopes and Undo",Functional,High,"1. You are signed in on a desktop browser with Schedule: Delete.
-2. A shift exists; note its technician, day, and time.
-3. You are on the Schedule page.","1. Delete the shift, then click Undo on the toast.
-2. Move the shift to another day, then click Undo.
-3. Reassign it to another technician, then click Undo.
-4. Check the line's roster after the reassign undo.","1. Undo after delete: the shift is back exactly where it was.
-2. Undo after move: the shift returns to its original day/time.
-3. Undo after reassign: the shift returns to the original technician, and the line's roster is restored (original tech back on, target tech off).
-4. Every destructive action is undoable within the toast's lifetime.","SV-8688 (§11 (Undo), §7)",,
+"Every create/delete/move/reassign toasts with Undo, and Undo restores","Deletion, Series Scopes and Undo",Functional,High,"1. You are signed in on a desktop browser with Schedule: Delete.
+2. Schedulable lines exist and a shift exists; note its technician, day, and time.
+3. You are on the Schedule page.","1. Create a shift and watch for the toast.
+2. Delete the shift, watch for the toast, then click Undo on it.
+3. Move the shift to another day, watch for the toast, then click Undo.
+4. Reassign it to another technician, watch for the toast, then click Undo.
+5. Check the line's roster after the reassign undo.","1. Each of the four actions (create, delete, move, reassign) produces a toast notification, and every toast offers an Undo option.
+2. Undo after delete: the shift is back exactly where it was.
+3. Undo after move: the shift returns to its original day/time.
+4. Undo after reassign: the shift returns to the original technician, and the line's roster is restored (original tech back on, target tech off).
+5. Every destructive action is undoable within the toast's lifetime.","SV-8688 (§7 (Toast notifications), §11 (Undo))",,
 "Schedule actions save immediately - Undo reverses them, closing does not cancel","Deletion, Series Scopes and Undo",Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Delete.
 2. A shift exists on the grid; note its technician, day, and time.
 3. You are on the Schedule page.","1. Delete the shift. While the Undo toast is still showing, refresh the page WITHOUT clicking Undo.
@@ -893,29 +833,24 @@ Deleting a standalone (non-series) shift does not ask for a series scope,"Deleti
 3. Clicking Undo within the toast's lifetime reverses the action (the deleted shift comes back).
 4. Note for the tester: Undo works by performing a reversing action, not by holding the change back - a change surviving a refresh before Undo is expected, not a bug.",SV-8688 (§7 toast/undo + tech-plan D10),,
 "Escape closes the topmost open modal or popover, following the stacking order",Keyboard Interactions,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. You are on the Schedule page.","1. Open the shift detail modal, then open a popover on top of it (for example the color picker or a filter/search popover elsewhere).
-2. Press Escape once.
-3. Press Escape again.","1. The FIRST Escape closes only the topmost layer (the popover), leaving the layer beneath open.
-2. The SECOND Escape closes the next layer down.
-3. Escape works anywhere on the schedule page as a global shortcut, following the defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search).",SV-8700 (§7 (Keyboard support - Escape)),,
-"Within the shift modal, Escape first dismisses an open sub-picker before closing the modal itself",Keyboard Interactions,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. A shift's detail modal is open.","1. Open the color picker inside the modal, press Escape, and watch.
-2. Open the time picker, press Escape.
-3. Start editing a note, press Escape.
-4. With nothing open inside the modal, press Escape.","1. Escape with the color picker open closes only the color picker - the modal stays open.
-2. Same for the time picker and the note edit.
-3. Escape with no open sub-picker closes the modal itself.",SV-8700 (§7 (Escape within the shift modal)),,
-"Enter confirms the active confirmable dialog (delete scope, reassign, spread, event create/edit)",Keyboard Interactions,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Delete.
+2. You are on the Schedule page.","1. Open the shift detail modal, then open the color picker inside it and press Escape.
+2. Open the time picker inside the modal and press Escape; then start editing a note and press Escape.
+3. With nothing open inside the modal, press Escape again.
+4. Open the shift detail modal again with a popover from elsewhere on top of it, and press Escape twice.","1. Escape with the color picker open closes only the color picker - the modal stays open.
+2. Same for the time picker and the note edit - each sub-picker closes first and the modal stays open.
+3. Escape with no open sub-picker closes the modal itself.
+4. With two layers open, the FIRST Escape closes only the topmost layer, and the SECOND Escape closes the next layer down.
+5. Escape works anywhere on the schedule page as a global shortcut, following the defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search).","SV-8700 (§7 (Keyboard support - Escape, including within the shift modal))",,
+"Enter confirms the active dialog, but not inside a note textarea",Keyboard Interactions,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Delete.
 2. Shifts/series and events exist to exercise the dialogs.
 3. You are on the Schedule page.","1. Open the spread step for a large job, press Enter.
 2. Open the reassign dialog for a shift, choose a technician, press Enter.
 3. Open the event modal with valid fields, press Enter.
-4. Open a series delete-scope prompt, select a scope, press Enter.","1. In each confirmable dialog, Enter confirms it - equivalent to clicking its confirm action.
-2. The confirmed action takes effect (spread created / reassigned / event saved / delete applied).",SV-8700 (§7 (Keyboard support - Enter)),,
-Enter does not fire inside textareas - multiline note editing works normally,Keyboard Interactions,Negative,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. A shift's detail modal is open with the note editor active.","1. Type a line of note text and press Enter.
-2. Type a second line.","1. Enter inserts a new line in the note - it does NOT confirm/close the dialog.
-2. The multiline note can be completed and saved normally.",SV-8700 (§7 (Enter does not fire inside textareas)),,
+4. Open a series delete-scope prompt, select a scope, press Enter.
+5. Open a shift's detail modal, click into the note editor, type a line of note text and press Enter, then type a second line.","1. In each confirmable dialog, Enter confirms it - equivalent to clicking its confirm action.
+2. The confirmed action takes effect (spread created / reassigned / event saved / delete applied).
+3. In the note editor, Enter inserts a new line in the note - it does NOT confirm or close the dialog.
+4. The multiline note can be completed and saved normally.",SV-8700 (§7 (Keyboard support - Enter; Enter does not fire inside textareas)),,
 Modals trap focus and all interactive elements are keyboard-reachable,Keyboard Interactions,Accessibility,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A shift's detail modal is open.","1. Press Tab repeatedly and watch where focus goes.
 2. Continue tabbing past the last control in the modal.
@@ -927,12 +862,15 @@ Modals trap focus and all interactive elements are keyboard-reachable,Keyboard I
 2. Create a multi-week series without touching any color option.
 3. Look at both on the grid.","1. Both the single shift and the multi-week series render in the default blue.
 2. No special color is auto-applied to long jobs - blue is the default for ALL shifts.",SV-8700 (§10),,
-"Choosing a color from the shift modal's picker recolors the shift with matching background, text, and accent tones",Color System,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. A shift exists; its detail modal is open.","1. Open the color picker in the modal.
+"Shift modal color picker recolors that shift only, in matching tones",Color System,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. Two shifts from the SAME work order exist (for example on different technicians).
+3. One of those shifts' detail modal is open.","1. Open the color picker in the modal.
 2. Choose a non-default color.
-3. Look at the block on the grid.","1. The shift's block re-renders in the chosen color.
+3. Look at the block on the grid.
+4. Compare that shift with the other shift from the same work order.","1. The shift's block re-renders in the chosen color.
 2. The color provides three consistent tones: background fill, text color, and accent (left border).
-3. Colors carry no fixed meaning - they are free choice beyond the two defaults (blue shift / grey event).","SV-8700 (§10, §4.9 (Color picker))",,
+3. The color is per SHIFT, not per work order - the other shift from the same work order keeps its own (default blue) color and does not change.
+4. Colors carry no fixed meaning - they are free choice beyond the two defaults (blue shift / grey event).","SV-8700 (§10, §4.9 (Color picker)); SV-8690 (§4.4, §10)",,
 Color labels are editable per shop,Color System,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A shift's or event's color picker is open.","1. Find the editable label of one color in the picker.
 2. Rename it (for example to 'ZZAUTOTEST Rush').
@@ -940,18 +878,16 @@ Color labels are editable per shop,Color System,Functional,Medium,"1. You are si
 4. Restore the original label.","1. Each color's label can be edited.
 2. The renamed label shows for the whole shop - the same picker opened elsewhere shows 'ZZAUTOTEST Rush'.
 3. Shifts and events share the same custom palette with the same labels.","SV-8700 (§10 (Color labels are editable per shop), §4.10 (shared picker))",,
-"Edit Location has a 'Set business hours for this shop' toggle, off by default",Working Hours Settings,Functional,High,"1. You are signed in to the ShopView App with access to location settings.
-2. You open the Edit Location screen for a shop.","1. Open the Edit Location screen.
-2. Find the business hours setting and read its default state.
-3. Turn the 'Set business hours for this shop' toggle ON.","1. Edit Location shows a toggle labelled 'Set business hours for this shop'.
-2. The toggle is OFF by default (no business hours set).
-3. Turning it ON reveals a per-day working-hours editor for the shop.",SV-8699 (§4.2 Working Hours - business hours toggle),,
-Edit Location shows a per-day (Mon-Sun) From-To business-hours editor,Working Hours Settings,Functional,High,"1. You are on the Edit Location screen.
-2. The 'Set business hours for this shop' toggle is ON.","1. Read the per-day rows shown when business hours are ON.
-2. Set a From time and a To time for one day (for example Monday).
-3. Save the location settings.","1. There is one row per day of the week, Monday through Sunday.
-2. Each day has a From time and a To time you can set.
-3. The saved shop business hours are used by the Schedule (start-time hierarchy, before/after-hours conflicts, business-hours shading).",SV-8699 (§4.2 Working Hours - per-day From/To editor),,
+Business-hours toggle reveals a per-day (Mon-Sun) From-To editor,Working Hours Settings,Functional,High,"1. You are signed in to the ShopView App with access to location settings.
+2. You are on the Edit Location screen for a shop.","1. Find the business hours setting on Edit Location and read its default state.
+2. Turn the 'Set business hours for this shop' toggle ON.
+3. Read the per-day rows shown when business hours are ON.
+4. Set a From time and a To time for one day (for example Monday).
+5. Save the location settings.","1. Edit Location shows a toggle labelled 'Set business hours for this shop', and it is OFF by default (no business hours set).
+2. Turning it ON reveals a per-day working-hours editor for the shop.
+3. There is one row per day of the week, Monday through Sunday.
+4. Each day has a From time and a To time you can set.
+5. The saved shop business hours are used by the Schedule (start-time hierarchy, before/after-hours conflicts, business-hours shading).","SV-8699 (§4.2 Working Hours - business hours toggle, per-day From/To editor)",,
 "Edit Staff has a 'Set custom hours for this technician' toggle, off by default",Working Hours Settings,Functional,High,"1. You are signed in with access to staff settings.
 2. You open the Edit Staff Member screen for a technician.","1. Open the Edit Staff Member screen for a technician.
 2. Find the custom-hours setting and read its default state.
@@ -967,21 +903,22 @@ A technician with no custom hours inherits the shop business hours,Working Hours
 3. Set the second range, then remove it.","1. 'Add hours' appends an additional From-To range to that day (to support split shifts).
 2. The added range starts empty (no From/To pre-filled).
 3. Each added range can be removed individually.",SV-8699 (§4.2 Working Hours - Add hours split shifts),,
-Overlapping hour ranges flag red with a message and disable Save,Working Hours Settings,Negative,High,1. You are in the per-day working-hours editor with at least two ranges on one day.,"1. Set two ranges on the same day so their times overlap.
-2. Look at the offending range and the Save button.","1. The offending (overlapping) range is flagged in red.
+Overlapping hour ranges block Save; incomplete rows are ignored,Working Hours Settings,Negative,High,1. You are in the per-day working-hours editor with at least two ranges on one day.,"1. Set two ranges on the same day so their times overlap.
+2. Look at the offending range and the Save button.
+3. Fix the overlap, then on one day add another range and leave its From and/or To empty.
+4. Look at the validation state and the Save button again.","1. The offending (overlapping) range is flagged in red.
 2. An inline message reads 'These hours overlap. Adjust the times so they don't conflict.'
-3. Save is disabled while the overlap exists.",SV-8699 (§4.2 Working Hours - overlap validation),,
-Incomplete hour rows (empty From or To) are ignored by the overlap check,Working Hours Settings,Functional,Medium,1. You are in the per-day working-hours editor with one complete range and one empty added range.,"1. On one day, add a range but leave its From and/or To empty.
-2. Look at the validation state and the Save button.","1. The incomplete row (empty From/To) is ignored by the overlap check - it does not raise the overlap error.
-2. Save is not blocked by an incomplete row on its own (only genuine overlaps disable Save).",SV-8699 (§4.2 Working Hours - incomplete rows ignored by overlap check),,
+3. Save is disabled while the overlap exists.
+4. The incomplete row (empty From/To) is ignored by the overlap check - it does not raise the overlap error.
+5. Save is not blocked by an incomplete row on its own (only genuine overlaps disable Save).",SV-8699 (§4.2 Working Hours - overlap validation; incomplete rows ignored by overlap check),,
 Week Export opens a printable Department-by-Technician week grid,Week Export and Printing,Functional,Medium,"1. You are on the Schedule screen in Week view with some shifts scheduled.
 2. Your role has Schedule: View.","1. Open the Week Export / Print action for the current week.
-2. Read the exported / printable layout.","1. A printable week view opens laid out as a Department-by-Technician grid for the week.
-2. It is formatted for printing (a clean page layout, without the interactive grid controls).",SV-8685 (design Week Export - V1 scope pending Branko),,
-Exported week view lists each department with its technicians and shifts,Week Export and Printing,Functional,Medium,1. You have opened the Week Export / Print view for a week that has shifts.,"1. Read the exported week view.
-2. Check the department grouping, the technician rows, and the shifts shown per day.","1. The exported view groups technicians by department, with department headers.
-2. Each technician's shifts for the week appear in the correct day columns.
-3. The week's date range is shown.",SV-8685 (design Week Export - V1 scope pending Branko),,
+2. Read the exported / printable layout.
+3. Check the department grouping, the technician rows, and the shifts shown per day.","1. A printable week view opens laid out as a Department-by-Technician grid for the week.
+2. It is formatted for printing (a clean page layout, without the interactive grid controls).
+3. The exported view groups technicians by department, with department headers.
+4. Each technician's shifts for the week appear in the correct day columns.
+5. The week's date range is shown.",SV-8685 (design Week Export - V1 scope pending Branko),,
 "Schedule: View grants the full read experience - page, all three views, mini calendar, search, filter, tooltips, read-only modals",Permissions,Functional,Critical,"1. A test user's role has Schedule: View but NOT Edit (assign a suitable system role or a purpose-made custom role; restore after).
 2. Shifts and events exist on the grid, created by an Edit-capable user.
 3. You are signed in AS that View-only user on a desktop browser.","1. Open the Schedule page.
@@ -998,7 +935,7 @@ View-only: every editing affordance is hidden or disabled,Permissions,Negative,C
 3. Right-click a grid cell.
 4. Open a shift's detail modal and inspect its fields and actions.","1. No drag handles are offered and nothing can be dragged from the sidebar onto the grid.
 2. Shift blocks cannot be moved or resized - no drop targets or resize handles appear.
-3. The right-click context menu does not appear (no New Shift / New Event / View Day creation entry points).
+3. The right-click context menu does not appear (no creation entries - no 'Create Event' and no 'New Work Order').
 4. In the modal, edit fields are hidden or disabled, and the reassign and delete actions are absent.",SV-8685 (§14.1 (Schedule: View - editing affordances hidden or disabled)),,
 "With Schedule: View OFF, the Schedule top-level nav item is hidden entirely",Permissions,Negative,Critical,"1. A test user's role has Schedule: View OFF (no Schedule permission).
 2. You are signed in AS that user on a desktop browser.","1. Look at the app's main navigation.
@@ -1006,7 +943,7 @@ View-only: every editing affordance is hidden or disabled,Permissions,Negative,C
 2. The rest of the app works normally for the role.",SV-8685 (§14.1 (When Schedule: View is OFF)),,
 Schedule: Edit unlocks all creation and modification interactions,Permissions,Functional,Critical,"1. A test user's role has Schedule: Edit (and View) but NOT Delete.
 2. Work orders with approved lines exist; you are signed in AS that user, on the Schedule page.","1. Drag a work order from the sidebar onto a technician cell and complete the scope picker (and spread modal for a large job).
-2. Right-click a cell and create an event via 'New Event'; in day view, click empty space to create.
+2. Right-click a cell and create an event via 'Create Event'; in day view, click empty space to create.
 3. Reassign a shift between technicians by dragging.
 4. In day view, edge-resize and horizontally drag a shift.
 5. Edit fields in the shift and event detail modals.","1. Drag-and-drop from the sidebar, the scope picker, and the spread modal all work.
@@ -1063,11 +1000,6 @@ No own-only restriction: every Schedule: View user sees ALL technicians' shifts 
 3. Open the shift's detail modal and read the work-order-derived fields.","1. Work-order-derived details (customer, the scheduled line list, and any money-bearing fields) are hidden or masked wherever they would normally appear - on the block, in the tooltip, and in the modal.
 2. The schedule structure itself (the shift's day, time, and technician) stays visible so the grid remains usable.
 3. This extends the sidebar behavior (the work order list and drill-down are hidden) to the work-order data surfaced on the shifts themselves.",SV-8687 (§14.2 (Work Orders: View dependency)),,
-Planned hours across technicians may exceed the estimate - accepted without error,Edge Cases and Responsiveness,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. A work order line with a 40h estimate exists.","1. Spread the full estimate onto technician A.
-2. Spread the full estimate of the SAME work order onto technician B.
-3. Look for any warning or error about exceeding the estimate.","1. Both series are created - 80 planned hours against a 40h estimate is accepted.
-2. No error or blocking warning appears - this is expected behavior because progress is driven by clocked-in time, and scheduled hours, the estimate, and actual hours are three separate quantities that are not forced to reconcile.","SV-8691 (§12, §4.5)",,
 "Below 960px the grid scrolls horizontally, and the sidebar collapses on narrow viewports",Edge Cases and Responsiveness,Functional,Medium,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page in week view with shifts visible.","1. Resize the browser window to just under 960px wide.
 2. Try to reach the right-hand days of the grid.

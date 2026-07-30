@@ -5,7 +5,90 @@
 > (staging/QA access method, harness scripts, TestRail API patterns, the two process
 > docs) across all projects.
 
-## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-30)
+## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-31)
+
+### 0.0-CONSOLIDATION-EXECUTED CONSOLIDATION + WORDING REPAIRS EXECUTED (2026-07-31, LATEST — user-authorized TestRail writes DONE)
+
+**The Rule-28 usefulness-audit recommendations are now EXECUTED (user authorization
+2026-07-31): the 20 merge groups + 2 cuts from `quality-audit-2026-07-31/MERGE-PLAN.md`
+plus the 6 FIX-WORDING repairs from `USEFULNESS-AUDIT-2026-07-31.md`. 24 `update_case` +
+25 `delete_case` = 49 operations, ALL HTTP 200, ALL re-GET verified, 0 failures. Nothing
+else written: no add_case, no section writes, NO run writes (run 325 / all runs
+untouched), nothing outside group 4254.**
+
+- **NEW TALLY: 165 ACTIVE authored** (was 190) — all still **VIU-Pending** (the suite is
+  pre-VIU / spec+design+tech-plan-only; Rule 12 — design-pinned ≠ VIU-Verified).
+  **Live count under group 4254 = 165 == the 165-row id-map** (set-equality verified
+  C-id-by-C-id, not just a count match).
+- **20 merge groups** — each survivor gained the absorbed members' distinct
+  steps/expected, with their `refs` unioned in (Rule 20), and **14 survivor titles were
+  rewritten to ≤ 80 chars** (concise-title rule). Groups: G-NAV-LANDING, G-CELL-MENU,
+  G-SIDEBAR-SEARCH, G-DRILLDOWN-OPEN, G-SCOPE-CONTENTS, G-SCOPE-MULTI, G-SPREAD-HEADER,
+  G-VIN-TOGGLE, G-SHIFT-COLOR, G-SAMEDAY-LANE, G-AUTOSCROLL, G-EVENT-MODAL,
+  G-HOURS-CONFLICT, G-VIEW-TOGGLES, G-UNDO, G-ESCAPE, G-ENTER, G-HRS-LOCATION,
+  G-HRS-VALIDATION, G-WEEK-EXPORT. **0 groups held/skipped.**
+- **23 merged-away members + 2 cuts deleted** (`delete_case`, all verified gone):
+  members SCH-NAV-02 (C29926), SCH-WOL-03 (C29938), SCH-LINE-02 (C29949),
+  SCH-SCOPE-04 (C29966), SCH-SCOPE-06 (C29968), SCH-SPREAD-01 (C29977),
+  SCH-BLOCK-03 (C29993), SCH-BLOCK-04 (C29994), SCH-LANE-05 (C30000),
+  SCH-DAY-02 (C30002), SCH-DAY-07 (C30007), SCH-EVT-04 (C30019), SCH-CONF-04 (C30026),
+  SCH-VIEW-07 (C30048), SCH-VIEW-08 (C30049), SCH-REAS-04 (C30055), SCH-REAS-05 (C30056),
+  SCH-DEL-07 (C30063), SCH-KEY-02 (C30067), SCH-KEY-04 (C30069), SCH-HRS-01 (C38846),
+  SCH-HRS-07 (C38852), SCH-EXP-02 (C38854); cuts **SCH-START-08 (C29976)** (duplicate
+  sweep of SCH-START-01..05) + **SCH-EDGE-01 (C30085)** (duplicate of SCH-SPREAD-10,
+  C29986). **All 25 bodies are KEPT locally** marked `viu_status: "Retired - ..."` and
+  are additionally backed up in `consolidation-backup-2026-07-31/` — nothing is lost.
+- **6 FIX-WORDING repairs** (the residue of the two late spec reversals + one placeholder):
+  **SCH-PERM-02 (C30075)** Expected 3 stale menu items → 'Create Event' / 'New Work Order';
+  **SCH-PERM-04 (C30077)** step 2 'New Event' → 'Create Event';
+  **SCH-EVT-03 (C30018)** precondition 2 'New Event' → 'Create Event';
+  **SCH-COLOR-02 (C30072)** stale per-work-order colour open question DROPPED (the
+  per-SHIFT rule is now asserted in Expected 3); **SCH-REAS-06 (C38855)** the
+  to-be-confirmed placeholder moved out of Expected into the notes (Expected 1–2 are now
+  the pass bar); **SCH-SPREAD-08 (C29984)** the impossible '(weekend / closure)' skip
+  reason reworded to weekend-only (V1 does not skip closures per SV-8691).
+  SCH-EVT-03 and SCH-COLOR-02 were survivor **and** repair → one `update_case` each with
+  the final body.
+- **⚠️ C-id correction:** the audit report's FIX-WORDING table listed three C-ids one-off
+  (SCH-PERM-02 as C30074, SCH-PERM-04 as C30076, SCH-COLOR-02 as C30070). The
+  authoritative ids from `testrail-id-map.csv` (and `per-case-verdicts.csv`, which agrees)
+  are **C30075 / C30077 / C30072** — those are what was written.
+- **HELD-pending-Branko items UNTOUCHED and verified still live:** SCH-EVT-08 (C30615) +
+  SCH-CAP-01..04 (C30030–C30033) (events-count-toward-capacity, D1) and SCH-MODAL-08
+  (C30015) (modal 'Reassign', D4). Verified programmatically absent from every merge group
+  before any edit, and confirmed present in TestRail after.
+- **Durable TestRail gotcha learned:** TestRail parses `refs` as a comma-separated
+  reference LIST and **stores it with the spaces after commas removed** (`'§3, §3.1'` →
+  `'§3,§3.1'`). 13 of the 24 updates read as `refs` "mismatches" purely because of this.
+  **When re-GET-verifying `refs`, normalize `", "` → `","` first**, otherwise TestRail's
+  own storage format is a false mismatch. Proven benign here: `sent.replace(", ", ",") ==
+  stored` for all 13 (0 unexplained), no ticket key or spec anchor lost (Rule 20 intact),
+  and 16 of the 49 pre-write snapshots already stored refs that way before this run.
+- Deliverables regenerated over 165: `testrail-import/schedule-v1-testrail-import.csv`/
+  `.xlsx` (165 rows, header byte-identical vs all four prior project imports, 0 VIU/flag
+  words, no dup titles/ids, 4 API cases in "API — Schedule" per Rule 4, no C-id column) +
+  `testrail-id-map.csv` (**165 rows, 165 C-ids, 0 blanks**; retired/deleted rows dropped
+  per the SCH-REAS-02 convention). ⚠️ `gen_import.py` blanks the id-map C-ids and excludes
+  Retired on every rerun — **re-merge the C-ids after any regeneration**.
+- Artefacts: plan `quality-audit-2026-07-31/MERGE-PLAN.md` (header = EXECUTED) · report
+  `USEFULNESS-AUDIT-2026-07-31.md` (header = EXECUTED) · manifest
+  `testrail-execution-manifest-2026-07-31.md` (= EXECUTED) · per-operation audit
+  `testrail-execution-log-2026-07-31.md` · pre-write `get_case` snapshots
+  `pre-push-snapshot/` (49/49) · pre-edit case bodies + recovery instructions
+  `consolidation-backup-2026-07-31/MANIFEST.md`.
+
+**STILL PENDING after this pass (nothing here was authorized or done):**
+1. **79 over-80-character titles** — the concise-title backlog. It was 98 before this pass
+   and is **79** now (19 over-length titles belonged to merged-away members and a further
+   batch was shortened as part of a survivor's new title). **Needs its own authorized
+   pass.** Longest remaining: SCH-SPREAD-08 (C29984) at 133 chars.
+2. **HELD items** — SCH-EVT-08 (C30615) + SCH-CAP-01..04 (C30030–C30033) (D1
+   events→capacity) and SCH-MODAL-08 (C30015) (D4 modal 'Reassign') — awaiting Branko.
+3. **19 WEAK-KEEP cases** — the audit recommends KEEP but tagged "build-acceptance /
+   verify once" rather than per-cycle regression; no action taken.
+4. Everything already open below: **live VIU pending the QA branch (OQ-3)**, the NQ-1..5 +
+   Q1/Q2/Q3 sheets to Branko/dev, and Rule 12 (design/tech-plan-pinned ≠ VIU-Verified).
+
 
 ### 0.0-TECHPLAN-EXECUTED TECH-PLAN PUSH EXECUTED (2026-07-30, LATEST — user-authorized TestRail writes DONE)
 

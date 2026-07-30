@@ -2,7 +2,11 @@
 
 **Companion to:** `USEFULNESS-AUDIT-2026-07-31.md` + `per-case-verdicts.csv` (same folder).
 **Source snapshot:** `build/schedule/cases/*.json` at git SHA `7eeb74548eae665f5ac5110512fddc0c8550db41` (working tree clean for this folder at snapshot time).
-**Status: PROPOSAL ONLY — nothing has been edited.** No case JSON was touched, no TestRail writes were made (Standing Rule 6). The user can approve the whole plan, per-group, or reject it.
+**STATUS: EXECUTED 2026-07-31 (user-authorized).** All **20 merge groups and both cuts were approved and applied — 0 groups held or skipped.** Local case JSON updated (survivors folded, 25 absorbed/cut bodies marked `viu_status: "Retired - ..."` and KEPT), and pushed to TestRail as **24 `update_case` + 25 `delete_case` = 49 operations, ALL HTTP 200, ALL re-GET verified** (updates MATCH, deletes confirmed gone), 0 failures. **Result: 190 → 165 active cases**, and the live count under group 4254 is **165**, equal C-id-for-C-id to the regenerated 165-row id-map. Run 325 and all other runs untouched; nothing outside group 4254 touched. The 24 updates also carry the 6 FIX-WORDING repairs from the companion audit report (SCH-EVT-03 and SCH-COLOR-02 are survivor *and* repair = one update each).
+
+Artefacts: manifest `testrail-execution-manifest-2026-07-31.md` · per-operation audit `testrail-execution-log-2026-07-31.md` · pre-write snapshots `pre-push-snapshot/` (49/49) · pre-edit bodies + recovery instructions `../consolidation-backup-2026-07-31/MANIFEST.md`. Resume context: `../PROJECT-STATE.md` §0.0-CONSOLIDATION-EXECUTED.
+
+The **19 WEAK-KEEP** cases named below were NOT cut (recommendation was KEEP), and the **HELD-pending-Branko** cases (SCH-EVT-08 C30615, SCH-CAP-01..04 C30030–C30033, SCH-MODAL-08 C30015) were verified absent from every group and left untouched.
 
 ## What this plan does
 

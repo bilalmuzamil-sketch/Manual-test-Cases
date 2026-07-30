@@ -5,8 +5,25 @@ three-dimension quality gate: USEFUL + MAKES SENSE + GENUINE/LAYMAN-RUNNABLE).
 **Companions (same folder):** `per-case-verdicts.csv` (one row per case, both verdict sets) ·
 `MERGE-PLAN.md` (approvable per-group) · `gen_verdicts.py` / `gen_merge_plan.py` (deterministic
 regeneration, incl. the automated KEEP-but-NONSENSE embarrassment check).
-**Status: RECOMMENDATION ONLY.** Zero TestRail writes, zero case-file edits, zero run writes
-(Standing Rule 6). Nothing is merged/cut/edited until the user approves (wholesale or per-group).
+**STATUS: EXECUTED 2026-07-31 (user-authorized).** The recommendations in this report were approved
+and carried out: the **20 merge groups + 2 cuts** (companion `MERGE-PLAN.md`, 0 groups held) and the
+**6 FIX-WORDING repairs** listed in Dimension 2 below. **Result: 190 → 165 active cases.** Pushed as
+**24 `update_case` + 25 `delete_case` = 49 operations, ALL HTTP 200, ALL re-GET verified** (0
+failures); live count under TestRail group 4254 = **165**, equal C-id-for-C-id to the regenerated
+165-row `testrail-id-map.csv`. Run 325 and all other runs untouched; no add_case, no section writes,
+nothing outside group 4254. NOT done (not authorized this pass): the over-80-character **title trims**
+(98 → 79 remaining as a side effect of the merges, still pending as its own pass) and the
+**HELD-pending-Branko** cases (SCH-EVT-08 C30615, SCH-CAP-01..04 C30030–C30033, SCH-MODAL-08 C30015),
+which were verified absent from every merge group and left untouched. The **19 WEAK-KEEP** cases were
+kept as recommended. Artefacts: `testrail-execution-manifest-2026-07-31.md` ·
+`testrail-execution-log-2026-07-31.md` · `pre-push-snapshot/` ·
+`../consolidation-backup-2026-07-31/MANIFEST.md`. Resume: `../PROJECT-STATE.md`
+§0.0-CONSOLIDATION-EXECUTED.
+
+**⚠️ C-id correction to the FIX-WORDING table below:** it lists SCH-PERM-02 as C30074, SCH-PERM-04 as
+C30076 and SCH-COLOR-02 as C30070. The authoritative ids from `testrail-id-map.csv` (and from
+`per-case-verdicts.csv`, which agrees with it) are **C30075 / C30077 / C30072** — those are the ids
+that were written.
 
 ## Scope + snapshot (Rule 17 counts)
 
