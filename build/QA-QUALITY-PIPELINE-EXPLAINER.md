@@ -50,7 +50,17 @@ case IDs that cover it, and every test case back to the requirement it covers. T
 things at once: **nothing in the spec is untested** (no gaps), and **nothing in the suite is
 unsourced** (no filler). Intentional exclusions (out-of-scope items) are listed explicitly with
 the reason, never silently dropped.
-*Internal reference: the per-project `coverage-*.md` matrices (Standing Rule 17).*
+
+**Added 31 July: we now check every SURFACE a requirement touches, not only the place we first
+noticed it.** A requirement rarely lives on one screen — the same rule usually has to hold on the
+screen, in the PDF, in the spreadsheet download, in the printout, on mobile and in the data the
+system returns. So each requirement is now signed off **surface by surface**, and the matrix shows a
+verdict for every one of them rather than a single tick. The matrix is also **rebuilt from scratch
+whenever the spec changes**, instead of being patched, so last month's blind spots cannot be
+inherited. And when a requirement is added or changed, **every requirement in that change gets its
+own line with its own decision** — covered by these cases, this case extended, a new case written, or
+not testable and why. A written summary is no longer accepted in place of that line-by-line sign-off.
+*Internal reference: the per-project `coverage-*.md` matrices (Standing Rules 17, 40, 43).*
 
 ## 5. Adversarial review — we try to prove ourselves wrong before shipping
 
@@ -69,11 +79,15 @@ sampling — on three dimensions together**:
   the named "slop" patterns (near-duplicates, per-column explosions, filler) and crediting the
   load-bearing coverage (calculations, permissions, persistence, exports).
 - **Makes sense:** each case is read cold, the way a critic would — **SENSIBLE / FIX-WORDING /
-  NONSENSE** — against six concrete fail conditions (steps not executable in order, expected
+  NONSENSE** — against seven concrete fail conditions (steps not executable in order, expected
   result doesn't follow, internal contradiction, phantom controls, domain nonsense, not
-  actionable). We also check the cases **against each other, not just individually**, so that no
-  two tests can contradict each other about the same button, field or screen — and no case's title
-  can say one thing while its expected result says another.
+  actionable, and — added 31 July — **a "these are exactly the columns" style list that is not tied
+  to the spec rule and version that can change it**, because such a list quietly turns a correct
+  product into a failed test the moment a column is added). We also check the cases **against each
+  other, not just individually**, so that no two tests can contradict each other about the same
+  button, field or screen — and no case's title can say one thing while its expected result says
+  another. **The same sweep now also confirms that a requirement is covered on every screen and in
+  every download it affects** — not just where we first noticed it.
 - **Genuine + layman-runnable:** each case is traceable to its ticket + spec (step 2) and
   executable by a non-technical tester (step 3); failures get fixed or cut.
 
@@ -90,8 +104,14 @@ the named deltas) against the current spec plus all Done tickets, newest-wins. F
 **backups** are taken, the proposed changes go to the user as a simple **change-list for
 approval**, and every approved TestRail edit is executed with a **per-case audit log** and
 re-verified after writing. Nothing is ever changed in TestRail without explicit authorization.
+
+**Added 31 July: whenever we open a test case — for any reason at all, even to correct a single
+word — we now re-read the whole case against the current specification before saving it, and record
+that we did.** Opening a case is the cheapest opportunity we get to notice that something else in it
+has gone out of date, and a small edit that ignores the rest of the case also leaves it looking
+freshly reviewed when it is not.
 *Internal reference: `build/SPEC-RECHECK-PROCESS.md` +
-`build/SPEC-RECHECK-CHANGE-LIST-PROCESS.md` (Standing Rule 6).*
+`build/SPEC-RECHECK-CHANGE-LIST-PROCESS.md` (Standing Rules 6, 41).*
 
 ## 8. VIU — Verify In UI: every case proven against the real application
 
