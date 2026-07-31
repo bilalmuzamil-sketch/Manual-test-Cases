@@ -11,21 +11,25 @@ written to TestRail and no test case was edited. Everything below is read from t
 design source — it is **NOT** a live-build verification. Anything that still needs
 checking against the real build is called out as such.
 
-> ⚠️ **THIS DESIGN PASS IS NOT COMPLETE — 79 of 85 boards have a PNG** _(updated 2026-07-31: 73 → 79 via the Figma MCP; 6 left, see `PENDING-FIGMA-FETCH.md` §0a)._
-> The **6 remaining** boards are tracked in an OPEN retry queue:
-> **`PENDING-FIGMA-FETCH.md`** (node ids, the resumable command, and the re-armed
-> **DUE-AT `2026-07-31T17:05Z`** per **Standing Rule 35**).
-> Per Rule 35 this pass may **not** be reported as complete until that queue is closed at
-> 85/85.
-> **Latest re-attempt: 2026-07-31T08:03–08:06Z — the Figma MCP `get_screenshot` worked with
-> NO token and returned 6 of the 12**, then hit its own **per-seat MCP tool-call cap**. No
-> REST token survives the `/tmp` wipe, so the (probably now-healthy) `/v1/images` path could
-> not be used. **Fastest unblock: a Figma personal access token from the QA lead.**
+> # ✅ **THIS DESIGN PASS IS NOW COMPLETE — 85 of 85 boards have a PNG (2026-07-31T08:58:40Z).**
+> The Rule-35 retry queue **`PENDING-FIGMA-FETCH.md` is CLOSED**. The last 6 boards were
+> rendered via the **REST `/v1/images`** endpoint using a Figma personal access token the QA
+> lead supplied (stored in `/tmp` only, never committed) and the existing resumable fetcher —
+> one call, no 429. **No description in this document now rests on a layer tree alone.**
 >
-> **However — the analysis of 7 of those 12 is no longer PNG-blocked.** The Figma `/nodes`
-> endpoint is a separate budget and still works, so the 4 Sorting + 3 Components boards were
-> read as full layer trees on 2026-07-30 (§5.1, §3, §5.5a). That corrected a real error and
-> answered the Branko "fully displayed in the design" question (§5.8).
+> **Reading those 6 renders CORRECTED our own notes in three places** — a layer tree cannot
+> answer *"is this control present?"*, and it misled us twice:
+> 1. Sorting **step 1 and step 2 DO have the toolbar `↑↓` sort control** (and steps 1–3 show a
+>    `↓` on the `Status` column heading). The 2026-07-30 tree-based "no sort control at all"
+>    was wrong; it was already retracted on 2026-07-31 and the §3 table rows are now fixed too.
+> 2. Mobile board **`11884:15901` has NO sort button** and is **not** a plain duplicate of
+>    `11884:20807` — see §3. That claim came from a text-layer read and was wrong.
+> 3. Two tree claims **survived** the render and are now pixel-confirmed: **`Add Sort` really
+>    is absent on Sorting step 4**, and the search box's **`⊗` clear control really does exist
+>    only in the Filled state**.
+>
+> Reconciliation of all 85 boards against the 110 active cases:
+> **`RECONCILIATION-FINAL-2026-07-31.md`**.
 
 ---
 
@@ -48,20 +52,25 @@ Tooling saved in `tools/` (`enumerate_frames.py`, `render.py`, `fetch_all.py`,
 |---|---|
 | Boards **enumerated** under the four links (after removing duplicates) | **85 / 85 (100%)** |
 | Boards with **exact on-screen text extracted** | **84 / 85** (the 85th is a divider-line component with no text) |
-| Boards with a **PNG in `frames/`** | **79 / 85** _(73 on 2026-07-30, +6 on 2026-07-31)_ |
+| Boards with a **PNG in `frames/`** | **85 / 85 (100%)** _(73 on 2026-07-30, +6 via the Figma MCP 2026-07-31, +6 via REST 2026-07-31 — COMPLETE)_ |
 | — rendered fresh 2026-07-30 (REST) | 24 |
 | — rendered 2026-07-31 (Figma MCP) | 6 |
+| — rendered 2026-07-31 (REST `/v1/images`, QA-lead token) | 6 |
 | — copied in from the earlier 2026-07-17 capture of the same node (same design, unchanged) | 49 |
-| Boards with **NO PNG yet** | **6** _(was 12; see `PENDING-FIGMA-FETCH.md` §0a)_ |
+| Boards with **NO PNG yet** | **0** — the Rule-35 queue is **CLOSED**, see `PENDING-FIGMA-FETCH.md` |
 
-**Why 6 are still missing (was 12):** on 2026-07-31 six were rendered via the Figma **MCP** (no token needed) until it hit its own **per-seat MCP tool-call cap**; no REST token survives the `/tmp` wipe. Originally, the Figma **images** endpoint hit a hard cap mid-run —
-`HTTP 429 {"err":"Rate limit exceeded"}` with **`retry-after: 37874`** (~10.5 hours).
-`scale=1` was tried and is capped the same way; the *nodes* endpoint still works (it is a
-separate budget). The 12 missing boards are listed in section 3 and are all **still fully
-described from the node tree** (their text layers, component variants and layer structure
-were read directly from the design source — nothing below is guessed). To finish the
-PNGs, re-run `tools/fetch_all.py` after the reset — it is **resumable** and skips boards
-already downloaded.
+**HOW ALL 85 WERE FINALLY OBTAINED (resolved 2026-07-31T08:58:40Z).** The rendering
+backlog is closed. The history, in order: the 2026-07-30 pass hit the REST images cap
+(`HTTP 429 {"err":"Rate limit exceeded"}`, `retry-after: 37874` ~10.5 h) and stopped at
+73/85; `scale=1` is capped by the same budget and is not a workaround, while the *nodes*
+endpoint is a separate budget and kept working. On 2026-07-31 the **Figma MCP** rendered 6
+more (73 -> 79) before hitting its own **per-seat MCP tool-call cap**. The QA lead then
+supplied a **Figma personal access token** (kept in `/tmp` only, never committed) and the
+existing resumable fetcher rendered the **last 6 in a single REST call with no 429** ->
+**85/85**. Ordering lesson worth keeping: the MCP needs no token but its per-seat call cap
+is low; a REST token has no such cap and clears a whole backlog at once, so **ask for a
+token early**. Re-run `tools/fetch_all.py` any time — it is resumable and skips boards that
+already have a PNG.
 
 **Re-attempt history (Standing Rule 35 — the retry is automatic, no authorization needed):**
 
@@ -72,11 +81,10 @@ already downloaded.
 | 3 (resumable fetcher, exit 2) | 2026-07-30T14:27:02Z | HTTP 429 | 0 | 36098 s |
 | 4 (early probe, `--once --no-log`) | 2026-07-30T15:03:19Z | HTTP 429 | 0 | 33921 s |
 | **5 (Figma MCP `get_screenshot`, no token)** | **2026-07-31T08:03–08:06Z** | **6 PNGs, then the MCP per-seat tool-call cap** | **6** | none sent |
+| **6 (resumable fetcher over REST, QA-lead token)** | **2026-07-31T08:58:40Z** | **SUCCESS — the last 6, no rate limit at all; exit 0** | **6** | none sent |
 
-**Next due-at: `2026-07-31T17:05Z`** (the 2026-07-31 MCP cap + 9 h). The full queue — node ids, the
-exact command, the running log, and the re-arm rule (every new 429 → DUE-AT = that error
-time + 9 h, repeat until 85/85) — lives in **`PENDING-FIGMA-FETCH.md`**, which stays
-**OPEN** until every board has a PNG. No render came back on attempts 2–4.
+**No due-at is armed — the queue is CLOSED at 85/85.** `PENDING-FIGMA-FETCH.md` is kept
+purely as the audit trail. No render came back on attempts 2–4.
 
 **But attempt 4 was not wasted:** because image rendering and the `/nodes` layer endpoint
 are on **separate budgets**, the full layer trees of 7 of the 12 boards were pulled instead.
@@ -121,8 +129,9 @@ Two consequences:
 ## 3. Complete frame inventory — all 85 boards
 
 Legend for the PNG column: *yes (rendered)* = pulled fresh today · *yes (from 2026-07-17
-capture)* = same Figma node, PNG copied in from our earlier export · ***NO — rate limit***
-= PNG still to pull (description comes from the node tree).
+capture)* = same Figma node, PNG copied in from our earlier export. **As of
+2026-07-31T08:58:40Z every one of the 85 boards has a PNG — there is no longer any
+"NO — rate limit" row, and no description in this document rests on a layer tree alone.**
 
 
 ### Work Order Explorations 14.4.2026 — 16 boards
@@ -160,7 +169,7 @@ capture)* = same Figma node, PNG copied in from our earlier export · ***NO — 
 | 8 | Work order filters selected | `11854:26246` | link 1 | yes (rendered) | FINAL desktop with filters APPLIED: Status button is blue/active showing "Status: Estimate, In progress, Approved…" and a Clear filters link appears. |
 | 9 | Work order filters selected (collapsed bar) | `11854:26564` | link 1 | yes (from 2026-07-17 capture) | FINAL desktop with filters applied AND the bar collapsed - filter buttons hidden while the list stays filtered. |
 | 10 | Mobile | `11857:31046` | link 1 | yes (from 2026-07-17 capture) | FINAL mobile Work Orders list - work orders shown as cards. |
-| 11 | Search Filled | `12867:12201` | link 1 | **NO — rate limit** | FINAL mobile with the toolbar SEARCH box expanded and text typed in; six filter buttons (All Filters + the five filters) below the tab row; a sort button sits next to the search box. |
+| 11 | Search Filled | `12867:12201` | link 1 | yes (2026-07-31, Figma MCP) | FINAL mobile with the toolbar SEARCH box expanded and text typed in; six filter buttons (All Filters + the five filters) below the tab row; a sort button sits next to the search box. |
 | 12 | All Filters | `11884:13689` | link 1 | yes (from 2026-07-17 capture) | Mobile "All Filters" bottom sheet - every filter listed as an expandable row. |
 | 13 | Status | `11884:13719` | link 1 | yes (from 2026-07-17 capture) | Mobile Status filter sheet. |
 | 14 | Status only | `11884:21065` | link 1 | yes (from 2026-07-17 capture) | Mobile Status sheet, Status only. |
@@ -181,27 +190,27 @@ capture)* = same Figma node, PNG copied in from our earlier export · ***NO — 
 | # | Board name | Figma node | From link | PNG in `frames/` | What it shows |
 |---|---|---|---|---|---|
 | 1 | Mobile | `11884:20807` | link 1 | yes (from 2026-07-17 capture) | FINAL mobile filter row - All Filters button first, then the five filter buttons in a side-scrolling row; sort button in the toolbar. |
-| 2 | Mobile | `12141:19858` | link 1 | **NO — rate limit** | EARLY mobile exploration with different wording - tabs read "Estimates / Work Orders / Completed" and the filter buttons read "By Status", "My work orders", "Asset here?". Superseded by the final mobile boards. |
-| 3 | Mobile | `11884:15901` | link 1 | **NO — rate limit** | FINAL mobile filter row (duplicate board) - All Filters plus the five filter buttons, sort button in the toolbar. |
-| 4 | Customer v1 | `11842:14069` | link 1 | **NO — rate limit** | Earlier Customer dropdown version ("Customer v1") - search box, customer list, Clear selection. |
-| 5 | Customer v1 selected | `11842:16879` | link 1 | **NO — rate limit** | Earlier Customer dropdown version with customers selected as removable tags. |
+| 2 | Mobile | `12141:19858` | link 1 | yes (2026-07-31, Figma MCP) | EARLY mobile exploration with different wording - tabs read "Estimates / Work Orders / Completed" and the filter buttons read "By Status", "My work orders", "Asset here?". Superseded by the final mobile boards. |
+| 3 | Mobile | `11884:15901` | link 1 | yes (2026-07-31, REST) | FINAL mobile filter row (a SECOND final board, **not an exact duplicate** of `11884:20807`) - `All Filters` chip first, then `Status` · `Customer` · `Lead T…`. **Corrected 2026-07-31 from the PNG, two claims were wrong:** (a) there is **NO sort button in this board's toolbar** - its toolbar row is only magnifier + `Search` + `New Work Order` (the sort `↑↓` icon IS on `11884:20807`); (b) it is not a plain duplicate - here `Status` and `Customer` are shown in the **selected/blue** state and there is **no scroll-arrow button**, whereas `11884:20807` shows unselected grey chips **and** the round `>` scroll affordance. |
+| 4 | Customer v1 | `11842:14069` | link 1 | yes (2026-07-31, REST) | Earlier Customer dropdown version ("Customer v1") - search box with the placeholder **`Search customer`**, the customer list, **`Clear selection`** at the bottom. **Render note:** rows carry **empty CHECKBOXES on the LEFT**, which the FINAL board `11842:14236` does NOT (it uses a **`✓` on the RIGHT** of the selected row). Superseded - do not author from it. |
+| 5 | Customer v1 selected | `11842:16879` | link 1 | yes (2026-07-31, REST) | Earlier Customer dropdown version with customers selected as removable tags (`Texas Truck And Aut… ×`, `Dodson Autospares ×`, `RF Heavy ×`) + a circled `⊗` clear-all at the top right of the token field. **Selected rows show a TICKED BLUE CHECKBOX on the LEFT** - the superseded v1 pattern; the final boards use a `✓` on the RIGHT. Do not author from it. |
 
 ### Sorting Work In Progress — 4 boards
 
 | # | Board name | Figma node | From link | PNG in `frames/` | What it shows |
 |---|---|---|---|---|---|
-| 1 | Step 1 | `11985:9686` | link 1 | **NO — rate limit** | SORTING (marked Work In Progress) step 1 - the plain Work Orders list + the normal five-filter bar. **NO sort control of any kind on this board** (see the 2026-07-30 layer audit below - the earlier "sort arrow on the Status heading / sort button in the toolbar" reading was WRONG and is retracted). |
-| 2 | Step 2 | `11985:10428` | link 1 | **NO — rate limit** | SORTING step 2 - step 1 plus a small **menu ("Menu Item" / "Part type" frame) listing the two sortable fields: "Status" and "WO Number"**. This is the field-picker that starts the sort flow. Still no sort panel and no sort button. |
-| 3 | Step 3 | `11985:11259` | link 1 | **NO — rate limit** | SORTING step 3 - a **"Sort dropdown"** panel with **ONE sort row**: a field box reading **"Status"**, a direction box reading **"Ascending"** (both are `Input Textfield` instances with a trailing chevron = dropdowns), an **X** button on the row, an **"Add Sort"** button (plus icon), and a panel-level **"Delete sort"** button (trash icon). A **Switch-vertical** (up/down arrows) icon + a filter button reading **"Status: Item"** also appear in the bar on this step = the sort entry point. **CONFIRMED verbatim by the layer audit.** |
-| 4 | Step 4 | `11985:13334` | link 1 | **NO — rate limit** | SORTING step 4 - the same panel with **TWO stacked sort rows**: row 1 = **"Status" / "Ascending" / X**, row 2 = **"WO Number" / "Ascending" / X** = sorting by more than one column. Panel-level **"Delete sort"** (trash) remains. **NEW: "Add Sort" is ABSENT on step 4** - only "Delete sort" is left, which may mean a two-sort cap (or just an unfinished board). Open question for Branko. |
+| 1 | Step 1 | `11985:9686` | link 1 | yes (2026-07-31, Figma MCP) | SORTING (marked Work In Progress) step 1 - the plain Work Orders list + the normal five-filter bar, **plus two sort ENTRY POINTS: the toolbar `↑↓` icon and a `↓` indicator after the word `Status` in the column-heading row**. No sort panel. **Corrected 2026-07-31 from the PNG:** the 2026-07-30 layer-tree claim "NO sort control of any kind on this board" was WRONG - see §5.1. |
+| 2 | Step 2 | `11985:10428` | link 1 | yes (2026-07-31, Figma MCP) | SORTING step 2 - step 1 plus a small **menu ("Menu Item" / "Part type" frame) listing the two sortable fields: "Status" and "WO Number"**. This is the field-picker that starts the sort flow. No sort PANEL yet. **Corrected 2026-07-31 from the PNG:** the toolbar `↑↓` sort button IS present on step 2 (in its selected/active look, with this menu hanging off it) - the earlier "no sort button" was a layer-tree miss. |
+| 3 | Step 3 | `11985:11259` | link 1 | yes (2026-07-31, Figma MCP) | SORTING step 3 - a **"Sort dropdown"** panel with **ONE sort row**: a field box reading **"Status"**, a direction box reading **"Ascending"** (both are `Input Textfield` instances with a trailing chevron = dropdowns), an **X** button on the row, an **"Add Sort"** button (plus icon), and a panel-level **"Delete sort"** button (trash icon). A **Switch-vertical** (up/down arrows) icon + a filter button reading **"Status: Item"** also appear in the bar on this step = the sort entry point. **CONFIRMED verbatim by the layer audit.** |
+| 4 | Step 4 | `11985:13334` | link 1 | yes (2026-07-31, REST) | SORTING step 4 - the same panel with **TWO stacked sort rows**: row 1 = **"Status" / "Ascending" / X**, row 2 = **"WO Number" / "Ascending" / X** = sorting by more than one column. Panel-level **"Delete sort"** (trash) remains. **"Add Sort" is ABSENT on step 4** - only "Delete sort" is left, which may mean a two-sort cap (or just an unfinished board). Open question for Branko. **RE-VERIFIED 2026-07-31 against the PNG at 1.5x on the cropped panel: the absence of "Add Sort" is CONFIRMED, and both direction boxes read "Ascending".** The sort chip `↑↓ Status ⌄` sits FIRST in the chip row in its active blue look, and the toolbar `↑↓` icon is in its active (grey-filled) look. |
 
 ### Components — 3 boards
 
 | # | Board name | Figma node | From link | PNG in `frames/` | What it shows |
 |---|---|---|---|---|---|
-| 1 | Filters | `11829:2935` | link 1 | **NO — rate limit** | COMPONENT SET: the filter button itself, four states. **Layer-audit verbatim:** Default = leading icon + text **"Status"** + chevron-down · Hover = same, text **"Status"** · Selected = text **"Status: Item"** + chevron-down · Disabled = text **"Status: Item"** + chevron-down. **Two things this pins:** (a) the SELECTED label format is **"<Filter>: <Value>"** (the chosen value is shown inline on the button), and (b) a **Disabled state is a designed state** and it renders with a value already in it (relevant to the disabled pre-filled Status chip). |
-| 2 | Button | `11829:8908` | links 1+4 | **NO — rate limit** | COMPONENT SET: the in-page toolbar SEARCH box (named "Button" in Figma), four states. **Layer-audit verbatim:** Default = search icon + **"Search"** · Hover = search icon + **"Search"** · Selected = search icon + a caret line + placeholder **"Type to search"** · Filled = search icon + typed text (sample **"In progress"**) + caret + an **X-circle (clear) button**. **So the component specifies: collapsed label "Search", focused placeholder "Type to search", and a clear (x) control that exists ONLY in the Filled state.** It does NOT specify debounce, minimum characters, which columns are searched, or result behaviour. |
-| 3 | Line 3 | `11829:8920` | link 1 | **NO — rate limit** | COMPONENT SET: a thin line, two variants (Default / Variant2), styling only. **Correction:** it is not a section divider - it is the **text caret/cursor line used inside the search box's Selected and Filled states** (it appears as a child of both). |
+| 1 | Filters | `11829:2935` | link 1 | yes (2026-07-31, Figma MCP) | COMPONENT SET: the filter button itself, four states. **Layer-audit verbatim:** Default = leading icon + text **"Status"** + chevron-down · Hover = same, text **"Status"** · Selected = text **"Status: Item"** + chevron-down · Disabled = text **"Status: Item"** + chevron-down. **Two things this pins:** (a) the SELECTED label format is **"<Filter>: <Value>"** (the chosen value is shown inline on the button), and (b) a **Disabled state is a designed state** and it renders with a value already in it (relevant to the disabled pre-filled Status chip). |
+| 2 | Button | `11829:8908` | links 1+4 | yes (2026-07-31, REST) | COMPONENT SET: the in-page toolbar SEARCH box (named "Button" in Figma), four states. **Layer-audit verbatim:** Default = search icon + **"Search"** · Hover = search icon + **"Search"** · Selected = search icon + a caret line + placeholder **"Type to search"** · Filled = search icon + typed text (sample **"In progress"**) + caret + an **X-circle (clear) button**. **So the component specifies: collapsed label "Search", focused placeholder "Type to search", and a clear (x) control that exists ONLY in the Filled state.** It does NOT specify debounce, minimum characters, which columns are searched, or result behaviour. |
+| 3 | Line 3 | `11829:8920` | link 1 | yes (2026-07-31, REST) | COMPONENT SET: a thin line, two variants (Default / Variant2), styling only. **Correction:** it is not a section divider - it is the **text caret/cursor line used inside the search box's Selected and Filled states** (it appears as a child of both). |
 
 ### Parts Explorations 20.4.2026 — 9 boards
 
@@ -342,10 +351,10 @@ hidden layers excluded). The four boards are a **4-step click-through of one flo
 
 | Step | What is actually on the board (visible layers only) |
 |---|---|
-| 1 `11985:9686` | Plain WO list + the five-filter bar. **No sort control at all.** |
+| 1 `11985:9686` | Plain WO list + the five-filter bar, **plus the sort ENTRY POINTS: the toolbar `↑↓` icon and a `↓` after `Status` in the column headings** (corrected 2026-07-31 from the PNG — the layer tree missed both). No panel. |
 | 2 `11985:10428` | Adds a small **field-picker menu listing exactly two options: "Status" and "WO Number"**. |
 | 3 `11985:11259` | A **"Sort dropdown"** panel with **ONE** sort row + the sort entry point in the bar (a **Switch-vertical** up/down-arrows icon, and the filter button in its **"Status: Item"** selected state). |
-| 4 `11985:13334` | The same panel with **TWO** stacked sort rows. |
+| 4 `11985:13334` | The same panel with **TWO** stacked sort rows. **PNG-verified 2026-07-31:** rows are `Status`/`Ascending`/`✕` and `WO Number`/`Ascending`/`✕`, then a divider, then `🗑 Delete sort` — and **no `Add Sort`**. |
 
 **What the sort control precisely is** (verbatim from the layer tree, step 3/4):
 
@@ -365,10 +374,17 @@ hidden layers excluded). The four boards are a **4-step click-through of one flo
 
 1. **"Add Sort" disappears on step 4** (two rows) while "Delete sort" stays. That is either
    a **two-sort cap** or simply an unfinished board — the design does not say which. Worth
-   asking explicitly, because a cap is a testable rule.
-2. **Direction is never shown as anything but "Ascending."** There is no Descending state,
-   no asc/desc toggle icon, and no sorted-column indicator on any column heading on any of
-   the four boards. So the design does **not** actually pin how you reverse a sort.
+   asking explicitly, because a cap is a testable rule. **This one WAS a tree claim and it
+   SURVIVED the render (2026-07-31): the step-4 PNG, cropped and read at 1.5×, shows the two
+   rows, a divider and `🗑 Delete sort` — and no `Add Sort` anywhere in the panel.**
+2. **Direction is never shown as anything but "Ascending."** There is no Descending state
+   and no asc/desc toggle inside the panel, so the design does **not** actually pin how you
+   reverse a sort. **PNG-verified on steps 3 and 4 (2026-07-31): every direction box reads
+   `Ascending`; the word `Descending` appears nowhere.** ⚠️ **The clause this finding used to
+   carry — "no sorted-column indicator on any column heading on any of the four boards" — is
+   WRONG and is retracted:** steps 1–3 plainly show a `↓` after `Status` in the heading row.
+   On step 4 the heading row is **hidden behind the open sort panel, so that board can
+   neither confirm nor deny the indicator** (stated rather than assumed — Standing Rule 12).
 
 **Retraction (honesty).** An earlier version of this section said step 1 showed "a sort
 arrow on the Status column heading" and "a sort button in the toolbar". **Both were wrong** —
@@ -459,13 +475,21 @@ The toolbar search component `11829:8908` specifies **only** these four states: 
 **"Search"**, Hover **"Search"**, focused placeholder **"Type to search"**, and Filled
 (typed text + an **X-circle clear button**). Flags:
 
-- The **X-circle clear control exists only in the Filled state**. If any page-search case
-  asserts a clear/x affordance, the design supports it *once text is entered* — but no case
-  currently covers clearing the search box. **Low value, flag only.**
+- The **X-circle clear control exists only in the Filled state**. **PNG-verified
+  2026-07-31** (`Components__Button__11829-8908.png`, 558×520): four stacked rows — plain
+  `Search`; `Search` on a light grey rounded fill; caret + grey `Type to search`; and typed
+  dark text (sample `In progress`) + caret + a circled `⊗` — **the `⊗` is on the Filled row
+  only.** ⚠️ **The old clause "no case currently covers clearing the search box" is now
+  WRONG and is withdrawn:** FLT-PSRCH-01 (C38883) step 4 has the tester clear the box with
+  the round x, and FLT-PSRCH-08 (C38898) expected 5 asserts the x appears as soon as you
+  type. Both are confirmed by this render, not contradicted by it.
 - The component pins **no** behaviour: no debounce, no minimum character count, no list of
-  which columns are searched, no empty-result state. So the page-search cases
-  **FLT-SRCH-01…09** cannot be closed off this component — their behaviour half remains
-  unsourced (and their ownership is still pending Branko, per §5.7).
+  which columns are searched, no empty-result state — the render confirms that too (it is a
+  visual state set only). Status note: the **FLT-SRCH-01…09** palette cases were **retired
+  2026-07-31** once Branko confirmed the ⌘K palette belongs to Global Search (Q6=A), so that
+  behaviour gap now sits with the Global Search suite, not here. The *page toolbar* search
+  behaviour is covered by **FLT-PSRCH-01…13** and is sourced from spec v1.6 §S13, not from
+  this component.
 
 ### 5.6 Superseded explorations — do NOT author from these (wording traps)
 

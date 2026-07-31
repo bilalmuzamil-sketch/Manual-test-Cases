@@ -1,5 +1,32 @@
 # PENDING FIGMA FETCH — Filters design pass (design-2026-07-31)
 
+> # ✅ CLOSED — 85/85 — 2026-07-31T08:58:40Z
+> **Every board in `frame-inventory.json` now has a PNG in `frames/`. Nothing is
+> outstanding. This file is kept for the audit trail only — no further retries are due and
+> no DUE-AT is armed. Everything below the closing note is the historical record.**
+>
+> **THE METHOD THAT FINALLY WORKED (record this):** the **REST** endpoint
+> `GET https://api.figma.com/v1/images/{file_key}` with a **Figma personal access token**
+> supplied by the QA lead, stored at `/tmp/figma-token` (secret — `/tmp` only, never
+> committed), driven by the existing resumable fetcher:
+>
+> ```bash
+> python3 build/filters/design-2026-07-31/tools/fetch_all.py --scale 2 --batch 6 --once
+> ```
+>
+> It skipped the 79 boards that already had a PNG, rendered exactly the 6 missing ones,
+> downloaded all 6 first time (**no 429**), and exited **0**. Total elapsed: one call.
+> The 2026-07-30 `/v1/images` cap had indeed lifted — the only thing ever missing was the
+> credential. **So the ordering lesson is: MCP is cheap but its per-seat call cap is low;
+> a REST token has no such cap and finishes a whole backlog in one shot. Ask for a token
+> early rather than burning MCP calls.**
+>
+> **Renders read, and they corrected our own notes** — see
+> `BOARD-NOTES-12-2026-07-31.md` §5 and `RECONCILIATION-FINAL-2026-07-31.md`.
+
+<details>
+<summary>Historical record (was: STILL OPEN — 79/85)</summary>
+
 > **STATUS: STILL OPEN — 79/85. NOT closed. Do not close until ALL frames have PNGs (85/85).**
 > **⚠️ THE BLOCKER CHANGED on 2026-07-31 — read §0 before doing anything else.**
 > **Check this file on every session start and before/after any Filters or Figma work.**
@@ -226,7 +253,41 @@ workaround).
 | 3 | 2026-07-30T14:27:02Z | HTTP 429 rate limit — resumable fetcher run (validated end-to-end, exit 2) | 0 | 12 | 36098 | superseded by attempt 4 |
 | 4 | 2026-07-30T15:03:19Z | HTTP 429 rate limit — **EARLY probe, run 8h24m BEFORE the DUE-AT** (see note) — run with `--once --no-log` so the armed DUE-AT could not be corrupted; log row added by hand | 0 | 12 | 33921 | **2026-07-31T00:03:19Z** (practical: ≥ `00:30Z`) |
 | 5 | 2026-07-31T08:03Z–08:06Z | **PARTIAL SUCCESS then a NEW cap.** Figma **MCP** used (no token needed): 6 `get_screenshot` calls succeeded → 6 PNGs written (73→79). The 7th call returned *"You've reached the Figma MCP tool call limit for your View seat on the Professional plan."* A single confirming retry also failed. **No REST token exists** (`/tmp` wiped) so the now-probably-healthy `/v1/images` path could not be used. | **6** | **6** | none sent (MCP cap) | **2026-07-31T17:05Z** |
+| 6 | 2026-07-31T08:58:40Z | SUCCESS - all frames obtained | 6 | 0 | - | n/a - COMPLETE |
 <!-- RETRY-LOG-END -->
 
 _(The fetcher appends rows here automatically. Row 1 was reconstructed from
 `DESIGN-NOTES.md`; row 2 was the live probe on 2026-07-30.)_
+
+</details>
+
+---
+
+## 5. CLOSING NOTE — 2026-07-31, 85/85
+
+All six remaining boards were rendered at `scale=2` in a single REST call and are committed
+under `frames/`:
+
+| Node id | Board | File | Size |
+|---|---|---|---|
+| `11985:13334` | Sorting (Work In Progress) / Step 4 — the multi-level sort panel | `Sorting-Work-In-Progress__Step-4__11985-13334.png` | 3456x2092 |
+| `11829:8908` | Components / Button — the toolbar search box, 4 states | `Components__Button__11829-8908.png` | 558x520 |
+| `11829:8920` | Components / Line 3 — the text caret | `Components__Line-3__11829-8920.png` | 80x184 |
+| `11884:15901` | Filters / Mobile (second final filter-row board) | `Filters__Mobile__11884-15901.png` | 804x1748 |
+| `11842:14069` | Filters / Customer v1 | `Filters__Customer-v1__11842-14069.png` | 568x1028 |
+| `11842:16879` | Filters / Customer v1 selected | `Filters__Customer-v1-selected__11842-16879.png` | 568x1160 |
+
+**Clock cross-check (never trust the container clock blindly):** container `date -u` at the
+successful run = `2026-07-31T08:58:40Z`; the Figma response `Date:` header agreed to the
+second. No rate-limit headers were returned at all.
+
+**Each of the six was then READ (not merely downloaded)** and three claims our own notes had
+made from layer trees were re-verified against the pixels — one of which was WRONG. Details:
+`BOARD-NOTES-12-2026-07-31.md` §5.
+
+## OUTSTANDING — what I need from you
+
+**Nothing outstanding on this queue.** The Figma design source for Filters is COMPLETE at
+85/85 and this file needs no further action. (The Figma token lives in `/tmp` only and will
+vanish with the container — if a *future* Filters design link is added, a fresh token will be
+needed again.)
