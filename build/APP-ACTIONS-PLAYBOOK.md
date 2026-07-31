@@ -503,9 +503,29 @@ Terse entries; where the full detail already lives elsewhere in this playbook, t
 wants every frame/board captured. **Do NOT WebFetch the figma.com URL** (returns the app shell only)
 and do not assume the Figma MCP is connected — it usually is not.
 
-- **Creds:** a Figma **personal access token** already lives at **`/tmp/figma-token`** (secret →
+- **Creds:** a Figma **personal access token** goes at **`/tmp/figma-token`** (`chmod 600`; secret →
   `/tmp` only, NEVER committed; scripts must read the file, never inline the value). Verify with
-  `GET https://api.figma.com/v1/files/<fileKey>?depth=1` → HTTP 200 + the file name.
+  `GET https://api.figma.com/v1/files/<fileKey>?depth=1` → HTTP 200 + the file name. **`/tmp` is
+  ephemeral — on a fresh container ASK THE USER for a token** (Figma → Settings → Security →
+  Personal access tokens → scope *"File content read-only"*).
+- **⭐ WHICH ACCESS ROUTE, and in what order (learned the hard way 2026-07-30/31, Filters — this
+  ordering saves a day):** **ASK FOR A REST TOKEN FIRST when there is a BACKLOG of frames.** The
+  **Figma MCP** `get_screenshot` needs no token and is cheap per call, but it has a **low per-seat
+  tool-call cap** (*"You've reached the Figma MCP tool call limit for your View seat"* — no
+  `retry-after`, so Rule 35's +9 h applies): it managed **6 boards then stopped**. **REST
+  `/v1/images` with a token has no such cap** — it rendered the **remaining 6 in ONE call with no
+  429** and finished an 85-board set that had been stuck for two days. So: **MCP is fine for one or
+  two boards; a token is the only sane route for a backlog.** The two budgets are independent, so a
+  capped MCP does not mean REST is capped, and vice versa.
+- **⚠️ A LAYER TREE CANNOT ANSWER "IS THIS CONTROL PRESENT?" — ONLY A RENDER CAN.** This cost us two
+  wrong "control X is absent" claims that we wrote into our own design notes as *corrections*: a
+  toolbar sort icon and a `Status ↓` column indicator were both declared absent from a tree read and
+  are plainly there in the PNG. **The reason:** an icon lives inside a component `INSTANCE` under a
+  layer name containing no keyword you would search for. **Rule:** use the tree for *text* and
+  *structure*; for any presence/absence question, render the board, crop the region and read it at
+  2–3×. And when a render lands, **re-check every absence claim you made from the tree** — record the
+  verdicts in a table (correct / wrong / indeterminate), and say plainly which ones the render could
+  not settle (e.g. a heading row hidden behind an open panel).
 - **Node-id format gotcha:** the URL uses a **dash** (`11817-27678`); the **API uses a colon**
   (`11817:27678`). Convert both ways.
 - **Step 1 — enumerate the whole tree (Rule 17 completeness):**
