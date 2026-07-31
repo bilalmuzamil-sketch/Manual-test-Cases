@@ -1,180 +1,188 @@
-# Active-run completeness check — PREPARED, **NOT EXECUTED**
+# Active-run completeness check — **VERIFIED LIVE, READ-ONLY** — 2026-07-31
 
-> # ⚠️ NOT VERIFIED THIS SESSION
+> # ✅ VERIFIED LIVE THIS SESSION
 >
-> **This check was NOT RUN. No TestRail API call of any kind was made in the session that wrote
-> this file — not a read, not a write.** Every figure below is a **carried-forward expectation from
-> earlier records**, not a live observation. Per **Standing Rule 12**, an unrun check is
-> **NOT VERIFIED** and is never presented as done.
+> **Live, read-only TestRail check executed 2026-07-31 at 07:24:19 UTC.** Every figure below was
+> observed directly from the TestRail API this run (`get_run`, `get_tests`, `get_results_for_run`,
+> `get_cases`, `get_sections`, `get_user`) — nothing is carried forward from a record, a local
+> id-map, or an expectation (Standing Rule 12).
 >
-> **WHY IT COULD NOT BE RUN:** this container's `/tmp` was **wiped**. The TestRail credentials used
-> earlier on 2026-07-31 lived in `/tmp/tr-creds.env` and are **gone**: `TESTRAIL_USER` and
-> `TESTRAIL_KEY` are **unset** and `/tmp/testrail/` **does not exist** (both confirmed this session).
-> Credentials were deliberately **not** guessed, hardcoded, or worked around.
+> **RESULT: ALL THREE RUNS ARE COMPLETE.** Runs **352 / 357 / 359** contain **110 / 165 / 474**
+> tests, which is **every one of our active cases** under groups **4110 / 4254 / 4281**.
+> **0 missing · 0 stale · 0 foreign cases in any run.** No fix is needed and **no write was made.**
 >
-> **WHAT IS NEEDED TO CLOSE IT:** the QA lead re-supplies the TestRail credentials
-> (`TESTRAIL_USER` / `TESTRAIL_KEY` into `/tmp/tr-creds.env`, `/tmp` only, never committed). Then run
-> §4 below — it is **read-only** and needs no further authorization.
+> This supersedes the previous "NOT VERIFIED — credentials needed" banner. The 2026-07-30 sync log's
+> smaller sizes (**94 / 165 / 465**) were indeed superseded by later 2026-07-31 pushes — now
+> **confirmed by observation, not inference**.
+>
+> **Raw evidence (committed):** `completeness-2026-07-31/live-evidence-2026-07-31.json`
+> (per-run: full `case_id` set, union payload, status breakdown; emails redacted).
+> **Read-only script (committed, secret-free — reads `/tmp/testrail/creds.json`):**
+> `completeness-2026-07-31/check_runs_readonly.mjs`.
 
 ---
 
-## 0. ⚠️ ADDENDUM — a CONCURRENT SESSION's evidence file appeared on disk mid-write
+## 1. Headline table — the answer at a glance
 
-**While this file was being written, an evidence bundle produced by ANOTHER session appeared at**
-`build/testrail-run-sync-2026-07-31/completeness-2026-07-31/` — `check_runs_readonly.mjs` +
-`live-evidence-2026-07-31.json`, both timestamped **2026-07-31T07:24:19.837Z**, i.e. **after** this
-container's `/tmp` was found wiped. That session evidently **did** hold working TestRail credentials.
+| Run | Project | Group | Our ACTIVE cases (live) | Tests in run (live) | **MISSING** | **STALE** | Results on record | Holds every active case? |
+|---|---|---|---|---|---|---|---|---|
+| **352** | Filters | 4110 | **110** | **110** | **0** | **0** | **395** | ✅ **YES** |
+| **357** | Schedule | 4254 | **165** | **165** | **0** | **0** | **429** | ✅ **YES** |
+| **359** | Reports Suite | 4281 | **474** (live total under group **479**, incl. 5 foreign) | **474** | **0** | **0** | **539** | ✅ **YES** |
 
-**What it reports** (read from the JSON, read-only, by inspection of the file — **not** by any API
-call from this session):
+**Three-way match confirmed for all three projects:** live active case set == run test case_id set ==
+the project's `testrail-id-map.csv` rows — **set equality, not just equal counts** (0 id-map-only,
+0 run-only in every project).
 
-| Run | tests in run | ours active | group total | **missing** | foreign | results | `include_all` |
-|---|---|---|---|---|---|---|---|
-| **352** Filters | **110** | 110 | 110 | **0** | 0 | 395 | false |
-| **357** Schedule | **165** | 165 | 165 | **0** | 0 | 429 | false |
-| **359** Reports Suite | **474** | 474 | **479** | **0** | **5** | 539 | false |
+| Project | id-map rows | live ours | run tests | id-map-not-in-run | run-not-in-id-map | Observed C-id range in run |
+|---|---|---|---|---|---|---|
+| Filters | 110 | 110 | 110 | — none — | — none — | C29557 – C38911 |
+| Schedule | 165 | 165 | 165 | — none — | — none — | C29925 – C38926 |
+| Reports Suite | 474 | 474 | 474 | — none — | — none — | C30096 – C38925 |
 
-That is **exactly the 110 / 165 / 474 expectation in §2, with ZERO missing cases** — and it also
-reproduces the Rule-38 split for Report Suite (**ours 474 / live 479**, the 5 foreign being Vladimir
-Tomovic's automation cases, correctly in no run of ours). It would, if accepted, **resolve the
-§2 discrepancy** in favour of "the later 2026-07-31 pushes were all synced".
-
-**WHY THIS FILE IS STILL LABELLED NOT VERIFIED — read this carefully (Rule 12):**
-
-1. **This session made no TestRail call of any kind**, so this session has verified nothing. The
-   table above is a **second-hand reading of another actor's artifact**, which is categorically not
-   the same as an observation (Rule 12: never present derived or inherited data as our own verified
-   result).
-2. **The bundle's provenance is unconfirmed.** It was not committed, was not announced, and appeared
-   in the working tree mid-task. It has **not** been reviewed, its script has **not** been audited by
-   this session, and it is **not** part of this session's commit — untracked files belonging to
-   another worker were deliberately left untouched.
-3. Therefore: **treat the figures above as STRONG CORROBORATION AWAITING CONFIRMATION, not as the
-   closing verification.** The QA lead / coordinator should confirm the bundle's origin and, if it is
-   legitimate, have that session commit it and record the result here — at which point the
-   NOT-VERIFIED banner can be lifted **with a named source and timestamp**.
-
-**Nothing in §2–§5 has been rewritten on the strength of it**, deliberately. The honest present
-status remains: *believed complete, corroborated by a concurrent session's live read, not verified by
-this session.*
+The Filters coverage gap reported on 2026-07-30 **does not recur**: run 352 is at full **110/110**.
 
 ---
 
-## 1. What this check is for
+## 2. Per-run detail (all fields live-observed 2026-07-31 07:24 UTC)
 
-**Standing Rule 47** makes run completeness a **standing duty** for the three projects we are
-actively working: every **ACTIVE case** in the project's suite must be present as a **test** in that
-project's execution run. A run built with `include_all: false` stays **FROZEN** at its original
-selection, so cases pushed after the run was created **silently do not appear** — which is exactly
-how a reviewer comes to report a coverage gap that does not exist (Filters run 352, 2026-07-30).
+### Run 352 — Filters (group 4110)
 
-**IN SCOPE — the three active runs only:**
+| Field | Live value |
+|---|---|
+| Name | **Filters - Ahtasham (Awaiting QA- ENV)** |
+| `include_all` | **false** — run is FROZEN at its selection; future pushes will NOT auto-appear |
+| `is_completed` | **false** (active), `is_archived` false |
+| Author (`created_by`) | **3 = Bilal Muzamil** (us) |
+| Assigned to (`assignedto_id`) | **7 = Ahtasham Amjad** |
+| Tests in run | **110** |
+| Run status counts | Untested 110 · Passed 0 · Failed 0 · Blocked 0 · Retest 0 |
+| Our active cases under 4110 | **110** — all `created_by: 3`, **0 foreign cases** |
+| **Missing (ours, not in run)** | **NONE** |
+| **Stale (test whose case is deleted)** | **NONE** |
+| Result records (`get_results_for_run`) | **395** → status_id **3 (Untested) ×79**, status_id **null ×316** (comment/field-only results). **No Passed/Failed/Blocked results exist.** |
 
-| Run | Project | TestRail group | Owner shown in TestRail |
+### Run 357 — Schedule (group 4254)
+
+| Field | Live value |
+|---|---|
+| Name | **Schedule - Ayesha (VIU Pending)** |
+| `include_all` | **false** — FROZEN selection |
+| `is_completed` | **false** (active), `is_archived` false |
+| Author (`created_by`) | **3 = Bilal Muzamil** (us) |
+| Assigned to | **5 = Ayesha Khan** |
+| Tests in run | **165** |
+| Run status counts | Untested 165 · Passed 0 · Failed 0 · Blocked 0 · Retest 0 |
+| Our active cases under 4254 | **165** — all `created_by: 3`, **0 foreign cases** |
+| **Missing** | **NONE** |
+| **Stale** | **NONE** |
+| Result records | **429** → status_id **3 (Untested) ×143**, status_id **null ×286**. **No Passed/Failed/Blocked results exist.** |
+
+### Run 359 — Reports Suite (group 4281)
+
+| Field | Live value |
+|---|---|
+| Name | **Reports Suite - Nebojsa/Viktoria (VIU Pending)** |
+| `include_all` | **false** — FROZEN selection |
+| `is_completed` | **false** (active), `is_archived` false |
+| Author (`created_by`) | **3 = Bilal Muzamil** (us) |
+| Assigned to | **null** (unassigned at run level) |
+| Tests in run | **474** |
+| Run status counts | Untested 474 · Passed 0 · Failed 0 · Blocked 0 · Retest 0 |
+| Live cases under group 4281 | **479 total** = **474 ours** (`created_by: 3`) + **5 foreign** (`created_by: 1 = Vladimir Tomovic`) |
+| **Missing (ours)** | **NONE** |
+| **Stale** | **NONE** |
+| Foreign cases in the run? | **NO — none of the 5 are in run 359.** Correct per Rule 38. |
+| Result records | **539** → status_id **3 (Untested) ×458**, status_id **null ×81**. **No Passed/Failed/Blocked results exist.** |
+
+**The 5 foreign cases — authorship determined LIVE from `created_by: 1` (Vladimir Tomovic), not from
+the id-map. Do NOT count them, do NOT add them to run 359, do NOT edit them (Rule 38):**
+
+| C-id | Link | Title (live) |
+|---|---|---|
+| C38919 | https://shopview.testrail.io/index.php?/cases/view/38919 | TU column selector hides Est. Lost Labor, persists across reload, and the export mirrors it |
+| C38920 | https://shopview.testrail.io/index.php?/cases/view/38920 | PV Location column is scope-governed — hidden at one location, Multiple on a merged special-order row |
+| C38921 | https://shopview.testrail.io/index.php?/cases/view/38921 | IV CSV export carries the As of and Locations metadata lines above the header, plus a scope-conditional Location column |
+| C38922 | https://shopview.testrail.io/index.php?/cases/view/38922 | WIP CSV export gains the Locations line while its column semantics stay exactly as shipped |
+| C38923 | https://shopview.testrail.io/index.php?/cases/view/38923 | SBR Summary and Expanded CSV exports carry the Location column at its designated slot |
+
+---
+
+## 3. MISSING and STALE lists
+
+**MISSING (an active case of ours absent from its run):**
+
+| Run | Missing cases |
+|---|---|
+| 352 Filters | **NONE — 0 of 110** |
+| 357 Schedule | **NONE — 0 of 165** |
+| 359 Reports Suite | **NONE — 0 of 474** |
+
+**STALE (a test in the run whose case no longer exists in the suite):**
+
+| Run | Stale tests |
+|---|---|
+| 352 Filters | **NONE** |
+| 357 Schedule | **NONE** |
+| 359 Reports Suite | **NONE** |
+
+Checked against the full live suite read (project 1 / suite 1 = **4,115 cases**, **625 sections**);
+every `case_id` in every run resolves to a live case.
+
+Because there is **nothing missing and nothing stale, no `update_run` payload is staged and none is
+needed.** Nothing requires authorisation to fix.
+
+---
+
+## 4. If a gap is EVER found later — the staged-fix procedure (unused this run)
+
+> ## ⚠️ `update_run` **REPLACES** the run's selection.
+> Sending a **partial** `case_ids` list **DELETES every omitted test AND ITS RECORDED RESULTS.**
+> Always send the **FULL UNION** — `sorted(set(current_run_case_ids) | set(missing_ours))` —
+> never just the missing ones.
+
+The union payload for each run **as it stands today** is already captured in
+`completeness-2026-07-31/live-evidence-2026-07-31.json` under each run's `union_case_ids`
+(today it equals `run_case_ids` exactly, since nothing is missing: 110 / 165 / 474 ids).
+
+**Snapshot → write → verify (only after the QA lead authorises the write, Rule 6):**
+
+1. **SNAPSHOT** `get_tests/<run>` and `get_results_for_run/<run>` to a file; record test count and
+   result count.
+2. **WRITE** `update_run/<run>` with `{"case_ids": <FULL UNION>, "include_all": false}`.
+3. **VERIFY** re-read `get_tests` — count must equal `len(union)`; re-read `get_results_for_run` —
+   count must be **≥** the snapshot and every snapshotted result id must still be present.
+4. **LOG** before→after counts per run in `testrail-execution-log-2026-07-31.md`.
+5. **NEVER** touch runs **278 / 324 / 325** (Rule 47) and **never** add foreign cases (Rule 38).
+
+---
+
+## 5. Method / honesty notes
+
+- **Read-only, verified:** the only endpoints called were `get_run`, `get_tests`,
+  `get_results_for_run`, `get_cases`, `get_sections`, `get_user`. **No `update_run`, no `add_*`, no
+  `delete_*`, no result write. Runs 278 / 324 / 325 were not read or touched.**
+- **Authorship live, not assumed:** `created_by` was read from the live case objects and resolved to
+  names via `get_user/{id}` — user **3 = Bilal Muzamil (us)**, **1 = Vladimir Tomovic**,
+  **5 = Ayesha Khan**, **7 = Ahtasham Amjad**.
+- **Completeness of the input set (Rule 17):** all pages fetched (limit 250 + offset loop) for
+  sections, cases, tests and results; the group case set was built from the **full transitive
+  descendant** section tree of each group, not just direct children.
+- **Both numbers reported (Rule 38):** Reports Suite is **ours 474 / live total 479**.
+- **Credentials:** supplied to `/tmp/testrail/creds.json` (`chmod 600`), `/tmp` only. Not committed,
+  not echoed into any repo file; the committed script reads them from that path at runtime. The
+  committed evidence JSON has emails redacted.
+
+Ties to Standing Rules 6, 8, 12, 17, 34, 36, 38, 47.
+
+---
+
+## 6. OUTSTANDING — what I need from you
+
+| # | Item | Status | What is needed |
 |---|---|---|---|
-| **352** | Filters | 4110 | Filters - Ahtasham (Awaiting QA- ENV) |
-| **357** | Schedule | 4254 | Schedule - Ayesha (VIU Pending) |
-| **359** | Reports Suite | 4281 | Reports Suite - Nebojsa/Viktoria (VIU Pending) |
-
-**OUT OF SCOPE — do not check, do not audit, do not report gaps for (Rule 47):** run **278**
-(Vladimir Tomovic's Custom Permissions run — different author, different project), run **324** (Fees
-& Discounts, completed), run **325** (Simple Flow, completed), and every nightly/automation run.
-Their contents are **not evidence about our suite**.
-
----
-
-## 2. Expected figures — and where each one comes from
-
-| Run | Expected tests | Source of the expectation | Live-verified? |
-|---|---|---|---|
-| **352** Filters | **110** | `build/filters/testrail-id-map.csv` = **110** active rows (counted this session, local file) | ❌ **NOT this session** |
-| **357** Schedule | **165** | `build/schedule/testrail-id-map.csv` = **165** active rows (counted this session, local file) | ❌ **NOT this session** |
-| **359** Reports Suite | **474** | `build/report-suite/testrail-id-map.csv` = **474** active rows (counted this session, local file) | ❌ **NOT this session** |
-
-The **474** figure for run 359 was reported live-verified at **474/474 tests, 539/539 results** during
-the 2026-07-31 coverage-re-derivation pass (`build/OUTSTANDING-ITEMS-REGISTER.md`, and
-`build/report-suite/coverage-rederivation-2026-07-31/`). **That is a record from earlier today, read
-here from a file — it is not a fresh observation.**
-
-### ⚠️ A discrepancy that must be resolved by the live check, not assumed away
-
-The **committed sync execution log** in this same folder
-(`run-sync-execution-log-2026-07-31.md`, executed against live TestRail **2026-07-30T14:20Z**)
-records the post-write state as:
-
-| Run | Tests before | Tests after | Results before/after |
-|---|---|---|---|
-| 352 Filters | 79 | **94** | 395 / 395 |
-| 357 Schedule | 143 | **165** | 429 / 429 |
-| 359 Reports Suite | 458 | **465** | 539 / 539 |
-
-So the last **directly observed** run sizes were **94 / 165 / 465**, while the expected figures are
-**110 / 165 / 474**. The gaps are **352: +16** and **359: +9**; **357 already matches at 165**.
-
-**The most likely explanation** — consistent with the register — is that further cases were authored
-and pushed **later on 2026-07-31**, after that log was written, and were synced in those later
-passes (the register states run 359 was subsequently verified at 474/474, and that Filters/Schedule/
-Reports Suite were "all re-measured the same day" at 110/165/474). **But this is reasoning from
-records, not an observation.** The alternative — that the later pushes were **not** all synced into
-runs 352 and 359 — **cannot be excluded without the live read.** Treat the two runs as
-**COMPLETENESS UNCONFIRMED** until §4 is executed.
-
----
-
-## 3. Guardrails that apply when the check IS run
-
-- **§4 is 100% READ-ONLY** — `get_run`, `get_tests`, `get_results_for_run`, `get_cases`,
-  `get_sections` only. It needs no authorization beyond having credentials.
-- **A WRITE (`update_run`) needs the QA lead's EXPLICIT authorization** (Standing Rule 6). Finding a
-  gap does **not** authorize fixing it.
-- **IF A WRITE IS LATER AUTHORIZED — UNION ONLY (Rules 34/47).** `update_run` **REPLACES** the run's
-  selection: a partial `case_ids` list **DELETES the omitted tests AND THEIR RECORDED RESULTS.**
-  Therefore **snapshot `get_tests` + `get_results_for_run` BEFORE the write**, send
-  `sorted(set(current) | set(new))`, and **verify after**: test count equals expected **and every
-  prior result is still present**. Log the count before→after.
-- **Never touch runs 278 / 324 / 325** (Rule 47). The executor already hard-blocks them.
-- **Foreign CASES stay untouched** (Rule 38) — e.g. Vladimir's C38919–C38923 in the Report Suite
-  folder are **ours-474 / live-479** and belong in **no** run of ours. Do **not** add them.
-- **Report BOTH numbers** — "ours N / live total M" — so counts stay honest (Rule 38).
-
----
-
-## 4. The exact procedure to run once credentials are re-supplied
-
-```bash
-# 1. Re-supply credentials into /tmp ONLY (never commit; /tmp is wiped per container).
-#    Ask the QA lead for TESTRAIL_USER + TESTRAIL_KEY, then:
-#       printf 'TESTRAIL_USER=...\nTESTRAIL_KEY=...\n' > /tmp/tr-creds.env
-set -a && . /tmp/tr-creds.env && set +a
-
-# 2. READ-ONLY audit: which ACTIVE cases exist in TestRail but are MISSING from each run?
-cd /home/user/Manual-test-Cases
-python3 build/testrail-run-sync-2026-07-31/run_sync_audit.py \
-        --outdir build/testrail-run-sync-2026-07-31/completeness-<YYYY-MM-DD>
-```
-
-Then read the emitted `audit.json` and confirm, **for runs 352 / 357 / 359 ONLY**:
-
-1. `include_all` — if `true`, new cases appear automatically and there is nothing to sync; just
-   confirm the test count equals the live active case count.
-2. `tests` — compare against the expected figure in §2 (**110 / 165 / 474**), and against that
-   project's **live** active case count under its group (4110 / 4254 / 4281), **not** against the
-   local id-map alone.
-3. The **missing-case list per run** — this is the actual answer. **Empty = complete.**
-4. `get_results_for_run` count per run — record it, so any later authorized write can be proven not
-   to have destroyed a result.
-
-**Record the outcome by editing this file**: replace the NOT-VERIFIED banner with the live figures,
-the UTC timestamp, and the per-run missing-case lists. If a gap is found, **report it to the QA lead
-and request authorization** — do not write.
-
----
-
-## 5. Status line for reports until this is executed
-
-> *Runs 352 / 357 / 359 are **believed** complete at **110 / 165 / 474** on the strength of the
-> 2026-07-31 sync passes, but have **NOT been re-verified live since**; the last directly observed
-> sizes were **94 / 165 / 465** (2026-07-30). TestRail credentials were wiped with `/tmp`, so no
-> live check was possible. **NOT VERIFIED — credentials needed.***
-
-Ties to Standing Rules 6, 8, 12, 17, 34, 36, 38 and 47.
+| 1 | Run completeness for 352 / 357 / 359 | ✅ **CLOSED — verified live 2026-07-31 07:24 UTC, all complete at 110 / 165 / 474** | **Nothing.** No gap, so no `update_run` authorisation is required. |
+| 2 | TestRail credentials | ✅ **CLOSED** — re-supplied and used read-only this session (`/tmp/testrail/creds.json`, chmod 600, uncommitted) | Nothing. Note `/tmp` is wiped per container, so they will need re-supplying next session. |
+| 3 | Any TestRail **write** | ⛔ **NOT REQUESTED — none was made** | No authorisation needed today. If a future push is wanted, authorise it explicitly and the §4 union procedure applies. |
+| 4 | The 5 foreign Report Suite cases C38919–C38923 (Vladimir Tomovic) | ℹ️ **Informational** | Confirm they should remain **excluded** from run 359 and from our counts (current handling, per Rule 38). No action taken. |
+| 5 | Keeping runs complete going forward | ⚠️ **Standing risk** | All three runs are `include_all: false` (**frozen**). **Any future case push must be followed by an authorised union `update_run`,** or the new cases will silently not appear — exactly the 2026-07-30 Filters situation. |
