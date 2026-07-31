@@ -1739,6 +1739,12 @@ deliver the 7-tab management report.
     **EACH ITEM STATES FOUR THINGS:** *what is missing* · *who owes it* · **what it BLOCKS** (the
     concrete authenticity or coverage consequence, not a vague "needed for completeness") · *since
     when*.
+    **ITEMS BLOCKED ON THE QA LEAD HIMSELF CARRY FIVE MORE — see Standing Rule 48:** any item that
+    is *awaiting his authorisation*, *frozen by his ruling*, or *held by a decision he made* MUST
+    also quote **which ruling (verbatim)** · **when he gave it and what question it answered** ·
+    **the named cases it blocks (internal ID + C-id + link)** · **why the ruling was reasonable (or
+    what has changed since)** · **the single thing that would unblock it, and from whom.** A bare
+    *"awaiting your decision"* row is non-compliant — a ruling is a source, and sources get cited.
     **THE DURABLE REGISTER: `build/OUTSTANDING-ITEMS-REGISTER.md`** is the SINGLE cross-project
     source of truth for these asks — one section per project, a table per project, plus a one-line
     "what I most need from you". It is **updated whenever an item is RAISED or CLEARED** (same
@@ -2133,6 +2139,46 @@ deliver the 7-tab management report.
     Ties to Standing Rules 6 (no TestRail write without permission), 8, 12 (a completeness check not
     run is NOT VERIFIED), 17 (100% of the case list, no sampling), 32/33 (latest ruling wins), 34
     (the sync mechanism this scopes), 36 and 38.
+48. **NEVER say "waiting on you" or "frozen by your ruling" without the CONTEXT — quote the ruling,
+    date it, and say whether it was right (all projects).** USER DIRECTIVE (2026-07-31, verbatim):
+    *"SO when you say that something is waiting on me or forzen by my own ruling always give a
+    context with that too just like you gave this context: 'The ruling was yours, two messages ago.
+    I asked what it would take to apply each staged group, and you answered: "Lets wait for Brankos
+    answers." So they're frozen deliberately — and it was the right call, because applying them
+    means asserting behaviour no written source supports.'"*
+    **THE RULE:** whenever a deliverable, status report, chat reply, register row or OUTSTANDING
+    section states that something is **blocked on the QA lead**, **frozen by his ruling**,
+    **awaiting his authorisation**, or **held by a decision he made**, it MUST carry **ALL FIVE** of
+    the following — **never a bare "awaiting your decision"**:
+    **(1) WHICH RULING** — quote his words **VERBATIM**. **Rule 25 applies to his instructions
+    exactly as it does to a spec.**
+    **(2) WHEN he gave it, and IN WHAT CONTEXT** — what question he was answering; a ruling read
+    without its question is easy to misremember as arbitrary.
+    **(3) WHAT IT BLOCKS, concretely** — the **named cases** (internal ID + C-id +
+    `https://shopview.testrail.io/index.php?/cases/view/<id>` per Rule 8), the deliverable, or the
+    **specific coverage claim we cannot make**.
+    **(4) WHY THE RULING WAS REASONABLE** — or, honestly, **what has CHANGED since that makes it
+    worth revisiting.** The point is that he can **re-read his own decision and see the reasoning
+    without reconstructing it**. **Never imply his ruling is the obstacle when it was the correct
+    call**; and **never quietly carry a stale ruling forward when new information has superseded it
+    — say so.**
+    **(5) WHAT WOULD UNBLOCK IT** — the **single specific thing** needed, and **from whom**.
+    **THE UNDERLYING PRINCIPLE, PLAINLY: A RULING IS A SOURCE, AND SOURCES GET CITED.** We already
+    require this for specs, PO answers, tickets and designs (Rules 20/25/32); **the QA lead's own
+    decisions are held to the same standard.** **A blocked item with no cited ruling is
+    indistinguishable from us having forgotten to do the work** — the same failure mode **Rule 46**
+    exists to prevent for deliberate omissions.
+    **RATIONALE, 2026-07-31:** a status line said *"roughly 15 changes are queued but frozen by your
+    own ruling"* **without naming the ruling, its date or the cases**, and the QA lead had to ask
+    *"Which ruling and what are those cases?"*. When the context **WAS** given — the ruling quoted,
+    the question it answered, and why it was the right call — he directed that **this become the
+    standard for every such statement**. Canonical examples: the Filters frozen-items row and the
+    completed-runs row of `build/OUTSTANDING-ITEMS-REGISTER.md`. Ties to Standing Rules 7 (plain
+    layman wording), 8 (always give the C-id + link), 12 (observed, never inferred), 25 (verbatim
+    citation of the source), 32 (latest source wins), 33 (authority precedence — a ruling outranks a
+    reviewer claim, which is exactly why it must be citable), 36 (the outstanding register carries
+    these five fields for QA-lead-blocked items) and 46 (an undocumented deliberate decision is
+    indistinguishable from a miss).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

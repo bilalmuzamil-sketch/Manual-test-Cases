@@ -324,15 +324,19 @@ a requirement, and a table column heading is not a filter label. Cosmetic note f
    real coverage decisions, and they have been open since **2026-07-27** (sorting/scope) and
    **2026-07-31** (the rest):
    - **Sorting** — *"Is sorting the Work Orders list part of this release, and if so, is two
-     sorts the most you can stack?"* Blocks **roughly 6–8 cases that do not exist**; the
-     design is fully drawn but labelled *Work In Progress*.
+     sorts the most you can stack?"* **ZERO sorting cases are drafted** — what exists is a
+     **design-backed proposal for roughly 6–8 cases: none authored, no internal IDs, no
+     C-ids, never pushed**. The design is fully drawn but labelled *Work In Progress*.
    - **Mobile Apply button** — the designs show `Apply filters` / `Apply filter` in the mobile
      sheets; spec v1.6 says filters apply with **no apply button**. Blocks **7 cases,
      C29622–C29628**, from being called correct either way.
    - **Default tab on first visit** — our **C38876** says *Estimates*; **13 boards** show
      *All* selected. Blocks that one case.
-   *(All three are frozen by your own ruling — "let's wait for Branko's answers" — so this is
-   a reminder of what is waiting, not a request to change it.)*
+   *(All three are frozen by your own ruling of **2026-07-31**, verbatim **"Lets wait for
+   Brankos answers"**, given when we asked what it would take to apply each staged group. **It
+   was the right call** — applying any of them means asserting behaviour **no written source
+   supports** (Rule 42), and nothing has changed since to warrant revisiting it. So this is a
+   reminder of what is waiting, not a request to change it. Rule 48.)*
 2. **A QA branch / test environment for Filters, plus the feature-flag state.** Until it
    exists **nothing in this suite can be live-verified**: all **110 cases stay VIU-Pending**,
    every "VIU-confirm" note stays open, and we cannot tell a design detail from shipped
