@@ -240,7 +240,10 @@ the QA lead*, with what the boards suggest, so the decision is theirs.
    *"remain live"*.
 
 **What the boards suggest, if Branko says sorting is in scope** — enough for roughly 6–8
-cases, and now **pixel-confirmed** for steps 1–3 rather than tree-inferred:
+cases, and now **pixel-confirmed** for steps 1–3 rather than tree-inferred. **To be
+unambiguous: this is a PROPOSAL only. ZERO sorting cases are authored — no internal IDs, no
+C-ids, nothing in TestRail** (Rule 42 forbids authoring while the section is *Work In
+Progress*):
 
 | # | What the design shows (verbatim labels) | Source board | Evidence |
 |---|---|---|---|
@@ -320,9 +323,10 @@ wants the whole population accounted for, not just the deltas.
 2. **B-2 FLT-TAB-06 (C38876) default tab — STAGED.** No ratified requirement supports
    `Estimates`; every final board shows `All` selected. Needs Branko's or engineering's
    confirmation, or the case should be softened.
-3. **D-1 sorting — STAGED, 0 cases authored.** ~6–8 cases ready to write the moment Branko
-   confirms scope; steps 1–3 are now pixel-confirmed, step 4 (multi-level + the possible
-   two-sort cap) is still layer-tree-only and wants its render.
+3. **D-1 sorting — a design-backed PROPOSAL only: 0 cases authored, no internal IDs, no
+   C-ids, never pushed.** ~6–8 cases would be ready to write the moment Branko confirms
+   scope; steps 1–3 are now pixel-confirmed, step 4 (multi-level + the possible two-sort
+   cap) is still layer-tree-only and wants its render.
 4. **D-2 column/layout icon scope** — unconfirmed, no case.
 5. **6 of 85 boards still unrendered** — `11985:13334`, `11829:8908`, `11829:8920`,
    `11884:15901`, `11842:14069`, `11842:16879`. Retry re-armed in `PENDING-FIGMA-FETCH.md`,

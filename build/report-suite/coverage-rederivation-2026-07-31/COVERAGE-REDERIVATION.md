@@ -5,8 +5,19 @@ active cases, all six live spec versions captured today.
 
 ## Headline
 
-> **882 of 895 current requirements are covered. 6 genuine gaps. 0 stale or invented
-> anchors on any active case.**
+> **882 of 895 current requirements were covered AT THE START of this pass. 6 genuine gaps
+> were found — and all 6 were CLOSED in this same pass. 888 of 895 are covered ON
+> COMPLETION. 0 open gaps. 0 stale or invented anchors on any active case.**
+
+**Read the numbers this way, because the two figures are both true at different points:**
+**882 = before**, **888 = after**. The 6 gaps were closed as **extensions to existing cases,
+0 new cases** (33 `update_case`, all HTTP 200, all re-GET byte-verified MATCH; run 359
+verified 474/474 and never written). The arithmetic reconciles exactly: **888 covered + 7
+deliberately not covered = 895**. Evidence: `AUTHORING-COVERAGE.md` §6 ("Before this pass
+882/895 → After **888/895**"; "Open genuine gaps 6 → **0**") and
+`testrail-execution-log-2026-07-31.md`. **Sections 3 and 4 below are the BEFORE state,
+kept deliberately** so the gaps and their root cause stay on the record rather than being
+edited out of history; §6 and `AUTHORING-COVERAGE.md` are the AFTER state.
 
 The remaining 7 requirements are deliberately not covered, each with a named reason
 (4 cut by the user-authorized 2026-07-28 audit, 3 not independently testable) — listed
@@ -115,6 +126,10 @@ its own text evidence.
 
 ## 3. Per-report totals
 
+**This table is the BEFORE state (start of the pass).** All 6 gaps below were closed later in
+the same pass — see §6 / `AUTHORING-COVERAGE.md` for the AFTER state (**888 covered · 0 open
+gaps**).
+
 | Report | Spec | Requirements | of which R / N / E | Covered | **Genuine gaps** | Not covered by design | Our active cases |
 |---|---|---|---|---|---|---|---|
 | Sales By Customer | v12 | **234** | 204 / 21 / 9 | 231 | **1** | 2 | 83 |
@@ -134,10 +149,13 @@ Vladimir Tomovic's and are excluded from every number here; we never touch them.
 
 ---
 
-## 4. The genuine gap list (6)
+## 4. The genuine gap list (6) — ALL SIX CLOSED IN THIS PASS
 
 All six are the **same shape**: the on-screen behaviour is covered, the **export half of
-the same requirement is not**. Verbatim spec text, and the judgement:
+the same requirement is not**. Verbatim spec text, and the judgement. **Status: all 6 were
+closed as extensions to existing cases (0 new cases) before this pass ended** — the list is
+retained as the record of what was found, not as an open backlog (`AUTHORING-COVERAGE.md` §2
+names the 6 extensions).
 
 | # | Report | Req | Verbatim (the uncovered half) | Judgement |
 |---|---|---|---|---|

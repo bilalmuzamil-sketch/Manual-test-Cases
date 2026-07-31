@@ -278,7 +278,9 @@ ways** with the id-map (0 live-not-in-map / 0 map-not-live).
   "All Filters" + "Apply filters" sheet; ownership of the 9 `FLT-SRCH` palette cases;
   `S13-R23` field list; FLT-TAB-06 = C38876's Estimates default tab (absent from v1.6).
 - **Not authorized this pass:** FIX-PLAN **F2** (mobile Apply-button flag parity on
-  C29622/C29623) and **F3** (C38877 refs/note). **Sorting** cases still held.
+  C29622/C29623) and **F3** (C38877 refs/note). **Sorting: there are NO sorting cases** — only
+  a design-backed proposal for ~6–8 (**0 authored, no internal IDs, no C-ids, never pushed**),
+  held by the QA lead's 2026-07-31 ruling *"Lets wait for Brankos answers"* (Rule 48).
 - **39 pre-existing over-length titles** (Rule 19) — standing trim queue.
 - **12 Figma boards still have no PNG** — see the open queue note below (Rule 35).
 
