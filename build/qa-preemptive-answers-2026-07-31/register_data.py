@@ -1129,35 +1129,59 @@ ROWS = [
         project="Cross-project", category="G",
         say="I reviewed the run and cases were missing. Your coverage numbers do not match what I "
             "can see.",
-        answer="That was real and it was our fault. A TestRail run built from a fixed selection "
-               "never picks up new cases, so every run had been frozen since 17 July - 113 cases "
-               "were missing across six runs. Three active runs were synced the same day with every "
-               "recorded result preserved, and a run refresh is now the last step of every push.",
+        answer="That was real and it was our fault - if the run you reviewed is one of the three we "
+               "own. A TestRail run built from a fixed selection never picks up new cases, so runs "
+               "had been frozen since 17 July. The three runs for the projects we are actively "
+               "working - Filters 352, Schedule 357, Reports Suite 359 - were brought current on 31 "
+               "July with every recorded result preserved, and keeping them complete is now a "
+               "standing duty checked whenever cases are added, edited or retired. Runs outside "
+               "those three projects are not ours to manage: our coverage is measured against the "
+               "case suite in TestRail, never against someone else's run selection, so if cases "
+               "look missing from a run we do not own, that run's selection is its owner's to "
+               "refresh.",
         evidence="build/testrail-run-sync-2026-07-31/RUN-SYNC-AUDIT.md: Filters run 352 79->94 "
                  "(later 110), Schedule 357 143->165, Report Suite 359 458->465 (later 474); result "
-                 "records 395/429/539 before and after, unchanged; add-only union writes. Control: "
-                 "Standing Rule 34, including the warning that a partial case_ids write to "
-                 "update_run DELETES the omitted tests and their results.",
-        cases="113 cases were affected across 6 runs; the three active runs are now equal to their "
-              "active suites.",
-        closer="Nobody - fixed. Two runs are deliberately left alone (see the next row).",
+                 "records 395/429/539 before and after, unchanged; add-only union writes. Controls: "
+                 "Standing Rule 34 (the sync method - and its warning that a partial case_ids write "
+                 "to update_run DELETES the omitted tests and their results, so the sync is "
+                 "union-only) and Standing Rule 47 (the scope - the three active projects' runs are "
+                 "kept complete as a standing duty; runs belonging to other or completed projects, "
+                 "or created by another author for work we are not doing, are out of scope). "
+                 "Honesty note: the 110 / 165 / 474 figures are from the 31 July passes and have "
+                 "NOT been re-verified live since - the credentials were lost with the container's "
+                 "/tmp - so the re-check is written up prepared and unexecuted in "
+                 "build/testrail-run-sync-2026-07-31/RUN-COMPLETENESS-CHECK-2026-07-31.md.",
+        cases="113 cases were affected across 6 runs; the three active runs were brought equal to "
+              "their active suites on 31 July, pending the live re-check.",
+        closer="Nobody on scope - but the live re-check needs the TestRail credentials re-supplied.",
         status="SETTLED", risk="MEDIUM",
     ),
     dict(
         project="Cross-project", category="C",
         say="Two runs still have cases missing. Why did you not sync those too?",
-        answer="Because you ruled not to touch finished projects' runs, and we agree - those runs "
-               "hold graded results and making a completed run incomplete again is a reporting "
-               "decision, not a QA one. A third run has not been ruled on and we left it alone.",
-        evidence="build/testrail-run-sync-2026-07-31/RUN-SYNC-AUDIT.md, user ruling 2026-07-31 "
-                 "verbatim: \"For now do not do anything for the completed test runs.\" Held: run "
-                 "324 Fees & Discounts (25 cases missing, 185 graded results) and run 325 Simple "
-                 "Flow (35 missing, 147 results). Not authorized and not ruled on: run 278 Custom "
-                 "Permissions - 9 cases missing, 3,521 graded results, and Custom Roles is an "
-                 "active recurring project so the completed-projects ruling does not cover it.",
-        cases="no case edited - the runs were not written to at all.",
-        closer="You - one decision on run 278.",
-        status="AWAITING ANSWER", risk="LOW",
+        answer="Because those runs are out of our scope, and that is now a settled ruling rather "
+               "than an open question. We keep the runs complete for the three projects we are "
+               "actively working - Filters, Schedule and Reports Suite. Runs for finished projects "
+               "hold graded results, and making a completed run incomplete again is a reporting "
+               "decision, not a QA one. A run created by another tester for work we are not doing "
+               "is theirs to manage, not ours to edit.",
+        evidence="build/testrail-run-sync-2026-07-31/RUN-SYNC-AUDIT.md; user ruling 2026-07-31 "
+                 "verbatim: \"For now do not do anything for the completed test runs\", and the "
+                 "same day, \"ignore any test run which is not created by Bilal Muzamil\" - "
+                 "clarified immediately afterwards to require that the three active projects' runs "
+                 "must still contain every test case, \"like it happened with filters yesterday\". "
+                 "Both halves are recorded as Standing Rule 47. Out of scope and untouched: run 324 "
+                 "Fees & Discounts (25 cases missing, 185 graded results), run 325 Simple Flow (35 "
+                 "missing, 147 results), and run 278 Custom Permissions - another author's run "
+                 "(Vladimir Tomovic) on a different project, 3,521 graded results. The run 278 "
+                 "decision paper is retained for the record but is marked SUPERSEDED: no action "
+                 "will be taken on it.",
+        cases="no case edited - the runs were not written to at all. The three Custom Roles "
+              "regression guards CR-REG-01 = C38843, CR-REG-02 = C38844 and CR-REG-03 = C38845 are "
+              "consequently in no manual run; that follows the ruling rather than being an "
+              "oversight, and is recorded openly in the outstanding register.",
+        closer="Nobody - settled by your scope ruling of 31 July.",
+        status="SETTLED", risk="LOW",
     ),
     dict(
         project="Cross-project", category="D",
@@ -1255,10 +1279,16 @@ CONCEDED = [
      "because of it."),
     ("The testers' runs had been frozen since 17 July, so reviewers saw false coverage gaps.",
      "113 active cases were missing across six runs, which is why a reviewer reported \"no "
-     "case exists\" for coverage we had already pushed. Three active runs are synced with "
-     "every result preserved; a run refresh is now the last step of every push (Standing "
-     "Rule 34).",
-     "One decision on run 278 (Custom Permissions, 9 cases missing, 3,521 graded results)."),
+     "case exists\" for coverage we had already pushed. The three runs for the projects we "
+     "are actively working - Filters 352, Schedule 357, Reports Suite 359 - were brought "
+     "current with every result preserved, and keeping them complete is now a standing duty "
+     "rather than a one-off fix (Standing Rules 34 and 47). Runs outside those three "
+     "projects are out of scope and are not synced, written to, or audited for missing "
+     "cases.",
+     "Re-supply the TestRail credentials so the three runs can be re-checked live - they are "
+     "believed complete at 110 / 165 / 474 but have not been re-verified since 31 July, and "
+     "the check is written up prepared and unexecuted. Run 278 no longer needs a decision: "
+     "the 31 July scope ruling closed it."),
     ("Three Sales By Customer permission cases will fail against today's build, deliberately.",
      "The PO ruled one way and the build does the other. We chose to follow the PO and let "
      "the failure be the report. If nobody files the change ticket, a tester will read those "

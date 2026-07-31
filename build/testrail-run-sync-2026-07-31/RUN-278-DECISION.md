@@ -1,5 +1,29 @@
 # Run 278 (Custom Roles) — sync decision paper
 
+> # ⛔ SUPERSEDED — 2026-07-31
+>
+> **Run 278 is OUT OF SCOPE. NO ACTION WILL BE TAKEN ON IT.**
+>
+> The QA lead ruled on **2026-07-31** that test runs are in scope **only for the projects we are
+> actively working** — **Filters 352 · Schedule 357 · Reports Suite 359** — and that any run **not
+> created by Bilal Muzamil** is ignored entirely. Run 278 is **Vladimir Tomovic's Custom Permissions
+> run** — a **different author** and a **different project** from the work we are doing.
+>
+> **"Ignored entirely" means: not synced, not written to, and NOT AUDITED for missing cases.** The
+> question this paper was written to answer — *should run 278 be brought into sync?* — is therefore
+> **CLOSED as out-of-scope**, not answered. No decision from the QA lead is required or awaited.
+>
+> Our coverage is measured against the **case suite under our group**, never against another author's
+> run selection; a foreign run's contents are not evidence about our suite.
+>
+> This is now recorded as **Standing Rule 47 (TEST-RUN SCOPE)** in `CLAUDE.md`, with the scope
+> qualifier added to **Rule 34**. Foreign **cases** remain governed by **Rule 38** (report, never
+> touch) — that is a separate rule and it still stands.
+>
+> **The body below is retained UNCHANGED for the record** — the live figures it reports were accurate
+> when read on 2026-07-30 and document why the question was originally raised. It should **not** be
+> actioned.
+
 > **STATUS: DECISION PAPER ONLY. NOTHING WAS WRITTEN TO TESTRAIL.**
 > Every number below was read LIVE from TestRail on **2026-07-30**, read-only
 > (`get_run` / `get_tests` / `get_results_for_run` / `get_cases` / `get_sections` / `get_user`).

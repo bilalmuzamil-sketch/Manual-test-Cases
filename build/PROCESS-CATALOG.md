@@ -85,6 +85,22 @@
   our suite until we re-derive our own position** (Rule 44). Read
   **`build/LESSONS-2026-07-31.md`** (the retrospective these five rules came from) before running
   either process on a spec delta.
+- **TEST-RUN SYNCING — SCOPE QUALIFIER (Standing Rule 47, 2026-07-31).** Several processes end in a
+  TestRail push (#1 wording+VIU, #2 reconciliation, #3/#4 spec-recheck, #5 traceability) and
+  **Standing Rule 34 makes a RUN-SYNC CHECK the last step of every such push** — so this qualifier
+  applies to all of them: **the run-sync duty covers ONLY the runs of the projects we are actively
+  working — Filters run 352 · Schedule run 357 · Reports Suite run 359 — and only to keep them
+  COMPLETE** (every active case present as a test), re-checked whenever cases are added, edited or
+  retired. **Runs belonging to other projects, to COMPLETED projects (324 Fees & Discounts, 325
+  Simple Flow), or created by another author for work we are not doing — specifically run 278
+  (Vladimir Tomovic's Custom Permissions run) — are IGNORED ENTIRELY: not synced, not written to,
+  and not audited for missing cases.** Our coverage is measured against the **case suite under our
+  group**, never against someone else's run selection. Sync is **UNION-ONLY** — `update_run`
+  REPLACES the selection, so a partial `case_ids` list deletes tests **and their recorded results**;
+  snapshot `get_tests` + `get_results_for_run` before any write and verify counts + every prior
+  result after. Run writes still need explicit authorization (Rule 6). Foreign **cases** remain
+  hands-off under Rule 38 — that governs cases, this governs runs, and both stand. Method + audit +
+  the prepared completeness re-check: `build/testrail-run-sync-2026-07-31/`.
 
 ## Maintaining this catalog
 When a new reusable process is created (or a durable rule changes), **add/adjust a row here in

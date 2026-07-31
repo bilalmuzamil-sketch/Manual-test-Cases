@@ -1660,6 +1660,9 @@ deliver the 7-tab management report.
     reusable read-only checker + union executor:
     `build/testrail-run-sync-2026-07-31/` (`RUN-SYNC-AUDIT.md`, `run_sync_audit.py`,
     `sync_runs_EXECUTOR.py`). Ties to Standing Rules 6/8/17/20/29/31/33.
+    **SCOPE (see Rule 47, 2026-07-31): this sync duty applies to the THREE ACTIVE projects' runs
+    ONLY — Filters 352 · Schedule 357 · Reports Suite 359; all other runs (other/completed projects,
+    and run 278) are OUT OF SCOPE and are not synced, written to, or audited for missing cases.**
 35. **Never leave design frames unfetched — auto-retry rate-limited Figma fetches until 100%
     complete (all projects).** USER DIRECTIVE (2026-07-31, verbatim): *"Do not forget to fetch
     the frames from Figma which you could not because of the limit reached issue. You do not need
@@ -2096,6 +2099,40 @@ deliver the 7-tab management report.
     `build/qa-preemptive-answers-2026-07-31/`. Ties to Standing Rules 6, 7 (plain layman wording), 8
     (always give the C-id + link), 12, 17, 20, 25, 28 (a required audit deliverable), 33, 36 (the
     outstanding register is its waiting-on-others sibling), 38, 43 and 45.
+47. **TEST-RUN SCOPE — we keep OUR ACTIVE projects' runs COMPLETE, and IGNORE every other run
+    entirely (all projects).** **IN SCOPE = the runs of the projects we are actively working, and
+    only to keep them COMPLETE:** every ACTIVE case in that project's suite must be present as a
+    test in that project's execution run. The three active runs are **Filters run 352 · Schedule
+    run 357 · Reports Suite run 359**. Keeping them complete is a **STANDING DUTY, re-checked
+    whenever cases are added, edited or retired** — not a one-off task (this is the scoped
+    application of Rule 34).
+    **METHOD — UNION-ONLY, per Rule 34:** `update_run` **REPLACES** the run's selection, so a
+    partial `case_ids` list **DELETES the omitted tests AND their recorded results**. Therefore:
+    **SNAPSHOT `get_tests` + `get_results_for_run` BEFORE any write**, send the **FULL UNION**
+    (`sorted(set(current) | set(new))`), then **VERIFY AFTER** — test count equals the expected
+    figure and **every prior result is still present**. Record the run's test count before→after in
+    the audit log. Run writes still need the user's explicit authorization (Rule 6).
+    **OUT OF SCOPE — IGNORED ENTIRELY:** runs belonging to **other projects**, to **COMPLETED
+    projects (run 324 Fees & Discounts · run 325 Simple Flow)**, or **created by another author for
+    work we are not doing** — specifically **run 278 (Vladimir Tomovic's Custom Permissions run)**.
+    Ignored means **not synced, not written to, and NOT AUDITED for missing cases**: we do not
+    measure ourselves against them and we do not produce gap reports about them.
+    **WHAT OUR COVERAGE IS MEASURED AGAINST:** the **CASE SUITE under our group** — **never** anyone
+    else's run selection. A foreign run's contents are **not evidence about our suite**; if a
+    reviewer reports cases "missing" from their run, **that run's selection is theirs to manage**,
+    and the honest answer is to point at the suite (Rule 8: internal ID + C-id + link).
+    **DISTINCT FROM RULE 38:** foreign **CASES** are governed by Rule 38 (report, never touch);
+    this rule governs foreign **RUNS**. **Both stand** — neither weakens the other.
+    **RATIONALE, 2026-07-31:** the QA lead ruled *"ignore any test run which is not created by Bilal
+    Muzamil"*, then **clarified the same day** that the three active projects' runs must still
+    contain **every** test case, *"like it happened with filters yesterday"* — a frozen run selection
+    on Filters 352 made a reviewer see coverage gaps that **did not exist**. **The earlier blanket
+    "ignore all foreign runs" reading was CORRECTED by him; both instructions are recorded here so
+    neither half is lost.** Canonical papers: `build/testrail-run-sync-2026-07-31/` (`RUN-SYNC-AUDIT.md`,
+    `RUN-278-DECISION.md` — now SUPERSEDED/out-of-scope, `RUN-COMPLETENESS-CHECK-2026-07-31.md`).
+    Ties to Standing Rules 6 (no TestRail write without permission), 8, 12 (a completeness check not
+    run is NOT VERIFIED), 17 (100% of the case list, no sampling), 32/33 (latest ruling wins), 34
+    (the sync mechanism this scopes), 36 and 38.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
