@@ -127,6 +127,17 @@ def write_md(rows, top):
       "pushed. Where the honest answer is *\"you are right\"*, the row says so — those are "
       "collected in **[What is genuinely conceded](#what-is-genuinely-conceded)** at the end.")
     a("")
+    a("**Convention for the \"Who can close it\" field — Standing Rule 48.** Where the answer is "
+      "**you** (the QA lead) — i.e. the row is *awaiting your authorisation*, *frozen by your "
+      "ruling* or *held by a decision you made* — the row must not stop at *\"You\"*. It must also "
+      "carry: the **ruling quoted verbatim**, **when you gave it and what question it answered**, "
+      "the **named cases it blocks** (internal ID + C-id + link), **why the ruling was reasonable** "
+      "— or honestly what has **changed since** that makes it worth revisiting — and the **one "
+      "specific thing** that would unblock it. **A ruling is a source, and sources get cited**, "
+      "exactly as we cite specs, PO answers and tickets. The reason is defensibility: a row reading "
+      "only *\"awaiting your decision\"* is indistinguishable from us having forgotten to do the "
+      "work, which is the same failure mode this whole register exists to prevent.")
+    a("")
 
     # ---- source currency -------------------------------------------------
     a("---")

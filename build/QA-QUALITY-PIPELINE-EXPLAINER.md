@@ -257,7 +257,13 @@ Naming these openly in every report is how they get closed instead of quietly ac
 single cross-project list is kept in `build/OUTSTANDING-ITEMS-REGISTER.md`, updated the moment an
 item is raised or cleared; an item is only removed when it is genuinely satisfied.
 
-*Internal reference: Standing Rule 36 (and the six categories it mandates sweeping).*
+**And when the thing we are waiting on is a decision the QA lead himself has already made, we say
+which decision, quote his exact words, date it, name the test cases it holds up, and say plainly why
+it was the right call — so he can re-read his own reasoning without reconstructing it, and so a
+deliberate pause is never mistaken for work we forgot to do.**
+
+*Internal reference: Standing Rule 36 (and the six categories it mandates sweeping); Standing Rule
+48 (the five things every QA-lead-blocked item must state).*
 
 ---
 
