@@ -249,7 +249,7 @@
  {
   "id": "FLT-COLL-01",
   "area": "Collapse and Expand",
-  "title": "The toolbar funnel button collapses the bar and the table takes the space",
+  "title": "The toolbar filter button collapses the bar and the table takes the space",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -258,14 +258,14 @@
    "2. You are on the Work Orders page with the filter bar visible (expanded)."
   ],
   "steps": [
-   "1. Find the filter (funnel) icon button in the page toolbar (next to the Search magnifier and the column/layout toggle, left of the New Work Order button).",
-   "2. Click the funnel icon once.",
+   "1. Find the filter icon button in the page toolbar (next to the Search magnifier and the column/layout toggle, left of the New Work Order button).",
+   "2. Click the filter icon once.",
    "3. Look at the filter bar area and the table."
   ],
   "expected": [
    "1. The filter bar row is hidden.",
    "2. The work order table moves up and uses the reclaimed vertical space.",
-   "3. The funnel icon shows a pressed/active look while the bar is collapsed."
+   "3. The filter icon shows a pressed/active look while the bar is collapsed."
   ],
   "design_ref": "design-notes.md B.1 #3 (11854:25927)",
   "spec_ref": "Filters (no Jira epic) (S1-R4; S1-R5) [spec v1.6 2026-07-28]",
@@ -283,10 +283,10 @@
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. You are on the Work Orders page.",
-   "3. At least one filter is selected (for example two statuses) and the filter bar has been collapsed with the funnel button."
+   "3. At least one filter is selected (for example two statuses) and the filter bar has been collapsed with the filter button."
   ],
   "steps": [
-   "1. Click the funnel icon in the toolbar again.",
+   "1. Click the filter icon in the toolbar again.",
    "2. Look at the filter bar."
   ],
   "expected": [
@@ -309,13 +309,13 @@
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. You are on the Work Orders page and have collapsed the filter bar with the funnel button."
+   "2. You are on the Work Orders page and have collapsed the filter bar with the filter button."
   ],
   "steps": [
    "1. Navigate to another page (for example open a work order, or go to Customers).",
    "2. Return to the Work Orders page.",
    "3. Look at the filter bar area.",
-   "4. Expand the bar with the funnel button, leave the page again and come back."
+   "4. Expand the bar with the filter button, leave the page again and come back."
   ],
   "expected": [
    "1. After step 2 the filter bar is still collapsed (your choice was remembered).",
@@ -330,7 +330,7 @@
  {
   "id": "FLT-COLL-04",
   "area": "Collapse and Expand",
-  "title": "Collapsed funnel button shows a blue indicator only when filters are active",
+  "title": "Collapsed filter button shows a blue indicator only when filters are active",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -339,18 +339,18 @@
    "2. You are on the Work Orders page."
   ],
   "steps": [
-   "1. With NO filters selected, collapse the filter bar with the funnel button and look at the funnel icon.",
+   "1. With NO filters selected, collapse the filter bar with the filter button and look at the filter icon.",
    "2. Expand the bar, select at least one filter value (for example a status).",
-   "3. Collapse the bar again and look at the funnel icon."
+   "3. Collapse the bar again and look at the filter icon."
   ],
   "expected": [
-   "1. After step 1 the funnel icon shows no special indicator (only its normal pressed look).",
-   "2. After step 3 the funnel icon shows a visual indicator (filters icon in primary blue) signalling that active filters are in effect while the bar is hidden."
+   "1. After step 1 the filter icon shows no special indicator (only its normal pressed look).",
+   "2. After step 3 the filter icon shows a visual indicator (filters icon in primary blue) signalling that active filters are in effect while the bar is hidden."
   ],
   "design_ref": "design-notes.md B.1 #3 vs #5 (11854:25927, 11854:26564)",
   "spec_ref": "Filters (no Jira epic) (S7-R4; S7-N2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
-  "notes": "The exact indicator styling (blue icon vs a dot/badge) - VIU-confirm against the build; the design shows the funnel in the active blue treatment.",
+  "notes": "The exact indicator styling (blue icon vs a dot/badge) - VIU-confirm against the build; the design shows this filter icon in the active blue treatment (icon layer is named Filter-lines: three short horizontal lines, not a funnel shape).",
   "api_related": false
  },
  {
@@ -366,7 +366,7 @@
    "3. Work orders exist in several statuses; a Status filter is applied (for example Estimate only) and the table is visibly filtered."
   ],
   "steps": [
-   "1. Collapse the filter bar with the funnel button.",
+   "1. Collapse the filter bar with the filter button.",
    "2. Look at the work order table."
   ],
   "expected": [

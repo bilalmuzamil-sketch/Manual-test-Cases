@@ -279,32 +279,32 @@ Status and Customer filters together show only work orders matching both,Active 
 3. Look at the table.","1. Only customer A's Estimate work order is shown.
 2. Customer A's Approved work order is hidden (wrong status) and customer B's Estimate work order is hidden (wrong customer) - each additional filter narrows the result further.
 3. Both chips are in the active state and 'Clear filters' is visible.",Filters (no Jira epic) (§2 Feature Overview (multi-criteria); S8-R3 ('combination of active filters')) [spec v1.6 2026-07-28],,
-The toolbar funnel button collapses the bar and the table takes the space,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page with the filter bar visible (expanded).","1. Find the filter (funnel) icon button in the page toolbar (next to the Search magnifier and the column/layout toggle, left of the New Work Order button).
-2. Click the funnel icon once.
+The toolbar filter button collapses the bar and the table takes the space,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page with the filter bar visible (expanded).","1. Find the filter icon button in the page toolbar (next to the Search magnifier and the column/layout toggle, left of the New Work Order button).
+2. Click the filter icon once.
 3. Look at the filter bar area and the table.","1. The filter bar row is hidden.
 2. The work order table moves up and uses the reclaimed vertical space.
-3. The funnel icon shows a pressed/active look while the bar is collapsed.",Filters (no Jira epic) (S1-R4; S1-R5) [spec v1.6 2026-07-28],,
+3. The filter icon shows a pressed/active look while the bar is collapsed.",Filters (no Jira epic) (S1-R4; S1-R5) [spec v1.6 2026-07-28],,
 Expanding the filter bar brings it back with active filters still shown,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
-3. At least one filter is selected (for example two statuses) and the filter bar has been collapsed with the funnel button.","1. Click the funnel icon in the toolbar again.
+3. At least one filter is selected (for example two statuses) and the filter bar has been collapsed with the filter button.","1. Click the filter icon in the toolbar again.
 2. Look at the filter bar.","1. The filter bar reappears below the tab row.
 2. The previously selected filters are still shown on their chips in the active (blue) state - nothing was lost while collapsed.
 3. The 'Clear filters' link is still shown at the right end of the chip row.",Filters (no Jira epic) (S1-R6) [spec v1.6 2026-07-28],,
 The filter bar's collapsed or expanded state is remembered on return,Collapse and Expand,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page and have collapsed the filter bar with the funnel button.","1. Navigate to another page (for example open a work order, or go to Customers).
+2. You are on the Work Orders page and have collapsed the filter bar with the filter button.","1. Navigate to another page (for example open a work order, or go to Customers).
 2. Return to the Work Orders page.
 3. Look at the filter bar area.
-4. Expand the bar with the funnel button, leave the page again and come back.","1. After step 2 the filter bar is still collapsed (your choice was remembered).
+4. Expand the bar with the filter button, leave the page again and come back.","1. After step 2 the filter bar is still collapsed (your choice was remembered).
 2. After step 4 the filter bar is expanded again when you return - whichever state you left it in is restored.",Filters (no Jira epic) (S1-R7; S10-R1) [spec v1.6 2026-07-28],,
-Collapsed funnel button shows a blue indicator only when filters are active,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. You are on the Work Orders page.","1. With NO filters selected, collapse the filter bar with the funnel button and look at the funnel icon.
+Collapsed filter button shows a blue indicator only when filters are active,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on the Work Orders page.","1. With NO filters selected, collapse the filter bar with the filter button and look at the filter icon.
 2. Expand the bar, select at least one filter value (for example a status).
-3. Collapse the bar again and look at the funnel icon.","1. After step 1 the funnel icon shows no special indicator (only its normal pressed look).
-2. After step 3 the funnel icon shows a visual indicator (filters icon in primary blue) signalling that active filters are in effect while the bar is hidden.",Filters (no Jira epic) (S7-R4; S7-N2) [spec v1.6 2026-07-28],,
+3. Collapse the bar again and look at the filter icon.","1. After step 1 the filter icon shows no special indicator (only its normal pressed look).
+2. After step 3 the filter icon shows a visual indicator (filters icon in primary blue) signalling that active filters are in effect while the bar is hidden.",Filters (no Jira epic) (S7-R4; S7-N2) [spec v1.6 2026-07-28],,
 Active filters keep filtering the table while the filter bar is collapsed,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
-3. Work orders exist in several statuses; a Status filter is applied (for example Estimate only) and the table is visibly filtered.","1. Collapse the filter bar with the funnel button.
+3. Work orders exist in several statuses; a Status filter is applied (for example Estimate only) and the table is visibly filtered.","1. Collapse the filter bar with the filter button.
 2. Look at the work order table.","1. The table content does not change when the bar collapses - it still shows only the work orders matching the active filters.
 2. Hiding the bar only hides the chips; it does not remove or pause the filtering.",Filters (no Jira epic) (S7-R5) [spec v1.6 2026-07-28],,
 A filter combination with no matches shows a no-results empty state,Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
@@ -454,7 +454,7 @@ Opening a shared link does not change your own saved filters,URL State and Share
 4. After you click it and you are back on your own view, the option disappears again.",Filters (no Jira epic) (S11-N3; S11-R7) [spec v1.6 2026-07-28],,
 "Mobile: chips sit in a scrollable row below the tabs, starting All Filters",Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device (or a mobile-size browser window).
 2. You are on the Work Orders page.","1. Look at the row below the tab row (All, Estimates, Completed, My Work Orders).
-2. Swipe the chip row sideways.","1. A filter chip row is shown below the tabs, starting with an 'All Filters' chip (with a funnel icon) followed by the individual filter chips (Status, Customer, Lead Technician, ...).
+2. Swipe the chip row sideways.","1. A filter chip row is shown below the tabs, starting with an 'All Filters' chip (with a filter icon) followed by the individual filter chips (Status, Customer, Lead Technician, ...).
 2. The row scrolls horizontally - chips that do not fit are reachable by swiping.
 3. An arrow at the right-hand edge shows that the row can be scrolled. (This is what the design shows - if your screen looks different, write down what you actually see and carry on.)",Filters (no Jira epic) (S12-R1) [spec v1.6 2026-07-28],,
 Mobile: All Filters opens a sheet of expandable rows with Apply filters,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
@@ -507,7 +507,7 @@ Active chips and Clear filters behave on mobile the same way as on desktop,Mobil
 3. Using it removes all active filters, the chips return to default and the full list comes back.",Filters (no Jira epic) (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28],,
 Mobile has no collapse toggle: the filter chip row is always visible,Mobile Filters,Negative,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page.","1. Look at the toolbar row (Search, sort icon, New Work Order button).
-2. Look for any control that would hide the filter chip row.","1. There is no filter-bar collapse/expand (funnel) toggle on mobile.
+2. Look for any control that would hide the filter chip row.","1. There is no filter-bar collapse/expand (filter icon) toggle on mobile.
 2. The filter chip row is always visible on the mobile Work Orders page.",Filters (no Jira epic) (S12-R4) [spec v1.6 2026-07-28],,
 Filters matching no work orders on mobile show the same empty state as desktop,Mobile Filters,Negative,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page; work orders exist.","1. Apply a filter combination that matches no work orders (for example a customer plus a status that customer never has).
@@ -533,10 +533,10 @@ Every Parts list page shows its designed filter buttons,Parts Page Filters,Funct
 7. Vendor Invoices shows four filter buttons: Vendor, Invoice date, Date received and Received by.
 8. The Vendors list page shows two filter buttons: Vendor and State/Province. Note: the developers have not been given a design for the Vendors page filters yet, so this page may not have them — write down what you actually see instead of failing the whole test.
 9. On every page above, each filter button shows a small icon, the filter name and a down arrow.
-10. Every Parts list page also shows a Search (magnifier) icon and a filter (funnel) icon in the toolbar; some pages (for example Inventory) also show a column/layout toggle icon.
+10. Every Parts list page also shows a Search (magnifier) icon and a filter icon in the toolbar; some pages (for example Inventory) also show a column/layout toggle icon.
 11. Every filter button shown above is a working filter on that page - none of them is display-only.
 12. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.
-13. Still to check on the live build: what the funnel icon and the column/layout icon do (the written description does not cover the toolbar icons).","Filters (no Jira epic) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
+13. Still to check on the live build: what the filter icon and the column/layout icon do (the written description does not cover the toolbar icons).","Filters (no Jira epic) (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
 Part Type filter opens a Core / Non Core list with Clear selection,Parts Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Parts area of the app with some sample data present.","1. On the Parts Returns tab, click the Part Type filter button.
 2. Look at the small menu that opens.
@@ -738,7 +738,7 @@ An old link carrying a top-search word no longer narrows the page list,Page Sear
 4. After typing in the top-of-screen search and reloading, the list is still not narrowed and nothing about that word was remembered for the list.",Filters (no Jira epic) (S14-R3 (state / URL parameters / persisted values carrying a global search term into page filtering are removed with it); S14-R2; S14-R1) [spec v1.6 2026-07-28],,
 Collapsing the filter bar keeps an active search working,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page and the filter bar is expanded.
-3. A word is typed in the page Search box and the list is narrowed by it.","1. With the search still active, click the funnel button in the toolbar to collapse the filter bar.
+3. A word is typed in the page Search box and the list is narrowed by it.","1. With the search still active, click the filter button in the toolbar to collapse the filter bar.
 2. Look at the table and at the toolbar row.
 3. Expand the filter bar again.","1. The list stays narrowed by your word - collapsing the filter bar does not cancel the search.
 2. The Search box stays in the toolbar row with your word still showing; it is not tucked away with the filter bar, because the search sits in the toolbar row and the chips sit in the row below.
