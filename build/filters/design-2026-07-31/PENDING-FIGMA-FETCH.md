@@ -1,6 +1,7 @@
 # PENDING FIGMA FETCH — Filters design pass (design-2026-07-31)
 
-> **STATUS: OPEN — do not close until ALL frames have PNGs (target 85/85).**
+> **STATUS: STILL OPEN — 79/85. NOT closed. Do not close until ALL frames have PNGs (85/85).**
+> **⚠️ THE BLOCKER CHANGED on 2026-07-31 — read §0 before doing anything else.**
 > **Check this file on every session start and before/after any Filters or Figma work.**
 > **If now >= DUE-AT, run the fetch immediately without asking. If it 429s again, append
 > the attempt and re-arm DUE-AT = new error time + 9 hours. Repeat until complete.**
@@ -11,23 +12,110 @@ retry (user directive 2026-07-31).
 
 ---
 
+## 0. UPDATE 2026-07-31 08:05Z — 6 of the 12 captured, blocker CHANGED, 6 left
+
+**Progress: 73 → 79 of 85.** Six of the twelve were rendered successfully (rows 1, 2, 3, 4, 5 and 10 of the §2 list):
+
+| Node id | Board | File |
+|---|---|---|
+| `11829:2935` | Components / Filters (filter button, 4 states) | `frames/Components__Filters__11829-2935.png` |
+| `12867:12201` | Search Filled (mobile, filled page-search) | `frames/Work-Order-Explorations-20.4.2026__Search-Filled__12867-12201.png` |
+| `12141:19858` | Mobile (early exploration) | `frames/Filters__Mobile__12141-19858.png` |
+| `11985:9686` | Sorting (WIP) / Step 1 | `frames/Sorting-Work-In-Progress__Step-1__11985-9686.png` |
+| `11985:10428` | Sorting (WIP) / Step 2 | `frames/Sorting-Work-In-Progress__Step-2__11985-10428.png` |
+| `11985:11259` | Sorting (WIP) / Step 3 — **the sorting panel** | `frames/Sorting-Work-In-Progress__Step-3__11985-11259.png` |
+
+### What worked — and it is NOT the REST API
+**The Figma MCP server** (`mcp__Figma__get_screenshot`), already authenticated in-session as the
+QA lead's own Figma account. **No token needed.** `mcp__Figma__whoami` reports seat
+**View**, plan tier **starter**. It returns a short-lived asset URL that is then `curl`ed to
+a PNG — cheap in tokens and **on a completely different budget from REST `/v1/images`**.
+
+**Record this as the preferred method from now on:** try the Figma MCP FIRST; REST is the
+fallback, not the default.
+
+### The NEW blocker (different from the 2026-07-30 one)
+After 6 successful calls the MCP returned:
+
+> `You've reached the Figma MCP tool call limit for your View seat on the Professional plan.`
+
+This is a **per-seat cap on MCP tool CALLS**, not an image-rendering cap. It is a *different*
+limit from the `/v1/images` HTTP 429 that stopped the 2026-07-30 pass. It gives **no
+`retry-after` header**, so the Rule-35 +9h formula is applied to the error time.
+
+**No REST token exists any more** — `/tmp` was wiped. Checked and confirmed absent (not
+assumed): `$FIGMA_TOKEN`, `$FIGMA_PAT`, `/tmp/figma-token`, `~/.figma-token`. The repo was
+deliberately **not** searched — tokens were never committed.
+
+### Clock cross-check (do not trust the container clock blindly)
+Container `date -u` = `2026-07-31T08:04:31Z`; Figma server `Date:` header =
+`Fri, 31 Jul 2026 08:04:32 GMT`. **Agree to 1 second** — timestamps here are sound.
+
+### ⭐ FASTEST UNBLOCK — ask the QA lead for a token
+The 2026-07-30 `/v1/images` cap was due to lift at ~`2026-07-31T00:28:40Z`, which has
+**already passed**. So the REST path is very likely healthy again and only lacks a
+credential. **One Figma personal access token finishes all 6 remaining boards in a single
+call:** Figma → Settings → Security → Personal access tokens → new token with **"File
+content read-only"** scope → paste it; store at `/tmp/figma-token` (secret, `/tmp` only,
+never committed) and run the resumable fetcher in §3.
+
+**Do NOT attempt a Google SSO browser login** — it needs a live 2FA code.
+
+## 0a. The 6 boards STILL missing a PNG
+
+| # | Node id | Board | Target filename | Evidence held today |
+|---|---|---|---|---|
+| 1 | `11985:13334` | Sorting (WIP) / Step 4 — multi-level sort panel | `Sorting-Work-In-Progress__Step-4__11985-13334.png` | **Full layer tree** (2026-07-30) — structure-only |
+| 2 | `11829:8908` | Components / Button — toolbar search box, 4 states | `Components__Button__11829-8908.png` | **Full layer tree** — structure-only |
+| 3 | `11829:8920` | Components / Line 3 — search-box text caret | `Components__Line-3__11829-8920.png` | **Full layer tree** — structure-only |
+| 4 | `11884:15901` | Mobile (final filter row, duplicate board) | `Filters__Mobile__11884-15901.png` | **Text layers only** (duplicates the rendered `11884:20807`) |
+| 5 | `11842:14069` | Customer v1 | `Filters__Customer-v1__11842-14069.png` | **Text layers only** (superseded "v1") |
+| 6 | `11842:16879` | Customer v1 selected | `Filters__Customer-v1-selected__11842-16879.png` | **Text layers only** (superseded "v1") |
+
+Comma-separated for a manual call:
+
+```
+11985:13334,11829:8908,11829:8920,11884:15901,11842:14069,11842:16879
+```
+
+## 0b. ⚠️ A layer tree is NOT a substitute for a render — proven this run
+
+The rendered `11985:9686` (Sorting step 1) **disproves** two claims that the 2026-07-30
+node-tree pass wrote into `DESIGN-NOTES.md` §5.1: that step 1 had "**No sort control at
+all**", and that **no** board showed a sorted-column indicator. The render plainly shows
+the **toolbar up/down sort icon** *and* a **`↓` indicator on the `Status` column heading**.
+The tree pass missed them because the icon sits inside a Button instance under a name
+containing no "sort" keyword. §5.1's "Retraction (honesty)" paragraph was therefore a
+**false correction** and has itself been retracted — see
+`BOARD-NOTES-12-2026-07-31.md` §4.1.
+
+**Lesson: when the question is "is this control present?", only a render answers it.** This
+is exactly why Standing Rule 35 demands 100% of frames.
+
+---
+
 ## 1. Current shortfall
 
 | | |
 |---|---|
 | Boards in the inventory | **85** |
-| Boards WITH a PNG in `frames/` | **73** |
-| Boards **still missing a PNG** | **12** |
+| Boards WITH a PNG in `frames/` | **79** _(was 73; +6 on 2026-07-31 via the Figma MCP)_ |
+| Boards **still missing a PNG** | **6** _(was 12 — see §0a)_ |
 | Figma file key | `DR4gEODShYgJqkozs3mF5q` |
 | Canonical board list | `build/filters/design-2026-07-31/frame-inventory.json` |
 | PNG output folder | `build/filters/design-2026-07-31/frames/` |
-| Blocked endpoint | `GET https://api.figma.com/v1/images/{file_key}` (the *nodes* endpoint is a separate budget and still works) |
+| Blocked endpoint | **2026-07-31: the Figma MCP per-seat tool-call cap** (no `retry-after`). The 2026-07-30 REST blocker `GET https://api.figma.com/v1/images/{file_key}` has probably lifted but **no token survives** to use it. The `/nodes` endpoint remains a separate budget. |
 | Plan tier / limit type (from the 429 headers) | `x-figma-plan-tier: pro`, `x-figma-rate-limit-type: low` |
 
-**Last rate-limit error (UTC):** `2026-07-30T15:03:19Z` _(attempt 4 in the log below)_
-**Fresh `retry-after` returned then:** `33921` s (~9.42 h → the cap itself lifts about
-`2026-07-31T00:28:40Z`)
-**DUE-AT (re-attempt at or after this time):** `2026-07-31T00:03:19Z` _(re-armed per Rule 35: error 2026-07-30T15:03:19Z + 9h)_
+**Last rate-limit error (UTC):** `2026-07-31T08:05Z` — **Figma MCP per-seat tool-call cap**
+_(attempt 5 in the log below; clock verified against the Figma server `Date:` header)_
+**`retry-after` returned then:** **NONE** — the MCP cap sends no `retry-after` header, so the
+Rule-35 +9h formula is used unmodified.
+**DUE-AT (re-attempt at or after this time):** **`2026-07-31T17:05Z`** _(re-armed per Rule 35:
+error `2026-07-31T08:05Z` + 9h)_
+**At DUE-AT, retry the MCP first** (`mcp__Figma__get_screenshot`, 6 node ids from §0a — one
+call each). **If a token has been supplied in the meantime, use the REST fetcher in §3
+immediately instead and do not wait for DUE-AT at all.**
 
 > ⚠️ **Read this before the next attempt.** Figma's own `retry-after` has now pointed at
 > **~`2026-07-31T00:28:40Z`** three times in a row, which is *later* than the Rule-35
@@ -76,9 +164,10 @@ Comma-separated for a manual call:
 12867:12201,12141:19858,11985:9686,11985:10428,11985:11259,11985:13334,11884:15901,11842:14069,11842:16879,11829:2935,11829:8908,11829:8920
 ```
 
-All 12 are ALREADY described in `DESIGN-NOTES.md` §3 from the node tree (their own text
-layers, component variant names and layer names) — accurate but **not seen rendered**.
-Nothing about them is guessed (Standing Rule 12).
+_(Superseded by §0/§0a — 6 of these 12 now HAVE renders. The 6 that remain are listed in
+§0a with their exact evidence level.)_ All are described in `DESIGN-NOTES.md` §3 from the
+node tree / text layers — accurate but **not seen rendered**. Nothing about them is guessed
+(Standing Rule 12). **But see §0b: a tree read is demonstrably NOT equivalent to a render.**
 
 **Updated 2026-07-30:** rows **3–6 (Sorting)** and **10–12 (Components)** have since had
 their **full visibility-filtered layer trees** read via the `/nodes` endpoint, so their
@@ -91,8 +180,11 @@ layout/spacing/colour confirmation.
 
 ## 3. The exact resumable command to run
 
-The token lives at `/tmp/figma-token` (secret — `/tmp` only, never committed). `/tmp` is
-ephemeral, so on a fresh container **ask the user to re-supply the Figma token first**.
+**Try the Figma MCP FIRST — it needs no token** (see §0). Only fall back to this REST
+fetcher. The token lives at `/tmp/figma-token` (secret — `/tmp` only, never committed).
+`/tmp` is ephemeral and **was wiped before the 2026-07-31 run**, so on a fresh container
+**ask the user to re-supply the Figma token first** (Settings → Security → Personal access
+tokens, scope "File content read-only").
 
 ```bash
 cd /home/user/Manual-test-Cases
@@ -133,6 +225,7 @@ workaround).
 | 2 | 2026-07-30T14:24:38Z | HTTP 429 rate limit — single probe of all 12 ids, no frames returned | 0 | 12 | 36242 | superseded by attempt 3 |
 | 3 | 2026-07-30T14:27:02Z | HTTP 429 rate limit — resumable fetcher run (validated end-to-end, exit 2) | 0 | 12 | 36098 | superseded by attempt 4 |
 | 4 | 2026-07-30T15:03:19Z | HTTP 429 rate limit — **EARLY probe, run 8h24m BEFORE the DUE-AT** (see note) — run with `--once --no-log` so the armed DUE-AT could not be corrupted; log row added by hand | 0 | 12 | 33921 | **2026-07-31T00:03:19Z** (practical: ≥ `00:30Z`) |
+| 5 | 2026-07-31T08:03Z–08:06Z | **PARTIAL SUCCESS then a NEW cap.** Figma **MCP** used (no token needed): 6 `get_screenshot` calls succeeded → 6 PNGs written (73→79). The 7th call returned *"You've reached the Figma MCP tool call limit for your View seat on the Professional plan."* A single confirming retry also failed. **No REST token exists** (`/tmp` wiped) so the now-probably-healthy `/v1/images` path could not be used. | **6** | **6** | none sent (MCP cap) | **2026-07-31T17:05Z** |
 <!-- RETRY-LOG-END -->
 
 _(The fetcher appends rows here automatically. Row 1 was reconstructed from

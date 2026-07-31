@@ -11,15 +11,16 @@ written to TestRail and no test case was edited. Everything below is read from t
 design source — it is **NOT** a live-build verification. Anything that still needs
 checking against the real build is called out as such.
 
-> ⚠️ **THIS DESIGN PASS IS NOT COMPLETE — 73 of 85 boards have a PNG.**
-> The Figma image endpoint is still rate-limited. The 12 remaining boards are tracked in an
-> OPEN retry queue: **`PENDING-FIGMA-FETCH.md`** (node ids, the resumable command, and
-> **DUE-AT `2026-07-31T00:03:19Z`** = the last 429 + 9 hours per **Standing Rule 35**;
-> practical retry ≥ `2026-07-31T00:30Z`, since Figma's own `retry-after` keeps pointing at
-> ~`00:28:40Z`).
+> ⚠️ **THIS DESIGN PASS IS NOT COMPLETE — 79 of 85 boards have a PNG** _(updated 2026-07-31: 73 → 79 via the Figma MCP; 6 left, see `PENDING-FIGMA-FETCH.md` §0a)._
+> The **6 remaining** boards are tracked in an OPEN retry queue:
+> **`PENDING-FIGMA-FETCH.md`** (node ids, the resumable command, and the re-armed
+> **DUE-AT `2026-07-31T17:05Z`** per **Standing Rule 35**).
 > Per Rule 35 this pass may **not** be reported as complete until that queue is closed at
-> 85/85. Latest re-attempt: **2026-07-30T15:03:19Z → HTTP 429, `retry-after: 33921`s
-> (~9.42 h), 0 of the 12 obtained.**
+> 85/85.
+> **Latest re-attempt: 2026-07-31T08:03–08:06Z — the Figma MCP `get_screenshot` worked with
+> NO token and returned 6 of the 12**, then hit its own **per-seat MCP tool-call cap**. No
+> REST token survives the `/tmp` wipe, so the (probably now-healthy) `/v1/images` path could
+> not be used. **Fastest unblock: a Figma personal access token from the QA lead.**
 >
 > **However — the analysis of 7 of those 12 is no longer PNG-blocked.** The Figma `/nodes`
 > endpoint is a separate budget and still works, so the 4 Sorting + 3 Components boards were
@@ -32,7 +33,7 @@ checking against the real build is called out as such.
 
 | Step | What was done |
 |---|---|
-| Access | **Figma REST API** with the personal access token already saved at `/tmp/figma-token` (secret stays in `/tmp`, never committed). The Figma MCP was not connected this session. |
+| Access | **2026-07-31 (preferred): the Figma MCP** `get_screenshot` / `get_metadata` — already authenticated in-session, **no token at all**, and on a budget separate from REST. **Try this FIRST.** 2026-07-30 (fallback): **Figma REST API** with a personal access token at `/tmp/figma-token` (secret stays in `/tmp`, never committed; does NOT survive a container wipe). |
 | Enumerate | `GET /v1/files/DR4gEODShYgJqkozs3mF5q/nodes?ids=<the 4 node ids>` → walked the returned tree and collected every board (FRAME / COMPONENT_SET) under each link. |
 | Render | `GET /v1/images/<file>?ids=<node ids>&format=png&scale=2` in batches, then downloaded each PNG. |
 | Labels | Walked the same node tree and pulled every **visible** TEXT layer per board → `frame-texts-extracted.md`. This is what gives us exact on-screen wording (Standing Rule 9) even for boards whose PNG did not render. |
@@ -47,12 +48,13 @@ Tooling saved in `tools/` (`enumerate_frames.py`, `render.py`, `fetch_all.py`,
 |---|---|
 | Boards **enumerated** under the four links (after removing duplicates) | **85 / 85 (100%)** |
 | Boards with **exact on-screen text extracted** | **84 / 85** (the 85th is a divider-line component with no text) |
-| Boards with a **PNG in `frames/`** | **73 / 85** |
-| — rendered fresh this pass | 24 |
+| Boards with a **PNG in `frames/`** | **79 / 85** _(73 on 2026-07-30, +6 on 2026-07-31)_ |
+| — rendered fresh 2026-07-30 (REST) | 24 |
+| — rendered 2026-07-31 (Figma MCP) | 6 |
 | — copied in from the earlier 2026-07-17 capture of the same node (same design, unchanged) | 49 |
-| Boards with **NO PNG yet** | **12** |
+| Boards with **NO PNG yet** | **6** _(was 12; see `PENDING-FIGMA-FETCH.md` §0a)_ |
 
-**Why 12 are missing:** the Figma **images** endpoint hit a hard cap mid-run —
+**Why 6 are still missing (was 12):** on 2026-07-31 six were rendered via the Figma **MCP** (no token needed) until it hit its own **per-seat MCP tool-call cap**; no REST token survives the `/tmp` wipe. Originally, the Figma **images** endpoint hit a hard cap mid-run —
 `HTTP 429 {"err":"Rate limit exceeded"}` with **`retry-after: 37874`** (~10.5 hours).
 `scale=1` was tried and is capped the same way; the *nodes* endpoint still works (it is a
 separate budget). The 12 missing boards are listed in section 3 and are all **still fully
@@ -69,16 +71,18 @@ already downloaded.
 | 2 (probe, all 12 ids in one call) | 2026-07-30T14:24:38Z | HTTP 429 | 0 | 36242 s |
 | 3 (resumable fetcher, exit 2) | 2026-07-30T14:27:02Z | HTTP 429 | 0 | 36098 s |
 | 4 (early probe, `--once --no-log`) | 2026-07-30T15:03:19Z | HTTP 429 | 0 | 33921 s |
+| **5 (Figma MCP `get_screenshot`, no token)** | **2026-07-31T08:03–08:06Z** | **6 PNGs, then the MCP per-seat tool-call cap** | **6** | none sent |
 
-**Next due-at: `2026-07-31T00:03:19Z`** (last 429 + 9 h; practical ≥ `00:30Z`). The full queue — node ids, the
+**Next due-at: `2026-07-31T17:05Z`** (the 2026-07-31 MCP cap + 9 h). The full queue — node ids, the
 exact command, the running log, and the re-arm rule (every new 429 → DUE-AT = that error
 time + 9 h, repeat until 85/85) — lives in **`PENDING-FIGMA-FETCH.md`**, which stays
 **OPEN** until every board has a PNG. No render came back on attempts 2–4.
 
 **But attempt 4 was not wasted:** because image rendering and the `/nodes` layer endpoint
 are on **separate budgets**, the full layer trees of 7 of the 12 boards were pulled instead.
-That **did** change the picture: the Sorting steps 1–2 description was **corrected** (no sort
-control there at all — retraction in §5.1), the sort control was pinned verbatim, the two
+That **did** change the picture: the Sorting steps 1–2 description was "corrected" (no sort
+control there at all — **but that correction was itself WRONG and has been re-corrected from
+the 2026-07-31 PNG; see the boxed note in §5.1**), the sort control was pinned verbatim, the two
 component sets were pinned verbatim (§5.5a), and **Branko's "fully displayed in the design"
 answer now has an evidenced verdict (§5.8): true for Core/Non Core, false for the other six
 new filter types.** Case count unchanged; no case edits; no TestRail writes.
@@ -370,6 +374,31 @@ hidden layers excluded). The four boards are a **4-step click-through of one flo
 arrow on the Status column heading" and "a sort button in the toolbar". **Both were wrong** —
 there is no sort-named or sort-shaped layer anywhere on step 1 or step 2. The sort entry
 point (the Switch-vertical icon) first appears on **step 3**. Corrected 2026-07-30.
+
+> ## ⚠️ THE RETRACTION ABOVE IS ITSELF WRONG — RE-CORRECTED 2026-07-31 (PNG evidence)
+>
+> Steps 1, 2 and 3 were **rendered as PNGs on 2026-07-31** (via the Figma MCP — see
+> `PENDING-FIGMA-FETCH.md` §0). The render **restores the ORIGINAL reading** and disproves
+> the 2026-07-30 retraction. Read at 3× on cropped regions of
+> `frames/Sorting-Work-In-Progress__Step-1__11985-9686.png`:
+>
+> 1. **Step 1 DOES have a toolbar sort control** — an up/down double-arrow icon sitting in
+>    the toolbar action group between the filter icon and the column/layout icon. Full
+>    rendered order: magnifier + `Search`, filter icon, **↑↓ sort icon**, column/layout
+>    icon, `New Work Order`.
+> 2. **Step 1 DOES show a sorted-column indicator** — a **`↓`** immediately after the word
+>    `Status` in the column heading row. It is on steps 1, 2 and 3.
+>
+> So the step-1 row in the table above ("**No sort control at all**") and **finding 2's**
+> clause "no sorted-column indicator on any column heading on any of the four boards" are
+> **both retracted**. **Only the `Ascending`/`Descending` half of finding 2 survives:**
+> `Descending` genuinely appears nowhere on any of the four boards.
+>
+> **Why the tree pass missed it:** the icon lives inside a Button instance under a layer
+> name containing no "sort" keyword, so a name-based search over the tree could not find it.
+> **Lesson: a layer tree cannot answer "is this control present?" — only a render can.**
+> This is Standing Rule 35 earning its keep. Full write-up:
+> `BOARD-NOTES-12-2026-07-31.md` §4.1.
 
 A **sort button** does also appear in the toolbar of the **final** mobile boards
 (`11884:20807`, `11884:15901`, `12867:12201`) and on two **Reports** boards (**Notes**,
