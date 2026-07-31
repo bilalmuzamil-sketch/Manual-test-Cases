@@ -19,10 +19,10 @@
    "2. The row scrolls horizontally - chips that do not fit are reachable by swiping.",
    "3. An arrow at the right-hand edge shows that the row can be scrolled. (This is what the design shows - if your screen looks different, write down what you actually see and carry on.)"
   ],
-  "design_ref": "design-notes.md B.1 #13/#14 (11857:31046, 11884:20807)",
+  "design_ref": "design-notes.md B.1 #13/#14 (11857:31046, 11884:20807); the third final mobile board 11884:15901 was RENDERED 2026-07-31 and shows the same chip row starting 'All Filters' but with NO scroll-arrow button",
   "spec_ref": "Filters (no Jira epic) (S12-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
-  "notes": "The scroll-arrow overlay appears in one design variant (11884:20807) - VIU-confirm whether the build shows it always, on overflow only, or not at all.",
+  "notes": "The scroll-arrow overlay is now evidenced on only ONE of the three final mobile boards: 11884:20807 shows a round '>' button at the right edge, while 11884:15901 and 12867:12201 (both rendered 2026-07-31, so this is pixel evidence, not a text-layer guess) show NO arrow. Spec v1.6 S12-R1 requires only 'a horizontally scrollable row below the tab navigation' and says nothing about a scroll affordance, so expected result 3 was deliberately LEFT AS IS - it already tells the tester to write down what they actually see and carry on. VIU-confirm on the build whether the arrow shows always, on overflow only, or not at all. Re-verified whole against spec v1.6 (2026-07-28) S12-R1 + the three rendered final mobile boards on 2026-07-31 - title, preconditions, steps, expected results and refs all still correct; only this note changed.",
   "api_related": false
  },
  {

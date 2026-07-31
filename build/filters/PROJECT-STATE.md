@@ -204,8 +204,12 @@ will falsely MISMATCH).
 - **Cross-project flag, NOT written (needs its own authorization):** record Branko's ownership
   ruling + his *"'Ask a question' is not in this PRD's scope"* line in
   `build/global-search/PROJECT-STATE.md` (that project's **OQ-3**).
-- **Rule-35 Figma queue may still be open** — 12 of 85 boards had no PNG; see the queue note
-  further down. Owned by a sibling worker this window.
+- ~~**Rule-35 Figma queue may still be open**~~ — **CLOSED 2026-07-31T08:58:40Z: 85/85 boards
+  now have a rendered PNG** (the last 6 via REST `/v1/images` with a QA-lead-supplied token).
+  The Filters **design source is COMPLETE**. Reconciliation of all 85 boards against the 110
+  cases: `build/filters/design-2026-07-31/RECONCILIATION-FINAL-2026-07-31.md` — **0 TestRail
+  operations** (everything the last 6 show either confirms an existing case, is Work-In-Progress
+  sorting, or is a superseded "v1" exploration).
 
 ---
 
@@ -285,15 +289,19 @@ RULE-28 USEFULNESS AUDIT**). The user authorized a deliberately partial executio
 `quality-audit-2026-07-31/` (audit report + `MERGE-PLAN.md`, both now carry
 EXECUTED / HELD markers per portion).
 
-> ⚠️ **OPEN FIGMA FETCH QUEUE — `build/filters/design-2026-07-31/PENDING-FIGMA-FETCH.md`**
-> **73 of 85 design boards have a PNG; 12 still missing** (Figma image endpoint rate-limited).
-> **DUE-AT = `2026-07-30T23:27:02Z`** (last HTTP 429 `2026-07-30T14:27:02Z` + 9 h).
-> **Standing Rule 35:** if now >= DUE-AT, run
-> `python3 build/filters/design-2026-07-31/tools/fetch_all.py --scale 2 --batch 6`
-> **immediately, without asking** (no authorization needed); if it 429s again the script
-> appends the attempt and re-arms DUE-AT = new error time + 9 h. Repeat until 85/85.
-> Check this at every session start and before/after any Filters or Figma work. The Filters
-> design pass may **not** be reported complete while this queue is OPEN.
+> ✅ **FIGMA FETCH QUEUE CLOSED — 85/85 — `build/filters/design-2026-07-31/PENDING-FIGMA-FETCH.md`**
+> **Every one of the 85 design boards has a rendered PNG as of `2026-07-31T08:58:40Z`.** No
+> DUE-AT is armed and **nothing needs re-running**. The last 6 were pulled over REST
+> `/v1/images` with a Figma personal access token the QA lead supplied (kept in `/tmp` only,
+> never committed), using the existing resumable fetcher — one call, no 429, exit 0.
+> **Ordering lesson recorded:** the Figma MCP needs no token but its per-seat call cap is low;
+> a REST token has no such cap. **Ask for a token early.**
+> **Reading the 6 renders corrected 4 of our own tree-derived claims** (Sorting steps 1–2 DO
+> have the toolbar sort control; `11884:15901` has NO sort button and is NOT a duplicate of
+> `11884:20807`) and confirmed 2 (`Add Sort` absent on Sorting step 4; the search box's clear-x
+> is Filled-state-only). All 11 "control X is absent" claims we held were re-checked against
+> pixels — `BOARD-NOTES-12-2026-07-31.md` §6. **The Filters design pass may now be reported
+> COMPLETE.**
 
 **TEST RUN SYNCED 2026-07-31 (Standing Rule 34, user-authorized):** Ahtesham's run **352
 "Filters - Ahtasham (Awaiting QA- ENV)"** now contains the COMPLETE active Filters suite —
