@@ -1,0 +1,35 @@
+﻿Report Suite — Permissions Question Sheet for Chris Ward (PO)
+Date raised: 2026-07-31  ·  Raised by: Bilal Muzamil (QA)  ·  Feature: Sales By Customer report (SV-8598)  ·  Related defect: SV-8780
+________________
+Q1 — How should Sales By Customer (SBC) be permission-gated?
+The build and the spec both give SBC its own dedicated permission. Your ruling is that reports open on ordinary reports access, with no report-specific permission. These conflict, so we need your call on record.
+What the spec says (live):
+S1-R2 — "The report is gated by a dedicated Sales By Customer report View permission — it is not tied to a generic 'all reports' permission."
+— SBC spec v12, 2026-07-29, Confluence 577634305
+What engineering is building:
+§B5.3 / SV-8598 — a dedicated atom ROLE_SALES_BY_CUSTOMER_REPORT::VIEW; every SBC endpoint gates on it, not ROLE_REPORT_VIEW.
+Option
+	Meaning
+	Follow-on
+	A
+	Gate SBC on ordinary reports access, like the other five reports
+	Engineering drops the dedicated atom; you update spec S1-R2; confirm the atom doesn't linger in the Custom Roles matrix
+	B
+	Keep the dedicated SBC permission
+	No build change; spec already matches; SBC stays the one report on its own permission
+	Chris's answer:   ☐ A   ☐ B   — ___A___________________________________________
+________________
+Q2 — Should the other five reports collapse into a single Reports permission? (not blocking Q1)
+Today each of the other five reports cites a different existing per-area reports permission (e.g. Inventory Reports View → Parts Velocity & Inventory Value; timesheet-reports → Technician Utilization; WIP reports → Work In Progress). These are all "ordinary reports" permissions, so your stated intent is already met — but we never asked whether you want them merged into one Reports permission or left as separate per-area permissions.
+Option
+	Meaning
+	A
+	Collapse all report access into a single Reports permission
+	B
+	Keep the separate per-area reports permissions as they are
+	Chris's answer:   ☐ A   ☐ B   — _____A_________________________________________
+________________
+For reference — what you've already said
+* 2026-07-28: "these should be gated by normal reports access."
+* 2026-07-30/31 (re-asked with the engineering citations in front of you): "A — the intention is to not hide these from normal reports access. These were specced before CRP was built."
+Q1 exists only because the spec and build still say the opposite, so we need the ruling captured against the current source to justify the build change and the spec edit.
