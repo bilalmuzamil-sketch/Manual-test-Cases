@@ -333,6 +333,21 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 - **Known runs — do NOT write without permission:** Custom Roles run **312**, section **3527**;
   Simple Flow / F&D / Schedule / Report Suite run **325** (and R359 Reports). Section IDs per project
   in CLAUDE.md.
+- **THE `refs` FIELD HAS A PER-ENTRY LIMIT OF 248 CHARS AND IS COMMA-DELIMITED (probed live
+  2026-08-03, Report Suite verifier-fix pass).** TestRail treats `refs` as a COMMA-separated list of
+  references: it **splits on `,`, TRIMS each entry, and re-joins with a bare `,`** (sent
+  `"AAA, BBB,   CCC ,DDD"` → stored `"AAA,BBB,CCC,DDD"`). Any **single entry longer than 248
+  characters rejects the WHOLE `update_case`** with **HTTP 400 `Field :refs does not match the
+  required pattern.`** — 248 passes, 249 fails, and it is a *pattern* error not a length error, so
+  it is easy to misdiagnose. **Total** length is unbounded (674 chars across 40 short entries → 200).
+  **Consequences:** (a) **write Rule-20 `refs` COMMA-FREE and ≤ 248 chars, using semicolons as
+  separators** — this is already the house style: all 475 Report Suite `refs` are comma-free single
+  entries, longest 245, and one earlier author wrote `"the 10; 000-row cap"` to dodge the comma in
+  10,000; (b) never put a comma inside a quoted list in `refs` (`"Today, Yesterday, …"` silently
+  becomes many references) — describe the list instead; (c) **when verifying a `refs` write, compare
+  under the normalisation** `','.join(p.strip() for p in s.split(','))`, or a byte compare will
+  report a false mismatch. Probe + validator: `build/report-suite/verifier-fixes-2026-08-03/tools/`
+  (`refs_final.json` asserts comma-free + ≤ 248 before every run).
 - **TestRail swallows angle-bracket `<placeholders>` as HTML — never use `<` `>` in case text; write
   plain words instead** (e.g. "Expand, then the technician's name" — not an angle-bracket
   placeholder). Confirmed live 2026-07-29: TU-DAY-01/C30418's expected result imported 2026-07-22 as
