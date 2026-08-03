@@ -719,6 +719,27 @@ op(30424, 'E/V-8',
    ])
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# FINAL refs values live in refs_final.json and OVERRIDE the drafts above.
+# Why: TestRail's `refs` field, probed live on 2026-08-03 (see
+# APP-ACTIONS-PLAYBOOK.md §L), splits on COMMAS, TRIMS each entry, re-joins with
+# a bare "," and REJECTS (HTTP 400 "Field :refs does not match the required
+# pattern.") any entry longer than 248 characters. All 475 existing Report Suite
+# refs are comma-FREE single entries (max 245 chars), so the house style is:
+# ONE comma-free entry, semicolons as separators, <= 248 chars. refs_final.json
+# is asserted against exactly that before every run.
+# ─────────────────────────────────────────────────────────────────────────────
+import json as _json
+import os as _os
+_FINAL = _json.load(open(_os.path.join(_os.path.dirname(__file__), 'refs_final.json')))
+for _c, _r in _FINAL.items():
+    _c = int(_c)
+    assert _c in PLAN, f'refs_final has C{_c} which is not in the plan'
+    assert ',' not in _r, f'C{_c}: refs must be comma-free (TestRail splits on commas)'
+    assert len(_r) <= 248, f'C{_c}: refs is {len(_r)} chars, TestRail rejects > 248'
+    PLAN[_c]['fields']['refs'] = _r
+assert set(map(int, _FINAL)) == set(PLAN), 'refs_final and PLAN disagree'
+
 if __name__ == '__main__':
     import json
     print(f'ops: {len(PLAN)}')
