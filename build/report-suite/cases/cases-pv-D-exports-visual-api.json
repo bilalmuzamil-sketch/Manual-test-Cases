@@ -419,12 +419,12 @@
  {
   "id": "PV-API-04",
   "area": "PV — API",
-  "title": "The backend denies report data AND export without Inventory Reports View",
+  "title": "The back end serves report data and export on ordinary reports access",
   "priority": "High",
   "type": "Negative",
-  "permissions_required": "Manager or Office User role (Reports section access) WITHOUT the Inventory Reports → View permission.",
+  "permissions_required": "A role WITH the ordinary reports access; no other reports-related permission turned on.",
   "preconditions": [
-   "1. You are signed in as a Reports-section user whose role lacks the Inventory Reports → View permission.",
+   "1. You are signed in as a user whose role has the ordinary reports access turned on and no other reports-related permission turned on.",
    "2. Browser devtools (network tab) are open."
   ],
   "steps": [
@@ -432,14 +432,15 @@
    "2. Attempt the export and observe the backend export request's outcome."
   ],
   "expected": [
-   "1. The backend REFUSES the report data request - the user is denied the data (the UI shows the standard access-denied state, see PV-PERM-03).",
-   "2. The backend likewise refuses the export request - no file is produced.",
-   "3. Both loading and exporting are gated by the same Inventory Reports → View permission."
+   "1. The back end returns the report data - the request is not refused.",
+   "2. The back end returns the export file - the request is not refused.",
+   "3. Both requests succeed with only the ordinary reports access turned on - nothing else had to be enabled.",
+   "4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the system it must not change these results - for now it is hidden from the screen and enforces nothing. A per-report permission added on purpose in a later release is a planned change, not a bug, and this test will be updated first."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8641 (specs/parts-velocity.md S1-R4; S1-N2)",
+  "spec_ref": "SV-8641 (PV spec S1-R4; S1-N2 - RESCOPED 2026-08-03; same driver as C30327: Chris Ward Q2=A \"single Reports permission\" + \"they can exist and not do anything\"; QA lead \"ONE permission FOR NOW\")",
   "viu_status": "VIU-Pending",
-  "notes": "Generic backend-behavior case - the spec pins no REST contract or status codes; record the observed denial responses at VIU, do not assert invented codes. Role seeding per Standing Rule 5 (restore afterwards).",
+  "notes": "RESCOPED 2026-08-03 (authorised by the QA lead, verbatim \"Rescope\") - same driver as PV-PERM-03 (C30327), API-layer half. Was a negative case whose premise state (Reports access without Inventory Reports -> View) cannot exist under one permission; now asserts that the back end serves both the report and the export on the single ordinary reports access, i.e. no second permission is consulted - the API-layer proof that an extra permission is inert. \"FOR NOW\" is load-bearing: a per-report permission added on purpose later is a planned change, not a bug. The spec pins NO REST contract or status codes, so no codes are asserted - record the observed responses at VIU. Stays in the \"PV - API\" section per Standing Rule 4. HONESTY: PV live spec v4 S1-R4/S1-N2 still describe the per-area permission - Chris owes that edit; the case follows the newer ruling (Rule 32). Rule 41: re-verified whole against the live PV Confluence spec (pageId 620888066, lastModified 2026-07-29) on 2026-08-03.",
   "api_related": true
  },
  {

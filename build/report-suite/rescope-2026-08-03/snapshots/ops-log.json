@@ -1,0 +1,25 @@
+{
+ "when": "2026-08-03T18:15:23.575Z",
+ "ops": [
+  {
+   "id": 30327,
+   "internal": "PV-PERM-03",
+   "update_http": 200,
+   "verify": "MATCH (5/5 fields)",
+   "guard_drift": "none"
+  },
+  {
+   "id": 30391,
+   "internal": "PV-API-04",
+   "update_http": 200,
+   "verify": "MISMATCH:refs",
+   "guard_drift": "none"
+  }
+ ],
+ "run359": {
+  "tests_before": 250,
+  "tests_after": 250,
+  "results_before": 250,
+  "results_after": 250
+ }
+}

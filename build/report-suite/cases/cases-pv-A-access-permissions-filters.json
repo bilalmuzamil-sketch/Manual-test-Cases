@@ -134,28 +134,29 @@
  {
   "id": "PV-PERM-03",
   "area": "PV — Permissions",
-  "title": "Reports access without Inventory Reports View: entry shows; data denied",
+  "title": "Ordinary reports access alone opens Parts Velocity and its export",
   "priority": "High",
   "type": "Negative",
-  "permissions_required": "Manager or Office User role (Reports section access) WITHOUT the Inventory Reports → View permission.",
+  "permissions_required": "Manager or Office User role (Reports section access) WITH the ordinary reports access; no other reports-related permission turned on.",
   "preconditions": [
    "1. You are signed in as a user with the Manager or Office User role.",
-   "2. That user's role does NOT have the Inventory Reports → View permission."
+   "2. That user's role has the ordinary reports access turned on (the standard \"can this person see reports\" setting) and no other reports-related permission turned on."
   ],
   "steps": [
    "1. Open the Reports section and look for the Parts Velocity entry under Parts.",
    "2. Click the Parts Velocity entry.",
-   "3. If any export control is reachable, try to export."
+   "3. Use the export control on the report and download a file."
   ],
   "expected": [
-   "1. The Parts Velocity navigation entry is still visible (the entry follows Reports-section access, not the report permission).",
-   "2. On opening the report, the standard access-denied state is shown instead of data.",
-   "3. The export is likewise denied - no file downloads."
+   "1. The Parts Velocity entry is visible in the Reports navigation under Parts.",
+   "2. Opening it shows the report data - not an access-denied screen.",
+   "3. The export downloads.",
+   "4. Note for the tester: for now ONE ordinary reports access opens all six of these new reports, and no report has a permission of its own. If an extra Parts or Inventory reports permission does exist and switching it OFF blocks this report or its export, that is wrong - mark this Failed and report it. If a separate per-report permission is ever added on purpose in a later release, this test will be updated first, so treat that as a planned change and not as a bug."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8641 (specs/parts-velocity.md S1-N2; S1-R4)",
+  "spec_ref": "SV-8641 (PV spec S1-N2; S1-R4 - RESCOPED 2026-08-03: the old \"Reports access without Inventory Reports View\" state cannot exist under one permission; Chris Ward Q2=A + \"they can exist and not do anything\"; QA lead \"ONE permission FOR NOW\")",
   "viu_status": "VIU-Pending",
-  "notes": "The spec carries a build-note to confirm the FE really uses this shown-then-denied model (rather than hiding the entry), matching the platform's other Inventory-Reports-permissioned reports - VIU-confirm which model the build ships. VIU-confirm the exact access-denied wording (unpinned in the spec).",
+  "notes": "RESCOPED 2026-08-03 (authorised by the QA lead, verbatim \"Rescope\"). The old premise - Reports-section access WITHOUT Inventory Reports -> View - cannot be produced under the one-permission model (Chris Ward Q2=A \"a single Reports permission\"; QA lead 2026-08-03 \"all the reports will be gated by ONE permission FOR NOW\"), so the case was unrunnable and contradicted PV-PERM-01 (C30325). It now asserts the surviving, previously untested behaviour: an extra/per-area report permission, if it exists at all, is hidden from the front end and enforces nothing. \"FOR NOW\" IS LOAD-BEARING: the ruling is a current-state ruling, so a per-report permission deliberately added in a later release is a planned change and must NOT be read as a regression - the tester note says so. HONESTY: the PV spec (live v4, last updated 2026-07-29) STILL says at S1-R4 \"Both loading the report and exporting it require the Inventory Reports -> View permission\" and describes the shown-then-denied state at S1-N2; the case follows the NEWER authoritative ruling per Standing Rule 32 and Chris owes the spec edit. The exact on-screen name of the single reports permission is NOT established (no QA branch, no build label given) - \"the ordinary reports access\" is the plain placeholder already used by the live SBC cases and must be VIU-confirmed live. Rule 41: re-verified whole against the live PV Confluence spec (pageId 620888066, lastModified 2026-07-29, = the v4 capture) on 2026-08-03.",
   "api_related": false
  },
  {
