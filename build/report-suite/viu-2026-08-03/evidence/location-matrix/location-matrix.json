@@ -1,0 +1,1469 @@
+{
+  "capturedAt": "2026-08-03T18:32:22.874Z",
+  "buildMarker": "v3.4.1-0ed4433",
+  "rows": [
+    {
+      "report": "sales-by-customer",
+      "scope": "SINGLE (Heavy Duty only)",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 2,
+        "dataKeys": [
+          "collection",
+          "pagination",
+          "totals"
+        ],
+        "sampleRowKeys": [
+          "key",
+          "customer_name",
+          "location",
+          "inv_hrs",
+          "labor_invoiced",
+          "labor_margin",
+          "parts_invoiced",
+          "parts_margin",
+          "shop_supplies",
+          "margin",
+          "subtotal",
+          "margin_pct",
+          "invoice_count",
+          "last_invoice_date"
+        ]
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Customer,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",\"Shop Supplies\",Margin,\"Margin %\",Subtotal",
+          "headers": [
+            "Customer",
+            "Inv. Hrs",
+            "Labor Invoiced",
+            "Labor Margin",
+            "Parts Invoiced",
+            "Parts Margin",
+            "Shop Supplies",
+            "Margin",
+            "Margin %",
+            "Subtotal"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "sales-by-customer__SINGLE__summary.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 172489 chars"
+        },
+        {
+          "format": "csv",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Customer,Asset,\"Invoice #\",Date,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",\"Shop Supplies\",Margin,\"Margin %\",Subtotal",
+          "headers": [
+            "Customer",
+            "Asset",
+            "Invoice #",
+            "Date",
+            "Inv. Hrs",
+            "Labor Invoiced",
+            "Labor Margin",
+            "Parts Invoiced",
+            "Parts Margin",
+            "Shop Supplies",
+            "Margin",
+            "Margin %",
+            "Subtotal"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "sales-by-customer__SINGLE__expanded.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 173530 chars"
+        }
+      ]
+    },
+    {
+      "report": "sales-by-customer",
+      "scope": "MULTI (both locations)",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 2,
+        "dataKeys": [
+          "collection",
+          "pagination",
+          "totals"
+        ],
+        "sampleRowKeys": [
+          "key",
+          "customer_name",
+          "location",
+          "inv_hrs",
+          "labor_invoiced",
+          "labor_margin",
+          "parts_invoiced",
+          "parts_margin",
+          "shop_supplies",
+          "margin",
+          "subtotal",
+          "margin_pct",
+          "invoice_count",
+          "last_invoice_date"
+        ]
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: All locations\""
+          ],
+          "headerLine": "Customer,Location,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",\"Shop Supplies\",Margin,\"Margin %\",Subtotal",
+          "headers": [
+            "Customer",
+            "Location",
+            "Inv. Hrs",
+            "Labor Invoiced",
+            "Labor Margin",
+            "Parts Invoiced",
+            "Parts Margin",
+            "Shop Supplies",
+            "Margin",
+            "Margin %",
+            "Subtotal"
+          ],
+          "hasLocationHeader": true,
+          "hasLocationsMetaLine": true,
+          "file": "sales-by-customer__MULTI__summary.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 172641 chars"
+        },
+        {
+          "format": "csv",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: All locations\""
+          ],
+          "headerLine": "Customer,Asset,\"Invoice #\",Date,Location,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",\"Shop Supplies\",Margin,\"Margin %\",Subtotal",
+          "headers": [
+            "Customer",
+            "Asset",
+            "Invoice #",
+            "Date",
+            "Location",
+            "Inv. Hrs",
+            "Labor Invoiced",
+            "Labor Margin",
+            "Parts Invoiced",
+            "Parts Margin",
+            "Shop Supplies",
+            "Margin",
+            "Margin %",
+            "Subtotal"
+          ],
+          "hasLocationHeader": true,
+          "hasLocationsMetaLine": true,
+          "file": "sales-by-customer__MULTI__expanded.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 173716 chars"
+        }
+      ]
+    },
+    {
+      "report": "sales-by-customer",
+      "scope": "NO locations param",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 2,
+        "dataKeys": [
+          "collection",
+          "pagination",
+          "totals"
+        ],
+        "sampleRowKeys": [
+          "key",
+          "customer_name",
+          "location",
+          "inv_hrs",
+          "labor_invoiced",
+          "labor_margin",
+          "parts_invoiced",
+          "parts_margin",
+          "shop_supplies",
+          "margin",
+          "subtotal",
+          "margin_pct",
+          "invoice_count",
+          "last_invoice_date"
+        ]
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Customer,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",\"Shop Supplies\",Margin,\"Margin %\",Subtotal",
+          "headers": [
+            "Customer",
+            "Inv. Hrs",
+            "Labor Invoiced",
+            "Labor Margin",
+            "Parts Invoiced",
+            "Parts Margin",
+            "Shop Supplies",
+            "Margin",
+            "Margin %",
+            "Subtotal"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "sales-by-customer__NO__summary.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 172519 chars"
+        },
+        {
+          "format": "csv",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Customer,Asset,\"Invoice #\",Date,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",\"Shop Supplies\",Margin,\"Margin %\",Subtotal",
+          "headers": [
+            "Customer",
+            "Asset",
+            "Invoice #",
+            "Date",
+            "Inv. Hrs",
+            "Labor Invoiced",
+            "Labor Margin",
+            "Parts Invoiced",
+            "Parts Margin",
+            "Shop Supplies",
+            "Margin",
+            "Margin %",
+            "Subtotal"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "sales-by-customer__NO__expanded.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 173604 chars"
+        }
+      ]
+    },
+    {
+      "report": "sales-by-representative",
+      "scope": "SINGLE (Heavy Duty only)",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 1,
+        "dataKeys": [
+          "collection",
+          "pagination",
+          "totals"
+        ],
+        "sampleRowKeys": [
+          "key",
+          "rep_name",
+          "is_unassigned",
+          "is_inactive",
+          "location",
+          "inv_hrs",
+          "hours_worked",
+          "hours_invoiced",
+          "labor_invoiced",
+          "labor_margin",
+          "parts_invoiced",
+          "parts_margin",
+          "margin",
+          "subtotal",
+          "margin_pct",
+          "invoice_count"
+        ]
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Representative,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",Margin,\"Margin %\",Subtotal",
+          "headers": [
+            "Representative",
+            "Inv. Hrs",
+            "Labor Invoiced",
+            "Labor Margin",
+            "Parts Invoiced",
+            "Parts Margin",
+            "Margin",
+            "Margin %",
+            "Subtotal"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "sales-by-representative__SINGLE__summary.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 171985 chars"
+        },
+        {
+          "format": "csv",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Representative,\"Invoice #\",Date,Customer,\"Invoice Status\",\"Hrs Worked\",\"Hrs Invoiced\",\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",Margin,\"Margin %\",Subtotal",
+          "headers": [
+            "Representative",
+            "Invoice #",
+            "Date",
+            "Customer",
+            "Invoice Status",
+            "Hrs Worked",
+            "Hrs Invoiced",
+            "Inv. Hrs",
+            "Labor Invoiced",
+            "Labor Margin",
+            "Parts Invoiced",
+            "Parts Margin",
+            "Margin",
+            "Margin %",
+            "Subtotal"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "sales-by-representative__SINGLE__expanded.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 173031 chars"
+        }
+      ]
+    },
+    {
+      "report": "sales-by-representative",
+      "scope": "MULTI (both locations)",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 1,
+        "dataKeys": [
+          "collection",
+          "pagination",
+          "totals"
+        ],
+        "sampleRowKeys": [
+          "key",
+          "rep_name",
+          "is_unassigned",
+          "is_inactive",
+          "location",
+          "inv_hrs",
+          "hours_worked",
+          "hours_invoiced",
+          "labor_invoiced",
+          "labor_margin",
+          "parts_invoiced",
+          "parts_margin",
+          "margin",
+          "subtotal",
+          "margin_pct",
+          "invoice_count"
+        ]
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: All locations\""
+          ],
+          "headerLine": "Representative,Location,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",Margin,\"Margin %\",Subtotal",
+          "headers": [
+            "Representative",
+            "Location",
+            "Inv. Hrs",
+            "Labor Invoiced",
+            "Labor Margin",
+            "Parts Invoiced",
+            "Parts Margin",
+            "Margin",
+            "Margin %",
+            "Subtotal"
+          ],
+          "hasLocationHeader": true,
+          "hasLocationsMetaLine": true,
+          "file": "sales-by-representative__MULTI__summary.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 172000 chars"
+        },
+        {
+          "format": "csv",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: All locations\""
+          ],
+          "headerLine": "Representative,\"Invoice #\",Date,Customer,\"Invoice Status\",Location,\"Hrs Worked\",\"Hrs Invoiced\",\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",Margin,\"Margin %\",Subtotal",
+          "headers": [
+            "Representative",
+            "Invoice #",
+            "Date",
+            "Customer",
+            "Invoice Status",
+            "Location",
+            "Hrs Worked",
+            "Hrs Invoiced",
+            "Inv. Hrs",
+            "Labor Invoiced",
+            "Labor Margin",
+            "Parts Invoiced",
+            "Parts Margin",
+            "Margin",
+            "Margin %",
+            "Subtotal"
+          ],
+          "hasLocationHeader": true,
+          "hasLocationsMetaLine": true,
+          "file": "sales-by-representative__MULTI__expanded.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 173124 chars"
+        }
+      ]
+    },
+    {
+      "report": "sales-by-representative",
+      "scope": "NO locations param",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 1,
+        "dataKeys": [
+          "collection",
+          "pagination",
+          "totals"
+        ],
+        "sampleRowKeys": [
+          "key",
+          "rep_name",
+          "is_unassigned",
+          "is_inactive",
+          "location",
+          "inv_hrs",
+          "hours_worked",
+          "hours_invoiced",
+          "labor_invoiced",
+          "labor_margin",
+          "parts_invoiced",
+          "parts_margin",
+          "margin",
+          "subtotal",
+          "margin_pct",
+          "invoice_count"
+        ]
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Representative,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",Margin,\"Margin %\",Subtotal",
+          "headers": [
+            "Representative",
+            "Inv. Hrs",
+            "Labor Invoiced",
+            "Labor Margin",
+            "Parts Invoiced",
+            "Parts Margin",
+            "Margin",
+            "Margin %",
+            "Subtotal"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "sales-by-representative__NO__summary.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 171993 chars"
+        },
+        {
+          "format": "csv",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Representative,\"Invoice #\",Date,Customer,\"Invoice Status\",\"Hrs Worked\",\"Hrs Invoiced\",\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",Margin,\"Margin %\",Subtotal",
+          "headers": [
+            "Representative",
+            "Invoice #",
+            "Date",
+            "Customer",
+            "Invoice Status",
+            "Hrs Worked",
+            "Hrs Invoiced",
+            "Inv. Hrs",
+            "Labor Invoiced",
+            "Labor Margin",
+            "Parts Invoiced",
+            "Parts Margin",
+            "Margin",
+            "Margin %",
+            "Subtotal"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "sales-by-representative__NO__expanded.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 173028 chars"
+        }
+      ]
+    },
+    {
+      "report": "parts-velocity",
+      "scope": "SINGLE (Heavy Duty only)",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 100,
+        "dataKeys": [
+          "collection",
+          "pagination"
+        ],
+        "sampleRowKeys": [
+          "key",
+          "type",
+          "part_number",
+          "description",
+          "category",
+          "vendor",
+          "on_hand",
+          "min",
+          "max",
+          "units_sold",
+          "demand",
+          "units_returned",
+          "revenue",
+          "margin",
+          "unit_cost",
+          "sell_price",
+          "margin_pct",
+          "sold_via_wo",
+          "sold_via_parts_sale",
+          "turns_per_year",
+          "last_sale",
+          "location"
+        ]
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Type,\"Part #\",Description,Category,Vendor,\"Units Sold\",\"Units Returned\",\"Sold (WO)\",\"Sold (Parts Sale)\",\"Unit Cost\",\"Sell Price\",Revenue,Margin,\"Margin %\",Demand,\"Last Sale\",\"On Hand\",Turns/Yr,Min,Max",
+          "headers": [
+            "Type",
+            "Part #",
+            "Description",
+            "Category",
+            "Vendor",
+            "Units Sold",
+            "Units Returned",
+            "Sold (WO)",
+            "Sold (Parts Sale)",
+            "Unit Cost",
+            "Sell Price",
+            "Revenue",
+            "Margin",
+            "Margin %",
+            "Demand",
+            "Last Sale",
+            "On Hand",
+            "Turns/Yr",
+            "Min",
+            "Max"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "parts-velocity__SINGLE__plain.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": null,
+          "status": 500,
+          "error": "{\"errors\":[{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"99486d82-c86a-48b4-9333-be493f50d76d\"}]}"
+        }
+      ]
+    },
+    {
+      "report": "parts-velocity",
+      "scope": "MULTI (both locations)",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 100,
+        "dataKeys": [
+          "collection",
+          "pagination"
+        ],
+        "sampleRowKeys": [
+          "key",
+          "type",
+          "part_number",
+          "description",
+          "category",
+          "vendor",
+          "on_hand",
+          "min",
+          "max",
+          "units_sold",
+          "demand",
+          "units_returned",
+          "revenue",
+          "margin",
+          "unit_cost",
+          "sell_price",
+          "margin_pct",
+          "sold_via_wo",
+          "sold_via_parts_sale",
+          "turns_per_year",
+          "last_sale",
+          "location"
+        ]
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: All locations\""
+          ],
+          "headerLine": "Type,\"Part #\",Description,Category,Vendor,Location,\"Units Sold\",\"Units Returned\",\"Sold (WO)\",\"Sold (Parts Sale)\",\"Unit Cost\",\"Sell Price\",Revenue,Margin,\"Margin %\",Demand,\"Last Sale\",\"On Hand\",Turns/Yr,Min,Max",
+          "headers": [
+            "Type",
+            "Part #",
+            "Description",
+            "Category",
+            "Vendor",
+            "Location",
+            "Units Sold",
+            "Units Returned",
+            "Sold (WO)",
+            "Sold (Parts Sale)",
+            "Unit Cost",
+            "Sell Price",
+            "Revenue",
+            "Margin",
+            "Margin %",
+            "Demand",
+            "Last Sale",
+            "On Hand",
+            "Turns/Yr",
+            "Min",
+            "Max"
+          ],
+          "hasLocationHeader": true,
+          "hasLocationsMetaLine": true,
+          "file": "parts-velocity__MULTI__plain.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": null,
+          "status": 500,
+          "error": "{\"errors\":[{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"d19edde5-cca6-4113-a330-2576f840dc1f\"}]}"
+        }
+      ]
+    },
+    {
+      "report": "parts-velocity",
+      "scope": "NO locations param",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 100,
+        "dataKeys": [
+          "collection",
+          "pagination"
+        ],
+        "sampleRowKeys": [
+          "key",
+          "type",
+          "part_number",
+          "description",
+          "category",
+          "vendor",
+          "on_hand",
+          "min",
+          "max",
+          "units_sold",
+          "demand",
+          "units_returned",
+          "revenue",
+          "margin",
+          "unit_cost",
+          "sell_price",
+          "margin_pct",
+          "sold_via_wo",
+          "sold_via_parts_sale",
+          "turns_per_year",
+          "last_sale",
+          "location"
+        ]
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Type,\"Part #\",Description,Category,Vendor,\"Units Sold\",\"Units Returned\",\"Sold (WO)\",\"Sold (Parts Sale)\",\"Unit Cost\",\"Sell Price\",Revenue,Margin,\"Margin %\",Demand,\"Last Sale\",\"On Hand\",Turns/Yr,Min,Max",
+          "headers": [
+            "Type",
+            "Part #",
+            "Description",
+            "Category",
+            "Vendor",
+            "Units Sold",
+            "Units Returned",
+            "Sold (WO)",
+            "Sold (Parts Sale)",
+            "Unit Cost",
+            "Sell Price",
+            "Revenue",
+            "Margin",
+            "Margin %",
+            "Demand",
+            "Last Sale",
+            "On Hand",
+            "Turns/Yr",
+            "Min",
+            "Max"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "parts-velocity__NO__plain.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": null,
+          "status": 500,
+          "error": "{\"errors\":[{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"ed4df0fe-a4de-47c3-b219-84e4dc795dd5\"}]}"
+        }
+      ]
+    },
+    {
+      "report": "technician-utilization",
+      "scope": "SINGLE (Heavy Duty only)",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 0,
+        "dataKeys": [
+          "collection"
+        ],
+        "sampleRowKeys": null
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Technician,\"Total Hours\",\"WO Hours\",\"Internal Hours\",\"Utilization %\",\"Est. Lost Labor\"",
+          "headers": [
+            "Technician",
+            "Total Hours",
+            "WO Hours",
+            "Internal Hours",
+            "Utilization %",
+            "Est. Lost Labor"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "technician-utilization__SINGLE__summary.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 169752 chars"
+        },
+        {
+          "format": "csv",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Technician,\"Total Hours\",\"WO Hours\",\"Internal Hours\",\"Utilization %\",\"Est. Lost Labor\"",
+          "headers": [
+            "Technician",
+            "Total Hours",
+            "WO Hours",
+            "Internal Hours",
+            "Utilization %",
+            "Est. Lost Labor"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "technician-utilization__SINGLE__expanded.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 169777 chars"
+        }
+      ]
+    },
+    {
+      "report": "technician-utilization",
+      "scope": "MULTI (both locations)",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 0,
+        "dataKeys": [
+          "collection"
+        ],
+        "sampleRowKeys": null
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: All locations\""
+          ],
+          "headerLine": "Location,Technician,\"Total Hours\",\"WO Hours\",\"Internal Hours\",\"Utilization %\",\"Est. Lost Labor\"",
+          "headers": [
+            "Location",
+            "Technician",
+            "Total Hours",
+            "WO Hours",
+            "Internal Hours",
+            "Utilization %",
+            "Est. Lost Labor"
+          ],
+          "hasLocationHeader": true,
+          "hasLocationsMetaLine": true,
+          "file": "technician-utilization__MULTI__summary.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 169774 chars"
+        },
+        {
+          "format": "csv",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: All locations\""
+          ],
+          "headerLine": "Location,Technician,\"Total Hours\",\"WO Hours\",\"Internal Hours\",\"Utilization %\",\"Est. Lost Labor\"",
+          "headers": [
+            "Location",
+            "Technician",
+            "Total Hours",
+            "WO Hours",
+            "Internal Hours",
+            "Utilization %",
+            "Est. Lost Labor"
+          ],
+          "hasLocationHeader": true,
+          "hasLocationsMetaLine": true,
+          "file": "technician-utilization__MULTI__expanded.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 169791 chars"
+        }
+      ]
+    },
+    {
+      "report": "technician-utilization",
+      "scope": "NO locations param",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 0,
+        "dataKeys": [
+          "collection"
+        ],
+        "sampleRowKeys": null
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Technician,\"Total Hours\",\"WO Hours\",\"Internal Hours\",\"Utilization %\",\"Est. Lost Labor\"",
+          "headers": [
+            "Technician",
+            "Total Hours",
+            "WO Hours",
+            "Internal Hours",
+            "Utilization %",
+            "Est. Lost Labor"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "technician-utilization__NO__summary.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "summary",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 169754 chars"
+        },
+        {
+          "format": "csv",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "Technician,\"Total Hours\",\"WO Hours\",\"Internal Hours\",\"Utilization %\",\"Est. Lost Labor\"",
+          "headers": [
+            "Technician",
+            "Total Hours",
+            "WO Hours",
+            "Internal Hours",
+            "Utilization %",
+            "Est. Lost Labor"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "technician-utilization__NO__expanded.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": "expanded",
+          "tab": null,
+          "status": 200,
+          "note": "pdf binary, 169783 chars"
+        }
+      ]
+    },
+    {
+      "report": "work-in-progress",
+      "scope": "SINGLE (Heavy Duty only)",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 0,
+        "dataKeys": [
+          "collection"
+        ],
+        "sampleRowKeys": null
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": "approved_partially_completed",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"approved_partially_completed\\\".\"}]}"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": "approved_partially_completed",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"approved_partially_completed\\\".\"}]}"
+        },
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": "approved_not_started",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"approved_not_started\\\".\"}]}"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": "approved_not_started",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"approved_not_started\\\".\"}]}"
+        },
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": "completed",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"completed\\\".\"}]}"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": "completed",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"completed\\\".\"}]}"
+        },
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": "estimates",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"estimates\\\".\"}]}"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": "estimates",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"estimates\\\".\"}]}"
+        }
+      ]
+    },
+    {
+      "report": "work-in-progress",
+      "scope": "MULTI (both locations)",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 0,
+        "dataKeys": [
+          "collection"
+        ],
+        "sampleRowKeys": null
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": "approved_partially_completed",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"approved_partially_completed\\\".\"}]}"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": "approved_partially_completed",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"approved_partially_completed\\\".\"}]}"
+        },
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": "approved_not_started",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"approved_not_started\\\".\"}]}"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": "approved_not_started",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"approved_not_started\\\".\"}]}"
+        },
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": "completed",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"completed\\\".\"}]}"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": "completed",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"completed\\\".\"}]}"
+        },
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": "estimates",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"estimates\\\".\"}]}"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": "estimates",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"estimates\\\".\"}]}"
+        }
+      ]
+    },
+    {
+      "report": "work-in-progress",
+      "scope": "NO locations param",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 0,
+        "dataKeys": [
+          "collection"
+        ],
+        "sampleRowKeys": null
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": "approved_partially_completed",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"approved_partially_completed\\\".\"}]}"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": "approved_partially_completed",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"approved_partially_completed\\\".\"}]}"
+        },
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": "approved_not_started",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"approved_not_started\\\".\"}]}"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": "approved_not_started",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"approved_not_started\\\".\"}]}"
+        },
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": "completed",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"completed\\\".\"}]}"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": "completed",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"completed\\\".\"}]}"
+        },
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": "estimates",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"estimates\\\".\"}]}"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": "estimates",
+          "status": 400,
+          "error": "{\"errors\":[{\"error\":\"Invalid tab \\\"estimates\\\".\"}]}"
+        }
+      ]
+    },
+    {
+      "report": "inventory-value",
+      "scope": "SINGLE (Heavy Duty only)",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 100,
+        "dataKeys": [
+          "collection",
+          "pagination",
+          "totals",
+          "as_of_date"
+        ],
+        "sampleRowKeys": [
+          "key",
+          "workplace_id",
+          "location",
+          "part_number",
+          "description",
+          "category",
+          "vendor",
+          "qty",
+          "unit_cost",
+          "unit_sell",
+          "total_cost",
+          "total_sell",
+          "margin",
+          "margin_pct"
+        ]
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"As of: 2026-08-03\"",
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "\"Part #\",Description,Category,Vendor,Qty,\"Unit Cost\",\"Unit Sell\",\"Total Cost\",\"Total Sell\",Margin,\"Margin %\"",
+          "headers": [
+            "Part #",
+            "Description",
+            "Category",
+            "Vendor",
+            "Qty",
+            "Unit Cost",
+            "Unit Sell",
+            "Total Cost",
+            "Total Sell",
+            "Margin",
+            "Margin %"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "inventory-value__SINGLE__plain.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": null,
+          "status": 500,
+          "error": "{\"errors\":[{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"13edda95-015a-4910-9f02-c5501b696c1f\"}]}"
+        }
+      ]
+    },
+    {
+      "report": "inventory-value",
+      "scope": "MULTI (both locations)",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 100,
+        "dataKeys": [
+          "collection",
+          "pagination",
+          "totals",
+          "as_of_date"
+        ],
+        "sampleRowKeys": [
+          "key",
+          "workplace_id",
+          "location",
+          "part_number",
+          "description",
+          "category",
+          "vendor",
+          "qty",
+          "unit_cost",
+          "unit_sell",
+          "total_cost",
+          "total_sell",
+          "margin",
+          "margin_pct"
+        ]
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"As of: 2026-08-03\"",
+            "\"Locations: All locations\""
+          ],
+          "headerLine": "\"Part #\",Description,Category,Vendor,Location,Qty,\"Unit Cost\",\"Unit Sell\",\"Total Cost\",\"Total Sell\",Margin,\"Margin %\"",
+          "headers": [
+            "Part #",
+            "Description",
+            "Category",
+            "Vendor",
+            "Location",
+            "Qty",
+            "Unit Cost",
+            "Unit Sell",
+            "Total Cost",
+            "Total Sell",
+            "Margin",
+            "Margin %"
+          ],
+          "hasLocationHeader": true,
+          "hasLocationsMetaLine": true,
+          "file": "inventory-value__MULTI__plain.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": null,
+          "status": 500,
+          "error": "{\"errors\":[{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"636e798f-eb79-4d56-a462-eb5768ef8399\"}]}"
+        }
+      ]
+    },
+    {
+      "report": "inventory-value",
+      "scope": "NO locations param",
+      "dataApi": {
+        "status": 200,
+        "rowCount": 100,
+        "dataKeys": [
+          "collection",
+          "pagination",
+          "totals",
+          "as_of_date"
+        ],
+        "sampleRowKeys": [
+          "key",
+          "workplace_id",
+          "location",
+          "part_number",
+          "description",
+          "category",
+          "vendor",
+          "qty",
+          "unit_cost",
+          "unit_sell",
+          "total_cost",
+          "total_sell",
+          "margin",
+          "margin_pct"
+        ]
+      },
+      "exports": [
+        {
+          "format": "csv",
+          "variant": null,
+          "tab": null,
+          "status": 200,
+          "metaLines": [
+            "\"As of: 2026-08-03\"",
+            "\"Locations: Staging Heavy Duty - 9919\""
+          ],
+          "headerLine": "\"Part #\",Description,Category,Vendor,Qty,\"Unit Cost\",\"Unit Sell\",\"Total Cost\",\"Total Sell\",Margin,\"Margin %\"",
+          "headers": [
+            "Part #",
+            "Description",
+            "Category",
+            "Vendor",
+            "Qty",
+            "Unit Cost",
+            "Unit Sell",
+            "Total Cost",
+            "Total Sell",
+            "Margin",
+            "Margin %"
+          ],
+          "hasLocationHeader": false,
+          "hasLocationsMetaLine": true,
+          "file": "inventory-value__NO__plain.csv"
+        },
+        {
+          "format": "pdf",
+          "variant": null,
+          "tab": null,
+          "status": 500,
+          "error": "{\"errors\":[{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"9645dbd8-7896-470b-a7cf-e809660df71c\"}]}"
+        }
+      ]
+    }
+  ]
+}
