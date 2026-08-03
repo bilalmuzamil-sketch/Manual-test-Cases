@@ -1167,3 +1167,93 @@ this is the working UI recipe):
 Still needs deeper seeding (build on the above): pick cored part P550848 onto a line (Core OK/Not-OK);
 create a PO + delivery via `/parts` (Order Parts/Pick/Receive/Bulk Receive); an invoice in void state
 (Invoicing reverse). Tag throwaway data ZZAUTOTEST; clean up after.
+
+## N. REPORT SUITE QA BRANCH sv8582 — reporting API + report-UI recipes (proven 2026-08-03)
+First live Report Suite environment. Everything below was observed working; reuse it, do not
+re-discover (Rule 27). Secrets stay in `/tmp` — helpers read them at runtime.
+
+### Env + auth
+- App `https://sv8582.qa.shopview.com` · API **`https://sv8582api.qa.shopview.com`** (no dot before
+  "api", same convention as `sv7301api`). Org = the shared **`d55bc308-e61a-438d-b5f1-c7a73c89d49f`**.
+- `POST /api/quick-login {"key":"admin"}` → **200** + a fresh `PHPSESSID`; cookies
+  (`sv_sso_session` 64-hex, `PHPSESSID` 32-hex, `cf_clearance`) on `.qa.shopview.com`, `Max-Age=86400`.
+- **Run node with `NODE_USE_ENV_PROXY=1`** or plain `fetch` bypasses the egress proxy.
+- Helpers: `build/report-suite/viu-2026-08-03/tools/qa8582.mjs` (`login()`/`api()`) and
+  `boot8582.mjs` (`boot()` = the boot2 hydration pattern retargeted; also logs every `/api` call the
+  SPA makes, which is how these endpoints were found).
+- **Build marker:** `curl -s https://sv8582.qa.shopview.com/ | grep app-version` →
+  `<meta name="app-version" content="v3.4.1-0ed4433">`. Use it for Rule-49 re-check queues.
+
+### Report routes (all six, live)
+`/reports` **redirects to** `/reports/punch-clock-activities` — there is no neutral reports index.
+`/reports/sales-by-customer` · `/reports/sales-by-representative` · `/reports/parts-velocity` ·
+`/reports/technician-utilization` · `/reports/work-in-progress` · `/reports/inventory-value`.
+Nav group headings: LABOR · PERFORMANCE (WIP, TU, SBR) · PARTS (PV, IV) · **SALES (SBC)** ·
+FINANCE · ACCOUNTS RECEIVABLE · ACCOUNTS PAYABLE · ACCOUNTING · COMMUNICATIONS.
+
+### Report DATA endpoints
+`GET /api/reporting/reports/<slug>?<filters>&pagination[page]=&pagination[rowsPerPage]=&pagination[sortBy]=&pagination[descending]=`
+- SBC/SBR/PV/IV are **paginated**; **TU and WIP are NOT**.
+- Date scope: most take `range=custom&start_date=YYYY-MM-DD&end_date=YYYY-MM-DD`;
+  **WIP takes `from`/`to` as ISO datetimes** (`from=2026-01-01T00:00:00.000Z&to=…`). A span beyond the
+  server limit returns **400**.
+- Multi-location scope: `&locations=<uuid>,<uuid>` (comma-separated, URL-encoded).
+- Extra per report: SBC `productType=all`; SBR `productType`+`invoiceStatus=all`; PV `type=both`.
+- Payload: `{data:{collection:[…], pagination:{…}, totals:{…}}}` — **PV returns NO `totals`**;
+  IV also returns `as_of_date`.
+
+### Report EXPORT endpoints (this is the part worth never re-deriving)
+`GET /api/reporting/reports/<slug>/export?format=csv|pdf&<the same filters>` plus:
+- `&variant=summary|expanded` — **required** for SBC, SBR, TU (else `400 "Invalid export variant.
+  Allowed values: summary, expanded."`).
+- `&tab=ApprovedNotStarted|ApprovedPartiallyCompleted|Completed|Estimates` — **required for WIP**
+  (else `400 "Invalid tab \"\"."`).
+- `&columns=<comma-separated keys>` — **required for WIP** (else `400 "At least one column is
+  required."`); optional elsewhere, and **omitting it exports every column**.
+  **Valid WIP keys:** `wo_number, status, customer, asset, vin, location, advisor, days_open,
+  last_activity, labor_earned, labor_remaining, parts_earned, parts_remaining, earned, remaining,
+  total`. **`invoiced_hours` is NOT accepted** even though the UI offers an Inv. Hrs column.
+- Bad `format` → `400 "Invalid export format. Allowed values: csv, pdf."`
+- **Over-size guard:** `400 "This report is too large to export. Narrow the date range or filters,
+  then try again."` — narrow with `&search=<term>` or a single location to get a file.
+- CSV shape: line 1 `"Locations: <name>"` (or `"Locations: All locations"`); IV puts
+  `"As of: YYYY-MM-DD"` **above** it. Then the header row, the data rows, and a final `Totals,…` row.
+- **The per-row `Location` column appears only when scope spans >1 location**, in the screen's slot —
+  except TU, which puts it FIRST in the export and second on screen.
+- **WIP export headers rename two columns:** screen `Asset`/`Location` → file **`Unit`/`Branch`**.
+
+### Report UI recipes (Quasar)
+- The **export menu** is the `more_horiz` icon button (`aria-label="Export report"`); the **column
+  selector** is the `width_normal` icon button next to it (tooltip + aria `Column Selection`).
+- The **date-range control** is **`span.date-range-label`** (NOT a `.q-btn` — a `.q-btn` text search
+  fails). Click it by coordinate; the popup holds an inline calendar plus presets
+  **Last 12 Months · This Year · Last Year · This Quarter · Last Quarter · This Month · Last Month ·
+  This Week · Last Week**, a `Range: N days` readout and an **Apply** button. There is **no "Custom"
+  or "Today"/"Yesterday"** preset.
+- Filter dropdowns are `.q-select` in toolbar order; the **Location** filter is always last and offers
+  `All locations` + `Clear all` + one row per accessible workplace.
+- **The report grids are VIRTUALISED** — `tbody tr` returns a spacer, so per-cell reads fail. The
+  `thead` and the `Totals` row read fine. To read data cells, scroll-and-read or use the data API.
+- **Empty export:** the FE short-circuits and shows a toast `Empty export` /
+  `Export didn't yield any results` / `Close`, and calls no endpoint.
+
+### Report permission testing (the ONE-permission model, proven both ways)
+- The **entire** FE-permission catalogue (`GET /api/fe-permissions`) holds exactly **one** report
+  atom: **`reportsPageAccess`**. No per-report atom exists.
+- Roles holding it on this org: Admin, Service Manager, Office User, **Sales Representative** (only 8
+  atoms — the ideal minimal positive subject), Parts Manager. Without it: Parts Technician, Senior
+  Service Advisor, Time Clock User, Technician, Service Advisor, **Foreman** (good negative subject).
+- **Impersonate:** `POST /api/switch-user {user_id}` where `user_id` is the staff record's **`id`**
+  (not `staff_id`). **`GET /api/staff?limit=300` returns `role_label`, `role_id`, `staff_id`, `id`,
+  `is_active`.** **switch-user 403s on inactive users** — filter `is_active === true` **and**
+  `confirmed_invitation_on`. Confirm who you are with `GET /api/auth/me/fe-permissions` →
+  `template_slug`; `administrator` means the switch did not take.
+- **Seed a minimal-permission subject** (Rule 14): `POST /api/staff/{staff_id}/change
+  {first_name,last_name,email,role_id,workplace_id,job_title,salary_type,salary,billable,clockable}`
+  → **201**. Note `POST /api/organizations/{org}/roles` is **GET-only (405)** on this build, so
+  **reassign an existing minimal role instead of creating one**. Always restore and verify.
+- **Seed a single-location user** (for the Location-filter question): assign one `workplace_id`; then
+  `GET /api/staff/my-workplaces` as them returns exactly one. **Caution:** re-hydrating the same
+  browser profile keeps the previous user's persisted **column selection** in localStorage, which can
+  fake a Location column — use a fresh profile, and note that `localStorage.clear()` alone breaks SPA
+  hydration (the SPA needs the full `user` payload, not just `fe_permissions_wrapper`).
