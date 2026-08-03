@@ -5,13 +5,13 @@ Work In Progress appears in the reports navigation under the Performance group,W
 3. Click the ""Work In Progress"" entry.
 4. Read the browser tab's page title.","1. The reports navigation lists a report labeled ""Work In Progress"" under the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency).
 2. Clicking it opens the Work In Progress report.
-3. The browser page title is exactly ""Work In Progress - Report | ShopView"" — a plain hyphen with one space on each side.",SV-8657 (WIP spec Story 1 S1-R1; S1-R5 — Performance group; below the named anchor items per the PRD video 2026-07-30; S1-R5 = browser page title; access = the one ordinary reports permission per QA lead 2026-08-03),,
+3. The browser page title is exactly ""Work In Progress - Report | ShopView"" — a plain hyphen with one space on each side.",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R1; S1-R5 — S1-R5 CLOSES the page title verbatim; Performance group below the named anchor items per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03),,
 Four tabs in a fixed order with the partially-completed tab selected,WIP — Tabs,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have not visited the report before in this browser (no saved active-tab setting).","1. Open the Work In Progress report.
 2. Read the tab labels from left to right.
 3. Look at which tab is selected when the report loads.","1. Four tabs are shown, labeled in this order: ""Approved - partially completed"", ""Approved - not started"", ""Completed"", and ""Estimates"".
 2. The ""Approved - partially completed"" tab is selected by default on load.
-3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).",SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter)),,
+3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement),,
 Each tab label shows its work-order count in parentheses,WIP — Tabs,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Open work orders exist in at least one tab for the current date range and location (seed ZZAUTOTEST work orders if needed).
 3. At least one tab currently has no work orders.","1. Open the Work In Progress report.
@@ -84,7 +84,7 @@ Status shows as a color-coded badge whose label text is always present,WIP — C
 2. The report shows work orders in several statuses (Estimate, Approved, In Progress, Review, Complete).","1. Read the Status column across rows in each tab.
 2. Compare each badge's color against the application's standard status colors used elsewhere.","1. Status is shown as a badge using the status's label: ""Estimate"", ""Approved"", ""In Progress"", ""Review"", or ""Complete"".
 2. The badge is color-coded per the application's standard status colors.
-3. The label text is always present, so color is never the sole signal of the status.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R6; Story 10 S10-R8),,
+3. The label text is always present, so color is never the sole signal of the status.","SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R6 + Story 10 S10-R8 — S4-R6 CLOSES the five status labels verbatim (""Estimate"" ... ""Complete"") and the label-not-colour rule; so the closed list IS the requirement)",,
 "Asset cell identifies the asset by VIN, falling back to Unit #, then plate",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows work orders including: one whose asset has a VIN recorded, one with no VIN but a Unit # recorded, and one with no VIN or Unit # but a plate recorded.","1. Read the Asset cell of the row whose asset has a VIN.
 2. Read the Asset cell of the row with no VIN, then the one with no VIN or Unit #.
@@ -209,7 +209,7 @@ Sorting reorders only the active tab's rows; Totals stays at the bottom,WIP — 
 The summary strip shows seven figures in a fixed order as US dollars,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Read the summary strip across the top of the report, left to right.
 2. Read each figure's number format.","1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.
-2. Every figure shows US-dollar currency with a leading ""$"", two decimals, and thousands separators.",SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R1; S5-R10),,
+2. Every figure shows US-dollar currency with a leading ""$"", two decimals, and thousands separators.",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R1; S5-R10 — S5-R1 CLOSES the seven figures and their order verbatim and S5-R10 closes the currency format; so the closed lists ARE the requirement),,
 Total Earned is the hero figure and equals the started-stage figures summed,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs in the ""Approved - partially completed"" tab and the ""Completed"" tab with non-zero earned values.","1. Look at how the Total Earned figure is styled compared to the other six figures.
 2. Add the Started — Earned figure to the Ready to Invoice figure.
@@ -360,7 +360,8 @@ Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV),WIP �
 5. Repeat the same checks in the PDF.","1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.
 2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.
 3. Both downloads include a Totals row matching the on-screen Totals row for the tab.
-4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a — ""Locations:"" line in every CSV/PDF export per Chris Ward's 2026-07-29 message [NEWEST source; last-update-wins])",,
+4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
+5. Note for the tester: when you have more than one location in scope, the files also carry the location column even though you cannot turn it on or off - and in the file it is headed ""Branch"", not ""Location"". Both of those are correct. With a single location in scope there is no such column, and that is also correct.","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the ""Locations:"" line; S7-R13/S9-E1 = the automatic ""Branch"" column)",,
 Downloaded money and Inv. Hrs values keep the on-screen formats,WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current tab includes money values over $1,000 and, if producible, a negative value; the Inv. Hrs column is on.","1. Download the current tab as a CSV and open it in a plain-text editor.
 2. Read a money value over one thousand dollars and check its quoting.
@@ -382,7 +383,7 @@ Days Open in a download is frozen at the moment the file is generated,WIP — Ex
 2. The Work In Progress report is open with rows loaded.","1. Download the current tab as a PDF and read the saved file's name.
 2. Download the current tab as a CSV and read the saved file's name.","1. The PDF is named ""wip-2-report.pdf"".
 2. The CSV is named ""wip-2-report.csv"".
-3. These exact names (including the ""-2-"") are the specified current behavior.",SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R9),,
+3. These exact names (including the ""-2-"") are the specified current behavior.","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the ""-2-"" segment; so the exact strings ARE the requirement)",,
 "Export headers read ""Unit"" and ""Branch"" — documented limitation, do not file",WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Asset and Location columns are both turned on.","1. Read the two columns' headers on screen.
 2. Download the current tab as a CSV and read the same two columns' headers.

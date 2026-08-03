@@ -39,13 +39,13 @@ An invoice sits in the range by its own invoice date; endpoints included,SBR —
 2. ""Parts only"" includes only invoices whose number starts with P.
 3. ""Service only"" includes only invoices whose number starts with S.
 4. ""Parts & Service"" applies no product-type filter — both appear again.
-5. Each change re-fetches and re-renders the report.",SV-8621 (specs/sbr-sales-by-representative.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7),,
+5. Each change re-fetches and re-renders the report.","SV-8621 (SBR spec v15 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7 — S3-R2 CLOSES the list itself (""exactly three options""); so the closed list IS the requirement)",,
 Invoice Status offers exactly four options; All Statuses is the default,SBR — Invoice Status Filter,Functional,High,1. You are on the report with no remembered settings.,"1. Find the ""Invoice Status"" dropdown in the toolbar and read its default value.
 2. Open it and read the options.
 3. Change the selection and watch the table.","1. An ""Invoice Status"" dropdown is visible in the toolbar.
 2. It offers exactly four options: ""All Statuses,"" ""Unpaid,"" ""Partially Paid,"" ""Paid.""
 3. ""All Statuses"" is the default on first load.
-4. Changing the selection re-fetches and re-renders the report.",SV-8622 (specs/sbr-sales-by-representative.md Story 4 S4-R1; S4-R2; S4-R3; S4-R5),,
+4. Changing the selection re-fetches and re-renders the report.","SV-8622 (SBR spec v15 2026-07-29 Story 4 S4-R1; S4-R2; S4-R3; S4-R5 — S4-R2 CLOSES the list itself (""exactly four options""); so the closed list IS the requirement)",,
 Status filtering matches on the mapped display value,SBR — Invoice Status Filter,Functional,Critical,"1. ZZAUTOTEST invoices exist under one rep covering the payment situations: fully paid; overpaid; prepaid with zero balance owed; prepaid with a balance still owed; partially paid; unpaid.
 2. Seed the prepaid-with-zero-balance situation the realistic way: the customer pays a DEPOSIT up front that fully covers the work, so the invoice is created with nothing left to pay.","1. Filter to ""Paid"" and read which invoices appear.
 2. Filter to ""Partially Paid"" and read again.
@@ -173,7 +173,7 @@ Money columns use the standardized labels and definitions,SBR — Inv. Hrs & Cal
 2. Read that invoice's row values and recalculate each by hand.","1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
 2. Subtotal = Labor Invoiced + Parts Invoiced, BEFORE tax.
 3. Labor Margin = Labor Invoiced − labor cost; Parts Margin = Parts Invoiced − parts cost; Margin = Labor Margin + Parts Margin.
-4. The same values appear everywhere the numbers show (screen, and later the exports).",SV-8582 (SBR spec §3 definitions; §4 Terminology — money-column labels and the Subtotal/Margin definitions; CROSS-CUTTING across every SBR row level with no single owning story),,
+4. The same values appear everywhere the numbers show (screen, and later the exports).",SV-8623; SV-8582 (SBR spec v15 2026-07-29 S5-R2 = the authoritative 12-column left-to-right order; §3 definitions; §4 Terminology — S5-R2 CLOSES the money-label list; Location sits after Status [S21-R7] and is not a money column),,
 Negative dollar values render in accounting parentheses; money columns only,SBR — Inv. Hrs & Calculations,Functional,Medium,"1. A row with a negative money value exists (e.g., a net credit/return invoice, or a negative Labor Margin from cost exceeding billed labor — seed ZZAUTOTEST data).","1. Read the negative money cell.
 2. Read a negative Inv. Hrs cell and a negative Margin % cell for comparison.","1. Negative dollar values render in accounting-convention parentheses — ($1,234.56) — on screen, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Subtotal).
 2. Inv. Hrs (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses.",SV-8593 (SBR spec §3 Key Decisions accounting parentheses — owned by the shared A5 report-shell formatter module: verbatim 'accounting-parens negatives'),,
@@ -207,7 +207,7 @@ Mobile shows a simplified totals bar below the table; Subtotal at right,SBR — 
 3. Scroll the page vertically and watch the bar.","1. A simplified external totals bar sits directly below the table, outside its horizontal scroll container, showing ""Totals"" on the left and the grand Subtotal on the right (no other metrics).
 2. It does not scroll horizontally — it is always fully visible across.
 3. During vertical page scroll it sits after the table in normal flow (not pinned to the viewport bottom).
-4. It uses the white card surface with a thin top border.",SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R5 (mobile); Story 17 S17-R4),,
+4. It uses the white card surface with a thin top border.","SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5 (mobile branch) + Story 17 S17-R4 — S10-R5 CLOSES it in the spec's own words: ""Totals"" left and the grand Subtotal right ""(no other metrics)"")",,
 All eight financial columns are sortable,SBR — Sorting,Functional,High,1. Several reps with differing values are on the report.,"1. Click each financial column header in turn: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
 2. Click the Date, Invoice, Customer, and Status headers.","1. Each financial column responds to a header click and reorders the rep rows.
 2. The identifier columns (Date, Invoice, Customer, Status) do not respond to header clicks.
@@ -314,7 +314,8 @@ Column selector: seven metric toggles; five always-on columns cannot be hidden,S
 5. Hide all seven metric columns and read the table and the grand Totals indicator.","1. The dropdown lists the seven toggleable metric columns, each with a toggle switch: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %.
 2. On first visit all seven metric columns are visible.
 3. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.
-4. With all seven metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state.",SV-8637 (specs/sbr-sales-by-representative.md Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1),,
+4. With all seven metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state.
+5. Note for the tester: if you have more than one location in scope you will also see a Location column on the table that is in neither list. That is correct - it appears by itself and is not something you can switch on or off here.",SV-8637 (SBR spec v15 2026-07-29 Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1 — S20-R2/S20-R3 CLOSE the seven toggles and the five always-on columns; Location is automatic and in neither list [S21-R7]),,
 Toggling a column applies at once to summary; detail and Totals rows,SBR — Column Selector,Functional,Medium,1. A rep is expanded and the Totals indicator is visible.,"1. Toggle ""Parts Margin"" off and immediately check the summary rows, detail rows, and the Totals row.
 2. Toggle it back on.","1. The toggle takes effect immediately — no confirm step.
 2. Hiding a metric column removes it from rep summary rows, invoice detail rows, and the grand Totals indicator simultaneously; showing restores it everywhere at once.",SV-8637 (specs/sbr-sales-by-representative.md Story 20 S20-R4; S20-R7),,
@@ -343,7 +344,7 @@ The A to Z default is its own saved value,SBR — Persistence,Functional,Medium,
 The ⋯ overflow menu lists exactly four download actions,SBR — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Sales By Representative report.","1. Find the ⋯ (three-dot) button in the report toolbar — it is the first control in the toolbar's action cluster.
 2. Click it and read the menu entries top to bottom.","1. The menu lists exactly four actions: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", ""Download Summary (CSV)"", and ""Download Expanded View (CSV)"".
-2. No other entries appear in the menu.",SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R1; Story 17 S17-R3 (position)),,
+2. No other entries appear in the menu.","SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R1 + Story 17 S17-R3 (position) — S14-R1 CLOSES it in the spec's own words (""lists exactly four actions""); so the closed list IS the requirement)",,
 "All four downloads respect filters, full result set, and active order",SBR — Exports,Functional,Critical,"1. You are on the report with several reps showing.
 2. Set a specific date range, Product Type, Invoice Status, and a location selection; turn Show Unassigned on.
 3. Sort by a financial column (for example, click the Subtotal header).
@@ -353,7 +354,7 @@ The ⋯ overflow menu lists exactly four download actions,SBR — Exports,Functi
 2. The files reflect the FULL result set for those filters — a collapsed (never-expanded) rep's invoices still appear in the Expanded View files; on-screen expansion state does not matter.
 3. Rep rows appear in the report's currently-active order — the active column sort if one is set, otherwise the A→Z default.
 4. The Unassigned row (Show Unassigned on) is pinned first, ahead of the sorted reps.
-5. Every file (all four downloads, PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",SV-8631 (SBR spec Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4 + Locations: line in every export per Chris Ward msg 2026-07-29 [newest-wins]),,
+5. Every file (all four downloads, PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).","SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2; S14-R2a; S14-R20 + Story 21 S21-R6 + Story 22 S22-R4 — all four downloads honour the filters; the full result set and the active order; S14-R20 = the ""Locations:"" line in every export)",,
 Summary PDF: one rolled-up row per rep with a recomputed grand totals row,SBR — Exports,Functional,Critical,"1. You are on the report with at least two reps showing, one of them a toggled-off (""(Inactive)"") contributor if one can be arranged.
 2. A date range is selected.","1. Choose ""Download Summary (PDF)"" from the ⋯ menu and open the file.
 2. Read the top of the first page, the column headers, one rep row, and the last row.
@@ -380,7 +381,7 @@ Expanded View PDF truncates invoice numbers longer than 18 characters,SBR — Ex
 2. Scroll through every page of both PDFs and read the footer.
 3. With the organization logo not configured, download a PDF again and look at the header strip's logo region.","1. The files are named exactly ""sales-by-representative-summary.pdf"" and ""sales-by-representative-expanded.pdf"".
 2. A footer reading ""Software Powered by ShopView"" appears on EVERY page of both PDFs.
-3. With no configured logo, the logo region falls back to the default ShopView logo and the PDF still generates normally.",SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R4; S14-R3a; S14-R11),,
+3. With no configured logo, the logo region falls back to the default ShopView logo and the PDF still generates normally.","SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3a; S14-R4; S14-R11 — S14-R11 CLOSES both PDF filenames verbatim (""deterministic"") and S14-R4 closes the footer string; so the exact strings ARE the requirement)",,
 "PDFs render negative dollars in accounting parentheses, keep the (Inactive) tag",SBR — Exports,Functional,Medium,"1. The current view includes at least one negative money value (for example, a net-credit/return invoice — seed one if needed) and, if arrangeable, one toggled-off ""(Inactive)"" contributor.","1. Download both PDFs.
 2. Find the negative money value in each and read how it is written.
 3. Read the rep names in both PDFs.","1. Negative dollar values render in accounting parentheses — for example ($1,234.56) — in both PDFs, with no extra color treatment.
@@ -430,7 +431,7 @@ A failed download shows the canonical error toast,SBR — Exports,Negative,Mediu
 Over-cap Expanded View PDF is refused with the too-large message,SBR — Exports,Negative,Medium,"1. A filter set exists (or can be seeded) whose invoice detail rows exceed 10,000 — if this volume cannot be produced in the environment, mark Blocked-Env with the reason.","1. Apply the over-cap filter set.
 2. Choose ""Download Expanded View (PDF)"" and read the toast.","1. No file is produced — the server declines rather than generating a truncated file.
 2. An error toast reads exactly: ""This report is too large to export. Narrow the date range or filters, then try again."" (persists 120 seconds or until dismissed).
-3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected).",SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E2; §7),,
+3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected).",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2; §7 — 10k-row export cap; no truncated file; toast persists 120s; the toast STRING is the ONE suite-wide message ruled by Chris Ward 2026-07-31 Q2=A [newest-wins]; his SBR spec edit is pending),,
 An empty-data export still generates with zeroed Summary PDF totals,SBR — Exports,Functional,Medium,"1. The current filter set matches ZERO invoices (for example, a date range with no activity) — the report shows its empty state.","1. Download all four files from the ⋯ menu.
 2. Open each and inspect its contents.","1. All four downloads produce a FILE, not an error.
 2. The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Inv. Hrs columns and ""—"" for Margin %.
@@ -450,7 +451,8 @@ Report Name dropdown lists Sales Representative Assignments at the bottom,SBR �
 3. Open the file in a text editor and read the header row.","1. The file downloads as ""sales-representative-assignments.csv (the short form ""rep"" is gone from the file name — confirm the exact final file name in the build)"".
 2. A success toast shows ""Success"" with the caption ""Report downloaded."" and auto-fades after 5 seconds.
 3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?.
-4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.",SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R3; S15-R4; §7),,
+4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
+5. Note for the tester: this file has only those three columns even if you have several locations in scope. It is a separate customer-to-representative list, not one of the report's four downloads, so it has no Location column - do not fail it for that.","SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R3; S15-R4; §7 — S15-R4 CLOSES the three headers; ""Sales Rep""→""Sales Representative"" per Chris Ward 2026-07-31 Q5 [newest-wins]; NOT one of the four report exports so S14-R20 adds no Location)",,
 "Assignments CSV: one row per assigned customer, sorted customer then rep",SBR — Sales Rep Assignments Export,Functional,High,1. The organization has several customers with assigned reps and at least one customer with NO assigned rep (seed as needed).,"1. Download the Sales Representative Assignments CSV.
 2. Count the rows against the customers with assigned reps.
 3. Search for the no-rep customer.
@@ -529,9 +531,10 @@ Chevrons and sortable headers are keyboard-operable and expose their state,SBR �
 3. Inspect what state each control exposes to assistive technology.","1. The row chevrons and the sortable column headers are keyboard-focusable and activate on Enter and on Space.
 2. A chevron exposes its expanded/collapsed state to assistive technology.
 3. A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology.",SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R10),,
-The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast,SBR — Visual Conformance & Accessibility,Accessibility,Medium,"1. You are on the report with a rep row showing a (N) count and — if arrangeable — an ""(Inactive)"" tag; a contrast-checking tool is available.","1. Measure the contrast ratio of the subdued-grey (N) count and ""(Inactive)"" tag against the white body surface in light mode, and against the dark surface in dark mode.
-2. Review how Inv. Hrs, the status badges, and the links convey their meaning.","1. The subdued grey meets at least WCAG AA contrast (4.5:1 or better) against the body surface in BOTH modes — the reduced font size does not drop it below that ratio.
-2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.",SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R11; S18-R12),,
+The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast,SBR — Visual Conformance & Accessibility,Accessibility,Medium,"1. You are on the report with a rep row showing a (N) count and - if arrangeable - an ""(Inactive)"" tag.","1. Read the subdued-grey (N) count and the ""(Inactive)"" tag in light mode, then switch to dark mode and read them again.
+2. Review how Inv. Hrs, the status badges, and the links convey their meaning.","1. In BOTH light mode and dark mode the subdued-grey (N) count and the ""(Inactive)"" tag are easy to read against the surface behind them - the smaller text does not fade into the background.
+2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.
+3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can read the grey text easily in both modes, and only report it if you cannot. (The design rule behind this is WCAG AA contrast of at least 4.5:1, which the design and engineering team check with a contrast tool - not by hand.)","SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R11; S18-R12 — subdued-grey (N) count and ""(Inactive)"" tag at ≥ 4.5:1 WCAG AA in both modes; nothing conveyed by colour alone; the ratio is a design-token property so the check is by-eye)",,
 "Sales Representative selector shows on WO and Part Sale, not on imported",SBR — Work Order Sales Rep,Functional,High,"1. You have: an open standard Work Order, an open Part Sale WO, an imported Work Order, and a way to view a WO in History mode.","1. Open the standard Work Order and look at the left panel.
 2. Open the Part Sale WO and look at the left panel.
 3. Open the imported Work Order and look for the same field.

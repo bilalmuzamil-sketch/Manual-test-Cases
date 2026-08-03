@@ -44,7 +44,7 @@ No Sales By Customer permission is offered in the role permission editor,SBC —
 Date range picker offers eleven options in the specified order,SBC — Date Range Filter,Functional,High,1. You are on the Sales By Customer report.,"1. Find the date range picker in the report toolbar.
 2. Open it and read the options from top to bottom.","1. A date range picker is visible in the report toolbar.
 2. It offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
-3. There is no ""All Time"" option.",SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R1; S2-R2),,
+3. There is no ""All Time"" option.",SV-8601 (SBC spec v12 2026-07-29 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes),,
 Custom range opens a start/end date dialog and cannot exceed a 366-day span,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Open the date range picker and choose ""Custom.""
 2. In the dialog that opens, pick a start and end date less than 366 days apart and apply.
 3. Open ""Custom"" again and try to pick a start and end date MORE than 366 days apart.","1. Choosing ""Custom"" opens a date-picker dialog for a start and end date.
@@ -62,7 +62,7 @@ Product Type: three options with Parts & Service default; S/P prefix filtering,S
 2. Under ""Service only,"" every invoice shown has a number starting with S; parts invoices are gone and all counts/totals reflect only S invoices.
 3. Under ""Parts only,"" every invoice shown has a number starting with P; service invoices are gone and all counts/totals reflect only P invoices.
 4. With ""Parts & Service"" selected, no product-type filter is applied — both S and P invoices are included and counts/totals cover both.
-5. The whole invoice is classified by its number prefix — there is no per-line-item split.",SV-8602 (specs/sbc-sales-by-customer.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6),,
+5. The whole invoice is classified by its number prefix — there is no per-line-item split.","SV-8602 (SBC spec v12 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (""exactly three options ... in this order""); so the closed list IS the requirement)",,
 "Location filter: rightmost, lists accessible locations, All locations on top",SBC — Location Filter,Functional,High,1. You are on the Sales By Customer report as a user with access to two or more locations.,"1. Look at the report toolbar's filters from left to right.
 2. Open the location filter and read its options.
 3. Click the ""All locations"" option, then click it again.
@@ -251,7 +251,7 @@ Financial columns run in the specified order with Subtotal and Margin rules,SBC 
 3. Recalculate Subtotal and Margin by hand from the known amounts.","1. The financial columns appear in this order: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin % — with Subtotal as the rightmost column.
 2. Subtotal = Labor Invoiced + Parts Invoiced + Shop Supplies, before tax.
 3. Labor Margin = Labor Invoiced minus labor cost; Parts Margin = Parts Invoiced minus parts cost.
-4. Margin = Labor Margin + Parts Margin — it does NOT include any Shop Supplies amount (shop supplies add to Subtotal but add no profit to Margin).",SV-8605 (specs/sbc-sales-by-customer.md §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1),,
+4. Margin = Labor Margin + Parts Margin — it does NOT include any Shop Supplies amount (shop supplies add to Subtotal but add no profit to Margin).",SV-8605 (SBC spec v12 2026-07-29 §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1 — §2/S7-R6 CLOSE the financial-column list and its order; Location is an identifier column not a financial one [S4-R12; S20-R19] so it never enters this list),,
 Margin % is Margin over Subtotal to one decimal; em dash when Subtotal <= 0,SBC — Totals & Calculations,Functional,High,"1. Rows with a normal positive Subtotal exist, and (if seedable) one row whose Subtotal is zero or below.","1. Read Margin % on a customer row, an asset row, and an invoice row; recalculate one by hand (Margin ÷ Subtotal × 100).
 2. Find (or seed) a row with Subtotal ≤ 0 and read its Margin % cell.
 3. Look at the Margin % coloring.","1. Margin % shows the row's Margin divided by its Subtotal, times 100, to one decimal with a percent sign — for example, 64.7%.
@@ -289,7 +289,8 @@ Column selector is its own toolbar button with nine toggles all on,SBC — Colum
 3. Click it and read the toggle list top to bottom.","1. The column selector is a separate control next to the overflow menu — it is not an item inside the overflow menu.
 2. Hovering it shows the tooltip ""Column Selection.""
 3. The panel lists nine toggles, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %.
-4. With no saved selection, all nine toggleable columns default to visible.",SV-8611 (specs/sbc-sales-by-customer.md Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7),,
+4. With no saved selection, all nine toggleable columns default to visible.
+5. Note for the tester: there is no Location toggle in this panel. That is correct - the Location column appears by itself when you have more than one location in scope, so it is never something you switch on here.",SV-8611 (SBC spec v12 2026-07-29 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13]),,
 "Column toggles hide header+cells; Customer, Subtotal and chevron never in list",SBC — Column Selector,Functional,High,1. You are on the report with data and the column selector open.,"1. Turn the ""Shop Supplies"" toggle off, then on again, watching the table.
 2. Read the toggle list for Customer, Subtotal, or a chevron entry.
 3. Turn all nine toggles off and read the table.","1. Turning a toggle off hides that column's header and all its body cells together; turning it on restores both together.
@@ -299,7 +300,7 @@ The overflow menu holds exactly the four download items - no Print,SBC — Expor
 2. Open it and read the items in order.
 3. Look around the toolbar for any separate always-visible export buttons.","1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.
 2. The menu items read, in order: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", ""Download Summary (CSV)"", ""Download Expanded View (CSV)"" - and there is NO ""Print"" item anywhere in the menu.
-3. There are no separate always-visible export buttons - all exports live behind this one menu.",SV-8612; SV-8613 (SBC spec S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 - menu RESHAPED to 4 Summary/Expanded items by Chris Ward msg 2026-07-29 [newest-wins] [extends video P21]; 'Print' REMOVED per video P25 [same msg confirms]),,
+3. There are no separate always-visible export buttons - all exports live behind this one menu.","SV-8612; SV-8613 (SBC spec v12 2026-07-29 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + ""Print"" removed per Chris Ward 2026-07-29 [newest-wins])",,
 Download file names carry the version and the active date range,SBC — Exports,Functional,High,1. You are on the report with data.,"1. Set the range to This Month, choose ""Download Summary (CSV)"" and note the downloaded file name.
 2. Choose ""Download Expanded View (CSV)"" and note that file name.
 3. Repeat both for at least Today, Last Quarter, and a Custom range.
@@ -340,7 +341,7 @@ Each download item shows a loading state and its own export-failed toast,SBC —
 2. Look for any mention of the selected location.","1. The header is two columns: a text block on the left (70% width) and the organization logo on the right (30% width).
 2. The text block shows the report title ""Sales By Customer Report""; the organization name; the date range; and the filter summary line ""Product Type: {value}"" where value is ""Parts & Service,"" ""Parts only,"" or ""Service only.""
 3. The header date range shows start and end in the format ""Mon D, YYYY,"" joined by an em dash - for example, ""May 1, 2026 - May 31, 2026"" - and always shows both dates (every range is bounded).
-4. The header also carries a ""Locations:"" line naming the location(s) the report was scoped to (exact placement within the header is confirmed in the build).",SV-8613 (SBC spec Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11 - old 'location not in the header' rule REVERSED by the Locations: line in every export per Chris Ward msg 2026-07-29 [newest-wins]),,
+4. The header also carries a ""Locations:"" line naming the location(s) the report was scoped to (exact placement within the header is confirmed in the build).","SV-8613 (SBC spec v12 2026-07-29 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the ""Locations:"" line in every export [Chris Ward 2026-07-29; newest-wins])",,
 "PDF logo is embedded, scales without distortion",SBC — Exports,Functional,Low,1. You can toggle the organization's uploaded logo on/off in administration (restore it afterwards).,"1. With an uploaded org logo, download the PDF and check the top-right.
 2. Remove the uploaded logo, download again, and check.
 3. Open a PDF while offline to confirm the logo still renders.","1. With an uploaded logo, that logo appears pinned to the top-right, scaled to fit its area without distortion.
@@ -370,7 +371,7 @@ Summary and Expanded View downloads exist for both PDF and CSV,SBC — Exports,F
 2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows.
 3. Each Expanded View file contains the full Customer, then Asset, then Invoice breakdown.
 4. All four files reflect exactly the filtered data shown on screen.
-5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added with the identifying columns, ahead of the money columns (the Summary files have no Date column for it to follow — confirm its exact position in the build).",SV-8612; SV-8613; SV-8603 (SBC spec v12 2026-07-29 Story 14 S14-R1/R2/R4 + Story 15 S15-R1/R2/R4/R5 + Story 4 S4-R13 — four-item Summary/Expanded menu and the Summary column list; plus the automatic Location column in every export),,
+5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added with the identifying columns, ahead of the money columns (the Summary files have no Date column for it to follow — confirm its exact position in the build).",SV-8612; SV-8613; SV-8603 (SBC spec v12 2026-07-29 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export),,
 Filters; sort and visible columns are restored on the next visit,SBC — Saved View & Persistence,Functional,Critical,1. You are on the report in a browser you can revisit.,"1. Set a non-default date range, Product Type, location selection, a two-customer Customer selection, a non-default sort, and hide one column.
 2. Navigate away to another part of the application, then return to the report.
 3. Watch the report as it loads.","1. The saved view is restored: the date range, the Product Type, the location selection, the Customer filter selection, the sort column and direction, and the visible columns.
@@ -516,13 +517,13 @@ An invoice sits in the range by its own invoice date; endpoints included,SBR —
 2. ""Parts only"" includes only invoices whose number starts with P.
 3. ""Service only"" includes only invoices whose number starts with S.
 4. ""Parts & Service"" applies no product-type filter — both appear again.
-5. Each change re-fetches and re-renders the report.",SV-8621 (specs/sbr-sales-by-representative.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7),,
+5. Each change re-fetches and re-renders the report.","SV-8621 (SBR spec v15 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7 — S3-R2 CLOSES the list itself (""exactly three options""); so the closed list IS the requirement)",,
 Invoice Status offers exactly four options; All Statuses is the default,SBR — Invoice Status Filter,Functional,High,1. You are on the report with no remembered settings.,"1. Find the ""Invoice Status"" dropdown in the toolbar and read its default value.
 2. Open it and read the options.
 3. Change the selection and watch the table.","1. An ""Invoice Status"" dropdown is visible in the toolbar.
 2. It offers exactly four options: ""All Statuses,"" ""Unpaid,"" ""Partially Paid,"" ""Paid.""
 3. ""All Statuses"" is the default on first load.
-4. Changing the selection re-fetches and re-renders the report.",SV-8622 (specs/sbr-sales-by-representative.md Story 4 S4-R1; S4-R2; S4-R3; S4-R5),,
+4. Changing the selection re-fetches and re-renders the report.","SV-8622 (SBR spec v15 2026-07-29 Story 4 S4-R1; S4-R2; S4-R3; S4-R5 — S4-R2 CLOSES the list itself (""exactly four options""); so the closed list IS the requirement)",,
 Status filtering matches on the mapped display value,SBR — Invoice Status Filter,Functional,Critical,"1. ZZAUTOTEST invoices exist under one rep covering the payment situations: fully paid; overpaid; prepaid with zero balance owed; prepaid with a balance still owed; partially paid; unpaid.
 2. Seed the prepaid-with-zero-balance situation the realistic way: the customer pays a DEPOSIT up front that fully covers the work, so the invoice is created with nothing left to pay.","1. Filter to ""Paid"" and read which invoices appear.
 2. Filter to ""Partially Paid"" and read again.
@@ -650,7 +651,7 @@ Money columns use the standardized labels and definitions,SBR — Inv. Hrs & Cal
 2. Read that invoice's row values and recalculate each by hand.","1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
 2. Subtotal = Labor Invoiced + Parts Invoiced, BEFORE tax.
 3. Labor Margin = Labor Invoiced − labor cost; Parts Margin = Parts Invoiced − parts cost; Margin = Labor Margin + Parts Margin.
-4. The same values appear everywhere the numbers show (screen, and later the exports).",SV-8582 (SBR spec §3 definitions; §4 Terminology — money-column labels and the Subtotal/Margin definitions; CROSS-CUTTING across every SBR row level with no single owning story),,
+4. The same values appear everywhere the numbers show (screen, and later the exports).",SV-8623; SV-8582 (SBR spec v15 2026-07-29 S5-R2 = the authoritative 12-column left-to-right order; §3 definitions; §4 Terminology — S5-R2 CLOSES the money-label list; Location sits after Status [S21-R7] and is not a money column),,
 Negative dollar values render in accounting parentheses; money columns only,SBR — Inv. Hrs & Calculations,Functional,Medium,"1. A row with a negative money value exists (e.g., a net credit/return invoice, or a negative Labor Margin from cost exceeding billed labor — seed ZZAUTOTEST data).","1. Read the negative money cell.
 2. Read a negative Inv. Hrs cell and a negative Margin % cell for comparison.","1. Negative dollar values render in accounting-convention parentheses — ($1,234.56) — on screen, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Subtotal).
 2. Inv. Hrs (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses.",SV-8593 (SBR spec §3 Key Decisions accounting parentheses — owned by the shared A5 report-shell formatter module: verbatim 'accounting-parens negatives'),,
@@ -684,7 +685,7 @@ Mobile shows a simplified totals bar below the table; Subtotal at right,SBR — 
 3. Scroll the page vertically and watch the bar.","1. A simplified external totals bar sits directly below the table, outside its horizontal scroll container, showing ""Totals"" on the left and the grand Subtotal on the right (no other metrics).
 2. It does not scroll horizontally — it is always fully visible across.
 3. During vertical page scroll it sits after the table in normal flow (not pinned to the viewport bottom).
-4. It uses the white card surface with a thin top border.",SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R5 (mobile); Story 17 S17-R4),,
+4. It uses the white card surface with a thin top border.","SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5 (mobile branch) + Story 17 S17-R4 — S10-R5 CLOSES it in the spec's own words: ""Totals"" left and the grand Subtotal right ""(no other metrics)"")",,
 All eight financial columns are sortable,SBR — Sorting,Functional,High,1. Several reps with differing values are on the report.,"1. Click each financial column header in turn: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.
 2. Click the Date, Invoice, Customer, and Status headers.","1. Each financial column responds to a header click and reorders the rep rows.
 2. The identifier columns (Date, Invoice, Customer, Status) do not respond to header clicks.
@@ -791,7 +792,8 @@ Column selector: seven metric toggles; five always-on columns cannot be hidden,S
 5. Hide all seven metric columns and read the table and the grand Totals indicator.","1. The dropdown lists the seven toggleable metric columns, each with a toggle switch: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %.
 2. On first visit all seven metric columns are visible.
 3. The five always-visible columns (Date, Invoice, Customer, Status, Subtotal) do not appear in the dropdown and cannot be hidden.
-4. With all seven metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state.",SV-8637 (specs/sbr-sales-by-representative.md Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1),,
+4. With all seven metric columns hidden the table still renders the five always-on columns and the grand Totals indicator — no empty or error state.
+5. Note for the tester: if you have more than one location in scope you will also see a Location column on the table that is in neither list. That is correct - it appears by itself and is not something you can switch on or off here.",SV-8637 (SBR spec v15 2026-07-29 Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1 — S20-R2/S20-R3 CLOSE the seven toggles and the five always-on columns; Location is automatic and in neither list [S21-R7]),,
 Toggling a column applies at once to summary; detail and Totals rows,SBR — Column Selector,Functional,Medium,1. A rep is expanded and the Totals indicator is visible.,"1. Toggle ""Parts Margin"" off and immediately check the summary rows, detail rows, and the Totals row.
 2. Toggle it back on.","1. The toggle takes effect immediately — no confirm step.
 2. Hiding a metric column removes it from rep summary rows, invoice detail rows, and the grand Totals indicator simultaneously; showing restores it everywhere at once.",SV-8637 (specs/sbr-sales-by-representative.md Story 20 S20-R4; S20-R7),,
@@ -820,7 +822,7 @@ The A to Z default is its own saved value,SBR — Persistence,Functional,Medium,
 The ⋯ overflow menu lists exactly four download actions,SBR — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Sales By Representative report.","1. Find the ⋯ (three-dot) button in the report toolbar — it is the first control in the toolbar's action cluster.
 2. Click it and read the menu entries top to bottom.","1. The menu lists exactly four actions: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", ""Download Summary (CSV)"", and ""Download Expanded View (CSV)"".
-2. No other entries appear in the menu.",SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R1; Story 17 S17-R3 (position)),,
+2. No other entries appear in the menu.","SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R1 + Story 17 S17-R3 (position) — S14-R1 CLOSES it in the spec's own words (""lists exactly four actions""); so the closed list IS the requirement)",,
 "All four downloads respect filters, full result set, and active order",SBR — Exports,Functional,Critical,"1. You are on the report with several reps showing.
 2. Set a specific date range, Product Type, Invoice Status, and a location selection; turn Show Unassigned on.
 3. Sort by a financial column (for example, click the Subtotal header).
@@ -830,7 +832,7 @@ The ⋯ overflow menu lists exactly four download actions,SBR — Exports,Functi
 2. The files reflect the FULL result set for those filters — a collapsed (never-expanded) rep's invoices still appear in the Expanded View files; on-screen expansion state does not matter.
 3. Rep rows appear in the report's currently-active order — the active column sort if one is set, otherwise the A→Z default.
 4. The Unassigned row (Show Unassigned on) is pinned first, ahead of the sorted reps.
-5. Every file (all four downloads, PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",SV-8631 (SBR spec Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4 + Locations: line in every export per Chris Ward msg 2026-07-29 [newest-wins]),,
+5. Every file (all four downloads, PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).","SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2; S14-R2a; S14-R20 + Story 21 S21-R6 + Story 22 S22-R4 — all four downloads honour the filters; the full result set and the active order; S14-R20 = the ""Locations:"" line in every export)",,
 Summary PDF: one rolled-up row per rep with a recomputed grand totals row,SBR — Exports,Functional,Critical,"1. You are on the report with at least two reps showing, one of them a toggled-off (""(Inactive)"") contributor if one can be arranged.
 2. A date range is selected.","1. Choose ""Download Summary (PDF)"" from the ⋯ menu and open the file.
 2. Read the top of the first page, the column headers, one rep row, and the last row.
@@ -857,7 +859,7 @@ Expanded View PDF truncates invoice numbers longer than 18 characters,SBR — Ex
 2. Scroll through every page of both PDFs and read the footer.
 3. With the organization logo not configured, download a PDF again and look at the header strip's logo region.","1. The files are named exactly ""sales-by-representative-summary.pdf"" and ""sales-by-representative-expanded.pdf"".
 2. A footer reading ""Software Powered by ShopView"" appears on EVERY page of both PDFs.
-3. With no configured logo, the logo region falls back to the default ShopView logo and the PDF still generates normally.",SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R4; S14-R3a; S14-R11),,
+3. With no configured logo, the logo region falls back to the default ShopView logo and the PDF still generates normally.","SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3a; S14-R4; S14-R11 — S14-R11 CLOSES both PDF filenames verbatim (""deterministic"") and S14-R4 closes the footer string; so the exact strings ARE the requirement)",,
 "PDFs render negative dollars in accounting parentheses, keep the (Inactive) tag",SBR — Exports,Functional,Medium,"1. The current view includes at least one negative money value (for example, a net-credit/return invoice — seed one if needed) and, if arrangeable, one toggled-off ""(Inactive)"" contributor.","1. Download both PDFs.
 2. Find the negative money value in each and read how it is written.
 3. Read the rep names in both PDFs.","1. Negative dollar values render in accounting parentheses — for example ($1,234.56) — in both PDFs, with no extra color treatment.
@@ -907,7 +909,7 @@ A failed download shows the canonical error toast,SBR — Exports,Negative,Mediu
 Over-cap Expanded View PDF is refused with the too-large message,SBR — Exports,Negative,Medium,"1. A filter set exists (or can be seeded) whose invoice detail rows exceed 10,000 — if this volume cannot be produced in the environment, mark Blocked-Env with the reason.","1. Apply the over-cap filter set.
 2. Choose ""Download Expanded View (PDF)"" and read the toast.","1. No file is produced — the server declines rather than generating a truncated file.
 2. An error toast reads exactly: ""This report is too large to export. Narrow the date range or filters, then try again."" (persists 120 seconds or until dismissed).
-3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected).",SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E2; §7),,
+3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected).",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2; §7 — 10k-row export cap; no truncated file; toast persists 120s; the toast STRING is the ONE suite-wide message ruled by Chris Ward 2026-07-31 Q2=A [newest-wins]; his SBR spec edit is pending),,
 An empty-data export still generates with zeroed Summary PDF totals,SBR — Exports,Functional,Medium,"1. The current filter set matches ZERO invoices (for example, a date range with no activity) — the report shows its empty state.","1. Download all four files from the ⋯ menu.
 2. Open each and inspect its contents.","1. All four downloads produce a FILE, not an error.
 2. The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Inv. Hrs columns and ""—"" for Margin %.
@@ -927,7 +929,8 @@ Report Name dropdown lists Sales Representative Assignments at the bottom,SBR �
 3. Open the file in a text editor and read the header row.","1. The file downloads as ""sales-representative-assignments.csv (the short form ""rep"" is gone from the file name — confirm the exact final file name in the build)"".
 2. A success toast shows ""Success"" with the caption ""Report downloaded."" and auto-fades after 5 seconds.
 3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?.
-4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.",SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R3; S15-R4; §7),,
+4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
+5. Note for the tester: this file has only those three columns even if you have several locations in scope. It is a separate customer-to-representative list, not one of the report's four downloads, so it has no Location column - do not fail it for that.","SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R3; S15-R4; §7 — S15-R4 CLOSES the three headers; ""Sales Rep""→""Sales Representative"" per Chris Ward 2026-07-31 Q5 [newest-wins]; NOT one of the four report exports so S14-R20 adds no Location)",,
 "Assignments CSV: one row per assigned customer, sorted customer then rep",SBR — Sales Rep Assignments Export,Functional,High,1. The organization has several customers with assigned reps and at least one customer with NO assigned rep (seed as needed).,"1. Download the Sales Representative Assignments CSV.
 2. Count the rows against the customers with assigned reps.
 3. Search for the no-rep customer.
@@ -1006,9 +1009,10 @@ Chevrons and sortable headers are keyboard-operable and expose their state,SBR �
 3. Inspect what state each control exposes to assistive technology.","1. The row chevrons and the sortable column headers are keyboard-focusable and activate on Enter and on Space.
 2. A chevron exposes its expanded/collapsed state to assistive technology.
 3. A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology.",SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R10),,
-The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast,SBR — Visual Conformance & Accessibility,Accessibility,Medium,"1. You are on the report with a rep row showing a (N) count and — if arrangeable — an ""(Inactive)"" tag; a contrast-checking tool is available.","1. Measure the contrast ratio of the subdued-grey (N) count and ""(Inactive)"" tag against the white body surface in light mode, and against the dark surface in dark mode.
-2. Review how Inv. Hrs, the status badges, and the links convey their meaning.","1. The subdued grey meets at least WCAG AA contrast (4.5:1 or better) against the body surface in BOTH modes — the reduced font size does not drop it below that ratio.
-2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.",SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R11; S18-R12),,
+The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast,SBR — Visual Conformance & Accessibility,Accessibility,Medium,"1. You are on the report with a rep row showing a (N) count and - if arrangeable - an ""(Inactive)"" tag.","1. Read the subdued-grey (N) count and the ""(Inactive)"" tag in light mode, then switch to dark mode and read them again.
+2. Review how Inv. Hrs, the status badges, and the links convey their meaning.","1. In BOTH light mode and dark mode the subdued-grey (N) count and the ""(Inactive)"" tag are easy to read against the surface behind them - the smaller text does not fade into the background.
+2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.
+3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can read the grey text easily in both modes, and only report it if you cannot. (The design rule behind this is WCAG AA contrast of at least 4.5:1, which the design and engineering team check with a contrast tool - not by hand.)","SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R11; S18-R12 — subdued-grey (N) count and ""(Inactive)"" tag at ≥ 4.5:1 WCAG AA in both modes; nothing conveyed by colour alone; the ratio is a design-token property so the check is by-eye)",,
 "Sales Representative selector shows on WO and Part Sale, not on imported",SBR — Work Order Sales Rep,Functional,High,"1. You have: an open standard Work Order, an open Part Sale WO, an imported Work Order, and a way to view a WO in History mode.","1. Open the standard Work Order and look at the left panel.
 2. Open the Part Sale WO and look at the left panel.
 3. Open the imported Work Order and look for the same field.
@@ -1102,12 +1106,13 @@ A user with ordinary reports access can load the report and export it,PV — Per
 Without the Manager or Office User role the report entry is not shown,PV — Permissions,Negative,High,1. You are signed in as a user whose role is neither Manager nor Office User (a role without access to the Reports section).,"1. Look at the application's main navigation.
 2. Try to find the Reports section and the Parts Velocity entry.","1. The user cannot reach the Reports section.
 2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule).",SV-8641 (specs/parts-velocity.md S1-N1),,
-Reports access without Inventory Reports View: entry shows; data denied,PV — Permissions,Negative,High,"1. You are signed in as a user with the Manager or Office User role.
-2. That user's role does NOT have the Inventory Reports → View permission.","1. Open the Reports section and look for the Parts Velocity entry under Parts.
+Ordinary reports access alone opens Parts Velocity and its export,PV — Permissions,Negative,High,"1. You are signed in as a user with the Manager or Office User role.
+2. That user's role has the ordinary reports access turned on (the standard ""can this person see reports"" setting) and no other reports-related permission turned on.","1. Open the Reports section and look for the Parts Velocity entry under Parts.
 2. Click the Parts Velocity entry.
-3. If any export control is reachable, try to export.","1. The Parts Velocity navigation entry is still visible (the entry follows Reports-section access, not the report permission).
-2. On opening the report, the standard access-denied state is shown instead of data.
-3. The export is likewise denied - no file downloads.",SV-8641 (specs/parts-velocity.md S1-N2; S1-R4),,
+3. Use the export control on the report and download a file.","1. The Parts Velocity entry is visible in the Reports navigation under Parts.
+2. Opening it shows the report data - not an access-denied screen.
+3. The export downloads.
+4. Note for the tester: for now ONE ordinary reports access opens all six of these new reports, and no report has a permission of its own. If an extra Parts or Inventory reports permission does exist and switching it OFF blocks this report or its export, that is wrong - mark this Failed and report it. If a separate per-report permission is ever added on purpose in a later release, this test will be updated first, so treat that as a planned change and not as a bug.","SV-8641 (PV spec S1-N2; S1-R4 - RESCOPED 2026-08-03: the old ""Reports access without Inventory Reports View"" state cannot exist under one permission; Chris Ward Q2=A + ""they can exist and not do anything""; QA lead ""ONE permission FOR NOW"")",,
 "Type filter: single-select, first in row, three options, default Both; reloads",PV — Filters,Functional,High,"1. You are on the Parts Velocity report with data loaded.
 2. This is a first visit (no saved view), so the first-visit defaults apply.
 3. Both inventory parts and special-order parts (the ""Special Order"" type) have sales activity in the selected date range.","1. Look at the first control in the filter row of the toolbar.
@@ -1117,12 +1122,12 @@ Reports access without Inventory Reports View: entry shows; data denied,PV — P
 2. It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock).
 3. On a first visit the default is Both.
 4. Both is an explicit selection returning inventory and Special Order rows together - a deliberate filter value, not the absence of a filter.
-5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear.",SV-8642 (PV spec S2-R1; S3-R5 - 'Catalogue' RENAMED to the exact label 'Special Order' [Type filter; Type column; export] per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31]),,
+5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear.",SV-8642 (PV spec v4 2026-07-29 S2-R1; S3-R5 — S2-R1 CLOSES the three Type options and the Both default; 'Catalogue'→'Special Order' per Chris Ward 2026-07-29 [newest-wins]),,
 Date range selector offers exactly the eleven bounded options and no All Time,PV — Filters,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the date range selector and read every option.
 2. Select a non-custom option (for example Last Month).","1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
 2. There is NO 'All Time' option - the report always operates over a bounded date window (deliberate, per the spec's Out of Scope).
 3. Selecting a non-custom option immediately reloads the report data.
-4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).",SV-8642 (specs/parts-velocity.md S2-R2; §2 Out of Scope),,
+4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).","SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (""offering exactly these options"") and rules out ""All Time""; so the closed list IS the requirement)",,
 A Custom date range needs valid dates and rejects a span over 366 days,PV — Filters,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the date range selector and choose Custom.
 2. Pick only a start date and observe - then pick an end date earlier than the start and observe.
 3. Pick a valid start and end date (start on or before end, within 366 days).
@@ -1176,7 +1181,7 @@ Bin filter excludes special-order rows; Bin plus that Type is empty by design,PV
 7. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",SV-8642 (PV spec S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins],,
 Empty state shows the standard no-data message when no parts match the filters,PV — Filters,Negative,Medium,1. You are on the Parts Velocity report with data loaded.,"1. Type a nonsense string (for example 'zzqx-no-such-part') into the toolbar search so no part matches.
 2. Read the message shown in the data area.","1. The server returns zero rows and the table shows the empty state.
-2. The empty-state label reads exactly: ""Empty bays, endless possibilities. Get Going!"" (the application's standard reports no-data label).",SV-8642 (specs/parts-velocity.md S2-R11; S2-N1; §7),,
+2. The empty-state label reads exactly: ""Empty bays, endless possibilities. Get Going!"" (the application's standard reports no-data label).","SV-8642 (PV spec v4 2026-07-29 S2-R11; S2-N1; §7 — §7 CLOSES the empty-state string verbatim (""Empty bays"" ... ""Get Going!"") as the standard reports no-data label; so the exact string IS the requirement)",,
 Parts with no category; vendor or bin are excluded when that filter is on,PV — Filters,Negative,Medium,"1. You are on the Parts Velocity report with data loaded.
 2. A part with in-window activity exists that has NO category assigned; another with NO vendor; an inventory part with NO bin location.","1. Confirm the three parts appear with no filters active.
 2. Activate any Category filter and look for the category-less part.
@@ -1243,7 +1248,7 @@ Info icons sit on Units Sold; Demand and Turns / Yr with descriptions,PV — Row
 3. Demand shows exactly: ""Number of separate transactions (work orders or parts sales) this part appeared on in the selected date range. Each transaction counts once, no matter how many units were sold on it.""
 4. Turns / Yr shows exactly: ""How many times you sell through this part in a year. Higher is better.""
 5. The icon is focusable and exposes the same text to assistive technology; activating it does NOT trigger a column sort.
-6. No other column header carries an info icon.",SV-8643 (specs/parts-velocity.md S3-R6),,
+6. No other column header carries an info icon.",SV-8643 (PV spec v4 2026-07-29 S3-R6 — S3-R6 CLOSES the set (exactly three columns: Units Sold; Demand; Turns / Yr) and quotes each description verbatim; so the closed set and the exact strings ARE the requirement),,
 Description; Category and Vendor truncate on hover; Part # never does,PV — Row Model,Functional,Medium,"1. A part with a very long description (and a long category and vendor name) has in-window activity.
 2. A part with a long part number exists.
 3. You are on the Parts Velocity report with those parts visible.","1. Look at the long Description, Category, and Vendor cells.
@@ -1427,12 +1432,12 @@ Units Sold keeps an exact part-of-a-unit quantity and is never rounded off,PV �
 4. No value anywhere on the row has been quietly rounded to a whole number.",SV-8589 (PV spec S5-R1 Units Sold net stock movement + S5-R5 two-decimal movement format; tech-plan-2026-07-29 Phase 0 / PR-1 D2; SV-8589 verbatim Tests: 'fractional-quantity round-trip regression'),,
 The overflow button opens Download (PDF) then Download (CSV) in that order,PV — Exports,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Find the ⋯ overflow button - the leftmost control in the toolbar's action cluster.
 2. Click it and read the menu items top to bottom.","1. The ⋯ overflow button sits leftmost in the toolbar's action cluster.
-2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).",SV-8646 (specs/parts-velocity.md S6-R1),,
+2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).","SV-8646 (PV spec v4 2026-07-29 S6-R1 — S6-R1 CLOSES it in the spec's own words (""an export menu with two items ... Download (PDF) and Download (CSV)""); so the closed list IS the requirement)",,
 Both exports reflect the filters and search active at the time of export,PV — Exports,Functional,High,"1. You are on the Parts Velocity report with data loaded across types, categories, and locations.","1. Set a distinctive filter mix: Type = Inventory, a single category, a short date range, and a search string.
 2. Download the CSV and open it.
 3. Download the PDF and open it.","1. Both files contain only the rows matching the date range, type, category, vendor, bin, location, and search active at export time - not a full unfiltered dump.
 2. The exported rows match what the on-screen grid was showing.
-3. Each file (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",SV-8646 (specs/parts-velocity.md S6-R2; §3 Key Decisions + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
+3. Each file (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).","SV-8646 (PV spec v4 2026-07-29 S6-R2; S6-R11; §3 Key Decisions — both exports reflect the filters and search active at export time; S6-R11 = the ""Locations:"" line in both exports [Chris Ward 2026-07-29; newest-wins])",,
 "Exports include only the enabled columns, in the canonical on-screen order",PV — Exports,Functional,Medium,1. You are on the Parts Velocity report with data loaded.,"1. Hide two default columns (e.g. Category, Margin %) and enable a hidden one (e.g. Units Returned).
 2. Download the CSV and read its column headers in order.
 3. Download the PDF and read its columns in order.","1. Both exports contain ONLY the currently enabled columns - the hidden ones are absent.
@@ -1473,7 +1478,7 @@ Export toasts: exact success texts; server or fallback error text on failure,PV 
 2. Trigger a CSV export under the failure condition and read the toast.
 3. Trigger a PDF export under the failure condition and read the toast.","1. On success the toasts read exactly ""Velocity report exported (CSV)"" / ""Velocity report exported (PDF)"" and auto-fade — UPPERCASE (CSV)/(PDF).
 2. An error toast is shown on failure; when the server provides a message, that server message is shown.
-3. Otherwise the failure toast reads exactly: ""Failed to export velocity report (csv)"" or ""Failed to export velocity report (pdf)"" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",SV-8646 (specs/parts-velocity.md S6-R9; S6-N1; §7 (casing note)),,
+3. Otherwise the failure toast reads exactly: ""Failed to export velocity report (csv)"" or ""Failed to export velocity report (pdf)"" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",SV-8646 (PV spec v4 2026-07-29 S6-R9; S6-N1; §7 (casing note) — S6-R9/S6-N1 CLOSE the toast strings verbatim including the shipped UPPERCASE-success / lowercase-failure casing mix; so the exact strings ARE the requirement),,
 An over-cap Parts Velocity export is refused with the too-large message,PV — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set).","1. Set the filters so the filtered set exceeds the export row cap.
 2. Request the CSV download and read what happens.
@@ -1493,8 +1498,9 @@ Toolbar and table detail styling matches the suite paddings and borders,PV — V
 4. The leftmost cell in every row (header and body) has 2rem left padding; the rightmost cell has 2rem right padding.",SV-8647 (specs/parts-velocity.md S7-R2; S7-R3; S7-R4; S7-R5),,
 Dark mode is supported and the grey info icon keeps 3:1 contrast in both,PV — Visual Conformance,Functional,Low,1. You are on the Parts Velocity report with data loaded and dark mode available in the application.,"1. Switch the application to dark mode.
 2. Look at the page background, toolbar, and cells.
-3. Check the grey ⓘ info icon against its cell background in dark mode, then again in light mode.","1. The report supports dark mode: page background, toolbar, and cells use their dark-mode equivalents.
-2. The grey ⓘ info icon uses a token meeting at least a 3:1 contrast ratio against the cell background in BOTH light and dark mode.",SV-8647 (specs/parts-velocity.md S7-R6),,
+3. Look at the grey ⓘ info icon next to a column heading in dark mode, then switch back to light mode and look at it again.","1. The report supports dark mode: page background, toolbar, and cells use their dark-mode equivalents.
+2. In BOTH light mode and dark mode the grey ⓘ info icon is clearly visible against the cell behind it - you can see it at a glance without leaning in, and it does not disappear into the background.
+3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes. Only report it if the icon is hard to see. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)",SV-8647 (PV spec v4 2026-07-29 S7-R6 — dark-mode support + the grey info icon's colour token at ≥ 3:1 against the cell background in both modes; the ratio is a design-token property so the manual check is by-eye legibility),,
 The report is server-paginated - the backend returns one page of rows at a time,PV — API,Functional,Medium,"1. You are on the Parts Velocity report with more rows in the result set than one page holds.
 2. Browser devtools (network tab) are open to observe the backend requests.","1. Load the report and observe the backend data request and its response size.
 2. Move to the next page of rows and observe the traffic.","1. The backend returns ONE page of rows at a time - the full result set is not shipped to the browser.
@@ -1509,11 +1515,12 @@ Header-click sorting re-queries the server; nulls first asc and last desc,PV —
 3. Note where the null rows land in the server-returned order for each direction.","1. Each header click re-fetches the data from the server, ordered by the chosen column and direction, returning the first page of the re-sorted result set.
 2. Null values are placed FIRST on ascending and LAST on descending - as a server sort semantic, so the same order appears on screen and in the exports.
 3. Ties keep a stable order (no explicit secondary key).",SV-8643 (specs/parts-velocity.md S3-R3),,
-The backend denies report data AND export without Inventory Reports View,PV — API,Negative,High,"1. You are signed in as a Reports-section user whose role lacks the Inventory Reports → View permission.
+The back end serves report data and export on ordinary reports access,PV — API,Negative,High,"1. You are signed in as a user whose role has the ordinary reports access turned on and no other reports-related permission turned on.
 2. Browser devtools (network tab) are open.","1. Open the Parts Velocity report and observe the backend data request's outcome.
-2. Attempt the export and observe the backend export request's outcome.","1. The backend REFUSES the report data request - the user is denied the data (the UI shows the standard access-denied state).
-2. The backend likewise refuses the export request - no file is produced.
-3. Both loading and exporting are gated by the same Inventory Reports → View permission.",SV-8641 (specs/parts-velocity.md S1-R4; S1-N2),,
+2. Attempt the export and observe the backend export request's outcome.","1. The back end returns the report data - the request is not refused.
+2. The back end returns the export file - the request is not refused.
+3. Both requests succeed with only the ordinary reports access turned on - nothing else had to be enabled.
+4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the system it must not change these results - for now it is hidden from the screen and enforces nothing. A per-report permission added on purpose in a later release is a planned change, not a bug, and this test will be updated first.","SV-8641 (PV spec S1-R4; S1-N2 - RESCOPED 2026-08-03; same driver as C30327: Chris Ward Q2=A ""single Reports permission"" + ""they can exist and not do anything""; QA lead ""ONE permission FOR NOW"")",,
 QuickBooks amount for a part-of-a-unit sale is exact and never inflated,PV — API,Functional,Critical,"1. The test company is connected to QuickBooks.
 2. The part-of-a-unit sale has been made and invoiced — a ZZAUTOTEST part sold in a quantity such as 2.5, at a known unit cost such as $10.00.
 3. You can sign in to that QuickBooks company and look at its journal entries.","1. Write down the quantity sold and the part's unit cost, and work out the correct amount by hand (2.5 x $10.00 = $25.00).
@@ -1563,7 +1570,7 @@ Standard no-data message when no time in scope or all technicians cleared,TU —
 2. Read the message in the data area and look for the Summary row.
 3. Separately, with rows loaded, use ""Clear all"" in the Filter by Technician filter and re-read the data area and the Summary row.","1. Instead of rows, the data area shows exactly: ""Empty bays, endless possibilities. Get Going!"" (the application's standard reports no-data label).
 2. The Summary row is hidden.
-3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter.",SV-8648 (specs/technician-utilization.md S1-N2; S9-N2; S5-N1; S3-N1; §7),,
+3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter.","SV-8648 (TU spec v5 2026-07-29 S1-N2; S3-N1; S5-N1; S9-N2; §7 — §7 CLOSES the no-data string verbatim (""Empty bays"" ... ""Get Going!"") as the standard reports no-data label; so the exact string IS the requirement)",,
 "Headers in fixed order; Total, WO and Internal Hours show clocked hours (2 dp)",TU — Hours & Utilization,Functional,Critical,"1. A technician with known clocked time in the range: some clocked to work orders and some to an internal, non-billable activity (e.g. shop cleanup or a staff meeting).
 2. Part of the internal time was clocked at a location with NO default labor rate configured (for the completeness check).","1. Read the column headers left to right.
 2. Read the technician's Total Hours, WO Hours, and Internal Hours.
@@ -1663,14 +1670,15 @@ Each technician row has an accessible expand/collapse control,TU — Per-Day Bre
 3. Collapse the row again.","1. Each technician row has a control to expand and collapse it.
 2. Its accessible name reflects the NEXT action, scoped to that technician: when collapsed it reads Expand, then that technician's name, then daily breakdown (for example: Expand John Smith's daily breakdown); when expanded it reads Collapse, then the same name and words.
 3. The control is keyboard-focusable, toggles on Enter and Space, and exposes its expanded/collapsed state to assistive technology.",SV-8651 (specs/technician-utilization.md S4-R1; S8-R12),,
-"Expanding shows one row per clocked day in date order, loaded on demand",TU — Per-Day Breakdown,Functional,High,"1. A technician clocked time on several (but not all) days of the range - including, for the pooling check, time at two selected locations on the same day.
-2. Browser devtools (network tab) are open for the on-demand check.","1. Expand the technician's row and watch the network traffic.
-2. Read the day rows top to bottom.
-3. Look for rows on days the technician did not clock time.
-4. On the double-location day, count the rows for that date.","1. One row appears for each day the technician clocked time in the range, in date order from earliest to latest.
-2. The day rows are fetched ON EXPAND (on demand) - they are not shipped with the initial report payload.
+"Expanding shows one row per clocked day in date order, loaded on demand",TU — Per-Day Breakdown,Functional,High,"1. A technician clocked time on several (but not all) days of the range - including, for the pooling check, time at two selected locations on the same day.","1. Before expanding anything, look at the technician's row - there are no day rows under it yet.
+2. Expand the technician's row and watch the data area as the day rows appear.
+3. Read the day rows top to bottom.
+4. Look for rows on days the technician did not clock time.
+5. On the double-location day, count the rows for that date.","1. One row appears for each day the technician clocked time in the range, in date order from earliest to latest.
+2. The day rows are not there until you expand the row - they arrive at the moment you expand it (you may briefly see the standard loading indicator in that area), and the rest of the report does not reload.
 3. A day with no clocked time has NO row.
-4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location.",SV-8651 (specs/technician-utilization.md S4-R2; S4-N1; S9-R4),,
+4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location.
+5. Note for the tester: you do not need developer tools for this test - just watch the screen.","SV-8651 (TU spec v5 2026-07-29 S4-R2; S4-N1; S9-R4 — one row per clocked day in date order; load-on-expand; no row for an unclocked day; per-day pooling across selected locations; the back-end half is covered by C30449 in ""TU - API"")",,
 Day rows use the same columns and formats as the technician rows,TU — Per-Day Breakdown,Functional,Medium,1. A technician with known per-day clock records (work-order + internal) is expanded.,"1. Read one day row's Total Hours, WO Hours, Internal Hours, Utilization %, and Est. Lost Labor.
 2. Compare each against that single day's clock records.
 3. Check the number formats against the technician-row formats.","1. Each day row shows the same columns, in the same formats, as the technician row - with that day's values.
@@ -1694,12 +1702,13 @@ Filter by Technician starts with every technician selected on a first visit,TU �
 2. On the first visit, EVERY technician is selected.
 3. All technicians' rows are shown.",SV-8652 (specs/technician-utilization.md S5-R1; S5-R2),,
 Deselecting a technician hides the row and recalculates the Summary,TU — Technician Filter,Functional,High,"1. Several technician rows are visible and the Summary row shows their totals.
-2. Browser devtools (network tab) are open.","1. Note the Summary values, then deselect one technician in the Filter by Technician filter.
-2. Watch the network traffic and the Summary row.
+2. Note the current date range so you can confirm it does not change.","1. Note the Summary values, then deselect one technician in the Filter by Technician filter.
+2. Watch the data area and the Summary row.
 3. Re-select the technician.","1. The deselected technician's row is hidden.
 2. The Summary row recalculates over the technicians that remain visible.
-3. NO reload happens - the technician filter works on screen only and does not change the date range or re-query the server.
-4. Re-selecting the technician shows the row again (and the Summary recalculates back).",SV-8652 (specs/technician-utilization.md S5-R3; S5-R4; S5-R5; §3; S5 context note),,
+3. The report does NOT reload - the technician filter works on screen only: the rows and the Summary update straight away, no loading indicator appears in the data area, and the date range does not change.
+4. Re-selecting the technician shows the row again (and the Summary recalculates back).
+5. Note for the tester: you do not need developer tools for this test - just watch the screen.","SV-8652 (TU spec v5 2026-07-29 S5-R3; S5-R4; S5-R5 + §3 Key Decisions (""the technician filter works on screen only and does not reload the report""); S5 context note — the server half is covered by C30450 in ""TU - API"")",,
 Select all and Clear all controls set every technician on or off,TU — Technician Filter,Functional,Medium,1. Several technicians are in the current range; a different range exists in which an ADDITIONAL technician (not listed in the current range) has clocked time.,"1. In the Filter by Technician filter, use the control labeled ""Clear all"".
 2. Use the control labeled ""Select all"".
 3. Deselect one technician, then change the date range to the one containing the additional technician.
@@ -1763,7 +1772,8 @@ The Summary PDF holds the technician rows plus the Summary,TU — Exports,Functi
 2. Every download covers the location(s) currently selected in the location filter and the date range currently active on the report.
 3. With every technician selected, the download covers all technicians for the range at the selected location(s).
 4. Every download (each PDF and the CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
-5. Every download also mirrors the columns currently shown on screen — a column hidden in the Column Selection control is absent from the files, and a re-shown column comes back.",SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-E1; S9-R8 — S7-R10 now says the downloads include the columns currently shown; mirroring the column selector),,
+5. Every download also mirrors the columns currently shown on screen — a column hidden in the Column Selection control is absent from the files, and a re-shown column comes back.
+6. Note for the tester: when you have more than one location in scope, the files also carry a Location column even though it is not in the Column Selection control. That is correct - it appears by itself. With a single location in scope there is no Location column, and that is also correct.","SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-R13; S7-E1; S9-R8 — downloads mirror the shown columns and the technician/location/date scope; S7-R13 = the ""Locations:"" line and the automatic Location column)",,
 Downloads always order rows Technician A to Z; the on-screen sort is ignored,TU — Exports,Functional,Medium,"1. Rows exist including a ""—"" Est. Lost Labor value.
 2. The on-screen rows are sorted by something OTHER than Technician A to Z (e.g. Est. Lost Labor descending).","1. With the non-default sort applied, download the CSV and a PDF.
 2. Read each file's column order, number formats, and the ""—"" cell.
@@ -1781,7 +1791,7 @@ Choosing a download with no technician selected is a silent no-op,TU — Exports
 A starting download notifies; a failed one shows the failure message,TU — Exports,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded.
 2. You can force a download failure (e.g. drop the network connection just before triggering the download).","1. Trigger a normal download and read the notification.
 2. Trigger a download under the failure condition and read the notification.","1. When a download starts, a success notification reads exactly: ""Download started"".
-2. When a download fails, an error notification reads exactly: ""Failed to download report"".",SV-8654 (specs/technician-utilization.md Story 7 Error Handling; §7),,
+2. When a download fails, an error notification reads exactly: ""Failed to download report"".","SV-8654 (TU spec v5 2026-07-29 Story 7 Error Handling + §7 notifications table — these CLOSE both strings verbatim (""Download started"" / ""Failed to download report""); Story 7 has no S-anchor for them so §7 is the closing reference)",,
 An over-cap Technician Utilization export is refused with the too-large message,TU — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A range/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST clock records in bulk if needed, or use the largest available data set).","1. Set the date range and locations so the filtered set exceeds the export row cap.
 2. Request the CSV download and read what happens.
@@ -1859,10 +1869,11 @@ All-white table with no row shading; toolbar controls in the fixed order,TU — 
 Dark mode keeps every report element legible,TU — Visual & Accessibility,Functional,Low,"1. You are on the Technician Utilization report with rows loaded, including a ""—"" Est. Lost Labor cell.
 2. Dark mode is available in the application.","1. Switch the application to dark mode.
 2. Check each element: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and a ""—"" glyph.
-3. Measure the information icon's contrast against its background in dark mode, then in light mode.
-4. Check the Total Hours link's underline/affordance and focus indicator in both modes.","1. The report supports dark mode: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the ""—"" glyph all use dark-mode-legible colors meeting contrast.
-2. The information icon meets at least a 3:1 contrast ratio against its background in BOTH light and dark mode.
-3. The Total Hours link's non-color affordance and focus indicator apply in both modes.",SV-8655 (specs/technician-utilization.md S8-R9; S8-R13; S8-R14),,
+3. Look at the information icon in dark mode, then switch back to light mode and look at it again.
+4. Check the Total Hours link's underline/affordance and focus indicator in both modes.","1. The report supports dark mode: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the ""—"" glyph are all clearly legible in dark mode.
+2. In BOTH light mode and dark mode the information icon is clearly visible against the background behind it - you can see it at a glance and it does not disappear into the background.
+3. The Total Hours link's non-color affordance and focus indicator apply in both modes.
+4. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes, and only report it if you cannot. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)",SV-8655 (TU spec v5 2026-07-29 S8-R9; S8-R13; S8-R14 — dark-mode legibility of every named element; the info icon at ≥ 3:1 in both modes; the Total Hours link affordance/focus in both modes; the ratio is design-token-owned),,
 The per-day breakdown is fetched only when a technician row is expanded,TU — API,Functional,Medium,1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.,"1. Load the report and inspect the initial data response for per-day content.
 2. Expand a technician row and watch the network traffic.
 3. Collapse and re-expand after a data reload.","1. The initial report payload does NOT ship the day rows.
@@ -1881,13 +1892,13 @@ Work In Progress appears in the reports navigation under the Performance group,W
 3. Click the ""Work In Progress"" entry.
 4. Read the browser tab's page title.","1. The reports navigation lists a report labeled ""Work In Progress"" under the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency).
 2. Clicking it opens the Work In Progress report.
-3. The browser page title is exactly ""Work In Progress - Report | ShopView"" — a plain hyphen with one space on each side.",SV-8657 (WIP spec Story 1 S1-R1; S1-R5 — Performance group; below the named anchor items per the PRD video 2026-07-30; S1-R5 = browser page title; access = the one ordinary reports permission per QA lead 2026-08-03),,
+3. The browser page title is exactly ""Work In Progress - Report | ShopView"" — a plain hyphen with one space on each side.",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R1; S1-R5 — S1-R5 CLOSES the page title verbatim; Performance group below the named anchor items per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03),,
 Four tabs in a fixed order with the partially-completed tab selected,WIP — Tabs,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have not visited the report before in this browser (no saved active-tab setting).","1. Open the Work In Progress report.
 2. Read the tab labels from left to right.
 3. Look at which tab is selected when the report loads.","1. Four tabs are shown, labeled in this order: ""Approved - partially completed"", ""Approved - not started"", ""Completed"", and ""Estimates"".
 2. The ""Approved - partially completed"" tab is selected by default on load.
-3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).",SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter)),,
+3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement),,
 Each tab label shows its work-order count in parentheses,WIP — Tabs,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Open work orders exist in at least one tab for the current date range and location (seed ZZAUTOTEST work orders if needed).
 3. At least one tab currently has no work orders.","1. Open the Work In Progress report.
@@ -1960,7 +1971,7 @@ Status shows as a color-coded badge whose label text is always present,WIP — C
 2. The report shows work orders in several statuses (Estimate, Approved, In Progress, Review, Complete).","1. Read the Status column across rows in each tab.
 2. Compare each badge's color against the application's standard status colors used elsewhere.","1. Status is shown as a badge using the status's label: ""Estimate"", ""Approved"", ""In Progress"", ""Review"", or ""Complete"".
 2. The badge is color-coded per the application's standard status colors.
-3. The label text is always present, so color is never the sole signal of the status.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R6; Story 10 S10-R8),,
+3. The label text is always present, so color is never the sole signal of the status.","SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R6 + Story 10 S10-R8 — S4-R6 CLOSES the five status labels verbatim (""Estimate"" ... ""Complete"") and the label-not-colour rule; so the closed list IS the requirement)",,
 "Asset cell identifies the asset by VIN, falling back to Unit #, then plate",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows work orders including: one whose asset has a VIN recorded, one with no VIN but a Unit # recorded, and one with no VIN or Unit # but a plate recorded.","1. Read the Asset cell of the row whose asset has a VIN.
 2. Read the Asset cell of the row with no VIN, then the one with no VIN or Unit #.
@@ -2085,7 +2096,7 @@ Sorting reorders only the active tab's rows; Totals stays at the bottom,WIP — 
 The summary strip shows seven figures in a fixed order as US dollars,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Read the summary strip across the top of the report, left to right.
 2. Read each figure's number format.","1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.
-2. Every figure shows US-dollar currency with a leading ""$"", two decimals, and thousands separators.",SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R1; S5-R10),,
+2. Every figure shows US-dollar currency with a leading ""$"", two decimals, and thousands separators.",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R1; S5-R10 — S5-R1 CLOSES the seven figures and their order verbatim and S5-R10 closes the currency format; so the closed lists ARE the requirement),,
 Total Earned is the hero figure and equals the started-stage figures summed,WIP — Summary Strip,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs in the ""Approved - partially completed"" tab and the ""Completed"" tab with non-zero earned values.","1. Look at how the Total Earned figure is styled compared to the other six figures.
 2. Add the Started — Earned figure to the Ready to Invoice figure.
@@ -2236,7 +2247,8 @@ Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV),WIP �
 5. Repeat the same checks in the PDF.","1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.
 2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.
 3. Both downloads include a Totals row matching the on-screen Totals row for the tab.
-4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a — ""Locations:"" line in every CSV/PDF export per Chris Ward's 2026-07-29 message [NEWEST source; last-update-wins])",,
+4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
+5. Note for the tester: when you have more than one location in scope, the files also carry the location column even though you cannot turn it on or off - and in the file it is headed ""Branch"", not ""Location"". Both of those are correct. With a single location in scope there is no such column, and that is also correct.","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the ""Locations:"" line; S7-R13/S9-E1 = the automatic ""Branch"" column)",,
 Downloaded money and Inv. Hrs values keep the on-screen formats,WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current tab includes money values over $1,000 and, if producible, a negative value; the Inv. Hrs column is on.","1. Download the current tab as a CSV and open it in a plain-text editor.
 2. Read a money value over one thousand dollars and check its quoting.
@@ -2258,7 +2270,7 @@ Days Open in a download is frozen at the moment the file is generated,WIP — Ex
 2. The Work In Progress report is open with rows loaded.","1. Download the current tab as a PDF and read the saved file's name.
 2. Download the current tab as a CSV and read the saved file's name.","1. The PDF is named ""wip-2-report.pdf"".
 2. The CSV is named ""wip-2-report.csv"".
-3. These exact names (including the ""-2-"") are the specified current behavior.",SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R9),,
+3. These exact names (including the ""-2-"") are the specified current behavior.","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the ""-2-"" segment; so the exact strings ARE the requirement)",,
 "Export headers read ""Unit"" and ""Branch"" — documented limitation, do not file",WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Asset and Location columns are both turned on.","1. Read the two columns' headers on screen.
 2. Download the current tab as a CSV and read the same two columns' headers.
@@ -2643,7 +2655,8 @@ Inventory Value: a three-dot menu holds Download (PDF) and Download (CSV),IV —
 5. Repeat the checks in the PDF.","1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.
 2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.
 3. Both downloads include a totals row labeled ""Totals"" matching the on-screen totals (the full-filtered-set totals).
-4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",SV-8677 (specs/inventory-value.md Story 10 S10-R3; S10-R4; S10-R5; S10-R6 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
+4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
+5. Note for the tester: when you have more than one location in scope, the files also carry a Location column (between Vendor and Qty on Hand) even though it is not in the column-selection control. That is correct - it appears by itself. With a single location in scope there is no Location column, and that is also correct.","SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the ""Locations:"" line and the automatic Location column)",,
 Export number formats: money to 2 decimals; Margin % to 1 with em-dash,IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (""—"").","1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.
 2. Download the PDF and read the same values.","1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows ""—"".
@@ -2660,7 +2673,7 @@ PDF header shows report name; org; period and an as-of line; logo if set,IV — 
 Downloaded files are named inventory-value-report.pdf and .csv,IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Download the current view as a PDF and read the saved file's name.
 2. Download the current view as a CSV and read the saved file's name.","1. The PDF is named ""inventory-value-report.pdf"".
-2. The CSV is named ""inventory-value-report.csv"".",SV-8677 (specs/inventory-value.md Story 10 S10-R10),,
+2. The CSV is named ""inventory-value-report.csv"".",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R10 — S10-R10 CLOSES both file names verbatim; so the exact strings ARE the requirement),,
 Exports are generated server-side over the full filtered set,IV — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current filtered set spans more than one page (but stays under the export row cap).","1. From page 1, without visiting the later pages, download the CSV.
 2. Count the file's data rows and look for parts you know sit on the later pages.

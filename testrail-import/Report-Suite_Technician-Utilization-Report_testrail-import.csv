@@ -38,7 +38,7 @@ Standard no-data message when no time in scope or all technicians cleared,TU —
 2. Read the message in the data area and look for the Summary row.
 3. Separately, with rows loaded, use ""Clear all"" in the Filter by Technician filter and re-read the data area and the Summary row.","1. Instead of rows, the data area shows exactly: ""Empty bays, endless possibilities. Get Going!"" (the application's standard reports no-data label).
 2. The Summary row is hidden.
-3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter.",SV-8648 (specs/technician-utilization.md S1-N2; S9-N2; S5-N1; S3-N1; §7),,
+3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter.","SV-8648 (TU spec v5 2026-07-29 S1-N2; S3-N1; S5-N1; S9-N2; §7 — §7 CLOSES the no-data string verbatim (""Empty bays"" ... ""Get Going!"") as the standard reports no-data label; so the exact string IS the requirement)",,
 "Headers in fixed order; Total, WO and Internal Hours show clocked hours (2 dp)",TU — Hours & Utilization,Functional,Critical,"1. A technician with known clocked time in the range: some clocked to work orders and some to an internal, non-billable activity (e.g. shop cleanup or a staff meeting).
 2. Part of the internal time was clocked at a location with NO default labor rate configured (for the completeness check).","1. Read the column headers left to right.
 2. Read the technician's Total Hours, WO Hours, and Internal Hours.
@@ -138,14 +138,15 @@ Each technician row has an accessible expand/collapse control,TU — Per-Day Bre
 3. Collapse the row again.","1. Each technician row has a control to expand and collapse it.
 2. Its accessible name reflects the NEXT action, scoped to that technician: when collapsed it reads Expand, then that technician's name, then daily breakdown (for example: Expand John Smith's daily breakdown); when expanded it reads Collapse, then the same name and words.
 3. The control is keyboard-focusable, toggles on Enter and Space, and exposes its expanded/collapsed state to assistive technology.",SV-8651 (specs/technician-utilization.md S4-R1; S8-R12),,
-"Expanding shows one row per clocked day in date order, loaded on demand",TU — Per-Day Breakdown,Functional,High,"1. A technician clocked time on several (but not all) days of the range - including, for the pooling check, time at two selected locations on the same day.
-2. Browser devtools (network tab) are open for the on-demand check.","1. Expand the technician's row and watch the network traffic.
-2. Read the day rows top to bottom.
-3. Look for rows on days the technician did not clock time.
-4. On the double-location day, count the rows for that date.","1. One row appears for each day the technician clocked time in the range, in date order from earliest to latest.
-2. The day rows are fetched ON EXPAND (on demand) - they are not shipped with the initial report payload.
+"Expanding shows one row per clocked day in date order, loaded on demand",TU — Per-Day Breakdown,Functional,High,"1. A technician clocked time on several (but not all) days of the range - including, for the pooling check, time at two selected locations on the same day.","1. Before expanding anything, look at the technician's row - there are no day rows under it yet.
+2. Expand the technician's row and watch the data area as the day rows appear.
+3. Read the day rows top to bottom.
+4. Look for rows on days the technician did not clock time.
+5. On the double-location day, count the rows for that date.","1. One row appears for each day the technician clocked time in the range, in date order from earliest to latest.
+2. The day rows are not there until you expand the row - they arrive at the moment you expand it (you may briefly see the standard loading indicator in that area), and the rest of the report does not reload.
 3. A day with no clocked time has NO row.
-4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location.",SV-8651 (specs/technician-utilization.md S4-R2; S4-N1; S9-R4),,
+4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location.
+5. Note for the tester: you do not need developer tools for this test - just watch the screen.","SV-8651 (TU spec v5 2026-07-29 S4-R2; S4-N1; S9-R4 — one row per clocked day in date order; load-on-expand; no row for an unclocked day; per-day pooling across selected locations; the back-end half is covered by C30449 in ""TU - API"")",,
 Day rows use the same columns and formats as the technician rows,TU — Per-Day Breakdown,Functional,Medium,1. A technician with known per-day clock records (work-order + internal) is expanded.,"1. Read one day row's Total Hours, WO Hours, Internal Hours, Utilization %, and Est. Lost Labor.
 2. Compare each against that single day's clock records.
 3. Check the number formats against the technician-row formats.","1. Each day row shows the same columns, in the same formats, as the technician row - with that day's values.
@@ -169,12 +170,13 @@ Filter by Technician starts with every technician selected on a first visit,TU �
 2. On the first visit, EVERY technician is selected.
 3. All technicians' rows are shown.",SV-8652 (specs/technician-utilization.md S5-R1; S5-R2),,
 Deselecting a technician hides the row and recalculates the Summary,TU — Technician Filter,Functional,High,"1. Several technician rows are visible and the Summary row shows their totals.
-2. Browser devtools (network tab) are open.","1. Note the Summary values, then deselect one technician in the Filter by Technician filter.
-2. Watch the network traffic and the Summary row.
+2. Note the current date range so you can confirm it does not change.","1. Note the Summary values, then deselect one technician in the Filter by Technician filter.
+2. Watch the data area and the Summary row.
 3. Re-select the technician.","1. The deselected technician's row is hidden.
 2. The Summary row recalculates over the technicians that remain visible.
-3. NO reload happens - the technician filter works on screen only and does not change the date range or re-query the server.
-4. Re-selecting the technician shows the row again (and the Summary recalculates back).",SV-8652 (specs/technician-utilization.md S5-R3; S5-R4; S5-R5; §3; S5 context note),,
+3. The report does NOT reload - the technician filter works on screen only: the rows and the Summary update straight away, no loading indicator appears in the data area, and the date range does not change.
+4. Re-selecting the technician shows the row again (and the Summary recalculates back).
+5. Note for the tester: you do not need developer tools for this test - just watch the screen.","SV-8652 (TU spec v5 2026-07-29 S5-R3; S5-R4; S5-R5 + §3 Key Decisions (""the technician filter works on screen only and does not reload the report""); S5 context note — the server half is covered by C30450 in ""TU - API"")",,
 Select all and Clear all controls set every technician on or off,TU — Technician Filter,Functional,Medium,1. Several technicians are in the current range; a different range exists in which an ADDITIONAL technician (not listed in the current range) has clocked time.,"1. In the Filter by Technician filter, use the control labeled ""Clear all"".
 2. Use the control labeled ""Select all"".
 3. Deselect one technician, then change the date range to the one containing the additional technician.
@@ -238,7 +240,8 @@ The Summary PDF holds the technician rows plus the Summary,TU — Exports,Functi
 2. Every download covers the location(s) currently selected in the location filter and the date range currently active on the report.
 3. With every technician selected, the download covers all technicians for the range at the selected location(s).
 4. Every download (each PDF and the CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
-5. Every download also mirrors the columns currently shown on screen — a column hidden in the Column Selection control is absent from the files, and a re-shown column comes back.",SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-E1; S9-R8 — S7-R10 now says the downloads include the columns currently shown; mirroring the column selector),,
+5. Every download also mirrors the columns currently shown on screen — a column hidden in the Column Selection control is absent from the files, and a re-shown column comes back.
+6. Note for the tester: when you have more than one location in scope, the files also carry a Location column even though it is not in the Column Selection control. That is correct - it appears by itself. With a single location in scope there is no Location column, and that is also correct.","SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-R13; S7-E1; S9-R8 — downloads mirror the shown columns and the technician/location/date scope; S7-R13 = the ""Locations:"" line and the automatic Location column)",,
 Downloads always order rows Technician A to Z; the on-screen sort is ignored,TU — Exports,Functional,Medium,"1. Rows exist including a ""—"" Est. Lost Labor value.
 2. The on-screen rows are sorted by something OTHER than Technician A to Z (e.g. Est. Lost Labor descending).","1. With the non-default sort applied, download the CSV and a PDF.
 2. Read each file's column order, number formats, and the ""—"" cell.
@@ -256,7 +259,7 @@ Choosing a download with no technician selected is a silent no-op,TU — Exports
 A starting download notifies; a failed one shows the failure message,TU — Exports,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded.
 2. You can force a download failure (e.g. drop the network connection just before triggering the download).","1. Trigger a normal download and read the notification.
 2. Trigger a download under the failure condition and read the notification.","1. When a download starts, a success notification reads exactly: ""Download started"".
-2. When a download fails, an error notification reads exactly: ""Failed to download report"".",SV-8654 (specs/technician-utilization.md Story 7 Error Handling; §7),,
+2. When a download fails, an error notification reads exactly: ""Failed to download report"".","SV-8654 (TU spec v5 2026-07-29 Story 7 Error Handling + §7 notifications table — these CLOSE both strings verbatim (""Download started"" / ""Failed to download report""); Story 7 has no S-anchor for them so §7 is the closing reference)",,
 An over-cap Technician Utilization export is refused with the too-large message,TU — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A range/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST clock records in bulk if needed, or use the largest available data set).","1. Set the date range and locations so the filtered set exceeds the export row cap.
 2. Request the CSV download and read what happens.
@@ -334,10 +337,11 @@ All-white table with no row shading; toolbar controls in the fixed order,TU — 
 Dark mode keeps every report element legible,TU — Visual & Accessibility,Functional,Low,"1. You are on the Technician Utilization report with rows loaded, including a ""—"" Est. Lost Labor cell.
 2. Dark mode is available in the application.","1. Switch the application to dark mode.
 2. Check each element: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and a ""—"" glyph.
-3. Measure the information icon's contrast against its background in dark mode, then in light mode.
-4. Check the Total Hours link's underline/affordance and focus indicator in both modes.","1. The report supports dark mode: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the ""—"" glyph all use dark-mode-legible colors meeting contrast.
-2. The information icon meets at least a 3:1 contrast ratio against its background in BOTH light and dark mode.
-3. The Total Hours link's non-color affordance and focus indicator apply in both modes.",SV-8655 (specs/technician-utilization.md S8-R9; S8-R13; S8-R14),,
+3. Look at the information icon in dark mode, then switch back to light mode and look at it again.
+4. Check the Total Hours link's underline/affordance and focus indicator in both modes.","1. The report supports dark mode: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the ""—"" glyph are all clearly legible in dark mode.
+2. In BOTH light mode and dark mode the information icon is clearly visible against the background behind it - you can see it at a glance and it does not disappear into the background.
+3. The Total Hours link's non-color affordance and focus indicator apply in both modes.
+4. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes, and only report it if you cannot. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)",SV-8655 (TU spec v5 2026-07-29 S8-R9; S8-R13; S8-R14 — dark-mode legibility of every named element; the info icon at ≥ 3:1 in both modes; the Total Hours link affordance/focus in both modes; the ratio is design-token-owned),,
 The per-day breakdown is fetched only when a technician row is expanded,TU — API,Functional,Medium,1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.,"1. Load the report and inspect the initial data response for per-day content.
 2. Expand a technician row and watch the network traffic.
 3. Collapse and re-expand after a data reload.","1. The initial report payload does NOT ship the day rows.

@@ -26,12 +26,13 @@ A user with ordinary reports access can load the report and export it,PV — Per
 Without the Manager or Office User role the report entry is not shown,PV — Permissions,Negative,High,1. You are signed in as a user whose role is neither Manager nor Office User (a role without access to the Reports section).,"1. Look at the application's main navigation.
 2. Try to find the Reports section and the Parts Velocity entry.","1. The user cannot reach the Reports section.
 2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule).",SV-8641 (specs/parts-velocity.md S1-N1),,
-Reports access without Inventory Reports View: entry shows; data denied,PV — Permissions,Negative,High,"1. You are signed in as a user with the Manager or Office User role.
-2. That user's role does NOT have the Inventory Reports → View permission.","1. Open the Reports section and look for the Parts Velocity entry under Parts.
+Ordinary reports access alone opens Parts Velocity and its export,PV — Permissions,Negative,High,"1. You are signed in as a user with the Manager or Office User role.
+2. That user's role has the ordinary reports access turned on (the standard ""can this person see reports"" setting) and no other reports-related permission turned on.","1. Open the Reports section and look for the Parts Velocity entry under Parts.
 2. Click the Parts Velocity entry.
-3. If any export control is reachable, try to export.","1. The Parts Velocity navigation entry is still visible (the entry follows Reports-section access, not the report permission).
-2. On opening the report, the standard access-denied state is shown instead of data.
-3. The export is likewise denied - no file downloads.",SV-8641 (specs/parts-velocity.md S1-N2; S1-R4),,
+3. Use the export control on the report and download a file.","1. The Parts Velocity entry is visible in the Reports navigation under Parts.
+2. Opening it shows the report data - not an access-denied screen.
+3. The export downloads.
+4. Note for the tester: for now ONE ordinary reports access opens all six of these new reports, and no report has a permission of its own. If an extra Parts or Inventory reports permission does exist and switching it OFF blocks this report or its export, that is wrong - mark this Failed and report it. If a separate per-report permission is ever added on purpose in a later release, this test will be updated first, so treat that as a planned change and not as a bug.","SV-8641 (PV spec S1-N2; S1-R4 - RESCOPED 2026-08-03: the old ""Reports access without Inventory Reports View"" state cannot exist under one permission; Chris Ward Q2=A + ""they can exist and not do anything""; QA lead ""ONE permission FOR NOW"")",,
 "Type filter: single-select, first in row, three options, default Both; reloads",PV — Filters,Functional,High,"1. You are on the Parts Velocity report with data loaded.
 2. This is a first visit (no saved view), so the first-visit defaults apply.
 3. Both inventory parts and special-order parts (the ""Special Order"" type) have sales activity in the selected date range.","1. Look at the first control in the filter row of the toolbar.
@@ -41,12 +42,12 @@ Reports access without Inventory Reports View: entry shows; data denied,PV — P
 2. It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock).
 3. On a first visit the default is Both.
 4. Both is an explicit selection returning inventory and Special Order rows together - a deliberate filter value, not the absence of a filter.
-5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear.",SV-8642 (PV spec S2-R1; S3-R5 - 'Catalogue' RENAMED to the exact label 'Special Order' [Type filter; Type column; export] per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31]),,
+5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear.",SV-8642 (PV spec v4 2026-07-29 S2-R1; S3-R5 — S2-R1 CLOSES the three Type options and the Both default; 'Catalogue'→'Special Order' per Chris Ward 2026-07-29 [newest-wins]),,
 Date range selector offers exactly the eleven bounded options and no All Time,PV — Filters,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the date range selector and read every option.
 2. Select a non-custom option (for example Last Month).","1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
 2. There is NO 'All Time' option - the report always operates over a bounded date window (deliberate, per the spec's Out of Scope).
 3. Selecting a non-custom option immediately reloads the report data.
-4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).",SV-8642 (specs/parts-velocity.md S2-R2; §2 Out of Scope),,
+4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).","SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (""offering exactly these options"") and rules out ""All Time""; so the closed list IS the requirement)",,
 A Custom date range needs valid dates and rejects a span over 366 days,PV — Filters,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the date range selector and choose Custom.
 2. Pick only a start date and observe - then pick an end date earlier than the start and observe.
 3. Pick a valid start and end date (start on or before end, within 366 days).
@@ -100,7 +101,7 @@ Bin filter excludes special-order rows; Bin plus that Type is empty by design,PV
 7. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",SV-8642 (PV spec S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins],,
 Empty state shows the standard no-data message when no parts match the filters,PV — Filters,Negative,Medium,1. You are on the Parts Velocity report with data loaded.,"1. Type a nonsense string (for example 'zzqx-no-such-part') into the toolbar search so no part matches.
 2. Read the message shown in the data area.","1. The server returns zero rows and the table shows the empty state.
-2. The empty-state label reads exactly: ""Empty bays, endless possibilities. Get Going!"" (the application's standard reports no-data label).",SV-8642 (specs/parts-velocity.md S2-R11; S2-N1; §7),,
+2. The empty-state label reads exactly: ""Empty bays, endless possibilities. Get Going!"" (the application's standard reports no-data label).","SV-8642 (PV spec v4 2026-07-29 S2-R11; S2-N1; §7 — §7 CLOSES the empty-state string verbatim (""Empty bays"" ... ""Get Going!"") as the standard reports no-data label; so the exact string IS the requirement)",,
 Parts with no category; vendor or bin are excluded when that filter is on,PV — Filters,Negative,Medium,"1. You are on the Parts Velocity report with data loaded.
 2. A part with in-window activity exists that has NO category assigned; another with NO vendor; an inventory part with NO bin location.","1. Confirm the three parts appear with no filters active.
 2. Activate any Category filter and look for the category-less part.
@@ -167,7 +168,7 @@ Info icons sit on Units Sold; Demand and Turns / Yr with descriptions,PV — Row
 3. Demand shows exactly: ""Number of separate transactions (work orders or parts sales) this part appeared on in the selected date range. Each transaction counts once, no matter how many units were sold on it.""
 4. Turns / Yr shows exactly: ""How many times you sell through this part in a year. Higher is better.""
 5. The icon is focusable and exposes the same text to assistive technology; activating it does NOT trigger a column sort.
-6. No other column header carries an info icon.",SV-8643 (specs/parts-velocity.md S3-R6),,
+6. No other column header carries an info icon.",SV-8643 (PV spec v4 2026-07-29 S3-R6 — S3-R6 CLOSES the set (exactly three columns: Units Sold; Demand; Turns / Yr) and quotes each description verbatim; so the closed set and the exact strings ARE the requirement),,
 Description; Category and Vendor truncate on hover; Part # never does,PV — Row Model,Functional,Medium,"1. A part with a very long description (and a long category and vendor name) has in-window activity.
 2. A part with a long part number exists.
 3. You are on the Parts Velocity report with those parts visible.","1. Look at the long Description, Category, and Vendor cells.
@@ -351,12 +352,12 @@ Units Sold keeps an exact part-of-a-unit quantity and is never rounded off,PV �
 4. No value anywhere on the row has been quietly rounded to a whole number.",SV-8589 (PV spec S5-R1 Units Sold net stock movement + S5-R5 two-decimal movement format; tech-plan-2026-07-29 Phase 0 / PR-1 D2; SV-8589 verbatim Tests: 'fractional-quantity round-trip regression'),,
 The overflow button opens Download (PDF) then Download (CSV) in that order,PV — Exports,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Find the ⋯ overflow button - the leftmost control in the toolbar's action cluster.
 2. Click it and read the menu items top to bottom.","1. The ⋯ overflow button sits leftmost in the toolbar's action cluster.
-2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).",SV-8646 (specs/parts-velocity.md S6-R1),,
+2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).","SV-8646 (PV spec v4 2026-07-29 S6-R1 — S6-R1 CLOSES it in the spec's own words (""an export menu with two items ... Download (PDF) and Download (CSV)""); so the closed list IS the requirement)",,
 Both exports reflect the filters and search active at the time of export,PV — Exports,Functional,High,"1. You are on the Parts Velocity report with data loaded across types, categories, and locations.","1. Set a distinctive filter mix: Type = Inventory, a single category, a short date range, and a search string.
 2. Download the CSV and open it.
 3. Download the PDF and open it.","1. Both files contain only the rows matching the date range, type, category, vendor, bin, location, and search active at export time - not a full unfiltered dump.
 2. The exported rows match what the on-screen grid was showing.
-3. Each file (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",SV-8646 (specs/parts-velocity.md S6-R2; §3 Key Decisions + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
+3. Each file (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).","SV-8646 (PV spec v4 2026-07-29 S6-R2; S6-R11; §3 Key Decisions — both exports reflect the filters and search active at export time; S6-R11 = the ""Locations:"" line in both exports [Chris Ward 2026-07-29; newest-wins])",,
 "Exports include only the enabled columns, in the canonical on-screen order",PV — Exports,Functional,Medium,1. You are on the Parts Velocity report with data loaded.,"1. Hide two default columns (e.g. Category, Margin %) and enable a hidden one (e.g. Units Returned).
 2. Download the CSV and read its column headers in order.
 3. Download the PDF and read its columns in order.","1. Both exports contain ONLY the currently enabled columns - the hidden ones are absent.
@@ -397,7 +398,7 @@ Export toasts: exact success texts; server or fallback error text on failure,PV 
 2. Trigger a CSV export under the failure condition and read the toast.
 3. Trigger a PDF export under the failure condition and read the toast.","1. On success the toasts read exactly ""Velocity report exported (CSV)"" / ""Velocity report exported (PDF)"" and auto-fade — UPPERCASE (CSV)/(PDF).
 2. An error toast is shown on failure; when the server provides a message, that server message is shown.
-3. Otherwise the failure toast reads exactly: ""Failed to export velocity report (csv)"" or ""Failed to export velocity report (pdf)"" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",SV-8646 (specs/parts-velocity.md S6-R9; S6-N1; §7 (casing note)),,
+3. Otherwise the failure toast reads exactly: ""Failed to export velocity report (csv)"" or ""Failed to export velocity report (pdf)"" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",SV-8646 (PV spec v4 2026-07-29 S6-R9; S6-N1; §7 (casing note) — S6-R9/S6-N1 CLOSE the toast strings verbatim including the shipped UPPERCASE-success / lowercase-failure casing mix; so the exact strings ARE the requirement),,
 An over-cap Parts Velocity export is refused with the too-large message,PV — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set).","1. Set the filters so the filtered set exceeds the export row cap.
 2. Request the CSV download and read what happens.
@@ -417,8 +418,9 @@ Toolbar and table detail styling matches the suite paddings and borders,PV — V
 4. The leftmost cell in every row (header and body) has 2rem left padding; the rightmost cell has 2rem right padding.",SV-8647 (specs/parts-velocity.md S7-R2; S7-R3; S7-R4; S7-R5),,
 Dark mode is supported and the grey info icon keeps 3:1 contrast in both,PV — Visual Conformance,Functional,Low,1. You are on the Parts Velocity report with data loaded and dark mode available in the application.,"1. Switch the application to dark mode.
 2. Look at the page background, toolbar, and cells.
-3. Check the grey ⓘ info icon against its cell background in dark mode, then again in light mode.","1. The report supports dark mode: page background, toolbar, and cells use their dark-mode equivalents.
-2. The grey ⓘ info icon uses a token meeting at least a 3:1 contrast ratio against the cell background in BOTH light and dark mode.",SV-8647 (specs/parts-velocity.md S7-R6),,
+3. Look at the grey ⓘ info icon next to a column heading in dark mode, then switch back to light mode and look at it again.","1. The report supports dark mode: page background, toolbar, and cells use their dark-mode equivalents.
+2. In BOTH light mode and dark mode the grey ⓘ info icon is clearly visible against the cell behind it - you can see it at a glance without leaning in, and it does not disappear into the background.
+3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes. Only report it if the icon is hard to see. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)",SV-8647 (PV spec v4 2026-07-29 S7-R6 — dark-mode support + the grey info icon's colour token at ≥ 3:1 against the cell background in both modes; the ratio is a design-token property so the manual check is by-eye legibility),,
 The report is server-paginated - the backend returns one page of rows at a time,PV — API,Functional,Medium,"1. You are on the Parts Velocity report with more rows in the result set than one page holds.
 2. Browser devtools (network tab) are open to observe the backend requests.","1. Load the report and observe the backend data request and its response size.
 2. Move to the next page of rows and observe the traffic.","1. The backend returns ONE page of rows at a time - the full result set is not shipped to the browser.
@@ -433,11 +435,12 @@ Header-click sorting re-queries the server; nulls first asc and last desc,PV —
 3. Note where the null rows land in the server-returned order for each direction.","1. Each header click re-fetches the data from the server, ordered by the chosen column and direction, returning the first page of the re-sorted result set.
 2. Null values are placed FIRST on ascending and LAST on descending - as a server sort semantic, so the same order appears on screen and in the exports.
 3. Ties keep a stable order (no explicit secondary key).",SV-8643 (specs/parts-velocity.md S3-R3),,
-The backend denies report data AND export without Inventory Reports View,PV — API,Negative,High,"1. You are signed in as a Reports-section user whose role lacks the Inventory Reports → View permission.
+The back end serves report data and export on ordinary reports access,PV — API,Negative,High,"1. You are signed in as a user whose role has the ordinary reports access turned on and no other reports-related permission turned on.
 2. Browser devtools (network tab) are open.","1. Open the Parts Velocity report and observe the backend data request's outcome.
-2. Attempt the export and observe the backend export request's outcome.","1. The backend REFUSES the report data request - the user is denied the data (the UI shows the standard access-denied state).
-2. The backend likewise refuses the export request - no file is produced.
-3. Both loading and exporting are gated by the same Inventory Reports → View permission.",SV-8641 (specs/parts-velocity.md S1-R4; S1-N2),,
+2. Attempt the export and observe the backend export request's outcome.","1. The back end returns the report data - the request is not refused.
+2. The back end returns the export file - the request is not refused.
+3. Both requests succeed with only the ordinary reports access turned on - nothing else had to be enabled.
+4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the system it must not change these results - for now it is hidden from the screen and enforces nothing. A per-report permission added on purpose in a later release is a planned change, not a bug, and this test will be updated first.","SV-8641 (PV spec S1-R4; S1-N2 - RESCOPED 2026-08-03; same driver as C30327: Chris Ward Q2=A ""single Reports permission"" + ""they can exist and not do anything""; QA lead ""ONE permission FOR NOW"")",,
 QuickBooks amount for a part-of-a-unit sale is exact and never inflated,PV — API,Functional,Critical,"1. The test company is connected to QuickBooks.
 2. The part-of-a-unit sale has been made and invoiced — a ZZAUTOTEST part sold in a quantity such as 2.5, at a known unit cost such as $10.00.
 3. You can sign in to that QuickBooks company and look at its journal entries.","1. Write down the quantity sold and the part's unit cost, and work out the correct amount by hand (2.5 x $10.00 = $25.00).

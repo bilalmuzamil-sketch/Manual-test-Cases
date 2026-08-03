@@ -291,7 +291,8 @@ Inventory Value: a three-dot menu holds Download (PDF) and Download (CSV),IV —
 5. Repeat the checks in the PDF.","1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.
 2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.
 3. Both downloads include a totals row labeled ""Totals"" matching the on-screen totals (the full-filtered-set totals).
-4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",SV-8677 (specs/inventory-value.md Story 10 S10-R3; S10-R4; S10-R5; S10-R6 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
+4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
+5. Note for the tester: when you have more than one location in scope, the files also carry a Location column (between Vendor and Qty on Hand) even though it is not in the column-selection control. That is correct - it appears by itself. With a single location in scope there is no Location column, and that is also correct.","SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the ""Locations:"" line and the automatic Location column)",,
 Export number formats: money to 2 decimals; Margin % to 1 with em-dash,IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (""—"").","1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.
 2. Download the PDF and read the same values.","1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows ""—"".
@@ -308,7 +309,7 @@ PDF header shows report name; org; period and an as-of line; logo if set,IV — 
 Downloaded files are named inventory-value-report.pdf and .csv,IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Download the current view as a PDF and read the saved file's name.
 2. Download the current view as a CSV and read the saved file's name.","1. The PDF is named ""inventory-value-report.pdf"".
-2. The CSV is named ""inventory-value-report.csv"".",SV-8677 (specs/inventory-value.md Story 10 S10-R10),,
+2. The CSV is named ""inventory-value-report.csv"".",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R10 — S10-R10 CLOSES both file names verbatim; so the exact strings ARE the requirement),,
 Exports are generated server-side over the full filtered set,IV — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current filtered set spans more than one page (but stays under the export row cap).","1. From page 1, without visiting the later pages, download the CSV.
 2. Count the file's data rows and look for parts you know sit on the later pages.
