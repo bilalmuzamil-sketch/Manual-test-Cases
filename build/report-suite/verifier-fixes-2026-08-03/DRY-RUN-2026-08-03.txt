@@ -1,0 +1,212 @@
+DRY RUN — 40 planned update_case ops
+
+[01/40] C30102 C/V-10   Date range picker offers eleven options in the specified o   fields: refs
+      - refs BEFORE: SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R1; S2-R2)
+      - refs AFTER : SV-8601 (SBC spec v12 2026-07-29 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes)
+[02/40] C30107 C/V-10   Product Type: three options with Parts & Service default;    fields: refs
+      - refs BEFORE: SV-8602 (specs/sbc-sales-by-customer.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6)
+      - refs AFTER : SV-8602 (SBC spec v12 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself ("exactly three options ... in this order"); so the closed list IS the requirement)
+[03/40] C30149 C/V-10   Financial columns run in the specified order with Subtotal   fields: refs
+      - refs BEFORE: SV-8605 (specs/sbc-sales-by-customer.md §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1)
+      - refs AFTER : SV-8605 (SBC spec v12 2026-07-29 §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1 — §2/S7-R6 CLOSE the financial-column list and its order; Location is an identifier column not a financial one [S4-R12; S20-R19] so it n
+[04/40] C30156 C/V-10   Column selector is its own toolbar button with nine toggle   fields: refs, expected
+      - refs BEFORE: SV-8611 (specs/sbc-sales-by-customer.md Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7)
+      - refs AFTER : SV-8611 (SBC spec v12 2026-07-29 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13])
+      - expected BEFORE: 1. The column selector is a separate control next to the overflow menu — it is not an item inside the overflow menu.
+2. Hovering it shows the tooltip "Column Selection."
+3. The panel lists nine toggles, in order: Date, I
+      - expected AFTER : 1. The column selector is a separate control next to the overflow menu — it is not an item inside the overflow menu.
+2. Hovering it shows the tooltip "Column Selection."
+3. The panel lists nine toggles, in order: Date, I
+[05/40] C30159 C/V-10   The overflow menu holds exactly the four download items -    fields: refs
+      - refs BEFORE: SV-8612; SV-8613 (SBC spec S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 - menu RESHAPED to 4 Summary/Expanded items by Chris Ward msg 2026-07-29 [newest-wins] [extends video P21]; 'Print' REMOVED per video P25 [same msg confi
+      - refs AFTER : SV-8612; SV-8613 (SBC spec v12 2026-07-29 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + "Print" removed per Chris Ward 2026-07-29 [newest-wins])
+[06/40] C30167 A/V-3    PDF header: title, organization, date range, Product Type    fields: refs
+      - refs BEFORE: SV-8613 (SBC spec Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11 - old 'location not in the header' rule REVERSED by the Locations: line in every export per Chris Ward msg 2026-07-29 [newest-wins])
+      - refs AFTER : SV-8613 (SBC spec v12 2026-07-29 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the "Locations:" line in every export [Chris Ward 2026-07-29; newest-wins]
+[07/40] C30206 C/V-10   Product Type: three options, Parts & Service default, each   fields: refs
+      - refs BEFORE: SV-8621 (specs/sbr-sales-by-representative.md Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7)
+      - refs AFTER : SV-8621 (SBR spec v15 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7 — S3-R2 CLOSES the list itself ("exactly three options"); so the closed list IS the requirement)
+[08/40] C30208 C/V-10   Invoice Status offers exactly four options; All Statuses i   fields: refs
+      - refs BEFORE: SV-8622 (specs/sbr-sales-by-representative.md Story 4 S4-R1; S4-R2; S4-R3; S4-R5)
+      - refs AFTER : SV-8622 (SBR spec v15 2026-07-29 Story 4 S4-R1; S4-R2; S4-R3; S4-R5 — S4-R2 CLOSES the list itself ("exactly four options"); so the closed list IS the requirement)
+[09/40] C30234 C/V-10   Money columns use the standardized labels and definitions   fields: refs
+      - refs BEFORE: SV-8582 (SBR spec §3 definitions; §4 Terminology — money-column labels and the Subtotal/Margin definitions; CROSS-CUTTING across every SBR row level with no single owning story)
+      - refs AFTER : SV-8623; SV-8582 (SBR spec v15 2026-07-29 S5-R2 = the authoritative 12-column left-to-right order; §3 definitions; §4 Terminology — S5-R2 CLOSES the money-label list; Location sits after Status [S21-R7] and is not a mone
+[10/40] C30239 C/V-10   Mobile shows a simplified totals bar below the table; Subt   fields: refs
+      - refs BEFORE: SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R5 (mobile); Story 17 S17-R4)
+      - refs AFTER : SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5 (mobile branch) + Story 17 S17-R4 — S10-R5 CLOSES it in the spec's own words: "Totals" left and the grand Subtotal right "(no other metrics)")
+[11/40] C30265 C/V-10   Column selector: seven metric toggles; five always-on colu   fields: refs, expected
+      - refs BEFORE: SV-8637 (specs/sbr-sales-by-representative.md Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1)
+      - refs AFTER : SV-8637 (SBR spec v15 2026-07-29 Story 20 S20-R1; S20-R2; S20-R3; S20-R6; S20-N1 — S20-R2/S20-R3 CLOSE the seven toggles and the five always-on columns; Location is automatic and in neither list [S21-R7])
+      - expected BEFORE: 1. The dropdown lists the seven toggleable metric columns, each with a toggle switch: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %.
+2. On first visit all seven metric columns are
+      - expected AFTER : 1. The dropdown lists the seven toggleable metric columns, each with a toggle switch: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %.
+2. On first visit all seven metric columns are
+[12/40] C30276 C/V-10   The ⋯ overflow menu lists exactly four download actions   fields: refs
+      - refs BEFORE: SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R1; Story 17 S17-R3 (position))
+      - refs AFTER : SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R1 + Story 17 S17-R3 (position) — S14-R1 CLOSES it in the spec's own words ("lists exactly four actions"); so the closed list IS the requirement)
+[13/40] C30277 A/V-3    All four downloads respect filters, full result set, and a   fields: refs
+      - refs BEFORE: SV-8631 (SBR spec Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4 + Locations: line in every export per Chris Ward msg 2026-07-29 [newest-wins])
+      - refs AFTER : SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2; S14-R2a; S14-R20 + Story 21 S21-R6 + Story 22 S22-R4 — all four downloads honour the filters; the full result set and the active order; S14-R20 = the "Locations:" line in
+[14/40] C30281 C/V-10   PDF footer on every page, default-logo fallback, and deter   fields: refs
+      - refs BEFORE: SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R4; S14-R3a; S14-R11)
+      - refs AFTER : SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3a; S14-R4; S14-R11 — S14-R11 CLOSES both PDF filenames verbatim ("deterministic") and S14-R4 closes the footer string; so the exact strings ARE the requirement)
+[15/40] C30290 C/V-10   Over-cap Expanded View PDF is refused with the too-large m   fields: refs
+      - refs BEFORE: SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E2; §7)
+      - refs AFTER : SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2; §7 — 10k-row export cap; no truncated file; toast persists 120s; the toast STRING is the ONE suite-wide message ruled by Chris Ward 2026-07-31 Q2=A [newest-wins]; his SBR
+[16/40] C30293 C/V-10   Sales Representative Assignments CSV: file name, headers,    fields: refs, expected
+      - refs BEFORE: SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R3; S15-R4; §7)
+      - refs AFTER : SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R3; S15-R4; §7 — S15-R4 CLOSES the three headers; "Sales Rep"→"Sales Representative" per Chris Ward 2026-07-31 Q5 [newest-wins]; NOT one of the four report exports so S14-R20
+      - expected BEFORE: 1. The file downloads as "sales-representative-assignments.csv (the short form "rep" is gone from the file name — confirm the exact final file name in the build)".
+2. A success toast shows "Success" with the caption "Rep
+      - expected AFTER : 1. The file downloads as "sales-representative-assignments.csv (the short form "rep" is gone from the file name — confirm the exact final file name in the build)".
+2. A success toast shows "Success" with the caption "Rep
+[17/40] C30309 D/V-7    The subdued grey of the (N) count and (Inactive) tag meets   fields: refs, preconds, steps, expected
+      - refs BEFORE: SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R11; S18-R12)
+      - refs AFTER : SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R11; S18-R12 — subdued-grey (N) count and "(Inactive)" tag at ≥ 4.5:1 WCAG AA in both modes; nothing conveyed by colour alone; the ratio is a design-token property so the che
+      - preconds BEFORE: 1. You are on the report with a rep row showing a (N) count and — if arrangeable — an "(Inactive)" tag; a contrast-checking tool is available.
+      - preconds AFTER : 1. You are on the report with a rep row showing a (N) count and - if arrangeable - an "(Inactive)" tag.
+      - steps BEFORE: 1. Measure the contrast ratio of the subdued-grey (N) count and "(Inactive)" tag against the white body surface in light mode, and against the dark surface in dark mode.
+2. Review how Inv. Hrs, the status badges, and the
+      - steps AFTER : 1. Read the subdued-grey (N) count and the "(Inactive)" tag in light mode, then switch to dark mode and read them again.
+2. Review how Inv. Hrs, the status badges, and the links convey their meaning.
+      - expected BEFORE: 1. The subdued grey meets at least WCAG AA contrast (4.5:1 or better) against the body surface in BOTH modes — the reduced font size does not drop it below that ratio.
+2. No information is conveyed by color alone: Inv. H
+      - expected AFTER : 1. In BOTH light mode and dark mode the subdued-grey (N) count and the "(Inactive)" tag are easy to read against the surface behind them - the smaller text does not fade into the background.
+2. No information is conveyed
+[18/40] C30328 C/V-10   Type filter: single-select, first in row, three options, d   fields: refs
+      - refs BEFORE: SV-8642 (PV spec S2-R1; S3-R5 - 'Catalogue' RENAMED to the exact label 'Special Order' [Type filter; Type column; export] per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31])
+      - refs AFTER : SV-8642 (PV spec v4 2026-07-29 S2-R1; S3-R5 — S2-R1 CLOSES the three Type options and the Both default; 'Catalogue'→'Special Order' per Chris Ward 2026-07-29 [newest-wins])
+[19/40] C30330 C/V-10   Date range selector offers exactly the eleven bounded opti   fields: refs
+      - refs BEFORE: SV-8642 (specs/parts-velocity.md S2-R2; §2 Out of Scope)
+      - refs AFTER : SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words ("offering exactly these options") and rules out "All Time"; so the closed list IS the requirement)
+[20/40] C30338 C/V-10   Empty state shows the standard no-data message when no par   fields: refs
+      - refs BEFORE: SV-8642 (specs/parts-velocity.md S2-R11; S2-N1; §7)
+      - refs AFTER : SV-8642 (PV spec v4 2026-07-29 S2-R11; S2-N1; §7 — §7 CLOSES the empty-state string verbatim ("Empty bays" ... "Get Going!") as the standard reports no-data label; so the exact string IS the requirement)
+[21/40] C30346 C/V-10   Info icons sit on Units Sold; Demand and Turns / Yr with d   fields: refs
+      - refs BEFORE: SV-8643 (specs/parts-velocity.md S3-R6)
+      - refs AFTER : SV-8643 (PV spec v4 2026-07-29 S3-R6 — S3-R6 CLOSES the set (exactly three columns: Units Sold; Demand; Turns / Yr) and quotes each description verbatim; so the closed set and the exact strings ARE the requirement)
+[22/40] C30375 C/V-10   The overflow button opens Download (PDF) then Download (CS   fields: refs
+      - refs BEFORE: SV-8646 (specs/parts-velocity.md S6-R1)
+      - refs AFTER : SV-8646 (PV spec v4 2026-07-29 S6-R1 — S6-R1 CLOSES it in the spec's own words ("an export menu with two items ... Download (PDF) and Download (CSV)"); so the closed list IS the requirement)
+[23/40] C30376 A/V-3    Both exports reflect the filters and search active at the    fields: refs
+      - refs BEFORE: SV-8646 (specs/parts-velocity.md S6-R2; §3 Key Decisions + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-
+      - refs AFTER : SV-8646 (PV spec v4 2026-07-29 S6-R2; S6-R11; §3 Key Decisions — both exports reflect the filters and search active at export time; S6-R11 = the "Locations:" line in both exports [Chris Ward 2026-07-29; newest-wins])
+[24/40] C30384 C/V-10   Export toasts: exact success texts; server or fallback err   fields: refs
+      - refs BEFORE: SV-8646 (specs/parts-velocity.md S6-R9; S6-N1; §7 (casing note))
+      - refs AFTER : SV-8646 (PV spec v4 2026-07-29 S6-R9; S6-N1; §7 (casing note) — S6-R9/S6-N1 CLOSE the toast strings verbatim including the shipped UPPERCASE-success / lowercase-failure casing mix; so the exact strings ARE the requiremen
+[25/40] C30387 D/V-7    Dark mode is supported and the grey info icon keeps 3:1 co   fields: refs, steps, expected
+      - refs BEFORE: SV-8647 (specs/parts-velocity.md S7-R6)
+      - refs AFTER : SV-8647 (PV spec v4 2026-07-29 S7-R6 — dark-mode support + the grey info icon's colour token at ≥ 3:1 against the cell background in both modes; the ratio is a design-token property so the manual check is by-eye legibili
+      - steps BEFORE: 1. Switch the application to dark mode.
+2. Look at the page background, toolbar, and cells.
+3. Check the grey ⓘ info icon against its cell background in dark mode, then again in light mode.
+      - steps AFTER : 1. Switch the application to dark mode.
+2. Look at the page background, toolbar, and cells.
+3. Look at the grey ⓘ info icon next to a column heading in dark mode, then switch back to light mode and look at it again.
+      - expected BEFORE: 1. The report supports dark mode: page background, toolbar, and cells use their dark-mode equivalents.
+2. The grey ⓘ info icon uses a token meeting at least a 3:1 contrast ratio against the cell background in BOTH light 
+      - expected AFTER : 1. The report supports dark mode: page background, toolbar, and cells use their dark-mode equivalents.
+2. In BOTH light mode and dark mode the grey ⓘ info icon is clearly visible against the cell behind it - you can see 
+[26/40] C30399 C/V-10   Standard no-data message when no time in scope or all tech   fields: refs
+      - refs BEFORE: SV-8648 (specs/technician-utilization.md S1-N2; S9-N2; S5-N1; S3-N1; §7)
+      - refs AFTER : SV-8648 (TU spec v5 2026-07-29 S1-N2; S3-N1; S5-N1; S9-N2; §7 — §7 CLOSES the no-data string verbatim ("Empty bays" ... "Get Going!") as the standard reports no-data label; so the exact string IS the requirement)
+[27/40] C30419 E/V-8    Expanding shows one row per clocked day in date order, loa   fields: refs, preconds, steps, expected
+      - refs BEFORE: SV-8651 (specs/technician-utilization.md S4-R2; S4-N1; S9-R4)
+      - refs AFTER : SV-8651 (TU spec v5 2026-07-29 S4-R2; S4-N1; S9-R4 — one row per clocked day in date order; load-on-expand; no row for an unclocked day; per-day pooling across selected locations; the back-end half is covered by C30449 i
+      - preconds BEFORE: 1. A technician clocked time on several (but not all) days of the range - including, for the pooling check, time at two selected locations on the same day.
+2. Browser devtools (network tab) are open for the on-demand che
+      - preconds AFTER : 1. A technician clocked time on several (but not all) days of the range - including, for the pooling check, time at two selected locations on the same day.
+      - steps BEFORE: 1. Expand the technician's row and watch the network traffic.
+2. Read the day rows top to bottom.
+3. Look for rows on days the technician did not clock time.
+4. On the double-location day, count the rows for that date.
+      - steps AFTER : 1. Before expanding anything, look at the technician's row - there are no day rows under it yet.
+2. Expand the technician's row and watch the data area as the day rows appear.
+3. Read the day rows top to bottom.
+4. Look 
+      - expected BEFORE: 1. One row appears for each day the technician clocked time in the range, in date order from earliest to latest.
+2. The day rows are fetched ON EXPAND (on demand) - they are not shipped with the initial report payload.
+3
+      - expected AFTER : 1. One row appears for each day the technician clocked time in the range, in date order from earliest to latest.
+2. The day rows are not there until you expand the row - they arrive at the moment you expand it (you may b
+[28/40] C30424 E/V-8    Deselecting a technician hides the row and recalculates th   fields: refs, preconds, steps, expected
+      - refs BEFORE: SV-8652 (specs/technician-utilization.md S5-R3; S5-R4; S5-R5; §3; S5 context note)
+      - refs AFTER : SV-8652 (TU spec v5 2026-07-29 S5-R3; S5-R4; S5-R5 + §3 Key Decisions ("the technician filter works on screen only and does not reload the report"); S5 context note — the server half is covered by C30450 in "TU - API")
+      - preconds BEFORE: 1. Several technician rows are visible and the Summary row shows their totals.
+2. Browser devtools (network tab) are open.
+      - preconds AFTER : 1. Several technician rows are visible and the Summary row shows their totals.
+2. Note the current date range so you can confirm it does not change.
+      - steps BEFORE: 1. Note the Summary values, then deselect one technician in the Filter by Technician filter.
+2. Watch the network traffic and the Summary row.
+3. Re-select the technician.
+      - steps AFTER : 1. Note the Summary values, then deselect one technician in the Filter by Technician filter.
+2. Watch the data area and the Summary row.
+3. Re-select the technician.
+      - expected BEFORE: 1. The deselected technician's row is hidden.
+2. The Summary row recalculates over the technicians that remain visible.
+3. NO reload happens - the technician filter works on screen only and does not change the date range
+      - expected AFTER : 1. The deselected technician's row is hidden.
+2. The Summary row recalculates over the technicians that remain visible.
+3. The report does NOT reload - the technician filter works on screen only: the rows and the Summary
+[29/40] C30437 A/V-3    Downloads cover only selected technicians, locations, and    fields: refs, expected
+      - refs BEFORE: SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-E1; S9-R8 — S7-R10 now says the downloads include the columns currently shown; mirroring the column selector)
+      - refs AFTER : SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-R13; S7-E1; S9-R8 — downloads mirror the shown columns and the technician/location/date scope; S7-R13 = the "Locations:" line and the automatic Location column)
+      - expected BEFORE: 1. Every download includes ONLY the technicians currently selected in the technician filter - the deselected technician is absent from all three files.
+2. Every download covers the location(s) currently selected in the l
+      - expected AFTER : 1. Every download includes ONLY the technicians currently selected in the technician filter - the deselected technician is absent from all three files.
+2. Every download covers the location(s) currently selected in the l
+[30/40] C30441 C/V-10   A starting download notifies; a failed one shows the failu   fields: refs
+      - refs BEFORE: SV-8654 (specs/technician-utilization.md Story 7 Error Handling; §7)
+      - refs AFTER : SV-8654 (TU spec v5 2026-07-29 Story 7 Error Handling + §7 notifications table — these CLOSE both strings verbatim ("Download started" / "Failed to download report"); Story 7 has no S-anchor for them so §7 is the closing
+[31/40] C30448 D/V-7    Dark mode keeps every report element legible   fields: refs, steps, expected
+      - refs BEFORE: SV-8655 (specs/technician-utilization.md S8-R9; S8-R13; S8-R14)
+      - refs AFTER : SV-8655 (TU spec v5 2026-07-29 S8-R9; S8-R13; S8-R14 — dark-mode legibility of every named element; the info icon at ≥ 3:1 in both modes; the Total Hours link affordance/focus in both modes; the ratio is design-token-own
+      - steps BEFORE: 1. Switch the application to dark mode.
+2. Check each element: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and a "—" glyph.
+3. Measure the information icon's contrast 
+      - steps AFTER : 1. Switch the application to dark mode.
+2. Check each element: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and a "—" glyph.
+3. Look at the information icon in dark mod
+      - expected BEFORE: 1. The report supports dark mode: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the "—" glyph all use dark-mode-legible colors meeting contrast.
+2. The information i
+      - expected AFTER : 1. The report supports dark mode: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the "—" glyph are all clearly legible in dark mode.
+2. In BOTH light mode and dark mo
+[32/40] C30451 C/V-10   Work In Progress appears in the reports navigation under t   fields: refs
+      - refs BEFORE: SV-8657 (WIP spec Story 1 S1-R1; S1-R5 — Performance group; below the named anchor items per the PRD video 2026-07-30; S1-R5 = browser page title; access = the one ordinary reports permission per QA lead 2026-08-03)
+      - refs AFTER : SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R1; S1-R5 — S1-R5 CLOSES the page title verbatim; Performance group below the named anchor items per the PRD video 2026-07-30; access = the one ordinary reports permission per Q
+[33/40] C30452 C/V-10   Four tabs in a fixed order with the partially-completed ta   fields: refs
+      - refs BEFORE: SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter))
+      - refs AFTER : SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement)
+[34/40] C30469 C/V-10   Status shows as a color-coded badge whose label text is al   fields: refs
+      - refs BEFORE: SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R6; Story 10 S10-R8)
+      - refs AFTER : SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R6 + Story 10 S10-R8 — S4-R6 CLOSES the five status labels verbatim ("Estimate" ... "Complete") and the label-not-colour rule; so the closed list IS the requirement)
+[35/40] C30487 C/V-10   The summary strip shows seven figures in a fixed order as    fields: refs
+      - refs BEFORE: SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R1; S5-R10)
+      - refs AFTER : SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R1; S5-R10 — S5-R1 CLOSES the seven figures and their order verbatim and S5-R10 closes the currency format; so the closed lists ARE the requirement)
+[36/40] C30511 A/V-3    Downloads keep shown columns, honor filters, include the t   fields: refs, expected
+      - refs BEFORE: SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a — "Locations:" line in every CSV/PDF export per Chris Ward's 2026-07-29 message [NEWEST source; last-update-wins])
+      - refs AFTER : SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the "Locations:" line; S7-R13/S9-E1 = the autom
+      - expected BEFORE: 1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.
+2. Both downloads honor the current date range and location filter, and include only the jobs le
+      - expected AFTER : 1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.
+2. Both downloads honor the current date range and location filter, and include only the jobs le
+[37/40] C30515 C/V-10   The downloaded files are named "wip-2-report.pdf" and "wip   fields: refs
+      - refs BEFORE: SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R9)
+      - refs AFTER : SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the "-2-" segment; so the exact strings ARE the requirement)
+[38/40] C30588 A/V-3    Downloads keep shown columns and order, honor filters, and   fields: refs, expected
+      - refs BEFORE: SV-8677 (specs/inventory-value.md Story 10 S10-R3; S10-R4; S10-R5; S10-R6 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST sou
+      - refs AFTER : SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the "Locations:" line and the automatic 
+      - expected BEFORE: 1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.
+2. Both downloads honor the current date, category, vendor, location, and part-search filte
+      - expected AFTER : 1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.
+2. Both downloads honor the current date, category, vendor, location, and part-search filte
+[39/40] C30591 C/V-10   Downloaded files are named inventory-value-report.pdf and    fields: refs
+      - refs BEFORE: SV-8677 (specs/inventory-value.md Story 10 S10-R10)
+      - refs AFTER : SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R10 — S10-R10 CLOSES both file names verbatim; so the exact strings ARE the requirement)
+[40/40] C38856 B/V-2    Summary and Expanded View downloads exist for both PDF and   fields: refs
+      - refs BEFORE: SV-8612; SV-8613; SV-8603 (SBC spec v12 2026-07-29 Story 14 S14-R1/R2/R4 + Story 15 S15-R1/R2/R4/R5 + Story 4 S4-R13 — four-item Summary/Expanded menu and the Summary column list; plus the automatic Location column in ev
+      - refs AFTER : SV-8612; SV-8613; SV-8603 (SBC spec v12 2026-07-29 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every exp
+
+written+verified: 0   failed: 0   log: build/report-suite/verifier-fixes-2026-08-03/execution-log.json
