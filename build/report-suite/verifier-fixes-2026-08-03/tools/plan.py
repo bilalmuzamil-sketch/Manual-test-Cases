@@ -719,6 +719,32 @@ op(30424, 'E/V-8',
    ])
 
 
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SECOND PASS, same day — SBC pins upgraded v12 2026-07-29 -> v13 2026-07-31.
+# WHY: a parallel worker established live SBC = v13 (2026-07-31) and captured it
+# (spec-watch-verification-2026-08-03/live-capture-2026-08-03/). I diffed the two
+# bodies myself rather than take it on trust: 222 requirement anchors each, 0 added,
+# 0 removed, and the ONLY substantive text changes are S1-R2, S1-N1 and the removed
+# Story-1 Prerequisite - all the permission gate. (S14-R14 and S15-R6 also "differ",
+# but only by markdown escaping of an underscore: "this_month" vs "this\_month" -
+# a capture artifact, so the parallel worker's "exactly 3 changes" is CORRECT.)
+# ALL 30 SBC anchors this pass pinned are byte-identical in live v13, so the pin can
+# honestly name the live version instead of a mirror that is one behind.
+# Same check run on SBR and PV against their live captures: 0 anchors added/removed,
+# and every anchor this pass pinned differs only by whitespace/emphasis artifacts
+# (similarity 0.992-0.999) - no substantive change, so SBR v15 / PV v4 pins stand.
+# TU v5 / WIP v6 / IV v3: version-matched to live, NOT text-diffed (no live capture
+# available this session) - stated rather than implied (Rule 12).
+# ─────────────────────────────────────────────────────────────────────────────
+_SBC_V13 = [30102, 30107, 30149, 30156, 30159, 30167, 38856]
+for _c in _SBC_V13:
+    PLAN[_c]['reverified'] += (
+        ' | SBC v13 RE-CHECK 2026-08-03: this case\'s anchors re-diffed against the LIVE '
+        'v13 capture (spec-watch-verification-2026-08-03/live-capture-2026-08-03/'
+        'Sales-By-Customer-Report-current-2026-08-03.md) - byte-identical to the v12 '
+        'mirror, so the pin was upgraded to "SBC spec v13 2026-07-31".')
+
 # ─────────────────────────────────────────────────────────────────────────────
 # FINAL refs values live in refs_final.json and OVERRIDE the drafts above.
 # Why: TestRail's `refs` field, probed live on 2026-08-03 (see
