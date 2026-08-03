@@ -211,7 +211,7 @@
    "3. There is no \"All Time\" option."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8601 (SBC spec v12 2026-07-29 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes)",
+  "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes)",
   "viu_status": "VIU-Pending",
   "notes": "\"All Time\" was removed by the 2026-07-16 spec round — if the build still shows it, that is a build-behind-spec deviation, not a spec error. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed eleven-option list to SBC S2-R2 + spec version. The spec closes the list itself, so the enumeration stays (Rule 42(b)). RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, precondition 1, steps 1-2, expected 1-3, refs. S2-R2 verbatim L152: \"The picker offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.\" The case matches exactly. No second finding.",
   "api_related": false
@@ -342,7 +342,7 @@
    "5. The whole invoice is classified by its number prefix — there is no per-line-item split."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8602 (SBC spec v12 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (\"exactly three options ... in this order\"); so the closed list IS the requirement)",
+  "spec_ref": "SV-8602 (SBC spec v13 2026-07-31 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (\"exactly three options ... in this order\"); so the closed list IS the requirement)",
   "viu_status": "VIU-Pending",
   "notes": "Per-line-item classification is explicitly out of scope (§2) — a mixed invoice classified whole by prefix is expected behavior, not a defect. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-TYPE): absorbed SBC-TYPE-01, SBC-TYPE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. COMPANION-VIDEO 2026-07-30 (C9, 05:10-05:42): P = parts order, S = service/work order confirmed; under Parts Sales real data shows P numbers ('These would all be P's') — the all-S parts-sales rows in the PO's local were a fake-data artifact. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed three-option list to SBC S3-R2 + spec version (Rule 42(b)). RULE 41: Re-verified whole against SBC spec v12 2026-07-29: title, preconditions 1-2, steps 1-4, expected 1-5, refs. S3-R2 verbatim L188: \"The dropdown offers exactly three options, in this order: \\\"Parts & Service,\\\" \\\"Parts only,\\\" \\\"Service only.\\\"\" S3-R3..R6 match expected 2-4; expected 5 (whole-invoice classification by prefix) matches S3-R5/R6. No second finding.",
   "api_related": false
