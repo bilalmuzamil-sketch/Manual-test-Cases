@@ -1,9 +1,9 @@
 Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
 Inventory Value appears in the reports navigation under the Parts group,IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. Your role has the existing inventory-reports permission.","1. Open the reports navigation.
+2. Your role has the ordinary reports access.","1. Open the reports navigation.
 2. Look inside the Parts group of reports.
 3. Click the ""Inventory Value"" entry.","1. The reports navigation lists a report labeled ""Inventory Value"" under the Parts group.
-2. Clicking it opens the Inventory Value report.",SV-8668 (specs/inventory-value.md Story 1 S1-R1),,
+2. Clicking it opens the Inventory Value report.","SV-8668 (IV spec Story 1 S1-R1 — access = the one ordinary reports permission per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW"")",,
 One row per in-stock part at the selected locations valued at the resolved date,IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Several ZZAUTOTEST parts with positive on-hand quantity exist at your active location.","1. Open the Inventory Value report.
 2. Compare the rows shown to the in-stock parts at the selected location(s).
@@ -359,14 +359,15 @@ The icon-only download and Column Selection buttons carry accessible names,IV �
 2. A screen reader or the browser's accessibility inspector is available.
 3. The Inventory Value report is open.","1. Inspect the three-dot download button's accessible name.
 2. Inspect the Column Selection button's accessible name.",1. Each icon-only control carries an accessible name exposed to assistive technology (it is not announced as an unnamed button).,SV-8679 (specs/inventory-value.md Story 12 S12-R9),,
-User with the existing inventory-reports permission can open the report,IV — Permissions,Functional,Critical,"1. A test user exists whose role has the existing inventory-reports permission (assign the Tech user a suitable role if needed; restore the original role afterward).
+A user with ordinary reports access can open Inventory Value,IV — Permissions,Functional,Critical,"1. A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the reports navigation and find ""Inventory Value"" under the Parts group.
 2. Open the report and confirm it loads rows.
-3. Download the current view as a CSV.","1. The report is listed and opens normally for a user holding the existing inventory-reports permission.
-2. No additional, report-specific permission is required — the report reuses the existing inventory-reports permission.",SV-8668 (specs/inventory-value.md Story 1 Prerequisites),,
-Without the permission Inventory Value is absent from the reports navigation,IV — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have the inventory-reports permission (assign the Tech user such a role; restore the original role afterward).
+3. Download the current view as a CSV.","1. The report is listed and opens normally for a user holding the ordinary reports access.
+2. No additional report-specific permission is required — for now the one ordinary reports access covers all six of the new reports.
+3. Note for the tester: for now ONE ordinary reports access opens all six of these new reports; none of them has a permission of its own. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.","SV-8668 (IV spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; the IV prerequisite still names the inventory-reports permission — his spec edit owed)",,
+Without reports access Inventory Value is absent from the navigation,IV — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the reports navigation.
-2. Look for ""Inventory Value"" under the Parts group.",1. The report does not appear in the navigation for this user.,SV-8668 (specs/inventory-value.md Story 1 S1-N1),,
+2. Look for ""Inventory Value"" under the Parts group.",1. The report does not appear in the navigation for this user.,"SV-8668 (IV spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW"")",,
 Nightly snapshot records one row per in-stock non-core part per location,IV — API,Functional,High,"1. In-stock, non-core parts exist at two or more locations, including a part with non-round cent values.
 2. A location with NO in-stock parts also exists.
 3. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).","1. After the overnight capture, inspect the stored snapshot rows for that calendar date.

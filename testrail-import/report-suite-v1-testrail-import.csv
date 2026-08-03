@@ -1076,11 +1076,11 @@ Deactivating a rep first runs a server pre-check returning the count,SBR — API
 2. The dialog's ""{Staff Name} is the sales representative on {N} customer{s}."" headline matches the returned count.
 3. No deactivation is committed by the pre-check itself — cancelling leaves the staff member's active status unchanged.",SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R4),,
 Parts Velocity appears under a new Parts section in the Reports navigation,PV — Access & Defaults,Functional,Critical,"1. You are signed in to the ShopView App as a user with the Manager or Office User role.
-2. Your role has the Inventory Reports → View permission.","1. Open the Reports section from the main navigation.
+2. Your role has the ordinary reports access.","1. Open the Reports section from the main navigation.
 2. Look through the report groupings for a section heading named Parts.
 3. Click the entry labeled Parts Velocity.","1. A Parts section heading exists in the Reports navigation (this feature creates it - the application had no Parts reports before).
 2. Under Parts there is an entry labeled Parts Velocity; Inventory Value also lives under Parts. The order of the two inside the Parts section is not fixed — do not fail the test on which of them comes first.
-3. Clicking it opens the Parts Velocity report.",SV-8641 (PV spec S1-R1 — spec's 'only report' sentence superseded: Parts Velocity and Inventory Value BOTH live under Parts per PRD video 2026-07-30 00:35-01:18; PV-vs-IV S1-R1 clash on SPEC-WATCH),,
+3. Clicking it opens the Parts Velocity report.","SV-8641 (PV spec S1-R1 — the ""only report"" sentence is superseded: Parts Velocity and Inventory Value BOTH live under Parts per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",,
 First visit: date range defaults to This Year and data is fetched automatically,PV — Access & Defaults,Functional,High,"1. You are signed in as a user allowed to open the report.
 2. You are using a browser with NO saved view for this report (e.g. a fresh browser profile or after clearing the site's browser storage), so first-visit defaults apply.","1. Open Reports → Parts → Parts Velocity.
 2. Look at the date range selector and the table without touching anything.","1. The date range selector shows This Year.
@@ -1092,12 +1092,13 @@ A loading indicator shows and old rows are replaced only when data returns,PV �
 3. Watch the table while the new data is being fetched.","1. During the initial load, the table shows a loading indicator.
 2. During a filter change, the loading indicator shows again.
 3. The rows already on screen are replaced only when the new data comes back - the table does not blank out and rebuild mid-request.",SV-8641 (specs/parts-velocity.md S1-R3),,
-A user with Inventory Reports View can load the report and export it,PV — Permissions,Functional,Critical,"1. You are signed in as a user with the Manager or Office User role.
-2. That user's role has the Inventory Reports → View permission.
+A user with ordinary reports access can load the report and export it,PV — Permissions,Functional,Critical,"1. You are signed in as a user with the Manager or Office User role.
+2. That user's role has the ordinary reports access (the standard ""can this person see reports"" setting).
 3. Some parts have sales activity in the selected date range.","1. Open Reports → Parts → Parts Velocity.
 2. Wait for the data to load.
 3. Open the export menu and download the CSV.","1. The report data loads and rows are shown.
-2. The export downloads successfully (both loading the report and exporting it are allowed by the Inventory Reports → View permission).",SV-8641 (specs/parts-velocity.md S1-R4),,
+2. The export downloads successfully — both opening the report and exporting it are allowed by the same ordinary reports access.
+3. Note for the tester: for now ONE ordinary reports access opens all six of these new reports; none of them has a permission of its own. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.","SV-8641 (PV spec S1-R4 — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; PV S1-R4 still names Inventory Reports > View — his spec edit owed)",,
 Without the Manager or Office User role the report entry is not shown,PV — Permissions,Negative,High,1. You are signed in as a user whose role is neither Manager nor Office User (a role without access to the Reports section).,"1. Look at the application's main navigation.
 2. Try to find the Reports section and the Parts Velocity entry.","1. The user cannot reach the Reports section.
 2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule).",SV-8641 (specs/parts-velocity.md S1-N1),,
@@ -1523,12 +1524,12 @@ QuickBooks amount for a part-of-a-unit sale is exact and never inflated,PV — A
 2. It is NOT a whole-unit amount such as $20.00 or $30.00, and it is NOT a bigger, multiplied figure.
 3. The quantity behind the QuickBooks amount matches the Units Sold value on the report (2.50) — the two systems agree.
 4. No second or correcting journal entry is created to patch up a wrong amount.",SV-8589 (verbatim Tests: 'QB journal amount exact from fractional movement'; Goal: 'QB journal-entry sync multiplies these into dollar amounts'; tech-plan-2026-07-29 Phase 0 / PR-1 D2 - no report spec covers QuickBooks),,
-"Technician Utilization sits under Performance, below existing report links",TU — Access & Display,Functional,Critical,1. You are signed in as a user whose role has the timesheet-reports permission.,"1. Open the reports navigation.
+"Technician Utilization sits under Performance, below existing report links",TU — Access & Display,Functional,Critical,1. You are signed in as a user whose role has the ordinary reports access.,"1. Open the reports navigation.
 2. Look under the Performance group.
 3. Click the entry labeled Technician Utilization.
 4. Note where the entry sits relative to the report links that existed before this release.","1. The report is listed under the Performance group, labeled ""Technician Utilization"".
 2. Clicking it opens the report.
-3. The entry sits BELOW the pre-existing report links — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency — the new reports are added below those items without moving or disturbing them.",SV-8648 (TU spec S1-R1 — below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per PRD video 2026-07-30 01:18-02:05; refines video P3 [newest-wins]),,
+3. The entry sits BELOW the pre-existing report links — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency — the new reports are added below those items without moving or disturbing them.",SV-8648 (TU spec S1-R1 — below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03),,
 One row per technician who clocked time in the range at those locations,TU — Access & Display,Functional,Critical,"1. Technician A clocked time (work-order and/or internal) in the selected date range at the selected location.
 2. Technician B clocked NO time in that range.","1. Open the Technician Utilization report for that range and location.
 2. Look for rows for technicians A and B.","1. Technician A has exactly ONE row.
@@ -1555,8 +1556,8 @@ All clock records are day-grouped and windowed in one report-level time zone,TU 
 2. A record that starts before the range (or ends after it) counts only the part inside the range.
 3. EVERY record is day-grouped and windowed in a SINGLE report-level time zone - the active workplace's - regardless of the location where it was clocked (a record's day, the current-month boundary, and the midnight split all use that one zone).
 4. This matches the Timesheet Activities report's single-time-zone grouping.",SV-8648 (specs/technician-utilization.md S1-R7; S1 context notes),,
-Without the timesheet-reports permission Technician Utilization is hidden,TU — Access & Display,Negative,High,1. You are signed in as a user whose role lacks the permission that controls the Timesheet Activities report.,"1. Open the reports navigation.
-2. Look for Technician Utilization under Performance.",1. The Technician Utilization report does NOT appear in the navigation.,SV-8648 (specs/technician-utilization.md S1-N1),,
+Without reports access Technician Utilization is hidden,TU — Access & Display,Negative,High,1. You are signed in as a user whose role does NOT have reports access.,"1. Open the reports navigation.
+2. Look for Technician Utilization under Performance.",1. The Technician Utilization report does NOT appear in the navigation.,"SV-8648 (TU spec S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; the TU prerequisite still names the timesheet-reports permission — his spec edit owed)",,
 Standard no-data message when no time in scope or all technicians cleared,TU — Access & Display,Negative,Medium,"1. A date range exists in which no technician clocked any time at the selected location(s), or a selectable location has no clocked time for the range.
 2. For the cleared-filter check: the report can also be loaded with rows showing.","1. Select that empty date range (or the empty location) and let the report load.
 2. Read the message in the data area and look for the Summary row.
@@ -1875,12 +1876,12 @@ Date-range and location changes trigger a fresh server load,TU — API,Functiona
 3. The technician filter causes NO server request - it works on screen only (hide/show + Summary recalculation).
 4. Column sorting causes NO server request - it is applied on screen to the loaded rows.",SV-8648 (specs/technician-utilization.md S1-R5; S9-R3; S5 context note; S2-R13; §3),,
 Work In Progress appears in the reports navigation under the Performance group,WIP — Tabs,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. Your role has the permission that grants access to Work In Progress reports.","1. Open the reports navigation.
+2. Your role has the ordinary reports access.","1. Open the reports navigation.
 2. Look inside the Performance group of reports.
 3. Click the ""Work In Progress"" entry.
 4. Read the browser tab's page title.","1. The reports navigation lists a report labeled ""Work In Progress"" under the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency).
 2. Clicking it opens the Work In Progress report.
-3. The browser page title is exactly ""Work In Progress - Report | ShopView"" — a plain hyphen with one space on each side.",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R1; S1-R5 — Performance group; below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD video 2026-07-30 01:18-02:05; S1-R5 = browser page title),,
+3. The browser page title is exactly ""Work In Progress - Report | ShopView"" — a plain hyphen with one space on each side.",SV-8657 (WIP spec Story 1 S1-R1; S1-R5 — Performance group; below the named anchor items per the PRD video 2026-07-30; S1-R5 = browser page title; access = the one ordinary reports permission per QA lead 2026-08-03),,
 Four tabs in a fixed order with the partially-completed tab selected,WIP — Tabs,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have not visited the report before in this browser (no saved active-tab setting).","1. Open the Work In Progress report.
 2. Read the tab labels from left to right.
@@ -2313,14 +2314,15 @@ In dark mode every table; strip; link and coloring stays legible,WIP — Visual 
 3. The report shows rows including positive and negative Inv. Hrs values and a two-line asset cell.","1. Read the table headers and cells in dark mode.
 2. Read the summary strip, the WO # link, the Inv. Hrs colors, and the two-line asset cell (bold unit over muted VIN).","1. The report supports dark mode.
 2. The table, the summary strip, the WO # link, the Inv. Hrs green/red coloring, and the two-line asset cell all use dark-mode-legible colors meeting contrast.",SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R9),,
-The Work In Progress reports permission covers opening and downloading,WIP — Permissions,Functional,Critical,"1. A test user exists whose role has the permission that grants access to Work In Progress reports (assign the Tech user a suitable role if needed; restore the original role afterward).
+Ordinary reports access covers opening and downloading Work In Progress,WIP — Permissions,Functional,Critical,"1. A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the reports navigation and find ""Work In Progress"".
 2. Open the report.
 3. Download the current tab as a CSV.","1. The report is listed and opens normally.
-2. The download works with the same permission — the report reuses one existing reporting permission, adds no new one, and the same permission covers the report and its downloads.",SV-8657 (specs/wip-work-in-progress.md Story 1 Prerequisites (+ context note)),,
-Without the permission Work In Progress is absent from the reports navigation,WIP — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have the permission that grants access to Work In Progress reports (assign the Tech user such a role; restore the original role afterward).
+2. The download works with the same permission — for now the one ordinary reports access covers the report and its downloads and no new permission is added for it.
+3. Note for the tester: for now ONE ordinary reports access opens all six of these new reports; none of them has a permission of its own. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.","SV-8657 (WIP spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; the WIP prerequisite still names a Work In Progress reports permission — his spec edit owed)",,
+Without reports access Work In Progress is absent from the navigation,WIP — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the reports navigation.
-2. Look for ""Work In Progress"" under the Performance group.",1. The report does not appear in the navigation for this user.,SV-8657 (specs/wip-work-in-progress.md Story 1 S1-N1),,
+2. Look for ""Work In Progress"" under the Performance group.",1. The report does not appear in the navigation for this user.,"SV-8657 (WIP spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW"")",,
 Nightly snapshot records one row per then-open job per calendar date,WIP — API,Functional,High,"1. Open work orders exist across the organization on the capture date.
 2. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).","1. Note the set of open work orders before the nightly capture runs.
 2. After the capture, inspect the stored snapshot rows for that calendar date.
@@ -2350,10 +2352,10 @@ Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped,
 2. Read its captured Earned and Remaining values.","1. The work order IS captured (not skipped).
 2. Its Earned is $0.00 and its Remaining is $0.00, matching what the report shows on screen for a job with nothing approved.",SV-8667 (specs/wip-work-in-progress.md Story 11 S11-R6; Story 4 S4-E1),,
 Inventory Value appears in the reports navigation under the Parts group,IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. Your role has the existing inventory-reports permission.","1. Open the reports navigation.
+2. Your role has the ordinary reports access.","1. Open the reports navigation.
 2. Look inside the Parts group of reports.
 3. Click the ""Inventory Value"" entry.","1. The reports navigation lists a report labeled ""Inventory Value"" under the Parts group.
-2. Clicking it opens the Inventory Value report.",SV-8668 (specs/inventory-value.md Story 1 S1-R1),,
+2. Clicking it opens the Inventory Value report.","SV-8668 (IV spec Story 1 S1-R1 — access = the one ordinary reports permission per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW"")",,
 One row per in-stock part at the selected locations valued at the resolved date,IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Several ZZAUTOTEST parts with positive on-hand quantity exist at your active location.","1. Open the Inventory Value report.
 2. Compare the rows shown to the in-stock parts at the selected location(s).
@@ -2709,14 +2711,15 @@ The icon-only download and Column Selection buttons carry accessible names,IV �
 2. A screen reader or the browser's accessibility inspector is available.
 3. The Inventory Value report is open.","1. Inspect the three-dot download button's accessible name.
 2. Inspect the Column Selection button's accessible name.",1. Each icon-only control carries an accessible name exposed to assistive technology (it is not announced as an unnamed button).,SV-8679 (specs/inventory-value.md Story 12 S12-R9),,
-User with the existing inventory-reports permission can open the report,IV — Permissions,Functional,Critical,"1. A test user exists whose role has the existing inventory-reports permission (assign the Tech user a suitable role if needed; restore the original role afterward).
+A user with ordinary reports access can open Inventory Value,IV — Permissions,Functional,Critical,"1. A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the reports navigation and find ""Inventory Value"" under the Parts group.
 2. Open the report and confirm it loads rows.
-3. Download the current view as a CSV.","1. The report is listed and opens normally for a user holding the existing inventory-reports permission.
-2. No additional, report-specific permission is required — the report reuses the existing inventory-reports permission.",SV-8668 (specs/inventory-value.md Story 1 Prerequisites),,
-Without the permission Inventory Value is absent from the reports navigation,IV — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have the inventory-reports permission (assign the Tech user such a role; restore the original role afterward).
+3. Download the current view as a CSV.","1. The report is listed and opens normally for a user holding the ordinary reports access.
+2. No additional report-specific permission is required — for now the one ordinary reports access covers all six of the new reports.
+3. Note for the tester: for now ONE ordinary reports access opens all six of these new reports; none of them has a permission of its own. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.","SV-8668 (IV spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; the IV prerequisite still names the inventory-reports permission — his spec edit owed)",,
+Without reports access Inventory Value is absent from the navigation,IV — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward).
 2. You are signed in as that user on a desktop browser.","1. Open the reports navigation.
-2. Look for ""Inventory Value"" under the Parts group.",1. The report does not appear in the navigation for this user.,SV-8668 (specs/inventory-value.md Story 1 S1-N1),,
+2. Look for ""Inventory Value"" under the Parts group.",1. The report does not appear in the navigation for this user.,"SV-8668 (IV spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW"")",,
 Nightly snapshot records one row per in-stock non-core part per location,IV — API,Functional,High,"1. In-stock, non-core parts exist at two or more locations, including a part with non-round cent values.
 2. A location with NO in-stock parts also exists.
 3. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).","1. After the overnight capture, inspect the stored snapshot rows for that calendar date.

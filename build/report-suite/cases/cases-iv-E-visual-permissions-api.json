@@ -183,12 +183,12 @@
  {
   "id": "IV-PERM-01",
   "area": "IV — Permissions",
-  "title": "User with the existing inventory-reports permission can open the report",
+  "title": "A user with ordinary reports access can open Inventory Value",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission.",
   "preconditions": [
-   "1. A test user exists whose role has the existing inventory-reports permission (assign the Tech user a suitable role if needed; restore the original role afterward).",
+   "1. A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward).",
    "2. You are signed in as that user on a desktop browser."
   ],
   "steps": [
@@ -197,24 +197,25 @@
    "3. Download the current view as a CSV."
   ],
   "expected": [
-   "1. The report is listed and opens normally for a user holding the existing inventory-reports permission.",
-   "2. No additional, report-specific permission is required — the report reuses the existing inventory-reports permission."
+   "1. The report is listed and opens normally for a user holding the ordinary reports access.",
+   "2. No additional report-specific permission is required — for now the one ordinary reports access covers all six of the new reports.",
+   "3. Note for the tester: for now ONE ordinary reports access opens all six of these new reports; none of them has a permission of its own. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8668 (specs/inventory-value.md Story 1 Prerequisites)",
+  "spec_ref": "SV-8668 (IV spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the IV prerequisite still names the inventory-reports permission — his spec edit owed)",
   "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm WHICH permission is \"the existing inventory-reports permission\" in the build's role editor — the spec does not name its exact label; capture it live and tighten this case then. Do not invent a permission name.",
+  "notes": "VIU-confirm WHICH permission is \"the existing inventory-reports permission\" in the build's role editor — the spec does not name its exact label; capture it live and tighten this case then. Do not invent a permission name. | 2026-08-03: reworded to the SINGLE ordinary reports permission. Driver = Chris Ward Q2=A (\"Collapse all report access into a single Reports permission\") + the QA lead's ruling 2026-08-03 verbatim \"Yes all the reports will be gated by ONE permission FOR NOW\". \"FOR NOW\" is deliberate — the model is modular and may expand, so a later expansion is a planned change, NOT a regression. re-verified whole against IV spec v3 (Confluence 720142338; lastModified 2026-07-29; re-checked live 2026-08-03). The exact on-screen name of the reports permission is VIU-confirm (no QA branch). The report's own written description still names a per-area permission — Chris owes that edit.",
   "api_related": false
  },
  {
   "id": "IV-PERM-02",
   "area": "IV — Permissions",
-  "title": "Without the permission Inventory Value is absent from the reports navigation",
+  "title": "Without reports access Inventory Value is absent from the navigation",
   "priority": "Critical",
   "type": "Negative",
   "permissions_required": "A role WITHOUT the inventory-reports permission.",
   "preconditions": [
-   "1. A test user exists whose role does NOT have the inventory-reports permission (assign the Tech user such a role; restore the original role afterward).",
+   "1. A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward).",
    "2. You are signed in as that user on a desktop browser."
   ],
   "steps": [
@@ -225,9 +226,9 @@
    "1. The report does not appear in the navigation for this user."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8668 (specs/inventory-value.md Story 1 S1-N1)",
+  "spec_ref": "SV-8668 (IV spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
   "viu_status": "VIU-Pending",
-  "notes": "Per Standing Rule 10, verify live AS the role — never derive from role definitions. Also probe direct navigation to the report's URL at VIU and record the observed behavior (the spec pins only the navigation hiding).",
+  "notes": "Per Standing Rule 10, verify live AS the role — never derive from role definitions. Also probe direct navigation to the report's URL at VIU and record the observed behavior (the spec pins only the navigation hiding). | 2026-08-03: reworded to the SINGLE ordinary reports permission. Driver = Chris Ward Q2=A (\"Collapse all report access into a single Reports permission\") + the QA lead's ruling 2026-08-03 verbatim \"Yes all the reports will be gated by ONE permission FOR NOW\". \"FOR NOW\" is deliberate — the model is modular and may expand, so a later expansion is a planned change, NOT a regression. re-verified whole against IV spec v3 (Confluence 720142338; lastModified 2026-07-29; re-checked live 2026-08-03). The exact on-screen name of the reports permission is VIU-confirm (no QA branch). The report's own written description still names a per-area permission — Chris owes that edit.",
   "api_related": false
  },
  {

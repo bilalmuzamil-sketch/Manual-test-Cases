@@ -182,12 +182,12 @@
  {
   "id": "WIP-PERM-01",
   "area": "WIP — Permissions",
-  "title": "The Work In Progress reports permission covers opening and downloading",
+  "title": "Ordinary reports access covers opening and downloading Work In Progress",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with the permission that grants access to Work In Progress reports.",
   "preconditions": [
-   "1. A test user exists whose role has the permission that grants access to Work In Progress reports (assign the Tech user a suitable role if needed; restore the original role afterward).",
+   "1. A test user exists whose role has the ordinary reports access (assign the Tech user a suitable role if needed; restore the original role afterward).",
    "2. You are signed in as that user on a desktop browser."
   ],
   "steps": [
@@ -197,23 +197,24 @@
   ],
   "expected": [
    "1. The report is listed and opens normally.",
-   "2. The download works with the same permission — the report reuses one existing reporting permission, adds no new one, and the same permission covers the report and its downloads."
+   "2. The download works with the same permission — for now the one ordinary reports access covers the report and its downloads and no new permission is added for it.",
+   "3. Note for the tester: for now ONE ordinary reports access opens all six of these new reports; none of them has a permission of its own. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8657 (specs/wip-work-in-progress.md Story 1 Prerequisites (+ context note))",
+  "spec_ref": "SV-8657 (WIP spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the WIP prerequisite still names a Work In Progress reports permission — his spec edit owed)",
   "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm WHICH existing reporting permission gates this report — the spec does not name it; capture the exact permission label live and tighten this case then. Do not invent a permission name.",
+  "notes": "VIU-confirm WHICH existing reporting permission gates this report — the spec does not name it; capture the exact permission label live and tighten this case then. Do not invent a permission name. | 2026-08-03: reworded to the SINGLE ordinary reports permission. Driver = Chris Ward Q2=A (\"Collapse all report access into a single Reports permission\") + the QA lead's ruling 2026-08-03 verbatim \"Yes all the reports will be gated by ONE permission FOR NOW\". \"FOR NOW\" is deliberate — the model is modular and may expand, so a later expansion is a planned change, NOT a regression. re-verified whole against WIP spec v6 (Confluence 703660034; lastModified 2026-07-29; re-checked live 2026-08-03). The exact on-screen name of the reports permission is VIU-confirm (no QA branch). The report's own written description still names a per-area permission — Chris owes that edit.",
   "api_related": false
  },
  {
   "id": "WIP-PERM-02",
   "area": "WIP — Permissions",
-  "title": "Without the permission Work In Progress is absent from the reports navigation",
+  "title": "Without reports access Work In Progress is absent from the navigation",
   "priority": "Critical",
   "type": "Negative",
   "permissions_required": "A role WITHOUT the permission that grants access to Work In Progress reports.",
   "preconditions": [
-   "1. A test user exists whose role does NOT have the permission that grants access to Work In Progress reports (assign the Tech user such a role; restore the original role afterward).",
+   "1. A test user exists whose role does NOT have reports access (assign the Tech user such a role; restore the original role afterward).",
    "2. You are signed in as that user on a desktop browser."
   ],
   "steps": [
@@ -224,9 +225,9 @@
    "1. The report does not appear in the navigation for this user."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8657 (specs/wip-work-in-progress.md Story 1 S1-N1)",
+  "spec_ref": "SV-8657 (WIP spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
   "viu_status": "VIU-Pending",
-  "notes": "Per Standing Rule 10, verify live AS the role — never derive from role definitions. Also probe direct navigation to the report's URL at VIU and record the observed behavior (the spec pins only the navigation hiding).",
+  "notes": "Per Standing Rule 10, verify live AS the role — never derive from role definitions. Also probe direct navigation to the report's URL at VIU and record the observed behavior (the spec pins only the navigation hiding). | 2026-08-03: reworded to the SINGLE ordinary reports permission. Driver = Chris Ward Q2=A (\"Collapse all report access into a single Reports permission\") + the QA lead's ruling 2026-08-03 verbatim \"Yes all the reports will be gated by ONE permission FOR NOW\". \"FOR NOW\" is deliberate — the model is modular and may expand, so a later expansion is a planned change, NOT a regression. re-verified whole against WIP spec v6 (Confluence 703660034; lastModified 2026-07-29; re-checked live 2026-08-03). The exact on-screen name of the reports permission is VIU-confirm (no QA branch). The report's own written description still names a per-area permission — Chris owes that edit.",
   "api_related": false
  },
  {

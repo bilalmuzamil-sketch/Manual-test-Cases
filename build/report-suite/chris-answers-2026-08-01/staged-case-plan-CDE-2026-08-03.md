@@ -1,6 +1,34 @@
-# Report Suite — groups C, D and E: STAGED, **AWAITING AUTHORISATION**
+# Report Suite — groups C, D and E
 
-**Status: NOTHING EXECUTED.** 0 TestRail writes, 0 case-source edits, 0 Jira posts (Standing Rule 6).
+> ## HEADER UPDATED 2026-08-03 — C AND D ARE NOW **EXECUTED**; E REMAINS **AWAITING AUTHORISATION**
+>
+> | Group | Status |
+> |---|---|
+> | **C** — 6 permission-name edits | ✅ **EXECUTED 2026-08-03** — 6 `update_case`, all HTTP 200 + re-GET MATCH |
+> | **D** — 4 precondition edits | ✅ **EXECUTED 2026-08-03** — 4 `update_case`, all HTTP 200 + re-GET MATCH |
+> | **E** — C30327 + C30391 | ⏸️ **NOT EXECUTED.** Awaiting the QA lead's explicit sign-off. **Recommendation: RESCOPE, not retire** |
+>
+> **Authorisation for C and D:** the QA lead, 2026-08-03 — *"I want the report suite now at the stage
+> where the only remaining part left is the VIU and things related to VIU. So make sure nothing is
+> left"*, read with his ruling *"Yes all the reports will be gated by ONE permission FOR NOW."*
+>
+> **Why E was held, verbatim:** *"DO NOT execute group E (C30327, C30391). Those are retire-or-rescope,
+> and a delete is irreversible and would change run 359's count — bring me the recommendation and I
+> will get his explicit sign-off."*
+>
+> **⚠️ CONSEQUENCE OF EXECUTING C+D WITHOUT E — stated so it is not a surprise:** C30327 and C30391
+> still assert the OLD per-area model and therefore now **contradict C30325**. That is the suite's
+> only unresolved contradiction and it is deliberate, not an oversight (Rule 28 / Rule 46). **A
+> RESCOPE closes it with an ordinary edit — no delete, no run change.**
+>
+> **Audit log:** `testrail-execution-log-CD-2026-08-03.md`. **Executor:** `exec_push_CD_2026-08-03.mjs`
+> (C30327 and C30391 are in its hard `FORBIDDEN` list).
+>
+> The wording tables below are the record of WHAT WAS WRITTEN for C and D (the executor used exactly
+> these, with `refs` compressed to TestRail's 250-character-per-reference limit), and remain a
+> PROPOSAL for E.
+
+**Status of group E: NOTHING EXECUTED.** 0 TestRail writes, 0 case-source edits, 0 Jira posts (Standing Rule 6).
 Every "current wording" below was read **live** from TestRail today (`get_case`, read-only) — not
 copied from the earlier plan. All 12 cases confirmed **ours** (`created_by = 3`, Bilal Muzamil).
 

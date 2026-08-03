@@ -49,7 +49,7 @@ else owes).
 
 | Project | The single thing I most need from you |
 |---|---|
-| **Report Suite** | **The QA branch/environment** — all **474** cases are still VIU-Pending and not one has been checked against the real build. **Also, as of 2026-08-03:** your go-ahead to post the drafted SV-8780 comment (time-sensitive — the ticket is `Ready to Fix` and Chris said do **not** remove the atom), and Chris to say how far his "single Reports permission" answer reaches (12 cases staged, unexecuted). |
+| **Report Suite** | **The QA branch/environment** — all **475** cases are still VIU-Pending and not one has been checked against the real build. **UPDATED 2026-08-03:** Report Suite is now **one ruling and one email away from VIU-only** — (a) rule **RESCOPE or RETIRE** on PV-PERM-03 = [C30327](https://shopview.testrail.io/index.php?/cases/view/30327) and PV-API-04 = [C30391](https://shopview.testrail.io/index.php?/cases/view/30391) (my recommendation: **RESCOPE** — an ordinary edit, no delete, no run change), and (b) **send the ready sheet** `PO-Questions-Chris-ReportSuite-2026-08-03.md`/`.xlsx` to Chris (**7 of its items were due 2026-08-04**). Full checklist: `build/report-suite/NON-VIU-CLOSEOUT-2026-08-03.md`. ~~SV-8780 go-ahead~~ **withdrawn — OUT OF SCOPE by your ruling 2026-08-03 "Ignore this ticket."** ~~Chris on the permission scope~~ **CLEARED by your own ruling "Yes all the reports will be gated by ONE permission FOR NOW" — 10 of the 12 staged cases are now pushed.** |
 | **Schedule** | **Send Branko the Round-3 sheet** — 7 questions, written and ready (`PO-Questions-Branko-Schedule-2026-07-31-Round-3`); **send only Round 3**, it replaces the never-sent Round 2 — and the QA branch, for the same reason as above. |
 | **Filters** | **Branko's returned sheet came back BLANK — 0 of 8 answered — and a SECOND delivery on 2026-07-31 was the identical blank file (0 diffs).** Chase him, or forward the reply if it came another way. **The one to press hardest is the sorting question:** it is the only one that creates or cancels a whole block of cases, and we hold **zero** sorting cases until he answers (a design-backed proposal for ~6–8 exists; **none authored, no internal IDs, no C-ids**). (Still also owed: whether a Jira epic exists for Filters at all — without it, none of the 110 cases can cite a ticket.) |
 | **Cross-project** | **A ruling on "Simple Flow V2" (SV-8683)** — it is Open with 7 children against a project we have marked COMPLETED. |
@@ -211,3 +211,63 @@ ourselves once by asking a question a source had already answered."*
 | **Report Suite: Question 5 of the 2026-07-31 sheet** (one reports permission or the per-area ones?) | Report Suite | **ANSWERED = A**, *"Collapse all report access into a single Reports permission"* — filled into the separate SBC permissions Google Doc as its Q2. Verbatim export committed. **Do not re-ask.** The surviving follow-on (how far the collapse reaches) is a **new** open row in §1. | 2026-08-03 |
 | **Report Suite: the SBC permission ruling on record** | Report Suite | **Q1 = A**, *"Gate SBC on ordinary reports access, like the other five reports"* — his **third** statement of the same ruling (2026-07-28 · 2026-07-31 Q4=A · now). The sheet existed only to capture it against the current source, and it is captured. **The three SBC permission cases needed no change to what the tester checks.** | 2026-08-03 |
 | **Report Suite: the SV-8589 QuickBooks / fractional coverage gap** | Report Suite | **FULLY cleared** — 2 cases authored AND pushed: **PV-PREC-01 = [C38924](https://shopview.testrail.io/index.php?/cases/view/38924)**, **PV-PREC-02 = [C38925](https://shopview.testrail.io/index.php?/cases/view/38925)** (verified in the id-map; run 359 verified 474/474 so no resync was needed). *Corrected 2026-07-31 — this row previously read "partially cleared".* | 2026-07-31 |
+
+---
+
+## 2026-08-03 — Report Suite: what moved, and the five Rule-48 fields on what did not
+
+**EXECUTED TODAY (all HTTP 200, all re-GET MATCH, 0 failures).** Authorised push 1: 3 `update_case`
+(C30096, C30098, C30099 — stale `refs` corrected against the live SBC spec + tester note extended for
+the hidden-and-inert permission) + 1 `add_case` (**SBC-PERM-05 = [C39447](https://shopview.testrail.io/index.php?/cases/view/39447)**,
+"No Sales By Customer permission is offered in the role permission editor") + the **run-359 UNION**
+(**474 → 475**, 0 prior case_ids lost, **539 prior result records all verified present** — the staged
+plan had recorded 0 results, so the write-time snapshot is what protected them). Authorised push 2:
+**10 `update_case`** for groups C + D, moving PV / IV / TU / WIP onto the single ordinary reports
+permission. Audit logs: `build/report-suite/chris-answers-2026-08-01/testrail-execution-log-2026-08-03.md`
+and `…-CD-2026-08-03.md`. Counts reconcile: **local active 475 == live-ours 475 == id-map 475 (0
+blanks) == import rows 475**; live folder total **480 = ours 475 + 5 foreign** (Vladimir Tomovic,
+untouched, Rule 38).
+
+### BLOCKED ON THE QA LEAD — the 2 group-E cases (Standing Rule 48, all five fields)
+
+| Field | Detail |
+|---|---|
+| **What I need** | A ruling: **RESCOPE or RETIRE** PV-PERM-03 = [C30327](https://shopview.testrail.io/index.php?/cases/view/30327) and PV-API-04 = [C30391](https://shopview.testrail.io/index.php?/cases/view/30391) |
+| **Which ruling froze it — verbatim** | *"DO NOT execute group E (C30327, C30391). Those are retire-or-rescope, and a delete is irreversible and would change run 359's count — bring me the recommendation and I will get his explicit sign-off."* |
+| **When / what it answered** | **2026-08-03**, answering how far to take your own ruling *"Yes all the reports will be gated by ONE permission FOR NOW."* |
+| **What it blocks** | Both cases test the state *"has Reports access but NOT Inventory Reports View"*, which **cannot exist under one permission — so they are currently unrunnable**, and they now **contradict PV-PERM-01 = [C30325](https://shopview.testrail.io/index.php?/cases/view/30325)**. This is the suite's **only** unresolved contradiction, and it is deliberate (Rules 28/46) |
+| **Was it right?** | **Yes, clearly.** `delete_case` is irreversible, your ruling is explicitly *"FOR NOW"* (the model is modular and may expand), and **the build has never been observed** — no QA branch. Deleting on those grounds would be a genuine coverage loss |
+| **What unblocks it** | One word from you. **Recommendation: RESCOPE** — repoint both at the surviving, valuable assertion that *an extra permission, if it exists, enforces nothing* (Chris: *"they can exist and not do anything for now"*), which nothing else in the 475 checks. It is an ordinary `update_case`: **no delete, no run change**. Proposed wording: `build/report-suite/chris-answers-2026-08-01/staged-case-plan-CDE-2026-08-03.md` |
+
+### OUT OF SCOPE BY YOUR RULING — SV-8780
+
+**Your ruling 2026-08-03, verbatim: *"Ignore this ticket."*** Not commented on, not transitioned, not
+read-and-edited. The drafted comment at `build/dev-tickets-2026-07-31/SV-8780-followup-draft.md` is
+retained unposted and banner-marked **NOT TO BE POSTED**. **This row exists so the earlier "post the
+SV-8780 comment" ask is provably withdrawn rather than silently dropped.**
+
+### BLOCKED ON CHRIS WARD — 3 items, all on one ready-to-send sheet
+
+`build/report-suite/PO-Questions-Chris-ReportSuite-2026-08-03.md`/`.xlsx` — **17 items** (5 decisions
++ 12 write-downs), **13 sources swept**, **10 candidates withdrawn as already answered**.
+
+| # | What Chris owes | What it blocks | Since |
+|---|---|---|---|
+| 1 | **5 product decisions** — the SBR export-column contradiction · will the descriptions be updated · where Location sits in the two Summary downloads · the single logo rule · **which SBC features were dropped** (his own *"I own that"*) | ~15 cases stay hedged instead of asserted | 4 of the 5 since **2026-07-31** |
+| 2 | **The 7 open SPEC-WATCH items — 1b, 4, 6, 8, 9, 10, 11 — DUE 2026-08-04.** Now asked **individually**, not bundled, because a bundled ask has twice produced a bundled non-answer | The written descriptions contradict rulings our cases follow, so anyone comparing us to the text reads a mismatch as **our** error | **2026-07-28** |
+| 3 | **NEW — the 5 non-SBC descriptions still name a per-area report permission** (PV `S1-R4`/`S1-N2`, IV + TU + WIP Story-1 prerequisites; verified live 2026-08-03). Only SBC `S1-R2` has been corrected | The 10 cases reworded today are right per your ruling but disagree with his written text | **2026-08-03** |
+
+**Cleared this pass:** *"Chris to say how far the single-Reports-permission answer reaches"* — **your
+own ruling answered it**, so the question was **withdrawn from the sheet** rather than asked.
+
+### THREE SMALL ITEMS BLOCKED ON NOBODY — ours, staged, need a word
+
+1. **Refresh the local SBC spec mirrors** — `build/report-suite/specs/sbc-sales-by-customer.md` and the
+   `spec-current-2026-07-31/` capture (**v12, Jul 29**) still carry the **abolished**
+   dedicated-permission `S1-R2`; the live page is **Jul 31**. **This risk is live:** the next pass that
+   trusts the mirror will read an abolished requirement as current. It nearly happened today.
+2. **Add your 2026-08-03 ruling citation** to the 4 cases pushed earlier today (C30096, C30098, C30099,
+   C39447) — their tester note already says *"for now"*, but their `refs` cite Chris only. 4 tiny
+   `refs` appends, outside that push's authorisation.
+3. **`SPEC-WATCH-2026-07-28.md` header says "6 OF 12"** while its own table lists **7** open items.
+   **The 7 is correct.** One-line count fix, in a file this pass was not authorised to edit.

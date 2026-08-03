@@ -1,10 +1,10 @@
 Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
 Parts Velocity appears under a new Parts section in the Reports navigation,PV — Access & Defaults,Functional,Critical,"1. You are signed in to the ShopView App as a user with the Manager or Office User role.
-2. Your role has the Inventory Reports → View permission.","1. Open the Reports section from the main navigation.
+2. Your role has the ordinary reports access.","1. Open the Reports section from the main navigation.
 2. Look through the report groupings for a section heading named Parts.
 3. Click the entry labeled Parts Velocity.","1. A Parts section heading exists in the Reports navigation (this feature creates it - the application had no Parts reports before).
 2. Under Parts there is an entry labeled Parts Velocity; Inventory Value also lives under Parts. The order of the two inside the Parts section is not fixed — do not fail the test on which of them comes first.
-3. Clicking it opens the Parts Velocity report.",SV-8641 (PV spec S1-R1 — spec's 'only report' sentence superseded: Parts Velocity and Inventory Value BOTH live under Parts per PRD video 2026-07-30 00:35-01:18; PV-vs-IV S1-R1 clash on SPEC-WATCH),,
+3. Clicking it opens the Parts Velocity report.","SV-8641 (PV spec S1-R1 — the ""only report"" sentence is superseded: Parts Velocity and Inventory Value BOTH live under Parts per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",,
 First visit: date range defaults to This Year and data is fetched automatically,PV — Access & Defaults,Functional,High,"1. You are signed in as a user allowed to open the report.
 2. You are using a browser with NO saved view for this report (e.g. a fresh browser profile or after clearing the site's browser storage), so first-visit defaults apply.","1. Open Reports → Parts → Parts Velocity.
 2. Look at the date range selector and the table without touching anything.","1. The date range selector shows This Year.
@@ -16,12 +16,13 @@ A loading indicator shows and old rows are replaced only when data returns,PV �
 3. Watch the table while the new data is being fetched.","1. During the initial load, the table shows a loading indicator.
 2. During a filter change, the loading indicator shows again.
 3. The rows already on screen are replaced only when the new data comes back - the table does not blank out and rebuild mid-request.",SV-8641 (specs/parts-velocity.md S1-R3),,
-A user with Inventory Reports View can load the report and export it,PV — Permissions,Functional,Critical,"1. You are signed in as a user with the Manager or Office User role.
-2. That user's role has the Inventory Reports → View permission.
+A user with ordinary reports access can load the report and export it,PV — Permissions,Functional,Critical,"1. You are signed in as a user with the Manager or Office User role.
+2. That user's role has the ordinary reports access (the standard ""can this person see reports"" setting).
 3. Some parts have sales activity in the selected date range.","1. Open Reports → Parts → Parts Velocity.
 2. Wait for the data to load.
 3. Open the export menu and download the CSV.","1. The report data loads and rows are shown.
-2. The export downloads successfully (both loading the report and exporting it are allowed by the Inventory Reports → View permission).",SV-8641 (specs/parts-velocity.md S1-R4),,
+2. The export downloads successfully — both opening the report and exporting it are allowed by the same ordinary reports access.
+3. Note for the tester: for now ONE ordinary reports access opens all six of these new reports; none of them has a permission of its own. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.","SV-8641 (PV spec S1-R4 — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; PV S1-R4 still names Inventory Reports > View — his spec edit owed)",,
 Without the Manager or Office User role the report entry is not shown,PV — Permissions,Negative,High,1. You are signed in as a user whose role is neither Manager nor Office User (a role without access to the Reports section).,"1. Look at the application's main navigation.
 2. Try to find the Reports section and the Parts Velocity entry.","1. The user cannot reach the Reports section.
 2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule).",SV-8641 (specs/parts-velocity.md S1-N1),,

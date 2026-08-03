@@ -197,7 +197,7 @@ SBR-API-06,C30321,Deactivating a rep first runs a server pre-check returning the
 PV-NAV-01,C30322,Parts Velocity appears under a new Parts section in the Reports navigation,PV — Access & Defaults
 PV-NAV-02,C30323,First visit: date range defaults to This Year and data is fetched automatically,PV — Access & Defaults
 PV-NAV-03,C30324,A loading indicator shows and old rows are replaced only when data returns,PV — Access & Defaults
-PV-PERM-01,C30325,A user with Inventory Reports View can load the report and export it,PV — Permissions
+PV-PERM-01,C30325,A user with ordinary reports access can load the report and export it,PV — Permissions
 PV-PERM-02,C30326,Without the Manager or Office User role the report entry is not shown,PV — Permissions
 PV-PERM-03,C30327,Reports access without Inventory Reports View: entry shows; data denied,PV — Permissions
 PV-FILT-01,C30328,"Type filter: single-select, first in row, three options, default Both; reloads",PV — Filters
@@ -271,7 +271,7 @@ TU-NAV-03,C30394,First visit defaults to the This Month preset and the user's ac
 TU-NAV-04,C30395,Changing the date range reloads the rows; a Custom range is capped at 366 days,TU — Access & Display
 TU-NAV-05,C30396,The loading indicator shows on load and reload; rows swap only on data,TU — Access & Display
 TU-NAV-06,C30397,All clock records are day-grouped and windowed in one report-level time zone,TU — Access & Display
-TU-NAV-07,C30398,Without the timesheet-reports permission Technician Utilization is hidden,TU — Access & Display
+TU-NAV-07,C30398,Without reports access Technician Utilization is hidden,TU — Access & Display
 TU-NAV-08,C30399,Standard no-data message when no time in scope or all technicians cleared,TU — Access & Display
 TU-HRS-02,C30401,"Headers in fixed order; Total, WO and Internal Hours show clocked hours (2 dp)",TU — Hours & Utilization
 TU-HRS-03,C30402,Utilization % is WO hours over total hours from unrounded values,TU — Hours & Utilization
@@ -396,8 +396,8 @@ WIP-VIS-04,C30522,The Totals row stays visible while only the active tab's body 
 WIP-VIS-05,C30523,The WO # link is keyboard-focusable and opens the work order,WIP — Visual & Accessibility
 WIP-VIS-06,C30524,Each summary figure's info icon is keyboard-reachable and screen-read,WIP — Visual & Accessibility
 WIP-VIS-07,C30525,In dark mode every table; strip; link and coloring stays legible,WIP — Visual & Accessibility
-WIP-PERM-01,C30526,The Work In Progress reports permission covers opening and downloading,WIP — Permissions
-WIP-PERM-02,C30527,Without the permission Work In Progress is absent from the reports navigation,WIP — Permissions
+WIP-PERM-01,C30526,Ordinary reports access covers opening and downloading Work In Progress,WIP — Permissions
+WIP-PERM-02,C30527,Without reports access Work In Progress is absent from the navigation,WIP — Permissions
 WIP-API-01,C30528,Nightly snapshot records one row per then-open job per calendar date,WIP — API
 WIP-API-02,C30529,Each snapshot row captures the WO; status; money; location and the date,WIP — API
 WIP-API-03,C30530,Captured Earned and Remaining use the same maths as the on-screen report,WIP — API
@@ -466,8 +466,8 @@ IV-VIS-04,C30599,Long Description; Category and Vendor truncate on hover; Part #
 IV-VIS-05,C30600,"In dark mode the page background, toolbar, cells; the ""—"" glyph remain legible",IV — Visual & Accessibility
 IV-VIS-06,C30601,Each sortable header exposes its sort state and shows the direction,IV — Visual & Accessibility
 IV-VIS-07,C30602,The icon-only download and Column Selection buttons carry accessible names,IV — Visual & Accessibility
-IV-PERM-01,C30603,User with the existing inventory-reports permission can open the report,IV — Permissions
-IV-PERM-02,C30604,Without the permission Inventory Value is absent from the reports navigation,IV — Permissions
+IV-PERM-01,C30603,A user with ordinary reports access can open Inventory Value,IV — Permissions
+IV-PERM-02,C30604,Without reports access Inventory Value is absent from the navigation,IV — Permissions
 IV-API-01,C30605,Nightly snapshot records one row per in-stock non-core part per location,IV — API
 IV-API-02,C30606,A recorded snapshot day equals what the live report showed that day,IV — API
 IV-API-03,C30607,Nightly snapshot: re-running the capture for a date replaces that date's rows,IV — API

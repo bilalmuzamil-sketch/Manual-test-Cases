@@ -1,10 +1,10 @@
 Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
-"Technician Utilization sits under Performance, below existing report links",TU — Access & Display,Functional,Critical,1. You are signed in as a user whose role has the timesheet-reports permission.,"1. Open the reports navigation.
+"Technician Utilization sits under Performance, below existing report links",TU — Access & Display,Functional,Critical,1. You are signed in as a user whose role has the ordinary reports access.,"1. Open the reports navigation.
 2. Look under the Performance group.
 3. Click the entry labeled Technician Utilization.
 4. Note where the entry sits relative to the report links that existed before this release.","1. The report is listed under the Performance group, labeled ""Technician Utilization"".
 2. Clicking it opens the report.
-3. The entry sits BELOW the pre-existing report links — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency — the new reports are added below those items without moving or disturbing them.",SV-8648 (TU spec S1-R1 — below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per PRD video 2026-07-30 01:18-02:05; refines video P3 [newest-wins]),,
+3. The entry sits BELOW the pre-existing report links — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency — the new reports are added below those items without moving or disturbing them.",SV-8648 (TU spec S1-R1 — below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03),,
 One row per technician who clocked time in the range at those locations,TU — Access & Display,Functional,Critical,"1. Technician A clocked time (work-order and/or internal) in the selected date range at the selected location.
 2. Technician B clocked NO time in that range.","1. Open the Technician Utilization report for that range and location.
 2. Look for rows for technicians A and B.","1. Technician A has exactly ONE row.
@@ -31,8 +31,8 @@ All clock records are day-grouped and windowed in one report-level time zone,TU 
 2. A record that starts before the range (or ends after it) counts only the part inside the range.
 3. EVERY record is day-grouped and windowed in a SINGLE report-level time zone - the active workplace's - regardless of the location where it was clocked (a record's day, the current-month boundary, and the midnight split all use that one zone).
 4. This matches the Timesheet Activities report's single-time-zone grouping.",SV-8648 (specs/technician-utilization.md S1-R7; S1 context notes),,
-Without the timesheet-reports permission Technician Utilization is hidden,TU — Access & Display,Negative,High,1. You are signed in as a user whose role lacks the permission that controls the Timesheet Activities report.,"1. Open the reports navigation.
-2. Look for Technician Utilization under Performance.",1. The Technician Utilization report does NOT appear in the navigation.,SV-8648 (specs/technician-utilization.md S1-N1),,
+Without reports access Technician Utilization is hidden,TU — Access & Display,Negative,High,1. You are signed in as a user whose role does NOT have reports access.,"1. Open the reports navigation.
+2. Look for Technician Utilization under Performance.",1. The Technician Utilization report does NOT appear in the navigation.,"SV-8648 (TU spec S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 ""ONE permission FOR NOW""; the TU prerequisite still names the timesheet-reports permission — his spec edit owed)",,
 Standard no-data message when no time in scope or all technicians cleared,TU — Access & Display,Negative,Medium,"1. A date range exists in which no technician clocked any time at the selected location(s), or a selectable location has no clocked time for the range.
 2. For the cleared-filter check: the report can also be loaded with rows showing.","1. Select that empty date range (or the empty location) and let the report load.
 2. Read the message in the data area and look for the Summary row.
