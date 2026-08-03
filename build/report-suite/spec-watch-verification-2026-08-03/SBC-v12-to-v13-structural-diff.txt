@@ -1,0 +1,42 @@
+# SBC v12 -> v13 structural diff — raw tool output, 2026-08-03
+# LEFT  = build/report-suite/spec-current-2026-07-31/Sales-By-Customer-Report-current.md (v12)
+# RIGHT = live Confluence page 577634305, TRUE version 13, fetched 2026-08-03 via mcp Atlassian fetch (ARI)
+# Method: both sides normalised (markdown emphasis, backslash escaping, whitespace, curly quotes) then
+#         diffed on FOUR dimensions - requirement anchors / requirement text / headings / prose bullets.
+#         NOT a phrase search. The 'CHANGELOG ROWS: mirror 0' line is a FORMAT artifact (html2text does
+#         not emit pipe-prefixed rows); the 2026-07-31 row's absence from the mirror was verified separately.
+
+mirror v12 requirement anchors: 234  live v13: 234
+
+== ANCHORS ADDED in v13 ==
+
+== ANCHORS REMOVED in v13 ==
+
+== ANCHORS WITH CHANGED TEXT ==
+
+~ S1-N1
+   v12: A user without the Sales By Customer report View permission does not see the report in navigation and cannot open it by direct link.
+   v13: A user without reports access does not see the report in navigation and cannot open it by direct link.
+
+~ S1-R2
+   v12: The report is gated by a dedicated Sales By Customer report View permission — it is not tied to a generic "all reports" permission.
+   v13: The report is gated by ordinary reports access, not by a report-specific permission. Any user with standard reports access can open it; there is no dedicated Sales By Customer View permission.
+
+changed count: 2
+
+== HEADING DIFF ==
+
+== CHANGELOG ROWS: mirror 0 live 8 ==
+NEW ROW: | 2026-07-07 | @claude | Full rewrite against a ground-truth code verification of the current suite build. Added Story 4 (location filter) and Story 6 (remember filters and view between visits). Corrected Product Type wording to "Parts & Service / Parts only / Service only." Corrected report access to a dedicated Sales By Customer view permission. Reframed search as the application global search bar with a clean match contract. Set the totals row to white, matching Technician Efficiency. Specified that the totals row follows the narrowed customer list in every case, including "Show only comparing" with an empty search. Added the 24px filter-arrow conformance rule. |
+NEW ROW: | 2026-07-07 | @claude | Hardening pass after a 10-reviewer audit. Defined Subtotal and Shop Supplies in Terminology; gave the reversed/voided exclusion its own requirement (S7-R7, S7-N2); pinned the expand gate to 366 days (S8-R14); pinned on-screen and PDF date formats to "Mon DD YYYY" and CSV to mm-dd-yyyy; gave the full range-to-filename map (S14-R4); set exact Inv. Hrs PDF colors (#21ba45 / #c10015) and surface hex; split bundled requirements into one behavior each; promoted behavior out of context notes into requirements; removed "Show only comparing" and search from the saved view; defined the location default, asset ordering under sort, sort-by-Date, and the two-chip order. |
+NEW ROW: | 2026-07-12 | @chris / @claude | Comparison rework (Head-of-Product review, Sasha Grosman). Removed the customer comparison list and "Show only comparing" (old Story 18) and replaced them with a multi-select Customer filter — search-as-you-type, all customers selected by default, persisted between visits (new Story 18). Removed the side-by-side asset comparison entirely (old Story 19 — the modal, asset pins, the "Compare N" chip, and its CSV/PDF exports); asset comparison is deferred to a future dedicated report. Kept the Customer → Asset → Invoice grouping. Swept every comparison cross-reference (§2, §3, §4, Stories 5/6/10/13/14/15/17) and the feedback table. Story 19 is retained as a placeholder so later story numbers and "See Story 20" references stay stable. |
+NEW ROW: | 2026-07-15 | @chris / @claude | Removed the report's use of the application's global search bar. Narrowing to a specific customer is now done solely with the multi-select Customer filter (Story 18); its search-as-you-type finds a customer by name. Retired Story 5 (global-search narrowing) to a placeholder and re-homed its export-narrowing contract into Story 18 (S18-R7 for the narrowed/full export, new S18-R10 for the empty-selection export). Swept every "search" / "global search bar" cross-reference (§2, §7, Stories 6/8/14/15/17/18). Matches the code change that replaced the global-search dependency with the report-local Customer filter. |
+NEW ROW: | 2026-07-16 | @chris / @claude | Removed the "All Time" date range (D1) and all All-Time-specific behavior. Capped the Custom range at a 366-day maximum span (D3), matching the largest preset (This Year / Last Year). Moved data fetching to the server: customer rows are server-paginated, sort (Story 10) and the Customer filter (Story 18) are applied server-side, the totals row (S18-R6) is server-computed over the full filtered set, and customer drill-down is lazy-loaded on expand (deleted the S8-R14 expand gate, S8-R14a, S8-R14b). Exports (CSV, PDF, Print) are now generated server-side against the current filters and sort. Header Status date bumped. Per Milan Zivanovic's 2026-07-15 engineering review; the server-side model is the committed build target (spec ahead of current code by design). |
+NEW ROW: | 2026-07-21 | @chris / @claude | Milan Zivanovic review resolution. Story 18 Customer filter changed to server-backed type-ahead: the dropdown fetches matching customers from the server as the user types rather than loading the full customer list into the browser (S18-R2). The "all customers" selection is now stored as an explicit all-customers state — a flag, not an enumeration — that always includes newly-appearing customers, both when a filter change reloads the results and on restore between visits (S18-R3, S18-R4, S18-R5, S18-R8, S18-R9); this resolves the prior S18-R8/S18-R9 contradiction (R9's behavior wins) by removing S18-R8's blanket "newly-appeared customer is not auto-selected on restore" carve-out and making it state-specific, and drops the "N of M selected" label in favor of "N selected." Added an export row cap of 10,000 data rows, enforced server-side against the active filters and sort, with a friendly toast when exceeded, on CSV (S14-R14), PDF (S15-R22), and Print (S16-R6). Reworded the asset-grouping rule to group by the vehicle record (same vehicle id), falling back to the invoice's stored vehicle snapshot for older data with no id (S8-R3). Scoped "expand all" 
+NEW ROW: | 2026-07-29 | @chris / @claude | Assets identified by VIN (VIN → Unit # → plate → "Unknown Asset"); removed Print; split exports into Summary and Expanded (CSV + PDF, four menu items); added a per-row Location column (shown when more than one location is in scope; "Multiple" on aggregating rows, exact on invoice rows) plus a "Locations:" export line. |
+NEW ROW: | 2026-07-31 | @chris / @claude | Corrected the Sales By Customer permission gate: the report is gated by ordinary reports access, not a dedicated Sales By Customer View permission (S1-R2, plus the Story 1 prerequisite and the S1-N1 negative case). This reverses the 2026-07-07 change that introduced a dedicated permission — that permission was specced before Custom Roles (CRP) existed. Per Chris's ruling recorded 2026-07-28 and re-confirmed 2026-07-31 on the SV-8598 / SV-8780 permissions question sheet: reports are not hidden from normal reports access. Engineering (SV-8598) to drop the dedicated ROLESALESBYCUSTOMERREPORT::VIEW atom, gate SBC endpoints on standard reports access, and confirm the atom does not linger in the Custom Roles matrix. |
+
+== PROSE BULLETS ADDED (non-requirement) ==
+
+== PROSE BULLETS REMOVED ==
+ - User has the Sales By Customer report View permission.

@@ -4,7 +4,7 @@
 > - pageId: 620888066
 > - Page title: Parts Velocity Report
 > - Confluence `lastModified` (live, read this run): **Jul 29, 2026**
-> - Version: v4 per the 2026-07-31 capture; unchanged (lastModified still 2026-07-29)
+> - **TRUE Confluence version (metadata.version via `fetch` ARI, read 2026-08-03): v4**
 > - Confluence space: ~712020aa00b8d6a71f4259891982a304227c20 (Chris Ward)
 > - Captured: 2026-08-03 via the Atlassian MCP `getConfluencePage` (contentFormat=markdown)
 > - ⚠️ This capture pipeline (MCP markdown) is NOT byte-comparable with the 2026-07-31 captures
