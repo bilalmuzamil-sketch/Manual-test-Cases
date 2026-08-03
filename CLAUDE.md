@@ -40,6 +40,13 @@
 >   authorization needed), and on another rate limit append the attempt + re-arm DUE-AT = new
 >   error time + 9 h. OPEN NOW: `build/filters/design-2026-07-31/PENDING-FIGMA-FETCH.md`
 >   (73/85 PNGs, DUE-AT `2026-07-30T23:27:02Z`).**
+> - **AT EVERY SESSION START (and before/after any project work): CHECK FOR OPEN NON-FINAL-BUILD
+>   RE-CHECK QUEUES (Rule 49) — `ls build/*/viu-*/RECHECK-QUEUE.md`; a build declared NOT FINAL
+>   yields PROVISIONAL findings only, so every finding is queued with its BUILD MARKER and no suite
+>   may be called VIU-complete while a queue is OPEN. Re-run the queue when the build is declared
+>   final or the app-version marker changes. OPEN NOW:
+>   `build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md` (Report Suite QA branch `sv8582`, build
+>   `v3.4.1-0ed4433`).**
 > - **OUTSTANDING-ITEMS REGISTER (Standing Rule 36) — the single cross-project list of everything we
 >   are WAITING ON: build/OUTSTANDING-ITEMS-REGISTER.md. READ IT before writing any status report or
 >   management deliverable, and UPDATE IT the moment an item is raised or cleared. EVERY project
@@ -2179,6 +2186,62 @@ deliver the 7-tab management report.
     reviewer claim, which is exactly why it must be citable), 36 (the outstanding register carries
     these five fields for QA-lead-blocked items) and 46 (an undocumented deliberate decision is
     indistinguishable from a miss).
+49. **A NON-FINAL BUILD yields PROVISIONAL findings ONLY — record the build marker, queue every
+    finding for re-check, and never report a suite VIU-complete against it (all projects).**
+    USER DIRECTIVE (2026-08-03, verbatim — on the Report Suite QA branch `sv8582`): *"they have also
+    told they this QA Branch is also not final they are still working on it. So whatever you change
+    from it, make sure that you will have to recheck it in future to ensure that what you had learned
+    from this QA branch is still true or if that has been changed."*
+    **THE RULE:** when a build/branch/environment is declared **NOT FINAL** by engineering, the PO or
+    the QA lead, **every** observation taken from it — a captured on-screen label, a column order, a
+    calculation result, a permission verdict, a PASS/DEVIATION call — is **PROVISIONAL**, not settled.
+    A provisional finding may still be acted on (wording corrections, verdicts, staged pushes), but it
+    is **never treated as durable truth** and it is **never allowed to look durable**.
+    **THE FOUR OBLIGATIONS (all four, every time):**
+    **(1) RECORD THE BUILD MARKER.** Capture a concrete, re-readable identifier of the exact build
+    observed and put it in the deliverable: the app's version string (ShopView SPA:
+    `<meta name="app-version">` in `index.html`, e.g. `v3.4.1-0ed4433`), plus a corroborating marker
+    (`last-modified`/`etag` on `index.html`, or the API's `x-request-id`/server banner) and the
+    **UTC timestamp of observation**. **Without a build marker a "re-check" is meaningless — you
+    cannot tell whether the build changed.**
+    **(2) OPEN A DATED RE-CHECK QUEUE — the same mechanism as the Rule-35 design-fetch queue.**
+    One file per pass, `RECHECK-QUEUE.md`, inside that pass's dated folder, with a **status header of
+    OPEN or CLOSED** and **one row per case touched or verdicted**, each carrying: internal ID · C-id ·
+    the `https://shopview.testrail.io/index.php?/cases/view/<id>` link (Rule 8) · **what was observed**
+    · **what was changed or concluded** · the **date + build marker** · and the **re-check obligation**
+    (what specifically must be re-confirmed when the build settles). **Honesty about the mechanism
+    (as with Rule 35): there is NO background scheduler — the queue is a committed, dated file plus
+    the mandatory check below.**
+    **(3) STAMP THE PROVENANCE ON THE CASE ITSELF** — in the **notes/metadata layer, never the
+    tester-facing fields** (Rules 9/20): the observation came from a **non-final build**, naming the
+    build marker and the date. A future reader must not mistake a provisional label for a confirmed
+    one.
+    **(4) NEVER CLAIM COMPLETENESS.** No suite, report, deliverable, tally or status line may be
+    described as **VIU-complete / verified / current** on a non-final build **without stating that the
+    build was non-final and naming the OPEN queue**. This is the Rule-31 SOURCE-CURRENCY logic applied
+    to the *build* as a source: a non-final build is at best **PARTIAL**, and a PARTIAL source must
+    name its exact shortfall.
+    **WHEN TO RE-RUN THE QUEUE:** at **every session start** for that project (alongside the Rule-35
+    design-queue check), **before and after any work on that project**, and **immediately** when the
+    build is declared final, a deploy is detected (the app-version marker changed, or a session dies
+    early — cookies on these estates die at ~24h **or on deploy**), or the QA lead asks. Re-check each
+    row against the new build, **flip it to CONFIRMED or CHANGED with fresh evidence**, and only close
+    the queue when **100% of rows are re-verified** (Rule 17 — no sampling, no "the important ones").
+    **A row that flips to CHANGED is a finding in its own right** and is reported, not quietly
+    corrected.
+    **RATIONALE, 2026-08-03:** the Report Suite got its first QA branch (`sv8582`,
+    `v3.4.1-0ed4433`) and 475 cases were finally live-verifiable — but engineering said the branch is
+    still being worked on. Without this rule the suite would have been stamped "VIU-Verified" against
+    a moving target, and every corrected label would have silently become "the truth" with no record
+    of which build it came from and no trigger to re-confirm it. Canonical example:
+    `build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md` (+ its build marker in
+    `ACCESS-PROOF-2026-08-03.md`). Ties to Standing Rules 10/12 (VIU verdicts are live-observed, and
+    a provisional observation is still an observation — it is its DURABILITY that is limited), 17
+    (complete data in/out), 22 (ask for the live check + the environment/flag state up front), 25
+    (cite the source verbatim — here, the build marker), 29 (the queue is committed to git, the only
+    durable store), 31 (source currency — the build is a source), 35 (the design-fetch queue is the
+    same due-dated-queue pattern), 36 (an OPEN queue is an outstanding item and belongs in the
+    register) and 46 (a provisional finding recorded as final is indistinguishable from a miss).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
