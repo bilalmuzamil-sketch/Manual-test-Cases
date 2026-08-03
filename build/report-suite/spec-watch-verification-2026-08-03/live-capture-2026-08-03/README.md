@@ -12,12 +12,22 @@ overwritten and remain the record of that day.**
 | **WIP** Work In Progress | 703660034 | Jul 29, 2026 | ❌ not re-written | Same — mirror v6 is current. |
 | **IV** Inventory Value | 720142338 | Jul 29, 2026 | ❌ not re-written | Same — mirror v3 is current. |
 
-## Two honest caveats
+## UPDATE 2026-08-03 (later) — TRUE version integers ARE available
+
+`mcp__Atlassian__fetch` with a Confluence **ARI** (`ari:cloud:confluence:<cloudId>:page/<id>`) returns
+`metadata.version`. Read live 2026-08-03: **SBC 13 · SBR 15 · PV 4 · TU 5 · WIP 6 · IV 3**. Our
+`spec-current-2026-07-31` mirrors are **SBC 12 · SBR 15 · PV 4 · TU 5 · WIP 6 · IV 3** — so **five of
+six mirrors are the SAME VERSION as live** (not merely same-dated) and **only SBC is stale, by exactly
+one version**. Caveat 2 below is therefore WITHDRAWN; no Confluence cookies are needed for versions.
+Full SBC v12→v13 delta: `../ADDENDUM-full-versions-SBC-delta-epic.md` + the raw structural diff
+`../SBC-v12-to-v13-structural-diff.txt`.
+
+## Two honest caveats (caveat 2 now WITHDRAWN)
 
 1. **Pipeline change — do NOT byte-diff against the 2026-07-31 captures.** Those were produced from
    the Confluence REST storage format via `html2text`; these are Atlassian-MCP markdown (`html2text`
    is not installed in this container). Compare by **requirement text**, not by bytes.
-2. **No Confluence version integers.** `getConfluencePage` and `searchConfluenceUsingCql` return
+2. ~~**No Confluence version integers.**~~ **WITHDRAWN — see the update above.** For the record, the original limitation was: `getConfluencePage` and `searchConfluenceUsingCql` return
    `lastModified` (date only) and no `version` object, and the REST cookie file the earlier passes
    used (`/tmp/fd-tickets/all-cookie-header.txt`) no longer exists — `/tmp` is ephemeral. The
    version column in `../VERIFICATION.md` is therefore derived from the live `lastModified` plus the

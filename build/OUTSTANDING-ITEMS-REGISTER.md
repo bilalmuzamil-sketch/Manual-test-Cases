@@ -368,3 +368,44 @@ today's version column is derived from the live modified date plus the newest in
 and says so (Rule 12). **Fresh Confluence cookies would restore true version integers.** Also
 unrelated-but-noted: the epic **SV-8582** was **not** re-checked this run (6 stories were reopened as
 of 2026-07-31) — a cheap Rule-37 Tier-1 check belongs to the next Report Suite touch.
+
+### 2026-08-03 ADDENDUM — true spec versions, the full SBC delta, and the epic Tier-1 check
+
+Source: `build/report-suite/spec-watch-verification-2026-08-03/ADDENDUM-full-versions-SBC-delta-epic.md`
+
+- ✅ **CLEARED — "Confluence session cookies for true version numbers."** **Withdrawn, do not send
+  them for this.** `mcp__Atlassian__fetch` with a page ARI returns `metadata.version`. Live
+  **SBC 13 · SBR 15 · PV 4 · TU 5 · WIP 6 · IV 3**; our mirrors **SBC 12 · SBR 15 · PV 4 · TU 5 ·
+  WIP 6 · IV 3** — **five of six mirrors are the SAME VERSION as live**, only SBC stale by one.
+- ✅ **The full SBC v12→v13 delta is now known and it is SMALL:** structural diff of both full bodies
+  (234 requirement anchors each; 0 added, 0 removed) found **exactly 3 text changes — `S1-R2`, `S1-N1`
+  and the removed Story-1 Prerequisite — all the permission gate**, plus 1 changelog row. **ZERO case
+  changes required** (Rule-43 verdicts: all 3 already COVERED by C30098 / C30099 / C39447). This also
+  **CONFIRMS** SPEC-WATCH items **1a, 2, 3 DONE and 10 NOT DONE against v13**, which were previously
+  uncertain.
+- ✅ **SPEC-WATCH "6 OF 12" header count fixed** (7 was correct; 8 once the new one-permission item is
+  counted) — clears the small item raised earlier today.
+- 🔴 **NEW ASK — go-ahead to author SBC-API-06** (staged, not written): the **API surface of the SBC
+  permission gate is uncovered.** SBC has 5 API cases (C30190–C30194), none about permission; PV has
+  that half (PV-API-04 = [C30391](https://shopview.testrail.io/index.php?/cases/view/30391)). It is the
+  surface **SV-8780** is about — the atom could still be enforced server-side after the front end stops
+  offering it. Needs your go-ahead **and** a run-359 sync afterwards (Rule 34/47, `include_all: false`).
+- 🔴 **NEW — SV-8614 "SBC - Story 16 - Print the report" is still Open for a RETIRED feature.** Print was
+  removed from the spec (v13 Story 16) and our Print case deleted 2026-07-28. Correctly cited by no case.
+  **Third live Print inconsistency**, with SBC `S18-R7` and `S18-R10` which still list Print as an export.
+  Owed by Chris/dev.
+- ⚠️ **NEW — the SBC export-gating asymmetry.** PV `S1-R4` and WIP both say the permission covers
+  **exports**; SBC `S1-R2` speaks only of **opening**. Two export surfaces on SBC therefore have nothing
+  to verdict against (Rule 40). Your call whether to ask Chris.
+- ⚠️ **EPIC SV-8582 Tier-1 (Rule 37): child count verified TWO ways — `parent = SV-8582` and
+  `"Epic Link" = SV-8582` both return 97, identical sets, `hasNextPage` false, SV-8583→SV-8679
+  contiguous. Live split 90 Open / 6 OBSOLETE / 1 In Progress. 0 new stories, 0 removed. BUT 7 STATUSES
+  MOVED since our 2026-07-27 ingest** (which held OBSOLETE 12 / Open 85): **SV-8594–SV-8599, the
+  `[B1]`–`[B6]` build stories, were REOPENED OBSOLETE→Open on 2026-07-29**, and **SV-8589 went Open→In
+  Progress**. *(Correction to the earlier brief: the six that MOVED are the `[Bn]` stories, not the six
+  now-OBSOLETE originals SV-8583–8588.)* **No coverage rides on the 6 OBSOLETE originals — zero cases
+  cite them, confirmed.** The reopening is *good* for us: **SBC-PERM-05 = [C39447](https://shopview.testrail.io/index.php?/cases/view/39447)**
+  cites **SV-8598**, which is now live again rather than a dead ticket. **No case needs changing.**
+  **OPEN QUESTION FOR YOU: does the reopening mean the build plan changed?** None of the six carries a
+  comment explaining it — answering that needs a **Tier-2 epic re-read, which requires your
+  authorisation** (Rule 37) and was NOT done.

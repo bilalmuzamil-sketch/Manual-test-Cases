@@ -45,11 +45,22 @@
 > additively). SBR v15 · PV v4 · TU v5 · WIP v6 · IV v3 are **unchanged** (all `lastModified`
 > 2026-07-29) and their mirrors are current.
 >
-> **⚠️ Version integers could not be read this run** — the Atlassian MCP exposes `lastModified` only,
+> **✅ TRUE Confluence versions (read 2026-08-03 via `mcp__Atlassian__fetch` with a page ARI, which
+> returns `metadata.version`): SBC **13** · SBR **15** · PV **4** · TU **5** · WIP **6** · IV **3**.
+> Our 07-31 mirrors are SBC 12 · SBR 15 · PV 4 · TU 5 · WIP 6 · IV 3 — five of six are the SAME
+> version as live; only SBC is stale, by exactly one. The FULL SBC v12→v13 delta is THREE permission
+> text changes and nothing else, so items 1a/2/3/10 are confirmed against v13:
+> `spec-watch-verification-2026-08-03/ADDENDUM-full-versions-SBC-delta-epic.md`.**
+>
+> **~~⚠️ Version integers could not be read this run~~ — SUPERSEDED, see above.** For the record: — the Atlassian MCP exposes `lastModified` only,
 > and the REST cookie file is gone (`/tmp` is ephemeral). **Re-supply Confluence cookies** for true
 > version reads.
 
-## ✅⚠️ RE-DIFF RUN 2026-07-31 — THE PROMISED CHANGELOG LANDED; 6 OF 12 ITEMS STILL OPEN
+## ✅⚠️ RE-DIFF RUN 2026-07-31 — THE PROMISED CHANGELOG LANDED; ~~6 OF 12~~ **7 OF 12** ITEMS STILL OPEN
+
+> **COUNT FIXED 2026-08-03:** this header read *"6 OF 12"* while its own table listed **7** open items
+> (1b, 4, 6, 8, 9, 10, 11) — **7 is correct**. Superseded anyway by the live re-verification at the top
+> of this file, which found **8 NOT DONE** once the new one-permission item (13) is counted.
 
 Full evidence: **`spec-current-2026-07-31/SPEC-DIFF-2026-07-31.md`** (+ the six `*-current.md`
 captures and `*-raw-unified.diff` files). Live Confluence read verified (`/rest/api/3/myself` →

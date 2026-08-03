@@ -29,7 +29,18 @@ is good news for four of our cases. Everything else Chris owed on 2026-07-29 is 
 no Rule-35 fetch queue. **Tech plan** — held (`tech-plan-2026-07-29/`), not re-fetched this run.
 **Live build** — **STILL ABSENT**; no QA branch, so nothing below is build-verified.
 
-### ⚠️ TWO HONEST LIMITS ON THE ABOVE
+### ✅ SUPERSEDED LATER THE SAME DAY — read the ADDENDUM
+
+`ADDENDUM-full-versions-SBC-delta-epic.md` **removes limit 1 below and completes the picture**:
+`mcp__Atlassian__fetch` with a page **ARI** returns `metadata.version`, so the **TRUE Confluence
+versions** are now on record — **SBC 13 · SBR 15 · PV 4 · TU 5 · WIP 6 · IV 3** — and **five of six of
+our mirrors are the SAME VERSION as live** (only SBC is stale, by exactly one). The addendum also
+carries the **FULL structural SBC v12→v13 delta** (3 permission text changes and nothing else, so
+items 1a/2/3/10 are CONFIRMED against v13), the **Rule-43 per-requirement verdicts**, the **Rule-40
+surface matrix**, and the **epic SV-8582 Tier-1 result** (7 status changes vs our ingest). Read it with
+this file.
+
+### ⚠️ TWO HONEST LIMITS ON THE ABOVE (limit 1 now WITHDRAWN — see above)
 
 1. **The numeric Confluence version is NOT readable with the tools available this session.**
    `getConfluencePage` and `searchConfluenceUsingCql` both return **`lastModified` (date only)** and
