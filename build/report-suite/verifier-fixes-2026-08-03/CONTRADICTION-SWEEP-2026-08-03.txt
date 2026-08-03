@@ -1,0 +1,55 @@
+==========================================================================================
+PASS 1 — SAME-ANCHOR CLUSTERS containing an edited case
+  clusters with >1 case that include an edited case: 31
+
+  NEW anchor links created by this pass (the re-check net they now join):
+    C30167 +S4-R13    -> now clustered with 5 case(s): C30156, C30161, C30169, C38856, C38912
+    C30167 +S15-R14   -> now clustered with 1 case(s): C30168
+    C30277 +S14-R20   -> now clustered with 6 case(s): C30278, C30279, C30285, C30286, C30293, C38913
+    C30376 +S6-R11    -> now clustered with 1 case(s): C38914
+    C30437 +S7-R13    -> now clustered with 1 case(s): C38915
+    C30511 +S7-R13    -> now clustered with 1 case(s): C38916
+    C30511 +S9-E1     -> now clustered with 2 case(s): C30516, C38916
+    C30588 +S10-R15   -> now clustered with 1 case(s): C38917
+    C38856 +S14-R2    -> now clustered with 1 case(s): C30159
+    C38856 +S14-R4    -> now clustered with 0 case(s): (none)
+    C38856 +S15-R2    -> now clustered with 1 case(s): C30159
+    C38856 +S15-R4    -> now clustered with 0 case(s): (none)
+    C38856 +S15-R5    -> now clustered with 2 case(s): C30166, C30169
+
+==========================================================================================
+PASS 2 — OPPOSITE-ASSERTION sweep (edited cases vs their same-anchor peers)
+  candidate opposite-assertion pairs raised: 20
+    [IV S10-R15] C30588 vs C38917  (column shown)
+    [SBC S15-R5] C30169 vs C38856  (closed vs conditional)
+    [SBC S4-R12] C30156 vs C38912  (column shown)
+    [SBC S4-R13] C30156 vs C38912  (column shown)
+    [SBC S4-R13] C30161 vs C38856  (closed vs conditional)
+    [SBC S4-R13] C30169 vs C38856  (closed vs conditional)
+    [SBC S4-R13] C38856 vs C38912  (column shown)
+    [SBC S4-R13] C38856 vs C38912  (closed vs conditional)
+    [SBR S14-R20] C30278 vs C30293  (column shown)
+    [SBR S14-R20] C30278 vs C30293  (closed vs conditional)
+    [SBR S14-R20] C30279 vs C30293  (closed vs conditional)
+    [SBR S14-R20] C30285 vs C30293  (closed vs conditional)
+    [SBR S14-R20] C30286 vs C30293  (closed vs conditional)
+    [SBR S14-R20] C30293 vs C38913  (column shown)
+    [SBR S14-R20] C30293 vs C38913  (closed vs conditional)
+    [SBR S21-R7] C30265 vs C38913  (column shown)
+    [TU S4-R2] C30419 vs C30449  (reload)
+    [TU S4-R2] C30419 vs C30449  (devtools)
+    [TU S7-R13] C30437 vs C38915  (column shown)
+    [TU S9-R4] C30419 vs C30443  (reload)
+
+==========================================================================================
+PASS 3 — TITLE-vs-EXPECTED on every edited case
+  edited cases whose title has a term absent from its own body: 0
+
+==========================================================================================
+PASS 4 — NAMED-ENTITY sweep across all 475 (the verifier's §6 blind spot)
+  asks the tester to MEASURE a ratio: 0 case(s) total, 0 of them in a NON-API section -> []
+  requires devtools / network tab: 7 case(s) total, 1 of them in a NON-API section -> ['C30386']
+  closes a column list with "exactly" and no location conditional: 1 case(s) total, 1 of them in a NON-API section -> ['C30139']
+
+==========================================================================================
+CONTRADICTIONS INTRODUCED BY THIS PASS: 20 candidate pair(s) (each must be judged by hand below)

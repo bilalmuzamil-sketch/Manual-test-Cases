@@ -1,0 +1,71 @@
+{
+  "capturedAt": "2026-08-03T18:52:01.705Z",
+  "buildMarker": "v3.4.1-0ed4433",
+  "checks": [
+    {
+      "check": "WIP Earned=LaborEarned+PartsEarned, Remaining likewise, Total=Earned+Remaining (all 178 rows)",
+      "verdict": true,
+      "detail": "0 mismatches across 178 rows"
+    },
+    {
+      "check": "WIP an Estimates-tab job with nothing approved is present at 0",
+      "verdict": true,
+      "detail": "77 Estimates rows have total 0 and are still listed"
+    },
+    {
+      "check": "WIP each WO appears in exactly one tab",
+      "verdict": true,
+      "detail": "unique WO ids 178 vs rows 178 | tabs {\"ApprovedNotStarted\":25,\"ApprovedPartiallyCompleted\":65,\"Estimates\":77,\"Completed\":11}"
+    },
+    {
+      "check": "WIP money values are integer cents in the payload",
+      "verdict": true,
+      "detail": "sample total=14500 -> $145.00"
+    },
+    {
+      "check": "WIP rows carry BOTH unit_number and vin",
+      "verdict": true,
+      "detail": "[{\"wo\":\"S2-15875\",\"unit\":\"10154522\",\"vin\":\"1T0324GMLPJ445971\"},{\"wo\":\"S2-15868\",\"unit\":\"70\",\"vin\":\"1XKDD40X8CJ955352\"},{\"wo\":\"S2-15857\",\"unit\":\"10154522\",\"vin\":\"1T0324GMLPJ445971\"}]"
+    },
+    {
+      "check": "SBC data payload shape",
+      "verdict": true,
+      "detail": "keys=[\"collection\",\"pagination\",\"totals\"] rows=100 rowKeys=[\"key\",\"customer_name\",\"location\",\"inv_hrs\",\"labor_invoiced\",\"labor_margin\",\"parts_invoiced\",\"parts_margin\",\"shop_supplies\",\"margin\",\"subtotal\",\"margin_pct\",\"invoice_count\",\"last_invoice_date\"]"
+    },
+    {
+      "check": "SBC server-computed totals present",
+      "verdict": true,
+      "detail": "{\"inv_hrs\":0,\"labor_invoiced\":128078521,\"labor_margin\":128078521,\"parts_invoiced\":145598638,\"parts_margin\":145598638,\"shop_supplies\":9310149,\"margin\":273677159,\"subtotal\":282987308,\"margin_pct\":96.7}"
+    },
+    {
+      "check": "SBR data payload shape",
+      "verdict": true,
+      "detail": "keys=[\"collection\",\"pagination\",\"totals\"] rows=1 rowKeys=[\"key\",\"rep_name\",\"is_unassigned\",\"is_inactive\",\"location\",\"inv_hrs\",\"hours_worked\",\"hours_invoiced\",\"labor_invoiced\",\"labor_margin\",\"parts_invoiced\",\"parts_margin\",\"margin\",\"subtotal\",\"margin_pct\",\"invoice_count\"]"
+    },
+    {
+      "check": "SBR server-computed totals present",
+      "verdict": true,
+      "detail": "{\"inv_hrs\":0,\"hours_worked\":0,\"hours_invoiced\":0,\"labor_invoiced\":197940,\"labor_margin\":197940,\"parts_invoiced\":245948,\"parts_margin\":245948,\"margin\":443888,\"subtotal\":443888,\"margin_pct\":100}"
+    },
+    {
+      "check": "IV payload shape",
+      "verdict": true,
+      "detail": "keys=[\"collection\",\"pagination\",\"totals\",\"as_of_date\"] rows=100 rowKeys=[\"key\",\"workplace_id\",\"location\",\"part_number\",\"description\",\"category\",\"vendor\",\"qty\",\"unit_cost\",\"unit_sell\",\"total_cost\",\"total_sell\",\"margin\",\"margin_pct\"]"
+    },
+    {
+      "check": "IV first row raw",
+      "verdict": true,
+      "detail": "{\"key\":\"1679ad99-7cd4-42dd-9cc2-327b40cb7e87\",\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"location\":\"Staging Heavy Duty - 9919\",\"part_number\":\"R134A\",\"description\":\"Refrigerant\",\"category\":\"HD-Fluids\",\"vendor\":null,\"qty\":786.55,\"unit_cost\":1421,\"unit_sell\":2186,\"total_cost\":1117688,\"total_sell\":1719398,\"margin\":601710,\"margin_pct\":35}"
+    },
+    {
+      "check": "PV payload shape",
+      "verdict": true,
+      "detail": "keys=[\"collection\",\"pagination\"] rows=100 rowKeys=[\"key\",\"type\",\"part_number\",\"description\",\"category\",\"vendor\",\"on_hand\",\"min\",\"max\",\"units_sold\",\"demand\",\"units_returned\",\"revenue\",\"margin\",\"unit_cost\",\"sell_price\",\"margin_pct\",\"sold_via_wo\",\"sold_via_parts_sale\",\"turns_per_year\",\"last_sale\",\"location\"]"
+    },
+    {
+      "check": "PV first row raw",
+      "verdict": true,
+      "detail": "{\"key\":\"94abe8e2-a36a-4e5d-a5ec-26d1436fe83e\",\"type\":\"inventory\",\"part_number\":\"BRAKECLEAN\",\"description\":\"Brake & Parts Cleaner\",\"category\":\"HD-Fluids\",\"vendor\":null,\"on_hand\":618,\"min\":144,\"max\":2000,\"units_sold\":512,\"demand\":416,\"units_returned\":0,\"revenue\":433211,\"margin\":163406,\"unit_cost\":479,\"sell_price\":769,\"margin_pct\":37.72,\"sold_via_wo\":563,\"sold_via_parts_sale\":0,\"turns_per_year\":1.406"
+    }
+  ]
+}
