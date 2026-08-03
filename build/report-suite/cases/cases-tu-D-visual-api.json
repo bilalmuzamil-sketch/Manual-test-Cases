@@ -39,18 +39,19 @@
   "steps": [
    "1. Switch the application to dark mode.",
    "2. Check each element: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and a \"—\" glyph.",
-   "3. Measure the information icon's contrast against its background in dark mode, then in light mode.",
+   "3. Look at the information icon in dark mode, then switch back to light mode and look at it again.",
    "4. Check the Total Hours link's underline/affordance and focus indicator in both modes."
   ],
   "expected": [
-   "1. The report supports dark mode: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the \"—\" glyph all use dark-mode-legible colors meeting contrast.",
-   "2. The information icon meets at least a 3:1 contrast ratio against its background in BOTH light and dark mode.",
-   "3. The Total Hours link's non-color affordance and focus indicator apply in both modes."
+   "1. The report supports dark mode: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the \"—\" glyph are all clearly legible in dark mode.",
+   "2. In BOTH light mode and dark mode the information icon is clearly visible against the background behind it - you can see it at a glance and it does not disappear into the background.",
+   "3. The Total Hours link's non-color affordance and focus indicator apply in both modes.",
+   "4. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes, and only report it if you cannot. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)"
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8655 (specs/technician-utilization.md S8-R9; S8-R13; S8-R14)",
+  "spec_ref": "SV-8655 (TU spec v5 2026-07-29 S8-R9; S8-R13; S8-R14 — dark-mode legibility of every named element; the info icon at ≥ 3:1 in both modes; the Total Hours link affordance/focus in both modes; the ratio is design-token-owned)",
   "viu_status": "VIU-Pending",
-  "notes": "Measure contrast with a devtools/contrast tool at VIU.",
+  "notes": "Measure contrast with a devtools/contrast tool at VIU. | 2026-08-03 verifier-fix [D/V-7]: Removes the \"Measure the information icon's contrast\" step and restates it as a by-eye legibility check; the 3:1 figure is kept as the design/engineering-owned measurement. Refs pinned to TU S8-R9/S8-R13/S8-R14 + spec version. RULE 41: Re-verified whole against TU spec v5 2026-07-29: title, preconditions 1-2, steps 1-4, expected 1-3, refs. S8-R9 verbatim L530 lists exactly the elements the case checks (page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, the \"—\" glyph); S8-R13 L545 is the ≥ 3:1 icon rule; S8-R14 L547 the link affordance/focus rule in both modes. No second finding.",
   "api_related": false
  },
  {

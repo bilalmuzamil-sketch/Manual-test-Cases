@@ -185,9 +185,9 @@
    "5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (PV spec S2-R1; S3-R5 - 'Catalogue' RENAMED to the exact label 'Special Order' [Type filter; Type column; export] per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31])",
+  "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R1; S3-R5 — S2-R1 CLOSES the three Type options and the Both default; 'Catalogue'→'Special Order' per Chris Ward 2026-07-29 [newest-wins])",
   "viu_status": "VIU-Pending",
-  "notes": "RENAME CONFIRMED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'The part type \"Special Order\" is renamed to \"Special Order\" (the Type filter, the Type column, and the export)... No data changes - splay/label only.' The label is now spec-stated (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. VIU-confirm the filter control's own name ('Type' is the spec's name). Seeding for the reload leg: at least one invoiced sale of an inventory part AND at least one vendor-sourced (Special Order) part request on an invoiced/paid work order in the window. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-PV-TYPE): absorbed PV-FILT-02. TITLE unchanged (already label-neutral). NOTE: the same rename on the Parts Sales report's dropdown is OUT of this suite's scope (different feature) - recorded as an FYI in the change-list, no case here.",
+  "notes": "RENAME CONFIRMED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): 'The part type \"Special Order\" is renamed to \"Special Order\" (the Type filter, the Type column, and the export)... No data changes - splay/label only.' The label is now spec-stated (VIU-confirm hedge removed) - still to be sighted live at VIU per Rule 12. VIU-confirm the filter control's own name ('Type' is the spec's name). Seeding for the reload leg: at least one invoiced sale of an inventory part AND at least one vendor-sourced (Special Order) part request on an invoiced/paid work order in the window. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-PV-TYPE): absorbed PV-FILT-02. TITLE unchanged (already label-neutral). NOTE: the same rename on the Parts Sales report's dropdown is OUT of this suite's scope (different feature) - recorded as an FYI in the change-list, no case here. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed three-option Type list to PV S2-R1 + spec version. The refs previously carried only a message date, not a spec version. RULE 41: Re-verified whole against PV spec v4 2026-07-29: title, preconditions 1-3, steps 1-4, expected 1-5, refs. S2-R1 verbatim L194: \"The toolbar provides a **Type** filter (single-select, first in the filter row) with options: **Both**, **Inventory**, **Special Order**. On a first visit (no saved view) the default is **Both** ... **Both** is an explicit selection ... not the absence of a filter.\" Expected 1-5 match; S3-R5 L263 closes the Type column's plain-text values. No second finding.",
   "api_related": false
  },
  {
@@ -238,9 +238,9 @@
    "4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R2; §2 Out of Scope)",
+  "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (\"offering exactly these options\") and rules out \"All Time\"; so the closed list IS the requirement)",
   "viu_status": "VIU-Pending",
-  "notes": "Note: 'Last Sale' is still measured over all-time history (a per-part lookback, S5-R4) - that is unrelated to the missing All Time range and is not a defect.",
+  "notes": "Note: 'Last Sale' is still measured over all-time history (a per-part lookback, S5-R4) - that is unrelated to the missing All Time range and is not a defect. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed eleven-option list to PV S2-R2 + spec version (Rule 42(b)). RULE 41: Re-verified whole against PV spec v4 2026-07-29: title, precondition 1, steps 1-2, expected 1-4, refs. S2-R2 verbatim L196: \"The toolbar provides a **date range** selector offering exactly these options: **Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom**. On a first visit the default is **This Year**; there is no \\\"All Time\\\" option ...\" SECOND FINDING (noted, not fixed here): the case does not assert the \"This Year\" first-visit default that S2-R2 also states; that default is carried by the PV remembered-view cases, so no change is made and no coverage is lost.",
   "api_related": false
  },
  {
@@ -460,9 +460,9 @@
    "2. The empty-state label reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R11; S2-N1; §7)",
+  "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R11; S2-N1; §7 — §7 CLOSES the empty-state string verbatim (\"Empty bays\" ... \"Get Going!\") as the standard reports no-data label; so the exact string IS the requirement)",
   "viu_status": "VIU-Pending",
-  "notes": "Message string is pinned verbatim in §7.",
+  "notes": "Message string is pinned verbatim in §7. | 2026-08-03 verifier-fix [C/V-10]: Pins the verbatim empty-state string to PV S2-R11 / S2-N1 / §7 + spec version (Rule 42(b) — the exact string IS the requirement). RULE 41: Re-verified whole against PV spec v4 2026-07-29: title, precondition 1, steps 1-2, expected 1-2, refs. S2-R11 L214 and S2-N1 L223 both route the empty state to §7, whose notifications table carries the standard reports no-data label verbatim. No second finding.",
   "api_related": false
  },
  {

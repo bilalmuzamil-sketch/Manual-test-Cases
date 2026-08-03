@@ -19,9 +19,9 @@
    "2. No other entries appear in the menu."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R1; Story 17 S17-R3 (position))",
+  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R1 + Story 17 S17-R3 (position) — S14-R1 CLOSES it in the spec's own words (\"lists exactly four actions\"); so the closed list IS the requirement)",
   "viu_status": "VIU-Pending",
-  "notes": "Menu action labels are verbatim from the spec.",
+  "notes": "Menu action labels are verbatim from the spec. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed four-action menu to SBR S14-R1 + spec version (Rule 42(b)). RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-2, steps 1-2, expected 1-2, refs. S14-R1 verbatim L515: \"The toolbar's ⋯ overflow menu lists exactly four actions: \\\"Download Summary (PDF)\\\", \\\"Download Expanded View (PDF)\\\", \\\"Download Summary (CSV)\\\", \\\"Download Expanded View (CSV)\\\".\" S17-R3 L660 pins the button first in the action cluster. No second finding.",
   "api_related": false
  },
  {
@@ -50,9 +50,9 @@
    "5. Every file (all four downloads, PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (SBR spec Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4 + Locations: line in every export per Chris Ward msg 2026-07-29 [newest-wins])",
+  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2; S14-R2a; S14-R20 + Story 21 S21-R6 + Story 22 S22-R4 — all four downloads honour the filters; the full result set and the active order; S14-R20 = the \"Locations:\" line in every export)",
   "viu_status": "VIU-Pending",
-  "notes": "BUILD-DELTA: all four exports are server-generated against the active filters + sort (2026-07-16 change log; spec ahead of code by design) — record a deviation if the build still exports from loaded screen data. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 131 chars; meaning unchanged; awaiting push authorization.",
+  "notes": "BUILD-DELTA: all four exports are server-generated against the active filters + sort (2026-07-16 change log; spec ahead of code by design) — record a deviation if the build still exports from loaded screen data. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 131 chars; meaning unchanged; awaiting push authorization. | 2026-08-03 verifier-fix [A/V-3]: Adds SBR S14-R20 — the requirement that governs the \"Locations:\" line and the Location column in all four exports. Verified verbatim at L566. RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-4, steps 1-3, expected 1-5, refs, notes. S14-R2/S14-R2a (active order, server-generated), S21-R6 (exports respect the location filter), S22-R4 (Unassigned pinned top) all resolve and match expected 1-4. No second finding.",
   "api_related": false
  },
  {
@@ -161,9 +161,9 @@
    "3. With no configured logo, the logo region falls back to the default ShopView logo and the PDF still generates normally."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R4; S14-R3a; S14-R11)",
+  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3a; S14-R4; S14-R11 — S14-R11 CLOSES both PDF filenames verbatim (\"deterministic\") and S14-R4 closes the footer string; so the exact strings ARE the requirement)",
   "viu_status": "VIU-Pending",
-  "notes": "Restore the organization logo after the fallback check (shared-env rule).",
+  "notes": "Restore the organization logo after the fallback check (shared-env rule). | 2026-08-03 verifier-fix [C/V-10]: Pins the two verbatim PDF filenames and the footer string to SBR S14-R11 / S14-R4 + spec version (Rule 42(b) — the exact strings ARE the requirement). RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-2, steps 1-3, expected 1-3, refs. S14-R11 verbatim L539: \"PDF filenames are deterministic: `sales-by-representative-summary.pdf` and `sales-by-representative-expanded.pdf`.\" S14-R4 L525 closes the footer string; S14-R3a L523 the default-logo fallback. No second finding.",
   "api_related": false
  },
  {
@@ -404,9 +404,9 @@
    "3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E2; §7)",
+  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2; §7 — 10k-row export cap; no truncated file; toast persists 120s; the toast STRING is the ONE suite-wide message ruled by Chris Ward 2026-07-31 Q2=A [newest-wins]; his SBR spec edit is pending)",
   "viu_status": "VIU-Pending",
-  "notes": "The row-cap message is a deliberate exception to the canonical \"Ooooops!\" fallback — it is a pre-generation refusal with its own verbatim wording. Q2 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A 'great catch'): ONE message across all six reports — \"This report is too large to export. Narrow the date range or filters, then try again.\" The Sales By Customer spec text still carries the retired \"This export is too large to generate…\" wording; Chris's spec edit is pending.",
+  "notes": "The row-cap message is a deliberate exception to the canonical \"Ooooops!\" fallback — it is a pre-generation refusal with its own verbatim wording. Q2 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A 'great catch'): ONE message across all six reports — \"This report is too large to export. Narrow the date range or filters, then try again.\" The Sales By Customer spec text still carries the retired \"This export is too large to generate…\" wording; Chris's spec edit is pending. | 2026-08-03 verifier-fix [C/V-10]: Pins the verbatim over-cap toast. CRITICAL: the string in this case is the ONE suite-wide message Chris Ward ruled on 2026-07-31 (Q2=A) and is DELIBERATELY different from the SBR spec's own S14-E2/§7 wording, whose correction is still pending. The refs said nothing about that, so anyone diffing this case against the SBR spec would have read it as our error. RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, precondition 1, steps 1-2, expected 1-3, refs. SECOND FINDING (important): S14-E2 L582 and §7 L881 both still read \"This export is too large to generate. Narrow the date range or filters and try again.\", while the case asserts \"This report is too large to export. Narrow the date range or filters, then try again.\" That is CORRECT and intentional - Chris Ward 2026-07-31 Q2 = Option A, \"One message everywhere\" (chris-answers-2026-07-31/answers-ingested.md L42-46, applied as DELTAS.md D1), newest-wins per Rule 32. The 10,000-row cap and the 120s persistence come from S14-E2/§7 and match. The provenance is now recorded in refs.",
   "api_related": false
  },
  {
@@ -484,12 +484,13 @@
    "1. The file downloads as \"sales-representative-assignments.csv (the short form \"rep\" is gone from the file name — confirm the exact final file name in the build)\".",
    "2. A success toast shows \"Success\" with the caption \"Report downloaded.\" and auto-fades after 5 seconds.",
    "3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?.",
-   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
+   "5. Note for the tester: this file has only those three columns even if you have several locations in scope. It is a separate customer-to-representative list, not one of the report's four downloads, so it has no Location column - do not fail it for that."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R3; S15-R4; §7)",
+  "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R3; S15-R4; §7 — S15-R4 CLOSES the three headers; \"Sales Rep\"→\"Sales Representative\" per Chris Ward 2026-07-31 Q5 [newest-wins]; NOT one of the four report exports so S14-R20 adds no Location)",
   "viu_status": "VIU-Pending",
-  "notes": "This export deliberately uses the shared Export Reports dialog's own toast strings (5s auto-fade), not the canonical 120s \"Ooooops!\" fallback. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "This export deliberately uses the shared Export Reports dialog's own toast strings (5s auto-fade), not the canonical 120s \"Ooooops!\" fallback. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | 2026-08-03 verifier-fix [C/V-10]: Pins the closed three-header list to SBR S15-R4 + spec version, records the Chris Ward 2026-07-31 Q5 \"Sales Rep\" → \"Sales Representative\" rename as the newest-wins source for the deliberate difference from the spec text, and states that this CSV is not one of the report's four exports so S14-R20 adds no Location column. Plain tester line added so a multi-location tester does not fail a correct build. RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-2, steps 1-3, expected 1-4, refs. S15-R4 verbatim L602: \"The CSV has a header row + one row per customer. Headers, in order: `Customer Name`, `Sales Rep`, `Rep is active?`. UTF-8 BOM prepended.\"; S15-R3 L601: \"The Export action downloads `sales-rep-assignments.csv` and shows a success toast (§7).\" The case's \"Sales Representative\" wording and file name are the Chris Ward Q5 rename (newest-wins), already disclosed in the case's own tester note (expected 4). SECOND FINDING: the closed three-header list needed the explicit \"no Location column here\" carve-out, since every OTHER SBR export gained one under S14-R20 - added.",
   "api_related": false
  },
  {
@@ -896,20 +897,21 @@
   "type": "Accessibility",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
   "preconditions": [
-   "1. You are on the report with a rep row showing a (N) count and — if arrangeable — an \"(Inactive)\" tag; a contrast-checking tool is available."
+   "1. You are on the report with a rep row showing a (N) count and - if arrangeable - an \"(Inactive)\" tag."
   ],
   "steps": [
-   "1. Measure the contrast ratio of the subdued-grey (N) count and \"(Inactive)\" tag against the white body surface in light mode, and against the dark surface in dark mode.",
+   "1. Read the subdued-grey (N) count and the \"(Inactive)\" tag in light mode, then switch to dark mode and read them again.",
    "2. Review how Inv. Hrs, the status badges, and the links convey their meaning."
   ],
   "expected": [
-   "1. The subdued grey meets at least WCAG AA contrast (4.5:1 or better) against the body surface in BOTH modes — the reduced font size does not drop it below that ratio.",
-   "2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline."
+   "1. In BOTH light mode and dark mode the subdued-grey (N) count and the \"(Inactive)\" tag are easy to read against the surface behind them - the smaller text does not fade into the background.",
+   "2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.",
+   "3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can read the grey text easily in both modes, and only report it if you cannot. (The design rule behind this is WCAG AA contrast of at least 4.5:1, which the design and engineering team check with a contrast tool - not by hand.)"
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R11; S18-R12)",
+  "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R11; S18-R12 — subdued-grey (N) count and \"(Inactive)\" tag at ≥ 4.5:1 WCAG AA in both modes; nothing conveyed by colour alone; the ratio is a design-token property so the check is by-eye)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": " | 2026-08-03 verifier-fix [D/V-7]: Removes the \"a contrast-checking tool is available\" precondition and the \"Measure the contrast ratio\" step, restating them as a by-eye legibility check; the WCAG AA 4.5:1 figure is kept as the design/engineering-owned measurement. Refs pinned to SBR S18-R11/S18-R12 + spec version. RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, precondition 1, steps 1-2, expected 1-2, refs. S18-R11 verbatim L707: \"The subdued-grey used for the `(N)` count and the \\\"(Inactive)\\\" tag meets at least WCAG AA contrast (≥ 4.5:1) against the white body surface in light mode and against the dark surface in dark mode; the reduced font size does not drop it below that ratio.\" S18-R12 L708 closes the no-colour-alone rule and matches expected 2 exactly. No second finding.",
   "api_related": false
  },
  {

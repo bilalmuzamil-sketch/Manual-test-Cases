@@ -463,9 +463,9 @@
    "4. The same values appear everywhere the numbers show (screen, and later the exports)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8582 (SBR spec §3 definitions; §4 Terminology — money-column labels and the Subtotal/Margin definitions; CROSS-CUTTING across every SBR row level with no single owning story)",
+  "spec_ref": "SV-8623; SV-8582 (SBR spec v15 2026-07-29 S5-R2 = the authoritative 12-column left-to-right order; §3 definitions; §4 Terminology — S5-R2 CLOSES the money-label list; Location sits after Status [S21-R7] and is not a money column)",
   "viu_status": "VIU-Pending",
-  "notes": "Note the SBR Subtotal has NO Shop Supplies component (unlike SBC) — the two reports' Subtotal definitions differ by spec.",
+  "notes": "Note the SBR Subtotal has NO Shop Supplies component (unlike SBC) — the two reports' Subtotal definitions differ by spec. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed money-label list to SBR S5-R2 (the authoritative left-to-right column order) + spec version, and upgrades the ticket from the epic to the owning story SV-8623 for S5-R2 (Rule 20 per-story precision). RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, precondition 1, steps 1-2, expected 1-4, refs. SECOND FINDING: the refs cited only \"§3 definitions; §4 Terminology\" and the epic SV-8582, calling the case \"CROSS-CUTTING ... with no single owning story\" - but S5-R2 L259 IS the owning requirement and states verbatim: \"The columns appear left-to-right: Date, Invoice, Customer, Status, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. (12 columns ...)\" (§4 L37 repeats the money set). Both now cited. Location sits after Status (S21-R7) and is not a money column, so the label list is unaffected.",
   "api_related": false
  },
  {
@@ -597,9 +597,9 @@
    "4. It uses the white card surface with a thin top border."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R5 (mobile); Story 17 S17-R4)",
+  "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5 (mobile branch) + Story 17 S17-R4 — S10-R5 CLOSES it in the spec's own words: \"Totals\" left and the grand Subtotal right \"(no other metrics)\")",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": " | 2026-08-03 verifier-fix [C/V-10]: Pins the \"(no other metrics)\" closure to SBR S10-R5 (mobile) + spec version. The phrase is the spec's own, so the closed assertion stays (Rule 42(b)). RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, precondition 1, steps 1-3, expected 1-4, refs. S10-R5 mobile branch verbatim L392: \"a simplified external totals bar directly below the table and outside its horizontal scroll container, showing \\\"Totals\\\" left and the grand Subtotal right (no other metrics) ... White card surface, thin top border. During vertical page scroll the bar sits after the table in normal flow (it is not pinned to the viewport bottom).\" Expected 1-4 match line for line. No second finding.",
   "api_related": false
  },
  {

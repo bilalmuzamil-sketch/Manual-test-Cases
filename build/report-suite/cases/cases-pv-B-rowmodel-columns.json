@@ -162,9 +162,9 @@
    "6. No other column header carries an info icon."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8643 (specs/parts-velocity.md S3-R6)",
+  "spec_ref": "SV-8643 (PV spec v4 2026-07-29 S3-R6 — S3-R6 CLOSES the set (exactly three columns: Units Sold; Demand; Turns / Yr) and quotes each description verbatim; so the closed set and the exact strings ARE the requirement)",
   "viu_status": "VIU-Pending",
-  "notes": "The tooltip strings are deliberate plain-language summaries; the exhaustive definitions live in S5-R4/S5-R4a (covered by the PV-CALC cases).",
+  "notes": "The tooltip strings are deliberate plain-language summaries; the exhaustive definitions live in S5-R4/S5-R4a (covered by the PV-CALC cases). | 2026-08-03 verifier-fix [C/V-10]: Pins the closed info-icon set and its three verbatim descriptions to PV S3-R6 + spec version (Rule 42(b)). RULE 41: Re-verified whole against PV spec v4 2026-07-29: title, preconditions 1-2, steps 1-4, expected 1-6, refs. S3-R6 verbatim L265: \"Three columns — **Units Sold**, **Demand**, and **Turns / Yr** — carry a grey ⓘ icon immediately to the right of the header label. The icon is always-on (not a hover-to-reveal affordance) ... Turns / Yr is hidden by default (S4-R3), so its icon appears only once that column is enabled ... the icon is also focusable and exposes the same text to assistive technology.\" Three columns named means expected 6 (\"No other column header carries an info icon\") is the spec's own closure. No second finding.",
   "api_related": false
  },
  {

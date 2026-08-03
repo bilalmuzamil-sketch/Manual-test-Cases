@@ -269,25 +269,26 @@
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
   "preconditions": [
-   "1. A technician clocked time on several (but not all) days of the range - including, for the pooling check, time at two selected locations on the same day.",
-   "2. Browser devtools (network tab) are open for the on-demand check."
+   "1. A technician clocked time on several (but not all) days of the range - including, for the pooling check, time at two selected locations on the same day."
   ],
   "steps": [
-   "1. Expand the technician's row and watch the network traffic.",
-   "2. Read the day rows top to bottom.",
-   "3. Look for rows on days the technician did not clock time.",
-   "4. On the double-location day, count the rows for that date."
+   "1. Before expanding anything, look at the technician's row - there are no day rows under it yet.",
+   "2. Expand the technician's row and watch the data area as the day rows appear.",
+   "3. Read the day rows top to bottom.",
+   "4. Look for rows on days the technician did not clock time.",
+   "5. On the double-location day, count the rows for that date."
   ],
   "expected": [
    "1. One row appears for each day the technician clocked time in the range, in date order from earliest to latest.",
-   "2. The day rows are fetched ON EXPAND (on demand) - they are not shipped with the initial report payload.",
+   "2. The day rows are not there until you expand the row - they arrive at the moment you expand it (you may briefly see the standard loading indicator in that area), and the rest of the report does not reload.",
    "3. A day with no clocked time has NO row.",
-   "4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location."
+   "4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location.",
+   "5. Note for the tester: you do not need developer tools for this test - just watch the screen."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8651 (specs/technician-utilization.md S4-R2; S4-N1; S9-R4)",
+  "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R2; S4-N1; S9-R4 — one row per clocked day in date order; load-on-expand; no row for an unclocked day; per-day pooling across selected locations; the back-end half is covered by C30449 in \"TU - API\")",
   "viu_status": "VIU-Pending",
-  "notes": "KNOWN-DELTA WATCH: lazy on-expand loading came in the 2026-07-16 spec round - the build may still ship day rows with the initial payload. The backend-observable half is TU-API-01.",
+  "notes": "KNOWN-DELTA WATCH: lazy on-expand loading came in the 2026-07-16 spec round - the build may still ship day rows with the initial payload. The backend-observable half is TU-API-01. | 2026-08-03 verifier-fix [E/V-8]: Removes the devtools precondition and the network-watching step from a UI-titled section (Rule 4) and restates the on-demand load in terms a layman can see on screen. The back-end assertion is NOT dropped - it is already covered by TU-API-01 = C30449 in the \"TU - API\" section. RULE 41: Re-verified whole against TU spec v5 2026-07-29: title, preconditions 1-2, steps 1-4, expected 1-4, refs. S4-R2 verbatim L315: \"When a row is expanded, the report shows one row for each day the technician clocked time in the range, in date order from earliest to latest. The day rows **load on expand** - they are fetched on demand when the technician row is expanded, not shipped with the initial report payload ...\"; S4-N1 L328 (no row for a day with no time); S9-R4 L582 (per-day rows pool across selected locations). SIDE BY SIDE for the moved assertion (Rule 45(e)): C30449 expected 1-2 read \"The initial report payload does NOT ship the day rows.\" / \"Expanding a technician row issues an on-demand backend request that returns that technician's per-day breakdown.\" - so the network-level claim keeps a home in an API-titled section. No second finding.",
   "api_related": false
  },
  {
@@ -405,23 +406,24 @@
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
   "preconditions": [
    "1. Several technician rows are visible and the Summary row shows their totals.",
-   "2. Browser devtools (network tab) are open."
+   "2. Note the current date range so you can confirm it does not change."
   ],
   "steps": [
    "1. Note the Summary values, then deselect one technician in the Filter by Technician filter.",
-   "2. Watch the network traffic and the Summary row.",
+   "2. Watch the data area and the Summary row.",
    "3. Re-select the technician."
   ],
   "expected": [
    "1. The deselected technician's row is hidden.",
    "2. The Summary row recalculates over the technicians that remain visible.",
-   "3. NO reload happens - the technician filter works on screen only and does not change the date range or re-query the server.",
-   "4. Re-selecting the technician shows the row again (and the Summary recalculates back)."
+   "3. The report does NOT reload - the technician filter works on screen only: the rows and the Summary update straight away, no loading indicator appears in the data area, and the date range does not change.",
+   "4. Re-selecting the technician shows the row again (and the Summary recalculates back).",
+   "5. Note for the tester: you do not need developer tools for this test - just watch the screen."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8652 (specs/technician-utilization.md S5-R3; S5-R4; S5-R5; §3; S5 context note)",
+  "spec_ref": "SV-8652 (TU spec v5 2026-07-29 S5-R3; S5-R4; S5-R5 + §3 Key Decisions (\"the technician filter works on screen only and does not reload the report\"); S5 context note — the server half is covered by C30450 in \"TU - API\")",
   "viu_status": "VIU-Pending",
-  "notes": "The on-screen-only vs server split is also asserted backend-side in TU-API-02.",
+  "notes": "The on-screen-only vs server split is also asserted backend-side in TU-API-02. | 2026-08-03 verifier-fix [E/V-8]: Removes the devtools precondition and the network-watching step from a UI-titled section (Rule 4) and restates the no-reload claim in the spec's own on-screen words. The back-end assertion is NOT dropped - it is already covered by C30450 in the \"TU - API\" section. RULE 41: Re-verified whole against TU spec v5 2026-07-29: title, preconditions 1-2, steps 1-3, expected 1-4, refs. S5-R3 L352, S5-R4 L354 and S5-R5 L356 match expected 1/2/4. The no-reload claim is the spec's own §3 Key Decision, verbatim L76: \"**The technician filter works on screen only and does not reload the report** (Story 5); the **location filter reloads the report from the server** (Story 9)\", echoed by the Story 5 context note L385. SIDE BY SIDE for the moved assertion (Rule 45(e)): C30450 expected 3 reads \"The technician filter causes NO server request - it works on screen only (hide/show + Summary recalculation).\" - so the network-level claim keeps a home in an API-titled section. No second finding.",
   "api_related": false
  },
  {

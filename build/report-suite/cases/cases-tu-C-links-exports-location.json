@@ -253,12 +253,13 @@
    "2. Every download covers the location(s) currently selected in the location filter and the date range currently active on the report.",
    "3. With every technician selected, the download covers all technicians for the range at the selected location(s).",
    "4. Every download (each PDF and the CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
-   "5. Every download also mirrors the columns currently shown on screen — a column hidden in the Column Selection control is absent from the files, and a re-shown column comes back."
+   "5. Every download also mirrors the columns currently shown on screen — a column hidden in the Column Selection control is absent from the files, and a re-shown column comes back.",
+   "6. Note for the tester: when you have more than one location in scope, the files also carry a Location column even though it is not in the Column Selection control. That is correct - it appears by itself. With a single location in scope there is no Location column, and that is also correct."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-E1; S9-R8 — S7-R10 now says the downloads include the columns currently shown; mirroring the column selector)",
+  "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-R13; S7-E1; S9-R8 — downloads mirror the shown columns and the technician/location/date scope; S7-R13 = the \"Locations:\" line and the automatic Location column)",
   "viu_status": "VIU-Pending",
-  "notes": "LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 102 chars; meaning unchanged; awaiting push authorization. CHANGED by the TU spec v5 2026-07-29 S7-R10 (\"The downloaded files include the same columns that are currently shown on screen — mirroring the column-selector visibility (Story 10)…\").",
+  "notes": "LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 102 chars; meaning unchanged; awaiting push authorization. CHANGED by the TU spec v5 2026-07-29 S7-R10 (\"The downloaded files include the same columns that are currently shown on screen — mirroring the column-selector visibility (Story 10)…\"). | 2026-08-03 verifier-fix [A/V-3]: Adds TU S7-R13. Also adds the plain tester line for the automatic Location column: expected 5 says the download mirrors \"the columns currently shown\", but Location is NOT in the Column Selection control (S9-R9/S7-R13) — a tester with two locations in scope would otherwise fail a correct build over an extra column. RULE 41: Re-verified whole against TU spec v5 2026-07-29: title, preconditions 1-2, steps 1-5, expected 1-5, refs, notes. S7-R8 (only selected technicians + selected locations), S7-R9, S7-R10 (downloads mirror the shown columns), S7-E1 (all selected), S9-R8 (both PDFs + CSV cover the selected locations) all resolve. SECOND FINDING: expected 5's \"mirrors the columns currently shown\" collided with the automatic Location column, which no tester turns on — plain conditional line added.",
   "api_related": false
  },
  {
@@ -358,9 +359,9 @@
    "2. When a download fails, an error notification reads exactly: \"Failed to download report\"."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8654 (specs/technician-utilization.md Story 7 Error Handling; §7)",
+  "spec_ref": "SV-8654 (TU spec v5 2026-07-29 Story 7 Error Handling + §7 notifications table — these CLOSE both strings verbatim (\"Download started\" / \"Failed to download report\"); Story 7 has no S-anchor for them so §7 is the closing reference)",
   "viu_status": "VIU-Pending",
-  "notes": "VIU note: record the failure-induction method used.",
+  "notes": "VIU note: record the failure-induction method used. | 2026-08-03 verifier-fix [C/V-10]: Pins the two verbatim download notifications to the TU §7 notifications table + spec version (Rule 42(b)). RULE 41: Re-verified whole against TU spec v5 2026-07-29: title, preconditions 1-2, steps 1-2, expected 1-2, refs. Story 7 Error Handling L490/L492 and the §7 table L645/L646 close both strings verbatim: \"Download started\" (success notification) and \"Failed to download report\" (error notification). SECOND FINDING: Story 7 Error Handling carries no S-anchor of its own for these two strings, so §7 is now cited explicitly as the closing reference rather than left implicit.",
   "api_related": false
  },
  {

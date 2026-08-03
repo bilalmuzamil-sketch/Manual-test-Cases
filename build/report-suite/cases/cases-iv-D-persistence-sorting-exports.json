@@ -255,12 +255,13 @@
    "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.",
    "2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.",
    "3. Both downloads include a totals row labeled \"Totals\" matching the on-screen totals (the full-filtered-set totals).",
-   "4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build)."
+   "4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
+   "5. Note for the tester: when you have more than one location in scope, the files also carry a Location column (between Vendor and Qty on Hand) even though it is not in the column-selection control. That is correct - it appears by itself. With a single location in scope there is no Location column, and that is also correct."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R3; S10-R4; S10-R5; S10-R6 + Locations: line in every CSV/PDF export per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the \"Locations:\" line and the automatic Location column)",
   "viu_status": "VIU-Pending",
-  "notes": "Note the on-screen totals row is labeled \"Total\" (S4-R1) while the export totals row is labeled \"Totals\" (S10-R6) — both verbatim in the spec; VIU-confirm. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 158 chars; meaning unchanged; awaiting push authorization.",
+  "notes": "Note the on-screen totals row is labeled \"Total\" (S4-R1) while the export totals row is labeled \"Totals\" (S10-R6) — both verbatim in the spec; VIU-confirm. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 158 chars; meaning unchanged; awaiting push authorization. | 2026-08-03 verifier-fix [A/V-3]: Adds IV S10-R15 (the export Location column + \"Locations:\" line) and replaces the un-versioned \"specs/inventory-value.md\" path with the version-pinned spec token. Plain tester line added for the automatic Location column vs expected 1. RULE 41: Re-verified whole against IV spec v3 2026-07-29: title, preconditions 1-2, steps 1-5, expected 1-4, refs, notes. S10-R3 (only the columns currently shown, Total Cost last), S10-R4, S10-R5, S10-R6 (Totals row) and S10-R15 all resolve. SECOND FINDING: expected 1 closed the column set while S7-R6/S10-R15 insert Location automatically between Vendor and Qty on Hand — plain conditional line added.",
   "api_related": false
  },
  {
@@ -338,9 +339,9 @@
    "2. The CSV is named \"inventory-value-report.csv\"."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R10)",
+  "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R10 — S10-R10 CLOSES both file names verbatim; so the exact strings ARE the requirement)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": " | 2026-08-03 verifier-fix [C/V-10]: Pins the two verbatim file names to IV S10-R10 + spec version (Rule 42(b)). RULE 41: Re-verified whole against IV spec v3 2026-07-29: title, preconditions 1-2, steps 1-2, expected 1-2, refs. S10-R10 verbatim L439: \"The downloaded files are named \\\"inventory-value-report.pdf\\\" and \\\"inventory-value-report.csv\\\".\" No second finding.",
   "api_related": false
  },
  {
