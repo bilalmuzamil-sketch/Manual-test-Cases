@@ -228,6 +228,40 @@ and `…-CD-2026-08-03.md`. Counts reconcile: **local active 475 == live-ours 47
 blanks) == import rows 475**; live folder total **480 = ours 475 + 5 foreign** (Vladimir Tomovic,
 untouched, Rule 38).
 
+### INDEPENDENTLY VERIFIED 2026-08-03 — and 6 further items need your go-ahead
+
+A **second pass re-derived the closeout from the primary sources** (live TestRail, live Confluence,
+live Jira) rather than trusting it — because a self-certifying verdict is what let the Location-column
+defect through. Working paper: `build/report-suite/VERIFICATION-2026-08-03.md`; side-by-side coverage
+evidence: `…/SIDE-BY-SIDE-2026-08-03.md`; scripts: `…/verification-scripts-2026-08-03/`.
+
+**CONFIRMED:** counts reconcile as **exact sets** four ways (475/475/475/475; live total 480, 5
+foreign untouched) · traceability **475/475** with **0** unresolved anchors · coverage complete both
+directions (**0 of 59** changed requirements uncovered) · **the Location-column defect class is
+CLOSED** on all six reports · **exactly 1** contradiction (the group-E pair below) · titles max **80**,
+**0** over · run 359 set-equal with **539/539** result records intact · **0** unclaimed TestRail writes.
+
+**6 NEW FINDINGS — nothing was fixed; all staged for your authorisation** (≈26 `update_case` + 2
+section moves, **0 deletes**, no change to run 359's count):
+**(1)** the *mechanism* behind the Location defect is still live — **6** export cases assert the
+`"Locations:"` line but do **not** cite the governing anchor, so the next spec change would miss them:
+**C30167 · C30277 · C30376 · C30437 · C30511 · C30588**. **(2) Rule 42 is unchecked anywhere** — **27
+of 34** closed *"exactly …"* lists carry no version-pinned anchor (~17 genuine), the exact condition
+that broke SBR-EXP-10/11. **(3)** the **Rule 46 register is stale** (says "474 cases", no C39447, no
+group-E entry) **and its entry B4 wrongly claims the dev ticket is unfiled — SV-8780 is live and
+Ready to Fix**. **(4)** **3** cases require measuring a contrast ratio with no method named
+(**C30387 · C30309 · C30448**). **(5)** **2** cases need devtools/network reading while sitting in UI
+sections (**C30419 · C30424**, Rule 4 inverse). **(6)** 2 coverage rows the earlier extractor missed
+(SBC `S14-R4`/`S15-R4` — covered by **C38856**, but hidden by slash-shorthand `refs`).
+
+**SOURCE-CURRENCY CORRECTION (Rule 31):** the **SBC spec is STALE for us** — live **Jul 31**, we hold
+**v12 Jul 29**. Two changes positively established live; **the full delta is NOT VERIFIED** because
+the capture cookie is gone from ephemeral `/tmp` and CQL phrase search proved unreliable past ~line
+560 of these pages. **Needs fresh Confluence cookies.** Both local SBC mirrors still carry the
+abolished dedicated-permission text. *(Also: `SPEC-WATCH-2026-07-28.md`'s header says "6 OF 12" while
+its rows list **7** open — the 7 is correct.)* **Stale counts elsewhere in this file: rows quoting
+"ours 474 / live 479" are now 475/480.**
+
 ### BLOCKED ON THE QA LEAD — the 2 group-E cases (Standing Rule 48, all five fields)
 
 | Field | Detail |
