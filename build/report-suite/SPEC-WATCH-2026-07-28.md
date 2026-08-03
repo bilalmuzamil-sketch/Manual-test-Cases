@@ -1,5 +1,54 @@
 # Report Suite — SPEC-WATCH (video-driven items awaiting Chris Ward's spec ratification)
 
+## 🔴 THERE IS NO DEADLINE — RE-VERIFIED LIVE 2026-08-03: 8 ITEMS **NOT DONE**
+
+> **QA lead's ruling, verbatim, 2026-08-03 — this REPLACES the "deadline 2026-08-04" framing used
+> everywhere below:** *"There is nothing due tomorrow, if something he was supposed to do should have
+> been done by now, you need to check. If that has not been done consider it not done."*
+>
+> **So: an item is either IN the live spec or it is NOT DONE. No grace period, no "due tomorrow".**
+> Every mention of "DEADLINE 2026-08-04" further down this file is **superseded by that ruling** —
+> the dates are left in place only as the historical record of what was promised when.
+>
+> **The verification was done LIVE against Confluence on 2026-08-03, not against this file.** Full
+> evidence, with every requirement quoted verbatim:
+> **`spec-watch-verification-2026-08-03/VERIFICATION.md`** (+ the additive capture
+> `spec-watch-verification-2026-08-03/live-capture-2026-08-03/`).
+>
+> ### Status as of 2026-08-03 — DONE 5 · NOT DONE 8 · PARTIAL 2
+>
+> | # | Item | Verdict 2026-08-03 (live) |
+> |---|---|---|
+> | 1a | Asset identifier VIN chain — SBC | ✅ **DONE** — closed |
+> | 1b | Asset identifier — WIP | ❌ **NOT DONE** — S4-R7/R8/R9 + §4 still unit-number-first. **He has now twice believed he made this edit.** |
+> | 2 | SBC Print removed | ✅ **DONE** — but **NEW:** S18-R7 and S18-R10 still list "Print" as an export |
+> | 3 | SBC Summary/Expanded downloads | ✅ **DONE** |
+> | 4 | Location filter hidden when ≤1 location | ❌ **NOT DONE** — SBR S21-N1 / TU S9-N1 / IV S7-N1 / PV S2-E4 all still say "still sees the filter". **Highest risk: the spec text contradicts his own Q1=A answer.** |
+> | 5 | Per-row Location column | ✅ **DONE** on all six |
+> | 6 | Nav placement — TU below existing links | ⚠️ **PARTIAL** — Performance group named, "additive/below existing" absent |
+> | 7 | Catalogue rename → "Special Order" | ✅ **DONE** |
+> | 8 | WIP asset-dropdown native style + toggle | ❌ **NOT DONE** — zero case impact |
+> | 9 | Customer card "Sales Representative" | ❌ **NOT DONE** — S19-R7 still "Sales Rep". **NEW:** now half-applied — S1-R1 carries the ruling, S19-R7/R1/R8 + both CSV header lists do not |
+> | 10 | SBC Performance group + named anchors | ❌ **NOT DONE** — SBC S1-R1 names no group at all (SBR/TU/WIP do) |
+> | 11 | PV S1-R1 "only report" inconsistency | ❌ **NOT DONE** |
+> | 12 | Rep-label scope | ⚠️ **ANSWERED by Chris (Q5=A); spec only half-applied** — see 9 |
+> | **13** | **NEW ITEM — the ONE-PERMISSION model** (Chris Q2=A + QA lead *"ONE permission FOR NOW"*) | **SBC ✅ DONE** (v13, 2026-07-31, S1-R2 rewritten). **PV / TU / WIP / IV ❌ NOT DONE** — all four still name a per-area permission. **SBR N/A** (never named one). **16 of our cases are ahead of 4 spec pages.** |
+>
+> **ZERO of our test cases need changing.** Every NOT DONE item is one where we correctly followed
+> his newer video / answer / ruling (Standing Rule 32) and **the spec text is what is behind.** The
+> recovery option (restoring the pre-video case wording from
+> `video-promotion-backup-2026-07-28/`) is therefore **NOT recommended** — it would move our cases
+> away from the newest authoritative source.
+>
+> **SPEC CURRENCY 2026-08-03:** only **SBC** has moved since 2026-07-31 (**v12 → v13**, and our
+> 07-31 mirror was **STALE**, still carrying the abolished dedicated-permission sentence — refreshed
+> additively). SBR v15 · PV v4 · TU v5 · WIP v6 · IV v3 are **unchanged** (all `lastModified`
+> 2026-07-29) and their mirrors are current.
+>
+> **⚠️ Version integers could not be read this run** — the Atlassian MCP exposes `lastModified` only,
+> and the REST cookie file is gone (`/tmp` is ephemeral). **Re-supply Confluence cookies** for true
+> version reads.
+
 ## ✅⚠️ RE-DIFF RUN 2026-07-31 — THE PROMISED CHANGELOG LANDED; 6 OF 12 ITEMS STILL OPEN
 
 Full evidence: **`spec-current-2026-07-31/SPEC-DIFF-2026-07-31.md`** (+ the six `*-current.md`
@@ -26,7 +75,7 @@ SBR v14→**v15**, PV v3→**v4**, TU v4→**v5**, WIP v5→**v6**, IV v2→**v3
 | 11 | PV S1-R1 "only report" inconsistency | ❌ **STILL-MISSING**. **STAYS OPEN.** |
 | 12 | Rep-label scope | ✅ **ANSWERED by Chris (Q5 = A)**, not by the spec — CLOSED as a question |
 
-**DEADLINE 2026-08-04 — verdict: partly met.** The changelog he promised DID land on time on all
+**~~DEADLINE 2026-08-04~~ — SUPERSEDED by the QA lead's ruling 2026-08-03 (see the top of this file): there is no deadline; not-in-the-spec = NOT DONE. The 2026-07-31 verdict below is retained as the historical record.** Verdict that day: partly met. The changelog he promised DID land on time on all
 six pages. **But the watch CANNOT retire:** items **1b, 4, 6, 8, 9, 10, 11** still need spec text.
 **The one to put in front of him first is 1b** — he told us he had already updated the WIP
 identifier text and he had not; our WIP cases follow his answer, so the spec and the cases are out
@@ -45,8 +94,10 @@ selector**; the suite-wide per-row Location column; and **mojibake** in the SBR/
 
 
 > **STANDING INSTRUCTION: on ANY Report Suite touch, re-check the 6 Confluence spec pages for
-> the items below. If by the DEADLINE = 2026-08-04 (1 week from 2026-07-28) they are still NOT
-> in the specs, REMIND THE USER and offer the backup-recovery option** (restore the original
+> the items below. ~~If by the DEADLINE = 2026-08-04…~~ — SUPERSEDED 2026-08-03: there is NO
+> deadline. If an item he was supposed to do is not in the live spec, it is **NOT DONE** — say so
+> and REMIND THE USER. The backup-recovery option is available but is NOT recommended (it would
+> move our cases off the newest authoritative source — Rule 32)** (restore the original
 > case wording from `build/report-suite/video-promotion-backup-2026-07-28/` — per-case
 > instructions in that folder's MANIFEST.md).
 
@@ -94,7 +145,7 @@ Message-level effect on the watch items (message = spec-INTENT confirmed; spec T
   indicator, all 6 reports; (b) same logo treatment all reports (PV-EXP-05 C30379 extended — PV had
   no logo coverage); (c) TU column selector added (NEW case TU-COL-01, no C-ID yet); (d) SBR
   spec gets a padding-issue flag (purely visual, no case).
-- **DEADLINE 2026-08-04 STANDS** — if the promised spec changelog has NOT landed by then, remind
+- ~~**DEADLINE 2026-08-04 STANDS**~~ — SUPERSEDED 2026-08-03 (no deadline; not-in-spec = NOT DONE). Historical: if the promised spec changelog has NOT landed, remind
   the user (the recovery option now includes `chris-update-2026-07-29/backup/`).
 - **2026-07-29: WIP-identifier question SENT to Chris by the user — ANSWERED the same day: "A is
   the correct answer" (VIN chain for WIP too).** Verbatim + standing notes:
@@ -109,7 +160,7 @@ The PRD/Spec Companion video arrived 2026-07-30 (Loom
 https://www.loom.com/share/e4a3ad01912048c0bba88f1a02677004; transcript =
 `chris-update-2026-07-29/companion-video-transcript-2026-07-30.md`; delta analysis =
 `chris-update-2026-07-29/companion-video-deltas-2026-07-30.md`) — the "companion video expected"
-item CLOSES. **The spec changelog is STILL AWAITED — deadline 2026-08-04 stands.**
+item CLOSES. **The spec changelog LANDED 2026-07-29 (verified 2026-07-31); the ~~deadline 2026-08-04~~ framing is SUPERSEDED 2026-08-03 — see the top of this file.**
 New watch items from the companion video (added to the checklist below):
 - **#9 customer-card label "Sales Representative"** (video C17, 10:53–11:12 FIRM): S19-R7
   currently says a "Sales Rep" row — must be re-worded in the changelog. Case edited:
@@ -153,7 +204,9 @@ later infinite-scroll revisit would change PV-API-01 C30388 / PV-API-02 C30389).
 1. Read the six pages' change-logs (they must be updated on every change — video P39).
 2. For each ☐ item found ratified: tick it here, move the case(s) forward (authorized TestRail
    push + live VIU), and note the spec version.
-3. **If 2026-08-04 arrives with items still unratified: REMIND THE USER** — options are (a) keep
-   the video-authoritative wording and chase Chris, or (b) recover the original cases from the
-   backup folder (MANIFEST.md has per-case instructions).
+3. **If an item is not in the live spec, it is NOT DONE — REMIND THE USER (no deadline; QA-lead
+   ruling 2026-08-03).** Options are (a) keep the video/answer-authoritative wording and chase
+   Chris — **recommended, Rule 32**, and what we do today — or (b) recover the original cases from
+   the backup folder (MANIFEST.md has per-case instructions), which is NOT recommended.
+4. **Latest live verification: `spec-watch-verification-2026-08-03/VERIFICATION.md` (2026-08-03).**
 4. This file is referenced from PROJECT-STATE.md — keep both in sync.

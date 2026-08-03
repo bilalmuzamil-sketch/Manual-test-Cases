@@ -305,3 +305,66 @@ own ruling answered it**, so the question was **withdrawn from the sheet** rathe
    `refs` appends, outside that push's authorisation.
 3. **`SPEC-WATCH-2026-07-28.md` header says "6 OF 12"** while its own table lists **7** open items.
    **The 7 is correct.** One-line count fix, in a file this pass was not authorised to edit.
+
+---
+
+## 2026-08-03 (later the same day) — GROUP E EXECUTED · SPEC-WATCH RE-VERIFIED LIVE · SBC MIRROR REFRESHED
+
+Three of the asks listed above are now **discharged**, and the SPEC-WATCH picture is now **verified
+against live Confluence text** rather than against our own note. Evidence:
+`build/report-suite/rescope-2026-08-03/testrail-execution-log.md` and
+`build/report-suite/spec-watch-verification-2026-08-03/VERIFICATION.md`.
+
+### ✅ CLEARED — "BLOCKED ON THE QA LEAD: the 2 group-E cases"
+
+**Your ruling, verbatim, 2026-08-03: "Rescope"** — answering the recommendation *"RESCOPE, not
+retire"*. **EXECUTED:** PV-PERM-03 = [C30327](https://shopview.testrail.io/index.php?/cases/view/30327)
+and PV-API-04 = [C30391](https://shopview.testrail.io/index.php?/cases/view/30391) rescoped by
+`update_case` (4 calls incl. 2 self-corrections, **all HTTP 200, all re-GET MATCH**; 0 add, 0 delete,
+0 run write). They now assert the surviving, previously untested behaviour — *an extra/per-area report
+permission, if it exists, is hidden and enforces nothing*. **Run 359 unchanged: 475 tests / 539
+results before and after.** **The suite's last unresolved contradiction is CLOSED** (C30325 / C30327 /
+C30391 re-diffed live; a 475-case sweep finds **zero** active cases asserting a per-area permission
+gate). Two small flags for your word only: both cases keep `type` "Negative" (not re-classified —
+outside the authorisation), and C30327 now sits close to C30325 (distinct because it adds *"no other
+reports permission switched on"* — merge only if you prefer).
+
+### ✅ CLEARED — "Refresh the local SBC spec mirror"
+
+`build/report-suite/spec-watch-verification-2026-08-03/live-capture-2026-08-03/` holds the live SBC
+(plus SBR and PV) as an **additive, dated** capture — **the 2026-07-31 captures were NOT
+overwritten.** Confirmed stale exactly as suspected: the 07-31 mirror line **125** still read *"gated
+by a dedicated Sales By Customer report View permission"*. **STILL OPEN (your call):** whether the
+older authoring ingest `build/report-suite/specs/*.md` should be refreshed too — it carries the same
+abolished sentence at line 111.
+
+### 🔴 THE DEADLINE FRAMING IS GONE — and 8 items are NOT DONE
+
+**Your ruling, verbatim, 2026-08-03:** *"There is nothing due tomorrow, if something he was supposed
+to do should have been done by now, you need to check. If that has not been done consider it not
+done."* So **every "DUE 2026-08-04" above is superseded** (including item 2 of the Chris table and the
+short-version line): an item is in the live spec or it is **NOT DONE**. `SPEC-WATCH-2026-07-28.md` has
+been rewritten to match, and its **"6 OF 12" count nit is fixed** by the new header — clearing small
+item 3 above.
+
+**Live verdicts, 2026-08-03 (13 items): DONE 5 · NOT DONE 8 · PARTIAL 2.** Not one of our cases needs
+changing — every NOT DONE item is one where we correctly followed his newer video/answer ruling
+(Rule 32) and **the spec text is what is behind.**
+
+| Still owed by Chris Ward | Live evidence (quoted in full in VERIFICATION.md) | Affected cases |
+|---|---|---|
+| **The one-permission paragraph on PV, TU, WIP, IV** — SBC got it (v13, 2026-07-31); the other four did not | PV S1-R4 *"require the **Inventory Reports → View** permission"* · TU *"the permission that grants access to the timesheet reports"* · WIP *"the permission that grants access to Work In Progress reports"* · IV *"the existing inventory-reports permission"*. **SBR needs no edit** — it never named one | 16 cases, incl. C30325, C30327, C30391, C30398, C30526, C30527, C30603, C30604 |
+| **Location filter hidden when ≤1 location** (his own Q1=A) — **highest risk** | SBR S21-N1 / TU S9-N1 / IV S7-N1 / PV S2-E4 all still *"still sees the filter"* | C30216, C30446, C30577, C30340 |
+| **WIP asset identifier = VIN chain** — he has now **twice** believed this was done | WIP S4-R7 *"the unit number on the first line in bold"*; S4-R9 *"sorts by unit number"* | C30470, C30500, C30485, C30516 |
+| **SBR export header lists** (S14-R15/R16) — add Location, and `Sales Rep` → `Sales Representative`. **The spec contradicts itself**: S14-R20 says Location is in all four exports | S14-R15 *"Headers, in order: `Sales Rep`, `# Invoices`, …, `Subtotal`"* — no Location | C30285, C30286 — **already fixed on our side** (scope-conditional per Rule 42) |
+| **Five one-sentence fixes** — SBC Performance group + anchors (10) · TU "below existing links" (6) · PV "only report" sentence (11) · **NEW:** SBC still lists "Print" as an export at S18-R7/S18-R10 after retiring it in Story 16 · WIP asset-dropdown style (8) | quoted in VERIFICATION.md | C30096, C30195, C30392, C30451, C30322, C30500 |
+| **NEW — item 9 is HALF-applied**, which is worse than untouched: SBR S1-R1 already says *"the full word \"Representative,\" not the \"Rep\" shorthand"* while S19-R7, S19-R1/R8 and both CSV header lists still say "Sales Rep" | as above | C30315, C30285, C30286 |
+
+### NEW ACCESS ASK — Confluence session cookies
+
+The Atlassian MCP returns **`lastModified` only, no version number**, and the REST cookie file the
+earlier passes used (`/tmp/fd-tickets/all-cookie-header.txt`) is **gone — `/tmp` is ephemeral**. So
+today's version column is derived from the live modified date plus the newest in-body Change Log row,
+and says so (Rule 12). **Fresh Confluence cookies would restore true version integers.** Also
+unrelated-but-noted: the epic **SV-8582** was **not** re-checked this run (6 stories were reopened as
+of 2026-07-31) — a cheap Rule-37 Tier-1 check belongs to the next Report Suite touch.
