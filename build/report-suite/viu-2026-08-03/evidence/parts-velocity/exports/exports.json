@@ -1,0 +1,58 @@
+{
+  "slug": "parts-velocity",
+  "onScreenHeaderRows": [
+    [
+      "Type",
+      "Part #",
+      "Description",
+      "Category",
+      "Vendor",
+      "Location",
+      "Units Sold",
+      "Unit Cost",
+      "Sell Price",
+      "Revenue",
+      "Margin",
+      "Margin %",
+      "Demand",
+      "Last Sale",
+      "On Hand"
+    ],
+    [
+      ""
+    ]
+  ],
+  "entries": [
+    "Download (PDF)",
+    "Download (CSV)"
+  ],
+  "results": [
+    {
+      "label": "Download (PDF)",
+      "endpointCalls": [
+        {
+          "status": 200,
+          "method": "GET",
+          "path": "/api/reporting/reports/parts-velocity?type=both&range=custom&start_date=2026-01-01&end_date=2026-08-03&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=demand&pagination%5Bdescending%5D=true"
+        },
+        {
+          "status": 400,
+          "method": "GET",
+          "path": "/api/reporting/reports/parts-velocity/export?format=pdf&type=both&range=custom&start_date=2026-01-01&end_date=2026-08-03&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2&columns=type%2Cpart_number%2Cdescription%2Ccategory%2Cvendor%2Clocation%2Cunits_sold%2Cunit_cost%2Csell_price%2Crevenue%2Cmargin%2Cmargin_pct%2Cdemand%2Clast_sale%2Con_hand&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=demand&pagination%5Bdescending%5D=true"
+        }
+      ],
+      "noDownload": true
+    },
+    {
+      "label": "Download (CSV)",
+      "endpointCalls": [
+        {
+          "status": 400,
+          "method": "GET",
+          "path": "/api/reporting/reports/parts-velocity/export?format=csv&type=both&range=custom&start_date=2026-01-01&end_date=2026-08-03&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a%2Cf8a8b802-7780-4b16-bf10-343caeb616b2&columns=type%2Cpart_number%2Cdescription%2Ccategory%2Cvendor%2Clocation%2Cunits_sold%2Cunit_cost%2Csell_price%2Crevenue%2Cmargin%2Cmargin_pct%2Cdemand%2Clast_sale%2Con_hand&pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=demand&pagination%5Bdescending%5D=true"
+        }
+      ],
+      "noDownload": true
+    }
+  ]
+}

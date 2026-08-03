@@ -1,0 +1,266 @@
+{
+  "url": "/reports/parts-velocity",
+  "docTitle": "Parts Velocity - Report | ShopView",
+  "headings": [],
+  "tabs": [],
+  "tables": [
+    {
+      "index": 0,
+      "headerRows": [
+        [
+          {
+            "text": "Type",
+            "raw": "Typearrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Part #",
+            "raw": "Part #arrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Description",
+            "raw": "Descriptionarrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Category",
+            "raw": "Categoryarrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Vendor",
+            "raw": "Vendorarrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Location",
+            "raw": "Location",
+            "sortable": false,
+            "colspan": null
+          },
+          {
+            "text": "Units Sold info_outline",
+            "raw": "Units Sold info_outlinearrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Unit Cost",
+            "raw": "Unit Costarrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Sell Price",
+            "raw": "Sell Pricearrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Revenue",
+            "raw": "Revenuearrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Margin",
+            "raw": "Marginarrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Margin %",
+            "raw": "Margin %arrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Demand info_outline",
+            "raw": "Demand info_outlinearrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Last Sale",
+            "raw": "Last Salearrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "On Hand",
+            "raw": "On Handarrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          }
+        ]
+      ],
+      "firstBodyRow": [
+        [
+          ""
+        ]
+      ],
+      "bodyRowCount": 32
+    }
+  ],
+  "buttons": [
+    {
+      "text": "more_horiz",
+      "aria": "Export report",
+      "title": null,
+      "testId": "btn_dropdown_pv_export",
+      "disabled": false
+    },
+    {
+      "text": "width_normal",
+      "aria": "Column Selection",
+      "title": null,
+      "testId": "button_column_selection",
+      "disabled": false
+    },
+    {
+      "text": "This Year expand_more",
+      "aria": "Select date range, currently This Year",
+      "title": null,
+      "testId": "date-range-selector_pv_trigger",
+      "disabled": false
+    },
+    {
+      "text": "close",
+      "aria": "Clear Location",
+      "title": null,
+      "testId": "clear_report_location_filter",
+      "disabled": false
+    },
+    {
+      "text": "info_outline",
+      "aria": "Units Sold: Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Sell Price.",
+      "title": null,
+      "testId": "icon_pv_units_sold_info",
+      "disabled": false
+    },
+    {
+      "text": "info_outline",
+      "aria": "Demand: Number of separate transactions (work orders or parts sales) this part appeared on in the selected date range. Each transaction counts once, no matter how many units were sold on it.",
+      "title": null,
+      "testId": "icon_pv_demand_info",
+      "disabled": false
+    }
+  ],
+  "controls": [
+    {
+      "tag": "label",
+      "cls": "q-field row no-wrap items-start q-field--outlined q-input q-field--dense report-search-input pv-toolbar__control",
+      "label": null,
+      "placeholder": null,
+      "value": null,
+      "testId": null,
+      "text": "search"
+    },
+    {
+      "tag": "input",
+      "cls": "q-field__native q-placeholder",
+      "label": null,
+      "placeholder": "Search parts",
+      "value": "",
+      "testId": "input_report_search",
+      "text": ""
+    },
+    {
+      "tag": "label",
+      "cls": "q-field row no-wrap items-start q-field--outlined q-select q-field--auto-height q-select--without-input q-select--withou",
+      "label": "Type",
+      "placeholder": null,
+      "value": null,
+      "testId": null,
+      "text": "Type Both arrow_drop_down"
+    },
+    {
+      "tag": "input",
+      "cls": "q-select__focus-target",
+      "label": "Type",
+      "placeholder": null,
+      "value": "Both",
+      "testId": null,
+      "text": ""
+    },
+    {
+      "tag": "label",
+      "cls": "q-field row no-wrap items-start q-field--outlined q-select q-field--auto-height q-select--without-input q-select--withou",
+      "label": "Category",
+      "placeholder": null,
+      "value": null,
+      "testId": null,
+      "text": "Category All categories arrow_drop_down"
+    },
+    {
+      "tag": "input",
+      "cls": "q-select__focus-target",
+      "label": "Category",
+      "placeholder": null,
+      "value": "All categories",
+      "testId": null,
+      "text": ""
+    },
+    {
+      "tag": "label",
+      "cls": "q-field row no-wrap items-start q-field--outlined q-select q-field--auto-height q-select--without-input q-select--withou",
+      "label": "Vendor",
+      "placeholder": null,
+      "value": null,
+      "testId": null,
+      "text": "Vendor All vendors arrow_drop_down"
+    },
+    {
+      "tag": "input",
+      "cls": "q-select__focus-target",
+      "label": "Vendor",
+      "placeholder": null,
+      "value": "All vendors",
+      "testId": null,
+      "text": ""
+    },
+    {
+      "tag": "label",
+      "cls": "q-field row no-wrap items-start q-field--outlined q-select q-field--auto-height q-select--without-input q-select--withou",
+      "label": "Bin",
+      "placeholder": null,
+      "value": null,
+      "testId": null,
+      "text": "Bin All bins arrow_drop_down"
+    },
+    {
+      "tag": "input",
+      "cls": "q-select__focus-target",
+      "label": "Bin",
+      "placeholder": null,
+      "value": "All bins",
+      "testId": null,
+      "text": ""
+    },
+    {
+      "tag": "label",
+      "cls": "q-field row no-wrap items-start q-field--outlined q-select q-field--auto-height q-select--without-input q-select--withou",
+      "label": "Location",
+      "placeholder": null,
+      "value": null,
+      "testId": null,
+      "text": "Location All locations close arrow_drop_down"
+    },
+    {
+      "tag": "input",
+      "cls": "q-select__focus-target",
+      "label": "Location",
+      "placeholder": null,
+      "value": "All locations",
+      "testId": null,
+      "text": ""
+    }
+  ],
+  "mainText": "Parts Velocity more_horiz width_normal search This Year expand_more Type Both arrow_drop_down Category All categories arrow_drop_down Vendor All vendors arrow_drop_down Bin All bins arrow_drop_down Location All locations close arrow_drop_down Typearrow_drop_up Part #arrow_drop_up Descriptionarrow_drop_up Categoryarrow_drop_up Vendorarrow_drop_up Location Units Sold info_outlinearrow_drop_up Unit Costarrow_drop_up Sell Pricearrow_drop_up Revenuearrow_drop_up Marginarrow_drop_up Margin %arrow_drop_up Demand info_outlinearrow_drop_up Last Salearrow_drop_up On Handarrow_drop_up Inventory BRAKECLEAN Brake & Parts Cleaner HD-Fluids — Staging Heavy Duty - 9919 512.00 $4.79 $7.69 $4,332.11 $1,634.06 37.7% 416 51 days 618.00 Inventory BRAKECLEAN Brake & Parts Cleaner HD-Fluids Cuview Management Staging Lethbridge - 4310 359.00 $6.21 $6.83 $2,573.05 $231.23 9.0% 352 52 days 12.00 Inventory GREASETUBE EP2 Grease Tube, 390G HD-Fluids Zocrest Maintenance Staging Lethbridge - 4310 208.00 $4.04 $7.83 $1,682.73 $815.16 48.4% 215 53 days 39.00 Inventory REC15204 -40C Windshield Washer Fluid HD-Fluids Xawick Consulting Staging Lethbridge - 4310 207.00 $4.32 $6.24 $1,317.64 $405.58 30.8% 196 52 days 297.00 Inventory GREASETUBE EP2 Grease Tube, 390G HD-Fluids Xawick Consulting Staging Heavy Duty - 9919 182.00 $4.37 $10.86 $2,128.78 $1,272.36 59.8% 183 51 days 23.00 Inventory WWF Windshield Washer Fluid 4L HD-Fluids — Staging Heavy Duty - 9919 170.00 $3.98 $5.99 $1,066.31 $358.50 33.6% 172 51 days 200.00 Inventory 76-2405PK 16-14GA Non-Insulated Butt Splice Connector HD-Lighting & Electrical Aiboro Rentals Staging Heavy Duty - 9919 485.00 $0.13 $0.38 $188.95 $121.52 64.3% 134 54 days 170.00 Inventory SERVICE CALL FUEL SURCHARGE Fuel HD-Misc / Other — Staging Lethbridge - 4310 8,200.00 $0.01 $1.10 $9,326.87 $9,242.43 99.1% 127 51 days 46,823.00 Inventory HDEO14 15W40 Bulk- Mobil 1 Delvac HDEO HD-Fluids Hibridge Supply Staging Heavy Duty - 9919 1,858.00 $3.76 $6.40 $13,544.67 $5,584.75 41.2% 110 55 days 1,027.00 Inventory Fuel Fuel Surcharge, Service Call HD-Misc Charges — Staging Heavy Duty - 9919 7,111.00 $0.01 $1.22 $8,826.17 $8,754.07 99.2% 103 52 days -5,137.00 Inventory 125152 HDEO 15W40 OIL HD-Fluids Hibridge Supply Staging Lethbridge - 4310 3,127.00 $3.76 $6.68 $22,136.18 $9,661.92 43.6% 101 53 days 1,085.00 Inventory 84-4005PK 3/16 BLACK SHRINK TUBE HD-Lighting & Electrical Zoburg Maintenance Staging Heavy Duty - 9919 129.00 $0.83 $1.71 $248.57 $127.58 51.3% 94 54 days -1.00 Inventory 8WS-075 3/4\" FLAT WASHER HD-Fasteners Aiboro Rentals Staging Heavy Duty - 9919 437.00 $0.24 $0.68 $335.85 $217.05 64.6% 87 3 days -24.00 Inventory SHL55057739 Shell Red Coolant- 50/50 Antifreeze 4L HD-Fluids Xistone Consulting Staging Heavy Duty - 9919 227.00 $7.95 $11.87 $2,837.44 $937.39 33.0% 86 52 days 115.00 Inventory MDS79DD 75W90 Bulk- Mobil Delvac 1 Gear Oil HD-Fluids Faspring Maintenance Staging Heavy Duty - 9919 171.00 $9.56 $14.62 $3,025.99 $1,048.06 34.6% 83 61 days 296.00 Inventory MOB122046 75W90 BULK GEAR OIL, PER LITER HD-Fluids — Staging Lethbridge - 4310 240.00 $8.82 $13.87 $3,197.64 $1,163.99 36.4% 74 53 days 238.11 Inventory SLCSC-075 3/4\" NC STOVER LOCKNUT HD-Fasteners Aiboro Rentals Staging Heavy Duty - 9919 176.00 $0.78 $1.90 $391.36 $231.69 59.2% 71 3 days 5.00 Inventory 84-4000PK 1/4 BLACK SHRINK TUBE HD-Lighting & Electrical Zoburg Maintenance Staging Heavy Duty - 9919 77.00 $1.15 $2.56 $209.89 $115.73 55.1% 51 52 days 15.00 Inventory A4711800209 Engine Oil Filter Cartridge Kit, Detroit DD13/15/16, OEM, 2019-Current HD-Filters Enson Forestry Staging Lethbridge - 4310 48.00 $35.63 $56.54 $2,826.81 $1,045.39 37.0% 49 55 days 10.00 Special Order SUBLET Programming, CPC HD-Tires & Rims Zocrest Paving Multiple 44.00 $537.64 $669.93 $29,477.09 $5,820.81 19.8% 44 51 days — Inventory ATFMVDD ATF Bulk- Mobil 1 Multi Vehicle HD-Fluids Hibridge Supply Staging Heavy Duty - 9919 116.00 $6.34 $10.20 $1,499.52 $568.07 37.9% 43 52 days 128.55 Inventory HDEO13 10W30 Bulk- Mobil 1 Delvac HDEO HD-Fluids Hibridge Supply Staging Heavy Duty - 9919 980.00 $3.76 $6.37 $6,550.32 $2,685.04 41.0% 43 51 days 792.00 Inventory SH550057739 COOLANT, RED HD (4L) HD-Fluids Lawood Transport Staging Lethbridge - 4310 88.00 $8.38 $13.04 $1,486.66 $531.52 35.8% 41 65 days 152.00 Inventory 8WS-050 1/2\" FLAT WASHER HD-Fasteners Aiboro Rentals Staging Heavy Duty - 9919 264.00 $0.11 $0.30 $83.90 $52.88 63.0% 39 55 days 101.00 Inventory PF63A Engine Oil Filter AUTO-Oil, Lube & Maintenance Mefield Supply Staging Lethbridge - 4310 38.00 $4.54 $6.45 $245.06 $72.49 29.6% 38 54 days 19.00 Inventory CS8SC-075-500 3/4\"X5\" NC BOLT (GR8, HEX) HD-Fasteners Aiboro Rentals Staging Heavy Duty - 9919 86.00 $3.32 $6.64 $624.56 $312.28 50.0% 35 3 days 1.00 Inventory 45001 ENGINE SHAMPOO HD-Fluids — Staging Heavy Duty - 9919 28.00 $9.59 $15.03 $435.88 $157.72 36.2% 33 54 days 9.00 Inventory AS-530-TOTE Bulk 5w30 Synthetic Oil (tote) HD-Fluids Aiboro Rentals Staging Lethbridge - 4310 358.00 $4.15 $6.22 $2,213.43 $736.03 33.3% 33 59 days 506.00 Inventory PRIMARYWIRE PRIMARY WIRE- 10GA, 12GA,14GA, 16GA, 18GA, 20GA, 22GA (PER FOOT) HD-Lighting & Electrical Cuview Management Staging Heavy Duty - 9919 456.00 $0.31 $0.88 $407.32 $263.89 64.8% 32 61 days 716.00 Inventory MXV221 Max Vision Wiper Blade - 22\" Uncategorized Vatown Works Staging Heavy Duty - 9919 52.00 $6.95 $11.40 $592.54 $231.14 39.0% 31 55 days 16.00"
+}

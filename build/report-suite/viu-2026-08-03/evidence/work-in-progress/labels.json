@@ -1,0 +1,246 @@
+{
+  "url": "/reports/work-in-progress",
+  "docTitle": "Work In Progress - Report | ShopView",
+  "headings": [],
+  "tabs": [
+    {
+      "text": "Approved - Partially Completed (0)",
+      "active": true
+    },
+    {
+      "text": "Approved - Not Started (0)",
+      "active": false
+    },
+    {
+      "text": "Completed (0)",
+      "active": false
+    },
+    {
+      "text": "Estimates (0)",
+      "active": false
+    }
+  ],
+  "tables": [
+    {
+      "index": 0,
+      "headerRows": [
+        [
+          {
+            "text": "WO #",
+            "raw": "WO #arrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Status",
+            "raw": "Statusarrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Customer",
+            "raw": "Customerarrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Asset",
+            "raw": "Assetarrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "Advisor",
+            "raw": "Advisorarrow_drop_up",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "arrow_drop_upDays Open",
+            "raw": "arrow_drop_upDays Open",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "arrow_drop_upEarned",
+            "raw": "arrow_drop_upEarned",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "arrow_drop_upRemaining",
+            "raw": "arrow_drop_upRemaining",
+            "sortable": true,
+            "colspan": null
+          },
+          {
+            "text": "arrow_drop_upTotal",
+            "raw": "arrow_drop_upTotal",
+            "sortable": true,
+            "colspan": null
+          }
+        ]
+      ],
+      "firstBodyRow": [
+        [
+          ""
+        ]
+      ],
+      "bodyRowCount": 2
+    }
+  ],
+  "buttons": [
+    {
+      "text": "more_horiz",
+      "aria": "Export report",
+      "title": null,
+      "testId": "btn_dropdown_wip_export",
+      "disabled": false
+    },
+    {
+      "text": "width_normal",
+      "aria": "Column Selection",
+      "title": null,
+      "testId": "button_column_selection",
+      "disabled": false
+    },
+    {
+      "text": "This Week expand_more",
+      "aria": "Select date range, currently This Week",
+      "title": null,
+      "testId": "date-range-selector_wip_trigger",
+      "disabled": false
+    },
+    {
+      "text": "close",
+      "aria": "Clear Location",
+      "title": null,
+      "testId": "clear_report_location_filter",
+      "disabled": false
+    },
+    {
+      "text": "info_outline",
+      "aria": "Total Earned: Work you have already done but have not billed yet — the money waiting to be collected.",
+      "title": null,
+      "testId": "wip_summary_info_total_earned",
+      "disabled": false
+    },
+    {
+      "text": "info_outline",
+      "aria": "Total Remaining: Approved work you still have to do — the money that comes in once it is finished.",
+      "title": null,
+      "testId": "wip_summary_info_total_remaining",
+      "disabled": false
+    },
+    {
+      "text": "info_outline",
+      "aria": "Not Started: Approved jobs nobody has started yet. The full amount is still ahead.",
+      "title": null,
+      "testId": "wip_summary_info_not_started",
+      "disabled": false
+    },
+    {
+      "text": "info_outline",
+      "aria": "Started — Earned: Jobs in progress: the work already done but not billed yet.",
+      "title": null,
+      "testId": "wip_summary_info_started_earned",
+      "disabled": false
+    },
+    {
+      "text": "info_outline",
+      "aria": "Started — Remaining: Jobs in progress: the work still left to finish.",
+      "title": null,
+      "testId": "wip_summary_info_started_remaining",
+      "disabled": false
+    },
+    {
+      "text": "info_outline",
+      "aria": "Ready to Invoice: Finished jobs, ready to bill the customer.",
+      "title": null,
+      "testId": "wip_summary_info_ready_to_invoice",
+      "disabled": false
+    },
+    {
+      "text": "info_outline",
+      "aria": "Estimates: Quotes the customer has not approved yet — not counted in the totals.",
+      "title": null,
+      "testId": "wip_summary_info_estimates",
+      "disabled": false
+    }
+  ],
+  "controls": [
+    {
+      "tag": "label",
+      "cls": "q-field row no-wrap items-start q-field--outlined q-select q-field--auto-height q-select--without-input q-select--withou",
+      "label": "Advisor",
+      "placeholder": null,
+      "value": null,
+      "testId": null,
+      "text": "Advisor All advisors arrow_drop_down"
+    },
+    {
+      "tag": "input",
+      "cls": "q-select__focus-target",
+      "label": "Advisor",
+      "placeholder": null,
+      "value": "All advisors",
+      "testId": null,
+      "text": ""
+    },
+    {
+      "tag": "label",
+      "cls": "q-field row no-wrap items-start q-field--outlined q-select q-field--auto-height q-select--without-input q-select--withou",
+      "label": "Customer",
+      "placeholder": null,
+      "value": null,
+      "testId": null,
+      "text": "Customer All customers arrow_drop_down"
+    },
+    {
+      "tag": "input",
+      "cls": "q-select__focus-target",
+      "label": "Customer",
+      "placeholder": null,
+      "value": "All customers",
+      "testId": null,
+      "text": ""
+    },
+    {
+      "tag": "label",
+      "cls": "q-field row no-wrap items-start q-field--outlined q-select q-field--auto-height q-select--without-input q-select--withou",
+      "label": "Asset",
+      "placeholder": null,
+      "value": null,
+      "testId": null,
+      "text": "Asset All assets arrow_drop_down"
+    },
+    {
+      "tag": "input",
+      "cls": "q-select__focus-target",
+      "label": "Asset",
+      "placeholder": null,
+      "value": "All assets",
+      "testId": null,
+      "text": ""
+    },
+    {
+      "tag": "label",
+      "cls": "q-field row no-wrap items-start q-field--outlined q-select q-field--auto-height q-select--without-input q-select--withou",
+      "label": "Location",
+      "placeholder": null,
+      "value": null,
+      "testId": null,
+      "text": "Location All locations close arrow_drop_down"
+    },
+    {
+      "tag": "input",
+      "cls": "q-select__focus-target",
+      "label": "Location",
+      "placeholder": null,
+      "value": "All locations",
+      "testId": null,
+      "text": ""
+    }
+  ],
+  "mainText": "Work In Progress more_horiz width_normal This Week expand_more Advisor All advisors arrow_drop_down Customer All customers arrow_drop_down Asset All assets arrow_drop_down Location All locations close arrow_drop_down TOTAL EARNED info_outline $0.00 TOTAL REMAINING info_outline $0.00 NOT STARTED info_outline $0.00 STARTED — EARNED info_outline $0.00 STARTED — REMAINING info_outline $0.00 READY TO INVOICE info_outline $0.00 ESTIMATES info_outline $0.00 Approved - Partially Completed (0) Approved - Not Started (0) Completed (0) Estimates (0) WO #arrow_drop_up Statusarrow_drop_up Customerarrow_drop_up Assetarrow_drop_up Advisorarrow_drop_up arrow_drop_upDays Open arrow_drop_upEarned arrow_drop_upRemaining arrow_drop_upTotal Empty bays, endless possibilities. Get Going!"
+}
