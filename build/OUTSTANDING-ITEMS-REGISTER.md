@@ -56,7 +56,7 @@ else owes).
 
 ---
 
-## 1. REPORT SUITE — PO: Chris Ward · Epic **SV-8582** · **ours: 474 active cases, all VIU-Pending** (live folder total 479 — the other 5 are Vladimir Tomovic's automation cases, hands-off per Standing Rule 38)
+## 1. REPORT SUITE — PO: Chris Ward · Epic **SV-8582** · **ours: 475 active cases, all VIU-Pending** (live folder total 480 — the other 5 are Vladimir Tomovic's automation cases, hands-off per Standing Rule 38)
 
 | Item | Category | Who owes it | What it blocks | Outstanding since |
 |---|---|---|---|---|
@@ -409,3 +409,64 @@ Source: `build/report-suite/spec-watch-verification-2026-08-03/ADDENDUM-full-ver
   **OPEN QUESTION FOR YOU: does the reopening mean the build plan changed?** None of the six carries a
   comment explaining it — answering that needs a **Tier-2 epic re-read, which requires your
   authorisation** (Rule 37) and was NOT done.
+
+---
+
+## 2026-08-03 (third pass, same day) — THE SIX VERIFIER FINDINGS ARE FIXED · 1 NEW GO-AHEAD NEEDED
+
+Source: `build/report-suite/verifier-fixes-2026-08-03/testrail-execution-log.md` (per-operation) ·
+`CONTRADICTION-SWEEP-2026-08-03.txt` (Rule 28 gate).
+
+**Your authorisation, verbatim, 2026-08-03:** *"Do everything which is right to do, I want everything
+right to be done for reports suite, I can not take a single risk of mistake."*
+
+**EXECUTED: 47 `update_case` (40 planned + 7 second-pass SBC re-pins), every one HTTP 200 + re-GET
+MATCH.** 0 `add_case`, 0 `delete_case`, 0 section change, **0 run writes** — **run 359 verified
+unchanged at 475 tests / 539 result records**, before and after. The five foreign cases
+(**C38919–C38923**, Vladimir Tomovic) and the two cases another worker owned (**C30327 / C30391**) are
+**byte-identical to the pre-write snapshot including `updated_on` and `updated_by`** — the executor
+refuses them by assertion, and that was verified after the fact, not asserted.
+
+### ✅ CLEARED — all six findings of `VERIFICATION-2026-08-03.md`
+
+| Finding | What was wrong | Now |
+|---|---|---|
+| **V-3** (HIGH) | 6 export cases asserted the *"Locations:"* line but never cited the requirement that governs the export surface — **the exact mechanism that let SBR `S14-R20` slip past us on 2026-07-29** | Pinned: C30167 (+`S15-R14` +`S4-R13`) · C30277 (+`S14-R20`) · C30376 (+`S6-R11`) · C30437 (+`S7-R13`) · C30511 (+`S7-R13` +`S9-E1`) · C30588 (+`S10-R15`). **Correction to the verifier:** for WIP the governing export anchor is `S9-R10a`, which C30511 **already** cited — `S7-R13` is the on-screen rule |
+| **V-10** (HIGH) | closed enumerations with no version-pinned anchor | **Re-derived from scratch rather than trusting the list of 17: 49 trigger-matched cases → 28 genuine.** All 28 pinned to their governing anchor + spec version, each `refs` stating in words that the closed list IS the requirement |
+| **V-9** (MEDIUM) | the deliberate-decisions register was a day stale | Refreshed — see the row below on **SV-8780**, which it got backwards |
+| **V-7** (MEDIUM) | 3 cases asked a non-technical tester to measure a contrast ratio with no tool or method | C30387 · C30309 · C30448 now ask what a person can answer by eye; the ratio is recorded as the design-token figure it is. **Nothing deleted** |
+| **V-8** (LOW) | 2 cases needed the browser network tab but sat in UI sections (Rule 4) | C30419 · C30424 rewritten UI-observable. **No coverage lost** — the back-end half was already in *"TU — API"* (C30449, C30450 exp 3), quoted side by side in the log |
+| **V-2** (LOW) | C38856's slash-shorthand `refs` hid 5 anchors from every anchor-based tool | Expanded — `S14-R2`, `S14-R4`, `S15-R2`, `S15-R4`, `S15-R5` are greppable |
+
+### ✅ CLEARED — "the SBC mirror is one version behind" (was raised earlier today)
+
+Independently re-diffed rather than taken on trust: **222 requirement anchors in v12 and in v13, 0
+added, 0 removed**, only `S1-R2` / `S1-N1` / the removed Prerequisite substantively changed — which
+**CONFIRMS** the parallel worker's *"exactly 3 changes"*. (`S14-R14` and `S15-R6` look changed but
+differ only by markdown escaping of an underscore — a capture artifact.) **All 30 SBC anchors we pin
+are byte-identical in v13**, so the 7 SBC pins were upgraded to *"SBC spec v13 2026-07-31"*. Same
+diff run on SBR and PV: **0 anchors added/removed**, pinned anchors differ only by whitespace
+(similarity 0.992–0.999). **Honest residue: TU v5 / WIP v6 / IV v3 are version-matched to live but
+NOT text-diffed** — no live capture of those three exists yet.
+
+### 🔴 NEW GO-AHEAD NEEDED — one case, one `update_case`
+
+| What | Who owes it | What it blocks | Since |
+|---|---|---|---|
+| **PV-VIS-02 = [C30386](https://shopview.testrail.io/index.php?/cases/view/30386) tells a manual tester to measure paddings in pixels with browser developer tools** — *"(use browser devtools to measure paddings)"*, then asserts *"padding 32px top, 2rem right, 24px bottom, 2rem left"* and *"a 1px top border"*. Found by our own named-entity sweep on 2026-08-03; the verifier did **not** catch it (V-7 looked only for contrast ratios). It is the **same class as V-7** and the fix is identical and already drafted | **YOU** — one word | Nothing in the suite is wrong; the case simply **cannot be run** by the non-technical tester it is written for (Standing Rule 7 / Rule 28 dimension 3). Left untouched **on purpose** because it is outside the six findings you authorised, and a case-body edit needs authorisation (Rule 6) | 2026-08-03 |
+
+### ⚠️ SMALL FLAG, no action needed unless you disagree
+
+Standing Rule 8 asks for a C-id wherever a case is named, so for the record: the two Rule-4 rewrites
+put a **sibling case reference inside `refs`** (C30419 → *"covered by C30449"*, C30424 → *"covered by
+C30450"*). `refs` is metadata, never tester-facing, so no internal ID reaches the tester — but it is a
+first for this suite and you may prefer it stated only in the log.
+
+### 📌 DURABLE FACT LEARNED — now in the playbook (§J), so nobody re-discovers it
+
+TestRail's `refs` field **splits on commas, trims each entry, re-joins with a bare `,`**, and
+**rejects the whole write with HTTP 400 `Field :refs does not match the required pattern.` for any
+entry over 248 characters** (248 passes, 249 fails; total length is unbounded). Because it reports a
+*pattern* error rather than a length error it is easy to misdiagnose. All 475 Report Suite `refs`
+values are comma-free single entries, longest 245 — so the house style is **one comma-free entry,
+semicolons as separators, ≤ 248 chars**, asserted before every run.
