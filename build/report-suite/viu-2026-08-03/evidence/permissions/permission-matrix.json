@@ -1,0 +1,249 @@
+{
+  "capturedAt": "2026-08-03T18:47:59.213Z",
+  "buildMarker": "v3.4.1-0ed4433",
+  "atomCatalogueReportAtoms": [
+    "reportsPageAccess"
+  ],
+  "roles": [
+    {
+      "id": "0c94a1d5-07cf-4a60-8f1c-67616b808324",
+      "label": "Parts Technician",
+      "atomCount": 19,
+      "hasReportsPageAccess": false,
+      "reportAtoms": []
+    },
+    {
+      "id": "2ca7a173-aa33-4b0d-80c6-1044068e84a2",
+      "label": "Service Manager",
+      "atomCount": 36,
+      "hasReportsPageAccess": true,
+      "reportAtoms": [
+        "reportsPageAccess"
+      ]
+    },
+    {
+      "id": "2cb364be-b7db-4663-a2f3-3c345dcb8ec1",
+      "label": "Senior Service Advisor",
+      "atomCount": 31,
+      "hasReportsPageAccess": false,
+      "reportAtoms": []
+    },
+    {
+      "id": "2f75480b-363f-4d5a-b560-d8156e228e9e",
+      "label": "Time Clock User",
+      "atomCount": 3,
+      "hasReportsPageAccess": false,
+      "reportAtoms": []
+    },
+    {
+      "id": "475d69b3-3596-4dc0-8fa2-ae7890f6f697",
+      "label": "Technician",
+      "atomCount": 6,
+      "hasReportsPageAccess": false,
+      "reportAtoms": []
+    },
+    {
+      "id": "58bd6045-37ae-4941-9389-1a0bf0a0b5bb",
+      "label": "Office User",
+      "atomCount": 25,
+      "hasReportsPageAccess": true,
+      "reportAtoms": [
+        "reportsPageAccess"
+      ]
+    },
+    {
+      "id": "a1d0a44b-8730-45d2-9449-1aa818d285e4",
+      "label": "Service Advisor",
+      "atomCount": 25,
+      "hasReportsPageAccess": false,
+      "reportAtoms": []
+    },
+    {
+      "id": "b176ec30-2def-49af-ab11-782c2f6bd503",
+      "label": "Sales Representative",
+      "atomCount": 8,
+      "hasReportsPageAccess": true,
+      "reportAtoms": [
+        "reportsPageAccess"
+      ]
+    },
+    {
+      "id": "b7bd7871-77ee-4c73-abd2-c1a8a645b83f",
+      "label": "Parts Manager",
+      "atomCount": 31,
+      "hasReportsPageAccess": true,
+      "reportAtoms": [
+        "reportsPageAccess"
+      ]
+    },
+    {
+      "id": "cf29706d-ee5e-4a1e-8f1a-a31915965a47",
+      "label": "Admin",
+      "atomCount": 42,
+      "hasReportsPageAccess": true,
+      "reportAtoms": [
+        "reportsPageAccess"
+      ]
+    },
+    {
+      "id": "d5ca0707-2a0f-445c-a336-0a5e4221a034",
+      "label": "Foreman",
+      "atomCount": 23,
+      "hasReportsPageAccess": false,
+      "reportAtoms": []
+    }
+  ],
+  "cells": [
+    {
+      "role": "Parts Technician",
+      "error": "no holder"
+    },
+    {
+      "role": "Service Manager",
+      "error": "no holder"
+    },
+    {
+      "role": "Senior Service Advisor",
+      "holder": "lisa.morrow@staging.shopview.local",
+      "switchStatus": 403,
+      "meStatus": 200,
+      "observedTemplateSlug": "senior_service_advisor",
+      "observedAtomCount": 31,
+      "observedReportsPageAccess": false,
+      "probes": [],
+      "note": "impersonation did not take — cell NOT VERIFIED"
+    },
+    {
+      "role": "Time Clock User",
+      "error": "no holder"
+    },
+    {
+      "role": "Technician",
+      "holder": "henry.hess@staging.shopview.local",
+      "switchStatus": 403,
+      "meStatus": 200,
+      "observedTemplateSlug": "technician",
+      "observedAtomCount": 6,
+      "observedReportsPageAccess": false,
+      "probes": [],
+      "note": "impersonation did not take — cell NOT VERIFIED"
+    },
+    {
+      "role": "Office User",
+      "error": "no holder"
+    },
+    {
+      "role": "Service Advisor",
+      "error": "no holder"
+    },
+    {
+      "role": "Sales Representative",
+      "holder": "tony.green@staging.shopview.local",
+      "switchStatus": 400,
+      "meStatus": 200,
+      "observedTemplateSlug": "administrator",
+      "observedAtomCount": 42,
+      "observedReportsPageAccess": true,
+      "probes": [],
+      "note": "impersonation did not take — cell NOT VERIFIED"
+    },
+    {
+      "role": "Parts Manager",
+      "error": "no holder"
+    },
+    {
+      "role": "Admin",
+      "holder": "edward.brown@staging.shopview.local",
+      "switchStatus": 200,
+      "meStatus": 200,
+      "observedTemplateSlug": "administrator",
+      "observedAtomCount": 42,
+      "observedReportsPageAccess": true,
+      "probes": [
+        {
+          "report": "SBC",
+          "dataStatus": 200,
+          "exportStatus": 200
+        },
+        {
+          "report": "SBR",
+          "dataStatus": 200,
+          "exportStatus": 200
+        },
+        {
+          "report": "PV",
+          "dataStatus": 200,
+          "exportStatus": 200
+        },
+        {
+          "report": "TU",
+          "dataStatus": 200,
+          "exportStatus": 200
+        },
+        {
+          "report": "WIP",
+          "dataStatus": 200,
+          "exportStatus": 200
+        },
+        {
+          "report": "IV",
+          "dataStatus": 200,
+          "exportStatus": 200
+        }
+      ]
+    },
+    {
+      "role": "Foreman",
+      "holder": "fernando.mercer@staging.shopview.local",
+      "switchStatus": 200,
+      "meStatus": 200,
+      "observedTemplateSlug": "foreman",
+      "observedAtomCount": 23,
+      "observedReportsPageAccess": false,
+      "probes": [
+        {
+          "report": "SBC",
+          "dataStatus": 403,
+          "exportStatus": 403,
+          "dataErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}",
+          "exportErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+        },
+        {
+          "report": "SBR",
+          "dataStatus": 403,
+          "exportStatus": 403,
+          "dataErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}",
+          "exportErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+        },
+        {
+          "report": "PV",
+          "dataStatus": 403,
+          "exportStatus": 403,
+          "dataErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}",
+          "exportErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+        },
+        {
+          "report": "TU",
+          "dataStatus": 403,
+          "exportStatus": 403,
+          "dataErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}",
+          "exportErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+        },
+        {
+          "report": "WIP",
+          "dataStatus": 403,
+          "exportStatus": 403,
+          "dataErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}",
+          "exportErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+        },
+        {
+          "report": "IV",
+          "dataStatus": 403,
+          "exportStatus": 403,
+          "dataErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}",
+          "exportErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+        }
+      ]
+    }
+  ]
+}
