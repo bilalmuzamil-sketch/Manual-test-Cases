@@ -1,0 +1,96 @@
+{
+  "capturedAt": "2026-08-03T18:50:42.678Z",
+  "buildMarker": "v3.4.1-0ed4433",
+  "method": "temporarily reassign an impersonable ACTIVE staff member to Sales Representative (8 atoms, reportsPageAccess YES, no other report-ish atom), probe, then RESTORE to Technician",
+  "steps": [
+    {
+      "k": "subject",
+      "v": {
+        "email": "wesley.mcclure@staging.shopview.local",
+        "staff_id": "33c930dd-7a9c-462c-9400-d5e30fbfe0f3",
+        "user_id": "24b124f5-c0f9-46bb-aae7-d5a5dc4580a1",
+        "role": "Technician",
+        "role_id": "475d69b3-3596-4dc0-8fa2-ae7890f6f697"
+      }
+    },
+    {
+      "k": "assign Sales Representative",
+      "v": 201
+    },
+    {
+      "k": "impersonated",
+      "v": {
+        "slug": "sales_representative",
+        "atomCount": 8,
+        "atoms": [
+          "customersCreateAndEdit",
+          "customersView",
+          "partSalesView",
+          "reportsPageAccess",
+          "seeApArData",
+          "seeFinancialData",
+          "woFullViewMode",
+          "workOrdersView"
+        ]
+      }
+    },
+    {
+      "k": "RESTORE to Technician",
+      "v": 201
+    },
+    {
+      "k": "VERIFY restored",
+      "v": "Technician"
+    }
+  ],
+  "cells": [
+    {
+      "report": "SBC",
+      "dataStatus": 200,
+      "exportStatus": 200
+    },
+    {
+      "report": "SBR",
+      "dataStatus": 200,
+      "exportStatus": 200
+    },
+    {
+      "report": "PV",
+      "dataStatus": 200,
+      "exportStatus": 200
+    },
+    {
+      "report": "TU",
+      "dataStatus": 200,
+      "exportStatus": 200
+    },
+    {
+      "report": "WIP",
+      "dataStatus": 200,
+      "exportStatus": 200
+    },
+    {
+      "report": "IV",
+      "dataStatus": 200,
+      "exportStatus": 200
+    }
+  ],
+  "observed": {
+    "switchStatus": 200,
+    "slug": "sales_representative",
+    "atomCount": 8,
+    "atoms": [
+      "customersCreateAndEdit",
+      "customersView",
+      "partSalesView",
+      "reportsPageAccess",
+      "seeApArData",
+      "seeFinancialData",
+      "woFullViewMode",
+      "workOrdersView"
+    ],
+    "reportAtoms": [
+      "reportsPageAccess"
+    ]
+  }
+}
