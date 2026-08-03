@@ -1,6 +1,28 @@
 # Report Suite — STAGED case plan from Chris Ward's 2026-08-01-round answers
 
-**Staged 2026-08-03 · STAGED ONLY — NOTHING EXECUTED.** No TestRail write, no case-source edit, no
+**HEADER UPDATED 2026-08-03 — PARTLY EXECUTED.**
+
+| Bucket | Status |
+|---|---|
+| **A** — 3 `update_case` (C30096, C30098, C30099) | ✅ **EXECUTED 2026-08-03**, all HTTP 200 + re-GET MATCH |
+| **B** — 1 `add_case` | ✅ **EXECUTED 2026-08-03** → **SBC-PERM-05 = C39447** (⚠️ the id below reads SBC-PERM-03; that id was already taken by C30100 — see the execution log) |
+| **run-359 UNION** | ✅ **EXECUTED 2026-08-03** — 474 → 475, 0 case_ids lost, all **539** prior result records verified present |
+| **C** — 6 permission-name edits | ⏸️ **NOT EXECUTED — UNFROZEN and RE-STAGED.** The blocking ambiguity is resolved (QA lead's ruling 2026-08-03, quoted below). The plan is now in **`staged-case-plan-CDE-2026-08-03.md`**, AWAITING AUTHORISATION |
+| **D** — 4 precondition edits | ⏸️ **NOT EXECUTED — UNFROZEN and RE-STAGED.** Same file |
+| **E** — 2 retire-or-rescope | ⏸️ **NOT EXECUTED — UNFROZEN and RE-STAGED.** Same file; recommendation is now **RESCOPE, not retire** |
+
+**Audit log:** `testrail-execution-log-2026-08-03.md`. **Executor:** `exec_push_2026-08-03.mjs`.
+
+**THE AMBIGUITY IN "BUCKET C/D/E DEPENDS ON CHRIS" IS NOW CLOSED.** QA lead's ruling, verbatim,
+2026-08-03: **"Yes all the reports will be gated by ONE permission FOR NOW."** Read with Chris's
+Q2=A and his FE-hide instruction, the settled position is: one ordinary Reports permission gates all
+six reports; no report needs one of its own; any extra per-area permission may still exist but is
+hidden from the front end and enforces nothing. **"FOR NOW" is load-bearing** — it is a current-state
+ruling, the design is modular, and a later expansion must not be read as a regression. **So the
+scope question is NOT asked of Chris** (Rule 33: the QA lead's ruling, consistent with the PO's
+Q2=A).
+
+**Original header (2026-08-03, superseded): STAGED ONLY — NOTHING EXECUTED.** No TestRail write, no case-source edit, no
 Jira post (Standing Rule 6). Every "current wording" below was read **live** today: TestRail
 `get_case` (read-only) for the C-id'd cases, plus the local case source under
 `build/report-suite/cases/`. Source of the answers: `answers-ingested.md` in this folder.

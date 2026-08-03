@@ -1,3 +1,5 @@
+> **NOT TO BE POSTED — QA lead's ruling 2026-08-03: "Ignore this ticket."**
+
 # SV-8780 — follow-up comment DRAFT (⛔ NOT POSTED)
 
 **Status of this file: A DRAFT ONLY. Nothing has been posted to Jira.** Posting is outward-facing
