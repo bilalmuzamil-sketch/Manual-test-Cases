@@ -115,11 +115,451 @@ row refers to.
 | B34 | IV single-location Location column on screen | IV-LOC group | Still shown for the impersonated one-location user — **but that browser profile carried a persisted column selection, and IV's Location IS a selector toggle, so this is CONFOUNDED, not a finding.** The IV single-location **CSV has no Location column**, so the server-side rule is right | **NOT VERIFIED on screen** (honest) | Re-run with a clean browser profile and correct hydration | PENDING |
 | B35 | PDF file **contents** | every `*-EXP-*` case asserting PDF layout | PDFs **generate** (170–220 KB, HTTP 200) for SBC, SBR, TU, WIP. **Contents unread** — no PDF text extractor in this container | **NOT VERIFIED** | Install/vendor a PDF text extractor, then read every PDF header row — including the Location column, the exact gap that caused the 2026-07-31 defect | PENDING |
 
+
+## MERGED BATCH ROWS (2026-08-04)
+
+The three per-report batches and the authorised push of 2026-08-04 add **394 further rows** to this queue. They are appended here rather than folded into the 35 rows above, so the provenance of each row stays readable. **This queue stays OPEN.**
+
+### MERGED Sales By Customer + Sales By Representative — 46 rows
+
+*Source `batch-sbc-sbr/RECHECK-ROWS.md`, merged 2026-08-04. Build marker `v3.4.1-0ed4433`, unchanged at the start and the end of that pass. Every row PENDING.*
+
+| Case | C-id | Verdict now | What to re-confirm |
+|---|---|---|---|
+| `SBC-CALC-03` | [C30151](https://shopview.testrail.io/index.php?/cases/view/30151) | DEVIATION | Re-run once invoiced-hours data exists: the +green / -red colouring on Inv. Hrs. |
+| `SBR-CALC-01` | [C30229](https://shopview.testrail.io/index.php?/cases/view/30229) | DEVIATION | Re-run once hours exist: Inv. Hrs = hours invoiced - hours worked, half-up to one decimal. |
+| `SBR-CALC-02` | [C30230](https://shopview.testrail.io/index.php?/cases/view/30230) | DEVIATION | Re-run once hours exist: colouring and rollups from unrounded deltas. |
+| `SBR-CALC-03` | [C30231](https://shopview.testrail.io/index.php?/cases/view/30231) | DEVIATION | Re-run once hours exist: the negative clocked-unbilled case. |
+| `SBR-CALC-09` | [C38894](https://shopview.testrail.io/index.php?/cases/view/38894) | DEVIATION | Re-run once hours exist: a clock-record edit after invoicing moves Inv. Hrs but not money. |
+| `SBR-DEACT-02` | [C30253](https://shopview.testrail.io/index.php?/cases/view/30253) | EXTERNAL-DEPENDENCY | Re-run once invoice creation works: the counted, pluralised dialog headline and focus trap. |
+| `SBR-DEACT-03` | [C30254](https://shopview.testrail.io/index.php?/cases/view/30254) | EXTERNAL-DEPENDENCY | Re-run: the type-YES gate (auto-focus, case-insensitive, Enter submits). |
+| `SBR-DEACT-04` | [C30255](https://shopview.testrail.io/index.php?/cases/view/30255) | EXTERNAL-DEPENDENCY | Re-run: Cancel/X dismiss, Escape and outside-click do not. |
+| `SBR-DEACT-05` | [C30256](https://shopview.testrail.io/index.php?/cases/view/30256) | EXTERNAL-DEPENDENCY | Re-run: valid submit locks the dialog then deactivates, keeping assignments. |
+| `SBR-DEACT-06` | [C30257](https://shopview.testrail.io/index.php?/cases/view/30257) | EXTERNAL-DEPENDENCY | Re-run the dialog half; the report-credit half is already proven (F41). |
+| `SBR-DEACT-07` | [C30258](https://shopview.testrail.io/index.php?/cases/view/30258) | EXTERNAL-DEPENDENCY | Re-run through the staff-administration UI, not the API — that was the correction made this pass. |
+| `SBR-DEACT-08` | [C30259](https://shopview.testrail.io/index.php?/cases/view/30259) | EXTERNAL-DEPENDENCY | Re-run: a deactivation failure shows the error toast and leaves status alone. |
+| `SBR-DEACT-09` | [C30260](https://shopview.testrail.io/index.php?/cases/view/30260) | EXTERNAL-DEPENDENCY | Re-run: a failed pre-check still opens the warning dialog. |
+| `SBR-API-06` | [C30321](https://shopview.testrail.io/index.php?/cases/view/30321) | EXTERNAL-DEPENDENCY | Re-run: the pre-check request fires first and its count matches the dialog headline. |
+| `SBC-TREE-11` | [C30131](https://shopview.testrail.io/index.php?/cases/view/30131) | NOT-BUILT | Re-check when a service invoice with no vehicle exists — no 'Parts Sales' bucket appeared at all. |
+| `SBC-TREE-06` | [C30126](https://shopview.testrail.io/index.php?/cases/view/30126) | VIU-Observed-PASS | Re-check the 'Parts Sales bucket always last' half — no such bucket existed. |
+| `SBC-LBL-01` | [C30134](https://shopview.testrail.io/index.php?/cases/view/30134) | VIU-Observed-PASS | Re-check the Unit # and plate fallbacks — every asset had a VIN. |
+| `SBC-LBL-04` | [C30137](https://shopview.testrail.io/index.php?/cases/view/30137) | NOT-BUILT | Re-check when two assets share a label — no duplicate existed, so no (#1)/(#2) suffix. |
+| `SBC-LOC-04` | [C38912](https://shopview.testrail.io/index.php?/cases/view/38912) | VIU-Observed-PASS | Re-check the 'Multiple' cell — no SBC customer spanned two locations. |
+| `SBR-ROW-03` | [C30219](https://shopview.testrail.io/index.php?/cases/view/30219) | NOT-BUILT | Re-check once a toggled-off or deleted rep holds an invoice — the (Inactive) tag was unobservable. |
+| `SBR-CALC-07` | [C30235](https://shopview.testrail.io/index.php?/cases/view/30235) | NOT-BUILT | Re-check when a negative dollar value exists — accounting parentheses were unobservable. |
+| `SBR-EXP-05` | [C30280](https://shopview.testrail.io/index.php?/cases/view/30280) | NOT-BUILT | Re-check when an invoice number exceeds 18 characters. |
+| `SBR-EXP-07` | [C30282](https://shopview.testrail.io/index.php?/cases/view/30282) | NOT-BUILT | Re-check both clauses (negative money, (Inactive) tag). |
+| `SBR-EXP-08` | [C30283](https://shopview.testrail.io/index.php?/cases/view/30283) | VIU-Observed-PASS | Re-check the PDF font step-down thresholds — they were never forced. |
+| `SBR-VIS-05` | [C30309](https://shopview.testrail.io/index.php?/cases/view/30309) | VIU-Observed-PASS | Re-check the (Inactive) tag's contrast — only the (N) count was measurable. |
+| `SBR-WO-01` | [C30310](https://shopview.testrail.io/index.php?/cases/view/30310) | VIU-Observed-PASS | Re-check on a Part Sale WO and an imported WO — only a standard WO was driven. |
+| `SBR-WO-05` | [C30314](https://shopview.testrail.io/index.php?/cases/view/30314) | VIU-Observed-PASS | Re-check the customer-rep fallback leg — it only applies at invoice creation. |
+| `SBR-WO-06` | [C30315](https://shopview.testrail.io/index.php?/cases/view/30315) | VIU-Observed-PASS | Re-check the 'Unassigned' empty text on a customer with no rep. |
+| `SBR-MOB-03` | [C30304](https://shopview.testrail.io/index.php?/cases/view/30304) | DEVIATION | Re-check the hover-only-tooltip clause — it could not be forced separately. |
+| `SBC-EXP-09` | [C30167](https://shopview.testrail.io/index.php?/cases/view/30167) | VIU-Observed-PASS | Re-confirm the PDF Date Range end date (off by one day this run). |
+| `SBR-ASGN-01` | [C30292](https://shopview.testrail.io/index.php?/cases/view/30292) | NOT-BUILT | Re-check whether the Sales Representative Assignments export has been built. |
+| `SBC-EXP-14` | [C30172](https://shopview.testrail.io/index.php?/cases/view/30172) | DEVIATION | Re-check on a bigger org whether the 10,000-row refusal message exists at all, AND whether the Expanded PDF still 500s at scale. |
+| `SBR-EXP-15` | [C30290](https://shopview.testrail.io/index.php?/cases/view/30290) | DEVIATION | Same as SBC-EXP-14. |
+| `SBC-API-05` | [C30194](https://shopview.testrail.io/index.php?/cases/view/30194) | DEVIATION | Same as SBC-EXP-14 - the cap-counted-first half is still unverified. |
+| `SBR-API-05` | [C30320](https://shopview.testrail.io/index.php?/cases/view/30320) | DEVIATION | Same as SBC-EXP-14. |
+| `SBC-EXP-15` | [C30173](https://shopview.testrail.io/index.php?/cases/view/30173) | DEVIATION | Re-check whether a zeroed totals row has been added to empty exports. |
+| `SBR-EXP-16` | [C30291](https://shopview.testrail.io/index.php?/cases/view/30291) | DEVIATION | Same as SBC-EXP-15. |
+
+| Case | C-id | Read as | Re-confirm |
+|---|---|---|---|
+| `SBC-DATE-04` | [C30105](https://shopview.testrail.io/index.php?/cases/view/30105) | not-built-yet | whether shareable URL state has been added |
+| `SBC-PERS-06` | [C30179](https://shopview.testrail.io/index.php?/cases/view/30179) | not-built-yet | same — depends on URL state existing |
+| `SBC-EMPTY-01` | [C30181](https://shopview.testrail.io/index.php?/cases/view/30181) | not-built-yet | whether an empty-state message has been added |
+| `SBC-EMPTY-02` | [C30182](https://shopview.testrail.io/index.php?/cases/view/30182) | not-built-yet | same |
+| `SBR-STATE-01` | [C30298](https://shopview.testrail.io/index.php?/cases/view/30298) | not-built-yet | same, on the SBR side |
+| `SBR-STATE-04` | [C30301](https://shopview.testrail.io/index.php?/cases/view/30301) | not-built-yet | whether an inline could-not-load message with Retry has been added |
+| `SBR-TOT-03` | [C30239](https://shopview.testrail.io/index.php?/cases/view/30239) | not-built-yet | whether the mobile totals bar has been added |
+| `SBC-NAV-01` | [C30096](https://shopview.testrail.io/index.php?/cases/view/30096) | PO question | whether SALES is the intended nav group |
+| `SBR-LOC-04` | [C30216](https://shopview.testrail.io/index.php?/cases/view/30216) | spec-vs-ruling | whether the Location filter should hide for one-location users |
+
+
+### MERGED Parts Velocity + Technician Utilization — 144 rows
+
+*Source `batch-pv-tu/RECHECK-ROWS.md`, merged 2026-08-04. Build marker `v3.4.1-0ed4433`, unchanged at the start and the end of that pass. Every row PENDING.*
+
+| Case | C-id | What is still owed |
+|---|---|---|
+| PV-FILT-04 | [C30331](https://shopview.testrail.io/index.php?/cases/view/30331) | Re-drive the over-cap span from the calendar UI once the branch is final, to confirm the on-screen rejection wording. |
+| PV-FILT-12 | [C30339](https://shopview.testrail.io/index.php?/cases/view/30339) | Re-check the no-category third once a part with a genuinely unassigned category exists. |
+| PV-COL-06 | [C30356](https://shopview.testrail.io/index.php?/cases/view/30356) | Re-drive with two real sign-ins in one browser profile once the branch is final. |
+| PV-CALC-03 | [C30361](https://shopview.testrail.io/index.php?/cases/view/30361) | Cross-read the return records once a returns endpoint or the Returns screen is drivable. |
+| PV-CALC-04 | [C30362](https://shopview.testrail.io/index.php?/cases/view/30362) | Seed a return whose initiation date falls in a different window from its sale and re-check. |
+| PV-CALC-11 | [C30369](https://shopview.testrail.io/index.php?/cases/view/30369) | Reverse a known invoice and re-measure the same part once an invoice endpoint or screen is drivable. |
+| PV-CALC-12 | [C30370](https://shopview.testrail.io/index.php?/cases/view/30370) | Seed a revenue-with-zero-billed-quantity adjustment to exercise the mirror case. |
+| PV-PREC-01 | [C38924](https://shopview.testrail.io/index.php?/cases/view/38924) | Seed a fractional-quantity part line, invoice it, and re-check Units Sold specifically. |
+| TU-NAV-04 | [C30395](https://shopview.testrail.io/index.php?/cases/view/30395) | Re-drive the over-cap span from the calendar UI once the branch is final. |
+| TU-ELL-03 | [C30406](https://shopview.testrail.io/index.php?/cases/view/30406) | Re-check the explicit $0.00-rate variant once the branch is final. |
+| TU-SUM-04 | [C30417](https://shopview.testrail.io/index.php?/cases/view/30417) | Re-check the all-em-dash Summary clause once a location with no default labor rate exists. |
+| TU-LINK-03 | [C30430](https://shopview.testrail.io/index.php?/cases/view/30430) | Re-reconcile a high-volume technician once the branch is final. |
+| TU-EXP-06 | [C30439](https://shopview.testrail.io/index.php?/cases/view/30439) | Re-check the bundled-default fallback on an organisation with no uploaded logo. |
+
+| Internal ID | C-id | Link | Verdict this run | Observed on | Re-check obligation |
+|---|---|---|---|---|---|
+| PV-NAV-01 | C30322 | [open](https://shopview.testrail.io/index.php?/cases/view/30322) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-NAV-02 | C30323 | [open](https://shopview.testrail.io/index.php?/cases/view/30323) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-NAV-03 | C30324 | [open](https://shopview.testrail.io/index.php?/cases/view/30324) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-PERM-01 | C30325 | [open](https://shopview.testrail.io/index.php?/cases/view/30325) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-PERM-02 | C30326 | [open](https://shopview.testrail.io/index.php?/cases/view/30326) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-PERM-03 | C30327 | [open](https://shopview.testrail.io/index.php?/cases/view/30327) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-FILT-01 | C30328 | [open](https://shopview.testrail.io/index.php?/cases/view/30328) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-FILT-03 | C30330 | [open](https://shopview.testrail.io/index.php?/cases/view/30330) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-FILT-04 | C30331 | [open](https://shopview.testrail.io/index.php?/cases/view/30331) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-drive the over-cap span from the calendar UI once the branch is final, to confirm the on-screen rejection wording. |
+| PV-FILT-05 | C30332 | [open](https://shopview.testrail.io/index.php?/cases/view/30332) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-FILT-06 | C30333 | [open](https://shopview.testrail.io/index.php?/cases/view/30333) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-FILT-07 | C30334 | [open](https://shopview.testrail.io/index.php?/cases/view/30334) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-FILT-08 | C30335 | [open](https://shopview.testrail.io/index.php?/cases/view/30335) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-FILT-09 | C30336 | [open](https://shopview.testrail.io/index.php?/cases/view/30336) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-FILT-10 | C30337 | [open](https://shopview.testrail.io/index.php?/cases/view/30337) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-FILT-11 | C30338 | [open](https://shopview.testrail.io/index.php?/cases/view/30338) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-FILT-12 | C30339 | [open](https://shopview.testrail.io/index.php?/cases/view/30339) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-check the no-category third once a part with a genuinely unassigned category exists. |
+| PV-FILT-13 | C30340 | [open](https://shopview.testrail.io/index.php?/cases/view/30340) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-FILT-14 | C38914 | [open](https://shopview.testrail.io/index.php?/cases/view/38914) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-ROW-01 | C30341 | [open](https://shopview.testrail.io/index.php?/cases/view/30341) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-ROW-02 | C30342 | [open](https://shopview.testrail.io/index.php?/cases/view/30342) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-ROW-03 | C30343 | [open](https://shopview.testrail.io/index.php?/cases/view/30343) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-ROW-04 | C30344 | [open](https://shopview.testrail.io/index.php?/cases/view/30344) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-ROW-05 | C30345 | [open](https://shopview.testrail.io/index.php?/cases/view/30345) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-ROW-06 | C30346 | [open](https://shopview.testrail.io/index.php?/cases/view/30346) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-ROW-07 | C30347 | [open](https://shopview.testrail.io/index.php?/cases/view/30347) | DEVIATION | v3.4.1-0ed4433 | Re-measure at a narrow viewport once the branch is final. |
+| PV-ROW-08 | C30348 | [open](https://shopview.testrail.io/index.php?/cases/view/30348) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-ROW-09 | C30349 | [open](https://shopview.testrail.io/index.php?/cases/view/30349) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-ROW-10 | C30350 | [open](https://shopview.testrail.io/index.php?/cases/view/30350) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-COL-01 | C30351 | [open](https://shopview.testrail.io/index.php?/cases/view/30351) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-COL-02 | C30352 | [open](https://shopview.testrail.io/index.php?/cases/view/30352) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-COL-03 | C30353 | [open](https://shopview.testrail.io/index.php?/cases/view/30353) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-COL-04 | C30354 | [open](https://shopview.testrail.io/index.php?/cases/view/30354) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-COL-05 | C30355 | [open](https://shopview.testrail.io/index.php?/cases/view/30355) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-COL-06 | C30356 | [open](https://shopview.testrail.io/index.php?/cases/view/30356) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-drive with two real sign-ins in one browser profile once the branch is final. |
+| PV-COL-08 | C30358 | [open](https://shopview.testrail.io/index.php?/cases/view/30358) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-CALC-01 | C30359 | [open](https://shopview.testrail.io/index.php?/cases/view/30359) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-CALC-02 | C30360 | [open](https://shopview.testrail.io/index.php?/cases/view/30360) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-CALC-03 | C30361 | [open](https://shopview.testrail.io/index.php?/cases/view/30361) | VIU-Observed-PASS | v3.4.1-0ed4433 | Cross-read the return records once a returns endpoint or the Returns screen is drivable. |
+| PV-CALC-04 | C30362 | [open](https://shopview.testrail.io/index.php?/cases/view/30362) | VIU-Observed-PASS | v3.4.1-0ed4433 | Seed a return whose initiation date falls in a different window from its sale and re-check. |
+| PV-CALC-05 | C30363 | [open](https://shopview.testrail.io/index.php?/cases/view/30363) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-CALC-06 | C30364 | [open](https://shopview.testrail.io/index.php?/cases/view/30364) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-CALC-07 | C30365 | [open](https://shopview.testrail.io/index.php?/cases/view/30365) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-CALC-08 | C30366 | [open](https://shopview.testrail.io/index.php?/cases/view/30366) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-CALC-09 | C30367 | [open](https://shopview.testrail.io/index.php?/cases/view/30367) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-CALC-10 | C30368 | [open](https://shopview.testrail.io/index.php?/cases/view/30368) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-CALC-11 | C30369 | [open](https://shopview.testrail.io/index.php?/cases/view/30369) | VIU-Observed-PASS | v3.4.1-0ed4433 | Reverse a known invoice and re-measure the same part once an invoice endpoint or screen is drivable. |
+| PV-CALC-12 | C30370 | [open](https://shopview.testrail.io/index.php?/cases/view/30370) | VIU-Observed-PASS | v3.4.1-0ed4433 | Seed a revenue-with-zero-billed-quantity adjustment to exercise the mirror case. |
+| PV-CALC-13 | C30371 | [open](https://shopview.testrail.io/index.php?/cases/view/30371) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-CALC-14 | C30372 | [open](https://shopview.testrail.io/index.php?/cases/view/30372) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-CALC-15 | C30373 | [open](https://shopview.testrail.io/index.php?/cases/view/30373) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-CALC-16 | C30374 | [open](https://shopview.testrail.io/index.php?/cases/view/30374) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-PREC-01 | C38924 | [open](https://shopview.testrail.io/index.php?/cases/view/38924) | VIU-Observed-PASS | v3.4.1-0ed4433 | Seed a fractional-quantity part line, invoice it, and re-check Units Sold specifically. |
+| PV-EXP-01 | C30375 | [open](https://shopview.testrail.io/index.php?/cases/view/30375) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-EXP-02 | C30376 | [open](https://shopview.testrail.io/index.php?/cases/view/30376) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-EXP-03 | C30377 | [open](https://shopview.testrail.io/index.php?/cases/view/30377) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-EXP-04 | C30378 | [open](https://shopview.testrail.io/index.php?/cases/view/30378) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-EXP-05 | C30379 | [open](https://shopview.testrail.io/index.php?/cases/view/30379) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-EXP-06 | C30380 | [open](https://shopview.testrail.io/index.php?/cases/view/30380) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-EXP-07 | C30381 | [open](https://shopview.testrail.io/index.php?/cases/view/30381) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-EXP-08 | C30382 | [open](https://shopview.testrail.io/index.php?/cases/view/30382) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-EXP-10 | C30384 | [open](https://shopview.testrail.io/index.php?/cases/view/30384) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-EXP-11 | C38885 | [open](https://shopview.testrail.io/index.php?/cases/view/38885) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-VIS-01 | C30385 | [open](https://shopview.testrail.io/index.php?/cases/view/30385) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-VIS-02 | C30386 | [open](https://shopview.testrail.io/index.php?/cases/view/30386) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-VIS-03 | C30387 | [open](https://shopview.testrail.io/index.php?/cases/view/30387) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-API-01 | C30388 | [open](https://shopview.testrail.io/index.php?/cases/view/30388) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-API-02 | C30389 | [open](https://shopview.testrail.io/index.php?/cases/view/30389) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-API-03 | C30390 | [open](https://shopview.testrail.io/index.php?/cases/view/30390) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-API-04 | C30391 | [open](https://shopview.testrail.io/index.php?/cases/view/30391) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| PV-PREC-02 | C38925 | [open](https://shopview.testrail.io/index.php?/cases/view/38925) | EXTERNAL-DEPENDENCY | v3.4.1-0ed4433 | Re-run once a QuickBooks-connected company is available on the QA branch. |
+| TU-NAV-01 | C30392 | [open](https://shopview.testrail.io/index.php?/cases/view/30392) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-NAV-02 | C30393 | [open](https://shopview.testrail.io/index.php?/cases/view/30393) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-NAV-03 | C30394 | [open](https://shopview.testrail.io/index.php?/cases/view/30394) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-NAV-04 | C30395 | [open](https://shopview.testrail.io/index.php?/cases/view/30395) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-drive the over-cap span from the calendar UI once the branch is final. |
+| TU-NAV-05 | C30396 | [open](https://shopview.testrail.io/index.php?/cases/view/30396) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-NAV-06 | C30397 | [open](https://shopview.testrail.io/index.php?/cases/view/30397) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-NAV-07 | C30398 | [open](https://shopview.testrail.io/index.php?/cases/view/30398) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-NAV-08 | C30399 | [open](https://shopview.testrail.io/index.php?/cases/view/30399) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-HRS-02 | C30401 | [open](https://shopview.testrail.io/index.php?/cases/view/30401) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-HRS-03 | C30402 | [open](https://shopview.testrail.io/index.php?/cases/view/30402) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-HRS-04 | C30403 | [open](https://shopview.testrail.io/index.php?/cases/view/30403) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-ELL-01 | C30404 | [open](https://shopview.testrail.io/index.php?/cases/view/30404) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-ELL-02 | C30405 | [open](https://shopview.testrail.io/index.php?/cases/view/30405) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-ELL-03 | C30406 | [open](https://shopview.testrail.io/index.php?/cases/view/30406) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-check the explicit $0.00-rate variant once the branch is final. |
+| TU-ELL-04 | C30407 | [open](https://shopview.testrail.io/index.php?/cases/view/30407) | EXTERNAL-DEPENDENCY | v3.4.1-0ed4433 | Re-run once an administrator provides a location with no default labor rate, or once the default can be cleared. |
+| TU-ELL-05 | C30408 | [open](https://shopview.testrail.io/index.php?/cases/view/30408) | EXTERNAL-DEPENDENCY | v3.4.1-0ed4433 | Re-run once a location with no default labor rate exists. |
+| TU-SORT-01 | C30409 | [open](https://shopview.testrail.io/index.php?/cases/view/30409) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-SORT-02 | C30410 | [open](https://shopview.testrail.io/index.php?/cases/view/30410) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-SORT-03 | C30411 | [open](https://shopview.testrail.io/index.php?/cases/view/30411) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-SORT-04 | C30412 | [open](https://shopview.testrail.io/index.php?/cases/view/30412) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-SORT-05 | C30413 | [open](https://shopview.testrail.io/index.php?/cases/view/30413) | EXTERNAL-DEPENDENCY | v3.4.1-0ed4433 | Re-run the both-directions em-dash sort once a location with no default labor rate exists. |
+| TU-SUM-01 | C30414 | [open](https://shopview.testrail.io/index.php?/cases/view/30414) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-SUM-02 | C30415 | [open](https://shopview.testrail.io/index.php?/cases/view/30415) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-SUM-03 | C30416 | [open](https://shopview.testrail.io/index.php?/cases/view/30416) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-SUM-04 | C30417 | [open](https://shopview.testrail.io/index.php?/cases/view/30417) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-check the all-em-dash Summary clause once a location with no default labor rate exists. |
+| TU-DAY-01 | C30418 | [open](https://shopview.testrail.io/index.php?/cases/view/30418) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-DAY-02 | C30419 | [open](https://shopview.testrail.io/index.php?/cases/view/30419) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-DAY-03 | C30420 | [open](https://shopview.testrail.io/index.php?/cases/view/30420) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-DAY-04 | C30421 | [open](https://shopview.testrail.io/index.php?/cases/view/30421) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-DAY-05 | C30422 | [open](https://shopview.testrail.io/index.php?/cases/view/30422) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-TECH-01 | C30423 | [open](https://shopview.testrail.io/index.php?/cases/view/30423) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-TECH-02 | C30424 | [open](https://shopview.testrail.io/index.php?/cases/view/30424) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-TECH-03 | C30425 | [open](https://shopview.testrail.io/index.php?/cases/view/30425) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-TECH-04 | C30426 | [open](https://shopview.testrail.io/index.php?/cases/view/30426) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-LINK-01 | C30428 | [open](https://shopview.testrail.io/index.php?/cases/view/30428) | DEVIATION | v3.4.1-0ed4433 | Drive Enter-key activation and re-check the at-rest affordance once the branch is final. |
+| TU-LINK-02 | C30429 | [open](https://shopview.testrail.io/index.php?/cases/view/30429) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-LINK-03 | C30430 | [open](https://shopview.testrail.io/index.php?/cases/view/30430) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-reconcile a high-volume technician once the branch is final. |
+| TU-LINK-04 | C30431 | [open](https://shopview.testrail.io/index.php?/cases/view/30431) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-LINK-05 | C30432 | [open](https://shopview.testrail.io/index.php?/cases/view/30432) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-LINK-06 | C30433 | [open](https://shopview.testrail.io/index.php?/cases/view/30433) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-EXP-01 | C30434 | [open](https://shopview.testrail.io/index.php?/cases/view/30434) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-EXP-02 | C30435 | [open](https://shopview.testrail.io/index.php?/cases/view/30435) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-EXP-03 | C30436 | [open](https://shopview.testrail.io/index.php?/cases/view/30436) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-EXP-04 | C30437 | [open](https://shopview.testrail.io/index.php?/cases/view/30437) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-EXP-05 | C30438 | [open](https://shopview.testrail.io/index.php?/cases/view/30438) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-EXP-06 | C30439 | [open](https://shopview.testrail.io/index.php?/cases/view/30439) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-check the bundled-default fallback on an organisation with no uploaded logo. |
+| TU-EXP-07 | C30440 | [open](https://shopview.testrail.io/index.php?/cases/view/30440) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-EXP-08 | C30441 | [open](https://shopview.testrail.io/index.php?/cases/view/30441) | DEVIATION | v3.4.1-0ed4433 | Provoke a genuine TU download failure once the branch is final, to read the failure toast. |
+| TU-EXP-09 | C38887 | [open](https://shopview.testrail.io/index.php?/cases/view/38887) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-LOC-01 | C30442 | [open](https://shopview.testrail.io/index.php?/cases/view/30442) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-LOC-02 | C30443 | [open](https://shopview.testrail.io/index.php?/cases/view/30443) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-LOC-03 | C30444 | [open](https://shopview.testrail.io/index.php?/cases/view/30444) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-LOC-04 | C30445 | [open](https://shopview.testrail.io/index.php?/cases/view/30445) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-LOC-05 | C30446 | [open](https://shopview.testrail.io/index.php?/cases/view/30446) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-LOC-06 | C38915 | [open](https://shopview.testrail.io/index.php?/cases/view/38915) | DEVIATION | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-VIS-01 | C30447 | [open](https://shopview.testrail.io/index.php?/cases/view/30447) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-VIS-02 | C30448 | [open](https://shopview.testrail.io/index.php?/cases/view/30448) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-COL-01 | C38859 | [open](https://shopview.testrail.io/index.php?/cases/view/38859) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-API-01 | C30449 | [open](https://shopview.testrail.io/index.php?/cases/view/30449) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+| TU-API-02 | C30450 | [open](https://shopview.testrail.io/index.php?/cases/view/30450) | VIU-Observed-PASS | v3.4.1-0ed4433 | Re-run this observation when the branch is declared final or the app-version marker changes. |
+
+
+### MERGED Work In Progress + Inventory Value — 164 rows
+
+*Source `batch-wip-iv/RECHECK-ROWS.md`, merged 2026-08-04. Build marker `v3.4.1-0ed4433`, unchanged at the start and the end of that pass. Every row PENDING.*
+
+| # | Internal ID | C-id | Link | Verdict on build `v3.4.1-0ed4433` | What must be re-confirmed |
+|---:|---|---|---|---|---|
+| 1 | WIP-TAB-01 | C30451 | [open](https://shopview.testrail.io/index.php?/cases/view/30451) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 2 | WIP-TAB-02 | C30452 | [open](https://shopview.testrail.io/index.php?/cases/view/30452) | DEVIATION | Re-confirm the on-screen label text on the final build before adopting it permanently. |
+| 3 | WIP-TAB-03 | C30453 | [open](https://shopview.testrail.io/index.php?/cases/view/30453) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 4 | WIP-TAB-05 | C30455 | [open](https://shopview.testrail.io/index.php?/cases/view/30455) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 5 | WIP-SCOPE-01 | C30456 | [open](https://shopview.testrail.io/index.php?/cases/view/30456) | VIU-Observed-PASS | Re-run once an In progress work order exists (or seed one through the UI) to observe the fifth status branch. Also re-confirm on the final build. |
+| 6 | WIP-SCOPE-02 | C30457 | [open](https://shopview.testrail.io/index.php?/cases/view/30457) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 7 | WIP-SCOPE-03 | C30458 | [open](https://shopview.testrail.io/index.php?/cases/view/30458) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 8 | WIP-SCOPE-04 | C30459 | [open](https://shopview.testrail.io/index.php?/cases/view/30459) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 9 | WIP-SCOPE-05 | C30460 | [open](https://shopview.testrail.io/index.php?/cases/view/30460) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 10 | WIP-PLACE-01 | C30462 | [open](https://shopview.testrail.io/index.php?/cases/view/30462) | VIU-Observed-PASS | Re-run when an In progress work order exists to observe that branch. Also re-confirm on the final build. |
+| 11 | WIP-PLACE-03 | C30464 | [open](https://shopview.testrail.io/index.php?/cases/view/30464) | VIU-Observed-PASS | Re-run against a purpose-seeded trio (clocked time / received part / neither) to attribute each branch to its specific cause. Also re-confirm on the final build. |
+| 12 | WIP-COL-01 | C30466 | [open](https://shopview.testrail.io/index.php?/cases/view/30466) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 13 | WIP-COL-02 | C30467 | [open](https://shopview.testrail.io/index.php?/cases/view/30467) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 14 | WIP-COL-03 | C30468 | [open](https://shopview.testrail.io/index.php?/cases/view/30468) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 15 | WIP-COL-04 | C30469 | [open](https://shopview.testrail.io/index.php?/cases/view/30469) | DEVIATION | Re-confirm the on-screen label text on the final build before adopting it permanently. |
+| 16 | WIP-COL-05 | C30470 | [open](https://shopview.testrail.io/index.php?/cases/view/30470) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 17 | WIP-COL-06 | C30471 | [open](https://shopview.testrail.io/index.php?/cases/view/30471) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 18 | WIP-COL-07 | C30472 | [open](https://shopview.testrail.io/index.php?/cases/view/30472) | VIU-Observed-PASS | Re-run against a work order created today and one created exactly one day ago to observe the "0 days" / "1 days" endpoints specifically. Also re-confirm on the final build. |
+| 19 | WIP-COL-08 | C30473 | [open](https://shopview.testrail.io/index.php?/cases/view/30473) | VIU-Observed-PASS | Re-run against a work order touched today ("Today") and one with no recorded activity ("—") to observe those two branches. Also re-confirm on the final build. |
+| 20 | WIP-CALC-01 | C30474 | [open](https://shopview.testrail.io/index.php?/cases/view/30474) | VIU-Observed-PASS | A negative WIP money value did not occur in the data; re-run if one becomes producible. Also re-confirm on the final build. |
+| 21 | WIP-CALC-02 | C30475 | [open](https://shopview.testrail.io/index.php?/cases/view/30475) | VIU-Observed-PASS | Re-run with a purpose-seeded work order (one approved labor line, known quote, known clocked time, plus an over-clocked line) to observe the per-line cap directly. Also re-confirm on the final build. |
+| 22 | WIP-CALC-03 | C30476 | [open](https://shopview.testrail.io/index.php?/cases/view/30476) | VIU-Observed-PASS | Re-run with a seeded known-quote work order to check the arithmetic against a hand-computed quoted value. Also re-confirm on the final build. |
+| 23 | WIP-CALC-04 | C30477 | [open](https://shopview.testrail.io/index.php?/cases/view/30477) | VIU-Observed-PASS | Re-run with a seeded partly-received parts line to attribute the figure to a known quantity x sell price. Also re-confirm on the final build. |
+| 24 | WIP-CALC-05 | C30478 | [open](https://shopview.testrail.io/index.php?/cases/view/30478) | VIU-Observed-PASS | The core-charge half (outstanding quantity valued INCLUDING the core charge) needs a seeded cored part on an approved unreceived line - re-run for that. Also re-confirm on the final build. |
+| 25 | WIP-CALC-06 | C30479 | [open](https://shopview.testrail.io/index.php?/cases/view/30479) | VIU-Observed-PASS | Re-run the "differs from the work order's stored grand total" comparison against a seeded work order carrying tax/fee/discount. Also re-confirm on the final build. |
+| 26 | WIP-CALC-07 | C30480 | [open](https://shopview.testrail.io/index.php?/cases/view/30480) | VIU-Observed-PASS | Re-run the before/after variant - add an unapproved line to a valued work order and confirm no figure moves. Also re-confirm on the final build. |
+| 27 | WIP-CALC-08 | C30481 | [open](https://shopview.testrail.io/index.php?/cases/view/30481) | VIU-Observed-PASS | The green/red/zero colouring and the exact +2.0 / -14.0 / 0.0 rendering still need a screen read with the column on and rows of each sign - the toggle click was flaky in the scripted run (a tooling artefact; the toggle itself is proven by colsel-work-in-progress.json). Re-run on the final build. |
+| 28 | WIP-CALC-09 | C30482 | [open](https://shopview.testrail.io/index.php?/cases/view/30482) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 29 | WIP-SORT-01 | C30483 | [open](https://shopview.testrail.io/index.php?/cases/view/30483) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 30 | WIP-SORT-02 | C30484 | [open](https://shopview.testrail.io/index.php?/cases/view/30484) | VIU-Observed-PASS | The exact asc -> desc -> asc cycle with no third cleared state, and the single-active-sort rule, need one more careful click sequence per column. Re-run on the final build. |
+| 31 | WIP-SORT-03 | C30485 | [open](https://shopview.testrail.io/index.php?/cases/view/30485) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 32 | WIP-SORT-04 | C30486 | [open](https://shopview.testrail.io/index.php?/cases/view/30486) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 33 | WIP-CALC-10 | C38890 | [open](https://shopview.testrail.io/index.php?/cases/view/38890) | VIU-Observed-PASS | The running-clock behaviour (a technician clocked in, time accruing between refreshes) needs a live clock-in on a seeded quoted line and could not be driven this run. Re-run on the final build with an open clock. |
+| 34 | WIP-SUM-01 | C30487 | [open](https://shopview.testrail.io/index.php?/cases/view/30487) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 35 | WIP-SUM-02 | C30488 | [open](https://shopview.testrail.io/index.php?/cases/view/30488) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 36 | WIP-SUM-03 | C30489 | [open](https://shopview.testrail.io/index.php?/cases/view/30489) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 37 | WIP-SUM-04 | C30490 | [open](https://shopview.testrail.io/index.php?/cases/view/30490) | VIU-Observed-PASS | The Not Started tie needs the Approved - Not Started tab Totals read in the same window (the scripted tab click did not land on that tab). Re-run on the final build. |
+| 38 | WIP-SUM-05 | C30491 | [open](https://shopview.testrail.io/index.php?/cases/view/30491) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 39 | WIP-SUM-07 | C30493 | [open](https://shopview.testrail.io/index.php?/cases/view/30493) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 40 | WIP-TOT-01 | C30494 | [open](https://shopview.testrail.io/index.php?/cases/view/30494) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 41 | WIP-TOT-02 | C30495 | [open](https://shopview.testrail.io/index.php?/cases/view/30495) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 42 | WIP-FLT-01 | C30498 | [open](https://shopview.testrail.io/index.php?/cases/view/30498) | VIU-Observed-PASS | The screen-only narrowing (no new /reporting call, no loading indicator) needs one clean selection with data present. Re-run on the final build. |
+| 43 | WIP-FLT-02 | C30499 | [open](https://shopview.testrail.io/index.php?/cases/view/30499) | VIU-Observed-PASS | Confirm the Clear action is absent until at least one customer is selected, and that narrowing does not reload. Re-run on the final build. |
+| 44 | WIP-FLT-03 | C30500 | [open](https://shopview.testrail.io/index.php?/cases/view/30500) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 45 | WIP-FLT-04 | C30501 | [open](https://shopview.testrail.io/index.php?/cases/view/30501) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 46 | WIP-FLT-05 | C30502 | [open](https://shopview.testrail.io/index.php?/cases/view/30502) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 47 | WIP-FLT-06 | C30503 | [open](https://shopview.testrail.io/index.php?/cases/view/30503) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 48 | WIP-FLT-07 | C30504 | [open](https://shopview.testrail.io/index.php?/cases/view/30504) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 49 | WIP-FLT-08 | C30505 | [open](https://shopview.testrail.io/index.php?/cases/view/30505) | VIU-Observed-PASS | The AND-combination and the "strip + Totals recompute with no reload" half need one clean three-filter selection with data present. Re-run on the final build. |
+| 50 | WIP-FLT-09 | C38916 | [open](https://shopview.testrail.io/index.php?/cases/view/38916) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 51 | WIP-PERS-01 | C30506 | [open](https://shopview.testrail.io/index.php?/cases/view/30506) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 52 | WIP-PERS-02 | C30507 | [open](https://shopview.testrail.io/index.php?/cases/view/30507) | VIU-Observed-PASS | Confirm the four tabs share one column set by switching tabs with a non-default selection. Re-run on the final build. |
+| 53 | WIP-PERS-03 | C30508 | [open](https://shopview.testrail.io/index.php?/cases/view/30508) | VIU-Observed-PASS | Confirm the advisor/customer/asset/location selections and the active tab restore too, and that a different browser profile shows the defaults. Re-run on the final build. |
+| 54 | WIP-PERS-04 | C30509 | [open](https://shopview.testrail.io/index.php?/cases/view/30509) | VIU-Observed-PASS | Confirm the same fallback for a stale advisor/customer/asset selection. Re-run on the final build. |
+| 55 | WIP-EXP-01 | C30510 | [open](https://shopview.testrail.io/index.php?/cases/view/30510) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 56 | WIP-EXP-02 | C30511 | [open](https://shopview.testrail.io/index.php?/cases/view/30511) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 57 | WIP-EXP-03 | C30512 | [open](https://shopview.testrail.io/index.php?/cases/view/30512) | VIU-Observed-PASS | The Inv. Hrs format in a file cannot be checked because the export rejects that column (see WIP-TOT-02). Re-run on the final build. |
+| 58 | WIP-EXP-04 | C30513 | [open](https://shopview.testrail.io/index.php?/cases/view/30513) | NOT-BUILT | Re-run once the export accepts invoiced_hours. Until then this case is not executable. |
+| 59 | WIP-EXP-05 | C30514 | [open](https://shopview.testrail.io/index.php?/cases/view/30514) | VIU-Observed-PASS | Observe the screen-vs-file one-day difference directly by generating a file either side of a day boundary. Re-run on the final build. |
+| 60 | WIP-EXP-06 | C30515 | [open](https://shopview.testrail.io/index.php?/cases/view/30515) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 61 | WIP-EXP-07 | C30516 | [open](https://shopview.testrail.io/index.php?/cases/view/30516) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 62 | WIP-EXP-08 | C30517 | [open](https://shopview.testrail.io/index.php?/cases/view/30517) | VIU-Observed-PASS | This org has no shop logo set, so the logo-present branch is not observed. Set a logo and re-run, and re-confirm on the final build. |
+| 63 | WIP-EXP-09 | C30518 | [open](https://shopview.testrail.io/index.php?/cases/view/30518) | VIU-Observed-PASS | The success caption "Data exported successfully." and the failure text still need a UI toast read. Re-run on the final build. |
+| 64 | WIP-EXP-10 | C38918 | [open](https://shopview.testrail.io/index.php?/cases/view/38918) | EXTERNAL-DEPENDENCY | Re-run on an organisation with 10,000+ open work orders in one tab, or once a dev can lower the cap for a test. Also re-confirm on the final build. |
+| 65 | WIP-VIS-01 | C30519 | [open](https://shopview.testrail.io/index.php?/cases/view/30519) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 66 | WIP-VIS-02 | C30520 | [open](https://shopview.testrail.io/index.php?/cases/view/30520) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 67 | WIP-VIS-03 | C30521 | [open](https://shopview.testrail.io/index.php?/cases/view/30521) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 68 | WIP-VIS-04 | C30522 | [open](https://shopview.testrail.io/index.php?/cases/view/30522) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 69 | WIP-VIS-05 | C30523 | [open](https://shopview.testrail.io/index.php?/cases/view/30523) | VIU-Observed-PASS | The visible focus indicator still needs a keyboard-driven screenshot. Re-run on the final build. |
+| 70 | WIP-VIS-06 | C30524 | [open](https://shopview.testrail.io/index.php?/cases/view/30524) | VIU-Observed-PASS | Confirm the tooltip actually renders on keyboard focus with a focus-driven capture. Re-run on the final build. |
+| 71 | WIP-VIS-07 | C30525 | [open](https://shopview.testrail.io/index.php?/cases/view/30525) | VIU-Observed-PASS | NOT observed in dark mode this run - the dark-mode toggle was not driven. Re-run with dark mode on and read the table, strip, link, Inv. Hrs colours and the two-line asset cell. |
+| 72 | WIP-PERM-01 | C30526 | [open](https://shopview.testrail.io/index.php?/cases/view/30526) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 73 | WIP-PERM-02 | C30527 | [open](https://shopview.testrail.io/index.php?/cases/view/30527) | VIU-Observed-PASS | The navigation-absence half still needs a UI read as the unpermitted user. Re-run on the final build. |
+| 74 | WIP-API-01 | C30528 | [open](https://shopview.testrail.io/index.php?/cases/view/30528) | EXTERNAL-DEPENDENCY | Re-run once the developers expose a read route for the stored WIP snapshot rows (or provide a DB/inspection route). Also re-confirm on the final build. |
+| 75 | WIP-API-02 | C30529 | [open](https://shopview.testrail.io/index.php?/cases/view/30529) | EXTERNAL-DEPENDENCY | Re-run once the developers expose a read route for the stored WIP snapshot rows (or provide a DB/inspection route). Also re-confirm on the final build. |
+| 76 | WIP-API-03 | C30530 | [open](https://shopview.testrail.io/index.php?/cases/view/30530) | EXTERNAL-DEPENDENCY | Re-run once the developers expose a read route for the stored WIP snapshot rows (or provide a DB/inspection route). Also re-confirm on the final build. |
+| 77 | WIP-API-04 | C30531 | [open](https://shopview.testrail.io/index.php?/cases/view/30531) | EXTERNAL-DEPENDENCY | Re-run once the developers expose a read route for the stored WIP snapshot rows (or provide a DB/inspection route). Also re-confirm on the final build. |
+| 78 | WIP-API-05 | C30532 | [open](https://shopview.testrail.io/index.php?/cases/view/30532) | EXTERNAL-DEPENDENCY | Re-run once the developers expose a read route for the stored WIP snapshot rows (or provide a DB/inspection route). Also re-confirm on the final build. |
+| 79 | WIP-API-06 | C30533 | [open](https://shopview.testrail.io/index.php?/cases/view/30533) | EXTERNAL-DEPENDENCY | Re-run once the developers expose a read route for the stored WIP snapshot rows (or provide a DB/inspection route). Also re-confirm on the final build. |
+| 80 | IV-NAV-01 | C30534 | [open](https://shopview.testrail.io/index.php?/cases/view/30534) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 81 | IV-NAV-02 | C30535 | [open](https://shopview.testrail.io/index.php?/cases/view/30535) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 82 | IV-NAV-03 | C30536 | [open](https://shopview.testrail.io/index.php?/cases/view/30536) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 83 | IV-NAV-05 | C30538 | [open](https://shopview.testrail.io/index.php?/cases/view/30538) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 84 | IV-NAV-06 | C30539 | [open](https://shopview.testrail.io/index.php?/cases/view/30539) | VIU-Observed-PASS | Confirm the empty-location and impossible-filter branches too. Re-run on the final build. |
+| 85 | IV-SCOPE-01 | C30540 | [open](https://shopview.testrail.io/index.php?/cases/view/30540) | VIU-Observed-PASS | A true is_core part with positive stock was not located to prove the exclusion directly; the evidence is that no is_core row appears. Re-run against a seeded core-charge part on the final build. |
+| 86 | IV-SCOPE-02 | C30541 | [open](https://shopview.testrail.io/index.php?/cases/view/30541) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 87 | IV-SCOPE-05 | C30544 | [open](https://shopview.testrail.io/index.php?/cases/view/30544) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 88 | IV-COL-01 | C30551 | [open](https://shopview.testrail.io/index.php?/cases/view/30551) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 89 | IV-COL-02 | C30552 | [open](https://shopview.testrail.io/index.php?/cases/view/30552) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 90 | IV-CALC-01 | C30545 | [open](https://shopview.testrail.io/index.php?/cases/view/30545) | VIU-Observed-PASS | Attribute a specific row to a known FIXED sell price (rather than a markup) with a seeded part. Re-run on the final build. |
+| 91 | IV-CALC-02 | C30546 | [open](https://shopview.testrail.io/index.php?/cases/view/30546) | VIU-Observed-PASS | Attribute one row to a known matrix markup with a seeded part and a known matrix. Re-run on the final build. |
+| 92 | IV-CALC-03 | C30547 | [open](https://shopview.testrail.io/index.php?/cases/view/30547) | EXTERNAL-DEPENDENCY | Re-run if the build ever permits a category-less part, or ask a developer to create one directly. Also re-confirm on the final build. |
+| 93 | IV-CALC-04 | C30548 | [open](https://shopview.testrail.io/index.php?/cases/view/30548) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 94 | IV-CALC-05 | C30549 | [open](https://shopview.testrail.io/index.php?/cases/view/30549) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 95 | IV-CALC-06 | C30550 | [open](https://shopview.testrail.io/index.php?/cases/view/30550) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 96 | IV-COL-03 | C30553 | [open](https://shopview.testrail.io/index.php?/cases/view/30553) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 97 | IV-COL-04 | C30554 | [open](https://shopview.testrail.io/index.php?/cases/view/30554) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 98 | IV-COL-05 | C30555 | [open](https://shopview.testrail.io/index.php?/cases/view/30555) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 99 | IV-TOT-01 | C30556 | [open](https://shopview.testrail.io/index.php?/cases/view/30556) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 100 | IV-TOT-02 | C30557 | [open](https://shopview.testrail.io/index.php?/cases/view/30557) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 101 | IV-TOT-03 | C30558 | [open](https://shopview.testrail.io/index.php?/cases/view/30558) | VIU-Observed-PASS | The "—" branch (total Total Sell zero or negative) needs a filter whose whole set sums to zero sell. Re-run on the final build. |
+| 102 | IV-DATE-01 | C30561 | [open](https://shopview.testrail.io/index.php?/cases/view/30561) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 103 | IV-DATE-02 | C30562 | [open](https://shopview.testrail.io/index.php?/cases/view/30562) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 104 | IV-DATE-03 | C30563 | [open](https://shopview.testrail.io/index.php?/cases/view/30563) | VIU-Observed-PASS | Attribute the live values to a quantity changed TODAY, after last night's capture, with a seeded part. Re-run on the final build. |
+| 105 | IV-DATE-04 | C30564 | [open](https://shopview.testrail.io/index.php?/cases/view/30564) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 106 | IV-DATE-05 | C30565 | [open](https://shopview.testrail.io/index.php?/cases/view/30565) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 107 | IV-DATE-06 | C30566 | [open](https://shopview.testrail.io/index.php?/cases/view/30566) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 108 | IV-DATE-08 | C30568 | [open](https://shopview.testrail.io/index.php?/cases/view/30568) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 109 | IV-FLT-01 | C30569 | [open](https://shopview.testrail.io/index.php?/cases/view/30569) | VIU-Observed-PASS | The Vendor filter's server-side narrowing was not proven by API - the vendor parameter name was not established (GET /api/vendors is 404 on this build). Drive it through the UI dropdown and re-run on the final build. |
+| 110 | IV-FLT-02 | C30570 | [open](https://shopview.testrail.io/index.php?/cases/view/30570) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 111 | IV-FLT-03 | C30571 | [open](https://shopview.testrail.io/index.php?/cases/view/30571) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 112 | IV-FLT-04 | C30572 | [open](https://shopview.testrail.io/index.php?/cases/view/30572) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 113 | IV-FLT-05 | C30573 | [open](https://shopview.testrail.io/index.php?/cases/view/30573) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 114 | IV-LOC-01 | C30574 | [open](https://shopview.testrail.io/index.php?/cases/view/30574) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 115 | IV-LOC-02 | C30575 | [open](https://shopview.testrail.io/index.php?/cases/view/30575) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 116 | IV-LOC-03 | C30576 | [open](https://shopview.testrail.io/index.php?/cases/view/30576) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 117 | IV-LOC-04 | C30577 | [open](https://shopview.testrail.io/index.php?/cases/view/30577) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 118 | IV-DATE-09 | C38892 | [open](https://shopview.testrail.io/index.php?/cases/view/38892) | EXTERNAL-DEPENDENCY | Re-run once history is several days deep and a developer confirms the snapshot read route. Also re-confirm on the final build. |
+| 119 | IV-LOC-06 | C38917 | [open](https://shopview.testrail.io/index.php?/cases/view/38917) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 120 | IV-PERS-01 | C30579 | [open](https://shopview.testrail.io/index.php?/cases/view/30579) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 121 | IV-PERS-02 | C30580 | [open](https://shopview.testrail.io/index.php?/cases/view/30580) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 122 | IV-PERS-03 | C30581 | [open](https://shopview.testrail.io/index.php?/cases/view/30581) | VIU-Observed-PASS | Confirm each remembered setting individually - date range, category, vendor, search text, location, columns and sort - and that a different browser profile shows the defaults. Re-run on the final build. |
+| 123 | IV-PERS-04 | C30582 | [open](https://shopview.testrail.io/index.php?/cases/view/30582) | VIU-Observed-PASS | Confirm a stale saved CATEGORY or VENDOR is specifically dropped. Re-run on the final build. |
+| 124 | IV-SORT-01 | C30583 | [open](https://shopview.testrail.io/index.php?/cases/view/30583) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 125 | IV-SORT-02 | C30584 | [open](https://shopview.testrail.io/index.php?/cases/view/30584) | VIU-Observed-PASS | The exact asc -> desc -> asc click cycle with no third state needs one more careful UI sequence. Re-run on the final build. |
+| 126 | IV-SORT-03 | C30585 | [open](https://shopview.testrail.io/index.php?/cases/view/30585) | VIU-Observed-PASS | The case-insensitivity of the text sort was NOT established - the sampled data did not give a clean mixed-case pair. Re-run against seeded parts named "apple" and "Apple". |
+| 127 | IV-SORT-04 | C30586 | [open](https://shopview.testrail.io/index.php?/cases/view/30586) | VIU-Observed-PASS | Confirm the sort is restored after leaving and returning. Re-run on the final build. |
+| 128 | IV-EXP-01 | C30587 | [open](https://shopview.testrail.io/index.php?/cases/view/30587) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 129 | IV-EXP-02 | C30588 | [open](https://shopview.testrail.io/index.php?/cases/view/30588) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 130 | IV-EXP-03 | C30589 | [open](https://shopview.testrail.io/index.php?/cases/view/30589) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 131 | IV-EXP-04 | C30590 | [open](https://shopview.testrail.io/index.php?/cases/view/30590) | VIU-Observed-PASS | This org has no shop logo set, so the logo-present branch is not observed; and the "no snapshot available for the period" header variant was not reachable. Set a logo and re-run on the final build. |
+| 132 | IV-EXP-05 | C30591 | [open](https://shopview.testrail.io/index.php?/cases/view/30591) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 133 | IV-EXP-06 | C30592 | [open](https://shopview.testrail.io/index.php?/cases/view/30592) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 134 | IV-EXP-07 | C30593 | [open](https://shopview.testrail.io/index.php?/cases/view/30593) | EXTERNAL-DEPENDENCY | Re-run on an organisation with more than 10,000 in-stock part rows, or once a developer can lower the cap for a test. Also re-confirm on the final build. |
+| 135 | IV-EXP-09 | C30595 | [open](https://shopview.testrail.io/index.php?/cases/view/30595) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 136 | IV-VIS-01 | C30596 | [open](https://shopview.testrail.io/index.php?/cases/view/30596) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 137 | IV-VIS-02 | C30597 | [open](https://shopview.testrail.io/index.php?/cases/view/30597) | DEVIATION | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 138 | IV-VIS-04 | C30599 | [open](https://shopview.testrail.io/index.php?/cases/view/30599) | VIU-Observed-PASS | The ellipsis glyph and the hover-reveal of the full value need a narrowed-window capture with a deliberately over-long value. Re-run on the final build. |
+| 139 | IV-VIS-05 | C30600 | [open](https://shopview.testrail.io/index.php?/cases/view/30600) | VIU-Observed-PASS | NOT observed in dark mode this run - the dark-mode toggle was not driven. Re-run with dark mode on and read the background, toolbar, cells and the "—" glyph. |
+| 140 | IV-VIS-06 | C30601 | [open](https://shopview.testrail.io/index.php?/cases/view/30601) | VIU-Observed-PASS | The assistive-technology half was not established - the headers did not expose an aria-sort attribute in the reads taken, so this needs an accessibility-inspector pass. Re-run on the final build. |
+| 141 | IV-VIS-07 | C30602 | [open](https://shopview.testrail.io/index.php?/cases/view/30602) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 142 | IV-PERM-01 | C30603 | [open](https://shopview.testrail.io/index.php?/cases/view/30603) | VIU-Observed-PASS | Re-confirm on the final build: the observation is provisional (branch declared not final). |
+| 143 | IV-PERM-02 | C30604 | [open](https://shopview.testrail.io/index.php?/cases/view/30604) | VIU-Observed-PASS | The navigation-absence half still needs a UI read as the unpermitted user. Re-run on the final build. |
+| 144 | IV-API-01 | C30605 | [open](https://shopview.testrail.io/index.php?/cases/view/30605) | EXTERNAL-DEPENDENCY | Re-run once the developers expose a read route for the stored inventory snapshot rows. History at this organisation currently starts around 2026-08-01, so the retention cases additionally need months of accrued history or dev-seeded dates. Also re-confirm on the final build. |
+| 145 | IV-API-02 | C30606 | [open](https://shopview.testrail.io/index.php?/cases/view/30606) | EXTERNAL-DEPENDENCY | Re-run once the developers expose a read route for the stored inventory snapshot rows. History at this organisation currently starts around 2026-08-01, so the retention cases additionally need months of accrued history or dev-seeded dates. Also re-confirm on the final build. |
+| 146 | IV-API-03 | C30607 | [open](https://shopview.testrail.io/index.php?/cases/view/30607) | EXTERNAL-DEPENDENCY | Re-run once the developers expose a read route for the stored inventory snapshot rows. History at this organisation currently starts around 2026-08-01, so the retention cases additionally need months of accrued history or dev-seeded dates. Also re-confirm on the final build. |
+| 147 | IV-API-04 | C30608 | [open](https://shopview.testrail.io/index.php?/cases/view/30608) | EXTERNAL-DEPENDENCY | Re-run once the developers expose a read route for the stored inventory snapshot rows. History at this organisation currently starts around 2026-08-01, so the retention cases additionally need months of accrued history or dev-seeded dates. Also re-confirm on the final build. |
+| 148 | IV-API-05 | C30609 | [open](https://shopview.testrail.io/index.php?/cases/view/30609) | EXTERNAL-DEPENDENCY | Re-run once the developers expose a read route for the stored inventory snapshot rows. History at this organisation currently starts around 2026-08-01, so the retention cases additionally need months of accrued history or dev-seeded dates. Also re-confirm on the final build. |
+| 149 | IV-API-06 | C30610 | [open](https://shopview.testrail.io/index.php?/cases/view/30610) | EXTERNAL-DEPENDENCY | Re-run once the developers expose a read route for the stored inventory snapshot rows. History at this organisation currently starts around 2026-08-01, so the retention cases additionally need months of accrued history or dev-seeded dates. Also re-confirm on the final build. |
+
+| Internal ID | C-id | Link | The question to answer |
+|---|---|---|---|
+| WIP-COL-02 | C30467 | [open](https://shopview.testrail.io/index.php?/cases/view/30467) | Is the Location column still a manual toggle, or has the automatic behaviour the spec requires been built? |
+| WIP-FLT-09 | C38916 | [open](https://shopview.testrail.io/index.php?/cases/view/38916) | Same question, from the location-scope side. |
+| IV-LOC-06 | C38917 | [open](https://shopview.testrail.io/index.php?/cases/view/38917) | Same question on Inventory Value, where the column is ON by default and does not auto-hide. |
+| IV-COL-04 | C30554 | [open](https://shopview.testrail.io/index.php?/cases/view/30554) | Are Margin and Total Sell hidden by default yet? |
+| IV-DATE-02 | C30562 | [open](https://shopview.testrail.io/index.php?/cases/view/30562) | Is the as-of date still resolving ONE DAY LATE than the end of the selected range? |
+| IV-DATE-04 | C30564 | [open](https://shopview.testrail.io/index.php?/cases/view/30564) | Same off-by-one, from the history-replay side. |
+| IV-EXP-09 | C30595 | [open](https://shopview.testrail.io/index.php?/cases/view/30595) | Does the large PDF still time out at ~30 s with a raw 500? |
+| IV-EXP-03 | C30589 | [open](https://shopview.testrail.io/index.php?/cases/view/30589) | Does the CSV still write money with a dollar sign and thousands separators? |
+| IV-EXP-02 | C30588 | [open](https://shopview.testrail.io/index.php?/cases/view/30588) | Does the export still ignore the column selection and re-order the columns? |
+| IV-NAV-05 | C30538 | [open](https://shopview.testrail.io/index.php?/cases/view/30538) | Has a pagination control appeared? |
+| WIP-SUM-05 | C30491 | [open](https://shopview.testrail.io/index.php?/cases/view/30491) | Does the Estimates figure still read $0.00 instead of the quoted value? |
+| WIP-FLT-04 | C30501 | [open](https://shopview.testrail.io/index.php?/cases/view/30501) | Has the date control gained Today / Yesterday / Custom? |
+| IV-NAV-03 | C30536 | [open](https://shopview.testrail.io/index.php?/cases/view/30536) | Does a fresh visit default to the active location yet, or still to All locations? |
+| IV-LOC-04 | C30577 | [open](https://shopview.testrail.io/index.php?/cases/view/30577) | Is the Location filter hidden for a one-location user yet? |
+| WIP-COL-05 | C30470 | [open](https://shopview.testrail.io/index.php?/cases/view/30470) | Does the Asset cell lead with the VIN yet? |
+
+
+### MERGED the 2026-08-04 authorised push — 40 rows
+
+*Every case CHANGED or CREATED on 2026-08-04 was changed **on the strength of a non-final build**, so each carries its own re-check obligation: when the build settles, confirm the wording we adopted is still what the build shows. A row that flips to CHANGED is a reportable finding, not a silent correction. Audit: `../viu-push-2026-08-04/testrail-execution-log.md`.*
+
+| Internal ID | C-id | What was changed on the strength of this build | Re-check obligation | Re-check outcome |
+|---|---|---|---|---|
+| `SBC-DATE-03` | [C30104](https://shopview.testrail.io/index.php?/cases/view/30104) | steps rewritten: a custom range is picked on the calendar inside the picker (no "Custom" item exists) | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `SBR-DATE-02` | [C30202](https://shopview.testrail.io/index.php?/cases/view/30202) | same steps fix | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `SBR-WO-04` | [C30313](https://shopview.testrail.io/index.php?/cases/view/30313) | Standing Rule 24 tester note added — the back end still accepts the sales-rep change | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `PV-ROW-06` | [C30346](https://shopview.testrail.io/index.php?/cases/view/30346) | header label "Turns / Yr" -> "Turns/Yr" | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `PV-COL-01` | [C30351](https://shopview.testrail.io/index.php?/cases/view/30351) | same label | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `PV-COL-03` | [C30353](https://shopview.testrail.io/index.php?/cases/view/30353) | same label | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `PV-VIS-02` | [C30386](https://shopview.testrail.io/index.php?/cases/view/30386) | made layman-runnable: no devtools, no pixel measurement | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `TU-TECH-01` | [C30423](https://shopview.testrail.io/index.php?/cases/view/30423) | filter label "Filter by Technician" -> "Technician" | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `TU-TECH-03` | [C30425](https://shopview.testrail.io/index.php?/cases/view/30425) | "Select all" -> "All technicians" (no Select all control exists) | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `TU-LOC-01` | [C30442](https://shopview.testrail.io/index.php?/cases/view/30442) | "All Locations" -> "All locations" + "Clear all"; the Rule-42 hedge replaced with the observed Location column and "Multiple" | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `WIP-TAB-02` | [C30452](https://shopview.testrail.io/index.php?/cases/view/30452) | tab labels title-cased and each shown with its count | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `WIP-SCOPE-02` | [C30457](https://shopview.testrail.io/index.php?/cases/view/30457) | the Declined status dropped — the build has no such status | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `WIP-COL-01` | [C30466](https://shopview.testrail.io/index.php?/cases/view/30466) | precondition: Location is a column-selector toggle, not automatic | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `WIP-COL-02` | [C30467](https://shopview.testrail.io/index.php?/cases/view/30467) | Location IS in the column selector, off by default (also resolved an internal contradiction with C30466/C30507) | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `WIP-COL-04` | [C30469](https://shopview.testrail.io/index.php?/cases/view/30469) | status label "In Progress" -> "In progress" | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `WIP-TOT-02` | [C30495](https://shopview.testrail.io/index.php?/cases/view/30495) | tester note — the Inv. Hrs total cannot be checked in a download on this build | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `WIP-FLT-05` | [C30502](https://shopview.testrail.io/index.php?/cases/view/30502) | steps made executable + the build's refusal message quoted; the 366-vs-367 cap deliberately not asserted | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `WIP-EXP-02` | [C30511](https://shopview.testrail.io/index.php?/cases/view/30511) | the Location mechanism corrected + the Inv. Hrs export refusal noted | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-NAV-05` | [C30538](https://shopview.testrail.io/index.php?/cases/view/30538) | steps made executable — no pagination control exists; S1-R8 KEPT | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-COL-01` | [C30551](https://shopview.testrail.io/index.php?/cases/view/30551) | "Qty on Hand" -> "Qty" + the Location mechanism | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-COL-02` | [C30552](https://shopview.testrail.io/index.php?/cases/view/30552) | "Qty on Hand" -> "Qty" | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-COL-04` | [C30554](https://shopview.testrail.io/index.php?/cases/view/30554) | the Location mechanism only (items 1-2 held as a build defect) | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-COL-05` | [C30555](https://shopview.testrail.io/index.php?/cases/view/30555) | tester note — no part exists without a category on this build | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-TOT-01` | [C30556](https://shopview.testrail.io/index.php?/cases/view/30556) | totals label "Total" -> "Totals" | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-TOT-02` | [C30557](https://shopview.testrail.io/index.php?/cases/view/30557) | the server sums unrounded values, so a hand sum can differ by a few cents; also "Qty on Hand" -> "Qty" | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-TOT-02` | [C30557](https://shopview.testrail.io/index.php?/cases/view/30557) | the server sums unrounded values, so a hand sum can differ by a few cents; also "Qty on Hand" -> "Qty" | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-DATE-06` | [C30566](https://shopview.testrail.io/index.php?/cases/view/30566) | steps: dates are picked on the inline calendar | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-FLT-02` | [C30570](https://shopview.testrail.io/index.php?/cases/view/30570) | steps made executable (scrolling, not pages) | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-PERS-02` | [C30580](https://shopview.testrail.io/index.php?/cases/view/30580) | "Qty on Hand" -> "Qty" + the Location mechanism | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-SORT-03` | [C30585](https://shopview.testrail.io/index.php?/cases/view/30585) | "Qty on Hand" -> "Qty" (found by the Rule-28 sweep, in no batch list) | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-EXP-02` | [C30588](https://shopview.testrail.io/index.php?/cases/view/30588) | the Location mechanism only (item 1 held as a build defect) | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-EXP-04` | [C30590](https://shopview.testrail.io/index.php?/cases/view/30590) | tester note — the PDF and the CSV phrase the as-of line differently | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-EXP-07` | [C30593](https://shopview.testrail.io/index.php?/cases/view/30593) | tester note — the cap is unreachable on this estate | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-EXP-09` | [C30595](https://shopview.testrail.io/index.php?/cases/view/30595) | tester note — a large PDF fails with a plain error after ~30 s | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `WIP-FLT-09` | [C38916](https://shopview.testrail.io/index.php?/cases/view/38916) | the Location mechanism corrected | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `IV-LOC-06` | [C38917](https://shopview.testrail.io/index.php?/cases/view/38917) | the Location mechanism corrected (added by the Rule-28 sweep) | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `WIP-EXP-10` | [C38918](https://shopview.testrail.io/index.php?/cases/view/38918) | tester note — the cap is unreachable on this estate | Re-read the same surface on the settled build and confirm the adopted wording still matches | **PENDING** |
+| `SBC-API-06` | [C43546](https://shopview.testrail.io/index.php?/cases/view/43546) | NEW case authored from this build's behaviour | Re-drive it end to end; if the behaviour it describes is fixed, the case becomes a regression guard | **PENDING** |
+| `PV-EXP-12` | [C43547](https://shopview.testrail.io/index.php?/cases/view/43547) | NEW case authored from this build's behaviour | Re-drive it end to end; if the behaviour it describes is fixed, the case becomes a regression guard | **PENDING** |
+| `IV-EXP-10` | [C43548](https://shopview.testrail.io/index.php?/cases/view/43548) | NEW case authored from this build's behaviour | Re-drive it end to end; if the behaviour it describes is fixed, the case becomes a regression guard | **PENDING** |
+
+
 <!-- RECHECK-ROWS-END -->
 
 ## SUMMARY OF THIS QUEUE
 
-**35 rows · 0 re-checked · 35 PENDING.** Covering **86 CORRECT AS IS**, **13 DEVIATION**,
+**35 rows in the original table + 394 merged batch/push rows = 429 rows · 0 re-checked · ALL PENDING.** Covering **86 CORRECT AS IS**, **13 DEVIATION**,
 **9 EDIT NEEDED / REFUTED**, **4 candidate gaps** and **2 honest NOT-VERIFIED** items.
 
 **Highest-churn rows to re-check first when the build moves:** **B18** (the single-location Location
