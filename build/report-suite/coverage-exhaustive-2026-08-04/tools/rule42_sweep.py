@@ -29,7 +29,7 @@ DATA = os.path.abspath(os.path.join(HERE, "..", "data"))
 
 # the closing phrases Rule 42 names, plus the ones our suite actually uses
 CLOSERS = [
-    (r"\bin (?:this )?exact order\b", "in this exact order"),
+    (r"\bin (?:this )?exact order\b|\bin exactly this order\b", "in this exact order"),
     (r"\b(?:are|is|read|reads)\s+exactly\b", "are/read exactly"),
     (r"\bexactly these\b", "exactly these"),
     (r"\bexactly\s+(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\b", "exactly N"),
@@ -73,12 +73,14 @@ ADVERBIAL = re.compile(
     r"(?!(?:" + SET_NOUN + r"))\w+", re.I)
 # (b) and (c): a keyword hit is a TRUE closer only if one of these also matches
 TRUE_CLOSER = re.compile(
-    r"in (?:this )?exact order|in order,? are|,?\s*in order:|exactly these|only these|"
+    r"in (?:this )?exact order|in exactly this order|in order,? are|,?\s*in order:|"
+    r"exactly these|only these|"
     r"no other|nothing else|the complete list|only the following|"
     r"exactly\s+(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\s+(?:" + SET_NOUN + r")|"
     # "reads/are/named exactly" + a quoted verbatim string -- naming a file "exactly
     # <string>" is as brittle as a list, so it counts (SBR-EXP-06 C30281 is this shape)
-    r"(?:reads?|are|is|lists?|offers?|holds?|shows?|named?|titled?|labell?ed)\s+"
+    r"(?:read(?:s|ing)?|are|is|lists?|offers?|holds?|shows?|named?|titled?|"
+    r"labell?ed)\s+"
     r"exactly[:,]?\s*[\"“']", re.I)
 # "... exactly: A, B, C, D" -- a colon-introduced comma list of three or more items is a
 # closed enumeration even without quote marks (e.g. "The labels read exactly: Labor

@@ -2555,9 +2555,16 @@
    "S9-R9"
   ],
   "closers": [
-   "exactly (bare)"
+   "exactly (bare)",
+   "in this exact order"
   ],
   "hits": [
+   {
+    "closer": "in this exact order",
+    "context": "r format on a value over 100 hours. | 1. With a single location in scope the headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor. | 2. Total Hours = all time the technician was clocked in for the range. | 3. WO Hours = time clocked directly to work orders; Internal Ho",
+    "adverbial": true,
+    "closing_window": "single location in scope the headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, E"
+   },
    {
     "closer": "exactly (bare)",
     "context": "ormat on a value over 100 hours. | 1. With a single location in scope the headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor. | 2. Total Hours = all time the technician was clocked in for the range. | 3. WO Hours = time clocked directly to work orders; Internal Hours",
@@ -2908,12 +2915,12 @@
    {
     "closer": "exactly (bare)",
     "context": "o file is generated and no download starts. | 2. An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user). | 3. Below the cap the download works normally. | 4. Note for the tester: on this environment the biggest single tab holds",
-    "adverbial": true,
+    "adverbial": false,
     "closing_window": " An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the date range or filters, then try a"
    }
   ],
-  "true_closed_list": false,
-  "adverbial_only": true,
+  "true_closed_list": true,
+  "adverbial_only": false,
   "has_version_pin": true,
   "has_closing_anchor": false,
   "scope_conditional": false,
