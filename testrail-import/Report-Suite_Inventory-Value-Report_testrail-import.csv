@@ -18,7 +18,7 @@ First visit defaults to the current calendar month and the active location,IV �
 3. Read the Location filter's selection.","1. The date range defaults to the current calendar month.
 2. The location defaults to the user's currently active location.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S1-R3, S7-R2).",SV-8668 (specs/inventory-value.md Story 1 S1-R3; Story 7 S7-R2),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S1-R3, S7-R2).",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R3; Story 7 S7-R2),,
 The report is server-paginated: one page of rows at a time,IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed).","1. Open the Inventory Value report and scroll to the bottom of the rows, then keep scrolling so further rows load.
 2. Watch that new rows keep arriving as you scroll rather than all of them being present at once.
@@ -213,7 +213,7 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 2. When the displayed day matches the date asked for (the common current-view case), the ""As of"" indicator is not shown — the date control already communicates the date.
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R5, S5-R6).",SV-8672 (specs/inventory-value.md Story 5 S5-R5; S5-R6),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R5, S5-R6).",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R5; S5-R6),,
 A Custom range values stock as of the picked end date; capped at today,IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Open the date-range control - a month calendar is shown inside it (there is no separate ""Custom"" item to choose).
 2. Pick a start and an end date in the past on that calendar and press Apply.
@@ -289,7 +289,7 @@ The Location filter is a rightmost multi-select with an All locations toggle,IV 
 2. On a first visit it defaults to the user's currently active location.
 3. With ""All locations"" active you can tell which location each row's stock belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8674 (specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
 "Selecting one, several, or all locations reloads the report scoped to that set",IV — Location Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. In-stock parts exist at both locations.","1. With one location selected, note the rows and totals.
 2. Add the second location and watch the data area.
@@ -408,7 +408,7 @@ Export number formats: money to 2 decimals; Margin % to 1 with em-dash,IV — Ex
 2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).
 3. The PDF uses the same on-screen currency formatting with the ""$"" and thousands separators.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R7).",SV-8677 (specs/inventory-value.md Story 10 S10-R7 (+ context note)),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R7).",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R7 (+ context note)),,
 PDF header shows report name; org; period and an as-of line; logo if set,IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The shop has a logo set in its settings.
 3. The report is open on a view whose displayed day is known (live today, or a recorded past day).","1. Download the PDF and read its header.
@@ -474,13 +474,13 @@ All-white table with no row shading on the standard report backdrop,IV — Visua
 3. Look at the page background around the table.","1. The table has white column headers and white data cells, with no alternating row shading.
 2. The table sits on the standard soft blue-grey report backdrop.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R1).",SV-8679 (specs/inventory-value.md Story 12 S12-R1),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R1).",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R1),,
 Toolbar layout: menu leftmost then Column Selection; then the 5 filters,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Look at the toolbar's action cluster and read the order of its controls.
 2. Read the toolbar filters from left to right.","1. In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.
 2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R2, S12-R3).",SV-8679 (specs/inventory-value.md Story 12 S12-R2; S12-R3),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R2, S12-R3).",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R2; S12-R3),,
 Long Description; Category and Vendor truncate on hover; Part # never does,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A ZZAUTOTEST part exists with a very long description (and, if possible, long category/vendor names) and a long part number.","1. Narrow the browser window (or turn on more columns) so the text columns overflow.
 2. Read the long Description, Category, and Vendor cells and hover each.

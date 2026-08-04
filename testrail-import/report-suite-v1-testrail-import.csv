@@ -1034,7 +1034,7 @@ Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not,S
 2. Click the ""X"" close icon and watch the dialog; then re-open it.
 3. Press the ""Esc"" key on the keyboard and watch the dialog.
 4. Re-open the dialog and click outside it (on the greyed-out background).
-5. After each action, check the staff member's active status.","1. The dialog has a ""Cancel"" button (red outline) and an ""X"" close icon.
+5. After each action, check the staff member's active status.","1. The dialog has a ""Cancel"" button (grey) and an ""X"" close icon; the ""Deactivate"" button is the red one.
 2. Clicking ""Cancel"" closes the dialog; clicking the ""X"" icon closes the dialog.
 3. Pressing the ""Esc"" key does NOT close the dialog - it stays open (the app's general rule is that pop-ups do not close with the Esc key).
 4. Clicking outside the dialog does NOT close it.
@@ -1065,7 +1065,7 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S13-R2, S13-N2, S13-N3, S13-E3).",SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R2; S13-N2; S13-N3; S13-E3),,
 A deactivation failure shows the error toast and leaves the status alone,SBR — Staff Deactivation,Negative,Medium,1. The Deactivate dialog is open for a rep with assignments; you can force the request to fail (go offline just before submitting).,"1. Type YES, force the failure condition, and submit.
 2. Read the toast; check the staff member's active status.
-3. Dismiss, re-open the dialog, and look at the confirmation input.","1. An error toast is shown: ""Ooooops! An error occured"" with the caption ""For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance."" — it persists 120 seconds or until dismissed.
+3. Dismiss, re-open the dialog, and look at the confirmation input.","1. An error toast is shown: ""Ooooops! An error occurred"" with the caption ""For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance."" — it persists 120 seconds or until dismissed.
 2. The active status is unchanged.
 3. Each fresh dialog open requires a fresh confirmation entry — the input clears on open.
 ---
@@ -3148,7 +3148,7 @@ Each tab uses an all-white table with no alternating row shading,WIP — Visual 
 2. Compare the background of consecutive rows.","1. Each tab uses an all-white table: white column headers and white data cells.
 2. There is no alternating row shading (no zebra striping).
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S10-R1).",SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R1),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S10-R1).",SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R1),,
 The summary strip is a bold band ruled top and bottom above the tabs,WIP — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Look at where the summary strip sits relative to the four tabs.
 2. Look at how the strip is visually delineated.","1. The summary strip appears above the tabs.
@@ -3268,7 +3268,7 @@ First visit defaults to the current calendar month and the active location,IV �
 3. Read the Location filter's selection.","1. The date range defaults to the current calendar month.
 2. The location defaults to the user's currently active location.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S1-R3, S7-R2).",SV-8668 (specs/inventory-value.md Story 1 S1-R3; Story 7 S7-R2),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S1-R3, S7-R2).",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R3; Story 7 S7-R2),,
 The report is server-paginated: one page of rows at a time,IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed).","1. Open the Inventory Value report and scroll to the bottom of the rows, then keep scrolling so further rows load.
 2. Watch that new rows keep arriving as you scroll rather than all of them being present at once.
@@ -3463,7 +3463,7 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 2. When the displayed day matches the date asked for (the common current-view case), the ""As of"" indicator is not shown — the date control already communicates the date.
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R5, S5-R6).",SV-8672 (specs/inventory-value.md Story 5 S5-R5; S5-R6),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R5, S5-R6).",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R5; S5-R6),,
 A Custom range values stock as of the picked end date; capped at today,IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Open the date-range control - a month calendar is shown inside it (there is no separate ""Custom"" item to choose).
 2. Pick a start and an end date in the past on that calendar and press Apply.
@@ -3539,7 +3539,7 @@ The Location filter is a rightmost multi-select with an All locations toggle,IV 
 2. On a first visit it defaults to the user's currently active location.
 3. With ""All locations"" active you can tell which location each row's stock belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8674 (specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
 "Selecting one, several, or all locations reloads the report scoped to that set",IV — Location Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. In-stock parts exist at both locations.","1. With one location selected, note the rows and totals.
 2. Add the second location and watch the data area.
@@ -3658,7 +3658,7 @@ Export number formats: money to 2 decimals; Margin % to 1 with em-dash,IV — Ex
 2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).
 3. The PDF uses the same on-screen currency formatting with the ""$"" and thousands separators.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R7).",SV-8677 (specs/inventory-value.md Story 10 S10-R7 (+ context note)),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R7).",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R7 (+ context note)),,
 PDF header shows report name; org; period and an as-of line; logo if set,IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The shop has a logo set in its settings.
 3. The report is open on a view whose displayed day is known (live today, or a recorded past day).","1. Download the PDF and read its header.
@@ -3724,13 +3724,13 @@ All-white table with no row shading on the standard report backdrop,IV — Visua
 3. Look at the page background around the table.","1. The table has white column headers and white data cells, with no alternating row shading.
 2. The table sits on the standard soft blue-grey report backdrop.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R1).",SV-8679 (specs/inventory-value.md Story 12 S12-R1),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R1).",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R1),,
 Toolbar layout: menu leftmost then Column Selection; then the 5 filters,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Look at the toolbar's action cluster and read the order of its controls.
 2. Read the toolbar filters from left to right.","1. In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.
 2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R2, S12-R3).",SV-8679 (specs/inventory-value.md Story 12 S12-R2; S12-R3),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R2, S12-R3).",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R2; S12-R3),,
 Long Description; Category and Vendor truncate on hover; Part # never does,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A ZZAUTOTEST part exists with a very long description (and, if possible, long category/vendor names) and a long part number.","1. Narrow the browser window (or turn on more columns) so the text columns overflow.
 2. Read the long Description, Category, and Vendor cells and hover each.

@@ -359,7 +359,7 @@ Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not,S
 2. Click the ""X"" close icon and watch the dialog; then re-open it.
 3. Press the ""Esc"" key on the keyboard and watch the dialog.
 4. Re-open the dialog and click outside it (on the greyed-out background).
-5. After each action, check the staff member's active status.","1. The dialog has a ""Cancel"" button (red outline) and an ""X"" close icon.
+5. After each action, check the staff member's active status.","1. The dialog has a ""Cancel"" button (grey) and an ""X"" close icon; the ""Deactivate"" button is the red one.
 2. Clicking ""Cancel"" closes the dialog; clicking the ""X"" icon closes the dialog.
 3. Pressing the ""Esc"" key does NOT close the dialog - it stays open (the app's general rule is that pop-ups do not close with the Esc key).
 4. Clicking outside the dialog does NOT close it.
@@ -390,7 +390,7 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S13-R2, S13-N2, S13-N3, S13-E3).",SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R2; S13-N2; S13-N3; S13-E3),,
 A deactivation failure shows the error toast and leaves the status alone,SBR — Staff Deactivation,Negative,Medium,1. The Deactivate dialog is open for a rep with assignments; you can force the request to fail (go offline just before submitting).,"1. Type YES, force the failure condition, and submit.
 2. Read the toast; check the staff member's active status.
-3. Dismiss, re-open the dialog, and look at the confirmation input.","1. An error toast is shown: ""Ooooops! An error occured"" with the caption ""For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance."" — it persists 120 seconds or until dismissed.
+3. Dismiss, re-open the dialog, and look at the confirmation input.","1. An error toast is shown: ""Ooooops! An error occurred"" with the caption ""For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance."" — it persists 120 seconds or until dismissed.
 2. The active status is unchanged.
 3. Each fresh dialog open requires a fresh confirmation entry — the input clears on open.
 ---
