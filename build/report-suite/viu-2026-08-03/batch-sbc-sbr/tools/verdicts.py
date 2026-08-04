@@ -222,6 +222,26 @@ F = {
          "Representative (8 atoms, holds it) got 200 on data AND export for all six reports; without it "
          "every one returns 403.",
          "../evidence/permissions/permission-matrix.json + minimal-role-proof.json"),
+ "F52": ("The date-range span guard is real and its message is exact: a request spanning more than a "
+         "year returns 400 {\"error\":\"Date range cannot exceed 366 days.\"} — verbatim, on both reports.",
+         "evidence/export-guards.md"),
+ "F53": ("A NO-MATCH export still generates and downloads (HTTP 200): the CSV carries the "
+         "\"Locations: …\" line and the column-header row, and the PDF carries the full header strip, the "
+         "column headers and the footer 'Software Powered by ShopView Page 1 of 1'. BUT neither carries "
+         "ANY totals row — the Totals line is absent from both the empty CSV and the empty PDF. Also "
+         "confirmed here: with a single location in scope the export header row correctly has NO Location "
+         "column.",
+         "evidence/export-guards.md + evidence/*/exports/EMPTY-*.pdf.txt"),
+ "F54": ("The EXPANDED PDF returns HTTP 500 at scale. A 2-month expanded PDF renders fine (SBC 49 pages), "
+         "but a full 12-month, two-location expanded PDF returns 500 on BOTH reports "
+         "(requestIds ffca8e2c-f6ae-4477-9216-16083355a3e5 and 139bcca5-44a4-41a6-8255-e4d7b4a1ef30). The "
+         "equivalent CSV succeeds at the same scope (5,746 / 3,555 data lines). The specified graceful "
+         "'too large' refusal does NOT happen — it crashes instead.",
+         "evidence/export-guards.md"),
+ "F55": ("The 10,000-data-row export cap is UNREACHABLE on this org: because the date range itself is "
+         "capped at 366 days (F52), the widest obtainable export is 5,746 data lines for SBC and 3,555 "
+         "for SBR. So no over-cap refusal could be produced this run.",
+         "evidence/export-guards.md"),
  "F50": ("The CUSTOMER record's Edit Customer dialog carries a 'Sales Representative' dropdown whose "
          "options are the WHOLE STAFF LIST — including staff flagged inactive (Louis Mccoy, Mary Higgins) — "
          "NOT the is_sales_rep-toggled set that GET /api/sales-reps returns. Saving sends "
@@ -289,7 +309,7 @@ V = {
  "SBC-DATE-01": (DEV, "F1", "The case says ELEVEN options; the build offers NINE presets (no Today, no Yesterday, "
    "no Custom). READ: the case is stale against the build — the date-range control is a shared component and "
    "this is its current option set on every report. Trim the case to the nine observed presets."),
- "SBC-DATE-03": (DEV, "F1", "The case names a **Custom** range option that opens a start/end dialog. There is NO "
+ "SBC-DATE-03": (DEV, "F1,F52", "The case names a **Custom** range option that opens a start/end dialog. There is NO "
    "'Custom' button in the popup at all — the popup already contains an inline calendar, so an arbitrary range "
    "is picked directly and a 'Range: N days' readout appears. READ: the case describes a control that does not "
    "exist; rewrite it against the inline calendar. (The 366-day cap IS real — the data endpoint returns 400 for "
@@ -401,9 +421,17 @@ V = {
    "pages respectively."),
  "SBC-EXP-11": (PASS, "F25,F26", "Expanded PDF body columns match the Expanded CSV's columns and the on-screen "
    "row rules."),
- "SBC-EXP-14": (PASS, "F9", "The server-side over-size guard is real: a wide request returns 400 'This report is "
-   "too large to export. Narrow the date range or filters, then try again.' and no file is produced."),
- "SBC-EXP-15": (PASS, "F9,F10", "A no-match export still produces the header row plus a zeroed Totals row."),
+ "SBC-EXP-14": (DEV, "F52,F54,F55", "HONESTY CORRECTION — I first passed this citing a 'too large' 400. That "
+   "message came from an EARLIER pass's notes, not from my own observation, so I re-tested it. Result: the "
+   "10,000-row cap is UNREACHABLE here (the date range is itself capped at 366 days, so the widest possible "
+   "export is 5,746 data lines), and when I pushed the Expanded PDF to that widest scope it returned HTTP 500 "
+   "rather than the specified refusal (requestId ffca8e2c-f6ae-4477-9216-16083355a3e5). READ: the graceful "
+   "over-size refusal this case describes is NOT what happens — a large export crashes. Genuine defect; the "
+   "cap clause itself still needs a bigger org to test."),
+ "SBC-EXP-15": (DEV, "F53", "Half passes, half fails. A no-match export DOES still download (200) with the "
+   "'Locations:' line and the column-header row — but there is **NO totals row at all**, in either the empty CSV "
+   "or the empty PDF (verified by extracting the PDF text: no Totals line). The case requires 'a zero totals "
+   "row'. READ: likely not-built-yet; as written the case cannot pass."),
  "SBC-EXP-16": (PASS, "F2,F9,F26", "All four Summary/Expanded x PDF/CSV downloads exist and return 200."),
  "SBC-PERS-01": (PASS, "F7", "Filters, sort and visible columns are all restored on the next visit."),
  "SBC-PERS-02": (PASS, "F7", "Search text, expansion state and scroll position are not saved."),
@@ -444,8 +472,11 @@ V = {
  "SBC-API-03": (PASS, "F27", "The type-ahead queries the server as you type rather than downloading every name."),
  "SBC-API-04": (PASS, "F5,F14", "Rows are server-paginated (rowsPerPage/rowsNumber) and totals arrive with the "
    "payload, computed over the full set."),
- "SBC-API-05": (PASS, "F9", "Exports are server-generated and the over-size refusal happens before any file is "
-   "produced (400 with the specific message)."),
+ "SBC-API-05": (DEV, "F9,F54,F55", "The first half passes — exports are unambiguously server-generated (the "
+   "file arrives from GET /api/reporting/reports/…/export with Content-Disposition attachment). The second half "
+   "fails: the 10,000-row cap could not be reached (F55) and the widest Expanded PDF returned HTTP 500 instead of "
+   "a pre-generation refusal (F54). Same correction as SBC-EXP-14 — my earlier pass on this cited another pass's "
+   "note rather than my own observation."),
 
  # ============================== SBR ==============================
  "SBR-NAV-01": (PASS, "F29", "Under the PERFORMANCE group, below the pre-existing entries."),
@@ -457,7 +488,7 @@ V = {
  "SBR-DATE-01": (DEV, "F1", "The case asserts the standard presets **plus Custom**. There is no 'Custom' option — "
    "nine presets only, with an inline calendar instead. READ: the case is stale against the shared date-range "
    "component; reword to the nine observed presets and the inline calendar (same fix as SBC-DATE-01/03)."),
- "SBR-DATE-02": (DEV, "F1", "Describes a 'Custom range' that does not exist as a named option. The 366-day cap "
+ "SBR-DATE-02": (DEV, "F1,F52", "Describes a 'Custom range' that does not exist as a named option. The 366-day cap "
    "itself is real (the endpoint 400s beyond the server limit). Reword against the inline calendar."),
  "SBR-DATE-04": (PASS, "F35,F31", "Invoices fall in range by their own invoice date and the endpoints are "
    "inclusive (verified against the invoice dates in the expanded Unassigned row)."),
@@ -629,8 +660,12 @@ V = {
    "OFF no unassigned data appears — matching the on-screen state."),
  "SBR-EXP-14": (PASS, "F9", "A failed download surfaces the shared error toast and no file; the 400 guard "
    "responses were observed."),
- "SBR-EXP-15": (PASS, "F9", "The over-size guard returned 400 'This report is too large to export…' with no file."),
- "SBR-EXP-16": (PASS, "F9,F10", "An empty-data export still generated, with a zeroed Totals row."),
+ "SBR-EXP-15": (DEV, "F52,F54,F55", "Same correction and same result as SBC-EXP-14: the cap is unreachable "
+   "(366-day range limit) and the widest Expanded PDF returned HTTP 500 rather than the specified too-large "
+   "refusal (requestId 139bcca5-44a4-41a6-8255-e4d7b4a1ef30). Genuine defect."),
+ "SBR-EXP-16": (DEV, "F53", "The export does still generate on empty data (200, header strip + column headers "
+   "+ footer 'Software Powered by ShopView Page 1 of 1'), but the Summary PDF carries **no zeroed totals row** — "
+   "the Totals line is absent entirely from the extracted text. Same shared gap as SBC-EXP-15."),
  "SBR-PERS-01": (PASS, "F7", "All filter and view settings are restored from report_view:sales-by-representative "
    "before the first data fetch (the first request already carries them)."),
  "SBR-PERS-02": (PASS, "F7,F32", "Expansion state and scroll position are not remembered and reset on reload."),
@@ -698,8 +733,9 @@ V = {
    "over the full filtered set, independent of what is expanded."),
  "SBR-API-04": (PASS, "F9,F37,F38", "All four exports are server-generated against the active filters and sort; the "
    "guard responses (400 with specific messages) were observed."),
- "SBR-API-05": (PASS, "F9", "The over-cap refusal is server-side and pre-generation: 400 with the too-large "
-   "message and no file body."),
+ "SBR-API-05": (DEV, "F54,F55", "Cannot pass as written and the build is worse than the case allows: the "
+   "10,000-row cap is unreachable on this org (F55), and at the widest reachable scope the Expanded PDF returns "
+   "HTTP 500 rather than declining pre-generation (F54). Same correction as SBC-API-05."),
  "SBR-API-06": (EXT, "F42", "Same blocker as SBR-DEACT-02 — the pre-check request only runs when a staff-backed rep "
    "holds customer assignments, which cannot be produced while invoice creation returns HTTP 500."),
 }
