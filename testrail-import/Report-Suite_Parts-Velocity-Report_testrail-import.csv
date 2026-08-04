@@ -63,9 +63,6 @@ Date range selector offers exactly the eleven bounded options and no All Time,PV
 3. Selecting a non-custom option immediately reloads the report data.
 4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R2).","SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (""offering exactly these options"") and rules out ""All Time""; so the closed list IS the requirement)",,
 A Custom date range needs valid dates and rejects a span over 366 days,PV — Filters,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the date range selector and choose Custom.
 2. Pick only a start date and observe - then pick an end date earlier than the start and observe.
@@ -151,9 +148,6 @@ Parts Velocity: the Location filter is hidden for a one-location user,PV — Fil
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
 2. For the user with access to two or more locations the Location filter IS shown.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-E4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S2-E4 ""still sees the filter"" note is stale; spec edit pending)",,
 "The Location column shows only with more than one location, leftmost before Type",PV — Filters,Functional,High,"1. You are on the Parts Velocity report as a user with access to two or more locations, with data loaded.
 2. The same inventory part is stocked at two of those locations, and at least one Special Order part has vendor requests at two of them.","1. Select two or more locations and read the column headers from the left.
@@ -344,9 +338,8 @@ Demand counts each transaction once; a reversal neither adds nor subtracts,PV �
 2. After the reversal, Demand is STILL 2 - a reversal event neither adds to nor subtracts from the count (while Units Sold nets down).
 3. The special-order part's Demand is 2 - the count of its in-window vendor part requests.
 4. Demand is the report's default ranking signal (a whole number, never null - 0 when none).
-5. A part whose single in-window sale is invoiced and then fully reversed shows Demand 1 with Units Sold 0.00 — the Demand count is not decremented, while the movement nets to zero.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4, S3-E1).",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Demand); §4; §3 Key Decisions; S3-E1),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4).",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Demand); §4; §3 Key Decisions),,
 Last Sale is whole days since the most recent sale over all-time history,PV — Columns & Calculations,Functional,Medium,"1. A part whose most recent sale was N days ago, OUTSIDE the currently selected date range (e.g. range = This Month, last sale 42 days ago).
 2. The part still appears in the report (it has on-hand stock).
 3. For the location check: the part's most recent sale at location A is more recent than at location B.
@@ -487,9 +480,6 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. Part # is NOT truncated.
 5. The shop logo shows at the top of the PDF when one is set. With no uploaded logo the PDF shows the bundled ShopView default logo instead of a blank space, the same as the other reports in this suite. The CSV never includes a logo.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6).",SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
 CSV is named velocity-report.csv and holds full untruncated text values,PV — Exports,Functional,Medium,"1. You are on the Parts Velocity report with data loaded, including a part with a Description longer than 18 characters and a part with a Last Sale value.","1. Download the CSV and check the saved filename.
 2. Open it and read the long part's Description, Category, and Vendor.
@@ -497,9 +487,6 @@ CSV is named velocity-report.csv and holds full untruncated text values,PV — E
 2. The CSV carries the FULL, untruncated Description / Category / Vendor values (unlike the PDF's 18-character cut).
 3. Last Sale is a raw integer in the CSV (e.g. 42) - the 'N days' wording is PDF/on-screen only.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6, S6-R8).",SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6; S6-R8),,
 "Em-dash in both exports; Last Sale reads ""N days"" in the PDF",PV — Exports,Functional,Medium,"1. Rows with null values exist (a special-order row for On Hand / Turns / Yr / Min / Max; a row with billed units 0 for Unit Cost / Sell Price; a never-sold row for Last Sale).
 2. All nullable columns are enabled.","1. Download the CSV and locate the null cells.

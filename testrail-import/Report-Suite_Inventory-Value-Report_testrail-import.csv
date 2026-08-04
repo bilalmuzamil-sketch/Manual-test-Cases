@@ -18,7 +18,7 @@ First visit defaults to the current calendar month and the active location,IV �
 3. Read the Location filter's selection.","1. The date range defaults to the current calendar month.
 2. The location defaults to the user's currently active location.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S1-R3, S7-R2).",SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R3; Story 7 S7-R2),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S1-R3, S7-R2).",SV-8668 (specs/inventory-value.md Story 1 S1-R3; Story 7 S7-R2),,
 The report is server-paginated: one page of rows at a time,IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed).","1. Open the Inventory Value report and scroll to the bottom of the rows, then keep scrolling so further rows load.
 2. Watch that new rows keep arriving as you scroll rather than all of them being present at once.
@@ -42,9 +42,8 @@ A part appears only if not a core charge and on-hand quantity is above zero,IV �
 2. The core-charge part is never listed — even with a positive quantity — and its value is not counted in the totals row.
 3. The zero-quantity and negative-quantity parts are not listed — only quantities greater than zero are valued.
 4. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed.
-5. A part that has sat without movement for a long time still appears and is still counted — there is no dead-stock exclusion; how long stock has sat makes no difference.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S2-R1, S2-R2, S2-N1, S2-N2).",SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion)),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S2-R1, S2-R2, S2-N1, S2-N2).",SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions),,
 A part stocked at two selected locations shows as two rows; never merged,IV — Row Scope,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. The same ZZAUTOTEST part is in stock (positive quantity) at two of those locations.","1. Open the Inventory Value report and select both locations in the Location filter.
 2. Search for the part and count its rows.","1. The part appears twice — one row per location, each with that location's own quantity and values.
@@ -106,9 +105,6 @@ With every column on they appear in the fixed order with the set alignment,IV �
 3. Every other column is right-aligned.
 4. Location is one of the columns in the column-selection control; when it is turned on the Location column appears between Vendor and Qty, left-aligned.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R1, S3-R2, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand),,
 Value formats: Qty to two decimals; money as US-dollar currency,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a part with a fractional quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value.","1. Read the Qty cell of the fractional-quantity part.
@@ -132,9 +128,6 @@ On a first visit the default columns show and the rest stay available,IV — Val
 3. Both can be turned on from the column-selection control and then appear in their fixed positions.
 4. Location is one of the columns in the column-selection control; when it is turned on the Location column shows between Vendor and Qty.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R12, S3-R13, S8-R3, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope),,
 "Category and Vendor show their names; an em dash (""—"") when the part has none",IV — Valuation & Columns,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a part with a category and a vendor, a part with no category, and a part with no vendor.","1. Read the Category and Vendor cells of the fully-populated part.
@@ -155,9 +148,8 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows.
 4. The totals row stays visible at the bottom while the rows scroll.
 5. Note for the tester: if the label on screen reads ""Totals"" instead of ""Total"", mark this test Failed and report it — do not change the test.
-6. Sorting by any column reorders the data rows only — the totals row stays at the bottom.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5, S9-R4).",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5; Story 9 S9-R4),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5).",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5),,
 "Totals row sums the FULL filtered set on the server, not just the visible page",IV — Totals Row,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current filtered set spans more than one page (more rows than one page shows).
 3. The Margin and Total Sell columns are turned on.
@@ -184,9 +176,6 @@ Date range offers the standard presets plus Custom; no All Time option,IV — As
 2. Read every option offered.","1. The control offers the standard presets: ""Today"", ""Yesterday"", ""This Week"", ""Last Week"", ""This Month"", ""Last Month"", ""This Year"", ""Last Year"", ""This Quarter"", ""Last Quarter"", and ""Custom"".
 2. ""All Time"" is NOT offered — because the report is valued as of a single date, an All-Time option would be meaningless; its absence is the documented v1 behavior.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R1).",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R1; §2 Known Limitations (v1)),,
 The report values inventory as of the END of the selected range,IV — As-of Date & Snapshots,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Nightly snapshots exist for past dates at the selected location (recording has been running).
@@ -211,9 +200,6 @@ For a past date the report replays the closest recorded day on or before it,IV �
 2. The part's row shows the quantity and values recorded for that day, not today's live stock.
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R4).",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R4; §2 Relationship to nightly history),,
 """As of"" indicator names the day shown; hidden when it matches the ask",IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A past date exists that has NO snapshot of its own but has an earlier recorded day before it (for example, a gap day, or a date in the thinned monthly-retention band).","1. Select a Custom range ending on the gap date (a date with no snapshot of its own).
@@ -222,7 +208,7 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 2. When the displayed day matches the date asked for (the common current-view case), the ""As of"" indicator is not shown — the date control already communicates the date.
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R5, S5-R6).",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R5; S5-R6),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R5, S5-R6).",SV-8672 (specs/inventory-value.md Story 5 S5-R5; S5-R6),,
 A Custom range values stock as of the picked end date; capped at today,IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Open the date-range control - a month calendar is shown inside it (there is no separate ""Custom"" item to choose).
 2. Pick a start and an end date in the past on that calendar and press Apply.
@@ -298,7 +284,7 @@ The Location filter is a rightmost multi-select with an All locations toggle,IV 
 2. On a first visit it defaults to the user's currently active location.
 3. With ""All locations"" active you can tell which location each row's stock belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8674 (specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
 "Selecting one, several, or all locations reloads the report scoped to that set",IV — Location Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. In-stock parts exist at both locations.","1. With one location selected, note the rows and totals.
 2. Add the second location and watch the data area.
@@ -318,9 +304,6 @@ Inventory Value: the Location filter is hidden for a one-location user,IV — Lo
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's stock.
 2. For the user with access to two or more locations the Location filter IS shown.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S7-N1 ""still sees the filter"" note is stale; spec edit pending)",,
 The Location column sits after Vendor and never reads Multiple,IV — Location Filter,Functional,High,"1. You are signed in on a desktop browser as a user with access to at least two locations.
 2. The same part is in stock at two of those locations.
@@ -338,9 +321,6 @@ The Location column sits after Vendor and never reads Multiple,IV — Location F
 6. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.
 7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty), naming each row's own location.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.","SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never ""Multiple""; S10-R15 = the same column in every export)",,
 Column Selection toggles columns; Total Cost cannot be turned off,IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
@@ -355,9 +335,6 @@ Toggling columns never reorders them,IV — Column Selection & Persistence,Funct
 2. Read the resulting column order after each change.","1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.
 2. Total Cost is always the last column.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand),,
 The report remembers all filters; columns and sort per browser,IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Change the date range, select a category and a vendor, type a part search, change the location selection, change the column selection, and sort by a non-default column.
@@ -413,9 +390,6 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
 5. Note for the tester: the files carry the Location column when Location is turned ON in the column-selection control (it sits between Vendor and Qty). It does not appear just because you have more than one location selected.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.","SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the ""Locations:"" line and the automatic Location column)",,
 Export number formats: money to 2 decimals; Margin % to 1 with em-dash,IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (""—"").","1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.
@@ -423,7 +397,7 @@ Export number formats: money to 2 decimals; Margin % to 1 with em-dash,IV — Ex
 2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).
 3. The PDF uses the same on-screen currency formatting with the ""$"" and thousands separators.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R7).",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R7 (+ context note)),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R7).",SV-8677 (specs/inventory-value.md Story 10 S10-R7 (+ context note)),,
 PDF header shows report name; org; period and an as-of line; logo if set,IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The shop has a logo set in its settings.
 3. The report is open on a view whose displayed day is known (live today, or a recorded past day).","1. Download the PDF and read its header.
@@ -434,9 +408,6 @@ PDF header shows report name; org; period and an as-of line; logo if set,IV — 
 3. The CSV never includes a logo.
 4. Note for the tester: the two files phrase the as-of line differently - the PDF reads ""As of 2026-08-04"" and the CSV's first line reads ""As of: 2026-08-04"" (with a colon). Both are correct; do not raise the difference.
 ---
-DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
-The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
-
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R8, S10-R9).",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R8; S10-R9),,
 Downloaded files are named inventory-value-report.pdf and .csv,IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Download the current view as a PDF and read the saved file's name.
@@ -492,13 +463,13 @@ All-white table with no row shading on the standard report backdrop,IV — Visua
 3. Look at the page background around the table.","1. The table has white column headers and white data cells, with no alternating row shading.
 2. The table sits on the standard soft blue-grey report backdrop.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R1).",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R1),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R1).",SV-8679 (specs/inventory-value.md Story 12 S12-R1),,
 Toolbar layout: menu leftmost then Column Selection; then the 5 filters,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Look at the toolbar's action cluster and read the order of its controls.
 2. Read the toolbar filters from left to right.","1. In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.
 2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R2, S12-R3).",SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R2; S12-R3),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R2, S12-R3).",SV-8679 (specs/inventory-value.md Story 12 S12-R2; S12-R3),,
 Long Description; Category and Vendor truncate on hover; Part # never does,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A ZZAUTOTEST part exists with a very long description (and, if possible, long category/vendor names) and a long part number.","1. Narrow the browser window (or turn on more columns) so the text columns overflow.
 2. Read the long Description, Category, and Vendor cells and hover each.
@@ -571,11 +542,8 @@ Nightly snapshot: re-running the capture for a date replaces that date's rows,IV
 3. Count and inspect the rows again.","1. Re-running the capture for a date replaces that date's rows for each location — the existing rows for that location and date are removed, then re-inserted from current data.
 2. No duplicate rows exist for the same part, location, and date.
 3. The capture is idempotent and self-healing from current data.
-4. No rows exist for dates before capture began — there is no backfill.
-5. A re-run always records current truth under the CURRENT date; it cannot reconstruct a past date.
-6. A past date's stored rows are unchanged by a current re-run.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R3, S11-R5, S5-E1).",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R3; Story 11 S11-R5; Story 5 S5-E1),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R3).",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R3),,
 Snapshot retention: daily captures are kept for 0–13 months,IV — API,Functional,High,"1. Snapshot history exists (or is seeded/simulated with dev help) spanning both the 0–13-month band and the older-than-13-months band.
 2. The nightly capture (with its pruning) has run.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. Inspect the retained captures for dates within the last 13 months.
