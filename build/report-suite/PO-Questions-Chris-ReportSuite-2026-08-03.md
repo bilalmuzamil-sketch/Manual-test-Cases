@@ -1,5 +1,13 @@
 # Report Suite - Questions for Chris Ward (complete sweep of everything still open) - 2026-08-03
 
+> ## ⚠️ SUPERSEDED 2026-08-04 — DO NOT SEND THIS SHEET
+>
+> The QA lead asked for **one sheet with three tabs**, so this sheet and the other two Chris Ward sheets were consolidated into a single workbook on **2026-08-04**:
+>
+> **`build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx`** (with a `.md` twin)
+>
+> Send **that** workbook, never this file. This one is kept only as the record of how its questions were derived and verified. Its content was carried across faithfully — four overlapping items across the three sheets were removed so nothing is asked twice, and every removal plus every text change is logged on the consolidated workbook's QA-only tab.
+
 **STATUS: READY TO SEND** (not yet sent). On return: ingest verbatim, then revisit the affected cases per the standing workflow.
 
 Plain-language product questions only — no bugs, no test jargon. This sheet is an **exhaustive sweep of everything still owed by you**, not a top-up: every question sheet, the description-change watch list, our own decision register and all six live descriptions were re-read on 3 August, and anything you have already answered has been deliberately left out (10 candidate questions were withdrawn for exactly that reason).

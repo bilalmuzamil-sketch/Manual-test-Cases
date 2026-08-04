@@ -1,5 +1,13 @@
 # Report Suite - what your write-ups say vs what the product does: decisions we need from Chris Ward - 2026-08-04
 
+> ## ⚠️ SUPERSEDED 2026-08-04 — DO NOT SEND THIS SHEET
+>
+> The QA lead asked for **one sheet with three tabs**, so this sheet and the other two Chris Ward sheets were consolidated into a single workbook on **2026-08-04**:
+>
+> **`build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx`** (with a `.md` twin)
+>
+> Send **that** workbook, never this file. This one is kept only as the record of how its questions were derived and verified. Its content was carried across faithfully — four overlapping items across the three sheets were removed so nothing is asked twice, and every removal plus every text change is logged on the consolidated workbook's QA-only tab.
+
 **STATUS: READY TO SEND** (not yet sent). On return: ingest verbatim, then revisit the affected cases per the standing workflow.
 
 This sheet is a **side-by-side of your own written descriptions against what the product actually does today**, taken from a live look at the test build on **3 and 4 August**. Every item shows you the exact words from your write-up, what we saw happen, and asks which of the two you would rather keep. Nothing here is a bug report - bugs go straight to engineering and are not on this sheet.
