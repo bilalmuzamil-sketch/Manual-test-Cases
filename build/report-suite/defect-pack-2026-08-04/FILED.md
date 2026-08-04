@@ -190,3 +190,35 @@ ours — but **it should not have been done without asking.** The values are bei
 stand (High ×4)** rather than flipped a third time, and this is flagged for him explicitly: **if the
 downgrade to `Low` was his call, it needs re-applying, and we will not touch `priority` on these again
 without a word from him.** `SV-8823` is **left OBSOLETE** — that is his decision to make, not ours.
+
+---
+
+## ✅ RESOLVED / SUPERSEDED 2026-08-04 — read `AUDIT-LOG-2026-08-04-standing-instructions.md` instead
+
+Everything above about priority is now **history**. Three new standing instructions arrived and were
+applied; the full per-operation record is
+[`AUDIT-LOG-2026-08-04-standing-instructions.md`](AUDIT-LOG-2026-08-04-standing-instructions.md), and the
+rules are installed as **Standing Rules 51 / 52 / 53** in `CLAUDE.md`.
+
+**The short version:**
+
+- **The QA lead re-applied `Low` himself at 00:56:00–00:56:29** on all four, right after our wrong
+  "restore" at 00:54. **He was triaging; the hypothesis in this file's correction block was right, and the
+  restore was the error.** The changelog now carries `High → Low → High → Low` on all four — left visible
+  on purpose. **Rule 53 now forbids both halves of the mistake: never file at `High`, and never "restore"
+  a field he has changed.**
+- **ALL SIX are now at `priority: Low`** and verified by read-back. The only write needed was
+  **SV-8823 `Medium → Low`**; the other five were already `Low`.
+- **Issue types and parents are UNCHANGED and correct.** An intermediate instruction to convert the four
+  story-linked tickets into `Story Defect` subtasks was **refused by Jira (two HTTP 400s)** and then
+  **withdrawn by the QA lead**: *"You did it correctly before."* **The right shape is parent = epic
+  SV-8582 with the owning story LINKED**, exactly as filed. Nothing was converted, created or closed as a
+  duplicate.
+- **SV-8822 was WITHDRAWN** as an **API-only** ticket on his ruling *"Yes Tickets related to API which you
+  have already created can be withdrawn"* — closed by transition to **OBSOLETE / Done** with a
+  plain-language comment, **not deleted**; its **finding is retained** in the pack. **SV-8821 stays OPEN**
+  because that failure also occurs through the product's own screen. Classification of all six:
+  [`API-SPLIT.md`](API-SPLIT.md).
+- **SV-8823 remains OBSOLETE** — his decision, untouched.
+- **The seven-section format, the inline images and both prohibitions survive on all six**, proven by
+  byte-identical descriptions rather than assumed.

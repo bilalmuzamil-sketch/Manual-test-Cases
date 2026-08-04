@@ -1,4 +1,29 @@
-# TICKET 5 — FILED as SV-8822
+# TICKET 5 — FILED as SV-8822 — ⛔ **WITHDRAWN 2026-08-04 (API-ONLY). DO NOT RE-FILE.**
+
+> ## ⛔ WITHDRAWN — read this before doing anything with this ticket
+>
+> **SV-8822 was withdrawn on 2026-08-04.** It is an **API-ONLY** defect: **not reachable from any screen
+> in the product**, so neither a customer nor a manual tester can encounter it (this file's own "Steps to
+> reproduce" section says exactly that). Under **Standing Rule 51** an API-related ticket is **never
+> filed without asking first — every time, even inside an approved batch.** This one was filed inside the
+> approved batch of six without a separate ask. That was our miss.
+>
+> **The QA lead's ruling, verbatim (2026-08-04):**
+> *"Yes Tickets related to API which you have already created can be withdrawn"*
+>
+> **What was done:** priority set to **`Low`** first (Rule 53) → a **plain-language closing comment**
+> added → closed by workflow transition **`Close` (id 8) → status `OBSOLETE`, `resolution: Done`**.
+> **It was NOT deleted** — deletion is irreversible, and a withdrawn ticket with its reasoning on the
+> record is worth more than a missing one.
+>
+> **THE FINDING BELOW IS STILL VALID AND IS DELIBERATELY KEPT.** We withdrew the **ticket**, not the
+> **finding**. Everything under this banner stands as the write-up, and it is also recorded in
+> `build/report-suite/viu-2026-08-03/batch-sbc-sbr/ENV-DEFECTS.md`. If it is ever wanted as a back-end
+> hardening item, it is ready to go.
+>
+> **DO NOT RE-FILE this as a ticket.** If a future pass thinks it should be raised, the route is to
+> **ask the QA lead separately** (Rule 51). Classification and reasoning:
+> [`API-SPLIT.md`](API-SPLIT.md).
 
 | Field | Value |
 |---|---|
