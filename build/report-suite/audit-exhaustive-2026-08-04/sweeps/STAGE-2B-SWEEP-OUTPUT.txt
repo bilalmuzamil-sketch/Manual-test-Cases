@@ -1,0 +1,320 @@
+# Stage-2b cross-case consistency sweeps — 478 active cases
+
+## Helper (ii) — TITLE vs EXPECTED, all cases scanned
+scanned: 478 / flagged: 16
+  IV-CALC-02       C30546   title asserts a negative the expected never states
+      title: With no fixed sell price Unit Sell is the category's pricing-matrix markup
+  IV-EXP-01        C30587   title names "export-menu" but the expected never mentions it
+      title: Inventory Value: a three-dot menu holds Download (PDF) and Download (CSV)
+  PV-FILT-03       C30330   title names "date-range-control" but the expected never mentions it
+      title: Date range selector offers exactly the eleven bounded options and no All Time
+  PV-COL-01        C30351   title names "column-selector" but the expected never mentions it
+      title: Column picker lists all 20 columns and never offers the internal cost
+  PV-COL-04        C30354   title names "saved-view" but the expected never mentions it
+      title: Filters; columns and sort are remembered per browser before the first fetch
+  SBC-TREE-09      C30129   title asserts a negative the expected never states
+      title: Reload-causing changes collapse expansion; Customer filter typing does not
+  SBC-EXP-01       C30159   title names "export-menu" but the expected never mentions it
+      title: The overflow menu holds exactly the four download items - no Print
+  SBC-PERS-05      C30178   title names "saved-view" but the expected never mentions it
+      title: With no saved view every setting uses its own default
+  SBC-API-04       C30193   title names "totals-row" but the expected never mentions it
+      title: Customer rows are server-paginated; the totals row is server-computed
+  SBR-COL-01       C30265   title names "column-selector" but the expected never mentions it
+      title: Column selector: seven metric toggles; five always-on columns cannot be hidden
+  SBR-COL-04       C30268   title asserts a negative the expected never states
+      title: Column visibility never affects the exports
+  SBR-PERS-02      C30272   title names "saved-view" but the expected never mentions it
+      title: Expansion state and scroll position are not remembered and reset on reload
+  SBR-EXP-01       C30276   title names "export-menu" but the expected never mentions it
+      title: The ⋯ overflow menu lists exactly four download actions
+  WIP-SUM-07       C30493   title names "info-icon" but the expected never mentions it
+      title: Each summary figure's information icon reveals its plain explanation
+  WIP-PERS-04      C30509   title asserts a negative the expected never states
+      title: A saved setting that is no longer valid falls back to its default
+  WIP-EXP-01       C30510   title names "export-menu" but the expected never mentions it
+      title: Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV)
+
+## Helper (i) — opposite-assertion keyword-pair scan over control groups
+  column-selector      n= 37  BOTH SIDES PRESENT
+      hidden: IV-COL-04, IV-LOC-06, PV-FILT-14, PV-ROW-06, PV-COL-02, PV-COL-08, SBC-LOC-04, SBC-COL-02 …
+      shown: IV-COL-01, IV-LOC-06, PV-FILT-14, PV-ROW-06, PV-COL-01, SBC-LOC-04, SBC-COL-01, SBR-COL-01 …
+      automatic: PV-COL-02, PV-COL-03, SBC-LOC-04, SBC-COL-01, SBR-COL-01, TU-HRS-02, TU-EXP-04, TU-LOC-06 …
+      manual: IV-COL-01, IV-COL-04, IV-LOC-06, IV-PERS-02, IV-EXP-02, TU-ELL-02, WIP-COL-01, WIP-COL-02 …
+      reload: PV-COL-03, PV-CALC-03
+      noreload: PV-COL-03
+  dark-mode            n= 10  no opposite pair
+  date-range-control   n= 20  no opposite pair
+  empty-state          n= 16  BOTH SIDES PRESENT
+      hidden: IV-DATE-08, SBC-EMPTY-01, SBC-EMPTY-02, SBR-TOT-02, SBR-STATE-01, TU-NAV-08
+      shown: IV-NAV-06, SBC-EMPTY-01, SBC-EMPTY-02, SBR-UNAS-04, SBR-EXP-16, SBR-STATE-01
+  expansion-chevron    n= 21  BOTH SIDES PRESENT
+      hidden: SBC-COL-02, SBC-EMPTY-01, SBR-MOB-03
+      shown: SBC-EMPTY-01, SBR-TREE-05
+  export-menu          n= 17  BOTH SIDES PRESENT
+      hidden: SBR-PERM-02, TU-COL-01
+      shown: IV-EXP-10, PV-EXP-12, SBC-COL-01, TU-COL-01
+      reload: TU-COL-01
+      noreload: TU-COL-01
+  info-icon            n=  6  BOTH SIDES PRESENT
+      hidden: PV-ROW-06, TU-ELL-02
+      shown: PV-ROW-06, TU-ELL-02, WIP-SUM-07
+  loading-indicator    n= 19  BOTH SIDES PRESENT
+      hidden: SBC-EMPTY-02, SBR-STATE-03, TU-TECH-02
+      shown: IV-DATE-06, SBC-EXP-06, SBC-EMPTY-02, SBR-TREE-05, TU-DAY-02, TU-TECH-02
+      disabled: SBC-EXP-06, SBR-DEACT-05, SBR-EXP-14
+      enabled: SBC-EXP-06, SBR-DEACT-05, SBR-EXP-14, SBR-STATE-03, TU-NAV-05
+      reload: IV-DATE-06, IV-FLT-02, PV-NAV-03, SBC-TREE-09, SBR-STATE-03, SBR-API-01, SBR-API-02, TU-NAV-05 …
+      noreload: TU-SORT-02, TU-TECH-02, WIP-FLT-01
+  location-column      n= 28  BOTH SIDES PRESENT
+      hidden: IV-COL-04, IV-LOC-06, PV-FILT-14, PV-COL-02, SBC-LOC-04, SBR-LOC-05, SBR-COL-01, TU-EXP-04 …
+      shown: IV-COL-01, IV-LOC-06, PV-FILT-14, SBC-LOC-04, SBC-COL-01, SBC-EXP-03, SBR-LOC-05, SBR-COL-01 …
+      automatic: PV-COL-02, PV-COL-03, SBC-LOC-04, SBC-COL-01, SBR-ROW-02, SBR-COL-01, TU-HRS-02, TU-EXP-04 …
+      manual: IV-COL-01, IV-COL-04, IV-LOC-06, IV-EXP-02, SBR-LOC-05, WIP-COL-02, WIP-EXP-07
+      reload: PV-COL-03, TU-COL-01
+      noreload: PV-COL-03, TU-COL-01
+  location-filter      n= 38  BOTH SIDES PRESENT
+      hidden: IV-LOC-04, IV-LOC-06, PV-FILT-13, PV-FILT-14, SBC-LOC-01, SBC-LOC-04, SBR-LOC-04, SBR-LOC-05 …
+      shown: IV-SCOPE-02, IV-LOC-01, IV-LOC-04, IV-LOC-06, PV-FILT-10, PV-FILT-13, PV-FILT-14, PV-ROW-01 …
+      automatic: SBC-LOC-04, TU-EXP-04, TU-LOC-06, WIP-FLT-09
+      manual: IV-LOC-06, SBR-LOC-05
+  pinned-subtotal      n= 12  BOTH SIDES PRESENT
+      hidden: SBC-COL-02, SBR-LOC-05
+      shown: SBR-LOC-05
+  saved-view           n= 34  BOTH SIDES PRESENT
+      hidden: SBC-PERS-01, SBR-COL-01, TU-COL-01
+      shown: PV-FILT-10, SBC-CUST-04, SBC-PERS-03, SBR-DEACT-08, SBR-COL-01, TU-COL-01
+      disabled: SBR-EXP-14
+      enabled: SBR-EXP-14
+      persists: IV-SORT-04, PV-COL-04, SBC-CUST-04, SBC-PERS-01, SBR-DEACT-08, SBR-EXP-14, SBR-EXP-15, SBR-WO-03 …
+      resets: SBR-LINK-03, SBR-PERS-02, TU-SORT-03, TU-DAY-05
+      reload: IV-PERS-03, PV-FILT-01, PV-FILT-10, PV-COL-04, SBR-LINK-03, SBR-PERS-02, TU-SORT-03, TU-DAY-05 …
+      noreload: SBR-LINK-03, TU-COL-01
+  sort-header          n= 49  BOTH SIDES PRESENT
+      hidden: IV-COL-04, IV-LOC-06, PV-FILT-14, PV-ROW-06, PV-COL-02, PV-EXP-03, SBC-LOC-04, SBR-LOC-05 …
+      shown: IV-COL-01, IV-LOC-06, PV-FILT-14, PV-ROW-06, PV-API-03, SBC-LOC-04, SBC-EXP-03, SBC-EXP-15 …
+      automatic: PV-COL-02, SBC-LOC-04, SBR-ROW-02, TU-HRS-02, TU-LOC-06, WIP-COL-02, WIP-FLT-09
+      manual: IV-COL-01, IV-COL-03, IV-COL-04, IV-LOC-06, SBR-LOC-05, TU-ELL-02, WIP-COL-01, WIP-COL-02 …
+      reload: SBC-API-02, SBR-API-02, TU-API-02
+      noreload: TU-API-02
+  status-badge         n=  9  no opposite pair
+  totals-row           n= 52  BOTH SIDES PRESENT
+      hidden: SBC-COL-02, SBC-EMPTY-01, SBR-TOT-02, SBR-COL-01, SBR-STATE-01, SBR-STATE-03
+      shown: IV-NAV-06, IV-SCOPE-01, IV-TOT-01, IV-TOT-02, SBC-EXP-14, SBC-EXP-15, SBC-EMPTY-01, SBR-STAT-04 …
+      automatic: SBR-ROW-02, SBR-COL-01
+      manual: IV-TOT-01, IV-TOT-02, IV-TOT-03, IV-EXP-02, WIP-TOT-02
+
+## Helper (iii) — same-anchor clusters (cases sharing a spec anchor)
+anchors total: 882 / shared by >1 case: 145
+  IV   S1-R8      -> IV-FLT-02, IV-NAV-05
+  IV   S10-R11    -> IV-EXP-06, IV-EXP-10
+  IV   S10-R12    -> IV-EXP-07, IV-EXP-10
+  IV   S10-R14    -> IV-EXP-09, IV-EXP-10
+  IV   S10-R15    -> IV-EXP-02, IV-LOC-06
+  IV   S11-R2     -> IV-API-02, IV-DATE-09
+  IV   S11-R6     -> IV-API-05, IV-API-06
+  IV   S12-R3     -> IV-LOC-01, IV-VIS-02
+  IV   S3-R1      -> IV-COL-01, IV-LOC-06, IV-PERS-02
+  IV   S3-R5      -> IV-CALC-01, IV-CALC-02, IV-CALC-03, IV-COL-02
+  IV   S5-E1      -> IV-API-04, IV-DATE-08
+  IV   S5-N1      -> IV-API-06, IV-NAV-06
+  IV   S5-R4      -> IV-API-06, IV-DATE-04, IV-DATE-09
+  IV   S5-R5      -> IV-API-06, IV-DATE-05
+  IV   S6-R5      -> IV-FLT-02, IV-FLT-04
+  IV   S7-R2      -> IV-LOC-01, IV-NAV-03
+  IV   S7-R6      -> IV-COL-01, IV-COL-04, IV-LOC-06, IV-PERS-02
+  IV   S9-R5      -> IV-PERS-03, IV-SORT-04
+  PV   S1-N2      -> PV-API-04, PV-PERM-03
+  PV   S1-R2      -> PV-COL-04, PV-NAV-02
+  PV   S1-R4      -> PV-API-04, PV-PERM-01, PV-PERM-03
+  PV   S2-R10     -> PV-API-01, PV-API-02, PV-FILT-05
+  PV   S2-R8      -> PV-FILT-08, PV-FILT-09
+  PV   S3-R10     -> PV-COL-02, PV-COL-03, PV-FILT-14
+  PV   S3-R1a     -> PV-ROW-01, PV-ROW-02
+  PV   S3-R3      -> PV-API-03, PV-EXP-04, PV-ROW-04
+  PV   S3-R5      -> PV-FILT-01, PV-ROW-05
+  PV   S3-R8      -> PV-EXP-08, PV-ROW-05
+  PV   S3-R9      -> PV-CALC-12, PV-EXP-07, PV-ROW-08
+  PV   S4-R4      -> PV-COL-01, PV-COL-03, PV-EXP-03
+  PV   S4-R6      -> PV-COL-04, PV-COL-05, PV-COL-06, PV-COL-08, PV-NAV-02
+  PV   S5-R1      -> PV-CALC-01, PV-CALC-14, PV-PREC-01
+  PV   S5-R2      -> PV-CALC-02, PV-CALC-14
+  PV   S5-R3      -> PV-CALC-03, PV-CALC-04
+  PV   S5-R4      -> PV-CALC-01, PV-CALC-02, PV-CALC-03, PV-CALC-05, PV-CALC-06, PV-CALC-07, PV-CALC-08, PV-CALC-09
+  PV   S5-R4a     -> PV-CALC-10, PV-CALC-11, PV-CALC-12
+  PV   S5-R4b     -> PV-CALC-02, PV-CALC-11
+  PV   S5-R5      -> PV-CALC-07, PV-CALC-08, PV-CALC-13, PV-PREC-01, PV-ROW-08, PV-ROW-10
+  PV   S5-R7      -> PV-CALC-13, PV-CALC-15, PV-CALC-16
+  PV   S6-R11     -> PV-EXP-02, PV-FILT-14
+  PV   S6-R5      -> PV-EXP-05, PV-EXP-06
+  PV   S6-R6      -> PV-EXP-05, PV-EXP-06
+  PV   S6-R8      -> PV-EXP-06, PV-EXP-07
+  SBC  S1-N1      -> SBC-API-06, SBC-PERM-02
+  SBC  S1-R2      -> SBC-API-06, SBC-PERM-01, SBC-PERM-05
+  SBC  S10-R6     -> SBC-SORT-01, SBC-TREE-06
+  SBC  S10-R8b    -> SBC-API-02, SBC-TREE-09
+  SBC  S11-R1     -> SBC-CALC-01, SBC-CALC-06
+  SBC  S14-R1     -> SBC-EXP-01, SBC-EXP-16
+  SBC  S14-R13    -> SBC-EXP-03, SBC-EXP-04
+  SBC  S14-R14    -> SBC-API-05, SBC-EXP-02, SBC-EXP-14
+  SBC  S14-R2     -> SBC-EXP-01, SBC-EXP-16
+  SBC  S14-R3     -> SBC-API-05, SBC-EXP-05
+  SBC  S15-R1     -> SBC-EXP-01, SBC-EXP-16
+  SBC  S15-R13    -> SBC-EXP-10, SBC-EXP-11
+  SBC  S15-R14    -> SBC-EXP-09, SBC-EXP-10
+  SBC  S15-R2     -> SBC-EXP-01, SBC-EXP-16
+  SBC  S15-R22    -> SBC-API-05, SBC-EXP-11, SBC-EXP-14
+  SBC  S15-R3     -> SBC-API-05, SBC-EXP-05
+  SBC  S15-R5     -> SBC-EXP-08, SBC-EXP-11, SBC-EXP-16
+  SBC  S15-R6     -> SBC-EXP-02, SBC-EXP-08
+  SBC  S15-R7     -> SBC-EXP-08, SBC-EXP-09
+  SBC  S15-R8     -> SBC-EXP-08, SBC-EXP-09
+  SBC  S17-E1     -> SBC-CUST-03, SBC-EMPTY-01
+  SBC  S18-E1     -> SBC-CUST-04, SBC-CUST-09
+  SBC  S18-R11    -> SBC-API-04, SBC-CUST-06
+  SBC  S18-R2     -> SBC-API-03, SBC-CUST-01, SBC-CUST-02
+  SBC  S18-R4     -> SBC-API-03, SBC-CUST-04
+  SBC  S18-R5     -> SBC-CUST-04, SBC-CUST-05, SBC-CUST-06
+  SBC  S18-R6     -> SBC-API-04, SBC-CALC-07
+  SBC  S18-R9     -> SBC-CUST-04, SBC-CUST-09
+  SBC  S2-R9      -> SBC-DATE-04, SBC-PERS-06
+  SBC  S20-R14    -> SBC-TREE-04, SBC-VIS-02
+  SBC  S20-R19    -> SBC-CALC-01, SBC-LOC-04
+  SBC  S4-R12     -> SBC-CALC-01, SBC-COL-01, SBC-LOC-04
+  SBC  S4-R13     -> SBC-COL-01, SBC-EXP-03, SBC-EXP-09, SBC-EXP-11, SBC-EXP-16, SBC-LOC-04
+  SBC  S8-R16     -> SBC-API-01, SBC-TREE-08
+  SBR  S1-R1      -> SBR-NAV-01, SBR-PERM-01
+  SBR  S10-N1     -> SBR-TOT-01, SBR-TOT-02
+  SBR  S10-R5     -> SBR-API-03, SBR-CALC-05, SBR-MOB-02, SBR-TOT-02, SBR-TOT-03
+  SBR  S11-R2     -> SBR-SORT-04, SBR-TREE-09
+  SBR  S11-R4     -> SBR-PERS-05, SBR-SORT-02
+  SBR  S11-R5     -> SBR-API-02, SBR-SORT-03
+  SBR  S13-R1     -> SBR-API-06, SBR-DEACT-02
+  SBR  S13-R11    -> SBR-ASGN-04, SBR-DEACT-06
+  SBR  S13-R4     -> SBR-API-06, SBR-DEACT-02
+  SBR  S14-E2     -> SBR-API-05, SBR-EXP-15
+  SBR  S14-E3     -> SBR-API-04, SBR-EXP-16
+  SBR  S14-N2     -> SBR-API-04, SBR-EXP-14
+  SBR  S14-R20    -> SBR-ASGN-02, SBR-EXP-02, SBR-EXP-03, SBR-EXP-04, SBR-EXP-10, SBR-EXP-11, SBR-LOC-05
+  SBR  S14-R2a    -> SBR-API-04, SBR-EXP-02
+  SBR  S15-R6     -> SBR-ASGN-04, SBR-DEACT-06
+  SBR  S16-R4     -> SBR-STATE-03, SBR-TOT-02
+  SBR  S17-R3     -> SBR-EXP-01, SBR-MOB-01
+  SBR  S17-R4     -> SBR-MOB-02, SBR-TOT-03
+  SBR  S18-R4     -> SBR-ROW-02, SBR-VIS-01
+  SBR  S18-R7     -> SBR-LOC-01, SBR-TOT-01, SBR-UNAS-01, SBR-VIS-01
+  SBR  S18-R8     -> SBR-BADGE-02, SBR-VIS-02
+  SBR  S18-R9     -> SBR-MOB-03, SBR-VIS-03
+  SBR  S2-R5      -> SBR-DATE-04, SBR-EXP-03
+  SBR  S21-R7     -> SBR-CALC-06, SBR-COL-01, SBR-LOC-05, SBR-ROW-02
+  SBR  S22-R2     -> SBR-EXP-13, SBR-UNAS-01
+  SBR  S22-R3     -> SBR-UNAS-02, SBR-WO-05
+  SBR  S22-R4     -> SBR-EXP-02, SBR-EXP-13, SBR-SORT-04, SBR-UNAS-02
+  SBR  S23-R2     -> SBR-LINK-03, SBR-PERS-02, SBR-TREE-08
+  SBR  S23-R5     -> SBR-PERS-05, SBR-SORT-03
+  SBR  S5-R2      -> SBR-CALC-06, SBR-ROW-02
+  SBR  S5-R9      -> SBR-DEACT-06, SBR-ROW-03
+  SBR  S6-R1      -> SBR-TREE-05, SBR-UNAS-02
+  SBR  S6-R2      -> SBR-API-01, SBR-TREE-05
+  SBR  S6-R9      -> SBR-EXP-04, SBR-TREE-09
+  SBR  S9-R2      -> SBR-CALC-01, SBR-CALC-09
+  TU   S1-R5      -> TU-API-02, TU-NAV-04
+  TU   S1-R8      -> TU-LOC-03, TU-TECH-04
+  TU   S1-R9      -> TU-LINK-03, TU-LINK-04, TU-LINK-05
+  TU   S10-R3     -> TU-COL-01, TU-ELL-02
+  TU   S10-R4     -> TU-COL-01, TU-LOC-06
+  TU   S2-R13     -> TU-API-02, TU-SORT-02
+  TU   S2-R4      -> TU-ELL-04, TU-HRS-02
+  TU   S2-R7      -> TU-HRS-03, TU-HRS-04
+  TU   S2-R8      -> TU-DAY-03, TU-ELL-01
+  TU   S4-R2      -> TU-API-01, TU-DAY-02
+  TU   S4-R5      -> TU-API-01, TU-DAY-05
+  TU   S7-R10     -> TU-EXP-03, TU-EXP-04, TU-EXP-05
+  TU   S7-R12     -> TU-EXP-02, TU-EXP-03
+  TU   S7-R13     -> TU-EXP-04, TU-LOC-06
+  TU   S8-R12     -> TU-DAY-01, TU-DAY-04
+  TU   S8-R14     -> TU-LINK-01, TU-VIS-02
+  TU   S8-R2      -> TU-EXP-01, TU-VIS-01
+  TU   S8-R3      -> TU-DAY-04, TU-VIS-01
+  TU   S9-R2      -> TU-LOC-03, TU-NAV-03
+  TU   S9-R3      -> TU-API-02, TU-LOC-02
+  TU   S9-R4      -> TU-DAY-02, TU-LOC-02
+  TU   S9-R9      -> TU-HRS-02, TU-LOC-06
+  WIP  S2-N2      -> WIP-SCOPE-05, WIP-TAB-03
+  WIP  S2-R1      -> WIP-API-04, WIP-SCOPE-01
+  WIP  S2-R4      -> WIP-CALC-09, WIP-SCOPE-03
+  WIP  S4-E1      -> WIP-API-06, WIP-CALC-09
+  WIP  S4-R1      -> WIP-COL-01, WIP-PERS-02
+  WIP  S4-R15     -> WIP-CALC-02, WIP-CALC-07, WIP-CALC-10
+  WIP  S4-R3      -> WIP-COL-01, WIP-COL-02, WIP-FLT-09
+  WIP  S5-R12     -> WIP-SUM-07, WIP-VIS-06
+  WIP  S7-R13     -> WIP-EXP-02, WIP-FLT-09
+  WIP  S8-R8      -> WIP-FLT-07, WIP-PERS-04
+  WIP  S9-E1      -> WIP-EXP-02, WIP-EXP-07, WIP-FLT-09
+
+## Helper (iv) — SURFACE-SPLIT CHECK (Standing Rule 40)
+anchors whose cluster mentions an export surface — screen/CSV/PDF coverage:
+  IV   S10-R11    screen+csv+pdf all covered         members: IV-EXP-06, IV-EXP-10
+  IV   S10-R12    GAP: screen                        members: IV-EXP-07, IV-EXP-10
+  IV   S10-R14    GAP: screen                        members: IV-EXP-09, IV-EXP-10
+  IV   S10-R15    screen+csv+pdf all covered         members: IV-EXP-02, IV-LOC-06
+  IV   S3-R1      screen+csv+pdf all covered         members: IV-COL-01, IV-LOC-06, IV-PERS-02
+  IV   S7-R6      screen+csv+pdf all covered         members: IV-COL-01, IV-COL-04, IV-LOC-06, IV-PERS-02
+  PV   S1-R4      GAP: screen,pdf                    members: PV-API-04, PV-PERM-01, PV-PERM-03
+  PV   S3-R10     screen+csv+pdf all covered         members: PV-COL-02, PV-COL-03, PV-FILT-14
+  PV   S3-R3      GAP: pdf                           members: PV-API-03, PV-EXP-04, PV-ROW-04
+  PV   S3-R8      screen+csv+pdf all covered         members: PV-EXP-08, PV-ROW-05
+  PV   S3-R9      screen+csv+pdf all covered         members: PV-CALC-12, PV-EXP-07, PV-ROW-08
+  PV   S4-R4      screen+csv+pdf all covered         members: PV-COL-01, PV-COL-03, PV-EXP-03
+  PV   S4-R6      GAP: pdf                           members: PV-COL-04, PV-COL-05, PV-COL-06, PV-COL-08, PV-NAV-02
+  PV   S6-R11     screen+csv+pdf all covered         members: PV-EXP-02, PV-FILT-14
+  PV   S6-R5      GAP: screen                        members: PV-EXP-05, PV-EXP-06
+  PV   S6-R6      GAP: screen                        members: PV-EXP-05, PV-EXP-06
+  PV   S6-R8      GAP: screen                        members: PV-EXP-06, PV-EXP-07
+  SBC  S1-N1      GAP: screen,pdf                    members: SBC-API-06, SBC-PERM-02
+  SBC  S1-R2      GAP: screen,pdf                    members: SBC-API-06, SBC-PERM-01, SBC-PERM-05
+  SBC  S14-R1     screen+csv+pdf all covered         members: SBC-EXP-01, SBC-EXP-16
+  SBC  S14-R13    GAP: pdf                           members: SBC-EXP-03, SBC-EXP-04
+  SBC  S14-R14    screen+csv+pdf all covered         members: SBC-API-05, SBC-EXP-02, SBC-EXP-14
+  SBC  S14-R2     screen+csv+pdf all covered         members: SBC-EXP-01, SBC-EXP-16
+  SBC  S14-R3     screen+csv+pdf all covered         members: SBC-API-05, SBC-EXP-05
+  SBC  S15-R1     screen+csv+pdf all covered         members: SBC-EXP-01, SBC-EXP-16
+  SBC  S15-R13    screen+csv+pdf all covered         members: SBC-EXP-10, SBC-EXP-11
+  SBC  S15-R14    GAP: screen,csv                    members: SBC-EXP-09, SBC-EXP-10
+  SBC  S15-R2     screen+csv+pdf all covered         members: SBC-EXP-01, SBC-EXP-16
+  SBC  S15-R22    screen+csv+pdf all covered         members: SBC-API-05, SBC-EXP-11, SBC-EXP-14
+  SBC  S15-R3     screen+csv+pdf all covered         members: SBC-API-05, SBC-EXP-05
+  SBC  S15-R5     screen+csv+pdf all covered         members: SBC-EXP-08, SBC-EXP-11, SBC-EXP-16
+  SBC  S15-R6     GAP: screen                        members: SBC-EXP-02, SBC-EXP-08
+  SBC  S15-R7     GAP: screen,csv                    members: SBC-EXP-08, SBC-EXP-09
+  SBC  S15-R8     GAP: screen,csv                    members: SBC-EXP-08, SBC-EXP-09
+  SBC  S20-R19    screen+csv+pdf all covered         members: SBC-CALC-01, SBC-LOC-04
+  SBC  S4-R12     screen+csv+pdf all covered         members: SBC-CALC-01, SBC-COL-01, SBC-LOC-04
+  SBC  S4-R13     screen+csv+pdf all covered         members: SBC-COL-01, SBC-EXP-03, SBC-EXP-09, SBC-EXP-11, SBC-EXP-16, SBC-LOC-04
+  SBR  S10-R5     GAP: pdf                           members: SBR-API-03, SBR-CALC-05, SBR-MOB-02, SBR-TOT-02, SBR-TOT-03
+  SBR  S13-R11    GAP: screen,pdf                    members: SBR-ASGN-04, SBR-DEACT-06
+  SBR  S14-E2     GAP: csv                           members: SBR-API-05, SBR-EXP-15
+  SBR  S14-E3     GAP: screen                        members: SBR-API-04, SBR-EXP-16
+  SBR  S14-N2     GAP: screen                        members: SBR-API-04, SBR-EXP-14
+  SBR  S14-R20    screen+csv+pdf all covered         members: SBR-ASGN-02, SBR-EXP-02, SBR-EXP-03, SBR-EXP-04, SBR-EXP-10, SBR-EXP-11, SBR-LOC-05
+  SBR  S14-R2a    screen+csv+pdf all covered         members: SBR-API-04, SBR-EXP-02
+  SBR  S15-R6     GAP: screen,pdf                    members: SBR-ASGN-04, SBR-DEACT-06
+  SBR  S17-R3     screen+csv+pdf all covered         members: SBR-EXP-01, SBR-MOB-01
+  SBR  S18-R8     GAP: screen,csv                    members: SBR-BADGE-02, SBR-VIS-02
+  SBR  S2-R5      GAP: csv                           members: SBR-DATE-04, SBR-EXP-03
+  SBR  S21-R7     screen+csv+pdf all covered         members: SBR-CALC-06, SBR-COL-01, SBR-LOC-05, SBR-ROW-02
+  SBR  S22-R2     screen+csv+pdf all covered         members: SBR-EXP-13, SBR-UNAS-01
+  SBR  S22-R4     screen+csv+pdf all covered         members: SBR-EXP-02, SBR-EXP-13, SBR-SORT-04, SBR-UNAS-02
+  SBR  S5-R9      GAP: pdf                           members: SBR-DEACT-06, SBR-ROW-03
+  SBR  S6-R9      GAP: csv                           members: SBR-EXP-04, SBR-TREE-09
+  TU   S10-R4     screen+csv+pdf all covered         members: TU-COL-01, TU-LOC-06
+  TU   S7-R10     screen+csv+pdf all covered         members: TU-EXP-03, TU-EXP-04, TU-EXP-05
+  TU   S7-R12     screen+csv+pdf all covered         members: TU-EXP-02, TU-EXP-03
+  TU   S7-R13     screen+csv+pdf all covered         members: TU-EXP-04, TU-LOC-06
+  TU   S8-R2      screen+csv+pdf all covered         members: TU-EXP-01, TU-VIS-01
+  TU   S9-R9      screen+csv+pdf all covered         members: TU-HRS-02, TU-LOC-06
+  WIP  S4-R3      screen+csv+pdf all covered         members: WIP-COL-01, WIP-COL-02, WIP-FLT-09
+  WIP  S7-R13     screen+csv+pdf all covered         members: WIP-EXP-02, WIP-FLT-09
+  WIP  S9-E1      screen+csv+pdf all covered         members: WIP-EXP-02, WIP-EXP-07, WIP-FLT-09
+
+clusters with an export surface but a missing sibling surface: 25
