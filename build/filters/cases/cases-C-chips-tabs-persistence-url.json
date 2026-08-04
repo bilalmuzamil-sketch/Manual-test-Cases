@@ -668,12 +668,12 @@
    "1. On the very first visit the Estimates tab is the selected one, even though All is the FIRST tab in the row (order and default are different on purpose).",
    "2. After switching to All and returning, the All tab is selected - the app remembers your last-used tab per account.",
    "---",
-   "This is the expected behaviour as per epic SV-8785 and the engineering technical plan. No numbered requirement in the Filters specification version 1.6 covers this point yet."
+   "This is the expected behaviour as per epic SV-8785 and a product owner decision dated 2026-08-04. No numbered requirement in the Filters specification version 1.6 covers this point. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
   ],
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D10 / section 4-3.1",
-  "spec_ref": "SV-8785 [epic] (no requirement in the ratified spec v1.6 - default/last-used tab is engineering-plan-only - confirmation requested); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (no requirement in spec v1.6 - default/last-used tab is not in the spec; RULED by Branko answers 2026-08-04 Q2 \"A - it's fine\"); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
-  "notes": "PENDING BRANKO (Questions Q5 / deltas C5): the Estimates-first-visit default is an ENGINEERING decision (D10, database-load driven), product-visible but not in any ratified spec we hold. If Branko rules the default should be All, flip expected 1.",
+  "notes": "PENDING BRANKO (Questions Q5 / deltas C5): the Estimates-first-visit default is an ENGINEERING decision (D10, database-load driven), product-visible but not in any ratified spec we hold. If Branko rules the default should be All, flip expected 1. | RESOLVED 2026-08-04 - Branko answered the tech-plan sheet Q2 \"A - it's fine\": Estimates IS the right first-visit tab, so nothing flips. The default tab is still absent from the PRD, which he still owes; the ruling, not the document, is what the case now cites.",
   "api_related": false
  },
  {

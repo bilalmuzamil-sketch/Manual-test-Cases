@@ -19,10 +19,10 @@
    "2. The row scrolls horizontally - chips that do not fit are reachable by swiping.",
    "3. An arrow at the right-hand edge shows that the row can be scrolled. (This is what the design shows - if your screen looks different, write down what you actually see and carry on.)",
    "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R1). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited."
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
   ],
   "design_ref": "design-notes.md B.1 #13/#14 (11857:31046, 11884:20807); the third final mobile board 11884:15901 was RENDERED 2026-07-31 and shows the same chip row starting 'All Filters' but with NO scroll-arrow button",
-  "spec_ref": "SV-8797 (S12-R1) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8797 (S12-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "The scroll-arrow overlay is now evidenced on only ONE of the three final mobile boards: 11884:20807 shows a round '>' button at the right edge, while 11884:15901 and 12867:12201 (both rendered 2026-07-31, so this is pixel evidence, not a text-layer guess) show NO arrow. Spec v1.6 S12-R1 requires only 'a horizontally scrollable row below the tab navigation' and says nothing about a scroll affordance, so expected result 3 was deliberately LEFT AS IS - it already tells the tester to write down what they actually see and carry on. VIU-confirm on the build whether the arrow shows always, on overflow only, or not at all. Re-verified whole against spec v1.6 (2026-07-28) S12-R1 + the three rendered final mobile boards on 2026-07-31 - title, preconditions, steps, expected results and refs all still correct; only this note changed.",
   "api_related": false
@@ -47,10 +47,10 @@
    "2. It lists the five filters as expandable accordion rows, each with its icon, name and a down arrow: Status, Customer, Lead Technician, Service Advisor, Asset on site.",
    "3. A sticky blue 'Apply filters' button sits at the bottom of the sheet.",
    "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R3). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited."
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R3). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
   ],
   "design_ref": "design-notes.md B.1 #15 (11884:13689)",
-  "spec_ref": "SV-8797 (S12-R3) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8797 (S12-R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "DESIGN TYPO FLAG: the sheet rows in the design read 'Lead Tehnician' (missing 'c') - the build must ship 'Lead Technician' (design-notes C.1); if it inherits the typo, raise a bug.",
   "api_related": false
@@ -78,10 +78,10 @@
    "2. After 'Apply filters' the sheet closes and the work order list shows only the ticked statuses.",
    "3. The reopened sheet's title shows the applied-filter count, for example 'All Filters (1)', and the Status accordion header is highlighted with the selected values ticked.",
    "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S12-R3, S2-R1). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited."
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S12-R3, S2-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
   ],
   "design_ref": "design-notes.md B.1 #16/#18 (11884:13719, 11884:16160)",
-  "spec_ref": "SV-8785 [epic] (S12-R2; S12-R3; S2-R1) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S12-R2; S12-R3; S2-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "Mobile uses an explicit 'Apply filters' step (unlike desktop's real-time filtering) - the sheet button is in the final design; VIU-confirm whether the list also live-updates before Apply.",
   "api_related": false
@@ -89,7 +89,7 @@
  {
   "id": "FLT-MOB-04",
   "area": "Mobile Filters",
-  "title": "Mobile: tapping one chip opens its own sheet with an 'Apply filter' button",
+  "title": "Mobile: tapping one chip opens its own sheet and applies in real time",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -98,21 +98,23 @@
    "2. You are on the Work Orders page."
   ],
   "steps": [
-   "1. Tap the Status chip (not All Filters).",
-   "2. Read the sheet.",
-   "3. Tick a status and tap the bottom button."
+   "1. Tap the Status chip (not the 'All Filters' chip).",
+   "2. Read the sheet that opens.",
+   "3. Tick one status and watch the work order list.",
+   "4. Untick it, then tick a different status, and watch the list again."
   ],
   "expected": [
-   "1. A bottom sheet opens for that single filter: its title row shows the filter's icon and name (for example 'Status') with a close (x) button - no accordion list of the other filters.",
+   "1. A bottom sheet opens for that single filter: its title row shows the filter's icon and name (for example 'Status') with a close (x) button, and no accordion list of the other filters.",
    "2. The sheet shows only that filter's options (the nine status checkboxes plus 'Clear selection').",
-   "3. The bottom button reads 'Apply filter' (singular); tapping it applies the selection and filters the list.",
+   "3. There is no 'Apply filter' button. Ticking or unticking a status filters the work order list immediately, the same as on desktop, with no submit step.",
+   "4. The chip's active state and value update live as the selection changes; closing the sheet with the x just dismisses it and keeps the applied filter.",
    "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S12-R3). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited."
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S12-R3, S2-R6). Branko confirmed this on 2026-08-04 in his answers in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
   ],
   "design_ref": "design-notes.md B.1 #17/#21 (11884:21065, 11884:21271)",
-  "spec_ref": "SV-8797 (S12-R2; S12-R3) [spec v1.6 2026-07-28] ; individual-chip real-time per S12-R2 + tech-plan 2026-07-29; only the combined All Filters sheet is batch",
+  "spec_ref": "SV-8797 (S12-R2; S12-R3; S2-R6) [spec v1.6 2026-07-28] ; individual-chip real-time per S12-R2 + S2-R6 + tech-plan 2026-07-29; only the combined All Filters sheet is batch; CONFIRMED by Branko answers 2026-08-04 Q1",
   "viu_status": "VIU-Pending",
-  "notes": "CONFLICT - PENDING BRANKO/DEV (Questions Q4 / deltas C4): the design frames show an 'Apply filter' button, but the tech plan (D15) builds INDIVIDUAL filter sheets as real-time (no button) - only the combined All Filters sheet batch-applies. Verify live which one ships before failing this case.",
+  "notes": "CONFLICT - PENDING BRANKO/DEV (Questions Q4 / deltas C4): the design frames show an 'Apply filter' button, but the tech plan (D15) builds INDIVIDUAL filter sheets as real-time (no button) - only the combined All Filters sheet batch-applies. Verify live which one ships before failing this case. | RESOLVED 2026-08-04 - Branko answered the tech-plan sheet Q1 \"A - no apply button\": the single-filter sheet applies INSTANTLY as you tick, and only the combined All Filters sheet keeps its \"Apply filters\" button. The design-vs-tech-plan conflict is closed in the tech plan's favour (D15). Live TestRail already asserted this; the LOCAL body was stale and asserting the opposite, and is reconciled to live by this pass. Body reflowed (paste markup repaired) - assertions unchanged. Still NOT live-verified: no Filters QA branch has been consulted (VIU reserved by the QA lead until Report Suite is complete).",
   "api_related": false
  },
  {
@@ -139,10 +141,10 @@
    "3. Removing a tag deselects just that customer.",
    "4. After 'Apply filters' the list shows only work orders of the remaining selected customers, and the sheet title counts the applied filters (for example 'All Filters (2)').",
    "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S3-R2/R3/R5). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited."
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S3-R2/R3/R5). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
   ],
   "design_ref": "design-notes.md B.1 #20/#22/#23 (11884:13940, 11884:16695, 11884:16383)",
-  "spec_ref": "SV-8785 [epic] (S12-R2; S3-R2/R3/R5) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S12-R2; S3-R2/R3/R5) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -169,10 +171,10 @@
    "2. The Service Advisor row opens with a 'Search advisor' field and the advisor list.",
    "3. Applying a selection filters the work order list just like on desktop.",
    "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S4-R1, S5-R1). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited."
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S4-R1, S5-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
   ],
   "design_ref": "design-notes.md B.1 #24/#25 (11884:14296, 11884:14811)",
-  "spec_ref": "SV-8785 [epic] (S12-R2; S4-R1; S5-R1) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S12-R2; S4-R1; S5-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "DESIGN TYPO FLAG: the accordion row label in the design reads 'Lead Tehnician' - the build must ship 'Lead Technician' (design-notes C.1).",
   "api_related": false
@@ -199,10 +201,10 @@
    "2. Only one option can be selected at a time.",
    "3. After applying, the list shows only work orders matching the chosen on-site state.",
    "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S6-R1/R2/R3). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited."
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S6-R1/R2/R3). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
   ],
   "design_ref": "design-notes.md B.1 #19 (11884:15582)",
-  "spec_ref": "SV-8785 [epic] (S12-R2; S6-R1/R2/R3) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S12-R2; S6-R1/R2/R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -228,10 +230,10 @@
    "2. A 'Clear filters' control appears while at least one filter is active.",
    "3. Using it removes all active filters, the chips return to default and the full list comes back.",
    "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S7-R1/R3, S8-R1). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited."
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S7-R1/R3, S8-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
   ],
   "design_ref": "design-notes.md B.1 #13/#14 (11857:31046, 11884:20807); Story 12",
-  "spec_ref": "SV-8785 [epic] (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "The final mobile frames show the chip row unselected; the exact mobile placement of 'Clear filters' is not drawn - VIU-confirm where it appears (chip row vs sheet).",
   "api_related": false
