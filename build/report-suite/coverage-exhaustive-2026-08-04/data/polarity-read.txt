@@ -1,0 +1,339 @@
+[1] SBC S1-R1 a1 C30096 s=0.6
+  R: "Sales By Customer" appears in the Reports left-side navigation.
+  Q: "Sales By Customer" is listed in the Performance group of the Reports left-side navigation, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency) — the new reports are added bel
+[2] SBC S2-N2 a2 C30104 s=0.615
+  R: If the user picks a start and end date more than 366 days apart, the report prevents the selection rather than loading the wider range.
+  Q: A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.
+[3] SBC S4-R4 a1 C30178 s=0.5
+  R: On first load, the filter defaults to the location the user is currently working in (their active location) — a single location.
+  Q: Location = the single location you are currently working in (your active location) — not all locations.
+[4] SBC S6-R5 a1 C30176 s=0.667
+  R: On restore, any saved value that is no longer valid is discarded, and that setting uses its default instead.
+  Q: The stale saved location is discarded and the location setting uses its default (your active location) instead.
+[5] SBC S8-R3 a1 C30125 s=0.625
+  R: Invoices are grouped into one asset row when they reference the same vehicle record (the same vehicle id).
+  Q: Invoices referencing the same vehicle record (same vehicle id) group into ONE asset row — no duplicate rows for the same vehicle.
+[6] SBC S8-R14 a1 C30190 s=0.5
+  R: A customer's asset and invoice rows are fetched from the server the first time that customer is expanded; they are not preloaded with the customer summary rows.
+  Q: The first expand of a customer triggers a server fetch for that customer's asset and invoice rows.
+[7] SBC S8-R19 a1 C30128 s=0.571
+  R: The header-row chevron acts on the currently visible customers only.
+  Q: Clicking it expands every customer on the current page in one action — it acts on the currently visible customers only, not the whole result set.
+[8] SBC S8-R21 a1 C30129 s=0.818
+  R: Typing in the Customer filter's type-ahead — which only narrows the filter's own dropdown list, not the table — does not collapse expanded rows.
+  Q: Typing in the Customer filter's type-ahead only narrows the dropdown list — the expanded table rows stay expanded.
+[9] SBC S9-R1 a1 C30138 s=0.8
+  R: Each invoice number on a detail row is a clickable link.
+  Q: Each invoice number on a detail row is a clickable link that opens in the SAME browser tab (no new tab).
+[10] SBC S9-R2 a1 C30138 s=0.667
+  R: Activating the link opens the invoice in the same browser tab.
+  Q: Each invoice number on a detail row is a clickable link that opens in the SAME browser tab (no new tab).
+[11] SBC S9-R4 a1 C30139 s=0.583
+  R: Pressing the browser back button returns to the report with its filters, sort, and columns restored; expanded rows are shown collapsed again (expansion is not restored).
+  Q: Pressing back returns to the report with its filters, sort, and columns restored exactly as set.
+[12] SBC S9-R7 a1 C30140 s=0.875
+  R: The invoice number link has no underline at rest, on hover, or after it has been clicked.
+  Q: The invoice number link is shown in the application's primary color at rest, on hover, and after it has been clicked.
+[13] SBC S10-R2 a1 C30142 s=0.833
+  R: Text columns sort alphabetically; numeric columns sort by value.
+  Q: Text columns sort alphabetically; numeric columns sort by value (not as text).
+[14] SBC S10-R4 a1 C30143 s=0.625
+  R: The default sort on first load is Customer name, ascending, case-insensitive.
+  Q: On first load, rows are ordered by Customer name, ascending, case-insensitive (a lower-case "acme" sorts by letter, not after all capitals).
+[15] SBC S12-E1 a1 C30152 s=0.857
+  R: A value that rounds to 0.0 (for example, +0.04) is shown as 0.0 in the default text color.
+  Q: A value that rounds to 0.0 (for example +0.04) is shown as 0.0 in the default text color (not +0.0 in green).
+[16] SBC S13-R1 a1 C30156 s=0.556
+  R: A column selector button is in the toolbar's action area, next to the overflow menu.
+  Q: The column selector is a separate control next to the overflow menu — it is not an item inside the overflow menu.
+[17] SBC S14-R2 a1 C30159 s=0.889
+  R: The two menu items read exactly "Download Summary (CSV)" and "Download Expanded View (CSV)."
+  Q: The menu items read, in order: "Download Summary (PDF)", "Download Expanded View (PDF)", "Download Summary (CSV)", "Download Expanded View (CSV)" - and there is NO "Print" item anywhere in the menu.
+[18] SBC S14-R3 a1 C30194 s=0.688
+  R: Both CSVs are generated on the server from the active date range, Product Type, location, Customer filter (Story 18), and sort, and contain the customers matching those filters (S18-R7).
+  Q: The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort — not assembled from the rows already loaded in the browser.
+[19] SBC S14-R4 a2 C38856 s=0.692
+  R: Its columns, in this exact order, are: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal.
+  Q: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns.
+[20] SBC S14-R7 a1 C30161 s=0.625
+  R: The "Parts Sales" bucket (S8-R6) appears as an asset row named "Parts Sales" in the Expanded CSV.
+  Q: Work with no vehicle appears as an asset row named "Parts Sales".
+[21] SBC S15-R1 a1 C30159 s=0.636
+  R: PDF downloads are started from two items in the toolbar's overflow menu — "Download Summary (PDF)" and "Download Expanded View (PDF)."
+  Q: The menu items read, in order: "Download Summary (PDF)", "Download Expanded View (PDF)", "Download Summary (CSV)", "Download Expanded View (CSV)" - and there is NO "Print" item anywhere in the menu.
+[22] SBC S15-R2 a1 C30159 s=0.889
+  R: The two menu items read exactly "Download Summary (PDF)" and "Download Expanded View (PDF)."
+  Q: The menu items read, in order: "Download Summary (PDF)", "Download Expanded View (PDF)", "Download Summary (CSV)", "Download Expanded View (CSV)" - and there is NO "Print" item anywhere in the menu.
+[23] SBC S15-R3 a1 C30194 s=0.688
+  R: Both PDFs are generated on the server from the active date range, Product Type, location, Customer filter (Story 18), and sort, and contain the customers matching those filters (S18-R7).
+  Q: The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort — not assembled from the rows already loaded in the browser.
+[24] SBC S17-N1 a1 C30182 s=0.8
+  R: The empty-state message does not appear while the table is loading — only after the table finishes its initial loading and shows zero customers.
+  Q: The message appears only after the table finishes its initial loading and shows zero customers.
+[25] SBC S17-E1 a2 C30181 s=0.583
+  R: The Customer filter selection is kept; those customers reappear when the filters change back to a range where they have data.
+  Q: With a narrowed customer selection and no data, the empty state shows but the selection is KEPT (not cleared) — when the filters change back, the selected customers reappear.
+[26] SBC S18-R2 a3 C30192 s=0.654
+  R: The dropdown does not load the full customer list into the browser; instead, as the user types, it fetches matching customers from the server — case-insensitive "contains" matching on the customer name, scoped to the act
+  Q: As you type, the browser fetches matching customers from the server — case-insensitive "contains" matching on the name, scoped to the active date range, Product Type, and location — and lists the returned customers.
+[27] SBC S18-R3 a2 C30114 s=0.615
+  R: It reads "All customers" when the filter is not in the all-customers state (activating it puts the filter in the all-customers state, S18-R4) and "Clear all" when the filter is in the all-customers state (activating it c
+  Q: In the all-customers state the pinned control reads "Clear all"; activating it clears the selection to an empty set.
+[28] SBC S18-R4 a2 C30115 s=0.615
+  R: While the filter is in the all-customers state, every customer matching the other active filters is included, including any customer that appears later (S18-R8, S18-R9).
+  Q: After the filter change the filter stays in the all-customers state (label still "All customers") and every customer matching the new filters is included — including the newly-appearing one, with no manual re-selection.
+[29] SBC S18-R6 a1 C30155 s=0.833
+  R: The totals row is computed on the server over the full set of customers matching the active filters (date range, Product Type, location, and the Customer filter), not only the customers on the current page.
+  Q: The totals row is computed over the full set of customers matching the active filters (date range, Product Type, location, Customer filter).
+[30] SBC S20-R19 a2 C38912 s=0.667
+  R: The Location filter control keeps a constant width regardless of the label it shows.
+  Q: The Location filter control keeps the same width whichever label it shows — one location, several, or "All locations" — so the toolbar does not shift as you change the selection.
+[31] SBR S2-N1 a1 C30298 s=0.5
+  R: If the chosen range produces no matching invoices for any rep, the report shows the empty state (Story 16).
+  Q: In the empty state the toolbar — filters, column selector, and the ⋯ exports — stays visible and interactive; widening the range re-fetches and renders the matching reps normally.
+[32] SBR S3-R3 a1 C30206 s=0.571
+  R: "Parts & Service" is the default on first load (no remembered setting — Story 23).
+  Q: "Parts & Service," "Parts only," "Service only" — with "Parts & Service" as the default on first load.
+[33] SBR S4-R3 a1 C30208 s=0.5
+  R: "All Statuses" is the default on first load (no remembered setting — Story 23).
+  Q: "All Statuses" is the default on first load.
+[34] SBR S5-R8 a1 C30218 s=0.636
+  R: Rep summary rows are visually emphasized with bold text so they read as parent rows above their detail rows.
+  Q: Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) — row type is distinguished by font weight, not background color.
+[35] SBR S5-R10 a2 C30218 s=0.692
+  R: **Both forms of the grand Totals indicator are exempt** (the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row — see S10-R5).
+  Q: The grand Totals indicator is exempt: the desktop Totals row merges the four leading identifier columns;
+[36] SBR S6-R4 a1 C30218 s=1.0
+  R: Detail rows use the default font weight (400); rep summary rows use bold (700).
+  Q: Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) — row type is distinguished by font weight, not background color.
+[37] SBR S6-N2 a1 C30264 s=0.667
+  R: If the Show Unassigned toggle is turned off while the Unassigned row is expanded, the row is removed; turning the toggle back on renders it collapsed.
+  Q: Turning the toggle off removes the expanded row; turning it back on renders it collapsed.
+[38] SBR S10-R5 a4 C30238 s=0.778
+  R: Money uses accounting parentheses for negatives; Margin % is recomputed (§3); values are round(Σ unrounded).
+  Q: Money uses accounting parentheses for negatives; Margin % is recomputed;
+[39] SBR S11-R5 a4 C30317 s=1.0
+  R: Invoice detail rows continue to load lazily per rep on expand (S6-R2).
+  Q: Invoice detail rows continue to load lazily per rep on expand, unaffected by the sort mechanism.
+[40] SBR S12-R2 a1 C30247 s=1.0
+  R: Activating it navigates the current tab to the underlying invoice (work order or parts sale).
+  Q: Activating it navigates the CURRENT tab to the underlying invoice (work order or parts sale) — never a new tab.
+[41] SBR S13-R9 a1 C30256 s=0.75
+  R: On a valid submit, the "Deactivate" button enters the standard in-flight loading state (non-interactive, in-progress indicator) while the request is in flight; the dialog stays open, and Cancel/X/Escape are all non-inter
+  Q: The "Deactivate" button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and the Cancel and X controls are non-interactive during the request (pressing the "Esc"
+[42] SBR S13-R10 a2 C30256 s=1.0
+  R: Every customer stays assigned to this rep; denormalized rep names and past invoice snapshots are preserved.
+  Q: Customer assignments are NOT modified — every customer stays assigned to this rep; denormalized rep names and past invoice snapshots are preserved.
+[43] SBR S14-R2a a1 C30277 s=0.5
+  R: All four downloads render rep rows in the report's **currently-active order** — the active on-screen column sort (column + direction) if one is set, otherwise the A→Z default (S11-R4) — with the Unassigned row (when show
+  Q: Rep rows appear in the report's currently-active order — the active column sort if one is set, otherwise the A→Z default.
+[44] SBR S14-R2a a2 C30319 s=0.636
+  R: All four exports are **generated server-side** and receive the active filters and sort, so their contents and order match the screen.
+  Q: Each export is generated by the server, receiving the active filters and sort — the file's contents and order match the screen even for reps never expanded (not built from loaded screen data).
+[45] SBR S14-R9 a1 C30282 s=0.875
+  R: Negative dollar values in either PDF render in accounting parentheses — `($1,234.56)`.
+  Q: Negative dollar values render in accounting parentheses — for example ($1,234.56) — in both PDFs, with no extra color treatment.
+[46] SBR S14-N2 a3 C30319 s=0.75
+  R: (This is distinct from an empty-but-loaded result, which produces a valid header-row-only file — S14-E3.)
+  Q: An empty-but-loaded result still produces a valid file (header-row-only CSV / no-rows PDF).
+[47] SBR S15-R1 a1 C30292 s=0.727
+  R: The dialog's Report Name dropdown includes "Sales Rep Assignments," appended at the bottom of the list (additive).
+  Q: "Sales Representative Assignments" appears in the Report Name dropdown, appended at the BOTTOM of the list (additive — no existing entry moved or removed).
+[48] SBR S16-R4 a1 C30300 s=0.611
+  R: **Loading state.** On the initial load and on every filter-triggered re-fetch, the table shows the standard reports loading indicator (a centered spinner over the data area); the grand Totals indicator is hidden during l
+  Q: On the initial load and on every filter-triggered re-fetch, the table shows the standard reports loading indicator — a centered spinner over the data area.
+[49] SBR S18-R10 a1 C30308 s=0.5
+  R: The row chevrons and the sortable column headers are keyboard-focusable and activate on Enter/Space; a chevron exposes its expanded/collapsed state and a sortable header exposes its current sort state to assistive techno
+  Q: A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology.
+[50] SBR S18-R12 a1 C30309 s=0.647
+  R: No information is conveyed by color alone: Inv. Hrs carries its `+`/`-` sign, status badges carry their text label (S8-R6), and links carry a hover/focus underline (S12-R4/R5).
+  Q: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.
+[51] SBR S19-R5 a1 C30313 s=0.714
+  R: The selector is read-only (non-interactive) when the WO status is "Invoiced" or "Paid".
+  Q: On the Invoiced WO the Sales Representative selector is read-only (non-interactive) — the assignment cannot be changed.
+[52] SBR S19-R6 a1 C30314 s=0.5
+  R: At invoice creation, the WO's Sales Rep is snapshotted onto the resulting invoice, and that snapshot is what the report reads.
+  Q: Changing WO (a)'s Sales Representative afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation.
+[53] SBR S19-R7 a1 C30315 s=0.636
+  R: The customer record's left-panel sidebar shows a single "Sales Rep" row with the customer's assigned rep; when none is assigned it renders "Unassigned".
+  Q: The customer record's left-panel sidebar shows a single row labeled "Sales Representative" (the full word — the product owner explicitly corrected the short-form "Sales Representative" label here) with the customer's ass
+[54] SBR S20-R5 a1 C30271 s=0.5
+  R: Column visibility is persisted and restored per Story 23.
+  Q: Every setting is restored: date range (including the custom start/end), product type, invoice status, location, Show Unassigned, column visibility, and the active column sort (column + direction).
+[55] SBR S20-R6 a1 C30265 s=0.75
+  R: On first visit (no remembered preference), all seven metric columns are visible.
+  Q: On first visit all seven metric columns are visible.
+[56] SBR S20-R8 a1 C30268 s=0.5
+  R: The column selector state does not affect any export; all four downloads always include all metric columns.
+  Q: All four downloads include ALL metric columns regardless of the on-screen column selector state.
+[57] SBR S22-R4 a1 C30262 s=0.75
+  R: The Unassigned row is **pinned to the top** of the table, above the A→Z reps, and stays pinned regardless of sort (S11-R2).
+  Q: The row is pinned to the TOP of the table, above the A→Z reps, and stays pinned regardless of sort.
+[58] SBR S23-N1 a1 C30274 s=1.0
+  R: Clearing browser storage returns the report to first-visit defaults (S23-R4).
+  Q: Clearing browser storage fully returns the report to first-visit defaults — no server-side profile brings the old settings back.
+[59] PV S1-R1 a1 C30322 s=0.571
+  R: The report is accessible from the Reports navigation under a **Parts** section heading, labeled **Parts Velocity**.
+  Q: A Parts section heading exists in the Reports navigation (this feature creates it - the application had no Parts reports before).
+[60] PV S2-R1 a2 C30328 s=0.6
+  R: On a first visit (no saved view) the default is **Both**.
+  Q: On a first visit the default is Both.
+[61] PV S2-R1 a3 C30328 s=0.5
+  R: Selecting a value immediately reloads the report data.
+  Q: Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory;
+[62] PV S2-R2 a4 C30330 s=0.846
+  R: The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses); this report does not define its own.
+  Q: The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).
+[63] PV S2-R7 a1 C30334 s=0.625
+  R: All active filters combine with AND logic — a part must satisfy every active filter to appear.
+  Q: After step 3 the part disappears - a part must satisfy EVERY active filter to appear (AND logic, not OR).
+[64] PV S2-R9 a3 C30337 s=0.571
+  R: Selecting one, several, or all locations reloads the data scoped to that set.
+  Q: Each selection reloads the data scoped to the chosen set; 'All Locations' means all locations the user can ACCESS, never beyond - a location the user cannot access is never included.
+[65] PV S3-R5 a1 C30345 s=0.857
+  R: The **Type** column displays `Inventory` or `Special Order` as plain text.
+  Q: The Type column shows each row's kind as plain text (no badge or chip styling): "Inventory" or "Special Order".
+[66] PV S3-R9 a2 C30381 s=0.6
+  R: The fields that can be null are **On Hand, Turns / Yr, Min, and Max** (always null for special-order rows), **Unit Cost** and **Sell Price** (null when billed units ≤ 0), **Margin %** (null when Revenue ≤ 0), and **Last 
+  Q: A null value renders as — (em-dash) in BOTH the CSV and the PDF, in every nullable field: Unit Cost, Sell Price, Margin %, On Hand, Turns / Yr, Last Sale, Min, Max.
+[67] PV S4-R2 a1 C30352 s=0.778
+  R: On a first visit (no saved selection), the report shows exactly these **14** columns, in this on-screen left-to-right order: **Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Marg
+  Q: With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On
+[68] PV S5-R4b a1 C30369 s=0.5
+  R: **Sold (WO)**, **Sold (Parts Sale)**, and **special-order Units Sold** are billed-work-order-line quantities and — like the profitability columns (S5-R4a) — **exclude reversed/voided sales** (net of reversals).
+  Q: After the reversal, ALL the billed-line columns drop to reflect only the remaining sale - the reversed/voided sale is excluded from Revenue, Margin, Unit Cost, Sell Price, Margin %, Sold (WO), Sold (Parts Sale), and (for
+[69] PV S5-R4a a2 C30369 s=0.556
+  R: **Reversed/voided sales are excluded** from these sums (netting reversals, consistent with Units Sold).
+  Q: This netting is consistent with inventory Units Sold, which already nets reversals via the stock add-back.
+[70] PV S5-R7 a1 C30374 s=0.538
+  R: **Units Sold** (inventory stock movement) is computed from a different source than the profitability columns' **billed units** (billed work-order lines).
+  Q: In W1 (work-order date in window): the billed columns (Revenue, Margin, Unit Cost, Sell Price, Margin %, Sold (WO), Sold (Parts Sale)) count the sale, while inventory Units Sold / Demand do NOT (their movement event is o
+[71] PV S6-R2 a1 C30376 s=0.769
+  R: Both exports reflect the date range, type, category, vendor, bin location, location, and search active at the time of export.
+  Q: Both files contain only the rows matching the date range, type, category, vendor, bin, location, and search active at export time - not a full unfiltered dump.
+[72] TU S1-R2 a1 C30393 s=0.75
+  R: When the user opens the report, it shows one row for each technician who has clocked time in the selected date range at the selected location(s).
+  Q: Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) appear.
+[73] TU S1-R3 a1 C30394 s=0.5
+  R: On the user's first visit (no saved settings — §3), the report defaults to the **current calendar month** (the date picker's "This Month" preset) and the user's currently active location.
+  Q: The date range defaults to the current calendar month (the date picker's "This Month" preset).
+[74] TU S2-R14 a1 C30410 s=0.533
+  R: When two technicians have the same value in the sorted column, they are ordered by Technician name, A to Z; if two technicians share the same display name, they retain a stable order (their order does not change between 
+  Q: Technicians tied in the sorted column are ordered by Technician name A to Z; two technicians sharing the same display name keep a stable order between renders.
+[75] TU S3-R5 a2 C30417 s=0.765
+  R: A visible technician whose Est. Lost Labor is "—" (no rate anywhere) contributes nothing to the sum; the Summary therefore understates true lost labor whenever any visible technician is "—" or partially valued (S2-E4).
+  Q: A visible technician whose value is "—" contributes NOTHING to the sum - so the Summary understates true lost labor whenever any visible technician is "—" or partially valued (documented, expected).
+[76] TU S4-R5 a1 C30422 s=0.538
+  R: Expansion state is view-only and is not persisted: it resets (all collapsed) on any data reload (date-range or location change) and on a fresh visit.
+  Q: After the reload (date-range or location change), all rows are collapsed - expansion state resets.
+[77] TU S4-N1 a1 C30419 s=0.714
+  R: If a technician has no clocked time on a given day in the range, that day has no row.
+  Q: One row appears for each day the technician clocked time in the range, in date order from earliest to latest.
+[78] TU S5-R4 a1 C30424 s=0.714
+  R: When a technician's row is hidden, the Summary row recalculates over the technicians that remain visible.
+  Q: The Summary row recalculates over the technicians that remain visible.
+[79] TU S5-R10 a1 C30426 s=0.556
+  R: When the user returns to the report, the technicians they previously deselected are still deselected (the deselected set is what persists — §3, S1-R8).
+  Q: The two deselected technicians are STILL deselected on return - the deselected set is what persists (saved in this browser, not on the account).
+[80] TU S7-R5 a1 C30435 s=0.75
+  R: The Summary PDF shows the technician rows and the Summary row.
+  Q: The Summary PDF shows the technician rows and the Summary row (no day rows);
+[81] TU S7-R8 a1 C30437 s=0.7
+  R: Every download includes only the technicians that are currently selected in the technician filter, and covers the location(s) currently selected in the location filter.
+  Q: Every download includes ONLY the technicians currently selected in the technician filter - the deselected technician is absent from all three files.
+[82] TU S7-R10a a1 C30438 s=1.0
+  R: Rows in every download are ordered by **Technician name A →Z** (the default order).
+  Q: Rows in EVERY download are ordered by Technician name A to Z (the default order) - the on-screen column sort is client-side only and is NOT carried into the export.
+[83] TU S8-R6 a1 C30405 s=1.0
+  R: When shown, the Est. Lost Labor column header shows an information icon.
+  Q: NO column header other than Est. Lost Labor shows the information icon.
+[84] TU S8-R13 a1 C30448 s=0.545
+  R: The information icon (S8-R7) meets at least a 3:1 contrast ratio against its background in both light and dark mode.
+  Q: In BOTH light mode and dark mode the information icon is clearly visible against the background behind it - you can see it at a glance and it does not disappear into the background.
+[85] TU S9-R2 a1 C30394 s=0.583
+  R: On a first visit (no saved selection — §3), it defaults to the user's **currently active location** (the location currently selected in the application's global location switcher).
+  Q: The location filter defaults to the user's currently active location (the one in the application's global location switcher).
+[86] TU S9-R4 a1 C30443 s=0.643
+  R: All metrics (technician rows, per-day rows, and the Summary) reflect only clock records at the selected location(s); a technician's hours are pooled across the selected locations into one row (one row per technician, not
+  Q: All metrics (technician rows, per-day rows, and the Summary) reflect only clock records at the selected location(s).
+[87] TU S9-R6 a1 C30444 s=0.5
+  R: On return, the saved location selection is restored **defensively** : any saved location the user can no longer access is dropped; if the remaining set is empty, the report falls back to the user's currently active locat
+  Q: If the remaining set is empty, the report falls back to the user's currently active location (the first-visit default).
+[88] TU S10-R3 a3 C38859 s=0.556
+  R: (Est. Lost Labor was previously always-on; it is now a hideable column like the others.)
+  Q: Est. Lost Labor can now be hidden like any other column (it used to be always on).
+[89] WIP S2-N2 a1 C30453 s=0.556
+  R: If a single tab has no work orders but others do, that tab shows the no-data message while the others show their rows; the tab label count is "(0)".
+  Q: Each tab's label shows the count of work orders currently in that tab, in parentheses — for example, "Completed (22)".
+[90] WIP S4-R1 a1 C30507 s=0.952
+  R: The columns, in left-to-right order, are: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.
+  Q: Whatever columns are shown, they always appear in the fixed left-to-right order (WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaini
+[91] WIP S4-R5 a1 C30468 s=0.5
+  R: WO # is shown as a link that opens the work order in the same browser tab; the user returns via the browser's back navigation.
+  Q: Clicking it opens that work order in the SAME browser tab (not a new tab).
+[92] WIP S4-R12 a2 C30472 s=0.714
+  R: The value is not grammatically pluralized: a same-day work order shows "0 days" and a one-day-old work order shows "1 days".
+  Q: A same-day work order shows "0 days" and a one-day-old work order shows "1 days".
+[93] WIP S4-R15 a1 C30475 s=0.529
+  R: **Labor Earned** is the value of approved labor already performed: for each approved line, the share of its quoted labor value covered by the time clocked to it (never more than the full quoted value), summed across the 
+  Q: Labor Earned equals the share of the approved line's quoted labor value covered by the time clocked to it (in the example, $100.00).
+[94] WIP S4-R16 a1 C30476 s=0.778
+  R: **Labor Remaining** is the approved labor value not yet earned: the total quoted value of the approved labor minus Labor Earned.
+  Q: Labor Remaining equals the total quoted value of the approved labor minus Labor Earned (in the example, $400.00 − $100.00 = $300.00).
+[95] WIP S4-R18 a1 C30478 s=0.571
+  R: **Parts Remaining** is the sell value of approved-line parts ordered but not yet received (the outstanding quantity valued at its sell price including any core charge).
+  Q: For the core-charge part, Parts Remaining values the outstanding quantity at its sell price INCLUDING the core charge.
+[96] WIP S6-R6 a1 C30505 s=0.5
+  R: The Totals row recomputes whenever the advisor, customer, or asset filter changes (Story 5).
+  Q: The summary strip and each tab's Totals row recompute immediately from the still-visible jobs after every advisor, customer, or asset change — on screen, with no page reload.
+[97] WIP S7-R5 a1 C30500 s=0.714
+  R: When no asset is selected, the Asset filter reads "All assets" and every job is shown; the filter offers a single "Clear" action that returns it to "All assets", shown only once at least one asset is selected.
+  Q: a single "Clear" action appears once at least one asset is selected and returns the filter to "All assets".
+[98] WIP S7-R7 a1 C30502 s=0.786
+  R: Each preset (or Custom) filters the report to work orders whose **created date** falls within the selected range; changing the range reloads the report.
+  Q: Each preset (or Custom) filters the report to work orders whose CREATED date falls within the selected range — an open work order created outside the range is not listed.
+[99] WIP S7-R12 a1 C30505 s=0.5
+  R: The advisor, customer, and asset filters combine: a job must pass all three to remain visible, and each also feeds the summary strip and each tab's Totals row (Story 5, Story 6).
+  Q: The summary strip and each tab's Totals row recompute immediately from the still-visible jobs after every advisor, customer, or asset change — on screen, with no page reload.
+[100] WIP S8-R8 a1 C30509 s=0.667
+  R: Restore is defensive: a saved value that is no longer valid falls back to that setting's default rather than breaking the view.
+  Q: The report loads normally — the invalid saved value falls back to that setting's default rather than breaking the view.
+[101] WIP S9-R6 a1 C30512 s=0.692
+  R: In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules; a value without a comma is written unquoted.
+  Q: In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.
+[102] WIP S9-R10a a4 C30511 s=0.5
+  R: When the Location column is shown on screen (more than one location in scope), the download includes it too, headed "Branch" (S9-E1).
+  Q: In the file it is headed "Branch", not "Location", and the asset column is headed "Unit".
+[103] WIP S9-E1 a1 C30511 s=0.6
+  R: In a download, the asset column is headed "Unit" and the location column is headed "Branch" (they read "Asset" and "Location" on screen).
+  Q: In the file it is headed "Branch", not "Location", and the asset column is headed "Unit".
+[104] WIP S9-E1 a2 C30516 s=0.5
+  R: This label difference is a known v1 limitation, not a defect.
+  Q: This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.
+[105] WIP S10-R1 a1 C30519 s=0.727
+  R: Each tab uses an all-white table: white column headers and white data cells, with no alternating row shading.
+  Q: Each tab uses an all-white table: white column headers and white data cells.
+[106] WIP S11-R5 a1 C30532 s=0.75
+  R: Captured dollar values are stored to the cent.
+  Q: Captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents.
+[107] IV S3-R5 a2 C30546 s=0.6
+  R: Unit Sell is the part's fixed sell price when one is set; otherwise it is the shop's pricing-matrix markup on cost for the part's category; a part with no category takes no markup, so its Unit Sell equals its Unit Cost.
+  Q: Unit Sell equals the shop's pricing-matrix markup on cost for that part's category (the same way the parts list resolves it).
+[108] IV S5-R7 a1 C30566 s=0.667
+  R: A Custom range lets the user pick a start and end date; the report values as of the picked end date (never a future date — it is capped at today).
+  Q: A Custom range lets the user pick a start and end date, and the report values as of the picked end date.
+[109] IV S7-R2 a1 C30574 s=0.75
+  R: On a first visit (no saved selection — Story 8), it defaults to the user's currently active location.
+  Q: On a first visit it defaults to the user's currently active location.
+[110] IV S9-R2 a1 C30584 s=0.5
+  R: Every column is sortable by clicking its header.
+  Q: Clicking a column that is not the active sort sorts it ascending;
+[111] IV S11-R2 a1 C30606 s=0.583
+  R: The parts captured use the same in-stock, non-core scope as the live report (Story 2), and the same valuation (Story 3), so a recorded day equals what the live report would have shown that day.
+  Q: The captured parts use the same in-stock, non-core scope as the live report (Story 2) — the core-charge and zero-quantity parts are NOT captured.
+[112] IV S12-R6 a1 C30599 s=0.562
+  R: Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column, with the full value available on hover; the Part # is never truncated.
+  Q: Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column.
+[113] IV S12-R8 a1 C30601 s=0.667
+  R: Each sortable column header exposes its sort state to assistive technology, and the active sort direction is indicated visually.
+  Q: Each sortable column header exposes its sort state to assistive technology (for example, ascending/descending/none).
