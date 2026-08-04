@@ -6,31 +6,16 @@
   "priority": "High",
   "type": "Negative",
   "permissions_required": "Schedule: Edit.",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. A work order line with a very large hours estimate exists (enough to fill more than 8 weeks of daily shifts - seed one if needed).",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Drag the large job onto a technician and reach the spread step.",
-   "2. Choose a spread that runs longer than 8 weeks (about 2 months) and try to confirm.",
-   "3. Read the message that appears, then confirm/acknowledge it and continue.",
-   "4. Now try an extreme spread that would create more than 120 daily shifts in one go (raise the hours or extend the finish-by date) and try to confirm."
-  ],
-  "expected": [
-   "1. Going past 8 weeks does not silently succeed: a warning about the very long series appears and asks you to confirm before the shifts are created.",
-   "2. After you confirm the warning, the long series is created normally.",
-   "3. A single spread that would create more than 120 daily shifts is refused outright - no confirmation can override it, and no shifts are created for that attempt.",
-   "4. No half-created series is left behind after a refused attempt.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.5), with the specific limits above taken from the engineering technical plan."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser with Schedule: Edit.\n2. A work order line with a very large hours estimate exists (enough to fill more than 8 weeks of daily shifts - seed one if needed).\n3. You are on the Schedule page.",
+  "steps": "1. Drag the large job onto a technician and reach the spread step.\n2. Choose a spread that runs longer than 8 weeks (about 2 months) and try to confirm.\n3. Read the message that appears, then confirm/acknowledge it and continue.\n4. Now try an extreme spread that would create more than 120 daily shifts in one go (raise the hours or extend the finish-by date) and try to confirm.",
+  "expected": "1. Going past 8 weeks does not silently succeed: a warning about the very long series appears and asks you to confirm before the shifts are created.\n2. After you confirm the warning, the long series is created normally.\n3. A single spread that would create more than 120 daily shifts is refused outright - no confirmation can override it, and no shifts are created for that attempt.\n4. No half-created series is left behind after a refused attempt.\n\nNot built on the build tested: A 76h 36m spread produced 7 shifts with acknowledgeLongSeries:false and no prompt, and nothing on this build returns 409 or 422 for a long series. The 8-week / 120-shift limits come from the engineering technical plan, not from the Schedule specification. It has no developer ticket yet - report it to the QA lead rather than raising one yourself. Mark this test BLOCKED - not failed - because the feature it checks does not exist yet on this build.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§4.5), with the specific limits above taken from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md.",
   "design_ref": "Not in the design prototype (the prototype series was uncapped - flagged as a prototype bug in the tech plan).",
   "spec_ref": "SV-8691 Multi-Day Spread (§4.5) + tech plan D8 series caps",
   "refs": "SV-8691 (§4.5 + tech-plan D8 series caps)",
   "viu_status": "VIU-Pending",
   "notes": "From the engineering tech plan (D8: '8-week soft + 120-shift hard' cap; create rejects beyond 56 days unless acknowledged; 120-shift-per-gesture cap never overridable). Tech-plan-pinned, NOT product-spec text - exact warning wording/threshold behaviour must be confirmed LIVE at VIU (Rule 12). API half = SCH-API-02.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 38863
  },
  {
   "id": "SCH-DEL-10",
@@ -39,31 +24,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: Delete (for the delete step).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Delete.",
-   "2. A shift exists on the grid; note its technician, day, and time.",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Delete the shift. While the Undo toast is still showing, refresh the page WITHOUT clicking Undo.",
-   "2. Check the grid for the shift.",
-   "3. Recreate a shift, move it to another day, and again refresh while the toast shows, without clicking Undo.",
-   "4. Finally do one more delete and this time click Undo before the toast disappears."
-  ],
-  "expected": [
-   "1. The delete took effect immediately: after the refresh the shift is gone even though Undo was never clicked - closing or refreshing does not cancel the action.",
-   "2. The move also stuck after the refresh - the shift is on the new day.",
-   "3. Clicking Undo within the toast's lifetime reverses the action (the deleted shift comes back).",
-   "4. Note for the tester: Undo works by performing a reversing action, not by holding the change back - a change surviving a refresh before Undo is expected, not a bug.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser with Schedule: Delete.\n2. A shift exists on the grid; note its technician, day, and time.\n3. You are on the Schedule page.",
+  "steps": "1. Delete the shift. While the Undo toast is still showing, refresh the page WITHOUT clicking Undo.\n2. Check the grid for the shift.\n3. Recreate a shift, move it to another day, and again refresh while the toast shows, without clicking Undo.\n4. Finally do one more delete and this time click Undo before the toast disappears.",
+  "expected": "1. The delete took effect immediately: after the refresh the shift is gone even though Undo was never clicked - closing or refreshing does not cancel the action.\n2. The move also stuck after the refresh - the shift is on the new day.\n3. Clicking Undo within the toast's lifetime reverses the action (the deleted shift comes back).\n4. Note for the tester: Undo works by performing a reversing action, not by holding the change back - a change surviving a refresh before Undo is expected, not a bug.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§7).",
   "design_ref": "Tech plan D10 (commit-immediately + compensating mutation); toast timing per SCH-DEL-08.",
   "spec_ref": "SV-8688 (§7 toast/undo) + tech plan D10 undo model",
   "refs": "SV-8688 (§7 toast/undo + tech-plan D10)",
   "viu_status": "VIU-Pending",
   "notes": "From the engineering tech plan (D10: 'the real mutation fires now (a tab close must not lose the action); the toast's Undo issues a compensating mutation ... not a cache rollback'; undo-of-delete backed by POST /api/schedule/shifts/restore). Tech-plan-pinned - confirm LIVE at VIU (Rule 12).",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 38864
  },
  {
   "id": "SCH-EDGE-07",
@@ -72,27 +42,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: Edit.",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. The shop's location observes daylight saving (clocks change); the next clock-change date is known (e.g. the November change).",
-   "3. A job large enough to spread across the clock-change date exists."
-  ],
-  "steps": [
-   "1. Spread the job across a window that includes the clock-change date (shifts before and after it).",
-   "2. Open shifts from before the change and from after the change and read their start times."
-  ],
-  "expected": [
-   "1. Every shift in the series starts at the SAME local wall-clock time (e.g. 8:00 AM) on both sides of the clock change.",
-   "2. No shift in the series silently moves an hour earlier or later after the change date.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.5)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser with Schedule: Edit.\n2. The shop's location observes daylight saving (clocks change); the next clock-change date is known (e.g. the November change).\n3. A job large enough to spread across the clock-change date exists.",
+  "steps": "1. Spread the job across a window that includes the clock-change date (shifts before and after it).\n2. Open shifts from before the change and from after the change and read their start times.",
+  "expected": "1. Every shift in the series starts at the SAME local wall-clock time (e.g. 8:00 AM) on both sides of the clock change.\n2. No shift in the series silently moves an hour earlier or later after the change date.\n\nThis test cannot be run on the build tested: the next Mountain-time clock change is 2026-11-01, outside any window the QA data covers, and the seeded clock cannot be moved on this estate. Worse, the finding is currently untestable in principle because every Schedule time renders in UTC (see the new time ticket) - so a clock-change test would measure the bug, not the requirement. Re-run once the timezone fix ships. Mark it BLOCKED - not failed - and say which of these you could not set up.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§4.5).",
   "design_ref": "Not in the design prototype (time-model behaviour).",
   "spec_ref": "SV-8691 (§4.5) + tech plan D2 time model / NFR-005 (DST)",
   "refs": "SV-8691 (§4.5 + tech-plan D2 NFR-005 DST)",
   "viu_status": "VIU-Pending",
   "notes": "From the engineering tech plan (D2: 'Spread materializes each day's shift individually, converting 8am local to UTC per-day via Workplace.timezone, so a DST-crossing series stays at 8am local every day'). Tech-plan-pinned - confirm LIVE at VIU (Rule 12). Practical run: schedule a series spanning the next real DST date for the shop's timezone.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 38865
  },
  {
   "id": "SCH-EDGE-08",
@@ -101,30 +60,16 @@
   "priority": "Low",
   "type": "Accessibility",
   "permissions_required": "Schedule: Edit (to open the create/edit dialogs).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser; the app's dark mode / theme toggle is available.",
-   "2. The Schedule page has shifts, an event, a conflict, and capacity bars visible."
-  ],
-  "steps": [
-   "1. Switch the app to dark mode.",
-   "2. Look over the Schedule grid: shift blocks, event cards, capacity bars, conflict styling, tooltips.",
-   "3. Open each dialog/popover you can reach (shift detail, event form, spread step, delete scope, filters, view options).",
-   "4. Switch back to light mode and spot-check again."
-  ],
-  "expected": [
-   "1. In dark mode every part of the Schedule stays readable - no white-on-white or black-on-black text, no unreadable labels or invisible icons.",
-   "2. Every dialog and popover opened from the Schedule follows the dark theme too.",
-   "3. Conflict and overtime cues remain distinguishable (they never rely on colour alone - text/icon still present).",
-   "4. Switching back to light mode restores the normal look with nothing stuck in dark colours.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§11)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser; the app's dark mode / theme toggle is available.\n2. The Schedule page has shifts, an event, a conflict, and capacity bars visible.",
+  "steps": "1. Switch the app to dark mode.\n2. Look over the Schedule grid: shift blocks, event cards, capacity bars, conflict styling, tooltips.\n3. Open each dialog/popover you can reach (shift detail, event form, spread step, delete scope, filters, view options).\n4. Switch back to light mode and spot-check again.",
+  "expected": "1. In dark mode every part of the Schedule stays readable - no white-on-white or black-on-black text, no unreadable labels or invisible icons.\n2. Every dialog and popover opened from the Schedule follows the dark theme too.\n3. Conflict and overtime cues remain distinguishable (they never rely on colour alone - text/icon still present).\n4. Switching back to light mode restores the normal look with nothing stuck in dark colours.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§11).",
   "design_ref": "Tech plan §Design tokens/Theming (light/dark aware --sv-* variables; 'Verify the schedule (and every new dialog/popover) in dark mode').",
   "spec_ref": "Epic SV-8685 cross-cutting + tech plan §6 manual checklist 13 (dark mode)",
-  "refs": "SV-8685 (§11 (Dark theme - user-selectable Light / Dark, persisted per user))",
+  "refs": "SV-8685 (§11 (Dark theme - user-selectable Light / Dark,persisted per user))",
   "viu_status": "VIU-Pending",
   "notes": "From the engineering tech plan (design-system theming + the mandated dark-mode pass). Cross-cutting, so refs the epic per Rule 20. Confirm the app-level dark-mode entry point LIVE at VIU (Rule 12). | UPGRADED 2026-07-31: dark mode is NO LONGER tech-plan-only - it is spec text. Confluence v23 (2026-07-30) §11 verbatim: 'Dark theme. The Schedule supports a user-selectable Light / Dark theme, chosen from the user menu and persisted per user. It is built on the design-system color tokens, so surfaces, borders, text, and accents remap automatically; elevation/shadow tokens also swap so depth reads correctly on dark surfaces.' (added in Confluence v19). References now carry the real spec anchor instead of a tech-plan checklist item (Rule 20). Cross-cutting NFR with no single story owner -> epic SV-8685 per Rule 20.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 38866
  },
  {
   "id": "SCH-REG-01",
@@ -133,28 +78,16 @@
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Schedule: View.",
-  "preconditions": [
-   "1. This case runs around the Schedule rewrite release: before the release, note (or create) a handful of scheduled shifts and calendar events - including at least one future-dated one - with their technician, day, and time.",
-   "2. The release (which replaces the Schedule behind the scenes) has been deployed."
-  ],
-  "steps": [
-   "1. After the release, open the Schedule and navigate to the dates of the noted entries.",
-   "2. Compare each noted shift and event against what the grid now shows.",
-   "3. Open a couple of them to check their details."
-  ],
-  "expected": [
-   "1. Every shift and event that existed before the release is still there after it - same technician, same day, same time, same work order.",
-   "2. Events are still events and shifts are still shifts (nothing changed kind or vanished).",
-   "3. Their details open normally and are editable/deletable like any other entry.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the engineering technical plan. No numbered requirement in the Schedule specification version 23 covers this point yet."
-  ],
+  "preconditions": "1. This case runs around the Schedule rewrite release: before the release, note (or create) a handful of scheduled shifts and calendar events - including at least one future-dated one - with their technician, day, and time.\n2. The release (which replaces the Schedule behind the scenes) has been deployed.",
+  "steps": "1. After the release, open the Schedule and navigate to the dates of the noted entries.\n2. Compare each noted shift and event against what the grid now shows.\n3. Open a couple of them to check their details.",
+  "expected": "1. Every shift and event that existed before the release is still there after it - same technician, same day, same time, same work order.\n2. Events are still events and shifts are still shifts (nothing changed kind or vanished).\n3. Their details open normally and are editable/deletable like any other entry.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. No numbered requirement in the Schedule specification version 23 covers this point.",
   "design_ref": "Tech plan §3 data migration (copy-only, lossless) + §7 cutover runbook.",
   "spec_ref": "Epic SV-8685 + tech plan FR-015 calendar_task migration",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (tech-plan §3 FR-015 data migration)",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §3 FR-015 data migration)",
   "viu_status": "VIU-Pending",
   "notes": "Rewrite-regression case from the engineering tech plan (the release migrates all existing calendar entries into a new model; copy = lossless, nothing skipped). QA note from the plan: a technician enrolled at several locations may now see a migrated shift on ONE location's board only (the work order's location) - that is intended, see the multi-location case. Run at the release; needs the cutover build (Rule 12). | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 38867
  },
  {
   "id": "SCH-REG-02",
@@ -163,28 +96,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Dashboard access + Schedule: View.",
-  "preconditions": [
-   "1. The Schedule rewrite release is deployed.",
-   "2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts)."
-  ],
-  "steps": [
-   "1. Open the Dashboard and find its schedule/today sections.",
-   "2. Look for the spread work order in those sections.",
-   "3. Count how many rows that one work order produces."
-  ],
-  "expected": [
-   "1. The Dashboard shows that work order as ONE row (covering the whole scheduled span), not one row per daily shift.",
-   "2. Note for the tester: before this release the Dashboard duplicated such a work order once per scheduled day - showing one combined row now is the intended fix, do not report it as a missing-rows bug.",
-   "3. Work orders with a single shift are unaffected.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the engineering technical plan. No numbered requirement in the Schedule specification version 23 covers this point yet."
-  ],
+  "preconditions": "1. The Schedule rewrite release is deployed.\n2. One work order has been spread across MANY days for a technician (e.g. a 2-week series - 10+ daily shifts).",
+  "steps": "1. Open the Dashboard and find its schedule/today sections.\n2. Look for the spread work order in those sections.\n3. Count how many rows that one work order produces.",
+  "expected": "1. The Dashboard shows that work order as ONE row (covering the whole scheduled span), not one row per daily shift.\n2. Note for the tester: before this release the Dashboard duplicated such a work order once per scheduled day - showing one combined row now is the intended fix, do not report it as a missing-rows bug.\n3. Work orders with a single shift are unaffected.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. No numbered requirement in the Schedule specification version 23 covers this point.",
   "design_ref": "Tech plan §4 Modified endpoints (Dashboard row-multiplication fix, GROUP BY work_order_id).",
   "spec_ref": "Epic SV-8685 + tech plan FR-016 Dashboard repoint",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (tech-plan §4 Dashboard FR-016)",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §4 Dashboard FR-016)",
   "viu_status": "VIU-Pending",
   "notes": "From the engineering tech plan ('this visibly changes behavior for multi-task WOs (one aggregated row instead of N) - surface to product as a fix'). Needs the cutover build; confirm LIVE at VIU (Rule 12). | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 38868
  },
  {
   "id": "SCH-REG-03",
@@ -193,28 +114,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Work Orders: Create & Edit + Schedule: View.",
-  "preconditions": [
-   "1. The Schedule rewrite release is deployed.",
-   "2. You can create a work order and set its appointment/scheduling details during creation."
-  ],
-  "steps": [
-   "1. Create a new work order and give it an appointment (a scheduled date/time) as part of the creation flow.",
-   "2. Open the Schedule and navigate to that date.",
-   "3. Find the new work order on the board."
-  ],
-  "expected": [
-   "1. The appointment created with the work order appears on the Schedule board at the chosen date/time.",
-   "2. It behaves like any other scheduled entry (opens, moves, deletes normally).",
-   "3. It also appears in the Dashboard's schedule section for that day.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the engineering technical plan. No numbered requirement in the Schedule specification version 23 covers this point yet."
-  ],
+  "preconditions": "1. The Schedule rewrite release is deployed.\n2. You can create a work order and set its appointment/scheduling details during creation.",
+  "steps": "1. Create a new work order and give it an appointment (a scheduled date/time) as part of the creation flow.\n2. Open the Schedule and navigate to that date.\n3. Find the new work order on the board.",
+  "expected": "1. The appointment created with the work order appears on the Schedule board at the chosen date/time.\n2. It behaves like any other scheduled entry (opens, moves, deletes normally).\n3. It also appears in the Dashboard's schedule section for that day.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. No numbered requirement in the Schedule specification version 23 covers this point.",
   "design_ref": "Tech plan §4 Modified endpoints (WO create -> AppointmentScheduler port) + Phase 9 verification ('creating a WO with an appointment produces a schedule_shift row that appears on the board').",
   "spec_ref": "Epic SV-8685 + tech plan §4 WO-create appointment path",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (tech-plan §4 WO-create AppointmentScheduler)",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §4 WO-create AppointmentScheduler)",
   "viu_status": "VIU-Pending",
   "notes": "Cross-module path with zero prior coverage: the appointment-at-WO-creation flow is rewired by the rewrite and is an explicit cutover smoke check in the tech plan. Confirm LIVE at VIU (Rule 12). | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 38869
  },
  {
   "id": "SCH-REG-04",
@@ -223,29 +132,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View at two locations; ability to switch location.",
-  "preconditions": [
-   "1. The Schedule rewrite release is deployed.",
-   "2. A technician is enrolled at TWO locations (set this up if needed).",
-   "3. A work order belonging to location A has a shift scheduled on that technician."
-  ],
-  "steps": [
-   "1. Open the Schedule while working in location A and find the technician's shift.",
-   "2. Switch to location B and open its Schedule for the same date.",
-   "3. Look for the same shift on location B's board."
-  ],
-  "expected": [
-   "1. The shift appears on location A's board (the location the work order belongs to).",
-   "2. The shift does NOT appear on location B's board, even though the technician is enrolled there too.",
-   "3. Note for the tester: before the rewrite such a shift showed on EVERY location the technician was enrolled at - showing it only on the work order's location is the intended new behaviour, do not report the disappearance from other locations as a bug.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the engineering technical plan. No numbered requirement in the Schedule specification version 23 covers this point yet."
-  ],
+  "preconditions": "1. The Schedule rewrite release is deployed.\n2. A technician is enrolled at TWO locations (set this up if needed).\n3. A work order belonging to location A has a shift scheduled on that technician.",
+  "steps": "1. Open the Schedule while working in location A and find the technician's shift.\n2. Switch to location B and open its Schedule for the same date.\n3. Look for the same shift on location B's board.",
+  "expected": "1. The shift appears on location A's board (the location the work order belongs to).\n2. The shift does NOT appear on location B's board, even though the technician is enrolled there too.\n3. Note for the tester: before the rewrite such a shift showed on EVERY location the technician was enrolled at - showing it only on the work order's location is the intended new behaviour, do not report the disappearance from other locations as a bug.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. No numbered requirement in the Schedule specification version 23 covers this point.",
   "design_ref": "Tech plan §3 resolution chain ('Known, intended behavior change ... Call this out in QA notes so it isn't filed as a bug').",
   "spec_ref": "Epic SV-8685 + tech plan §3 WO-primary location resolution",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (tech-plan §3 WO-primary location resolution)",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan §3 WO-primary location resolution)",
   "viu_status": "VIU-Pending",
   "notes": "From the engineering tech plan (work-order-first location resolution; duplicate multi-board rendering removed). Needs the cutover build; confirm LIVE at VIU (Rule 12). Location switching recipe: POST /api/iam/change-location (APP-ACTIONS-PLAYBOOK). | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 38870
  },
  {
   "id": "SCH-REG-05",
@@ -254,30 +150,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Orders: Create & Edit + Schedule: View.",
-  "preconditions": [
-   "1. The Schedule rewrite release (which adds the Priority field) is deployed.",
-   "2. You can create/edit a work order."
-  ],
-  "steps": [
-   "1. Open the work order create/edit form and find the Priority field.",
-   "2. Read its default value on a brand-new work order.",
-   "3. Set it to High and save.",
-   "4. Open the Schedule sidebar, find that work order's card, and apply the Priority = High filter."
-  ],
-  "expected": [
-   "1. The work order form offers a Priority choice of High, Medium, Low.",
-   "2. A new work order has NO priority pre-selected by default.",
-   "3. After saving, the Schedule sidebar reflects the chosen priority and the Priority filter finds the work order under High.",
-   "4. A work order with no priority set simply shows none (it is not treated as an error).",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1)."
-  ],
+  "preconditions": "1. The Schedule rewrite release (which adds the Priority field) is deployed.\n2. You can create/edit a work order.",
+  "steps": "1. Open the work order create/edit form and find the Priority field.\n2. Read its default value on a brand-new work order.\n3. Set it to High and save.\n4. Open the Schedule sidebar, find that work order's card, and apply the Priority = High filter.",
+  "expected": "1. The work order form offers a Priority choice of High, Medium, Low.\n2. A new work order has NO priority pre-selected by default.\n3. After saving, the Schedule sidebar reflects the chosen priority and the Priority filter finds the work order under High.\n4. A work order with no priority set simply shows none (it is not treated as an error).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. No numbered requirement in the Schedule specification version 23 covers this point.",
   "design_ref": "Tech plan Phase 1 (WorkOrderDialog High/Med/Low select, default unset).",
   "spec_ref": "SV-8687 (§5.1 sidebar Priority filter) + tech plan FR-P4 WO priority",
   "refs": "SV-8687 (§5.1 + tech-plan FR-P4 WO priority)",
   "viu_status": "VIU-Pending",
   "notes": "The sidebar Priority FILTER is covered (C29945); this covers the setting side the filter depends on - a brand-new field on the work order form (tech plan FR-P4, 'default unset'). Exact field label/placement pinned by the tech plan only - confirm LIVE at VIU (Rule 12). Overlap note: WO-LIST priority filtering belongs to the Filters project - reconcile there, this case stays schedule-sidebar-only.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 38871
  },
  {
   "id": "SCH-API-01",
@@ -286,30 +168,16 @@
   "priority": "High",
   "type": "Negative",
   "permissions_required": "Ability to call the API as users with different Schedule permission tiers (View-only / View+Edit / no Schedule access).",
-  "preconditions": [
-   "1. The Schedule rewrite build (new /api/schedule endpoints) is deployed.",
-   "2. Three test users exist: one with NO Schedule permission, one with Schedule: View only, one with Schedule: View + Edit (but not Delete).",
-   "3. A shift id from the current location is known."
-  ],
-  "steps": [
-   "1. As the user with NO Schedule permission, call GET /api/schedule/board?from=&to= for the current week.",
-   "2. As the View-only user, call the same GET, then try POST /api/schedule/shifts (a minimal single-shift body) and PATCH /api/schedule/shifts/{id}.",
-   "3. As the View+Edit user, repeat the POST and PATCH, then try DELETE /api/schedule/shifts/{id}?scope=shift."
-  ],
-  "expected": [
-   "1. No Schedule permission: the board GET is refused with HTTP 403.",
-   "2. View-only: the board GET returns HTTP 200 with the grid data; the POST and PATCH are refused with HTTP 403.",
-   "3. View + Edit: the POST and PATCH succeed (HTTP 201/200); the DELETE is refused with HTTP 403 because the user lacks Schedule: Delete.",
-   "4. Each refusal is a clean 403 response - never a server error.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14)."
-  ],
+  "preconditions": "1. The Schedule rewrite build (new /api/schedule endpoints) is deployed.\n2. Three test users exist: one with NO Schedule permission, one with Schedule: View only, one with Schedule: View + Edit (but not Delete).\n3. A shift id from the current location is known.",
+  "steps": "1. As the user with NO Schedule permission, call GET /api/schedule/board?from=&to= for the current week.\n2. As the View-only user, call the same GET, then try POST /api/schedule/shifts (a minimal single-shift body) and PATCH /api/schedule/shifts/{id}.\n3. As the View+Edit user, repeat the POST and PATCH, then try DELETE /api/schedule/shifts/{id}?scope=shift.",
+  "expected": "1. No Schedule permission: the board GET is refused with HTTP 403.\n2. View-only: the board GET returns HTTP 200 with the grid data; the POST and PATCH are refused with HTTP 403.\n3. View + Edit: the POST and PATCH succeed (HTTP 201/200); the DELETE is refused with HTTP 403 because the user lacks Schedule: Delete.\n4. Each refusal is a clean 403 response - never a server error.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14).",
   "design_ref": "Tech plan §4 (auth column per endpoint) + §8 NFR-003 (reuse ROLE_SCHEDULE_VIEW/CREATE_AND_EDIT/DELETE, no new atoms).",
   "spec_ref": "Epic §14 permission tiers + tech plan §4 endpoint auth",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (§14 + tech-plan §4 NFR-003 permissions)",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (§14 + tech-plan §4 NFR-003 permissions)",
   "viu_status": "VIU-Pending",
   "notes": "Backend halves of the UI permission-tier cases (C30074-C30084) in ONE enforcement-matrix case (Rule 28 - no per-endpoint explosion). Tech-plan contract - confirm endpoints/status codes LIVE at VIU (Rule 12). Standing Rule 24 reminder does NOT apply here in reverse: these endpoints are the BE enforcement itself. | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": true
+  "api_related": true,
+  "testrail_case_id": 38872
  },
  {
   "id": "SCH-API-02",
@@ -318,30 +186,16 @@
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Schedule: Edit (API caller).",
-  "preconditions": [
-   "1. The Schedule rewrite build is deployed; an API session with Schedule: Edit exists.",
-   "2. A schedulable work order line id and a technician staff id are known."
-  ],
-  "steps": [
-   "1. POST /api/schedule/shifts with a spread whose window exceeds 8 weeks (56 calendar days), WITHOUT acknowledgeLongSeries.",
-   "2. Repeat the same POST with acknowledgeLongSeries=true.",
-   "3. POST a spread that would materialize MORE than 120 shifts in one request, with acknowledgeLongSeries=true.",
-   "4. Check the board for leftovers after the refused calls."
-  ],
-  "expected": [
-   "1. The over-8-week create is refused with HTTP 409 (a 'series too long' error) - nothing is created.",
-   "2. With acknowledgeLongSeries=true the same request succeeds (HTTP 201) and returns the full materialized series under one series id.",
-   "3. The over-120-shift request is refused with HTTP 422 even WITH the acknowledgement - the hard cap cannot be overridden.",
-   "4. Refused calls leave no partial series behind.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.5), with the specific limits above taken from the engineering technical plan."
-  ],
+  "preconditions": "1. The Schedule rewrite build is deployed; an API session with Schedule: Edit exists.\n2. A schedulable work order line id and a technician staff id are known.",
+  "steps": "1. POST /api/schedule/shifts with a spread whose window exceeds 8 weeks (56 calendar days), WITHOUT acknowledgeLongSeries.\n2. Repeat the same POST with acknowledgeLongSeries=true.\n3. POST a spread that would materialize MORE than 120 shifts in one request, with acknowledgeLongSeries=true.\n4. Check the board for leftovers after the refused calls.",
+  "expected": "1. The over-8-week create is refused with HTTP 409 (a 'series too long' error) - nothing is created.\n2. With acknowledgeLongSeries=true the same request succeeds (HTTP 201) and returns the full materialized series under one series id.\n3. The over-120-shift request is refused with HTTP 422 even WITH the acknowledgement - the hard cap cannot be overridden.\n4. Refused calls leave no partial series behind.\n\nNot built on the build tested: No 409 and no 422 exists on this build. The 8-week / 120-shift caps are engineering-tech-plan text with no Schedule-specification requirement behind them. It has no developer ticket yet - report it to the QA lead rather than raising one yourself. Mark this test BLOCKED - not failed - because the feature it checks does not exist yet on this build.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§4.5), with the specific limits above taken from the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md.",
   "design_ref": "Tech plan D8 + §4 error cases (SeriesTooLongError 409; 120-shift hard cap 422).",
   "spec_ref": "SV-8691 (§4.5 spread) + tech plan D8/§4 error contract",
   "refs": "SV-8691 (§4.5 + tech-plan D8 error cases)",
   "viu_status": "VIU-Pending",
   "notes": "API half of the series caps (UI half = the 8-week warning case). Tech-plan-pinned thresholds (56 days / 120 shifts) - confirm LIVE at VIU (Rule 12).",
-  "api_related": true
+  "api_related": true,
+  "testrail_case_id": 38873
  },
  {
   "id": "SCH-API-03",
@@ -350,28 +204,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View, once as a user WITH Work Orders: View and once as a user WITHOUT it.",
-  "preconditions": [
-   "1. The Schedule rewrite build is deployed.",
-   "2. A shift covering work order lines exists.",
-   "3. Two API users: one with Schedule: View + Work Orders: View, one with Schedule: View but WITHOUT Work Orders: View."
-  ],
-  "steps": [
-   "1. As the full user, call GET /api/schedule/board, GET /api/schedule/shifts/{id}, and GET /api/schedule/work-orders and search the raw responses for money fields (price, cost, rate, total, $ amounts).",
-   "2. As the user WITHOUT Work Orders: View, call GET /api/schedule/board and GET /api/schedule/shifts/{id} and read the work-order-derived fields (customer, unit, VIN, lines)."
-  ],
-  "expected": [
-   "1. No Schedule response contains any pricing/money field for ANY caller - the schedule never returns labor, totals, or dollar amounts.",
-   "2. For the caller without Work Orders: View, the work-order-derived details (customer, unit, VIN, line names) are absent/empty in the response itself - not just hidden on screen.",
-   "3. Both calls still succeed (HTTP 200) - lacking Work Orders: View limits the content, it does not break the schedule read.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14). The current behaviour follows a later product owner decision dated 2026-07-22."
-  ],
+  "preconditions": "1. The Schedule rewrite build is deployed.\n2. A shift covering work order lines exists.\n3. Two API users: one with Schedule: View + Work Orders: View, one with Schedule: View but WITHOUT Work Orders: View.",
+  "steps": "1. As the full user, call GET /api/schedule/board, GET /api/schedule/shifts/{id}, and GET /api/schedule/work-orders and search the raw responses for money fields (price, cost, rate, total, $ amounts).\n2. As the user WITHOUT Work Orders: View, call GET /api/schedule/board and GET /api/schedule/shifts/{id} and read the work-order-derived fields (customer, unit, VIN, lines).",
+  "expected": "1. No Schedule response contains any pricing/money field for ANY caller - the schedule never returns labor, totals, or dollar amounts.\n2. For the caller without Work Orders: View, the work-order-derived details (customer, unit, VIN, line names) are absent/empty in the response itself - not just hidden on screen.\n3. Both calls still succeed (HTTP 200) - lacking Work Orders: View limits the content, it does not break the schedule read.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14). The behaviour above follows a later product owner decision dated 22 July 2026 rather than that specification's wording, and that decision is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/branko-answers-2026-07-31/answers-ingested.md.",
   "design_ref": "Tech plan D6 ('No monetary data anywhere ... WO-derived fields omitted server-side when the caller lacks Work Orders:View') + §8 NFR-002.",
   "spec_ref": "Epic §14 WO:View dependency + tech plan D6/NFR-002",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (§14 + tech-plan D6/NFR-002 no pricing)",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (§14 + tech-plan D6/NFR-002 no pricing)",
   "viu_status": "VIU-Pending",
   "notes": "Backend proof behind the UI masking case SCH-PERM-12 (C30614) - here the data must be absent in the RESPONSE, which is stronger than FE hiding. Tech-plan contract - confirm LIVE at VIU (Rule 12). | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": true
+  "api_related": true,
+  "testrail_case_id": 38874
  },
  {
   "id": "SCH-API-04",
@@ -380,28 +222,15 @@
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Schedule: View (API caller) + a second location with its own shift.",
-  "preconditions": [
-   "1. The Schedule rewrite build is deployed.",
-   "2. Two locations exist; a shift exists at location B; your API session is scoped to location A.",
-   "3. The location-B shift's id is known (create it while switched to B, then switch back to A)."
-  ],
-  "steps": [
-   "1. While scoped to location A, call GET /api/schedule/shifts/{id} with the location-B shift id.",
-   "2. Also try PATCH /api/schedule/shifts/{id} on the same id.",
-   "3. Call GET /api/schedule/board for location A's current week."
-  ],
-  "expected": [
-   "1. The foreign-location GET is refused as not found (HTTP 404) - the response reveals nothing about the other location's shift.",
-   "2. The PATCH on the foreign id is refused the same way (404) - no cross-location edit is possible.",
-   "3. Location A's board contains only location A's shifts - nothing from location B leaks in.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the engineering technical plan. No numbered requirement in the Schedule specification version 23 covers this point yet."
-  ],
+  "preconditions": "1. The Schedule rewrite build is deployed.\n2. Two locations exist; a shift exists at location B; your API session is scoped to location A.\n3. The location-B shift's id is known (create it while switched to B, then switch back to A).",
+  "steps": "1. While scoped to location A, call GET /api/schedule/shifts/{id} with the location-B shift id.\n2. Also try PATCH /api/schedule/shifts/{id} on the same id.\n3. Call GET /api/schedule/board for location A's current week.",
+  "expected": "1. The foreign-location GET is refused as not found (HTTP 404) - the response reveals nothing about the other location's shift.\n2. The PATCH on the foreign id is refused the same way (404) - no cross-location edit is possible.\n3. Location A's board contains only location A's shifts - nothing from location B leaks in.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the engineering technical plan, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/tech-plan-2026-07-29/TechPlan-Schedule-Module-Rewrite.md. No numbered requirement in the Schedule specification version 23 covers this point.",
   "design_ref": "Tech plan §4 ('missing/foreign shift id -> 404 (workplace-scoped load)') + §8 NFR-001 tenant scoping.",
   "spec_ref": "Epic SV-8685 + tech plan NFR-001 location scoping",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (tech-plan NFR-001 location scoping)",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (tech-plan NFR-001 location scoping)",
   "viu_status": "VIU-Pending",
   "notes": "The rewrite's tenant-scoping improvement (legacy loaded by bare id - a flagged gap). Location switch recipe: POST /api/iam/change-location (APP-ACTIONS-PLAYBOOK). Tech-plan contract - confirm LIVE at VIU (Rule 12). | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": true
+  "api_related": true,
+  "testrail_case_id": 38875
  }
 ]

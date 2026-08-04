@@ -6,29 +6,16 @@
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1) - any role with Schedule access.",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser (window at least 960px wide).",
-   "2. Your role has the Schedule: View permission (and Work Orders: View, so the sidebar work order list loads)."
-  ],
-  "steps": [
-   "1. Look at the app's main (top-level) navigation.",
-   "2. Click the Schedule item.",
-   "3. Look at the two regions of the Schedule screen."
-  ],
-  "expected": [
-   "1. Schedule is listed as a top-level navigation item alongside Work Orders, Customers, Parts, and Reports.",
-   "2. Clicking it opens the Schedule screen.",
-   "3. The left panel is the work order sidebar: a mini calendar at the top and a work order list beneath it.",
-   "4. The main area is the schedule grid showing technician rows, with a toolbar above it.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3, §3.1, §3.2)."
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a desktop browser (window at least 960px wide).\n2. Your role has the Schedule: View permission (and Work Orders: View, so the sidebar work order list loads).",
+  "steps": "1. Look at the app's main (top-level) navigation.\n2. Click the Schedule item.\n3. Look at the two regions of the Schedule screen.",
+  "expected": "1. Schedule is listed as a top-level navigation item alongside Work Orders, Customers, Parts, and Reports.\n2. Clicking it opens the Schedule screen.\n3. The left panel is the work order sidebar: a mini calendar at the top and a work order list beneath it.\n4. The main area is the schedule grid showing technician rows, with a toolbar above it.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3, §3.1, §3.2).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3",
-  "refs": "SV-8686 (§3, §3.1, §3.2)",
+  "refs": "SV-8686 (§3,§3.1,§3.2)",
   "viu_status": "VIU-Pending",
   "notes": "Nav item 'Schedule' and its position (Work Orders · Schedule · Customers · Parts · Reports) pinned by the Claude design (§1); the two-region layout (sidebar §3.1 / grid §3.2) is read in the same sitting. Exact layout/visuals unpinned - live-render confirm at VIU (Rule 12). Driver: Claude design §1 + requirements §3/§3.1/§3.2. | CONSOLIDATED 2026-07-31 (usefulness audit G-NAV-LANDING, user-authorized): absorbed SCH-NAV-02 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29925
  },
  {
   "id": "SCH-NAV-02",
@@ -54,7 +41,8 @@
   "refs": "SV-8686 (§3, §3.1, §3.2)",
   "viu_status": "Retired - MERGED into SCH-NAV-01 2026-07-31 (usefulness audit G-NAV-LANDING, user-authorized consolidation)",
   "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-NAV-LANDING): merged into SCH-NAV-01 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-NAV-02.json. | Exact layout/visuals unpinned (Claude design now available; live-render confirm at VIU) - confirm the real arrangement live.",
-  "api_related": false
+  "api_related": false,
+  "status": "Retired"
  },
  {
   "id": "SCH-NAV-03",
@@ -63,30 +51,16 @@
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page.",
-   "3. At least one shift exists on the current week (create one first if needed, or have a colleague with Edit permission create it)."
-  ],
-  "steps": [
-   "1. In the grid toolbar, click Day on the Day / Week / Month segmented control.",
-   "2. Click Week.",
-   "3. Click Month."
-  ],
-  "expected": [
-   "1. Day: the grid shows a 24-hour timeline per technician row, with shifts positioned at their times.",
-   "2. Week: the grid shows a 7-column Monday-to-Sunday layout with stacked shift chips per cell.",
-   "3. Month: the grid shows a compact calendar with per-day capacity bars and shift chips.",
-   "4. The same shifts remain visible (appropriately rendered) in all three views.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.2, §6)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on the Schedule page.\n3. At least one shift exists on the current week (create one first if needed, or have a colleague with Edit permission create it).",
+  "steps": "1. In the grid toolbar, click Day on the Day / Week / Month segmented control.\n2. Click Week.\n3. Click Month.",
+  "expected": "1. Day: the grid shows a 24-hour timeline per technician row, with shifts positioned at their times.\n2. Week: the grid shows a 7-column Monday-to-Sunday layout with stacked shift chips per cell.\n3. Month: the grid shows a compact calendar with per-day capacity bars and shift chips.\n4. The same shifts remain visible (appropriately rendered) in all three views.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.2, §6).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2, §6",
-  "refs": "SV-8686 (§3.2, §6)",
+  "refs": "SV-8686 (§3.2,§6)",
   "viu_status": "VIU-Pending",
   "notes": "'Day / Week / Month' segmented control pinned by the Claude design (§1); confirm live at VIU. Driver: Claude design §1.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29927
  },
  {
   "id": "SCH-NAV-04",
@@ -95,28 +69,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. Staff members are assigned to at least two different departments (adjust staff records if needed, restore after).",
-   "3. You are on the Schedule page in week view."
-  ],
-  "steps": [
-   "1. Read the technician rows in the grid from top to bottom.",
-   "2. Note how the rows are grouped."
-  ],
-  "expected": [
-   "1. Rows are grouped by department, each group under its own header (for example a services group and an administration group - the actual names come from the shop's own departments).",
-   "2. Each department's technicians are listed beneath that department's header.",
-   "3. Every staff member assigned to a visible department appears as a row, regardless of their role.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.2, §14.4)."
-  ],
+  "preconditions": "<ol>\n<li>You are signed in on a desktop browser.</li>\n<li>Staff members are assigned to at least two different departments (adjust staff records if needed, restore after).</li>\n<li>You are on the Schedule page in week view.</li>\n</ol>\n",
+  "steps": "<ol>\n<li>Read the technician rows in the grid from top to bottom.</li>\n<li>Note how the rows are grouped.</li>\n</ol>\n",
+  "expected": "<ol>\n<li>Rows are grouped by department, each group under its own header (for example a services group and an administration group - the actual names come from the shop's own departments).</li>\n<li>Each department's technicians are listed beneath that department's header.</li>\n<li>Every staff member assigned to a visible department appears as a row, regardless of their role.</li>\n</ol>\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.2, §14.4).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2, §14.4",
-  "refs": "SV-8686 (§3.2, §14.4)",
+  "refs": "SV-8686 (§3.2,§14.4)",
   "viu_status": "VIU-Pending",
   "notes": "The spec's header examples (SERVICE/PARTS, ADMINISTRATION) are illustrative only - real department names come from the tenant's data. Header styling unpinned.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29928
  },
  {
   "id": "SCH-NAV-05",
@@ -125,27 +87,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page with at least one department group visible containing technicians."
-  ],
-  "steps": [
-   "1. Click a department group header to collapse it.",
-   "2. Click the same header again to expand it."
-  ],
-  "expected": [
-   "1. Collapsing hides that department's technician rows (the group header stays visible).",
-   "2. Expanding shows the technician rows again, unchanged.",
-   "3. Other department groups are unaffected.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.2)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on the Schedule page with at least one department group visible containing technicians.",
+  "steps": "1. Click a department group header to collapse it.\n2. Click the same header again to expand it.",
+  "expected": "1. Collapsing hides that department's technician rows (the group header stays visible).\n2. Expanding shows the technician rows again, unchanged.\n3. Other department groups are unaffected.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.2).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2",
   "refs": "SV-8686 (§3.2)",
   "viu_status": "VIU-Pending",
   "notes": "Collapsible department group headers pinned by the Claude design (§1, 'SERVICE'/'ADMINISTRATION' collapsible groups); confirm the exact collapse affordance live. Driver: Claude design §1.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29929
  },
  {
   "id": "SCH-NAV-06",
@@ -154,25 +105,16 @@
   "priority": "Low",
   "type": "Negative",
   "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Look through the grid toolbar and its dropdowns for any control that switches the grid between a department-grouped view and a flat technician-only view."
-  ],
-  "expected": [
-   "1. No such toggle exists - the department-grouped rows are the only grid grouping.",
-   "2. Department visibility is controlled only through the department toggles in the 'Filter and Display' dropdown.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.2)."
-  ],
+  "preconditions": "<ol>\n<li>You are signed in on a desktop browser.</li>\n<li>You are on the Schedule page.</li>\n</ol>\n",
+  "steps": "<ol>\n<li>Look through the grid toolbar and its dropdowns for any control that switches the grid between a department-grouped view and a flat technician-only view.</li>\n</ol>\n",
+  "expected": "<ol>\n<li>No such toggle exists - the department-grouped rows are the only grid grouping.</li>\n<li>Department visibility is controlled only through the department toggles in the 'Filter and Display' dropdown.</li>\n</ol>\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.2).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2",
   "refs": "SV-8686 (§3.2)",
   "viu_status": "VIU-Pending",
   "notes": "Spec: 'there is no separate technician-only view or Tech/Dept toggle'.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29930
  },
  {
   "id": "SCH-NAV-07",
@@ -181,28 +123,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page.",
-   "3. At least one unassigned shift exists (a user with Edit permission drops a work order onto the Unassigned row first)."
-  ],
-  "steps": [
-   "1. Look for the unassigned row inside the schedule grid.",
-   "2. Note where the unassigned shift is displayed."
-  ],
-  "expected": [
-   "1. An unassigned row/lane appears within the grid itself - it is not a separate tray or panel outside the grid.",
-   "2. Shifts without a technician sit in this row.",
-   "3. The unassigned shift uses the same block layout as regular shifts (customer, unit, line name / line count) - it simply has no technician.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.2, §4.2)."
-  ],
+  "preconditions": "<ol>\n<li>You are signed in on a desktop browser.</li>\n<li>You are on the Schedule page.</li>\n<li>At least one unassigned shift exists (a user with Edit permission drops a work order onto the Unassigned row first).</li>\n</ol>\n",
+  "steps": "<ol>\n<li>Look for the unassigned row inside the schedule grid.</li>\n<li>Note where the unassigned shift is displayed.</li>\n</ol>\n",
+  "expected": "<ol>\n<li>An unassigned row/lane appears within the grid itself - it is not a separate tray or panel outside the grid.</li>\n<li>Shifts without a technician sit in this row.</li>\n<li>The unassigned shift uses the same block layout as regular shifts (customer, unit, line name / line count) - it simply has no technician.</li>\n</ol>\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.2, §4.2).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2, §4.2",
-  "refs": "SV-8686 (§3.2, §4.2)",
+  "refs": "SV-8686 (§3.2,§4.2)",
   "viu_status": "VIU-Pending",
   "notes": "The exact on-screen name of the unassigned row ('Unassigned' or other wording) is not pinned by the spec - confirm live. Its position among the rows is also unpinned.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29931
  },
  {
   "id": "SCH-MCAL-01",
@@ -211,27 +141,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1). The mini calendar remains available even without Work Orders: View (§14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page with the mini calendar visible in the left sidebar."
-  ],
-  "steps": [
-   "1. In the mini calendar, click a date in a different week from the one currently shown in the grid.",
-   "2. Look at the main grid and its date label."
-  ],
-  "expected": [
-   "1. The main grid navigates to show the clicked date (the containing day/week/month depending on the active view).",
-   "2. The toolbar date label updates to the new range.",
-   "3. The clicked date is highlighted as the selected date in the mini calendar.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1, §5.2)."
-  ],
+  "preconditions": "<ol>\n<li>You are signed in on a desktop browser.</li>\n<li>You are on the Schedule page with the mini calendar visible in the left sidebar.</li>\n</ol>\n",
+  "steps": "<ol>\n<li>In the mini calendar, click a date in a different week from the one currently shown in the grid.</li>\n<li>Look at the main grid and its date label.</li>\n</ol>\n",
+  "expected": "<ol>\n<li>The main grid navigates to show the clicked date (the containing day/week/month depending on the active view).</li>\n<li>The toolbar date label updates to the new range.</li>\n<li>The clicked date is highlighted as the selected date in the mini calendar.</li>\n</ol>\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.1, §5.2).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1, §5.2",
-  "refs": "SV-8687 (§3.1, §5.2)",
+  "refs": "SV-8687 (§3.1,§5.2)",
   "viu_status": "VIU-Pending",
   "notes": "",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29932
  },
  {
   "id": "SCH-MCAL-02",
@@ -240,28 +159,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page with the mini calendar visible."
-  ],
-  "steps": [
-   "1. Open the mini calendar's month/year picker.",
-   "2. Use the year arrows to move to another year.",
-   "3. Pick a different month from the grid of month buttons."
-  ],
-  "expected": [
-   "1. A picker opens showing a grid of month buttons plus arrows to step the year back and forward.",
-   "2. Choosing a month shows that month in the mini calendar.",
-   "3. The main grid can then be navigated by clicking a date in the newly shown month.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.2)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on the Schedule page with the mini calendar visible.",
+  "steps": "1. Open the mini calendar's month/year picker.\n2. Use the year arrows to move to another year.\n3. Pick a different month from the grid of month buttons.",
+  "expected": "1. A picker opens showing a grid of month buttons plus arrows to step the year back and forward.\n2. Choosing a month shows that month in the mini calendar.\n3. The main grid can then be navigated by clicking a date in the newly shown month.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§5.2).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.2",
   "refs": "SV-8687 (§5.2)",
   "viu_status": "VIU-Pending",
   "notes": "How the picker is opened (clicking the month/year title or another control) is not pinned by the spec - confirm live.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29933
  },
  {
   "id": "SCH-MCAL-03",
@@ -270,27 +177,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page with the mini calendar expanded."
-  ],
-  "steps": [
-   "1. Click the chevron toggle on the mini calendar.",
-   "2. Look at the sidebar.",
-   "3. Click the chevron again."
-  ],
-  "expected": [
-   "1. The calendar grid collapses (hides), leaving more room for the work order list below.",
-   "2. Clicking again expands the calendar grid back.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1, §5.2)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on the Schedule page with the mini calendar expanded.",
+  "steps": "1. Click the chevron toggle on the mini calendar.\n2. Look at the sidebar.\n3. Click the chevron again.",
+  "expected": "1. The calendar grid collapses (hides), leaving more room for the work order list below.\n2. Clicking again expands the calendar grid back.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.1, §5.2).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1, §5.2",
-  "refs": "SV-8687 (§3.1, §5.2)",
+  "refs": "SV-8687 (§3.1,§5.2)",
   "viu_status": "VIU-Pending",
   "notes": "",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29934
  },
  {
   "id": "SCH-MCAL-04",
@@ -299,28 +195,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page with the mini calendar visible.",
-   "3. The grid is on a date other than today (click a different date first)."
-  ],
-  "steps": [
-   "1. Look at the mini calendar and find today's date and the selected date.",
-   "2. Move the mouse over different week rows of the mini calendar."
-  ],
-  "expected": [
-   "1. The selected date is visually highlighted.",
-   "2. Today's date has its own distinct indicator, different from the selection.",
-   "3. Hovering a week row highlights that whole week row.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.2)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on the Schedule page with the mini calendar visible.\n3. The grid is on a date other than today (click a different date first).",
+  "steps": "1. Look at the mini calendar and find today's date and the selected date.\n2. Move the mouse over different week rows of the mini calendar.",
+  "expected": "1. The selected date is visually highlighted.\n2. Today's date has its own distinct indicator, different from the selection.\n3. Hovering a week row highlights that whole week row.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§5.2).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.2",
   "refs": "SV-8687 (§5.2)",
   "viu_status": "VIU-Pending",
   "notes": "Mini-calendar selected/today/week-hover highlights pinned by the Claude design (§2 mini calendar); live-render confirm at VIU. Driver: Claude design §2.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29935
  },
  {
   "id": "SCH-WOL-01",
@@ -329,29 +213,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: View and Work Orders: View.",
-   "2. Several open work orders exist (create ZZAUTOTEST work orders if needed).",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Look at the work order list beneath the mini calendar.",
-   "2. Scroll the list.",
-   "3. Look for any Assigned/Unassigned tabs above the list."
-  ],
-  "expected": [
-   "1. Work orders appear as a single flat list of cards (one list, no tab split).",
-   "2. The list scrolls when there are more cards than fit.",
-   "3. There are no Assigned/Unassigned tabs - assignment is available only as a filter behind the 'Filter' button.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1, §5.1)."
-  ],
+  "preconditions": "<ol>\n<li>You are signed in on a desktop browser with Schedule: View and Work Orders: View.</li>\n<li>Several open work orders exist (create ZZAUTOTEST work orders if needed).</li>\n<li>You are on the Schedule page.</li>\n</ol>\n",
+  "steps": "<ol>\n<li>Look at the work order list beneath the mini calendar.</li>\n<li>Scroll the list.</li>\n<li>Look for any Assigned/Unassigned tabs above the list.</li>\n</ol>\n",
+  "expected": "<ol>\n<li>Work orders appear as a single flat list of cards (one list, no tab split).</li>\n<li>The list scrolls when there are more cards than fit.</li>\n<li>There are no Assigned/Unassigned tabs - assignment is available only as a filter behind the 'Filter' button.</li>\n</ol>\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.1, §5.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1, §5.1",
-  "refs": "SV-8687 (§3.1, §5.1)",
+  "refs": "SV-8687 (§3.1,§5.1)",
   "viu_status": "VIU-Pending",
   "notes": "Flat WO card list with NO Assigned/Unassigned tabs (assignment is a Filter option) confirmed by the Claude design (§2). Driver: Claude design §2 + Branko Q&A 2026-07-22 (tabs removed in a previous version).",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29936
  },
  {
   "id": "SCH-WOL-02",
@@ -360,30 +231,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. A work order exists with a customer, a unit, at least one approved line with estimated hours, and a lead technician assigned.",
-   "3. You are on the Schedule page with the work order list visible."
-  ],
-  "steps": [
-   "1. Find that work order's card in the sidebar list.",
-   "2. Read the card from top to bottom."
-  ],
-  "expected": [
-   "1. Top left: the work order number, shown in an accent color.",
-   "2. Top right: the line count plus the hours estimate.",
-   "3. Below: the customer name in bold, then the unit number.",
-   "4. A lead technician row with the technician's avatar and name.",
-   "5. A colored left border whose color reflects the work order's status.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. A work order exists with a customer, a unit, at least one approved line with estimated hours, and a lead technician assigned.\n3. You are on the Schedule page with the work order list visible.",
+  "steps": "1. Find that work order's card in the sidebar list.\n2. Read the card from top to bottom.",
+  "expected": "1. Top left: the work order number, shown in an accent color.\n2. Top right: the line count plus the hours estimate.\n3. Below: the customer name in bold, then the unit number.\n4. A lead technician row with the technician's avatar and name.\n5. A colored left border whose color reflects the work order's status.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Work order card anatomy)",
   "refs": "SV-8687 (§3.1 (Work order card anatomy))",
   "viu_status": "VIU-Pending",
   "notes": "WO card anatomy (WO number accent top-left, 'N lines · Xh Est.' top-right, customer bold, unit, lead-tech row, status left-border) pinned by the Claude design (§2); live-render confirm at VIU. Driver: Claude design §2.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29937
  },
  {
   "id": "SCH-WOL-03",
@@ -410,7 +267,8 @@
   "refs": "SV-8687 (§3.1 (Sidebar search))",
   "viu_status": "Retired - MERGED into SCH-WOL-04 2026-07-31 (usefulness audit G-SIDEBAR-SEARCH, user-authorized consolidation)",
   "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-SIDEBAR-SEARCH): merged into SCH-WOL-04 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-WOL-03.json. | 'Search work orders' placeholder pinned by the Claude design (§2); confirm live at VIU. Driver: Claude design §2.",
-  "api_related": false
+  "api_related": false,
+  "status": "Retired"
  },
  {
   "id": "SCH-WOL-04",
@@ -419,32 +277,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. Work orders exist with different work order numbers and with distinct customer names, unit numbers, and lead technicians.",
-   "3. You are on the Schedule page with the work order list visible."
-  ],
-  "steps": [
-   "1. Click the 'Search work orders' field at the top of the list and type the number of one specific work order; note the results, then clear.",
-   "2. Type part of a customer name; note the results, then clear.",
-   "3. Type a unit number; note the results, then clear.",
-   "4. Type a technician's name; note the results."
-  ],
-  "expected": [
-   "1. Work-order-number search narrows the list to the card(s) whose work order number matches what you typed, and cards that do not match disappear.",
-   "2. Customer-name search shows only cards for that customer.",
-   "3. Unit-number search shows only cards with that unit.",
-   "4. Technician-name search shows only cards where that technician appears on the card.",
-   "5. All four searchable fields (WO number, customer, unit, technician) are fields visible on the card itself.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. Work orders exist with different work order numbers and with distinct customer names, unit numbers, and lead technicians.\n3. You are on the Schedule page with the work order list visible.",
+  "steps": "1. Click the 'Search work orders' field at the top of the list and type the number of one specific work order; note the results, then clear.\n2. Type part of a customer name; note the results, then clear.\n3. Type a unit number; note the results, then clear.\n4. Type a technician's name; note the results.",
+  "expected": "1. Work-order-number search narrows the list to the card(s) whose work order number matches what you typed, and cards that do not match disappear.\n2. Customer-name search shows only cards for that customer.\n3. Unit-number search shows only cards with that unit.\n4. Technician-name search shows only cards where that technician appears on the card.\n5. All four searchable fields (WO number, customer, unit, technician) are fields visible on the card itself.\n\nNote for the tester: searching the number exactly as the card shows it (for example S-9379) does work. Searching the longer shop-prefixed form (for example S8685-9379) returns nothing; that is already raised as SV-8841 (https://shopview.atlassian.net/browse/SV-8841) and is not part of this test.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Sidebar search, Work order card anatomy)",
-  "refs": "SV-8687 (§3.1 (Sidebar search, Work order card anatomy))",
+  "refs": "SV-8687 (§3.1 (Sidebar search,Work order card anatomy))",
   "viu_status": "VIU-Pending",
   "notes": "'Search work orders' placeholder pinned by the Claude design (§2); confirm live at VIU. Driver: Claude design §2 + requirements §3.1. | CONSOLIDATED 2026-07-31 (usefulness audit G-SIDEBAR-SEARCH, user-authorized): absorbed SCH-WOL-03 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29939
  },
  {
   "id": "SCH-WOL-05",
@@ -453,28 +295,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. Several work orders exist.",
-   "3. You are on the Schedule page with the work order list visible."
-  ],
-  "steps": [
-   "1. Type a search term into 'Search work orders' one character at a time.",
-   "2. Watch the list while typing (do not press Enter)."
-  ],
-  "expected": [
-   "1. The list narrows live with each keystroke - no Enter press or apply button is needed.",
-   "2. Deleting characters widens the results again.",
-   "3. With very many work orders, the list may load further results in pages as you scroll - that is expected, not a fault.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. Several work orders exist.\n3. You are on the Schedule page with the work order list visible.",
+  "steps": "1. Type a search term into 'Search work orders' one character at a time.\n2. Watch the list while typing (do not press Enter).",
+  "expected": "1. The list narrows live with each keystroke - no Enter press or apply button is needed.\n2. Deleting characters widens the results again.\n3. With very many work orders, the list may load further results in pages as you scroll - that is expected, not a fault.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Sidebar search)",
   "refs": "SV-8687 (§3.1 (Sidebar search))",
   "viu_status": "VIU-Pending",
   "notes": "TECH-PLAN 2026-07-29: sidebar search + pagination are SERVER-side (plan §4 GET /api/schedule/work-orders with search/page/rowsPerPage) - large lists arrive paged. Tech-plan-pinned - confirm LIVE at VIU (Rule 12).",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29940
  },
  {
   "id": "SCH-WOL-06",
@@ -483,28 +313,16 @@
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page with the work order list visible."
-  ],
-  "steps": [
-   "1. In 'Search work orders', type a nonsense string that matches nothing (for example 'zzzxq999').",
-   "2. Look at the list.",
-   "3. Clear the search."
-  ],
-  "expected": [
-   "1. No work order cards are shown.",
-   "2. The app does not error; the sidebar remains usable.",
-   "3. Clearing the search restores the full list.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on the Schedule page with the work order list visible.",
+  "steps": "1. In 'Search work orders', type a nonsense string that matches nothing (for example 'zzzxq999').\n2. Look at the list.\n3. Clear the search.",
+  "expected": "1. No work order cards are shown.\n2. The app does not error; the sidebar remains usable.\n3. Clearing the search restores the full list.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (derived - search behavior with no matches)",
   "refs": "SV-8687 (§3.1 (derived - search behavior with no matches))",
   "viu_status": "VIU-Pending",
   "notes": "The spec does not pin any empty-state message text for the sidebar - confirm live whether a message is shown and capture its exact wording.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29941
  },
  {
   "id": "SCH-FILT-01",
@@ -513,29 +331,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. Several work orders exist in mixed statuses and priorities.",
-   "3. You are on the Schedule page with the work order list visible."
-  ],
-  "steps": [
-   "1. Click the 'Filters' button on the sidebar.",
-   "2. Read the filter groups offered.",
-   "3. Apply one filter option and look at the 'Filters' button."
-  ],
-  "expected": [
-   "1. The filter panel offers three groups: Assignment (Assigned, Unassigned), Status (the work order statuses supported in the app), and Priority (High, Medium, Low).",
-   "2. Applying a filter narrows the flat card list.",
-   "3. The 'Filters' button shows a badge with the number of active filters.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. Several work orders exist in mixed statuses and priorities.\n3. You are on the Schedule page with the work order list visible.",
+  "steps": "1. Click the 'Filters' button on the sidebar.\n2. Read the filter groups offered.\n3. Apply one filter option and look at the 'Filters' button.",
+  "expected": "1. The filter panel offers three groups: Assignment (Assigned, Unassigned), Status (the work order statuses supported in the app), and Priority (High, Medium, Low).\n2. Applying a filter narrows the flat card list.\n3. The 'Filters' button shows a badge with the number of active filters.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§5.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
   "refs": "SV-8687 (§5.1)",
   "viu_status": "VIU-Pending",
   "notes": "Sidebar caption is 'Filters' (plural) - design + Jira SV-8687 agree (design §3, DESIGN-RECONCILIATION #1). The Status option list is deliberately NOT enumerated by the spec ('All work order statuses currently supported in the app') - capture the real list from the app live. Badge styling/count format unpinned. Confirm live at VIU.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29942
  },
  {
   "id": "SCH-FILT-02",
@@ -544,29 +349,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. At least one work order has a technician assigned and at least one has none.",
-   "3. You are on the Schedule page with the work order list visible."
-  ],
-  "steps": [
-   "1. Open the 'Filter' panel and choose Unassigned under Assignment.",
-   "2. Read the list.",
-   "3. Switch to Assigned and read the list again."
-  ],
-  "expected": [
-   "1. Unassigned: only work orders without an assigned technician remain in the list.",
-   "2. Assigned: only work orders with a technician assigned remain.",
-   "3. There are no Assigned/Unassigned tabs - this filter is the only assignment split.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1, §3.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. At least one work order has a technician assigned and at least one has none.\n3. You are on the Schedule page with the work order list visible.",
+  "steps": "1. Open the 'Filter' panel and choose Unassigned under Assignment.\n2. Read the list.\n3. Switch to Assigned and read the list again.",
+  "expected": "1. Unassigned: only work orders without an assigned technician remain in the list.\n2. Assigned: only work orders with a technician assigned remain.\n3. There are no Assigned/Unassigned tabs - this filter is the only assignment split.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§5.1, §3.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1, §3.1",
-  "refs": "SV-8687 (§5.1, §3.1)",
+  "refs": "SV-8687 (§5.1,§3.1)",
   "viu_status": "VIU-Pending",
   "notes": "Whether 'Assigned' keys off the lead technician, any line roster entry, or any shift is not pinned by the spec - confirm the exact definition live.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29943
  },
  {
   "id": "SCH-FILT-03",
@@ -575,29 +367,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. Work orders exist in at least two different statuses.",
-   "3. You are on the Schedule page with the work order list visible."
-  ],
-  "steps": [
-   "1. Open the 'Filter' panel.",
-   "2. Choose one status under Status.",
-   "3. Read the list."
-  ],
-  "expected": [
-   "1. The Status group lists the work order statuses the app supports.",
-   "2. Only work orders in the chosen status remain in the card list.",
-   "3. The card left-border colors of the remaining cards are consistent with that status.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. Work orders exist in at least two different statuses.\n3. You are on the Schedule page with the work order list visible.",
+  "steps": "1. Open the 'Filter' panel.\n2. Choose one status under Status.\n3. Read the list.",
+  "expected": "1. The Status group lists the work order statuses the app supports.\n2. Only work orders in the chosen status remain in the card list.\n3. The card left-border colors of the remaining cards are consistent with that status.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§5.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
   "refs": "SV-8687 (§5.1)",
   "viu_status": "VIU-Pending",
   "notes": "Status option list = from the app (spec defers) - enumerate live. Single vs multi-select within a group is not pinned - confirm live.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29944
  },
  {
   "id": "SCH-FILT-04",
@@ -606,28 +385,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. Work orders exist with different priorities (High and Low at minimum).",
-   "3. You are on the Schedule page with the work order list visible."
-  ],
-  "steps": [
-   "1. Open the 'Filter' panel.",
-   "2. Choose High under Priority.",
-   "3. Read the list."
-  ],
-  "expected": [
-   "1. The Priority group offers High, Medium, and Low.",
-   "2. Only High-priority work orders remain in the list.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. Work orders exist with different priorities (High and Low at minimum).\n3. You are on the Schedule page with the work order list visible.",
+  "steps": "1. Open the 'Filter' panel.\n2. Choose High under Priority.\n3. Read the list.",
+  "expected": "1. The Priority group offers High, Medium, and Low.\n2. Only High-priority work orders remain in the list.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§5.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
   "refs": "SV-8687 (§5.1)",
   "viu_status": "VIU-Pending",
   "notes": "",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29945
  },
  {
   "id": "SCH-FILT-05",
@@ -636,27 +403,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page and have applied at least two filters (for example an Assignment and a Priority filter)."
-  ],
-  "steps": [
-   "1. Click 'Clear all'.",
-   "2. Look at the list and the 'Filter' button."
-  ],
-  "expected": [
-   "1. All applied filters are removed at once.",
-   "2. The full work order list is shown again.",
-   "3. The active-count badge on the 'Filter' button disappears (or shows zero).",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on the Schedule page and have applied at least two filters (for example an Assignment and a Priority filter).",
+  "steps": "1. Click 'Clear all'.\n2. Look at the list and the 'Filter' button.",
+  "expected": "1. All applied filters are removed at once.\n2. The full work order list is shown again.\n3. The active-count badge on the 'Filter' button disappears (or shows zero).\n\nKnown issue on the build tested: The popover has no \"Clear all\" control: filters are cleared by unchecking each box, and the Filters button carries no active-count badge either. Spec 5.1: \"Filters live behind a 'Filter' button (with an active-count badge) ... and 'Clear all' resets in one click.\" It has been reported to the QA lead but has no developer ticket yet. Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§5.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
   "refs": "SV-8687 (§5.1)",
   "viu_status": "VIU-Pending",
   "notes": "'Clear all' is the spec's wording - confirm the exact on-screen label and its placement live.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29946
  },
  {
   "id": "SCH-FILT-06",
@@ -665,28 +421,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. Several work orders exist for the same customer in different statuses.",
-   "3. You are on the Schedule page with the work order list visible."
-  ],
-  "steps": [
-   "1. Type a customer name into 'Search work orders'.",
-   "2. With the search still applied, open 'Filter' and choose one status.",
-   "3. Read the list."
-  ],
-  "expected": [
-   "1. The list shows only work orders that match BOTH the text search and the structured filter.",
-   "2. Removing either the search text or the filter widens the list to the remaining condition.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. Several work orders exist for the same customer in different statuses.\n3. You are on the Schedule page with the work order list visible.",
+  "steps": "1. Type a customer name into 'Search work orders'.\n2. With the search still applied, open 'Filter' and choose one status.\n3. Read the list.",
+  "expected": "1. The list shows only work orders that match BOTH the text search and the structured filter.\n2. Removing either the search text or the filter widens the list to the remaining condition.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§5.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
   "refs": "SV-8687 (§5.1)",
   "viu_status": "VIU-Pending",
   "notes": "",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29947
  },
  {
   "id": "SCH-LINE-01",
@@ -695,32 +439,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. A work order exists with a known number of approved lines (at least two).",
-   "3. You are on the Schedule page with the work order list visible."
-  ],
-  "steps": [
-   "1. Click that work order's card in the sidebar.",
-   "2. Look at the sidebar.",
-   "3. Read the header of the drill-down.",
-   "4. Click the back control."
-  ],
-  "expected": [
-   "1. The card list is replaced, in the same place, by that work order's lines (no new page or popup).",
-   "2. The header of the drill-down shows the work order id.",
-   "3. The header also shows the line count, and it matches the number of approved lines.",
-   "4. A back control is shown to return to the card list.",
-   "5. Clicking back restores the work order card list.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. A work order exists with a known number of approved lines (at least two).\n3. You are on the Schedule page with the work order list visible.",
+  "steps": "1. Click that work order's card in the sidebar.\n2. Look at the sidebar.\n3. Read the header of the drill-down.\n4. Click the back control.",
+  "expected": "1. The card list is replaced, in the same place, by that work order's lines (no new page or popup).\n2. The header of the drill-down shows the work order id.\n3. The header also shows the line count, and it matches the number of approved lines.\n4. A back control is shown to return to the card list.\n5. Clicking back restores the work order card list.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line drill-down)",
   "refs": "SV-8687 (§3.1 (Line drill-down))",
   "viu_status": "VIU-Pending",
   "notes": "Back control form (arrow/label) and the exact header composition/format are unpinned - confirm both live. | CONSOLIDATED 2026-07-31 (usefulness audit G-DRILLDOWN-OPEN, user-authorized): absorbed SCH-LINE-02 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29948
  },
  {
   "id": "SCH-LINE-02",
@@ -747,7 +475,8 @@
   "refs": "SV-8687 (§3.1 (Line drill-down))",
   "viu_status": "Retired - MERGED into SCH-LINE-01 2026-07-31 (usefulness audit G-DRILLDOWN-OPEN, user-authorized consolidation)",
   "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-DRILLDOWN-OPEN): merged into SCH-LINE-01 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-LINE-02.json. | Exact header composition/format unpinned - confirm live.",
-  "api_related": false
+  "api_related": false,
+  "status": "Retired"
  },
  {
   "id": "SCH-LINE-03",
@@ -756,28 +485,16 @@
   "priority": "Critical",
   "type": "Negative",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. A ZZAUTOTEST work order exists with at least one APPROVED line and at least one UNAPPROVED line (create/adjust it first).",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Open that work order's drill-down in the sidebar.",
-   "2. Compare the lines listed against the work order's actual lines."
-  ],
-  "expected": [
-   "1. Every approved line is listed.",
-   "2. The unapproved line does NOT appear anywhere in the schedule sidebar.",
-   "3. The header's line count matches the approved lines only.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. A ZZAUTOTEST work order exists with at least one APPROVED line and at least one UNAPPROVED line (create/adjust it first).\n3. You are on the Schedule page.",
+  "steps": "1. Open that work order's drill-down in the sidebar.\n2. Compare the lines listed against the work order's actual lines.",
+  "expected": "1. Every line the drill-down lists is a line that has been approved. In practice that means you will see lines badged 'Authorized' and lines badged 'Complete', because a completed line was approved before it was worked.\n2. No line that has never been approved appears anywhere in the schedule sidebar - for example a line still sitting on an estimate, or one that was declined.\n3. The line count in the drill-down header matches the number of lines actually listed.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line drill-down - approved-only)",
   "refs": "SV-8687 (§3.1 (Line drill-down - approved-only))",
   "viu_status": "VIU-Pending",
   "notes": "",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29950
  },
  {
   "id": "SCH-LINE-04",
@@ -786,28 +503,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2). The drag handle is an editing affordance - hidden/disabled for View-only users (§14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. A work order exists whose approved lines have estimated hours; at least one line has several technicians on its roster.",
-   "3. You are on the Schedule page with the drill-down open."
-  ],
-  "steps": [
-   "1. Read one line row.",
-   "2. Look at a line with multiple technicians on it."
-  ],
-  "expected": [
-   "1. The row shows the line's title and its estimated hours.",
-   "2. The current technician roster is shown as an avatar stack plus a count; there is no cap on how many technicians a line can have.",
-   "3. Each line row has its own drag handle, so it can be dragged independently onto the grid.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1, §8.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser with Schedule: Edit.\n2. A work order exists whose approved lines have estimated hours; at least one line has several technicians on its roster.\n3. You are on the Schedule page with the drill-down open.",
+  "steps": "1. Read one line row.\n2. Look at a line with multiple technicians on it.",
+  "expected": "1. The row shows the line's title and its estimated hours.\n2. The current technician roster is shown as an avatar stack plus a count; there is no cap on how many technicians a line can have.\n3. Each line row has its own drag handle, so it can be dragged independently onto the grid.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.1, §8.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line drill-down), §8.1 (Line labor roster - no cap)",
-  "refs": "SV-8687 (§3.1 (Line drill-down), §8.1 (Line labor roster - no cap))",
+  "refs": "SV-8687 (§3.1 (Line drill-down),§8.1 (Line labor roster - no cap))",
   "viu_status": "VIU-Pending",
   "notes": "Line row (drag handle, title, hours, avatar-stack roster + count) pinned by the Claude design (§2 line drill-down); confirm live. Driver: Claude design §2.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29951
  },
  {
   "id": "SCH-LINE-05",
@@ -816,28 +521,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. A work order exists with an approved line that has NO technician on its roster and another approved line that has at least one.",
-   "3. You are on the Schedule page with the drill-down open."
-  ],
-  "steps": [
-   "1. Look at the line with no technician.",
-   "2. Look at the line that has a technician."
-  ],
-  "expected": [
-   "1. The technician-less line shows a 'Needs techs' badge.",
-   "2. The line with a technician does not show the badge.",
-   "3. After a technician is scheduled onto the badge-bearing line, the badge goes away.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. A work order exists with an approved line that has NO technician on its roster and another approved line that has at least one.\n3. You are on the Schedule page with the drill-down open.",
+  "steps": "1. Look at the line with no technician.\n2. Look at the line that has a technician.",
+  "expected": "1. The technician-less line shows a 'Needs techs' badge.\n2. The line with a technician does not show the badge.\n3. After a technician is scheduled onto the badge-bearing line, the badge goes away.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line drill-down - Needs techs badge)",
   "refs": "SV-8687 (§3.1 (Line drill-down - Needs techs badge))",
   "viu_status": "VIU-Pending",
   "notes": "'Needs techs' badge pinned by the Claude design (§2); confirm live at VIU. Driver: Claude design §2.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29952
  },
  {
   "id": "SCH-LINE-06",
@@ -846,28 +539,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. A work order exists with several approved lines with distinct titles.",
-   "3. You are on the Schedule page with the drill-down open."
-  ],
-  "steps": [
-   "1. In the drill-down's line search box, type part of one line's title.",
-   "2. Read the results.",
-   "3. Clear it and type the customer's name instead."
-  ],
-  "expected": [
-   "1. Typing a line title narrows the list to matching lines.",
-   "2. Typing the customer name returns no results - the line search matches line titles only (the list is already scoped to one work order, so customer/unit/WO fields are not searched).",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. A work order exists with several approved lines with distinct titles.\n3. You are on the Schedule page with the drill-down open.",
+  "steps": "1. In the drill-down's line search box, type part of one line's title.\n2. Read the results.\n3. Clear it and type the customer's name instead.",
+  "expected": "1. Typing a line title narrows the list to matching lines.\n2. Typing the customer name returns no results - the line search matches line titles only (the list is already scoped to one work order, so customer/unit/WO fields are not searched).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line search)",
   "refs": "SV-8687 (§3.1 (Line search))",
   "viu_status": "VIU-Pending",
   "notes": "'Search lines' placeholder pinned by the Claude design (§2); confirm live at VIU. Driver: Claude design §2.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29953
  },
  {
   "id": "SCH-LINE-07",
@@ -876,28 +557,15 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. A work order exists where at least one approved line already has a shift on the grid and at least one approved line has none.",
-   "3. You are on the Schedule page with the drill-down open."
-  ],
-  "steps": [
-   "1. Read the two filter chips and their counts.",
-   "2. Click the Unscheduled chip.",
-   "3. Click the All chip."
-  ],
-  "expected": [
-   "1. Two chips are shown - All and Unscheduled - each with a count.",
-   "2. Unscheduled lists only the lines that have no shifts yet, and its count matches.",
-   "3. All lists every approved line, and its count matches the drill-down header's line count.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1, §5.1)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. A work order exists where at least one approved line already has a shift on the grid and at least one approved line has none.\n3. You are on the Schedule page with the drill-down open.",
+  "steps": "1. Read the two filter chips and their counts.\n2. Click the Unscheduled chip.\n3. Click the All chip.",
+  "expected": "1. Two chips are shown - All and Unscheduled - each with a count.\n2. Unscheduled lists only the lines that have no shifts yet, and its count matches.\n3. All lists every approved line, and its count matches the drill-down header's line count.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§3.1, §5.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1, §5.1 (drill-down filters)",
-  "refs": "SV-8687 (§3.1, §5.1 (drill-down filters))",
+  "refs": "SV-8687 (§3.1,§5.1 (drill-down filters))",
   "viu_status": "VIU-Pending",
   "notes": "'All N / Unscheduled N' chips with counts pinned by the Claude design (§2); confirm live at VIU. Driver: Claude design §2.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 29954
  }
 ]

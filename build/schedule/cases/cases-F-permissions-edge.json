@@ -6,31 +6,16 @@
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with Schedule: View but NOT Schedule: Edit (for example Technician, Parts Manager, Parts Tech, Office, or Time Clock). Set up the test user's role at VIU per Standing Rule 5 and restore after.",
-  "preconditions": [
-   "1. A test user's role has Schedule: View but NOT Edit (assign a suitable system role or a purpose-made custom role; restore after).",
-   "2. Shifts and events exist on the grid, created by an Edit-capable user.",
-   "3. You are signed in AS that View-only user on a desktop browser."
-  ],
-  "steps": [
-   "1. Open the Schedule page.",
-   "2. Switch between Day, Week, and Month.",
-   "3. Use the mini calendar, the toolbar search, and the sidebar filter.",
-   "4. Hover a shift for its tooltip, then click it to open the detail modal."
-  ],
-  "expected": [
-   "1. The Schedule page opens and all three views work.",
-   "2. The mini calendar, search, and filters all work.",
-   "3. ALL technicians' shifts and events are visible (not just the user's own).",
-   "4. Tooltips show on hover, and the shift/event detail modals open in read-only mode.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1, §14.3)."
-  ],
+  "preconditions": "<ol>\n<li>A test user's role has Schedule: View but NOT Edit (assign a suitable system role or a purpose-made custom role; restore after).</li>\n<li>Shifts and events exist on the grid, created by an Edit-capable user.</li>\n<li>You are signed in AS that View-only user on a desktop browser.</li>\n</ol>\n",
+  "steps": "<ol>\n<li>Open the Schedule page.</li>\n<li>Switch between Day, Week, and Month.</li>\n<li>Use the mini calendar, the toolbar search, and the sidebar filter.</li>\n<li>Hover a shift for its tooltip, then click it to open the detail modal.</li>\n</ol>\n",
+  "expected": "<ol>\n<li>The Schedule page opens and all three views work.</li>\n<li>The mini calendar, search, and filters all work.</li>\n<li>ALL technicians' shifts and events are visible (not just the user's own).</li>\n<li>Tooltips show on hover, and the shift/event detail modals open in read-only mode.</li>\n</ol>\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14.1, §14.3).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: View), §14.3",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (§14.1 (Schedule: View), §14.3)",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: View),§14.3)",
   "viu_status": "VIU-Pending",
   "notes": "Ask the user at VIU how the Schedule permission tier appears in the roles admin (exact permission names). Verify per role LIVE (Standing Rules 10/12/13) - never derive from role definitions. | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30074
  },
  {
   "id": "SCH-PERM-02",
@@ -39,31 +24,16 @@
   "priority": "Critical",
   "type": "Negative",
   "permissions_required": "A role with Schedule: View but NOT Edit.",
-  "preconditions": [
-   "1. A test user's role has Schedule: View but NOT Edit.",
-   "2. Shifts, a series, and events exist on the grid.",
-   "3. You are signed in AS that View-only user on a desktop browser, on the Schedule page."
-  ],
-  "steps": [
-   "1. Look for drag handles on sidebar lines and try to drag a work order card onto the grid.",
-   "2. Try dragging an existing shift block (move/reassign) and look for resize handles in day view.",
-   "3. Left-click an empty spot in a grid cell.",
-   "4. Open a shift's detail modal and inspect its fields and actions."
-  ],
-  "expected": [
-   "1. No drag handles are offered and nothing can be dragged from the sidebar onto the grid.",
-   "2. Shift blocks cannot be moved or resized - no drop targets or resize handles appear.",
-   "3. No creation menu opens at all - there is no 'Create Event' and no 'New Work Order' offered.",
-   "4. In the modal, edit fields are hidden or disabled, and the reassign and delete actions are absent.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1)."
-  ],
+  "preconditions": "1. A test user's role has Schedule: View but NOT Edit.\n2. Shifts, a series, and events exist on the grid.\n3. You are signed in AS that View-only user on a desktop browser, on the Schedule page.",
+  "steps": "1. Look for drag handles on sidebar lines and try to drag a work order card onto the grid.\n2. Try dragging an existing shift block (move/reassign) and look for resize handles in day view.\n3. Left-click an empty spot in a grid cell.\n4. Open a shift's detail modal and inspect its fields and actions.",
+  "expected": "1. No drag handles are offered and nothing can be dragged from the sidebar onto the grid.\n2. Shift blocks cannot be moved or resized - no drop targets or resize handles appear.\n3. No creation menu opens at all - there is no 'Create Event' and no 'New Work Order' offered.\n4. In the modal, edit fields are hidden or disabled, and the reassign and delete actions are absent.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: View - editing affordances hidden or disabled)",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (§14.1 (Schedule: View - editing affordances hidden or disabled))",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: View - editing affordances hidden or disabled))",
   "viu_status": "VIU-Pending",
   "notes": "Spec allows 'hidden or disabled' - record which of the two the build does for each affordance. | WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): Expected 3 named the OLD menu items ('New Shift / New Event / View Day'); reworded to the reconciled menu ('Create Event' + 'New Work Order') per SCH-REAS-03 / DESIGN-RECONCILIATION #8-10. | Q4 ANSWERED 2026-07-31 (Branko answer 2026-07-31, option C, verbatim: 'C. there is no right click, only left click. when clicked it opens dropdown menu with two options (Create event, New work order) as mentioned in prd.'). Spec basis: Confluence v23 (2026-07-30) §4.10 ('Create via left-click on empty grid space, which opens a menu with \"Create event\" and \"New work order\"..') + §7 ('Left-click on empty grid space opens a menu with: Create event, New work order.'), changed in Confluence v22. The 2026-07-27 pass fixed the menu ITEMS but left the CLICK TYPE as right-click - corrected here. Confirm the exact on-screen labels LIVE at VIU (Rules 9/12). | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30075
  },
  {
   "id": "SCH-PERM-03",
@@ -72,26 +42,16 @@
   "priority": "Critical",
   "type": "Negative",
   "permissions_required": "A role with NO Schedule permissions at all.",
-  "preconditions": [
-   "1. A test user's role has Schedule: View OFF (no Schedule permission).",
-   "2. You are signed in AS that user on a desktop browser."
-  ],
-  "steps": [
-   "1. Look at the app's main navigation.",
-   "2. Search the nav for any Schedule entry."
-  ],
-  "expected": [
-   "1. The Schedule top-level nav item is not shown at all.",
-   "2. The rest of the app works normally for the role.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1)."
-  ],
+  "preconditions": "1. A test user's role has Schedule: View OFF (no Schedule permission).\n2. You are signed in AS that user on a desktop browser.",
+  "steps": "1. Look at the app's main navigation.\n2. Search the nav for any Schedule entry.",
+  "expected": "1. The Schedule top-level nav item is not shown at all.\n2. The rest of the app works normally for the role.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (When Schedule: View is OFF)",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (§14.1 (When Schedule: View is OFF))",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (When Schedule: View is OFF))",
   "viu_status": "VIU-Pending",
   "notes": "The spec pins only the nav being hidden. Also probe direct URL access at VIU and record the observed behavior (not spec-pinned - do not assert a specific redirect). | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30076
  },
  {
   "id": "SCH-PERM-04",
@@ -100,32 +60,16 @@
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "A role with Schedule: Edit (requires View) - per spec the level for Service Manager, Senior Service Advisor, Service Advisor, and Foreman.",
-  "preconditions": [
-   "1. A test user's role has Schedule: Edit (and View) but NOT Delete.",
-   "2. Work orders with approved lines exist; you are signed in AS that user, on the Schedule page."
-  ],
-  "steps": [
-   "1. Drag a work order from the sidebar onto a technician cell and complete the scope picker (and spread modal for a large job).",
-   "2. Left-click an empty spot in a cell and create an event via 'Create Event'; do the same on the timeline in day view.",
-   "3. Reassign a shift between technicians by dragging.",
-   "4. In day view, edge-resize and horizontally drag a shift.",
-   "5. Edit fields in the shift and event detail modals."
-  ],
-  "expected": [
-   "1. Drag-and-drop from the sidebar, the scope picker, and the spread modal all work.",
-   "2. Shift and event creation works, including via the menu opened by left-clicking empty grid space in both week and day view.",
-   "3. Reassignment between technicians works.",
-   "4. Edge-resize and horizontal drag work in day view.",
-   "5. Modal fields are editable and save.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1)."
-  ],
+  "preconditions": "1. A test user's role has Schedule: Edit (and View) but NOT Delete.\n2. Work orders with approved lines exist; you are signed in AS that user, on the Schedule page.",
+  "steps": "1. Drag a work order from the sidebar onto a technician cell and complete the scope picker (and spread modal for a large job).\n2. Left-click an empty spot in a cell and create an event via 'Create Event'; do the same on the timeline in day view.\n3. Reassign a shift between technicians by dragging.\n4. In day view, edge-resize and horizontally drag a shift.\n5. Edit fields in the shift and event detail modals.",
+  "expected": "1. Drag-and-drop from the sidebar, the scope picker, and the spread modal all work.\n2. Shift and event creation works, including via the menu opened by left-clicking empty grid space in both week and day view.\n3. Reassignment between technicians works.\n4. Edge-resize and horizontal drag work in day view.\n5. Modal fields are editable and save.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: Edit)",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (§14.1 (Schedule: Edit))",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: Edit))",
   "viu_status": "VIU-Pending",
   "notes": "| WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): Step 2's menu label 'New Event' was renamed 'Create Event' (DESIGN-RECONCILIATION #7, applied in SCH-EVT-01); label updated. | Q4 ANSWERED 2026-07-31 (Branko answer 2026-07-31, option C, verbatim: 'C. there is no right click, only left click. when clicked it opens dropdown menu with two options (Create event, New work order) as mentioned in prd.'). Spec basis: Confluence v23 (2026-07-30) §4.10 ('Create via left-click on empty grid space, which opens a menu with \"Create event\" and \"New work order\"..') + §7 ('Left-click on empty grid space opens a menu with: Create event, New work order.'), changed in Confluence v22. The 2026-07-27 pass fixed the menu ITEMS but left the CLICK TYPE as right-click - corrected here. Confirm the exact on-screen labels LIVE at VIU (Rules 9/12). | Aligned 2026-07-31 with contradiction group X6 (see SCH-EVT-02): day view uses the SAME left-click menu entry, not a separate direct click-to-create gesture. | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30077
  },
  {
   "id": "SCH-PERM-05",
@@ -134,29 +78,16 @@
   "priority": "High",
   "type": "Negative",
   "permissions_required": "A role with Schedule: Edit but NOT Schedule: Delete.",
-  "preconditions": [
-   "1. A test user's role has Schedule: Edit but NOT Delete.",
-   "2. A shift, a series, and an event exist (some created by this user).",
-   "3. You are signed in AS that user, on the Schedule page."
-  ],
-  "steps": [
-   "1. Open a shift's detail modal and look for the delete action / trash icon.",
-   "2. Open an event's modal and look for a delete action.",
-   "3. Try to find ANY way to remove a shift or event."
-  ],
-  "expected": [
-   "1. The delete action and the trash icon are hidden in the shift modal.",
-   "2. Events likewise offer no delete.",
-   "3. No path exists to remove shifts or events - while creating and modifying still work (per SCH-PERM-04).",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1)."
-  ],
+  "preconditions": "1. A test user's role has Schedule: Edit but NOT Delete.\n2. A shift, a series, and an event exist (some created by this user).\n3. You are signed in AS that user, on the Schedule page.",
+  "steps": "1. Open a shift's detail modal and look for the delete action / trash icon.\n2. Open an event's modal and look for a delete action.\n3. Try to find ANY way to remove a shift or event.",
+  "expected": "1. The delete action and the trash icon are hidden in the shift modal.\n2. Events likewise offer no delete.\n3. No path exists to remove shifts or events - while creating and modifying still work.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: Delete - without it)",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (§14.1 (Schedule: Delete - without it))",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: Delete - without it))",
   "viu_status": "VIU-Pending",
   "notes": " | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30078
  },
  {
   "id": "SCH-PERM-06",
@@ -165,30 +96,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with Schedule: Delete (requires Edit, which requires View).",
-  "preconditions": [
-   "1. A test user's role has Schedule: Delete.",
-   "2. A standalone shift, a series, and an event exist.",
-   "3. You are signed in AS that user, on the Schedule page."
-  ],
-  "steps": [
-   "1. Delete the standalone shift.",
-   "2. Delete a series shift and read the scope options.",
-   "3. Delete the event."
-  ],
-  "expected": [
-   "1. The delete action is available and works for shifts.",
-   "2. Series deletion offers its scopes (this shift / this and after / whole series).",
-   "3. Events can be deleted too.",
-   "4. Undo toasts appear (restore the items via Undo to clean up).",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1)."
-  ],
+  "preconditions": "1. A test user's role has Schedule: Delete.\n2. A standalone shift, a series, and an event exist.\n3. You are signed in AS that user, on the Schedule page.",
+  "steps": "1. Delete the standalone shift.\n2. Delete a series shift and read the scope options.\n3. Delete the event.",
+  "expected": "1. The delete action is available and works for shifts.\n2. Series deletion offers its scopes (this shift / this and after / whole series).\n3. Events can be deleted too.\n4. Undo toasts appear (restore the items via Undo to clean up).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: Delete)",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (§14.1 (Schedule: Delete))",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (§14.1 (Schedule: Delete))",
   "viu_status": "VIU-Pending",
   "notes": " | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30079
  },
  {
   "id": "SCH-PERM-07",
@@ -197,28 +114,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Admin access to the roles screen (to inspect/set the Schedule permission tiers on a custom role).",
-  "preconditions": [
-   "1. You are signed in as an admin who can edit custom roles.",
-   "2. A ZZAUTOTEST custom role exists (create one; delete after)."
-  ],
-  "steps": [
-   "1. In the role's Schedule permissions, try to enable Edit while View is off.",
-   "2. Try to enable Delete while Edit is off.",
-   "3. Enable View, then Edit, then Delete in order."
-  ],
-  "expected": [
-   "1. Edit cannot be granted without View (the admin UI enforces or auto-selects the dependency).",
-   "2. Delete cannot be granted without Edit.",
-   "3. The three tiers can be enabled in dependency order, so each higher level always includes the ones beneath it (Delete includes Edit, and Edit includes View).",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14)."
-  ],
+  "preconditions": "1. You are signed in as an admin who can edit custom roles.\n2. A ZZAUTOTEST custom role exists (create one; delete after).",
+  "steps": "1. In the role's Schedule permissions, try to enable Edit while View is off.\n2. Try to enable Delete while Edit is off.\n3. Enable View, then Edit, then Delete in order.",
+  "expected": "1. Edit cannot be granted without View (the admin UI enforces or auto-selects the dependency).\n2. Delete cannot be granted without Edit.\n3. The three tiers can be enabled in dependency order, so each higher level always includes the ones beneath it (Delete includes Edit, and Edit includes View).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14 (Delete requires Edit and Edit requires View)",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (§14 (Delete requires Edit and Edit requires View))",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (§14 (Delete requires Edit and Edit requires View))",
   "viu_status": "VIU-Pending",
   "notes": "How the roles admin enforces the dependency (disabled checkbox vs auto-check) is not pinned - record the observed mechanism live. | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30080
  },
  {
   "id": "SCH-PERM-08",
@@ -227,29 +132,16 @@
   "priority": "High",
   "type": "Negative",
   "permissions_required": "A role with Schedule: View (or higher) but Work Orders: View OFF.",
-  "preconditions": [
-   "1. A test user's role has Schedule access but Work Orders: View OFF.",
-   "2. Shifts already exist on the grid.",
-   "3. You are signed in AS that user, on the Schedule page."
-  ],
-  "steps": [
-   "1. Look at the left sidebar.",
-   "2. Interact with the shifts already on the grid (hover, open modal, and - if the role has Edit - move one).",
-   "3. Try to find any way to drag a new work order onto the grid."
-  ],
-  "expected": [
-   "1. The sidebar hides the work order list and the line drill-down; the mini calendar remains available.",
-   "2. Shifts already on the grid can still be viewed and interacted with per the role's Schedule tier.",
-   "3. New work orders cannot be dragged on - the WO list is simply not visible.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.2)."
-  ],
+  "preconditions": "1. A test user's role has Schedule access but Work Orders: View OFF.\n2. Shifts already exist on the grid.\n3. You are signed in AS that user, on the Schedule page.",
+  "steps": "1. Look at the left sidebar.\n2. Interact with the shifts already on the grid (hover, open modal, and - if the role has Edit - move one).\n3. Try to find any way to drag a new work order onto the grid.",
+  "expected": "1. The sidebar hides the work order list and the line drill-down; the mini calendar remains available.\n2. Shifts already on the grid can still be viewed and interacted with per the role's Schedule tier.\n3. New work orders cannot be dragged on - the WO list is simply not visible.\n\nKnown issue on the build tested: A role with scheduleView but WITHOUT workOrdersView still saw the complete work-order list in the sidebar: 18 cards with customer name, unit number, line count, hours estimate and lead technician. Spec 14.2: \"The left panel sidebar displays work order data (customer, unit, lines, lead tech) and requires Work Orders: View to populate. If a user has Schedule access but Work Orders: View is OFF, the sidebar hides the work order list\". The API serves it too (GET /api/schedule/work-orders returned 200). It has been reported to the QA lead but has no developer ticket yet. Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14.2).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.2",
   "refs": "SV-8687 (§14.2)",
   "viu_status": "VIU-Pending",
   "notes": "",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30081
  },
  {
   "id": "SCH-PERM-09",
@@ -258,27 +150,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A low-tier role with Schedule: View (for example Technician or Time Clock).",
-  "preconditions": [
-   "1. Shifts and events exist for SEVERAL different technicians.",
-   "2. A test user with a low-tier View-only role exists (and is themselves one of the technicians).",
-   "3. You are signed in AS that user, on the Schedule page."
-  ],
-  "steps": [
-   "1. Read the grid across all departments and technicians.",
-   "2. Check 'My Shifts' in 'Filter and Display' is OFF (default)."
-  ],
-  "expected": [
-   "1. The user sees ALL technicians' shifts and events, not only their own - there is no role-based 'own shifts only' restriction.",
-   "2. 'My Shifts' exists only as an optional personal convenience filter (off by default), not a security boundary.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.3)."
-  ],
+  "preconditions": "1. Shifts and events exist for SEVERAL different technicians.\n2. A test user with a low-tier View-only role exists (and is themselves one of the technicians).\n3. You are signed in AS that user, on the Schedule page.",
+  "steps": "1. Read the grid across all departments and technicians.\n2. Check 'My Shifts' in 'Filter and Display' is OFF (default).",
+  "expected": "1. The user sees ALL technicians' shifts and events, not only their own - there is no role-based 'own shifts only' restriction.\n2. 'My Shifts' exists only as an optional personal convenience filter (off by default), not a security boundary.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14.3).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.3",
-  "refs": "SV-8685 [epic - cross-cutting, no single-story owner] (§14.3)",
+  "refs": "SV-8685 [epic - cross-cutting,no single-story owner] (§14.3)",
   "viu_status": "VIU-Pending",
   "notes": " | TRACEABILITY 2026-07-31 (closing authenticity pass, Rule 20): epic key SV-8685 is used because this case is cross-cutting and has NO single-story owner among SV-8686..SV-8700 (no permissions/regression story exists in the epic) - now stated explicitly in refs as Rule 20 requires.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30082
  },
  {
   "id": "SCH-PERM-10",
@@ -287,27 +168,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Admin access to staff records for setup; any Schedule: View user to observe.",
-  "preconditions": [
-   "1. A staff member with a NON-technician role (for example Office) is assigned to a department that is visible on the schedule (set up; restore after).",
-   "2. Another staff member has NO department assignment.",
-   "3. You are signed in on a desktop browser, on the Schedule page."
-  ],
-  "steps": [
-   "1. Look for the department-assigned Office staff member among the grid rows.",
-   "2. Look for the staff member with no department."
-  ],
-  "expected": [
-   "1. The department-assigned staff member appears as a technician row - row presence is controlled by the department on the staff record, NOT by role permission.",
-   "2. The staff member without a department does not appear as a row.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.4)."
-  ],
+  "preconditions": "1. A staff member with a NON-technician role (for example Office) is assigned to a department that is visible on the schedule (set up; restore after).\n2. Another staff member has NO department assignment.\n3. You are signed in on a desktop browser, on the Schedule page.",
+  "steps": "1. Look for the department-assigned Office staff member among the grid rows.\n2. Look for the staff member with no department.",
+  "expected": "1. The department-assigned staff member appears as a technician row - row presence is controlled by the department on the staff record, NOT by role permission.\n2. The staff member without a department does not appear as a row.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14.4).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.4",
   "refs": "SV-8686 (§14.4)",
   "viu_status": "VIU-Pending",
   "notes": "Expectation 2 is the contrapositive derivation of §14.4 - confirm live how department-less staff are handled.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30083
  },
  {
   "id": "SCH-PERM-11",
@@ -316,26 +186,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Admin access to staff records for setup; the affected staff user to observe.",
-  "preconditions": [
-   "1. Two staff members exist: one with the 'Time Clock' setting ON on their staff record, one with it OFF (set up; restore after).",
-   "2. Both appear as schedule rows and have shifts on work order lines."
-  ],
-  "steps": [
-   "1. As (or with) the Time-Clock-ON staff member, attempt to clock into their work order line task.",
-   "2. As (or with) the Time-Clock-OFF staff member, attempt the same."
-  ],
-  "expected": [
-   "1. The Time-Clock-ON staff member can clock in.",
-   "2. The Time-Clock-OFF staff member cannot - the ability is controlled by the staff-record setting, not by the Schedule permission tier.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.4)."
-  ],
+  "preconditions": "1. Two staff members exist: one with the 'Time Clock' setting ON on their staff record, one with it OFF (set up; restore after).\n2. Both appear as schedule rows and have shifts on work order lines.",
+  "steps": "1. As (or with) the Time-Clock-ON staff member, attempt to clock into their work order line task.\n2. As (or with) the Time-Clock-OFF staff member, attempt the same.",
+  "expected": "1. The Time-Clock-ON staff member can clock in.\n2. The Time-Clock-OFF staff member cannot - the ability is controlled by the staff-record setting, not by the Schedule permission tier.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14.4).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.4 (Time Clock setting)",
   "refs": "SV-8686 (§14.4 (Time Clock setting))",
   "viu_status": "VIU-Pending",
   "notes": "The clock-in surface (where clock-in happens relative to the schedule) is not described in this spec - locate it live.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30084
  },
  {
   "id": "SCH-PERM-12",
@@ -344,29 +204,16 @@
   "priority": "High",
   "type": "Negative",
   "permissions_required": "A role with Schedule: View (or higher) but Work Orders: View OFF. Set up the test user's role at VIU per Standing Rule 5 and restore after.",
-  "preconditions": [
-   "1. A test user's role has Schedule access but Work Orders: View OFF (assign a suitable role; restore after).",
-   "2. Shifts already exist on the grid, created by a fully-permissioned user, for units that have customers, scheduled lines, and a VIN.",
-   "3. You are signed in AS that user on a desktop browser, on the Schedule page."
-  ],
-  "steps": [
-   "1. Look at a shift block on the grid and read its text lines.",
-   "2. Hover the shift for its tooltip.",
-   "3. Open the shift's detail modal and read the work-order-derived fields."
-  ],
-  "expected": [
-   "1. Work-order-derived details (customer, the scheduled line list, and any money-bearing fields) are hidden or masked wherever they would normally appear - on the block, in the tooltip, and in the modal.",
-   "2. The schedule structure itself (the shift's day, time, and technician) stays visible so the grid remains usable.",
-   "3. This extends the sidebar behavior (the work order list and drill-down are hidden) to the work-order data surfaced on the shifts themselves.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.2). The current behaviour follows a later product owner decision dated 2026-07-22."
-  ],
+  "preconditions": "1. A test user's role has Schedule access but Work Orders: View OFF (assign a suitable role; restore after).\n2. Shifts already exist on the grid, created by a fully-permissioned user, for units that have customers, scheduled lines, and a VIN.\n3. You are signed in AS that user on a desktop browser, on the Schedule page.",
+  "steps": "1. Look at a shift block on the grid and read its text lines.\n2. Hover the shift for its tooltip.\n3. Open the shift's detail modal and read the work-order-derived fields.",
+  "expected": "1. Work-order-derived details (customer, the scheduled line list, and any money-bearing fields) are hidden or masked wherever they would normally appear - on the block, in the tooltip, and in the modal.\n2. The schedule structure itself (the shift's day, time, and technician) stays visible so the grid remains usable.\n3. This extends the sidebar behavior (the work order list and drill-down are hidden) to the work-order data surfaced on the shifts themselves.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14.2). The behaviour above follows a later product owner decision dated 22 July 2026 rather than that specification's wording, and that decision is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/branko-answers-2026-07-31/answers-ingested.md.",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.2 (Work Orders: View dependency)",
   "refs": "SV-8687 (§14.2 (Work Orders: View dependency))",
   "viu_status": "VIU-Pending",
   "notes": "NEW case (reconciliation 2026-07-22). Driver: Branko Q&A 2026-07-22 Q3 ('We do not show total $ anywhere in the schedule. We can hide other items that fall under that permission'). Complements the sidebar-hide permission case. Confirm the exact masking (hidden vs placeholder) live at VIU. No TestRail C-id yet - pending authorized add_case.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30614
  },
  {
   "id": "SCH-PERM-13",
@@ -375,33 +222,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Admin access to the roles screen (to read each role's default Schedule permissions) and the ability to sign in as a user holding one of those roles.",
-  "preconditions": [
-   "1. You are signed in as an admin who can view and edit the roles and their permissions.",
-   "2. You can sign in (or switch) to a user who holds each role you need to check.",
-   "3. Write down each role's current Schedule permissions before you change anything, and put them back afterwards."
-  ],
-  "steps": [
-   "1. Open the roles screen where each role's permissions are listed.",
-   "2. Take these roles one at a time - Technician, Parts Manager, Parts Tech, Office, Time Clock - use 'Reset To Template' so the role is back at its default, then read its Schedule permissions (View, Edit, Delete).",
-   "3. Do the same for these roles - Service Manager, Senior Service Advisor, Service Advisor, Foreman - and read their Schedule permissions.",
-   "4. Sign in as a user with one of the roles from step 2 and try to drag a work order onto the grid.",
-   "5. Sign in as a user with one of the roles from step 3 and try the same drag.",
-   "6. Put every role's permissions back the way you found them."
-  ],
-  "expected": [
-   "1. Technician, Parts Manager, Parts Tech, Office and Time Clock each have Schedule View turned ON and Schedule Edit and Schedule Delete turned OFF.",
-   "2. Service Manager, Senior Service Advisor, Service Advisor and Foreman each have Schedule Edit turned ON (so they also have View).",
-   "3. The user from step 4 gets the read-only schedule - nothing can be dragged onto the grid and no shift can be created.",
-   "4. The user from step 5 can drag a work order onto the grid and create a shift.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1)."
-  ],
+  "preconditions": "1. You are signed in as an admin who can view and edit the roles and their permissions.\n2. You can sign in (or switch) to a user who holds each role you need to check.\n3. Write down each role's current Schedule permissions before you change anything, and put them back afterwards.",
+  "steps": "1. Open the roles screen where each role's permissions are listed.\n2. Take these roles one at a time - Technician, Parts Manager, Parts Tech, Office, Time Clock - use 'Reset To Template' so the role is back at its default, then read its Schedule permissions (View, Edit, Delete).\n3. Do the same for these roles - Service Manager, Senior Service Advisor, Service Advisor, Foreman - and read their Schedule permissions.\n4. Sign in as a user with one of the roles from step 2 and try to drag a work order onto the grid.\n5. Sign in as a user with one of the roles from step 3 and try the same drag.\n6. Put every role's permissions back the way you found them.",
+  "expected": "1. Technician, Parts Manager, Parts Tech, Office and Time Clock each have Schedule View turned ON and Schedule Edit and Schedule Delete turned OFF.\n2. Service Manager, Senior Service Advisor, Service Advisor and Foreman each have Schedule Edit turned ON (so they also have View).\n3. The user from step 4 gets the read-only schedule - nothing can be dragged onto the grid and no shift can be created.\n4. The user from step 5 can drag a work order onto the grid and create a shift.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§14.1).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (default role tiers - the view-only role list and the edit role list)",
   "refs": "SV-8685 [epic - cross-cutting - no single-story owner] (§14.1 default role tiers - view-only role list + edit role list; spec v23 2026-07-30)",
   "viu_status": "VIU-Pending",
   "notes": "NEW 2026-07-31 (coverage re-derivation vs Confluence v23) - closes gaps G2 + G3. §14.1 names the roles at each level (\"This is the experience for roles like Technician, Parts Manager, Parts Tech, Office, and Time Clock\" / \"This is the level for Service Manager, Senior Service Advisor, Service Advisor, and Foreman roles\") but NO case asserted the role-to-level mapping - SCH-PERM-01..06 test the levels abstractly, so a default that gave Technicians edit rights would have passed the whole permission set. | SCOPE LIMITS stated on purpose: (a) the spec says \"roles like\", so roles it does not name (for example Admin and Sales Representative) are NOT asserted here - record what they show and raise a question if it looks wrong; (b) the spec does not say which roles get Schedule Delete, so nothing is asserted about Delete for the edit roles - record what you see; (c) permissions are configurable per shop, so this checks the role DEFAULTS after 'Reset To Template' (Standing Rule 26). | VIU-confirm live: the exact roles-screen path and the exact on-screen wording of the three Schedule permission toggles and of the reset control. | Epic key used because §14 permissions have no single owning story among SV-8686..SV-8700 (same as SCH-PERM-01..07 and SCH-PERM-09).",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 38926
  },
  {
   "id": "SCH-EDGE-01",
@@ -428,7 +258,8 @@
   "refs": "SV-8691 (§12, §4.5)",
   "viu_status": "Retired - CUT (usefulness audit 2026-07-31, user-authorized): duplicate of SCH-SPREAD-10 (C29986) - same setup (spread the same order's full estimate on technician A then B) and the same assertion (over-estimate accepted, no error); SCH-SPREAD-10's expected line 3 states it verbatim.",
   "notes": "RETIRED 2026-07-31 (user-authorized CUT, usefulness audit): duplicate of SCH-SPREAD-10 (C29986) - same setup (spread the same order's full estimate on technician A then B) and the same assertion (over-estimate accepted, no error); SCH-SPREAD-10's expected line 3 states it verbatim. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-EDGE-01.json. | ",
-  "api_related": false
+  "api_related": false,
+  "status": "Retired"
  },
  {
   "id": "SCH-EDGE-02",
@@ -437,29 +268,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. You are on the Schedule page in week view with shifts visible."
-  ],
-  "steps": [
-   "1. Resize the browser window to just under 960px wide.",
-   "2. Try to reach the right-hand days of the grid.",
-   "3. Narrow the window further and watch the sidebar."
-  ],
-  "expected": [
-   "1. Below the 960px minimum supported width, the grid scrolls horizontally rather than breaking.",
-   "2. All days remain reachable by horizontal scroll.",
-   "3. On narrow viewports the sidebar collapses.",
-   "4. No content becomes permanently unreachable and nothing errors.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§11)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. You are on the Schedule page in week view with shifts visible.",
+  "steps": "1. Resize the browser window to just under 960px wide.\n2. Try to reach the right-hand days of the grid.\n3. Narrow the window further and watch the sidebar.",
+  "expected": "1. Below the 960px minimum supported width, the grid scrolls horizontally rather than breaking.\n2. All days remain reachable by horizontal scroll.\n3. On narrow viewports the sidebar collapses.\n4. No content becomes permanently unreachable and nothing errors.\n\nKnown issue on the build tested: At a 900px viewport the sidebar stays 288px wide and the whole page scrolls sideways (documentElement.scrollWidth 1041) rather than only the grid. Spec 11: \"Minimum supported width is 960px (the grid scrolls horizontally below that), and the sidebar collapses on narrow viewports.\" 900px is below the supported minimum, so this is a low-severity observation, not a release blocker. It has been reported to the QA lead but has no developer ticket yet. Mark this test FAILED and note it in your run comment; do not raise a new ticket without asking the QA lead.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§11).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §11 (Responsiveness)",
   "refs": "SV-8686,SV-8687 (§11 (Responsiveness - grid scrolls horizontally below 960px; sidebar collapses))",
   "viu_status": "VIU-Pending",
   "notes": "The exact collapse breakpoint for the sidebar is not pinned (only 'narrow viewports') - record the observed breakpoint live. 960px threshold itself - confirm live. TECH-PLAN 2026-07-29: mobile is explicitly OUT OF SCOPE for v1 (plan Phase 8 - the legacy lightweight mobile menu shape is reused, no mobile grid). Don't file the absence of a full mobile schedule as a bug.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30086
  },
  {
   "id": "SCH-EDGE-03",
@@ -468,29 +286,16 @@
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Schedule: View + Work Orders: View (spec §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. 50 or more open work orders exist (seed ZZAUTOTEST orders if the environment lacks them), including one order with many approved lines.",
-   "3. You are on the Schedule page."
-  ],
-  "steps": [
-   "1. Scroll the full work order list top to bottom quickly.",
-   "2. Open the many-line order's drill-down and scroll it.",
-   "3. Type in the search while the long list is shown."
-  ],
-  "expected": [
-   "1. Scrolling stays smooth with no long freezes or blank stretches that fail to fill in (the list virtualizes at 50+ items).",
-   "2. The drill-down behaves the same with many lines.",
-   "3. Search stays responsive on the long list.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§11)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. 50 or more open work orders exist (seed ZZAUTOTEST orders if the environment lacks them), including one order with many approved lines.\n3. You are on the Schedule page.",
+  "steps": "1. Scroll the full work order list top to bottom quickly.\n2. Open the many-line order's drill-down and scroll it.\n3. Type in the search while the long list is shown.",
+  "expected": "1. Scrolling stays smooth with no long freezes or blank stretches that fail to fill in (the list virtualizes at 50+ items).\n2. The drill-down behaves the same with many lines.\n3. Search stays responsive on the long list.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§11).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §11 (Performance - virtualization)",
   "refs": "SV-8687 (§11 (Performance - sidebar list and line drill-down virtualize at 50+ items))",
   "viu_status": "VIU-Pending",
   "notes": "Virtualization itself is an implementation detail - the observable assertion is smoothness; treat visible jank/freeze as the failure signal.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30087
  },
  {
   "id": "SCH-EDGE-04",
@@ -499,29 +304,16 @@
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Schedule: View to observe; Edit to seed (spec §14.1).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser.",
-   "2. The schedule is loaded to roughly the spec's stated scale: around 15 technician rows across a week with several shifts per cell (seed ZZAUTOTEST shifts as needed).",
-   "3. You are on the Schedule page in week view."
-  ],
-  "steps": [
-   "1. Scroll the grid vertically and horizontally.",
-   "2. Switch between Day, Week, and Month.",
-   "3. Hover several blocks and open/close a modal."
-  ],
-  "expected": [
-   "1. The grid renders and scrolls smoothly at this scale.",
-   "2. View switches complete without long hangs.",
-   "3. Tooltips and modals stay responsive.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§11)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser.\n2. The schedule is loaded to roughly the spec's stated scale: around 15 technician rows across a week with several shifts per cell (seed ZZAUTOTEST shifts as needed).\n3. You are on the Schedule page in week view.",
+  "steps": "1. Scroll the grid vertically and horizontally.\n2. Switch between Day, Week, and Month.\n3. Hover several blocks and open/close a modal.",
+  "expected": "1. The grid renders and scrolls smoothly at this scale.\n2. View switches complete without long hangs.\n3. Tooltips and modals stay responsive.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§11).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §11 (Performance)",
   "refs": "SV-8686 (§11 (Performance))",
   "viu_status": "VIU-Pending",
   "notes": "Perception-based smoothness check - record any measurable jank observed.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30088
  },
  {
   "id": "SCH-EDGE-05",
@@ -530,29 +322,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: Edit + admin access to define a shop closure.",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. A shop closure (holiday/inventory day) is defined at the shop level on a working weekday inside the planned spread window (set it up; remove after).",
-   "3. A large job (multi-day scope) is ready to spread."
-  ],
-  "steps": [
-   "1. Open the spread step across a window that contains a shop closure day.",
-   "2. Expand the preview and find the closure day.",
-   "3. Confirm the spread and check the grid."
-  ],
-  "expected": [
-   "1. The closure day is NOT struck through or skipped by the spread in V1.",
-   "2. A shift CAN be placed on the shop closure day (only weekend days with no business hours are skipped).",
-   "3. The end date follows the normal daily distribution - no extra day is added for the closure.",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§12, §4.5). That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser with Schedule: Edit.\n2. A shop closure (holiday/inventory day) is defined at the shop level on a working weekday inside the planned spread window (set it up; remove after).\n3. A large job (multi-day scope) is ready to spread.",
+  "steps": "1. Open the spread step across a window that contains a shop closure day.\n2. Expand the preview and find the closure day.\n3. Confirm the spread and check the grid.",
+  "expected": "1. The closure day is NOT struck through or skipped by the spread in V1.\n2. A shift CAN be placed on the shop closure day (only weekend days with no business hours are skipped).\n3. The end date follows the normal daily distribution - no extra day is added for the closure.\n\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The specification says this two different ways and no ruling exists yet, so mark this test BLOCKED - not failed - and leave it out of the automation suite. The open question and its evidence are recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/branko-answers-2026-07-31/answers-ingested.md\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§12, §4.5). That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited; the open question is recorded in Branko's answers, in this file: https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/main/build/schedule/branko-answers-2026-07-31/answers-ingested.md.",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §12 (Shop closures), §4.5",
-  "refs": "SV-8691 (§12 (Shop closures), §4.5)",
+  "refs": "SV-8691 (§12 (Shop closures),§4.5)",
   "viu_status": "VIU-Pending",
   "notes": "V1 rule (Jira SV-8691 Key Decision, latest-wins over the older requirements.md §12): shop closures / public holidays are NOT skipped by spread in V1. This reverses the earlier 'closures block spread' expectation. Driver: SV-8691 §4.5, §12. Verify live at VIU. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-1): the engineering plan (D7 + its E2E spec 'created series has no shift on the closure day') SKIPS closures, directly contradicting this case's Jira-V1 rule. Pending ruling (Questions-for-Branko-dev.md NQ-1) - observe and record, don't fail either way until ruled.",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30089
  },
  {
   "id": "SCH-EDGE-06",
@@ -561,25 +340,15 @@
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Schedule: Edit + Work Orders: View (spec §14.1, §14.2).",
-  "preconditions": [
-   "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. A line has estimate 10h; a technician has 6h scheduled against it and some different amount of time actually clocked (seed what is possible)."
-  ],
-  "steps": [
-   "1. Open the shift's detail modal.",
-   "2. Compare the scheduled hours, the estimate, and the logged/actual time."
-  ],
-  "expected": [
-   "1. All three quantities are shown/derivable and may differ from one another.",
-   "2. Nothing forces them to match - no error, no auto-correction (progress is driven by clocked-in time).",
-   "---",
-   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.5, §12)."
-  ],
+  "preconditions": "1. You are signed in on a desktop browser with Schedule: Edit.\n2. A line has estimate 10h; a technician has 6h scheduled against it and some different amount of time actually clocked (seed what is possible).",
+  "steps": "1. Open the shift's detail modal.\n2. Compare the scheduled hours, the estimate, and the logged/actual time.",
+  "expected": "1. All three quantities are shown/derivable and may differ from one another.\n2. Nothing forces them to match - no error, no auto-correction (progress is driven by clocked-in time).\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (§4.5, §12).",
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.5 (three separate quantities), §12",
-  "refs": "SV-8691 (§4.5 (three separate quantities), §12)",
+  "refs": "SV-8691 (§4.5 (three separate quantities),§12)",
   "viu_status": "VIU-Pending",
   "notes": "",
-  "api_related": false
+  "api_related": false,
+  "testrail_case_id": 30090
  }
 ]
