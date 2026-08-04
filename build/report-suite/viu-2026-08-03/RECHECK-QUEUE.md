@@ -1,6 +1,33 @@
 # RE-CHECK QUEUE — Report Suite VIU on the NON-FINAL QA branch `sv8582`
 
-## STATUS: **OPEN**
+## STATUS: **OPEN — ACCEPTED-AS-FINAL-FOR-NOW (2026-08-04)**
+
+> ### THE QA LEAD'S RULING, 2026-08-04 — verbatim
+>
+> *"Since the automation developers are going to automate the test cases today, for now consider
+> the branch verification as final for now and make the required changes in the test cases."*
+>
+> **What this changes.** The corrections that had been withheld *only* because the branch was
+> declared non-final were applied to TestRail on **2026-08-04**
+> (`../final-push-2026-08-04/testrail-execution-log.md`). The branch's observations are treated as
+> **final FOR NOW** so the automation engineers have a stable target today.
+>
+> **What this does NOT change — this queue stays OPEN and must remain retrievable.**
+> Engineering's 2026-08-03 position (*"this QA Branch is also not final they are still working on
+> it"*) has **not** been withdrawn; the QA lead's ruling is an instruction to proceed, **not** a
+> statement that the build stopped moving. So **every row below keeps its re-check obligation**,
+> the build marker below is still the thing to compare against, and **no Report Suite deliverable
+> may be described as VIU-complete while this file is OPEN** (Standing Rule 49). Do **not** delete
+> or archive this file.
+>
+> **Added obligation from the same day — re-stamp the attestation date.** Every one of the 478
+> cases now carries a plain build-date line at the end of its Expected Results:
+> *"This is the expected behaviour as per the build tested on 8/4/2026, and as per the &lt;report&gt;
+> report specification version &lt;N&gt; (&lt;anchors&gt;)."*
+> When the build changes, **re-stamping that date is a required step of the re-check** — it is a
+> single constant (`BUILD_DATE`) in `../final-push-2026-08-04/build_plan.py`, with the spec
+> versions in the `SPEC` map beside it. **A stale attestation date, or a stale spec version, is
+> itself a finding.**
 
 > **Why this file exists (CLAUDE.md Standing Rule 49).** The QA lead relayed engineering's
 > position verbatim on **2026-08-03**: *"they have also told they this QA Branch is also not final
