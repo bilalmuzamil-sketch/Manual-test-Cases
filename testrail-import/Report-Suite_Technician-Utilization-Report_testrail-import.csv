@@ -164,9 +164,9 @@ Expansion state is view-only: it resets on any reload and fresh visit,TU — Per
 3. Expand one technician's row, then deselect and re-select a DIFFERENT technician in the technician filter.","1. After the reload (date-range or location change), all rows are collapsed - expansion state resets.
 2. On a fresh visit, all rows start collapsed - expansion is never persisted.
 3. Deselecting and re-selecting a technician (an on-screen operation) does NOT change the expansion state of the other rows - the expanded row stays expanded.",SV-8651 (specs/technician-utilization.md S4-R5),,
-Filter by Technician starts with every technician selected on a first visit,TU — Technician Filter,Functional,High,"1. You are on the Technician Utilization report on a first visit (no saved settings), with several technicians in the range.","1. Find the toolbar filter labeled ""Filter by Technician"" and open it.
+Filter by Technician starts with every technician selected on a first visit,TU — Technician Filter,Functional,High,"1. You are on the Technician Utilization report on a first visit (no saved settings), with several technicians in the range.","1. Find the toolbar filter labeled ""Technician"" and open it.
 2. Check the selection state of every listed technician.
-3. Try selecting more than one change at once (multi-select).","1. The toolbar has a filter labeled ""Filter by Technician"" that allows selecting more than one technician.
+3. Try selecting more than one change at once (multi-select).","1. The toolbar has a filter labeled ""Technician"" that allows selecting more than one technician (when several are chosen its label reads, for example, ""2 technicians"").
 2. On the first visit, EVERY technician is selected.
 3. All technicians' rows are shown.",SV-8652 (specs/technician-utilization.md S5-R1; S5-R2),,
 Deselecting a technician hides the row and recalculates the Summary,TU — Technician Filter,Functional,High,"1. Several technician rows are visible and the Summary row shows their totals.
@@ -177,10 +177,10 @@ Deselecting a technician hides the row and recalculates the Summary,TU — Techn
 3. The report does NOT reload - the technician filter works on screen only: the rows and the Summary update straight away, no loading indicator appears in the data area, and the date range does not change.
 4. Re-selecting the technician shows the row again (and the Summary recalculates back).
 5. Note for the tester: you do not need developer tools for this test - just watch the screen.","SV-8652 (TU spec v5 2026-07-29 S5-R3; S5-R4; S5-R5 + §3 Key Decisions (""the technician filter works on screen only and does not reload the report""); S5 context note — the server half is covered by C30450 in ""TU - API"")",,
-Select all and Clear all controls set every technician on or off,TU — Technician Filter,Functional,Medium,1. Several technicians are in the current range; a different range exists in which an ADDITIONAL technician (not listed in the current range) has clocked time.,"1. In the Filter by Technician filter, use the control labeled ""Clear all"".
-2. Use the control labeled ""Select all"".
+All technicians and Clear all controls set every technician on or off,TU — Technician Filter,Functional,Medium,1. Several technicians are in the current range; a different range exists in which an ADDITIONAL technician (not listed in the current range) has clocked time.,"1. In the Technician filter, use the control labeled ""Clear all"".
+2. Use the control labeled ""All technicians"".
 3. Deselect one technician, then change the date range to the one containing the additional technician.
-4. Use ""Clear all"" again, then switch to the range where the additional technician newly appears.","1. ""Clear all"" sets every currently-listed technician to deselected; ""Select all"" selects all technicians at once.
+4. Use ""Clear all"" again, then switch to the range where the additional technician newly appears.","1. ""Clear all"" sets every currently-listed technician to deselected; ""All technicians"" selects all technicians at once.
 2. Selection is tracked as the set of DESELECTED technicians: a technician you have not deselected is selected by default.
 3. After step 3, your deselected technician STAYS deselected across the range change, while the newly-appearing technician is SELECTED (never explicitly deselected).
 4. After step 4, the newly-appearing technician is selected even though you had cleared all - ""Clear all"" only deselected the technicians listed at the time.",SV-8652 (specs/technician-utilization.md S5-R6; S5-R7; S5-R8; S5-R9),,
@@ -270,11 +270,11 @@ An over-cap Technician Utilization export is refused with the too-large message,
 The Location filter is the rightmost multi-select; All Locations = select-all,TU — Location Filter,Functional,High,"1. You are signed in as a user with access to at least two locations.
 2. You are on the Technician Utilization report.","1. Look at the rightmost control in the toolbar and read its label.
 2. Open it and read the listed options.
-3. Choose ""All Locations"", then uncheck one individual location.
+3. Choose ""All locations"", then uncheck one individual location.
 4. With every accessible location selected, look at how the report tells you which location the shown data belongs to.","1. The toolbar has a location filter labeled ""Location"" - a multi-select and the RIGHTMOST control.
-2. It lists the locations the signed-in user has access to, plus an ""All Locations"" option.
-3. ""All Locations"" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations.
-4. With all locations selected you can tell which location the shown data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build; this report pools each technician's hours into one row, so the marking may take a different form here.)",SV-8656 (specs/technician-utilization.md S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
+2. It lists the locations the signed-in user has access to, plus an ""All locations"" option and a ""Clear all"" action. (If you only have access to one location, the ""All locations"" entry is not offered - you see ""Clear all"" and your one location.)
+3. ""All locations"" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations.
+4. With more than one location selected, a Location column appears in the table and each row names its location - or reads ""Multiple"" for a technician whose hours span more than one of them. (Where that column sits on screen is checked by its own test.)",SV-8656 (specs/technician-utilization.md S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
 Location changes reload with hours pooled into one row per technician,TU — Location Filter,Functional,Critical,"1. A technician has clocked time at TWO accessible locations in the range.
 2. You are on the Technician Utilization report.","1. Select only location A and read the technician's hours.
 2. Add location B to the selection and watch the report.

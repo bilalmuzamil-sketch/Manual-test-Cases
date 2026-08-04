@@ -159,14 +159,14 @@ A Special Order part is one merged row summed across selected locations,PV — R
 3. Look at the alignment of every header label and cell, including numeric and money columns.","1. The header row is sticky - it stays visible while the body scrolls.
 2. The Type column shows each row's kind as plain text (no badge or chip styling): ""Inventory"" or ""Special Order"".
 3. ALL columns - header and cell data, including numbers and money - are left-aligned on screen. (The exports right-align numerics instead: a deliberate export-only difference.)",SV-8643 (PV spec S3-R4; S3-R5; S3-R8 - Type value 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31]),,
-Info icons sit on Units Sold; Demand and Turns / Yr with descriptions,PV — Row Model,Functional,Medium,"1. You are on the Parts Velocity report with data loaded.
-2. The Turns / Yr column has been enabled via the column picker (it is hidden by default).","1. Look immediately to the right of the Units Sold, Demand, and Turns / Yr header labels.
+"Info icons sit on Units Sold, Demand and Turns/Yr with descriptions",PV — Row Model,Functional,Medium,"1. You are on the Parts Velocity report with data loaded.
+2. The Turns/Yr column has been enabled via the column picker (it is hidden by default).","1. Look immediately to the right of the Units Sold, Demand, and Turns/Yr header labels.
 2. Hover each grey info icon and read the description.
 3. Move focus to an icon with the keyboard (Tab) and check the same text is exposed.
-4. Click/activate an icon and watch whether the column sort changes.","1. Each of the three headers carries a grey info icon, shown always (not hover-to-reveal) whenever its column is visible; the Turns / Yr icon appears only once that column is enabled.
+4. Click/activate an icon and watch whether the column sort changes.","1. Each of the three headers carries a grey info icon, shown always (not hover-to-reveal) whenever its column is visible; the Turns/Yr icon appears only once that column is enabled.
 2. Units Sold shows exactly: ""Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Sell Price.""
 3. Demand shows exactly: ""Number of separate transactions (work orders or parts sales) this part appeared on in the selected date range. Each transaction counts once, no matter how many units were sold on it.""
-4. Turns / Yr shows exactly: ""How many times you sell through this part in a year. Higher is better.""
+4. Turns/Yr shows exactly: ""How many times you sell through this part in a year. Higher is better.""
 5. The icon is focusable and exposes the same text to assistive technology; activating it does NOT trigger a column sort.
 6. No other column header carries an info icon.",SV-8643 (PV spec v4 2026-07-29 S3-R6 — S3-R6 CLOSES the set (exactly three columns: Units Sold; Demand; Turns / Yr) and quotes each description verbatim; so the closed set and the exact strings ARE the requirement),,
 Description; Category and Vendor truncate on hover; Part # never does,PV — Row Model,Functional,Medium,"1. A part with a very long description (and a long category and vendor name) has in-window activity.
@@ -196,16 +196,16 @@ A sale invoiced then fully reversed shows Demand 1 with Units Sold 0.00,PV — R
 3. A fully-reversed part with zero net movement, no on-hand stock, and no residual revenue would be excluded altogether (a Demand count alone does not keep a row).",SV-8643 (specs/parts-velocity.md S3-E1; S5-R5),,
 Column picker lists all 20 columns and never offers the internal cost,PV — Columns & Remembered View,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the column picker from its toolbar button.
 2. Count the columns listed and check each has a toggle.
-3. Look for any on-hand cost / inventory-value entry.","1. The picker lists all 20 available columns, each with a toggle: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns / Yr, Min, Max.
+3. Look for any on-hand cost / inventory-value entry.","1. The picker lists all 20 available columns, each with a toggle: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.
 2. No on-hand cost column is offered - the report computes one internally but it is never selectable and never displayed.",SV-8644 (specs/parts-velocity.md S4-R1; S4-R4; S5-R6),,
 First visit shows exactly the 14 default columns in the specified order,PV — Columns & Remembered View,Functional,Critical,1. You are on the Parts Velocity report on a first visit (no saved column selection).,1. Read the visible column headers left to right without touching the picker.,"1. With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand.
 2. The other 6 columns start hidden: Units Returned, Sold (WO), Sold (Parts Sale), Turns / Yr, Min, Max.
 3. When more than one location is in scope the automatic Location column shows as well, leftmost before Type — 15 columns. It is not part of the 14-column default set and is not in the column picker, so its presence is expected and is not a failure of this test.",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R2; S4-R3 + Story 3 S3-R10 — the 14 default-visible columns and the 6 hidden ones; plus the automatic Location column leftmost when more than one location is in scope),,
-"A re-enabled column returns to its canonical slot, with no reload",PV — Columns & Remembered View,Functional,Medium,1. You are on the Parts Velocity report with data loaded.,"1. In the column picker, enable Min, then Units Returned, then Turns / Yr - in that (non-canonical) order.
+"A re-enabled column returns to its canonical slot, with no reload",PV — Columns & Remembered View,Functional,Medium,1. You are on the Parts Velocity report with data loaded.,"1. In the column picker, enable Min, then Units Returned, then Turns/Yr - in that (non-canonical) order.
 2. Watch the table as each toggle is flipped.
 3. Read the resulting header order.","1. Each toggle takes effect immediately - the table re-renders without a page reload.
-2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on (with the automatic Location column, when shown, sitting leftmost before Type): Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns / Yr, Min, Max.
-3. So Units Returned slots in right after Units Sold, Turns / Yr after On Hand, and Min before Max - not appended at the end.",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R4; S4-R5 + Story 3 S3-R10 — canonical column order and immediate re-render; plus the automatic Location column leftmost when shown),,
+2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on (with the automatic Location column, when shown, sitting leftmost before Type): Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.
+3. So Units Returned slots in right after Units Sold, Turns/Yr after On Hand, and Min before Max - not appended at the end.",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R4; S4-R5 + Story 3 S3-R10 — canonical column order and immediate re-render; plus the automatic Location column leftmost when shown),,
 Filters; columns and sort are remembered per browser before the first fetch,PV — Columns & Remembered View,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Set a non-default view: Type = Inventory, date range = Last Month, pick a category, enable Turns / Yr, and sort by Revenue descending.
 2. Leave the report (navigate elsewhere), then return to it.
 3. Reload the page (browser refresh) and observe again.","1. On return, every saved setting is restored: Type = Inventory, Last Month, the chosen category, the column set including Turns / Yr, and the Revenue-descending sort.
@@ -406,16 +406,26 @@ An over-cap Parts Velocity export is refused with the too-large message,PV — E
 4. Narrow the date range or filters below the cap and request a download again.","1. Neither the CSV nor the PDF is produced — no download starts.
 2. A clear too-large message appears telling the user to narrow the date range or filters, then try again — the standard wording is ""This report is too large to export. Narrow the date range or filters, then try again.""
 3. After narrowing below the cap, the downloads work again.",SV-8646 (specs/parts-velocity.md Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21),,
+A large PDF download fails outright while the CSV of the same view works,PV — Exports,Functional,High,"1. You are signed in with ordinary reports access, on a desktop browser.
+2. Parts Velocity is open with a date range that returns a few hundred rows — narrow with the toolbar search until the list is roughly 300 to 500 rows.","1. Narrow the report with the toolbar search so it shows a few hundred rows.
+2. Open the three-dot menu and choose ""Download (CSV)"". Wait for the file.
+3. Open the three-dot menu again and choose ""Download (PDF)"". Wait up to a minute.
+4. Narrow the search further, to a couple of dozen rows, and choose ""Download (PDF)"" again.","1. The CSV downloads successfully at that size.
+2. The PDF also downloads successfully. If instead nothing downloads and a message appears saying something went wrong, that is a failure — record roughly how many rows were on screen.
+3. The small PDF downloads successfully, which shows the failure depends on size.
+4. Note for the tester: a very large view is refused politely with ""This report is too large to export. Narrow the date range or filters, then try again."" — that message is expected and is NOT this failure. This test is about a medium-sized view where the CSV works but the PDF errors.",SV-8646 (PV spec v4 2026-07-29 Story 6 exports — the spec is silent on a renderer size limit; tech-plan-2026-07-29 A3/FR-F4 covers only the ten-thousand-row export cap),,
 The report uses the standard two-tone layout,PV — Visual Conformance,Functional,Low,"1. You are on the Parts Velocity report with data loaded, in light mode.","1. Look at the page background, the toolbar, and the table surfaces.
 2. Look at the card corners and the table's horizontal extent.","1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).
 2. There is NO card border-radius - the table runs edge to edge.
 3. The layout matches the application's other reports.",SV-8647 (specs/parts-velocity.md S7-R1; §2),,
-Toolbar and table detail styling matches the suite paddings and borders,PV — Visual Conformance,Functional,Low,1. You are on the Parts Velocity report with data loaded (use browser devtools to measure paddings).,"1. Inspect the toolbar's background and internal padding.
-2. Inspect the table header cells and the border between header and toolbar.
-3. Inspect the body cells and the first/last cell padding in a row.","1. The toolbar background is white (black in dark mode) with internal padding 32px top, 2rem right, 24px bottom, 2rem left.
-2. Header cells have a white background and a 1px top border separating them from the toolbar.
-3. Body cells have a white background.
-4. The leftmost cell in every row (header and body) has 2rem left padding; the rightmost cell has 2rem right padding.",SV-8647 (specs/parts-velocity.md S7-R2; S7-R3; S7-R4; S7-R5),,
+Toolbar and table detail styling matches the suite paddings and borders,PV — Visual Conformance,Functional,Low,1. You are on the Parts Velocity report with data loaded.,"1. Look at the toolbar strip above the table and at the space between its controls and the edges of the strip.
+2. Look at the column-header band and at the line between it and the toolbar above it.
+3. Look at the data cells, and at the space between the first and last columns and the left and right edges of the table.
+4. Compare all of the above with another report in the suite (for example Inventory Value) opened side by side.","1. The toolbar strip is white (dark in dark mode), and its controls sit clear of the edges rather than pressed up against them.
+2. There is a thin dividing line between the toolbar and the column-header band, and the header band and the data cells are white.
+3. The first and last columns sit clear of the left and right edges of the table - the text is not touching the edge.
+4. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.
+5. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this - 32px/24px toolbar padding, a 1px header border, 2rem edge padding - are design-token values the design and engineering team check with their own tooling, not by hand.)",SV-8647 (specs/parts-velocity.md S7-R2; S7-R3; S7-R4; S7-R5),,
 Dark mode is supported and the grey info icon keeps 3:1 contrast in both,PV — Visual Conformance,Functional,Low,1. You are on the Parts Velocity report with data loaded and dark mode available in the application.,"1. Switch the application to dark mode.
 2. Look at the page background, toolbar, and cells.
 3. Look at the grey ⓘ info icon next to a column heading in dark mode, then switch back to light mode and look at it again.","1. The report supports dark mode: page background, toolbar, and cells use their dark-mode equivalents.

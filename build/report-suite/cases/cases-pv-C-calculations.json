@@ -24,7 +24,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R1; S5-R4 (Units Sold; inventory); §4)",
   "viu_status": "VIU-Pending",
-  "notes": "HEAVY SEEDING: needs invoice + reversal + return flows on one part inside the window. Only Invoiced/Paid work orders count at all (§5 Assumptions). Inventory Units Sold/Demand are windowed by the inventory-movement event date, not the work-order date (S5 definitions).",
+  "notes": "HEAVY SEEDING: needs invoice + reversal + return flows on one part inside the window. Only Invoiced/Paid work orders count at all (§5 Assumptions). Inventory Units Sold/Demand are windowed by the inventory-movement event date, not the work-order date (S5 definitions). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -50,7 +50,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R2; S5-R4 (Units Sold; catalogue); S5-R4b)",
   "viu_status": "VIU-Pending",
-  "notes": "KNOWN-DELTA WATCH: reversal netting on the billed-line columns is a documented build-delta (the current billed-side queries do not net reversals) - see PV-CALC-11. HEAVY SEEDING: vendor part requests on invoiced/paid work orders plus one reversed sale. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
+  "notes": "KNOWN-DELTA WATCH: reversal netting on the billed-line columns is a documented build-delta (the current billed-side queries do not net reversals) - see PV-CALC-11. HEAVY SEEDING: vendor part requests on invoiced/paid work orders plus one reversed sale. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.) | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -79,7 +79,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R3; S5-R4 (Units Returned); §3 Key Decisions)",
   "viu_status": "VIU-Pending",
-  "notes": "Counted the same way for inventory and special-order parts. HEAVY SEEDING: return + credit + cancellation flows in one window.",
+  "notes": "Counted the same way for inventory and special-order parts. HEAVY SEEDING: return + credit + cancellation flows in one window. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -109,7 +109,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R3)",
   "viu_status": "VIU-Pending",
-  "notes": "HEAVY SEEDING: cross-window sale/return pair + a core-charge return. AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs.",
+  "notes": "HEAVY SEEDING: cross-window sale/return pair + a core-charge return. AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -137,7 +137,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4 (Sold via WO / Sold via Parts Sale); §5 Assumptions)",
   "viu_status": "VIU-Pending",
-  "notes": "Because work orders are only Service- or Parts-type, these two together cover every billed work order (their sum equals the billed-units basis - see PV-CALC-15). COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins.",
+  "notes": "Because work orders are only Service- or Parts-type, these two together cover every billed work order (their sum equals the billed-units basis - see PV-CALC-15). COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -166,7 +166,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4 (Demand); §4; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
-  "notes": "CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
+  "notes": "CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.) | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -197,7 +197,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4 (Last Sale); §4; S5-R5; tech-plan-2026-07-29 B3.1 (last-sale re-anchor on reversal — spec-silent))",
   "viu_status": "VIU-Pending",
-  "notes": "This all-time lookback is a per-part calculation, unrelated to the absent 'All Time' date range (§2). TECH-PLAN EDIT 2026-07-30: the reversal re-anchor expectation comes from the engineering plan B3.1 (the spec's Last Sale rule is silent on reversal) — confirm live and flag any deviation. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
+  "notes": "This all-time lookback is a per-part calculation, unrelated to the absent 'All Time' date range (§2). TECH-PLAN EDIT 2026-07-30: the reversal re-anchor expectation comes from the engineering plan B3.1 (the spec's Last Sale rule is silent on reversal) — confirm live and flag any deviation. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.) | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -223,7 +223,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4 (On Hand / Min / Max); §2 Out of Scope; S5-R5)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -253,7 +253,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4 (Turns / Yr); S5 Definitions (Window))",
   "viu_status": "VIU-Pending",
-  "notes": "Tooltip text on the Turns / Yr header is covered by PV-ROW-06. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
+  "notes": "Tooltip text on the Turns / Yr header is covered by PV-ROW-06. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.) | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -282,7 +282,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4a; §4)",
   "viu_status": "VIU-Pending",
-  "notes": "Windowed by work-order (end) date; only Invoiced/Paid work orders count. HEAVY SEEDING: controlled sell/cost/quantity lines to make the arithmetic checkable. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
+  "notes": "Windowed by work-order (end) date; only Invoiced/Paid work orders count. HEAVY SEEDING: controlled sell/cost/quantity lines to make the arithmetic checkable. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.) | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -309,7 +309,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4b; S5-R4a; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
-  "notes": "KNOWN BUILD-DELTA (spec ahead of build, by owner decision 2026-07-11): the current billed-side queries do NOT net reversals - until dev ships the fix, expect a deviation here across all the listed columns together. Author-to-spec case; record the build behavior at VIU. COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
+  "notes": "KNOWN BUILD-DELTA (spec ahead of build, by owner decision 2026-07-11): the current billed-side queries do NOT net reversals - until dev ships the fix, expect a deviation here across all the listed columns together. Author-to-spec case; record the build behavior at VIU. COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.) | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -338,7 +338,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R4a (null rules + mixed-row paragraph); S3-R9)",
   "viu_status": "VIU-Pending",
-  "notes": "Expected-behavior case - the spec explicitly declares these mixed rows correct. HEAVY SEEDING: credit/adjustment revenue without billed quantity, and a $0-sell-price billed line.",
+  "notes": "Expected-behavior case - the spec explicitly declares these mixed rows correct. HEAVY SEEDING: credit/adjustment revenue without billed quantity, and a $0-sell-price billed line. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -365,7 +365,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R5; S5-R7 (rounding))",
   "viu_status": "VIU-Pending",
-  "notes": "HEAVY SEEDING: values crossing 1,000, negatives, and an exact .x45 tie for the rounding check. COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins.",
+  "notes": "HEAVY SEEDING: values crossing 1,000, negatives, and an exact .x45 tie for the rounding check. COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -391,7 +391,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R1; S5-R2; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
-  "notes": "Seeding: a genuine cored part with core_charge set (see the Simple Flow playbook's cored-part recipes) sold/invoiced in the window. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
+  "notes": "Seeding: a genuine cored part with core_charge set (see the Simple Flow playbook's cored-part recipes) sold/invoiced in the window. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.) | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -419,7 +419,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5-R7; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
-  "notes": "Expected-behavior case. A 'Units Billed' column was considered and deferred in favor of the tooltip (spec build note). HEAVY SEEDING: drop-ship/negative-stock billed sale. COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.)",
+  "notes": "Expected-behavior case. A 'Units Billed' column was considered and deferred in favor of the tooltip (spec build note). HEAVY SEEDING: drop-ship/negative-stock billed sale. COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.) | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -442,12 +442,12 @@
    "1. In W1 (work-order date in window): the billed columns (Revenue, Margin, Unit Cost, Sell Price, Margin %, Sold (WO), Sold (Parts Sale)) count the sale, while inventory Units Sold / Demand do NOT (their movement event is outside W1).",
    "2. In W2 (movement date in window): Units Sold / Demand count it, the billed columns do not - the two anchors CAN differ for an inventory part and that is intended.",
    "3. The window is the whole-day span inclusive of BOTH the start and end dates, with a floor of 1 day - a single-day range (Today) computes normally (Window = 1 for the Turns / Yr divisor).",
-   "4. Last Sale is not windowed at all (all-time, see PV-CALC-07)."
+   "4. Last Sale is not windowed at all (all-time)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (specs/parts-velocity.md S5 Definitions (Window / Work-order date); S5-R7)",
   "viu_status": "VIU-Pending",
-  "notes": "HEAVY SEEDING: a work order whose end date and invoicing date fall in different windows (backdated end date). COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins.",
+  "notes": "HEAVY SEEDING: a work order whose end date and invoicing date fall in different windows (backdated end date). COLUMN RENAME per the Parts Velocity spec v4 changelog 2026-07-29 (verbatim: \"renamed the 'Sold via WO' / 'Sold via Parts Sale' columns to 'Sold (WO)' / 'Sold (Parts Sale)'\"; S3-R9, S4-R3, S4-R4, S5-R4 table, S5-R4b, S5-R7, §4). Newest source, last-update-wins. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -478,7 +478,7 @@
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8589 (PV spec S5-R1 Units Sold net stock movement + S5-R5 two-decimal movement format; tech-plan-2026-07-29 Phase 0 / PR-1 D2; SV-8589 verbatim Tests: 'fractional-quantity round-trip regression')",
   "viu_status": "VIU-Pending",
-  "notes": "DRIVER SV-8589 (In Progress 2026-07-29) — Goal verbatim: 'Fix the live QuickBooks-corruption bug caused by inventory_changes.old_quantity/new_quantity being mapped integer while the domain types them float - fractional units are truncated at hydrate/persist'. Tests verbatim: 'fractional-quantity round-trip regression'. SV-8589 'Blocks: B3 (PV - Units Sold precision)'. VIU-confirm live: (a) whether the part-line quantity field actually accepts a fractional value and its exact on-screen label, (b) the exact On Hand column label and the column-picker label, (c) the fix is FORWARD-ONLY per the story ('historical truncation unreconstructible') so use a movement made AFTER the migration, never pre-migration history.",
+  "notes": "DRIVER SV-8589 (In Progress 2026-07-29) — Goal verbatim: 'Fix the live QuickBooks-corruption bug caused by inventory_changes.old_quantity/new_quantity being mapped integer while the domain types them float - fractional units are truncated at hydrate/persist'. Tests verbatim: 'fractional-quantity round-trip regression'. SV-8589 'Blocks: B3 (PV - Units Sold precision)'. VIU-confirm live: (a) whether the part-line quantity field actually accepts a fractional value and its exact on-screen label, (b) the exact On Hand column label and the column-picker label, (c) the fix is FORWARD-ONLY per the story ('historical truncation unreconstructible') so use a movement made AFTER the migration, never pre-migration history. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  }
 ]

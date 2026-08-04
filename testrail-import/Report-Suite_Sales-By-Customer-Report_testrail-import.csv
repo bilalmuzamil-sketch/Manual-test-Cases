@@ -45,9 +45,9 @@ Date range picker offers eleven options in the specified order,SBC — Date Rang
 2. Open it and read the options from top to bottom.","1. A date range picker is visible in the report toolbar.
 2. It offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
 3. There is no ""All Time"" option.",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes),,
-Custom range opens a start/end date dialog and cannot exceed a 366-day span,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Open the date range picker and choose ""Custom.""
-2. In the dialog that opens, pick a start and end date less than 366 days apart and apply.
-3. Open ""Custom"" again and try to pick a start and end date MORE than 366 days apart.","1. Choosing ""Custom"" opens a date-picker dialog for a start and end date.
+Custom range opens a start/end date dialog and cannot exceed a 366-day span,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Open the date range picker. A month calendar is shown inside it, which is how a custom start and end date are picked on this build.
+2. Pick a start and end date less than 366 days apart on that calendar and apply.
+3. Open the picker again and try to pick a start and end date MORE than 366 days apart.","1. Choosing ""Custom"" opens a date-picker dialog for a start and end date.
 2. A range of 366 days or fewer applies normally.
 3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.",SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R3; S2-R4; S2-N2),,
 Changing the date range writes it into the page link for sharing,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Change the date range (for example to ""Last Month"").
@@ -477,3 +477,14 @@ Customer rows are server-paginated; the totals row is server-computed,SBC — AP
 "Exports are server-generated and the 10,000-row cap is counted first",SBC — API,Functional,Medium,1. The browser's network panel is open; an over-cap filter combination is available if the environment allows.,"1. Trigger ""Download (CSV)"" and ""Download (PDF)"" and observe where the file content comes from.
 2. If an over-cap set is available, trigger an export and observe the server's refusal.","1. The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort — not assembled from the rows already loaded in the browser.
 2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download — the count the cap checks is the count the file would contain, against the same filters and sort as the screen.",SV-8612 (specs/sbc-sales-by-customer.md Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22),,
+The back end serves SBC report data and export on ordinary reports access,SBC — API,Functional,High,"1. Two sign-ins are available: one user whose role has the ordinary reports access, and one whose role does not have it (for example a Foreman).
+2. You can see the requests the browser makes (the browser's network panel) so you can read the response code.","1. Sign in as the user WHO HAS ordinary reports access and open Sales By Customer.
+2. In the network panel, find the request the page makes for the report's data and read its response code.
+3. From the three-dot menu choose ""Download Summary (CSV)"" and read the response code of the export request.
+4. Sign out and sign in as the user WITHOUT reports access.
+5. Try to open Sales By Customer by typing its address directly, and read the response code of the data request.
+6. Ask for the same export by its address and read that response code too.","1. For the user WITH ordinary reports access, the report's data request succeeds (HTTP 200) and the report fills with rows.
+2. For that same user, the export request also succeeds (HTTP 200) and a file is produced.
+3. For the user WITHOUT reports access, the data request is refused with HTTP 403 and a message reading ""Access denied."" — no report data comes back.
+4. For that same user, the export request is refused with HTTP 403 as well — no file is produced.
+5. Note for the tester: one single permission controls all four of these. If you find the report data refused but the export allowed (or the other way round), that is a failure — record both response codes.",SV-8600 (SBC spec v13 2026-07-31 S1-R2; S1-N1 — the back-end half of the ordinary-reports-access gate; the SBC twin of the Parts Velocity back-end case C30391; Chris Ward Q1=A; SV-8780 Ready to Fix),,

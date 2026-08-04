@@ -21,7 +21,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R1 + Story 17 S17-R3 (position) — S14-R1 CLOSES it in the spec's own words (\"lists exactly four actions\"); so the closed list IS the requirement)",
   "viu_status": "VIU-Pending",
-  "notes": "Menu action labels are verbatim from the spec. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed four-action menu to SBR S14-R1 + spec version (Rule 42(b)). RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-2, steps 1-2, expected 1-2, refs. S14-R1 verbatim L515: \"The toolbar's ⋯ overflow menu lists exactly four actions: \\\"Download Summary (PDF)\\\", \\\"Download Expanded View (PDF)\\\", \\\"Download Summary (CSV)\\\", \\\"Download Expanded View (CSV)\\\".\" S17-R3 L660 pins the button first in the action cluster. No second finding.",
+  "notes": "Menu action labels are verbatim from the spec. | 2026-08-03 verifier-fix [C/V-10]: Pins the closed four-action menu to SBR S14-R1 + spec version (Rule 42(b)). RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-2, steps 1-2, expected 1-2, refs. S14-R1 verbatim L515: \"The toolbar's ⋯ overflow menu lists exactly four actions: \\\"Download Summary (PDF)\\\", \\\"Download Expanded View (PDF)\\\", \\\"Download Summary (CSV)\\\", \\\"Download Expanded View (CSV)\\\".\" S17-R3 L660 pins the button first in the action cluster. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -52,7 +52,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2; S14-R2a; S14-R20 + Story 21 S21-R6 + Story 22 S22-R4 — all four downloads honour the filters; the full result set and the active order; S14-R20 = the \"Locations:\" line in every export)",
   "viu_status": "VIU-Pending",
-  "notes": "BUILD-DELTA: all four exports are server-generated against the active filters + sort (2026-07-16 change log; spec ahead of code by design) — record a deviation if the build still exports from loaded screen data. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 131 chars; meaning unchanged; awaiting push authorization. | 2026-08-03 verifier-fix [A/V-3]: Adds SBR S14-R20 — the requirement that governs the \"Locations:\" line and the Location column in all four exports. Verified verbatim at L566. RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-4, steps 1-3, expected 1-5, refs, notes. S14-R2/S14-R2a (active order, server-generated), S21-R6 (exports respect the location filter), S22-R4 (Unassigned pinned top) all resolve and match expected 1-4. No second finding.",
+  "notes": "BUILD-DELTA: all four exports are server-generated against the active filters + sort (2026-07-16 change log; spec ahead of code by design) — record a deviation if the build still exports from loaded screen data. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 131 chars; meaning unchanged; awaiting push authorization. | 2026-08-03 verifier-fix [A/V-3]: Adds SBR S14-R20 — the requirement that governs the \"Locations:\" line and the Location column in all four exports. Verified verbatim at L566. RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-4, steps 1-3, expected 1-5, refs, notes. S14-R2/S14-R2a (active order, server-generated), S21-R6 (exports respect the location filter), S22-R4 (Unassigned pinned top) all resolve and match expected 1-4. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -81,7 +81,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3; S14-R5; S14-R20; Story 2 S2-R5; §3 Margin % definition — Summary PDF; plus the automatic Location column in all four exports)",
   "viu_status": "VIU-Pending",
-  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -111,7 +111,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R6; S14-R8; S14-R20; Story 6 S6-R9 — Expanded PDF page-block per rep; plus the automatic Location column after Status)",
   "viu_status": "VIU-Pending",
-  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -136,7 +136,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R7)",
   "viu_status": "VIU-Pending",
-  "notes": "VIU-confirm whether an >18-character invoice number is seedable in this environment; if not, mark Blocked-Env with the reason rather than inferring.",
+  "notes": "VIU-confirm whether an >18-character invoice number is seedable in this environment; if not, mark Blocked-Env with the reason rather than inferring. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -163,7 +163,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3a; S14-R4; S14-R11 — S14-R11 CLOSES both PDF filenames verbatim (\"deterministic\") and S14-R4 closes the footer string; so the exact strings ARE the requirement)",
   "viu_status": "VIU-Pending",
-  "notes": "Restore the organization logo after the fallback check (shared-env rule). | 2026-08-03 verifier-fix [C/V-10]: Pins the two verbatim PDF filenames and the footer string to SBR S14-R11 / S14-R4 + spec version (Rule 42(b) — the exact strings ARE the requirement). RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-2, steps 1-3, expected 1-3, refs. S14-R11 verbatim L539: \"PDF filenames are deterministic: `sales-by-representative-summary.pdf` and `sales-by-representative-expanded.pdf`.\" S14-R4 L525 closes the footer string; S14-R3a L523 the default-logo fallback. No second finding.",
+  "notes": "Restore the organization logo after the fallback check (shared-env rule). | 2026-08-03 verifier-fix [C/V-10]: Pins the two verbatim PDF filenames and the footer string to SBR S14-R11 / S14-R4 + spec version (Rule 42(b) — the exact strings ARE the requirement). RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-2, steps 1-3, expected 1-3, refs. S14-R11 verbatim L539: \"PDF filenames are deterministic: `sales-by-representative-summary.pdf` and `sales-by-representative-expanded.pdf`.\" S14-R4 L525 closes the footer string; S14-R3a L523 the default-logo fallback. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -189,7 +189,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R9; S14-R10)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -215,7 +215,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R12; S14-R13)",
   "viu_status": "VIU-Pending",
-  "notes": "Exact pixel sizes need a PDF inspector or side-by-side comparison at VIU; verify the relative step-downs and the no-overflow guarantee at minimum. FIX-WORDING repair 2026-07-28 (sense-check): the px tier table is metadata, not the manual pass criterion (it needs a PDF inspector). Spec tier table (S14-R12): longest formatted positive dollar value 9 chars or fewer → 11px; 10 → 10px; 11 → 9px; 12+ → 8px (8px floor, 11px ceiling, totals included).",
+  "notes": "Exact pixel sizes need a PDF inspector or side-by-side comparison at VIU; verify the relative step-downs and the no-overflow guarantee at minimum. FIX-WORDING repair 2026-07-28 (sense-check): the px tier table is metadata, not the manual pass criterion (it needs a PDF inspector). Spec tier table (S14-R12): longest formatted positive dollar value 9 chars or fewer → 11px; 10 → 10px; 11 → 9px; 12+ → 8px (8px floor, 11px ceiling, totals included). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -271,7 +271,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R15; S14-R18; S14-R20 — Summary CSV headers; plus the automatic Location column in all four exports; S14-R15's header list was left un-updated when S14-R20 was added — spec correction pending)",
   "viu_status": "VIU-Pending",
-  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -299,7 +299,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R16; S14-R20 — Expanded CSV headers; plus the automatic Location column after Status; S14-R16's header list was left un-updated when S14-R20 was added — spec correction pending)",
   "viu_status": "VIU-Pending",
-  "notes": "BUILD-DELTA (spec's own build note): the current build populates a single mislabeled hours column here; the spec target is the three hours columns (Hrs Worked / Hrs Invoiced / Inv. Hrs) matching the Summary CSV — record a deviation if the build still ships one column. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "BUILD-DELTA (spec's own build note): the current build populates a single mislabeled hours column here; the spec target is the three hours columns (Hrs Worked / Hrs Invoiced / Inv. Hrs) matching the Summary CSV — record a deviation if the build still ships one column. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -327,7 +327,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R17; §3 Key Decisions (CSVs monochrome / plain signed numbers))",
   "viu_status": "VIU-Pending",
-  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -355,7 +355,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R19; Story 22 S22-R2; S22-R4)",
   "viu_status": "VIU-Pending",
-  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -381,7 +381,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-N1; S14-N2; S14-E1; §7)",
   "viu_status": "VIU-Pending",
-  "notes": "\"Ooooops! An error occured\" is the canonical ShopView fallback wording, verbatim INCLUDING the typo — do not \"correct\" it when comparing.",
+  "notes": "\"Ooooops! An error occured\" is the canonical ShopView fallback wording, verbatim INCLUDING the typo — do not \"correct\" it when comparing. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -406,7 +406,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2; §7 — 10k-row export cap; no truncated file; toast persists 120s; the toast STRING is the ONE suite-wide message ruled by Chris Ward 2026-07-31 Q2=A [newest-wins]; his SBR spec edit is pending)",
   "viu_status": "VIU-Pending",
-  "notes": "The row-cap message is a deliberate exception to the canonical \"Ooooops!\" fallback — it is a pre-generation refusal with its own verbatim wording. Q2 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A 'great catch'): ONE message across all six reports — \"This report is too large to export. Narrow the date range or filters, then try again.\" The Sales By Customer spec text still carries the retired \"This export is too large to generate…\" wording; Chris's spec edit is pending. | 2026-08-03 verifier-fix [C/V-10]: Pins the verbatim over-cap toast. CRITICAL: the string in this case is the ONE suite-wide message Chris Ward ruled on 2026-07-31 (Q2=A) and is DELIBERATELY different from the SBR spec's own S14-E2/§7 wording, whose correction is still pending. The refs said nothing about that, so anyone diffing this case against the SBR spec would have read it as our error. RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, precondition 1, steps 1-2, expected 1-3, refs. SECOND FINDING (important): S14-E2 L582 and §7 L881 both still read \"This export is too large to generate. Narrow the date range or filters and try again.\", while the case asserts \"This report is too large to export. Narrow the date range or filters, then try again.\" That is CORRECT and intentional - Chris Ward 2026-07-31 Q2 = Option A, \"One message everywhere\" (chris-answers-2026-07-31/answers-ingested.md L42-46, applied as DELTAS.md D1), newest-wins per Rule 32. The 10,000-row cap and the 120s persistence come from S14-E2/§7 and match. The provenance is now recorded in refs.",
+  "notes": "The row-cap message is a deliberate exception to the canonical \"Ooooops!\" fallback — it is a pre-generation refusal with its own verbatim wording. Q2 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A 'great catch'): ONE message across all six reports — \"This report is too large to export. Narrow the date range or filters, then try again.\" The Sales By Customer spec text still carries the retired \"This export is too large to generate…\" wording; Chris's spec edit is pending. | 2026-08-03 verifier-fix [C/V-10]: Pins the verbatim over-cap toast. CRITICAL: the string in this case is the ONE suite-wide message Chris Ward ruled on 2026-07-31 (Q2=A) and is DELIBERATELY different from the SBR spec's own S14-E2/§7 wording, whose correction is still pending. The refs said nothing about that, so anyone diffing this case against the SBR spec would have read it as our error. RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, precondition 1, steps 1-2, expected 1-3, refs. SECOND FINDING (important): S14-E2 L582 and §7 L881 both still read \"This export is too large to generate. Narrow the date range or filters and try again.\", while the case asserts \"This report is too large to export. Narrow the date range or filters, then try again.\" That is CORRECT and intentional - Chris Ward 2026-07-31 Q2 = Option A, \"One message everywhere\" (chris-answers-2026-07-31/answers-ingested.md L42-46, applied as DELTAS.md D1), newest-wins per Rule 32. The 10,000-row cap and the 120s persistence come from S14-E2/§7 and match. The provenance is now recorded in refs. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -433,7 +433,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E3)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -461,7 +461,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R1; S15-R2)",
   "viu_status": "VIU-Pending",
-  "notes": "Note text is verbatim from the spec. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "Note text is verbatim from the spec. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -490,7 +490,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R3; S15-R4; §7 — S15-R4 CLOSES the three headers; \"Sales Rep\"→\"Sales Representative\" per Chris Ward 2026-07-31 Q5 [newest-wins]; NOT one of the four report exports so S14-R20 adds no Location)",
   "viu_status": "VIU-Pending",
-  "notes": "This export deliberately uses the shared Export Reports dialog's own toast strings (5s auto-fade), not the canonical 120s \"Ooooops!\" fallback. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | 2026-08-03 verifier-fix [C/V-10]: Pins the closed three-header list to SBR S15-R4 + spec version, records the Chris Ward 2026-07-31 Q5 \"Sales Rep\" → \"Sales Representative\" rename as the newest-wins source for the deliberate difference from the spec text, and states that this CSV is not one of the report's four exports so S14-R20 adds no Location column. Plain tester line added so a multi-location tester does not fail a correct build. RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-2, steps 1-3, expected 1-4, refs. S15-R4 verbatim L602: \"The CSV has a header row + one row per customer. Headers, in order: `Customer Name`, `Sales Rep`, `Rep is active?`. UTF-8 BOM prepended.\"; S15-R3 L601: \"The Export action downloads `sales-rep-assignments.csv` and shows a success toast (§7).\" The case's \"Sales Representative\" wording and file name are the Chris Ward Q5 rename (newest-wins), already disclosed in the case's own tester note (expected 4). SECOND FINDING: the closed three-header list needed the explicit \"no Location column here\" carve-out, since every OTHER SBR export gained one under S14-R20 - added.",
+  "notes": "This export deliberately uses the shared Export Reports dialog's own toast strings (5s auto-fade), not the canonical 120s \"Ooooops!\" fallback. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | 2026-08-03 verifier-fix [C/V-10]: Pins the closed three-header list to SBR S15-R4 + spec version, records the Chris Ward 2026-07-31 Q5 \"Sales Rep\" → \"Sales Representative\" rename as the newest-wins source for the deliberate difference from the spec text, and states that this CSV is not one of the report's four exports so S14-R20 adds no Location column. Plain tester line added so a multi-location tester does not fail a correct build. RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-2, steps 1-3, expected 1-4, refs. S15-R4 verbatim L602: \"The CSV has a header row + one row per customer. Headers, in order: `Customer Name`, `Sales Rep`, `Rep is active?`. UTF-8 BOM prepended.\"; S15-R3 L601: \"The Export action downloads `sales-rep-assignments.csv` and shows a success toast (§7).\" The case's \"Sales Representative\" wording and file name are the Chris Ward Q5 rename (newest-wins), already disclosed in the case's own tester note (expected 4). SECOND FINDING: the closed three-header list needed the explicit \"no Location column here\" carve-out, since every OTHER SBR export gained one under S14-R20 - added. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -517,7 +517,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R5; S15-R7; S15-R10)",
   "viu_status": "VIU-Pending",
-  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -542,7 +542,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R6; Story 13 S13-R11)",
   "viu_status": "VIU-Pending",
-  "notes": "Staff-active status and the sales-rep toggle are independent flags; this column tracks staff-active status ONLY. The report's on-screen \"(Inactive)\" marker is driven by the TOGGLE instead — the two can differ. Restore both staff members afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "Staff-active status and the sales-rep toggle are independent flags; this column tracks staff-active status ONLY. The report's on-screen \"(Inactive)\" marker is driven by the TOGGLE instead — the two can differ. Restore both staff members afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -569,7 +569,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R8; S15-R9)",
   "viu_status": "VIU-Pending",
-  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -595,7 +595,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R11; S15-N2; §7)",
   "viu_status": "VIU-Pending",
-  "notes": "Both strings are the shared Export Reports dialog's own (5s auto-fade) — a deliberate exception to the canonical \"Ooooops!\" fallback. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "Both strings are the shared Export Reports dialog's own (5s auto-fade) — a deliberate exception to the canonical \"Ooooops!\" fallback. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -624,7 +624,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R1; S16-R2; S16-R3; S16-N1; Story 2 S2-N1; Story 21 S21-N2; §7)",
   "viu_status": "VIU-Pending",
-  "notes": "Empty-state message is verbatim from §7. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-EMPTYBAR): absorbed SBR-STATE-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S2-N1 and S21-N2 added — both are the same Story-16 empty state reached by a filter that matches nothing; step 1 already drives it.",
+  "notes": "Empty-state message is verbatim from §7. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-EMPTYBAR): absorbed SBR-STATE-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S2-N1 and S21-N2 added — both are the same Story-16 empty state reached by a filter that matches nothing; step 1 already drives it. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -675,7 +675,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8633 (specs/sbr-sales-by-representative.md Story 16 S16-R4)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -701,7 +701,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8633 (specs/sbr-sales-by-representative.md Story 16 S16-R5; §7)",
   "viu_status": "VIU-Pending",
-  "notes": "Inline error message is verbatim from §7 — it is an inline data-area message with a Retry action, not a toast.",
+  "notes": "Inline error message is verbatim from §7 — it is an inline data-area message with a Retry action, not a toast. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -727,7 +727,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8634 (specs/sbr-sales-by-representative.md Story 17 S17-R1; S17-R2; S17-R3)",
   "viu_status": "VIU-Pending",
-  "notes": "The dense table is deliberately NOT redesigned for small screens (§2 Out of Scope) — only control operability and stacking are in scope here.",
+  "notes": "The dense table is deliberately NOT redesigned for small screens (§2 Out of Scope) — only control operability and stacking are in scope here. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -753,7 +753,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8634 (specs/sbr-sales-by-representative.md Story 17 S17-R4; S17-R5; Story 10 S10-R5 (mobile))",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -777,7 +777,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8634 (specs/sbr-sales-by-representative.md Story 17 S17-R6; S17-N1; Story 18 S18-R9)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -805,7 +805,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1)",
   "viu_status": "VIU-Pending",
-  "notes": "S18-R7 is self-contained and normative — if app-wide report styling has evolved, this spec is still the source of truth until a new spec round says otherwise (S18-R7.6). COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact).",
+  "notes": "S18-R7 is self-contained and normative — if app-wide report styling has evolved, this spec is still the source of truth until a new spec round says otherwise (S18-R7.6). COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -833,7 +833,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R8)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -860,7 +860,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R9)",
   "viu_status": "VIU-Pending",
-  "notes": "All five names are verbatim from the spec.",
+  "notes": "All five names are verbatim from the spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -886,7 +886,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R10)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -911,7 +911,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R11; S18-R12 — subdued-grey (N) count and \"(Inactive)\" tag at ≥ 4.5:1 WCAG AA in both modes; nothing conveyed by colour alone; the ratio is a design-token property so the check is by-eye)",
   "viu_status": "VIU-Pending",
-  "notes": " | 2026-08-03 verifier-fix [D/V-7]: Removes the \"a contrast-checking tool is available\" precondition and the \"Measure the contrast ratio\" step, restating them as a by-eye legibility check; the WCAG AA 4.5:1 figure is kept as the design/engineering-owned measurement. Refs pinned to SBR S18-R11/S18-R12 + spec version. RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, precondition 1, steps 1-2, expected 1-2, refs. S18-R11 verbatim L707: \"The subdued-grey used for the `(N)` count and the \\\"(Inactive)\\\" tag meets at least WCAG AA contrast (≥ 4.5:1) against the white body surface in light mode and against the dark surface in dark mode; the reduced font size does not drop it below that ratio.\" S18-R12 L708 closes the no-colour-alone rule and matches expected 2 exactly. No second finding.",
+  "notes": "2026-08-03 verifier-fix [D/V-7]: Removes the \"a contrast-checking tool is available\" precondition and the \"Measure the contrast ratio\" step, restating them as a by-eye legibility check; the WCAG AA 4.5:1 figure is kept as the design/engineering-owned measurement. Refs pinned to SBR S18-R11/S18-R12 + spec version. RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, precondition 1, steps 1-2, expected 1-2, refs. S18-R11 verbatim L707: \"The subdued-grey used for the `(N)` count and the \\\"(Inactive)\\\" tag meets at least WCAG AA contrast (≥ 4.5:1) against the white body surface in light mode and against the dark surface in dark mode; the reduced font size does not drop it below that ratio.\" S18-R12 L708 closes the no-colour-alone rule and matches expected 2 exactly. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -940,7 +940,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R1; S19-N1)",
   "viu_status": "VIU-Pending",
-  "notes": "COMPANION-VIDEO 2026-07-30 (C15/C16, 09:41-10:53): WO-card dropdown confirmed (default Unassigned, assignable). PENDING Q5: the 'Sales Rep' label may flip to the full word 'Representative' per the no-short-forms ruling — do not edit until Chris answers. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "COMPANION-VIDEO 2026-07-30 (C15/C16, 09:41-10:53): WO-card dropdown confirmed (default Unassigned, assignable). PENDING Q5: the 'Sales Rep' label may flip to the full word 'Representative' per the no-short-forms ruling — do not edit until Chris answers. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -967,7 +967,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R2; S19-R8 — toggle entry path Settings -> Staff -> edit the staff member per the PRD companion video 2026-07-30 09:17-09:41; exact toggle label to confirm live in the build)",
   "viu_status": "VIU-Pending",
-  "notes": "Restore any changed toggles afterward (shared-env rule). COMPANION-VIDEO 2026-07-30 (C14, 09:17-09:41): entry point confirmed — 'We're going to go into settings. We're going to go staff, we're going to edit the staff member, and we have a new toggle here.' Exact on-screen toggle label not in the transcript — VIU-confirm. PENDING (C15/Q5): the selector's 'Sales Rep' label/accessible name may flip to the full word 'Representative' per the no-short-forms ruling — question Q5 to Chris; do not edit until answered. Title shortened to fit (was >80 chars). Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "Restore any changed toggles afterward (shared-env rule). COMPANION-VIDEO 2026-07-30 (C14, 09:17-09:41): entry point confirmed — 'We're going to go into settings. We're going to go staff, we're going to edit the staff member, and we have a new toggle here.' Exact on-screen toggle label not in the transcript — VIU-confirm. PENDING (C15/Q5): the selector's 'Sales Rep' label/accessible name may flip to the full word 'Representative' per the no-short-forms ruling — question Q5 to Chris; do not edit until answered. Title shortened to fit (was >80 chars). Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -993,7 +993,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R3; S19-R4)",
   "viu_status": "VIU-Pending",
-  "notes": "Delete the throwaway ZZAUTOTEST WO afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "Delete the throwaway ZZAUTOTEST WO afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -1013,12 +1013,13 @@
   "expected": [
    "1. On the Invoiced WO the Sales Representative selector is read-only (non-interactive) — the assignment cannot be changed.",
    "2. On the Paid WO the selector is also read-only.",
-   "3. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
+   "3. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
+   "4. Note for the tester: this field is only made read-only on the screen. If you find the sales rep can still be changed another way (through the back-end/API), that is expected — mark this test PASSED and do not raise it as a bug."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R5)",
   "viu_status": "VIU-Pending",
-  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -1045,7 +1046,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3)",
   "viu_status": "VIU-Pending",
-  "notes": "BUILD-DELTA (§3 build note): the shipped database stores separate parts-side and service-side reps; the spec locks the single-rep model — record a deviation if the build still credits from dual fields. Clean up the ZZAUTOTEST data afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "BUILD-DELTA (§3 build note): the shipped database stores separate parts-side and service-side reps; the spec locks the single-rep model — record a deviation if the build still credits from dual fields. Clean up the ZZAUTOTEST data afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -1073,7 +1074,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec Story 19 S19-R7; S19-E1 — customer-card label RE-RULED to the full \"Sales Representative\" per the PRD companion video 2026-07-30 + Chris Ward answer 2026-07-31 Q5=A; the spec text still says \"Sales Rep\")",
   "viu_status": "VIU-Pending",
-  "notes": "Restore the rep's toggle afterward (shared-env rule). COMPANION-VIDEO 2026-07-30 (C17, 10:53-11:12) FIRM: 'In the customer card, this actually should say sales representative ... I will flag this immediately, label this as sales representative.' Deviation basis (Rule 25): spec S19-R7 verbatim = 'a single \"Sales Rep\" row' — superseded newest-wins; spec ratification pending (SPEC-WATCH). Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins). Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "Restore the rep's toggle afterward (shared-env rule). COMPANION-VIDEO 2026-07-30 (C17, 10:53-11:12) FIRM: 'In the customer card, this actually should say sales representative ... I will flag this immediately, label this as sales representative.' Deviation basis (Rule 25): spec S19-R7 verbatim = 'a single \"Sales Rep\" row' — superseded newest-wins; spec ratification pending (SPEC-WATCH). Source: PRD companion video 2026-07-30 (chris-update-2026-07-29/companion-video-transcript-2026-07-30.md; Loom e4a3ad0191; authoritative, newest-wins). Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -1098,7 +1099,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-N4)",
   "viu_status": "VIU-Pending",
-  "notes": "Restore the staff member (cancel the dialog / reactivate) afterward.",
+  "notes": "Restore the staff member (cancel the dialog / reactivate) afterward. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -1125,7 +1126,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R2)",
   "viu_status": "VIU-Pending",
-  "notes": "The spec defines no REST contract — observe the browser's real requests; do NOT assume endpoint shapes. The per-rep page size and the expand-all bound are build tuning values (tech plan), not fixed by the spec. BUILD-DELTA: lazy server-side drill-down is the 2026-07-16 committed target (spec ahead of code by design).",
+  "notes": "The spec defines no REST contract — observe the browser's real requests; do NOT assume endpoint shapes. The per-rep page size and the expand-all bound are build tuning values (tech plan), not fixed by the spec. BUILD-DELTA: lazy server-side drill-down is the 2026-07-16 committed target (spec ahead of code by design). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
  },
  {
@@ -1150,7 +1151,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R5)",
   "viu_status": "VIU-Pending",
-  "notes": "Generic wording on purpose — no endpoint invented. BUILD-DELTA: server-side sort is the 2026-07-16 committed target.",
+  "notes": "Generic wording on purpose — no endpoint invented. BUILD-DELTA: server-side sort is the 2026-07-16 committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
  },
  {
@@ -1175,7 +1176,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R5)",
   "viu_status": "VIU-Pending",
-  "notes": "BUILD-DELTA: server-computed grand totals are the 2026-07-16 committed target (spec ahead of code by design).",
+  "notes": "BUILD-DELTA: server-computed grand totals are the 2026-07-16 committed target (spec ahead of code by design). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
  },
  {
@@ -1201,7 +1202,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R2a; S14-N2; S14-E3)",
   "viu_status": "VIU-Pending",
-  "notes": "No endpoint or status code is pinned by the spec — record what is actually observed. BUILD-DELTA: server-side exports are the 2026-07-16 committed target.",
+  "notes": "No endpoint or status code is pinned by the spec — record what is actually observed. BUILD-DELTA: server-side exports are the 2026-07-16 committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
  },
  {
@@ -1221,13 +1222,13 @@
   ],
   "expected": [
    "1. The server counts the rows against the 10,000-data-row cap and DECLINES to generate — the refusal happens pre-generation, observed in the export response.",
-   "2. NO file (truncated or otherwise) is delivered; the client shows the specific too-large toast (see SBR-EXP-15).",
+   "2. NO file (truncated or otherwise) is delivered; the client shows the specific too-large toast.",
    "3. A filter set just below the cap still generates a complete (possibly very large) PDF."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E2)",
   "viu_status": "VIU-Pending",
-  "notes": "Cap value 10,000 data rows is the spec's stated context note (2026-07-21 change log). No endpoint invented — observe the real request.",
+  "notes": "Cap value 10,000 data rows is the spec's stated context note (2026-07-21 change log). No endpoint invented — observe the real request. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
  },
  {
@@ -1254,7 +1255,7 @@
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R4)",
   "viu_status": "VIU-Pending",
-  "notes": "The spec defines the check's behavior, not its REST shape — observe the real request; no endpoint invented. Restore the staff member and remove ZZAUTOTEST data afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2).",
+  "notes": "The spec defines the check's behavior, not its REST shape — observe the real request; no endpoint invented. Restore the staff member and remove ZZAUTOTEST data afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
  }
 ]

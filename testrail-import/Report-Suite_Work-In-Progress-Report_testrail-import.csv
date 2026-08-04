@@ -9,8 +9,8 @@ Work In Progress appears in the reports navigation under the Performance group,W
 Four tabs in a fixed order with the partially-completed tab selected,WIP — Tabs,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have not visited the report before in this browser (no saved active-tab setting).","1. Open the Work In Progress report.
 2. Read the tab labels from left to right.
-3. Look at which tab is selected when the report loads.","1. Four tabs are shown, labeled in this order: ""Approved - partially completed"", ""Approved - not started"", ""Completed"", and ""Estimates"".
-2. The ""Approved - partially completed"" tab is selected by default on load.
+3. Look at which tab is selected when the report loads.","1. Four tabs are shown, labeled in this order: ""Approved - Partially Completed"", ""Approved - Not Started"", ""Completed"", and ""Estimates"" - each followed by its count in brackets, for example ""Completed (30)"".
+2. The ""Approved - Partially Completed"" tab is selected by default on load.
 3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement),,
 Each tab label shows its work-order count in parentheses,WIP — Tabs,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Open work orders exist in at least one tab for the current date range and location (seed ZZAUTOTEST work orders if needed).
@@ -27,11 +27,11 @@ Every open service WO at a selected location appears in the report,WIP — Scope
 2. Five ZZAUTOTEST service work orders exist at your active location, created within the current date range — one in each status: Estimate, Approved, In Progress, Review, and Complete.","1. Open the Work In Progress report with the seeded work orders' creation dates inside the selected date range.
 2. Look through all four tabs for each of the five seeded work orders.","1. All five seeded work orders appear in the report — each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.
 2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases).",SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R1),,
-Invoiced; Paid; Declined and part-sale work orders never appear,WIP — Scope & Loading,Negative,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. ZZAUTOTEST work orders exist at your active location within the current date range: one Invoiced, one Paid, one Declined, and one part-sale work order.","1. Open the Work In Progress report.
-2. Look for the Invoiced, Paid, and Declined work orders and the part-sale work order in every tab.
+Invoiced; Paid and part-sale work orders never appear,WIP — Scope & Loading,Negative,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. ZZAUTOTEST work orders exist at your active location within the current date range: one Invoiced, one Paid, and one part-sale work order.","1. Open the Work In Progress report.
+2. Look for the Invoiced and Paid work orders and the part-sale work order in every tab.
 3. Check the summary strip and each tab's Totals row for their money.
-4. Download the current tab as a CSV and search the file for them.","1. The Invoiced, Paid, and Declined work orders do not appear in any tab, any Totals row, the summary strip, or the download.
+4. Download the current tab as a CSV and search the file for them.","1. The Invoiced and Paid work orders do not appear in any tab, any Totals row, the summary strip, or the download.
 2. The part-sale work order does not appear anywhere either.
 3. No excluded work order's money is counted in any figure.",SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R2; S2-R3),,
 Each qualifying work order appears exactly once in exactly one tab,WIP — Scope & Loading,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
@@ -65,15 +65,16 @@ Approved started-boundary: time or part received vs neither decides the tab,WIP 
 "With all toggleable columns on, the fixed column order and alignment hold",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.
 3. Every toggleable column is turned on in the column-selection control.
-4. More than one location is in scope, so the automatic Location column is showing.","1. Read the column headers from left to right.
+4. Location is turned ON in the column-selection control (it is off by default).","1. Read the column headers from left to right.
 2. Look at how the values in each column are aligned.","1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.
 2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.
 3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope),,
 First visit shows the default columns; the rest are in the column selector,WIP — Columns & Rows,Functional,High,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (use a fresh browser profile or clear the site's saved data).,"1. Open the Work In Progress report.
 2. Read the visible column headers.
 3. Open the column-selection control and read which columns are offered and which are on.","1. The visible columns on first visit are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, and Total.
-2. Every other column (VIN, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default.
-3. Location is NOT offered in the column-selection control — it appears on its own whenever more than one location is in scope, and is hidden when a single location is in scope.","SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: ""The Location column is not offered in the column selector; its visibility is automatic"")",,
+2. Every other column (VIN, Location, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default.
+3. Location IS offered in the column-selection control, between VIN and Advisor, and is off by default. Turning it on adds a Location column that names each job's location; turning it off removes it again.
+4. Note for the tester: the Location column does NOT appear on its own when you have more than one location selected - you have to switch it on yourself. That is what the build does today.","SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: ""The Location column is not offered in the column selector; its visibility is automatic"")",,
 The WO # is a link that opens the WO in the same browser tab,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Click a row's WO # link.
 2. Confirm where the work order opens.
@@ -81,8 +82,8 @@ The WO # is a link that opens the WO in the same browser tab,WIP — Columns & R
 2. Clicking it opens that work order in the SAME browser tab (not a new tab).
 3. The browser's back navigation returns you to the report.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R5 (+ context note)),,
 Status shows as a color-coded badge whose label text is always present,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. The report shows work orders in several statuses (Estimate, Approved, In Progress, Review, Complete).","1. Read the Status column across rows in each tab.
-2. Compare each badge's color against the application's standard status colors used elsewhere.","1. Status is shown as a badge using the status's label: ""Estimate"", ""Approved"", ""In Progress"", ""Review"", or ""Complete"".
+2. The report shows work orders in several statuses (Estimate, Approved, In progress, Review, Complete).","1. Read the Status column across rows in each tab.
+2. Compare each badge's color against the application's standard status colors used elsewhere.","1. Status is shown as a badge using the status's label: ""Estimate"", ""Approved"", ""In progress"", ""Review"", or ""Complete"".
 2. The badge is color-coded per the application's standard status colors.
 3. The label text is always present, so color is never the sole signal of the status.","SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R6 + Story 10 S10-R8 — S4-R6 CLOSES the five status labels verbatim (""Estimate"" ... ""Complete"") and the label-not-colour rule; so the closed list IS the requirement)",,
 "Asset cell identifies the asset by VIN, falling back to Unit #, then plate",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
@@ -253,7 +254,8 @@ The Totals row sums each visible money column and the Inv. Hrs column,WIP — To
 2. Compare each sum to the Totals row.
 3. Add up the jobs' Inv. Hrs values and compare to the Totals row's Inv. Hrs cell, including its sign and color.","1. The Totals row sums each visible money column across the tab's visible jobs, to the cent.
 2. The Totals row's Inv. Hrs shows the sum of the visible jobs' Inv. Hrs, in the same signed one-decimal format (""+2.0"" / ""-14.0"" / ""0.0"").
-3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row.",SV-8662 (specs/wip-work-in-progress.md Story 6 S6-R2; S6-R3),,
+3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row.
+4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download that includes Inv. Hrs is refused, so do not try to verify this column from a file.",SV-8662 (specs/wip-work-in-progress.md Story 6 S6-R2; S6-R3),,
 The Advisor filter lists the advisors in the loaded jobs; screen only,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs for at least two different advisors.","1. Open the Advisor filter in the toolbar and read its options.
 2. Select one advisor and watch the rows.
@@ -284,9 +286,10 @@ The date range offers the presets plus Custom; This Week default; no All Time,WI
 The date range filters on the WO's created date and reloads on change,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Open work orders exist with created dates both inside and outside the current week.","1. With ""This Week"" selected, check which work orders are listed.
 2. Change the preset to ""This Month"" and watch the data area.
-3. Open ""Custom"" and try to pick a start and end date more than 366 days apart.","1. Each preset (or Custom) filters the report to work orders whose CREATED date falls within the selected range — an open work order created outside the range is not listed.
+3. Open the date control and pick a start and an end date on the calendar more than a year apart.","1. Each preset (or Custom) filters the report to work orders whose CREATED date falls within the selected range — an open work order created outside the range is not listed.
 2. Changing the range reloads the report (the loading indicator shows).
-3. A Custom range is capped at a 366-day maximum span from start to end — a longer span cannot be applied.",SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R7; S7-R8),,
+3. A range longer than about a year is refused with the message ""Date range cannot be over one year."" and the wider range is not loaded.
+4. Note for the tester: on this build the exact cut-off sits one day later than the specification says (a 367-day span is accepted, 368 is refused). Record what you see; the one-day difference is already known and is with the product owner.",SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R7; S7-R8),,
 "Location filter: rightmost multi-select with All locations, reloads on change",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. This browser has never saved settings for this report (fresh visit).
 3. Open work orders exist at two different locations.","1. Open the Work In Progress report and read the Location filter's position and default value.
@@ -318,11 +321,11 @@ The Location column is automatic and never reads Multiple on a work-order row,WI
 4. Open the column-selection control and look for Location in the list.
 5. Narrow to a single location and read the headers again.
 6. Download the tab as a CSV and a PDF and read the Location column's header in the files.
-7. Change the selection between one location, several, and ""All locations"", watching the filter control's width.","1. With more than one location in scope a Location column is shown, in its fixed position between VIN and Advisor, left-aligned.
+7. Change the selection between one location, several, and ""All locations"", watching the filter control's width.","1. Location is offered in the column-selection control, between VIN and Advisor, and is off by default. Turning it on adds the Location column in that fixed position, left-aligned.
 2. Each row names its own work order's location.
 3. NO row ever shows ""Multiple"" — a work order belongs to exactly one location, and this report has no grouped or drill-down rows.
-4. Location is NOT offered in the column-selection control — its visibility follows the location scope automatically.
-5. With a single location in scope the Location column is hidden.
+4. The column does not appear or disappear on its own when you change the location selection - it follows the column-selection toggle only.
+5. With the toggle off the Location column is not shown, whatever the location selection is.
 6. In both downloads the column is headed ""Branch"" (a known naming difference from the screen — do not raise it as a bug).
 7. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.","SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; S10-R5a; §4 Location (column) — automatic visibility; never ""Multiple""; export header ""Branch"")",,
 Column Selection toggles columns; Total is not offered at all,WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
@@ -357,11 +360,11 @@ Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV),WIP �
 2. Compare its columns to the screen's visible columns and order.
 3. Compare its rows to the jobs left visible by the filters.
 4. Compare its Totals row to the on-screen Totals row.
-5. Repeat the same checks in the PDF.","1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.
+5. Repeat the same checks in the PDF.","1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Inv. Hrs on, the download is refused - that column cannot be exported yet.
 2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.
 3. Both downloads include a Totals row matching the on-screen Totals row for the tab.
 4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
-5. Note for the tester: when you have more than one location in scope, the files also carry the location column even though you cannot turn it on or off - and in the file it is headed ""Branch"", not ""Location"". Both of those are correct. With a single location in scope there is no such column, and that is also correct.","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the ""Locations:"" line; S7-R13/S9-E1 = the automatic ""Branch"" column)",,
+5. Note for the tester: the file carries the location column only when you have switched Location ON in the column-selection control - it does not appear just because you have more than one location selected. In the file it is headed ""Branch"", not ""Location"", and the asset column is headed ""Unit"". Both of those names are correct.","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the ""Locations:"" line; S7-R13/S9-E1 = the automatic ""Branch"" column)",,
 Downloaded money and Inv. Hrs values keep the on-screen formats,WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current tab includes money values over $1,000 and, if producible, a negative value; the Inv. Hrs column is on.","1. Download the current tab as a CSV and open it in a plain-text editor.
 2. Read a money value over one thousand dollars and check its quoting.
@@ -405,7 +408,8 @@ An over-cap Work In Progress download is refused with the too-large message,WIP 
 2. Download the same tab as a PDF.
 3. Narrow the filters below the cap and download once more.","1. For both the CSV and the PDF: no file is generated and no download starts.
 2. An error toast is shown each time, reading exactly: ""This report is too large to export. Narrow the date range or filters, then try again."" (dismissed by the user).
-3. Below the cap the download works normally.",SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending),,
+3. Below the cap the download works normally.
+4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.",SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending),,
 Each tab uses an all-white table with no alternating row shading,WIP — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with several rows in each tab.","1. Look at the column headers and the data cells in each tab.
 2. Compare the background of consecutive rows.","1. Each tab uses an all-white table: white column headers and white data cells.

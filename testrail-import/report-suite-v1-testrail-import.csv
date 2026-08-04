@@ -45,9 +45,9 @@ Date range picker offers eleven options in the specified order,SBC — Date Rang
 2. Open it and read the options from top to bottom.","1. A date range picker is visible in the report toolbar.
 2. It offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
 3. There is no ""All Time"" option.",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes),,
-Custom range opens a start/end date dialog and cannot exceed a 366-day span,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Open the date range picker and choose ""Custom.""
-2. In the dialog that opens, pick a start and end date less than 366 days apart and apply.
-3. Open ""Custom"" again and try to pick a start and end date MORE than 366 days apart.","1. Choosing ""Custom"" opens a date-picker dialog for a start and end date.
+Custom range opens a start/end date dialog and cannot exceed a 366-day span,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Open the date range picker. A month calendar is shown inside it, which is how a custom start and end date are picked on this build.
+2. Pick a start and end date less than 366 days apart on that calendar and apply.
+3. Open the picker again and try to pick a start and end date MORE than 366 days apart.","1. Choosing ""Custom"" opens a date-picker dialog for a start and end date.
 2. A range of 366 days or fewer applies normally.
 3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.",SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R3; S2-R4; S2-N2),,
 Changing the date range writes it into the page link for sharing,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Change the date range (for example to ""Last Month"").
@@ -477,6 +477,17 @@ Customer rows are server-paginated; the totals row is server-computed,SBC — AP
 "Exports are server-generated and the 10,000-row cap is counted first",SBC — API,Functional,Medium,1. The browser's network panel is open; an over-cap filter combination is available if the environment allows.,"1. Trigger ""Download (CSV)"" and ""Download (PDF)"" and observe where the file content comes from.
 2. If an over-cap set is available, trigger an export and observe the server's refusal.","1. The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort — not assembled from the rows already loaded in the browser.
 2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download — the count the cap checks is the count the file would contain, against the same filters and sort as the screen.",SV-8612 (specs/sbc-sales-by-customer.md Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22),,
+The back end serves SBC report data and export on ordinary reports access,SBC — API,Functional,High,"1. Two sign-ins are available: one user whose role has the ordinary reports access, and one whose role does not have it (for example a Foreman).
+2. You can see the requests the browser makes (the browser's network panel) so you can read the response code.","1. Sign in as the user WHO HAS ordinary reports access and open Sales By Customer.
+2. In the network panel, find the request the page makes for the report's data and read its response code.
+3. From the three-dot menu choose ""Download Summary (CSV)"" and read the response code of the export request.
+4. Sign out and sign in as the user WITHOUT reports access.
+5. Try to open Sales By Customer by typing its address directly, and read the response code of the data request.
+6. Ask for the same export by its address and read that response code too.","1. For the user WITH ordinary reports access, the report's data request succeeds (HTTP 200) and the report fills with rows.
+2. For that same user, the export request also succeeds (HTTP 200) and a file is produced.
+3. For the user WITHOUT reports access, the data request is refused with HTTP 403 and a message reading ""Access denied."" — no report data comes back.
+4. For that same user, the export request is refused with HTTP 403 as well — no file is produced.
+5. Note for the tester: one single permission controls all four of these. If you find the report data refused but the export allowed (or the other way round), that is a failure — record both response codes.",SV-8600 (SBC spec v13 2026-07-31 S1-R2; S1-N1 — the back-end half of the ordinary-reports-access gate; the SBC twin of the Parts Velocity back-end case C30391; Chris Ward Q1=A; SV-8780 Ready to Fix),,
 "Sales By Representative under Performance, below existing links; titles correct",SBR — Access & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You can see the other reports in the Performance group.","1. Open the Reports area and read the Performance group of the left-side navigation top to bottom.
 2. Click the ""Sales By Representative"" entry.
@@ -501,8 +512,8 @@ Date range picker is in the toolbar and offers the standard presets plus Custom,
 2. Open it and read the options.","1. A date range picker is visible in the report toolbar.
 2. The standard presets are offered: Today, Yesterday, This Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
 3. There is no ""All Time"" option (removed by the 2026-07-16 spec round).",SV-8620 (specs/sbr-sales-by-representative.md Story 2 S2-R1; S2-R2),,
-A Custom range uses the date-picker and holds a 366-day maximum span,SBR — Date Range Filter,Functional,Medium,1. You are on the Sales By Representative report.,"1. Pick ""Custom"" and select a start and end date within 366 days; apply.
-2. Pick ""Custom"" again and try to select a start-to-end span of more than 366 days (start and end dates inclusive).","1. A custom range within the cap applies normally via the date-picker dialog.
+A Custom range uses the date-picker and holds a 366-day maximum span,SBR — Date Range Filter,Functional,Medium,1. You are on the Sales By Representative report.,"1. Open the date range picker and select a start and end date within 366 days on the calendar shown inside it; apply.
+2. Open it again and try to select a start-to-end span of more than 366 days (start and end dates inclusive).","1. A custom range within the cap applies normally via the date-picker dialog.
 2. A custom selection whose span exceeds 366 days is not accepted — the picker holds you to a range of 366 days or fewer.",SV-8620 (specs/sbr-sales-by-representative.md Story 2 S2-R3; S2-R6),,
 An invoice sits in the range by its own invoice date; endpoints included,SBR — Date Range Filter,Functional,Medium,"1. ZZAUTOTEST invoices exist dated exactly ON the start date and exactly ON the end date of a custom range, plus one dated just outside it.","1. Set a custom range whose start and end dates equal those two invoice dates.
 2. Check which invoices appear (expand the owning rep).
@@ -1035,7 +1046,8 @@ A new WO opens with Sales Representative unassigned; a change saves at once,SBR 
 The Sales Representative selector is read-only when Invoiced or Paid,SBR — Work Order Sales Rep,Functional,Medium,"1. One Work Order is in ""Invoiced"" status and one is in ""Paid"" status (drive throwaway ZZAUTOTEST WOs into these states if needed).","1. Open the Invoiced WO and try to change the Sales Representative field.
 2. Open the Paid WO and try the same.","1. On the Invoiced WO the Sales Representative selector is read-only (non-interactive) — the assignment cannot be changed.
 2. On the Paid WO the selector is also read-only.
-3. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.",SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R5),,
+3. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
+4. Note for the tester: this field is only made read-only on the screen. If you find the sales rep can still be changed another way (through the back-end/API), that is expected — mark this test PASSED and do not raise it as a bug.",SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R5),,
 "Invoice credit snapshot: WO rep, else customer rep, else unassigned",SBR — Work Order Sales Rep,Functional,Critical,1. Three throwaway ZZAUTOTEST setups: (a) a WO WITH a Sales Representative assigned; (b) a WO with NO rep whose customer HAS an assigned rep; (c) a WO with NO rep whose customer has NO assigned rep.,"1. Invoice all three WOs.
 2. On the report (Show Unassigned on, filters covering the invoices), find each invoice and note which row it sits under.
 3. Go back to WO (a), change its Sales Representative to a different rep, and re-check the already-created invoice on the report.","1. Invoice (a) is credited to the WO's Sales Representative.
@@ -1239,14 +1251,14 @@ A Special Order part is one merged row summed across selected locations,PV — R
 3. Look at the alignment of every header label and cell, including numeric and money columns.","1. The header row is sticky - it stays visible while the body scrolls.
 2. The Type column shows each row's kind as plain text (no badge or chip styling): ""Inventory"" or ""Special Order"".
 3. ALL columns - header and cell data, including numbers and money - are left-aligned on screen. (The exports right-align numerics instead: a deliberate export-only difference.)",SV-8643 (PV spec S3-R4; S3-R5; S3-R8 - Type value 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31]),,
-Info icons sit on Units Sold; Demand and Turns / Yr with descriptions,PV — Row Model,Functional,Medium,"1. You are on the Parts Velocity report with data loaded.
-2. The Turns / Yr column has been enabled via the column picker (it is hidden by default).","1. Look immediately to the right of the Units Sold, Demand, and Turns / Yr header labels.
+"Info icons sit on Units Sold, Demand and Turns/Yr with descriptions",PV — Row Model,Functional,Medium,"1. You are on the Parts Velocity report with data loaded.
+2. The Turns/Yr column has been enabled via the column picker (it is hidden by default).","1. Look immediately to the right of the Units Sold, Demand, and Turns/Yr header labels.
 2. Hover each grey info icon and read the description.
 3. Move focus to an icon with the keyboard (Tab) and check the same text is exposed.
-4. Click/activate an icon and watch whether the column sort changes.","1. Each of the three headers carries a grey info icon, shown always (not hover-to-reveal) whenever its column is visible; the Turns / Yr icon appears only once that column is enabled.
+4. Click/activate an icon and watch whether the column sort changes.","1. Each of the three headers carries a grey info icon, shown always (not hover-to-reveal) whenever its column is visible; the Turns/Yr icon appears only once that column is enabled.
 2. Units Sold shows exactly: ""Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Sell Price.""
 3. Demand shows exactly: ""Number of separate transactions (work orders or parts sales) this part appeared on in the selected date range. Each transaction counts once, no matter how many units were sold on it.""
-4. Turns / Yr shows exactly: ""How many times you sell through this part in a year. Higher is better.""
+4. Turns/Yr shows exactly: ""How many times you sell through this part in a year. Higher is better.""
 5. The icon is focusable and exposes the same text to assistive technology; activating it does NOT trigger a column sort.
 6. No other column header carries an info icon.",SV-8643 (PV spec v4 2026-07-29 S3-R6 — S3-R6 CLOSES the set (exactly three columns: Units Sold; Demand; Turns / Yr) and quotes each description verbatim; so the closed set and the exact strings ARE the requirement),,
 Description; Category and Vendor truncate on hover; Part # never does,PV — Row Model,Functional,Medium,"1. A part with a very long description (and a long category and vendor name) has in-window activity.
@@ -1276,16 +1288,16 @@ A sale invoiced then fully reversed shows Demand 1 with Units Sold 0.00,PV — R
 3. A fully-reversed part with zero net movement, no on-hand stock, and no residual revenue would be excluded altogether (a Demand count alone does not keep a row).",SV-8643 (specs/parts-velocity.md S3-E1; S5-R5),,
 Column picker lists all 20 columns and never offers the internal cost,PV — Columns & Remembered View,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the column picker from its toolbar button.
 2. Count the columns listed and check each has a toggle.
-3. Look for any on-hand cost / inventory-value entry.","1. The picker lists all 20 available columns, each with a toggle: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns / Yr, Min, Max.
+3. Look for any on-hand cost / inventory-value entry.","1. The picker lists all 20 available columns, each with a toggle: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.
 2. No on-hand cost column is offered - the report computes one internally but it is never selectable and never displayed.",SV-8644 (specs/parts-velocity.md S4-R1; S4-R4; S5-R6),,
 First visit shows exactly the 14 default columns in the specified order,PV — Columns & Remembered View,Functional,Critical,1. You are on the Parts Velocity report on a first visit (no saved column selection).,1. Read the visible column headers left to right without touching the picker.,"1. With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand.
 2. The other 6 columns start hidden: Units Returned, Sold (WO), Sold (Parts Sale), Turns / Yr, Min, Max.
 3. When more than one location is in scope the automatic Location column shows as well, leftmost before Type — 15 columns. It is not part of the 14-column default set and is not in the column picker, so its presence is expected and is not a failure of this test.",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R2; S4-R3 + Story 3 S3-R10 — the 14 default-visible columns and the 6 hidden ones; plus the automatic Location column leftmost when more than one location is in scope),,
-"A re-enabled column returns to its canonical slot, with no reload",PV — Columns & Remembered View,Functional,Medium,1. You are on the Parts Velocity report with data loaded.,"1. In the column picker, enable Min, then Units Returned, then Turns / Yr - in that (non-canonical) order.
+"A re-enabled column returns to its canonical slot, with no reload",PV — Columns & Remembered View,Functional,Medium,1. You are on the Parts Velocity report with data loaded.,"1. In the column picker, enable Min, then Units Returned, then Turns/Yr - in that (non-canonical) order.
 2. Watch the table as each toggle is flipped.
 3. Read the resulting header order.","1. Each toggle takes effect immediately - the table re-renders without a page reload.
-2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on (with the automatic Location column, when shown, sitting leftmost before Type): Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns / Yr, Min, Max.
-3. So Units Returned slots in right after Units Sold, Turns / Yr after On Hand, and Min before Max - not appended at the end.",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R4; S4-R5 + Story 3 S3-R10 — canonical column order and immediate re-render; plus the automatic Location column leftmost when shown),,
+2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on (with the automatic Location column, when shown, sitting leftmost before Type): Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.
+3. So Units Returned slots in right after Units Sold, Turns/Yr after On Hand, and Min before Max - not appended at the end.",SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R4; S4-R5 + Story 3 S3-R10 — canonical column order and immediate re-render; plus the automatic Location column leftmost when shown),,
 Filters; columns and sort are remembered per browser before the first fetch,PV — Columns & Remembered View,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Set a non-default view: Type = Inventory, date range = Last Month, pick a category, enable Turns / Yr, and sort by Revenue descending.
 2. Leave the report (navigate elsewhere), then return to it.
 3. Reload the page (browser refresh) and observe again.","1. On return, every saved setting is restored: Type = Inventory, Last Month, the chosen category, the column set including Turns / Yr, and the Revenue-descending sort.
@@ -1486,16 +1498,26 @@ An over-cap Parts Velocity export is refused with the too-large message,PV — E
 4. Narrow the date range or filters below the cap and request a download again.","1. Neither the CSV nor the PDF is produced — no download starts.
 2. A clear too-large message appears telling the user to narrow the date range or filters, then try again — the standard wording is ""This report is too large to export. Narrow the date range or filters, then try again.""
 3. After narrowing below the cap, the downloads work again.",SV-8646 (specs/parts-velocity.md Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21),,
+A large PDF download fails outright while the CSV of the same view works,PV — Exports,Functional,High,"1. You are signed in with ordinary reports access, on a desktop browser.
+2. Parts Velocity is open with a date range that returns a few hundred rows — narrow with the toolbar search until the list is roughly 300 to 500 rows.","1. Narrow the report with the toolbar search so it shows a few hundred rows.
+2. Open the three-dot menu and choose ""Download (CSV)"". Wait for the file.
+3. Open the three-dot menu again and choose ""Download (PDF)"". Wait up to a minute.
+4. Narrow the search further, to a couple of dozen rows, and choose ""Download (PDF)"" again.","1. The CSV downloads successfully at that size.
+2. The PDF also downloads successfully. If instead nothing downloads and a message appears saying something went wrong, that is a failure — record roughly how many rows were on screen.
+3. The small PDF downloads successfully, which shows the failure depends on size.
+4. Note for the tester: a very large view is refused politely with ""This report is too large to export. Narrow the date range or filters, then try again."" — that message is expected and is NOT this failure. This test is about a medium-sized view where the CSV works but the PDF errors.",SV-8646 (PV spec v4 2026-07-29 Story 6 exports — the spec is silent on a renderer size limit; tech-plan-2026-07-29 A3/FR-F4 covers only the ten-thousand-row export cap),,
 The report uses the standard two-tone layout,PV — Visual Conformance,Functional,Low,"1. You are on the Parts Velocity report with data loaded, in light mode.","1. Look at the page background, the toolbar, and the table surfaces.
 2. Look at the card corners and the table's horizontal extent.","1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).
 2. There is NO card border-radius - the table runs edge to edge.
 3. The layout matches the application's other reports.",SV-8647 (specs/parts-velocity.md S7-R1; §2),,
-Toolbar and table detail styling matches the suite paddings and borders,PV — Visual Conformance,Functional,Low,1. You are on the Parts Velocity report with data loaded (use browser devtools to measure paddings).,"1. Inspect the toolbar's background and internal padding.
-2. Inspect the table header cells and the border between header and toolbar.
-3. Inspect the body cells and the first/last cell padding in a row.","1. The toolbar background is white (black in dark mode) with internal padding 32px top, 2rem right, 24px bottom, 2rem left.
-2. Header cells have a white background and a 1px top border separating them from the toolbar.
-3. Body cells have a white background.
-4. The leftmost cell in every row (header and body) has 2rem left padding; the rightmost cell has 2rem right padding.",SV-8647 (specs/parts-velocity.md S7-R2; S7-R3; S7-R4; S7-R5),,
+Toolbar and table detail styling matches the suite paddings and borders,PV — Visual Conformance,Functional,Low,1. You are on the Parts Velocity report with data loaded.,"1. Look at the toolbar strip above the table and at the space between its controls and the edges of the strip.
+2. Look at the column-header band and at the line between it and the toolbar above it.
+3. Look at the data cells, and at the space between the first and last columns and the left and right edges of the table.
+4. Compare all of the above with another report in the suite (for example Inventory Value) opened side by side.","1. The toolbar strip is white (dark in dark mode), and its controls sit clear of the edges rather than pressed up against them.
+2. There is a thin dividing line between the toolbar and the column-header band, and the header band and the data cells are white.
+3. The first and last columns sit clear of the left and right edges of the table - the text is not touching the edge.
+4. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.
+5. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this - 32px/24px toolbar padding, a 1px header border, 2rem edge padding - are design-token values the design and engineering team check with their own tooling, not by hand.)",SV-8647 (specs/parts-velocity.md S7-R2; S7-R3; S7-R4; S7-R5),,
 Dark mode is supported and the grey info icon keeps 3:1 contrast in both,PV — Visual Conformance,Functional,Low,1. You are on the Parts Velocity report with data loaded and dark mode available in the application.,"1. Switch the application to dark mode.
 2. Look at the page background, toolbar, and cells.
 3. Look at the grey ⓘ info icon next to a column heading in dark mode, then switch back to light mode and look at it again.","1. The report supports dark mode: page background, toolbar, and cells use their dark-mode equivalents.
@@ -1696,9 +1718,9 @@ Expansion state is view-only: it resets on any reload and fresh visit,TU — Per
 3. Expand one technician's row, then deselect and re-select a DIFFERENT technician in the technician filter.","1. After the reload (date-range or location change), all rows are collapsed - expansion state resets.
 2. On a fresh visit, all rows start collapsed - expansion is never persisted.
 3. Deselecting and re-selecting a technician (an on-screen operation) does NOT change the expansion state of the other rows - the expanded row stays expanded.",SV-8651 (specs/technician-utilization.md S4-R5),,
-Filter by Technician starts with every technician selected on a first visit,TU — Technician Filter,Functional,High,"1. You are on the Technician Utilization report on a first visit (no saved settings), with several technicians in the range.","1. Find the toolbar filter labeled ""Filter by Technician"" and open it.
+Filter by Technician starts with every technician selected on a first visit,TU — Technician Filter,Functional,High,"1. You are on the Technician Utilization report on a first visit (no saved settings), with several technicians in the range.","1. Find the toolbar filter labeled ""Technician"" and open it.
 2. Check the selection state of every listed technician.
-3. Try selecting more than one change at once (multi-select).","1. The toolbar has a filter labeled ""Filter by Technician"" that allows selecting more than one technician.
+3. Try selecting more than one change at once (multi-select).","1. The toolbar has a filter labeled ""Technician"" that allows selecting more than one technician (when several are chosen its label reads, for example, ""2 technicians"").
 2. On the first visit, EVERY technician is selected.
 3. All technicians' rows are shown.",SV-8652 (specs/technician-utilization.md S5-R1; S5-R2),,
 Deselecting a technician hides the row and recalculates the Summary,TU — Technician Filter,Functional,High,"1. Several technician rows are visible and the Summary row shows their totals.
@@ -1709,10 +1731,10 @@ Deselecting a technician hides the row and recalculates the Summary,TU — Techn
 3. The report does NOT reload - the technician filter works on screen only: the rows and the Summary update straight away, no loading indicator appears in the data area, and the date range does not change.
 4. Re-selecting the technician shows the row again (and the Summary recalculates back).
 5. Note for the tester: you do not need developer tools for this test - just watch the screen.","SV-8652 (TU spec v5 2026-07-29 S5-R3; S5-R4; S5-R5 + §3 Key Decisions (""the technician filter works on screen only and does not reload the report""); S5 context note — the server half is covered by C30450 in ""TU - API"")",,
-Select all and Clear all controls set every technician on or off,TU — Technician Filter,Functional,Medium,1. Several technicians are in the current range; a different range exists in which an ADDITIONAL technician (not listed in the current range) has clocked time.,"1. In the Filter by Technician filter, use the control labeled ""Clear all"".
-2. Use the control labeled ""Select all"".
+All technicians and Clear all controls set every technician on or off,TU — Technician Filter,Functional,Medium,1. Several technicians are in the current range; a different range exists in which an ADDITIONAL technician (not listed in the current range) has clocked time.,"1. In the Technician filter, use the control labeled ""Clear all"".
+2. Use the control labeled ""All technicians"".
 3. Deselect one technician, then change the date range to the one containing the additional technician.
-4. Use ""Clear all"" again, then switch to the range where the additional technician newly appears.","1. ""Clear all"" sets every currently-listed technician to deselected; ""Select all"" selects all technicians at once.
+4. Use ""Clear all"" again, then switch to the range where the additional technician newly appears.","1. ""Clear all"" sets every currently-listed technician to deselected; ""All technicians"" selects all technicians at once.
 2. Selection is tracked as the set of DESELECTED technicians: a technician you have not deselected is selected by default.
 3. After step 3, your deselected technician STAYS deselected across the range change, while the newly-appearing technician is SELECTED (never explicitly deselected).
 4. After step 4, the newly-appearing technician is selected even though you had cleared all - ""Clear all"" only deselected the technicians listed at the time.",SV-8652 (specs/technician-utilization.md S5-R6; S5-R7; S5-R8; S5-R9),,
@@ -1802,11 +1824,11 @@ An over-cap Technician Utilization export is refused with the too-large message,
 The Location filter is the rightmost multi-select; All Locations = select-all,TU — Location Filter,Functional,High,"1. You are signed in as a user with access to at least two locations.
 2. You are on the Technician Utilization report.","1. Look at the rightmost control in the toolbar and read its label.
 2. Open it and read the listed options.
-3. Choose ""All Locations"", then uncheck one individual location.
+3. Choose ""All locations"", then uncheck one individual location.
 4. With every accessible location selected, look at how the report tells you which location the shown data belongs to.","1. The toolbar has a location filter labeled ""Location"" - a multi-select and the RIGHTMOST control.
-2. It lists the locations the signed-in user has access to, plus an ""All Locations"" option.
-3. ""All Locations"" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations.
-4. With all locations selected you can tell which location the shown data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build; this report pools each technician's hours into one row, so the marking may take a different form here.)",SV-8656 (specs/technician-utilization.md S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
+2. It lists the locations the signed-in user has access to, plus an ""All locations"" option and a ""Clear all"" action. (If you only have access to one location, the ""All locations"" entry is not offered - you see ""Clear all"" and your one location.)
+3. ""All locations"" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations.
+4. With more than one location selected, a Location column appears in the table and each row names its location - or reads ""Multiple"" for a technician whose hours span more than one of them. (Where that column sits on screen is checked by its own test.)",SV-8656 (specs/technician-utilization.md S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins)),,
 Location changes reload with hours pooled into one row per technician,TU — Location Filter,Functional,Critical,"1. A technician has clocked time at TWO accessible locations in the range.
 2. You are on the Technician Utilization report.","1. Select only location A and read the technician's hours.
 2. Add location B to the selection and watch the report.
@@ -1896,8 +1918,8 @@ Work In Progress appears in the reports navigation under the Performance group,W
 Four tabs in a fixed order with the partially-completed tab selected,WIP — Tabs,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have not visited the report before in this browser (no saved active-tab setting).","1. Open the Work In Progress report.
 2. Read the tab labels from left to right.
-3. Look at which tab is selected when the report loads.","1. Four tabs are shown, labeled in this order: ""Approved - partially completed"", ""Approved - not started"", ""Completed"", and ""Estimates"".
-2. The ""Approved - partially completed"" tab is selected by default on load.
+3. Look at which tab is selected when the report loads.","1. Four tabs are shown, labeled in this order: ""Approved - Partially Completed"", ""Approved - Not Started"", ""Completed"", and ""Estimates"" - each followed by its count in brackets, for example ""Completed (30)"".
+2. The ""Approved - Partially Completed"" tab is selected by default on load.
 3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement),,
 Each tab label shows its work-order count in parentheses,WIP — Tabs,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Open work orders exist in at least one tab for the current date range and location (seed ZZAUTOTEST work orders if needed).
@@ -1914,11 +1936,11 @@ Every open service WO at a selected location appears in the report,WIP — Scope
 2. Five ZZAUTOTEST service work orders exist at your active location, created within the current date range — one in each status: Estimate, Approved, In Progress, Review, and Complete.","1. Open the Work In Progress report with the seeded work orders' creation dates inside the selected date range.
 2. Look through all four tabs for each of the five seeded work orders.","1. All five seeded work orders appear in the report — each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.
 2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases).",SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R1),,
-Invoiced; Paid; Declined and part-sale work orders never appear,WIP — Scope & Loading,Negative,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. ZZAUTOTEST work orders exist at your active location within the current date range: one Invoiced, one Paid, one Declined, and one part-sale work order.","1. Open the Work In Progress report.
-2. Look for the Invoiced, Paid, and Declined work orders and the part-sale work order in every tab.
+Invoiced; Paid and part-sale work orders never appear,WIP — Scope & Loading,Negative,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. ZZAUTOTEST work orders exist at your active location within the current date range: one Invoiced, one Paid, and one part-sale work order.","1. Open the Work In Progress report.
+2. Look for the Invoiced and Paid work orders and the part-sale work order in every tab.
 3. Check the summary strip and each tab's Totals row for their money.
-4. Download the current tab as a CSV and search the file for them.","1. The Invoiced, Paid, and Declined work orders do not appear in any tab, any Totals row, the summary strip, or the download.
+4. Download the current tab as a CSV and search the file for them.","1. The Invoiced and Paid work orders do not appear in any tab, any Totals row, the summary strip, or the download.
 2. The part-sale work order does not appear anywhere either.
 3. No excluded work order's money is counted in any figure.",SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R2; S2-R3),,
 Each qualifying work order appears exactly once in exactly one tab,WIP — Scope & Loading,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
@@ -1952,15 +1974,16 @@ Approved started-boundary: time or part received vs neither decides the tab,WIP 
 "With all toggleable columns on, the fixed column order and alignment hold",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.
 3. Every toggleable column is turned on in the column-selection control.
-4. More than one location is in scope, so the automatic Location column is showing.","1. Read the column headers from left to right.
+4. Location is turned ON in the column-selection control (it is off by default).","1. Read the column headers from left to right.
 2. Look at how the values in each column are aligned.","1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.
 2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.
 3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope),,
 First visit shows the default columns; the rest are in the column selector,WIP — Columns & Rows,Functional,High,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (use a fresh browser profile or clear the site's saved data).,"1. Open the Work In Progress report.
 2. Read the visible column headers.
 3. Open the column-selection control and read which columns are offered and which are on.","1. The visible columns on first visit are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, and Total.
-2. Every other column (VIN, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default.
-3. Location is NOT offered in the column-selection control — it appears on its own whenever more than one location is in scope, and is hidden when a single location is in scope.","SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: ""The Location column is not offered in the column selector; its visibility is automatic"")",,
+2. Every other column (VIN, Location, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default.
+3. Location IS offered in the column-selection control, between VIN and Advisor, and is off by default. Turning it on adds a Location column that names each job's location; turning it off removes it again.
+4. Note for the tester: the Location column does NOT appear on its own when you have more than one location selected - you have to switch it on yourself. That is what the build does today.","SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: ""The Location column is not offered in the column selector; its visibility is automatic"")",,
 The WO # is a link that opens the WO in the same browser tab,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Click a row's WO # link.
 2. Confirm where the work order opens.
@@ -1968,8 +1991,8 @@ The WO # is a link that opens the WO in the same browser tab,WIP — Columns & R
 2. Clicking it opens that work order in the SAME browser tab (not a new tab).
 3. The browser's back navigation returns you to the report.",SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R5 (+ context note)),,
 Status shows as a color-coded badge whose label text is always present,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. The report shows work orders in several statuses (Estimate, Approved, In Progress, Review, Complete).","1. Read the Status column across rows in each tab.
-2. Compare each badge's color against the application's standard status colors used elsewhere.","1. Status is shown as a badge using the status's label: ""Estimate"", ""Approved"", ""In Progress"", ""Review"", or ""Complete"".
+2. The report shows work orders in several statuses (Estimate, Approved, In progress, Review, Complete).","1. Read the Status column across rows in each tab.
+2. Compare each badge's color against the application's standard status colors used elsewhere.","1. Status is shown as a badge using the status's label: ""Estimate"", ""Approved"", ""In progress"", ""Review"", or ""Complete"".
 2. The badge is color-coded per the application's standard status colors.
 3. The label text is always present, so color is never the sole signal of the status.","SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R6 + Story 10 S10-R8 — S4-R6 CLOSES the five status labels verbatim (""Estimate"" ... ""Complete"") and the label-not-colour rule; so the closed list IS the requirement)",,
 "Asset cell identifies the asset by VIN, falling back to Unit #, then plate",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
@@ -2140,7 +2163,8 @@ The Totals row sums each visible money column and the Inv. Hrs column,WIP — To
 2. Compare each sum to the Totals row.
 3. Add up the jobs' Inv. Hrs values and compare to the Totals row's Inv. Hrs cell, including its sign and color.","1. The Totals row sums each visible money column across the tab's visible jobs, to the cent.
 2. The Totals row's Inv. Hrs shows the sum of the visible jobs' Inv. Hrs, in the same signed one-decimal format (""+2.0"" / ""-14.0"" / ""0.0"").
-3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row.",SV-8662 (specs/wip-work-in-progress.md Story 6 S6-R2; S6-R3),,
+3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row.
+4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download that includes Inv. Hrs is refused, so do not try to verify this column from a file.",SV-8662 (specs/wip-work-in-progress.md Story 6 S6-R2; S6-R3),,
 The Advisor filter lists the advisors in the loaded jobs; screen only,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs for at least two different advisors.","1. Open the Advisor filter in the toolbar and read its options.
 2. Select one advisor and watch the rows.
@@ -2171,9 +2195,10 @@ The date range offers the presets plus Custom; This Week default; no All Time,WI
 The date range filters on the WO's created date and reloads on change,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Open work orders exist with created dates both inside and outside the current week.","1. With ""This Week"" selected, check which work orders are listed.
 2. Change the preset to ""This Month"" and watch the data area.
-3. Open ""Custom"" and try to pick a start and end date more than 366 days apart.","1. Each preset (or Custom) filters the report to work orders whose CREATED date falls within the selected range — an open work order created outside the range is not listed.
+3. Open the date control and pick a start and an end date on the calendar more than a year apart.","1. Each preset (or Custom) filters the report to work orders whose CREATED date falls within the selected range — an open work order created outside the range is not listed.
 2. Changing the range reloads the report (the loading indicator shows).
-3. A Custom range is capped at a 366-day maximum span from start to end — a longer span cannot be applied.",SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R7; S7-R8),,
+3. A range longer than about a year is refused with the message ""Date range cannot be over one year."" and the wider range is not loaded.
+4. Note for the tester: on this build the exact cut-off sits one day later than the specification says (a 367-day span is accepted, 368 is refused). Record what you see; the one-day difference is already known and is with the product owner.",SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R7; S7-R8),,
 "Location filter: rightmost multi-select with All locations, reloads on change",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. This browser has never saved settings for this report (fresh visit).
 3. Open work orders exist at two different locations.","1. Open the Work In Progress report and read the Location filter's position and default value.
@@ -2205,11 +2230,11 @@ The Location column is automatic and never reads Multiple on a work-order row,WI
 4. Open the column-selection control and look for Location in the list.
 5. Narrow to a single location and read the headers again.
 6. Download the tab as a CSV and a PDF and read the Location column's header in the files.
-7. Change the selection between one location, several, and ""All locations"", watching the filter control's width.","1. With more than one location in scope a Location column is shown, in its fixed position between VIN and Advisor, left-aligned.
+7. Change the selection between one location, several, and ""All locations"", watching the filter control's width.","1. Location is offered in the column-selection control, between VIN and Advisor, and is off by default. Turning it on adds the Location column in that fixed position, left-aligned.
 2. Each row names its own work order's location.
 3. NO row ever shows ""Multiple"" — a work order belongs to exactly one location, and this report has no grouped or drill-down rows.
-4. Location is NOT offered in the column-selection control — its visibility follows the location scope automatically.
-5. With a single location in scope the Location column is hidden.
+4. The column does not appear or disappear on its own when you change the location selection - it follows the column-selection toggle only.
+5. With the toggle off the Location column is not shown, whatever the location selection is.
 6. In both downloads the column is headed ""Branch"" (a known naming difference from the screen — do not raise it as a bug).
 7. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.","SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; S10-R5a; §4 Location (column) — automatic visibility; never ""Multiple""; export header ""Branch"")",,
 Column Selection toggles columns; Total is not offered at all,WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
@@ -2244,11 +2269,11 @@ Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV),WIP �
 2. Compare its columns to the screen's visible columns and order.
 3. Compare its rows to the jobs left visible by the filters.
 4. Compare its Totals row to the on-screen Totals row.
-5. Repeat the same checks in the PDF.","1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last.
+5. Repeat the same checks in the PDF.","1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Inv. Hrs on, the download is refused - that column cannot be exported yet.
 2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.
 3. Both downloads include a Totals row matching the on-screen Totals row for the tab.
 4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
-5. Note for the tester: when you have more than one location in scope, the files also carry the location column even though you cannot turn it on or off - and in the file it is headed ""Branch"", not ""Location"". Both of those are correct. With a single location in scope there is no such column, and that is also correct.","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the ""Locations:"" line; S7-R13/S9-E1 = the automatic ""Branch"" column)",,
+5. Note for the tester: the file carries the location column only when you have switched Location ON in the column-selection control - it does not appear just because you have more than one location selected. In the file it is headed ""Branch"", not ""Location"", and the asset column is headed ""Unit"". Both of those names are correct.","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the ""Locations:"" line; S7-R13/S9-E1 = the automatic ""Branch"" column)",,
 Downloaded money and Inv. Hrs values keep the on-screen formats,WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current tab includes money values over $1,000 and, if producible, a negative value; the Inv. Hrs column is on.","1. Download the current tab as a CSV and open it in a plain-text editor.
 2. Read a money value over one thousand dollars and check its quoting.
@@ -2292,7 +2317,8 @@ An over-cap Work In Progress download is refused with the too-large message,WIP 
 2. Download the same tab as a PDF.
 3. Narrow the filters below the cap and download once more.","1. For both the CSV and the PDF: no file is generated and no download starts.
 2. An error toast is shown each time, reading exactly: ""This report is too large to export. Narrow the date range or filters, then try again."" (dismissed by the user).
-3. Below the cap the download works normally.",SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending),,
+3. Below the cap the download works normally.
+4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.",SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending),,
 Each tab uses an all-white table with no alternating row shading,WIP — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with several rows in each tab.","1. Look at the column headers and the data cells in each tab.
 2. Compare the background of consecutive rows.","1. Each tab uses an all-white table: white column headers and white data cells.
@@ -2378,11 +2404,12 @@ First visit defaults to the current calendar month and the active location,IV �
 3. Read the Location filter's selection.","1. The date range defaults to the current calendar month.
 2. The location defaults to the user's currently active location.",SV-8668 (specs/inventory-value.md Story 1 S1-R3; Story 7 S7-R2),,
 The report is server-paginated: one page of rows at a time,IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed).","1. Open the Inventory Value report and find the pagination control.
-2. Move to page 2 (and further) and watch the rows.
-3. From a later page, change a server-side filter (for example select a Category), then check which page is shown.
-4. Repeat from a later page with a part search and with a sort change.","1. The server returns one page of rows at a time; the user moves through pages with the reports suite's standard pagination control.
-2. Changing any server-side filter (Date, Location, Category, Vendor), the part search, or the sort returns the FIRST page of the new result set.",SV-8668 (specs/inventory-value.md Story 1 S1-R8; §2 Scale and data model),,
+2. The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed).","1. Open the Inventory Value report and scroll to the bottom of the rows, then keep scrolling so further rows load.
+2. Watch that new rows keep arriving as you scroll rather than all of them being present at once.
+3. After scrolling well down the list, change a server-side filter (for example select a Category), then look at where the list starts.
+4. Repeat with a part search and with a sort change.","1. The server returns one page of rows at a time; the user moves through pages with the reports suite's standard pagination control.
+2. Changing any server-side filter (Date, Location, Category, Vendor), the part search, or the sort returns the FIRST page of the new result set - the list jumps back to the top.
+3. Note for the tester: on this build there are no numbered page controls on the screen - the rows load as you scroll. That is what you should see; record it and carry on with the checks above.",SV-8668 (specs/inventory-value.md Story 1 S1-R8; §2 Scale and data model),,
 "No qualifying parts, day or location: the no-data message shows and no totals",IV — Access & Display,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Three causes can be produced: (a) a location you can access holds no in-stock parts, (b) a past range ends entirely before nightly recording began (or its covered dates were pruned by retention), (c) the filters can be set so nothing qualifies.","1. Scope the report to the empty location and read the data area.
 2. Select a Custom range ending before nightly recording began and read the data area and the bottom of the report.
@@ -2438,14 +2465,14 @@ Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0,IV —
 With every column on they appear in the fixed order with the set alignment,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.
 3. Every column (including Margin and Total Sell) is turned on in the column-selection control.","1. Read the column headers from left to right.
-2. Look at how the values in each column are aligned.","1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.
+2. Look at how the values in each column are aligned.","1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.
 2. Part #, Description, Category, and Vendor are left-aligned.
 3. Every other column is right-aligned.
-4. When more than one location is in scope the automatic Location column also appears, between Vendor and Qty on Hand, left-aligned. It is not in the column-selection control, so its presence is expected and is not a failure of this test.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand),,
-Value formats: Qty on Hand to two decimals; money as US-dollar currency,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. The report shows a part with a fractional on-hand quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value.","1. Read the Qty on Hand cell of the fractional-quantity part.
+4. Location is one of the columns in the column-selection control; when it is turned on the Location column appears between Vendor and Qty, left-aligned.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand),,
+Value formats: Qty to two decimals; money as US-dollar currency,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The report shows a part with a fractional quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value.","1. Read the Qty cell of the fractional-quantity part.
 2. Read a money value over one thousand dollars (Unit Cost, Unit Sell, Total Sell, or Total Cost).
-3. Read a genuine zero money value and a negative one if present.","1. Qty on Hand shows the on-hand quantity to two decimal places, with no currency symbol; fractional quantities display correctly.
+3. Read a genuine zero money value and a negative one if present.","1. Qty shows the on-hand quantity to two decimal places, with no currency symbol; fractional quantities display correctly.
 2. Unit Cost and Unit Sell show per-unit prices as US-dollar currency.
 3. Money values show a leading ""$"", two decimal places, and thousands separators (for example ""$1,234.56""); a negative value shows a leading minus before the ""$"" (""-$1,234.56""); a genuine zero shows ""$0.00"".",SV-8670 (specs/inventory-value.md Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity)),,
 Total Cost is bold and pinned far right; it stays put on sideways scroll,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
@@ -2455,22 +2482,23 @@ Total Cost is bold and pinned far right; it stays put on sideways scroll,IV — 
 3. It stays fixed to the right edge while the other columns scroll underneath.",SV-8670 (specs/inventory-value.md Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions),,
 On a first visit the default columns show and the rest stay available,IV — Valuation & Columns,Functional,High,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).,"1. Open the Inventory Value report and read the visible column headers.
 2. Open the column-selection control and read which columns are on and off.
-3. Turn Margin and Total Sell on and check they appear.","1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost.
+3. Turn Margin and Total Sell on and check they appear.","1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin %, and Total Cost.
 2. The Margin and Total Sell columns are hidden by default.
 3. Both can be turned on from the column-selection control and then appear in their fixed positions.
-4. When more than one location is in scope the automatic Location column also shows, between Vendor and Qty on Hand — it is not one of the toggleable columns and its presence is expected.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope),,
+4. Location is one of the columns in the column-selection control; when it is turned on the Location column shows between Vendor and Qty.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope),,
 "Category and Vendor show their names; an em dash (""—"") when the part has none",IV — Valuation & Columns,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a part with a category and a vendor, a part with no category, and a part with no vendor.","1. Read the Category and Vendor cells of the fully-populated part.
 2. Read the Category cell of the part with no category.
 3. Read the Vendor cell of the part with no vendor.","1. Category shows the part's category name; Vendor shows the part's vendor name.
 2. A part with no category shows an em dash (""—"") in its Category cell.
-3. A part with no vendor shows an em dash (""—"") in its Vendor cell.",SV-8670 (specs/inventory-value.md Story 3 S3-R14; S3-E1; S3-E2),,
-"Totals row: Total label, blank identity/per-unit cells, pinned bold Total Cost",IV — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. A part with no vendor shows an em dash (""—"") in its Vendor cell.
+4. Note for the tester: on this build a part cannot be saved without a category, so you will not find a part whose Category cell shows ""—"". Check the Vendor half only.",SV-8670 (specs/inventory-value.md Story 3 S3-R14; S3-E1; S3-E2),,
+"Totals row: Totals label, blank identity/per-unit cells, pinned bold Total Cost",IV — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded and all columns turned on.
 3. The page shows more rows than fit on the screen.","1. Look at the row at the bottom of the report.
 2. Read its Part # cell, its Description/Category/Vendor cells, and its Unit Cost/Unit Sell cells.
 3. Look at its Total Cost cell and compare the number formats to the data rows.
-4. Scroll the rows up and down and watch the totals row.","1. A totals row is shown at the bottom, with the literal label ""Total"" in the Part # column's cell.
+4. Scroll the rows up and down and watch the totals row.","1. A totals row is shown at the bottom, with the label ""Totals"" in the Part # column's cell.
 2. The Description, Category, and Vendor cells are blank; the Unit Cost and Unit Sell cells are blank (a per-unit price has no meaningful sum).
 3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows.
 4. The totals row stays visible at the bottom while the rows scroll.",SV-8671 (specs/inventory-value.md Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5),,
@@ -2482,7 +2510,7 @@ On a first visit the default columns show and the rest stay available,IV — Val
 3. Cross-check the Total Cost total against a known seeded subset (filter down to a handful of ZZAUTOTEST parts whose values you can sum by hand).
 4. Select one Category and read the totals row; clear it, select one Vendor; clear it, type a part search matching a subset — reading the totals row each time (from a later page too if the set spans pages).","1. The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost across the FULL filtered result set — every qualifying row for the current Date, Location, Category, Vendor, and part-search selection, not only the rows on the visible page.
 2. The totals are identical on every page (they do not change as you page).
-3. The hand-summed subset matches the server-computed totals to the cent.
+3. A hand sum of a small seeded subset matches the totals row. On a large set the totals can differ from a hand sum of the displayed values by a few cents, because the server sums the unrounded values - that is correct, not a defect.
 4. After each filter change the totals row recomputes on the server over the full filtered set, independent of which page is shown.",SV-8671 (specs/inventory-value.md Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set)),,
 Totals-row Margin % is recomputed from the totals; not an average of rows,IV — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The filtered set contains parts with clearly different Margin % values (so a recomputed figure differs from a simple average).
@@ -2517,8 +2545,8 @@ For a past date the report replays the closest recorded day on or before it,IV �
 3. Then select a range ending on a day that IS recorded (or today with live values) and look for the indicator again.","1. When the displayed day is an earlier recorded day than the date asked for, the report shows an ""As of"" indicator naming the day actually shown.
 2. When the displayed day matches the date asked for (the common current-view case), the ""As of"" indicator is not shown — the date control already communicates the date.",SV-8672 (specs/inventory-value.md Story 5 S5-R5; S5-R6),,
 A Custom range values stock as of the picked end date; capped at today,IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. The Inventory Value report is open.","1. Open the date-range control and choose ""Custom"".
-2. Pick a start and an end date in the past and apply.
+2. The Inventory Value report is open.","1. Open the date-range control - a month calendar is shown inside it (there is no separate ""Custom"" item to choose).
+2. Pick a start and an end date in the past on that calendar and press Apply.
 3. Try to pick an end date in the future.
 4. Watch the data area when the range is applied.","1. A Custom range lets the user pick a start and end date, and the report values as of the picked end date.
 2. A future end date cannot be chosen — the end date is capped at today.
@@ -2541,11 +2569,11 @@ Category and Vendor multi-selects reload the report to matching parts only,IV �
 2. Selecting one or more categories reloads the report to show only parts in the selected categories.
 3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors.",SV-8673 (specs/inventory-value.md Story 6 S6-R1; S6-R2; S6-R3; S6-R4),,
 "Category, Vendor and part search are server-side; each change returns page 1",IV — Filters & Part Search,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
-2. The unfiltered result set spans multiple pages, and matching parts for a category/vendor/search exist BEYOND page 1.","1. From page 2 (or later), select a Category and check which page shows and which rows are listed.
+2. The unfiltered result set is long enough to need scrolling, and matching parts for a category/vendor/search exist well down the list (beyond the first screenful).","1. Scroll well down the list, then select a Category and check where the list starts and which rows are listed.
 2. Repeat with a Vendor selection.
 3. Repeat with a part search.
 4. Also change the date range, the location selection, and the sort — watching the data area each time.","1. Each change re-queries the server and returns the first page of the new result set.
-2. The filtering covers the ENTIRE data set — matching parts that were on later pages appear — not just a narrowing of the rows on the current page.
+2. The filtering covers the ENTIRE data set — matching parts that were further down the list appear — not just a narrowing of the rows currently on screen.
 3. Every change — date range, location, Category, Vendor, part search, sort — reloads the rows from the server; while loading the standard reports loading indicator shows, and existing rows are replaced only when the new data returns.",SV-8673 (specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8),,
 With no category or vendor selected all parts show,IV — Filters & Part Search,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report has been filtered by category, vendor, and a part search.","1. Clear the Category selection and check the rows.
@@ -2587,21 +2615,21 @@ Inventory Value: the Location filter is hidden for a one-location user,IV — Lo
 2. You are signed in as that user on a desktop browser.","1. Open the Inventory Value report and look for the Location filter in the toolbar.
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's stock.
 2. For the user with access to two or more locations the Location filter IS shown.","SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S7-N1 ""still sees the filter"" note is stale; spec edit pending)",,
-"The Location column is automatic, sits after Vendor, and never reads Multiple",IV — Location Filter,Functional,High,"1. You are signed in on a desktop browser as a user with access to at least two locations.
+The Location column sits after Vendor and never reads Multiple,IV — Location Filter,Functional,High,"1. You are signed in on a desktop browser as a user with access to at least two locations.
 2. The same part is in stock at two of those locations.
-3. The Inventory Value report is open with rows loaded.","1. Select two or more locations and read the column headers from the left.
+3. The Inventory Value report is open with rows loaded.","1. Turn Location on in the column-selection control, select two or more locations, and read the column headers from the left.
 2. Read the Location cell on each of the two rows for the part stocked at both locations.
 3. Look for any row showing ""Multiple"".
 4. Open the column-selection control and look for Location in the list.
 5. Narrow to a single location and read the headers again.
 6. Change the selection between one location, several, and ""All locations"", watching the filter control's width.
-7. With more than one location still selected, download the CSV and the PDF and read their columns.","1. With more than one location in scope a Location column is shown, inserted between Vendor and Qty on Hand.
+7. With more than one location still selected, download the CSV and the PDF and read their columns.","1. With Location turned on in the column-selection control, a Location column is shown, inserted between Vendor and Qty.
 2. Each row names the location that row's stock is held at.
 3. NO row ever shows ""Multiple"" — each row is one part at one location.
-4. Location is NOT offered in the column-selection control — its visibility follows the location scope automatically.
-5. With a single location in scope the Location column is hidden and the surrounding columns close up.
+4. Location IS one of the columns offered in the column-selection control - its visibility follows that toggle, not the location selection.
+5. With the Location toggle off the column is not shown and the surrounding columns close up.
 6. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.
-7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty on Hand), naming each row's own location.","SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never ""Multiple""; S10-R15 = the same column in every export)",,
+7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty), naming each row's own location.","SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never ""Multiple""; S10-R15 = the same column in every export)",,
 Column Selection toggles columns; Total Cost cannot be turned off,IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
 2. Open the control and toggle a column off, then on again, watching the table.
@@ -2610,7 +2638,7 @@ Column Selection toggles columns; Total Cost cannot be turned off,IV — Column 
 3. The Total Cost column is always shown and cannot be turned off.",SV-8675 (specs/inventory-value.md Story 8 S8-R1; S8-R2),,
 Toggling columns never reorders them,IV — Column Selection & Persistence,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Turn several columns on and off in different orders (for example, turn on Total Sell, then Margin).
-2. Read the resulting column order after each change.","1. Whatever columns are shown, they appear in the fixed left-to-right order — with the automatic Location column, when more than one location is in scope, between Vendor and Qty on Hand (Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) — toggling visibility never reorders columns.
+2. Read the resulting column order after each change.","1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.
 2. Total Cost is always the last column.",SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand),,
 The report remembers all filters; columns and sort per browser,IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Change the date range, select a category and a vendor, type a part search, change the location selection, change the column selection, and sort by a non-default column.
@@ -2656,7 +2684,7 @@ Inventory Value: a three-dot menu holds Download (PDF) and Download (CSV),IV —
 2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.
 3. Both downloads include a totals row labeled ""Totals"" matching the on-screen totals (the full-filtered-set totals).
 4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
-5. Note for the tester: when you have more than one location in scope, the files also carry a Location column (between Vendor and Qty on Hand) even though it is not in the column-selection control. That is correct - it appears by itself. With a single location in scope there is no Location column, and that is also correct.","SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the ""Locations:"" line and the automatic Location column)",,
+5. Note for the tester: the files carry the Location column when Location is turned ON in the column-selection control (it sits between Vendor and Qty). It does not appear just because you have more than one location selected.","SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the ""Locations:"" line and the automatic Location column)",,
 Export number formats: money to 2 decimals; Margin % to 1 with em-dash,IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (""—"").","1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.
 2. Download the PDF and read the same values.","1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows ""—"".
@@ -2669,7 +2697,8 @@ PDF header shows report name; org; period and an as-of line; logo if set,IV — 
 3. Download the CSV and inspect it for a logo.
 4. If reachable, repeat the PDF download on a period with no available snapshot and read the header's as-of line.","1. The PDF header shows the report name ""Inventory Value"", the organization name, the selected period, and an ""as of"" line naming the day the values represent (or a message that no snapshot is available for the period).
 2. The PDF shows the shop logo at the top when one is set.
-3. The CSV never includes a logo.",SV-8677 (specs/inventory-value.md Story 10 S10-R8; S10-R9),,
+3. The CSV never includes a logo.
+4. Note for the tester: the two files phrase the as-of line differently - the PDF reads ""As of 2026-08-04"" and the CSV's first line reads ""As of: 2026-08-04"" (with a colon). Both are correct; do not raise the difference.",SV-8677 (specs/inventory-value.md Story 10 S10-R8; S10-R9),,
 Downloaded files are named inventory-value-report.pdf and .csv,IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Download the current view as a PDF and read the saved file's name.
 2. Download the current view as a CSV and read the saved file's name.","1. The PDF is named ""inventory-value-report.pdf"".
@@ -2685,14 +2714,25 @@ An over-cap set produces no file and shows the too-large-to-export message,IV �
 2. Request ""Download (PDF)"" and read what happens.
 3. Request ""Download (CSV)"" and read what happens.","1. Neither the PDF nor the CSV is produced.
 2. The user sees the message: ""This report is too large to export. Narrow the date range or filters, then try again."" (a blocking notification; no file).
-3. After narrowing the filters below the cap, the download works again.",SV-8677 (specs/inventory-value.md Story 10 S10-R12; §7 User Feedback Summary),,
+3. After narrowing the filters below the cap, the download works again.
+4. Note for the tester: on this environment the biggest view you can build is about 9,275 rows, which is under the cap, so you cannot make this message appear here. If the PDF fails with a plain error instead, that is the separate timeout problem - see the Inventory Value export-notification case.",SV-8677 (specs/inventory-value.md Story 10 S10-R12; §7 User Feedback Summary),,
 Download notifications: verbatim success and failure texts per format,IV — Exports,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded (under the export cap).
 3. A download failure can be simulated (for example, disconnect the network just before requesting the download).","1. Download the PDF and the CSV normally and read each notification.
 2. Simulate a failure and request the PDF download; read the notification.
 3. Repeat the failure for the CSV download.","1. Success notifications read verbatim: ""Inventory Value report exported (PDF)"" and ""Inventory Value report exported (CSV)"".
 2. Failure notifications read verbatim: ""Failed to export inventory value report (pdf)"" and ""Failed to export inventory value report (csv)"".
-3. The lower-case ""(pdf)""/""(csv)"" on failure vs the upper-case success ones is the documented spec wording — expected, not a bug.",SV-8677 (specs/inventory-value.md Story 10 S10-R13; S10-R14; §7 User Feedback Summary),,
+3. The lower-case ""(pdf)""/""(csv)"" on failure vs the upper-case success ones is the documented spec wording — expected, not a bug.
+4. Note for the tester: on this build a PDF download of a large view fails with a plain error - ""An error occurred. We're sorry for this inconvenience, please try again a bit later later."" - after roughly half a minute. It is a timeout, not the too-large-to-export message. Narrow the view with the part search or a single location and the PDF works. The CSV of the same view always works and is quick. Record the failure; it is a known problem, not a mistake you made.",SV-8677 (specs/inventory-value.md Story 10 S10-R13; S10-R14; §7 User Feedback Summary),,
+A large Inventory Value PDF fails instead of being refused politely,IV — Exports,Functional,High,"1. You are signed in with ordinary reports access, on a desktop browser.
+2. The Inventory Value report is open and the whole list runs to several thousand rows.","1. Use the part search to narrow the list to a few hundred rows. Open the three-dot menu and choose the PDF download. Note how long it takes.
+2. Clear the search so the whole list is shown again. Choose the PDF download and wait up to a minute.
+3. With the whole list still shown, choose the CSV download and note how long that takes.
+4. Narrow the list again with the part search, or pick a single location, and ask for the PDF once more.","1. The narrowed PDF downloads successfully.
+2. On the whole list the PDF does not download. After roughly half a minute a plain error appears reading ""An error occurred. We're sorry for this inconvenience, please try again a bit later later."" — record that this happened and roughly how many rows were in the view.
+3. The CSV of that same whole list downloads successfully and quickly.
+4. Once the view is narrowed the PDF works again.
+5. Note for the tester: this is NOT the too-large-to-export message. If you see ""This report is too large to export. Narrow the date range or filters, then try again."" instead, that is the polite refusal working correctly and belongs to the export-cap test, not this one.",SV-8677 (IV spec v3 2026-07-29 S10-R11; S10-R12; S10-R14 — the observed failure path is a roughly 30-second server-side timeout and not the S10-R12 row cap; observed on build v3.4.1-0ed4433),,
 All-white table with no row shading on the standard report backdrop,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with several rows.","1. Look at the column headers and the data cells.
 2. Compare the background of consecutive rows.

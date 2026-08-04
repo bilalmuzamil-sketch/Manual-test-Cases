@@ -16,42 +16,42 @@
    "2. Look at how the values in each column are aligned."
   ],
   "expected": [
-   "1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.",
+   "1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.",
    "2. Part #, Description, Category, and Vendor are left-aligned.",
    "3. Every other column is right-aligned.",
-   "4. When more than one location is in scope the automatic Location column also appears, between Vendor and Qty on Hand, left-aligned. It is not in the column-selection control, so its presence is expected and is not a failure of this test."
+   "4. Location is one of the columns in the column-selection control; when it is turned on the Location column appears between Vendor and Qty, left-aligned."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand)",
   "viu_status": "VIU-Pending",
-  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
   "id": "IV-COL-02",
   "area": "IV — Valuation & Columns",
-  "title": "Value formats: Qty on Hand to two decimals; money as US-dollar currency",
+  "title": "Value formats: Qty to two decimals; money as US-dollar currency",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The report shows a part with a fractional on-hand quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value."
+   "2. The report shows a part with a fractional quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value."
   ],
   "steps": [
-   "1. Read the Qty on Hand cell of the fractional-quantity part.",
+   "1. Read the Qty cell of the fractional-quantity part.",
    "2. Read a money value over one thousand dollars (Unit Cost, Unit Sell, Total Sell, or Total Cost).",
    "3. Read a genuine zero money value and a negative one if present."
   ],
   "expected": [
-   "1. Qty on Hand shows the on-hand quantity to two decimal places, with no currency symbol; fractional quantities display correctly.",
+   "1. Qty shows the on-hand quantity to two decimal places, with no currency symbol; fractional quantities display correctly.",
    "2. Unit Cost and Unit Sell show per-unit prices as US-dollar currency.",
    "3. Money values show a leading \"$\", two decimal places, and thousands separators (for example \"$1,234.56\"); a negative value shows a leading minus before the \"$\" (\"-$1,234.56\"); a genuine zero shows \"$0.00\"."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity))",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -77,7 +77,7 @@
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list))",
   "viu_status": "VIU-Pending",
-  "notes": "First step of the sell-price fallback chain: fixed price → matrix markup → cost.",
+  "notes": "First step of the sell-price fallback chain: fixed price → matrix markup → cost. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -102,7 +102,7 @@
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R5 (matrix branch); §5 Assumptions)",
   "viu_status": "VIU-Pending",
-  "notes": "Second step of the sell-price fallback chain.",
+  "notes": "Second step of the sell-price fallback chain. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -129,7 +129,7 @@
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions)",
   "viu_status": "VIU-Pending",
-  "notes": "Final step of the sell-price fallback chain — do NOT file the zero margin as a defect; it is the specified cost-valuation fallback.",
+  "notes": "Final step of the sell-price fallback chain — do NOT file the zero margin as a defect; it is the specified cost-valuation fallback. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -156,7 +156,7 @@
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R6; S3-R7; §4 Terminology)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -183,7 +183,7 @@
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -210,7 +210,7 @@
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R9; S3-E3)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -236,7 +236,7 @@
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -255,15 +255,15 @@
    "3. Turn Margin and Total Sell on and check they appear."
   ],
   "expected": [
-   "1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost.",
+   "1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin %, and Total Cost.",
    "2. The Margin and Total Sell columns are hidden by default.",
    "3. Both can be turned on from the column-selection control and then appear in their fixed positions.",
-   "4. When more than one location is in scope the automatic Location column also shows, between Vendor and Qty on Hand — it is not one of the toggleable columns and its presence is expected."
+   "4. Location is one of the columns in the column-selection control; when it is turned on the Location column shows between Vendor and Qty."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope)",
   "viu_status": "VIU-Pending",
-  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists.",
+  "notes": "STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -285,18 +285,19 @@
   "expected": [
    "1. Category shows the part's category name; Vendor shows the part's vendor name.",
    "2. A part with no category shows an em dash (\"—\") in its Category cell.",
-   "3. A part with no vendor shows an em dash (\"—\") in its Vendor cell."
+   "3. A part with no vendor shows an em dash (\"—\") in its Vendor cell.",
+   "4. Note for the tester: on this build a part cannot be saved without a category, so you will not find a part whose Category cell shows \"—\". Check the Vendor half only."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R14; S3-E1; S3-E2)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
   "id": "IV-TOT-01",
   "area": "IV — Totals Row",
-  "title": "Totals row: Total label, blank identity/per-unit cells, pinned bold Total Cost",
+  "title": "Totals row: Totals label, blank identity/per-unit cells, pinned bold Total Cost",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -312,7 +313,7 @@
    "4. Scroll the rows up and down and watch the totals row."
   ],
   "expected": [
-   "1. A totals row is shown at the bottom, with the literal label \"Total\" in the Part # column's cell.",
+   "1. A totals row is shown at the bottom, with the label \"Totals\" in the Part # column's cell.",
    "2. The Description, Category, and Vendor cells are blank; the Unit Cost and Unit Sell cells are blank (a per-unit price has no meaningful sum).",
    "3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows.",
    "4. The totals row stays visible at the bottom while the rows scroll."
@@ -320,7 +321,7 @@
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8671 (specs/inventory-value.md Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5)",
   "viu_status": "VIU-Pending",
-  "notes": "On screen the label is \"Total\" (S4-R1) while the DOWNLOADED totals row is labeled \"Totals\" (S10-R6) — the spec states both explicitly; VIU-confirm and flag to the owner if the build differs. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTSTICKY): absorbed IV-VIS-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "notes": "On screen the label is \"Total\" (S4-R1) while the DOWNLOADED totals row is labeled \"Totals\" (S10-R6) — the spec states both explicitly; VIU-confirm and flag to the owner if the build differs. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTSTICKY): absorbed IV-VIS-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -345,13 +346,13 @@
   "expected": [
    "1. The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost across the FULL filtered result set — every qualifying row for the current Date, Location, Category, Vendor, and part-search selection, not only the rows on the visible page.",
    "2. The totals are identical on every page (they do not change as you page).",
-   "3. The hand-summed subset matches the server-computed totals to the cent.",
+   "3. A hand sum of a small seeded subset matches the totals row. On a large set the totals can differ from a hand sum of the displayed values by a few cents, because the server sums the unrounded values - that is correct, not a defect.",
    "4. After each filter change the totals row recomputes on the server over the full filtered set, independent of which page is shown."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8671 (specs/inventory-value.md Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set))",
   "viu_status": "VIU-Pending",
-  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTFILTER): absorbed IV-TOT-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired.",
+  "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTFILTER): absorbed IV-TOT-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
@@ -379,7 +380,7 @@
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8671 (specs/inventory-value.md Story 4 S4-R3)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
  },
  {
