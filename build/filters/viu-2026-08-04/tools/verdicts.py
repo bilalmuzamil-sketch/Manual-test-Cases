@@ -28,6 +28,14 @@ HELD = set(F.HELD['H1']['cases'])
 OURS_STALE = set(F.HELD['H2']['cases'])          # our case was wrong, build is right
 EXTDEP = {'FLT-API-06'}
 
+# the desktop multi-select dropdown defect ALREADY FILED by another QA as SV-8824.
+# Our own live observation independently confirmed it: the dropdown closes on every tick.
+SV8824 = ['FLT-STAT-03', 'FLT-STAT-04', 'FLT-STAT-05', 'FLT-CUST-03', 'FLT-CUST-05',
+          'FLT-CUST-07', 'FLT-TECH-03', 'FLT-TECH-05', 'FLT-ADV-03', 'FLT-ADV-05',
+          'FLT-ASSET-05', 'FLT-CHIP-01']
+for _c in SV8824:
+    DEVIATION.setdefault(_c, []).append('SV-8824')
+
 # D7/D8/S_A/S_C are wording corrections to OUR case, not build defects
 WORDING_ONLY = set(F.DEVIATIONS['D7']['cases']) | set(F.DEVIATIONS['D8']['cases'])
 for k in ('S_A', 'S_C'):
