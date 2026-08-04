@@ -1356,3 +1356,123 @@ Manager (31), Admin (42). Executor: `batch-wip-iv/tools/seed2_wo_and_minimal_rol
 one; exit 1 = leak. Scope it to genuine secret KEYS only (`sv_sso_session`, `PHPSESSID`,
 `cf_clearance`, `token`, `password`, `email`, `user`) — including the `host`/`api` values from
 `cookies.json` produces false positives, because the host names are deliberately documented.
+
+---
+
+### §N addendum — PARTS VELOCITY + TECHNICIAN UTILIZATION recipes (proven 2026-08-04, build v3.4.1-0ed4433)
+
+**READ THE PDF. IT IS NOT AN EXTERNAL DEPENDENCY.** `apt-get update -qq && apt-get install -y
+poppler-utils` (the first attempt 404s until `apt-get update` runs) then `pdftotext -layout f.pdf
+f.txt` reads every report PDF, `pdfinfo f.pdf` gives **Title / Pages / Page size**, and
+`pdfimages -list f.pdf` proves whether a logo is embedded. `pip install pypdf` installs but its
+import panics on this image's broken system `cryptography` — use poppler.
+
+**EXPORT SIZE BOUNDARIES (three distinct behaviours — do not conflate them).**
+- **Over ~10,000 rows → HTTP 400** `"This report is too large to export. Narrow the date range or
+  filters, then try again."` Proven exactly: Parts Velocity This Year across **both** locations is
+  **10,064** rows and every format is refused; **one** location is 6,219 rows and exports.
+- **Under the cap but a big PDF → HTTP 500** while the CSV of the identical scope succeeds.
+  Reproduced twice each way: **344 rows / 31 pages succeeds** (byte-identical 308,830 bytes at 37.9 s
+  and 55.4 s), **449 rows fails** (35.1 s and 36.0 s). A 55 s success next to a 36 s failure proves it
+  is **size-driven, not a wall-clock timeout**. Renderer is `WeasyPrint 69.0`. Same class on the TU
+  **Expanded** PDF at This-Year scope (500 after 32.8 s) while its Summary PDF returns in 1.95 s.
+- **Empty result → no request at all**: the front end short-circuits with a toast reading
+  `Empty export` / `Export didn't yield any results`. Same for an export with zero columns enabled.
+
+**PV export/data facts.** `Content-Disposition` says `velocity-report.csv/.pdf` but the **browser
+filename is `parts-velocity-report.csv/.pdf`** — the front end renames it, so assert the browser name.
+Omitting `columns=` exports all 20; passing an empty `columns=` also exports all 20. The per-row
+`Location` column is auto-inserted whenever scope spans >1 location and sits **after Vendor** (6th) on
+screen *and* in both files. CSV line 1 is `"Locations: …"`. PV has **no Totals row and no `totals`
+object** — that is correct, not a gap. Export sort: `pagination[sortBy]`/`[descending]` are honoured
+in the file, with **nulls first ascending, last descending**.
+
+**TU export facts.** `variant=summary|expanded` is required. Menu ships **FOUR** items
+(`Summary (PDF)`, `Summary (CSV)`, `Expanded (PDF)`, `Expanded (CSV)`). Files are
+`technician-utilization-summary/-expanded.pdf/.csv`. **Location is FIRST in every export but SECOND on
+screen.** Neither CSV nor the Summary PDF contains the Summary row. Rows come out in raw server order,
+not A→Z. Money with commas is correctly quoted (`"$7,248.85"`).
+
+**SEED CLOCKED TIME (this is how you make Technician Utilization non-empty).** Impersonate a holder
+with `POST /api/switch-user {user_id}` (the staff record's `id`), optionally
+`POST /api/iam/change-location {workplace_id, workplace_timezone}` first, then:
+- `POST /api/technician-tasks/department-clock-in {department_id}` → **201** `{technician_task_id}`.
+  **⚠️ SNAKE_CASE.** `{departmentId}` returns `400 "Department ID is missing."` even though the error
+  names the camelCase key. Departments: `GET /api/departments` → use one with `enable_time_clock`.
+- `POST /api/technician-tasks/department-clock-out {task_id, description}` → **201**.
+- `GET /api/technician-tasks/my-current-task` shows the open record (with a live `seconds`).
+- **`DELETE /api/technician-tasks/{id}` → 204** — full clean-up, so seeding costs nothing.
+Clock the SAME technician at BOTH workplaces to produce the per-row Location value **`Multiple`**, and
+leave one clock OPEN to exercise the load-instant snapshot (Total Hours read 0.06 → 0.13 → 0.76 across
+successive loads). Day grouping uses the **active workplace's** time zone: a record created
+`2026-08-04 01:24 UTC` lands on the `2026-08-03` day row and shows as `07:25 PM` in Timesheet
+Activities. `POST /api/technician-tasks/create` needs `staff_id`+`start_date` (snake_case) but then
+500s — use the clock-in/out pair instead.
+
+**TU per-day endpoint (fires ONLY on expand).**
+`GET /api/reporting/reports/technician-utilization/{staff_id}/daily?range=custom&start_date=&end_date=&locations=`
+
+**TU deep link.** Total Hours is an anchor to
+`/reports/punch-clock-activities?range=custom&startDate=&endDate=&technicianId=` — same tab, technician
+and range only, **no location**. A day row narrows `startDate`=`endDate`. The landed page's Totals row
+is what you reconcile against.
+
+**REPORT UI HANDLES (`data-test-id` — stop guessing selectors).** `input_report_search`
+(placeholder **"Search parts"** — the report's OWN search; `select_global_search` is the Ctrl+K bar and
+is the wrong element), `btn_dropdown_pv_export` / `btn_dropdown_tu_export` (aria `Export report`),
+`button_column_selection` (aria + tooltip `Column Selection`), `date-range-selector_tu_trigger`,
+`clear_report_location_filter`, `clear_tu_technician_filter`, `button_tu_expand_all`
+(aria `Expand all technicians`), `button_tu_expand_<staff_id>`
+(aria `Expand <name>'s daily breakdown` ⇄ `Collapse …`), `header_tu_{technician,total_hours,wo_hours,
+internal_hours,utilization,est_lost_labor}`, `icon_tu_est_lost_labor_info`,
+`option_pv_type_{both,inventory,special_order}`. Filter `.q-select` inputs carry
+`aria-label="Type|Category|Vendor|Bin|Location|Technician"` — open one by clicking
+`input[aria-label="X"]`.
+
+**QUASAR GOTCHAS THAT COST REAL TIME.**
+- **Column-selector toggles: click the `.q-toggle` KNOB, not the row label.** Clicking the `.q-item`
+  text does nothing, which reads exactly like a broken feature — I nearly logged a false defect.
+  With a 20-entry menu also `scrollIntoView({block:'center'})` first, or `boundingBox()` returns a
+  clipped/negative box and the click misses.
+- **Select options are `[role=option]` with `aria-selected`**, so single-vs-multi select is provable
+  from the DOM. **Date-range presets are NOT `.q-item` and NOT `<button>`** — a text match over either
+  silently fails (that is why a "Last 12 Months" click appeared to do nothing).
+- **Toasts are `.q-notification`; POLL them** every ~250 ms for 10–20 s. A single read at +2 s misses
+  them and makes a correct error toast look absent.
+- Report grids are virtualised: `tbody tr` includes spacer rows — filter on
+  `tr.querySelectorAll('td').length > 5`.
+- **Hydration:** set `fe_permissions_wrapper` only. Calling `localStorage.clear()` first breaks
+  hydration and every report renders empty.
+
+**SAVED VIEW.** `localStorage['report_view:<slug>']` =
+`{version, view:{dateRange, locationIds, sortBy, descending, columns}, extra:{…}}` — PV's extra holds
+`type/categoryIds/vendorIds/binIds`, TU's holds `deselectedTechnicianIds` (the **deselected** set, so a
+newly appearing technician is selected by default). Delete just the `report_view:` keys to test
+first-visit defaults without breaking hydration.
+
+**LABOUR RATES / EST. LOST LABOR.** `GET /api/labour-types` (scoped to your **active** workplace) →
+`{id, name, labour_rate, is_default, workplaceId}`. The Est. Lost Labor rate **is** the workplace's
+default Labour Type — Heavy Duty's `CP RAIL FLEET RATE` at `145` matches the reported dollars exactly.
+There is **no labor-rate field on the Location edit dialog**; the page is `/administration/labour-types`
+(nav label "Labor Rates"). **⚠️ The default cannot be cleared:** `POST /api/labour-types/change` accepts
+`is_default:false`, returns **201, and does not persist it**; `POST /api/labour-types/set-default`
+requires a real `labour_type_id` and rejects null/empty/bogus. And `POST /api/workplaces/delete`
+**returns 500 for every id**, so do NOT create a throwaway workplace on a shared org — it cannot be
+removed. Consequence: a location with **no** default labor rate is not producible, so the em-dash
+Est. Lost Labor family is environment-blocked, not seed-blocked.
+
+**CORE PARTS.** `is_core` is not settable on create. Create the parent, then
+`POST /api/inventory/parts/change {…full field set…, core:true, core_charge:25}` → 201, which mints a
+**separate linked core-part record** (`core_part_id`). That core record appears in neither
+`GET /api/inventory/parts` nor Parts Velocity, while the parent (which merely *carries* a core charge)
+does — that is the core exclusion, and `core_charge > 0` is **not** the same thing as "is a core".
+`bins` on create/change take `{id, quantity, isDefault}` — `{binLocationId,…}` is rejected.
+
+**PV DATE-RANGE CAP, exactly.** A **366-day difference** is accepted; **367 is refused** with
+`400 "Date range cannot exceed 366 days."`; reversed dates give
+`400 "Invalid start date provided. Must be less than end date."`
+
+**TURNS/YR USES THE EXCLUSIVE DAY COUNT.** For Jan 1 – Aug 4 the build divides by **215**, not the
+spec's inclusive 216: `512/215*365/618 = 1.40648754422` matches the payload exactly (216 would give
+1.39998). Reproduced on a second row. Useful as a worked example of settling a calculation dispute
+from the payload alone.
