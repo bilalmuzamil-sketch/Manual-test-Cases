@@ -100,6 +100,8 @@ def main():
     ap.add_argument('--batch', type=int, default=25)
     ap.add_argument('--limit', type=int, default=0)
     ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--only', type=int, default=0,
+                    help='re-push exactly this case id even if already logged')
     args = ap.parse_args()
 
     plan = json.load(open(os.path.join(HERE, '..', 'plan.json')))
@@ -112,7 +114,11 @@ def main():
             r = json.loads(line)
             if r.get('verify') == 'MATCH':
                 done.add(r['case_id'])
-    todo = [p for p in plan if p['case_id'] not in done]
+    if args.only:
+        todo = [p for p in plan if p['case_id'] == args.only]
+        assert todo, f'C{args.only} not in plan'
+    else:
+        todo = [p for p in plan if p['case_id'] not in done]
     if args.limit:
         todo = todo[:args.limit]
     print(f'{args.project}: plan {len(plan)} · already verified {len(done)} · '

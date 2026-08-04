@@ -121,6 +121,11 @@ CLASSIFY = {
     29625: ('design_awaiting', None),     # FLT-MOB-05 customer filter in the sheet
     29626: ('design_awaiting', None),     # FLT-MOB-06 tech/advisor in the sheet
     29627: ('design_awaiting', None),     # FLT-MOB-07 asset on site in the sheet
+    # Added by the Rule-28 cross-case sweep 2026-08-04: its own precondition 2 reads
+    # "at least one filter applied VIA THE SHEET", so its route depends on the same
+    # design-only screen even though its assertions are spec-backed.  Left plain it
+    # would have been the one sibling in the cluster claiming plain spec agreement.
+    29628: ('design_awaiting', None),     # FLT-MOB-08 chips + Clear filters on mobile
 
     # ── No numbered v1.6 requirement covers these at all
     38876: ('no_anchor', None),           # FLT-TAB-06 default / last-used tab

@@ -1705,18 +1705,17 @@
  },
  {
   "case_id": 29628,
-  "kind": "plain",
-  "refs_kind": "epic (cross-cutting: spans spec Stories 7, 8, 12)",
+  "kind": "design_awaiting",
+  "refs_kind": null,
   "intended": {
-   "custom_expected": "1. The chip for the applied filter shows the active state with the selected value(s), like on desktop.\n2. A 'Clear filters' control appears while at least one filter is active.\n3. Using it removes all active filters, the chips return to default and the full list comes back.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S7-R1/R3, S8-R1).",
-   "refs": "SV-8785 [epic] (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28]"
+   "custom_expected": "1. The chip for the applied filter shows the active state with the selected value(s), like on desktop.\n2. A 'Clear filters' control appears while at least one filter is active.\n3. Using it removes all active filters, the chips return to default and the full list comes back.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S7-R1/R3, S8-R1). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited."
   },
   "snapshot": {
    "title": "Active chips and Clear filters behave on mobile the same way as on desktop",
-   "refs": "Filters (no Jira epic) (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28]",
+   "refs": "SV-8785 [epic] (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28]",
    "custom_preconds": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page with at least one filter applied via the sheet.",
    "custom_steps": "1. Look at the chip row after applying the filter.\n2. Look for a 'Clear filters' control while a filter is active.\n3. Use it and look at the chips and the list.",
-   "custom_expected": "1. The chip for the applied filter shows the active state with the selected value(s), like on desktop.\n2. A 'Clear filters' control appears while at least one filter is active.\n3. Using it removes all active filters, the chips return to default and the full list comes back.",
+   "custom_expected": "1. The chip for the applied filter shows the active state with the selected value(s), like on desktop.\n2. A 'Clear filters' control appears while at least one filter is active.\n3. Using it removes all active filters, the chips return to default and the full list comes back.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S7-R1/R3, S8-R1).",
    "custom_atmstatus": 1,
    "custom_automation_type": 0,
    "section_id": 4123,
