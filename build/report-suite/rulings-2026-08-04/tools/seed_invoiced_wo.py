@@ -29,6 +29,10 @@ import sv  # noqa: E402
 WP = "b3c8c820-f815-4cf1-8938-10956c5ee71a"
 CANNED_ID = "ce1f2549-24a9-485c-a849-267f8918d66e"
 CANNED_NAME = "HD CVIP air brake trailer single/tandem"
+# An HOURLY canned line is required to make hours_invoiced non-zero: a Fixed-labour line
+# invoices a PRICE and reports hours_invoiced 0, which is why the first seed showed 0.0.
+CANNED_HOURLY_ID = "da0a0c9f-57ee-45f6-901c-aeea01e21665"
+CANNED_HOURLY_NAME = "Service - Perform winterization inspection"
 
 
 def step(label, r, ok=(200, 201)):
@@ -40,8 +44,8 @@ def step(label, r, ok=(200, 201)):
     return body
 
 
-def seed(company_id, rep_staff_id=None):
-    out = {"canned_line_name": CANNED_NAME, "canned_line_id": CANNED_ID,
+def seed(company_id, rep_staff_id=None, canned_id=CANNED_ID, canned_name=CANNED_NAME):
+    out = {"canned_line_name": canned_name, "canned_line_id": canned_id,
            "workplace_id": WP, "company_id": company_id,
            "sales_rep_staff_id": rep_staff_id}
     sv.switch_location(WP, "America/Edmonton")
@@ -89,7 +93,7 @@ def seed(company_id, rep_staff_id=None):
     # 6. the line, from the zero-parts canned line
     ln = step("lines/create-from-canned-line", sv.post(
         f"/api/work-orders/{wo_id}/lines/create-from-canned-line",
-        {"canned_line_id": CANNED_ID, "status": "authorized"}))
+        {"canned_line_id": canned_id, "status": "authorized"}))
     line_id = ln["data"]["line_id"] if isinstance(ln.get("data"), dict) else None
     out["line_id"] = line_id
 
@@ -116,7 +120,10 @@ def seed(company_id, rep_staff_id=None):
 if __name__ == "__main__":
     company = sys.argv[1]
     rep = sys.argv[2] if len(sys.argv) > 2 and not sys.argv[2].startswith("--") else None
-    res = seed(company, rep)
+    if "--hourly" in sys.argv:
+        res = seed(company, rep, CANNED_HOURLY_ID, CANNED_HOURLY_NAME)
+    else:
+        res = seed(company, rep)
     print("\nSEEDED:", json.dumps(res, indent=1))
     path = "/tmp/report-suite-viu/seeded-wos.json"
     try:
