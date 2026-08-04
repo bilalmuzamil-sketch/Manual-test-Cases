@@ -459,18 +459,36 @@ one has no case at all** — reported rather than padded into the register:
    fill a spec **silence** (OQ-4). No case asserts role-dependent behaviour, so there is
    nothing to defend — the ruling's effect was that **no** role cases were needed.
 
-## One item found that the QA lead did not name
+## One item found that the QA lead did not name — **and it is now RESOLVED**
 
-**Group C above** — the mobile All-Filters/Apply cluster. He listed the persistence
-ruling (now resolved) and the pop-up search (no cases); he did **not** name the mobile
-Apply-button cluster, which is the **highest-risk group in this suite** and the only one
-with **no ruling of any kind** behind it.
+**Group C** — the mobile All-Filters/Apply cluster. He listed the persistence ruling (already
+resolved) and the pop-up search (no cases); he did **not** name the mobile Apply-button cluster,
+which was the **highest-risk group in this suite** and the only one with **no ruling of any kind**
+behind it.
+
+**RESOLVED 2026-08-04.** Branko's **Q1 = "A - no apply button"** settled it. Group C is **closed at
+0 cases**, its 7 cases moved to **Group A2** at **LOW**, and **the concession it warned about was not
+called in**. Recording the sequence because it is the point of keeping this register at all: **the
+group that turned out to matter most was the one nobody asked us about** — we found it, wrote it down
+with an honest HIGH rating and a named concession, and it closed eight days later on the PO's own
+answer.
 
 ## OUTSTANDING — what is needed to close this register
 
+**Updated 2026-08-04. Four rows cleared, three remain, one is new.**
+
 | Item | Who | Blocks | Since |
 |---|---|---|---|
-| Edit the five spec passages that still say the Status chip is "hidden" | Branko | Nothing testable; the document keeps contradicting his own decision | committed 2026-07-20, **15 days** |
-| Answer **Q1** of the 2026-07-31 sheet — a written description for Parts and Reports filters | Branko | 9 cases rest on answers + design instead of requirements (Group B) | asked 2026-07-27, left blank 2026-07-31 |
-| **NEW ASK — never sent:** confirm the mobile "All Filters" sheet + "Apply filters" button for V1 | Branko | 7 cases (Group C), 2 of them HIGH risk | needs to go on his next sheet |
-| Confirm which tab opens on a first visit | Branko | FLT-TAB-06 (C38876) | asked in-case, unanswered |
+| **~~NEW ASK — never sent: confirm the mobile "All Filters" sheet + "Apply filters" button for V1~~** — **✅ CLEARED 2026-08-04.** Branko's **Q1 = "A - no apply button"**, adopting the engineering plan's model, which keeps the button on the combined sheet. Group C closed; **HIGH ×2 retired**. *(Correction on the record: this row said "never sent". It **had** been sent, as Q1 of the 2026-07-30 sheet, and came back blank three times.)* | — | **Nothing.** | closed |
+| **~~Confirm which tab opens on a first visit~~** — **✅ CLEARED 2026-08-04.** **Q2 = "A - it's fine"**. FLT-TAB-06 ([C38876](https://shopview.testrail.io/index.php?/cases/view/38876)) moved to Group A2-ii; **HIGH ×1 retired**. | — | **Nothing.** | closed |
+| **~~The Vendors page design~~** — **✅ CLEARED 2026-08-04.** **Q3:** *"Disign for vendors exists in figma. Check it"* — it does: node **`11903:10461`**, two chips `Vendor` and `State/Province`, read as pixels. The premise of our own question was wrong. | — | **Nothing** — but the false hedge inside **[C38904](https://shopview.testrail.io/index.php?/cases/view/38904)** must be removed, and that is a **staged, unauthorised** edit. | closed |
+| **~~The searchable-field list (`S13-R23` "QA has no baseline")~~** — **✅ CLEARED as a blocker 2026-08-04.** **Q5 = "B"**, explicitly *"not as a blocker for tests"*. Now owed by **engineering** as reference documentation only. | engineering (non-blocking) | **Nothing.** | closed as a blocker |
+| **Edit the spec passages that still say the Status chip is "hidden"** (5 places) | **Branko** | Nothing testable; the document keeps contradicting his own decision, which is what makes a public challenge look worse than it is | committed 2026-07-20, **15 days** |
+| **The page-by-page Parts/Reports filter list — OWNER HAS CHANGED.** Branko's **Q9**: *"we do not have concrete list. If this is really necessary i suggest **Engineering + PO together** make a list for remaining 6 Parts pages i Reports, using same format as Work Orders do."* So this is no longer an ask of Branko alone — the **QA lead** needs to arrange that joint session. | **QA lead** to arrange · **Engineering + Branko** to produce | **9 cases (Group B)** rest on answers + design instead of numbered requirements. **B6 = FLT-RPTS-01 ([C38909](https://shopview.testrail.io/index.php?/cases/view/38909)) is the most exposed case in the project** — 24 design-derived enumerations, no report named anywhere in the spec. | asked 2026-07-27, **8 days** |
+| **NEW 2026-08-04 — Branko needs to describe the mobile "All Filters" sheet in the PRD.** Closing Group C fixed the **sourcing**; the **document** still has no such screen (`"Apply filters"` = 0 hits in live v1.6) and `S2-R6` still reads *"(no confirm/apply button needed)"*. | **Branko** | Nothing testable — the 7 cases follow his ruling (Rules 32/33). It is a document-vs-decision gap, and it is the shape of gap that makes us look wrong when we are not. | **2026-08-04** |
+| **NEW 2026-08-04 — GO-AHEAD for the 10 staged `update_case` operations** (`../branko-answers-2026-08-04/staged-case-plan.md`). Nothing executed (Rule 6). | **QA lead** | **9 cases still carry a provenance line saying "a product owner decision is still awaited", which became FALSE on 2026-08-04.** Until they are pushed, **this register is the only place the correct position is written down.** | **2026-08-04** |
+| **NEW 2026-08-04 — OPTIONAL, not blocking:** one confirmation line asking Branko in his own words whether the **combined** All-Filters sheet keeps its Apply button. Drafted in `../branko-answers-2026-08-04/FOLLOW-UPS-2026-08-04.md` §1. | **QA lead** to decide whether to send | **Nothing.** Group A2's basis is already three agreeing sources; this would upgrade *"the option he chose named this model"* to *"he said so"*. **Marked optional deliberately** — no case is held for it. | **2026-08-04** |
+
+**Nothing in this register is live-verified.** All 110 Filters cases remain `VIU-Pending`; the QA
+branch `sv8785.qa.shopview.com` has never been observed, because the Filters VIU is reserved until
+Report Suite is complete. **Closing Group C removed a sourcing risk, not a verification risk.**
