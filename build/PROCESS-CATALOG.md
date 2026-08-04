@@ -63,6 +63,22 @@
 > record **operation · target C-id · HTTP status · byte-level verification result**; an entry saying
 > only *"200 OK"* is non-compliant.
 >
+> **Provenance-line qualifier (Standing Rule 54) — applies to EVERY process row below that AUTHORS or
+> UPDATES test cases (rows 1, 2, 3, 4, 5, 6, 7, 8, 11 and any future authoring / VIU / spec-delta /
+> recheck / retrofit process).** Every case's **Expected Results ENDS** with a separator line and one
+> plain sentence saying what its expectation is based on: **before live verification** the **epic + the
+> specification with its VERSION + the requirement reference**; **after live verification** also **the
+> build and the DATE it was tested** (the QA lead's wording: *"This is the expected behaviour as per the
+> build tested on 8/4/2026, and as per the Sales By Customer report specification version 13
+> (S4-R13)."*). **Any process that re-checks a case against the spec, the epic or the build MUST
+> RE-STAMP that line — a stale spec version, stale build date or stale epic reference is ITSELF A
+> FINDING**, and a pass is not complete while one survives. Date = **one generator variable**, spec
+> versions = a **per-project/per-report map**, stamper **IDEMPOTENT** (replace, never append a second).
+> **Never the word "VIU"** or a flag name (imports stay VIU-word-free); the **requirement reference in
+> parentheses is an AUTHORISED exception** to the no-anchors-in-tester-text guidance — do not strip it.
+> Where a case follows a **later product decision** over the spec text (Rule 32), the line **says so**
+> — a stamp asserting a source that does not support the expectation is **worse than none**.
+>
 > **Two-session note:** this workspace is worked by more than one Claude session in parallel.
 > This catalog + `CLAUDE.md` + the `build/*-PROCESS.md`/`*-METHOD.md`/`*-RECIPE.md` docs are the
 > **shared brain** — both sessions read and update them, so any process is callable from either.
