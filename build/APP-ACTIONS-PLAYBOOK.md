@@ -620,6 +620,71 @@ and do not assume the Figma MCP is connected — it usually is not.
   is `403 XSRF check failed`**; `/rest/api/3/search` is **410** → use `/rest/api/3/search/jql`
   (pages by `nextPageToken`). Full gotcha table: that doc's §5a.
 - **Posting evidence (attachments + inline images + comment edit):** see §K "Jira evidence method".
+- **FILING A DEFECT TICKET — the organisation's REQUIRED format: see the section of that name below.**
+
+## Filing a defect ticket — the organisation's required format (ALL projects, ALL future tickets)
+
+**Standing instruction from the QA lead, 2026-08-04. Every defect ticket we file, on every project,
+uses these SEVEN sections IN THIS ORDER.** Do not re-derive this (Rule 27). Canonical worked examples:
+`build/report-suite/defect-pack-2026-08-04/TICKET-1…6*.md` (filed as SV-8818…SV-8823).
+
+| # | Section | What goes in it |
+|---|---|---|
+| 1 | **Description** | Simple, layman-understandable. Plain words, **no jargon, no codes, no endpoints**. What is wrong, so anyone in the business understands it — plus why it matters. |
+| 2 | **Branch / Environment** | **Stated explicitly, never assumed:** the branch/URL tested (e.g. `https://sv8582.qa.shopview.com`), the API host, the **build marker** (`<meta name="app-version">`, e.g. `v3.4.1-0ed4433`), the org/location ids, and the **date/time observed**. |
+| 3 | **Steps to reproduce** | **REAL numbered steps a layman can follow**, using the **exact on-screen labels** (Rule 9). **If data is needed, include the steps that CREATE it.** **NO API calls in this section**, and no "requires a large dataset" hand-waving — a person clicking the product must get end to end. If the fault genuinely cannot be reached from any screen, **say exactly that** and point at section 7. |
+| 4 | **Expected behaviour** | What should happen, in plain words. Quote the governing requirement if there is one (Rule 25). |
+| 5 | **Current behaviour** | What actually happens, in plain words. |
+| 6 | **Images** | Attach them **AND embed them inline so they RENDER in the description** — not merely a file list. If no image exists, **say so and say why** (never imply one). |
+| 7 | **Technical details for developers** | **LAST.** ALL the codes, endpoints, request/response bodies, request ids, timings, row counts, spec references, extracted file text, repo evidence paths. Everything technical lives here **and nowhere above**. |
+
+### TWO THINGS THAT MUST NEVER APPEAR IN A TICKET
+
+1. **No reference to our test cases** — no "QA test cases affected" section, no internal case IDs
+   (`SBR-EXP-10`), no C-ids, no TestRail links. Keep that mapping in OUR records (e.g.
+   `build/report-suite/defect-pack-2026-08-04/CASE-IMPACT.md`).
+2. **No "this QA branch is not final / this finding is provisional / close it if already fixed"
+   disclaimer.** **The QA lead's reasoning, recorded:** *every QA branch is always non-final — they keep
+   changing it — so saying so adds nothing, and it is OUR job to keep the test cases accurate, not the
+   developer's job to caveat our findings.* **A defect hedged as provisional invites dismissal.**
+
+> ⚠️ **DO NOT OVER-APPLY #2.** This drops the **Jira-facing text only.** The **Standing Rule 49 re-check
+> obligation still stands INTERNALLY** — the `RECHECK-QUEUE.md` files stay exactly as they are, and a
+> finding taken from a non-final build is still re-checked when the build moves. A future pass must not
+> read "no provisional disclaimer" as "no re-check duty".
+
+### INLINE IMAGES — the mechanism that actually works (proven 2026-08-04)
+
+A hand-built ADF `media` node **fails**: `PUT /rest/api/3/issue/{key}` returns **400
+`ATTACHMENT_VALIDATION_ERROR`** because the media `id` must be a **media-services UUID**, not the
+attachment id. The working route is **wiki markup through API v2**, which makes Jira resolve the
+filename server-side:
+
+1. `POST /rest/api/3/issue/{KEY}/attachments` (multipart `-F file=@…`, header
+   **`X-Atlassian-Token: no-check`**) → note the returned `id` and **check `size` against the source file**.
+2. `PUT /rest/api/2/issue/{KEY}` with `description` as a **wiki-markup STRING** containing
+   **`!the-file-name.png|width=900!`** → HTTP 204.
+3. **VERIFY it truly renders inline, do not assume:** `GET /rest/api/3/issue/{KEY}?fields=description&expand=renderedFields`
+   → the stored ADF must contain a **`mediaSingle` › `media`** node whose `attrs.id` is a **36-char UUID**,
+   **and** `renderedFields.description` must contain a real
+   **`<img src=".../rest/api/3/attachment/content/<attachmentId>">`**. An attachment with no media node
+   is *attached but not inline* — that fails this format.
+
+Wiki-markup quick reference: `h2. Heading` · `*bold*` · `_italic_` · `{{monospace}}` ·
+`{noformat}…{noformat}` (code blocks) · `{quote}…{quote}` · `* bullet` · `# numbered` · `----` (rule) ·
+`||header||header||` then `|cell|cell|` (tables) · `!image.png|width=900!`.
+Reusable converter: `/tmp`-side `md2wiki.py` pattern documented in
+`build/ATLASSIAN-JIRA-ACCESS-METHOD.md` §5a; give descriptions to v2 as wiki markup, **not** ADF, when
+they contain images.
+
+### Fields to set on a ShopView `SV` bug (from `createmeta`, 2026-08-04)
+
+`project` · `issuetype` (**`Bug`**) · `summary` · `description` · `labels` · `priority`
+(Highest/High/Medium/Low) · `customfield_10418` **Severity** (High/Medium/Low) ·
+**`customfield_10153` "Product Area" — REQUIRED** (Reports & Dashboards · Work Orders · Customers · …).
+**Parent:** a `Bug` is hierarchy level 0, so its parent may only be an **Epic**; to hang a defect off a
+**Story**, the issue type must be **`Story Defect`** (subtask). Link the owning story with `Relates`
+(or `Blocks`) when the epic is the parent.
 
 ---
 

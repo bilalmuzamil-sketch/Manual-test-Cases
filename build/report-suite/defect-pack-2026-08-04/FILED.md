@@ -99,3 +99,48 @@ FLAGGED FOR AWARENESS rather than filed"*. **It has now been filed** (as SV-8823
 this pass was to file all six and named `SV-8677` — ticket 6's parent — in the list of parents to use. Flagging
 it plainly here rather than silently: **if he wanted it left unfiled, SV-8823 is the one to close.**
 
+## FORMAT — reworked into the organisation's required 7-section structure (2026-08-04)
+
+After the six were filed, the QA lead specified the organisation's required ticket structure. **All six
+were EDITED in place** (`PUT /rest/api/2/issue/{key}`) to carry these seven sections **in this order**:
+
+1. **Description** (plain layman words, no jargon) · 2. **Branch / Environment** (branch URL, API host,
+build marker `v3.4.1-0ed4433`, org/location ids, date observed) · 3. **Steps to reproduce** (numbered,
+real on-screen labels, data-creation steps included, **no API calls**) · 4. **Expected behaviour** ·
+5. **Current behaviour** · 6. **Images** (attached **and embedded inline**) · 7. **Technical details for
+developers** (all endpoints, request ids, bodies, timings, evidence paths — **last**).
+
+**Two things were REMOVED from every ticket, by standing instruction:**
+
+- **All references to our test cases** — no "QA test cases affected" section, no internal IDs, no C-ids,
+  no TestRail links. That mapping now lives in **`CASE-IMPACT.md`** in this folder.
+- **The "this QA branch is NOT FINAL / this finding is provisional / close it if already fixed"
+  disclaimer.** The QA lead's reasoning: *every QA branch is always non-final, so saying so adds nothing,
+  and it is our job to keep the test cases accurate rather than the developer's job to caveat our
+  findings.* A defect hedged as provisional invites dismissal.
+- ⚠️ **The Rule-49 re-check obligation is UNCHANGED and INTERNAL.**
+  `build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md` stays **OPEN**. Only the Jira-facing wording
+  dropped the disclaimer — see the closing section of `CASE-IMPACT.md`.
+
+**Inline images — verified rendering, not merely attached.** A hand-built ADF media node is rejected
+(`400 ATTACHMENT_VALIDATION_ERROR`: the media id must be a media-services UUID, not the attachment id).
+The working route is wiki markup via **API v2** with `!file.png|width=900!`, which Jira resolves
+server-side. Each was then verified two ways: the stored ADF holds a `mediaSingle` › `media` node with a
+36-character UUID, **and** `renderedFields.description` holds a real `<img src=".../attachment/content/<id>">`.
+
+| Ticket | Image attached + embedded | What it shows |
+| --- | --- | --- |
+| SV-8818 | `parts-velocity-download-menu.png` | The three-dot menu open on Parts Velocity showing **Download (PDF)** / **Download (CSV)** — the control that fails on PDF and succeeds on CSV |
+| SV-8819 | `parts-velocity-turns-per-year-column.png` | The column chooser with **Turns/Yr** being switched on, **This Year** preset selected |
+| SV-8820 | `inventory-value-as-of-line.png` | The **"As of 08/04/2026"** line showing on the ordinary default view |
+| SV-8821 | *(none)* | Stated in the ticket: the failure is a server error, so a screenshot would add nothing beyond the recorded request/response |
+| SV-8822 | *(none)* | Stated in the ticket: the fault is unreachable from any screen, so a dialog screenshot would show a **successful** save and mislead |
+| SV-8823 | `inventory-value-screen-column-order.png` | The on-screen column order with **Total Cost last** (it is ninth in the downloaded file) |
+
+Every image was **opened and looked at** before being captioned, so no caption claims something the
+picture does not show (Rule 12). The reusable format lives in **`build/APP-ACTIONS-PLAYBOOK.md` §
+"Filing a defect ticket — the organisation's required format"** so it is never re-derived (Rule 27).
+
+**Post-edit verification, all six:** seven H2 sections present **in the exact required order**; zero
+C-ids / internal case IDs / TestRail references; zero provisional-disclaimer wording; no endpoint, HTTP
+status or request id anywhere **before** section 7; images render inline where present.
