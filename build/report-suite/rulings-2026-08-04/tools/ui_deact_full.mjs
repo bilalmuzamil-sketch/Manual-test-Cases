@@ -40,6 +40,13 @@ async function openRepDialog() {
   await page.waitForTimeout(7000);
   const s = page.locator('.q-field input').first();
   if (await s.count()) { await s.fill('ZZAUTOTEST'); await page.waitForTimeout(3500); }
+  // the list is split into "Active(n)" / "Deactivated(n)" tabs; an inactive member is only on the
+  // second one, which is what S13-N3 (reactivation) has to be driven from
+  if (process.argv.includes('--deactivated')) {
+    const tab = page.locator('[role="tab"], .q-tab').filter({ hasText: /Deactivated/ }).first();
+    console.log('switching to Deactivated tab ->', await click(tab, 'Deactivated tab'));
+    await page.waitForTimeout(3500);
+  }
   const row = page.locator('tr', { hasText: who }).first();
   if (!(await row.count())) { console.log('ROW NOT FOUND', who); return false; }
   console.log('ROW:', (await row.innerText()).replace(/\s+/g, ' ').trim());
