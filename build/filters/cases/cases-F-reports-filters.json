@@ -6,61 +6,17 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Reports pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. You are on the Reports area of the app with some sample data present."
-  ],
-  "steps": [
-   "1. Open the Reports area and go to the Timesheet Activities report, and look at the filter buttons shown above the report table.",
-   "2. Go to the Timesheets (Payroll Timesheet) report and look at the filter buttons.",
-   "3. Go to the Sales report and look at the filter buttons.",
-   "4. Go to the Technician Efficiency report. Look at the filter buttons on the Invoiced tab, then open the Completed tab and look at them again.",
-   "5. Go to the Advisor Analysis report and look at the filter buttons.",
-   "6. Go to the Shop Efficiency report and look at the filter buttons.",
-   "7. Go to the Work in Progress report and look at the filter buttons.",
-   "8. Go to the Sales Follow Up report and look at the filter buttons.",
-   "9. Go to the Sales Tax report. Look at the filter buttons on the Collected tab, then open the All Tax Rates tab and look at them again.",
-   "10. Go to the A/R Aging Summary report, then the A/R Aging Detail report, then the A/R Aging Collection report, looking at the filter buttons on each.",
-   "11. Go to the A/P Aging Summary report, then the A/P Aging Detail report, then the A/P Unpaid Invoices report, looking at the filter buttons on each.",
-   "12. Go to the Notes report and look at the filter buttons and the toolbar icons.",
-   "13. Go to the Reminders report and look at the filter buttons.",
-   "14. Go to the IBS Batch Transactions report and look at the filter buttons and the view tabs.",
-   "15. Go to the QB Unexported report. Look at the filter buttons on the Customers tab, then switch to the Vendors tab, then to the Journal Entries tab, looking at the filter buttons on each.",
-   "16. On each report above, open one of its filter buttons, look at the list of choices inside it, and pick a value to check the report changes."
-  ],
-  "expected": [
-   "1. Timesheet Activities shows four filter buttons: Staff, Date, Status and Modified by.",
-   "2. Payroll Timesheet shows two filter buttons: Employee and Date.",
-   "3. Sales shows two filter buttons: Customer and Date.",
-   "4. Technician Efficiency shows three filter buttons: Customer, Technician and Date — the same three on both of its view tabs, Invoiced and Completed. 'Technician' is spelled correctly here.",
-   "5. Advisor Analysis shows three filter buttons: Customer, Date and Advisor.",
-   "6. Shop Efficiency shows a single filter button: Date.",
-   "7. Work in Progress shows three filter buttons: Status, Date and Customer.",
-   "8. Sales Follow Up shows three filter buttons: Customer, Date and Contact.",
-   "9. Sales Tax has two view tabs: on the Collected tab it shows three filter buttons — Date, Invoice Status and Customer; on the All Tax Rates tab it shows a single filter button — Invoice Status.",
-   "10. A/R Aging Summary shows two filter buttons: Customer and Date.",
-   "11. A/R Aging Detail shows four filter buttons: Customer, Date, Location and Transaction Type.",
-   "12. A/R Aging Collection shows four filter buttons: Customer, Date, Location and Transaction Type.",
-   "13. A/P Aging Summary shows two filter buttons: Vendor and Date.",
-   "14. A/P Aging Detail shows four filter buttons: Vendor, Date, Location and Transaction Type.",
-   "15. A/P Unpaid Invoices shows four filter buttons: Vendor, Date, Location and Transaction Type.",
-   "16. Notes shows three filter buttons: Author, Date and Mention (the Mention button uses an @ icon), and its toolbar also shows a search icon, a filter icon and a sort icon.",
-   "17. Reminders shows a single filter button: Date, and when nothing matches the chosen dates the report shows the message 'There are no reminders for selected date range'.",
-   "18. IBS Batch Transactions shows three filter buttons: Customer, Date and Status, and has three view tabs: Ready To Send, Sent and Payments.",
-   "19. QB Unexported shows three filter buttons and the first one changes with the tab: Customer, Date and Type on the Customers tab; Vendor, Date and Type on the Vendors tab; User, Date and Type on the Journal Entries tab.",
-   "20. Each of the six A/R and A/P aging reports also shows a print icon in its toolbar.",
-   "21. On every report above, each filter button shows its name and a down arrow.",
-   "22. Every filter button shown above is a working filter on that report - none of them is display-only.",
-   "23. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.",
-   "24. Still to check on the live build: the real columns of the Sales Tax report and of the six A/R and A/P aging reports. The design uses sample placeholder tables for those, and the written description does not list their columns.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (§2, §4), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-07-31."
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are on the Reports area of the app with some sample data present.",
+  "steps": "1. Open the Reports area and go to the Timesheet Activities report, and look at the filter buttons shown above the report table.\n2. Go to the Timesheets (Payroll Timesheet) report and look at the filter buttons.\n3. Go to the Sales report and look at the filter buttons.\n4. Go to the Technician Efficiency report. Look at the filter buttons on the Invoiced tab, then open the Completed tab and look at them again.\n5. Go to the Advisor Analysis report and look at the filter buttons.\n6. Go to the Shop Efficiency report and look at the filter buttons.\n7. Go to the Work in Progress report and look at the filter buttons.\n8. Go to the Sales Follow Up report and look at the filter buttons.\n9. Go to the Sales Tax report. Look at the filter buttons on the Collected tab, then open the All Tax Rates tab and look at them again.\n10. Go to the A/R Aging Summary report, then the A/R Aging Detail report, then the A/R Aging Collection report, looking at the filter buttons on each.\n11. Go to the A/P Aging Summary report, then the A/P Aging Detail report, then the A/P Unpaid Invoices report, looking at the filter buttons on each.\n12. Go to the Notes report and look at the filter buttons and the toolbar icons.\n13. Go to the Reminders report and look at the filter buttons.\n14. Go to the IBS Batch Transactions report and look at the filter buttons and the view tabs.\n15. Go to the QB Unexported report. Look at the filter buttons on the Customers tab, then switch to the Vendors tab, then to the Journal Entries tab, looking at the filter buttons on each.\n16. On each report above, open one of its filter buttons, look at the list of choices inside it, and pick a value to check the report changes.",
+  "expected": "1. Timesheet Activities shows four filter buttons: Staff, Date, Status and Modified by.\n2. Payroll Timesheet shows two filter buttons: Employee and Date.\n3. Sales shows two filter buttons: Customer and Date.\n4. Technician Efficiency shows three filter buttons: Customer, Technician and Date — the same three on both of its view tabs, Invoiced and Completed. 'Technician' is spelled correctly here.\n5. Advisor Analysis shows three filter buttons: Customer, Date and Advisor.\n6. Shop Efficiency shows a single filter button: Date.\n7. Work in Progress shows three filter buttons: Status, Date and Customer.\n8. Sales Follow Up shows three filter buttons: Customer, Date and Contact.\n9. Sales Tax has two view tabs: on the Collected tab it shows three filter buttons — Date, Invoice Status and Customer; on the All Tax Rates tab it shows a single filter button — Invoice Status.\n10. A/R Aging Summary shows two filter buttons: Customer and Date.\n11. A/R Aging Detail shows four filter buttons: Customer, Date, Location and Transaction Type.\n12. A/R Aging Collection shows four filter buttons: Customer, Date, Location and Transaction Type.\n13. A/P Aging Summary shows two filter buttons: Vendor and Date.\n14. A/P Aging Detail shows four filter buttons: Vendor, Date, Location and Transaction Type.\n15. A/P Unpaid Invoices shows four filter buttons: Vendor, Date, Location and Transaction Type.\n16. Notes shows three filter buttons: Author, Date and Mention (the Mention button uses an @ icon), and its toolbar also shows a search icon, a filter icon and a sort icon.\n17. Reminders shows a single filter button: Date, and when nothing matches the chosen dates the report shows the message 'There are no reminders for selected date range'.\n18. IBS Batch Transactions shows three filter buttons: Customer, Date and Status, and has three view tabs: Ready To Send, Sent and Payments.\n19. QB Unexported shows three filter buttons and the first one changes with the tab: Customer, Date and Type on the Customers tab; Vendor, Date and Type on the Vendors tab; User, Date and Type on the Journal Entries tab.\n20. Each of the six A/R and A/P aging reports also shows a print icon in its toolbar.\n21. On every report above, each filter button shows its name and a down arrow.\n22. Every filter button shown above is a working filter on that report - none of them is display-only.\n23. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.\n24. Still to check on the live build: the real columns of the Sales Tax report and of the six A/R and A/P aging reports. The design uses sample placeholder tables for those, and the written description does not list their columns.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (§2, §4), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-07-31.",
   "design_ref": "design-notes.md B.6 #1-#23 (11906:12519; 11984:9560; 11951:30535; 11955:30653 / 11955:31069; 11955:30786; 11955:30951; 11955:31355; 11984:9457; 11955:31458; 11955:31573; 11955:31691; 11955:31802; 11955:31901; 11955:32006; 11955:32097; 11955:32215; 11982:9225; 11982:9338; 11974:33068; 11981:8749 / 11982:8879 / 11982:8998)",
   "spec_ref": "SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 Key Decisions \"New date-range filter type\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",
   "viu_status": "VIU-Pending",
   "notes": "MERGE SURVIVOR 2026-07-31 — MG15-REPORTS-CHIP-MATRIX (Rule-28 audit, user-authorized partial execution). Absorbed FLT-RPTS-02..FLT-RPTS-20 (19 cases, all design-level with blank C-ids, so LOCAL-ONLY — no TestRail delete was needed). One Reports walk with a per-report checklist of the designed filter buttons instead of twenty near-identical presence cases. This ALSO delivers 9 of the 12 audit FIX-WORDING repairs, as the audit predicted: the expected list is now numbered 1-22 with no repeated '2.' (was broken in FLT-RPTS-09/11/12/13/14/15/16) and the tab-bearing reports now carry explicit switch-tab steps (FLT-RPTS-04 Invoiced/Completed, FLT-RPTS-20 Customers/Vendors/Journal Entries, plus Sales Tax Collected/All Tax Rates). Per the audit, report TABLE COLUMN lists were demoted to reference notes: Timesheet Activities — Date, Employee, Work Order, Clock In Activity, Clock In, Clock Out, Total Hours, WO Hours, Internal Hours, Modified By, Modified Date/Time; Payroll Timesheet — Employee Name, Date, Clock In Time, Lunch, Clock Out Time, Hours; Sales — Invoice Date, Invoice, Customer, Inv. Hrs, Billing Efficiency, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Cost, Parts Margin, Profit, Subtotal; Advisor Analysis — Date, Invoice, Customer, Advisor, Days Open, Lines, Hrs Worked, Hrs Invoiced, Hrs Profit, Billing Efficiency, ELR, Parts Cost, Parts Invoiced, Parts Margin, Subtotal; Shop Efficiency — Total Clocked Hours, Total Invoiced Hours, Difference, Efficiency; Work in Progress — rows grouped by status (Pending Authorization, In Progress, Ready To Invoice) with Sales, Cost, Profit $, Profit %; Sales Follow Up — Customer, Sales Representative, Number Of Work Orders, Total Spend, Last Visit; IBS Batch Transactions — checkbox, Date, Type, No., Customer, Total, Balance, Status. The Sales Tax and both aging families use SAMPLE PLACEHOLDER bodies in the design and spec v1.6 does not list their columns either, so their real columns stay unknown until the live build (carried as expected 24). On-screen title notes carried over: 'Payroll Timesheet' (menu says Timesheets) and 'Work in Progress' (lower-case 'in'). The new filter TYPES (Location, Transaction Type, Invoice Status, Type, User, Mention) keep their own behaviour case FLT-RPTS-22; apply behaviour stays with FLT-RPTS-21 and the date-range chip with FLT-RPTS-23. | RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending. SENSE REPAIR 2026-07-31 (Rule-28 Stage 2b): step 16 added because expected 22 and 23 assert behaviour (every shown button really filters; the choices come from the shop's data) that steps 1-15 never drove. This is the ALL-REPORTS check and deliberately does NOT duplicate FLT-RPTS-21, which is the single-report apply-behaviour case. REFS TRIMMED 2026-07-31 to fit TestRail's 250-char References limit: the §4 Key Decisions bullet \"Context-specific filter sets on Parts and Reports\" also applies to this case and is cited here instead of in refs.",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 Key Decisions \"New date-range filter type\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",
+  "section_id": 5412,
+  "testrail_id": "C38909"
  },
  {
   "id": "FLT-RPTS-02",
@@ -558,26 +514,17 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Reports pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. You are on the Reports area of the app with some sample data present."
-  ],
-  "steps": [
-   "1. Open the Reports area and go to any report — for example the Sales report.",
-   "2. Open one of the filter buttons shown above the report table and choose one value.",
-   "3. Look at the report table below."
-  ],
-  "expected": [
-   "1. The report updates to show only the rows matching the chosen filter value, and the chosen value is shown on the filter button.",
-   "2. The report narrows as soon as you pick the value - there is no Apply or Run button to press. Every filter button on every report works this way.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (§2, §4), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-07-31."
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are on the Reports area of the app with some sample data present.",
+  "steps": "1. Open the Reports area and go to any report — for example the Sales report.\n2. Open one of the filter buttons shown above the report table and choose one value.\n3. Look at the report table below.",
+  "expected": "1. The report updates to show only the rows matching the chosen filter value, and the chosen value is shown on the filter button.\n2. The report narrows as soon as you pick the value - there is no Apply or Run button to press. Every filter button on every report works this way.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (§2, §4), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-07-31.",
   "design_ref": "design-notes.md B.6 (11903-10573 (behaviour not pinned))",
   "spec_ref": "SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 Key Decisions \"New date-range filter type\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",
   "viu_status": "VIU-Pending",
   "notes": "WORDING REPAIR 2026-07-31 (Rule-28 audit FIX-WORDING, user-authorized): the steps only looked at the buttons while expected 1 asserted filtered results — added a choose-a-value step (mirrors FLT-PARTS-11 step 2) and fixed the grammar 'go to the any (for example Sales) report'. | BEHAVIOUR case - the design does not pin how Reports filters apply; the behaviour is settled by Branko's Q2=A + Q5=A and spec v1.6 §2 Reports Filters. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every report page gets the chip design + shareable links + per-user remembered filters with NO change to what is filterable; nearly every report leads with the date-range chip (see FLT-RPTS-23); sub-report tabs keep separate state per tab (see FLT-PERS-05). RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending. REFS TRIMMED 2026-07-31 to fit TestRail's 250-char References limit: the §4 Key Decisions bullet \"Context-specific filter sets on Parts and Reports\" also applies to this case and is cited here instead of in refs.",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 Key Decisions \"New date-range filter type\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",
+  "section_id": 5412,
+  "testrail_id": "C38910"
  },
  {
   "id": "FLT-RPTS-22",
@@ -586,27 +533,17 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Reports pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. You are on the Reports area of the app with some sample data present."
-  ],
-  "steps": [
-   "1. Open the Reports area and go to a report that uses them - for example A/R Aging Detail (Location, Transaction Type) or Notes (Mention).",
-   "2. Look at the filter buttons shown above the report table.",
-   "3. Open each of those filter buttons in turn, tick two choices where possible, and watch the report."
-  ],
-  "expected": [
-   "1. Each of these filter buttons - Location, Transaction Type, Invoice Status, Type, User and Mention - opens a list of choices, lets you tick more than one, and narrows the report straight away with no Apply button.",
-   "2. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.",
-   "3. Write down the choices you actually see behind each of these six buttons. They have not been written down anywhere yet, so your list becomes the record.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (§2, §4), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-07-31. Branko confirmed this on 2026-08-04 in his answers in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
-  ],
+  "preconditions": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>You are on the Reports area of the app with some sample data present.</li>\n</ol>\n",
+  "steps": "<ol>\n<li>Open the Reports area and go to a report that uses them - for example A/R Aging Detail (Location, Transaction Type) or Notes (Mention).</li>\n<li>Look at the filter buttons shown above the report table.</li>\n<li>Open each of those filter buttons in turn, tick two choices where possible, and watch the report.</li>\n</ol>\n",
+  "expected": "<ol>\n<li>Each of these filter buttons - Location, Transaction Type, Invoice Status, Type, User and Mention - opens a list of choices, lets you tick more than one, and narrows the report straight away with no Apply button.</li>\n<li>The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.</li>\n<li>Write down the choices you actually see behind each of these six buttons. They have not been written down anywhere yet, so your list becomes the record.</li>\n</ol>\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (§2, §4), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-07-31. Branko confirmed this on 2026-08-04 in his answers in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit",
   "design_ref": "design-notes.md B.6 (11903-10573 (behaviour not pinned))",
   "spec_ref": "SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q3/Q5 + 2026-08-04 Q8 (\"We do not have list of all filter items\" - confirms no option list exists); Figma 11903-10573",
   "viu_status": "VIU-Pending",
   "notes": "BEHAVIOUR case - the Reports pages introduce filter types that are not on the Work Orders page. The MECHANICS are settled by Branko's Q3 (\"There is no specific list of choices\") + Q5=A parity + spec v1.6 §4 (\"Multi-select where it makes sense\"), NOT by his Q4 answer, which is a pointer (\"Filter behavior and types are fully displayed in the design. The links are in the PRD.\") and does not match our own live design read. OPEN: the option list for each of the six new filter types is not in spec v1.6 and not visible on any rendered design board (12 boards still un-rendered, Rule-35 queue); question NEW-Q2 asks Branko for the specific board. Capture the real lists live at VIU - expected 3 makes that the tester's job. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): rollout rule - every report page gets the chip design + shareable links + per-user remembered filters with NO change to what is filterable. RESOLVED 2026-07-31 - Branko's answers (Parts/Reports sheet) + live spec v1.6 (Confluence page 572030978 version 12, 2026-07-28): the PRD update landed; Parts/Reports filters are confirmed in scope with full Work-Orders parity. Still NOT live-verified (no QA branch) - viu_status stays VIU-Pending. REFS TRIMMED 2026-07-31 to fit TestRail's 250-char References limit: the §4 bullets \"Context-specific filter sets on Parts and Reports\" and \"New date-range filter type\" also apply and are cited here instead of in refs.",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q3/Q5 + 2026-08-04 Q8 (\"We do not have list of all filter items\" - confirms no option list exists); Figma 11903-10573",
+  "section_id": 5412,
+  "testrail_id": "C38911"
  },
  {
   "id": "FLT-RPTS-23",
@@ -615,30 +552,16 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Reports pages. The filter buttons and their choices are the same for every user - a person's role does not change them.",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The new filter bar has rolled out to a page with a Date filter chip (a report, or a Parts page with a date column).",
-   "3. Records exist inside and outside the date range you will pick."
-  ],
-  "steps": [
-   "1. Click the Date filter chip.",
-   "2. Look at the panel that opens.",
-   "3. Pick a start date only, and watch the results.",
-   "4. Pick the end date.",
-   "5. Look at the results and the chip."
-  ],
-  "expected": [
-   "1. A start/end date picker opens - there are NO preset ranges (no 'Last 30 days' shortcuts) and NO pre-filled default range.",
-   "2. After only the start date, the results do not change yet.",
-   "3. As soon as the second date is picked, the results update immediately to show only records inside the range.",
-   "4. Only one date range can be active at a time on that chip, and the chip shows the active range.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (§4, §2), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-07-31."
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a desktop browser.\n2. The new filter bar has rolled out to a page with a Date filter chip (a report, or a Parts page with a date column).\n3. Records exist inside and outside the date range you will pick.",
+  "steps": "1. Click the Date filter chip.\n2. Look at the panel that opens.\n3. Pick a start date only, and watch the results.\n4. Pick the end date.\n5. Look at the results and the chip.",
+  "expected": "1. A start/end date picker opens - there are NO preset ranges (no 'Last 30 days' shortcuts) and NO pre-filled default range.\n2. After only the start date, the results do not change yet.\n3. As soon as the second date is picked, the results update immediately to show only records inside the range.\n4. Only one date range can be active at a time on that chip, and the chip shows the active range.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (§4, §2), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-07-31.",
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md D19",
   "spec_ref": "SV-8785 [epic] (spec v1.6 §4 \"New date-range filter type\"; §2 Reports Filters - start/end picker; no presets; no default; applies on the second date); Branko answers 2026-07-31 Q5; tech plan 2026-07-29 D19",
   "viu_status": "VIU-Pending",
   "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): one new chip type used by nearly every report and by Parts date columns (Date, Invoice date, Date received). In the page link the range appears as range=custom&from=YYYY-MM-DD&to=YYYY-MM-DD - check when driving the URL cases. Exact panel labels to capture live. CONFIRMED 2026-07-31 from two sources that agree: Branko's answer (\"Date-range is a single range, not multi-select\") and spec v1.6 §4 Key Decisions. The spec export is no longer awaited. No tester-facing wording changed - expected 4 already asserted the single-range behaviour. Exact panel labels still to capture live. REFS TRIMMED 2026-07-31 to fit TestRail's 250-char References limit: the URL form range=custom&from=YYYY-MM-DD&to=YYYY-MM-DD (spec v1.6 §2 Reports Filters) is cited in these notes instead of in refs.",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8785 [epic] (spec v1.6 §4 \"New date-range filter type\"; §2 Reports Filters - start/end picker; no presets; no default; applies on the second date); Branko answers 2026-07-31 Q5; tech plan 2026-07-29 D19",
+  "section_id": 5412,
+  "testrail_id": "C38882"
  }
 ]

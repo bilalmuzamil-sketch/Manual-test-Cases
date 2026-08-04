@@ -6,26 +6,17 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a mobile device (or a mobile-size browser window).",
-   "2. You are on the Work Orders page."
-  ],
-  "steps": [
-   "1. Look at the row below the tab row (All, Estimates, Completed, My Work Orders).",
-   "2. Swipe the chip row sideways."
-  ],
-  "expected": [
-   "1. A filter chip row is shown below the tabs, starting with an 'All Filters' chip (with a filter icon) followed by the individual filter chips (Status, Customer, Lead Technician, ...).",
-   "2. The row scrolls horizontally - chips that do not fit are reachable by swiping.",
-   "3. An arrow at the right-hand edge shows that the row can be scrolled. (This is what the design shows - if your screen looks different, write down what you actually see and carry on.)",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a mobile device (or a mobile-size browser window).\n2. You are on the Work Orders page.",
+  "steps": "1. Look at the row below the tab row (All, Estimates, Completed, My Work Orders).\n2. Swipe the chip row sideways.",
+  "expected": "1. A filter chip row is shown below the tabs, starting with an 'All Filters' chip (with a filter icon) followed by the individual filter chips (Status, Customer, Lead Technician, ...).\n2. The row scrolls horizontally - chips that do not fit are reachable by swiping.\n3. An arrow at the right-hand edge shows that the row can be scrolled. (This is what the design shows - if your screen looks different, write down what you actually see and carry on.)\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit",
   "design_ref": "design-notes.md B.1 #13/#14 (11857:31046, 11884:20807); the third final mobile board 11884:15901 was RENDERED 2026-07-31 and shows the same chip row starting 'All Filters' but with NO scroll-arrow button",
   "spec_ref": "SV-8797 (S12-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "The scroll-arrow overlay is now evidenced on only ONE of the three final mobile boards: 11884:20807 shows a round '>' button at the right edge, while 11884:15901 and 12867:12201 (both rendered 2026-07-31, so this is pixel evidence, not a text-layer guess) show NO arrow. Spec v1.6 S12-R1 requires only 'a horizontally scrollable row below the tab navigation' and says nothing about a scroll affordance, so expected result 3 was deliberately LEFT AS IS - it already tells the tester to write down what they actually see and carry on. VIU-confirm on the build whether the arrow shows always, on overflow only, or not at all. Re-verified whole against spec v1.6 (2026-07-28) S12-R1 + the three rendered final mobile boards on 2026-07-31 - title, preconditions, steps, expected results and refs all still correct; only this note changed.",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8797 (S12-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+  "section_id": 4123,
+  "testrail_id": "C29621"
  },
  {
   "id": "FLT-MOB-02",
@@ -34,26 +25,17 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a mobile device.",
-   "2. You are on the Work Orders page."
-  ],
-  "steps": [
-   "1. Tap the 'All Filters' chip.",
-   "2. Read the sheet from top to bottom."
-  ],
-  "expected": [
-   "1. A bottom sheet slides up with a drag handle at the top, the centered title 'All Filters' and a close (x) button.",
-   "2. It lists the five filters as expandable accordion rows, each with its icon, name and a down arrow: Status, Customer, Lead Technician, Service Advisor, Asset on site.",
-   "3. A sticky blue 'Apply filters' button sits at the bottom of the sheet.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R3). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page.",
+  "steps": "1. Tap the 'All Filters' chip.\n2. Read the sheet from top to bottom.",
+  "expected": "1. A bottom sheet slides up with a drag handle at the top, the centered title 'All Filters' and a close (x) button.\n2. It lists the five filters as expandable accordion rows, each with its icon, name and a down arrow: Status, Customer, Lead Technician, Service Advisor, Asset on site.\n3. A sticky blue 'Apply filters' button sits at the bottom of the sheet.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R3). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit",
   "design_ref": "design-notes.md B.1 #15 (11884:13689)",
   "spec_ref": "SV-8797 (S12-R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "DESIGN TYPO FLAG: the sheet rows in the design read 'Lead Tehnician' (missing 'c') - the build must ship 'Lead Technician' (design-notes C.1); if it inherits the typo, raise a bug.",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8797 (S12-R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+  "section_id": 4123,
+  "testrail_id": "C29622"
  },
  {
   "id": "FLT-MOB-03",
@@ -62,29 +44,17 @@
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a mobile device.",
-   "2. You are on the Work Orders page on the All tab; work orders exist in several statuses.",
-   "3. The 'All Filters' bottom sheet is open."
-  ],
-  "steps": [
-   "1. Tap the Status accordion row to expand it.",
-   "2. Tick one or more statuses.",
-   "3. Tap the 'Apply filters' button.",
-   "4. Reopen the All Filters sheet and look at its title."
-  ],
-  "expected": [
-   "1. Expanding Status reveals the same nine status checkboxes as desktop (Estimate, Approved, In progress, Review, Complete, Invoiced, Paid, Declined, Imported) plus 'Clear selection'.",
-   "2. After 'Apply filters' the sheet closes and the work order list shows only the ticked statuses.",
-   "3. The reopened sheet's title shows the applied-filter count, for example 'All Filters (1)', and the Status accordion header is highlighted with the selected values ticked.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S12-R3, S2-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page on the All tab; work orders exist in several statuses.\n3. The 'All Filters' bottom sheet is open.",
+  "steps": "1. Tap the Status accordion row to expand it.\n2. Tick one or more statuses.\n3. Tap the 'Apply filters' button.\n4. Reopen the All Filters sheet and look at its title.",
+  "expected": "1. Expanding Status reveals the same nine status checkboxes as desktop (Estimate, Approved, In progress, Review, Complete, Invoiced, Paid, Declined, Imported) plus 'Clear selection'.\n2. After 'Apply filters' the sheet closes and the work order list shows only the ticked statuses.\n3. The reopened sheet's title shows the applied-filter count, for example 'All Filters (1)', and the Status accordion header is highlighted with the selected values ticked.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S12-R3, S2-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit",
   "design_ref": "design-notes.md B.1 #16/#18 (11884:13719, 11884:16160)",
   "spec_ref": "SV-8785 [epic] (S12-R2; S12-R3; S2-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "Mobile uses an explicit 'Apply filters' step (unlike desktop's real-time filtering) - the sheet button is in the final design; VIU-confirm whether the list also live-updates before Apply.",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8785 [epic] (S12-R2; S12-R3; S2-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+  "section_id": 4123,
+  "testrail_id": "C29623"
  },
  {
   "id": "FLT-MOB-04",
@@ -93,29 +63,17 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a mobile device.",
-   "2. You are on the Work Orders page."
-  ],
-  "steps": [
-   "1. Tap the Status chip (not the 'All Filters' chip).",
-   "2. Read the sheet that opens.",
-   "3. Tick one status and watch the work order list.",
-   "4. Untick it, then tick a different status, and watch the list again."
-  ],
-  "expected": [
-   "1. A bottom sheet opens for that single filter: its title row shows the filter's icon and name (for example 'Status') with a close (x) button, and no accordion list of the other filters.",
-   "2. The sheet shows only that filter's options (the nine status checkboxes plus 'Clear selection').",
-   "3. There is no 'Apply filter' button. Ticking or unticking a status filters the work order list immediately, the same as on desktop, with no submit step.",
-   "4. The chip's active state and value update live as the selection changes; closing the sheet with the x just dismisses it and keeps the applied filter.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S12-R3, S2-R6). Branko confirmed this on 2026-08-04 in his answers in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page.",
+  "steps": "1. Tap the Status chip (not the 'All Filters' chip).\n2. Read the sheet that opens.\n3. Tick one status and watch the work order list.\n4. Untick it, then tick a different status, and watch the list again.",
+  "expected": "1. A bottom sheet opens for that single filter: its title row shows the filter's icon and name (for example 'Status') with a close (x) button, and no accordion list of the other filters.\n2. The sheet shows only that filter's options (the nine status checkboxes plus 'Clear selection').\n3. There is no 'Apply filter' button. Ticking or unticking a status filters the work order list immediately, the same as on desktop, with no submit step.\n4. The chip's active state and value update live as the selection changes; closing the sheet with the x just dismisses it and keeps the applied filter.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S12-R3, S2-R6). Branko confirmed this on 2026-08-04 in his answers in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit",
   "design_ref": "design-notes.md B.1 #17/#21 (11884:21065, 11884:21271)",
   "spec_ref": "SV-8797 (S12-R2; S12-R3; S2-R6) [spec v1.6 2026-07-28] ; individual-chip real-time per S12-R2 + S2-R6 + tech-plan 2026-07-29; only the combined All Filters sheet is batch; CONFIRMED by Branko answers 2026-08-04 Q1",
   "viu_status": "VIU-Pending",
   "notes": "CONFLICT - PENDING BRANKO/DEV (Questions Q4 / deltas C4): the design frames show an 'Apply filter' button, but the tech plan (D15) builds INDIVIDUAL filter sheets as real-time (no button) - only the combined All Filters sheet batch-applies. Verify live which one ships before failing this case. | RESOLVED 2026-08-04 - Branko answered the tech-plan sheet Q1 \"A - no apply button\": the single-filter sheet applies INSTANTLY as you tick, and only the combined All Filters sheet keeps its \"Apply filters\" button. The design-vs-tech-plan conflict is closed in the tech plan's favour (D15). Live TestRail already asserted this; the LOCAL body was stale and asserting the opposite, and is reconciled to live by this pass. Body reflowed (paste markup repaired) - assertions unchanged. Still NOT live-verified: no Filters QA branch has been consulted (VIU reserved by the QA lead until Report Suite is complete).",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8797 (S12-R2; S12-R3; S2-R6) [spec v1.6 2026-07-28] ; individual-chip real-time per S12-R2 + S2-R6 + tech-plan 2026-07-29; only the combined All Filters sheet is batch; CONFIRMED by Branko answers 2026-08-04 Q1",
+  "section_id": 4123,
+  "testrail_id": "C29624"
  },
  {
   "id": "FLT-MOB-05",
@@ -124,30 +82,17 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a mobile device.",
-   "2. You are on the Work Orders page; several customers exist.",
-   "3. The All Filters sheet is open with the Customer accordion expanded."
-  ],
-  "steps": [
-   "1. Type part of a customer name in the 'Search customer' field and watch the list.",
-   "2. Select two or three customers.",
-   "3. Look at the input area and the list rows.",
-   "4. Remove one customer with the x on its tag, then tap 'Apply filters'."
-  ],
-  "expected": [
-   "1. The list narrows to matching names as you type.",
-   "2. Each selected customer appears as a tag with an x in the input area, and its list row shows a checkmark.",
-   "3. Removing a tag deselects just that customer.",
-   "4. After 'Apply filters' the list shows only work orders of the remaining selected customers, and the sheet title counts the applied filters (for example 'All Filters (2)').",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S3-R2/R3/R5). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
-  ],
+  "preconditions": "<ol>\n<li>You are signed in to the ShopView App on a mobile device.</li>\n<li>You are on the Work Orders page; several customers exist.</li>\n<li>The All Filters sheet is open with the Customer accordion expanded.</li>\n</ol>\n",
+  "steps": "<ol>\n<li>Type part of a customer name in the 'Search customer' field and watch the list.</li>\n<li>Select two or three customers.</li>\n<li>Look at the input area and the list rows.</li>\n<li>Remove one customer with the x on its tag, then tap 'Apply filters'.</li>\n</ol>\n",
+  "expected": "<ol>\n<li>The list narrows to matching names as you type.</li>\n<li>Each selected customer appears as a tag with an x in the input area, and its list row shows a checkmark.</li>\n<li>Removing a tag deselects just that customer.</li>\n<li>After 'Apply filters' the list shows only work orders of the remaining selected customers, and the sheet title counts the applied filters (for example 'All Filters (2)').</li>\n</ol>\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S3-R2/R3/R5). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit",
   "design_ref": "design-notes.md B.1 #20/#22/#23 (11884:13940, 11884:16695, 11884:16383)",
   "spec_ref": "SV-8785 [epic] (S12-R2; S3-R2/R3/R5) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8785 [epic] (S12-R2; S3-R2/R3/R5) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+  "section_id": 4123,
+  "testrail_id": "C29625"
  },
  {
   "id": "FLT-MOB-06",
@@ -156,28 +101,17 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a mobile device.",
-   "2. You are on the Work Orders page; technicians and advisors exist.",
-   "3. The All Filters sheet is open."
-  ],
-  "steps": [
-   "1. Expand the Lead Technician accordion row and look at its content.",
-   "2. Collapse it, expand the Service Advisor row and look at its content.",
-   "3. Select one name in either list and tap 'Apply filters'."
-  ],
-  "expected": [
-   "1. The Lead Technician row opens with a 'Search technician' field and the technician list.",
-   "2. The Service Advisor row opens with a 'Search advisor' field and the advisor list.",
-   "3. Applying a selection filters the work order list just like on desktop.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S4-R1, S5-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page; technicians and advisors exist.\n3. The All Filters sheet is open.",
+  "steps": "1. Expand the Lead Technician accordion row and look at its content.\n2. Collapse it, expand the Service Advisor row and look at its content.\n3. Select one name in either list and tap 'Apply filters'.",
+  "expected": "1. The Lead Technician row opens with a 'Search technician' field and the technician list.\n2. The Service Advisor row opens with a 'Search advisor' field and the advisor list.\n3. Applying a selection filters the work order list just like on desktop.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S4-R1, S5-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit",
   "design_ref": "design-notes.md B.1 #24/#25 (11884:14296, 11884:14811)",
   "spec_ref": "SV-8785 [epic] (S12-R2; S4-R1; S5-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "DESIGN TYPO FLAG: the accordion row label in the design reads 'Lead Tehnician' - the build must ship 'Lead Technician' (design-notes C.1).",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8785 [epic] (S12-R2; S4-R1; S5-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+  "section_id": 4123,
+  "testrail_id": "C29626"
  },
  {
   "id": "FLT-MOB-07",
@@ -186,28 +120,17 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a mobile device.",
-   "2. You are on the Work Orders page; work orders exist in both on-site states.",
-   "3. The All Filters sheet is open."
-  ],
-  "steps": [
-   "1. Expand the Asset on site accordion row.",
-   "2. Choose Yes and tap 'Apply filters'.",
-   "3. Look at the list."
-  ],
-  "expected": [
-   "1. The Asset on site row opens showing the two options Yes and No plus 'Clear selection'.",
-   "2. Only one option can be selected at a time.",
-   "3. After applying, the list shows only work orders matching the chosen on-site state.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S6-R1/R2/R3). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page; work orders exist in both on-site states.\n3. The All Filters sheet is open.",
+  "steps": "1. Expand the Asset on site accordion row.\n2. Choose Yes and tap 'Apply filters'.\n3. Look at the list.",
+  "expected": "1. The Asset on site row opens showing the two options Yes and No plus 'Clear selection'.\n2. Only one option can be selected at a time.\n3. After applying, the list shows only work orders matching the chosen on-site state.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S6-R1/R2/R3). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit",
   "design_ref": "design-notes.md B.1 #19 (11884:15582)",
   "spec_ref": "SV-8785 [epic] (S12-R2; S6-R1/R2/R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8785 [epic] (S12-R2; S6-R1/R2/R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+  "section_id": 4123,
+  "testrail_id": "C29627"
  },
  {
   "id": "FLT-MOB-08",
@@ -216,27 +139,17 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a mobile device.",
-   "2. You are on the Work Orders page with at least one filter applied via the sheet."
-  ],
-  "steps": [
-   "1. Look at the chip row after applying the filter.",
-   "2. Look for a 'Clear filters' control while a filter is active.",
-   "3. Use it and look at the chips and the list."
-  ],
-  "expected": [
-   "1. The chip for the applied filter shows the active state with the selected value(s), like on desktop.",
-   "2. A 'Clear filters' control appears while at least one filter is active.",
-   "3. Using it removes all active filters, the chips return to default and the full list comes back.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S7-R1/R3, S8-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page with at least one filter applied via the sheet.",
+  "steps": "1. Look at the chip row after applying the filter.\n2. Look for a 'Clear filters' control while a filter is active.\n3. Use it and look at the chips and the list.",
+  "expected": "1. The chip for the applied filter shows the active state with the selected value(s), like on desktop.\n2. A 'Clear filters' control appears while at least one filter is active.\n3. Using it removes all active filters, the chips return to default and the full list comes back.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S7-R1/R3, S8-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit",
   "design_ref": "design-notes.md B.1 #13/#14 (11857:31046, 11884:20807); Story 12",
   "spec_ref": "SV-8785 [epic] (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
   "viu_status": "VIU-Pending",
   "notes": "The final mobile frames show the chip row unselected; the exact mobile placement of 'Clear filters' is not drawn - VIU-confirm where it appears (chip row vs sheet).",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8785 [epic] (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+  "section_id": 4123,
+  "testrail_id": "C29628"
  },
  {
   "id": "FLT-MOB-09",
@@ -245,25 +158,17 @@
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a mobile device.",
-   "2. You are on the Work Orders page."
-  ],
-  "steps": [
-   "1. Look at the toolbar row (Search, sort icon, New Work Order button).",
-   "2. Look for any control that would hide the filter chip row."
-  ],
-  "expected": [
-   "1. There is no filter-bar collapse/expand (filter icon) toggle on mobile.",
-   "2. The filter chip row is always visible on the mobile Work Orders page.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R4)."
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page.",
+  "steps": "1. Look at the toolbar row (Search, sort icon, New Work Order button).\n2. Look for any control that would hide the filter chip row.",
+  "expected": "1. There is no filter-bar collapse/expand (filter icon) toggle on mobile.\n2. The filter chip row is always visible on the mobile Work Orders page.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R4).",
   "design_ref": "design-notes.md B.1 #13 (11857:31046 - toolbar has Search, sort and New Work Order only)",
   "spec_ref": "SV-8797 (S12-R4) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8797 (S12-R4) [spec v1.6 2026-07-28]",
+  "section_id": 4123,
+  "testrail_id": "C29629"
  },
  {
   "id": "FLT-MOB-10",
@@ -272,26 +177,17 @@
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a mobile device.",
-   "2. You are on the Work Orders page; work orders exist."
-  ],
-  "steps": [
-   "1. Apply a filter combination that matches no work orders (for example a customer plus a status that customer never has).",
-   "2. Look at the list area."
-  ],
-  "expected": [
-   "1. The list shows the same no-results empty state as desktop, saying no results were found for the current filters.",
-   "2. The empty state includes the prompt to clear filters.",
-   "3. No error appears.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-N1, S8-R3/R4)."
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page; work orders exist.",
+  "steps": "1. Apply a filter combination that matches no work orders (for example a customer plus a status that customer never has).\n2. Look at the list area.",
+  "expected": "1. The list shows the same no-results empty state as desktop, saying no results were found for the current filters.\n2. The empty state includes the prompt to clear filters.\n3. No error appears.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-N1, S8-R3/R4).",
   "design_ref": "design-notes.md B.1 (empty state not drawn in the final mobile frames)",
   "spec_ref": "SV-8785 [epic] (S12-N1; S8-R3/R4) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Exact mobile empty-state text is not in the design set - VIU-confirm it matches desktop.",
-  "api_related": false
+  "api_related": false,
+  "refs": "SV-8785 [epic] (S12-N1; S8-R3/R4) [spec v1.6 2026-07-28]",
+  "section_id": 4123,
+  "testrail_id": "C29630"
  },
  {
   "id": "FLT-API-01",
@@ -300,27 +196,17 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A valid signed-in session; browser developer tools or an API client.",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser with developer tools open on the Network tab.",
-   "2. You are on the Work Orders page with no filters applied."
-  ],
-  "steps": [
-   "1. Apply a Status selection and a Customer selection in the filter bar.",
-   "2. In the Network tab, find the work order list request the page sends after the change.",
-   "3. Inspect the request's parameters."
-  ],
-  "expected": [
-   "1. The list request includes the active filter selections as request parameters (status values and customer identifiers).",
-   "2. The request succeeds (HTTP 200).",
-   "3. The response contains only work orders matching the filters - the filtering is done by the backend, not just hidden client-side.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S2-R2, S3-R6)."
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a desktop browser with developer tools open on the Network tab.\n2. You are on the Work Orders page with no filters applied.",
+  "steps": "1. Apply a Status selection and a Customer selection in the filter bar.\n2. In the Network tab, find the work order list request the page sends after the change.\n3. Inspect the request's parameters.",
+  "expected": "1. The list request includes the active filter selections as request parameters (status values and customer identifiers).\n2. The request succeeds (HTTP 200).\n3. The response contains only work orders matching the filters - the filtering is done by the backend, not just hidden client-side.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S2-R2, S3-R6).",
   "design_ref": "requirements.md Story 11 (URL state implies parameterized list requests)",
   "spec_ref": "SV-8785 [epic] (S2-R2; S3-R6 (backend view)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "The filters endpoint and parameter names are not in the spec (OQ-7) - capture the real endpoint shape live at VIU and tighten this case's wording then. If filtering turns out to be purely client-side in the build, flag it to the developers instead of failing blindly. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): the list request sends each selected value as its own repeated filter entry (filters[N][field]/filters[N][value], one per value - no 'in' lists); field names: status, company_id, tech_assigned_id, service_advisor_id, vehicleHere. Imported is different: it switches to a separate imported-work-orders request with no filters (G1). Tabs do not send a status= parameter.",
-  "api_related": true
+  "api_related": true,
+  "refs": "SV-8785 [epic] (S2-R2; S3-R6 (backend view)) [spec v1.6 2026-07-28]",
+  "section_id": 4124,
+  "testrail_id": "C29631"
  },
  {
   "id": "FLT-API-02",
@@ -329,26 +215,17 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A valid signed-in session; browser developer tools or an API client.",
-  "preconditions": [
-   "1. You are signed in with developer tools open on the Network tab.",
-   "2. Seeded ZZAUTOTEST work orders exist: customer A with an Estimate and an Approved work order, customer B with an Estimate work order."
-  ],
-  "steps": [
-   "1. On the Work Orders page apply Status = Estimate + Approved and Customer = customer A.",
-   "2. Capture the resulting list request and response."
-  ],
-  "expected": [
-   "1. One request carries both filters together (both statuses and the customer).",
-   "2. The response returns customer A's Estimate and Approved work orders only.",
-   "3. Customer B's work orders are absent - the customer filter and status filter both restrict the result, while the two statuses combine as either-or.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S2-R2, S3-R6, S8-R3)."
-  ],
+  "preconditions": "1. You are signed in with developer tools open on the Network tab.\n2. Seeded ZZAUTOTEST work orders exist: customer A with an Estimate and an Approved work order, customer B with an Estimate work order.",
+  "steps": "1. On the Work Orders page apply Status = Estimate + Approved and Customer = customer A.\n2. Capture the resulting list request and response.",
+  "expected": "1. One request carries both filters together (both statuses and the customer).\n2. The response returns customer A's Estimate and Approved work orders only.\n3. Customer B's work orders are absent - the customer filter and status filter both restrict the result, while the two statuses combine as either-or.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S2-R2, S3-R6, S8-R3).",
   "design_ref": "requirements.md Story 8 S8-R3 (combination semantics)",
   "spec_ref": "SV-8785 [epic] (S2-R2; S3-R6; S8-R3 (backend view)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Endpoint/parameter shape unknown (OQ-7) - VIU-confirm; across-filter AND semantics implied by S8-R3, confirm live. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): values within one field combine as OR (repeated entries on the same field); different fields combine as AND. Field names as in FLT-API-01.",
-  "api_related": true
+  "api_related": true,
+  "refs": "SV-8785 [epic] (S2-R2; S3-R6; S8-R3 (backend view)) [spec v1.6 2026-07-28]",
+  "section_id": 4124,
+  "testrail_id": "C29632"
  },
  {
   "id": "FLT-API-03",
@@ -357,26 +234,17 @@
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "A valid signed-in session; browser developer tools or an API client.",
-  "preconditions": [
-   "1. You are signed in and can replay/edit the work order list request (developer tools or an API client).",
-   "2. You have a captured filtered list request, and one of its filter values has since been deleted (for example a removed ZZAUTOTEST customer) or is a made-up identifier."
-  ],
-  "steps": [
-   "1. Send the list request containing the no-longer-existing (or made-up) filter value.",
-   "2. Inspect the HTTP status and the response body."
-  ],
-  "expected": [
-   "1. The backend does not fail with a server error (no HTTP 5xx).",
-   "2. The response is a normal, successful list response - the invalid value is ignored or simply matches nothing.",
-   "3. Any still-valid filter values in the same request are applied normally.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S10-N1, S11-R3)."
-  ],
+  "preconditions": "1. You are signed in and can replay/edit the work order list request (developer tools or an API client).\n2. You have a captured filtered list request, and one of its filter values has since been deleted (for example a removed ZZAUTOTEST customer) or is a made-up identifier.",
+  "steps": "1. Send the list request containing the no-longer-existing (or made-up) filter value.\n2. Inspect the HTTP status and the response body.",
+  "expected": "1. The backend does not fail with a server error (no HTTP 5xx).\n2. The response is a normal, successful list response - the invalid value is ignored or simply matches nothing.\n3. Any still-valid filter values in the same request are applied normally.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S10-N1, S11-R3).",
   "design_ref": "requirements.md Story 10 S10-N1; Story 11 S11-R3 (backend view)",
   "spec_ref": "SV-8785 [epic] (S10-N1; S11-R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Whether the backend ignores the value (returns the rest) or returns an empty match for it is not specified - record the observed behavior at VIU; either is acceptable as long as no error surfaces to the user. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): deleted/unknown selected values are silently dropped by the page itself when options load (the saved/shared value simply never reaches the request) - so the check here is: no error AND the bad value is absent from the request.",
-  "api_related": true
+  "api_related": true,
+  "refs": "SV-8785 [epic] (S10-N1; S11-R3) [spec v1.6 2026-07-28]",
+  "section_id": 4124,
+  "testrail_id": "C29633"
  },
  {
   "id": "FLT-API-04",
@@ -385,26 +253,17 @@
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "A valid signed-in session; browser developer tools or an API client.",
-  "preconditions": [
-   "1. You are signed in and can replay/edit the work order list request.",
-   "2. You have a captured filtered list request to tamper with."
-  ],
-  "steps": [
-   "1. Corrupt the filter parameters (wrong types, scrambled values, nonsense text) and send the request.",
-   "2. Inspect the HTTP status and the response body.",
-   "3. Also open the equally malformed page URL in the browser and watch the page."
-  ],
-  "expected": [
-   "1. The backend responds gracefully - no HTTP 5xx / crash; either a normal (unfiltered or empty) list or a clean validation response.",
-   "2. In the browser the page still loads without filters and without an error message, matching the malformed-URL requirement.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S11-N1)."
-  ],
+  "preconditions": "1. You are signed in and can replay/edit the work order list request.\n2. You have a captured filtered list request to tamper with.",
+  "steps": "1. Corrupt the filter parameters (wrong types, scrambled values, nonsense text) and send the request.\n2. Inspect the HTTP status and the response body.\n3. Also open the equally malformed page URL in the browser and watch the page.",
+  "expected": "1. The backend responds gracefully - no HTTP 5xx / crash; either a normal (unfiltered or empty) list or a clean validation response.\n2. In the browser the page still loads without filters and without an error message, matching the malformed-URL requirement.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S11-N1).",
   "design_ref": "requirements.md Story 11 S11-N1 (backend view)",
   "spec_ref": "SV-8796 (S11-N1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Endpoint shape unknown (OQ-7) - VIU-confirm. Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): a filter field the backend does not allow is REJECTED with a controlled error response (not silently ignored) - a controlled rejection is fine; a server crash (HTTP 500) is the bug.",
-  "api_related": true
+  "api_related": true,
+  "refs": "SV-8796 (S11-N1) [spec v1.6 2026-07-28]",
+  "section_id": 4124,
+  "testrail_id": "C29634"
  },
  {
   "id": "FLT-API-05",
@@ -413,26 +272,17 @@
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "A valid signed-in session; browser developer tools or an API client.",
-  "preconditions": [
-   "1. You are signed in with developer tools open on the Network tab.",
-   "2. A filter combination is known to match no work orders (for example a seeded customer plus a status they never have)."
-  ],
-  "steps": [
-   "1. Apply that filter combination on the Work Orders page.",
-   "2. Capture the list request and response."
-  ],
-  "expected": [
-   "1. The request succeeds (HTTP 200).",
-   "2. The response contains an empty result set (zero work orders) - an empty match is a normal outcome, not an error.",
-   "3. The page renders the no-results empty state from this response.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S8-R3, S2-N3)."
-  ],
+  "preconditions": "1. You are signed in with developer tools open on the Network tab.\n2. A filter combination is known to match no work orders (for example a seeded customer plus a status they never have).",
+  "steps": "1. Apply that filter combination on the Work Orders page.\n2. Capture the list request and response.",
+  "expected": "1. The request succeeds (HTTP 200).\n2. The response contains an empty result set (zero work orders) - an empty match is a normal outcome, not an error.\n3. The page renders the no-results empty state from this response.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S8-R3, S2-N3).",
   "design_ref": "requirements.md Story 8 S8-R3 (backend view)",
   "spec_ref": "SV-8785 [epic] (S8-R3; S2-N3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Endpoint shape unknown (OQ-7) - VIU-confirm.",
-  "api_related": true
+  "api_related": true,
+  "refs": "SV-8785 [epic] (S8-R3; S2-N3) [spec v1.6 2026-07-28]",
+  "section_id": 4124,
+  "testrail_id": "C29635"
  },
  {
   "id": "FLT-API-06",
@@ -441,28 +291,16 @@
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Two signed-in user accounts; browser developer tools or an API client.",
-  "preconditions": [
-   "1. You are signed in to the ShopView App on a desktop browser with developer tools open on the Network tab.",
-   "2. A second user account is available."
-  ],
-  "steps": [
-   "1. On the Work Orders page, change a filter and watch the Network tab for the save request the page sends shortly after.",
-   "2. Reload the page and find the load request for the saved page state.",
-   "3. Sign in as the second user (different browser/profile) and open the Work Orders page.",
-   "4. With an API client (or by editing the request), ask the saved-state service for a page key that was never saved."
-  ],
-  "expected": [
-   "1. Changing a filter sends a save (PUT) to the per-user page-preferences service carrying the page's state, and it succeeds (HTTP 200).",
-   "2. On reload the page requests the saved state back (GET, HTTP 200) and applies it - the filters return without you redoing them.",
-   "3. The second user does NOT receive the first user's saved state - each account's saved filters are isolated.",
-   "4. Asking for a never-saved key returns success with an empty value, not an error page.",
-   "---",
-   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S10-R2, S10-R3)."
-  ],
+  "preconditions": "1. You are signed in to the ShopView App on a desktop browser with developer tools open on the Network tab.\n2. A second user account is available.",
+  "steps": "1. On the Work Orders page, change a filter and watch the Network tab for the save request the page sends shortly after.\n2. Reload the page and find the load request for the saved page state.\n3. Sign in as the second user (different browser/profile) and open the Work Orders page.\n4. With an API client (or by editing the request), ask the saved-state service for a page key that was never saved.",
+  "expected": "1. Changing a filter sends a save (PUT) to the per-user page-preferences service carrying the page's state, and it succeeds (HTTP 200).\n2. On reload the page requests the saved state back (GET, HTTP 200) and applies it - the filters return without you redoing them.\n3. The second user does NOT receive the first user's saved state - each account's saved filters are isolated.\n4. Asking for a never-saved key returns success with an empty value, not an error page.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S10-R2, S10-R3).",
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md section 4-1.3 (endpoint contract)",
   "spec_ref": "SV-8795 (S10-R2 (filters stored server-side against the user account; last write wins); S10-R3 (saved per user)) + tech plan 2026-07-29 s4-1.3 (GET/PUT per-user page preferences) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Traceability repaired 2026-07-31 (closing-authenticity pass defect (b)): refs re-pointed from \"spec v1.3 S10 per-user persistence (export awaited)\" to the ratified v1.6 anchors S10-R2 + S10-R3; the export is no longer awaited (spec pulled live 2026-07-31, Confluence page 572030978 version 12). The ENDPOINT SHAPE is tech-plan-sourced (not spec) and is cited as such: tech plan 2026-07-29 section 4-1.3 - GET/PUT /api/users/me/preferences/{pageKey}; Work Orders pageKey = work-orders-list; unset pref returns value:null (200 not 404); 400 on a malformed page key or a value over 16 KB; last-write-wins across devices (matches S10-R2 verbatim). Expected result 4 (never-saved key returns success with an empty value) is tech-plan intent only - no spec anchor - and stays flagged for live confirmation.",
-  "api_related": true
+  "api_related": true,
+  "refs": "SV-8795 (S10-R2 (filters stored server-side against the user account; last write wins); S10-R3 (saved per user)) + tech plan 2026-07-29 s4-1.3 (GET/PUT per-user page preferences) [spec v1.6 2026-07-28]",
+  "section_id": 4124,
+  "testrail_id": "C38895"
  }
 ]
