@@ -110,7 +110,21 @@ def clean(s):
 
 
 def joinlines(lst):
-    return "\n".join(clean(x.rstrip()) for x in (lst or []))
+    """Join a case field into the import's text form.
+
+    The field may be a LIST of lines (how the cases were originally authored) or a
+    single STRING already carrying its own newlines (how the 2026-08-04 re-sync from
+    live TestRail now writes it).  A string MUST NOT be iterated: doing so joins it
+    character by character and puts a newline between every letter, which is exactly
+    how the 2026-08-04 import was corrupted across all 165 rows (and the Filters one
+    across all 110).  So: split a string on its own newlines, and only then clean and
+    rejoin.
+    """
+    if not lst:
+        return ""
+    if isinstance(lst, str):
+        lst = lst.split("\n")
+    return "\n".join(clean(x.rstrip()) for x in lst)
 
 
 def load_cases():
