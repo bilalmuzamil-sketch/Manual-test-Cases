@@ -48,3 +48,23 @@ are wrong, it means if it is raised in public **we have a concession to make, no
 **Honesty clause:** this register records what we **decided**, not what we wish we had decided.
 Entry 5 is a **miss** — a real hole another QA found first — and it is written up as a miss, dated,
 with the cost stated. It is not re-labelled as a deliberate choice.
+
+---
+
+## 5. Recovery addendum — 2026-08-04, added while completing the interrupted pass
+
+These four entries were added when the pass was picked up and finished. **Risk profile now:
+HIGH 3 · MEDIUM 7 · LOW 12 over 22 entries.**
+
+| # | decision (plain) | the one-sentence answer | evidence | affected cases | who closes it | risk |
+|---|---|---|---|---|---|---|
+| 19 | **A real defect has no ticket and, until now, no entry here.** The shift window's TIME LOGGED read *"40h 19m / 40h 19m"* with a full progress bar on a shift where nothing had been clocked, and *"1h / 1h"* on another. | It looks like the window is showing the estimate twice instead of showing time actually logged against it, and it needs a ticket — we did not raise one because ten had already been agreed for this pass and this one was not among them. | §4.9 asks for *"Time logged vs estimate (progress)"*. Live on `v3.5-4873abe`: the work order reported 0 actual hours while the bar read full | SCH-MODAL-03 = [C30010](https://shopview.testrail.io/index.php?/cases/view/30010) | QA lead (to authorise a ticket) | **MEDIUM** — every other unticketed deviation here has a stated reason; this one had none, which is exactly the gap this register exists to prevent |
+| 20 | **16 of the 165 cases show raw page markup to the tester** — `<ol>` and `<li>` tags appear literally in their preconditions, steps and expected results. | It is ugly and it should be cleaned up, but it is readable and it is not new — the same 16 cases were already like that before today's work, so nothing in this pass caused it. | The pre-write snapshot taken before any write this pass contains the identical 16 cases: C29928 · C29930 · C29931 · C29932 · C29936 · C29955 · C29969 · C29991 · C30008 · C30023 · C30034 · C30039 · C30052 · C30057 · C30071 · C30074 | the 16 named above | QA lead (a repair is 16 TestRail writes and needs the go-ahead) | LOW |
+| 21 | **Eight cases were telling the tester a defect had no ticket when it did**, and that was corrected rather than left. | Ten tickets had been filed hours earlier in the same pass but only three of them had reached the case text, so eight cases still said *"has no developer ticket yet"* — each now names its ticket with a link. | Every ticket verified live in Jira first (Bug · priority Low · parent SV-8685 · owning story linked · Open). Ten `update_case` operations, all byte-verified — `../recovery-2026-08-04/testrail-execution-log.md` | C29946 · C29982 · C29999 · C30004 · C30014 · C30046 · C30050 · C30066 · C30068 | closed | LOW |
+| 22 | **A pre-existing shift was left on the wrong technician and 450 minutes short, and has been put back.** | The Day-view drag test moved a real shift belonging to another technician; its start time was put back but its owner and its length were not, and both have now been restored and proved byte-identical to the state before the pass. | Shift `ebdd3e03…` on work order S-9379: owner was back to `57378c17…`, length back to 720 minutes, and all 14 fields byte-identical to the start-of-pass snapshot; the parent series total back to 1980 minutes | none — this is branch data, not a case | closed | LOW, **but read entry 18 with it**: two separate data restorations in one pass is a pattern, not a coincidence |
+
+**A note on entry 22 that is worth more than the entry itself.** The pass's own record said *"the
+pre-existing shift was restored afterwards"*, and it was **half** true. A restore is not restored
+until it has been **compared field by field against the snapshot** — checking the one field you
+changed is what let this through. It is the same lesson as touching a case and re-reading only the
+line you edited.

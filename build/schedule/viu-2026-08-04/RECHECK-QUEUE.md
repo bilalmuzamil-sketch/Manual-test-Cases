@@ -185,3 +185,49 @@ provenance re-stamped is not re-checked.
 | 163 | SCH-WOL-04 | C29939 | https://shopview.testrail.io/index.php?/cases/view/29939 | VIU-Observed-PASS | Search matched on work-order number ("S-9379" and bare "9379"), customer name, unit number and technician name | that the behaviour still matches, and that the labels quoted in the case are still the on-screen ones |
 | 164 | SCH-WOL-05 | C29940 | https://shopview.testrail.io/index.php?/cases/view/29940 | VIU-Observed-PASS | The card list narrows as each character is typed, with no Apply or Enter needed | that the behaviour still matches, and that the labels quoted in the case are still the on-screen ones |
 | 165 | SCH-WOL-06 | C29941 | https://shopview.testrail.io/index.php?/cases/view/29941 | VIU-Observed-PASS | A search with no matches shows the message "No schedulable work orders match this filter | that the behaviour still matches, and that the labels quoted in the case are still the on-screen ones |
+
+---
+
+## RECOVERY ADDENDUM — 2026-08-04
+
+**The queue STATUS is unchanged: OPEN.** Engineering has not declared branch `sv8685` final, so all
+**165** rows above still stand as provisional and must be re-checked when the build moves.
+
+**The build marker was re-read while completing this pass and is unchanged:**
+`v3.5-4873abe` · `index.html` last-modified **Tue, 04 Aug 2026 14:47:39 GMT** · etag
+`9b4b1fc776ebbfb04a9a0ca051d847f7` — byte-identical to the value recorded at the top of this file.
+**So the branch did not redeploy during the pass and no row above is invalidated on that count.**
+
+### Ten rows carry extra re-check obligations
+
+Ten cases were edited after the queue was written, so their **known-issue text now names a
+developer ticket**. When re-checking these rows, **check the ticket's status as well as the
+behaviour** — if the ticket has been fixed, the case should pass and the known-issue block must be
+removed entirely, not merely re-dated.
+
+| row's case | C-id | ticket now named on the case | extra obligation on re-check |
+|---|---|---|---|
+| SCH-FILT-05 | [C29946](https://shopview.testrail.io/index.php?/cases/view/29946) | [SV-8857](https://shopview.atlassian.net/browse/SV-8857) | if fixed, remove the known-issue block and re-verify a real *Clear all* and the active count |
+| SCH-SPREAD-06 | [C29982](https://shopview.testrail.io/index.php?/cases/view/29982) | [SV-8855](https://shopview.atlassian.net/browse/SV-8855) | if fixed, re-drive the sequential two-technician series the spec describes |
+| SCH-LANE-04 | [C29999](https://shopview.testrail.io/index.php?/cases/view/29999) | [SV-8850](https://shopview.atlassian.net/browse/SV-8850) | if fixed, confirm the popover actually lists the hidden shifts |
+| SCH-DAY-04 | [C30004](https://shopview.testrail.io/index.php?/cases/view/30004) | [SV-8856](https://shopview.atlassian.net/browse/SV-8856) | if fixed, confirm a sideways drag snaps to a quarter hour — **and put the shift back afterwards, then compare every field to before** |
+| SCH-MODAL-07 | [C30014](https://shopview.testrail.io/index.php?/cases/view/30014) | [SV-8852](https://shopview.atlassian.net/browse/SV-8852) | if fixed, confirm the Adjust action exists and actually resolves the clash |
+| SCH-VIEW-05 | [C30046](https://shopview.testrail.io/index.php?/cases/view/30046) | [SV-8827](https://shopview.atlassian.net/browse/SV-8827) | re-check the Business Hours default; and re-check whether the ticket's Tech Hours claim has become true, because it was not true on this build |
+| SCH-VIEW-09 | [C30050](https://shopview.testrail.io/index.php?/cases/view/30050) | [SV-8851](https://shopview.atlassian.net/browse/SV-8851) | if fixed, confirm each technician's hours appear beside the name |
+| SCH-KEY-01 | [C30066](https://shopview.testrail.io/index.php?/cases/view/30066) | [SV-8853](https://shopview.atlassian.net/browse/SV-8853) | if fixed, re-drive the whole Escape stacking order, not just the two dialogs named |
+| SCH-KEY-03 | [C30068](https://shopview.testrail.io/index.php?/cases/view/30068) | [SV-8853](https://shopview.atlassian.net/browse/SV-8853) | if fixed, also reach the *"Enter inside a note does not confirm"* half, which could not be reached while Enter confirmed nothing |
+| SCH-SPREAD-11 | [C38863](https://shopview.testrail.io/index.php?/cases/view/38863) | **none — deliberately unticketed** | still not built; and settle first whether the 8-week / 120-shift limit is a product requirement at all, since only the engineering plan asks for it |
+
+### Two rows to read with fresh eyes on re-check, regardless of the build
+
+- **SCH-MODAL-03 = [C30010](https://shopview.testrail.io/index.php?/cases/view/30010)** — a real
+  deviation with **no ticket** (decisions register entry 19). If it still reproduces, it needs one.
+- **The 16 cases holding raw page markup** (decisions register entry 20) — a re-check that touches
+  any of them should repair the markup at the same time, once the QA lead has authorised it, rather
+  than re-stamping a case that shows tags to the tester.
+
+### Re-stamping is still part of re-running the queue
+
+Rule 54: a row re-checked without its provenance line re-stamped is **not re-checked**. All 165
+currently read *"the build tested on 8/4/2026 (v3.5-4873abe)"* — verified present, and present
+exactly once, on every one of the 165 after the recovery edits.
