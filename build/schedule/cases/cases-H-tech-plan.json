@@ -21,7 +21,9 @@
    "1. Going past 8 weeks does not silently succeed: a warning about the very long series appears and asks you to confirm before the shifts are created.",
    "2. After you confirm the warning, the long series is created normally.",
    "3. A single spread that would create more than 120 daily shifts is refused outright - no confirmation can override it, and no shifts are created for that attempt.",
-   "4. No half-created series is left behind after a refused attempt."
+   "4. No half-created series is left behind after a refused attempt.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.5), with the specific limits above taken from the engineering technical plan."
   ],
   "design_ref": "Not in the design prototype (the prototype series was uncapped - flagged as a prototype bug in the tech plan).",
   "spec_ref": "SV-8691 Multi-Day Spread (§4.5) + tech plan D8 series caps",
@@ -52,7 +54,9 @@
    "1. The delete took effect immediately: after the refresh the shift is gone even though Undo was never clicked - closing or refreshing does not cancel the action.",
    "2. The move also stuck after the refresh - the shift is on the new day.",
    "3. Clicking Undo within the toast's lifetime reverses the action (the deleted shift comes back).",
-   "4. Note for the tester: Undo works by performing a reversing action, not by holding the change back - a change surviving a refresh before Undo is expected, not a bug."
+   "4. Note for the tester: Undo works by performing a reversing action, not by holding the change back - a change surviving a refresh before Undo is expected, not a bug.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7)."
   ],
   "design_ref": "Tech plan D10 (commit-immediately + compensating mutation); toast timing per SCH-DEL-08.",
   "spec_ref": "SV-8688 (§7 toast/undo) + tech plan D10 undo model",
@@ -79,7 +83,9 @@
   ],
   "expected": [
    "1. Every shift in the series starts at the SAME local wall-clock time (e.g. 8:00 AM) on both sides of the clock change.",
-   "2. No shift in the series silently moves an hour earlier or later after the change date."
+   "2. No shift in the series silently moves an hour earlier or later after the change date.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.5)."
   ],
   "design_ref": "Not in the design prototype (time-model behaviour).",
   "spec_ref": "SV-8691 (§4.5) + tech plan D2 time model / NFR-005 (DST)",
@@ -109,7 +115,9 @@
    "1. In dark mode every part of the Schedule stays readable - no white-on-white or black-on-black text, no unreadable labels or invisible icons.",
    "2. Every dialog and popover opened from the Schedule follows the dark theme too.",
    "3. Conflict and overtime cues remain distinguishable (they never rely on colour alone - text/icon still present).",
-   "4. Switching back to light mode restores the normal look with nothing stuck in dark colours."
+   "4. Switching back to light mode restores the normal look with nothing stuck in dark colours.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§11)."
   ],
   "design_ref": "Tech plan §Design tokens/Theming (light/dark aware --sv-* variables; 'Verify the schedule (and every new dialog/popover) in dark mode').",
   "spec_ref": "Epic SV-8685 cross-cutting + tech plan §6 manual checklist 13 (dark mode)",
@@ -137,7 +145,9 @@
   "expected": [
    "1. Every shift and event that existed before the release is still there after it - same technician, same day, same time, same work order.",
    "2. Events are still events and shifts are still shifts (nothing changed kind or vanished).",
-   "3. Their details open normally and are editable/deletable like any other entry."
+   "3. Their details open normally and are editable/deletable like any other entry.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the engineering technical plan. No numbered requirement in the Schedule specification version 23 covers this point yet."
   ],
   "design_ref": "Tech plan §3 data migration (copy-only, lossless) + §7 cutover runbook.",
   "spec_ref": "Epic SV-8685 + tech plan FR-015 calendar_task migration",
@@ -165,7 +175,9 @@
   "expected": [
    "1. The Dashboard shows that work order as ONE row (covering the whole scheduled span), not one row per daily shift.",
    "2. Note for the tester: before this release the Dashboard duplicated such a work order once per scheduled day - showing one combined row now is the intended fix, do not report it as a missing-rows bug.",
-   "3. Work orders with a single shift are unaffected."
+   "3. Work orders with a single shift are unaffected.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the engineering technical plan. No numbered requirement in the Schedule specification version 23 covers this point yet."
   ],
   "design_ref": "Tech plan §4 Modified endpoints (Dashboard row-multiplication fix, GROUP BY work_order_id).",
   "spec_ref": "Epic SV-8685 + tech plan FR-016 Dashboard repoint",
@@ -193,7 +205,9 @@
   "expected": [
    "1. The appointment created with the work order appears on the Schedule board at the chosen date/time.",
    "2. It behaves like any other scheduled entry (opens, moves, deletes normally).",
-   "3. It also appears in the Dashboard's schedule section for that day."
+   "3. It also appears in the Dashboard's schedule section for that day.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the engineering technical plan. No numbered requirement in the Schedule specification version 23 covers this point yet."
   ],
   "design_ref": "Tech plan §4 Modified endpoints (WO create -> AppointmentScheduler port) + Phase 9 verification ('creating a WO with an appointment produces a schedule_shift row that appears on the board').",
   "spec_ref": "Epic SV-8685 + tech plan §4 WO-create appointment path",
@@ -222,7 +236,9 @@
   "expected": [
    "1. The shift appears on location A's board (the location the work order belongs to).",
    "2. The shift does NOT appear on location B's board, even though the technician is enrolled there too.",
-   "3. Note for the tester: before the rewrite such a shift showed on EVERY location the technician was enrolled at - showing it only on the work order's location is the intended new behaviour, do not report the disappearance from other locations as a bug."
+   "3. Note for the tester: before the rewrite such a shift showed on EVERY location the technician was enrolled at - showing it only on the work order's location is the intended new behaviour, do not report the disappearance from other locations as a bug.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the engineering technical plan. No numbered requirement in the Schedule specification version 23 covers this point yet."
   ],
   "design_ref": "Tech plan §3 resolution chain ('Known, intended behavior change ... Call this out in QA notes so it isn't filed as a bug').",
   "spec_ref": "Epic SV-8685 + tech plan §3 WO-primary location resolution",
@@ -252,7 +268,9 @@
    "1. The work order form offers a Priority choice of High, Medium, Low.",
    "2. A new work order has NO priority pre-selected by default.",
    "3. After saving, the Schedule sidebar reflects the chosen priority and the Priority filter finds the work order under High.",
-   "4. A work order with no priority set simply shows none (it is not treated as an error)."
+   "4. A work order with no priority set simply shows none (it is not treated as an error).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1)."
   ],
   "design_ref": "Tech plan Phase 1 (WorkOrderDialog High/Med/Low select, default unset).",
   "spec_ref": "SV-8687 (§5.1 sidebar Priority filter) + tech plan FR-P4 WO priority",
@@ -282,7 +300,9 @@
    "1. No Schedule permission: the board GET is refused with HTTP 403.",
    "2. View-only: the board GET returns HTTP 200 with the grid data; the POST and PATCH are refused with HTTP 403.",
    "3. View + Edit: the POST and PATCH succeed (HTTP 201/200); the DELETE is refused with HTTP 403 because the user lacks Schedule: Delete.",
-   "4. Each refusal is a clean 403 response - never a server error."
+   "4. Each refusal is a clean 403 response - never a server error.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14)."
   ],
   "design_ref": "Tech plan §4 (auth column per endpoint) + §8 NFR-003 (reuse ROLE_SCHEDULE_VIEW/CREATE_AND_EDIT/DELETE, no new atoms).",
   "spec_ref": "Epic §14 permission tiers + tech plan §4 endpoint auth",
@@ -312,7 +332,9 @@
    "1. The over-8-week create is refused with HTTP 409 (a 'series too long' error) - nothing is created.",
    "2. With acknowledgeLongSeries=true the same request succeeds (HTTP 201) and returns the full materialized series under one series id.",
    "3. The over-120-shift request is refused with HTTP 422 even WITH the acknowledgement - the hard cap cannot be overridden.",
-   "4. Refused calls leave no partial series behind."
+   "4. Refused calls leave no partial series behind.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.5), with the specific limits above taken from the engineering technical plan."
   ],
   "design_ref": "Tech plan D8 + §4 error cases (SeriesTooLongError 409; 120-shift hard cap 422).",
   "spec_ref": "SV-8691 (§4.5 spread) + tech plan D8/§4 error contract",
@@ -340,7 +362,9 @@
   "expected": [
    "1. No Schedule response contains any pricing/money field for ANY caller - the schedule never returns labor, totals, or dollar amounts.",
    "2. For the caller without Work Orders: View, the work-order-derived details (customer, unit, VIN, line names) are absent/empty in the response itself - not just hidden on screen.",
-   "3. Both calls still succeed (HTTP 200) - lacking Work Orders: View limits the content, it does not break the schedule read."
+   "3. Both calls still succeed (HTTP 200) - lacking Work Orders: View limits the content, it does not break the schedule read.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14). The current behaviour follows a later product owner decision dated 2026-07-22."
   ],
   "design_ref": "Tech plan D6 ('No monetary data anywhere ... WO-derived fields omitted server-side when the caller lacks Work Orders:View') + §8 NFR-002.",
   "spec_ref": "Epic §14 WO:View dependency + tech plan D6/NFR-002",
@@ -369,7 +393,9 @@
   "expected": [
    "1. The foreign-location GET is refused as not found (HTTP 404) - the response reveals nothing about the other location's shift.",
    "2. The PATCH on the foreign id is refused the same way (404) - no cross-location edit is possible.",
-   "3. Location A's board contains only location A's shifts - nothing from location B leaks in."
+   "3. Location A's board contains only location A's shifts - nothing from location B leaks in.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the engineering technical plan. No numbered requirement in the Schedule specification version 23 covers this point yet."
   ],
   "design_ref": "Tech plan §4 ('missing/foreign shift id -> 404 (workplace-scoped load)') + §8 NFR-001 tenant scoping.",
   "spec_ref": "Epic SV-8685 + tech plan NFR-001 location scoping",

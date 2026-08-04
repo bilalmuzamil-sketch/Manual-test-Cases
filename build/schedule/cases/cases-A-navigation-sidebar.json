@@ -19,7 +19,9 @@
    "1. Schedule is listed as a top-level navigation item alongside Work Orders, Customers, Parts, and Reports.",
    "2. Clicking it opens the Schedule screen.",
    "3. The left panel is the work order sidebar: a mini calendar at the top and a work order list beneath it.",
-   "4. The main area is the schedule grid showing technician rows, with a toolbar above it."
+   "4. The main area is the schedule grid showing technician rows, with a toolbar above it.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3, §3.1, §3.2)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3",
@@ -75,7 +77,9 @@
    "1. Day: the grid shows a 24-hour timeline per technician row, with shifts positioned at their times.",
    "2. Week: the grid shows a 7-column Monday-to-Sunday layout with stacked shift chips per cell.",
    "3. Month: the grid shows a compact calendar with per-day capacity bars and shift chips.",
-   "4. The same shifts remain visible (appropriately rendered) in all three views."
+   "4. The same shifts remain visible (appropriately rendered) in all three views.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.2, §6)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2, §6",
@@ -103,7 +107,9 @@
   "expected": [
    "1. Rows are grouped by department, each group under its own header (for example a services group and an administration group - the actual names come from the shop's own departments).",
    "2. Each department's technicians are listed beneath that department's header.",
-   "3. Every staff member assigned to a visible department appears as a row, regardless of their role."
+   "3. Every staff member assigned to a visible department appears as a row, regardless of their role.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.2, §14.4)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2, §14.4",
@@ -130,7 +136,9 @@
   "expected": [
    "1. Collapsing hides that department's technician rows (the group header stays visible).",
    "2. Expanding shows the technician rows again, unchanged.",
-   "3. Other department groups are unaffected."
+   "3. Other department groups are unaffected.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.2)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2",
@@ -155,7 +163,9 @@
   ],
   "expected": [
    "1. No such toggle exists - the department-grouped rows are the only grid grouping.",
-   "2. Department visibility is controlled only through the department toggles in the 'Filter and Display' dropdown."
+   "2. Department visibility is controlled only through the department toggles in the 'Filter and Display' dropdown.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.2)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2",
@@ -183,7 +193,9 @@
   "expected": [
    "1. An unassigned row/lane appears within the grid itself - it is not a separate tray or panel outside the grid.",
    "2. Shifts without a technician sit in this row.",
-   "3. The unassigned shift uses the same block layout as regular shifts (customer, unit, line name / line count) - it simply has no technician."
+   "3. The unassigned shift uses the same block layout as regular shifts (customer, unit, line name / line count) - it simply has no technician.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.2, §4.2)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2, §4.2",
@@ -210,7 +222,9 @@
   "expected": [
    "1. The main grid navigates to show the clicked date (the containing day/week/month depending on the active view).",
    "2. The toolbar date label updates to the new range.",
-   "3. The clicked date is highlighted as the selected date in the mini calendar."
+   "3. The clicked date is highlighted as the selected date in the mini calendar.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1, §5.2)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1, §5.2",
@@ -238,7 +252,9 @@
   "expected": [
    "1. A picker opens showing a grid of month buttons plus arrows to step the year back and forward.",
    "2. Choosing a month shows that month in the mini calendar.",
-   "3. The main grid can then be navigated by clicking a date in the newly shown month."
+   "3. The main grid can then be navigated by clicking a date in the newly shown month.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.2)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.2",
@@ -265,7 +281,9 @@
   ],
   "expected": [
    "1. The calendar grid collapses (hides), leaving more room for the work order list below.",
-   "2. Clicking again expands the calendar grid back."
+   "2. Clicking again expands the calendar grid back.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1, §5.2)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1, §5.2",
@@ -293,7 +311,9 @@
   "expected": [
    "1. The selected date is visually highlighted.",
    "2. Today's date has its own distinct indicator, different from the selection.",
-   "3. Hovering a week row highlights that whole week row."
+   "3. Hovering a week row highlights that whole week row.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.2)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.2",
@@ -322,7 +342,9 @@
   "expected": [
    "1. Work orders appear as a single flat list of cards (one list, no tab split).",
    "2. The list scrolls when there are more cards than fit.",
-   "3. There are no Assigned/Unassigned tabs - assignment is available only as a filter behind the 'Filter' button."
+   "3. There are no Assigned/Unassigned tabs - assignment is available only as a filter behind the 'Filter' button.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1, §5.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1, §5.1",
@@ -352,7 +374,9 @@
    "2. Top right: the line count plus the hours estimate.",
    "3. Below: the customer name in bold, then the unit number.",
    "4. A lead technician row with the technician's avatar and name.",
-   "5. A colored left border whose color reflects the work order's status."
+   "5. A colored left border whose color reflects the work order's status.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Work order card anatomy)",
@@ -411,7 +435,9 @@
    "2. Customer-name search shows only cards for that customer.",
    "3. Unit-number search shows only cards with that unit.",
    "4. Technician-name search shows only cards where that technician appears on the card.",
-   "5. All four searchable fields (WO number, customer, unit, technician) are fields visible on the card itself."
+   "5. All four searchable fields (WO number, customer, unit, technician) are fields visible on the card itself.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Sidebar search, Work order card anatomy)",
@@ -439,7 +465,9 @@
   "expected": [
    "1. The list narrows live with each keystroke - no Enter press or apply button is needed.",
    "2. Deleting characters widens the results again.",
-   "3. With very many work orders, the list may load further results in pages as you scroll - that is expected, not a fault."
+   "3. With very many work orders, the list may load further results in pages as you scroll - that is expected, not a fault.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Sidebar search)",
@@ -467,7 +495,9 @@
   "expected": [
    "1. No work order cards are shown.",
    "2. The app does not error; the sidebar remains usable.",
-   "3. Clearing the search restores the full list."
+   "3. Clearing the search restores the full list.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (derived - search behavior with no matches)",
@@ -496,7 +526,9 @@
   "expected": [
    "1. The filter panel offers three groups: Assignment (Assigned, Unassigned), Status (the work order statuses supported in the app), and Priority (High, Medium, Low).",
    "2. Applying a filter narrows the flat card list.",
-   "3. The 'Filters' button shows a badge with the number of active filters."
+   "3. The 'Filters' button shows a badge with the number of active filters.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
@@ -525,7 +557,9 @@
   "expected": [
    "1. Unassigned: only work orders without an assigned technician remain in the list.",
    "2. Assigned: only work orders with a technician assigned remain.",
-   "3. There are no Assigned/Unassigned tabs - this filter is the only assignment split."
+   "3. There are no Assigned/Unassigned tabs - this filter is the only assignment split.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1, §3.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1, §3.1",
@@ -554,7 +588,9 @@
   "expected": [
    "1. The Status group lists the work order statuses the app supports.",
    "2. Only work orders in the chosen status remain in the card list.",
-   "3. The card left-border colors of the remaining cards are consistent with that status."
+   "3. The card left-border colors of the remaining cards are consistent with that status.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
@@ -582,7 +618,9 @@
   ],
   "expected": [
    "1. The Priority group offers High, Medium, and Low.",
-   "2. Only High-priority work orders remain in the list."
+   "2. Only High-priority work orders remain in the list.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
@@ -609,7 +647,9 @@
   "expected": [
    "1. All applied filters are removed at once.",
    "2. The full work order list is shown again.",
-   "3. The active-count badge on the 'Filter' button disappears (or shows zero)."
+   "3. The active-count badge on the 'Filter' button disappears (or shows zero).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
@@ -637,7 +677,9 @@
   ],
   "expected": [
    "1. The list shows only work orders that match BOTH the text search and the structured filter.",
-   "2. Removing either the search text or the filter widens the list to the remaining condition."
+   "2. Removing either the search text or the filter widens the list to the remaining condition.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§5.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
@@ -669,7 +711,9 @@
    "2. The header of the drill-down shows the work order id.",
    "3. The header also shows the line count, and it matches the number of approved lines.",
    "4. A back control is shown to return to the card list.",
-   "5. Clicking back restores the work order card list."
+   "5. Clicking back restores the work order card list.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line drill-down)",
@@ -724,7 +768,9 @@
   "expected": [
    "1. Every approved line is listed.",
    "2. The unapproved line does NOT appear anywhere in the schedule sidebar.",
-   "3. The header's line count matches the approved lines only."
+   "3. The header's line count matches the approved lines only.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line drill-down - approved-only)",
@@ -752,7 +798,9 @@
   "expected": [
    "1. The row shows the line's title and its estimated hours.",
    "2. The current technician roster is shown as an avatar stack plus a count; there is no cap on how many technicians a line can have.",
-   "3. Each line row has its own drag handle, so it can be dragged independently onto the grid."
+   "3. Each line row has its own drag handle, so it can be dragged independently onto the grid.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1, §8.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line drill-down), §8.1 (Line labor roster - no cap)",
@@ -780,7 +828,9 @@
   "expected": [
    "1. The technician-less line shows a 'Needs techs' badge.",
    "2. The line with a technician does not show the badge.",
-   "3. After a technician is scheduled onto the badge-bearing line, the badge goes away."
+   "3. After a technician is scheduled onto the badge-bearing line, the badge goes away.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line drill-down - Needs techs badge)",
@@ -808,7 +858,9 @@
   ],
   "expected": [
    "1. Typing a line title narrows the list to matching lines.",
-   "2. Typing the customer name returns no results - the line search matches line titles only (the list is already scoped to one work order, so customer/unit/WO fields are not searched)."
+   "2. Typing the customer name returns no results - the line search matches line titles only (the list is already scoped to one work order, so customer/unit/WO fields are not searched).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line search)",
@@ -837,7 +889,9 @@
   "expected": [
    "1. Two chips are shown - All and Unscheduled - each with a count.",
    "2. Unscheduled lists only the lines that have no shifts yet, and its count matches.",
-   "3. All lists every approved line, and its count matches the drill-down header's line count."
+   "3. All lists every approved line, and its count matches the drill-down header's line count.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§3.1, §5.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1, §5.1 (drill-down filters)",

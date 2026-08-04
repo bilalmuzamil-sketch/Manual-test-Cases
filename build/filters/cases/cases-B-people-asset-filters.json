@@ -20,10 +20,12 @@
    "1. A dropdown panel opens under the Customer chip.",
    "2. A search input with the placeholder 'Search customer' is at the top, already focused so you can type right away.",
    "3. Below it is a scrollable list of customer names.",
-   "4. A 'Clear selection' action is shown at the bottom of the panel."
+   "4. A 'Clear selection' action is shown at the bottom of the panel.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S3-R1)."
   ],
   "design_ref": "design-notes.md B.1 #10 (11842:14236 - list pattern also evidenced in final mobile sheets #20/#21)",
-  "spec_ref": "Filters (no Jira epic) (S3-R1) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8788 (S3-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Whether the input is auto-focused on open is shown as focused in the design - VIU-confirm in the build.",
   "api_related": false
@@ -47,10 +49,12 @@
   "expected": [
    "1. The customer list narrows as you type, showing only names that match what you entered.",
    "2. Customers that do not match are removed from the list.",
-   "3. Deleting the text brings the full list back."
+   "3. Deleting the text brings the full list back.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S3-R2)."
   ],
   "design_ref": "design-notes.md B.1 #10 (11842:14236)",
-  "spec_ref": "Filters (no Jira epic) (S3-R2) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8788 (S3-R2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -76,10 +80,12 @@
    "1. Each selected customer appears as a tag (small chip) with an x in the input area at the top of the dropdown.",
    "2. Each selected customer's row in the list shows a checkmark on the right.",
    "3. Long customer names on tags are shortened with an ellipsis (for example 'Texas Truck And Aut...').",
-   "4. You can keep selecting as many customers as needed - there is no selection limit."
+   "4. You can keep selecting as many customers as needed - there is no selection limit.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S3-R3, S3-R4)."
   ],
   "design_ref": "design-notes.md B.1 #11 (11854:19595 - token pattern also in final mobile frame #23 11884:16383)",
-  "spec_ref": "Filters (no Jira epic) (S3-R3; S3-R4; §4 Key Decisions (no selection limit)) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8788 (S3-R3; S3-R4; §4 Key Decisions (no selection limit)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "The design also shows a clear-all (x) circle icon at the top right of the token field - VIU-confirm whether the build has it and what it clears (visual detail beyond the spec text).",
   "api_related": false
@@ -104,10 +110,12 @@
    "1. That customer's tag disappears from the input area.",
    "2. The checkmark next to that customer in the list is removed.",
    "3. The other selected customers keep their tags and checkmarks.",
-   "4. The table updates to no longer include that customer's work orders."
+   "4. The table updates to no longer include that customer's work orders.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S3-R5)."
   ],
   "design_ref": "design-notes.md B.1 #11 (11854:19595)",
-  "spec_ref": "Filters (no Jira epic) (S3-R5) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8788 (S3-R5) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -131,10 +139,12 @@
   "expected": [
    "1. The table shows only work orders whose customer is one of the two selected customers.",
    "2. Work orders belonging to any other customer are hidden.",
-   "3. The table updates in real time as you make the selections (no apply button on desktop)."
+   "3. The table updates in real time as you make the selections (no apply button on desktop).",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S3-R6, S2-R6)."
   ],
   "design_ref": "design-notes.md B.1 #11 (11854:19595)",
-  "spec_ref": "Filters (no Jira epic) (S3-R6; S2-R6 (real-time pattern)) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S3-R6; S2-R6 (real-time pattern)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): 'Customer' here means the customer ACCOUNT/company shown in the grid's Customer column, not the contact person on the work order (G3) - seed test data accordingly.",
   "api_related": false
@@ -160,10 +170,12 @@
    "1. All customer tags are removed from the input area.",
    "2. All checkmarks in the list are removed.",
    "3. The Customer filter is removed and the table shows work orders of all customers again.",
-   "4. Other active filters (if any) are not affected."
+   "4. Other active filters (if any) are not affected.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S3-R7, S8-R2)."
   ],
   "design_ref": "design-notes.md B.1 #11 (11854:19595)",
-  "spec_ref": "Filters (no Jira epic) (S3-R7; S8-R2) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S3-R7; S8-R2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -187,10 +199,12 @@
   "expected": [
    "1. The dropdown closes when you click outside it.",
    "2. The Customer chip stays in the active (blue) state showing the selection and the table stays filtered.",
-   "3. When reopened, the selected customers' tags are still visible in the input area."
+   "3. When reopened, the selected customers' tags are still visible in the input area.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S3-R8)."
   ],
   "design_ref": "design-notes.md B.1 #11 (11854:19595)",
-  "spec_ref": "Filters (no Jira epic) (S3-R8) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8788 (S3-R8) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -213,10 +227,12 @@
   "expected": [
    "1. The list shows a message saying there are no results (instead of an empty gap).",
    "2. The app does not show an error.",
-   "3. Clearing the search text brings the customer list back."
+   "3. Clearing the search text brings the customer list back.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S3-N1)."
   ],
   "design_ref": "design-notes.md B.1 (no-results list state not drawn in the final frames)",
-  "spec_ref": "Filters (no Jira epic) (S3-N1) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8788 (S3-N1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "The exact no-results wording ('No results' per the spec) is not shown in any final design frame - VIU-confirm the real on-screen text.",
   "api_related": false
@@ -241,10 +257,12 @@
   "expected": [
    "1. The customer with no work orders IS shown in the filter list (they are not hidden).",
    "2. After selecting only that customer, the table shows no rows and the filtered empty state is displayed.",
-   "3. No error is shown."
+   "3. No error is shown.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S3-E1, S3-N2, S8-R3)."
   ],
   "design_ref": "design-notes.md B.1 #10 (11842:14236)",
-  "spec_ref": "Filters (no Jira epic) (S3-E1; S3-N2; S8-R3) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S3-E1; S3-N2; S8-R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -269,10 +287,12 @@
    "1. A dropdown panel opens under the Lead Technician chip.",
    "2. A search input with the placeholder 'Search technician' is at the top.",
    "3. Below it is a scrollable list of technician names.",
-   "4. A 'Clear selection' action is shown at the bottom."
+   "4. A 'Clear selection' action is shown at the bottom.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S4-R1)."
   ],
   "design_ref": "design-notes.md B.1 #8 (11854:24452 - list pattern also in final mobile frame #24 11884:14296)",
-  "spec_ref": "Filters (no Jira epic) (S4-R1) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8789 (S4-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "DESIGN TYPO FLAG: the design spells this filter 'Lead Tehnician' in the mobile sheet rows and the table column header (design-notes C.1). Cases use the correct 'Lead Technician'; the build must ship the correct spelling - if it inherits the typo, raise a bug.",
   "api_related": false
@@ -294,10 +314,12 @@
   ],
   "expected": [
    "1. The technician list narrows to only the names matching what you typed.",
-   "2. Deleting the text brings the full list back."
+   "2. Deleting the text brings the full list back.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S4-R2)."
   ],
   "design_ref": "design-notes.md B.1 #8 (11854:24452)",
-  "spec_ref": "Filters (no Jira epic) (S4-R2) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8789 (S4-R2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -322,10 +344,12 @@
    "1. Selected technicians show a filled checkbox in the list.",
    "2. The table shows only work orders where one of the selected technicians is assigned as the LEAD technician.",
    "3. A work order where the technician is assigned only in a non-lead role does not appear.",
-   "4. The table updates in real time as you select."
+   "4. The table updates in real time as you select.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S4-R3, S4-R4)."
   ],
   "design_ref": "design-notes.md B.1 #8 (11854:24452)",
-  "spec_ref": "Filters (no Jira epic) (S4-R3; S4-R4) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8789 (S4-R3; S4-R4) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Lead-only matching (vs any assigned technician) is what the spec says - VIU-confirm the build behaves this way.",
   "api_related": false
@@ -349,10 +373,12 @@
   "expected": [
    "1. All technician selections are removed (checkboxes unticked).",
    "2. The Lead Technician filter no longer restricts the table.",
-   "3. Other active filters are not affected."
+   "3. Other active filters are not affected.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S4-R5, S8-R2)."
   ],
   "design_ref": "design-notes.md B.1 #8 (11854:24452)",
-  "spec_ref": "Filters (no Jira epic) (S4-R5; S8-R2) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S4-R5; S8-R2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -374,10 +400,12 @@
   ],
   "expected": [
    "1. The dropdown closes.",
-   "2. The selection stays applied - the chip stays active and the table stays filtered."
+   "2. The selection stays applied - the chip stays active and the table stays filtered.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S4-R6)."
   ],
   "design_ref": "design-notes.md B.1 #8 (11854:24452)",
-  "spec_ref": "Filters (no Jira epic) (S4-R6) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8789 (S4-R6) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -400,10 +428,12 @@
   ],
   "expected": [
    "1. The table shows no rows and the filtered empty state is displayed.",
-   "2. No error is shown."
+   "2. No error is shown.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S4-N1, S8-R3)."
   ],
   "design_ref": "design-notes.md B.1 #8 (11854:24452)",
-  "spec_ref": "Filters (no Jira epic) (S4-N1; S8-R3) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S4-N1; S8-R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -427,10 +457,12 @@
   ],
   "expected": [
    "1. The deactivated technician is NOT shown in the filter list.",
-   "2. Active technicians are still listed normally."
+   "2. Active technicians are still listed normally.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S4-E1)."
   ],
   "design_ref": "design-notes.md B.1 #8 (11854:24452)",
-  "spec_ref": "Filters (no Jira epic) (S4-E1) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8789 (S4-E1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "How the app marks a staff member inactive is env-specific - use the staff administration screen; restore the staff member's state after the test (Standing Rule 5). Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): the technician list shows only active, clockable staff for the CURRENT location; after switching location, selected technicians who are not in the new location silently drop from the chip (section 4-3.2).",
   "api_related": false
@@ -455,10 +487,12 @@
    "1. A dropdown panel opens under the Service Advisor chip.",
    "2. A search input with the placeholder 'Search advisor' is at the top.",
    "3. Below it is a scrollable list of advisor names.",
-   "4. A 'Clear selection' action is shown at the bottom."
+   "4. A 'Clear selection' action is shown at the bottom.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S5-R1)."
   ],
   "design_ref": "design-notes.md B.1 #9 (11854:24553 - list pattern also in final mobile frame #25 11884:14811)",
-  "spec_ref": "Filters (no Jira epic) (S5-R1) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8790 (S5-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -480,10 +514,12 @@
   ],
   "expected": [
    "1. The advisor list narrows to only the names matching what you typed.",
-   "2. Deleting the text brings the full list back."
+   "2. Deleting the text brings the full list back.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S5-R2)."
   ],
   "design_ref": "design-notes.md B.1 #9 (11854:24553)",
-  "spec_ref": "Filters (no Jira epic) (S5-R2) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8790 (S5-R2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -507,10 +543,12 @@
   "expected": [
    "1. Selected advisors show a filled checkbox in the list.",
    "2. The table shows only work orders assigned to any of the selected advisors.",
-   "3. The table updates in real time as you select."
+   "3. The table updates in real time as you select.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S5-R3, S5-R4)."
   ],
   "design_ref": "design-notes.md B.1 #9 (11854:24553)",
-  "spec_ref": "Filters (no Jira epic) (S5-R3; S5-R4) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8790 (S5-R3; S5-R4) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -534,10 +572,12 @@
   "expected": [
    "1. All advisor selections are removed.",
    "2. The Service Advisor filter no longer restricts the table.",
-   "3. Other active filters are not affected."
+   "3. Other active filters are not affected.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S5-R5, S8-R2)."
   ],
   "design_ref": "design-notes.md B.1 #9 (11854:24553)",
-  "spec_ref": "Filters (no Jira epic) (S5-R5; S8-R2) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S5-R5; S8-R2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -559,10 +599,12 @@
   ],
   "expected": [
    "1. The dropdown closes.",
-   "2. The selection stays applied - the chip stays active and the table stays filtered."
+   "2. The selection stays applied - the chip stays active and the table stays filtered.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S5-R6)."
   ],
   "design_ref": "design-notes.md B.1 #9 (11854:24553)",
-  "spec_ref": "Filters (no Jira epic) (S5-R6) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8790 (S5-R6) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -585,10 +627,12 @@
   ],
   "expected": [
    "1. The table shows no rows and the filtered empty state is displayed.",
-   "2. No error is shown."
+   "2. No error is shown.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S5-N1, S8-R3)."
   ],
   "design_ref": "design-notes.md B.1 #9 (11854:24553)",
-  "spec_ref": "Filters (no Jira epic) (S5-N1; S8-R3) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S5-N1; S8-R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -612,10 +656,12 @@
   ],
   "expected": [
    "1. The deactivated advisor is NOT shown in the filter list.",
-   "2. Active advisors are still listed normally."
+   "2. Active advisors are still listed normally.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S5-E1)."
   ],
   "design_ref": "design-notes.md B.1 #9 (11854:24553)",
-  "spec_ref": "Filters (no Jira epic) (S5-E1) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8790 (S5-E1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Restore the staff member's state after the test (Standing Rule 5). Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): mechanism = the filter dropdown requests active advisors only (activeOnly=1, G5). The advisor dropdown on the Work Order detail page and the Advisor Analysis report INTENTIONALLY still include inactive advisors - do not raise those as bugs. Advisor options are location-scoped and change on location switch.",
   "api_related": false
@@ -639,10 +685,12 @@
    "1. A small dropdown panel opens under the Asset on site chip.",
    "2. It contains exactly two options: Yes and No.",
    "3. A 'Clear selection' action is shown at the bottom.",
-   "4. It is a dropdown (like the other filters), not an on/off toggle."
+   "4. It is a dropdown (like the other filters), not an on/off toggle.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S6-R1)."
   ],
   "design_ref": "design-notes.md B.1 #12 (11880:12460 - Yes/No options also in final mobile frame #19 11884:15582)",
-  "spec_ref": "Filters (no Jira epic) (S6-R1; §4 Key Decisions (dropdown - not toggle)) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8791 (S6-R1; §4 Key Decisions (dropdown - not toggle)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -665,10 +713,12 @@
   ],
   "expected": [
    "1. The table shows only work orders whose asset is currently on site.",
-   "2. Work orders whose asset is not on site are hidden."
+   "2. Work orders whose asset is not on site are hidden.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S6-R2)."
   ],
   "design_ref": "design-notes.md B.1 #12 (11880:12460); B.1 shared shell (On Site column icons)",
-  "spec_ref": "Filters (no Jira epic) (S6-R2) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8791 (S6-R2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "WORDING REPAIR 2026-07-31 (Rule-28 audit FIX-WORDING, user-authorized): removed the old expected 3 ('Choosing No instead shows only the not-on-site work orders') — the steps only choose Yes, and the No direction is FLT-ASSET-07's subject (C38878). | Which field in the build drives a work order's on-site status is open (OQ-6) - the mobile design shows an 'Asset On Site' toggle on the work order card; VIU-confirm the data source and seed both states before testing.",
   "api_related": false
@@ -692,10 +742,12 @@
   "expected": [
    "1. No becomes the selected option and Yes is deselected automatically - only one option can be selected at a time.",
    "2. The table switches to showing only the not-on-site work orders.",
-   "3. The chip shows the currently selected value."
+   "3. The chip shows the currently selected value.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S6-R3)."
   ],
   "design_ref": "design-notes.md B.1 #12 (11880:12460)",
-  "spec_ref": "Filters (no Jira epic) (S6-R3) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8791 (S6-R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -718,10 +770,12 @@
   "expected": [
    "1. The selection is removed and the chip returns to its default (inactive) state.",
    "2. The table shows work orders regardless of on-site status again.",
-   "3. Other active filters are not affected."
+   "3. Other active filters are not affected.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S6-R4, S8-R2)."
   ],
   "design_ref": "design-notes.md B.1 #12 (11880:12460)",
-  "spec_ref": "Filters (no Jira epic) (S6-R4; S8-R2) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S6-R4; S8-R2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -743,10 +797,12 @@
   ],
   "expected": [
    "1. The dropdown closes.",
-   "2. The Yes selection stays applied - the chip stays active and the table stays filtered."
+   "2. The Yes selection stays applied - the chip stays active and the table stays filtered.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S6-R5)."
   ],
   "design_ref": "design-notes.md B.1 #12 (11880:12460)",
-  "spec_ref": "Filters (no Jira epic) (S6-R5) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8791 (S6-R5) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -769,10 +825,12 @@
   ],
   "expected": [
    "1. The table shows no rows and the filtered empty state is displayed.",
-   "2. No error is shown."
+   "2. No error is shown.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S6-N1, S8-R3)."
   ],
   "design_ref": "design-notes.md B.1 #12 (11880:12460)",
-  "spec_ref": "Filters (no Jira epic) (S6-N1; S8-R3) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S6-N1; S8-R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -797,10 +855,12 @@
   "expected": [
    "1. Only work orders whose asset is NOT on site remain in the list.",
    "2. Every work order with the asset on site is excluded.",
-   "3. The chip shows the active No selection."
+   "3. The chip shows the active No selection.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S6-R2)."
   ],
   "design_ref": "design-notes.md (Asset on site dropdown 11880:12460); tech-plan-2026-07-29 G4 / section 4-1.6",
-  "spec_ref": "Filters (no Jira epic) (S6-R2; tech plan 2026-07-29 G4 (filtering No is new capability)) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8791 (S6-R2; tech plan 2026-07-29 G4 (filtering No is new capability)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): filtering by 'No' is BRAND-NEW (the old Asset Here toggle could only show on-site assets); engineering explicitly flags the No path for functional verification (section 4-1.6) - regression-watch this case.",
   "api_related": false

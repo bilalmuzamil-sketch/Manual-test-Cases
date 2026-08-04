@@ -16,7 +16,9 @@
   ],
   "expected": [
    "1. The grid jumps to the range containing the current date (today's day, this week, or this month depending on the active view).",
-   "2. The date label updates accordingly."
+   "2. The date label updates accordingly.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§6)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §6 (Today button)",
@@ -45,7 +47,9 @@
    "1. Week view: each arrow click moves one whole week; the label shows the week range (spec's example format: 'Jul 14 to 20, 2026').",
    "2. Day view: each click moves one day; the label shows that day.",
    "3. Month view: each click moves one month; the label shows that month.",
-   "4. The label always matches what the grid displays."
+   "4. The label always matches what the grid displays.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§6)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §6 (Left/right arrows, Date label)",
@@ -75,7 +79,9 @@
    "1. Blocks that match the search are highlighted; blocks that do not match fade.",
    "2. All five fields match: customer name, work order number, unit number, technician name, and line name.",
    "3. Matching blocks stay in place on the grid (search visually filters; it does not remove or rearrange).",
-   "4. Clearing the search restores all blocks to normal."
+   "4. Clearing the search restores all blocks to normal.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§6)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §6 (Search)",
@@ -102,7 +108,9 @@
   "expected": [
    "1. The dropdown is checkbox style and contains: a toggle per department, 'My Shifts', and 'VIN'.",
    "2. Defaults: all department toggles ON, 'My Shifts' OFF, 'VIN' OFF.",
-   "3. There is no separate departments-only control - this dropdown replaces it."
+   "3. There is no separate departments-only control - this dropdown replaces it.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§6, §9)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §6, §9 (Filter and Display dropdown)",
@@ -131,7 +139,9 @@
   "expected": [
    "1. The turned-off department's group (header and technician rows) disappears from the grid.",
    "2. Other departments are unaffected.",
-   "3. Turning it back on restores the group."
+   "3. Turning it back on restores the group.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§9)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §9 (Department toggles)",
@@ -161,7 +171,9 @@
    "1. Only shifts assigned to you remain visible; all other technician rows and their shifts are hidden.",
    "2. Turning it off restores the full grid.",
    "3. This is a personal convenience filter only - it does not change what you are permitted to see (default is OFF, everyone's shifts visible).",
-   "4. For a user who has no technician/staff record of their own, the 'My Shifts' option is not shown at all."
+   "4. For a user who has no technician/staff record of their own, the 'My Shifts' option is not shown at all.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§9, §14.3)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §9 (My Shifts), §14.3",
@@ -193,7 +205,9 @@
    "2. 'VIN Number' on: the VIN appears as an additional line on blocks in day and week views.",
    "3. Month view blocks never show the VIN, even with the toggle on (space constraints).",
    "4. In day view with the VIN on, the lane height grows to fit the extra VIN line and no block text is clipped or cut off.",
-   "5. The 'VIN Number' toggle affects the block only - the tooltip and the modal always show the VIN when the unit has one."
+   "5. The 'VIN Number' toggle affects the block only - the tooltip and the modal always show the VIN when the unit has one.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§9, §4.4, §4.8). The current behaviour follows a later product owner decision dated 2026-07-31."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §9 (VIN), §4.4",
@@ -224,7 +238,9 @@
    "1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday.",
    "2. Defaults: Business Hours OFF, Capacity Bars ON, Events ON, Tech Hours OFF, Saturday ON, Sunday ON.",
    "3. Capacity Bars OFF: the capacity bars disappear from the column headers; ON: they reappear with the same values.",
-   "4. Events OFF: event blocks disappear from the grid while shifts remain; ON: the events reappear unchanged."
+   "4. Events OFF: event blocks disappear from the grid while shifts remain; ON: the events reappear unchanged.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§6, §9, §4.12)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §6, §9 (View Options popover)",
@@ -253,7 +269,9 @@
   "expected": [
    "1. With the toggle on, the hours OUTSIDE the working day are shaded with a grey overlay.",
    "2. Working hours remain unshaded.",
-   "3. Turning it off removes the shading."
+   "3. Turning it off removes the shading.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§9, §4.8)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §9 (Business Hours), §4.8 (Business-hours shading)",
@@ -337,7 +355,9 @@
   "expected": [
    "1. Each technician's working hours are displayed next to their name in the row header.",
    "2. The hours match the technicians' configured hours.",
-   "3. Turning it off hides the hours again."
+   "3. Turning it off hides the hours again.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§9)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §9 (Tech Hours)",
@@ -365,7 +385,9 @@
   "expected": [
    "1. Saturday off: the Saturday column is removed (6 columns remain).",
    "2. Sunday off too: 5 weekday columns remain (Monday to Friday).",
-   "3. Both back on: the full Monday-to-Sunday 7-column week returns."
+   "3. Both back on: the full Monday-to-Sunday 7-column week returns.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§9, §3.2)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §9 (Saturday, Sunday), §3.2 (Week view)",
@@ -395,7 +417,9 @@
    "1. A confirmation modal appears for the cross-technician move.",
    "2. After confirming, the shift sits on technician B's row.",
    "3. Technician B is added to the affected line's roster and technician A is removed from it.",
-   "4. A toast with Undo appears."
+   "4. A toast with Undo appears.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7, §12)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (Shift reassignment), §12",
@@ -452,7 +476,9 @@
    "2. It contains ONLY two items: 'Create Event' and 'New Work Order'.",
    "3. There is no 'View Day' item - it was removed from the menu.",
    "4. There is no 'New Shift' item - it was removed from the menu.",
-   "5. This menu is opened by a normal left-click - right-clicking the cell does not open it."
+   "5. This menu is opened by a normal left-click - right-clicking the cell does not open it.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7, §14.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (left-click menu on empty grid space)",
@@ -533,7 +559,9 @@
   "expected": [
    "1. A scope prompt appears with three options: this shift only, this and everything after, and the whole series.",
    "2. Each option states its consequence in hours returned (spec's example format: 'returns 8h' / 'returns 56h').",
-   "3. The prompt uses routine, lightweight styling - not alarming destructive styling."
+   "3. The prompt uses routine, lightweight styling - not alarming destructive styling.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (Series-aware deletion)",
@@ -563,7 +591,9 @@
    "1. Only that day's shift is removed.",
    "2. The series keeps the gap - the remaining shifts do NOT shuffle to close it.",
    "3. The removed day's hours return to the estimate's remaining (scheduled hours drop by that day's hours).",
-   "4. An undo toast appears."
+   "4. An undo toast appears.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (This shift only)",
@@ -591,7 +621,9 @@
   "expected": [
    "1. The third shift and every later shift of the series are removed.",
    "2. The first two shifts remain untouched.",
-   "3. An undo toast appears."
+   "3. An undo toast appears.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (This and everything after)",
@@ -619,7 +651,9 @@
   "expected": [
    "1. All of technician A's series shifts are removed.",
    "2. Technician B's independent series is untouched (the scope is per technician's series).",
-   "3. An undo toast appears."
+   "3. An undo toast appears.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (The whole series - 'for that technician')",
@@ -649,7 +683,9 @@
    "1. First shift: two options ('this and after' would equal 'whole series', so only two are shown).",
    "2. Last shift: two options ('this and after' would equal 'this only').",
    "3. Middle shift: all three options.",
-   "4. Cancelling leaves the series unchanged in every case."
+   "4. Cancelling leaves the series unchanged in every case.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (options adapt to position)",
@@ -676,7 +712,9 @@
   ],
   "expected": [
    "1. No series-scope prompt appears (the scope question is only for shifts that belong to a series).",
-   "2. The shift is deleted and an undo toast appears."
+   "2. The shift is deleted and an undo toast appears.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (derived - scope prompt is for series shifts)",
@@ -733,7 +771,9 @@
   "expected": [
    "1. Untouched, a toast that has an Undo action persists about 7 seconds; a toast without Undo persists about 4 seconds, before dismissing.",
    "2. While the cursor is over it, the toast stays (does not auto-dismiss).",
-   "3. After the cursor leaves, it dismisses."
+   "3. After the cursor leaves, it dismisses.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7, §11)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (Toast notifications), §11 (Undo)",
@@ -766,7 +806,9 @@
    "2. Undo after delete: the shift is back exactly where it was.",
    "3. Undo after move: the shift returns to its original day/time.",
    "4. Undo after reassign: the shift returns to the original technician, and the line's roster is restored (original tech back on, target tech off).",
-   "5. Every destructive action is undoable within the toast's lifetime."
+   "5. Every destructive action is undoable within the toast's lifetime.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7, §11)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §11 (Undo), §7",
@@ -797,7 +839,9 @@
    "2. Same for the time picker and the note edit - each sub-picker closes first and the modal stays open.",
    "3. Escape with no open sub-picker closes the modal itself.",
    "4. With two layers open, the FIRST Escape closes only the topmost layer, and the SECOND Escape closes the next layer down.",
-   "5. Escape works anywhere on the schedule page as a global shortcut, following the defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search)."
+   "5. Escape works anywhere on the schedule page as a global shortcut, following the defined stacking order (delete scope, reassign, spread, capacity, event modal, event view, line picker, shift detail, cell menu, calendar picker, customize, filters, search).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (Keyboard support - Escape)",
@@ -858,7 +902,9 @@
    "1. In each confirmable dialog, Enter confirms it - equivalent to clicking its confirm action.",
    "2. The confirmed action takes effect (spread created / reassigned / event saved / delete applied).",
    "3. In the note editor, Enter inserts a new line in the note - it does NOT confirm or close the dialog.",
-   "4. The multiline note can be completed and saved normally."
+   "4. The multiline note can be completed and saved normally.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (Keyboard support - Enter)",
@@ -912,7 +958,9 @@
   "expected": [
    "1. Focus moves through the modal's interactive elements with visible focus rings.",
    "2. Focus stays trapped inside the modal (wraps back to its first control) until the modal closes.",
-   "3. On the page, toolbar and sidebar controls are reachable by keyboard."
+   "3. On the page, toolbar and sidebar controls are reachable by keyboard.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§11)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §11 (Accessibility)",
@@ -939,7 +987,9 @@
   ],
   "expected": [
    "1. Both the single shift and the multi-week series render in the default blue.",
-   "2. No special color is auto-applied to long jobs - blue is the default for ALL shifts."
+   "2. No special color is auto-applied to long jobs - blue is the default for ALL shifts.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§10)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §10",
@@ -970,7 +1020,9 @@
    "1. The shift's block re-renders in the chosen color.",
    "2. The color provides three consistent tones: background fill, text color, and accent (left border).",
    "3. The color is per SHIFT, not per work order - the other shift from the same work order keeps its own (default blue) color and does not change.",
-   "4. Colors carry no fixed meaning - they are free choice beyond the two defaults (blue shift / grey event)."
+   "4. Colors carry no fixed meaning - they are free choice beyond the two defaults (blue shift / grey event).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§10, §4.9, §4.4)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §10, §4.9 (Color picker)",
@@ -999,7 +1051,9 @@
   "expected": [
    "1. Each color's label can be edited.",
    "2. The renamed label shows for the whole shop - the same picker opened elsewhere shows 'ZZAUTOTEST Rush'.",
-   "3. Shifts and events share the same custom palette with the same labels."
+   "3. Shifts and events share the same custom palette with the same labels.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§10, §4.10)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §10 (Color labels are editable per shop), §4.10 (shared picker)",

@@ -16,10 +16,12 @@
   ],
   "expected": [
    "1. A filter bar is visible directly below the tab row and above the work order table.",
-   "2. The filter bar is shown by default (expanded) without having to turn anything on."
+   "2. The filter bar is shown by default (expanded) without having to turn anything on.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S1-R1)."
   ],
   "design_ref": "design-notes.md B.1 #1 (11854:24657)",
-  "spec_ref": "Filters (no Jira epic) (S1-R1) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8786 (S1-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Placement (below tabs, above table) confirmed in the final design frame 11854:24657.",
   "api_related": false
@@ -43,10 +45,12 @@
   "expected": [
    "1. Exactly five filter chips appear, in this order: Status, Customer, Lead Technician, Service Advisor, Asset on site.",
    "2. Each chip shows a small icon, the filter name and a down arrow (chevron) indicating it opens a dropdown.",
-   "3. In the design the icons are: a spinner for Status, a person for Customer, a wrench for Lead Technician, a headset for Service Advisor and a truck for Asset on site."
+   "3. In the design the icons are: a spinner for Status, a person for Customer, a wrench for Lead Technician, a headset for Service Advisor and a truck for Asset on site.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S1-R2, S1-R3)."
   ],
   "design_ref": "design-notes.md B.1 #1 (11854:24657)",
-  "spec_ref": "Filters (no Jira epic) (S1-R2; S1-R3) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8786 (S1-R2; S1-R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "WORDING REPAIR 2026-07-31 (Rule-28 audit FIX-WORDING, user-authorized): added precondition 3 'You are on the All tab' — the default landing tab is Estimates (FLT-TAB-06) where the Status chip renders greyed/pre-filled, so the five-identical-chips expectation only reads cleanly on the All tab. | DESIGN TYPO FLAG: the design's work order table column header reads 'Lead Tehnician' (missing 'c') while the filter chip itself is spelled correctly - the build must ship 'Lead Technician' everywhere (design-notes C.1); if the build inherits the typo, raise a bug. Chip label capitalisation 'Asset on site' (design) vs 'Asset on Site' (spec) - VIU-confirm the exact on-screen label.",
   "api_related": false
@@ -69,10 +73,12 @@
   "expected": [
    "1. The filter bar is still shown - it does not disappear on this tab.",
    "2. The Customer, Lead Technician, Service Advisor and Asset on site chips are all displayed and usable.",
-   "3. The Status chip is not usable on this tab: it is shown greyed out and already filled in with the tab's own status, and cannot be clicked."
+   "3. The Status chip is not usable on this tab: it is shown greyed out and already filled in with the tab's own status, and cannot be clicked.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S1-N1, S9-R2). The current behaviour follows a later product owner decision dated 2026-07-17."
   ],
   "design_ref": "design-notes.md B.1 #2 (11972:32318)",
-  "spec_ref": "Filters (no Jira epic) (S1-N1; S9-R2; §4 Key Decisions - PRD text says \"hidden\"; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S1-N1; S9-R2; §4 Key Decisions - PRD text says \"hidden\"; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Status-chip wording standard: this behaviour is described as \"shown greyed out, pre-filled, not clickable\" everywhere in this suite. PRD v1.6 S9-R2/S9-R3/S2-N1/S2-N2/S1-N1 and §4 still say \"hidden\" - stale prose, Branko asked to align (item B1). Do not reintroduce the word \"hidden\". | Consistency fix 2026-07-31 (FIX-PLAN F1a, user-authorized) against spec v1.6 (Confluence v12, 2026-07-28). | (VIU-confirm the exact greyed-out look of the Status chip - flag kept here, out of the tester-facing text.)",
   "api_related": false
@@ -98,10 +104,12 @@
    "1. A dropdown panel opens under the Status chip.",
    "2. It lists all nine statuses as checkboxes, in this order: Estimate, Approved, In progress, Review, Complete, Invoiced, Paid, Declined, Imported.",
    "3. All checkboxes are unticked (nothing selected yet).",
-   "4. A 'Clear selection' action is shown at the bottom of the dropdown."
+   "4. A 'Clear selection' action is shown at the bottom of the dropdown.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S2-R1, S2-R4)."
   ],
   "design_ref": "design-notes.md B.1 #6/#7 (11854:24280, 11854:24194 - option list also evidenced in the final mobile sheets #16/#17); requirements.md Story 2",
-  "spec_ref": "Filters (no Jira epic) (S2-R1; S2-R4) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8787 (S2-R1; S2-R4) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Design shows 'In progress' (lower-case p) while the spec writes 'In Progress' - VIU-confirm the exact on-screen capitalisation. The desktop dropdown popover frames are superseded as separate frames, but the 9-option list is fully evidenced in the final mobile sheets; capture the build's real desktop dropdown at VIU.",
   "api_related": false
@@ -126,10 +134,12 @@
   "expected": [
    "1. The ticked checkbox appears filled (checked).",
    "2. The table updates immediately to show only work orders in the selected status - there is no confirm or apply button on desktop.",
-   "3. Work orders in other statuses are no longer listed."
+   "3. Work orders in other statuses are no longer listed.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S2-R2, S2-R3, S2-R6)."
   ],
   "design_ref": "design-notes.md B.1 #7 (11854:24194)",
-  "spec_ref": "Filters (no Jira epic) (S2-R2; S2-R3; S2-R6) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8787 (S2-R2; S2-R3; S2-R6) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -155,10 +165,12 @@
    "1. Every ticked status shows a filled checkbox.",
    "2. The table shows work orders whose status matches ANY of the ticked statuses (both Estimate and Approved rows appear).",
    "3. Work orders in statuses that are not ticked are hidden.",
-   "4. There is no limit on how many statuses you can tick."
+   "4. There is no limit on how many statuses you can tick.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S2-R2)."
   ],
   "design_ref": "design-notes.md B.1 #4/#7 (11854:26246, 11854:24194)",
-  "spec_ref": "Filters (no Jira epic) (S2-R2; §4 Key Decisions (no selection limit)) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8787 (S2-R2; §4 Key Decisions (no selection limit)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Tech plan 2026-07-29 (engineering intent - confirm live at the wording/behaviour pass): the Imported status may be MUTUALLY EXCLUSIVE with the other statuses/filters (G1) - see FLT-STAT-07; pending Branko confirmation (spec S2-R1 lists it as a plain status).",
   "api_related": false
@@ -183,10 +195,12 @@
   "expected": [
    "1. All status checkboxes become unticked.",
    "2. The Status filter is removed and the table returns to showing work orders of every status.",
-   "3. Only the Status filter is affected - any other active filters stay applied."
+   "3. Only the Status filter is affected - any other active filters stay applied.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S2-R4, S8-R2)."
   ],
   "design_ref": "design-notes.md B.1 #6 (11854:24280)",
-  "spec_ref": "Filters (no Jira epic) (S2-R4; S8-R2) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S2-R4; S8-R2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -210,10 +224,12 @@
   "expected": [
    "1. The dropdown closes.",
    "2. The ticked statuses stay selected - the Status chip stays in its active state showing the selection.",
-   "3. The table stays filtered by the selected statuses."
+   "3. The table stays filtered by the selected statuses.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S2-R5)."
   ],
   "design_ref": "design-notes.md B.1 #4 (11854:26246)",
-  "spec_ref": "Filters (no Jira epic) (S2-R5) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8787 (S2-R5) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -238,10 +254,12 @@
   "expected": [
    "1. The table shows no rows.",
    "2. An empty state is displayed saying no results were found for the current filters (see the Empty State cases for its full content).",
-   "3. The app does not show an error."
+   "3. The app does not show an error.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S2-N3, S8-R3)."
   ],
   "design_ref": "design-notes.md B.1 (empty state not drawn in the final WO frames - message text to be captured from the build)",
-  "spec_ref": "Filters (no Jira epic) (S2-N3; S8-R3) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S2-N3; S8-R3) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Exact empty-state message text is not shown in the final design frames - VIU-confirm the real on-screen wording.",
   "api_related": false
@@ -265,10 +283,12 @@
   "expected": [
    "1. The filter bar row is hidden.",
    "2. The work order table moves up and uses the reclaimed vertical space.",
-   "3. The filter icon shows a pressed/active look while the bar is collapsed."
+   "3. The filter icon shows a pressed/active look while the bar is collapsed.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S1-R4, S1-R5)."
   ],
   "design_ref": "design-notes.md B.1 #3 (11854:25927)",
-  "spec_ref": "Filters (no Jira epic) (S1-R4; S1-R5) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8786 (S1-R4; S1-R5) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -292,10 +312,12 @@
   "expected": [
    "1. The filter bar reappears below the tab row.",
    "2. The previously selected filters are still shown on their chips in the active (blue) state - nothing was lost while collapsed.",
-   "3. The 'Clear filters' link is still shown at the right end of the chip row."
+   "3. The 'Clear filters' link is still shown at the right end of the chip row.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S1-R6)."
   ],
   "design_ref": "design-notes.md B.1 #4/#5 (11854:26246, 11854:26564)",
-  "spec_ref": "Filters (no Jira epic) (S1-R6) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8786 (S1-R6) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -319,10 +341,12 @@
   ],
   "expected": [
    "1. After step 2 the filter bar is still collapsed (your choice was remembered).",
-   "2. After step 4 the filter bar is expanded again when you return - whichever state you left it in is restored."
+   "2. After step 4 the filter bar is expanded again when you return - whichever state you left it in is restored.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S1-R7, S10-R1)."
   ],
   "design_ref": "design-notes.md B.1 #3 (11854:25927)",
-  "spec_ref": "Filters (no Jira epic) (S1-R7; S10-R1) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8785 [epic] (S1-R7; S10-R1) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -345,10 +369,12 @@
   ],
   "expected": [
    "1. After step 1 the filter icon shows no special indicator (only its normal pressed look).",
-   "2. After step 3 the filter icon shows a visual indicator (filters icon in primary blue) signalling that active filters are in effect while the bar is hidden."
+   "2. After step 3 the filter icon shows a visual indicator (filters icon in primary blue) signalling that active filters are in effect while the bar is hidden.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S7-R4, S7-N2)."
   ],
   "design_ref": "design-notes.md B.1 #3 vs #5 (11854:25927, 11854:26564)",
-  "spec_ref": "Filters (no Jira epic) (S7-R4; S7-N2) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8792 (S7-R4; S7-N2) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "The exact indicator styling (blue icon vs a dot/badge) - VIU-confirm against the build; the design shows this filter icon in the active blue treatment (icon layer is named Filter-lines: three short horizontal lines, not a funnel shape).",
   "api_related": false
@@ -371,10 +397,12 @@
   ],
   "expected": [
    "1. The table content does not change when the bar collapses - it still shows only the work orders matching the active filters.",
-   "2. Hiding the bar only hides the chips; it does not remove or pause the filtering."
+   "2. Hiding the bar only hides the chips; it does not remove or pause the filtering.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S7-R5)."
   ],
   "design_ref": "design-notes.md B.1 #5 (11854:26564)",
-  "spec_ref": "Filters (no Jira epic) (S7-R5) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8792 (S7-R5) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "",
   "api_related": false
@@ -401,10 +429,12 @@
    "1. The table switches to showing imported work orders only.",
    "2. While Imported is ticked, the other filter chips are greyed out and cannot be used.",
    "3. Imported cannot be combined with other statuses - selecting it works alone.",
-   "4. Unticking Imported re-enables the other chips and the normal list returns."
+   "4. Unticking Imported re-enables the other chips and the normal list returns.",
+   "---",
+   "This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S2-R7, S2-N4)."
   ],
   "design_ref": "tech-plan-2026-07-29/TechPlan-AppWide-Filter-Redesign.md G1 / section 4-3.2",
-  "spec_ref": "Filters (no Jira epic) (S2-R7 (Imported cannot be combined with anything else; other filter chips disabled while it is active); S2-N4 (the combination is prevented rather than returning an empty result)) [spec v1.6 2026-07-28]",
+  "spec_ref": "SV-8787 (S2-R7 (Imported cannot be combined with anything else; other filter chips disabled while it is active); S2-N4 (the combination is prevented rather than returning an empty result)) [spec v1.6 2026-07-28]",
   "viu_status": "VIU-Pending",
   "notes": "Traceability repaired 2026-07-31 (closing-authenticity pass defect (a)): refs re-pointed from \"tech plan G1; spec S2-R1 (conflict raised with the author - export of spec v1.3 awaited)\" to the ratified anchors S2-R7 + S2-N4. The conflict is RESOLVED - spec v1.6 (Confluence page 572030978 version 12 2026-07-28) added S2-R7 verbatim: \"Imported is an exception to S2-R2 and cannot be combined with anything else ... selecting Imported switches the list to the imported records and disables the other filter chips while it is active. Deselecting Imported returns the list and re-enables the other chips\" - which is exactly what this case asserts, so the PENDING-BRANKO question is closed. Tech plan 2026-07-29 G1 independently corroborates the same build behaviour. Exact disabled look/tooltip still VIU-confirm. A saved or shared state combining Imported with other filters must also normalise back to Imported-only on load (tech plan risk 4).",
   "api_related": false

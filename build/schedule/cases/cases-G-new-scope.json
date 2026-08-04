@@ -1,280 +1,292 @@
 [
-  {
-    "id": "SCH-HRS-01",
-    "area": "Working Hours Settings",
-    "title": "Edit Location has a 'Set business hours for this shop' toggle, off by default",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Access to the Edit Location settings screen (admin / settings). Confirm the exact permission live at VIU.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App with access to location settings.",
-      "2. You open the Edit Location screen for a shop."
-    ],
-    "steps": [
-      "1. Open the Edit Location screen.",
-      "2. Find the business hours setting and read its default state.",
-      "3. Turn the 'Set business hours for this shop' toggle ON."
-    ],
-    "expected": [
-      "1. Edit Location shows a toggle labelled 'Set business hours for this shop'.",
-      "2. The toggle is OFF by default (no business hours set).",
-      "3. Turning it ON reveals a per-day working-hours editor for the shop."
-    ],
-    "design_ref": "Claude design (Edit Modals.dc.html - Edit Location modal), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
-    "spec_ref": "SV-8699 Working Hours Settings (§4.2 settings - business hours)",
-    "refs": "SV-8699 (§4.2 Working Hours - business hours toggle)",
-    "viu_status": "Retired - MERGED into SCH-HRS-02 2026-07-31 (usefulness audit G-HRS-LOCATION, user-authorized consolidation)",
-    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-HRS-LOCATION): merged into SCH-HRS-02 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-HRS-01.json. | New-scope from Jira SV-8699 (GAP G1, RECONCILIATION.md). Toggle label 'Set business hours for this shop' + off-by-default per the story verbatim; confirm the exact label/behaviour LIVE at VIU (Rule 12). Driver: SV-8699. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-3): the engineering plan (Phase 2) places shop business hours + closures in a NEW Administration 'Schedule Settings' page (reachable from the admin menu and linked from the calendar's View Options), not an Edit-Location toggle. The design file this case came from was an empty shell per the plan. Placement pending ruling (Questions-for-Branko-dev.md NQ-3).",
-    "api_related": false
-  },
-  {
-    "id": "SCH-HRS-02",
-    "area": "Working Hours Settings",
-    "title": "Business-hours toggle reveals a per-day (Mon-Sun) From-To editor",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Access to the Edit Location settings screen (admin / settings). Confirm the exact permission live at VIU.",
-    "preconditions": [
-      "1. You are signed in to the ShopView App with access to location settings.",
-      "2. You are on the Edit Location screen for a shop."
-    ],
-    "steps": [
-      "1. Find the business hours setting on Edit Location and read its default state.",
-      "2. Turn the 'Set business hours for this shop' toggle ON.",
-      "3. Read the per-day rows shown when business hours are ON.",
-      "4. Set a From time and a To time for one day (for example Monday).",
-      "5. Save the location settings."
-    ],
-    "expected": [
-      "1. Edit Location shows a toggle labelled 'Set business hours for this shop', and it is OFF by default (no business hours set).",
-      "2. Turning it ON reveals a per-day working-hours editor for the shop.",
-      "3. There is one row per day of the week, Monday through Sunday.",
-      "4. Each day has a From time and a To time you can set.",
-      "5. The saved shop business hours are used by the Schedule (start-time hierarchy, before/after-hours conflicts, business-hours shading)."
-    ],
-    "design_ref": "Claude design (Edit Modals.dc.html - Edit Location modal), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
-    "spec_ref": "SV-8699 Working Hours Settings (§4.2 settings - per-day editor)",
-    "refs": "SV-8699 (§4.2 Working Hours - business hours toggle, per-day From/To editor)",
-    "viu_status": "VIU-Pending",
-    "notes": "New-scope from Jira SV-8699 (GAP G1, RECONCILIATION.md). Toggle label 'Set business hours for this shop' + off-by-default and the per-day Mon-Sun From-To editor per the story verbatim; confirm the exact fields/labels LIVE at VIU (Rule 12). Driver: SV-8699. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-3): the engineering plan (Phase 2) places shop business hours + closures in a NEW Administration 'Schedule Settings' page instead of Edit Location. Pending NQ-3. | CONSOLIDATED 2026-07-31 (usefulness audit G-HRS-LOCATION, user-authorized): absorbed SCH-HRS-01 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-HRS-03",
-    "area": "Working Hours Settings",
-    "title": "Edit Staff has a 'Set custom hours for this technician' toggle, off by default",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Access to the Edit Staff Member settings screen (admin / settings). Confirm the exact permission live at VIU.",
-    "preconditions": [
-      "1. You are signed in with access to staff settings.",
-      "2. You open the Edit Staff Member screen for a technician."
-    ],
-    "steps": [
-      "1. Open the Edit Staff Member screen for a technician.",
-      "2. Find the custom-hours setting and read its default state.",
-      "3. Turn the 'Set custom hours for this technician' toggle ON."
-    ],
-    "expected": [
-      "1. Edit Staff Member shows a toggle labelled 'Set custom hours for this technician'.",
-      "2. The toggle is OFF by default (no custom hours set).",
-      "3. Turning it ON reveals a per-day working-hours editor for that technician."
-    ],
-    "design_ref": "Claude design (Edit Modals.dc.html - Edit Staff Member modal), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
-    "spec_ref": "SV-8699 Working Hours Settings (§4.2 settings - technician hours)",
-    "refs": "SV-8699 (§4.2 Working Hours - technician custom-hours toggle)",
-    "viu_status": "VIU-Pending",
-    "notes": "New-scope from Jira SV-8699. Toggle label 'Set custom hours for this technician' + off-by-default per the story verbatim; confirm LIVE at VIU (Rule 12). Driver: SV-8699.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-HRS-04",
-    "area": "Working Hours Settings",
-    "title": "A technician with no custom hours inherits the shop business hours",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Access to the Edit Staff Member and Edit Location settings screens. Confirm the exact permission live at VIU.",
-    "preconditions": [
-      "1. The shop has business hours set (SCH-HRS-01/02).",
-      "2. A technician has the 'Set custom hours for this technician' toggle OFF."
-    ],
-    "steps": [
-      "1. Confirm the technician has no custom hours set.",
-      "2. Schedule a shift for that technician and check start-time defaults / before-after-hours conflicts against the shop business hours."
-    ],
-    "expected": [
-      "1. With no custom hours, the technician's working hours fall back to the shop business hours.",
-      "2. Start-time defaults and before/after-hours conflict checks for that technician use the shop business hours."
-    ],
-    "design_ref": "Claude design (Edit Modals.dc.html), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
-    "spec_ref": "SV-8699 Working Hours Settings (§4.2 - inherit shop hours)",
-    "refs": "SV-8699 (§4.2 Working Hours - inherit shop hours when no custom hours)",
-    "viu_status": "VIU-Pending",
-    "notes": "New-scope from Jira SV-8699 ('Tech with no custom hours inherits shop business hours', verbatim). Consumption ties to SCH-START-01/02/03 + SCH-CONF-02/03/04. Confirm LIVE at VIU (Rule 12). Driver: SV-8699.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-HRS-05",
-    "area": "Working Hours Settings",
-    "title": "'Add hours' appends a removable second range for split shifts, starting empty",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Access to the Edit Location / Edit Staff Member settings screens. Confirm the exact permission live at VIU.",
-    "preconditions": [
-      "1. You are in the per-day working-hours editor (location or technician) with a day's first range set."
-    ],
-    "steps": [
-      "1. On one day, click 'Add hours'.",
-      "2. Read the new range that appears.",
-      "3. Set the second range, then remove it."
-    ],
-    "expected": [
-      "1. 'Add hours' appends an additional From-To range to that day (to support split shifts).",
-      "2. The added range starts empty (no From/To pre-filled).",
-      "3. Each added range can be removed individually."
-    ],
-    "design_ref": "Claude design (Edit Modals.dc.html), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
-    "spec_ref": "SV-8699 Working Hours Settings (§4.2 - Add hours / split shifts)",
-    "refs": "SV-8699 (§4.2 Working Hours - Add hours split shifts)",
-    "viu_status": "VIU-Pending",
-    "notes": "New-scope from Jira SV-8699 ('Add hours appends more to support split shifts, each removable; added ranges start empty', verbatim). Confirm the exact 'Add hours' label/behaviour LIVE at VIU (Rule 12). Driver: SV-8699. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-4): the engineering data model stores ONE From-To range per weekday (unique staff+workplace+day) - no split-shift second range exists in the plan. Pending ruling (Questions-for-Branko-dev.md NQ-4).",
-    "api_related": false
-  },
-  {
-    "id": "SCH-HRS-06",
-    "area": "Working Hours Settings",
-    "title": "Overlapping hour ranges block Save; incomplete rows are ignored",
-    "priority": "High",
-    "type": "Negative",
-    "permissions_required": "Access to the Edit Location / Edit Staff Member settings screens. Confirm the exact permission live at VIU.",
-    "preconditions": [
-      "1. You are in the per-day working-hours editor with at least two ranges on one day."
-    ],
-    "steps": [
-      "1. Set two ranges on the same day so their times overlap.",
-      "2. Look at the offending range and the Save button.",
-      "3. Fix the overlap, then on one day add another range and leave its From and/or To empty.",
-      "4. Look at the validation state and the Save button again."
-    ],
-    "expected": [
-      "1. The offending (overlapping) range is flagged in red.",
-      "2. An inline message reads 'These hours overlap. Adjust the times so they don't conflict.'",
-      "3. Save is disabled while the overlap exists.",
-      "4. The incomplete row (empty From/To) is ignored by the overlap check - it does not raise the overlap error.",
-      "5. Save is not blocked by an incomplete row on its own (only genuine overlaps disable Save)."
-    ],
-    "design_ref": "Claude design (Edit Modals.dc.html), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
-    "spec_ref": "SV-8699 Working Hours Settings (§4.2 - overlap validation)",
-    "refs": "SV-8699 (§4.2 Working Hours - overlap validation; incomplete rows ignored by overlap check)",
-    "viu_status": "VIU-Pending",
-    "notes": "New-scope from Jira SV-8699 (overlap flagged red + inline message 'These hours overlap. Adjust the times so they don't conflict.' + Save disabled; 'Incomplete rows (empty From/To) ignored by check' - both verbatim). Confirm LIVE at VIU (Rule 12). Driver: SV-8699. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-4): the overlap check only exists if multiple ranges per day exist - the engineering plan has a single range per day. Pending NQ-4. | CONSOLIDATED 2026-07-31 (usefulness audit G-HRS-VALIDATION, user-authorized): absorbed SCH-HRS-07 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-HRS-07",
-    "area": "Working Hours Settings",
-    "title": "Incomplete hour rows (empty From or To) are ignored by the overlap check",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Access to the Edit Location / Edit Staff Member settings screens. Confirm the exact permission live at VIU.",
-    "preconditions": [
-      "1. You are in the per-day working-hours editor with one complete range and one empty added range."
-    ],
-    "steps": [
-      "1. On one day, add a range but leave its From and/or To empty.",
-      "2. Look at the validation state and the Save button."
-    ],
-    "expected": [
-      "1. The incomplete row (empty From/To) is ignored by the overlap check - it does not raise the overlap error.",
-      "2. Save is not blocked by an incomplete row on its own (only genuine overlaps disable Save)."
-    ],
-    "design_ref": "Claude design (Edit Modals.dc.html), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
-    "spec_ref": "SV-8699 Working Hours Settings (§4.2 - incomplete rows ignored)",
-    "refs": "SV-8699 (§4.2 Working Hours - incomplete rows ignored by overlap check)",
-    "viu_status": "Retired - MERGED into SCH-HRS-06 2026-07-31 (usefulness audit G-HRS-VALIDATION, user-authorized consolidation)",
-    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-HRS-VALIDATION): merged into SCH-HRS-06 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-HRS-07.json. | New-scope from Jira SV-8699 ('Incomplete rows (empty From/To) ignored by check', verbatim). Confirm LIVE at VIU (Rule 12). Driver: SV-8699. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-4): depends on multi-range 'Add hours' which the engineering plan's model does not include. Pending NQ-4.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-EXP-01",
-    "area": "Week Export and Printing",
-    "title": "Week Export opens a printable Department-by-Technician week grid",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View. Confirm the exact permission and entry point live at VIU.",
-    "preconditions": [
-      "1. You are on the Schedule screen in Week view with some shifts scheduled.",
-      "2. Your role has Schedule: View."
-    ],
-    "steps": [
-      "1. Open the Week Export / Print action for the current week.",
-      "2. Read the exported / printable layout.",
-      "3. Check the department grouping, the technician rows, and the shifts shown per day."
-    ],
-    "expected": [
-      "1. A printable week view opens laid out as a Department-by-Technician grid for the week.",
-      "2. It is formatted for printing (a clean page layout, without the interactive grid controls).",
-      "3. The exported view groups technicians by department, with department headers.",
-      "4. Each technician's shifts for the week appear in the correct day columns.",
-      "5. The week's date range is shown."
-    ],
-    "design_ref": "Claude design (Schedule Week Export.dc.html + schedule-week-view.html + schedule-export.png), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
-    "spec_ref": "Design Week Export (V1 scope pending Branko confirmation)",
-    "refs": "SV-8685 (design Week Export - V1 scope pending Branko)",
-    "viu_status": "Retired - Week Export DESCOPED by the PO 2026-07-31 (not in V1 and not in the future-requirements backlog); user-authorized retire",
-    "notes": "RETIRED 2026-07-31 (user-authorized, ruling below): Week Export / the printable week view is OUT OF SCOPE entirely - not in V1 and not even in the future-considerations backlog - so this case tests something that will not exist. DRIVING RULING: Branko (PO) verbatim answer 2026-07-31 to Q3 (printable weekly view in V1?): \"No. There is nothing about this in the PRD, not in the future requirements.\" Source: build/schedule/branko-answers-2026-07-31/answers-ingested.md Q3. Independently corroborated: a full heading + text scan of Confluence v23 (2026-07-30) finds no export or print item in section 6 Grid toolbar, section 9 View options or section 15 Future considerations, and the engineering tech plan's section 9 requirement table has none either. The 2026-07-31 Ruthless Usefulness Audit (Rule 28) also rated this scope CUT. DELETED from TestRail via delete_case 2026-07-31 (was C38853); removed from run 357 automatically by that delete. EXCLUDED from active deliverables + tally; body kept locally for the record and is fully recoverable (pre-retire body: build/schedule/week-export-retire-2026-07-31/backup/cases-G-new-scope.PRE-RETIRE.json; TestRail pre-write snapshot: .../pre-snapshot/get_case_38853.json). It had absorbed SCH-EXP-02 in the 2026-07-31 consolidation, so retiring it closes the whole Week Export scope. Retiring it leaves TestRail section 5406 'Week Export and Printing' EMPTY - the section was deliberately NOT deleted; it is flagged as an empty-section cleanup candidate for a later authorized pass. | Original authoring note: NEW SCOPE surfaced by the 2026-07-27 design ZIP (Week Export / Print view) - never in requirements.md or the 15 stories; authored as \"scope pending Branko\", and Branko has now ruled it out.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-EXP-02",
-    "area": "Week Export and Printing",
-    "title": "Exported week view lists each department with its technicians and shifts",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View. Confirm the exact permission live at VIU.",
-    "preconditions": [
-      "1. You have opened the Week Export / Print view for a week that has shifts."
-    ],
-    "steps": [
-      "1. Read the exported week view.",
-      "2. Check the department grouping, the technician rows, and the shifts shown per day."
-    ],
-    "expected": [
-      "1. The exported view groups technicians by department, with department headers.",
-      "2. Each technician's shifts for the week appear in the correct day columns.",
-      "3. The week's date range is shown."
-    ],
-    "design_ref": "Claude design (Schedule Week Export.dc.html + schedule-week-view.html), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
-    "spec_ref": "Design Week Export (V1 scope pending Branko confirmation)",
-    "refs": "SV-8685 (design Week Export - V1 scope pending Branko)",
-    "viu_status": "Retired - MERGED into SCH-EXP-01 2026-07-31 (usefulness audit G-WEEK-EXPORT, user-authorized consolidation)",
-    "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-WEEK-EXPORT): merged into SCH-EXP-01 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-EXP-02.json. | NEW SCOPE from the 2026-07-27 design ZIP (Week Export). Scope for V1 pending Branko (DESIGN-RECONCILIATION §5). No single-story owner yet -> epic SV-8685 (Rule 20). Confirm the exact layout/content LIVE at VIU (Rule 12). | SCOPE CONFIRMATION 2026-07-31: this case was Week-Export-scoped too, so the PO's descope ruling covers it as well - it was already merged into SCH-EXP-01 and deleted from TestRail on 2026-07-31 (re-GET of C38854 on 2026-07-31 returned HTTP 400 'not a valid test case', confirming it is gone), so no further action was required. DRIVING RULING: Branko (PO) verbatim answer 2026-07-31 to Q3 (printable weekly view in V1?): \"No. There is nothing about this in the PRD, not in the future requirements.\" Source: build/schedule/branko-answers-2026-07-31/answers-ingested.md Q3.",
-    "api_related": false
-  },
-  {
-    "id": "SCH-REAS-06",
-    "area": "Reassignment and Context Menu",
-    "title": "'New Work Order' in the cell menu points the user to the Work Orders tab",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Schedule: View / Edit and Work Orders access. Confirm the exact behaviour and permission live at VIU.",
-    "preconditions": [
-      "1. You are on the Schedule grid.",
-      "2. The cell menu already shows 'Create Event' and 'New Work Order'."
-    ],
-    "steps": [
-      "1. Left-click an empty spot in a grid cell.",
-      "2. Choose 'New Work Order' from the menu."
-    ],
-    "expected": [
-      "1. The menu offers a 'New Work Order' item.",
-      "2. Choosing it directs the user to create a work order (a toast / prompt pointing to the Work Orders tab)."
-    ],
-    "design_ref": "Claude design (Schedule.dc.html cell menu / schedule-menu screenshots), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
-    "spec_ref": "SV-8700 / SV-8696 (§7 / §4.10 - New Work Order menu item)",
-    "refs": "SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut)",
-    "viu_status": "VIU-Pending",
-    "notes": "NEW-scope shortcut: the redesigned cell menu adds 'New Work Order' (design + Jira SV-8696/SV-8700; DESIGN-RECONCILIATION §5). Design shows it raises a toast pointing to the Work Orders tab; confirm the exact behaviour LIVE at VIU (Rule 12). Driver: SV-8700 §7. TECH-PLAN 2026-07-29 (informs Q4): the engineering plan (Phase 7) builds 'New Work Order' to OPEN the real work-order creation window in place ('opens the real WorkOrderDialog.vue (not a toast)'), not a toast pointing to the Work Orders tab. Confirm the built behaviour live; final wording pending Branko Q4. | WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): the former Expected 3 - 'The exact target flow (toast or navigation) is confirmed during live testing' - was a to-be-confirmed placeholder, not a pass criterion, and has been MOVED here; Expected 1-2 are the pass bar. Capture the actual target flow (toast pointing to the Work Orders tab vs opening the work-order creation window) LIVE at VIU. | Q4 ANSWERED 2026-07-31 (Branko answer 2026-07-31, option C, verbatim: 'C. there is no right click, only left click. when clicked it opens dropdown menu with two options (Create event, New work order) as mentioned in prd.'). Spec basis: Confluence v23 (2026-07-30) §4.10 ('Create via left-click on empty grid space, which opens a menu with \"Create event\" and \"New work order\"..') + §7 ('Left-click on empty grid space opens a menu with: Create event, New work order.'), changed in Confluence v22. The 2026-07-27 pass fixed the menu ITEMS but left the CLICK TYPE as right-click - corrected here. Confirm the exact on-screen labels LIVE at VIU (Rules 9/12). STILL NOT ANSWERED: what 'New Work Order' actually DOES once clicked (a toast pointing to the Work Orders tab, per the design, vs opening the work-order creation window in place, per the engineering plan). Branko confirmed the menu ITEM only. Expected 1-2 are deliberately worded to pass either way - capture the real behaviour LIVE at VIU (question A5 in DELTAS.md). | FIX 2026-07-31: precondition 2 used to carry a bare '(SCH-REAS-03)' cross-reference. gen_import.py / the executor strip internal case IDs on the way to TestRail but only remove the '(see SCH-...)' form, so a bare '(SCH-...)' left an empty '()' in the pushed text. The reference is now stated in words instead - no internal ID in tester-facing wording (Rule 9).",
-    "api_related": false
-  }
+ {
+  "id": "SCH-HRS-01",
+  "area": "Working Hours Settings",
+  "title": "Edit Location has a 'Set business hours for this shop' toggle, off by default",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Access to the Edit Location settings screen (admin / settings). Confirm the exact permission live at VIU.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App with access to location settings.",
+   "2. You open the Edit Location screen for a shop."
+  ],
+  "steps": [
+   "1. Open the Edit Location screen.",
+   "2. Find the business hours setting and read its default state.",
+   "3. Turn the 'Set business hours for this shop' toggle ON."
+  ],
+  "expected": [
+   "1. Edit Location shows a toggle labelled 'Set business hours for this shop'.",
+   "2. The toggle is OFF by default (no business hours set).",
+   "3. Turning it ON reveals a per-day working-hours editor for the shop."
+  ],
+  "design_ref": "Claude design (Edit Modals.dc.html - Edit Location modal), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "SV-8699 Working Hours Settings (§4.2 settings - business hours)",
+  "refs": "SV-8699 (§4.2 Working Hours - business hours toggle)",
+  "viu_status": "Retired - MERGED into SCH-HRS-02 2026-07-31 (usefulness audit G-HRS-LOCATION, user-authorized consolidation)",
+  "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-HRS-LOCATION): merged into SCH-HRS-02 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-HRS-01.json. | New-scope from Jira SV-8699 (GAP G1, RECONCILIATION.md). Toggle label 'Set business hours for this shop' + off-by-default per the story verbatim; confirm the exact label/behaviour LIVE at VIU (Rule 12). Driver: SV-8699. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-3): the engineering plan (Phase 2) places shop business hours + closures in a NEW Administration 'Schedule Settings' page (reachable from the admin menu and linked from the calendar's View Options), not an Edit-Location toggle. The design file this case came from was an empty shell per the plan. Placement pending ruling (Questions-for-Branko-dev.md NQ-3).",
+  "api_related": false
+ },
+ {
+  "id": "SCH-HRS-02",
+  "area": "Working Hours Settings",
+  "title": "Business-hours toggle reveals a per-day (Mon-Sun) From-To editor",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Access to the Edit Location settings screen (admin / settings). Confirm the exact permission live at VIU.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App with access to location settings.",
+   "2. You are on the Edit Location screen for a shop."
+  ],
+  "steps": [
+   "1. Find the business hours setting on Edit Location and read its default state.",
+   "2. Turn the 'Set business hours for this shop' toggle ON.",
+   "3. Read the per-day rows shown when business hours are ON.",
+   "4. Set a From time and a To time for one day (for example Monday).",
+   "5. Save the location settings."
+  ],
+  "expected": [
+   "1. Edit Location shows a toggle labelled 'Set business hours for this shop', and it is OFF by default (no business hours set).",
+   "2. Turning it ON reveals a per-day working-hours editor for the shop.",
+   "3. There is one row per day of the week, Monday through Sunday.",
+   "4. Each day has a From time and a To time you can set.",
+   "5. The saved shop business hours are used by the Schedule (start-time hierarchy, before/after-hours conflicts, business-hours shading).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.2)."
+  ],
+  "design_ref": "Claude design (Edit Modals.dc.html - Edit Location modal), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "SV-8699 Working Hours Settings (§4.2 settings - per-day editor)",
+  "refs": "SV-8699 (§4.2 Working Hours - business hours toggle, per-day From/To editor)",
+  "viu_status": "VIU-Pending",
+  "notes": "New-scope from Jira SV-8699 (GAP G1, RECONCILIATION.md). Toggle label 'Set business hours for this shop' + off-by-default and the per-day Mon-Sun From-To editor per the story verbatim; confirm the exact fields/labels LIVE at VIU (Rule 12). Driver: SV-8699. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-3): the engineering plan (Phase 2) places shop business hours + closures in a NEW Administration 'Schedule Settings' page instead of Edit Location. Pending NQ-3. | CONSOLIDATED 2026-07-31 (usefulness audit G-HRS-LOCATION, user-authorized): absorbed SCH-HRS-01 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-HRS-03",
+  "area": "Working Hours Settings",
+  "title": "Edit Staff has a 'Set custom hours for this technician' toggle, off by default",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Access to the Edit Staff Member settings screen (admin / settings). Confirm the exact permission live at VIU.",
+  "preconditions": [
+   "1. You are signed in with access to staff settings.",
+   "2. You open the Edit Staff Member screen for a technician."
+  ],
+  "steps": [
+   "1. Open the Edit Staff Member screen for a technician.",
+   "2. Find the custom-hours setting and read its default state.",
+   "3. Turn the 'Set custom hours for this technician' toggle ON."
+  ],
+  "expected": [
+   "1. Edit Staff Member shows a toggle labelled 'Set custom hours for this technician'.",
+   "2. The toggle is OFF by default (no custom hours set).",
+   "3. Turning it ON reveals a per-day working-hours editor for that technician.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.2)."
+  ],
+  "design_ref": "Claude design (Edit Modals.dc.html - Edit Staff Member modal), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "SV-8699 Working Hours Settings (§4.2 settings - technician hours)",
+  "refs": "SV-8699 (§4.2 Working Hours - technician custom-hours toggle)",
+  "viu_status": "VIU-Pending",
+  "notes": "New-scope from Jira SV-8699. Toggle label 'Set custom hours for this technician' + off-by-default per the story verbatim; confirm LIVE at VIU (Rule 12). Driver: SV-8699.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-HRS-04",
+  "area": "Working Hours Settings",
+  "title": "A technician with no custom hours inherits the shop business hours",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Access to the Edit Staff Member and Edit Location settings screens. Confirm the exact permission live at VIU.",
+  "preconditions": [
+   "1. The shop has business hours set for the shop.",
+   "2. A technician has the 'Set custom hours for this technician' toggle OFF."
+  ],
+  "steps": [
+   "1. Confirm the technician has no custom hours set.",
+   "2. Schedule a shift for that technician and check start-time defaults / before-after-hours conflicts against the shop business hours."
+  ],
+  "expected": [
+   "1. With no custom hours, the technician's working hours fall back to the shop business hours.",
+   "2. Start-time defaults and before/after-hours conflict checks for that technician use the shop business hours.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.2)."
+  ],
+  "design_ref": "Claude design (Edit Modals.dc.html), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "SV-8699 Working Hours Settings (§4.2 - inherit shop hours)",
+  "refs": "SV-8699 (§4.2 Working Hours - inherit shop hours when no custom hours)",
+  "viu_status": "VIU-Pending",
+  "notes": "New-scope from Jira SV-8699 ('Tech with no custom hours inherits shop business hours', verbatim). Consumption ties to SCH-START-01/02/03 + SCH-CONF-02/03/04. Confirm LIVE at VIU (Rule 12). Driver: SV-8699.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-HRS-05",
+  "area": "Working Hours Settings",
+  "title": "'Add hours' appends a removable second range for split shifts, starting empty",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Access to the Edit Location / Edit Staff Member settings screens. Confirm the exact permission live at VIU.",
+  "preconditions": [
+   "1. You are in the per-day working-hours editor (location or technician) with a day's first range set."
+  ],
+  "steps": [
+   "1. On one day, click 'Add hours'.",
+   "2. Read the new range that appears.",
+   "3. Set the second range, then remove it."
+  ],
+  "expected": [
+   "1. 'Add hours' appends an additional From-To range to that day (to support split shifts).",
+   "2. The added range starts empty (no From/To pre-filled).",
+   "3. Each added range can be removed individually.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.2)."
+  ],
+  "design_ref": "Claude design (Edit Modals.dc.html), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "SV-8699 Working Hours Settings (§4.2 - Add hours / split shifts)",
+  "refs": "SV-8699 (§4.2 Working Hours - Add hours split shifts)",
+  "viu_status": "VIU-Pending",
+  "notes": "New-scope from Jira SV-8699 ('Add hours appends more to support split shifts, each removable; added ranges start empty', verbatim). Confirm the exact 'Add hours' label/behaviour LIVE at VIU (Rule 12). Driver: SV-8699. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-4): the engineering data model stores ONE From-To range per weekday (unique staff+workplace+day) - no split-shift second range exists in the plan. Pending ruling (Questions-for-Branko-dev.md NQ-4).",
+  "api_related": false
+ },
+ {
+  "id": "SCH-HRS-06",
+  "area": "Working Hours Settings",
+  "title": "Overlapping hour ranges block Save; incomplete rows are ignored",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "Access to the Edit Location / Edit Staff Member settings screens. Confirm the exact permission live at VIU.",
+  "preconditions": [
+   "1. You are in the per-day working-hours editor with at least two ranges on one day."
+  ],
+  "steps": [
+   "1. Set two ranges on the same day so their times overlap.",
+   "2. Look at the offending range and the Save button.",
+   "3. Fix the overlap, then on one day add another range and leave its From and/or To empty.",
+   "4. Look at the validation state and the Save button again."
+  ],
+  "expected": [
+   "1. The offending (overlapping) range is flagged in red.",
+   "2. An inline message reads 'These hours overlap. Adjust the times so they don't conflict.'",
+   "3. Save is disabled while the overlap exists.",
+   "4. The incomplete row (empty From/To) is ignored by the overlap check - it does not raise the overlap error.",
+   "5. Save is not blocked by an incomplete row on its own (only genuine overlaps disable Save).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.2)."
+  ],
+  "design_ref": "Claude design (Edit Modals.dc.html), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "SV-8699 Working Hours Settings (§4.2 - overlap validation)",
+  "refs": "SV-8699 (§4.2 Working Hours - overlap validation; incomplete rows ignored by overlap check)",
+  "viu_status": "VIU-Pending",
+  "notes": "New-scope from Jira SV-8699 (overlap flagged red + inline message 'These hours overlap. Adjust the times so they don't conflict.' + Save disabled; 'Incomplete rows (empty From/To) ignored by check' - both verbatim). Confirm LIVE at VIU (Rule 12). Driver: SV-8699. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-4): the overlap check only exists if multiple ranges per day exist - the engineering plan has a single range per day. Pending NQ-4. | CONSOLIDATED 2026-07-31 (usefulness audit G-HRS-VALIDATION, user-authorized): absorbed SCH-HRS-07 - their distinct steps/expected are folded in above and their refs are unioned into this case's References (Rule 20). Absorbed cases retired + deleted from TestRail.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-HRS-07",
+  "area": "Working Hours Settings",
+  "title": "Incomplete hour rows (empty From or To) are ignored by the overlap check",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Access to the Edit Location / Edit Staff Member settings screens. Confirm the exact permission live at VIU.",
+  "preconditions": [
+   "1. You are in the per-day working-hours editor with one complete range and one empty added range."
+  ],
+  "steps": [
+   "1. On one day, add a range but leave its From and/or To empty.",
+   "2. Look at the validation state and the Save button."
+  ],
+  "expected": [
+   "1. The incomplete row (empty From/To) is ignored by the overlap check - it does not raise the overlap error.",
+   "2. Save is not blocked by an incomplete row on its own (only genuine overlaps disable Save)."
+  ],
+  "design_ref": "Claude design (Edit Modals.dc.html), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "SV-8699 Working Hours Settings (§4.2 - incomplete rows ignored)",
+  "refs": "SV-8699 (§4.2 Working Hours - incomplete rows ignored by overlap check)",
+  "viu_status": "Retired - MERGED into SCH-HRS-06 2026-07-31 (usefulness audit G-HRS-VALIDATION, user-authorized consolidation)",
+  "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-HRS-VALIDATION): merged into SCH-HRS-06 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-HRS-07.json. | New-scope from Jira SV-8699 ('Incomplete rows (empty From/To) ignored by check', verbatim). Confirm LIVE at VIU (Rule 12). Driver: SV-8699. TECH-PLAN 2026-07-29 CONFLICT FLAG (NQ-4): depends on multi-range 'Add hours' which the engineering plan's model does not include. Pending NQ-4.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EXP-01",
+  "area": "Week Export and Printing",
+  "title": "Week Export opens a printable Department-by-Technician week grid",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View. Confirm the exact permission and entry point live at VIU.",
+  "preconditions": [
+   "1. You are on the Schedule screen in Week view with some shifts scheduled.",
+   "2. Your role has Schedule: View."
+  ],
+  "steps": [
+   "1. Open the Week Export / Print action for the current week.",
+   "2. Read the exported / printable layout.",
+   "3. Check the department grouping, the technician rows, and the shifts shown per day."
+  ],
+  "expected": [
+   "1. A printable week view opens laid out as a Department-by-Technician grid for the week.",
+   "2. It is formatted for printing (a clean page layout, without the interactive grid controls).",
+   "3. The exported view groups technicians by department, with department headers.",
+   "4. Each technician's shifts for the week appear in the correct day columns.",
+   "5. The week's date range is shown."
+  ],
+  "design_ref": "Claude design (Schedule Week Export.dc.html + schedule-week-view.html + schedule-export.png), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "Design Week Export (V1 scope pending Branko confirmation)",
+  "refs": "SV-8685 (design Week Export - V1 scope pending Branko)",
+  "viu_status": "Retired - Week Export DESCOPED by the PO 2026-07-31 (not in V1 and not in the future-requirements backlog); user-authorized retire",
+  "notes": "RETIRED 2026-07-31 (user-authorized, ruling below): Week Export / the printable week view is OUT OF SCOPE entirely - not in V1 and not even in the future-considerations backlog - so this case tests something that will not exist. DRIVING RULING: Branko (PO) verbatim answer 2026-07-31 to Q3 (printable weekly view in V1?): \"No. There is nothing about this in the PRD, not in the future requirements.\" Source: build/schedule/branko-answers-2026-07-31/answers-ingested.md Q3. Independently corroborated: a full heading + text scan of Confluence v23 (2026-07-30) finds no export or print item in section 6 Grid toolbar, section 9 View options or section 15 Future considerations, and the engineering tech plan's section 9 requirement table has none either. The 2026-07-31 Ruthless Usefulness Audit (Rule 28) also rated this scope CUT. DELETED from TestRail via delete_case 2026-07-31 (was C38853); removed from run 357 automatically by that delete. EXCLUDED from active deliverables + tally; body kept locally for the record and is fully recoverable (pre-retire body: build/schedule/week-export-retire-2026-07-31/backup/cases-G-new-scope.PRE-RETIRE.json; TestRail pre-write snapshot: .../pre-snapshot/get_case_38853.json). It had absorbed SCH-EXP-02 in the 2026-07-31 consolidation, so retiring it closes the whole Week Export scope. Retiring it leaves TestRail section 5406 'Week Export and Printing' EMPTY - the section was deliberately NOT deleted; it is flagged as an empty-section cleanup candidate for a later authorized pass. | Original authoring note: NEW SCOPE surfaced by the 2026-07-27 design ZIP (Week Export / Print view) - never in requirements.md or the 15 stories; authored as \"scope pending Branko\", and Branko has now ruled it out.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EXP-02",
+  "area": "Week Export and Printing",
+  "title": "Exported week view lists each department with its technicians and shifts",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View. Confirm the exact permission live at VIU.",
+  "preconditions": [
+   "1. You have opened the Week Export / Print view for a week that has shifts."
+  ],
+  "steps": [
+   "1. Read the exported week view.",
+   "2. Check the department grouping, the technician rows, and the shifts shown per day."
+  ],
+  "expected": [
+   "1. The exported view groups technicians by department, with department headers.",
+   "2. Each technician's shifts for the week appear in the correct day columns.",
+   "3. The week's date range is shown."
+  ],
+  "design_ref": "Claude design (Schedule Week Export.dc.html + schedule-week-view.html), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "Design Week Export (V1 scope pending Branko confirmation)",
+  "refs": "SV-8685 (design Week Export - V1 scope pending Branko)",
+  "viu_status": "Retired - MERGED into SCH-EXP-01 2026-07-31 (usefulness audit G-WEEK-EXPORT, user-authorized consolidation)",
+  "notes": "RETIRED 2026-07-31 (user-authorized consolidation, usefulness audit G-WEEK-EXPORT): merged into SCH-EXP-01 - this case's distinct steps/expected were folded into that survivor and its refs unioned there (Rule 20), so no coverage is lost. DELETED from TestRail via delete_case 2026-07-31. EXCLUDED from active deliverables + tally; body kept locally for the record. Pre-edit body: build/schedule/consolidation-backup-2026-07-31/SCH-EXP-02.json. | NEW SCOPE from the 2026-07-27 design ZIP (Week Export). Scope for V1 pending Branko (DESIGN-RECONCILIATION §5). No single-story owner yet -> epic SV-8685 (Rule 20). Confirm the exact layout/content LIVE at VIU (Rule 12). | SCOPE CONFIRMATION 2026-07-31: this case was Week-Export-scoped too, so the PO's descope ruling covers it as well - it was already merged into SCH-EXP-01 and deleted from TestRail on 2026-07-31 (re-GET of C38854 on 2026-07-31 returned HTTP 400 'not a valid test case', confirming it is gone), so no further action was required. DRIVING RULING: Branko (PO) verbatim answer 2026-07-31 to Q3 (printable weekly view in V1?): \"No. There is nothing about this in the PRD, not in the future requirements.\" Source: build/schedule/branko-answers-2026-07-31/answers-ingested.md Q3.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-REAS-06",
+  "area": "Reassignment and Context Menu",
+  "title": "'New Work Order' in the cell menu points the user to the Work Orders tab",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View / Edit and Work Orders access. Confirm the exact behaviour and permission live at VIU.",
+  "preconditions": [
+   "1. You are on the Schedule grid.",
+   "2. The cell menu already shows 'Create Event' and 'New Work Order'."
+  ],
+  "steps": [
+   "1. Left-click an empty spot in a grid cell.",
+   "2. Choose 'New Work Order' from the menu."
+  ],
+  "expected": [
+   "1. The menu offers a 'New Work Order' item.",
+   "2. Choosing it directs the user to create a work order (a toast / prompt pointing to the Work Orders tab).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§7, §4.10)."
+  ],
+  "design_ref": "Claude design (Schedule.dc.html cell menu / schedule-menu screenshots), build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md §5.",
+  "spec_ref": "SV-8700 / SV-8696 (§7 / §4.10 - New Work Order menu item)",
+  "refs": "SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut)",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW-scope shortcut: the redesigned cell menu adds 'New Work Order' (design + Jira SV-8696/SV-8700; DESIGN-RECONCILIATION §5). Design shows it raises a toast pointing to the Work Orders tab; confirm the exact behaviour LIVE at VIU (Rule 12). Driver: SV-8700 §7. TECH-PLAN 2026-07-29 (informs Q4): the engineering plan (Phase 7) builds 'New Work Order' to OPEN the real work-order creation window in place ('opens the real WorkOrderDialog.vue (not a toast)'), not a toast pointing to the Work Orders tab. Confirm the built behaviour live; final wording pending Branko Q4. | WORDING REPAIR 2026-07-31 (usefulness audit FIX-WORDING): the former Expected 3 - 'The exact target flow (toast or navigation) is confirmed during live testing' - was a to-be-confirmed placeholder, not a pass criterion, and has been MOVED here; Expected 1-2 are the pass bar. Capture the actual target flow (toast pointing to the Work Orders tab vs opening the work-order creation window) LIVE at VIU. | Q4 ANSWERED 2026-07-31 (Branko answer 2026-07-31, option C, verbatim: 'C. there is no right click, only left click. when clicked it opens dropdown menu with two options (Create event, New work order) as mentioned in prd.'). Spec basis: Confluence v23 (2026-07-30) §4.10 ('Create via left-click on empty grid space, which opens a menu with \"Create event\" and \"New work order\"..') + §7 ('Left-click on empty grid space opens a menu with: Create event, New work order.'), changed in Confluence v22. The 2026-07-27 pass fixed the menu ITEMS but left the CLICK TYPE as right-click - corrected here. Confirm the exact on-screen labels LIVE at VIU (Rules 9/12). STILL NOT ANSWERED: what 'New Work Order' actually DOES once clicked (a toast pointing to the Work Orders tab, per the design, vs opening the work-order creation window in place, per the engineering plan). Branko confirmed the menu ITEM only. Expected 1-2 are deliberately worded to pass either way - capture the real behaviour LIVE at VIU (question A5 in DELTAS.md). | FIX 2026-07-31: precondition 2 used to carry a bare '(SCH-REAS-03)' cross-reference. gen_import.py / the executor strip internal case IDs on the way to TestRail but only remove the '(see SCH-...)' form, so a bare '(SCH-...)' left an empty '()' in the pushed text. The reference is now stated in words instead - no internal ID in tester-facing wording (Rule 9).",
+  "api_related": false
+ }
 ]

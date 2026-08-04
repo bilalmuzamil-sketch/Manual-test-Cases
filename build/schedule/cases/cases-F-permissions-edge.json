@@ -21,7 +21,9 @@
    "1. The Schedule page opens and all three views work.",
    "2. The mini calendar, search, and filters all work.",
    "3. ALL technicians' shifts and events are visible (not just the user's own).",
-   "4. Tooltips show on hover, and the shift/event detail modals open in read-only mode."
+   "4. Tooltips show on hover, and the shift/event detail modals open in read-only mode.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1, §14.3)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: View), §14.3",
@@ -52,7 +54,9 @@
    "1. No drag handles are offered and nothing can be dragged from the sidebar onto the grid.",
    "2. Shift blocks cannot be moved or resized - no drop targets or resize handles appear.",
    "3. No creation menu opens at all - there is no 'Create Event' and no 'New Work Order' offered.",
-   "4. In the modal, edit fields are hidden or disabled, and the reassign and delete actions are absent."
+   "4. In the modal, edit fields are hidden or disabled, and the reassign and delete actions are absent.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: View - editing affordances hidden or disabled)",
@@ -78,7 +82,9 @@
   ],
   "expected": [
    "1. The Schedule top-level nav item is not shown at all.",
-   "2. The rest of the app works normally for the role."
+   "2. The rest of the app works normally for the role.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (When Schedule: View is OFF)",
@@ -110,7 +116,9 @@
    "2. Shift and event creation works, including via the menu opened by left-clicking empty grid space in both week and day view.",
    "3. Reassignment between technicians works.",
    "4. Edge-resize and horizontal drag work in day view.",
-   "5. Modal fields are editable and save."
+   "5. Modal fields are editable and save.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: Edit)",
@@ -139,7 +147,9 @@
   "expected": [
    "1. The delete action and the trash icon are hidden in the shift modal.",
    "2. Events likewise offer no delete.",
-   "3. No path exists to remove shifts or events - while creating and modifying still work (per SCH-PERM-04)."
+   "3. No path exists to remove shifts or events - while creating and modifying still work (per SCH-PERM-04).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: Delete - without it)",
@@ -169,7 +179,9 @@
    "1. The delete action is available and works for shifts.",
    "2. Series deletion offers its scopes (this shift / this and after / whole series).",
    "3. Events can be deleted too.",
-   "4. Undo toasts appear (restore the items via Undo to clean up)."
+   "4. Undo toasts appear (restore the items via Undo to clean up).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: Delete)",
@@ -197,7 +209,9 @@
   "expected": [
    "1. Edit cannot be granted without View (the admin UI enforces or auto-selects the dependency).",
    "2. Delete cannot be granted without Edit.",
-   "3. The three tiers can be enabled in dependency order, so each higher level always includes the ones beneath it (Delete includes Edit, and Edit includes View)."
+   "3. The three tiers can be enabled in dependency order, so each higher level always includes the ones beneath it (Delete includes Edit, and Edit includes View).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14 (Delete requires Edit and Edit requires View)",
@@ -226,7 +240,9 @@
   "expected": [
    "1. The sidebar hides the work order list and the line drill-down; the mini calendar remains available.",
    "2. Shifts already on the grid can still be viewed and interacted with per the role's Schedule tier.",
-   "3. New work orders cannot be dragged on - the WO list is simply not visible."
+   "3. New work orders cannot be dragged on - the WO list is simply not visible.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.2)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.2",
@@ -253,7 +269,9 @@
   ],
   "expected": [
    "1. The user sees ALL technicians' shifts and events, not only their own - there is no role-based 'own shifts only' restriction.",
-   "2. 'My Shifts' exists only as an optional personal convenience filter (off by default), not a security boundary."
+   "2. 'My Shifts' exists only as an optional personal convenience filter (off by default), not a security boundary.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.3)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.3",
@@ -280,7 +298,9 @@
   ],
   "expected": [
    "1. The department-assigned staff member appears as a technician row - row presence is controlled by the department on the staff record, NOT by role permission.",
-   "2. The staff member without a department does not appear as a row."
+   "2. The staff member without a department does not appear as a row.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.4)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.4",
@@ -306,7 +326,9 @@
   ],
   "expected": [
    "1. The Time-Clock-ON staff member can clock in.",
-   "2. The Time-Clock-OFF staff member cannot - the ability is controlled by the staff-record setting, not by the Schedule permission tier."
+   "2. The Time-Clock-OFF staff member cannot - the ability is controlled by the staff-record setting, not by the Schedule permission tier.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.4)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.4 (Time Clock setting)",
@@ -335,7 +357,9 @@
   "expected": [
    "1. Work-order-derived details (customer, the scheduled line list, and any money-bearing fields) are hidden or masked wherever they would normally appear - on the block, in the tooltip, and in the modal.",
    "2. The schedule structure itself (the shift's day, time, and technician) stays visible so the grid remains usable.",
-   "3. This extends the sidebar behavior (the work order list and drill-down are hidden) to the work-order data surfaced on the shifts themselves."
+   "3. This extends the sidebar behavior (the work order list and drill-down are hidden) to the work-order data surfaced on the shifts themselves.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.2). The current behaviour follows a later product owner decision dated 2026-07-22."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.2 (Work Orders: View dependency)",
@@ -368,7 +392,9 @@
    "1. Technician, Parts Manager, Parts Tech, Office and Time Clock each have Schedule View turned ON and Schedule Edit and Schedule Delete turned OFF.",
    "2. Service Manager, Senior Service Advisor, Service Advisor and Foreman each have Schedule Edit turned ON (so they also have View).",
    "3. The user from step 4 gets the read-only schedule - nothing can be dragged onto the grid and no shift can be created.",
-   "4. The user from step 5 can drag a work order onto the grid and create a shift."
+   "4. The user from step 5 can drag a work order onto the grid and create a shift.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§14.1)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (default role tiers - the view-only role list and the edit role list)",
@@ -424,7 +450,9 @@
    "1. Below the 960px minimum supported width, the grid scrolls horizontally rather than breaking.",
    "2. All days remain reachable by horizontal scroll.",
    "3. On narrow viewports the sidebar collapses.",
-   "4. No content becomes permanently unreachable and nothing errors."
+   "4. No content becomes permanently unreachable and nothing errors.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§11)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §11 (Responsiveness)",
@@ -453,7 +481,9 @@
   "expected": [
    "1. Scrolling stays smooth with no long freezes or blank stretches that fail to fill in (the list virtualizes at 50+ items).",
    "2. The drill-down behaves the same with many lines.",
-   "3. Search stays responsive on the long list."
+   "3. Search stays responsive on the long list.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§11)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §11 (Performance - virtualization)",
@@ -482,7 +512,9 @@
   "expected": [
    "1. The grid renders and scrolls smoothly at this scale.",
    "2. View switches complete without long hangs.",
-   "3. Tooltips and modals stay responsive."
+   "3. Tooltips and modals stay responsive.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§11)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §11 (Performance)",
@@ -511,7 +543,9 @@
   "expected": [
    "1. The closure day is NOT struck through or skipped by the spread in V1.",
    "2. A shift CAN be placed on the shop closure day (only weekend days with no business hours are skipped).",
-   "3. The end date follows the normal daily distribution - no extra day is added for the closure."
+   "3. The end date follows the normal daily distribution - no extra day is added for the closure.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§12, §4.5). That specification describes this point in two different ways, so the behaviour above follows its first-release wording and a product owner decision is still awaited."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §12 (Shop closures), §4.5",
@@ -537,7 +571,9 @@
   ],
   "expected": [
    "1. All three quantities are shown/derivable and may differ from one another.",
-   "2. Nothing forces them to match - no error, no auto-correction (progress is driven by clocked-in time)."
+   "2. Nothing forces them to match - no error, no auto-correction (progress is driven by clocked-in time).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.5, §12)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.5 (three separate quantities), §12",

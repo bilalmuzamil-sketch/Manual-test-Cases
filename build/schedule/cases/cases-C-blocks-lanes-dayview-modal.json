@@ -18,7 +18,9 @@
    "1. Line 1: the customer name.",
    "2. Line 2: the unit number.",
    "3. Last line: the name of the scheduled line.",
-   "4. No work order number appears on the block."
+   "4. No work order number appears on the block.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.4)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.4",
@@ -47,7 +49,9 @@
   "expected": [
    "1. The whole-order block reads '4 Lines'.",
    "2. The subset block reads '2 Lines' - the block does not distinguish whole-order from subset beyond the count.",
-   "3. Each detail modal lists exactly which lines the shift covers."
+   "3. Each detail modal lists exactly which lines the shift covers.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.4, §12)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.4, §12",
@@ -133,7 +137,9 @@
   "expected": [
    "1. The unconflicted block shows NO icons and NO work order number - only its text lines.",
    "2. The conflicted block shows the conflict (warning) icon on its first line - and that is the only icon that ever appears on a block.",
-   "3. No scope icons distinguish whole-order from subset shifts."
+   "3. No scope icons distinguish whole-order from subset shifts.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.4)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.4",
@@ -163,7 +169,9 @@
    "1. Both shifts are created and shown on the same day for the same technician - multiple same-day shifts from different work orders are allowed.",
    "2. Both shifts sit in the same single lane, one after the other.",
    "3. The row stays at its normal height.",
-   "4. No conflict is flagged for back-to-back (non-intersecting) shifts."
+   "4. No conflict is flagged for back-to-back (non-intersecting) shifts.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.7, §12)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.7",
@@ -190,7 +198,9 @@
   "expected": [
    "1. The two overlapping shifts render in separate stacked lanes - they never visually collide.",
    "2. The row grows in height to fit the lanes.",
-   "3. The overlap is also flagged as a Double-booked conflict (stacking reads as 'resolve me')."
+   "3. The overlap is also flagged as a Double-booked conflict (stacking reads as 'resolve me').",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.7, §4.11)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.7, §4.11",
@@ -219,7 +229,9 @@
    "1. At most 3 lanes are visible.",
    "2. The remaining overlapping shifts collapse into a '+N more' affordance (here '+2 more').",
    "3. Clicking it opens a popover listing the hidden shifts.",
-   "4. The hidden shifts can be opened from that popover."
+   "4. The hidden shifts can be opened from that popover.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.7)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.7",
@@ -248,7 +260,9 @@
   "expected": [
    "1. All three views handle the overlap without blocks visually colliding.",
    "2. Week and month views reach the '+N more' overflow sooner than day view (their cells are narrower), but the same cap-and-overflow model applies.",
-   "3. The overflow affordance opens the hidden-shifts popover in each view."
+   "3. The overflow affordance opens the hidden-shifts popover in each view.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.7)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.7",
@@ -307,7 +321,9 @@
    "2. The start used is the earliest technician's configured start; if no tech hours are set, business hours; otherwise 7:00 AM - so no shifts sit off-screen to the left.",
    "3. Your manual scroll position stays put - nothing jumps you back to the morning while you remain on the same day.",
    "4. The timeline is not stuck at the start - it remains a full 24-hour scrollable timeline (midnight to midnight).",
-   "5. Only navigating to another day re-triggers the auto-scroll."
+   "5. Only navigating to another day re-triggers the auto-scroll.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.8)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.8 (Auto-scroll to business hours)",
@@ -363,7 +379,9 @@
   ],
   "expected": [
    "1. In day view, the date/time header bar stays stuck to the top while the rows scroll beneath it - you always know which time column you are looking at.",
-   "2. The same sticky-header behavior applies in week view."
+   "2. The same sticky-header behavior applies in week view.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.8)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.8 (Sticky header bar)",
@@ -393,7 +411,9 @@
    "1. The shift moves along the timeline as you drag.",
    "2. The released start time snaps to a 15-minute interval (for example 9:15, 9:30 - never 9:22).",
    "3. The duration is unchanged by a horizontal move.",
-   "4. A toast with Undo appears for the move."
+   "4. A toast with Undo appears for the move.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.8, §7)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.8 (Horizontal drag), §7 (toast)",
@@ -423,7 +443,9 @@
    "1. Dragging the right edge extends/shortens the end time (start unchanged).",
    "2. Dragging the left edge adjusts the start time (end unchanged).",
    "3. The resulting times land on 15-minute increments.",
-   "4. The shift's duration on the grid matches the modal's start/end."
+   "4. The shift's duration on the grid matches the modal's start/end.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.8)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.8 (Edge resize)",
@@ -451,7 +473,9 @@
   "expected": [
    "1. A vertical line marks the current time on the timeline.",
    "2. Its position matches the actual clock time.",
-   "3. Hovering the now line while your pointer is over the grid shows a label (the current time)."
+   "3. Hovering the now line while your pointer is over the grid shows a label (the current time).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.8)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.8 (Now line)",
@@ -507,7 +531,9 @@
   "expected": [
    "1. A detail panel opens for the shift.",
    "2. It shows the customer name, unit number, the VIN (below unit and asset), and the work order id.",
-   "3. The VIN is visible here even though the grid's VIN toggle is off - the modal always shows it."
+   "3. The VIN is visible here even though the grid's VIN toggle is off - the modal always shows it.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.9, §9)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9, §9 (VIN always in modal)",
@@ -537,7 +563,9 @@
    "1. The time pickers offer 15-minute increments (for example 8:00, 8:15, 8:30, 8:45).",
    "2. Saving/applying the change updates the shift's times.",
    "3. Changing the date moves the shift to the chosen day.",
-   "4. The grid block reflects the new date/times."
+   "4. The grid block reflects the new date/times.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.9)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9",
@@ -565,7 +593,9 @@
   "expected": [
    "1. The assigned technician is shown.",
    "2. A progress indication compares time logged against the estimate (logged hours vs estimated hours).",
-   "3. The numbers are consistent with the line's actual logged time and estimate."
+   "3. The numbers are consistent with the line's actual logged time and estimate.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.9)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9",
@@ -594,7 +624,9 @@
    "1. The 'Work Order Lines' section shows the line count and a scope summary of what the shift covers.",
    "2. Exactly the 2 scheduled lines are listed (not all 4), each showing its line number, title, hours, and a status pill only.",
    "3. No labor figures and no total dollar amount appear anywhere in the modal.",
-   "4. This is where whole-order vs subset scope is spelled out (the grid block only says 'N Lines')."
+   "4. This is where whole-order vs subset scope is spelled out (the grid block only says 'N Lines').",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.9, §4.4). The current behaviour follows a later product owner decision dated 2026-07-22."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9, §4.4",
@@ -622,7 +654,9 @@
   "expected": [
    "1. The estimated hours field is editable directly in the modal.",
    "2. The new value persists after closing and re-opening.",
-   "3. Dependent displays (progress vs estimate) reflect the new value."
+   "3. Dependent displays (progress vs estimate) reflect the new value.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.9)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9 (Estimated hours with inline edit)",
@@ -651,7 +685,9 @@
    "1. The note is added and shown in the modal.",
    "2. The edit is saved and displayed.",
    "3. The delete removes the note.",
-   "4. Notes are kept per work order (the same note is visible from another shift of the same work order)."
+   "4. Notes are kept per work order (the same note is visible from another shift of the same work order).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.9)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9 (Notes: add, edit, and delete per work order)",
@@ -681,7 +717,9 @@
    "1. A conflict banner is shown in the modal describing the conflict.",
    "2. It offers an 'Adjust' action.",
    "3. 'Adjust' leads to a way to resolve the conflict (for example changing the shift's time).",
-   "4. An unconflicted shift's modal shows no such banner."
+   "4. An unconflicted shift's modal shows no such banner.",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.9)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9 (conflict banner + Adjust)",
@@ -709,7 +747,9 @@
   "expected": [
    "1. The modal offers a Delete action (a trash icon in the header) and a close (x) icon - and no other actions.",
    "2. There is no 'Reassign' action in the modal; reassignment is done by dragging a shift to another technician row (covered by its own case).",
-   "3. Delete on a series member asks for a deletion scope (the full scope behavior has its own cases)."
+   "3. Delete on a series member asks for a deletion scope (the full scope behavior has its own cases).",
+   "---",
+   "This is the expected behaviour as per epic SV-8685 and the Schedule specification version 23 (§4.9, §7)."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9 (Actions), §7",
