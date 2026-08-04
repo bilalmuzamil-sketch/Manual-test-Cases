@@ -1,0 +1,30 @@
+SBR-PERS-05	WEAK-KEEP	That the A-to-Z default is itself a saved value; a narrow edge largely covered by SBR-PERS-04 and SBR-SORT-02.			SENSIBLE	Two steps.	Y	OK	
+SBR-ROW-01	KEEP	The contributor gate - a rep row exists only for a matching non-reversed invoice, with no placeholder rows.			SENSIBLE	Three deliberately-shaped reps.	Y	OK	
+SBR-ROW-02	KEEP	Column order, blanks held in position (a drifted row is a defect), and row typing by font weight rather than colour.			SENSIBLE	Scope-conditioned for Location and version-pinned - Rule 42 satisfied. The build renders 13 columns because Location is in scope, which the case already allows for.	Y	OK	
+SBR-ROW-03	KEEP	A toggled-off or deleted contributor keeps its credit and its historical name - revenue must never silently disappear.			SENSIBLE	The note tells the tester to attempt seeding first and what to do if the deleted-record leg is impossible.	Y	OK	
+SBR-SORT-01	KEEP	The sortability matrix - and it proved the SBC four-column sort gap does NOT reproduce here, which is exactly why per-report sort cases earn their keep.			SENSIBLE	Two steps enumerating every header.	Y	OK	
+SBR-SORT-02	KEEP	Default A-to-Z ordering plus the explicit no-active/inactive-tiers negative, which is the current build-delta target.			SENSIBLE	One step.	Y	OK	
+SBR-SORT-03	KEEP	Toggle semantics, no third state, and the deliberate absence of a header path back to A-to-Z.			SENSIBLE	Four steps; expected 4 pre-empts a tester hunting for a reset.	Y	OK	
+SBR-SORT-04	KEEP	Sort scope (summary rows only) plus the Unassigned row staying pinned.			SENSIBLE	Two steps.	Y	OK	
+SBR-SORT-05	KEEP	Tie-break order and the em-dash-sorts-as-zero rule - a distinct spec semantic.			SENSIBLE	Two steps.	Y	OK	
+SBR-STAT-01	KEEP	Closed four-option status list and its default.			SENSIBLE	Version-pinned to SBR v15 S4-R2 - Rule 42 satisfied.	Y	OK	
+SBR-STAT-02	KEEP	The five-to-three payment mapping through the DISPLAY value, including the deposit-covered prepaid trap engineering itself flagged as bug-prone.			SENSIBLE	The precondition prescribes the realistic deposit seeding rather than a synthetic state.	Y	OK	Needs the ability to take payments.
+SBR-STAT-04	KEEP	Filter composition - an invoice failing any single filter contributes nothing anywhere, checked at every level including the grand totals.			SENSIBLE	Three steps over four deliberately-shaped invoices.	Y	OK	
+SBR-STAT-05	KEEP	Money columns always show invoiced amounts, never the outstanding balance - prevents a whole class of false money bug reports.			SENSIBLE	One step, one read.	Y	OK	
+SBR-STATE-01	KEEP	Empty state with its verbatim message, no grand totals, the contributor-driven single message, and an interactive toolbar.			SENSIBLE	Five assertions, four steps; step 3 hedged "if checkable".	Y	OK	
+SBR-STATE-03	WEAK-KEEP	Loading indicator behaviour; largely cosmetic, though the no-flash-of-blank-table half is a real contract.			SENSIBLE	Three steps.	Y	TOOL	Needs throttling to observe reliably; the case says so.
+SBR-STATE-04	KEEP	Inline could-not-load message with a Retry that re-runs the CURRENT request and does not clear the filters.			SENSIBLE	Three steps; the note distinguishes an inline message from a toast, which is the assertion.	Y	TOOL	Needs to cut the network.
+SBR-TOT-01	WEAK-KEEP	Subtotal pinned, bold and two-axis sticky; presentation, though losing the headline column on scroll would matter.			SENSIBLE	Four steps.	Y	OK	
+SBR-TOT-02	KEEP	The desktop Totals row: merged identifier cell, coverage of the full filtered set regardless of expansion, and the rounding rule.			SENSIBLE	Four steps including a cross-check against all matching invoices.	Y	OK	
+SBR-TOT-03	KEEP	The mobile totals bar must sit OUTSIDE the horizontal scroll container - it found a real gap where the totals scroll out of view sideways.			SENSIBLE	Closed "(no other metrics)" phrase is the spec's own and version-pinned - Rule 42 satisfied.	Y	OK	
+SBR-TREE-05	KEEP	On-demand expansion with a row-level indicator plus the detail-row anatomy.			SENSIBLE	Two steps.	Y	OK	
+SBR-TREE-06	WEAK-KEEP	Header chevron expand-all and its glyph; a near-duplicate of SBC-TREE-08 (C30128) across reports, minus the tooltip strings.			SENSIBLE	Three steps.	Y	OK	
+SBR-TREE-07	KEEP	Each invoice under exactly one rep and the counts reconciling - the guard against the known double-credit schema delta.			SENSIBLE	Two steps; the note names the schema delta to expect.	Y	OK	
+SBR-TREE-08	KEEP	Expansion survives filter and sort changes in-session but resets on reload, and a returning rep renders collapsed - deliberately different from SBC.			SENSIBLE	Three steps; the note names the cross-report difference.	Y	OK	
+SBR-TREE-09	KEEP	Detail-row ordering with a NUMERIC tie-break and the P-before-S rule - a classic alphabetical-vs-numeric bug site.			SENSIBLE	The S999-before-S1000 example makes the rule unmistakable.	Y	OK	
+SBR-TYPE-02	KEEP	Closed three-option Product Type list, its default, and prefix filtering both ways.			SENSIBLE	Version-pinned to SBR v15 S3-R2 - Rule 42 satisfied.	Y	OK	
+SBR-UNAS-01	KEEP	Toggle position, off-by-default, and the off-state negative that unassigned invoices contribute to nothing.			SENSIBLE	Two steps.	Y	OK	
+SBR-UNAS-02	KEEP	The Unassigned row behaves exactly like a rep row, stays pinned, and recomputes the grand totals - four distinct assertions.			SENSIBLE	Four steps.	Y	OK	
+SBR-UNAS-04	KEEP	An empty Unassigned row is never rendered, in both toggle directions.			SENSIBLE	Two scenarios.	Y	OK	
+SBR-VIS-01	WEAK-KEEP	Layout conformance; cosmetic and design-token owned.			FIX-WORDING	Expected 1 asserts 32px / 24px / 2rem paddings and pixel alignment - the same un-repaired class as SBC-VIS-01 (C30185), while PV-VIS-02 (C30386) was repaired to a by-eye check. Apply the PV-VIS-02 repair here too.	Y	TOOL	Requires dev tools for the padding and alignment measurements.
+SBR-VIS-02	KEEP	Dark-mode conformance across every surface plus the PDF-always-light rule; it found the real black-on-near-black Totals defect.			SENSIBLE	Four steps.	Y	OK	
