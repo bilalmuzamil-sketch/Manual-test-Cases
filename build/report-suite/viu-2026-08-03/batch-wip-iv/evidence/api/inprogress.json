@@ -1,0 +1,64 @@
+{
+ "created": "4182e57c-f1e2-485a-926c-bd5cd4bbc92b",
+ "probe": [
+  {
+   "body": "{\"id\":\"4182e57c-f1e2-485a-926c-bd5cd4bbc92b\"}",
+   "status": 400,
+   "resp": "{\"errors\":[{\"id\":\"Work Order ID is missing.\"}]}"
+  },
+  {
+   "body": "{\"id\":\"4182e57c-f1e2-485a-926c-bd5cd4bbc92b\",\"status\":\"in_progress\"}",
+   "status": 400,
+   "resp": "{\"errors\":[{\"id\":\"Work Order ID is missing.\"}]}"
+  },
+  {
+   "body": "{\"work_order_id\":\"4182e57c-f1e2-485a-926c-bd5cd4bbc92b\",\"status\":\"in_progress\"}",
+   "status": 500,
+   "resp": "{\"errors\":[{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"b9da9359-0f72-4e82-8401-f3fd72c882f7\"}]}"
+  }
+ ],
+ "set_in_progress": {
+  "changeStatus": 400,
+  "err": "{\"errors\":[{\"id\":\"Work Order ID is missing.\"}]}",
+  "wipStatus": "estimate",
+  "wipTab": "Estimates",
+  "present": true
+ },
+ "set_review": {
+  "changeStatus": 400,
+  "err": "{\"errors\":[{\"id\":\"Work Order ID is missing.\"}]}",
+  "wipStatus": "estimate",
+  "wipTab": "Estimates",
+  "present": true
+ },
+ "set_ready_for_review": {
+  "changeStatus": 400,
+  "err": "{\"errors\":[{\"id\":\"Work Order ID is missing.\"}]}",
+  "wipStatus": "estimate",
+  "wipTab": "Estimates",
+  "present": true
+ },
+ "set_complete": {
+  "changeStatus": 400,
+  "err": "{\"errors\":[{\"id\":\"Work Order ID is missing.\"}]}",
+  "wipStatus": "estimate",
+  "wipTab": "Estimates",
+  "present": true
+ },
+ "set_invoiced": {
+  "changeStatus": 400,
+  "err": "{\"errors\":[{\"id\":\"Work Order ID is missing.\"}]}",
+  "wipStatus": "estimate",
+  "wipTab": "Estimates",
+  "present": true
+ },
+ "set_declined": {
+  "changeStatus": 400,
+  "err": "{\"errors\":[{\"id\":\"Work Order ID is missing.\"}]}",
+  "wipStatus": "estimate",
+  "wipTab": "Estimates",
+  "present": true
+ },
+ "deleted": 201,
+ "gone": true
+}

@@ -1,0 +1,558 @@
+{
+ "buildMarker": "v3.4.1-0ed4433",
+ "capturedAt": "2026-08-04T01:46:39.207Z",
+ "wip": {
+  "shape": {
+   "status": 200,
+   "topKeys": [
+    "collection"
+   ]
+  },
+  "sectionKeys": [
+   "collection"
+  ],
+  "hasFlatCollection": true,
+  "summary": null,
+  "raw": "{\"collection\":[{\"work_order_id\":\"62739815-8265-4e10-beea-e38c33f5bd76\",\"number\":\"S2-16004\",\"status\":\"approved\",\"customer\":\"Aeline Industries\",\"unit_number\":null,\"vin\":\"86J8FAC1VALJ43SJY\",\"location\":\"Staging Heavy Duty - 9919\",\"advisor\":\"Admin ShopView\",\"start_date\":\"2026-08-04T01:46:38Z\",\"last_activity\":\"2026-08-04T01:46:38Z\",\"labor_earned\":0,\"labor_remaining\":15000,\"parts_earned\":0,\"parts_remaining\":0,\"earned\":0,\"remaining\":15000,\"total\":15000,\"quoted_hours\":1.5,\"worked_hours\":0,\"tab\":\"ApprovedNotStarted\"},{\"work_order_id\":\"b5e16c64-4abd-4ba7-925c-1519c1b6b21a\",\"number\":\"S2-16003\",\"status\":\"approved\",\"customer\":\"Aeisland Ventures\",\"unit_number\":null,\"vin\":\"86J8FAC1VALJ43SJY\",\"location\":\"Staging Heavy Duty - 9919\",\"advisor\":\"Admin ShopView\",\"start_date\":\"2026-08-04T01:46:36Z\",\"last_activity\":\"2026-08-04T01:46:36Z\",\"labor_earned\":0,\"labor_remaining\":15000,\"parts_earned\":0,\"parts_remaining\":0,\"earned\":0,\"remaining\":15000,\"total\":15000,\"quoted_hours\":1.5,\"worked_hours\":0,\"tab\":\"ApprovedNotStarted\"},{\"work_order_id\":\"6638c08b-2f13-46ff-b8ef-c47e76952032\",\"number\":\"S2-16002\",\"status\":\"approved\",\"customer\":\"Aehaven Solutions\",\"unit_number\":null,\"vin\":\"86J8FAC1VALJ43SJY\",\"location\":\"Stagi",
+  "rowKeys": [
+   "work_order_id",
+   "number",
+   "status",
+   "customer",
+   "unit_number",
+   "vin",
+   "location",
+   "advisor",
+   "start_date",
+   "last_activity",
+   "labor_earned",
+   "labor_remaining",
+   "parts_earned",
+   "parts_remaining",
+   "earned",
+   "remaining",
+   "total",
+   "quoted_hours",
+   "worked_hours",
+   "tab"
+  ],
+  "arr_collection": {
+   "len": 441,
+   "keys": [
+    "work_order_id",
+    "number",
+    "status",
+    "customer",
+    "unit_number",
+    "vin",
+    "location",
+    "advisor",
+    "start_date",
+    "last_activity",
+    "labor_earned",
+    "labor_remaining",
+    "parts_earned",
+    "parts_remaining",
+    "earned",
+    "remaining",
+    "total",
+    "quoted_hours",
+    "worked_hours",
+    "tab"
+   ]
+  },
+  "rowsFound": 442,
+  "sampleRow": {
+   "work_order_id": "b3e63251-8a6d-4e49-a22a-5af2f7736fee",
+   "number": "S2-16005",
+   "status": "estimate",
+   "customer": "Aeline Ventures",
+   "unit_number": null,
+   "vin": "86J8FAC1VALJ43SJY",
+   "location": "Staging Heavy Duty - 9919",
+   "advisor": "Admin ShopView",
+   "start_date": "2026-08-04T01:46:46Z",
+   "last_activity": "2026-08-04T01:46:46Z",
+   "labor_earned": 0,
+   "labor_remaining": 0,
+   "parts_earned": 0,
+   "parts_remaining": 0,
+   "earned": 0,
+   "remaining": 0,
+   "total": 0,
+   "quoted_hours": 0,
+   "worked_hours": 0,
+   "tab": "Estimates"
+  },
+  "calcContract": {
+   "S4-R19 Earned = LaborEarned + PartsEarned": "442/442",
+   "S4-R20 Remaining = LaborRemaining + PartsRemaining": "442/442",
+   "S4-R21 Total = Earned + Remaining": "442/442",
+   "statusesPresent": {
+    "estimate": 230,
+    "approved": 171,
+    "complete": 29,
+    "ready_for_review": 12
+   },
+   "daysOpenSamples": [],
+   "invHrsSamples": []
+  },
+  "forbiddenStatuses": [],
+  "woNumberPrefixes": [
+   "S2",
+   "S3"
+  ],
+  "assetEdge": [
+   {
+    "unit": null,
+    "vin": "86J8FAC1VALJ43SJY",
+    "asset": null
+   },
+   {
+    "unit": null,
+    "vin": "86J8FAC1VALJ43SJY",
+    "asset": null
+   },
+   {
+    "unit": null,
+    "vin": "86J8FAC1VALJ43SJY",
+    "asset": null
+   },
+   {
+    "unit": null,
+    "vin": "86J8FAC1VALJ43SJY",
+    "asset": null
+   },
+   {
+    "unit": null,
+    "vin": "86J8FAC1VALJ43SJY",
+    "asset": null
+   },
+   {
+    "unit": null,
+    "vin": "86J8FAC1VALJ43SJY",
+    "asset": null
+   }
+  ],
+  "locationsSeen": [
+   "Staging Heavy Duty - 9919",
+   "Staging Lethbridge - 4310"
+  ],
+  "spanLimit": {
+   "366d": {
+    "status": 200,
+    "error": null
+   },
+   "367d": {
+    "status": 200,
+    "error": null
+   },
+   "400d": {
+    "status": 400,
+    "error": "{\"errors\":[{\"error\":\"Date range cannot be over one year.\"}]}"
+   },
+   "730d": {
+    "status": 400,
+    "error": "{\"errors\":[{\"error\":\"Date range cannot be over one year.\"}]}"
+   }
+  },
+  "locScope": {
+   "single": 200,
+   "both": 200,
+   "none": 200,
+   "inaccessible": {
+    "status": 200,
+    "err": "{\"data\":{\"collection\":[{\"work_order_id\":\"a1c1526e-9e74-46c5-bb91-703c826a8856\",\"number\":\"S2-16006\",\"status\":\"approved\",\"customer\":\"Aeman Maintenance\",\"unit_number\":null,\"vin\":\"86J8FAC1VALJ43SJY\",\"loca"
+   },
+   "rowCounts": {
+    "single": 0,
+    "both": 0
+   }
+  }
+ },
+ "iv": {
+  "shape": {
+   "status": 200,
+   "topKeys": [
+    "collection",
+    "pagination",
+    "totals",
+    "as_of_date"
+   ],
+   "pagination": {
+    "sortBy": null,
+    "descending": false,
+    "page": 1,
+    "rowsPerPage": 25,
+    "rowsNumber": 9275
+   },
+   "asOf": "2026-08-04",
+   "totals": {
+    "qty": 195249.93,
+    "total_cost": 97708047,
+    "total_sell": 183215249,
+    "margin": 85507202,
+    "margin_pct": 46.67
+   },
+   "rowKeys": [
+    "key",
+    "workplace_id",
+    "location",
+    "part_number",
+    "description",
+    "category",
+    "vendor",
+    "qty",
+    "unit_cost",
+    "unit_sell",
+    "total_cost",
+    "total_sell",
+    "margin",
+    "margin_pct"
+   ]
+  },
+  "sampleRows": [
+   {
+    "key": "5dc26eb1-0ed6-45fd-9344-9f867e3c0330",
+    "workplace_id": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+    "location": "Staging Lethbridge - 4310",
+    "part_number": "AB8724",
+    "description": "AIR SPRING ROLLING LOBE",
+    "category": "HD-Air Brakes & Air Suspension",
+    "vendor": null,
+    "qty": 31,
+    "unit_cost": 70202,
+    "unit_sell": 98880,
+    "total_cost": 2176262,
+    "total_sell": 3065280,
+    "margin": 889018,
+    "margin_pct": 29
+   },
+   {
+    "key": "1679ad99-7cd4-42dd-9cc2-327b40cb7e87",
+    "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "location": "Staging Heavy Duty - 9919",
+    "part_number": "R134A",
+    "description": "Refrigerant",
+    "category": "HD-Fluids",
+    "vendor": null,
+    "qty": 786.55,
+    "unit_cost": 1421,
+    "unit_sell": 2186,
+    "total_cost": 1117688,
+    "total_sell": 1719398,
+    "margin": 601710,
+    "margin_pct": 35
+   },
+   {
+    "key": "6e71e565-2bf5-44d9-a832-ef77f95d66a2",
+    "workplace_id": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+    "location": "Staging Heavy Duty - 9919",
+    "part_number": "W4707QP",
+    "description": "Brake Shoe Kit w/ Hardware, 16.5x7, Coreless",
+    "category": "HD-Heavy Duty Shoes",
+    "vendor": "Qucastle Excavating",
+    "qty": 245,
+    "unit_cost": 4146,
+    "unit_sell": 9433,
+    "total_cost": 1015770,
+    "total_sell": 2311085,
+    "margin": 1295315,
+    "margin_pct": 56.05
+   }
+  ],
+  "calcContract": {
+   "S3-R7 TotalCost = Qty x UnitCost": "21/25",
+   "S3-R6 TotalSell = Qty x UnitSell": "21/25",
+   "S3-R8 Margin = TotalSell - TotalCost": "25/25",
+   "S3-R9 MarginPct = Margin / TotalSell x 100": "25/25",
+   "S2-R1 qty > 0 on every row": "25/25",
+   "duplicatePartLocationKeys": []
+  },
+  "totalsVsFullWalk": {
+   "serverTotals": {
+    "qty": 63096.08,
+    "total_cost": 48554218,
+    "total_sell": 86018930,
+    "margin": 37464712,
+    "margin_pct": 43.55
+   },
+   "rowsNumber": 5657,
+   "walkedRows": 5657,
+   "walked": {
+    "total_cost": 48554224,
+    "total_sell": 86018933,
+    "margin": 37464709,
+    "qty": 63096.08
+   },
+   "matchesTotalCost": false,
+   "matchesTotalSell": false,
+   "totalsMarginPctRecomputed": 43.6,
+   "totalsMarginPctReported": 43.55
+  },
+  "pagination": {
+   "page1": [
+    "R134A|1117688",
+    "W4707QP|1015770",
+    "W3600AX|774456",
+    "KL-HD2590|609648",
+    "14-145|564480",
+    "R134A-CORE|511992",
+    "SH550045136|412343",
+    "W4515Q|398500",
+    "RLHD2436FOOTHILLS|396000",
+    "HDEO14|394368"
+   ],
+   "page2": [
+    "600-421-03CP|372534",
+    "MD668D|345210",
+    "ARW-3922308|341940",
+    "SHL550045128P|336303",
+    "HDEO13|297792",
+    "BRAKECLEAN|296022",
+    "KL-TF4090|292929",
+    "MDS79DD|282680",
+    "3719022R|280000",
+    "550045513|275976"
+   ],
+   "pageSizeHonoured": 10,
+   "pagination1": {
+    "sortBy": null,
+    "descending": false,
+    "page": 1,
+    "rowsPerPage": 10,
+    "rowsNumber": 5657
+   },
+   "pagination2": {
+    "sortBy": null,
+    "descending": false,
+    "page": 2,
+    "rowsPerPage": 10,
+    "rowsNumber": 5657
+   }
+  },
+  "defaultSortDesc": {
+   "values": [
+    1117688,
+    1015770,
+    774456,
+    609648,
+    564480,
+    511992
+   ],
+   "isDescending": true
+  },
+  "sort_part_number_false": [
+   "#3 Expanded Steel | #3 Expanded Steel Shee | 15822 | 35",
+   "0002-060004 | MUD FLAP SPRING SUPPOR | 2 | 50",
+   "002-011000 | TRUCK BOX TARP CRANK | 1 | 50",
+   "004188 | Door Hinge Strap | 3397 | 44",
+   "00492600 | MOUNT BRACKET | 3867 | 40",
+   "006-190-00 | SPINDLE NUT RETAINER | 2745 | 53.98"
+  ],
+  "sort_part_number_true": [
+   "ZSLNM10SF-20 | 20MM FINE STOVER LOCKN | 10368 | 50",
+   "ZSLNM10SF-18 | 18MM FINE STOVER LOCKN | 8786 | 50",
+   "ZSLNM10SF-16 | 16MM FINE STOVER LOCKN | 8712 | 52.97",
+   "ZSLNM10SF-14 | 14MM FINE STOVER LOCKN | 2950 | 52.99",
+   "ZSLNM10SC-20 | 20MM CRS STOVER LOCKNU | 7820 | 52.97",
+   "ZSLNM10SC-18 | 18MM CRS STOVER LOCKNU | 9100 | 50"
+  ],
+  "sort_total_cost_false": [
+   "10R2112 | Oil Cooler Assembly, R | 0 | null",
+   "1818296C1 | BOLT M12x1.25x110mm | 0 | null",
+   "46983-5 | Surface Mount Submersi | 0 | null",
+   "84-2052PK | 6 CAVITY TERMINAL (MAT | 0 | null",
+   "A9060307005 | Flywheel. MBE4000/OM90 | 0 | 100",
+   "C0161-SA | DPF, Cummins ISB | 0 | null"
+  ],
+  "sort_description_false": [
+   "N68SL-356 | \t\n3.50-3.82\" (89-97mm) | 1870 | 54",
+   "N231-013BR | \t\nX107-A 1/8\" EXTRUDED | 444 | 53.02",
+   "4--FLT3030LCB20 |  (30/30 LONG STROKE SP | 5089 | 42",
+   "4--PET-40 |  (SS HOSE CLAMP (2-1/1 | 1602 | 50",
+   "4--N66-HYD003 |  #04 - #12 STEEL NPT J | 17898 | 50",
+   "3--N66-HYD003 |  #04 - #12 Steel NPT J | 15544 | 51.18"
+  ],
+  "sort_margin_pct_true": [
+   "A9060307005 | Flywheel. MBE4000/OM90 | 0 | 100",
+   "16-855 | AIR HORN | 1 | 100",
+   "02-507 | TRAILER BRAKE DUST SHI | 8 | 99.97",
+   "1887351C2 | USED ECU FOR MAXXFORCE | 200 | 99.93",
+   "8-98163524-1 | FUEL INJECTOR NOZZLE - | 400 | 99.87",
+   "W3687AX | Brake Drum, 16.5x6 | 125700 | 78.48"
+  ],
+  "filtersEndpoint": {
+   "status": 404,
+   "keys": [],
+   "body": "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+  },
+  "filterProbe": {
+   "allRows": 5657,
+   "sampleCategory": "HD-Fluids",
+   "sampleVendor": null,
+   "byCategoryName": {
+    "status": 400,
+    "rows": null
+   },
+   "bySearchBRAKE": {
+    "status": 200,
+    "rows": 149,
+    "allMatch": true,
+    "firstRows": [
+     "W4707QP | Brake Shoe Kit w/ Hardware, 16.5x7, Coreless",
+     "W3600AX | Brake Drum, 16.5x7",
+     "W4515Q | Brake Shoe Kit w/ Hardware, 16.5x7, Coreless"
+    ]
+   },
+   "searchRecomputesTotals": {
+    "all": 48554218,
+    "searched": 4991567
+   },
+   "caseInsensitive": {
+    "upper": 149,
+    "lower": 149,
+    "equal": true
+   },
+   "searchesDescription": {
+    "rows": 0
+   }
+  },
+  "asOf": {
+   "today": {
+    "status": 200,
+    "as_of_date": "2026-08-04",
+    "rows": 5657,
+    "totalCost": 48554218,
+    "err": null
+   },
+   "yesterday": {
+    "status": 200,
+    "as_of_date": "2026-08-04",
+    "rows": 5657,
+    "totalCost": 48554218,
+    "err": null
+   },
+   "this month": {
+    "status": 200,
+    "as_of_date": "2026-08-04",
+    "rows": 5657,
+    "totalCost": 48554218,
+    "err": null
+   },
+   "last month": {
+    "status": 200,
+    "as_of_date": "2026-08-01",
+    "rows": 5657,
+    "totalCost": 48554966,
+    "err": null
+   },
+   "2026-01": {
+    "status": 200,
+    "as_of_date": "2026-02-01",
+    "rows": 0,
+    "totalCost": 0,
+    "err": null
+   },
+   "2020 (before capture began)": {
+    "status": 200,
+    "as_of_date": "2020-02-01",
+    "rows": 0,
+    "totalCost": 0,
+    "err": null
+   },
+   "future": {
+    "status": 200,
+    "as_of_date": "2026-08-04",
+    "rows": 5657,
+    "totalCost": 48554218,
+    "err": null
+   },
+   "no range param": {
+    "status": 200,
+    "as_of_date": "2026-08-04",
+    "rows": 5657,
+    "totalCost": 48554218,
+    "err": null
+   }
+  },
+  "coreRows": [
+   {
+    "part": "W4707QP",
+    "desc": "Brake Shoe Kit w/ Hardware, 16.5x7, Coreless",
+    "cat": "HD-Heavy Duty Shoes",
+    "qty": 245
+   },
+   {
+    "part": "R134A-CORE",
+    "desc": "R134A Bottle Core",
+    "cat": "HD-CORE / FEE",
+    "qty": 24
+   },
+   {
+    "part": "W4515Q",
+    "desc": "Brake Shoe Kit w/ Hardware, 16.5x7, Coreless",
+    "cat": "HD-Heavy Duty Shoes",
+    "qty": 100
+   },
+   {
+    "part": "W4715QP",
+    "desc": "Brake Shoe Kit w/ Hardware, 16.5x6, Coreless",
+    "cat": "HD-Heavy Duty Shoes",
+    "qty": 48
+   },
+   {
+    "part": "KEG24711QP",
+    "desc": "Brake Shoe Kit, New, Coreless",
+    "cat": "HD-Heavy Duty Shoes",
+    "qty": 15
+   },
+   {
+    "part": "CWB4709E2K",
+    "desc": "4709 BRAKE SHOE KIT W/ HARDWARE (CORELESS)",
+    "cat": "HD-Heavy Duty Shoes",
+    "qty": 23
+   },
+   {
+    "part": "P640017",
+    "desc": "Paccar Powercore Engine Air Filter",
+    "cat": "HD-Filters",
+    "qty": 2
+   },
+   {
+    "part": "ABP-N83-MT0065",
+    "desc": "VALVE CORE, M10",
+    "cat": "HD-Cooling & HVAC",
+    "qty": 29
+   },
+   {
+    "part": "ABP-N83-MT0301",
+    "desc": "VALVE CORE, VOLVO (830.52411-10/8955)",
+    "cat": "HD-Cooling & HVAC",
+    "qty": 13
+   },
+   {
+    "part": "ABP-N83-MT0050",
+    "desc": "VALVE CORE, M8 (830.52410-10/8926)",
+    "cat": "HD-Cooling & HVAC",
+    "qty": 13
+   },
+   {
+    "part": "ABP-N83-MT1544",
+    "desc": "VALVE CORE, LG BORE, MERCEDES",
+    "cat": "HD-Cooling & HVAC",
+    "qty": 4
+   },
+   {
+    "part": "830.52408-10",
+    "desc": "VALVE CORE SCHRADER M6 (8916)",
+    "cat": "HD-Cooling & HVAC",
+    "qty": 15
+   }
+  ],
+  "coreCatalogueLookup": {
+   "status": 200,
+   "body": "{\"data\":{\"collection\":[{\"id\":\"1606746b-c988-4548-8387-935f0b8e85d1\",\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"vendor_id\":null,\"core_part_id\":null,\"min\":0,\"max\":0,\"quantity\":24,\"grid_location\":null,\"purchase_price\":\"213.33\",\"is_core\":0,\"environmental_charge\":null,\"last_cycle_count_date\":null,\"core_charge\":0,\"name\":\"R134A Bottle Core\",\"part_number\":\"R134A-CORE\",\"vendor_name\":null,\"manufacturer_id\":null,\"manufacturer_name\":null,\"tags\":[],\"category_label\":\"HD-CORE / FEE\",\"category\":\"820dc078-1a83-477b-959b-9be5bfd62e61\",\"is_fixed_price\":false,\"sell_price\":387.88,\"purchase_price_value\":213.33,\"core_charge_value\":\"0.00\",\"catalogue_part_id\":\"ef9269c2-de8a-4622-9dcd-b33a0bd69f3e\",\"deletable\":true,\"numberOfHistoryRecords\":0,\"binLocations\":[{\"binLocationId\":\"12951d24-479b-11f1-9bed-020a144de1a3\",\"name\":\"BARN\",\"quantity\":24,\"isDefault\":true}]}],\"pagination\":{\"sortBy\":null,\"descending\":"
+  }
+ }
+}

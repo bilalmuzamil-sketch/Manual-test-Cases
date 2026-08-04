@@ -1,0 +1,108 @@
+{
+ "buildMarker": "v3.4.1-0ed4433",
+ "capturedAt": "2026-08-04T01:50:44.033Z",
+ "coreLookup": [
+  {
+   "path": "/api/inventory/parts?search=R134A-CORE&limit=5",
+   "status": 200,
+   "body": "{\"data\":{\"collection\":[{\"id\":\"1606746b-c988-4548-8387-935f0b8e85d1\",\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"vendor_id\":null,\"core_part_id\":null,\"min\":0,\"max\":0,\"quantity\":24,\"grid_location\":null,\"purchase_price\":\"213.33\",\"is_core\":0,\"environmental_charge\":null,\"last_cycle_count_date\":null,\"core_charge\":0,\"name\":\"R134A Bottle Core\",\"part_number\":\"R134A-CORE\",\"vendor_name\":null,\"manufacturer_id\":null,\"manufacturer_name\":null,\"tags\":[],\"category_label\":\"HD-CORE / FEE\",\"category\":\"820dc078-1a83-477b-959b-9be5bfd62e61\",\"is_fixed_price\":false,\"sell_price\":387.88,\"purchase_price_value\":213.33,\"core_charge_value\":\"0.00\",\"catalogue_part_id\":\"ef9269c2-de8a-4622-9dcd-b33a0bd69f3e\",\"deletable\":true,\"numberOfHistoryRecords\":0,\"binLocations\":[{\"binLocationId\":\"12951d24-479b-11f1-9bed-020a144de1a3\",\"name\":\"BARN\",\"quantity\":24,\"isDefault\":true}]}],\"pagination\":{\"sortBy\":null,\"descending\":false,\"page\":1,\"rowsPerPage\":100}}}"
+  },
+  {
+   "path": "/api/parts?search=R134A-CORE&limit=5",
+   "status": 200,
+   "body": "{\"data\":{\"collection\":[],\"pagination\":{\"sortBy\":null,\"descending\":false,\"page\":1,\"rowsPerPage\":100}}}"
+  },
+  {
+   "path": "/api/inventory/parts?search=R134A-CORE",
+   "status": 200,
+   "body": "{\"data\":{\"collection\":[{\"id\":\"1606746b-c988-4548-8387-935f0b8e85d1\",\"workplace_id\":\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"vendor_id\":null,\"core_part_id\":null,\"min\":0,\"max\":0,\"quantity\":24,\"grid_location\":null,\"purchase_price\":\"213.33\",\"is_core\":0,\"environmental_charge\":null,\"last_cycle_count_date\":null,\"core_charge\":0,\"name\":\"R134A Bottle Core\",\"part_number\":\"R134A-CORE\",\"vendor_name\":null,\"manufacturer_id\":null,\"manufacturer_name\":null,\"tags\":[],\"category_label\":\"HD-CORE / FEE\",\"category\":\"820dc078-1a83-477b-959b-9be5bfd62e61\",\"is_fixed_price\":false,\"sell_price\":387.88,\"purchase_price_value\":213.33,\"core_charge_value\":\"0.00\",\"catalogue_part_id\":\"ef9269c2-de8a-4622-9dcd-b33a0bd69f3e\",\"deletable\":true,\"numberOfHistoryRecords\":0,\"binLocations\":[{\"binLocationId\":\"12951d24-479b-11f1-9bed-020a144de1a3\",\"name\":\"BARN\",\"quantity\":24,\"isDefault\":true}]}],\"pagination\":{\"sortBy\":null,\"descending\":false,\"page\":1,\"rowsPerPage\":100}}}"
+  }
+ ],
+ "seedPart": {
+  "emptyProbe": {
+   "status": 400,
+   "body": "{\"errors\":[{\"catalog_part_id\":\"Missing required parameter\"},{\"category_id\":\"Missing required parameter\"},{\"quantity\":\"Missing required parameter\"},{\"cost\":\"Missing required parameter\"},{\"tags\":\"Missing required parameter\"},{\"bins\":\"Missing required parameter\"}]}"
+  },
+  "emptyProbe2": {
+   "status": 405,
+   "body": "{\"errors\":[{\"error\":\"No route found for \\\"POST http://sv8582api.qa.shopview.com/api/inventory/parts\\\": Method Not Allowed (Allow: GET)\"}]}"
+  }
+ },
+ "seedWO": {
+  "customerLookup": {
+   "status": 200,
+   "firstId": "7af75d7c-c9f8-4209-860a-e685e9bd7c1c",
+   "body": "{\"data\":{\"collection\":[{\"id\":\"7af75d7c-c9f8-4209-860a-e685e9bd7c1c\",\"name\":\"Aaborough Works\",\"address_1\":\"6622 Donna Knoll Apt. 574\",\"address_2\":null,\"state_or_province\":\"Nova Scotia\",\"postal_code\":\"A3P7S3\",\"city\":\"Michellefort\",\"telephone\":\"573-219-5819\",\"notes\":null,\"pin_notes\":0,\"sales_rep_first_"
+  },
+  "vehicleLookup": {
+   "status": 200,
+   "firstId": "00052898-8ce9-4bf4-b0be-c3644db57f29"
+  },
+  "create": {
+   "status": 201,
+   "body": "{\"data\":{\"work_order_id\":\"152a0d40-4bb3-403d-88c5-f87afe604ece\"}}"
+  },
+  "woId": null
+ },
+ "perms": {
+  "catalogue": {
+   "status": 200,
+   "reportAtoms": [
+    "\"reportsPageAccess\""
+   ]
+  },
+  "roleHolders": [],
+  "subjects": {
+   "Sales Representative": {
+    "note": "no active confirmed holder on this org"
+   },
+   "Foreman": {
+    "switchStatus": 200,
+    "template_slug": "foreman",
+    "atomCount": 23,
+    "hasReportsPageAccess": false,
+    "wipData": {
+     "status": 403,
+     "err": "{\"errors\":[{\"error\":\"Access denied.\"}]}",
+     "rows": null
+    },
+    "ivData": {
+     "status": 403,
+     "err": "{\"errors\":[{\"error\":\"Access denied.\"}]}",
+     "rows": null
+    },
+    "wipExport": {
+     "status": 403,
+     "err": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+    },
+    "ivExport": {
+     "status": 403,
+     "err": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+    }
+   },
+   "Technician": {
+    "switchStatus": 403,
+    "note": "switch-user refused"
+   },
+   "Office User": {
+    "note": "no active confirmed holder on this org"
+   },
+   "Parts Manager": {
+    "note": "no active confirmed holder on this org"
+   },
+   "Service Advisor": {
+    "note": "no active confirmed holder on this org"
+   }
+  },
+  "staffCount": 68,
+  "rolesWithUsableHolder": [
+   "Admin",
+   "Technician",
+   "Foreman"
+  ]
+ },
+ "restoredToAdmin": {
+  "template_slug": "administrator",
+  "atomCount": 42
+ }
+}

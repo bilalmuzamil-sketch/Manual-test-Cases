@@ -1,0 +1,231 @@
+{
+ "buildMarker": "v3.4.1-0ed4433",
+ "capturedAt": "2026-08-04T01:52:06.808Z",
+ "strayCleanup": {
+  "id": "152a0d40-4bb3-403d-88c5-f87afe604ece",
+  "deleteStatus": 201,
+  "body": "{\"data\":{\"work_order_id\":\"152a0d40-4bb3-403d-88c5-f87afe604ece\"}}",
+  "stillInWip": false
+ },
+ "inProgress": {
+  "create": {
+   "status": 201,
+   "woId": "8dcfa9e7-d72d-4396-87ca-f51cf1deae2b"
+  },
+  "cannedLookup": {
+   "status": 404,
+   "cannedId": null
+  },
+  "statusProbes": [
+   {
+    "path": "/api/work-orders/change-status",
+    "status": 500,
+    "body": "{\"errors\":[{\"error\":\"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"389dfd2e-4572-408a-8a68-8f585f855971\"}]}"
+   },
+   {
+    "path": "/api/work-orders/status",
+    "status": 404,
+    "body": "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+   },
+   {
+    "path": "/api/work-orders/update",
+    "status": 404,
+    "body": "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+   },
+   {
+    "path": "/api/work-orders/change",
+    "status": 400,
+    "body": "{\"errors\":[{\"id\":\"Work Order ID is missing.\"}]}"
+   }
+  ],
+  "wipRow": {
+   "work_order_id": "8dcfa9e7-d72d-4396-87ca-f51cf1deae2b",
+   "number": "S2-16073",
+   "status": "estimate",
+   "customer": "Aaborough Works",
+   "unit_number": null,
+   "vin": "86J8FAC1VALJ43SJY",
+   "location": "Staging Heavy Duty - 9919",
+   "advisor": "Admin ShopView",
+   "start_date": "2026-08-04T01:52:12Z",
+   "last_activity": "2026-08-04T01:52:12Z",
+   "labor_earned": 0,
+   "labor_remaining": 0,
+   "parts_earned": 0,
+   "parts_remaining": 0,
+   "earned": 0,
+   "remaining": 0,
+   "total": 0,
+   "quoted_hours": 0,
+   "worked_hours": 0,
+   "tab": "Estimates"
+  },
+  "deleteStatus": 201,
+  "goneAfterDelete": true
+ },
+ "minimalRole": {
+  "rolesSeen": [
+   {
+    "id": "0c94a1d5-07cf-4a60-8f1c-67616b808324",
+    "name": "Parts Technician"
+   },
+   {
+    "id": "2ca7a173-aa33-4b0d-80c6-1044068e84a2",
+    "name": "Service Manager"
+   },
+   {
+    "id": "2cb364be-b7db-4663-a2f3-3c345dcb8ec1",
+    "name": "Senior Service Advisor"
+   },
+   {
+    "id": "2f75480b-363f-4d5a-b560-d8156e228e9e",
+    "name": "Time Clock User"
+   },
+   {
+    "id": "475d69b3-3596-4dc0-8fa2-ae7890f6f697",
+    "name": "Technician"
+   },
+   {
+    "id": "58bd6045-37ae-4941-9389-1a0bf0a0b5bb",
+    "name": "Office User"
+   },
+   {
+    "id": "a1d0a44b-8730-45d2-9449-1aa818d285e4",
+    "name": "Service Advisor"
+   },
+   {
+    "id": "b176ec30-2def-49af-ab11-782c2f6bd503",
+    "name": "Sales Representative"
+   },
+   {
+    "id": "b7bd7871-77ee-4c73-abd2-c1a8a645b83f",
+    "name": "Parts Manager"
+   },
+   {
+    "id": "cf29706d-ee5e-4a1e-8f1a-a31915965a47",
+    "name": "Admin"
+   },
+   {
+    "id": "d5ca0707-2a0f-445c-a336-0a5e4221a034",
+    "name": "Foreman"
+   }
+  ],
+  "roleDetail": [
+   {
+    "id": "0c94a1d5-07cf-4a60-8f1c-67616b808324",
+    "name": "Parts Technician",
+    "count": 19,
+    "hasReports": false
+   },
+   {
+    "id": "2ca7a173-aa33-4b0d-80c6-1044068e84a2",
+    "name": "Service Manager",
+    "count": 36,
+    "hasReports": true
+   },
+   {
+    "id": "2cb364be-b7db-4663-a2f3-3c345dcb8ec1",
+    "name": "Senior Service Advisor",
+    "count": 31,
+    "hasReports": false
+   },
+   {
+    "id": "2f75480b-363f-4d5a-b560-d8156e228e9e",
+    "name": "Time Clock User",
+    "count": 3,
+    "hasReports": false
+   },
+   {
+    "id": "475d69b3-3596-4dc0-8fa2-ae7890f6f697",
+    "name": "Technician",
+    "count": 6,
+    "hasReports": false
+   },
+   {
+    "id": "58bd6045-37ae-4941-9389-1a0bf0a0b5bb",
+    "name": "Office User",
+    "count": 25,
+    "hasReports": true
+   },
+   {
+    "id": "a1d0a44b-8730-45d2-9449-1aa818d285e4",
+    "name": "Service Advisor",
+    "count": 25,
+    "hasReports": false
+   },
+   {
+    "id": "b176ec30-2def-49af-ab11-782c2f6bd503",
+    "name": "Sales Representative",
+    "count": 8,
+    "hasReports": true
+   },
+   {
+    "id": "b7bd7871-77ee-4c73-abd2-c1a8a645b83f",
+    "name": "Parts Manager",
+    "count": 31,
+    "hasReports": true
+   },
+   {
+    "id": "cf29706d-ee5e-4a1e-8f1a-a31915965a47",
+    "name": "Admin",
+    "count": 42,
+    "hasReports": true
+   },
+   {
+    "id": "d5ca0707-2a0f-445c-a336-0a5e4221a034",
+    "name": "Foreman",
+    "count": 23,
+    "hasReports": false
+   }
+  ],
+  "chosen": {
+   "id": "b176ec30-2def-49af-ab11-782c2f6bd503",
+   "name": "Sales Representative",
+   "count": 8,
+   "hasReports": true
+  },
+  "subject": {
+   "email": "fernando.mercer@staging.shopview.local",
+   "staff_id": "b4f8b308-b0c5-4e5e-b734-d76175757be9",
+   "id": "35799682-5357-4e0b-acb4-26ef9ccf67a1",
+   "origRole": "d5ca0707-2a0f-445c-a336-0a5e4221a034",
+   "origWp": "b3c8c820-f815-4cf1-8938-10956c5ee71a"
+  },
+  "grant": {
+   "status": 201,
+   "body": "{\"data\":{\"id\":\"b4f8b308-b0c5-4e5e-b734-d76175757be9\",\"name\":\"Fernando Mercer\",\"hasEmailUpdate\":false,\"clockableChanged\":false}}"
+  },
+  "observed": {
+   "switchStatus": 200,
+   "template_slug": "sales_representative",
+   "atomCount": 8,
+   "hasReportsPageAccess": true,
+   "atoms": [
+    "customersCreateAndEdit",
+    "customersView",
+    "partSalesView",
+    "reportsPageAccess",
+    "seeApArData",
+    "seeFinancialData",
+    "woFullViewMode",
+    "workOrdersView"
+   ],
+   "wip": 200,
+   "wipRows": 389,
+   "iv": 200,
+   "ivRows": 5657,
+   "wipExport": 200,
+   "ivExport": 200,
+   "accessibleWorkplaces": [
+    "Staging Heavy Duty - 9919"
+   ]
+  },
+  "restore": {
+   "status": 201,
+   "roleNow": "Foreman",
+   "roleIdNow": "d5ca0707-2a0f-445c-a336-0a5e4221a034",
+   "matchesOriginal": true
+  }
+ },
+ "finalWhoAmI": "administrator"
+}
