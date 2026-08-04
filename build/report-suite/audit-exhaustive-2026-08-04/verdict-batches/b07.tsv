@@ -1,0 +1,30 @@
+SBC-EXP-11	KEEP	Expanded PDF body parity with the CSV plus the PDF-only colour and bold treatments.			SENSIBLE	Step 2 hedges the colour check with "if available", so a tester without a picker is not blocked.	Y	TOOL	Expected 6 names exact hex colours; only checkable with a colour picker (hedged in the step).
+SBC-EXP-14	KEEP	Export cap refusal across both formats plus the PO-ruled single suite-wide message.			SENSIBLE	Precondition 1 tells the tester what to do if the cap is unreachable on their estate.	Y	OK	
+SBC-EXP-15	KEEP	A no-match export must still produce a file with headers and a zero totals row - the build produces no totals row, so this case is doing real work.			SENSIBLE	Two steps.	Y	OK	
+SBC-EXP-16	KEEP	Summary vs Expanded variant contract and the Summary column list.			SENSIBLE	Scope-conditioned and version-pinned; expected 5 admits the Summary file has no Date column for Location to follow and says to confirm in the build.	Y	OK	
+SBC-LBL-01	KEEP	The asset identifier chain Chris Ward ruled standard for every report - high-value and cross-cutting.			SENSIBLE	Four asset shapes seeded; items 4 and 5 honestly hedged as build-confirmed.	Y	OK	Needs assets with each identifier missing in turn.
+SBC-LBL-04	WEAK-KEEP	Duplicate-label suffixes; a real requirement but much rarer now the identifier is the VIN, and the mechanism was not found in the build.			SENSIBLE	Three steps including the reload that tests stability.	Y	OK	
+SBC-LINK-01	KEEP	Link-target contract for both invoice kinds plus same-tab behaviour - wrong-target bugs are real and common.			SENSIBLE	Two steps.	Y	OK	
+SBC-LINK-02	KEEP	Round-trip state restoration on browser back, with the deliberate expansion loss called out.			SENSIBLE	Three steps.	Y	OK	
+SBC-LINK-03	WEAK-KEEP	Link styling and the never-visited-purple rule; cosmetic.			SENSIBLE	Two steps.	Y	OK	
+SBC-LINK-04	WEAK-KEEP	Graceful degradation when the destination disappeared; largely the application's standard not-found behaviour rather than this report's own.			SENSIBLE	Needs a second session to delete the invoice, which the precondition states.	Y	OK	
+SBC-LOC-01	KEEP	Location filter anatomy plus the PO-ruled hidden filter for a one-location user.			SENSIBLE	Four steps; the one-location half folded in rather than authored as a near-duplicate.	Y	OK	
+SBC-LOC-03	KEEP	Location scoping behaviour plus per-row identification and the on-screen scope indicator.			SENSIBLE	Four steps; items 4 and 5 hedged as build-confirmed.	Y	OK	
+SBC-LOC-04	KEEP	Location column visibility, the Multiple-on-aggregating-rows rule, exact-on-invoice-rows, picker exclusion, and all four export surfaces (Rule 40).			FIX-WORDING	Expected 7 ("The Location filter control keeps the same width whichever label it shows") is the same cosmetic filler as IV-LOC-06 expected 6 and PV-FILT-14 expected 6 - three cases carry an identical stray assertion. Split it into one styling case or drop it from all three.	Y	OK	Needs a customer and an asset with invoices at two locations; none existed on this org.
+SBC-MOB-01	KEEP	Mobile toolbar breakpoint behaviour and touch operability of every control.			SENSIBLE	Three steps with a concrete breakpoint.	Y	OK	
+SBC-MOB-02	KEEP	Mobile horizontal scroll with the pinned Subtotal, working chevrons and the link.			SENSIBLE	Three steps.	Y	OK	
+SBC-NAV-01	KEEP	Navigation placement, page and tab titles, plus the permission ruling; the build places it under a different group so the case is live-value.			SENSIBLE	Expected 5 tells the tester exactly what to report and what not to change.	Y	OK	
+SBC-PERM-01	KEEP	Permission allow side under the one-permission ruling.			SENSIBLE	Two steps.	Y	OK	
+SBC-PERM-02	KEEP	Permission block side including the direct-link probe.			SENSIBLE	Two steps; precondition 2 tells the tester to capture the address first.	Y	OK	
+SBC-PERM-03	KEEP	Destination-permission negative - the report must not become a back door into an invoice.			SENSIBLE	Three steps.	Y	OK	
+SBC-PERM-04	KEEP	Location-access enforcement including the deliberate attempt to request an inaccessible location - a real tenant-safety contract.			SENSIBLE	Step 3 now names the two probe routes concretely after the 2026-07-28 repair.	Y	OK	
+SBC-PERM-05	KEEP	The FE-hide half of Chris Ward's hidden-and-inert permission ruling - the only observable half, and correctly the only half authored.			SENSIBLE	Three steps; the notes state plainly why the inert back-end half gets no case.	Y	OK	Metadata gap: this is the ONLY case in the suite with an empty api_related field - backfill it.
+SBC-PERS-01	KEEP	Saved-view restoration across six settings plus the no-default-flash requirement.			SENSIBLE	Three steps.	Y	OK	
+SBC-PERS-02	KEEP	What is deliberately NOT saved - prevents three separate false bug reports.			SENSIBLE	Three steps.	Y	OK	
+SBC-PERS-03	KEEP	Stale saved value discarded to default without an error.			SENSIBLE	The note admits which invalid-value classes are not provocable and says to record them as such.	Y	OK	Needs an admin to remove a location assignment.
+SBC-PERS-04	WEAK-KEEP	Per-report isolation of the saved view; low value, though a shared storage key would be a real bug.			SENSIBLE	Two steps.	Y	OK	
+SBC-PERS-05	KEEP	All six first-visit defaults in one case rather than six - the anti-slop packaging done right.			SENSIBLE	Two steps.	Y	OK	
+SBC-PERS-06	KEEP	Saved view beats a page-link range - a precedence contract, currently unreachable because link state is not built.			SENSIBLE	Two steps.	Y	OK	
+SBC-PERS-07	KEEP	Customer-filter restore semantics in both directions (flag state vs id set intersection).			SENSIBLE	Two clearly-labelled scenarios.	Y	OK	
+SBC-SORT-01	KEEP	Sortability matrix plus the sort-scope rule; it caught four non-sorting columns and a false sort arrow live.			SENSIBLE	Step 1 enumerates every header to click.	Y	OK	
+SBC-SORT-02	KEEP	Default sort and its case-insensitivity.			SENSIBLE	Precondition seeds mixed-case names, which is what makes the check real.	Y	OK	
