@@ -246,6 +246,16 @@ under a freshly-stamped "Updated" date. *Rationale 2026-07-31: SBR-EXP-10 = C302
 C30286 were opened the same day to rename one header word, and the pass edited the very line whose
 list was already stale against `S14-R20` without noticing.*
 
+**RE-STAMP THE PROVENANCE LINE — a spec-version bump is not applied until the stamps match
+(Standing Rule 54).** Every case affected by this reconciliation has the provenance line at the end of
+its Expected Results **re-stamped to the NEW specification version** (and to the new epic reference or
+build date where those moved). Because the version lives in a **per-project/per-report map** and the
+date in a **single generator variable**, this is one regeneration, not a manual sweep — and it is
+**IDEMPOTENT** (replace the line, never append a second). **The reconciliation is NOT COMPLETE while any
+affected case still cites the OLD spec version**: a stale stamp is itself a finding (Rule 31), and it
+is the version in that stamp which connects a closed enumeration to the requirement that invalidated it
+(Rule 42).
+
 **Also apply Rule 42 while editing:** if the delta touches an expected result that **closes a list**
 (*"the headers, in order, are exactly …"*, *"only these columns"*), rewrite it **scope-conditionally**
 and add the governing anchor **with its spec version** to `refs` — otherwise the same delta will

@@ -267,6 +267,16 @@ Every case must be BOTH:
   tester-facing text (API-content cases live in 'API'-titled sections per Rule 4 and may address a
   technically-equipped tester, but still in plain words).
 
+- **PROVENANCE-STAMPED (Standing Rule 54):** the case's Expected Results **ends** with its provenance
+  line, and that line is **CURRENT** — the right specification **version**, the right epic reference,
+  and (if the case was live-verified) the build **and the date it was tested**. **A MISSING provenance
+  line, or a STALE one (an old spec version / an old build date / an epic reference that has moved), is
+  a DIMENSION-3 FINDING** — reported with the case's internal ID + C-id + link, exactly like a
+  missing-`refs` finding, and counted in the audit tally. **Also check the honesty of the line:** one
+  that claims plain spec agreement where the case actually follows a **later product decision** (Rule
+  32) is a Dimension-3 failure too — a stamp asserting a source that does not support the expectation is
+  worse than no stamp.
+
 **A case failing this dimension gets FIX-WORDING (repairable wording/traceability backfill — see
 `build/MISSING-TRACEABILITY-PROCESS.md`) or CUT (not repairable / not authentic).** This dimension
 cross-references Standing Rules 7 (layman questions/wording), 9 (build-accurate wording), and 20

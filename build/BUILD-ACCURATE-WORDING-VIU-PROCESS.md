@@ -125,6 +125,21 @@ absolutely.)
     normalisation applied) — an entry that says only "200 OK" is non-compliant.** Keep the
     pre-write snapshot and the post-write re-GET as evidence.
 
+**(4b) STAMP OR REFRESH EVERY CASE'S PROVENANCE LINE (Standing Rule 54) — part of this push, not a
+later tidy.**
+Each case's Expected Results **ends** with a separator line and one plain sentence saying what the
+expectation is based on. A case verified live in this pass names **the build and the date it was
+tested**, alongside the **specification with its version** and the **requirement reference** — the QA
+lead's wording: *"This is the expected behaviour as per the build tested on 8/4/2026, and as per the
+Sales By Customer report specification version 13 (S4-R13)."* A case **not** live-verified in this
+pass keeps the spec/epic-only form (*"… as per epic SV-8582 and the … specification version 13
+(S4-R13)."*). Rules: **date = ONE generator variable**, spec versions = a **per-report map**;
+**IDEMPOTENT — replace the existing line, never append a second**; **never the word "VIU"** or a flag
+name (imports stay VIU-word-free); and where the case deliberately follows a **later product decision**
+instead of the spec text, the line **says so** rather than claiming plain spec agreement (Rule 32 —
+a line asserting a source that does not support the expectation is worse than none). **A push that
+corrects wording but leaves a stale or absent provenance line is NOT complete.**
+
 **(5) Report the area as tester-ready.**
 State the area's per-status counts and that its cases are wording-corrected + VIU'd +
 pushed.

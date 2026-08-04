@@ -1071,6 +1071,9 @@ deliver the 7-tab management report.
     verification follows Standing Rule 50 — EXHAUSTIVE then EXACT: every case and every field, no
     sampling, and each write re-GET and byte-compared against the intended payload with untouched
     fields proven byte-identical**) →
+    **STAMP OR REFRESH EACH CASE'S PROVENANCE LINE as part of that same push (Standing Rule 54) — a
+    live-verified case's line must name the build and the date it was tested; a push that corrects
+    wording but leaves a stale (or absent) provenance line is not complete** →
     regenerate deliverables (Blockers Tracker + Results workbook + import, with
     TestRail Case ID + Link columns) → report each area tester-ready and **ALWAYS
     state the TestRail update status explicitly.** This is the default meaning of
@@ -2226,7 +2229,10 @@ deliver the 7-tab management report.
     **(3) STAMP THE PROVENANCE ON THE CASE ITSELF** — in the **notes/metadata layer, never the
     tester-facing fields** (Rules 9/20): the observation came from a **non-final build**, naming the
     build marker and the date. A future reader must not mistake a provisional label for a confirmed
-    one.
+    one. **THE MECHANISM FOR THIS IS STANDING RULE 54 (added 2026-08-04): the case's PROVENANCE LINE
+    under Expected Results IS where the build marker lives on the case** (this project has no Notes
+    field), and **re-stamping that line is part of re-running the queue** below — a row re-checked
+    without its provenance line re-stamped is not re-checked.
     **(4) NEVER CLAIM COMPLETENESS.** No suite, report, deliverable, tally or status line may be
     described as **VIU-complete / verified / current** on a non-final build **without stating that the
     build was non-final and naming the OPEN queue**. This is the Rule-31 SOURCE-CURRENCY logic applied
@@ -2481,6 +2487,70 @@ deliver the 7-tab management report.
     verbatim), 32/33 (his ruling outranks our reading of a pack), 48 (never imply his decision is an
     obstacle, and never carry a "restore" forward silently), 50 (the byte-level re-read is what surfaced
     the change — reading it correctly is the other half of the job) and 51/52.
+54. **EVERY TEST CASE STATES WHAT ITS EXPECTATION IS BASED ON — a provenance line under Expected
+    Results, kept current (all projects).**
+    USER DIRECTIVE (2026-08-04, verbatim): *"This is the expected behaviour as per the build tested on
+    8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R13). yes make it a
+    permanent rule whenever you create the test cases, when there is only the Epic and Specs mention
+    the epic and specs reference and when you also are done with VIU mention the Test on Buil with the
+    date. Then update them whenever you recheck against the spec/epic/Build."*
+    **THE RULE:** **every** test case carries, as the **LAST thing in its Expected Results** — after a
+    separator line — **a single plain-English sentence naming the sources its expectation rests on.**
+    A case that does not say what it is based on is not self-describing, and its staleness is
+    invisible.
+    **THE TWO STATES (a case is always in exactly one of them):**
+    **(1) BEFORE ANY LIVE VERIFICATION (spec + epic only)** — name the **epic**, the
+    **specification with its VERSION**, and the **governing requirement reference**. Shape:
+    *"This is the expected behaviour as per epic SV-8582 and the Sales By Customer report
+    specification version 13 (S4-R13)."*
+    **(2) AFTER LIVE VERIFICATION** — **ALSO** name the **build and the date it was tested**. Shape
+    (**the QA lead's own wording — use it**): *"This is the expected behaviour as per the build tested
+    on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R13)."*
+    **KEEP IT CURRENT — THIS IS THE OPERATIVE HALF.** The line is **RE-STAMPED whenever we re-check
+    against the spec, the epic or the build**, and re-stamping is a **REQUIRED step** of every
+    verification, reconciliation and spec-delta pass — **not an optional tidy**. **A stale date, a
+    stale spec version or a stale epic reference is ITSELF A FINDING** and is reported as one (Rule 31
+    source currency; Rule 49's re-check queue — the provenance line is **where the build marker
+    actually lives on the case**, so re-running a Rule-49 queue re-stamps it).
+    **MECHANICS THAT MAKE IT MAINTAINABLE (not hundreds of hand-edited strings):** the **date is a
+    SINGLE variable** in the generator and the **spec versions a per-report / per-project MAP**;
+    the stamper is **IDEMPOTENT** — it **REPLACES an existing provenance line, never appends a
+    second**; and it is driven off the case source so a re-stamp is one regeneration, not a manual
+    sweep.
+    **WORDING CONSTRAINTS:** **plain layman English** (Rule 7) · the **FULL report/feature name, never
+    an abbreviation** (Rule 19's spirit) · and **NEVER the word "VIU"**, nor a feature-flag name, nor
+    any internal jargon — imports stay **VIU-word-free and flag-word-free** per the standing
+    convention. **THE REQUIREMENT REFERENCE IN PARENTHESES IS PERMITTED AND WANTED** — notwithstanding
+    the general "no §-anchors in tester-facing text" guidance of Rules 7/20. **This is a DELIBERATE,
+    QA-LEAD-AUTHORISED EXCEPTION and it is stated here explicitly so that a future pass does not strip
+    it as a Rule-7 violation.**
+    **HONESTY CLAUSE — THE IMPORTANT ONE.** Where a case **deliberately follows a LATER PRODUCT
+    DECISION instead of the spec text** (Rule 32 latest-wins — e.g. a PO ruling the spec has not
+    caught up with), the line **MUST NOT claim plain spec agreement**: it names the spec **AND states
+    that the behaviour follows a later product decision**. **A provenance line asserting a source that
+    does not actually support the expectation is WORSE THAN NONE — it manufactures false authority**
+    (the same failure mode Rule 46 exists to prevent). Where a case genuinely **has no spec anchor**,
+    **say that in words** rather than inventing a reference (Rule 12).
+    **SCOPE:** **ALL projects** — Report Suite, Schedule, Filters, Global Search and every future one.
+    **NEW cases get it at authoring**; **EXISTING suites get it when next touched, or on an authorised
+    retrofit pass** (a retrofit is a TestRail write and needs the QA lead's go-ahead, Rule 6).
+    **RATIONALE, 2026-08-04:** it makes every case **self-describing about what it is based on**, so an
+    automation engineer or a reviewer can see the basis **without asking** (the Rule-39/44 conversation
+    starts from evidence instead of guesswork), and **a source moving on makes the case VISIBLY STALE
+    instead of silently wrong** — which is exactly the failure that cost us the SBR export gap. The
+    **Report Suite is receiving it now across 478 cases**; and note that **this TestRail project has NO
+    Notes field** (verified read-only via `get_case_fields`), which is **why the provenance belongs in
+    Expected Results — where a tester actually sees it** — rather than in a metadata field that does
+    not exist. Ties to Standing Rules 7 (plain layman wording — with the authorised anchor exception
+    above), 8 (a case is always named with its C-id), 9 (build-accurate wording), 10 (the VIU push step
+    stamps/refreshes the line), 12 (never assert a source you did not read), 19 (full readable names),
+    20 (traceability — this is its **tester-visible** twin; `refs` remains the metadata layer), 25
+    (cite the source, with its version), 31 (source currency — a stale stamp is a stale source), 32
+    (latest product decision wins, and the line must say so), 41 (touch a case → re-verify it whole,
+    and re-stamp), 42 (the version in the stamp is what connects a closed list to the requirement that
+    invalidates it), 43 (a spec-version bump re-stamps every affected case), 46 (a documented basis is
+    what stops a deliberate decision looking like a miss) and 49 (the build marker + the re-check
+    queue).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -2649,6 +2719,14 @@ regression / bug-fix re-testing.
 ## Deliverable conventions the user likes
 - Plain, layman English.
 - Numbered **Preconditions / Steps / Expected**, each with line breaks.
+- **A PROVENANCE LINE ends every case's Expected Results (Standing Rule 54):** after a separator
+  line, one plain sentence saying what the expectation is based on — the **epic + specification
+  version + requirement reference** before live verification, and **also the build + the date it was
+  tested** after it (the QA lead's wording: *"This is the expected behaviour as per the build tested
+  on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R13)."*).
+  **Re-stamped on every spec/epic/build re-check** — a stale stamp is a finding. Never the word
+  "VIU", never a flag name; the requirement reference in parentheses is an authorised exception to
+  the no-anchors-in-tester-text guidance.
 - Excel workbooks: a **separate tab per result status** + a **Summary** tab.
 - Provide **GitHub raw download links** for deliverables.
 - **Per-case audit logs** for any TestRail edits.
