@@ -240,7 +240,14 @@ def main():
             stats['L1_attestation'] += 1
 
         # ---- L2 refs version pin ----
+        # Coordinator instruction 2026-08-04, scoped verbatim to "the ~10 defect-finding
+        # cases and the 7 Location cases, where this remains the ONLY permitted change":
+        # those two families get the attestation and NOTHING else — not even a refs pin.
+        # Their outstanding pins are reported for a separate go-ahead.
         nr, kind = pin_refs(c.get('refs') or '')
+        if kind and cid in (DEFECT_HELD | LOCATION_HELD):
+            stats['L2_withheld_attestation_only'] += 1
+            kind = None
         if kind:
             if len(nr) > 248:
                 raise SystemExit(f'FATAL C{cid}: pinned refs {len(nr)} chars > 248')

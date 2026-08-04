@@ -10726,12 +10726,10 @@
   "title_snapshot": "Each tab uses an all-white table with no alternating row shading",
   "held": true,
   "layers": [
-   "L1",
-   "L2"
+   "L1"
   ],
   "intended": {
-   "custom_expected": "1. Each tab uses an all-white table: white column headers and white data cells.\n2. There is no alternating row shading (no zebra striping).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S10-R1).",
-   "refs": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R1)"
+   "custom_expected": "1. Each tab uses an all-white table: white column headers and white data cells.\n2. There is no alternating row shading (no zebra striping).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S10-R1)."
   },
   "snapshot": {
    "title": "Each tab uses an all-white table with no alternating row shading",
@@ -11213,12 +11211,10 @@
   "title_snapshot": "First visit defaults to the current calendar month and the active location",
   "held": true,
   "layers": [
-   "L1",
-   "L2"
+   "L1"
   ],
   "intended": {
-   "custom_expected": "1. The date range defaults to the current calendar month.\n2. The location defaults to the user's currently active location.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S1-R3, S7-R2).",
-   "refs": "SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R3; Story 7 S7-R2)"
+   "custom_expected": "1. The date range defaults to the current calendar month.\n2. The location defaults to the user's currently active location.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S1-R3, S7-R2)."
   },
   "snapshot": {
    "title": "First visit defaults to the current calendar month and the active location",
@@ -11910,12 +11906,10 @@
   "title_snapshot": "\"As of\" indicator names the day shown; hidden when it matches the ask",
   "held": true,
   "layers": [
-   "L1",
-   "L2"
+   "L1"
   ],
   "intended": {
-   "custom_expected": "1. When the displayed day is an earlier recorded day than the date asked for, the report shows an \"As of\" indicator naming the day actually shown.\n2. When the displayed day matches the date asked for (the common current-view case), the \"As of\" indicator is not shown \u2014 the date control already communicates the date.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R5, S5-R6).",
-   "refs": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R5; S5-R6)"
+   "custom_expected": "1. When the displayed day is an earlier recorded day than the date asked for, the report shows an \"As of\" indicator naming the day actually shown.\n2. When the displayed day matches the date asked for (the common current-view case), the \"As of\" indicator is not shown \u2014 the date control already communicates the date.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R5, S5-R6)."
   },
   "snapshot": {
    "title": "\"As of\" indicator names the day shown; hidden when it matches the ask",
@@ -12144,12 +12138,10 @@
   "title_snapshot": "The Location filter is a rightmost multi-select with an All locations toggle",
   "held": true,
   "layers": [
-   "L1",
-   "L2"
+   "L1"
   ],
   "intended": {
-   "custom_expected": "1. The toolbar has a location filter labeled \"Location\" \u2014 a multi-select and the rightmost filter \u2014 listing the locations the signed-in user has access to, with an \"All locations\" / \"Clear all\" toggle.\n2. On a first visit it defaults to the user's currently active location.\n3. With \"All locations\" active you can tell which location each row's stock belongs to \u2014 a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
-   "refs": "SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R1; S7-R2; Story 12 S12-R3 \u2014 per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))"
+   "custom_expected": "1. The toolbar has a location filter labeled \"Location\" \u2014 a multi-select and the rightmost filter \u2014 listing the locations the signed-in user has access to, with an \"All locations\" / \"Clear all\" toggle.\n2. On a first visit it defaults to the user's currently active location.\n3. With \"All locations\" active you can tell which location each row's stock belongs to \u2014 a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   },
   "snapshot": {
    "title": "The Location filter is a rightmost multi-select with an All locations toggle",
@@ -12544,12 +12536,10 @@
   "title_snapshot": "Export number formats: money to 2 decimals; Margin % to 1 with em-dash",
   "held": true,
   "layers": [
-   "L1",
-   "L2"
+   "L1"
   ],
   "intended": {
-   "custom_expected": "1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows \"\u2014\".\n2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).\n3. The PDF uses the same on-screen currency formatting with the \"$\" and thousands separators.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R7).",
-   "refs": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R7 (+ context note))"
+   "custom_expected": "1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows \"\u2014\".\n2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).\n3. The PDF uses the same on-screen currency formatting with the \"$\" and thousands separators.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R7)."
   },
   "snapshot": {
    "title": "Export number formats: money to 2 decimals; Margin % to 1 with em-dash",
@@ -12716,12 +12706,10 @@
   "title_snapshot": "All-white table with no row shading on the standard report backdrop",
   "held": true,
   "layers": [
-   "L1",
-   "L2"
+   "L1"
   ],
   "intended": {
-   "custom_expected": "1. The table has white column headers and white data cells, with no alternating row shading.\n2. The table sits on the standard soft blue-grey report backdrop.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R1).",
-   "refs": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R1)"
+   "custom_expected": "1. The table has white column headers and white data cells, with no alternating row shading.\n2. The table sits on the standard soft blue-grey report backdrop.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R1)."
   },
   "snapshot": {
    "title": "All-white table with no row shading on the standard report backdrop",
@@ -12745,12 +12733,10 @@
   "title_snapshot": "Toolbar layout: menu leftmost then Column Selection; then the 5 filters",
   "held": true,
   "layers": [
-   "L1",
-   "L2"
+   "L1"
   ],
   "intended": {
-   "custom_expected": "1. In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.\n2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R2, S12-R3).",
-   "refs": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R2; S12-R3)"
+   "custom_expected": "1. In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.\n2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R2, S12-R3)."
   },
   "snapshot": {
    "title": "Toolbar layout: menu leftmost then Column Selection; then the 5 filters",
