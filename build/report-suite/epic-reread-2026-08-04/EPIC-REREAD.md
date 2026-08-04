@@ -24,8 +24,8 @@ ticket text as Jira served it.
 | Gap | Why it matters |
 | --- | --- |
 | Any change between **2026-07-31 07:18Z** and now (2026-08-04) — 4 days | A description edit, status move, new comment or new attachment in that window is invisible to me |
-| **SV-8780** — the Story Defect under SV-8598 (Ready to Fix) | **Not in the snapshot at all**, so it was created after 2026-07-31. This is the single highest-value unread item |
 | Any ticket created after 2026-07-31 | The snapshot's child set is fixed at 97 |
+| **SV-8780** — the Story Defect under SV-8598 | Absent from the snapshot, so created after 2026-07-31. **NOT an outstanding ask:** the QA lead ruled on 2026-08-03, verbatim, *"Ignore this ticket."* — so it is **deliberately out of scope**, not a gap. See `OUTSTANDING.md` for the five Rule-48 fields |
 
 **Nothing below is fabricated.** Where I could not read something I say so, here and in
 `OUTSTANDING`. Per Rule 12 this document must not be cited as a live Tier-2 read; it is a
@@ -39,7 +39,7 @@ ticket text as Jira served it.
 | Jira changelogs | all 98, untruncated (`total` == `len(histories)` on every issue) | through 2026-07-31 | 2026-08-04 | **PARTIAL** — same window |
 | Comments | 0 across all 98 | — | 2026-08-04 | **CURRENT as of 2026-07-31**, double-confirmed |
 | Attachments / inline images | 0 across all 98 | — | 2026-08-04 | **CURRENT as of 2026-07-31**, double-confirmed |
-| Our case suite | 475 active cases, `build/report-suite/cases/`, 475/475 C-ids mapped | read 2026-08-04 | 2026-08-04 | CURRENT (read-only) |
+| Our case suite | `build/report-suite/cases/` — **475** active, 475/475 C-ids mapped, at the moment the coverage pass ran | read 2026-08-04 | 2026-08-04 | **CURRENT, but MOVING** — a concurrent worker is authoring; a re-read minutes later showed **478**. Every verdict here is against the 475-case state and is unaffected by additions, but the *totals* are a point-in-time reading |
 
 ---
 
@@ -322,9 +322,10 @@ not inferring it. Listed in `OUTSTANDING`.
    Reachability was confirmed and the failure is purely authentication:
    `GET /rest/api/3/myself` → **HTTP 401**, `GET /rest/api/3/issue/SV-8594` → **HTTP 404**
    (Jira's masked 401).
-2. **SV-8780** — the Story Defect under SV-8598, reported Ready to Fix. Absent from the snapshot,
-   therefore created after 2026-07-31. **Completely unread.** A defect against SBC is exactly the
-   kind of ticket that changes a test expectation.
+2. **SV-8780** — the Story Defect under SV-8598. Absent from the snapshot, therefore created after
+   2026-07-31, and **unread**. **But it is not an outstanding ask:** the QA lead ruled on 2026-08-03,
+   verbatim, **"Ignore this ticket."** It is therefore **deliberately out of scope**, and I have not
+   attempted to read it. Recorded here for completeness of the unread list, not as a gap.
 3. **The 2026-07-31 → 2026-08-04 delta** on all 98 issues: description edits, status moves, new
    comments, new attachments, new children.
 4. **The two-way child-count JQL** could not be re-run for today (verified for 2026-07-31 only).
@@ -347,7 +348,9 @@ few minutes, and SV-8780 becomes readable.
   assertion I tested, the case exists and frequently matches **verbatim**. Full per-assertion
   verdict table in `NEW-OR-CHANGED-REQUIREMENTS.md`.
 - **The two content differences I found are both epic prose being wrong, not our cases** (§4).
-- **The one materially unread thing is SV-8780**, and it needs a credential.
+- **Nothing materially unread remains in scope.** SV-8780 is unread but was explicitly ruled out of
+  scope by the QA lead ("Ignore this ticket.", 2026-08-03), so the in-scope tree is fully read subject
+  only to the 4-day window.
 
 ---
 

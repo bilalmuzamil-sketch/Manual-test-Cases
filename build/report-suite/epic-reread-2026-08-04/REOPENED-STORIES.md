@@ -55,7 +55,7 @@ developer's confirmation, and I am not asserting it as fact.
 
 ---
 
-## 3 · An important correction to the task's framing
+## 3 · A correction to the task's framing — which we had already made ourselves
 
 The task brief stated the tree holds *"90 Open / 6 OBSOLETE"* **and** that SV-8594–8599 were reopened
 — which reads as though the 6 OBSOLETE ones are SV-8594–8599. **They are not.** As of the snapshot:
@@ -67,7 +67,13 @@ The task brief stated the tree holds *"90 Open / 6 OBSOLETE"* **and** that SV-85
 
 So **the 6 OBSOLETE tickets are the placeholders, and the reopened `[B1]`–`[B6]` are Open** — which is
 the correct and desirable end state. Both statements in the brief were individually true; together
-they read as one contradiction. Worth stating plainly so it is not carried forward.
+they read as one contradiction.
+
+**In fairness: we had already caught this.** `build/OUTSTANDING-ITEMS-REGISTER.md` records it verbatim
+from the 2026-07-31 Tier-1 check — *"(Correction to the earlier brief: the six that MOVED are the
+`[Bn]` stories, not the six now-OBSOLETE originals SV-8583–8588.)"* — along with the confirmation that
+**zero cases cite the 6 OBSOLETE originals**, so no coverage rides on them. My pass re-derived the same
+result independently; I am not claiming it as a new discovery.
 
 ---
 
@@ -153,7 +159,8 @@ Independently re-derived. Full per-assertion rows with both texts quoted are in
 | Do the six require anything we do not test? | **No new requirement.** One deliberate divergence (SBC permission, resolved by a newer PO ruling in our favour) and one genuinely open product decision (SBR Esc). |
 | Any case changes needed *because of the reopening*? | **None.** |
 | Was the earlier "obsolete → ignore" risk real? | **Yes — and already closed** on 2026-07-31, before this task. |
-| Confidence | **High on scope; limited by a 4-day window.** SV-8780 — a Story Defect under SV-8598 (SBC), Ready to Fix — post-dates the snapshot and is **unread**. A defect against SBC could still change an SBC expectation. |
+| Confidence | **High.** The only limit is a 4-day window (2026-07-31 → 2026-08-04) in which a status could have moved again. SV-8780 post-dates the snapshot and is unread, but the QA lead ruled *"Ignore this ticket."* (2026-08-03), so it is **out of scope by decision**, not an open risk. |
 
-**The one thing to do about this:** read **SV-8780**. It is the only item in this whole analysis that
-could still move a test expectation, and it needs a Jira credential.
+**The one thing to do about this: nothing.** No case changes, no escalation, no ticket to read. The
+question is answered — the scope did not change. The only residual is the 4-day window, which a single
+Jira credential would close in minutes (see `OUTSTANDING.md`).
