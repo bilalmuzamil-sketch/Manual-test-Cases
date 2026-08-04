@@ -27,10 +27,42 @@ Epic = **SV-8785** (discovered 2026-07-31, verified live 2026-08-04).
 > full proof of receipt: **`../branko-answers-2026-08-04/answers-ingested.md`**. Staged case
 > operations: **`../branko-answers-2026-08-04/staged-case-plan.md`** — **nothing executed.**
 >
-> **The provenance lines in TestRail have NOT yet caught up.** Nine cases still end with *"a product
-> owner decision is still awaited"*, which became **false on 2026-08-04**. Those are the 10 staged
-> `update_case` operations, and they await the QA lead's go-ahead (Rule 6). **Until they are pushed,
-> this register is the only place the correct position is written down.**
+> ## ✅ THE PROVENANCE LINES HAVE NOW CAUGHT UP — **EXECUTED 2026-08-04**
+>
+> The staged operations are **LIVE**: **12 × `update_case`, every one HTTP 200 and byte-verified
+> MATCH** (28 fields compared each). Audit:
+> **`../branko-answers-2026-08-04/testrail-execution-log.md`**.
+>
+> * **`"a product owner decision is still awaited"` now appears on 0 of the 110 cases** — the sentence
+>   that became false on 2026-08-04 is gone from every one of them.
+> * **THE DEFENCE IS NOW ON THE CASES THEMSELVES, NOT ONLY IN THIS FILE.** Per the QA lead's ruling of
+>   2026-08-04 — *"below the expected behavior give the file link and mention that this is coming from
+>   Branko's responses here"* — **12 cases now end their Expected Results naming his answer file and
+>   giving its link**:
+>   `https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit`
+>   **10 cite it as the GOVERNING source** (the spec does not carry the point) and **2 as a
+>   CONFIRMATION** of a spec-backed expectation — the distinction is deliberate, because a link on a
+>   case the file does not govern would manufacture false authority (Rule 54 honesty clause). The
+>   other **98** kept the ordinary line.
+> * **So a challenge can now be answered from the case a reader is already looking at.** This register
+>   remains the fuller argument, but it is no longer the *only* place the position is written down.
+> * **One entry moved the other way, and it is the honest outcome:** **FLT-MOB-04
+>   ([C29624](https://shopview.testrail.io/index.php?/cases/view/29624)) is no longer a PO-ruling case
+>   at all.** With no Apply button on the single-filter sheet its behaviour agrees with the
+>   specification **outright** — `S12-R3` (bottom sheet) + `S12-R2` (*"behave identically to
+>   desktop"*) + `S2-R6` (*"in real time ... no confirm/apply button needed"*), all three re-read
+>   verbatim from the live body — so its provenance line is now **plain**, with his answer cited as a
+>   confirmation. `S2-R6` was added to its `refs`, because that is what the assertion actually rests
+>   on. **A2 therefore holds 7 cases + FLT-TAB-06, not 8 + 1.**
+> * **FLT-PARTS-01 ([C38904](https://shopview.testrail.io/index.php?/cases/view/38904)) lost its false
+>   hedge.** The note claiming *"the developers have not been given a design for the Vendors page
+>   filters yet"* is **removed**: node `11903:10461` was re-read as **pixels** this pass and is
+>   unambiguously the **Vendors** page (title *Vendors*, the `Vendors` nav item below a **separate**
+>   `Vendor Invoices` item, a **New Vendor** button, and exactly the two chips `Vendor` and
+>   `State/Province`). **The engineering reading recorded in that case's notes is wrong**, and the PRD
+>   §2 already lists Vendors. **Honest cost, and it is the QA lead's to accept: the case can now
+>   legitimately FAIL if the build has not shipped that filter bar** — which is the correct outcome,
+>   because under Rule 45 the hedge was a false all-clear.
 
 ## Headline counts
 
@@ -486,7 +518,7 @@ answer.
 | **Edit the spec passages that still say the Status chip is "hidden"** (5 places) | **Branko** | Nothing testable; the document keeps contradicting his own decision, which is what makes a public challenge look worse than it is | committed 2026-07-20, **15 days** |
 | **The page-by-page Parts/Reports filter list — OWNER HAS CHANGED.** Branko's **Q9**: *"we do not have concrete list. If this is really necessary i suggest **Engineering + PO together** make a list for remaining 6 Parts pages i Reports, using same format as Work Orders do."* So this is no longer an ask of Branko alone — the **QA lead** needs to arrange that joint session. | **QA lead** to arrange · **Engineering + Branko** to produce | **9 cases (Group B)** rest on answers + design instead of numbered requirements. **B6 = FLT-RPTS-01 ([C38909](https://shopview.testrail.io/index.php?/cases/view/38909)) is the most exposed case in the project** — 24 design-derived enumerations, no report named anywhere in the spec. | asked 2026-07-27, **8 days** |
 | **NEW 2026-08-04 — Branko needs to describe the mobile "All Filters" sheet in the PRD.** Closing Group C fixed the **sourcing**; the **document** still has no such screen (`"Apply filters"` = 0 hits in live v1.6) and `S2-R6` still reads *"(no confirm/apply button needed)"*. | **Branko** | Nothing testable — the 7 cases follow his ruling (Rules 32/33). It is a document-vs-decision gap, and it is the shape of gap that makes us look wrong when we are not. | **2026-08-04** |
-| **NEW 2026-08-04 — GO-AHEAD for the 10 staged `update_case` operations** (`../branko-answers-2026-08-04/staged-case-plan.md`). Nothing executed (Rule 6). | **QA lead** | **9 cases still carry a provenance line saying "a product owner decision is still awaited", which became FALSE on 2026-08-04.** Until they are pushed, **this register is the only place the correct position is written down.** | **2026-08-04** |
+| **~~GO-AHEAD for the staged `update_case` operations~~** — **✅ CLEARED + EXECUTED 2026-08-04.** Authorised, then executed as **12 × `update_case`**, all HTTP 200 + byte-verified MATCH, run 352 untouched (110 tests / 396 result records, every prior result present by id). *"a product owner decision is still awaited"* now appears on **0 of 110** cases, and **12 carry his answer file's link** per the same ruling. | — | **Nothing.** | closed |
 | **NEW 2026-08-04 — OPTIONAL, not blocking:** one confirmation line asking Branko in his own words whether the **combined** All-Filters sheet keeps its Apply button. Drafted in `../branko-answers-2026-08-04/FOLLOW-UPS-2026-08-04.md` §1. | **QA lead** to decide whether to send | **Nothing.** Group A2's basis is already three agreeing sources; this would upgrade *"the option he chose named this model"* to *"he said so"*. **Marked optional deliberately** — no case is held for it. | **2026-08-04** |
 
 **Nothing in this register is live-verified.** All 110 Filters cases remain `VIU-Pending`; the QA

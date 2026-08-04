@@ -3,6 +3,109 @@
 
 ---
 
+## 0-BRANKO-EXEC. **BRANKO'S 2026-08-04 ANSWERS ARE NOW LIVE IN TESTRAIL — 12 `update_case`, EXECUTED**
+
+**Read this first — it is the newest state.** Audit:
+`build/filters/branko-answers-2026-08-04/testrail-execution-log.md`.
+
+| | |
+|---|---|
+| Operations | **12 × `update_case`** · **0** add · **0** delete · **0** section · **0 run writes** |
+| Verification | **every one HTTP 200 + byte-verified MATCH, 28 fields compared each**, every field not intended to change proven byte-identical (Rule 50) |
+| Active cases | **110 → 110** (nothing added, nothing retired) |
+| Run 352 | **PROVEN UNTOUCHED** — 110 tests (`case_id` **and** `test` id sets equal both ways) · **396 result records, every prior result present BY ID** · 1 Passed / 109 Untested · `include_all` still false |
+| Foreign cases | **0** in group 4110 — all 110 `created_by: 3` (Rule 38) |
+| QA branch | **NOT TOUCHED — not one request** (VIU still reserved by the QA lead until Report Suite is complete) |
+
+### THE NEW STANDING PRACTICE THIS PASS CREATED (now Standing Rule 54 in `CLAUDE.md`)
+
+The QA lead's ruling, verbatim: *"If Branko said this in his new file then yes, but below the expected
+behavior give the file link and mention that this is coming from Branko's responses here. Anyting that
+you do if that has the reference from the file only - follow the same practice."*
+
+So **where a case's expectation rests on a named source FILE rather than the specification, the
+provenance line names that file and gives its link.** **12 of 110 Filters cases now do** —
+**10 citing it as the GOVERNING source** and **2 as a CONFIRMATION** of a spec-backed expectation.
+The other **98 kept the ordinary line**, deliberately: a link on a case the file does not govern
+manufactures false authority just as surely as omitting a source (Rule 54 honesty clause). The link
+in tester-facing text is a **QA-lead-authorised exception** to Rules 7/20.
+
+### WHAT CHANGED, CASE BY CASE
+
+| Case | C-id | What changed |
+|---|---|---|
+| FLT-MOB-01/02/03/05/06/07/08 | [C29621](https://shopview.testrail.io/index.php?/cases/view/29621) · [C29622](https://shopview.testrail.io/index.php?/cases/view/29622) · [C29623](https://shopview.testrail.io/index.php?/cases/view/29623) · [C29625](https://shopview.testrail.io/index.php?/cases/view/29625) · [C29626](https://shopview.testrail.io/index.php?/cases/view/29626) · [C29627](https://shopview.testrail.io/index.php?/cases/view/29627) · [C29628](https://shopview.testrail.io/index.php?/cases/view/29628) | new variant **`design_po_ruled`** — the design provenance is **kept** (live v1.6 contains *"Apply filters"* **0 times** and *"All Filters"* **0 times**) and *"a product owner decision is still awaited"* is replaced by his approval of **2026-08-04** + the file link. `refs` records his Q1. **Assertions unchanged.** |
+| FLT-MOB-04 | [C29624](https://shopview.testrail.io/index.php?/cases/view/29624) | **the one case whose provenance got SIMPLER, and that is the honest outcome.** With no Apply button on the single-filter sheet the behaviour agrees with the spec **outright** — `S12-R3` + `S12-R2` + `S2-R6`, all re-read verbatim live — so it is now **`plain`**, with his answer cited as a **confirmation**. **`S2-R6` added to `refs`**, because that is what the assertion rests on. **Body reflowed** out of its broken paste markup (`<li data-pasted="true">`, four steps on one line): title/steps/preconditions/expected, **assertions unchanged**. |
+| FLT-TAB-06 | [C38876](https://shopview.testrail.io/index.php?/cases/view/38876) | new variant **`po_ruling_no_anchor`** — `po_ruling` would imply the spec covers the default tab (**it does not**: swept live for *default tab*, *Estimates tab*, *last-used*, *remembered*, *first visit*), and `no_anchor` would credit engineering for a **product** decision. Both halves now true in one sentence. `refs`: *"confirmation requested"* → his Q2 ruling. |
+| FLT-PARTS-01 | [C38904](https://shopview.testrail.io/index.php?/cases/view/38904) | **the false Vendors hedge REMOVED** (§below). |
+| FLT-PARTS-13 · FLT-RPTS-22 | [C38908](https://shopview.testrail.io/index.php?/cases/view/38908) · [C38911](https://shopview.testrail.io/index.php?/cases/view/38911) | the two **optional** operations were **DONE**, because his **Q8** is load-bearing for both. **C38911 deliberately KEEPS its 2026-07-31 date** — Q8 confirms only that *no option list exists*, not the multi-select/no-Apply behaviour — so its citation is **confirming**, not governing. |
+
+### THE VENDORS FINDING — engineering's reading was wrong, and I checked it myself
+
+Branko: *"Disign for vendors exists in figma. Check it"*. Read as **pixels**,
+`design-2026-07-31/frames/Parts-Explorations-20.4.2026__Vendors__11903-10461.png` shows page title
+**Vendors**, the **Vendors** nav item highlighted **below a separate "Vendor Invoices" item**, a
+**New Vendor** button, vendor columns (Name / Telephone / Email / Address / City / State-Province /
+Zip), and **exactly two filter chips: `Vendor` and `State/Province`**.
+
+**So the claim recorded in that case's own notes — that node `11903:10461` is Vendor Invoices and
+that Vendors filters would not be built until a design was delivered — is WRONG.** Three sources
+agree against it: **PRD v1.6 §2** (which lists Vendors among the Parts views that get a filter bar),
+the **design board**, and the **PO**. **HONEST CONSEQUENCE, and it is the QA lead's to accept: this
+case can now legitimately FAIL if the build has not shipped the Vendors filter bar** — the correct
+outcome, because under Rule 45 the hedge was a **false all-clear** that would have let a genuinely
+missing filter bar pass.
+
+### TWO FINDINGS THE RULE-41 WHOLE-CASE RE-READ PRODUCED (recorded, not quietly fixed)
+
+1. **The staged plan had MISSED its own headline edit.** The first build of this pass's plan
+   re-stamped C38904's provenance and **left the false hedge in place** — the very thing Group C
+   exists to remove. Caught by the whole-case re-read and added as operation 10.
+2. **The provenance stamper was NOT idempotent on FLT-PERS-01
+   ([C29613](https://shopview.testrail.io/index.php?/cases/view/29613)).** A manual TestRail edit had
+   converted that case to HTML, turning `---` into `<hr />` and wrapping the sentence in `<p>`, so
+   `strip_provenance()` could not see the block and **a future full re-stamp would have APPENDED A
+   SECOND provenance line**. The stripper is **hardened**. **C29613 itself was NOT written** — its
+   wording is word-identical and correct and Branko's answers do not touch it, so re-writing it would
+   have been an unauthorised markup-only edit. **STAGED for a future authorised pass.**
+
+### THE LOCAL SOURCE IS NOW RECONCILED TO LIVE — and this was a real trap
+
+`build/filters/cases/*.json` feeds the import, so a stale local body can be **regenerated over the
+correct live text**. Audited **all 110** local↔live pairs on **every** field:
+
+* **1 case was genuinely drifted — FLT-MOB-04**, whose local body still asserted *"The bottom button
+  reads 'Apply filter' (singular)"*, the exact opposite of Branko's ruling and of live TestRail. **Now
+  reconciled to live** (live wins: it is what the tester reads and what the byte-verified push wrote).
+* **1 case differs in MARKUP ONLY** — C29613, **word-level identical** (verified), left alone.
+* **3 stale `notes` flags resolved** — C29624's *"CONFLICT - PENDING BRANKO/DEV"*, C38876's *"PENDING
+  BRANKO … If Branko rules the default should be All, flip expected 1"*, and C38904's Vendors
+  engineering claim. A note still saying PENDING after he has answered is the same false-source
+  problem, one layer down.
+
+### RECONCILING COUNTS — set equality proven BOTH directions
+
+| Pair | Result |
+|---|---|
+| live TestRail group 4110 (110) ↔ id-map C-ids (110) | **EQUAL** |
+| local ACTIVE cases (110) ↔ id-map internal ids (110) | **EQUAL** |
+| import row titles (110) ↔ id-map titles (110) | **EQUAL** |
+| live group 4110 (110) ↔ run 352 test `case_id`s (110) | **EQUAL** |
+
+Local files hold **110 active + 36 retired = 146 authored**. Import **110** data rows; header SHA
+identical to **all five** peer imports (`a82ca60c36074512`); **0** VIU words · **0** feature-flag
+words · **0** duplicate titles · **0** internal-ID leaks · **0** C-id leaks · **0** blank C-ids ·
+**0** blank refs · **0** titles over 80 characters (longest exactly 80).
+
+**Rule-28 cross-case sweep: 0 contradictions introduced.** The one real risk was checked explicitly —
+C29622/29623/29625 assert an *"Apply filters"* button while C29624 asserts there is **none**. **Not a
+contradiction: different screens**, and each case's own route says which. C29625/26/27 all
+precondition on *"The All Filters sheet is open"* (the **combined** sheet); C29624 step 1 is *"Tap the
+Status chip (**not** the 'All Filters' chip)"*. All 110 carry **exactly one** provenance line (0
+missing, 0 duplicated) and **0** still say *"a product owner decision is still awaited"*.
+
+---
+
 ## 0-QA-ENV. **FILTERS HAS A QA BRANCH — ITS FIRST EVER** (supplied 2026-08-04)
 
 **Read this alongside section 0.** This is a **facts-and-credentials record only. NO VIU has
