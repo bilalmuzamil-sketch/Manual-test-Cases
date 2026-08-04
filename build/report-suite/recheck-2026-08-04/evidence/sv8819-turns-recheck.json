@@ -1,0 +1,63 @@
+{
+ "build": "v3.4.1-3d03023",
+ "at": "2026-08-04T13:04:58Z",
+ "note": "impliedWindowDays = round(units_sold*365/(turns_per_year*on_hand)). Spec PV v4 requires the INCLUSIVE whole-day span; Jan1->Aug4 2026 = 216; 2025 full year = 365.",
+ "probes": [
+  {
+   "label": "A  range=this_year (preset)",
+   "qs": "range=this_year&type=inventory&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&search=BRAKECLEAN",
+   "status": 200,
+   "rows": [
+    {
+     "part": "BRAKECLEAN",
+     "units_sold": 512,
+     "on_hand": 618,
+     "turns_per_year": 1.39997602781,
+     "impliedWindowDays": 216
+    }
+   ]
+  },
+  {
+   "label": "B  range=custom 2026-01-01->2026-08-04 (216 incl)",
+   "qs": "range=custom&start_date=2026-01-01&end_date=2026-08-04&type=inventory&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&search=BRAKECLEAN",
+   "status": 200,
+   "rows": [
+    {
+     "part": "BRAKECLEAN",
+     "units_sold": 512,
+     "on_hand": 618,
+     "turns_per_year": 1.39997602781,
+     "impliedWindowDays": 216
+    }
+   ]
+  },
+  {
+   "label": "E  range=last_year (preset)",
+   "qs": "range=last_year&type=inventory&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&search=BRAKECLEAN",
+   "status": 200,
+   "rows": [
+    {
+     "part": "BRAKECLEAN",
+     "units_sold": 1650,
+     "on_hand": 618,
+     "turns_per_year": 2.66990291262,
+     "impliedWindowDays": 365
+    }
+   ]
+  },
+  {
+   "label": "F  range=custom 2025-01-01->2025-12-31 (365 incl)",
+   "qs": "range=custom&start_date=2025-01-01&end_date=2025-12-31&type=inventory&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&search=BRAKECLEAN",
+   "status": 200,
+   "rows": [
+    {
+     "part": "BRAKECLEAN",
+     "units_sold": 1650,
+     "on_hand": 618,
+     "turns_per_year": 2.66990291262,
+     "impliedWindowDays": 365
+    }
+   ]
+  }
+ ]
+}

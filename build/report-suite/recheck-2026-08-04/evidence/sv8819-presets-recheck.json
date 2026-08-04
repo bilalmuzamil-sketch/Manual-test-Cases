@@ -1,0 +1,96 @@
+{
+ "build": "v3.4.1-3d03023",
+ "today": "2026-08-04",
+ "at": "2026-08-04T13:05:44Z",
+ "probes": [
+  {
+   "preset": "this_year",
+   "qs": "range=this_year",
+   "expect": "Jan 1 -> Aug 4 : spec INCLUSIVE 216",
+   "status": 200,
+   "rowsReturned": 500,
+   "impliedWindows": [
+    {
+     "W": 216,
+     "rows": 435
+    }
+   ]
+  },
+  {
+   "preset": "this_month",
+   "qs": "range=this_month",
+   "expect": "Aug 1 -> Aug 4 : spec 4",
+   "status": 200,
+   "rowsReturned": 500,
+   "impliedWindows": []
+  },
+  {
+   "preset": "this_quarter",
+   "qs": "range=this_quarter",
+   "expect": "Jul 1 -> Aug 4 : spec 35",
+   "status": 200,
+   "rowsReturned": 500,
+   "impliedWindows": [
+    {
+     "W": 92,
+     "rows": 6
+    }
+   ]
+  },
+  {
+   "preset": "this_week",
+   "qs": "range=this_week",
+   "expect": "days so far incl.",
+   "status": 200,
+   "rowsReturned": 500,
+   "impliedWindows": []
+  },
+  {
+   "preset": "last_12_months",
+   "qs": "range=last_12_months",
+   "expect": "spec 366 incl.",
+   "status": 400,
+   "rowsReturned": 0,
+   "impliedWindows": []
+  },
+  {
+   "preset": "last_month",
+   "qs": "range=last_month",
+   "expect": "Jul 1 -> Jul 31 : spec 31",
+   "status": 200,
+   "rowsReturned": 500,
+   "impliedWindows": [
+    {
+     "W": 31,
+     "rows": 6
+    }
+   ]
+  },
+  {
+   "preset": "last_year",
+   "qs": "range=last_year",
+   "expect": "2025 full : spec 365",
+   "status": 200,
+   "rowsReturned": 500,
+   "impliedWindows": [
+    {
+     "W": 365,
+     "rows": 374
+    }
+   ]
+  },
+  {
+   "preset": "last_quarter",
+   "qs": "range=last_quarter",
+   "expect": "Apr 1 -> Jun 30 : spec 91",
+   "status": 200,
+   "rowsReturned": 500,
+   "impliedWindows": [
+    {
+     "W": 91,
+     "rows": 427
+    }
+   ]
+  }
+ ]
+}
