@@ -1,0 +1,133 @@
+{
+ "capturedAt": "2026-08-04T04:04:47.679Z",
+ "buildMarker": "v3.4.1-0ed4433",
+ "note": "impliedWindowDays is derived from the returned figure: W = units_sold*365/(turns_per_year*on_hand). Spec PV v4 §5 requires the INCLUSIVE whole-day span (Jan 1 -> Aug 4 2026 = 216).",
+ "probes": [
+  {
+   "label": "A  range=this_year (the \"This Year\" preset)",
+   "rangeQs": "range=this_year",
+   "status": 200,
+   "rows": [
+    {
+     "part_number": "BRAKECLEAN",
+     "units_sold": 512,
+     "on_hand": 618,
+     "turns_per_year": 1.40648754422,
+     "impliedWindowDays": 215
+    },
+    {
+     "part_number": "BRAKECLEAN",
+     "units_sold": 359,
+     "on_hand": 12,
+     "turns_per_year": 50.78875968992,
+     "impliedWindowDays": 215
+    }
+   ]
+  },
+  {
+   "label": "B  range=custom 2026-01-01 -> 2026-08-04",
+   "rangeQs": "range=custom&start_date=2026-01-01&end_date=2026-08-04",
+   "status": 200,
+   "rows": [
+    {
+     "part_number": "BRAKECLEAN",
+     "units_sold": 512,
+     "on_hand": 618,
+     "turns_per_year": 1.39997602781,
+     "impliedWindowDays": 216
+    },
+    {
+     "part_number": "BRAKECLEAN",
+     "units_sold": 359,
+     "on_hand": 12,
+     "turns_per_year": 50.55362654317,
+     "impliedWindowDays": 216
+    }
+   ]
+  },
+  {
+   "label": "C  range=this_month (preset)",
+   "rangeQs": "range=this_month",
+   "status": 200,
+   "rows": [
+    {
+     "part_number": "BRAKECLEAN",
+     "units_sold": 0,
+     "on_hand": 618,
+     "turns_per_year": 0,
+     "impliedWindowDays": null
+    },
+    {
+     "part_number": "BRAKECLEAN",
+     "units_sold": 0,
+     "on_hand": 12,
+     "turns_per_year": 0,
+     "impliedWindowDays": null
+    }
+   ]
+  },
+  {
+   "label": "D  range=custom 2026-08-01 -> 2026-08-04",
+   "rangeQs": "range=custom&start_date=2026-08-01&end_date=2026-08-04",
+   "status": 200,
+   "rows": [
+    {
+     "part_number": "BRAKECLEAN",
+     "units_sold": 0,
+     "on_hand": 618,
+     "turns_per_year": 0,
+     "impliedWindowDays": null
+    },
+    {
+     "part_number": "BRAKECLEAN",
+     "units_sold": 0,
+     "on_hand": 12,
+     "turns_per_year": 0,
+     "impliedWindowDays": null
+    }
+   ]
+  },
+  {
+   "label": "E  range=last_year (preset, full calendar year)",
+   "rangeQs": "range=last_year",
+   "status": 200,
+   "rows": [
+    {
+     "part_number": "BRAKECLEAN",
+     "units_sold": 1650,
+     "on_hand": 618,
+     "turns_per_year": 2.66990291262,
+     "impliedWindowDays": 365
+    },
+    {
+     "part_number": "BRAKECLEAN",
+     "units_sold": 827,
+     "on_hand": 12,
+     "turns_per_year": 68.91666666667,
+     "impliedWindowDays": 365
+    }
+   ]
+  },
+  {
+   "label": "F  range=custom 2025-01-01 -> 2025-12-31",
+   "rangeQs": "range=custom&start_date=2025-01-01&end_date=2025-12-31",
+   "status": 200,
+   "rows": [
+    {
+     "part_number": "BRAKECLEAN",
+     "units_sold": 1650,
+     "on_hand": 618,
+     "turns_per_year": 2.66990291262,
+     "impliedWindowDays": 365
+    },
+    {
+     "part_number": "BRAKECLEAN",
+     "units_sold": 827,
+     "on_hand": 12,
+     "turns_per_year": 68.91666666667,
+     "impliedWindowDays": 365
+    }
+   ]
+  }
+ ]
+}

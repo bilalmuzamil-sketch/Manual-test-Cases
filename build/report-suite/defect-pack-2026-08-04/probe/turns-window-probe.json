@@ -1,0 +1,41 @@
+{
+ "capturedAt": "2026-08-04T04:03:42.993Z",
+ "buildMarker": "v3.4.1-0ed4433",
+ "probes": [
+  {
+   "label": "Jan1-Aug4 (inclusive 216 / exclusive 215)",
+   "qs": "range=custom&start_date=2026-01-01&end_date=2026-08-04&type=inventory&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&search=BRAKECLEAN",
+   "status": 200,
+   "rowsReturned": 1,
+   "sample": [
+    {
+     "part_number": "BRAKECLEAN",
+     "units_sold": 512,
+     "on_hand": 618,
+     "turns_per_year": 1.39997602781
+    }
+   ]
+  },
+  {
+   "label": "Jul26-Aug4 (inclusive 10 / exclusive 9)",
+   "qs": "range=custom&start_date=2026-07-26&end_date=2026-08-04&type=inventory&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&search=BRAKECLEAN",
+   "status": 200,
+   "rowsReturned": 1,
+   "sample": []
+  },
+  {
+   "label": "Aug4-Aug4 single day (inclusive 1 / exclusive 0)",
+   "qs": "range=custom&start_date=2026-08-04&end_date=2026-08-04&type=inventory&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "rowsReturned": 100,
+   "sample": []
+  },
+  {
+   "label": "Aug3-Aug3 single day (inclusive 1 / exclusive 0)",
+   "qs": "range=custom&start_date=2026-08-03&end_date=2026-08-03&type=inventory&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "rowsReturned": 100,
+   "sample": []
+  }
+ ]
+}
