@@ -77,7 +77,7 @@
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S1-R3, S7-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8668 (specs/inventory-value.md Story 1 S1-R3; Story 7 S7-R2)",
+  "spec_ref": "SV-8668 (IV spec v3 2026-07-29 Story 1 S1-R3; Story 7 S7-R2)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -188,11 +188,12 @@
    "2. The core-charge part is never listed — even with a positive quantity — and its value is not counted in the totals row.",
    "3. The zero-quantity and negative-quantity parts are not listed — only quantities greater than zero are valued.",
    "4. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed.",
+   "5. A part that has sat without movement for a long time still appears and is still counted — there is no dead-stock exclusion; how long stock has sat makes no difference.",
    "---",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S2-R1, S2-R2, S2-N1, S2-N2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions)",
+  "spec_ref": "SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion))",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-SCOPE): absorbed IV-SCOPE-03, IV-SCOPE-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false

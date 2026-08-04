@@ -47,6 +47,9 @@
    "1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.",
    "2. Total Cost is always the last column.",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
@@ -276,6 +279,11 @@
    "4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
    "5. Note for the tester: the files carry the Location column when Location is turned ON in the column-selection control (it sits between Vendor and Qty). It does not appear just because you have more than one location selected.",
    "---",
+   "Note for the tester: on this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match. That difference is already written up and a decision on it is pending - record what you see and carry on; you do not need to raise it again.",
+   "",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
@@ -304,10 +312,13 @@
    "2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).",
    "3. The PDF uses the same on-screen currency formatting with the \"$\" and thousands separators.",
    "---",
+   "On this build the money in the spreadsheet file comes out as \"$11,176.88\" - with a dollar sign and a comma - instead of the plain number described in point 2 above.",
+   "Known and accepted: the product behaves this way on purpose for now. Do not raise this as a new problem.",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R7 (+ context note))",
+  "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R7 (+ context note))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -336,6 +347,9 @@
    "3. The CSV never includes a logo.",
    "4. Note for the tester: the two files phrase the as-of line differently - the PDF reads \"As of 2026-08-04\" and the CSV's first line reads \"As of: 2026-08-04\" (with a colon). Both are correct; do not raise the difference.",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R8, S10-R9)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",

@@ -49,11 +49,12 @@
    "1. Four tabs are shown, labeled in this order: \"Approved - Partially Completed\", \"Approved - Not Started\", \"Completed\", and \"Estimates\" - each followed by its count in brackets, for example \"Completed (30)\".",
    "2. The \"Approved - Partially Completed\" tab is selected by default on load.",
    "3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).",
+   "4. Each tab's count matches the number of work-order rows actually listed in that tab.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S1-R2, S1-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S1-R2, S1-R3, S1-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement)",
+  "spec_ref": "SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement; Story 1 S1-R4)",
   "viu_status": "VIU-Pending",
   "notes": "Tab labels are verbatim from the spec (note the plain hyphen in \"Approved - partially completed\" / \"Approved - not started\"). | 2026-08-03 verifier-fix [C/V-10]: Pins the closed four-tab list and its order to WIP S1-R2 + spec version (Rule 42(b)). RULE 41: Re-verified whole against WIP spec v6 2026-07-29: title, preconditions 1-2, steps 1-3, expected 1-3, refs. S1-R2 verbatim L131: \"Opening the report shows four tabs, labeled (in order) \\\"Approved - partially completed\\\", \\\"Approved - not started\\\", \\\"Completed\\\", and \\\"Estimates\\\".\" S1-R3 L132 pins the default tab. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false

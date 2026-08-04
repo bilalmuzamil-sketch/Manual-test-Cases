@@ -23,6 +23,9 @@
    "4. The browser tab title reads \"Sales By Customer - Report | ShopView\".",
    "5. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-R1, S1-R3, S1-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
@@ -222,6 +225,9 @@
    "2. It offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.",
    "3. There is no \"All Time\" option.",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R1, S2-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
@@ -274,6 +280,9 @@
    "2. A range of 366 days or fewer applies normally.",
    "3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R3, S2-R4, S2-N2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
@@ -413,6 +422,9 @@
    "4. Activating \"All locations\" selects every listed location at once; activating it again clears them all at once.",
    "5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data.",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R1, S4-R2, S4-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
@@ -763,6 +775,9 @@
    "6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.",
    "7. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at one location, \"Multiple\" on a row that aggregates more than one, and the invoice's own location on an invoice row. (Exactly where the column sits inside each file is confirmed in the build.)",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R12, S4-R12a, S4-R13, S20-R19)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",

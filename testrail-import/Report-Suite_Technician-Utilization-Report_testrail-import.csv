@@ -308,12 +308,18 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 2. The menu holds: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", and ""Download (CSV)"".
 3. The labels match exactly - only the expanded option carries the word ""View"" (the shipped strings, documented as-is).
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R1, S7-R2, S7-R3, S7-R4, S8-R2).","SV-8654 (TU spec v5 2026-07-29 S7-R1; S7-R2; S7-R3; S7-R4; S8-R2 — S8-R2 now adds ""followed by the Column Selection control"")",,
 The Summary PDF holds the technician rows plus the Summary,TU — Exports,Functional,High,1. You are on the Technician Utilization report with several technicians who have multi-day clock records.,"1. Choose ""Download Summary (PDF)"" and open the file; check its filename.
 2. Choose ""Download Expanded View (PDF)"" and open the file; check its filename.","1. The Summary PDF shows the technician rows and the Summary row (no day rows); it downloads as ""Technician-Utilization-Summary.pdf"".
 2. The Expanded PDF shows the technician rows, EACH technician's per-day breakdown, and the Summary row; it downloads as ""Technician-Utilization-Expanded.pdf"".
 3. The PDF filenames are Title-Case as shipped.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R5, S7-R6, S7-R12).",SV-8654 (TU spec v5 2026-07-29 S7-R5; S7-R6; S7-R12),,
 "The CSV is always summary-level, quotes comma-containing values",TU — Exports,Functional,High,"1. At least one technician's Est. Lost Labor exceeds $1,000 (so a value contains a comma).","1. Choose ""Download (CSV)"" and check the filename.
 2. Open the file in a plain-text editor and find the over-$1,000 value.
@@ -347,12 +353,18 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 2. The CSV never includes the logo.
 3. With NO uploaded logo, the PDF views show the bundled ShopView logo instead — not a blank space and not an error.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R11, S7-N2, S7-N3).",SV-8654 (TU spec v5 2026-07-29 S7-R11; S7-N2; S7-N3 — logo now resolved by the shared resolver: the organization's uploaded logo; else the bundled ShopView default),,
 Choosing a download with no technician selected is a silent no-op,TU — Exports,Negative,Medium,1. You are on the Technician Utilization report with rows loaded.,"1. Use ""Clear all"" in the Filter by Technician filter so no technician is selected.
 2. Choose each download option in turn (Summary PDF, Expanded PDF, CSV).
 3. Watch for any file download and any notification.","1. Nothing happens: NO file downloads and NO message appears (not even an error).
 2. This silent no-op is the specified behavior for every download option when no technician is selected.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-N1).",SV-8654 (TU spec v5 2026-07-29 S7-N1; §7 context note),,
 A starting download notifies; a failed one shows the failure message,TU — Exports,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded.
 2. You can force a download failure (e.g. drop the network connection just before triggering the download).","1. Trigger a normal download and read the notification.
@@ -395,13 +407,17 @@ The saved location selection restores defensively; bad ones are dropped,TU — L
 2. Repeat with a saved selection consisting ONLY of now-inaccessible locations.","1. Any saved location the user can no longer access is DROPPED from the restored selection; the remaining accessible locations restore normally.
 2. If the remaining set is empty, the report falls back to the user's currently active location (the first-visit default).
 3. The report loads without an error in both cases.
+4. The same fallback happens when you deselect every location by hand in the Location filter — the report loads the currently active location's rows rather than showing nothing.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R6, S1-R8, S9-R2).",SV-8656 (TU spec v5 2026-07-29 S9-R6; S1-R8; S9-R2),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R6, S1-R8, S9-R2, S9-R7).",SV-8656 (TU spec v5 2026-07-29 S9-R6; S1-R8; S9-R2; S9-R7),,
 Technician Utilization: Location filter hidden for a one-location user,TU — Location Filter,Functional,Low,"1. You are signed in as a user with access to exactly one location.
 2. You are on the Technician Utilization report.","1. Look for the Location filter in the toolbar.
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
 2. For the user with access to two or more locations the Location filter IS shown.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8656 (TU spec S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S9-N1 ""still sees the filter"" note is stale; spec edit pending)",,
 The Location column shows only with more than one location; Summary row blank,TU — Location Filter,Functional,High,"1. You are on the Technician Utilization report as a user with access to two or more locations.
 2. One technician clocked time at a single location in the range and another clocked time at two different locations.

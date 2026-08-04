@@ -22,7 +22,7 @@
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8679 (specs/inventory-value.md Story 12 S12-R1)",
+  "spec_ref": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R1)",
   "viu_status": "VIU-Pending",
   "notes": "Per the Story 12 context note, finer styling details are deferred to the companion video/screenshots when available. COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -49,7 +49,7 @@
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R2, S12-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8679 (specs/inventory-value.md Story 12 S12-R2; S12-R3)",
+  "spec_ref": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R2; S12-R3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -332,11 +332,14 @@
    "1. Re-running the capture for a date replaces that date's rows for each location — the existing rows for that location and date are removed, then re-inserted from current data.",
    "2. No duplicate rows exist for the same part, location, and date.",
    "3. The capture is idempotent and self-healing from current data.",
+   "4. No rows exist for dates before capture began — there is no backfill.",
+   "5. A re-run always records current truth under the CURRENT date; it cannot reconstruct a past date.",
+   "6. A past date's stored rows are unchanged by a current re-run.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R3, S11-R5, S5-E1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R3)",
+  "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R3; Story 11 S11-R5; Story 5 S5-E1)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -393,6 +396,8 @@
    "2. For ages older than 13 months, only the last capture of each calendar month is retained; the other daily captures in that band are pruned.",
    "3. Pruning runs as part of, or alongside, the nightly capture.",
    "---",
+   "Note for the tester: this one needs records going back more than a year, and this test system only holds a few days of records so far. If there is nothing old enough to look at, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
@@ -423,6 +428,8 @@
    "2. The \"As of\" indicator names the day actually shown.",
    "3. A requested date whose covering captures have all been pruned resolves to the nearest earlier retained capture, or shows the empty state if none remains.",
    "---",
+   "Note for the tester: this one needs records going back more than a year, and this test system only holds a few days of records so far. If there is nothing old enough to look at, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-E1, S11-R6, S5-R4, S5-R5, S5-N1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",

@@ -186,6 +186,9 @@
    "2. The menu holds: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", and \"Download (CSV)\".",
    "3. The labels match exactly - only the expanded option carries the word \"View\" (the shipped strings, documented as-is).",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R1, S7-R2, S7-R3, S7-R4, S8-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
@@ -213,6 +216,9 @@
    "2. The Expanded PDF shows the technician rows, EACH technician's per-day breakdown, and the Summary row; it downloads as \"Technician-Utilization-Expanded.pdf\".",
    "3. The PDF filenames are Title-Case as shipped.",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R5, S7-R6, S7-R12)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
@@ -330,6 +336,9 @@
    "2. The CSV never includes the logo.",
    "3. With NO uploaded logo, the PDF views show the bundled ShopView logo instead — not a blank space and not an error.",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R11, S7-N2, S7-N3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
@@ -357,6 +366,9 @@
    "1. Nothing happens: NO file downloads and NO message appears (not even an error).",
    "2. This silent no-op is the specified behavior for every download option when no technician is selected.",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
@@ -473,11 +485,12 @@
    "1. Any saved location the user can no longer access is DROPPED from the restored selection; the remaining accessible locations restore normally.",
    "2. If the remaining set is empty, the report falls back to the user's currently active location (the first-visit default).",
    "3. The report loads without an error in both cases.",
+   "4. The same fallback happens when you deselect every location by hand in the Location filter — the report loads the currently active location's rows rather than showing nothing.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R6, S1-R8, S9-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R6, S1-R8, S9-R2, S9-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8656 (TU spec v5 2026-07-29 S9-R6; S1-R8; S9-R2)",
+  "spec_ref": "SV-8656 (TU spec v5 2026-07-29 S9-R6; S1-R8; S9-R2; S9-R7)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: save a multi-location selection, then remove the user's access to one/all of them (restore access afterwards - shared env). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -527,6 +540,9 @@
    "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.",
    "2. For the user with access to two or more locations the Location filter IS shown.",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",

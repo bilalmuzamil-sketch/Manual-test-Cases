@@ -172,11 +172,12 @@
    "2. After the reversal, Demand is STILL 2 - a reversal event neither adds to nor subtracts from the count (while Units Sold nets down).",
    "3. The special-order part's Demand is 2 - the count of its in-window vendor part requests.",
    "4. Demand is the report's default ranking signal (a whole number, never null - 0 when none).",
+   "5. A part whose single in-window sale is invoiced and then fully reversed shows Demand 1 with Units Sold 0.00 — the Demand count is not decremented, while the movement nets to zero.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4, S3-E1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R4 (Demand); §4; §3 Key Decisions)",
+  "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R4 (Demand); §4; §3 Key Decisions; S3-E1)",
   "viu_status": "VIU-Pending",
   "notes": "CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.) | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false

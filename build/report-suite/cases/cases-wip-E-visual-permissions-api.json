@@ -21,7 +21,7 @@
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S10-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8666 (specs/wip-work-in-progress.md Story 10 S10-R1)",
+  "spec_ref": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R1)",
   "viu_status": "VIU-Pending",
   "notes": "COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -270,11 +270,14 @@
    "1. Once per day the system records one row per then-open work order — one row per work order per calendar date.",
    "2. The next day's capture adds a new row per open work order under the new date; a work order open on both days has one row for each date, never two rows for the same date.",
    "3. Re-running the capture for the SAME date replaces that date's rows — the day's existing rows are removed and re-recorded from current data, never duplicated.",
+   "4. Each snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R1)."
+   "Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.",
+   "",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R1, S11-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs))",
+  "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs); Story 11 S11-R2)",
   "viu_status": "VIU-Pending",
   "notes": "The spec defines job behavior only — NO endpoint or table name is specified and none is invented here. VIU-confirm with dev how to trigger/inspect the capture (schedule time, storage, any manual re-run). TECH-PLAN EDIT 2026-07-30: re-run idempotency (delete-and-re-record per location/work order/date) comes from the engineering plan B1.2 — the WIP spec is silent on it (the IV spec's S11-R3 twin has it); confirm live and flag to Chris if the spec re-diff still lacks it. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -316,7 +319,8 @@
   "preconditions": [
    "1. An open ZZAUTOTEST work order with known approved labor (partly clocked) and approved parts (partly received) exists and is left UNCHANGED across the capture.",
    "2. You can read the on-screen report on the capture date and the stored snapshot row afterward.",
-   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
+   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.",
+   "4. The work order's Earned/Remaining include non-round cent values (for example $123.45), so lost cents would be visible."
   ],
   "steps": [
    "1. On the capture date, note the work order's Earned and Remaining on the Work In Progress report.",
@@ -325,11 +329,14 @@
   ],
   "expected": [
    "1. The captured Earned equals the on-screen Earned and the captured Remaining equals the on-screen Remaining, to the cent — the snapshot uses the identical computation for both figures, so the two can never diverge for a given work order on the capture date.",
+   "2. The captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R3)."
+   "Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.",
+   "",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R3, S11-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R3)",
+  "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R3; Story 11 S11-R5)",
   "viu_status": "VIU-Pending",
   "notes": "AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -357,6 +364,8 @@
    "2. The capture spans every location — there is no user-selected-location filter.",
    "3. Invoiced, Paid, and Declined work orders and part-sale work orders are not captured.",
    "---",
+   "Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R4, S2-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
@@ -412,6 +421,8 @@
    "1. The work order IS captured (not skipped).",
    "2. Its Earned is $0.00 and its Remaining is $0.00, matching what the report shows on screen for a job with nothing approved.",
    "---",
+   "Note for the tester: you cannot check this one from any screen. These figures are written each night by a background process, and nothing in the report reads them back in this version. If you cannot see the figures anywhere, mark this test BLOCKED - do not mark it failed, and do not raise it as a problem.",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R6, S4-E1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",

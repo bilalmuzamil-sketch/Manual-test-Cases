@@ -18,6 +18,9 @@
    "1. The control offers the standard presets: \"Today\", \"Yesterday\", \"This Week\", \"Last Week\", \"This Month\", \"Last Month\", \"This Year\", \"Last Year\", \"This Quarter\", \"Last Quarter\", and \"Custom\".",
    "2. \"All Time\" is NOT offered — because the report is valued as of a single date, an All-Time option would be meaningless; its absence is the documented v1 behavior.",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
@@ -105,6 +108,9 @@
    "2. The part's row shows the quantity and values recorded for that day, not today's live stock.",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
@@ -137,7 +143,7 @@
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R5, S5-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-R5; S5-R6)",
+  "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R5; S5-R6)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the indicator's exact on-screen wording — the spec pins \"As of \" plus the day but not the full label format. COMPANION-VIDEO 2026-07-30 (C20, 12:01-13:10) soft-worded CONFIRMATION: 'if snapshot data is taken, we don't need to see this ... only ... important if you've been offline ... Or, no snapshot' — matches S5-R5/S5-R6 (indicator hidden when the shown day matches, shown on fallback). Spec silent on an offline/stale-data state — VIU-watch only, not authored (Rule 15 spec-silent stated). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -397,7 +403,7 @@
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
+  "spec_ref": "SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
   "viu_status": "VIU-Pending",
   "notes": "VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)). Video 41:09-41:20: 'how do I know which is for shop A and which is for shop B? ... we should probably add that in there.' The current spec has NO Location identifier column (one row per part per location, S2-R3, but no Location column in S3-R1). Exact control/label unpinned — VIU-confirm, do not invent (Rule 9). Title shortened to fit. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -477,6 +483,9 @@
    "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's stock.",
    "2. For the user with access to two or more locations the Location filter IS shown.",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
@@ -569,6 +578,9 @@
    "6. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.",
    "7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty), naming each row's own location.",
    "---",
+   "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
+   "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
+   "",
    "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
