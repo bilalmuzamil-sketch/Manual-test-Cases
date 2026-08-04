@@ -1,0 +1,135 @@
+{
+ "probed_at_utc": "2026-08-04T07:19:22.258Z",
+ "wip": [
+  {
+   "label": "wide 2020->today",
+   "qs": "from=2020-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.999Z",
+   "http": 400,
+   "rows": null,
+   "data_keys": [],
+   "sample": null
+  },
+  {
+   "label": "wide 2026-07-01->today",
+   "qs": "from=2026-07-01T00:00:00.000Z&to=2026-08-04T23:59:59.999Z",
+   "http": 200,
+   "rows": 63,
+   "data_keys": [
+    "collection"
+   ],
+   "sample": {
+    "wo": "S2-16215",
+    "created": null,
+    "tab": "Completed"
+   }
+  },
+  {
+   "label": "past window 07-01->07-31",
+   "qs": "from=2026-07-01T00:00:00.000Z&to=2026-07-31T23:59:59.999Z",
+   "http": 200,
+   "rows": 0,
+   "data_keys": [
+    "collection"
+   ],
+   "sample": null
+  },
+  {
+   "label": "no params at all",
+   "qs": "",
+   "http": 400,
+   "rows": null,
+   "data_keys": [],
+   "sample": null
+  },
+  {
+   "label": "param as_of=2026-08-01",
+   "qs": "as_of=2026-08-01",
+   "http": 400,
+   "rows": null,
+   "data_keys": [],
+   "sample": null
+  },
+  {
+   "label": "param as_of_date=2026-08-01",
+   "qs": "as_of_date=2026-08-01",
+   "http": 400,
+   "rows": null,
+   "data_keys": [],
+   "sample": null
+  },
+  {
+   "label": "param snapshot_date=2026-08-01",
+   "qs": "snapshot_date=2026-08-01",
+   "http": 400,
+   "rows": null,
+   "data_keys": [],
+   "sample": null
+  },
+  {
+   "label": "param date=2026-08-01",
+   "qs": "date=2026-08-01",
+   "http": 400,
+   "rows": null,
+   "data_keys": [],
+   "sample": null
+  },
+  {
+   "label": "param range=custom&start_date=2026-08-01&end_date=2026-08-01",
+   "qs": "range=custom&start_date=2026-08-01&end_date=2026-08-01",
+   "http": 400,
+   "rows": null,
+   "data_keys": [],
+   "sample": null
+  }
+ ],
+ "iv_bisect": [
+  {
+   "end": "2026-07-16",
+   "as_of": "2026-07-17",
+   "rows": 0,
+   "total_cost": 0
+  },
+  {
+   "end": "2026-07-20",
+   "as_of": "2026-07-21",
+   "rows": 0,
+   "total_cost": 0
+  },
+  {
+   "end": "2026-07-25",
+   "as_of": "2026-07-26",
+   "rows": 0,
+   "total_cost": 0
+  },
+  {
+   "end": "2026-07-28",
+   "as_of": "2026-07-29",
+   "rows": 0,
+   "total_cost": 0
+  },
+  {
+   "end": "2026-07-29",
+   "as_of": "2026-07-30",
+   "rows": 0,
+   "total_cost": 0
+  },
+  {
+   "end": "2026-07-30",
+   "as_of": "2026-07-31",
+   "rows": 100,
+   "total_cost": 48554966
+  },
+  {
+   "end": "2026-08-02",
+   "as_of": "2026-08-03",
+   "rows": 100,
+   "total_cost": 48554966
+  },
+  {
+   "end": "2026-08-03",
+   "as_of": "2026-08-04",
+   "rows": 100,
+   "total_cost": 48554218
+  }
+ ]
+}

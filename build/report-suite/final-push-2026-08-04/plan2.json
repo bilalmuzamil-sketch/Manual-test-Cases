@@ -1,0 +1,1788 @@
+[
+ {
+  "case_id": 30164,
+  "internal_report": "-",
+  "title_snapshot": "Each download item shows a loading state and its own export-failed toast",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the report with a large enough data set that a download takes a visible moment.\n2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
+  },
+  "snapshot": {
+   "title": "Each download item shows a loading state and its own export-failed toast",
+   "refs": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; \u00a77 \u2014 the loading state is now per menu item; four items)",
+   "custom_preconds": "1. You are on the report with a large enough data set that a download takes a visible moment.",
+   "custom_steps": "1. Choose \"Download Summary (CSV)\" and immediately look at that menu item.\n2. To provoke a failure, disconnect the network (or use the browser's offline mode) and choose \"Download Summary (CSV)\" again.\n3. Repeat both checks for \"Download Expanded View (CSV)\", \"Download Summary (PDF)\" and \"Download Expanded View (PDF)\".",
+   "custom_expected": "1. While a download is in progress, ONLY that menu item shows a loading state and is non-interactive; the other three items are unaffected.\n2. If a CSV download fails, an error toast is shown: \"CSV export failed.\" (dismissed by the user).\n3. If a PDF download fails, the toast reads \"PDF export failed.\" \u2014 identical behaviour, different wording.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-E1, S14-N1, S15-E1, S15-N1).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4300,
+   "type_id": 5,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30169,
+  "internal_report": "-",
+  "title_snapshot": "Expanded View PDF body matches the CSV's columns and on-screen rules",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal \u2264 0 row.\n2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the \"Styles\" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing."
+  },
+  "snapshot": {
+   "title": "Expanded View PDF body matches the CSV's columns and on-screen rules",
+   "refs": "SV-8613; SV-8603 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 + Story 4 S4-R13 \u2014 Expanded PDF body = the Expanded columns; plus the automatic Location column)",
+   "custom_preconds": "1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal \u2264 0 row.",
+   "custom_steps": "1. Read the body table's columns and row structure.\n2. Check a date cell, a customer row's Date cell, a Margin % dash, the Subtotal column weight, and the Inv. Hrs colors (use a color picker on the PDF if available).",
+   "custom_expected": "1. The Expanded View PDF's body table has the same columns, in the same order and with the same labels, as the Expanded View CSV \u2014 thirteen with a single location in scope, plus the Location column after Date when more than one location is in scope \u2014 including the Asset column \u2014 and shows the full Customer, then Asset, then Invoice breakdown, one block per customer.\n2. Body dates show as \"Mon DD YYYY\" - for example, \"May 14 2026.\"\n3. The Date cell is blank on customer rows and on asset rows, matching the screen.\n4. Margin % shows an em dash when the row's Subtotal is zero or below.\n5. The Subtotal column is bold - header, every row, and the totals row.\n6. Inv. Hrs uses the same signs and coloring as on screen, with green rendered as #21ba45 and red as #c10015.\n7. The PDF header title reads \"Sales By Customer Report\" on the Summary and Expanded versions alike \u2014 which version you have is told by the file name and the contents, not by a different title.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S15-R5, S15-R13, S15-R19, S15-R20, S15-R21, S15-R22, S15-R23, S15-R24, S4-R13).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4300,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30172,
+  "internal_report": "-",
+  "title_snapshot": "An export over 10,000 data rows is refused with the too-large toast",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. For both CSV and PDF: no file is generated and no download starts.\n2. An error toast is shown each time: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).\n3. The cap counts customer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.\n4. Below the cap the export succeeds normally.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R16, S15-R25, S14-R14, S15-R22); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+  },
+  "snapshot": {
+   "title": "An export over 10,000 data rows is refused with the too-large toast",
+   "refs": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; \u00a77 \u2014 Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec)",
+   "custom_preconds": "1. A filter combination exists whose customer rows plus invoice rows exceed 10,000 (widest range, all locations, all customers). If the environment cannot reach 10,000 rows even fully widened, record the max reachable and mark Blocked-Env with reason.",
+   "custom_steps": "1. With the over-cap filter set, choose \"Download (CSV)\".\n2. Choose \"Download (PDF)\".\n3. Narrow the filters below the cap and re-try one export.",
+   "custom_expected": "1. For both CSV and PDF: no file is generated and no download starts.\n2. An error toast is shown each time: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).\n3. The cap counts customer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.\n4. Below the cap the export succeeds normally.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R16, S15-R25, S14-R14, S15-R22); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4300,
+   "type_id": 5,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30182,
+  "internal_report": "-",
+  "title_snapshot": "The empty-state message never appears while the table is still loading",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the report; a slow network helps (throttle via browser dev tools if needed).\n2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
+  },
+  "snapshot": {
+   "title": "The empty-state message never appears while the table is still loading",
+   "refs": "SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-N1)",
+   "custom_preconds": "1. You are on the report; a slow network helps (throttle via browser dev tools if needed).",
+   "custom_steps": "1. Change a filter and watch the table area during the load.\n2. Watch what appears once loading finishes with zero customers.",
+   "custom_expected": "1. While the table is loading, the empty-state message is NOT shown (the loading state is shown instead).\n2. The message appears only after the table finishes its initial loading and shows zero customers.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S17-N1).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4302,
+   "type_id": 5,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30184,
+  "internal_report": "-",
+  "title_snapshot": "A failed data fetch shows the error toast which fades after 5 seconds",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You can interrupt the network (browser dev tools offline mode).\n2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
+  },
+  "snapshot": {
+   "title": "A failed data fetch shows the error toast which fades after 5 seconds",
+   "refs": "SV-8582 (SBC spec \u00a77 User Feedback Summary \u2014 the data-fetch error toast; CROSS-CUTTING: the SBC spec carries no error-state story of its own so the epic key is used deliberately)",
+   "custom_preconds": "1. You can interrupt the network (browser dev tools offline mode).",
+   "custom_steps": "1. Go offline, then open the report (or change a filter to force a re-fetch).\n2. Read the toast and time how long it stays.",
+   "custom_expected": "1. An error toast is shown: \"An error occurred while fetching the report data.\"\n2. The toast auto-fades after 5 seconds.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (\u00a77 User Feedback Summary).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4302,
+   "type_id": 5,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30186,
+  "internal_report": "-",
+  "title_snapshot": "Row surfaces alternate by tree level; header and totals rows stay white",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the report in light mode with a customer expanded down to invoice rows.\n2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the \"Styles\" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing."
+  },
+  "snapshot": {
+   "title": "Row surfaces alternate by tree level; header and totals rows stay white",
+   "refs": "SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14)",
+   "custom_preconds": "1. You are on the report in light mode with a customer expanded down to invoice rows.",
+   "custom_steps": "1. Inspect the background of the header cells, a customer row, an asset row, an invoice row, and the totals row.\n2. Check the pinned Subtotal cell's background on each row type.\n3. Check the tree indentation levels.",
+   "custom_expected": "1. Column-header cells and customer summary rows use the white surface (#ffffff).\n2. Asset rows and invoice rows use the blue-grey background (#f9fafb).\n3. The totals row uses the white surface with a top border and bold text (white on purpose, matching Technician Efficiency).\n4. The pinned Subtotal cell on any row uses that row's own background \u2014 never a contrasting strip.\n5. The three tree levels show by indentation: customer at the base, asset rows one level in (chevron and vehicle icon sit in from the customer), invoice rows one level deeper.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S20-R8, S20-R9, S20-R10, S20-R11, S20-R14).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4303,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30190,
+  "internal_report": "-",
+  "title_snapshot": "Asset and invoice rows are fetched on first expand; one call per customer",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the report with several customers, with the browser's network activity panel open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "Asset and invoice rows are fetched on first expand; one call per customer",
+   "refs": "SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R14; S8-R16)",
+   "custom_preconds": "1. You are on the report with several customers, with the browser's network activity panel open.",
+   "custom_steps": "1. Load the report and note the requests made for the summary rows.\n2. Expand one customer for the first time and watch the network panel.\n3. Collapse and re-expand the same customer without changing filters.\n4. Use the header chevron's expand-all and count the drill-down requests.",
+   "custom_expected": "1. Customer summary rows load WITHOUT the asset/invoice detail \u2014 the drill-down data is not preloaded.\n2. The first expand of a customer triggers a server fetch for that customer's asset and invoice rows.\n3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page \u2014 a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R14, S8-R16).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4305,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30191,
+  "internal_report": "-",
+  "title_snapshot": "Sorting is applied on the server and re-fetches the first page",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. Enough customers exist to span more than one page; the browser's network panel is open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "Sorting is applied on the server and re-fetches the first page",
+   "refs": "SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist))",
+   "custom_preconds": "1. Enough customers exist to span more than one page; the browser's network panel is open.",
+   "custom_steps": "1. Click a column header and watch the network panel.\n2. Compare the returned first page with the previous page contents.\n3. Optional (API tooling): repeat the request with a made-up sort column name and read the response.",
+   "custom_expected": "1. Clicking a column header issues a server request that returns the customer rows ordered by that column.\n2. The full filtered set is re-ordered and re-paginated on the server \u2014 the response is the first page of results in the new order, so page membership can change.\n3. The ordering is not done by re-shuffling rows already in the browser.\n4. A sort request naming a column the report does not offer is safely refused or ignored \u2014 never an error page or a crash; sorting works only on the report's own columns.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S10-R8, S10-R8b).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4305,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30192,
+  "internal_report": "-",
+  "title_snapshot": "The Customer type-ahead queries the server instead of loading every name",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the report with the browser's network panel open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "The Customer type-ahead queries the server instead of loading every name",
+   "refs": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2; S18-R4)",
+   "custom_preconds": "1. You are on the report with the browser's network panel open.",
+   "custom_steps": "1. Open the Customer filter WITHOUT typing and check whether a full customer list was downloaded.\n2. Type a query and watch the network panel.\n3. Change the query and watch again.",
+   "custom_expected": "1. The dropdown does not load the full customer list into the browser up front.\n2. As you type, the browser fetches matching customers from the server \u2014 case-insensitive \"contains\" matching on the name, scoped to the active date range, Product Type, and location \u2014 and lists the returned customers.\n3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R2, S18-R4).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4305,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30193,
+  "internal_report": "-",
+  "title_snapshot": "Customer rows are server-paginated; the totals row is server-computed",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. Enough customers exist to span more than one page; the browser's network panel is open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "Customer rows are server-paginated; the totals row is server-computed",
+   "refs": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6; S18-R11)",
+   "custom_preconds": "1. Enough customers exist to span more than one page; the browser's network panel is open.",
+   "custom_steps": "1. Load the report and inspect the summary-row response and the totals values.\n2. Change the Customer filter selection and watch the requests.\n3. Move between pages and watch the totals.",
+   "custom_expected": "1. Customer rows arrive page by page from the server (server-paginated), not as one full client-side list.\n2. Changing the Customer selection re-fetches the matching customers as a fresh first page.\n3. The totals are computed on the server over the full set of matching customers \u2014 they arrive with the data and do not change as you page.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R6, S18-R11).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4305,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30194,
+  "internal_report": "-",
+  "title_snapshot": "Exports are server-generated and the 10,000-row cap is counted first",
+  "held": false,
+  "layers": [
+   "P",
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort \u2014 not assembled from the rows already loaded in the browser.\n2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download \u2014 the count the cap checks is the count the file would contain, against the same filters and sort as the screen.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R3, S14-R14, S15-R3, S15-R22).",
+   "custom_preconds": "1. The browser's network panel is open; an over-cap filter combination is available if the environment allows.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "Exports are server-generated and the 10,000-row cap is counted first",
+   "refs": "SV-8612 (SBC spec v13 2026-07-31 Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22)",
+   "custom_preconds": "1. The browser's network panel is open; an over-cap filter combination is available if the environment allows.",
+   "custom_steps": "1. Trigger \"Download (CSV)\" and \"Download (PDF)\" and observe where the file content comes from.\n2. If an over-cap set is available, trigger an export and observe the server's refusal.",
+   "custom_expected": "1. The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort \u2014 not assembled from the rows already loaded in the browser.\n2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download \u2014 the count the cap checks is the count the file would contain, against the same filters and sort as the screen.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R3, S14-R14, S15-R3, S15-R22).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4305,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30283,
+  "internal_report": "-",
+  "title_snapshot": "PDF body font steps down as the longest dollar value grows; no overflow",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You can produce (or seed) filtered views whose LONGEST formatted positive dollar value \u2014 checked across every value in the document, including the totals row \u2014 falls in different length brackets (for example, $1,234.56 = 9 characters vs $1,000,000.00 = 13 characters).\n2. This test reads what is inside a downloaded PDF. Open the file in any PDF viewer and use the viewer's own text search (Ctrl+F) to find the text named below \u2014 that is enough. There is nothing to install."
+  },
+  "snapshot": {
+   "title": "PDF body font steps down as the longest dollar value grows; no overflow",
+   "refs": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R12; S14-R13)",
+   "custom_preconds": "1. You can produce (or seed) filtered views whose LONGEST formatted positive dollar value \u2014 checked across every value in the document, including the totals row \u2014 falls in different length brackets (for example, $1,234.56 = 9 characters vs $1,000,000.00 = 13 characters).",
+   "custom_steps": "1. Download the Summary PDF for a view whose longest positive dollar value is 9 characters or fewer; note the body text size (a relative comparison across files is enough).\n2. Repeat for views whose longest positive value is 10, 11, and 12-or-more characters (as far as seedable).\n3. In each file, check whether any value overflows or wraps its column.",
+   "custom_expected": "1. As the longest positive dollar value in the document grows past each length bracket, the PDF body text visibly steps DOWN in size \u2014 the relative step-downs are the pass criterion for this manual test.\n2. Column widths are fixed for the worst case regardless of tier \u2014 the layout never breaks and no value overflows or wraps its column.\n3. Both PDF formats adapt the same way.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R12, S14-R13).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4322,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30289,
+  "internal_report": "-",
+  "title_snapshot": "A failed download shows the canonical error toast",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the report with data showing.\n2. You can force a download failure (for example, cut the network just after triggering the download) \u2014 if not forceable, mark this Blocked with the reason.\n3. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
+  },
+  "snapshot": {
+   "title": "A failed download shows the canonical error toast",
+   "refs": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-N1; S14-N2; S14-E1; \u00a77)",
+   "custom_preconds": "1. You are on the report with data showing.\n2. You can force a download failure (for example, cut the network just after triggering the download) \u2014 if not forceable, mark this Blocked with the reason.",
+   "custom_steps": "1. Trigger a PDF download and watch the menu action while the file is being generated.\n2. Force a failure on a download (PDF or CSV) and read the toast.",
+   "custom_expected": "1. While a PDF is generating, the action shows a loading state and is non-interactive until the file is delivered.\n2. A failed download shows the error toast \"Ooooops! An error occured\" (the typo is as-shipped) \u2014 it persists 120 seconds or until dismissed.\n3. A genuine failure downloads nothing \u2014 never a malformed file.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-N1, S14-N2, S14-E1).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4322,
+   "type_id": 5,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30290,
+  "internal_report": "-",
+  "title_snapshot": "Over-cap Expanded View PDF is refused with the too-large message",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. No file is produced \u2014 the server declines rather than generating a truncated file.\n2. An error toast reads exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (persists 120 seconds or until dismissed).\n3. Below the cap, a large Expanded View PDF still generates normally (many reps \u00d7 many invoices is expected).\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-E2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+  },
+  "snapshot": {
+   "title": "Over-cap Expanded View PDF is refused with the too-large message",
+   "refs": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2; \u00a77 \u2014 10k-row export cap; no truncated file; toast persists 120s; the toast STRING is the ONE suite-wide message ruled by Chris Ward 2026-07-31 Q2=A [newest-wins]; his SBR spec edit is pending)",
+   "custom_preconds": "1. A filter set exists (or can be seeded) whose invoice detail rows exceed 10,000 \u2014 if this volume cannot be produced in the environment, mark Blocked-Env with the reason.",
+   "custom_steps": "1. Apply the over-cap filter set.\n2. Choose \"Download Expanded View (PDF)\" and read the toast.",
+   "custom_expected": "1. No file is produced \u2014 the server declines rather than generating a truncated file.\n2. An error toast reads exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (persists 120 seconds or until dismissed).\n3. Below the cap, a large Expanded View PDF still generates normally (many reps \u00d7 many invoices is expected).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-E2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4322,
+   "type_id": 5,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30300,
+  "internal_report": "-",
+  "title_snapshot": "Loading shows a centered spinner over the data area and hides the Totals",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the report with data showing (use a slow/throttled connection if available to make the loading state observable).\n2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
+  },
+  "snapshot": {
+   "title": "Loading shows a centered spinner over the data area and hides the Totals",
+   "refs": "SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R4)",
+   "custom_preconds": "1. You are on the report with data showing (use a slow/throttled connection if available to make the loading state observable).",
+   "custom_steps": "1. Reload the report and watch the data area during the initial load.\n2. Change a filter and watch the data area during the re-fetch.\n3. While loading, try to interact with the toolbar.",
+   "custom_expected": "1. On the initial load and on every filter-triggered re-fetch, the table shows the standard reports loading indicator \u2014 a centered spinner over the data area.\n2. The grand Totals indicator is hidden during loading.\n3. The toolbar stays interactive so filters can be changed mid-load.\n4. A re-fetch replaces the previous data only when the new data returns \u2014 no flash of a blank table beyond the spinner overlay.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S16-R4).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4324,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30301,
+  "internal_report": "-",
+  "title_snapshot": "A load failure shows the inline could-not-load message with a Retry",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You can force a load failure (for example, cut the network and change a filter) \u2014 if not forceable, mark Blocked with the reason.\n2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
+  },
+  "snapshot": {
+   "title": "A load failure shows the inline could-not-load message with a Retry",
+   "refs": "SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R5; \u00a77)",
+   "custom_preconds": "1. You can force a load failure (for example, cut the network and change a filter) \u2014 if not forceable, mark Blocked with the reason.",
+   "custom_steps": "1. Set several non-default filters.\n2. Force a load/re-fetch failure and read the data area.\n3. Restore the network and click \"Retry\".",
+   "custom_expected": "1. The data area shows the inline error message \"Couldn't load the report. Please try again.\" with a \"Retry\" action.\n2. The filters and toolbar remain interactive, and the failure does NOT clear the filter selections.\n3. \"Retry\" re-runs the CURRENT request \u2014 the report loads with the same filters still applied.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S16-R5).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4324,
+   "type_id": 5,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30304,
+  "internal_report": "-",
+  "title_snapshot": "Touch targets are at least 44\u00d744 px and touch users get no hover-only tooltips",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. The report is open on a touch device or touch emulation (under 1024px).\n2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the \"Styles\" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing."
+  },
+  "snapshot": {
+   "title": "Touch targets are at least 44\u00d744 px and touch users get no hover-only tooltips",
+   "refs": "SV-8634 (SBR spec v15 2026-07-29 Story 17 S17-R6; S17-N1; Story 18 S18-R9)",
+   "custom_preconds": "1. The report is open on a touch device or touch emulation (under 1024px).",
+   "custom_steps": "1. Measure (device emulation ruler/inspector) the touch targets of a row chevron, the Show Unassigned toggle, the \u22ef button, and \u2014 via the staff deactivation dialog if opened \u2014 the dialog's X.\n2. Tap-and-hold the icon controls and watch for tooltips.",
+   "custom_expected": "1. Each of these interactive controls presents a touch target of at least 44\u00d744 px.\n2. Hover-only tooltips are not shown on touch; the icons communicate the action and each icon-only control carries an accessible name.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S17-R6, S17-N1, S18-R9).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4325,
+   "type_id": 2,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30307,
+  "internal_report": "-",
+  "title_snapshot": "Every icon-only control carries its specified accessible name",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the report with at least one rep row; a screen reader or the browser's accessibility inspector is available.\n2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+  },
+  "snapshot": {
+   "title": "Every icon-only control carries its specified accessible name",
+   "refs": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R9)",
+   "custom_preconds": "1. You are on the report with at least one rep row; a screen reader or the browser's accessibility inspector is available.",
+   "custom_steps": "1. Inspect the accessible name of: the \u22ef exports button, the column selector button, one rep row's chevron (collapsed, then expanded), and the header chevron.\n2. Open the staff deactivation dialog (Story 13 flow) and inspect its X close icon.",
+   "custom_expected": "1. \u22ef exports = \"Report actions\".\n2. Column selector = \"Show or hide columns\".\n3. Per-row chevron = \"Expand {rep name}\" when collapsed / \"Collapse {rep name}\" when expanded.\n4. Header chevron = \"Expand all reps\" / \"Collapse all reps\".\n5. Dialog X = \"Close\".\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S18-R9).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4326,
+   "type_id": 2,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30308,
+  "internal_report": "-",
+  "title_snapshot": "Chevrons and sortable headers are keyboard-operable and expose their state",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the report with at least two rep rows; a screen reader or accessibility inspector is available.\n2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+  },
+  "snapshot": {
+   "title": "Chevrons and sortable headers are keyboard-operable and expose their state",
+   "refs": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R10)",
+   "custom_preconds": "1. You are on the report with at least two rep rows; a screen reader or accessibility inspector is available.",
+   "custom_steps": "1. Tab to a rep row's chevron; press Enter, then Space.\n2. Tab to a financial column header; press Enter, then Space.\n3. Inspect what state each control exposes to assistive technology.",
+   "custom_expected": "1. The row chevrons and the sortable column headers are keyboard-focusable and activate on Enter and on Space.\n2. A chevron exposes its expanded/collapsed state to assistive technology.\n3. A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S18-R10).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4326,
+   "type_id": 2,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30316,
+  "internal_report": "-",
+  "title_snapshot": "A rep's invoice detail rows are fetched from the server only on the first expand",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the report with at least two rep rows, one with a large invoice count if seedable.\n2. The browser's network panel is open.\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "A rep's invoice detail rows are fetched from the server only on the first expand",
+   "refs": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R2)",
+   "custom_preconds": "1. You are on the report with at least two rep rows, one with a large invoice count if seedable.\n2. The browser's network panel is open.",
+   "custom_steps": "1. Load the report and note which requests deliver the summary rows.\n2. Expand one rep and watch the network panel; collapse and re-expand it.\n3. If a rep has many invoices, scroll/page through its expanded detail rows.",
+   "custom_expected": "1. Invoice detail rows are NOT delivered with the initial summary payload \u2014 the first expand of a rep triggers a server fetch for that rep's matching invoices, with a brief row-level loading indicator.\n2. A re-expand within the session does not necessarily re-fetch (the expansion state is session-preserved); no rep's details load before its first expand.\n3. When a rep's matching-invoice count is large, its detail rows are paginated per rep.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S6-R2).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4328,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30317,
+  "internal_report": "-",
+  "title_snapshot": "Sorting is performed server-side and returns the first page",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the report with several rep rows; the network panel is open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "Sorting is performed server-side and returns the first page",
+   "refs": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R5)",
+   "custom_preconds": "1. You are on the report with several rep rows; the network panel is open.",
+   "custom_steps": "1. Click a financial column header and watch the network panel.\n2. Click the same header again (descending) and watch again.",
+   "custom_expected": "1. Each sort change triggers a server re-fetch of the rep summary rows in the requested order (a loading indicator shows during the fetch).\n2. The returned rows arrive already ordered by the requested column and direction \u2014 the client does not re-sort locally.\n3. Invoice detail rows continue to load lazily per rep on expand, unaffected by the sort mechanism.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S11-R5).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4328,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30318,
+  "internal_report": "-",
+  "title_snapshot": "Grand totals are server-computed over the full filtered set",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the report with several reps, at least one large enough that not all of its detail rows are loaded; the network panel is open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "Grand totals are server-computed over the full filtered set",
+   "refs": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5)",
+   "custom_preconds": "1. You are on the report with several reps, at least one large enough that not all of its detail rows are loaded; the network panel is open.",
+   "custom_steps": "1. Load the report with everything collapsed and inspect the summary response and the grand Totals indicator.\n2. Compare the grand totals against the full filtered result (for example, via the Summary CSV), not just the loaded rows.",
+   "custom_expected": "1. The grand totals arrive WITH the summary payload \u2014 the client does not derive them by summing loaded rows.\n2. The totals cover EVERY matching non-reversed invoice across every rep, independent of which reps are expanded or how many detail rows are loaded.\n3. The on-screen grand Totals match the export's aggregate for the same filter set.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S10-R5).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4328,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30319,
+  "internal_report": "-",
+  "title_snapshot": "All four exports are generated server-side against the active filters and sort",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the report with filters and a column sort applied; at least one rep is left unexpanded; the network panel is open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "All four exports are generated server-side against the active filters and sort",
+   "refs": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2a; S14-N2; S14-E3)",
+   "custom_preconds": "1. You are on the report with filters and a column sort applied; at least one rep is left unexpanded; the network panel is open.",
+   "custom_steps": "1. Trigger each of the four downloads and observe the export requests and responses.\n2. Compare the delivered files against the active filters and sort.\n3. If forceable, fail one export server-side and check what (if anything) downloads.",
+   "custom_expected": "1. Each export is generated by the server, receiving the active filters and sort \u2014 the file's contents and order match the screen even for reps never expanded (not built from loaded screen data).\n2. A genuine server-side export failure produces NO file and shows the \"Ooooops! An error occured\" toast \u2014 never a malformed/partial file.\n3. An empty-but-loaded result still produces a valid file (header-row-only CSV / no-rows PDF).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R2a, S14-N2, S14-E3).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4328,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30320,
+  "internal_report": "-",
+  "title_snapshot": "The Expanded View PDF's 10,000-row cap is enforced server-side BEFORE generation",
+  "held": false,
+  "layers": [
+   "P",
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. The server counts the rows against the 10,000-data-row cap and DECLINES to generate \u2014 the refusal happens pre-generation, observed in the export response.\n2. NO file (truncated or otherwise) is delivered; the client shows the specific too-large toast.\n3. A filter set just below the cap still generates a complete (possibly very large) PDF.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-E2).",
+   "custom_preconds": "1. A filter set producing more than 10,000 invoice detail rows exists or can be seeded \u2014 otherwise mark Blocked-Env with the reason.\n2. The network panel is open.\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "The Expanded View PDF's 10,000-row cap is enforced server-side BEFORE generation",
+   "refs": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2)",
+   "custom_preconds": "1. A filter set producing more than 10,000 invoice detail rows exists or can be seeded \u2014 otherwise mark Blocked-Env with the reason.\n2. The network panel is open.",
+   "custom_steps": "1. Trigger \"Download Expanded View (PDF)\" against the over-cap filter set and observe the export request/response.\n2. Check whether any file arrives.",
+   "custom_expected": "1. The server counts the rows against the 10,000-data-row cap and DECLINES to generate \u2014 the refusal happens pre-generation, observed in the export response.\n2. NO file (truncated or otherwise) is delivered; the client shows the specific too-large toast.\n3. A filter set just below the cap still generates a complete (possibly very large) PDF.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-E2).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4328,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30321,
+  "internal_report": "-",
+  "title_snapshot": "Deactivating a rep first runs a server pre-check returning the count",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. A staff member is active with the sales-representative toggle on and at least one customer assigned (seed a throwaway ZZAUTOTEST assignment if needed).\n2. The network panel is open.\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "Deactivating a rep first runs a server pre-check returning the count",
+   "refs": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R1; S13-R4)",
+   "custom_preconds": "1. A staff member is active with the sales-representative toggle on and at least one customer assigned (seed a throwaway ZZAUTOTEST assignment if needed).\n2. The network panel is open.",
+   "custom_steps": "1. In staff administration, toggle that staff member's active status off and watch the network panel BEFORE the dialog appears.\n2. Read the pre-check response and compare it with the dialog's \"{N} customer{s}\" headline.\n3. Cancel the dialog (leave the staff member active).",
+   "custom_expected": "1. A precondition-check request runs FIRST, before any change is applied, returning the count of distinct customers currently assigned to that staff member as their sales representative, plus a flag indicating whether any assignments exist.\n2. The dialog's \"{Staff Name} is the sales representative on {N} customer{s}.\" headline matches the returned count.\n3. No deactivation is committed by the pre-check itself \u2014 cancelling leaves the staff member's active status unchanged.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S13-R1, S13-R4).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4328,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30367,
+  "internal_report": "-",
+  "title_snapshot": "Turns / Yr annualizes the sales rate, is 0.00 at zero stock, can be negative",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. Part A's Turns / Yr matches the formula (two decimals, e.g. 24.33); the window is the whole-day span inclusive of both dates with a floor of 1 day.\n2. Part B shows 0.00 (renders 0.00 when On Hand is 0 - not an error, not \u2014).\n3. Part C shows a NEGATIVE Turns / Yr with a leading minus (because Units Sold can be negative).\n4. Special Order rows always show \u2014 (not applicable).\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8819\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4)."
+  },
+  "snapshot": {
+   "title": "Turns / Yr annualizes the sales rate, is 0.00 at zero stock, can be negative",
+   "refs": "SV-8645 (PV spec v4 2026-07-29 S5-R4 (Turns / Yr); S5 Definitions (Window))",
+   "custom_preconds": "1. The Turns / Yr column is enabled.\n2. Part A: known Units Sold over a known window with On Hand > 0 (e.g. Units Sold 10.00 over a 30-day window with 5 on hand).\n3. Part B: in-window sales but On Hand now 0.\n4. Part C: negative Units Sold (reversals exceed sales) with stock on hand.",
+   "custom_steps": "1. Compute the expected value for part A: (Units Sold \u00f7 Window days \u00d7 365) \u00f7 On Hand - e.g. (10 \u00f7 30 \u00d7 365) \u00f7 5 = 24.33.\n2. Compare against the displayed Turns / Yr for part A.\n3. Read Turns / Yr for parts B and C, and for any special-order row.",
+   "custom_expected": "1. Part A's Turns / Yr matches the formula (two decimals, e.g. 24.33); the window is the whole-day span inclusive of both dates with a floor of 1 day.\n2. Part B shows 0.00 (renders 0.00 when On Hand is 0 - not an error, not \u2014).\n3. Part C shows a NEGATIVE Turns / Yr with a leading minus (because Units Sold can be negative).\n4. Special Order rows always show \u2014 (not applicable).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4334,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30374,
+  "internal_report": "-",
+  "title_snapshot": "Window anchors: movement uses the event date, billed uses the WO date",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. In W1 (work-order date in window): the billed columns (Revenue, Margin, Unit Cost, Sell Price, Margin %, Sold (WO), Sold (Parts Sale)) count the sale, while inventory Units Sold / Demand do NOT (their movement event is outside W1).\n2. In W2 (movement date in window): Units Sold / Demand count it, the billed columns do not - the two anchors CAN differ for an inventory part and that is intended.\n3. The window is the whole-day span inclusive of BOTH the start and end dates, with a floor of 1 day - a single-day range (Today) computes normally (Window = 1 for the Turns / Yr divisor).\n4. Last Sale is not windowed at all (all-time).\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8819\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R7)."
+  },
+  "snapshot": {
+   "title": "Window anchors: movement uses the event date, billed uses the WO date",
+   "refs": "SV-8645 (PV spec v4 2026-07-29 S5 Definitions (Window / Work-order date); S5-R7)",
+   "custom_preconds": "1. A work order whose END date falls in window W1 but whose invoicing (stock-movement event) happened in window W2 for an inventory part.\n2. Both W1 and W2 are selectable ranges.",
+   "custom_steps": "1. Select window W1 and read the part's Units Sold / Demand vs its Revenue / Sold (WO).\n2. Select window W2 and read the same columns.\n3. Select a single-day range (Today) and check the report still computes (window floor).",
+   "custom_expected": "1. In W1 (work-order date in window): the billed columns (Revenue, Margin, Unit Cost, Sell Price, Margin %, Sold (WO), Sold (Parts Sale)) count the sale, while inventory Units Sold / Demand do NOT (their movement event is outside W1).\n2. In W2 (movement date in window): Units Sold / Demand count it, the billed columns do not - the two anchors CAN differ for an inventory part and that is intended.\n3. The window is the whole-day span inclusive of BOTH the start and end dates, with a floor of 1 day - a single-day range (Today) computes normally (Window = 1 for the Turns / Yr divisor).\n4. Last Sale is not windowed at all (all-time).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R7).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4334,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30388,
+  "internal_report": "-",
+  "title_snapshot": "The report is server-paginated - the backend returns one page of rows at a time",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the Parts Velocity report with more rows in the result set than one page holds.\n2. Browser devtools (network tab) are open to observe the backend requests.\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "The report is server-paginated - the backend returns one page of rows at a time",
+   "refs": "SV-8642 (PV spec v4 2026-07-29 \u00a72 (server-paginated); S2-R10)",
+   "custom_preconds": "1. You are on the Parts Velocity report with more rows in the result set than one page holds.\n2. Browser devtools (network tab) are open to observe the backend requests.",
+   "custom_steps": "1. Load the report and observe the backend data request and its response size.\n2. Move to the next page of rows and observe the traffic.",
+   "custom_expected": "1. The backend returns ONE page of rows at a time - the full result set is not shipped to the browser.\n2. Paging is resolved on the server: moving to another page issues a fresh backend request for that page.\n3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R10).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4337,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30389,
+  "internal_report": "-",
+  "title_snapshot": "Each filter or search change re-queries the server and returns page one",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the Parts Velocity report with data loaded and the browser devtools network tab open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "Each filter or search change re-queries the server and returns page one",
+   "refs": "SV-8642 (PV spec v4 2026-07-29 S2-R10)",
+   "custom_preconds": "1. You are on the Parts Velocity report with data loaded and the browser devtools network tab open.",
+   "custom_steps": "1. Change each of these in turn and watch the network traffic: Type, date range, Bin, Location, Category, Vendor, and the toolbar search.\n2. After a filter change while on a later page, note which page of results is shown.",
+   "custom_expected": "1. EACH change (Type, date range, Bin, Location, Category, Vendor, search) triggers a fresh server-side data load.\n2. There is no client-side-only narrowing - every filter or search change re-queries the server.\n3. Each change returns the FIRST page of the new result set.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R10).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4337,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30390,
+  "internal_report": "-",
+  "title_snapshot": "Header-click sorting re-queries the server; nulls first asc and last desc",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the Parts Velocity report with data loaded (including rows with null values in a sortable column) and the network tab open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "Header-click sorting re-queries the server; nulls first asc and last desc",
+   "refs": "SV-8643 (PV spec v4 2026-07-29 S3-R3)",
+   "custom_preconds": "1. You are on the Parts Velocity report with data loaded (including rows with null values in a sortable column) and the network tab open.",
+   "custom_steps": "1. Click a column header and watch the network traffic and the returned order.\n2. Click it again (reverse direction) and observe.\n3. Note where the null rows land in the server-returned order for each direction.",
+   "custom_expected": "1. Each header click re-fetches the data from the server, ordered by the chosen column and direction, returning the first page of the re-sorted result set.\n2. Null values are placed FIRST on ascending and LAST on descending - as a server sort semantic, so the same order appears on screen and in the exports.\n3. Ties keep a stable order (no explicit secondary key).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-R3).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4337,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30391,
+  "internal_report": "-",
+  "title_snapshot": "The back end serves report data and export on ordinary reports access",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are signed in as a user whose role has the ordinary reports access turned on and no other reports-related permission turned on.\n2. Browser devtools (network tab) are open.\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "The back end serves report data and export on ordinary reports access",
+   "refs": "SV-8641 (PV spec S1-R4; S1-N2 - RESCOPED 2026-08-03; same driver as C30327: Chris Ward Q2=A \"single Reports permission\" + \"they can exist and not do anything\"; QA lead \"ONE permission FOR NOW\")",
+   "custom_preconds": "1. You are signed in as a user whose role has the ordinary reports access turned on and no other reports-related permission turned on.\n2. Browser devtools (network tab) are open.",
+   "custom_steps": "1. Open the Parts Velocity report and observe the backend data request's outcome.\n2. Attempt the export and observe the backend export request's outcome.",
+   "custom_expected": "1. The back end returns the report data - the request is not refused.\n2. The back end returns the export file - the request is not refused.\n3. Both requests succeed with only the ordinary reports access turned on - nothing else had to be enabled.\n4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the system it must not change these results - for now it is hidden from the screen and enforces nothing. A per-report permission added on purpose in a later release is a planned change, not a bug, and this test will be updated first.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S1-R4, S1-N2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4337,
+   "type_id": 5,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30407,
+  "internal_report": "-",
+  "title_snapshot": "Internal hours with no default labor rate anywhere show an em-dash",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. A technician's in-range internal hours were all clocked at location(s) with NO default labor rate configured (rate absent, not $0.00).\n2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+  },
+  "snapshot": {
+   "title": "Internal hours with no default labor rate anywhere show an em-dash",
+   "refs": "SV-8649 (TU spec v5 2026-07-29 S2-E3; S8-R11; S2-R4)",
+   "custom_preconds": "1. A technician's in-range internal hours were all clocked at location(s) with NO default labor rate configured (rate absent, not $0.00).",
+   "custom_steps": "1. Read that technician's Est. Lost Labor.\n2. Inspect the cell with a screen reader or the accessibility tree.",
+   "custom_expected": "1. Est. Lost Labor shows \"\u2014\" (an em-dash), NOT \"$0.00\" - the rate is unknown, so the value cannot be computed.\n2. The \"\u2014\" cell carries the assistive-technology label \"No default labor rate configured\" (distinguishing it from \"$0.00\", which reads as its dollar value).\n3. The technician's Internal Hours column still shows all the internal hours (they are counted even though they cannot be valued).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-E3, S8-R11, S2-R4).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4340,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30409,
+  "internal_report": "-",
+  "title_snapshot": "On load rows sort by Technician A to Z with the ascending indicator",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the Technician Utilization report with several technician rows loaded.\n2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+  },
+  "snapshot": {
+   "title": "On load rows sort by Technician A to Z with the ascending indicator",
+   "refs": "SV-8649 (TU spec v5 2026-07-29 S2-R12; S8-R8; S8-R10)",
+   "custom_preconds": "1. You are on the Technician Utilization report with several technician rows loaded.",
+   "custom_steps": "1. Let the report load without clicking any header and read the Technician column top to bottom.\n2. Look at the Technician header's sort indicator.\n3. Inspect the headers in the accessibility tree.",
+   "custom_expected": "1. The technician rows are sorted by Technician name, A to Z.\n2. The Technician header shows the ascending sort indicator.\n3. The active sort header exposes its state to assistive technology (aria-sort = ascending on the Technician header; none on the others).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R12, S8-R8, S8-R10).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4341,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30418,
+  "internal_report": "-",
+  "title_snapshot": "Each technician row has an accessible expand/collapse control",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the Technician Utilization report with rows loaded.\n2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+  },
+  "snapshot": {
+   "title": "Each technician row has an accessible expand/collapse control",
+   "refs": "SV-8651 (TU spec v5 2026-07-29 S4-R1; S8-R12)",
+   "custom_preconds": "1. You are on the Technician Utilization report with rows loaded.",
+   "custom_steps": "1. Find the expand control on a technician row and read its accessible name (accessibility tree or screen reader).\n2. Activate it with the keyboard (Enter, then again with Space) and re-read the name and exposed state.\n3. Collapse the row again.",
+   "custom_expected": "1. Each technician row has a control to expand and collapse it.\n2. Its accessible name reflects the NEXT action, scoped to that technician: when collapsed it reads Expand, then that technician's name, then daily breakdown (for example: Expand John Smith's daily breakdown); when expanded it reads Collapse, then the same name and words.\n3. The control is keyboard-focusable, toggles on Enter and Space, and exposes its expanded/collapsed state to assistive technology.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R1, S8-R12).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4343,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30421,
+  "internal_report": "-",
+  "title_snapshot": "One control in the table header expands or collapses all technician rows",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the Technician Utilization report with several technician rows loaded.\n2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+  },
+  "snapshot": {
+   "title": "One control in the table header expands or collapses all technician rows",
+   "refs": "SV-8651 (TU spec v5 2026-07-29 S4-R4; S8-R12; S8-R3)",
+   "custom_preconds": "1. You are on the Technician Utilization report with several technician rows loaded.",
+   "custom_steps": "1. Find the expand/collapse-all control in the table's header row (in the Technician column) and read its accessible name.\n2. With all rows collapsed, activate it.\n3. Collapse ONE row manually, then activate the control again.\n4. With every row expanded, activate it once more.",
+   "custom_expected": "1. The control lives in the table's header row (Technician column) - NOT in the toolbar action cluster.\n2. If ANY row is collapsed, activating it expands ALL rows; only when EVERY row is already expanded does it collapse all rows (so step 3's activation re-expands the one collapsed row).\n3. Its accessible name reflects the next action: \"Expand all technicians\" when it will expand, \"Collapse all technicians\" when every row is already expanded.\n4. It is keyboard-focusable, toggles on Enter/Space, and exposes its state to assistive technology.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R4, S8-R12, S8-R3).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4343,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30449,
+  "internal_report": "-",
+  "title_snapshot": "The per-day breakdown is fetched only when a technician row is expanded",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "The per-day breakdown is fetched only when a technician row is expanded",
+   "refs": "SV-8651 (TU spec v5 2026-07-29 S4-R2; S4-R5)",
+   "custom_preconds": "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.",
+   "custom_steps": "1. Load the report and inspect the initial data response for per-day content.\n2. Expand a technician row and watch the network traffic.\n3. Collapse and re-expand after a data reload.",
+   "custom_expected": "1. The initial report payload does NOT ship the day rows.\n2. Expanding a technician row issues an on-demand backend request that returns that technician's per-day breakdown.\n3. Because expansion state resets (all collapsed) on any data reload, nothing is lost by the lazy loading - re-expanding fetches fresh day data.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R2, S4-R5).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4349,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30450,
+  "internal_report": "-",
+  "title_snapshot": "Date-range and location changes trigger a fresh server load",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.\n2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "Date-range and location changes trigger a fresh server load",
+   "refs": "SV-8648 (TU spec v5 2026-07-29 S1-R5; S9-R3; S5 context note; S2-R13; \u00a73)",
+   "custom_preconds": "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.",
+   "custom_steps": "1. Change the date range and watch the network traffic.\n2. Change the location selection and watch the traffic.\n3. Deselect/re-select a technician in the Filter by Technician filter and watch the traffic.\n4. Click several column headers to sort and watch the traffic.",
+   "custom_expected": "1. A date-range change triggers a fresh server load of the rows.\n2. A location change triggers a fresh server load scoped to the selected set.\n3. The technician filter causes NO server request - it works on screen only (hide/show + Summary recalculation).\n4. Column sorting causes NO server request - it is applied on screen to the loaded rows.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-R5, S9-R3, S2-R13).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4349,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30518,
+  "internal_report": "-",
+  "title_snapshot": "Export notifications: success caption, \"Empty export\" warning",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The report can be put in three states: rows present, no rows visible (filters leave nothing), and (if simulatable) a failing download, for example by disconnecting the network before the download.\n3. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
+  },
+  "snapshot": {
+   "title": "Export notifications: success caption, \"Empty export\" warning",
+   "refs": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R11; S9-R12; S9-R13; \u00a77 User Feedback Summary)",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The report can be put in three states: rows present, no rows visible (filters leave nothing), and (if simulatable) a failing download, for example by disconnecting the network before the download.",
+   "custom_steps": "1. With rows present, download the current tab and read the notification.\n2. Filter the report until no rows are visible, download again, and read the notification.\n3. If simulatable, force a download failure (for example, drop the network) and read the notification.",
+   "custom_expected": "1. On a successful download, a success notification shows with the caption \"Data exported successfully.\"\n2. When a download yields no rows, a warning notification shows titled \"Empty export\" with the caption \"Export didn't yield any results\".\n3. When a download fails, an error notification shows: \"An error occurred while exporting the report. Please try again.\"\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R11, S9-R12, S9-R13).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4360,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30524,
+  "internal_report": "-",
+  "title_snapshot": "Each summary figure's info icon is keyboard-reachable and screen-read",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+  },
+  "snapshot": {
+   "title": "Each summary figure's info icon is keyboard-reachable and screen-read",
+   "refs": "SV-8666 (WIP spec v6 2026-07-29 Story 10 S10-R7; Story 5 S5-R12)",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The summary strip is visible; a screen reader (or the browser's accessibility inspector) is available.",
+   "custom_steps": "1. Using only the keyboard, move focus to each summary figure's information icon.\n2. Check that the explanation is revealed on focus (not hover alone).\n3. With the screen reader or accessibility inspector, check that the explanation text is exposed to assistive technology.",
+   "custom_expected": "1. Each information icon is reachable by keyboard focus.\n2. Its explanation is revealed on focus, not by hover alone.\n3. The explanation text is exposed to assistive technology.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S10-R7, S5-R12).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4361,
+   "type_id": 2,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30528,
+  "internal_report": "-",
+  "title_snapshot": "Nightly snapshot records one row per then-open job per calendar date",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. Open work orders exist across the organization on the capture date.\n2. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you \u2014 that part cannot be seen from the browser."
+  },
+  "snapshot": {
+   "title": "Nightly snapshot records one row per then-open job per calendar date",
+   "refs": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run \u2014 WIP spec Story 11 is silent on re-runs))",
+   "custom_preconds": "1. Open work orders exist across the organization on the capture date.\n2. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).",
+   "custom_steps": "1. Note the set of open work orders before the nightly capture runs.\n2. After the capture, inspect the stored snapshot rows for that calendar date.\n3. Let the capture run again the next day and inspect again.\n4. If a manual re-run of the capture is available, re-run it for the same date and inspect that date's rows again.",
+   "custom_expected": "1. Once per day the system records one row per then-open work order \u2014 one row per work order per calendar date.\n2. The next day's capture adds a new row per open work order under the new date; a work order open on both days has one row for each date, never two rows for the same date.\n3. Re-running the capture for the SAME date replaces that date's rows \u2014 the day's existing rows are removed and re-recorded from current data, never duplicated.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R1).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4363,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30529,
+  "internal_report": "-",
+  "title_snapshot": "Each snapshot row captures the WO; status; money; location and the date",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. At least one open work order with known status, location, and organization existed when the nightly capture ran.\n2. You can inspect that date's stored snapshot rows.\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you \u2014 that part cannot be seen from the browser."
+  },
+  "snapshot": {
+   "title": "Each snapshot row captures the WO; status; money; location and the date",
+   "refs": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R2)",
+   "custom_preconds": "1. At least one open work order with known status, location, and organization existed when the nightly capture ran.\n2. You can inspect that date's stored snapshot rows.",
+   "custom_steps": "1. Find the seeded work order's snapshot row for the capture date.\n2. Read each captured field and compare to the work order.",
+   "custom_expected": "1. The snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R2).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4363,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30530,
+  "internal_report": "-",
+  "title_snapshot": "Captured Earned and Remaining use the same maths as the on-screen report",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. An open ZZAUTOTEST work order with known approved labor (partly clocked) and approved parts (partly received) exists and is left UNCHANGED across the capture.\n2. You can read the on-screen report on the capture date and the stored snapshot row afterward.\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you \u2014 that part cannot be seen from the browser."
+  },
+  "snapshot": {
+   "title": "Captured Earned and Remaining use the same maths as the on-screen report",
+   "refs": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R3)",
+   "custom_preconds": "1. An open ZZAUTOTEST work order with known approved labor (partly clocked) and approved parts (partly received) exists and is left UNCHANGED across the capture.\n2. You can read the on-screen report on the capture date and the stored snapshot row afterward.",
+   "custom_steps": "1. On the capture date, note the work order's Earned and Remaining on the Work In Progress report.\n2. After the nightly capture, read the same work order's captured Earned and Remaining in the snapshot row.\n3. Compare the pairs.",
+   "custom_expected": "1. The captured Earned equals the on-screen Earned and the captured Remaining equals the on-screen Remaining, to the cent \u2014 the snapshot uses the identical computation for both figures, so the two can never diverge for a given work order on the capture date.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R3).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4363,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 4,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30531,
+  "internal_report": "-",
+  "title_snapshot": "Nightly snapshot spans every location with no user location filter",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. Open service work orders exist at two or more different locations.\n2. An Invoiced (or Paid/Declined) work order and a part-sale work order also exist.\n3. You can inspect the capture date's snapshot rows.\n4. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you \u2014 that part cannot be seen from the browser."
+  },
+  "snapshot": {
+   "title": "Nightly snapshot spans every location with no user location filter",
+   "refs": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R4; Story 2 S2-R1 (first two conditions))",
+   "custom_preconds": "1. Open service work orders exist at two or more different locations.\n2. An Invoiced (or Paid/Declined) work order and a part-sale work order also exist.\n3. You can inspect the capture date's snapshot rows.",
+   "custom_steps": "1. After the nightly capture, list the snapshot rows for the date.\n2. Check that open service work orders from EVERY location are present.\n3. Look for the Invoiced/Paid/Declined work order and the part-sale work order.",
+   "custom_expected": "1. The captured set uses the same service-type and open-status conditions as the report (service work orders in Estimate, Approved, In Progress, Review, or Complete).\n2. The capture spans every location \u2014 there is no user-selected-location filter.\n3. Invoiced, Paid, and Declined work orders and part-sale work orders are not captured.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R4, S2-R1).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4363,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30532,
+  "internal_report": "-",
+  "title_snapshot": "Nightly snapshot: captured dollar values are stored to the cent",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. An open work order whose Earned/Remaining include non-round cent values (for example $123.45) existed at capture time.\n2. You can inspect the stored snapshot rows.\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you \u2014 that part cannot be seen from the browser."
+  },
+  "snapshot": {
+   "title": "Nightly snapshot: captured dollar values are stored to the cent",
+   "refs": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R5)",
+   "custom_preconds": "1. An open work order whose Earned/Remaining include non-round cent values (for example $123.45) existed at capture time.\n2. You can inspect the stored snapshot rows.",
+   "custom_steps": "1. Read the captured Earned and Remaining values for the work order.\n2. Compare their precision to the on-screen values.",
+   "custom_expected": "1. Captured dollar values are stored to the cent \u2014 no rounding to whole dollars and no lost cents.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R5).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4363,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30533,
+  "internal_report": "-",
+  "title_snapshot": "Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. An open ZZAUTOTEST estimate with no approved line items existed at capture time.\n2. You can inspect the capture date's snapshot rows.\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you \u2014 that part cannot be seen from the browser."
+  },
+  "snapshot": {
+   "title": "Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped",
+   "refs": "SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R6; Story 4 S4-E1)",
+   "custom_preconds": "1. An open ZZAUTOTEST estimate with no approved line items existed at capture time.\n2. You can inspect the capture date's snapshot rows.",
+   "custom_steps": "1. After the nightly capture, look for the nothing-approved work order among the date's snapshot rows.\n2. Read its captured Earned and Remaining values.",
+   "custom_expected": "1. The work order IS captured (not skipped).\n2. Its Earned is $0.00 and its Remaining is $0.00, matching what the report shows on screen for a job with nothing approved.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R6, S4-E1).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4363,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30562,
+  "internal_report": "-",
+  "title_snapshot": "The report values inventory as of the END of the selected range",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. The report values inventory as of the END of the selected range.\n2. The date control is an \"as of\" anchor, not a created-date filter \u2014 narrowing it does not select \"parts added in that range\"; it shows the whole shelf as it stood on that date, so the part stocked before the range still appears.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R2)."
+  },
+  "snapshot": {
+   "title": "The report values inventory as of the END of the selected range",
+   "refs": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R2 (+ context note))",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. Nightly snapshots exist for past dates at the selected location (recording has been running).\n3. A part exists that was ALREADY in stock before the selected range started.",
+   "custom_steps": "1. Select a past range (for example \"Last Month\").\n2. Check which date the displayed values represent.\n3. Look for the part that was stocked before the range started.",
+   "custom_expected": "1. The report values inventory as of the END of the selected range.\n2. The date control is an \"as of\" anchor, not a created-date filter \u2014 narrowing it does not select \"parts added in that range\"; it shows the whole shelf as it stood on that date, so the part stocked before the range still appears.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R2).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4368,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 4,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30564,
+  "internal_report": "-",
+  "title_snapshot": "For a past date the report replays the closest recorded day on or before it",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. The report replays the closest recorded day on or before the end of the selected range.\n2. The part's row shows the quantity and values recorded for that day, not today's live stock.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R4)."
+  },
+  "snapshot": {
+   "title": "For a past date the report replays the closest recorded day on or before it",
+   "refs": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R4; \u00a72 Relationship to nightly history)",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. Nightly snapshots exist for past dates, and a ZZAUTOTEST part's quantity is known to have DIFFERED on a past recorded day from its quantity today.",
+   "custom_steps": "1. Open the date range picker and use the month calendar inside it to set a range ending on the past recorded day, then apply.\n2. Find the part and read its quantity and values.\n3. Compare them to what the part held on that recorded day (not today).",
+   "custom_expected": "1. The report replays the closest recorded day on or before the end of the selected range.\n2. The part's row shows the quantity and values recorded for that day, not today's live stock.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R4).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4368,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 4,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30565,
+  "internal_report": "-",
+  "title_snapshot": "\"As of\" indicator names the day shown; hidden when it matches the ask",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. When the displayed day is an earlier recorded day than the date asked for, the report shows an \"As of\" indicator naming the day actually shown.\n2. When the displayed day matches the date asked for (the common current-view case), the \"As of\" indicator is not shown \u2014 the date control already communicates the date.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R5, S5-R6)."
+  },
+  "snapshot": {
+   "title": "\"As of\" indicator names the day shown; hidden when it matches the ask",
+   "refs": "SV-8672 (specs/inventory-value.md Story 5 S5-R5; S5-R6)",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A past date exists that has NO snapshot of its own but has an earlier recorded day before it (for example, a gap day, or a date in the thinned monthly-retention band).",
+   "custom_steps": "1. Select a Custom range ending on the gap date (a date with no snapshot of its own).\n2. Look for an \"As of\" indicator and read which day it names.\n3. Then select a range ending on a day that IS recorded (or today with live values) and look for the indicator again.",
+   "custom_expected": "1. When the displayed day is an earlier recorded day than the date asked for, the report shows an \"As of\" indicator naming the day actually shown.\n2. When the displayed day matches the date asked for (the common current-view case), the \"As of\" indicator is not shown \u2014 the date control already communicates the date.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R5, S5-R6).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4368,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30566,
+  "internal_report": "-",
+  "title_snapshot": "A Custom range values stock as of the picked end date; capped at today",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. A Custom range lets the user pick a start and end date, and the report values as of the picked end date.\n2. A future end date cannot be chosen \u2014 the end date is capped at today.\n3. Changing the date range reloads the report (the loading indicator shows and the rows re-fetch).\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R7, S5-R8)."
+  },
+  "snapshot": {
+   "title": "A Custom range values stock as of the picked end date; capped at today",
+   "refs": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R7; S5-R8)",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open.",
+   "custom_steps": "1. Open the date-range control - a month calendar is shown inside it (there is no separate \"Custom\" item to choose).\n2. Pick a start and an end date in the past on that calendar and press Apply.\n3. Try to pick an end date in the future.\n4. Watch the data area when the range is applied.",
+   "custom_expected": "1. A Custom range lets the user pick a start and end date, and the report values as of the picked end date.\n2. A future end date cannot be chosen \u2014 the end date is capped at today.\n3. Changing the date range reloads the report (the loading indicator shows and the rows re-fetch).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R7, S5-R8).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4368,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30593,
+  "internal_report": "-",
+  "title_snapshot": "An over-cap set produces no file and shows the too-large-to-export message",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. Neither the PDF nor the CSV is produced.\n2. The user sees the message: \"This report is too large to export. Narrow the date range or filters, then try again.\" (a blocking notification; no file).\n3. After narrowing the filters below the cap, the download works again.\n4. Note for the tester: on this environment the biggest view you can build is about 9,275 rows, which is under the cap, so you cannot make this message appear here. If the PDF fails with a plain error instead, that is the separate timeout problem - see the Inventory Value export-notification case.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R12)."
+  },
+  "snapshot": {
+   "title": "An over-cap set produces no file and shows the too-large-to-export message",
+   "refs": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R12; \u00a77 User Feedback Summary)",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set).",
+   "custom_steps": "1. Set the filters so the filtered set exceeds the export row cap.\n2. Request \"Download (PDF)\" and read what happens.\n3. Request \"Download (CSV)\" and read what happens.",
+   "custom_expected": "1. Neither the PDF nor the CSV is produced.\n2. The user sees the message: \"This report is too large to export. Narrow the date range or filters, then try again.\" (a blocking notification; no file).\n3. After narrowing the filters below the cap, the download works again.\n4. Note for the tester: on this environment the biggest view you can build is about 9,275 rows, which is under the cap, so you cannot make this message appear here. If the PDF fails with a plain error instead, that is the separate timeout problem - see the Inventory Value export-notification case.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R12).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4373,
+   "type_id": 5,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30595,
+  "internal_report": "-",
+  "title_snapshot": "Download notifications: verbatim success and failure texts per format",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. Success notifications read verbatim: \"Inventory Value report exported (PDF)\" and \"Inventory Value report exported (CSV)\".\n2. Failure notifications read verbatim: \"Failed to export inventory value report (pdf)\" and \"Failed to export inventory value report (csv)\".\n3. The lower-case \"(pdf)\"/\"(csv)\" on failure vs the upper-case success ones is the documented spec wording \u2014 expected, not a bug.\n4. Note for the tester: on this build a PDF download of a large view fails with a plain error - \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" - after roughly half a minute. It is a timeout, not the too-large-to-export message. Narrow the view with the part search or a single location and the PDF works. The CSV of the same view always works and is quick. Record the failure; it is a known problem, not a mistake you made.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R13, S10-R14)."
+  },
+  "snapshot": {
+   "title": "Download notifications: verbatim success and failure texts per format",
+   "refs": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R13; S10-R14; \u00a77 User Feedback Summary)",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open with rows loaded (under the export cap).\n3. A download failure can be simulated (for example, disconnect the network just before requesting the download).",
+   "custom_steps": "1. Download the PDF and the CSV normally and read each notification.\n2. Simulate a failure and request the PDF download; read the notification.\n3. Repeat the failure for the CSV download.",
+   "custom_expected": "1. Success notifications read verbatim: \"Inventory Value report exported (PDF)\" and \"Inventory Value report exported (CSV)\".\n2. Failure notifications read verbatim: \"Failed to export inventory value report (pdf)\" and \"Failed to export inventory value report (csv)\".\n3. The lower-case \"(pdf)\"/\"(csv)\" on failure vs the upper-case success ones is the documented spec wording \u2014 expected, not a bug.\n4. Note for the tester: on this build a PDF download of a large view fails with a plain error - \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" - after roughly half a minute. It is a timeout, not the too-large-to-export message. Narrow the view with the part search or a single location and the PDF works. The CSV of the same view always works and is quick. Record the failure; it is a known problem, not a mistake you made.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R13, S10-R14).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4373,
+   "type_id": 5,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30601,
+  "internal_report": "-",
+  "title_snapshot": "Each sortable header exposes its sort state and shows the direction",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open with rows loaded.\n3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+  },
+  "snapshot": {
+   "title": "Each sortable header exposes its sort state and shows the direction",
+   "refs": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R8)",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A screen reader or the browser's accessibility inspector is available.\n3. The Inventory Value report is open with rows loaded.",
+   "custom_steps": "1. Sort by a column and look at its header for a visual direction indicator.\n2. With the accessibility inspector or screen reader, check what sort state the header exposes.\n3. Toggle the direction and check both again.",
+   "custom_expected": "1. The active sort direction is indicated visually on the header.\n2. Each sortable column header exposes its sort state to assistive technology (for example, ascending/descending/none).\n3. The exposed state updates when the direction toggles.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R8).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4374,
+   "type_id": 2,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30602,
+  "internal_report": "-",
+  "title_snapshot": "The icon-only download and Column Selection buttons carry accessible names",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. The Inventory Value report is open.\n3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+  },
+  "snapshot": {
+   "title": "The icon-only download and Column Selection buttons carry accessible names",
+   "refs": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R9)",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A screen reader or the browser's accessibility inspector is available.\n3. The Inventory Value report is open.",
+   "custom_steps": "1. Inspect the three-dot download button's accessible name.\n2. Inspect the Column Selection button's accessible name.",
+   "custom_expected": "1. Each icon-only control carries an accessible name exposed to assistive technology (it is not announced as an unnamed button).\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R9).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4374,
+   "type_id": 2,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30605,
+  "internal_report": "-",
+  "title_snapshot": "Nightly snapshot records one row per in-stock non-core part per location",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. In-stock, non-core parts exist at two or more locations, including a part with non-round cent values.\n2. A location with NO in-stock parts also exists.\n3. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).\n4. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you \u2014 that part cannot be seen from the browser."
+  },
+  "snapshot": {
+   "title": "Nightly snapshot records one row per in-stock non-core part per location",
+   "refs": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R1; S11-R4)",
+   "custom_preconds": "1. In-stock, non-core parts exist at two or more locations, including a part with non-round cent values.\n2. A location with NO in-stock parts also exists.\n3. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).",
+   "custom_steps": "1. After the overnight capture, inspect the stored snapshot rows for that calendar date.\n2. For a known part, read every captured field.\n3. Check the rows for each location, including the empty one.",
+   "custom_expected": "1. Once per day, overnight, one row per then-in-stock, non-core part is recorded for every location across every organization, under that day's calendar date.\n2. Each row captures the part's identity (part, category, vendor), on-hand quantity, unit cost, unit sell, total cost, and total sell, stored to the cent.\n3. A location with no in-stock parts on the date simply has no rows for that date \u2014 this is valid, not an error.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R1, S11-R4).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4376,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30606,
+  "internal_report": "-",
+  "title_snapshot": "A recorded snapshot day equals what the live report showed that day",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. ZZAUTOTEST parts with known quantities, costs, and sell resolutions (fixed price, matrix markup, and no-category fallback) are in stock and left UNCHANGED across the capture.\n2. A core-charge part and a zero-quantity part also exist.\n3. You can read the live report on the capture date and the stored rows afterward.\n4. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you \u2014 that part cannot be seen from the browser."
+  },
+  "snapshot": {
+   "title": "A recorded snapshot day equals what the live report showed that day",
+   "refs": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R2; \u00a72 Relationship to nightly history)",
+   "custom_preconds": "1. ZZAUTOTEST parts with known quantities, costs, and sell resolutions (fixed price, matrix markup, and no-category fallback) are in stock and left UNCHANGED across the capture.\n2. A core-charge part and a zero-quantity part also exist.\n3. You can read the live report on the capture date and the stored rows afterward.",
+   "custom_steps": "1. On the capture date, note the live report's rows and values for the seeded parts.\n2. After the overnight capture, read the same parts' captured rows.\n3. Look for the core-charge and zero-quantity parts among the captured rows.\n4. The next day, view the report as of the captured date and compare to the noted live values.",
+   "custom_expected": "1. The captured parts use the same in-stock, non-core scope as the live report (Story 2) \u2014 the core-charge and zero-quantity parts are NOT captured.\n2. The captured values use the same valuation as the live report (Story 3), including the sell-price fallback chain.\n3. A recorded day equals what the live report would have shown that day \u2014 the as-of view of the captured date matches the noted live values.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R2).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4376,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 4,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30607,
+  "internal_report": "-",
+  "title_snapshot": "Nightly snapshot: re-running the capture for a date replaces that date's rows",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. A capture has already run for the current date.\n2. The capture can be re-run for that date (arrange with the developers).\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you \u2014 that part cannot be seen from the browser."
+  },
+  "snapshot": {
+   "title": "Nightly snapshot: re-running the capture for a date replaces that date's rows",
+   "refs": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R3)",
+   "custom_preconds": "1. A capture has already run for the current date.\n2. The capture can be re-run for that date (arrange with the developers).",
+   "custom_steps": "1. Count the stored rows per location for the date.\n2. Re-run the capture for the same date.\n3. Count and inspect the rows again.",
+   "custom_expected": "1. Re-running the capture for a date replaces that date's rows for each location \u2014 the existing rows for that location and date are removed, then re-inserted from current data.\n2. No duplicate rows exist for the same part, location, and date.\n3. The capture is idempotent and self-healing from current data.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R3).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4376,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30608,
+  "internal_report": "-",
+  "title_snapshot": "Nightly snapshot: a re-run records today's truth; it cannot rebuild a past day",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. The date the first capture ran is known.\n2. Stock levels have changed since a past captured date.\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you \u2014 that part cannot be seen from the browser."
+  },
+  "snapshot": {
+   "title": "Nightly snapshot: a re-run records today's truth; it cannot rebuild a past day",
+   "refs": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R5; Story 5 S5-E1)",
+   "custom_preconds": "1. The date the first capture ran is known.\n2. Stock levels have changed since a past captured date.",
+   "custom_steps": "1. Check the stored history for any rows dated before the first capture.\n2. Re-run the capture and check which date its rows are recorded under.\n3. Compare a past date's stored rows to confirm they were not rewritten by the re-run.",
+   "custom_expected": "1. No rows exist for dates before capture began \u2014 there is no backfill.\n2. A re-run always records current truth under the CURRENT date; it cannot reconstruct a past date.\n3. Past dates' stored rows are unchanged by a current re-run.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R5, S5-E1).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4376,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30609,
+  "internal_report": "-",
+  "title_snapshot": "Snapshot retention: daily captures are kept for 0\u201313 months",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. Snapshot history exists (or is seeded/simulated with dev help) spanning both the 0\u201313-month band and the older-than-13-months band.\n2. The nightly capture (with its pruning) has run.\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you \u2014 that part cannot be seen from the browser."
+  },
+  "snapshot": {
+   "title": "Snapshot retention: daily captures are kept for 0\u201313 months",
+   "refs": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R6)",
+   "custom_preconds": "1. Snapshot history exists (or is seeded/simulated with dev help) spanning both the 0\u201313-month band and the older-than-13-months band.\n2. The nightly capture (with its pruning) has run.",
+   "custom_steps": "1. Inspect the retained captures for dates within the last 13 months.\n2. Inspect the retained captures for dates older than 13 months.\n3. Check when pruning runs relative to the nightly capture.",
+   "custom_expected": "1. For ages 0\u201313 months (measured from the current date), every daily capture is kept \u2014 full daily per-part detail, covering the report's longest date preset (366 days / This Year / Last Year) entirely at daily resolution.\n2. For ages older than 13 months, only the last capture of each calendar month is retained; the other daily captures in that band are pruned.\n3. Pruning runs as part of, or alongside, the nightly capture.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R6).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4376,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 30610,
+  "internal_report": "-",
+  "title_snapshot": "Thinned history still served by the closest-recorded-day rule",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. Thinned history exists (dates older than 13 months where only the monthly last-capture remains \u2014 dev-seeded if needed).\n2. The retained capture dates around the requested date are known.\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you \u2014 that part cannot be seen from the browser."
+  },
+  "snapshot": {
+   "title": "Thinned history still served by the closest-recorded-day rule",
+   "refs": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-E1; S11-R6; Story 5 S5-R4; S5-R5; S5-N1)",
+   "custom_preconds": "1. Thinned history exists (dates older than 13 months where only the monthly last-capture remains \u2014 dev-seeded if needed).\n2. The retained capture dates around the requested date are known.",
+   "custom_steps": "1. On the report, select a range ending on a pruned date between two retained monthly captures.\n2. Read which day the values represent and the \"As of\" indicator.\n3. Select a range whose covering captures have ALL been pruned and no earlier retained capture remains.",
+   "custom_expected": "1. The as-of resolution serves the thinned history unchanged: the report resolves to the nearest earlier retained capture (\"closest recorded day on or before\"), even when adjacent retained captures are up to a month apart.\n2. The \"As of\" indicator names the day actually shown.\n3. A requested date whose covering captures have all been pruned resolves to the nearest earlier retained capture, or shows the empty state if none remains.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-E1, S11-R6, S5-R4, S5-R5, S5-N1).",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4376,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 38859,
+  "internal_report": "-",
+  "title_snapshot": "Column Selection: Technician always on, the other five toggleable, remembered",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. You are on the Technician Utilization report with rows loaded.\n2. This browser has never saved settings for this report (fresh visit), so every column is at its default.\n3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA \u2014 it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
+  },
+  "snapshot": {
+   "title": "Column Selection: Technician always on, the other five toggleable, remembered",
+   "refs": "SV-8655; SV-8582 (TU spec v5 2026-07-29 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 column selector + Story 8 S8-R16 accessible name \u2014 Story 10 has NO owning Jira story so epic SV-8582 is used and FLAGGED; S8-R16 is owned by SV-8655)",
+   "custom_preconds": "1. You are on the Technician Utilization report with rows loaded.\n2. This browser has never saved settings for this report (fresh visit), so every column is at its default.",
+   "custom_steps": "1. Find the column-selection button in the toolbar and hover it to read its tooltip.\n2. With the button focused, read the name assistive technology gives it \u2014 use the browser's accessibility inspector or a screen reader.\n3. Note its position relative to the three-dot download menu.\n4. Open it and read every toggle in the list, and which ones are on.\n5. Turn Est. Lost Labor off, then turn Internal Hours off, watching the table each time.\n6. Turn both back on and check where each column lands.\n7. Reload the page, then close the browser, reopen it and return to the report.",
+   "custom_expected": "1. The control is an icon button whose tooltip reads \"Column Selection\", sitting immediately after the three-dot download menu in the toolbar.\n2. Because the button shows an icon and no text, it still carries a name that assistive technology reads out \u2014 it is not left unnamed. (The exact wording is confirmed in the build.)\n3. The list offers five toggles \u2014 Total Hours, WO Hours, Internal Hours, Utilization % and Est. Lost Labor \u2014 and all five are on by default.\n4. Technician is always shown and cannot be turned off (it is not offered as a toggle).\n5. The Location column is never listed here \u2014 it appears on its own whenever more than one location is in scope.\n6. Turning a toggle off hides that column (header and cells) immediately, with no reload; turning it back on returns it to its usual place in the fixed left-to-right order \u2014 the remaining columns never reorder.\n7. Est. Lost Labor can now be hidden like any other column (it used to be always on).\n8. Your column choice is remembered in this browser and is still applied when you come back.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R5, S10-R6, S8-R16).",
+   "custom_atmstatus": 3,
+   "custom_automation_type": 0,
+   "section_id": 4348,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 38885,
+  "internal_report": "-",
+  "title_snapshot": "An over-cap Parts Velocity export is refused with the too-large message",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. Neither the CSV nor the PDF is produced \u2014 no download starts.\n2. A clear too-large message appears telling the user to narrow the date range or filters, then try again \u2014 the standard wording is \"This report is too large to export. Narrow the date range or filters, then try again.\"\n3. After narrowing below the cap, the downloads work again.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (Story 6 exports)."
+  },
+  "snapshot": {
+   "title": "An over-cap Parts Velocity export is refused with the too-large message",
+   "refs": "SV-8646 (PV spec v4 2026-07-29 Story 6 exports \u2014 spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21)",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set).",
+   "custom_steps": "1. Set the filters so the filtered set exceeds the export row cap.\n2. Request the CSV download and read what happens.\n3. Request the PDF download and read what happens.\n4. Narrow the date range or filters below the cap and request a download again.",
+   "custom_expected": "1. Neither the CSV nor the PDF is produced \u2014 no download starts.\n2. A clear too-large message appears telling the user to narrow the date range or filters, then try again \u2014 the standard wording is \"This report is too large to export. Narrow the date range or filters, then try again.\"\n3. After narrowing below the cap, the downloads work again.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (Story 6 exports).",
+   "custom_atmstatus": 3,
+   "custom_automation_type": 0,
+   "section_id": 4335,
+   "type_id": 5,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 38887,
+  "internal_report": "-",
+  "title_snapshot": "An over-cap Technician Utilization export is refused with the too-large message",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. Neither the CSV nor the PDF is produced \u2014 no download starts.\n2. A clear too-large message appears telling the user to narrow the date range or filters, then try again \u2014 the standard wording is \"This report is too large to export. Narrow the date range or filters, then try again.\"\n3. After narrowing below the cap, the downloads work again.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (Story 7 exports)."
+  },
+  "snapshot": {
+   "title": "An over-cap Technician Utilization export is refused with the too-large message",
+   "refs": "SV-8654 (TU spec v5 2026-07-29 Story 7 exports \u2014 spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21)",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. A range/location combination exists whose filtered set EXCEEDS the export row cap (widest date range + all locations; seed ZZAUTOTEST clock records in bulk if needed, or use the largest available data set).",
+   "custom_steps": "1. Set the date range and locations so the filtered set exceeds the export row cap.\n2. Request the CSV download and read what happens.\n3. Request the PDF download and read what happens.\n4. Narrow the date range or filters below the cap and request a download again.",
+   "custom_expected": "1. Neither the CSV nor the PDF is produced \u2014 no download starts.\n2. A clear too-large message appears telling the user to narrow the date range or filters, then try again \u2014 the standard wording is \"This report is too large to export. Narrow the date range or filters, then try again.\"\n3. After narrowing below the cap, the downloads work again.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (Story 7 exports).",
+   "custom_atmstatus": 3,
+   "custom_automation_type": 0,
+   "section_id": 4346,
+   "type_id": 5,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 38925,
+  "internal_report": "-",
+  "title_snapshot": "QuickBooks amount for a part-of-a-unit sale is exact and never inflated",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. The test company is connected to QuickBooks.\n2. The part-of-a-unit sale has been made and invoiced \u2014 a ZZAUTOTEST part sold in a quantity such as 2.5, at a known unit cost such as $10.00.\n3. You can sign in to that QuickBooks company and look at its journal entries.\n4. This test cannot be run without a company whose QuickBooks account is connected, because it checks what was sent to QuickBooks. If no QuickBooks-connected company is available, mark this test Blocked and say so \u2014 do not guess the result."
+  },
+  "snapshot": {
+   "title": "QuickBooks amount for a part-of-a-unit sale is exact and never inflated",
+   "refs": "SV-8589 (verbatim Tests: 'QB journal amount exact from fractional movement'; Goal: 'QB journal-entry sync multiplies these into dollar amounts'; tech-plan-2026-07-29 Phase 0 / PR-1 D2 - no report spec covers QuickBooks)",
+   "custom_preconds": "1. The test company is connected to QuickBooks.\n2. The part-of-a-unit sale has been made and invoiced \u2014 a ZZAUTOTEST part sold in a quantity such as 2.5, at a known unit cost such as $10.00.\n3. You can sign in to that QuickBooks company and look at its journal entries.",
+   "custom_steps": "1. Write down the quantity sold and the part's unit cost, and work out the correct amount by hand (2.5 x $10.00 = $25.00).\n2. Let the invoice go across to QuickBooks the normal way the shop does it.\n3. In QuickBooks, open the journal entry that was created for that invoice.\n4. Read the inventory / cost amount on that journal entry.\n5. Go back to the Parts Velocity report and read the same part's Units Sold value.",
+   "custom_expected": "1. The QuickBooks amount is exactly the hand-worked figure to the cent \u2014 $25.00 for 2.5 at $10.00.\n2. It is NOT a whole-unit amount such as $20.00 or $30.00, and it is NOT a bigger, multiplied figure.\n3. The quantity behind the QuickBooks amount matches the Units Sold value on the report (2.50) \u2014 the two systems agree.\n4. No second or correcting journal entry is created to patch up a wrong amount.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and this point is not covered by any of the six report specifications \u2014 it comes from the engineering technical plan.",
+   "custom_atmstatus": 3,
+   "custom_automation_type": 0,
+   "section_id": 4337,
+   "type_id": 1,
+   "template_id": 1,
+   "priority_id": 4,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 43546,
+  "internal_report": "-",
+  "title_snapshot": "The back end serves SBC report data and export on ordinary reports access",
+  "held": false,
+  "layers": [
+   "P"
+  ],
+  "intended": {
+   "custom_preconds": "1. Two sign-ins are available: one user whose role has the ordinary reports access, and one whose role does not have it (for example a Foreman).\n2. You can see the requests the browser makes (the browser's network panel) so you can read the response code.\n3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install \u2014 it is built into Chrome, Edge and Firefox."
+  },
+  "snapshot": {
+   "title": "The back end serves SBC report data and export on ordinary reports access",
+   "refs": "SV-8600 (SBC spec v13 2026-07-31 S1-R2; S1-N1 \u2014 the back-end half of the ordinary-reports-access gate; the SBC twin of the Parts Velocity back-end case C30391; Chris Ward Q1=A; SV-8780 Ready to Fix)",
+   "custom_preconds": "1. Two sign-ins are available: one user whose role has the ordinary reports access, and one whose role does not have it (for example a Foreman).\n2. You can see the requests the browser makes (the browser's network panel) so you can read the response code.",
+   "custom_steps": "1. Sign in as the user WHO HAS ordinary reports access and open Sales By Customer.\n2. In the network panel, find the request the page makes for the report's data and read its response code.\n3. From the three-dot menu choose \"Download Summary (CSV)\" and read the response code of the export request.\n4. Sign out and sign in as the user WITHOUT reports access.\n5. Try to open Sales By Customer by typing its address directly, and read the response code of the data request.\n6. Ask for the same export by its address and read that response code too.",
+   "custom_expected": "1. For the user WITH ordinary reports access, the report's data request succeeds (HTTP 200) and the report fills with rows.\n2. For that same user, the export request also succeeds (HTTP 200) and a file is produced.\n3. For the user WITHOUT reports access, the data request is refused with HTTP 403 and a message reading \"Access denied.\" \u2014 no report data comes back.\n4. For that same user, the export request is refused with HTTP 403 as well \u2014 no file is produced.\n5. Note for the tester: one single permission controls all four of these. If you find the report data refused but the export allowed (or the other way round), that is a failure \u2014 record both response codes.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-R2, S1-N1).",
+   "custom_atmstatus": 3,
+   "custom_automation_type": 0,
+   "section_id": 4305,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 43547,
+  "internal_report": "-",
+  "title_snapshot": "A large PDF download fails outright while the CSV of the same view works",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. The CSV downloads successfully at that size.\n2. The PDF also downloads successfully. If instead nothing downloads and a message appears saying something went wrong, that is a failure \u2014 record roughly how many rows were on screen.\n3. The small PDF downloads successfully, which shows the failure depends on size.\n4. Note for the tester: a very large view is refused politely with \"This report is too large to export. Narrow the date range or filters, then try again.\" \u2014 that message is expected and is NOT this failure. This test is about a medium-sized view where the CSV works but the PDF errors.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (Story 6 exports)."
+  },
+  "snapshot": {
+   "title": "A large PDF download fails outright while the CSV of the same view works",
+   "refs": "SV-8646 (PV spec v4 2026-07-29 Story 6 exports \u2014 the spec is silent on a renderer size limit; tech-plan-2026-07-29 A3/FR-F4 covers only the ten-thousand-row export cap)",
+   "custom_preconds": "1. You are signed in with ordinary reports access, on a desktop browser.\n2. Parts Velocity is open with a date range that returns a few hundred rows \u2014 narrow with the toolbar search until the list is roughly 300 to 500 rows.",
+   "custom_steps": "1. Narrow the report with the toolbar search so it shows a few hundred rows.\n2. Open the three-dot menu and choose \"Download (CSV)\". Wait for the file.\n3. Open the three-dot menu again and choose \"Download (PDF)\". Wait up to a minute.\n4. Narrow the search further, to a couple of dozen rows, and choose \"Download (PDF)\" again.",
+   "custom_expected": "1. The CSV downloads successfully at that size.\n2. The PDF also downloads successfully. If instead nothing downloads and a message appears saying something went wrong, that is a failure \u2014 record roughly how many rows were on screen.\n3. The small PDF downloads successfully, which shows the failure depends on size.\n4. Note for the tester: a very large view is refused politely with \"This report is too large to export. Narrow the date range or filters, then try again.\" \u2014 that message is expected and is NOT this failure. This test is about a medium-sized view where the CSV works but the PDF errors.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (Story 6 exports).",
+   "custom_atmstatus": 3,
+   "custom_automation_type": 0,
+   "section_id": 4335,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 43548,
+  "internal_report": "-",
+  "title_snapshot": "A large Inventory Value PDF fails instead of being refused politely",
+  "held": false,
+  "layers": [
+   "T"
+  ],
+  "intended": {
+   "custom_expected": "1. The narrowed PDF downloads successfully.\n2. On the whole list the PDF either downloads successfully too, or is refused politely with the message \"This report is too large to export. Narrow the date range or filters, then try again.\" Either of those is a pass.\n3. The CSV of that same whole list downloads successfully and quickly.\n4. Once the view is narrowed the PDF works again.\n5. KNOWN PROBLEM at the time of writing: on the whole list the PDF did not download at all. After roughly half a minute a plain error appeared reading \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" If you still see that, mark this test Failed, note roughly how many rows were in the view, and refer to the reported problem \u2014 do not change the test.\n6. Note for the tester: the polite refusal message in item 2 is the correct behaviour. The plain error in item 5 is the problem being tracked. Tell the two apart by the wording.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R11, S10-R12, S10-R14)."
+  },
+  "snapshot": {
+   "title": "A large Inventory Value PDF fails instead of being refused politely",
+   "refs": "SV-8677 (IV spec v3 2026-07-29 S10-R11; S10-R12; S10-R14 \u2014 the observed failure path is a roughly 30-second server-side timeout and not the S10-R12 row cap; observed on build v3.4.1-0ed4433)",
+   "custom_preconds": "1. You are signed in with ordinary reports access, on a desktop browser.\n2. The Inventory Value report is open and the whole list runs to several thousand rows.",
+   "custom_steps": "1. Use the part search to narrow the list to a few hundred rows. Open the three-dot menu and choose the PDF download. Note how long it takes.\n2. Clear the search so the whole list is shown again. Choose the PDF download and wait up to a minute.\n3. With the whole list still shown, choose the CSV download and note how long that takes.\n4. Narrow the list again with the part search, or pick a single location, and ask for the PDF once more.",
+   "custom_expected": "1. The narrowed PDF downloads successfully.\n2. On the whole list the PDF either downloads successfully too, or is refused politely with the message \"This report is too large to export. Narrow the date range or filters, then try again.\" Either of those is a pass.\n3. The CSV of that same whole list downloads successfully and quickly.\n4. Once the view is narrowed the PDF works again.\n5. KNOWN PROBLEM at the time of writing: on the whole list the PDF did not download at all. After roughly half a minute a plain error appeared reading \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" If you still see that, mark this test Failed, note roughly how many rows were in the view, and refer to the reported problem \u2014 do not change the test.\n6. Note for the tester: the polite refusal message in item 2 is the correct behaviour. The plain error in item 5 is the problem being tracked. Tell the two apart by the wording.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R11, S10-R12, S10-R14).",
+   "custom_atmstatus": 3,
+   "custom_automation_type": 0,
+   "section_id": 4373,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ }
+]

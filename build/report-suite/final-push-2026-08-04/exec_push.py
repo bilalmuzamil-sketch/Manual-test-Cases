@@ -107,8 +107,8 @@ def main():
     ap.add_argument('--dry-run', action='store_true')
     args = ap.parse_args()
 
-    plan = json.load(open(os.path.join(HERE, 'plan.json')))
-    logp = os.path.join(HERE, 'exec-log.jsonl')
+    plan = json.load(open(os.path.join(HERE, os.environ.get('PLAN','plan.json'))))
+    logp = os.path.join(HERE, os.environ.get('LOG','exec-log.jsonl'))
     done = set()
     if os.path.exists(logp):
         for line in open(logp):

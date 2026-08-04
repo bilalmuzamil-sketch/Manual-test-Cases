@@ -148,16 +148,29 @@ def main():
         if cid in TOOL:
             p = c.get('custom_preconds') or ''
             text = TOOL[cid]
-            lines = [l for l in p.split('\n') if l.strip()]
-            # idempotent: drop any previously written tool line
-            lines = [l for l in lines if 'developer tools' not in l
-                     and 'screen reader' not in l
-                     and 'QuickBooks account is connected' not in l
-                     and 'PDF viewer' not in l]
-            nums = [int(m.group(1)) for l in lines
-                    for m in [re.match(r'\s*(\d+)\.', l)] if m]
-            nxt = (max(nums) + 1) if nums else 1
-            newp = '\n'.join(lines + [f'{nxt}. {text}'])
+            ALL_TOOL_TEXTS = {NETWORK, NETWORK_DB, SCREENREADER, OFFLINE,
+                              PDFTOOL, QUICKBOOKS, COLOURPICK}
+            # a line that says ONLY "some tool is available" and nothing else — the vague
+            # form this change exists to replace. Compound lines carrying a real
+            # precondition are LEFT ALONE (dropping them would lose a precondition).
+            VAGUE = re.compile(
+                r'^\s*\d+\.\s*(A|An|The)\b[^.]*\b(screen reader|accessibility inspector|'
+                r'network activity panel|developer tools|devtools|colour picker|color picker)'
+                r'\b[^.]*\bis available\.?\s*$', re.I)
+            out = []
+            for l in p.split('\n'):
+                if not l.strip():
+                    continue
+                stripped = re.sub(r'^\s*\d+\.\s*', '', l).strip()
+                if stripped in ALL_TOOL_TEXTS:      # idempotency: our own earlier line
+                    stats['P_replaced_own_line'] += 1
+                    continue
+                if VAGUE.match(l):                  # supersede the vague form
+                    stats['P_superseded_vague_line'] += 1
+                    continue
+                out.append(stripped)
+            out.append(text)
+            newp = '\n'.join(f'{i}. {t}' for i, t in enumerate(out, 1))
             if newp != p:
                 intended['custom_preconds'] = newp
                 stats['P_tool_line'] += 1
