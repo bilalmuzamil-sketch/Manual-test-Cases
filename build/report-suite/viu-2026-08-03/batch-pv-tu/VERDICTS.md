@@ -41,10 +41,10 @@ Per report:
 
 | Field | OK | EDIT | What was checked |
 |---|---:|---:|---|
-| Title | 131 | 0 | Accuracy against what the build does, length (all 131 are inside 80 characters), and agreement with the case's own expected result. |
+| Title | 130 | 1 | Accuracy against what the build does, length (all 131 are inside 80 characters), and agreement with the case's own expected result. |
 | Preconditions | 131 | 0 | Reachability. Every precondition needed this run was satisfiable by seeding — **no case failed for want of data**. The one genuine exception is QuickBooks. |
 | Steps | 131 | 0 | Executable in order using the build's real control names (verified handles: `input_report_search` "Search parts", `btn_dropdown_pv_export` / `btn_dropdown_tu_export` aria "Export report", `button_column_selection` aria/tooltip "Column Selection", `span.date-range-label`, `button_tu_expand_all`). No non-executable step was found in either report. |
-| Expected results | 122 | 9 | Follows from the steps; scope-conditional rather than brittle. The closed "exactly this list" enumerations that exist here (the date-preset list, the three Type options, the three info-icon columns, the toast strings, the empty-state string) are all ones the spec itself closes, and each is version-pinned in its `refs`. |
+| Expected results | 125 | 6 | Follows from the steps; scope-conditional rather than brittle. The closed "exactly this list" enumerations that exist here (the date-preset list, the three Type options, the three info-icon columns, the toast strings, the empty-state string) are all ones the spec itself closes, and each is version-pinned in its `refs`. |
 | References | 131 | 0 | **Checked on every one of the 131 cases.** All 131 carry a Jira ticket AND a spec anchor, every anchor still exists in the current PV v4 / TU v5 spec bodies, and every anchor governs the assertion the case makes. **No reference change is needed anywhere in this batch.** The single documented exception is PV-PREC-02, whose refs state in as many words that no report spec covers QuickBooks and cite the tech plan instead. |
 | Section | 131 | 0 | The 6 API-content cases (PV-API-01..04, PV-PREC-02, TU-API-01/02) are already in `PV — API` / `TU — API` sections; no UI-only case contains API content. **No section move needed.** |
 | Notes | 0 | 131 | **All 131 need the same addition** — the Rule-49 non-final-build marker (metadata layer, never tester-facing). No FE-hidden / BE-allowed situation arises in either report (the permission model is enforced on the back end with 403s), so no Rule-24 tester note is required. |
@@ -359,13 +359,13 @@ The machine-readable table with all seven field verdicts per case is **`verdicts
 | PV-FILT-11 | C30338 | [open](https://shopview.testrail.io/index.php?/cases/view/30338) | VIU-Observed-PASS | notes | `evidence/pv/ui/pv-ui-1.json, pv-ui-2.json, pv-ui-3.json, pv-ui-4.json` |
 | PV-FILT-12 | C30339 | [open](https://shopview.testrail.io/index.php?/cases/view/30339) | VIU-Observed-PASS | notes | `evidence/pv/last-gaps.json` |
 | PV-FILT-13 | C30340 | [open](https://shopview.testrail.io/index.php?/cases/view/30340) | DEVIATION | notes | `evidence/perms/singleloc-pv-tu.json, evidence/perms/singleloc2-parts-velocity.png` |
-| PV-FILT-14 | C38914 | [open](https://shopview.testrail.io/index.php?/cases/view/38914) | DEVIATION | expected, notes | `evidence/pv/ui/pv-ui-1.json, pv-ui-2.json, pv-ui-3.json, pv-ui-4.json` |
+| PV-FILT-14 | C38914 | [open](https://shopview.testrail.io/index.php?/cases/view/38914) | DEVIATION | notes | `evidence/pv/ui/pv-ui-1.json, pv-ui-2.json, pv-ui-3.json, pv-ui-4.json` |
 | PV-ROW-01 | C30341 | [open](https://shopview.testrail.io/index.php?/cases/view/30341) | VIU-Observed-PASS | notes | `evidence/pv/calc-checks.json` |
 | PV-ROW-02 | C30342 | [open](https://shopview.testrail.io/index.php?/cases/view/30342) | VIU-Observed-PASS | notes | `evidence/pv/calc-checks.json` |
 | PV-ROW-03 | C30343 | [open](https://shopview.testrail.io/index.php?/cases/view/30343) | VIU-Observed-PASS | notes | `evidence/pv/ui/pv-ui-1.json, pv-ui-2.json, pv-ui-3.json, pv-ui-4.json` |
 | PV-ROW-04 | C30344 | [open](https://shopview.testrail.io/index.php?/cases/view/30344) | VIU-Observed-PASS | notes | `evidence/pv/ui/pv-ui-1.json, pv-ui-2.json, pv-ui-3.json, pv-ui-4.json` |
 | PV-ROW-05 | C30345 | [open](https://shopview.testrail.io/index.php?/cases/view/30345) | VIU-Observed-PASS | notes | `evidence/pv/ui/pv-ui-1.json, pv-ui-2.json, pv-ui-3.json, pv-ui-4.json` |
-| PV-ROW-06 | C30346 | [open](https://shopview.testrail.io/index.php?/cases/view/30346) | DEVIATION | expected, notes | `evidence/pv/ui/pv-ui-1.json, pv-ui-2.json, pv-ui-3.json, pv-ui-4.json` |
+| PV-ROW-06 | C30346 | [open](https://shopview.testrail.io/index.php?/cases/view/30346) | DEVIATION | title, expected, notes | `evidence/pv/ui/pv-ui-1.json, pv-ui-2.json, pv-ui-3.json, pv-ui-4.json` |
 | PV-ROW-07 | C30347 | [open](https://shopview.testrail.io/index.php?/cases/view/30347) | DEVIATION | notes | `evidence/pv/ui/pv-ui-1.json, pv-ui-2.json, pv-ui-3.json, pv-ui-4.json` |
 | PV-ROW-08 | C30348 | [open](https://shopview.testrail.io/index.php?/cases/view/30348) | VIU-Observed-PASS | notes | `evidence/pv/calc-checks.json` |
 | PV-ROW-09 | C30349 | [open](https://shopview.testrail.io/index.php?/cases/view/30349) | VIU-Observed-PASS | notes | `evidence/pv/calc-checks.json` |
@@ -420,7 +420,7 @@ The machine-readable table with all seven field verdicts per case is **`verdicts
 | TU-NAV-06 | C30397 | [open](https://shopview.testrail.io/index.php?/cases/view/30397) | VIU-Observed-PASS | notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
 | TU-NAV-07 | C30398 | [open](https://shopview.testrail.io/index.php?/cases/view/30398) | VIU-Observed-PASS | notes | `evidence/perms/permission-matrix.json, singleloc-and-noreports.json, singleloc-pv-tu.json` |
 | TU-NAV-08 | C30399 | [open](https://shopview.testrail.io/index.php?/cases/view/30399) | VIU-Observed-PASS | notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
-| TU-HRS-02 | C30401 | [open](https://shopview.testrail.io/index.php?/cases/view/30401) | DEVIATION | expected, notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
+| TU-HRS-02 | C30401 | [open](https://shopview.testrail.io/index.php?/cases/view/30401) | DEVIATION | notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
 | TU-HRS-03 | C30402 | [open](https://shopview.testrail.io/index.php?/cases/view/30402) | VIU-Observed-PASS | notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
 | TU-HRS-04 | C30403 | [open](https://shopview.testrail.io/index.php?/cases/view/30403) | VIU-Observed-PASS | notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
 | TU-ELL-01 | C30404 | [open](https://shopview.testrail.io/index.php?/cases/view/30404) | VIU-Observed-PASS | notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
@@ -466,7 +466,7 @@ The machine-readable table with all seven field verdicts per case is **`verdicts
 | TU-LOC-03 | C30444 | [open](https://shopview.testrail.io/index.php?/cases/view/30444) | VIU-Observed-PASS | notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
 | TU-LOC-04 | C30445 | [open](https://shopview.testrail.io/index.php?/cases/view/30445) | VIU-Observed-PASS | notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
 | TU-LOC-05 | C30446 | [open](https://shopview.testrail.io/index.php?/cases/view/30446) | DEVIATION | notes | `evidence/perms/singleloc-pv-tu.json, evidence/perms/singleloc2-technician-utilization.png` |
-| TU-LOC-06 | C38915 | [open](https://shopview.testrail.io/index.php?/cases/view/38915) | DEVIATION | expected, notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
+| TU-LOC-06 | C38915 | [open](https://shopview.testrail.io/index.php?/cases/view/38915) | DEVIATION | notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
 | TU-VIS-01 | C30447 | [open](https://shopview.testrail.io/index.php?/cases/view/30447) | VIU-Observed-PASS | notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
 | TU-VIS-02 | C30448 | [open](https://shopview.testrail.io/index.php?/cases/view/30448) | VIU-Observed-PASS | notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
 | TU-COL-01 | C38859 | [open](https://shopview.testrail.io/index.php?/cases/view/38859) | VIU-Observed-PASS | notes | `evidence/tu/ui/tu-ui-1.json, tu-ui-2.json, tu-ui-3.json, tu-coltoggle.json` |
