@@ -1,0 +1,83 @@
+{
+ "slug": "sales-by-customer",
+ "single": false,
+ "capturedAt": "2026-08-04T01:19:13.043Z",
+ "buildMarker": "v3.4.1-0ed4433",
+ "queryBase": "range=custom&start_date=2026-06-01&end_date=2026-08-04&productType=all&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2",
+ "files": [
+  {
+   "format": "csv",
+   "variant": "summary",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=sales-by-customer-summary-custom.csv",
+   "bytes": 11484,
+   "file": "sales-by-customer__summary.csv",
+   "csvLineCount": 98,
+   "csvHead": [
+    "﻿\"Locations: All locations\"",
+    "Customer,Location,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",\"Shop Supplies\",Margin,\"Margin %\",Subtotal",
+    "\"Aagate Landscaping\",\"Staging Heavy Duty - 9919\",0.0,\"$1,238.32\",\"$1,238.32\",\"$3,545.95\",\"$3,545.95\",$130.02,\"$4,784.27\",97.4%,\"$4,914.29\"",
+    "\"Amont Services\",\"Staging Heavy Duty - 9919\",0.0,$0.00,$0.00,$16.26,$16.26,$0.00,$16.26,100.0%,$16.26",
+    "\"Aocrest Management\",\"Staging Lethbridge - 4310\",0.0,$80.00,$80.00,$93.64,$93.64,$8.40,$173.64,95.4%,$182.04",
+    "\"Auton Rentals\",\"Staging Lethbridge - 4310\",0.0,$749.75,$749.75,$674.63,$674.63,$78.72,\"$1,424.38\",94.8%,\"$1,503.10\""
+   ],
+   "csvTail": [
+    "\"Zuwood Beverages\",\"Staging Lethbridge - 4310\",0.0,$0.00,$0.00,$920.87,$920.87,$0.00,$920.87,100.0%,$920.87",
+    "Totals,,0.0,\"$142,064.58\",\"$142,064.58\",\"$185,239.57\",\"$185,239.57\",\"$12,243.59\",\"$327,304.15\",96.4%,\"$339,547.74\""
+   ]
+  },
+  {
+   "format": "csv",
+   "variant": "expanded",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=sales-by-customer-expanded-custom.csv",
+   "bytes": 56108,
+   "file": "sales-by-customer__expanded.csv",
+   "csvLineCount": 472,
+   "csvHead": [
+    "﻿\"Locations: All locations\"",
+    "Customer,Asset,\"Invoice #\",Date,Location,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",\"Shop Supplies\",Margin,\"Margin %\",Subtotal",
+    "\"Aagate Landscaping\",,,,\"Staging Heavy Duty - 9919\",0.0,\"$1,238.32\",\"$1,238.32\",\"$3,545.95\",\"$3,545.95\",$130.02,\"$4,784.27\",97.4%,\"$4,914.29\"",
+    ",EFSPSR4M634HAFEMZ,,,\"Staging Heavy Duty - 9919\",0.0,$494.56,$494.56,$34.83,$34.83,$51.93,$529.39,91.1%,$581.32",
+    ",,S-15517,\"Jun 02 2026\",\"Staging Heavy Duty - 9919\",0.0,$494.56,$494.56,$34.83,$34.83,$51.93,$529.39,91.1%,$581.32",
+    ",UXFFX316GH8MLYWG3,,,\"Staging Heavy Duty - 9919\",0.0,$743.76,$743.76,\"$3,511.12\",\"$3,511.12\",$78.09,\"$4,254.88\",98.2%,\"$4,332.97\""
+   ],
+   "csvTail": [
+    ",,S-15495,\"Jun 03 2026\",\"Staging Lethbridge - 4310\",0.0,$0.00,$0.00,$458.85,$458.85,$0.00,$458.85,100.0%,$458.85",
+    "Totals,,,,,0.0,\"$142,064.58\",\"$142,064.58\",\"$185,239.57\",\"$185,239.57\",\"$12,243.59\",\"$327,304.15\",96.4%,\"$339,547.74\""
+   ]
+  },
+  {
+   "format": "pdf",
+   "variant": "summary",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=sales-by-customer-summary-custom.pdf",
+   "bytes": 202451,
+   "file": "sales-by-customer__summary.pdf"
+  },
+  {
+   "format": "pdf",
+   "variant": "expanded",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=sales-by-customer-expanded-custom.pdf",
+   "bytes": 317072,
+   "file": "sales-by-customer__expanded.pdf"
+  }
+ ],
+ "bad_format": {
+  "status": 400,
+  "body": "{\"errors\":[{\"error\":\"Invalid export format. Allowed values: csv, pdf.\"}]}"
+ },
+ "missing_variant": {
+  "status": 400,
+  "body": "{\"errors\":[{\"error\":\"Invalid export variant. Allowed values: summary, expanded.\"}]}"
+ },
+ "bad_variant": {
+  "status": 400,
+  "body": "{\"errors\":[{\"error\":\"Invalid export variant. Allowed values: summary, expanded.\"}]}"
+ }
+}
