@@ -1,211 +1,131 @@
 #!/usr/bin/env python3
-"""
-Standing Rule 54 provenance retrofit — the EXECUTOR.
+"""EXECUTOR for the 2026-08-04 Filters VIU pass — update_case ONLY.
 
 STANDING RULE 50 — EXHAUSTIVE then EXACT.  Per operation:
-  1. pre-write snapshot of EVERY field (from plan.json, taken read-only before the run)
-  2. re-GET the case IMMEDIATELY BEFORE writing and prove it still matches that
-     snapshot byte-for-byte (nobody moved it under us)
-  3. update_case with ONLY the intended fields
-  4. re-GET and compare FIELD BY FIELD:
-       - every INTENDED field byte-equal to the intended value
-       - every OTHER field byte-identical to the pre-write snapshot
-       - every field outside the snapshot byte-identical to the pre-write live read
-  5. a MISMATCH means THE WRITE FAILED -> stop the batch, dump BOTH byte sequences,
-     do not retry blindly.
+  1. re-GET the case and prove it still byte-matches the pre-write snapshot
+  2. update_case with ONLY the intended fields
+  3. re-GET and compare EVERY field:
+       - each intended field byte-equal to the intended value
+       - every OTHER field byte-identical to the pre-write snapshot (volatile ones excepted)
+  4. a MISMATCH means THE WRITE FAILED -> stop the batch, dump both byte sequences.
 
-DECLARED NORMALISATION (the only one, recorded in APP-ACTIONS-PLAYBOOK §J):
-  TestRail's `refs` splits on commas, trims each entry, rejoins with a bare comma,
-  and rejects any single entry over 248 chars with HTTP 400
-  "Field :refs does not match the required pattern."
-  So `refs` is compared under  ','.join(p.strip() for p in s.split(','))  and that is
-  declared explicitly here and in the audit log.
+DECLARED NORMALISATION (the only one, recorded in APP-ACTIONS-PLAYBOOK §J): TestRail's
+`refs` splits on commas, trims each entry and rejoins with a bare comma.  This pass does
+not write refs, but the comparison honours the normalisation anyway.
 
-Rule 38: refuses to touch any case not created by us (created_by != 3).
-`update_case` ONLY — no add_case, no delete_case, no section move, no run write.
-
-usage: python3 exec_push.py <project> [--batch 25] [--limit N] [--dry-run]
+Rule 38: refuses any case not created by us (created_by != 3).
 """
-import json, os, sys, time, argparse, base64, urllib.request, urllib.error
+import json, os, sys, time, base64, urllib.request, urllib.error, argparse
 
-HERE = os.path.dirname(os.path.abspath(__file__))
 CREDS = json.load(open('/tmp/testrail/creds.json'))
 SECRET = CREDS.get('password') or CREDS.get('key')
 HOST = CREDS['host'].rstrip('/')
 AUTH = 'Basic ' + base64.b64encode(f"{CREDS['email']}:{SECRET}".encode()).decode()
-
-GROUP = {'schedule': 4254, 'filters': 4110}
-EXPECTED = {'schedule': 165, 'filters': 110}
-# fields that legitimately move on any write, excluded from the untouched comparison
 VOLATILE = {'updated_on', 'updated_by'}
+LOG = '/tmp/fviu/exec-log.jsonl'
 
 
 def api(path, body=None, method=None):
     url = f'{HOST}/index.php?/api/v2/{path}'
     data = json.dumps(body).encode() if body is not None else None
     req = urllib.request.Request(url, data=data, method=method or ('POST' if body else 'GET'),
-                                headers={'Authorization': AUTH,
-                                         'Content-Type': 'application/json'})
-    for attempt in range(4):
+                                headers={'Authorization': AUTH, 'Content-Type': 'application/json'})
+    for a in range(4):
         try:
-            with urllib.request.urlopen(req, timeout=90) as r:
+            with urllib.request.urlopen(req, timeout=120) as r:
                 return r.status, json.loads(r.read().decode() or '{}')
         except urllib.error.HTTPError as e:
-            txt = e.read().decode()
-            if e.code in (429, 502, 503, 504) and attempt < 3:
-                time.sleep(2 ** attempt * 2)
-                continue
+            t = e.read().decode()
+            if e.code in (429, 502, 503, 504) and a < 3:
+                time.sleep(2 ** a * 2); continue
             try:
-                return e.code, json.loads(txt)
+                return e.code, json.loads(t)
             except Exception:
-                return e.code, {'error': txt}
-        except Exception as e:
-            if attempt < 3:
-                time.sleep(2 ** attempt * 2)
-                continue
-            return 0, {'error': str(e)}
-    return 0, {'error': 'exhausted'}
+                return e.code, {'error': t}
+        except Exception as ex:
+            if a < 3:
+                time.sleep(2 ** a * 2); continue
+            return 0, {'error': str(ex)}
 
 
 def norm_refs(s):
-    """The DECLARED TestRail refs normalisation (see the module docstring)."""
     return ','.join(p.strip() for p in (s or '').split(','))
 
 
-def cmp_field(field, got, want):
+def eq(field, a, b):
     if field == 'refs':
-        return None if norm_refs(got) == norm_refs(want) else \
-            'refs differ under the declared normalisation'
-    return None if got == want else 'byte mismatch'
+        return norm_refs(a) == norm_refs(b)
+    return a == b
 
 
-def dump(a, b, la, lb):
-    sa = a if isinstance(a, str) else repr(a)
-    sb = b if isinstance(b, str) else repr(b)
-    out = [f'      {la} ({len(sa)} chars): {sa!r}',
-           f'      {lb} ({len(sb)} chars): {sb!r}']
-    for i, (x, y) in enumerate(zip(sa, sb)):
-        if x != y:
-            out.append(f'      first difference at offset {i}: {x!r} vs {y!r}')
-            break
-    else:
-        if len(sa) != len(sb):
-            out.append(f'      identical to {min(len(sa), len(sb))}; lengths differ')
-    return '\n'.join(out)
+def verify(live, snap, intended, phase):
+    """Return (ok, problems, fields_compared)."""
+    probs = []
+    keys = set(live) | set(snap)
+    for k in sorted(keys):
+        if k in VOLATILE:
+            continue
+        got = live.get(k)
+        if k in intended:
+            want = intended[k]
+            if not eq(k, got, want):
+                probs.append({'field': k, 'kind': 'intended value not written',
+                              'want': repr(want)[:400], 'got': repr(got)[:400]})
+        else:
+            was = snap.get(k)
+            if not eq(k, got, was):
+                probs.append({'field': k, 'kind': 'UNINTENDED CHANGE',
+                              'was': repr(was)[:400], 'got': repr(got)[:400]})
+    return (not probs), probs, len(keys - VOLATILE)
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('project', choices=('schedule', 'filters'))
-    ap.add_argument('--batch', type=int, default=25)
-    ap.add_argument('--limit', type=int, default=0)
     ap.add_argument('--dry-run', action='store_true')
-    ap.add_argument('--only', type=int, default=0,
-                    help='re-push exactly this case id even if already logged')
-    args = ap.parse_args()
-
-    plan = json.load(open(os.path.join(HERE, '..', 'plan.json')))
-    assert len(plan) == EXPECTED[args.project], \
-        f'plan has {len(plan)} entries, expected {EXPECTED[args.project]}'
-    logp = os.path.join(HERE, '..', 'exec-log.jsonl')
-    done = set()
-    if os.path.exists(logp):
-        for line in open(logp):
-            r = json.loads(line)
-            if r.get('verify') == 'MATCH':
-                done.add(r['case_id'])
-    if args.only:
-        todo = [p for p in plan if p['case_id'] == args.only]
-        assert todo, f'C{args.only} not in plan'
-    else:
-        todo = [p for p in plan if p['case_id'] not in done]
-    if args.limit:
-        todo = todo[:args.limit]
-    print(f'{args.project}: plan {len(plan)} · already verified {len(done)} · '
-          f'this run {len(todo)}')
-
-    log = open(logp, 'a')
-    ok = 0
-    for n, p in enumerate(todo, 1):
-        cid = p['case_id']
-        snap, intended = p['snapshot'], p['intended']
-
-        # ---- step 2: prove the live case still matches the pre-write snapshot ----
+    ap.add_argument('--limit', type=int, default=0)
+    a = ap.parse_args()
+    plan = [p for p in json.load(open(os.environ.get('PLAN','/tmp/fviu/plan.json'))) if not p['skip']]
+    if a.limit:
+        plan = plan[:a.limit]
+    print('operations planned:', len(plan), '| dry-run' if a.dry_run else '| LIVE')
+    done = 0
+    log = open(LOG, 'a')
+    for i, p in enumerate(plan, 1):
+        cid, iid, snap, intended = p['cid'], p['iid'], p['snapshot'], p['intended']
         st, live = api(f'get_case/{cid}')
         if st != 200:
-            log.write(json.dumps({'case_id': cid, 'op': 'pre_get', 'http': st,
-                                  'verify': 'FAIL', 'detail': live}) + '\n'); log.flush()
-            raise SystemExit(f'STOPPED: pre-write re-GET of C{cid} returned HTTP {st}')
+            print(f'{i:3d} {iid} C{cid} PRE-GET FAILED {st} {live}'); sys.exit(2)
         if live.get('created_by') != 3:
-            raise SystemExit(f'FATAL Rule 38: C{cid} created_by='
-                             f'{live.get("created_by")} is not ours')
-        drift = [(f, r, live.get(f), v) for f, v in snap.items()
-                 if (r := cmp_field(f, live.get(f), v))]
-        if drift:
-            print(f'  [{n}/{len(todo)}] C{cid} DRIFTED since the snapshot — STOPPING')
-            for f, r, g, w in drift:
-                print(f'    {f}: {r}'); print(dump(g, w, 'live now', 'snapshot'))
-            log.write(json.dumps({'case_id': cid, 'op': 'pre_get', 'http': 200,
-                                  'verify': 'FAIL-DRIFT',
-                                  'fields': [d[0] for d in drift]}) + '\n'); log.flush()
-            raise SystemExit(f'STOPPED: C{cid} changed between snapshot and write')
-
-        if args.dry_run:
-            print(f'  [{n}/{len(todo)}] C{cid} DRY-RUN ok, would write {sorted(intended)}')
+            print(f'{i:3d} {iid} C{cid} REFUSED - created_by={live.get("created_by")} (Rule 38)')
+            sys.exit(3)
+        ok, probs, n = verify(live, snap, {}, 'pre')
+        if not ok:
+            print(f'{i:3d} {iid} C{cid} PRE-CHECK MISMATCH - the case moved under us:')
+            for x in probs:
+                print('      ', x)
+            sys.exit(4)
+        if a.dry_run:
+            print(f'{i:3d} {iid} C{cid} would write {sorted(intended)} ({n} fields snapshotted)')
             continue
-
-        # ---- step 3: the write ----
-        st, res = api(f'update_case/{cid}', intended)
-        if st != 200:
-            print(f'  [{n}/{len(todo)}] C{cid} update_case HTTP {st} — STOPPING')
-            print('    ', json.dumps(res)[:600])
-            log.write(json.dumps({'case_id': cid, 'op': 'update_case', 'http': st,
-                                  'verify': 'FAIL', 'detail': res,
-                                  'fields': sorted(intended)}) + '\n'); log.flush()
-            raise SystemExit(f'STOPPED: update_case C{cid} returned HTTP {st}')
-
-        # ---- step 4: re-GET and verify field by field ----
-        st2, after = api(f'get_case/{cid}')
+        st2, resp = api(f'update_case/{cid}', intended)
         if st2 != 200:
-            raise SystemExit(f'STOPPED: post-write re-GET of C{cid} HTTP {st2}')
-        bad = []
-        for f, want in intended.items():                    # intended must match
-            if r := cmp_field(f, after.get(f), want):
-                bad.append(('INTENDED', f, r, after.get(f), want))
-        for f, was in snap.items():                         # untouched byte-identical
-            if f in intended:
-                continue
-            if r := cmp_field(f, after.get(f), was):
-                bad.append(('UNTOUCHED', f, r, after.get(f), was))
-        for f, was in live.items():                         # nothing else moved either
-            if f in intended or f in VOLATILE or f in snap:
-                continue
-            if r := cmp_field(f, after.get(f), was):
-                bad.append(('COLLATERAL', f, r, after.get(f), was))
-        if bad:
-            print(f'  [{n}/{len(todo)}] C{cid} VERIFY FAILED — THE WRITE FAILED. STOPPING.')
-            for kind, f, r, g, w in bad:
-                print(f'    {kind} {f}: {r}')
-                print(dump(g, w, 'live after write', 'intended/snapshot'))
-            log.write(json.dumps({'case_id': cid, 'op': 'update_case', 'http': 200,
-                                  'verify': 'FAIL',
-                                  'bad': [[k, f, r] for k, f, r, _, _ in bad],
-                                  'fields': sorted(intended)}) + '\n'); log.flush()
-            raise SystemExit(f'STOPPED: byte verification failed on C{cid}')
-
-        nfields = len(set(snap) | set(live) | set(intended)) - len(VOLATILE & set(live))
-        log.write(json.dumps({
-            'case_id': cid, 'op': 'update_case', 'http': 200, 'verify': 'MATCH',
-            'kind': p['kind'], 'fields_written': sorted(intended),
-            'fields_compared': nfields,
-            'refs_normalisation_applied': 'refs' in intended,
-        }) + '\n'); log.flush()
-        ok += 1
-        print(f'  [{n}/{len(todo)}] C{cid} 200 · MATCH · wrote {sorted(intended)} · '
-              f'{nfields} fields compared')
-        if ok % args.batch == 0:
-            print(f'  --- batch checkpoint: {ok} verified this run ---')
-    print(f'\ndone: {ok} written and byte-verified this run')
+            print(f'{i:3d} {iid} C{cid} update_case HTTP {st2} {resp}'); sys.exit(5)
+        st3, after = api(f'get_case/{cid}')
+        if st3 != 200:
+            print(f'{i:3d} {iid} C{cid} POST-GET FAILED {st3}'); sys.exit(6)
+        ok, probs, n = verify(after, snap, intended, 'post')
+        rec = {'op': i, 'iid': iid, 'cid': cid, 'fields': sorted(intended),
+               'http': st2, 'fields_compared': n,
+               'verification': 'MATCH' if ok else 'MISMATCH', 'problems': probs}
+        log.write(json.dumps(rec) + '\n'); log.flush()
+        if not ok:
+            print(f'{i:3d} {iid} C{cid} BYTE VERIFICATION FAILED - THE WRITE FAILED. Stopping.')
+            for x in probs:
+                print('      ', json.dumps(x)[:900])
+            sys.exit(7)
+        done += 1
+        print(f'{i:3d} {iid} C{cid} 200 MATCH ({n} fields compared) {sorted(intended)}')
+    print('\nwritten + byte-verified:', done, 'of', len(plan))
 
 
 if __name__ == '__main__':
