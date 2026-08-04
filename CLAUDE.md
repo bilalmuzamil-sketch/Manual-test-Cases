@@ -47,9 +47,12 @@
 >   RE-CHECK QUEUES (Rule 49) — `ls build/*/viu-*/RECHECK-QUEUE.md`; a build declared NOT FINAL
 >   yields PROVISIONAL findings only, so every finding is queued with its BUILD MARKER and no suite
 >   may be called VIU-complete while a queue is OPEN. Re-run the queue when the build is declared
->   final or the app-version marker changes. OPEN NOW:
+>   final or the app-version marker changes. **THREE QUEUES ARE OPEN NOW (2026-08-04):**
 >   `build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md` (Report Suite QA branch `sv8582`, build
->   `v3.4.1-0ed4433`).**
+>   `v3.4.1-0ed4433`) · `build/filters/viu-2026-08-04/RECHECK-QUEUE.md` (Filters QA branch `sv8785`,
+>   build `v3.4.2-4f8211c`) · `build/schedule/viu-2026-08-04/RECHECK-QUEUE.md` (Schedule QA branch
+>   `sv8685`, build `v3.5-4873abe`, 165 rows). **None of the three branches has been declared final,
+>   so every finding on all three is PROVISIONAL.**
 > - **OUTSTANDING-ITEMS REGISTER (Standing Rule 36) — the single cross-project list of everything we
 >   are WAITING ON: build/OUTSTANDING-ITEMS-REGISTER.md. READ IT before writing any status report or
 >   management deliverable, and UPDATE IT the moment an item is raised or cleared. EVERY project
