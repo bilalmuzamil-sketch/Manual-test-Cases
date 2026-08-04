@@ -1,0 +1,12 @@
+import {boot,APP} from './boot.mjs';
+const {browser,page,netlog}=await boot();
+await page.goto(APP+'/workorders',{waitUntil:'domcontentloaded',timeout:90000});
+await page.waitForTimeout(12000);
+console.log('URL:',page.url());
+console.log('TITLE:',await page.title());
+await page.screenshot({path:'/tmp/fviu/shots/01-workorders.png',fullPage:false});
+const txt=await page.evaluate(()=>document.body.innerText.slice(0,2500));
+console.log('---BODY TEXT---'); console.log(txt);
+console.log('---NET (list calls)---');
+console.log(netlog.filter(n=>n.phase==='res').map(n=>n.status+' '+n.method+' '+n.url.replace(/^https:\/\/[^/]+/,'')).join('\n'));
+await browser.close();

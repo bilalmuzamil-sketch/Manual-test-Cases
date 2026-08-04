@@ -1,0 +1,114 @@
+{
+ "baseline": {
+  "uniqueWO": 30,
+  "firstWO": [
+   "S2-15017",
+   "S2-14846",
+   "S2-13145",
+   "S2-12888",
+   "S2-11498"
+  ],
+  "statusCounts": {
+   "Estimate": 30
+  },
+  "empty": null
+ },
+ "tapPaid": {
+  "calls": [
+   {
+    "status": 200,
+    "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vehicle&pagination[descending]=false&filters[0][field]=status&filters[0][value]=paid&search=&showMyWorkOrders=0"
+   }
+  ],
+  "url": "https://sv8785.qa.shopview.com/workorders?status=paid&tab=all",
+  "stat": {
+   "uniqueWO": 30,
+   "firstWO": [
+    "S2-5329",
+    "S2-5596",
+    "S2-7934",
+    "S2-9423",
+    "S2-7932"
+   ],
+   "statusCounts": {
+    "Paid": 30
+   },
+   "empty": null
+  }
+ },
+ "urlDrivenMobile": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+  "calls": [
+   {
+    "status": 200,
+    "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vehicle&pagination[descending]=false&filters[0][field]=status&filters[0][value]=paid&search=&showMyWorkOrders=0"
+   },
+   {
+    "status": 200,
+    "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=&pagination[descending]=false&filters[0][field]=status&filters[0][value]=estimate&search=&showMyWorkOrders=0"
+   }
+  ],
+  "stat": {
+   "uniqueWO": 30,
+   "firstWO": [
+    "S2-15017",
+    "S2-14846",
+    "S2-13145",
+    "S2-12888",
+    "S2-11498"
+   ],
+   "statusCounts": {
+    "Estimate": 30
+   },
+   "empty": null
+  },
+  "chips": [
+   "tune|All Filters (1)",
+   "Status (1)|keyboard_arrow_down",
+   "Customer|keyboard_arrow_down",
+   "Lead Technician|keyboard_arrow_down",
+   "Service Advisor|keyboard_arrow_down",
+   "Asset on Site|keyboard_arrow_down"
+  ]
+ },
+ "urlDrivenNoMatchMobile": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=declined&company_id=00000000-0000-4000-8000-000000000000&tab=all",
+  "calls": [
+   {
+    "status": 200,
+    "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=&pagination[descending]=false&filters[0][field]=status&filters[0][value]=estimate&search=&showMyWorkOrders=0"
+   },
+   {
+    "status": 200,
+    "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=&pagination[descending]=false&filters[0][field]=status&filters[0][value]=estimate&search=&showMyWorkOrders=0"
+   }
+  ],
+  "stat": {
+   "uniqueWO": 30,
+   "firstWO": [
+    "S2-15017",
+    "S2-14846",
+    "S2-13145",
+    "S2-12888",
+    "S2-11498"
+   ],
+   "statusCounts": {
+    "Estimate": 30
+   },
+   "empty": null
+  },
+  "chips": [
+   "tune|All Filters (2)",
+   "Status (1)|keyboard_arrow_down",
+   "Customer (1)|keyboard_arrow_down",
+   "Lead Technician|keyboard_arrow_down",
+   "Service Advisor|keyboard_arrow_down",
+   "Asset on Site|keyboard_arrow_down"
+  ]
+ },
+ "clearFiltersOnMobileWithActive": {
+  "clearFiltersTestId": null,
+  "anyClear": [],
+  "chipRow": "tune|All Filters (1)|Status (1)|keyboard_arrow_down|Customer|keyboard_arrow_down|Lead Technician|keyboard_arrow_down|Service Advisor|keyboard_arrow_down|Asset on Site|keyboard_arrow_down"
+ }
+}

@@ -1,0 +1,186 @@
+{
+ "collapsedControl": {
+  "found": true,
+  "text": "search|Search",
+  "testid": "page_search_toggle",
+  "icon": "search",
+  "iconSize": "22.5008px",
+  "color": "rgb(97, 97, 97)",
+  "bg": "rgba(0, 0, 0, 0)",
+  "radius": "6px",
+  "padding": "4px 16px",
+  "fontSize": "13.12px",
+  "lineHeight": "19.5488px",
+  "fontWeight": "600",
+  "fontFamily": "\"Nunito Sans\", sans-serif",
+  "x": 1321,
+  "y": 90,
+  "w": 101,
+  "h": 31
+ },
+ "toolbarOrder": [
+  {
+   "t": "search|Search",
+   "testid": "page_search_toggle",
+   "aria": null,
+   "x": 1321,
+   "w": 101
+  },
+  {
+   "t": "width_normal",
+   "testid": "button_column_selection",
+   "aria": "Column Selection",
+   "x": 1441,
+   "w": 55
+  },
+  {
+   "t": "Create Work Order",
+   "testid": "button_new_work_order",
+   "aria": "Create Work Order",
+   "x": 1500,
+   "w": 150
+  }
+ ],
+ "expand": {
+  "placeholder": "Type to search",
+  "testid": "page_search_input",
+  "focused": true,
+  "fieldW": 180,
+  "fieldX": 1248,
+  "fieldH": 40,
+  "color": "rgba(0, 0, 0, 0.87)",
+  "fontSize": "12.8px",
+  "phColor": null,
+  "icons": [
+   "search"
+  ]
+ },
+ "type": {
+  "sel": "page_search_input",
+  "state": {
+   "val": "Lastone",
+   "color": "rgba(0, 0, 0, 0.87)",
+   "icons": [
+    {
+     "t": "search",
+     "size": "18px",
+     "testid": null
+    },
+    {
+     "t": "cancel",
+     "size": "18px",
+     "testid": "page_search_clear"
+    }
+   ],
+   "fieldW": 180
+  },
+  "calls": [
+   {
+    "status": 200,
+    "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=companyName&pagination[descending]=true&filters[0][field]=status&filters[0][value]=estimate&search=Lastone&showMyWorkOrders=0"
+   }
+  ],
+  "url": "https://sv8785.qa.shopview.com/workorders?search=Lastone",
+  "rows": {
+   "n": 2,
+   "statuses": [
+    "Estimate 1",
+    "Estimate"
+   ],
+   "numbers": [
+    "S2-9473",
+    "S2-9120"
+   ],
+   "customers": [
+    "Lastone Construction"
+   ],
+   "advisors": [
+    "Bonnie Jones",
+    "Unassigned"
+   ],
+   "techs": [
+    "Unassigned",
+    "Joel Parker"
+   ],
+   "onsite": [
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)"
+   ],
+   "emptyText": null
+  }
+ },
+ "savedPayloadAfterQuery": {
+  "putBodies": [
+   "{\"value\":{\"tab\":\"estimate\",\"filters\":{},\"collapsed\":false,\"columns\":{\"unreceivedPartRequestsCount\":false,\"vehicle\":true,\"vin\":true,\"progress\":true,\"serviceAdvisor\":true,\"technician\":true,\"clockedInTechnicians\":true,\"linesCount\":true,\"totalPrice\":true,\"startDate\":true,\"invoicedDate\":false,\"daysOpen\":false,\"partRequestsCount\":false,\"partReturnRequestsCount\":false},\"sortBy\":\"companyName\",\"descending\":true,\"search\":\"Lastone\"}}"
+  ],
+  "getBody": "{\"data\":{\"pageKey\":\"work-orders-list\",\"value\":{\"tab\":\"estimate\",\"search\":\"Lastone\",\"sortBy\":\"companyName\",\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":false,\"progress\":true,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"invoicedDate\":false,\"serviceAdvisor\":true,\"partRequestsCount\":false,\"clockedInTechnicians\":true,\"partReturnRequestsCount\":false,\"unreceivedPartRequestsCount\":false},\"filters\":[],\"collapsed\":false,\"descending\":true},\"updatedAt\":\"2026-08-04T15:18:15Z\"}}"
+ },
+ "searchPlusFilter": {
+  "ERROR": "locator.click: Timeout 15000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-test-id=\"filter_option_status_paid\"]').first()\u001b[22m\n"
+ },
+ "clearFiltersKeepsQuery": {
+  "ok": false,
+  "query": "Lastone",
+  "url": "https://sv8785.qa.shopview.com/workorders?search=Lastone",
+  "rows": 2,
+  "calls": [
+   {
+    "status": 200,
+    "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=companyName&pagination[descending]=true&filters[0][field]=status&filters[0][value]=estimate&search=Lastone&showMyWorkOrders=0"
+   }
+  ]
+ },
+ "clearQuery": {
+  "icons": [
+   {
+    "t": "search",
+    "testid": null
+   },
+   {
+    "t": "cancel",
+    "testid": "page_search_clear"
+   }
+  ],
+  "clicked": true,
+  "state": {
+   "present": true,
+   "val": "",
+   "btnSearch": false
+  },
+  "url": "https://sv8785.qa.shopview.com/workorders",
+  "rows": 30,
+  "calls": [
+   {
+    "status": 200,
+    "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=companyName&pagination[descending]=true&filters[0][field]=status&filters[0][value]=estimate&search=&showMyWorkOrders=0"
+   }
+  ]
+ },
+ "blurEmptyCollapses": {
+  "before": {
+   "input": true
+  },
+  "after": {
+   "input": false,
+   "searchBtn": false
+  }
+ },
+ "noResultsQuery": {
+  "url": "https://sv8785.qa.shopview.com/workorders?search=ZZQQNOMATCHXX",
+  "rows": 0,
+  "empty": "ard_arrow_down\nAsset on Site\nkeyboard_arrow_down\nsearch\ncancel\nwidth_normal\nCreate Work Order\nOn Sitearrow_drop_up\tStatusarrow_drop_up\tNumberarrow_drop_up\tCustomerarrow_drop_up\tAssetarrow_drop_up\tUnitarrow_drop_up\tVIN/Serial #arrow_drop_up\tProgress\tService Advisorarrow_drop_up\tLead Technicianarrow_drop_up\tClocked Inarrow_drop_up\tLinesarrow_drop_up\tTotal Pricearrow_drop_up\tCreated Onarrow_drop_up\n\n\nNo work orders match your filters\nClear Filters\n1",
+  "calls": [
+   {
+    "status": 200,
+    "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=companyName&pagination[descending]=true&filters[0][field]=status&filters[0][value]=estimate&search=ZZQQNOMATCHXX&showMyWorkOrders=0"
+   }
+  ]
+ },
+ "queryTabSessionOnly": {
+  "priorUrl": "https://sv8785.qa.shopview.com/workorders?search=ZZQQNOMATCHXX",
+  "newUrl": "https://sv8785.qa.shopview.com/workorders?search=ZZQQNOMATCHXX",
+  "query": null,
+  "rows": 0,
+  "pref": "{\"data\":{\"pageKey\":\"work-orders-list\",\"value\":{\"tab\":\"estimate\",\"search\":\"ZZQQNOMATCHXX\",\"sortBy\":\"companyName\",\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":false,\"progress\":true,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"invoicedDate\":false,\"serviceAdvisor\":true,\"partRequestsCount\":false,\"clockedInTechnicians\":true,\"partReturnRequestsCount\":false,\"unreceivedPartRequestsCount\":false},\"filters\":[],\"collapsed\":false,\"descending\":true},\"updatedAt\":\"2026-08-04T15:18:55Z\"}}"
+ }
+}

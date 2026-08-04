@@ -1,0 +1,20 @@
+import {boot,APP} from './boot.mjs';
+const {browser,page}=await boot();
+await page.goto(APP+'/workorders',{waitUntil:'domcontentloaded',timeout:90000});
+await page.waitForTimeout(12000);
+await page.locator('button.filter-chip:has-text("Status")').first().click();
+await page.waitForTimeout(2500);
+const d=await page.evaluate(()=>{
+  const m=document.querySelector('.q-menu');
+  const walk=[];
+  const rec=(e,dep)=>{ if(dep>6)return;
+    for(const c of e.children){ const r=c.getBoundingClientRect();
+      walk.push({dep,tag:c.tagName,cls:c.className.toString().slice(0,90),txt:(c.innerText||'').trim().slice(0,40).replace(/\n/g,'|'),h:Math.round(r.height)});
+      rec(c,dep+1);} };
+  rec(m,0);
+  return {html:m.innerHTML.slice(0,2500), walk:walk.slice(0,60)};
+});
+console.log(d.html);
+console.log('---WALK---');
+d.walk.forEach(w=>console.log(' '.repeat(w.dep)+`${w.tag}.${w.cls} h=${w.h} "${w.txt}"`));
+await browser.close();

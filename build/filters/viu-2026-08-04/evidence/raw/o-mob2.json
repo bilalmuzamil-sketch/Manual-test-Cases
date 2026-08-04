@@ -1,0 +1,251 @@
+{
+ "chipDom": {
+  "chips": [
+   {
+    "t": "tune|All Filters",
+    "testid": "filter_chip_all_filters",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hove",
+    "tag": "BUTTON",
+    "x": 27,
+    "y": 247,
+    "w": 114
+   },
+   {
+    "t": "Status|keyboard_arrow_down",
+    "testid": "filter_chip_status",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hove",
+    "tag": "BUTTON",
+    "x": 159,
+    "y": 247,
+    "w": 94
+   },
+   {
+    "t": "Customer|keyboard_arrow_down",
+    "testid": "filter_chip_company_id",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hove",
+    "tag": "BUTTON",
+    "x": 271,
+    "y": 247,
+    "w": 113
+   },
+   {
+    "t": "Lead Technician|keyboard_arrow_down",
+    "testid": "filter_chip_tech_assigned_id",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hove",
+    "tag": "BUTTON",
+    "x": 402,
+    "y": 247,
+    "w": 150
+   },
+   {
+    "t": "Service Advisor|keyboard_arrow_down",
+    "testid": "filter_chip_service_advisor_id",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hove",
+    "tag": "BUTTON",
+    "x": 570,
+    "y": 247,
+    "w": 148
+   },
+   {
+    "t": "Asset on Site|keyboard_arrow_down",
+    "testid": "filter_chip_vehicleHere",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hove",
+    "tag": "BUTTON",
+    "x": 737,
+    "y": 247,
+    "w": 134
+   }
+  ],
+  "scroller": {
+   "cls": "mobile-filter-chip-row work-orders-mobile-chip-row",
+   "overflowX": "auto",
+   "scrollWidth": 878,
+   "clientWidth": 370,
+   "scrollable": true
+  },
+  "tabs": [
+   {
+    "t": "All",
+    "y": 78
+   },
+   {
+    "t": "Estimates",
+    "y": 78
+   },
+   {
+    "t": "Completed",
+    "y": 78
+   },
+   {
+    "t": "My Work Orders",
+    "y": 78
+   }
+  ],
+  "toggle": false
+ },
+ "cardsInitial": {
+  "n": 60,
+  "first": [
+   "S2-15017 | Estimate | Aagate Landscaping | Asset | Komatsu Pc138uslc-11 | VIN/Serial # | KMTPC261CHA051278 | Unit # | E2",
+   "S2-15017 | Estimate | Aagate Landscaping | Asset | Komatsu Pc138uslc-11 | VIN/Serial # | KMTPC261CHA051278 | Unit # | E2",
+   "S2-14846 | Estimate | Aagate Landscaping | Asset | Komatsu 6NB41E | VIN/Serial # | CT17X26004 | Unit # | 189"
+  ],
+  "emptyMsg": null
+ },
+ "tapStatus": {
+  "cls": "mobile-filter-sheet__body",
+  "text": "Estimate\nApproved\nIn progress\nReview\nComplete\nInvoiced\nPaid\nDeclined\nImported\nClear Selection",
+  "y": 386,
+  "h": 449,
+  "w": 388,
+  "vw": 390,
+  "vh": 844,
+  "buttons": [
+   {
+    "t": "Clear Selection",
+    "testid": "filter_clear_selection_status"
+   }
+  ],
+  "opts": [
+   {
+    "l": "Estimate",
+    "c": "false",
+    "testid": "filter_option_status_estimate"
+   },
+   {
+    "l": "Approved",
+    "c": "false",
+    "testid": "filter_option_status_approved"
+   },
+   {
+    "l": "In progress",
+    "c": "false",
+    "testid": "filter_option_status_in_progress"
+   },
+   {
+    "l": "Review",
+    "c": "false",
+    "testid": "filter_option_status_ready_for_review"
+   },
+   {
+    "l": "Complete",
+    "c": "false",
+    "testid": "filter_option_status_complete"
+   },
+   {
+    "l": "Invoiced",
+    "c": "false",
+    "testid": "filter_option_status_invoiced"
+   },
+   {
+    "l": "Paid",
+    "c": "false",
+    "testid": "filter_option_status_paid"
+   },
+   {
+    "l": "Declined",
+    "c": "false",
+    "testid": "filter_option_status_declined"
+   },
+   {
+    "l": "Imported",
+    "c": "false",
+    "testid": "filter_option_status_imported"
+   }
+  ]
+ },
+ "S12R6_deferredApply": {
+  "before": {
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+   "cards": 60
+  },
+  "immediately": {
+   "calls": [
+    {
+     "status": 200,
+     "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vehicle&pagination[descending]=false&filters[0][field]=status&filters[0][value]=paid&search=&showMyWorkOrders=0"
+    }
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?status=paid&tab=all",
+   "cards": 60
+  },
+  "after4s": {
+   "calls": [
+    {
+     "status": 200,
+     "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vehicle&pagination[descending]=false&filters[0][field]=status&filters[0][value]=paid&search=&showMyWorkOrders=0"
+    }
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?status=paid&tab=all",
+   "cards": 60,
+   "sheetOpen": false,
+   "applyButtons": []
+  }
+ },
+ "chipStateAfter": [
+  {
+   "t": "tune|All Filters (1)",
+   "cls": "ACTIVE",
+   "bg": "rgb(227, 242, 253)"
+  },
+  {
+   "t": "Status (1)|keyboard_arrow_down",
+   "cls": "ACTIVE",
+   "bg": "rgb(227, 242, 253)"
+  },
+  {
+   "t": "Customer|keyboard_arrow_down",
+   "cls": "",
+   "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+   "t": "Lead Technician|keyboard_arrow_down",
+   "cls": "",
+   "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+   "t": "Service Advisor|keyboard_arrow_down",
+   "cls": "",
+   "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+   "t": "Asset on Site|keyboard_arrow_down",
+   "cls": "",
+   "bg": "rgba(0, 0, 0, 0)"
+  }
+ ],
+ "clearFiltersMobile": {
+  "present": false
+ },
+ "allFiltersSheet": {
+  "cls": "mobile-all-filters-sheet__footer",
+  "text": "Apply Filters",
+  "y": 775,
+  "h": 60,
+  "w": 388,
+  "vh": 844,
+  "buttons": [
+   {
+    "t": "Apply Filters",
+    "testid": "apply_filters"
+   }
+  ],
+  "rows": [
+   "Apply Filters"
+  ]
+ },
+ "allFiltersApply": {
+  "applyPresent": [
+   {
+    "t": "Apply Filters",
+    "testid": "apply_filters"
+   }
+  ],
+  "callsBefore": 0
+ },
+ "mobileEmpty": {
+  "cards": 60,
+  "emptyMsg": null,
+  "clear": []
+ }
+}
