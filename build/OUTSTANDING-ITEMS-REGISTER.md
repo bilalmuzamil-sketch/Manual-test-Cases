@@ -489,3 +489,97 @@ entry over 248 characters** (248 passes, 249 fails; total length is unbounded). 
 *pattern* error rather than a length error it is easy to misdiagnose. All 475 Report Suite `refs`
 values are comma-free single entries, longest 245 — so the house style is **one comma-free entry,
 semicolons as separators, ≤ 248 chars**, asserted before every run.
+
+---
+
+## 2026-08-04 — AUTHORISED TIER-2 EPIC RE-READ OF SV-8582 (read-only) — the open question is ANSWERED
+
+Deliverables: `build/report-suite/epic-reread-2026-08-04/` — `EPIC-REREAD.md` ·
+`NEW-OR-CHANGED-REQUIREMENTS.md` · `REOPENED-STORIES.md` · `PRINT-INCONSISTENCY.md` · `OUTSTANDING.md`.
+**All 98 issues read** (epic + 97 children, contiguous SV-8583→SV-8679). **No Jira/TestRail writes,
+nothing authored, nothing staged.**
+
+### ✅ CLEARED — "does the reopening mean the build plan changed?"
+
+That question sat OPEN in this register from the 2026-07-31 Tier-1 check, which could not answer it
+because *"none of the six carries a comment explaining it"*. **Answer: NO, the scope did not change.**
+The changelog shows a **status-only reversal of an erroneous bulk close** — the *same* developer
+(parth fadadu) closed all six as OBSOLETE/Done on **2026-07-27** in 19 seconds, then reopened all six
+on **2026-07-29** in ~67 seconds. **No child ticket description has ever been edited** (verified across
+all 98; the only body edit in the tree is the epic's own, 2026-07-26). The
+PR-1 → A2/A3 → A4/A5 → B1…B6 dependency chain is intact, with PR-1 **In Progress**. **No case needs
+changing because of the reopening.**
+
+### Coverage result — 79 verdict rows, 80 assertions, all reconciled
+
+**64 COVERED** with both texts quoted side by side (Rule 45(e)) · **6 case extensions** · **2 new-case
+rows** · **2 contradictions** · **1 blocked** · **4 not-independently-testable**. Every actionable row
+is a **scope** gap (a shared-shell rule asserted on some reports but not all) — **not one missed
+requirement.** Coverage against the engineering stories is strong, frequently verbatim (e.g. PV-COL-01
+[C30351](https://shopview.testrail.io/index.php?/cases/view/30351)/PV-COL-02
+[C30352](https://shopview.testrail.io/index.php?/cases/view/30352) enumerate B3's 20 columns and 14
+defaults exactly; IV-COL-04 [C30554](https://shopview.testrail.io/index.php?/cases/view/30554) matches
+B4's Margin/Total-Sell default-off rule word for word).
+
+### 🔴 NEW — 2 epic sentences contradict the epic's OWN child stories (our cases are right)
+
+1. **"All Time stays on WIP only until this lands"** — but SV-8594 (B1) says WIP consumes *"DateRange
+   366"* and SV-8590 (A2) defines *"11 presets + Custom, 366-day cap"*. Our WIP-FLT-04 =
+   [C30501](https://shopview.testrail.io/index.php?/cases/view/30501) asserts *"'All Time' is NOT
+   offered."* **Retain ours (Rule 39); the epic text is stale.**
+2. **"single visual theme (two-tone Tech-Efficiency)"** — but the six build stories assign **two**
+   themes (PV + SBC two-tone; WIP/TU/IV/SBR all-white), and A5 ships both classes. Our six visual cases
+   match their build stories **6/6**.
+
+**Owner: Chris Ward / dev — epic text only, no case change.** Risk if unfixed: a reviewer reading the
+epic reports a **false defect**, which is the review-cycle waste Rule 34 exists to prevent.
+
+### 🔴 NEW GO-AHEADS NEEDED — 2 worth arguing for, 4 hygiene
+
+| Ask | Why | Priority |
+|---|---|---|
+| **3 new cases** — empty-set export = header-only file, on **PV, TU, IV** (covered on SBC/SBR/WIP only) | Failure mode **reads as a bug**: empty-result export either yields a header-only file (correct), nothing, or the *too-large* toast (a real defect — the cap guard firing at zero). No case = whatever happens gets accepted | **Recommended** |
+| **Extend 5 persistence cases** — a saved view beats a link/URL parameter; asserted on **SBC only** ([C30179](https://shopview.testrail.io/index.php?/cases/view/30179)) | The most **counter-intuitive** behaviour in the shell — people expect a shared link to win | **Recommended** |
+| 4 small extensions + 2 Rule-42 version pins (PV-FILT-03 [C30330](https://shopview.testrail.io/index.php?/cases/view/30330), SBR-STAT-01 [C30208](https://shopview.testrail.io/index.php?/cases/view/30208)) | Hygiene; C30208's *"exactly four options"* rides on a payment mapping engineering calls the *"most bug-prone point"* | Medium |
+| **Mark our own `build/report-suite/specs/sbc-sales-by-customer.md` superseded** — it still carries **the full original Story 16 Print** (S16-R1…R6) | Our file, it is wrong, and a reader concludes Print is live. Outside my folder, untouched | **Cheap, worth doing** |
+
+### PRINT / SV-8614 — the evidence is now complete
+
+**SV-8614 is the ONLY Print ticket in all 97 children, and it has never been transitioned** (that is
+the new fact the earlier note could not establish). **Five sources agree Print is gone** — the running
+build (*"no Print control exists anywhere"*, live 2026-08-03), Chris's 2026-07-29 *"The Print option is
+removed."*, SBC v13 *"Story 16: (removed — Print retired)"*, our SBC-EXP-01 =
+[C30159](https://shopview.testrail.io/index.php?/cases/view/30159), and the deleted SBC-EXP-13. **Three
+stale artefacts disagree** — SV-8614, spec **S18-R7/S18-R10** (*"Exports (CSV, PDF, Print)"*), and our
+own old mirror. **Recommend: dev closes SV-8614; Chris sweeps two spec lines.** No case change.
+Keeps `viu-2026-08-03/RECHECK-QUEUE.md` row **B9** open — while the ticket lives, Print could be built
+and C30159 would fail a build that did what its ticket asked.
+
+### 🔴 NEW ACCESS ASK — an Atlassian credential (the only thing that limits this pass)
+
+**No live Jira read was possible.** No Atlassian MCP is configured and **`/tmp` was wiped**, so
+`/tmp/fd-tickets/all-cookie-header.txt` is gone; `GET /rest/api/3/myself` → **HTTP 401**. I searched
+`/tmp` and `/root` for any `cloud.session.token` / `atlassian.xsrf.token` / `ATATT*`: **zero matches.**
+So this re-read is **PARTIAL, with a 4-day blind spot (2026-07-31 → 2026-08-04)**, and the two-way
+child-count JQL could not be re-run for today. **Write a cookie header to
+`/tmp/fd-tickets/all-cookie-header.txt`** (the path `build/epic-recheck-2026-07-31/fetch_epic.py`
+already reads) and the whole analysis reproduces live in minutes. **An API token would end the
+re-supply problem permanently.**
+
+### 2 NEW dev questions worth asking before the next VIU pass
+
+- **A4 backfill-NULL risk** — if the branch deployed before `BackfillInvoiceFinancialColumnsCommand`
+  finished, older invoices carry NULL financials and **SBC/SBR money columns read blank or zero, which
+  looks exactly like a calculation bug**. Could produce a batch of false VIU failures.
+- **B4 sizing gate** — SV-8597 warns `inventory_value_snapshot` could reach 50–200M rows/yr fleet-wide
+  without retention. Retention is specified and covered (IV-API-05/06); this is "did they apply it".
+
+### SV-8780 — still OUT OF SCOPE, and correctly so (Rule 48)
+
+Your ruling **2026-08-03, verbatim: *"Ignore this ticket."*** It is the **only** ticket in the tree I
+did not read (it post-dates the snapshot). **I did not attempt to read it, and it is NOT counted as a
+gap.** The ruling remains right: the question it was filed about was settled the same day by your own
+*"Yes all the reports will be gated by ONE permission FOR NOW"* plus Chris's ruling that the built atom
+is hidden and inert — and **today's read confirms that call**, because SV-8598's contrary text is the
+*older* source and loses under Rule 32. **Nothing would unblock it except you reversing the ruling, and
+I see no reason to suggest that.**
