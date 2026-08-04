@@ -906,11 +906,54 @@ deliver the 7-tab management report.
    transient HTTP 000). Audit `testrail-execution-log-epic-2026-07-27.md`; manifest header = EXECUTED.**
    Scripts: `epic-sv8685/backfill_refs.py`, `epic-sv8685/patch_edits.py`. Design-pinned ≠
    VIU-Verified (Rule 12); live VIU still pending QA branch (OQ-3).
-   **STATUS 2026-08-04 (LATEST — STANDING RULE 54 PROVENANCE RETROFIT EXECUTED, user-authorized;
-   resume `build/schedule/provenance-2026-08-04/`):** all **165/165** cases now end their Expected
+   **STATUS 2026-08-04 (LATEST — FIRST-EVER LIVE VIU DONE on QA branch `sv8685`, then RECOVERED +
+   FINISHED after the worker was cut off mid-wrap-up; resume `build/schedule/READINESS-2026-08-04.md`
+   then `build/schedule/recovery-2026-08-04/STATE.md`):** all **165 cases carry a DEFINITE verdict** —
+   **138 PASS / 19 DEVIATION (ticketed) / 4 NOT-BUILT / 2 HELD (shop closures) / 2 un-settable on this
+   estate** — **zero partly-observed, zero unobserved**, counted two independent ways (the execution
+   log and a re-read of the live case text) which agree area-for-area. Build **`v3.5-4873abe`**,
+   `index.html` last-modified Tue 04 Aug 2026 14:47:39 GMT, etag `9b4b1fc776ebbfb04a9a0ca051d847f7` —
+   **identical at start, mid-run, end AND at the recovery re-read, so NO redeploy**. **Provenance now
+   at Rule-54 STATE 2 on 165/165** (build date + marker), each exactly once. **179 `update_case` ops
+   total (169 by the original worker + 10 in recovery), ALL HTTP 200 + byte-verified MATCH, 28 fields
+   compared each, 0 mismatch; run 357 proven untouched BOTH times** (include_all false, 165 tests, all
+   **429** result records present BY ID, case_id sets equal both ways). **10 defects filed SV-8848…
+   SV-8857** — all **priority Low, parent SV-8685, owning story linked, Open** (Rules 52/53), each
+   read back from Jira. **Epic is now 28 children** (15 stories all `Ready for QA`, SV-8812 **Done** =
+   this branch, **+12 Bug tickets SV-8826…SV-8841 raised 2026-08-04 by Mudassir Qamar** — 6 confirmed,
+   2 don't reproduce as written, 2 contradict Branko's own rulings [SV-8835 VIN / SV-8829 money] where
+   **Rule 33 means the rulings STAND and nothing was changed on either side**, 1 = SV-8831 a REAL gap
+   we missed). **1 API-only finding written up NOT filed** (Rule 51, `viu-2026-08-04/API-ASK.md`).
+   **⚠️ Rule-49 queue OPEN — branch NOT declared final, so all 165 verdicts are PROVISIONAL.**
+   **RECOVERY caught 5 half-states** (`recovery-2026-08-04/STATE.md`): (1) a **pre-existing shift
+   `ebdd3e03…` left on the WRONG technician and 450 min short** by the Day-view drag test — **RESTORED
+   and proven byte-identical on all 14 fields**, series total back to 1980 min *(lesson: a restore
+   isn't restored until compared FIELD BY FIELD)*; (2) the **generated import was corrupt — a newline
+   between EVERY CHARACTER** of preconds/steps/expected in all 165 rows, because `gen_import.py`'s
+   `joinlines()` did `"\n".join(x)` over a **string** where the live-resync now writes strings not
+   lists — **FIXED in `gen_import.py` (it now splits a string first) + regenerated**; ⚠️ **the SAME
+   bug corrupted `testrail-import/filters-v1-testrail-import.csv` (all 110 rows) — NOT fixed here,
+   out of scope, needs the same one-line fix in the Filters generator**; (3) local source stale for
+   the 4 audit-fix cases; (4) **17 cases said a defect "has no developer ticket yet" when 8 of them
+   DID** — 10 cases corrected so all 10 filed tickets are now named on their case; (5) 2 cases leaked
+   dev jargon (a PATCH endpoint / a payload flag + HTTP codes) into tester text in **non-API sections**
+   — cleaned, so **0 cases now carry API content outside the API section**. **Reported NOT changed:
+   16 cases show raw `<ol>/<li>` markup to the tester (PREDATES this pass — same 16 in the pre-write
+   snapshot; a repair = 16 writes, needs go-ahead)** and **SCH-MODAL-03 = C30010 is a real deviation
+   with NO ticket and, until entry 19, no register entry** (the time-logged bar reads full when
+   nothing was clocked — an 11th ticket is the ask). Env left clean: 3 ZZAUTOTEST roles already
+   deleted, borrowed staff (Henry Hess) back on Technician, seeded shifts gone, working hours + the
+   location business-hours toggle byte-identical to the snapshot. Deliverables:
+   `READINESS-2026-08-04.md` (one table, 29 rows, **every row sums**, 161 of 165 automatable now),
+   `viu-2026-08-04/{FINDINGS,COVERAGE-REDERIVATION,AUDIT,GAP-HUNT,SURFACE-MATRIX,DELIBERATE-DECISIONS
+   [22 entries, HIGH 3/MED 7/LOW 12],RECHECK-QUEUE,API-ASK,SOURCE-CURRENCY}.md`,
+   `recovery-2026-08-04/{STATE,testrail-execution-log}.md`, and the refreshed
+   `provenance-2026-08-04/PO-RULING-DEFENCE.md` (all 4 Branko rulings re-confirmed LIVE).
+   **Prior STATUS 2026-08-04 (STANDING RULE 54 PROVENANCE RETROFIT EXECUTED, user-authorized;
+   resume `build/schedule/provenance-2026-08-04/`):** all **165/165** cases end their Expected
    Results with a plain provenance sentence naming **epic SV-8685** + the **Schedule specification
-   version 23** + the case's own § anchors — **state 1 (NO build date; there is still no Schedule QA
-   env, SV-8812)**. `update_case` ONLY: 165 ops, every one HTTP 200 + **byte-verified MATCH, 28
+   version 23** + the case's own § anchors — **state 1 then (NO build date; superseded by state 2
+   above once the branch arrived)**. `update_case` ONLY: 165 ops, every one HTTP 200 + **byte-verified MATCH, 28
    fields compared each**, every unintended field proven byte-identical (Rule 50). **Run 357 verified
    untouched** — 165 tests set-equal both ways, **all 429 result records present BY ID**,
    include_all still false. **Rule-41 whole-case re-read of all 165** produced 1 fix (SCH-HRS-04
