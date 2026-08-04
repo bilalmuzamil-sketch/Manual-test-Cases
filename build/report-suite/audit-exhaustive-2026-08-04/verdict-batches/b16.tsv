@@ -1,0 +1,28 @@
+WIP-SCOPE-01	KEEP	All five open statuses qualify - the inclusion half of the row-scope contract.			SENSIBLE	Five seeded work orders, one per status.	Y	OK	
+WIP-SCOPE-02	KEEP	Invoiced, Paid and part-sale work orders excluded from rows, totals, the strip AND the download - a four-surface negative (Rule 40).			SENSIBLE	Four steps covering all four surfaces.	Y	OK	
+WIP-SCOPE-03	KEEP	Each qualifying job appears exactly once in exactly one tab, and a nothing-approved job still appears.			SENSIBLE	Three steps.	Y	OK	
+WIP-SCOPE-04	WEAK-KEEP	Loading indicator behaviour; a near-duplicate of PV-NAV-03, TU-NAV-05 and SBR-STATE-03 across reports.			SENSIBLE	Two steps.	Y	OK	
+WIP-SCOPE-05	KEEP	The no-data state across all four tabs, the (0) counts, and the one-empty-tab-among-populated-tabs case.			SENSIBLE	Verbatim message; three steps covering both shapes of emptiness.	Y	OK	
+WIP-SORT-01	KEEP	The initial Days Open descending sort - the report's opening priority order.			SENSIBLE	Two steps.	Y	OK	
+WIP-SORT-02	KEEP	Sort toggle semantics, no third state, and one column at a time.			SENSIBLE	Four steps including the third click.	Y	OK	
+WIP-SORT-03	KEEP	Sort by underlying value versus text, and the Asset sort key following the PO-ruled identifier.			SENSIBLE	Five steps; the note admits the mixed-identifier sort key is unpinned.	Y	OK	
+WIP-SORT-04	KEEP	Sort scope is the active tab only and the Totals row stays out of the sort.			SENSIBLE	Three steps.	Y	OK	
+WIP-SUM-01	KEEP	The seven summary figures, their order and their currency format.			SENSIBLE	Closed list version-pinned to WIP v6 S5-R1 - Rule 42 satisfied.	Y	OK	
+WIP-SUM-02	KEEP	Hero styling plus the Total Earned = Started-Earned + Ready to Invoice identity - a money contract.			SENSIBLE	Three steps with the addition done by hand.	Y	OK	
+WIP-SUM-03	KEEP	The Total Remaining identity.			SENSIBLE	Two steps.	Y	OK	
+WIP-SUM-04	KEEP	Each per-stage figure ties to its own tab's money total - the strip-versus-tab reconciliation, and the strongest case in this area.			SENSIBLE	Three steps, one per tie; the note warns to drop the on-screen filters first.	Y	OK	
+WIP-SUM-05	KEEP	The Estimates figure is the quoted value, muted, and excluded from the two totals - it found a real $0.00 defect.			SENSIBLE	Three steps.	Y	OK	
+WIP-SUM-07	KEEP	Seven verbatim tooltip texts plus hover/focus/tap - one case where a lesser suite would have written fourteen.			SENSIBLE	Word-for-word comparison instructed explicitly.	Y	OK	
+WIP-TAB-01	KEEP	Navigation placement and the verbatim browser page title.			SENSIBLE	Version-pinned closed title string - Rule 42 satisfied.	Y	OK	
+WIP-TAB-02	KEEP	Four tabs, their order, the default tab, and the explicit absence of a status filter.			SENSIBLE	Closed list version-pinned to WIP v6 S1-R2 - Rule 42 satisfied.	Y	OK	
+WIP-TAB-03	MERGE	The per-tab count is already asserted by WIP-TAB-02 (C30452) expected 1 ("each followed by its count in brackets") and the (0) case by WIP-SCOPE-05 (C30460) expected 3.	MG-WIP-TAB-COUNTS	WIP-TAB-02 (C30452)	SENSIBLE	Three steps.	Y	OK	
+WIP-TAB-05	WEAK-KEEP	The deliberate absence of a Trend view; an absence-of-feature case, though it does guard against a premature surface reading the snapshot history.			SENSIBLE	Two steps.	Y	OK	
+WIP-TOT-01	KEEP	A Totals row per tab, its label, and its pinned bold Total cell.			SENSIBLE	Three steps across every tab.	Y	OK	
+WIP-TOT-02	KEEP	The Totals row sums every visible money column and the Inv. Hrs column with its sign and colour.			SENSIBLE	Expected 4 tells the tester plainly that the Inv. Hrs total can only be checked on screen because the download is refused - an honest in-case disclosure.	Y	OK	
+WIP-VIS-01	WEAK-KEEP	All-white table and no zebra striping; cosmetic.			SENSIBLE	Two steps.	Y	OK	
+WIP-VIS-02	WEAK-KEEP	The summary strip renders as one ruled band rather than separate cards; cosmetic.			SENSIBLE	Two steps.	Y	OK	
+WIP-VIS-03	MERGE	The pinned bold Total column is already asserted by WIP-TOT-01 (C30494) expected 2; the survivor gains this case's horizontal-scroll line.	MG-WIP-TOTAL-PINNED	WIP-TOT-01 (C30494)	SENSIBLE	Two steps.	Y	OK	
+WIP-VIS-04	WEAK-KEEP	Totals visible during vertical scroll and the no-second-scrollbar layout rule; cosmetic.			SENSIBLE	Two steps.	Y	OK	
+WIP-VIS-05	WEAK-KEEP	Keyboard focus and Enter on the WO # link. Close to testing the framework - a real anchor passes by construction - but it is exactly the check that catches a div-with-a-click-handler regression, so it is kept and flagged.			SENSIBLE	Three steps, keyboard only.	Y	OK	
+WIP-VIS-06	KEEP	Info icons keyboard-reachable, revealed on focus not hover alone, and exposed to assistive technology - the same pattern that failed live on Sales By Representative.			SENSIBLE	Three steps.	Y	TOOL	Needs a screen reader or accessibility inspector.
+WIP-VIS-07	WEAK-KEEP	Dark-mode legibility across five named elements; cosmetic.			SENSIBLE	Two steps.	Y	OK	VIU HONESTY FLAG: the recorded observation is an inference ("built from the standard Quasar table and badge components"), not an observation - Rule 12. Same shortfall as IV-VIS-05 (C30600).

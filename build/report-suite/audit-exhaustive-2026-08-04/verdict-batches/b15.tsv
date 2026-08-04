@@ -1,0 +1,30 @@
+WIP-COL-06	WEAK-KEEP	Customer column content plus the blank-when-absent branch; per-column display filler with one useful negative.			SENSIBLE	Two steps.	Y	OK	
+WIP-COL-07	KEEP	Days Open floor arithmetic AND the documented "1 days" non-pluralisation - the second half stops a recurring false bug report.			SENSIBLE	Three deliberately-aged work orders; expected 3 marks the grammar as correct.	Y	OK	
+WIP-COL-08	WEAK-KEEP	Last Activity's three renderings; per-column display, though the em-dash branch has some value.			SENSIBLE	Three steps.	Y	OK	
+WIP-EXP-01	KEEP	Export menu and its two verbatim labels, per tab.			SENSIBLE	Three steps.	Y	OK	
+WIP-EXP-02	KEEP	Exports mirror the shown columns, honour every filter, carry the tab's Totals row and the Locations line, with the Branch/Unit heading carve-out.			SENSIBLE	Expected 1's in-line exception (Inv. Hrs cannot be exported on this build) and expected 5's plain naming note are both honest disclosures a cold tester can act on.	Y	OK	
+WIP-EXP-03	KEEP	Export number formats plus the CSV quote-only-when-it-contains-a-comma rule - a real parsing contract.			SENSIBLE	Five steps; step 3 checks the unquoted case too, which is what makes it a rule and not a guess.	Y	OK	
+WIP-EXP-04	WEAK-KEEP	Colour in the PDF and monochrome in the CSV; cosmetic, and the column cannot be exported at all on this build.			SENSIBLE	Two steps.	Y	OK	
+WIP-EXP-05	KEEP	Days Open frozen at generation time, so a one-day difference from the screen is expected - prevents a false off-by-one report.			SENSIBLE	Three steps.	Y	OK	
+WIP-EXP-06	KEEP	Two verbatim file names including the odd "-2-" segment, explicitly marked do-not-file.			SENSIBLE	Closed names version-pinned to WIP v6 S9-R9 - Rule 42 satisfied.	Y	OK	
+WIP-EXP-07	KEEP	The on-screen-versus-export header difference (Asset/Location becoming Unit/Branch), documented as expected.			SENSIBLE	Three steps; expected 4 asks the tester to record rather than assert the unpinned half.	Y	OK	
+WIP-EXP-08	WEAK-KEEP	PDF logo plus the CSV-never negative; a near-duplicate of the logo cases on the other five reports.			SENSIBLE	Two steps.	Y	OK	
+WIP-EXP-09	KEEP	Three verbatim export notifications across success, empty and failure.			SENSIBLE	Three states, three steps; the failure step is hedged.	Y	TOOL	The failure path needs the network cut.
+WIP-EXP-10	KEEP	Over-cap refusal with the PO-ruled suite-wide message, and the WIP spec's silence disclosed.			SENSIBLE	Expected 4 tells the tester plainly that the state is unreachable here and to record it.	Y	OK	
+WIP-FLT-01	KEEP	Advisor filter is on-screen only with no reload - the interaction-model contract for this report's three narrowing filters.			SENSIBLE	Three steps.	Y	OK	
+WIP-FLT-02	KEEP	Customer type-ahead plus the rule that Clear appears only once something is selected.			SENSIBLE	Four steps.	Y	OK	
+WIP-FLT-03	KEEP	Asset filter option text and match fields follow the PO-ruled VIN chain; the build leads with the unit number.			SENSIBLE	Four steps; expected 5 carries the non-vehicle serial-number note.	Y	OK	
+WIP-FLT-04	KEEP	Preset list, the This Week default and the absence of All Time.			SENSIBLE	Two steps on a fresh visit.	Y	OK	
+WIP-FLT-05	KEEP	Created-date filtering, reload on change, and the span cap.			SENSIBLE	MODEL PATTERN: expected 3 states the SPEC value and expected 4 separately tells the tester the build is one day off, already known and with the product owner, and to record what they see. That is how IV-NAV-05, IV-EXP-10 and WIP-COL-02 should have been written.	Y	OK	
+WIP-FLT-06	KEEP	Location filter anatomy, first-visit default, reload on change, the scope indicator, and the PO-ruled hidden filter for a one-location user.			SENSIBLE	Five steps.	Y	OK	
+WIP-FLT-07	KEEP	An inaccessible location never enters scope, with two fallback paths - a tenant-safety contract.			SENSIBLE	Three steps.	Y	OK	
+WIP-FLT-08	KEEP	The three on-screen filters AND together and the strip and Totals recompute from the visible jobs, with the empty state.			SENSIBLE	Three steps, incremental.	Y	OK	
+WIP-FLT-09	KEEP	The Location column model, the never-"Multiple" invariant and the Branch export header.			CONTRADICTION	Expected 1, 4 and 5 assert the SELECTOR-controlled model - "Location is offered in the column-selection control ... The column does not appear or disappear on its own" - which is the opposite of WIP v6 S7-R13/S4-R3 cited in its own refs ("automatic visibility - shown only when more than one location is in scope") and the opposite of the Location cases on all five other reports. Group CG-WIP-LOCATION-COLUMN with WIP-COL-01 and WIP-COL-02. Winner by Rule 33: the spec. Resolution needs the QA lead's ruling because it reverses a previous pass's deliberate choice to follow the build.	Y	OK	
+WIP-PERM-01	KEEP	Permission allow side across the report and its downloads.			SENSIBLE	Three steps; expected 3 says what to do if the build disagrees.	Y	OK	
+WIP-PERM-02	KEEP	Permission block side.			SENSIBLE	Two steps; the note also asks for the direct-URL probe.	Y	OK	
+WIP-PERS-01	KEEP	Column-selection control, its verbatim tooltip, and the Total-cannot-be-hidden invariant.			SENSIBLE	Three steps.	Y	OK	
+WIP-PERS-02	WEAK-KEEP	Order stability under toggling plus the all-tabs-share-one-selection rule; the first half re-asserts WIP-COL-01's fixed order.			SENSIBLE	Three steps; the cross-tab check is the part only this case makes.	Y	OK	
+WIP-PERS-03	KEEP	Persistence of seven settings plus the active tab, and the per-browser (not per-account) scope.			SENSIBLE	Four steps.	Y	OK	
+WIP-PERS-04	KEEP	Defensive restore of a stale saved setting.			SENSIBLE	Two steps.	Y	OK	
+WIP-PLACE-01	KEEP	The status-to-tab mapping and the nowhere-else exclusivity.			SENSIBLE	Four seeded work orders, one per status.	Y	OK	
+WIP-PLACE-03	KEEP	The started-boundary rule - clocked time OR a received part decides which Approved tab a job lands in. The subtlest placement rule in the report.			SENSIBLE	Three deliberately-shaped Approved work orders covering both started kinds and neither.	Y	OK	

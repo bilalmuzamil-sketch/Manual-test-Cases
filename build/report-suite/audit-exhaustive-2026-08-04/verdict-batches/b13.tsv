@@ -1,0 +1,30 @@
+TU-EXP-09	KEEP	Over-cap export refusal with the suite-wide message; the spec is silent so the case carries the engineering-plan cap and says so.			SENSIBLE	Four steps including recovery; the note flags the spec silence as a question for Chris.	Y	OK	
+TU-HRS-02	KEEP	Header order plus the definitions of all three hours columns, the include-unrated-hours rule, and the rounding.			SENSIBLE	Scope-conditioned for Location and version-pinned - Rule 42 satisfied. The build renders Location second rather than leftmost, which is a build deviation, not a case error.	Y	OK	
+TU-HRS-03	KEEP	Utilization % computed from unrounded hours - a real precision contract with a tie example.			SENSIBLE	Step 1 prescribes the hand computation from unrounded values.	Y	OK	
+TU-HRS-04	KEEP	The internal-only 0.0% case, the never-above-100% invariant, and the honest statement that the undefined state is unreachable.			SENSIBLE	Two steps; expected 3 explains why a tester will never see the em-dash.	Y	OK	
+TU-LINK-01	KEEP	Link affordance beyond colour, keyboard focus and activation, and that the Summary row's value is NOT a link - it found a real colour-only-at-rest defect.			SENSIBLE	Three steps.	Y	OK	
+TU-LINK-02	KEEP	The deep link carries the technician and the range into Timesheet Activities in the same tab - a navigation contract with real context to get wrong.			SENSIBLE	Three steps with a non-default range so the carry is provable.	Y	OK	
+TU-LINK-03	KEEP	The headline reconciliation guarantee between two reports, with the scope conditions under which a mismatch IS a defect stated explicitly.			SENSIBLE	The 2026-07-28 repair corrected "to the cent" to "to two decimals" - the compared values are hours.	Y	OK	
+TU-LINK-04	KEEP	The open-clock snapshot exception - it stops a tester filing a defect over two reports loaded a minute apart.			SENSIBLE	Three steps including the reload that proves the snapshot.	Y	OK	
+TU-LINK-05	KEEP	The link deliberately passes no location, so the drill-through can legitimately disagree - the second documented exception.			SENSIBLE	Three steps.	Y	OK	Needs one technician clocked at two locations.
+TU-LINK-06	KEEP	A day row's link narrows to that single day - a distinct link target from the technician row's.			SENSIBLE	Two steps.	Y	OK	
+TU-LOC-01	KEEP	Location filter anatomy, the select-all semantics of "All locations", and per-row identification.			SENSIBLE	Four steps; expected 2 already carves out the one-location case.	Y	OK	
+TU-LOC-02	KEEP	Location changes reload (unlike the technician filter) and hours POOL into one row per technician - the row-model contract of this report.			SENSIBLE	Four steps.	Y	OK	Needs one technician clocked at two locations.
+TU-LOC-03	KEEP	Defensive restore of a saved location selection, including the empty-remainder fallback.			SENSIBLE	Two steps.	Y	OK	Needs an admin to change location access.
+TU-LOC-04	MERGE	Asserts the same fallback-to-active-location behaviour as TU-LOC-03 (C30444) expected 2, reached by a manual deselect-all instead of a stale saved value; a tester does both in one sitting.	MG-TU-LOC-FALLBACK	TU-LOC-03 (C30444)	SENSIBLE	Two steps.	Y	OK	
+TU-LOC-05	KEEP	PO-ruled hidden Location filter for a one-location user; the build refutes it.			SENSIBLE	Two steps.	Y	OK	
+TU-LOC-06	KEEP	Location column position, Multiple on spanning rows, per-day behaviour, the blank Summary cell, selector exclusion, and all three downloads.			FIX-WORDING	Expected 8 is the FIFTH copy of the cosmetic filter-width assertion (with IV-LOC-06, PV-FILT-14, SBC-LOC-04, SBR-LOC-05). Consolidate into one styling case or drop from all five.	Y	OK	
+TU-NAV-01	KEEP	Navigation placement below the four named anchor reports.			SENSIBLE	Four steps.	Y	OK	
+TU-NAV-02	KEEP	Row inclusion: only technicians with clocked time in scope get a row.			SENSIBLE	Two steps over two deliberately-shaped technicians.	Y	OK	
+TU-NAV-03	KEEP	First-visit date and location defaults; the build defaults location to all locations instead.			SENSIBLE	Two steps on a fresh profile.	Y	OK	
+TU-NAV-04	KEEP	Range change reloads plus the 366-day cap.			SENSIBLE	Three steps.	Y	OK	
+TU-NAV-05	WEAK-KEEP	Loading indicator behaviour; a near-duplicate of PV-NAV-03 (C30324) and SBR-STATE-03 (C30300) across reports.			SENSIBLE	Three steps.	Y	OK	
+TU-NAV-06	KEEP	A single report-level time zone governing day grouping, the midnight split and the range boundary - the hardest and highest-value assertion in this report.			SENSIBLE	Three steps over three deliberately-shaped records.	Y	OK	Needs cross-midnight and boundary-straddling records, ideally in two time zones.
+TU-NAV-07	KEEP	Permission negative for the navigation entry.			SENSIBLE	Two steps.	Y	OK	
+TU-NAV-08	KEEP	The no-data message from BOTH triggers plus the hidden Summary row, and the explicit statement that the copy is not differentiated.			SENSIBLE	Verbatim string pinned to TU §7 + spec version - Rule 42 satisfied.	Y	OK	
+TU-SORT-01	KEEP	Default sort, its visual indicator, and the aria-sort exposure.			SENSIBLE	Three steps.	Y	TOOL	Step 3 needs the accessibility tree.
+TU-SORT-02	KEEP	All six columns sortable, the first-click-descending consequence of the default, no third state, client-side application, and the tie order.			SENSIBLE	Expected 1 is precise about why the first Technician click goes descending - exactly the kind of detail a cold tester needs.	Y	OK	
+TU-SORT-03	KEEP	A reload resets the sort and the sort is NOT persisted, unlike the other settings - a deliberate asymmetry worth pinning.			SENSIBLE	Three steps.	Y	OK	
+TU-SORT-04	KEEP	Sort scope: Summary stays pinned and day rows keep date order rather than re-sorting.			SENSIBLE	Three steps.	Y	OK	
+TU-SORT-05	KEEP	Em-dash rows stay at the bottom in BOTH directions and $0.00 sorts as a number - a genuine null-ordering contract.			SENSIBLE	Three steps.	Y	OK	Needs an unrated location, which cannot exist on this org.
+TU-SUM-01	KEEP	Summary row label, bottom pinning, format parity and the no-prefix rule.			SENSIBLE	Three steps.	Y	OK	
