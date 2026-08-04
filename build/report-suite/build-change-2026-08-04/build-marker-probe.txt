@@ -1,0 +1,18 @@
+PROBE RUN AT (UTC): 2026-08-04T11:30:14.688747Z
+
+GET https://sv8582.qa.shopview.com/index.html -> HTTP 200
+  app-version   : v3.4.1-3d03023
+  ETag          : "9875201c58ba78d9851c37f7039c16e1"
+  Last-Modified : Tue, 04 Aug 2026 10:41:58 GMT
+
+PREVIOUS MARKER, from rulings-2026-08-04/RULING-3-FINDINGS.md source-currency block:
+  app-version   : v3.4.1-0ed4433
+  ETag          : "02091e9dc11f187d7739b4efa166ea21"
+  Last-Modified : Mon, 03 Aug 2026 13:40:38 GMT
+
+=> ALL THREE MARKERS CHANGED. A DEPLOY HAPPENED.
+
+POST https://sv8582api.qa.shopview.com/api/quick-login -> HTTP 401
+    {"error":"sso_required","sso_redirect_url":"https:\/\/auth.qa.shopview.com\/login?return_to=https%3A%2F%2Fauth.qa.shopview.com%2Fcallback"}
+GET  https://sv8582api.qa.shopview.com/api/auth/me/fe-permissions -> HTTP 401
+    {"error":"sso_required","sso_redirect_url":"https:\/\/auth.qa.shopview.com\/login?return_to=https%3A%2F%2Fauth.qa.shopview.com%2Fcallback"}

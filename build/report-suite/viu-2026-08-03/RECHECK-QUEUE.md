@@ -1,6 +1,25 @@
 # RE-CHECK QUEUE — Report Suite VIU on the NON-FINAL QA branch `sv8582`
 
-## STATUS: **OPEN — ACCEPTED-AS-FINAL-FOR-NOW (2026-08-04)**
+## 🔴 THE TRIGGER CONDITION IN THIS FILE HAS FIRED — THE BUILD MOVED, 2026-08-04 10:41:58 UTC
+
+> **Read this before anything else in this file.** The marker check below says *"if the value is no
+> longer `v3.4.1-0ed4433`, the build has moved and EVERY row below is due for re-check."*
+> **It is no longer that value.** Read live at **2026-08-04 11:30 UTC**:
+>
+> | Marker | This pass observed | Live now |
+> |---|---|---|
+> | App version | `v3.4.1-0ed4433` | **`v3.4.1-3d03023`** |
+> | `ETag` | `02091e9dc11f187d7739b4efa166ea21` | `9875201c58ba78d9851c37f7039c16e1` |
+> | `Last-Modified` | `Mon, 03 Aug 2026 13:40:38 GMT` | **`Tue, 04 Aug 2026 10:41:58 GMT`** |
+>
+> **EVERY ROW BELOW IS DUE FOR RE-CHECK, and none can be closed today** — the deploy also killed the
+> session (`quick-login` → **HTTP 401 `sso_required`**), so nothing live can be observed until the QA
+> lead supplies fresh cookies. **The 469 provenance lines still say "the build tested on 8/4/2026",
+> which is now ambiguous: two builds existed that day.** Re-stamping is queued, not done.
+>
+> Full write-up and raw probe: `../build-change-2026-08-04/BUILD-MOVED-2026-08-04.md`.
+
+## STATUS: **OPEN — ACCEPTED-AS-FINAL-FOR-NOW (2026-08-04), NOW ALSO BUILD-SUPERSEDED**
 
 > ### THE QA LEAD'S RULING, 2026-08-04 — verbatim
 >
