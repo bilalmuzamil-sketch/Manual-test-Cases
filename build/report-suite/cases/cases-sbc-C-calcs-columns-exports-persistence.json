@@ -18,7 +18,9 @@
    "1. The financial columns appear in this order: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin % — with Subtotal as the rightmost column.",
    "2. Subtotal = Labor Invoiced + Parts Invoiced + Shop Supplies, before tax.",
    "3. Labor Margin = Labor Invoiced minus labor cost; Parts Margin = Parts Invoiced minus parts cost.",
-   "4. Margin = Labor Margin + Parts Margin — it does NOT include any Shop Supplies amount (shop supplies add to Subtotal but add no profit to Margin)."
+   "4. Margin = Labor Margin + Parts Margin — it does NOT include any Shop Supplies amount (shop supplies add to Subtotal but add no profit to Margin).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S7-R6, S11-R1, S4-R12, S20-R19)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8605 (SBC spec v13 2026-07-31 §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1 — §2/S7-R6 CLOSE the financial-column list and its order; Location is an identifier column not a financial one [S4-R12; S20-R19] so it never enters this list)",
@@ -45,10 +47,12 @@
    "1. Margin % shows the row's Margin divided by its Subtotal, times 100, to one decimal with a percent sign — for example, 64.7%.",
    "2. When the row's Subtotal is zero or below, the Margin % cell shows an em dash (—).",
    "3. Margin % is monochrome — no green or red coloring.",
-   "4. The same calculation and format apply to customer rows, asset rows, and invoice rows."
+   "4. The same calculation and format apply to customer rows, asset rows, and invoice rows.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S7-R11, S7-R12, S7-R13, S7-R14)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R11; S7-R12; S7-R13; S7-R14)",
+  "spec_ref": "SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R11; S7-R12; S7-R13; S7-R14)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -73,10 +77,12 @@
    "3. A positive value shows a leading + sign in the application's standard positive (green) color — for example, +1.5.",
    "4. A negative value shows a leading - sign in the standard negative (red) color — for example, -1.5.",
    "5. A zero/break-even value shows 0.0 in the default text color.",
-   "6. The same calculation, label, format, and coloring apply on customer, asset, and invoice rows."
+   "6. The same calculation, label, format, and coloring apply on customer, asset, and invoice rows.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S12-R1, S12-R2, S12-R3, S12-R4, S12-R5, S12-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8610 (specs/sbc-sales-by-customer.md Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6)",
+  "spec_ref": "SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -98,10 +104,12 @@
   "expected": [
    "1. A customer, asset, or invoice with no labor shows 0.0 in the default color — never blank, \"N/A,\" an em dash, or omitted.",
    "2. A value that rounds to 0.0 (for example +0.04) is shown as 0.0 in the default text color (not +0.0 in green).",
-   "3. A negative value shows a minus sign and one decimal — for example, -0.5."
+   "3. A negative value shows a minus sign and one decimal — for example, -0.5.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S12-N1, S12-E1, S12-E2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8610 (specs/sbc-sales-by-customer.md Story 12 S12-N1; S12-E1; S12-E2)",
+  "spec_ref": "SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-N1; S12-E1; S12-E2)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -124,10 +132,12 @@
   "expected": [
    "1. An asset's invoice subtotals sum exactly to that asset's row total.",
    "2. A customer's asset subtotals sum exactly to the customer's row total.",
-   "3. This holds for every financial column, not only Subtotal."
+   "3. This holds for every financial column, not only Subtotal.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R13)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R13)",
+  "spec_ref": "SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R13)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -150,11 +160,13 @@
   "expected": [
    "1. Subtotal is the rightmost column in the table.",
    "2. It stays visible pinned at the right edge while the table scrolls horizontally.",
-   "3. Subtotal values are rendered at font-weight 700 on the header, every customer/asset/invoice row, and the totals row.",
-   "4. This holds regardless of permission, data, filters, or sort — the Subtotal column is always present, pinned, and bold."
+   "3. Subtotal values are shown in bold on the header, on every customer, asset and invoice row, and on the totals row.",
+   "4. Check it still holds after two changes: narrow the date range so fewer rows match, then sort by a different column. Subtotal stays the rightmost column, stays pinned, and stays bold both times.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S11-R1, S11-R2, S11-R3, S11-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8609 (specs/sbc-sales-by-customer.md Story 11 S11-R1; S11-R2; S11-R3; S11-N1)",
+  "spec_ref": "SV-8609 (SBC spec v13 2026-07-31 Story 11 S11-R1; S11-R2; S11-R3; S11-N1)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -176,10 +188,12 @@
   ],
   "expected": [
    "1. The totals row is computed over the full set of customers matching the active filters (date range, Product Type, location, Customer filter).",
-   "2. The totals do not change when you move between pages — they never reflect only the visible page."
+   "2. The totals do not change when you move between pages — they never reflect only the visible page.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R6)",
+  "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6)",
   "viu_status": "VIU-Pending",
   "notes": "Server-side computation is covered by SBC-API-04. BUILD-DELTA: server-computed totals are the 2026-07-16 committed target (spec ahead of code by design). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -204,7 +218,9 @@
    "2. Hovering it shows the tooltip \"Column Selection.\"",
    "3. The panel lists nine toggles, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %.",
    "4. With no saved selection, all nine toggleable columns default to visible.",
-   "5. Note for the tester: there is no Location toggle in this panel. That is correct - the Location column appears by itself when you have more than one location in scope, so it is never something you switch on here."
+   "5. Note for the tester: there is no Location toggle in this panel. That is correct - the Location column appears by itself when you have more than one location in scope, so it is never something you switch on here.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S13-R1, S13-R2, S13-R3, S13-R4, S13-R7, S4-R12, S4-R13)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13])",
@@ -230,10 +246,12 @@
   "expected": [
    "1. Turning a toggle off hides that column's header and all its body cells together; turning it on restores both together.",
    "2. The Customer and Subtotal columns and the chevron control column do NOT appear in the toggle list and are always present.",
-   "3. All nine columns can be hidden — nothing blocks the last toggle; the table still renders the Customer and Subtotal columns and the totals row still shows its Subtotal."
+   "3. All nine columns can be hidden — nothing blocks the last toggle; the table still renders the Customer and Subtotal columns and the totals row still shows its Subtotal.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S13-R5, S13-R6, S13-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8611 (specs/sbc-sales-by-customer.md Story 13 S13-R5; S13-R6; S13-N1)",
+  "spec_ref": "SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R5; S13-R6; S13-N1)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-COLBOUNDS): absorbed SBC-COL-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -281,7 +299,9 @@
   "expected": [
    "1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.",
    "2. The menu items read, in order: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\" - and there is NO \"Print\" item anywhere in the menu.",
-   "3. There are no separate always-visible export buttons - all exports live behind this one menu."
+   "3. There are no separate always-visible export buttons - all exports live behind this one menu.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R1, S14-R2, S15-R1, S15-R2, S20-R16); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + \"Print\" removed per Chris Ward 2026-07-29 [newest-wins])",
@@ -311,10 +331,12 @@
    "2. {range} follows this map: Today → today; Yesterday → yesterday; This Week → this_week; Last Week → last_week; This Month → this_month; Last Month → last_month; This Year → this_year; Last Year → last_year; This Quarter → this_quarter; Last Quarter → last_quarter; Custom → custom.",
    "3. For Custom the literal word \"custom\" is used — the actual start and end dates are not in the file name.",
    "4. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet — not an .xlsx workbook and not a JSON file.",
-   "5. The two PDF downloads follow the same names with a .pdf extension — for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf."
+   "5. The two PDF downloads follow the same names with a .pdf extension — for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R14, S14-R15, S15-R6); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612; SV-8613 (SBC spec v12 2026-07-29 S14-R14; S14-R15; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded)",
+  "spec_ref": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R14; S14-R15; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPNAME): absorbed SBC-EXP-07. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. CHANGED by the SBC spec v12 2026-07-29 S14-R14 / S15-R6 (Summary and Expanded file names). SPEC-WATCH item 3 CLOSED — the Summary/Expanded split is now spec-ratified. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R15 (plain comma-separated .csv; not .xlsx and not JSON) added — already asserted in expected 4. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -341,10 +363,12 @@
    "4. An invoice row leaves Customer and Asset blank and fills Invoice # and Date.",
    "5. Customer names are plain — the \"(N)\" invoice count is not included.",
    "6. Work with no vehicle appears as an asset row named \"Parts Sales\".",
-   "7. The file carries a \"Locations:\" line naming the location or locations the report was scoped to, or \"All locations\" when every location you can access is selected — as a leading line above the column headers."
+   "7. The file carries a \"Locations:\" line naming the location or locations the report was scoped to, or \"All locations\" when every location you can access is selected — as a leading line above the column headers.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R5, S14-R6, S14-R7, S14-R8, S14-R13, S4-R13)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612; SV-8603 (SBC spec v12 2026-07-29 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 + Story 4 S4-R13 — Expanded CSV thirteen columns INCLUDING Asset; per-level blank-cell rules; plus the automatic Location column in every export)",
+  "spec_ref": "SV-8612; SV-8603 (SBC spec v13 2026-07-31 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 + Story 4 S4-R13 — Expanded CSV thirteen columns INCLUDING Asset; per-level blank-cell rules; plus the automatic Location column in every export)",
   "viu_status": "VIU-Pending",
   "notes": "RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): exports split Summary/Expanded and the Expanded View is 'the full Customer -> Asset -> Invoice breakdown', so the old 'no asset layer by design' known-limitation note is STALE and removed. Column order + blank-cell rules kept from the current spec until the changelog lands - reconcile then. Locations: line = all-reports change, same message. RATIFIED + EXTENDED by the SBC spec v12 2026-07-29: S14-R5 gives the exact thirteen-column Expanded order (Asset added), S14-R6 the per-level row shape, S14-R7 the \"Parts Sales\" asset row, S14-R13 the \"Locations:\" line. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R8 (plain customer names; no \"(N)\" count) added — already asserted in expected 5, anchor was missing. STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -367,10 +391,12 @@
    "1. Margin % is a plain number to one decimal with no percent sign (for example, 64.7); it is EMPTY when the row's Subtotal is zero or below.",
    "2. Dates export as mm-dd-yyyy — for example, 05-14-2026.",
    "3. Currency values are plain numbers with no dollar sign and no thousands separators.",
-   "4. The CSV has no color; the signed Inv. Hrs value still conveys direction."
+   "4. The CSV has no color; the signed Inv. Hrs value still conveys direction.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R9, S14-R10, S14-R11, S14-R12, S14-R13)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612 (SBC spec v12 2026-07-29 Story 14 S14-R9; S14-R10; S14-R11; S14-R12; S14-R13)",
+  "spec_ref": "SV-8612 (SBC spec v13 2026-07-31 Story 14 S14-R9; S14-R10; S14-R11; S14-R12; S14-R13)",
   "viu_status": "VIU-Pending",
   "notes": "COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R9 (Margin % plain to one decimal; empty when Subtotal <= 0) added — already asserted in expected 1; the citation was off by one. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -393,10 +419,12 @@
   "expected": [
    "1. Each export contains exactly the customers matching the active filters — the selected customers, within the active date range, Product Type, and location — in the active sort order.",
    "2. When every customer is selected, the export contains the full set of customers under those filters.",
-   "3. The chosen date range and Product Type are reflected in both exports."
+   "3. The chosen date range and Product Type are reflected in both exports.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R7, S3-R7, S4-R10, S14-R3, S15-R3, S18-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7)",
+  "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7)",
   "viu_status": "VIU-Pending",
   "notes": "Server-side generation is covered by SBC-API-05. COMPANION-VIDEO 2026-07-30 (C11, 07:09-08:06): confirmed — 'when I export, only those, the information on the page is going to show up on the exports. Important you see what that toggle does.' Exports carry exactly the page contents under the Customer selection. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -409,7 +437,8 @@
   "type": "Negative",
   "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
-   "1. You are on the report with a large enough data set that a download takes a visible moment."
+   "1. You are on the report with a large enough data set that a download takes a visible moment.",
+   "2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
   ],
   "steps": [
    "1. Choose \"Download Summary (CSV)\" and immediately look at that menu item.",
@@ -419,10 +448,12 @@
   "expected": [
    "1. While a download is in progress, ONLY that menu item shows a loading state and is non-interactive; the other three items are unaffected.",
    "2. If a CSV download fails, an error toast is shown: \"CSV export failed.\" (dismissed by the user).",
-   "3. If a PDF download fails, the toast reads \"PDF export failed.\" — identical behaviour, different wording."
+   "3. If a PDF download fails, the toast reads \"PDF export failed.\" — identical behaviour, different wording.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-E1, S14-N1, S15-E1, S15-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612; SV-8613 (SBC spec v12 2026-07-29 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item; four items)",
+  "spec_ref": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item; four items)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-EXPTOAST): absorbed SBC-EXP-12. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. CHANGED by the SBC spec v12 2026-07-29 (S14-E1/S15-E1 now read \"While a CSV/PDF download is in progress, THAT menu item shows a loading state\"). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -466,10 +497,12 @@
   ],
   "expected": [
    "1. The PDF is A4 landscape using the application's standard font; the page margins look uniform on all sides. (The spec's exact 25px margin needs a PDF inspector — check the number only if you have one; otherwise uniform margins pass.)",
-   "2. The footer has a centered \"Software Powered by ShopView\" label and a right-aligned page number \"Page X of Y.\""
+   "2. The footer has a centered \"Software Powered by ShopView\" label and a right-aligned page number \"Page X of Y.\"",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S15-R5, S15-R6, S15-R7, S15-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8613 (SBC spec v12 2026-07-29 Story 15 S15-R5; S15-R6; S15-R7; S15-R8 — A4 landscape; 25px margins; standard font; footer label and page numbers)",
+  "spec_ref": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R6; S15-R7; S15-R8 — A4 landscape; 25px margins; standard font; footer label and page numbers)",
   "viu_status": "VIU-Pending",
   "notes": "FIX-WORDING repair 2026-07-28 (sense-check): the 25px margin is not measurable by eye — the observable pass criterion is A4 landscape + uniform margins + footer + page numbers; the exact 25px stays as an inspector-only check. STAGE-2B CONSISTENCY REPAIR 2026-07-31: S15-R7 (A4 landscape / 25px margins / standard font) and S15-R8 (footer) added — both already asserted in expected 1 and 2; the anchor sat on the sibling header case SBC-EXP-09 (C30167) instead. Found by the same-requirement-different-surface sweep. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -492,12 +525,14 @@
    "1. The header is two columns: a text block on the left (70% width) and the organization logo on the right (30% width).",
    "2. The text block shows the report title \"Sales By Customer Report\"; the organization name; the date range; and the filter summary line \"Product Type: {value}\" where value is \"Parts & Service,\" \"Parts only,\" or \"Service only.\"",
    "3. The header date range shows start and end in the format \"Mon D, YYYY,\" joined by an em dash - for example, \"May 1, 2026 - May 31, 2026\" - and always shows both dates (every range is bounded).",
-   "4. The header also carries a \"Locations:\" line naming the location(s) the report was scoped to (exact placement within the header is confirmed in the build)."
+   "4. The header also carries a \"Locations:\" line naming the location(s) the report was scoped to (exact placement within the header is confirmed in the build).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S15-R7, S15-R8, S15-R9, S15-R10, S15-R11, S15-R14, S4-R13); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the \"Locations:\" line in every export [Chris Ward 2026-07-29; newest-wins])",
-  "viu_status": "VIU-Pending",
-  "notes": "REVERSED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every PDF now carries a \"Locations:\" line (the old expected #4 asserted location is NOT shown - removed). KNOWN-LIMITATION ENCODING kept: the header uses \"Mon D, YYYY\" while body Date cells use \"Mon DD YYYY\" - intentional per the S15-R9 context note; do not file it as an inconsistency. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. | 2026-08-03 verifier-fix [A/V-3]: Adds SBC S4-R13 (suite export rule) AND S15-R14 (the PDF-header \"Locations:\" line, the anchor that most directly governs this case) so a change to either re-surfaces C30167. Both verified verbatim in the current SBC mirror. RULE 41: Re-verified whole against SBC spec v12 2026-07-29 (spec-current-2026-07-31/Sales-By-Customer-Report-current.md): title, preconditions, steps, expected 1-4, refs, notes. S15-R7 (A4 landscape/25px), S15-R8..R11 and S15-R14 all resolve; expected 1-4 match them. SECOND FINDING: the precise governing anchor S15-R14 (\"The header shows a 'Locations:' line ... (S4-R13)\", L623) was never cited - added alongside S4-R13. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "viu_status": "DEVIATION",
+  "notes": "REVERSED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every PDF now carries a \"Locations:\" line (the old expected #4 asserted location is NOT shown - removed). KNOWN-LIMITATION ENCODING kept: the header uses \"Mon D, YYYY\" while body Date cells use \"Mon DD YYYY\" - intentional per the S15-R9 context note; do not file it as an inconsistency. LOCATIONS-LINE + SCOPE-INDICATOR (all 6 reports) per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): every CSV and PDF export carries a \"Locations:\" line naming the scoped location(s), and each report shows its location scope on screen; permission scoping unchanged. Spec anchor pending Chris's updated spec changelog (expected ~2026-07-30) — exact placement is confirmed in the build at VIU. | 2026-08-03 verifier-fix [A/V-3]: Adds SBC S4-R13 (suite export rule) AND S15-R14 (the PDF-header \"Locations:\" line, the anchor that most directly governs this case) so a change to either re-surfaces C30167. Both verified verbatim in the current SBC mirror. RULE 41: Re-verified whole against SBC spec v12 2026-07-29 (spec-current-2026-07-31/Sales-By-Customer-Report-current.md): title, preconditions, steps, expected 1-4, refs, notes. S15-R7 (A4 landscape/25px), S15-R8..R11 and S15-R14 all resolve; expected 1-4 match them. SECOND FINDING: the precise governing anchor S15-R14 (\"The header shows a 'Locations:' line ... (S4-R13)\", L623) was never cited - added alongside S4-R13. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | STATUS CORRECTED 2026-08-04 (final-push pass): the recorded VIU-Observed-PASS contradicted this case's own captured evidence, so the ledger status is DEVIATION. Local status only — no TestRail field carries it.",
   "api_related": false
  },
  {
@@ -519,10 +554,12 @@
    "1. With an uploaded logo, that logo appears pinned to the top-right, scaled to fit its area without distortion.",
    "2. With no uploaded logo, the bundled ShopView logo is used.",
    "3. When no logo is available at all, the logo column is not rendered and the text column fills the full width.",
-   "4. The logo is embedded in the PDF (renders offline, not loaded from a network address)."
+   "4. The logo is embedded in the PDF (renders offline, not loaded from a network address).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8613 (SBC spec v12 2026-07-29 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18)",
+  "spec_ref": "SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18)",
   "viu_status": "VIU-Pending",
   "notes": "The no-logo-at-all state (step 3 of the fallback) may not be reachable if the bundled logo always exists — record what is observed. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S15-R16 (scales without distortion) S15-R17 (logo fallback order) and S15-R18 (no-logo layout) added - all three already asserted in expected 1-3; the existing S15-R12..R15 citations are kept. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -535,7 +572,8 @@
   "type": "Functional",
   "permissions_required": "the ordinary reports access (Reports section View).",
   "preconditions": [
-   "1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal ≤ 0 row."
+   "1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal ≤ 0 row.",
+   "2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the \"Styles\" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing."
   ],
   "steps": [
    "1. Read the body table's columns and row structure.",
@@ -548,10 +586,12 @@
    "4. Margin % shows an em dash when the row's Subtotal is zero or below.",
    "5. The Subtotal column is bold - header, every row, and the totals row.",
    "6. Inv. Hrs uses the same signs and coloring as on screen, with green rendered as #21ba45 and red as #c10015.",
-   "7. The PDF header title reads \"Sales By Customer Report\" on the Summary and Expanded versions alike — which version you have is told by the file name and the contents, not by a different title."
+   "7. The PDF header title reads \"Sales By Customer Report\" on the Summary and Expanded versions alike — which version you have is told by the file name and the contents, not by a different title.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S15-R5, S15-R13, S15-R19, S15-R20, S15-R21, S15-R22, S15-R23, S15-R24, S4-R13)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8613; SV-8603 (SBC spec v12 2026-07-29 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 + Story 4 S4-R13 — Expanded PDF body = the Expanded columns; plus the automatic Location column)",
+  "spec_ref": "SV-8613; SV-8603 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 + Story 4 S4-R13 — Expanded PDF body = the Expanded columns; plus the automatic Location column)",
   "viu_status": "VIU-Pending",
   "notes": "RESHAPED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) (Summary/Expanded split - this case covers the Expanded View PDF; the Summary PDF's one-row-per-customer shape is covered by SBC-EXP-16). Color extends to the PDF but never the CSV (S3 Key Decision) - unchanged. RATIFIED by the SBC spec v12 2026-07-29 (S15-R5 Expanded body \"one block per customer\", S15-R13 same header title for both versions, S15-R19 column labels match the CSV, S15-R21 Date blank on customer AND asset rows). STAGE-2B CONSISTENCY REPAIR 2026-07-31: the exact column/header list is now scope-conditional: it stays exact with a single location in scope and states where the automatic Location column joins it when more than one location is in scope, so this case and the report's Location-column case can both be true. No ruling reversed; the governing export/location requirement added to refs. Not live-verified: no QA branch exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -628,10 +668,13 @@
    "1. For both CSV and PDF: no file is generated and no download starts.",
    "2. An error toast is shown each time: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).",
    "3. The cap counts customer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.",
-   "4. Below the cap the export succeeds normally."
+   "4. Below the cap the export succeeds normally.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R16, S15-R25, S14-R14, S15-R22); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8612; SV-8613 (SBC spec v12 2026-07-29 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; §7 — Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec)",
+  "spec_ref": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; §7 — Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec)",
   "viu_status": "VIU-Pending",
   "notes": "Server-side enforcement is covered by SBC-API-05. BUILD-DELTA: the 10,000-row cap is the 2026-07-21 spec round — the current build may lack it at VIU. Video P25 (user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): the Print step/expectation was removed with the Print control (spec S16-R6 had capped Print too); title shortened to fit. Q2 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A 'great catch'): ONE message across all six reports — \"This report is too large to export. Narrow the date range or filters, then try again.\" The Sales By Customer spec text still carries the retired \"This export is too large to generate…\" wording; Chris's spec edit is pending. COVERAGE RE-DERIVATION 2026-07-31 (refs only; no tester-facing change): S14-R16 (CSV cap) and S15-R25 (PDF cap) added - the pre-v12 S14-R14/S15-R22 citations are kept so no other requirement loses its anchor. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -652,10 +695,12 @@
   ],
   "expected": [
    "1. The export still downloads — no error and no warning is shown.",
-   "2. The file contains the column headers and a totals row of zeros, with no data rows."
+   "2. The file contains the column headers and a totals row of zeros, with no data rows.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R10)",
+  "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R10)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -677,10 +722,12 @@
   ],
   "expected": [
    "1. The saved view is restored: the date range, the Product Type, the location selection, the Customer filter selection, the sort column and direction, and the visible columns.",
-   "2. On load, the report shows the restored view immediately — the default view is never shown first and then replaced."
+   "2. On load, the report shows the restored view immediately — the default view is never shown first and then replaced.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S6-R1, S6-R2, S6-R4, S2-R8, S3-R8, S4-R11, S10-R9, S13-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8)",
+  "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -704,10 +751,12 @@
    "1. The type-ahead search text is gone (only the resulting customer selection is saved).",
    "2. All rows are collapsed — reloading clears all expansion state.",
    "3. The scroll position is not restored.",
-   "4. This is the specified behavior (expansion is treated as fresh each visit), not a defect."
+   "4. This is the specified behavior (expansion is treated as fresh each visit), not a defect.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S6-R3, S8-R22)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-R3; Story 8 S8-R22)",
+  "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R3; Story 8 S8-R22)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-LIMITATION ENCODING per S6-R3 context note. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -730,10 +779,12 @@
   "expected": [
    "1. The stale saved location is discarded and the location setting uses its default (your active location) instead.",
    "2. No error appears and the report loads normally.",
-   "3. Per the spec, the same discard-to-default applies to an unknown date range, a sort column that no longer exists, or a column set that does not match the current columns."
+   "3. Per the spec, the same discard-to-default applies to an unknown date range, a sort column that no longer exists, or a column set that does not match the current columns.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S6-R5, S6-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-R5; S6-R6)",
+  "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R5; S6-R6)",
   "viu_status": "VIU-Pending",
   "notes": "The other invalid-value classes (unknown range / removed sort column / column-set mismatch) generally require a build change to provoke — verify what is provocable and record the rest as not-provocable-with-reason. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -754,10 +805,12 @@
   ],
   "expected": [
    "1. The other report keeps its own defaults/saved view — the Sales By Customer settings do not leak into it.",
-   "2. Sales By Customer still restores its own saved view."
+   "2. Sales By Customer still restores its own saved view.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S6-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-R7)",
+  "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R7)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -784,10 +837,12 @@
    "3. Location = the single location you are currently working in (your active location) — not all locations.",
    "4. Customer filter = all customers selected (label \"All customers\").",
    "5. Sort = Customer name ascending.",
-   "6. All nine toggleable columns visible."
+   "6. All nine toggleable columns visible.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S6-N1, S2-R5, S4-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4)",
+  "spec_ref": "SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBC-DEFAULTS): absorbed SBC-DATE-02, SBC-LOC-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -809,10 +864,12 @@
   ],
   "expected": [
    "1. The saved view is applied (Last Month) and the link value is ignored.",
-   "2. This is intentional: a shared link restores the sender's range only for a recipient who has no saved range of their own."
+   "2. This is intentional: a shared link restores the sender's range only for a recipient who has no saved range of their own.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R9)",
+  "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R9)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-LIMITATION ENCODING per the S2-R9 context note — do not file the ignored link as a defect. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -834,10 +891,12 @@
   ],
   "expected": [
    "1. Scenario A: the filter restores to the all-customers state and the report shows every present customer — including the customer that appeared since the state was saved.",
-   "2. Scenario B: still-present saved ids are re-selected; a saved id no longer present is dropped (a stale saved id never forces an empty view); a customer that appeared since the set was saved is NOT auto-selected."
+   "2. Scenario B: still-present saved ids are re-selected; a saved id no longer present is dropped (a stale saved id never forces an empty view); a customer that appeared since the set was saved is NOT auto-selected.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R8)",
+  "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R8)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA: the explicit all-customers flag is the 2026-07-21 committed target — the current build may store an id enumeration at VIU. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -862,7 +921,9 @@
    "2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows.",
    "3. Each Expanded View file contains the full Customer, then Asset, then Invoice breakdown.",
    "4. All four files reflect exactly the filtered data shown on screen.",
-   "5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added with the identifying columns, ahead of the money columns (the Summary files have no Date column for it to follow — confirm its exact position in the build)."
+   "5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added with the identifying columns, ahead of the money columns (the Summary files have no Date column for it to follow — confirm its exact position in the build).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8612; SV-8613; SV-8603 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export)",

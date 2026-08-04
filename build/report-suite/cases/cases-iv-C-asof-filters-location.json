@@ -16,10 +16,12 @@
   ],
   "expected": [
    "1. The control offers the standard presets: \"Today\", \"Yesterday\", \"This Week\", \"Last Week\", \"This Month\", \"Last Month\", \"This Year\", \"Last Year\", \"This Quarter\", \"Last Quarter\", and \"Custom\".",
-   "2. \"All Time\" is NOT offered — because the report is valued as of a single date, an All-Time option would be meaningless; its absence is the documented v1 behavior."
+   "2. \"All Time\" is NOT offered — because the report is valued as of a single date, an All-Time option would be meaningless; its absence is the documented v1 behavior.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-R1; §2 Known Limitations (v1))",
+  "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R1; §2 Known Limitations (v1))",
   "viu_status": "VIU-Pending",
   "notes": "DOCUMENTED LIMITATION — DO NOT FILE. The missing \"All Time\" option is a deliberate v1 boundary. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -43,10 +45,13 @@
   ],
   "expected": [
    "1. The report values inventory as of the END of the selected range.",
-   "2. The date control is an \"as of\" anchor, not a created-date filter — narrowing it does not select \"parts added in that range\"; it shows the whole shelf as it stood on that date, so the part stocked before the range still appears."
+   "2. The date control is an \"as of\" anchor, not a created-date filter — narrowing it does not select \"parts added in that range\"; it shows the whole shelf as it stood on that date, so the part stocked before the range still appears.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-R2 (+ context note))",
+  "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R2 (+ context note))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -69,10 +74,12 @@
   ],
   "expected": [
    "1. The report values the current live stock — the values represent today.",
-   "2. The part's row reflects today's changed quantity (not yesterday's snapshot), proving the live fallback is in use."
+   "2. The part's row reflects today's changed quantity (not yesterday's snapshot), proving the live fallback is in use.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-R3; §3 Key Decisions (live fallback for today))",
+  "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R3; §3 Key Decisions (live fallback for today))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -89,16 +96,19 @@
    "2. Nightly snapshots exist for past dates, and a ZZAUTOTEST part's quantity is known to have DIFFERED on a past recorded day from its quantity today."
   ],
   "steps": [
-   "1. Select a Custom range ending on the past recorded day.",
+   "1. Open the date range picker and use the month calendar inside it to set a range ending on the past recorded day, then apply.",
    "2. Find the part and read its quantity and values.",
    "3. Compare them to what the part held on that recorded day (not today)."
   ],
   "expected": [
    "1. The report replays the closest recorded day on or before the end of the selected range.",
-   "2. The part's row shows the quantity and values recorded for that day, not today's live stock."
+   "2. The part's row shows the quantity and values recorded for that day, not today's live stock.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-R4; §2 Relationship to nightly history)",
+  "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R4; §2 Relationship to nightly history)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -121,7 +131,10 @@
   ],
   "expected": [
    "1. When the displayed day is an earlier recorded day than the date asked for, the report shows an \"As of\" indicator naming the day actually shown.",
-   "2. When the displayed day matches the date asked for (the common current-view case), the \"As of\" indicator is not shown — the date control already communicates the date."
+   "2. When the displayed day matches the date asked for (the common current-view case), the \"As of\" indicator is not shown — the date control already communicates the date.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R5, S5-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-R5; S5-R6)",
@@ -149,10 +162,13 @@
   "expected": [
    "1. A Custom range lets the user pick a start and end date, and the report values as of the picked end date.",
    "2. A future end date cannot be chosen — the end date is capped at today.",
-   "3. Changing the date range reloads the report (the loading indicator shows and the rows re-fetch)."
+   "3. Changing the date range reloads the report (the loading indicator shows and the rows re-fetch).",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R7, S5-R8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-R7; S5-R8)",
+  "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R7; S5-R8)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm how the today-cap is enforced (disabled future dates vs an error). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -199,10 +215,12 @@
   ],
   "expected": [
    "1. The report shows the empty state — there is no way to reconstruct inventory value for a date before recording began, because there is no historical backfill.",
-   "2. This forward-capture-only behavior is the documented v1 boundary, not a defect."
+   "2. This forward-capture-only behavior is the documented v1 boundary, not a defect.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-E1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8672 (specs/inventory-value.md Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope)",
+  "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope)",
   "viu_status": "VIU-Pending",
   "notes": "DOCUMENTED LIMITATION — DO NOT FILE. Forward-capture history only; no backfill exists. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -226,10 +244,12 @@
   "expected": [
    "1. The toolbar has a Category filter labeled \"Category\" and a Vendor filter labeled \"Vendor\", each allowing one or more selections.",
    "2. Selecting one or more categories reloads the report to show only parts in the selected categories.",
-   "3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors."
+   "3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S6-R1, S6-R2, S6-R3, S6-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8673 (specs/inventory-value.md Story 6 S6-R1; S6-R2; S6-R3; S6-R4)",
+  "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R1; S6-R2; S6-R3; S6-R4)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: the 2026-07-21 spec change moved these filters server-side (they were \"on-screen only\" in the earlier draft). If the build still narrows only the current page client-side, record it as a build deviation from the current spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -246,18 +266,20 @@
    "2. The unfiltered result set is long enough to need scrolling, and matching parts for a category/vendor/search exist well down the list (beyond the first screenful)."
   ],
   "steps": [
-   "1. Scroll well down the list, then select a Category and check where the list starts and which rows are listed.",
+   "1. Scroll well down the list, then select a Category and check whether the list has jumped back to the top and which rows are now listed.",
    "2. Repeat with a Vendor selection.",
    "3. Repeat with a part search.",
    "4. Also change the date range, the location selection, and the sort — watching the data area each time."
   ],
   "expected": [
-   "1. Each change re-queries the server and returns the first page of the new result set.",
+   "1. Each change re-queries the server and the list jumps back to the top of the new set of rows.",
    "2. The filtering covers the ENTIRE data set — matching parts that were further down the list appear — not just a narrowing of the rows currently on screen.",
-   "3. Every change — date range, location, Category, Vendor, part search, sort — reloads the rows from the server; while loading the standard reports loading indicator shows, and existing rows are replaced only when the new data returns."
+   "3. Every change — date range, location, Category, Vendor, part search, sort — reloads the rows from the server; while loading the standard reports loading indicator shows, and existing rows are replaced only when the new data returns.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S6-R5, S1-R4, S1-R5, S1-R7, S1-R8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8673 (specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8)",
+  "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8)",
   "viu_status": "VIU-Pending",
   "notes": "Every filter on this report is server-side (Story 6 context note) — only the column selection is client-side. VIU-confirm the loading indicator's appearance. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-RELOAD): absorbed IV-NAV-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -281,10 +303,12 @@
   "expected": [
    "1. With no category selected, parts of all categories are shown.",
    "2. With no vendor selected, parts of all vendors are shown.",
-   "3. With the part search empty, no search narrowing is applied."
+   "3. With the part search empty, no search narrowing is applied.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S6-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8673 (specs/inventory-value.md Story 6 S6-R7)",
+  "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R7)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -310,10 +334,12 @@
    "1. The search field is page-local, in the report's own toolbar — it is not the application's global search bar (the same toolbar-search pattern used elsewhere in the reports suite).",
    "2. The report narrows to parts whose part number OR description contains the entered text.",
    "3. Matching is case-insensitive.",
-   "4. The search applies server-side (whole data set, first page returned); a no-match search shows the no-data message."
+   "4. The search applies server-side (whole data set, first page returned); a no-match search shows the no-data message.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S6-R8, S6-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8673 (specs/inventory-value.md Story 6 S6-R8; S6-R5)",
+  "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R8; S6-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Parts Velocity is the spec's named sibling for this same search pattern. VIU-confirm the search field's placeholder/label text (unpinned). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -336,10 +362,12 @@
   ],
   "expected": [
    "1. A part must satisfy EVERY active filter and the search to appear — the Date range, Location, Category, Vendor, and part search combine with AND.",
-   "2. The totals row matches the combined filtered set after each step."
+   "2. The totals row matches the combined filtered set after each step.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S6-R9)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8673 (specs/inventory-value.md Story 6 S6-R9)",
+  "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R9)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -364,7 +392,9 @@
   "expected": [
    "1. The toolbar has a location filter labeled \"Location\" — a multi-select and the rightmost filter — listing the locations the signed-in user has access to, with an \"All locations\" / \"Clear all\" toggle.",
    "2. On a first visit it defaults to the user's currently active location.",
-   "3. With \"All locations\" active you can tell which location each row's stock belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)"
+   "3. With \"All locations\" active you can tell which location each row's stock belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
@@ -391,10 +421,12 @@
   "expected": [
    "1. Each selection change reloads the report scoped to the selected set.",
    "2. With both locations selected, parts from both appear (one row per part per location) and the totals cover both.",
-   "3. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build)."
+   "3. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "spec_ref": "SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
   "viu_status": "VIU-Pending",
   "notes": "SCOPE-INDICATOR added 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now shows which location(s) it's scoped to... on screen') - distinct from the per-row location label (video P10), which stays. Spec anchor pending the updated spec changelog. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -416,10 +448,12 @@
   ],
   "expected": [
    "1. Only the locations the user has access to are offered — a location the user cannot access is never included in the scope.",
-   "2. If the requested location set resolves to none the user can access, the report falls back to the user's currently active location."
+   "2. If the requested location set resolves to none the user can access, the report falls back to the user's currently active location.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R4, S7-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8674 (specs/inventory-value.md Story 7 S7-R4; S7-R5)",
+  "spec_ref": "SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R4; S7-R5)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -441,7 +475,9 @@
   ],
   "expected": [
    "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's stock.",
-   "2. For the user with access to two or more locations the Location filter IS shown."
+   "2. For the user with access to two or more locations the Location filter IS shown.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S7-N1 \"still sees the filter\" note is stale; spec edit pending)",
@@ -493,10 +529,12 @@
   "expected": [
    "1. The earlier recorded day still shows the category and vendor names AS THEY WERE RECORDED that day — a recorded day equals what the live report showed that day, even after the rename/delete.",
    "2. The rename/delete causes no blank Category/Vendor cells and no dropped rows on the recorded day.",
-   "3. The live view (window reaching today) shows the NEW name for the renamed category."
+   "3. The live view (window reaching today) shows the NEW name for the renamed category.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R2, S5-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8678 (specs/inventory-value.md Story 11 S11-R2; Story 5 S5-R4; tech-plan-2026-07-29 B4.1 — names stored with the recorded rows on purpose)",
+  "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R2; Story 5 S5-R4; tech-plan-2026-07-29 B4.1 — names stored with the recorded rows on purpose)",
   "viu_status": "VIU-Pending",
   "notes": "The recorded rows carry their own copies of the category/vendor names (engineering plan B4.1: denormalized on purpose — survive category/vendor rename/delete on as-of replay), so later renames/deletes cannot corrupt history. Derived from S11-R2 (a recorded day equals what the live report showed that day); confirm live. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -529,7 +567,9 @@
    "4. Location IS one of the columns offered in the column-selection control - its visibility follows that toggle, not the location selection.",
    "5. With the Location toggle off the column is not shown and the surrounding columns close up.",
    "6. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.",
-   "7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty), naming each row's own location."
+   "7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty), naming each row's own location.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never \"Multiple\"; S10-R15 = the same column in every export)",

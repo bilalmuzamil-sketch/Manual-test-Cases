@@ -18,10 +18,12 @@
    "1. Rep A occupies exactly one summary row.",
    "2. Reps B and C do not appear — there are no blank placeholder rows, and a reversed invoice never satisfies the contributor gate.",
    "3. The number of contributing invoices shows in parentheses after the rep's name, in a smaller, subdued grey font — e.g., Mary Smith (12) — and is always at least 1.",
-   "4. A staff member with no matching invoice does not appear regardless of toggle state or historical activity."
+   "4. A staff member with no matching invoice does not appear regardless of toggle state or historical activity.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S5-R1, S5-R4, S5-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8623 (specs/sbr-sales-by-representative.md Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions)",
+  "spec_ref": "SV-8623 (SBR spec v15 2026-07-29 Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA (spec ahead of code by design): the change log notes the current handler seeds ALL toggle reps with tiered sort — contributors-only + plain A→Z is the committed target; expect a deviation until the build catches up. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -47,7 +49,9 @@
    "2. On a rep summary row the Date cell holds the chevron control followed by the rep's display name (\"First Last\"); the date value is intentionally blank.",
    "3. The Invoice, Customer, and Status cells are blank on summary rows; the metric cells carry the rep's totals across all matching invoices.",
    "4. Rep summary rows are bold (700) so they read as parent rows; detail rows use the default weight (400) — row type is distinguished by font weight, not background color.",
-   "5. Every row renders exactly the report's column count with blanks in position — a cell with nothing to show is blank, never shifted or wrapped (a drifted row is a defect). The grand Totals indicator is exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row."
+   "5. Every row renders exactly the report's column count with blanks in position — a cell with nothing to show is blank, never shifted or wrapped (a drifted row is a defect). The grand Totals indicator is exempt: the desktop Totals row merges the four leading identifier columns; the mobile bar is not a table row.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S5-R2, S5-R3, S5-R6, S5-R8, S5-R10, S5-N2, S6-R4, S18-R4, S18-R6a, S21-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8623; SV-8638 (SBR spec v15 2026-07-29 Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a + Story 21 S21-R7 — plus the Location column after Status)",
@@ -75,10 +79,12 @@
    "1. Rep A still appears with credit intact; the name is followed by a subdued \"(Inactive)\" tag — e.g., Mary Smith (Inactive) (12) — in the same muted grey as the count.",
    "2. The tag is display-only: metrics, A→Z position, and expandability are unchanged; a rep whose toggle is on shows no tag.",
    "3. For a deleted staff record, the display name and sort position come from the denormalized rep-name snapshot on the rep's most recent matching invoice (by invoice date, ties by invoice number), so the row still shows a historical name and sorts correctly.",
-   "4. The grand Totals stay reconciled to the period's invoices — no revenue silently disappears."
+   "4. The grand Totals stay reconciled to the period's invoices — no revenue silently disappears.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S5-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8623 (specs/sbr-sales-by-representative.md Story 5 S5-R9; §3 Key Decisions; §4 Snapshot)",
+  "spec_ref": "SV-8623 (SBR spec v15 2026-07-29 Story 5 S5-R9; §3 Key Decisions; §4 Snapshot)",
   "viu_status": "VIU-Pending",
   "notes": "Deleting a staff record may not be self-serviceable — attempt seeding first (Standing Rule 14); if truly not producible, verify the toggle-off path fully and mark the deleted-record leg Blocked-Env with reason. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -126,10 +132,12 @@
   "expected": [
    "1. The rep's matching invoices appear as detail rows beneath the summary row; a brief row-level loading indicator shows while they load on the first expand.",
    "2. Each detail row shows, left to right: the invoice's date, the invoice number, the customer name, the payment status badge, and the per-invoice values for Inv. Hrs and the money columns.",
-   "3. A rep with a single matching invoice can still be expanded — one detail row is shown."
+   "3. A rep with a single matching invoice can still be expanded — one detail row is shown.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S6-R1, S6-R2, S6-R3, S6-E1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R1; S6-R2; S6-R3; S6-E1)",
+  "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R1; S6-R2; S6-R3; S6-E1)",
   "viu_status": "VIU-Pending",
   "notes": "The lazy server-fetch itself is covered by SBR-API-01. Per-rep detail page size is a tech-plan tuning value, not fixed by the spec — record what is observed. BUILD-DELTA: lazy drill-down is the 2026-07-16 committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -152,10 +160,12 @@
   "expected": [
    "1. With at least one rep collapsed the header chevron shows the \"expand\" glyph.",
    "2. Clicking expands every visible rep in one action; with every rep expanded the glyph switches to \"collapse.\"",
-   "3. A second activation collapses them all."
+   "3. A second activation collapses them all.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S6-R5, S6-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R5; S6-R6)",
+  "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R5; S6-R6)",
   "viu_status": "VIU-Pending",
   "notes": "The bound on how many reps expand-all opens at once is a tech-plan tuning value (S6-R2 context note) — record the observed behavior. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -176,10 +186,12 @@
   ],
   "expected": [
    "1. Every invoice appears under exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never under two rows.",
-   "2. The sum of all (N) counts equals the number of matching invoices."
+   "2. The sum of all (N) counts equals the number of matching invoices.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S6-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R7; §3 Key Decisions)",
+  "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R7; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA: the shipped schema stores separate parts-side and service-side reps; the single-rep model is the committed target — a double-credited invoice at VIU is the known schema delta, record it as a deviation against spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -202,10 +214,12 @@
   "expected": [
    "1. Expanded state is preserved across filter and sort changes within the same session.",
    "2. When a filter change removes a rep, the rep and its expansion state are gone; when a later change brings the rep back, the row renders collapsed (it does not auto-re-expand).",
-   "3. A full page reload resets all expansion."
+   "3. A full page reload resets all expansion.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S6-R8, S6-N1, S23-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R8; S6-N1; Story 23 S23-R2)",
+  "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R8; S6-N1; Story 23 S23-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Contrast with SBC, which collapses on every re-fetch — SBR preserves expansion within the session per its own spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -228,10 +242,12 @@
    "1. Detail rows order by invoice date descending (newest first).",
    "2. Date ties break by invoice number ascending by the numeric portion after the P/S prefix — numeric, not alphabetical, so S999 precedes S1000.",
    "3. If both the date and the numeric portion tie (e.g., P100 and S100 same day), P (Parts) sorts before S (Service).",
-   "4. This order is independent of the rep-row column sort (which reorders summary rows only)."
+   "4. This order is independent of the rep-row column sort (which reorders summary rows only).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S6-R9, S11-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R9; Story 11 S11-R2)",
+  "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R9; Story 11 S11-R2)",
   "viu_status": "VIU-Pending",
   "notes": "The same order applies in the Expanded View PDF per-rep tables and the Expanded CSV (S14-R6/S14-R16) — cross-check during SBR-EXP-04/09. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -253,13 +269,15 @@
    "3. Look at a badge's vertical position in its cell, read the Status cell on a rep summary row, and check the status is readable from the badge text alone."
   ],
   "expected": [
-   "1. The Status column sits between the Customer column and the Inv. Hrs column.",
+   "1. The Status column sits immediately after the Customer column. With a single location in scope the next column to its right is Inv. Hrs; when more than one location is in scope the automatic Location column is inserted immediately after Status, so Inv. Hrs then follows Location.",
    "2. Every detail row renders a small colored badge reading \"Paid,\" \"Partially Paid,\" or \"Unpaid\" — badge rendering is unconditional on detail rows.",
    "3. The mapping is: paid → Paid; overpaid → Paid; prepaid with zero balance → Paid; prepaid with a balance owed → Partially Paid; partially_paid → Partially Paid; unpaid → Unpaid.",
-   "4. Badges are vertically centered in their cells; on rep summary rows the Status cell is blank; the badge's text is the accessible label — status is never conveyed by color alone."
+   "4. Badges are vertically centered in their cells; on rep summary rows the Status cell is blank; the badge's text is the accessible label — status is never conveyed by color alone.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S8-R1, S8-R2, S8-R4, S8-R5, S8-R6, S8-N1, S18-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8625 (specs/sbr-sales-by-representative.md Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6)",
+  "spec_ref": "SV-8625 (SBR spec v15 2026-07-29 Story 8 S8-R1; S8-R2; S8-R4; S8-R5; S8-R6; S8-N1; §3 payment-status mapping; Story 18 S18-R6)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-BADGE): absorbed SBR-BADGE-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. TECH-PLAN NOTE 2026-07-30: include the deposit-covered prepaid invoice from SBR-STAT-02's seeding — that badge reading \"Partially Paid\" instead of \"Paid\" is the known bug-prone failure (engineering plan B6.2). AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -281,10 +299,12 @@
   "expected": [
    "1. Paid = dark teal text on light teal; Partially Paid = dark orange on light orange; Unpaid = dark red on light red.",
    "2. The badges use the same canonical payment-status color tokens as the invoice list, consistent app-wide.",
-   "3. The treatment stays legible and consistent in both light and dark mode."
+   "3. The treatment stays legible and consistent in both light and dark mode.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S8-R3, S18-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8625 (specs/sbr-sales-by-representative.md Story 8 S8-R3; Story 18 S18-R8)",
+  "spec_ref": "SV-8625 (SBR spec v15 2026-07-29 Story 8 S8-R3; Story 18 S18-R8)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -331,10 +351,12 @@
   ],
   "expected": [
    "1. The column heading reads \"Inv. Hrs\" (verbatim, including the period after \"Inv\").",
-   "2. The value equals the billed labor hours minus the technician clocked hours, rounded half-up to one decimal."
+   "2. The value equals the billed labor hours minus the technician clocked hours, rounded half-up to one decimal.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S9-R1, S9-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8626 (specs/sbr-sales-by-representative.md Story 9 S9-R1; S9-R2; §3)",
+  "spec_ref": "SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-R1; S9-R2; §3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -360,10 +382,12 @@
    "1. Positive values show a leading + in green (e.g., +1.5); negative values a leading - in red (e.g., -1.5); zero/break-even shows 0.0 in the default text color.",
    "2. The same calculation, label, format, and coloring apply to rep summary rows, invoice detail rows, and the totals row.",
    "3. The rep-summary/totals value equals round(sum of unrounded per-invoice deltas).",
-   "4. A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green; negative values always use an explicit minus and one decimal (e.g., -0.5)."
+   "4. A value that rounds to 0.0 (e.g., +0.04) shows 0.0 in the default color — not +0.0 in green; negative values always use an explicit minus and one decimal (e.g., -0.5).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S9-R3, S9-R4, S9-R5, S9-R6, S9-E1, S9-E2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8626 (specs/sbr-sales-by-representative.md Story 9 S9-R3; S9-R4; S9-R5; S9-R6; S9-E1; S9-E2)",
+  "spec_ref": "SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-R3; S9-R4; S9-R5; S9-R6; S9-E1; S9-E2)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-CALCZERO): absorbed SBR-CALC-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -384,10 +408,12 @@
   ],
   "expected": [
    "1. The invoice with neither billed labor hours nor clocked hours shows Inv. Hrs 0.0 in the default color — never blank, \"N/A,\" or \"—\".",
-   "2. The invoice with clocked hours but no billed labor line shows the resulting NEGATIVE delta in red (e.g., -3.0) — the worked-but-unbilled signal is not suppressed to 0.0."
+   "2. The invoice with clocked hours but no billed labor line shows the resulting NEGATIVE delta in red (e.g., -3.0) — the worked-but-unbilled signal is not suppressed to 0.0.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S9-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8626 (specs/sbr-sales-by-representative.md Story 9 S9-N1)",
+  "spec_ref": "SV-8626 (SBR spec v15 2026-07-29 Story 9 S9-N1)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -434,10 +460,12 @@
   "expected": [
    "1. Margin % = Margin ÷ Subtotal × 100, to one decimal with a trailing % — e.g., 45.2%; a negative renders -8.4% (leading minus, no parentheses, no + on positives).",
    "2. It renders \"—\" when Subtotal ≤ 0 — never \"0.0%\" or a divide-by-zero result.",
-   "3. On every rolled-up row (rep summary rows and every totals row) Margin % is RECOMPUTED from that row-set's total Margin and total Subtotal — never the sum or average of the child percentages."
+   "3. On every rolled-up row (rep summary rows and every totals row) Margin % is RECOMPUTED from that row-set's total Margin and total Subtotal — never the sum or average of the child percentages.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S10-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8627 (specs/sbr-sales-by-representative.md §3 Margin % definition; Story 10 S10-R5)",
+  "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 §3 Margin % definition; Story 10 S10-R5)",
   "viu_status": "VIU-Pending",
   "notes": "In the CSVs Margin % is a plain number with no % (covered by SBR-EXP-10). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -460,7 +488,9 @@
    "1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
    "2. Subtotal = Labor Invoiced + Parts Invoiced, BEFORE tax.",
    "3. Labor Margin = Labor Invoiced − labor cost; Parts Margin = Parts Invoiced − parts cost; Margin = Labor Margin + Parts Margin.",
-   "4. The same values appear everywhere the numbers show (screen, and later the exports)."
+   "4. The same values appear everywhere the numbers show (screen, and later the exports).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S5-R2, S21-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8623; SV-8582 (SBR spec v15 2026-07-29 S5-R2 = the authoritative 12-column left-to-right order; §3 definitions; §4 Terminology — S5-R2 CLOSES the money-label list; Location sits after Status [S21-R7] and is not a money column)",
@@ -484,7 +514,9 @@
   ],
   "expected": [
    "1. Negative dollar values render in accounting-convention parentheses — ($1,234.56) — on screen, across every money column (Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Subtotal).",
-   "2. Inv. Hrs (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses."
+   "2. Inv. Hrs (a signed time value) and Margin % (a signed percentage) are excluded — they use a leading minus, not parentheses.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (§3 Key Decisions accounting parentheses)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8593 (SBR spec §3 Key Decisions accounting parentheses — owned by the shared A5 report-shell formatter module: verbatim 'accounting-parens negatives')",
@@ -508,7 +540,9 @@
   "expected": [
    "1. All displayed values round half-up (away from zero) at their stated precision — money to cents; Inv. Hrs and Margin % to one decimal.",
    "2. Rolled-up values are computed from UNROUNDED components and then rounded, so a totals cell may differ from the eye-summed displayed rows by one unit in the last decimal.",
-   "3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect."
+   "3. That one-unit difference is EXPECTED behavior per the spec — it must NOT be filed as a calculation defect.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (§3 half)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8582 (SBR spec §3 half-up rounding rule + round of unrounded rollups; CROSS-CUTTING display rule with no single owning story)",
@@ -538,10 +572,12 @@
    "2. On screen it is pinned to the right edge and stays visible during horizontal scroll on every rep summary and invoice detail row.",
    "3. Subtotal values are bold across the header, every summary row, every detail row, and the grand Totals indicator.",
    "4. The pinned column matches the row's background color (white on body rows) — not a contrasting strip.",
-   "5. The column-header row stays stuck to the top during vertical scroll; the Subtotal header cell stays visible in BOTH axes (top while scrolling down, pinned right while scrolling sideways)."
+   "5. The column-header row stays stuck to the top during vertical scroll; the Subtotal header cell stays visible in BOTH axes (top while scrolling down, pinned right while scrolling sideways).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R6, S10-N1, S18-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5)",
+  "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R6; S10-N1; Story 18 S18-R7.5)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-SBR-STICKY): absorbed SBR-TOT-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -567,10 +603,12 @@
    "2. Its first cell is a single merged cell spanning the four leading identifier columns (Date, Invoice, Customer, Status) labeled \"Totals,\" followed by a cell per metric column and its own pinned Subtotal cell.",
    "3. The grand totals cover the FULL filtered result set — every matching non-reversed invoice across every rep, independent of which reps are expanded or loaded.",
    "4. Money uses accounting parentheses for negatives; Margin % is recomputed; values are round(sum of unrounded).",
-   "5. The indicator is present whenever at least one summary row exists, and hidden during loading and in the empty state."
+   "5. The indicator is present whenever at least one summary row exists, and hidden during loading and in the empty state.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S10-R5, S10-N1, S16-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R5; S10-N1; Story 16 S16-R4)",
+  "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5; S10-N1; Story 16 S16-R4)",
   "viu_status": "VIU-Pending",
   "notes": "Server-side computation is covered by SBR-API-03. BUILD-DELTA: server-computed grand totals are the 2026-07-16 committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -594,7 +632,9 @@
    "1. A simplified external totals bar sits directly below the table, outside its horizontal scroll container, showing \"Totals\" on the left and the grand Subtotal on the right (no other metrics).",
    "2. It does not scroll horizontally — it is always fully visible across.",
    "3. During vertical page scroll it sits after the table in normal flow (not pinned to the viewport bottom).",
-   "4. It uses the white card surface with a thin top border."
+   "4. It uses the white card surface with a thin top border.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S10-R5, S17-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5 (mobile branch) + Story 17 S17-R4 — S10-R5 CLOSES it in the spec's own words: \"Totals\" left and the grand Subtotal right \"(no other metrics)\")",
@@ -643,10 +683,12 @@
   "expected": [
    "1. Each financial column responds to a header click and reorders the rep rows.",
    "2. The identifier columns (Date, Invoice, Customer, Status) do not respond to header clicks.",
-   "3. The Date header carries the expand/collapse-all chevron, not a sort affordance."
+   "3. The Date header carries the expand/collapse-all chevron, not a sort affordance.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S11-R1, S11-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R1; S11-R6)",
+  "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R1; S11-R6)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -666,10 +708,12 @@
   ],
   "expected": [
    "1. Rows render in A→Z order by display name, case-insensitive.",
-   "2. There are NO active/inactive tiers — an \"(Inactive)\" rep sorts by name among the others, not grouped separately."
+   "2. There are NO active/inactive tiers — an \"(Inactive)\" rep sorts by name among the others, not grouped separately.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S11-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R4; §3 Key Decisions)",
+  "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R4; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA: the change log notes the current handler uses a tiered sort — plain A→Z is the committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -694,10 +738,12 @@
    "1. The first click sorts Subtotal ASCENDING and shows an ascending direction indicator on the header.",
    "2. The second click toggles to DESCENDING.",
    "3. There is no third \"cleared\" state — the third click returns to ascending.",
-   "4. Via the column headers there is no way back to A→Z; the A→Z default shows only when a session carries no valid saved financial sort."
+   "4. Via the column headers there is no way back to A→Z; the A→Z default shows only when a session carries no valid saved financial sort.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S11-R5, S23-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R5; Story 23 S23-R5)",
+  "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R5; Story 23 S23-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Server-side sorting is covered by SBR-API-02. KNOWN-LIMITATION ENCODING: no header path back to A→Z is by design. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -719,10 +765,12 @@
   "expected": [
    "1. Only the rep summary rows reorder.",
    "2. Invoice detail rows stay grouped under their parent rep, keeping their own newest-first order.",
-   "3. The Unassigned row stays pinned to the top regardless of sort."
+   "3. The Unassigned row stays pinned to the top regardless of sort.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S11-R2, S22-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R2; Story 22 S22-R4)",
+  "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R2; Story 22 S22-R4)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -743,10 +791,12 @@
   ],
   "expected": [
    "1. Reps with equal values in the sorted column retain the default A→Z order between them.",
-   "2. A Margin % cell rendered \"—\" (undefined) sorts as zero."
+   "2. A Margin % cell rendered \"—\" (undefined) sorts as zero.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S11-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R7)",
+  "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R7)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -791,10 +841,12 @@
   "expected": [
    "1. The worked-hours side updates — Inv. Hrs (hours invoiced minus hours worked) reflects the edited clock time after the reload.",
    "2. The billed SELL values (Labor, Parts, Subtotal) stay unchanged — a clock edit never rewrites what was billed.",
-   "3. The figures tied to worked time move together consistently (Margin uses the labor cost behind the worked hours, so it may change too) — nothing is left stale."
+   "3. The figures tied to worked time move together consistently (Margin uses the labor cost behind the worked hours, so it may change too) — nothing is left stale.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S9-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8626 (specs/sbr-sales-by-representative.md §3 (hours worked = technician clocked hours recorded against that work order); Story 9 S9-R2; tech-plan-2026-07-29 Phase 4 FR-F7 clock-change rebuild)",
+  "spec_ref": "SV-8626 (SBR spec v15 2026-07-29 §3 (hours worked = technician clocked hours recorded against that work order); Story 9 S9-R2; tech-plan-2026-07-29 Phase 4 FR-F7 clock-change rebuild)",
   "viu_status": "VIU-Pending",
   "notes": "The spec defines hours worked as the WO's clocked hours but does not say what happens when a clock record changes AFTER invoicing; the engineering plan (Phase 4 FR-F7 + drift correction #3) rebuilds the worked-hours/labor-cost side on any NON-VOID invoice while leaving the billed sell values untouched. Confirm live. The same stored values feed Sales By Customer, so a failure would show there too — one case guards both (kept single on purpose, Rule 28). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false

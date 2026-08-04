@@ -15,7 +15,9 @@
   ],
   "expected": [
    "1. The ⋯ overflow button sits leftmost in the toolbar's action cluster.",
-   "2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV)."
+   "2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R1 — S6-R1 CLOSES it in the spec's own words (\"an export menu with two items ... Download (PDF) and Download (CSV)\"); so the closed list IS the requirement)",
@@ -41,7 +43,9 @@
   "expected": [
    "1. Both files contain only the rows matching the date range, type, category, vendor, bin, location, and search active at export time - not a full unfiltered dump.",
    "2. The exported rows match what the on-screen grid was showing.",
-   "3. Each file (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build)."
+   "3. Each file (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R2, S6-R11); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R2; S6-R11; §3 Key Decisions — both exports reflect the filters and search active at export time; S6-R11 = the \"Locations:\" line in both exports [Chris Ward 2026-07-29; newest-wins])",
@@ -67,10 +71,12 @@
   "expected": [
    "1. Both exports contain ONLY the currently enabled columns - the hidden ones are absent.",
    "2. Columns appear in the CANONICAL order (the fixed on-screen order) - the re-enabled Units Returned sits right after Units Sold, NOT appended at the end.",
-   "3. The export mirrors the visible grid."
+   "3. The export mirrors the visible grid.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R3, S4-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R3; S4-R4)",
+  "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R3; S4-R4)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN BUILD-DELTA (stated in the spec): the current export builds its column order from the user's visible-columns array, appending a re-enabled column at the END instead of its canonical slot - authored to spec; expect a deviation until dev aligns it. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -94,10 +100,12 @@
   "expected": [
    "1. The default Demand-descending order is exported when the user has not chosen another column.",
    "2. Every column's sort is honored in the export - including Min and Max.",
-   "3. The export renders the EXACT server order, including null placement (nulls first on ascending, last on descending) - the export and the on-screen grid match; there is no on-screen-vs-export null-sorting difference."
+   "3. The export renders the EXACT server order, including null placement (nulls first on ascending, last on descending) - the export and the on-screen grid match; there is no on-screen-vs-export null-sorting difference.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R4, S3-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R4; S3-R3)",
+  "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R4; S3-R3)",
   "viu_status": "VIU-Pending",
   "notes": "Depends on the server-side sort model (2026-07-16 spec round; spec ahead of code by design) - record the build behavior at VIU. CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.) | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -122,10 +130,12 @@
    "2. The PDF is formatted for A3 landscape and titled Parts Velocity.",
    "3. Description, Category, and Vendor are truncated to 18 characters in the PDF.",
    "4. Part # is NOT truncated.",
-   "5. The shop logo shows at the top of the PDF when one is set. With no uploaded logo the PDF shows the bundled ShopView default logo instead of a blank space, the same as the other reports in this suite. The CSV never includes a logo."
+   "5. The shop logo shows at the top of the PDF when one is set. With no uploaded logo the PDF shows the bundled ShopView default logo instead of a blank space, the same as the other reports in this suite. The CSV never includes a logo.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
   "viu_status": "VIU-Pending",
   "notes": "LOGO ADDED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now ensures the same \"logo\" treatment') - the PV spec had NO logo mention, so this report genuinely lacked coverage; the other five reports already carry logo cases (SBC-EXP-10 C30168, SBR-EXP-06 C30281, TU-EXP-06 C30439, WIP-EXP-08 C30517, IV-EXP-04 C30590). Exact treatment pending the updated spec changelog. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 125 chars; meaning unchanged; awaiting push authorization. AUDIT 2026-07-31 (Rule 9/Dimension 2): the tester-facing line used to read \"fallback behaviour when no logo is set is confirmed in the build\", which is not something a tester can check. The PV spec v4 is SILENT on the no-logo fallback; the wording now follows the SHARED organisation-logo resolver documented in the TU spec S7-R11/S7-N2 (\"the shared organization-logo resolver ... otherwise the bundled ShopView default logo\") and the 2026-07-29 changelog (\"org logo -> bundled ShopView default -> none\"). VIU-confirm live on the Parts Velocity PDF; if PV behaves differently that is a spec-silence finding for Chris Ward, not a bug. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -148,10 +158,12 @@
   "expected": [
    "1. The file downloads as velocity-report.csv.",
    "2. The CSV carries the FULL, untruncated Description / Category / Vendor values (unlike the PDF's 18-character cut).",
-   "3. Last Sale is a raw integer in the CSV (e.g. 42) - the 'N days' wording is PDF/on-screen only."
+   "3. Last Sale is a raw integer in the CSV (e.g. 42) - the 'N days' wording is PDF/on-screen only.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6, S6-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R5; S6-R6; S6-R8)",
+  "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6; S6-R8)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -169,16 +181,16 @@
   ],
   "steps": [
    "1. Download the CSV and locate the null cells.",
-   "2. Download the PDF and locate the same cells.",
-   "3. In the PDF, read a non-null Last Sale value."
+   "2. Download the PDF and locate the same cells."
   ],
   "expected": [
    "1. A null value renders as — (em-dash) in BOTH the CSV and the PDF, in every nullable field: Unit Cost, Sell Price, Margin %, On Hand, Turns / Yr, Last Sale, Min, Max.",
    "2. Revenue, Margin, and the count metrics are never null in the exports either ($0.00 / 0.00 / 0).",
-   "3. In the PDF, Last Sale renders as 'N days' (e.g. 42 days)."
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R7, S6-R8, S3-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R7; S6-R8; S3-R9)",
+  "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R7; S6-R8; S3-R9)",
   "viu_status": "VIU-Pending",
   "notes": "CATALOGUE RENAME now RATIFIED by the Parts Velocity spec v4 2026-07-29 — S2-R1 Type filter options are \"Both, Inventory, Special Order\" and S3-R5 the Type column displays \"Inventory\" or \"Special Order\". (SPEC-WATCH item 7 CLOSED.) | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -202,10 +214,12 @@
    "2. In the PDF, the text columns (Part #, Description, Category, Vendor) are left-aligned.",
    "3. In the PDF, EVERY numeric and money column is right-aligned.",
    "4. This is a deliberate export-only treatment - the on-screen table is all-left-aligned; the difference is documented, not a defect.",
-   "5. The CSV is plain data — the alignment assertions apply to the PDF only; how a spreadsheet displays the CSV is not part of this test."
+   "5. The CSV is plain data — the alignment assertions apply to the PDF only; how a spreadsheet displays the CSV is not part of this test.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R10, S3-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8646 (specs/parts-velocity.md S6-R10; S3-R8)",
+  "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R10; S3-R8)",
   "viu_status": "VIU-Pending",
   "notes": "Expected-behavior case (deliberate screen-vs-export difference). RENAME CONFIRMED 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins): the exported Type VALUES read 'Special Order' (rename covers 'the export' too); the centered-alignment rule is unaffected - check the exported value text at VIU. FIX-WORDING repair 2026-07-28 (sense-check): alignment assertions scoped to the PDF - a CSV carries no alignment. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -254,7 +268,9 @@
   "expected": [
    "1. On success the toasts read exactly \"Velocity report exported (CSV)\" / \"Velocity report exported (PDF)\" and auto-fade — UPPERCASE (CSV)/(PDF).",
    "2. An error toast is shown on failure; when the server provides a message, that server message is shown.",
-   "3. Otherwise the failure toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug)."
+   "3. Otherwise the failure toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R9, S6-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R9; S6-N1; §7 (casing note) — S6-R9/S6-N1 CLOSE the toast strings verbatim including the shipped UPPERCASE-success / lowercase-failure casing mix; so the exact strings ARE the requirement)",
@@ -279,10 +295,12 @@
   "expected": [
    "1. White card surfaces (toolbar + table cells) sit on the standard soft blue-grey page background (the application's two-tone report theme).",
    "2. There is NO card border-radius - the table runs edge to edge.",
-   "3. The layout matches the application's other reports."
+   "3. The layout matches the application's other reports.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S7-R1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8647 (specs/parts-velocity.md S7-R1; §2)",
+  "spec_ref": "SV-8647 (PV spec v4 2026-07-29 S7-R1; §2)",
   "viu_status": "VIU-Pending",
   "notes": "Story 7 is the normative visual spec for this report as built (S7-R7). COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact). AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -308,10 +326,12 @@
    "2. There is a thin dividing line between the toolbar and the column-header band, and the header band and the data cells are white.",
    "3. The first and last columns sit clear of the left and right edges of the table - the text is not touching the edge.",
    "4. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.",
-   "5. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this - 32px/24px toolbar padding, a 1px header border, 2rem edge padding - are design-token values the design and engineering team check with their own tooling, not by hand.)"
+   "5. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this - 32px/24px toolbar padding, a 1px header border, 2rem edge padding - are design-token values the design and engineering team check with their own tooling, not by hand.)",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S7-R2, S7-R3, S7-R4, S7-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8647 (specs/parts-velocity.md S7-R2; S7-R3; S7-R4; S7-R5)",
+  "spec_ref": "SV-8647 (PV spec v4 2026-07-29 S7-R2; S7-R3; S7-R4; S7-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Pixel-level assertions - verify with devtools computed styles at VIU. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -334,7 +354,9 @@
   "expected": [
    "1. The report supports dark mode: page background, toolbar, and cells use their dark-mode equivalents.",
    "2. In BOTH light mode and dark mode the grey ⓘ info icon is clearly visible against the cell behind it - you can see it at a glance without leaning in, and it does not disappear into the background.",
-   "3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes. Only report it if the icon is hard to see. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)"
+   "3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes. Only report it if the icon is hard to see. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S7-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8647 (PV spec v4 2026-07-29 S7-R6 — dark-mode support + the grey info icon's colour token at ≥ 3:1 against the cell background in both modes; the ratio is a design-token property so the manual check is by-eye legibility)",
@@ -351,7 +373,8 @@
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
   "preconditions": [
    "1. You are on the Parts Velocity report with more rows in the result set than one page holds.",
-   "2. Browser devtools (network tab) are open to observe the backend requests."
+   "2. Browser devtools (network tab) are open to observe the backend requests.",
+   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
   "steps": [
    "1. Load the report and observe the backend data request and its response size.",
@@ -360,10 +383,12 @@
   "expected": [
    "1. The backend returns ONE page of rows at a time - the full result set is not shipped to the browser.",
    "2. Paging is resolved on the server: moving to another page issues a fresh backend request for that page.",
-   "3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations)."
+   "3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md §2 (server-paginated); S2-R10)",
+  "spec_ref": "SV-8642 (PV spec v4 2026-07-29 §2 (server-paginated); S2-R10)",
   "viu_status": "VIU-Pending",
   "notes": "Generic backend-behavior case (no REST contract in the spec - do NOT assert endpoint paths; observe whatever request the build makes and record it at VIU). KNOWN-DELTA WATCH: the server-side model is the committed build target from 2026-07-16 - spec ahead of current code by design. P30 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): pagination STANDS on every page — video 45:05 Stefan: 'we are definitely having pagination on every page, so with the current code base, we are basically forcing the user to scroll.' Chris wants to revisit infinite-scroll/lazy-load LATER (45:42 'let's flag that... revisit pagination, infinite, scroll, and load') — pagination-behavior details (page size, control style) = VIU-confirm. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -376,7 +401,8 @@
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
   "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded and the browser devtools network tab open."
+   "1. You are on the Parts Velocity report with data loaded and the browser devtools network tab open.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
   "steps": [
    "1. Change each of these in turn and watch the network traffic: Type, date range, Bin, Location, Category, Vendor, and the toolbar search.",
@@ -385,10 +411,12 @@
   "expected": [
    "1. EACH change (Type, date range, Bin, Location, Category, Vendor, search) triggers a fresh server-side data load.",
    "2. There is no client-side-only narrowing - every filter or search change re-queries the server.",
-   "3. Each change returns the FIRST page of the new result set."
+   "3. Each change returns the FIRST page of the new result set.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8642 (specs/parts-velocity.md S2-R10)",
+  "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R10)",
   "viu_status": "VIU-Pending",
   "notes": "Generic backend-behavior case - no endpoint paths asserted (none exist in the spec); record the observed requests at VIU. Server-side model is the committed build target (2026-07-16) - possible delta vs the current build. P30 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): pagination stands on every page (video 45:05); details = VIU-confirm. TITLE TRIMMED 2026-07-29 (user-authorized): was 100 chars, over the no more than 80 concise-title rule; meaning unchanged. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -401,7 +429,8 @@
   "type": "Functional",
   "permissions_required": "Manager or Office User role (Reports section access) plus the Inventory Reports → View permission (S1-R4).",
   "preconditions": [
-   "1. You are on the Parts Velocity report with data loaded (including rows with null values in a sortable column) and the network tab open."
+   "1. You are on the Parts Velocity report with data loaded (including rows with null values in a sortable column) and the network tab open.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
   "steps": [
    "1. Click a column header and watch the network traffic and the returned order.",
@@ -411,10 +440,12 @@
   "expected": [
    "1. Each header click re-fetches the data from the server, ordered by the chosen column and direction, returning the first page of the re-sorted result set.",
    "2. Null values are placed FIRST on ascending and LAST on descending - as a server sort semantic, so the same order appears on screen and in the exports.",
-   "3. Ties keep a stable order (no explicit secondary key)."
+   "3. Ties keep a stable order (no explicit secondary key).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8643 (specs/parts-velocity.md S3-R3)",
+  "spec_ref": "SV-8643 (PV spec v4 2026-07-29 S3-R3)",
   "viu_status": "VIU-Pending",
   "notes": "Generic backend-behavior case - no endpoint paths asserted. Server-side sorting is the committed build target (2026-07-16) - possible delta vs the current build. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -428,7 +459,8 @@
   "permissions_required": "A role WITH the ordinary reports access; no other reports-related permission turned on.",
   "preconditions": [
    "1. You are signed in as a user whose role has the ordinary reports access turned on and no other reports-related permission turned on.",
-   "2. Browser devtools (network tab) are open."
+   "2. Browser devtools (network tab) are open.",
+   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
   "steps": [
    "1. Open the Parts Velocity report and observe the backend data request's outcome.",
@@ -438,7 +470,9 @@
    "1. The back end returns the report data - the request is not refused.",
    "2. The back end returns the export file - the request is not refused.",
    "3. Both requests succeed with only the ordinary reports access turned on - nothing else had to be enabled.",
-   "4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the system it must not change these results - for now it is hidden from the screen and enforces nothing. A per-report permission added on purpose in a later release is a planned change, not a bug, and this test will be updated first."
+   "4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the system it must not change these results - for now it is hidden from the screen and enforces nothing. A per-report permission added on purpose in a later release is a planned change, not a bug, and this test will be updated first.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S1-R4, S1-N2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec S1-R4; S1-N2 - RESCOPED 2026-08-03; same driver as C30327: Chris Ward Q2=A \"single Reports permission\" + \"they can exist and not do anything\"; QA lead \"ONE permission FOR NOW\")",
@@ -466,10 +500,13 @@
   "expected": [
    "1. Neither the CSV nor the PDF is produced — no download starts.",
    "2. A clear too-large message appears telling the user to narrow the date range or filters, then try again — the standard wording is \"This report is too large to export. Narrow the date range or filters, then try again.\"",
-   "3. After narrowing below the cap, the downloads work again."
+   "3. After narrowing below the cap, the downloads work again.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (Story 6 exports)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8646 (specs/parts-velocity.md Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21)",
+  "spec_ref": "SV-8646 (PV spec v4 2026-07-29 Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21)",
   "viu_status": "VIU-Pending",
   "notes": "SPEC-SILENT: the Parts Velocity spec page carries no export-cap text; the cap comes from the engineering plan's suite-wide 10,000-row export guard (locked by Chris 2026-07-21; the plan's own PV test list includes the over-cap toast). Flagged to Chris to ratify into the spec (Questions-for-Chris-dev Q3). VIU-confirm the behavior, the exact message text, and the actual cap value. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -484,7 +521,8 @@
   "preconditions": [
    "1. The test company is connected to QuickBooks.",
    "2. The part-of-a-unit sale has been made and invoiced — a ZZAUTOTEST part sold in a quantity such as 2.5, at a known unit cost such as $10.00.",
-   "3. You can sign in to that QuickBooks company and look at its journal entries."
+   "3. You can sign in to that QuickBooks company and look at its journal entries.",
+   "4. This test cannot be run without a company whose QuickBooks account is connected, because it checks what was sent to QuickBooks. If no QuickBooks-connected company is available, mark this test Blocked and say so — do not guess the result."
   ],
   "steps": [
    "1. Write down the quantity sold and the part's unit cost, and work out the correct amount by hand (2.5 x $10.00 = $25.00).",
@@ -497,7 +535,9 @@
    "1. The QuickBooks amount is exactly the hand-worked figure to the cent — $25.00 for 2.5 at $10.00.",
    "2. It is NOT a whole-unit amount such as $20.00 or $30.00, and it is NOT a bigger, multiplied figure.",
    "3. The quantity behind the QuickBooks amount matches the Units Sold value on the report (2.50) — the two systems agree.",
-   "4. No second or correcting journal entry is created to patch up a wrong amount."
+   "4. No second or correcting journal entry is created to patch up a wrong amount.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and this point is not covered by any of the six report specifications — it comes from the engineering technical plan."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8589 (verbatim Tests: 'QB journal amount exact from fractional movement'; Goal: 'QB journal-entry sync multiplies these into dollar amounts'; tech-plan-2026-07-29 Phase 0 / PR-1 D2 - no report spec covers QuickBooks)",
@@ -526,7 +566,10 @@
    "1. The CSV downloads successfully at that size.",
    "2. The PDF also downloads successfully. If instead nothing downloads and a message appears saying something went wrong, that is a failure — record roughly how many rows were on screen.",
    "3. The small PDF downloads successfully, which shows the failure depends on size.",
-   "4. Note for the tester: a very large view is refused politely with \"This report is too large to export. Narrow the date range or filters, then try again.\" — that message is expected and is NOT this failure. This test is about a medium-sized view where the CSV works but the PDF errors."
+   "4. Note for the tester: a very large view is refused politely with \"This report is too large to export. Narrow the date range or filters, then try again.\" — that message is expected and is NOT this failure. This test is about a medium-sized view where the CSV works but the PDF errors.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (Story 6 exports)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 Story 6 exports — the spec is silent on a renderer size limit; tech-plan-2026-07-29 A3/FR-F4 covers only the ten-thousand-row export cap)",

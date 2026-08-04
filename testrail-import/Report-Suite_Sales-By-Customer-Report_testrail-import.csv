@@ -7,25 +7,33 @@ Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
 2. Clicking it opens the Sales By Customer report in the main content area.
 3. The page title reads ""Sales By Customer.""
 4. The browser tab title reads ""Sales By Customer - Report | ShopView"".
-5. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.",SV-8600 (SBC spec S1-R1; S1-R3; S1-R4 — Confluence 577634305 v-2026-07-31; Performance-group placement per the PRD video 2026-07-30; access = ordinary reports permission per Chris Ward 2026-07-31 Q4=A + SV-8598 sheet Q1=A),,
+5. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-R1, S1-R3, S1-R4).",SV-8600 (SBC spec S1-R1; S1-R3; S1-R4 — Confluence 577634305 v-2026-07-31; Performance-group placement per the PRD video 2026-07-30; access = ordinary reports permission per Chris Ward 2026-07-31 Q4=A + SV-8598 sheet Q1=A),,
 Ordinary reports access opens Sales By Customer — no separate permission,SBC — Permissions,Functional,Critical,"1. A test user exists whose role has the ordinary reports access (the standard ""can this person see reports"" setting) and NO report-specific permission (create a ZZAUTOTEST custom role if needed; restore afterwards).
 2. You are signed in as that user.","1. Open the Reports area.
 2. Click ""Sales By Customer"" in the left-side navigation.","1. The ""Sales By Customer"" entry is visible in the Reports navigation.
 2. The report opens and shows its data.
 3. Ordinary reports access alone is enough — this report does NOT need a permission of its own.
-4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.","SV-8600 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — now reads ""gated by ordinary reports access; not by a report-specific permission""; Chris Ward Q1=A; built atom hidden-and-inert per his ruling; SV-8780 Ready to Fix)",,
+4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-R2).","SV-8600 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — now reads ""gated by ordinary reports access; not by a report-specific permission""; Chris Ward Q1=A; built atom hidden-and-inert per his ruling; SV-8780 Ready to Fix)",,
 "Without reports access, Sales By Customer is not listed and cannot open",SBC — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have reports access (use/create a ZZAUTOTEST role; restore afterwards).
 2. You know the report's direct page address (copy it from a permitted session first).
 3. You are signed in as the unpermitted user.","1. Open the Reports area and look through the left-side navigation.
 2. Paste the report's direct page address into the browser and try to open it.","1. ""Sales By Customer"" does not appear in the Reports navigation.
 2. Opening the report by direct link does not show the report (the application blocks it with its standard access-denied handling).
 3. The gate is the ordinary reports access — there is no separate Sales By Customer permission to remove.
-4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.","SV-8600 (SBC spec S1-N1 — Confluence 577634305 v-2026-07-31 — now reads ""A user without reports access does not see the report in navigation and cannot open it by direct link""; Chris Ward Q1=A; SV-8780 Ready to Fix)",,
+4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-N1).","SV-8600 (SBC spec S1-N1 — Confluence 577634305 v-2026-07-31 — now reads ""A user without reports access does not see the report in navigation and cannot open it by direct link""; Chris Ward Q1=A; SV-8780 Ready to Fix)",,
 Opening an invoice you lack permission for shows access-denied; back works,SBC — Permissions,Negative,Medium,"1. You are signed in as a user who can view the report but lacks permission to open the underlying invoice destination.
 2. The report shows at least one customer; you have expanded down to an invoice detail row.","1. Click the invoice number link on a detail row.
 2. Look at the destination page.
 3. Press the browser back button.","1. The destination page shows the application's standard access-denied state.
-2. Pressing back returns you to the Sales By Customer report.",SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-N2),,
+2. Pressing back returns you to the Sales By Customer report.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S9-N2).",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-N2),,
 Location access enforced: no data from a location the user cannot access,SBC — Permissions,Negative,High,"1. The organization has at least two locations, each with invoices in the chosen date range (seed ZZAUTOTEST data if needed).
 2. A non-administrator test user is assigned to only ONE of the locations.
 3. An administrator account is also available.","1. Sign in as the administrator, open the report, and open the location filter — note the locations listed.
@@ -34,26 +42,36 @@ Location access enforced: no data from a location the user cannot access,SBC —
 4. Check the report data.","1. The administrator's filter lists every location in the organization.
 2. The non-administrator's filter lists only the locations assigned to them.
 3. A requested location the user does not have access to is ignored — the report does NOT widen to the whole organization.
-4. The report data never includes invoices from a location the user does not have access to.",SV-8603 (specs/sbc-sales-by-customer.md Story 4 S4-R7; S4-R8; S4-R9; S4-N1),,
+4. The report data never includes invoices from a location the user does not have access to.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R7, S4-R8, S4-R9, S4-N1).",SV-8603 (SBC spec v13 2026-07-31 Story 4 S4-R7; S4-R8; S4-R9; S4-N1),,
 No Sales By Customer permission is offered in the role permission editor,SBC — Permissions,Negative,Critical,"1. You are signed in as an administrator who can edit roles and their permissions.
 2. Create a throwaway custom role named starting with ZZAUTOTEST to work in, and delete it when you have finished.","1. Open the area where a role's permissions are switched on and off.
 2. Read through the reports-related permissions from top to bottom.
 3. Search the permission list for ""Sales By Customer"".","1. There is NO ""Sales By Customer"" permission anywhere in the list for an administrator to switch on or off.
 2. The only reports permission offered is the ordinary reports access, and that one covers all six of the new reports.
-3. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.","SV-8598 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — ""there is no dedicated Sales By Customer View permission""; Chris Ward Q1=A + his ruling to hide an already-built permission from the front end; SV-8780)",,
+3. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-R2).","SV-8598 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — ""there is no dedicated Sales By Customer View permission""; Chris Ward Q1=A + his ruling to hide an already-built permission from the front end; SV-8780)",,
 Date range picker offers eleven options in the specified order,SBC — Date Range Filter,Functional,High,1. You are on the Sales By Customer report.,"1. Find the date range picker in the report toolbar.
 2. Open it and read the options from top to bottom.","1. A date range picker is visible in the report toolbar.
 2. It offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
-3. There is no ""All Time"" option.",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes),,
+3. There is no ""All Time"" option.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R1, S2-R2).",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes),,
 Custom range opens a start/end date dialog and cannot exceed a 366-day span,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Open the date range picker. A month calendar is shown inside it, which is how a custom start and end date are picked on this build.
 2. Pick a start and end date less than 366 days apart on that calendar and apply.
-3. Open the picker again and try to pick a start and end date MORE than 366 days apart.","1. Choosing ""Custom"" opens a date-picker dialog for a start and end date.
+3. Open the picker again and try to pick a start and end date MORE than 366 days apart.","1. The date range picker shows a month calendar inside it — that is how a custom start and end date are chosen on this build. There is no separate ""Custom"" item to choose.
 2. A range of 366 days or fewer applies normally.
-3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.",SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R3; S2-R4; S2-N2),,
+3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R3, S2-R4, S2-N2).",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R3; S2-R4; S2-N2),,
 Changing the date range writes it into the page link for sharing,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Change the date range (for example to ""Last Month"").
 2. Look at the browser's address bar.
 3. Copy the page link, open it in a fresh browser profile with no saved view for this report, and check the date range.","1. The chosen date range value is written into the page link.
-2. Opening that link in a browser with no saved view for this report restores the sender's date range.",SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R6; S2-R9 (context)),,
+2. Opening that link in a browser with no saved view for this report restores the sender's date range.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R6, S2-R9).",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R6; S2-R9 (context)),,
 Product Type: three options with Parts & Service default; S/P prefix filtering,SBC — Product Type Filter,Functional,High,"1. You are on the Sales By Customer report with no saved view (first visit or cleared browser storage), so the first-load default can be read.
 2. The date range contains at least one service invoice (number starting with S) and one parts invoice (number starting with P) — seed ZZAUTOTEST data if needed.","1. Find the ""Product Type"" dropdown in the report toolbar; read its value before touching it, then open it and read the options in order.
 2. Set Product Type to ""Service only,"" expand a customer down to invoice rows, and read the invoice numbers.
@@ -62,7 +80,9 @@ Product Type: three options with Parts & Service default; S/P prefix filtering,S
 2. Under ""Service only,"" every invoice shown has a number starting with S; parts invoices are gone and all counts/totals reflect only S invoices.
 3. Under ""Parts only,"" every invoice shown has a number starting with P; service invoices are gone and all counts/totals reflect only P invoices.
 4. With ""Parts & Service"" selected, no product-type filter is applied — both S and P invoices are included and counts/totals cover both.
-5. The whole invoice is classified by its number prefix — there is no per-line-item split.","SV-8602 (SBC spec v13 2026-07-31 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (""exactly three options ... in this order""); so the closed list IS the requirement)",,
+5. The whole invoice is classified by its number prefix — there is no per-line-item split.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6).","SV-8602 (SBC spec v13 2026-07-31 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (""exactly three options ... in this order""); so the closed list IS the requirement)",,
 "Location filter: rightmost, lists accessible locations, All locations on top",SBC — Location Filter,Functional,High,1. You are on the Sales By Customer report as a user with access to two or more locations.,"1. Look at the report toolbar's filters from left to right.
 2. Open the location filter and read its options.
 3. Click the ""All locations"" option, then click it again.
@@ -70,7 +90,9 @@ Product Type: three options with Parts & Service default; S/P prefix filtering,S
 2. It lists the locations the signed-in user has access to.
 3. An ""All locations"" option is pinned to the top.
 4. Activating ""All locations"" selects every listed location at once; activating it again clears them all at once.
-5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data.",SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A; applied suite-wide),,
+5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R1, S4-R2, S4-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A; applied suite-wide),,
 Selecting locations scopes the data; All locations covers every accessible one,SBC — Location Filter,Functional,High,"1. At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed).
 2. You are on the Sales By Customer report.","1. Select only location A in the location filter and note the customers/totals.
 2. Select locations A and B together and note the change.
@@ -79,7 +101,9 @@ Selecting locations scopes the data; All locations covers every accessible one,S
 2. Adding a second location adds that location's invoices to the rows and totals.
 3. With ""All locations,"" the report includes data from every location the user has access to.
 4. With ""All locations"" active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)
-5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",SV-8603 (SBC spec Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins],,
+5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R5, S4-R6); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8603 (SBC spec Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins],,
 The Location column shows only with more than one location; Multiple on totals,SBC — Location Filter,Functional,High,"1. You are on the Sales By Customer report as a user with access to two or more locations.
 2. At least one customer has invoices at two different locations, and at least one asset has invoices at two different locations.","1. Select two or more locations in the Location filter and read the column headers.
 2. Read the Location cell on a customer row whose invoices are all at one location.
@@ -87,33 +111,39 @@ The Location column shows only with more than one location; Multiple on totals,S
 4. Expand to an invoice row and read its Location cell.
 5. Open the column selector and look for Location in the list.
 6. Narrow the Location filter to a single location and read the headers again.
-7. Change the Location selection between one location, several, and ""All locations"", watching the filter control's width.
-8. With more than one location still selected, download all four files from the download menu (Summary and Expanded View, PDF and CSV) and read the columns in each one.","1. With more than one location in scope a Location column is shown, positioned immediately after the Date column.
+7. With more than one location still selected, download all four files from the download menu (Summary and Expanded View, PDF and CSV) and read the columns in each one.","1. With more than one location in scope a Location column is shown, positioned immediately after the Date column.
 2. A customer or asset row whose invoices are all at one location shows that location's name.
 3. A customer or asset row whose invoices come from more than one location shows ""Multiple"".
 4. An invoice row always shows its own exact location — never ""Multiple"".
 5. Location is NOT offered in the column selector — it appears and disappears on its own, following the location scope.
 6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.
-7. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.
-8. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at one location, ""Multiple"" on a row that aggregates more than one, and the invoice's own location on an invoice row. (Exactly where the column sits inside each file is confirmed in the build.)","SV-8603; SV-8612; SV-8613 (SBC spec v12 2026-07-29 S4-R12; S4-R12a; S4-R13; S20-R19 — per-row Location column with automatic visibility; ""Multiple"" on aggregating rows; S4-R13 = the same column in every export)",,
+7. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at one location, ""Multiple"" on a row that aggregates more than one, and the invoice's own location on an invoice row. (Exactly where the column sits inside each file is confirmed in the build.)
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R12, S4-R12a, S4-R13, S20-R19).","SV-8603; SV-8612; SV-8613 (SBC spec v13 2026-07-31 S4-R12; S4-R12a; S4-R13; S20-R19 — per-row Location column with automatic visibility; ""Multiple"" on aggregating rows; S4-R13 = the same column in every export)",,
 "Customer filter sits between Product Type and Location, carries a search icon",SBC — Customer Filter,Functional,High,1. You are on the Sales By Customer report with at least one customer in the current results.,"1. Look at the toolbar filters from left to right.
 2. Open the Customer filter without typing anything.
 3. Read what the dropdown shows before any query is typed.","1. A Customer filter labeled ""Customer"" sits between the Product Type filter and the Location filter.
 2. The control carries a search (magnifier) icon marking it as searchable.
 3. Before typing, the dropdown shows the pinned all/clear control at the top and a ""Search customers…"" hint; individual customers are revealed by typing.
-4. The hint yields to the typed query while you are searching.",SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R1; S18-R2),,
+4. The hint yields to the typed query while you are searching.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R1, S18-R2).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R1; S18-R2),,
 Typing in the Customer filter lists matching customers by contains match,SBC — Customer Filter,Functional,High,"1. You are on the Sales By Customer report.
 2. At least two customers with distinct names have invoices in the current date range/Product Type/location (seed ZZAUTOTEST customers if needed).","1. Open the Customer filter and type a fragment from the MIDDLE of a customer's name, in different letter case (for example type ""corp"" for ""Acme Corp"").
 2. Read the list of customers shown.
 3. Click one listed customer to select it and look at its row in the dropdown.","1. As you type, customers whose names contain the typed text appear in the list — matching is case-insensitive and matches anywhere in the name (a ""contains"" match, not starts-with).
 2. The list is scoped to the active date range, Product Type, and location.
-3. A selected customer is shown with a checkmark.",SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R2),,
+3. A selected customer is shown with a checkmark.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R2).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2),,
 Pinned control toggles All customers and Clear all; clearing shows empty state,SBC — Customer Filter,Functional,High,1. You are on the Sales By Customer report with several customers in the current results.,"1. Open the Customer filter while it is in the all-customers state and read the pinned control at the top of the dropdown.
 2. Activate it (""Clear all"") and read the table body, the totals row, and the filter's collapsed label.
 3. Read the pinned control again and activate it once more.","1. In the all-customers state the pinned control reads ""Clear all""; activating it clears the selection to an empty set.
 2. When the filter is NOT in the all-customers state the pinned control reads ""All customers""; activating it puts the filter back in the all-customers state.
 3. The control is pinned to the top of the dropdown in both states.
-4. After ""Clear all"": the report shows the empty-state message ""No sales data found for the selected filters."", the totals row shows zeros, and the collapsed label reads ""None.""",SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R3; S18-N1; S17-E1),,
+4. After ""Clear all"": the report shows the empty-state message ""No sales data found for the selected filters."", the totals row shows zeros, and the collapsed label reads ""None.""
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R3, S18-N1, S17-E1).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R3; S18-N1; S17-E1),,
 First load starts in the all-customers state and the report shows every customer,SBC — Customer Filter,Functional,High,"1. Your browser has no saved view for this report.
 2. Several customers have invoices in the default date range.
 3. A customer exists that has invoices ONLY in a wider date range than the current one (seed a ZZAUTOTEST invoice dated last month if needed).","1. Open the Sales By Customer report.
@@ -122,35 +152,48 @@ First load starts in the all-customers state and the report shows every customer
 4. Widen the date range so the customer with no matching invoices now has one; re-check the label and the rows.","1. The Customer filter's collapsed label reads ""All customers.""
 2. The report shows every customer matching the other active filters.
 3. The all-customers state is an explicit state — while it is active, any customer that appears later (new data) is included automatically.
-4. After the filter change the filter stays in the all-customers state (label still ""All customers"") and every customer matching the new filters is included — including the newly-appearing one, with no manual re-selection.",SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R4; S18-R5; S18-R9; S18-E1),,
+4. After the filter change the filter stays in the all-customers state (label still ""All customers"") and every customer matching the new filters is included — including the newly-appearing one, with no manual re-selection.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R4, S18-R5, S18-R9, S18-E1).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R4; S18-R5; S18-R9; S18-E1),,
 "Collapsed label reads None, the customer's name, or N selected",SBC — Customer Filter,Functional,Medium,1. You are on the Sales By Customer report with at least three customers in the current results.,"1. Open the Customer filter and use ""Clear all"" to empty the selection; read the collapsed label.
 2. Select exactly one customer; read the collapsed label.
 3. Select a second and third customer; read the collapsed label.
 4. Start typing a search query in the filter field and watch the field text, then clear the query or click away.","1. With an empty selection the collapsed label reads ""None.""
 2. With exactly one customer selected the label shows that customer's name.
 3. With more than one selected the label reads ""N selected"" where N is the number of selected customers (for example ""3 selected"").
-4. While typing, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus.",SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R5),,
+4. While typing, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R5).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5),,
 Changing the customer selection narrows the table and refreshes the totals,SBC — Customer Filter,Functional,Critical,1. You are on the Sales By Customer report with at least three customers in the current results.,"1. Note the customers and the totals row values.
 2. Open the Customer filter, clear all, and select exactly two customers.
 3. Read the table rows and the totals row.","1. The report shows only the two selected customers.
 2. The table refreshes as a fresh first page of results.
-3. The totals row updates to cover only the selected customers' matching invoices.",SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R5; S18-R11),,
+3. The totals row updates to cover only the selected customers' matching invoices.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R5, S18-R11).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5; S18-R11),,
 A subset customer selection reconciles on a filter change; kept if present,SBC — Customer Filter,Functional,Medium,"1. You are on the report with three customers A, B, C where: A has invoices in both this month and last month; B has invoices only in this month; C has invoices only in last month (seed ZZAUTOTEST data as needed).
 2. Date range is This Month; you have selected exactly customers A and B in the Customer filter.","1. Change the date range to Last Month.
 2. Read the table rows and the Customer filter selection.","1. Customer A (still present in the new results) stays selected and is shown.
 2. Customer B (no longer present) is dropped from the selection and not shown; it must be re-selected to appear if it later returns.
 3. Customer C (newly present) is NOT auto-selected and is not shown.
-4. The Customer filter selection itself is not cleared by the date change.",SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R9; S18-E1),,
+4. The Customer filter selection itself is not cleared by the date change.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R9, S18-E1).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R9; S18-E1),,
 Each customer gets one summary row with its invoice count in parentheses,SBC — Tree & Rows,Functional,Critical,"1. You are on the Sales By Customer report.
 2. A customer has a known number of matching invoices in the current date range (seed ZZAUTOTEST data so the count is predictable).","1. Find that customer's row at the top level of the table.
 2. Read the text at the start of the row.
 3. Narrow the date range so fewer of that customer's invoices match, and re-read the count.","1. The customer occupies exactly one summary row at the top level of the table.
 2. The customer's name is shown at the start of the row, followed by the number of contributing invoices in parentheses — for example, Acme Corp (5).
-3. The count is rendered in color #616161 at font-weight 600, the same font size as the name.
-4. The count reflects the active date range, Product Type, and location — it drops when the range is narrowed; it is not a lifetime count.",SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R1; S7-R2; S7-R3; S7-R4; S7-R5),,
+3. The count is the same size as the customer name next to it, in a slightly softer grey, and is easy to read.
+4. The count reflects the active date range, Product Type, and location — it drops when the range is narrowed; it is not a lifetime count.
+5. Note for the tester: you do not need to measure anything and you do not need any tool for item 3. Just say whether the count looks the right size and is easy to read, and only report it if it looks obviously wrong. (The exact colour and weight behind this are design-token values the design and engineering team check with their own tooling.)
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S7-R1, S7-R2, S7-R3, S7-R4, S7-R5).",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R1; S7-R2; S7-R3; S7-R4; S7-R5),,
 A customer with no matching invoices in the current view is not shown,SBC — Tree & Rows,Negative,High,"1. A customer exists whose invoices all fall OUTSIDE the current date range (seed if needed).
 2. You are on the Sales By Customer report.","1. Set a date range that contains none of that customer's invoices.
-2. Look for the customer in the table.",1. The customer is not shown — there are no zero-value placeholder rows.,SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-N1),,
+2. Look for the customer in the table.","1. The customer is not shown — there are no zero-value placeholder rows.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S7-N1).",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-N1),,
 Expanding a customer reveals asset rows; chevrons toggle and are independent,SBC — Tree & Rows,Functional,Critical,"1. A customer in the current view has invoices on at least two different vehicles (seed ZZAUTOTEST work orders on two assets if needed).
 2. At least two customers with assets are in the current view.","1. Click the chevron control on customer A's summary row and read the rows that appear beneath it.
 2. Expand one of customer A's assets, then expand customer B.
@@ -160,147 +203,208 @@ Expanding a customer reveals asset rows; chevrons toggle and are independent,SBC
 4. The Date cell is blank on asset rows.
 5. Asset rows are indented one level under the customer.
 6. Each chevron toggles back to collapsed on a second activation.
-7. Collapsing customer A does not affect customer B's expansion; each asset's expansion state is likewise independent.",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R1; S8-R2; S8-R5; S8-R5a; S8-R5b; S8-R5c; S8-R15),,
+7. Collapsing customer A does not affect customer B's expansion; each asset's expansion state is likewise independent.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R1, S8-R2, S8-R5, S8-R5a, S8-R5b, S8-R5c, S8-R15).",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R1; S8-R2; S8-R5; S8-R5a; S8-R5b; S8-R5c; S8-R15),,
 Expanding an asset reveals its invoice rows with number link and date,SBC — Tree & Rows,Functional,Critical,1. You have expanded a customer and can see its asset rows.,"1. Click the chevron on an asset row.
 2. Read the invoice detail rows that appear.","1. The invoice detail rows for that asset appear, indented one level deeper than the asset row.
 2. Each detail row shows the invoice number (as a link), the invoice date, and the per-invoice Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, and Subtotal.
-3. The invoice date shows in the format ""Mon DD YYYY"" — for example, May 14 2026.",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R4; S8-R12; S8-R12a; Story 20 S20-R14),,
+3. The invoice date shows in the format ""Mon DD YYYY"" — for example, May 14 2026.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R4, S8-R12, S8-R12a, S20-R14).",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R4; S8-R12; S8-R12a; Story 20 S20-R14),,
 Invoices group into one asset row per vehicle record,SBC — Tree & Rows,Functional,Medium,1. A customer has two or more invoices on the SAME vehicle record and at least one invoice on a different vehicle (seed ZZAUTOTEST data).,"1. Expand the customer.
 2. Count the asset rows and compare each asset's invoice count with the invoices you created.
 3. If the environment has an older invoice with no vehicle record linked (only a stored vehicle snapshot), check which asset row it lands under.","1. Invoices referencing the same vehicle record (same vehicle id) group into ONE asset row — no duplicate rows for the same vehicle.
-2. An older invoice with no vehicle id on file groups by the invoice's own stored vehicle snapshot instead.",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R3),,
+2. An older invoice with no vehicle id on file groups by the invoice's own stored vehicle snapshot instead.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R3).",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R3),,
 Asset rows order A to Z with the Parts Sales bucket always last,SBC — Tree & Rows,Functional,High,1. A customer has invoices on at least two vehicles AND at least one no-vehicle invoice (counter/parts sale) in the current view (seed ZZAUTOTEST data).,"1. Expand the customer and read the asset rows top to bottom.
 2. Click a financial column header to change the table sort, and re-read the asset rows.","1. The customer's real asset rows are ordered A→Z by their label, case-insensitive.
 2. The no-vehicle work collects under a single row labeled ""Parts Sales,"" always sorted last among that customer's assets.
-3. Changing the column sort does not change the asset order — assets stay A→Z with ""Parts Sales"" last.",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R6; S8-R6a; Story 10 S10-R6),,
+3. Changing the column sort does not change the asset order — assets stay A→Z with ""Parts Sales"" last.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R6, S8-R6a, S10-R6).",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R6; S8-R6a; Story 10 S10-R6),,
 Header-row chevron expands or collapses every customer on the current page,SBC — Tree & Rows,Functional,Medium,1. Several customers are visible on the current page.,"1. Hover the chevron in the table header row and read the tooltip.
 2. Click it and watch the customer rows.
 3. Hover it again and read the tooltip, then click it again.","1. With at least one visible customer collapsed, the header chevron shows the ""expand"" icon and its tooltip reads ""Expand all.""
 2. Clicking it expands every customer on the current page in one action — it acts on the currently visible customers only, not the whole result set.
-3. With all visible customers expanded, the icon switches to ""collapse"" and the tooltip reads ""Collapse all""; clicking collapses them all.",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R16; S8-R17; S8-R18; S8-R19),,
+3. With all visible customers expanded, the icon switches to ""collapse"" and the tooltip reads ""Collapse all""; clicking collapses them all.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R16, S8-R17, S8-R18, S8-R19).",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R16; S8-R17; S8-R18; S8-R19),,
 Reload-causing changes collapse expansion; Customer filter typing does not,SBC — Tree & Rows,Functional,Medium,"1. You are on the report with at least one customer expanded down to invoice rows.
 2. Enough customers exist to fill more than one page of results (seed ZZAUTOTEST customers if needed).","1. With rows expanded, open the Customer filter and TYPE a search query (do not change the selection); watch the expanded rows.
 2. Now change the date range (or Product Type, location, Customer selection, or sort).
 3. Look at the previously expanded rows, the loading state, and the set of customers on the page.","1. Typing in the Customer filter's type-ahead only narrows the dropdown list — the expanded table rows stay expanded.
 2. A change that re-fetches customer rows (date range, Product Type, location, Customer selection, or sort) collapses all expanded rows.
-3. While the re-fetch is in flight the table shows the standard loading state; when it clears, the page shows the first page of the newly ordered set — the customers on the page can change.",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R20; S8-R21; Story 10 S10-R8a; S10-R8b; S10-R8c),,
+3. While the re-fetch is in flight the table shows the standard loading state; when it clears, the page shows the first page of the newly ordered set — the customers on the page can change.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R20, S8-R21, S10-R8a, S10-R8b, S10-R8c).",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R20; S8-R21; Story 10 S10-R8a; S10-R8b; S10-R8c),,
 Edge: a single-invoice asset can still be expanded,SBC — Tree & Rows,Functional,Medium,1. Customer A has an asset with exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the current view (seed ZZAUTOTEST data).,"1. Expand customer A and click the chevron of the single-invoice asset.
 2. Expand customer B and read its asset rows.","1. The single-invoice asset expands and shows exactly one invoice detail row.
-2. Customer B shows a single ""Parts Sales"" row and no vehicle rows.",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-E1; S8-E2),,
+2. Customer B shows a single ""Parts Sales"" row and no vehicle rows.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-E1, S8-E2).",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-E1; S8-E2),,
 A service (S) invoice with no vehicle also lands in the Parts Sales bucket,SBC — Tree & Rows,Functional,Medium,"1. A customer has an invoice whose number starts with S but whose work order has NO vehicle (seed a ZZAUTOTEST no-vehicle service work order and invoice it, if the app allows).","1. Expand that customer.
-2. Find which asset row the S invoice sits under.","1. The no-vehicle S invoice appears under that customer's ""Parts Sales"" row — the bucket collects work by the ABSENCE of a vehicle, not by the invoice-number prefix.",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-E3),,
+2. Find which asset row the S invoice sits under.","1. The no-vehicle S invoice appears under that customer's ""Parts Sales"" row — the bucket collects work by the ABSENCE of a vehicle, not by the invoice-number prefix.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-E3).",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-E3),,
 Reversed and voided invoices are excluded from every row; count and total,SBC — Tree & Rows,Negative,Critical,"1. A customer has a known set of invoices in the current range, one of which you then reverse (or void) — seed ZZAUTOTEST data and note the totals before and after.","1. Note the customer's invoice count ""(N)"" and totals with all invoices normal.
 2. Reverse (or void) one of the invoices in the application.
 3. Re-open/refresh the report under ""Parts & Service"" and re-read the count, rows, and totals.
 4. Expand down to invoice rows and look for the reversed invoice.","1. The reversed/voided invoice never appears as an invoice row.
 2. It is excluded from the customer's ""(N)"" count and from every row total, regardless of the Product Type filter.
-3. The customer/asset totals drop by exactly that invoice's amounts.",SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R7; S7-N2; §3 Key Decisions),,
+3. The customer/asset totals drop by exactly that invoice's amounts.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S7-R7, S7-N2).",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R7; S7-N2; §3 Key Decisions),,
 Every row type renders the same columns in the same order,SBC — Tree & Rows,Functional,Medium,1. You are on the report with a customer expanded down to invoice rows and the totals row visible.,"1. Compare the columns of a customer row, an asset row, an invoice row, and the totals row left to right.
 2. Look at the Date cell on the customer and asset rows.
-3. Inspect the font weights on a customer summary row (dev tools).","1. Every row type — customer, asset, invoice, totals — renders the same columns in the same left-to-right order.
+3. Look at a customer summary row and compare how heavy its text looks with the invoice rows beneath it.","1. Every row type — customer, asset, invoice, totals — renders the same columns in the same left-to-right order.
 2. A cell with no value for its row (for example the Date cell on a customer or asset row) is left blank and keeps its column position; no value moves into another column.
 3. The Date cell on the customer summary row is blank.
-4. Every cell on a customer summary row uses font-weight 600, except the Subtotal cell which uses font-weight 700.",SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R8; S7-R9; S7-R10; S7-R15; S7-R16),,
+4. A customer summary row reads as heavier than the invoice rows under it, and its Subtotal cell is the heaviest cell on that row.
+5. Note for the tester: you do not need to measure anything and you do not need any tool for item 4. Just say whether the summary row stands out from the invoice rows and whether its Subtotal looks the boldest, and only report it if it looks obviously wrong. (The exact weights behind this are design-token values the design and engineering team check with their own tooling.)
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S7-R8, S7-R9, S7-R10, S7-R15, S7-R16).",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R8; S7-R9; S7-R10; S7-R15; S7-R16),,
 "Asset identified by VIN, falling back to Unit #, then plate",SBC — Asset Labels,Functional,High,"1. One customer has ZZAUTOTEST assets with invoices in range: (a) one with a VIN recorded, (b) one with no VIN but a Unit # recorded, (c) one with no VIN or Unit # but a plate recorded, (d) one with no VIN, Unit #, or plate (blank the fields as far as the asset form allows).",1. Expand the customer and read each asset row's label.,"1. Asset (a) is identified by its VIN.
 2. Asset (b) (no VIN) is identified by its Unit # instead.
 3. Asset (c) (no VIN or Unit #) is identified by its plate instead.
 4. For asset (d) (no VIN, Unit #, or plate), note what the label shows - what stands in when all three are missing is confirmed in the build (the older rule showed ""Unknown Asset"").
-5. Note whether the year/make/model text still appears anywhere in the row - the update says the VIN identifier REPLACES the year/make/model label; confirm the exact rendering in the build.",SV-8606 (SBC spec Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward msg 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's year/make/model rule),,
+5. Note whether the year/make/model text still appears anywhere in the row - the update says the VIN identifier REPLACES the year/make/model label; confirm the exact rendering in the build.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R7, S8-R8, S8-R9, S8-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8606 (SBC spec Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward msg 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's year/make/model rule),,
 Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads,SBC — Asset Labels,Functional,Medium,"1. One customer has TWO ZZAUTOTEST assets whose labels come out identical (same year/make/model and same identifier situation), each with an invoice in range.","1. Expand the customer and read the two asset labels.
 2. Note which asset carries "" (#1)"" and which "" (#2)"".
 3. Reload the page and expand again.","1. The duplicate labels are suffixed "" (#1)"" and "" (#2)"" (and so on for more duplicates).
-2. The numbering is fixed and repeatable — after a reload the same vehicle keeps the same number.",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R11),,
+2. The numbering is fixed and repeatable — after a reload the same vehicle keeps the same number.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R11).",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R11),,
 The invoice number opens the invoice in the same browser tab,SBC — Invoice Links & Navigation,Functional,High,1. You have expanded an asset and can see at least one S invoice and (under another customer/asset if needed) one P invoice.,"1. Click a service (S) invoice number link and note where it opens.
 2. Go back, then click a parts (P) invoice number link and note where it opens.","1. Each invoice number on a detail row is a clickable link that opens in the SAME browser tab (no new tab).
 2. A service invoice opens the associated work order's Finance tab.
-3. A parts invoice opens the associated part sale's Part Requests tab.",SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-R1; S9-R2; S9-R2a; S9-R2b),,
+3. A parts invoice opens the associated part sale's Part Requests tab.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S9-R1, S9-R2, S9-R2a, S9-R2b).",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-R1; S9-R2; S9-R2a; S9-R2b),,
 Browser back from an invoice restores filters; sort and columns; rows shut,SBC — Invoice Links & Navigation,Functional,High,"1. You are on the report with non-default filters set (for example Last Month + Service only), a non-default sort, and one column hidden.
 2. You have expanded down to an invoice detail row.","1. Watch the browser address bar, then click an invoice number link.
 2. From the invoice page, press the browser back button.
 3. Check the report's filters, sort, visible columns, and row expansion.","1. Before navigating, the active date range and Product Type are written to the page link.
 2. Pressing back returns to the report with its filters, sort, and columns restored exactly as set.
-3. Expanded rows are shown collapsed again — expansion is not restored (this is the specified behavior, not a defect).",SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-R3; S9-R4),,
+3. Expanded rows are shown collapsed again — expansion is not restored (this is the specified behavior, not a defect).
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S9-R3, S9-R4).",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-R3; S9-R4),,
 Customer name is plain text; the invoice link never turns visited-purple,SBC — Invoice Links & Navigation,Functional,Medium,1. You have expanded down to invoice detail rows and have already clicked at least one invoice link earlier in the session.,"1. Try clicking the customer NAME on a summary row.
 2. Look at an invoice number link at rest, on hover, and one you have already visited.","1. The customer name on the summary row is plain text, not a link.
 2. The invoice number link is shown in the application's primary color at rest, on hover, and after it has been clicked.
 3. The link has no underline at rest, on hover, or after it has been clicked.
-4. The link never recolors to the browser's visited-link (purple) color.",SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-R5; S9-R6; S9-R7; S9-R8),,
+4. The link never recolors to the browser's visited-link (purple) color.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S9-R5, S9-R6, S9-R7, S9-R8).",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-R5; S9-R6; S9-R7; S9-R8),,
 An invoice deleted after load shows the not-found state and back returns,SBC — Invoice Links & Navigation,Negative,Medium,"1. The report is open with an invoice detail row visible.
 2. In another tab/session, that invoice is deleted or reversed AFTER the report loaded (do not refresh the report).","1. Back in the report (unrefreshed), click that invoice's number link.
 2. Read the destination page, then press the browser back button.","1. The destination page shows the application's standard ""not found"" state.
-2. Pressing back returns you to the report.",SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-N1),,
+2. Pressing back returns you to the report.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S9-N1).",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-N1),,
 "All columns sortable except chevron; text alphabetical, numbers by value",SBC — Sorting,Functional,High,"1. Several customers with differing values are in the current view.
 2. A customer with multiple assets and invoices is in the view.","1. Click each column header in turn (Customer, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal) and watch the order change.
 2. Try clicking the chevron column's header position.
 3. Compare a text sort (Customer) and a numeric sort (Subtotal) against the values.
 4. Sort by Subtotal descending, expand a customer and an asset, and read the asset and invoice order.","1. Every column is sortable except the chevron column.
 2. Text columns sort alphabetically; numeric columns sort by value (not as text).
-3. Sorting reorders only the customer summary rows — asset rows keep their own order (A→Z with ""Parts Sales"" last) and invoice rows keep their order under their asset.",SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R1; S10-R2; S10-R6),,
+3. Sorting reorders only the customer summary rows — asset rows keep their own order (A→Z with ""Parts Sales"" last) and invoice rows keep their order under their asset.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S10-R1, S10-R2, S10-R6).",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R1; S10-R2; S10-R6),,
 Default sort is Customer name ascending case-insensitive,SBC — Sorting,Functional,High,"1. No saved view exists (first visit or cleared storage).
 2. Customer names with mixed upper/lower-case first letters exist in the view (seed ZZAUTOTEST names like ""acme test"" and ""Best Test"").","1. Open the report and read the customer order.
 2. Click the Subtotal header and read the order again.","1. On first load, rows are ordered by Customer name, ascending, case-insensitive (a lower-case ""acme"" sorts by letter, not after all capitals).
-2. Clicking a column header replaces the default with that column's sort.",SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R4; S10-R7),,
+2. Clicking a column header replaces the default with that column's sort.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S10-R4, S10-R7).",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R4; S10-R7),,
 Missing values sort to the bottom ascending and to the top descending,SBC — Sorting,Functional,Medium,1. At least one customer row shows an em dash (—) in Margin % (Subtotal zero or below — seed a zero-subtotal case if possible) alongside rows with real Margin % values.,"1. Sort by Margin % ascending and note where the em-dash row lands.
 2. Sort by Margin % descending and note it again.","1. Ascending: the em-dash (missing) row sorts to the bottom.
-2. Descending: the em-dash row sorts to the top.",SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R3),,
+2. Descending: the em-dash row sorts to the top.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S10-R3).",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R3),,
 Sorting by Date orders customers by their most recent invoice date,SBC — Sorting,Functional,Medium,1. Two customers exist whose most recent invoice dates differ clearly (seed ZZAUTOTEST invoices on different dates).,"1. Click the Date column header.
 2. Compare the customer order with each customer's most recent invoice date (expand to check the invoice dates).","1. Customer rows order by each customer's most recent invoice date in the current view.
-2. The Date cells on customer rows stay blank — the sort still works.",SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R5),,
+2. The Date cells on customer rows stay blank — the sort still works.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S10-R5).",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R5),,
 Financial columns run in the specified order with Subtotal and Margin rules,SBC — Totals & Calculations,Functional,Critical,"1. A ZZAUTOTEST invoice exists with known labor, parts, and shop-supply amounts and known costs, in the current range.","1. Read the column headers left to right.
 2. Expand down to that invoice's detail row and read its values.
 3. Recalculate Subtotal and Margin by hand from the known amounts.","1. The financial columns appear in this order: Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin % — with Subtotal as the rightmost column.
 2. Subtotal = Labor Invoiced + Parts Invoiced + Shop Supplies, before tax.
 3. Labor Margin = Labor Invoiced minus labor cost; Parts Margin = Parts Invoiced minus parts cost.
-4. Margin = Labor Margin + Parts Margin — it does NOT include any Shop Supplies amount (shop supplies add to Subtotal but add no profit to Margin).",SV-8605 (SBC spec v13 2026-07-31 §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1 — §2/S7-R6 CLOSE the financial-column list and its order; Location is an identifier column not a financial one [S4-R12; S20-R19] so it never enters this list),,
+4. Margin = Labor Margin + Parts Margin — it does NOT include any Shop Supplies amount (shop supplies add to Subtotal but add no profit to Margin).
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S7-R6, S11-R1, S4-R12, S20-R19).",SV-8605 (SBC spec v13 2026-07-31 §2; §4 Terminology; Story 7 S7-R6; Story 11 S11-R1 — §2/S7-R6 CLOSE the financial-column list and its order; Location is an identifier column not a financial one [S4-R12; S20-R19] so it never enters this list),,
 Margin % is Margin over Subtotal to one decimal; em dash when Subtotal <= 0,SBC — Totals & Calculations,Functional,High,"1. Rows with a normal positive Subtotal exist, and (if seedable) one row whose Subtotal is zero or below.","1. Read Margin % on a customer row, an asset row, and an invoice row; recalculate one by hand (Margin ÷ Subtotal × 100).
 2. Find (or seed) a row with Subtotal ≤ 0 and read its Margin % cell.
 3. Look at the Margin % coloring.","1. Margin % shows the row's Margin divided by its Subtotal, times 100, to one decimal with a percent sign — for example, 64.7%.
 2. When the row's Subtotal is zero or below, the Margin % cell shows an em dash (—).
 3. Margin % is monochrome — no green or red coloring.
-4. The same calculation and format apply to customer rows, asset rows, and invoice rows.",SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R11; S7-R12; S7-R13; S7-R14),,
+4. The same calculation and format apply to customer rows, asset rows, and invoice rows.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S7-R11, S7-R12, S7-R13, S7-R14).",SV-8605 (SBC spec v13 2026-07-31 Story 7 S7-R11; S7-R12; S7-R13; S7-R14),,
 Inv. Hrs heading is verbatim; value shows +green / -red / 0.0 on every row,SBC — Totals & Calculations,Functional,High,"1. Invoices exist where billed hours exceed worked hours, where worked exceeds billed, and where they are equal (seed ZZAUTOTEST work orders with clocked time).","1. Read the column heading.
 2. Read the Inv. Hrs value on rows for each of the three seeded situations, at customer, asset, and invoice level.","1. The column heading reads ""Inv. Hrs"" (including the period after ""Inv"").
 2. The value is hours invoiced minus hours worked, rounded to one decimal.
 3. A positive value shows a leading + sign in the application's standard positive (green) color — for example, +1.5.
 4. A negative value shows a leading - sign in the standard negative (red) color — for example, -1.5.
 5. A zero/break-even value shows 0.0 in the default text color.
-6. The same calculation, label, format, and coloring apply on customer, asset, and invoice rows.",SV-8610 (specs/sbc-sales-by-customer.md Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6),,
+6. The same calculation, label, format, and coloring apply on customer, asset, and invoice rows.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S12-R1, S12-R2, S12-R3, S12-R4, S12-R5, S12-R6).",SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-R1; S12-R2; S12-R3; S12-R4; S12-R5; S12-R6),,
 Inv. Hrs is never blank: no-labor rows and near-zero values both show 0.0,SBC — Totals & Calculations,Negative,Medium,1. A parts-only invoice (no labor at all) exists in range; if possible also an invoice whose delta rounds to zero (for example +0.04).,"1. Read the Inv. Hrs cell on the parts-only invoice's rows (invoice, asset, customer).
 2. If seeded, read the near-zero row's Inv. Hrs.","1. A customer, asset, or invoice with no labor shows 0.0 in the default color — never blank, ""N/A,"" an em dash, or omitted.
 2. A value that rounds to 0.0 (for example +0.04) is shown as 0.0 in the default text color (not +0.0 in green).
-3. A negative value shows a minus sign and one decimal — for example, -0.5.",SV-8610 (specs/sbc-sales-by-customer.md Story 12 S12-N1; S12-E1; S12-E2),,
+3. A negative value shows a minus sign and one decimal — for example, -0.5.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S12-N1, S12-E1, S12-E2).",SV-8610 (SBC spec v13 2026-07-31 Story 12 S12-N1; S12-E1; S12-E2),,
 Invoice subtotals sum to their asset row and asset subtotals to the customer,SBC — Totals & Calculations,Functional,Critical,"1. A customer with two or more assets, each with two or more invoices, is in the current view (seed ZZAUTOTEST data).","1. Expand the customer and every asset.
 2. Sum the invoice-level values by hand for each column and compare with each asset row.
 3. Sum the asset rows and compare with the customer row.","1. An asset's invoice subtotals sum exactly to that asset's row total.
 2. A customer's asset subtotals sum exactly to the customer's row total.
-3. This holds for every financial column, not only Subtotal.",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R13),,
+3. This holds for every financial column, not only Subtotal.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R13).",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R13),,
 Subtotal is the rightmost column; pinned on scroll and bold everywhere,SBC — Totals & Calculations,Functional,High,"1. You are on the report with data, on a window narrow enough to force horizontal scrolling (or with all columns visible).","1. Confirm the Subtotal column is the last column on the right.
 2. Scroll the table sideways and watch the Subtotal column.
 3. Inspect the font weight of the Subtotal header, a customer row, an asset row, an invoice row, and the totals row.","1. Subtotal is the rightmost column in the table.
 2. It stays visible pinned at the right edge while the table scrolls horizontally.
-3. Subtotal values are rendered at font-weight 700 on the header, every customer/asset/invoice row, and the totals row.
-4. This holds regardless of permission, data, filters, or sort — the Subtotal column is always present, pinned, and bold.",SV-8609 (specs/sbc-sales-by-customer.md Story 11 S11-R1; S11-R2; S11-R3; S11-N1),,
+3. Subtotal values are shown in bold on the header, on every customer, asset and invoice row, and on the totals row.
+4. Check it still holds after two changes: narrow the date range so fewer rows match, then sort by a different column. Subtotal stays the rightmost column, stays pinned, and stays bold both times.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S11-R1, S11-R2, S11-R3, S11-N1).",SV-8609 (SBC spec v13 2026-07-31 Story 11 S11-R1; S11-R2; S11-R3; S11-N1),,
 The totals row covers the whole filtered set; not just the current page,SBC — Totals & Calculations,Functional,High,"1. Enough customers exist to span more than one page of results, with known amounts (seed ZZAUTOTEST data).","1. Read the totals row on page 1.
 2. Move to page 2 and read the totals row again.
 3. Compare the totals against the sum over ALL matching customers (not just one page).","1. The totals row is computed over the full set of customers matching the active filters (date range, Product Type, location, Customer filter).
-2. The totals do not change when you move between pages — they never reflect only the visible page.",SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R6),,
+2. The totals do not change when you move between pages — they never reflect only the visible page.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R6).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6),,
 Column selector is its own toolbar button with nine toggles all on,SBC — Column Selector,Functional,High,1. You are on the report with no saved column selection (first visit or cleared storage).,"1. Find the column selector button in the toolbar's action area, next to the overflow menu.
 2. Hover it and read the tooltip.
 3. Click it and read the toggle list top to bottom.","1. The column selector is a separate control next to the overflow menu — it is not an item inside the overflow menu.
 2. Hovering it shows the tooltip ""Column Selection.""
 3. The panel lists nine toggles, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %.
 4. With no saved selection, all nine toggleable columns default to visible.
-5. Note for the tester: there is no Location toggle in this panel. That is correct - the Location column appears by itself when you have more than one location in scope, so it is never something you switch on here.",SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13]),,
+5. Note for the tester: there is no Location toggle in this panel. That is correct - the Location column appears by itself when you have more than one location in scope, so it is never something you switch on here.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S13-R1, S13-R2, S13-R3, S13-R4, S13-R7, S4-R12, S4-R13).",SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13]),,
 "Column toggles hide header+cells; Customer, Subtotal and chevron never in list",SBC — Column Selector,Functional,High,1. You are on the report with data and the column selector open.,"1. Turn the ""Shop Supplies"" toggle off, then on again, watching the table.
 2. Read the toggle list for Customer, Subtotal, or a chevron entry.
 3. Turn all nine toggles off and read the table.","1. Turning a toggle off hides that column's header and all its body cells together; turning it on restores both together.
 2. The Customer and Subtotal columns and the chevron control column do NOT appear in the toggle list and are always present.
-3. All nine columns can be hidden — nothing blocks the last toggle; the table still renders the Customer and Subtotal columns and the totals row still shows its Subtotal.",SV-8611 (specs/sbc-sales-by-customer.md Story 13 S13-R5; S13-R6; S13-N1),,
+3. All nine columns can be hidden — nothing blocks the last toggle; the table still renders the Customer and Subtotal columns and the totals row still shows its Subtotal.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S13-R5, S13-R6, S13-N1).",SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R5; S13-R6; S13-N1),,
 The overflow menu holds exactly the four download items - no Print,SBC — Exports,Functional,High,1. You are on the Sales By Customer report.,"1. Find the overflow menu in the toolbar's action area and note its position.
 2. Open it and read the items in order.
 3. Look around the toolbar for any separate always-visible export buttons.","1. The overflow (export) menu is the leftmost control in the toolbar's action area and is the application's standard overflow-menu control.
 2. The menu items read, in order: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", ""Download Summary (CSV)"", ""Download Expanded View (CSV)"" - and there is NO ""Print"" item anywhere in the menu.
-3. There are no separate always-visible export buttons - all exports live behind this one menu.","SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + ""Print"" removed per Chris Ward 2026-07-29 [newest-wins])",,
+3. There are no separate always-visible export buttons - all exports live behind this one menu.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R1, S14-R2, S15-R1, S15-R2, S20-R16); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + ""Print"" removed per Chris Ward 2026-07-29 [newest-wins])",,
 Download file names carry the version and the active date range,SBC — Exports,Functional,High,1. You are on the report with data.,"1. Set the range to This Month, choose ""Download Summary (CSV)"" and note the downloaded file name.
 2. Choose ""Download Expanded View (CSV)"" and note that file name.
 3. Repeat both for at least Today, Last Quarter, and a Custom range.
@@ -309,7 +413,9 @@ Download file names carry the version and the active date range,SBC — Exports,
 2. {range} follows this map: Today → today; Yesterday → yesterday; This Week → this_week; Last Week → last_week; This Month → this_month; Last Month → last_month; This Year → this_year; Last Year → last_year; This Quarter → this_quarter; Last Quarter → last_quarter; Custom → custom.
 3. For Custom the literal word ""custom"" is used — the actual start and end dates are not in the file name.
 4. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet — not an .xlsx workbook and not a JSON file.
-5. The two PDF downloads follow the same names with a .pdf extension — for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf.",SV-8612; SV-8613 (SBC spec v12 2026-07-29 S14-R14; S14-R15; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded),,
+5. The two PDF downloads follow the same names with a .pdf extension — for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R14, S14-R15, S15-R6); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R14; S14-R15; S15-R6 — file names now carry the Summary/Expanded version; the old flat sales-by-customer-{range} map is superseded),,
 "Expanded View CSV: column order, blank-cell rules, and the Locations line",SBC — Exports,Functional,High,1. You have downloaded the CSV for a view with at least one customer with several invoices.,"1. Read the header row.
 2. Read a customer row and an invoice row.
 3. Look for any asset-level rows.","1. With a single location in scope the Expanded View CSV has these thirteen columns in this exact order: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal. When more than one location is in scope the file also carries a Location column — immediately after Date, the position it holds on screen — making fourteen.
@@ -318,78 +424,111 @@ Download file names carry the version and the active date range,SBC — Exports,
 4. An invoice row leaves Customer and Asset blank and fills Invoice # and Date.
 5. Customer names are plain — the ""(N)"" invoice count is not included.
 6. Work with no vehicle appears as an asset row named ""Parts Sales"".
-7. The file carries a ""Locations:"" line naming the location or locations the report was scoped to, or ""All locations"" when every location you can access is selected — as a leading line above the column headers.",SV-8612; SV-8603 (SBC spec v12 2026-07-29 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 + Story 4 S4-R13 — Expanded CSV thirteen columns INCLUDING Asset; per-level blank-cell rules; plus the automatic Location column in every export),,
+7. The file carries a ""Locations:"" line naming the location or locations the report was scoped to, or ""All locations"" when every location you can access is selected — as a leading line above the column headers.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R5, S14-R6, S14-R7, S14-R8, S14-R13, S4-R13).",SV-8612; SV-8603 (SBC spec v13 2026-07-31 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 + Story 4 S4-R13 — Expanded CSV thirteen columns INCLUDING Asset; per-level blank-cell rules; plus the automatic Location column in every export),,
 CSV formats: Margin % plain; dates mm-dd-yyyy; currency plain; no color,SBC — Exports,Functional,Medium,"1. You have downloaded a CSV containing rows with real values, including (if seedable) a row whose Subtotal is zero or below.","1. Read a Margin % cell, a Date cell, and a currency cell in a text editor.
 2. Check the row whose Subtotal is ≤ 0.","1. Margin % is a plain number to one decimal with no percent sign (for example, 64.7); it is EMPTY when the row's Subtotal is zero or below.
 2. Dates export as mm-dd-yyyy — for example, 05-14-2026.
 3. Currency values are plain numbers with no dollar sign and no thousands separators.
-4. The CSV has no color; the signed Inv. Hrs value still conveys direction.",SV-8612 (SBC spec v12 2026-07-29 Story 14 S14-R9; S14-R10; S14-R11; S14-R12; S14-R13),,
+4. The CSV has no color; the signed Inv. Hrs value still conveys direction.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R9, S14-R10, S14-R11, S14-R12, S14-R13).",SV-8612 (SBC spec v13 2026-07-31 Story 14 S14-R9; S14-R10; S14-R11; S14-R12; S14-R13),,
 CSV and PDF hold exactly the customers matching the active filters and sort,SBC — Exports,Functional,High,"1. Data exists across two locations, both product types, and several customers.","1. Set a specific date range, Product Type ""Service only"", one location, a two-customer selection in the Customer filter, and a Subtotal sort.
 2. Download the CSV and the PDF.
 3. Compare each file's contents against the on-screen rows.","1. Each export contains exactly the customers matching the active filters — the selected customers, within the active date range, Product Type, and location — in the active sort order.
 2. When every customer is selected, the export contains the full set of customers under those filters.
-3. The chosen date range and Product Type are reflected in both exports.",SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7),,
-Each download item shows a loading state and its own export-failed toast,SBC — Exports,Negative,Medium,1. You are on the report with a large enough data set that a download takes a visible moment.,"1. Choose ""Download Summary (CSV)"" and immediately look at that menu item.
+3. The chosen date range and Product Type are reflected in both exports.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R7, S3-R7, S4-R10, S14-R3, S15-R3, S18-R7).",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7),,
+Each download item shows a loading state and its own export-failed toast,SBC — Exports,Negative,Medium,"1. You are on the report with a large enough data set that a download takes a visible moment.
+2. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Choose ""Download Summary (CSV)"" and immediately look at that menu item.
 2. To provoke a failure, disconnect the network (or use the browser's offline mode) and choose ""Download Summary (CSV)"" again.
 3. Repeat both checks for ""Download Expanded View (CSV)"", ""Download Summary (PDF)"" and ""Download Expanded View (PDF)"".","1. While a download is in progress, ONLY that menu item shows a loading state and is non-interactive; the other three items are unaffected.
 2. If a CSV download fails, an error toast is shown: ""CSV export failed."" (dismissed by the user).
-3. If a PDF download fails, the toast reads ""PDF export failed."" — identical behaviour, different wording.",SV-8612; SV-8613 (SBC spec v12 2026-07-29 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item; four items),,
+3. If a PDF download fails, the toast reads ""PDF export failed."" — identical behaviour, different wording.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-E1, S14-N1, S15-E1, S15-N1).",SV-8612; SV-8613 (SBC spec v13 2026-07-31 Story 14 S14-E1; S14-N1; Story 15 S15-E1; S15-N1; §7 — the loading state is now per menu item; four items),,
 "PDF page: A4 landscape, uniform margins, ShopView footer and page numbers",SBC — Exports,Functional,Medium,1. You have downloaded the PDF for a view with enough rows to span more than one page.,"1. Open the PDF and check the page setup.
 2. Read the footer on each page.","1. The PDF is A4 landscape using the application's standard font; the page margins look uniform on all sides. (The spec's exact 25px margin needs a PDF inspector — check the number only if you have one; otherwise uniform margins pass.)
-2. The footer has a centered ""Software Powered by ShopView"" label and a right-aligned page number ""Page X of Y.""",SV-8613 (SBC spec v12 2026-07-29 Story 15 S15-R5; S15-R6; S15-R7; S15-R8 — A4 landscape; 25px margins; standard font; footer label and page numbers),,
+2. The footer has a centered ""Software Powered by ShopView"" label and a right-aligned page number ""Page X of Y.""
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S15-R5, S15-R6, S15-R7, S15-R8).",SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R6; S15-R7; S15-R8 — A4 landscape; 25px margins; standard font; footer label and page numbers),,
 "PDF header: title, organization, date range, Product Type and Locations lines",SBC — Exports,Functional,Medium,"1. You have downloaded the PDF with a known date range, Product Type, and a specific location selected.","1. Read the header's text block top to bottom.
 2. Look for any mention of the selected location.","1. The header is two columns: a text block on the left (70% width) and the organization logo on the right (30% width).
 2. The text block shows the report title ""Sales By Customer Report""; the organization name; the date range; and the filter summary line ""Product Type: {value}"" where value is ""Parts & Service,"" ""Parts only,"" or ""Service only.""
 3. The header date range shows start and end in the format ""Mon D, YYYY,"" joined by an em dash - for example, ""May 1, 2026 - May 31, 2026"" - and always shows both dates (every range is bounded).
-4. The header also carries a ""Locations:"" line naming the location(s) the report was scoped to (exact placement within the header is confirmed in the build).","SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the ""Locations:"" line in every export [Chris Ward 2026-07-29; newest-wins])",,
+4. The header also carries a ""Locations:"" line naming the location(s) the report was scoped to (exact placement within the header is confirmed in the build).
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S15-R7, S15-R8, S15-R9, S15-R10, S15-R11, S15-R14, S4-R13); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R7; S15-R8; S15-R9; S15-R10; S15-R11; S15-R14 + Story 4 S4-R13 — PDF header block; S15-R14/S4-R13 = the ""Locations:"" line in every export [Chris Ward 2026-07-29; newest-wins])",,
 "PDF logo is embedded, scales without distortion",SBC — Exports,Functional,Low,1. You can toggle the organization's uploaded logo on/off in administration (restore it afterwards).,"1. With an uploaded org logo, download the PDF and check the top-right.
 2. Remove the uploaded logo, download again, and check.
 3. Open a PDF while offline to confirm the logo still renders.","1. With an uploaded logo, that logo appears pinned to the top-right, scaled to fit its area without distortion.
 2. With no uploaded logo, the bundled ShopView logo is used.
 3. When no logo is available at all, the logo column is not rendered and the text column fills the full width.
-4. The logo is embedded in the PDF (renders offline, not loaded from a network address).",SV-8613 (SBC spec v12 2026-07-29 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18),,
-Expanded View PDF body matches the CSV's columns and on-screen rules,SBC — Exports,Functional,Medium,1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal ≤ 0 row.,"1. Read the body table's columns and row structure.
+4. The logo is embedded in the PDF (renders offline, not loaded from a network address).
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18).",SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18),,
+Expanded View PDF body matches the CSV's columns and on-screen rules,SBC — Exports,Functional,Medium,"1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal ≤ 0 row.
+2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the ""Styles"" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing.","1. Read the body table's columns and row structure.
 2. Check a date cell, a customer row's Date cell, a Margin % dash, the Subtotal column weight, and the Inv. Hrs colors (use a color picker on the PDF if available).","1. The Expanded View PDF's body table has the same columns, in the same order and with the same labels, as the Expanded View CSV — thirteen with a single location in scope, plus the Location column after Date when more than one location is in scope — including the Asset column — and shows the full Customer, then Asset, then Invoice breakdown, one block per customer.
 2. Body dates show as ""Mon DD YYYY"" - for example, ""May 14 2026.""
 3. The Date cell is blank on customer rows and on asset rows, matching the screen.
 4. Margin % shows an em dash when the row's Subtotal is zero or below.
 5. The Subtotal column is bold - header, every row, and the totals row.
 6. Inv. Hrs uses the same signs and coloring as on screen, with green rendered as #21ba45 and red as #c10015.
-7. The PDF header title reads ""Sales By Customer Report"" on the Summary and Expanded versions alike — which version you have is told by the file name and the contents, not by a different title.",SV-8613; SV-8603 (SBC spec v12 2026-07-29 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 + Story 4 S4-R13 — Expanded PDF body = the Expanded columns; plus the automatic Location column),,
+7. The PDF header title reads ""Sales By Customer Report"" on the Summary and Expanded versions alike — which version you have is told by the file name and the contents, not by a different title.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S15-R5, S15-R13, S15-R19, S15-R20, S15-R21, S15-R22, S15-R23, S15-R24, S4-R13).",SV-8613; SV-8603 (SBC spec v13 2026-07-31 Story 15 S15-R5; S15-R13; S15-R19; S15-R20; S15-R21; S15-R22; S15-R23; S15-R24 + Story 4 S4-R13 — Expanded PDF body = the Expanded columns; plus the automatic Location column),,
 "An export over 10,000 data rows is refused with the too-large toast",SBC — Exports,Negative,High,"1. A filter combination exists whose customer rows plus invoice rows exceed 10,000 (widest range, all locations, all customers). If the environment cannot reach 10,000 rows even fully widened, record the max reachable and mark Blocked-Env with reason.","1. With the over-cap filter set, choose ""Download (CSV)"".
 2. Choose ""Download (PDF)"".
 3. Narrow the filters below the cap and re-try one export.","1. For both CSV and PDF: no file is generated and no download starts.
 2. An error toast is shown each time: ""This report is too large to export. Narrow the date range or filters, then try again."" (dismissed by the user).
 3. The cap counts customer rows plus invoice rows (not the header or totals row) against the active date range, Product Type, location, Customer filter, and sort.
-4. Below the cap the export succeeds normally.",SV-8612; SV-8613 (SBC spec v12 2026-07-29 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; §7 — Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec),,
+4. Below the cap the export succeeds normally.
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R16, S15-R25, S14-R14, S15-R22); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R16 CSV cap; S15-R25 PDF cap; S14-R14; S15-R22; §7 — Print leg REMOVED per kickoff video P25 31:14; user ruling 2026-07-28 video-overrides-spec),,
 A no-match export still downloads headers and a zero totals row,SBC — Exports,Functional,Medium,"1. The Customer filter selection is empty (""Clear all"") or the filters otherwise match no customers.","1. Choose ""Download (CSV)"" and open the file.
 2. Choose ""Download (PDF)"" and open the file.","1. The export still downloads — no error and no warning is shown.
-2. The file contains the column headers and a totals row of zeros, with no data rows.",SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R10),,
+2. The file contains the column headers and a totals row of zeros, with no data rows.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R10).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R10),,
 Summary and Expanded View downloads exist for both PDF and CSV,SBC — Exports,Functional,Medium,1. You are on the Sales By Customer report with at least one customer and several invoices in the chosen date range.,"1. Open the download (overflow) menu and read the four items.
 2. Download the Summary version in both formats (Download Summary (PDF) and Download Summary (CSV)) and open the files.
 3. Download the Expanded View version in both formats and compare against the Summary files.","1. The menu offers exactly four items: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", ""Download Summary (CSV)"", ""Download Expanded View (CSV)"".
 2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows.
 3. Each Expanded View file contains the full Customer, then Asset, then Invoice breakdown.
 4. All four files reflect exactly the filtered data shown on screen.
-5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added with the identifying columns, ahead of the money columns (the Summary files have no Date column for it to follow — confirm its exact position in the build).",SV-8612; SV-8613; SV-8603 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export),,
+5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added with the identifying columns, ahead of the money columns (the Summary files have no Date column for it to follow — confirm its exact position in the build).
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13).",SV-8612; SV-8613; SV-8603 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export),,
 Filters; sort and visible columns are restored on the next visit,SBC — Saved View & Persistence,Functional,Critical,1. You are on the report in a browser you can revisit.,"1. Set a non-default date range, Product Type, location selection, a two-customer Customer selection, a non-default sort, and hide one column.
 2. Navigate away to another part of the application, then return to the report.
 3. Watch the report as it loads.","1. The saved view is restored: the date range, the Product Type, the location selection, the Customer filter selection, the sort column and direction, and the visible columns.
-2. On load, the report shows the restored view immediately — the default view is never shown first and then replaced.",SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8),,
+2. On load, the report shows the restored view immediately — the default view is never shown first and then replaced.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S6-R1, S6-R2, S6-R4, S2-R8, S3-R8, S4-R11, S10-R9, S13-R8).",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R1; S6-R2; S6-R4; Story 2 S2-R8; Story 3 S3-R8; Story 4 S4-R11; Story 10 S10-R9; Story 13 S13-R8),,
 "Type-ahead search text, expansion state and scroll position are not saved",SBC — Saved View & Persistence,Functional,Medium,1. You are on the report with data.,"1. Type a query in the Customer filter (without changing the selection), expand two customers, and scroll down the table.
 2. Reload the browser page.
 3. Check the Customer filter field, the rows, and the scroll position.","1. The type-ahead search text is gone (only the resulting customer selection is saved).
 2. All rows are collapsed — reloading clears all expansion state.
 3. The scroll position is not restored.
-4. This is the specified behavior (expansion is treated as fresh each visit), not a defect.",SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-R3; Story 8 S8-R22),,
+4. This is the specified behavior (expansion is treated as fresh each visit), not a defect.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S6-R3, S8-R22).",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R3; Story 8 S8-R22),,
 A saved value that is no longer valid is dropped and falls back to default,SBC — Saved View & Persistence,Functional,Medium,"1. You have a saved view that includes a specific location selection.
 2. An administrator then removes your access to that location (restore afterwards).","1. Return to the report after the access change.
 2. Read the location filter and the report data.","1. The stale saved location is discarded and the location setting uses its default (your active location) instead.
 2. No error appears and the report loads normally.
-3. Per the spec, the same discard-to-default applies to an unknown date range, a sort column that no longer exists, or a column set that does not match the current columns.",SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-R5; S6-R6),,
+3. Per the spec, the same discard-to-default applies to an unknown date range, a sort column that no longer exists, or a column set that does not match the current columns.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S6-R5, S6-R6).",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R5; S6-R6),,
 The saved view is specific to this report and does not affect any other report,SBC — Saved View & Persistence,Functional,Medium,1. You have set a distinctive saved view on Sales By Customer (for example Last Year + Parts only).,"1. Open another report in the Reports suite and read its filters.
 2. Return to Sales By Customer.","1. The other report keeps its own defaults/saved view — the Sales By Customer settings do not leak into it.
-2. Sales By Customer still restores its own saved view.",SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-R7),,
+2. Sales By Customer still restores its own saved view.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S6-R7).",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-R7),,
 With no saved view every setting uses its own default,SBC — Saved View & Persistence,Functional,Medium,"1. Clear the browser's site data for the application (or use a fresh browser profile).
 2. You open the report by its plain address with no date range in the page link.
 3. You are working in a known active location (check the application's location switcher).","1. Open the Sales By Customer report.
@@ -398,15 +537,21 @@ With no saved view every setting uses its own default,SBC — Saved View & Persi
 3. Location = the single location you are currently working in (your active location) — not all locations.
 4. Customer filter = all customers selected (label ""All customers"").
 5. Sort = Customer name ascending.
-6. All nine toggleable columns visible.",SV-8604 (specs/sbc-sales-by-customer.md Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4),,
+6. All nine toggleable columns visible.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S6-N1, S2-R5, S4-R4).",SV-8604 (SBC spec v13 2026-07-31 Story 6 S6-N1; Story 2 S2-R5; Story 4 S4-R4),,
 When a saved view and a page-link range clash the saved view wins,SBC — Saved View & Persistence,Functional,Medium,"1. You have a saved view with a known date range (for example Last Month).
 2. You have a page link carrying a DIFFERENT date range (for example This Year), captured earlier.","1. Open the report using the link with the different range.
 2. Read the date range picker.","1. The saved view is applied (Last Month) and the link value is ignored.
-2. This is intentional: a shared link restores the sender's range only for a recipient who has no saved range of their own.",SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R9),,
+2. This is intentional: a shared link restores the sender's range only for a recipient who has no saved range of their own.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R9).",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R9),,
 Customer filter restore: all-customers stays all; an id set is intersected,SBC — Saved View & Persistence,Functional,Medium,"1. Scenario A: leave the report in the all-customers state, then seed a NEW ZZAUTOTEST customer with an invoice in range.
 2. Scenario B: leave the report with two specific customers selected, then remove one of those customers' matching data (or shift the range so one no longer matches).","1. Scenario A: return to the report and check the filter state and rows.
 2. Scenario B: return to the report and check the selection and rows.","1. Scenario A: the filter restores to the all-customers state and the report shows every present customer — including the customer that appeared since the state was saved.
-2. Scenario B: still-present saved ids are re-selected; a saved id no longer present is dropped (a stale saved id never forces an empty view); a customer that appeared since the set was saved is NOT auto-selected.",SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R8),,
+2. Scenario B: still-present saved ids are re-selected; a saved id no longer present is dropped (a stale saved id never forces an empty view); a customer that appeared since the set was saved is NOT auto-selected.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R8).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R8),,
 Empty state shows in the table body; toolbar interactive; kept selection returns,SBC — Empty & Edge States,Functional,High,1. You are on the report with data on screen.,"1. Set a date range that contains no invoices (for example a Custom range over a quiet week far back).
 2. Read the table body and try each toolbar control.
 3. Also provoke the empty state via Product Type and via a location with no data, and re-check.
@@ -415,70 +560,109 @@ Empty state shows in the table body; toolbar interactive; kept selection returns
 2. The toolbar stays visible and interactive (all filters including the Customer filter, and the action controls), so you can adjust filters without leaving the page.
 3. The same empty state appears whichever filter caused it (date range, Product Type, or location).
 4. The header-row chevron is hidden when the table has no visible rows.
-5. With a narrowed customer selection and no data, the empty state shows but the selection is KEPT (not cleared) — when the filters change back, the selected customers reappear.",SV-8615 (specs/sbc-sales-by-customer.md Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1),,
-The empty-state message never appears while the table is still loading,SBC — Empty & Edge States,Negative,Medium,1. You are on the report; a slow network helps (throttle via browser dev tools if needed).,"1. Change a filter and watch the table area during the load.
+5. With a narrowed customer selection and no data, the empty state shows but the selection is KEPT (not cleared) — when the filters change back, the selected customers reappear.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S17-R1, S17-R2, S17-R3, S17-E1, S2-N1, S3-N1, S4-N2, S8-N1).",SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1),,
+The empty-state message never appears while the table is still loading,SBC — Empty & Edge States,Negative,Medium,"1. You are on the report; a slow network helps (throttle via browser dev tools if needed).
+2. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Change a filter and watch the table area during the load.
 2. Watch what appears once loading finishes with zero customers.","1. While the table is loading, the empty-state message is NOT shown (the loading state is shown instead).
-2. The message appears only after the table finishes its initial loading and shows zero customers.",SV-8615 (specs/sbc-sales-by-customer.md Story 17 S17-N1),,
-A failed data fetch shows the error toast which fades after 5 seconds,SBC — Empty & Edge States,Negative,Medium,1. You can interrupt the network (browser dev tools offline mode).,"1. Go offline, then open the report (or change a filter to force a re-fetch).
+2. The message appears only after the table finishes its initial loading and shows zero customers.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S17-N1).",SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-N1),,
+A failed data fetch shows the error toast which fades after 5 seconds,SBC — Empty & Edge States,Negative,Medium,"1. You can interrupt the network (browser dev tools offline mode).
+2. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Go offline, then open the report (or change a filter to force a re-fetch).
 2. Read the toast and time how long it stays.","1. An error toast is shown: ""An error occurred while fetching the report data.""
-2. The toast auto-fades after 5 seconds.",SV-8582 (SBC spec §7 User Feedback Summary — the data-fetch error toast; CROSS-CUTTING: the SBC spec carries no error-state story of its own so the epic key is used deliberately),,
-Page and toolbar match the suite theme in padding; surface and alignment,SBC — Visual Conformance,Functional,Medium,1. You are on the report in light mode on a desktop browser with dev tools available.,"1. Inspect the page background, toolbar surface, and paddings with dev tools.
-2. Check the toolbar's position against the top of the page and the table against the side edges.
-3. Compare the title's left edge and the action cluster's right edge with the leftmost/rightmost data-cell positions.
-4. Check the line between the toolbar and the headers, the date-range picker's dropdown arrow size, the table corners, and the outermost cell paddings.","1. The page has no padding; the page background is the standard blue-grey (#f9fafb in light mode).
-2. The toolbar surface is white (#ffffff); its padding is 32px top, 24px bottom, and 2rem left and right; it touches the top of the page with no gap, and the table reaches the left and right edges next to the side navigation.
-3. The left edge of the title and the right edge of the action cluster line up with the leftmost and rightmost data-cell positions.
-4. A 1px horizontal line in the standard table-header border color separates the toolbar from the column headers.
-5. The date-range picker's dropdown arrow is 24px, the same size as the other filter dropdown arrows.
-6. The table has no rounded corners; the leftmost cell (header, body, totals) has 2rem left padding and the rightmost cell 2rem right padding.
-7. When the table content does not fill the viewport, the blue-grey page background shows through below the table — no white strip.",SV-8617 (specs/sbc-sales-by-customer.md Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17),,
-Row surfaces alternate by tree level; header and totals rows stay white,SBC — Visual Conformance,Functional,Medium,1. You are on the report in light mode with a customer expanded down to invoice rows.,"1. Inspect the background of the header cells, a customer row, an asset row, an invoice row, and the totals row.
+2. The toast auto-fades after 5 seconds.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (§7 User Feedback Summary).",SV-8582 (SBC spec §7 User Feedback Summary — the data-fetch error toast; CROSS-CUTTING: the SBC spec carries no error-state story of its own so the epic key is used deliberately),,
+Page and toolbar match the suite theme in padding; surface and alignment,SBC — Visual Conformance,Functional,Medium,1. You are on the report in light mode on a desktop browser with dev tools available.,"1. Look at the page background behind the data area and at the toolbar strip above the table, including the space between its controls and the edges of the strip.
+2. Check whether the toolbar sits flush against the top of the page with no gap, and whether the table reaches the left and right edges next to the side navigation.
+3. Compare the left edge of the title and the right edge of the action cluster with the leftmost and rightmost columns of data.
+4. Look at the line between the toolbar and the column headers, the size of the date-range picker's dropdown arrow next to the other filter arrows, the table's corners, and the space at the far left and far right of the rows.
+5. Open another report in the suite (for example Inventory Value) side by side and compare.","1. The page background behind the data area is the standard soft blue-grey used across the suite, and the page itself has no border of empty space around it.
+2. The toolbar strip is white, its controls sit clear of the edges rather than pressed up against them, it sits flush against the top of the page with no gap, and the table reaches the left and right edges next to the side navigation.
+3. The left edge of the title lines up with the leftmost column of data, and the right edge of the action cluster lines up with the rightmost column.
+4. A thin dividing line separates the toolbar from the column headers.
+5. The date-range picker's dropdown arrow is the same size as the other filter dropdown arrows next to it.
+6. The table has square corners, and the first and last columns sit clear of the left and right edges of the table — the text is not touching the edge.
+7. When there are too few rows to fill the screen, the blue-grey page background shows through below the table — there is no white strip left over.
+8. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.
+9. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing, the alignment and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this — 32px/24px toolbar padding, a 1px header border, 2rem edge padding, a 24px arrow — are design-token values the design and engineering team check with their own tooling, not by hand.)
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S20-R1, S20-R2, S20-R3, S20-R4, S20-R5, S20-R6, S20-R7, S20-R12, S20-R13, S20-R15, S20-R17).",SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17),,
+Row surfaces alternate by tree level; header and totals rows stay white,SBC — Visual Conformance,Functional,Medium,"1. You are on the report in light mode with a customer expanded down to invoice rows.
+2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the ""Styles"" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing.","1. Inspect the background of the header cells, a customer row, an asset row, an invoice row, and the totals row.
 2. Check the pinned Subtotal cell's background on each row type.
 3. Check the tree indentation levels.","1. Column-header cells and customer summary rows use the white surface (#ffffff).
 2. Asset rows and invoice rows use the blue-grey background (#f9fafb).
 3. The totals row uses the white surface with a top border and bold text (white on purpose, matching Technician Efficiency).
 4. The pinned Subtotal cell on any row uses that row's own background — never a contrasting strip.
-5. The three tree levels show by indentation: customer at the base, asset rows one level in (chevron and vehicle icon sit in from the customer), invoice rows one level deeper.",SV-8617 (specs/sbc-sales-by-customer.md Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14),,
+5. The three tree levels show by indentation: customer at the base, asset rows one level in (chevron and vehicle icon sit in from the customer), invoice rows one level deeper.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S20-R8, S20-R9, S20-R10, S20-R11, S20-R14).",SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14),,
 Dark mode darkens every surface while the PDF always renders light,SBC — Visual Conformance,Functional,Medium,1. You can switch the application to dark mode.,"1. Switch to dark mode and review the page background, toolbar, header cells, customer rows, asset/invoice rows, and totals row.
 2. While still in dark mode, download the PDF and open it.","1. In dark mode every visual rule applies with the dark equivalent of each color (dark background, dark surfaces).
-2. The PDF export always renders in light-mode colors regardless of the user's app mode.",SV-8617 (specs/sbc-sales-by-customer.md Story 20 S20-R18),,
+2. The PDF export always renders in light-mode colors regardless of the user's app mode.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S20-R18).",SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R18),,
 On a phone every toolbar control works on touch; the toolbar splits in two,SBC — Mobile,Functional,Medium,1. You open the report on a phone-sized viewport (real device or browser device emulation).,"1. Try each toolbar control by touch: date range, Product Type, the Customer filter, location, the overflow menu, and the column selector.
 2. At a width below 1024px, look at the toolbar rows.
 3. Widen the window to 1024px or more and look again.","1. Every toolbar control is visible and works on touch.
 2. Below 1024px the toolbar uses two rows: the action controls (overflow menu and column selector) on the first row, and the filter dropdowns on the second row, stacked at full width.
-3. At 1024px and above the toolbar uses the desktop single-row layout.",SV-8618 (specs/sbc-sales-by-customer.md Story 21 S21-R1; S21-R2; S21-R3),,
+3. At 1024px and above the toolbar uses the desktop single-row layout.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S21-R1, S21-R2, S21-R3).",SV-8618 (SBC spec v13 2026-07-31 Story 21 S21-R1; S21-R2; S21-R3),,
 On touch the table scrolls sideways with Subtotal pinned and chevrons work,SBC — Mobile,Functional,Medium,1. You are on the report on a phone-sized viewport with data.,"1. Swipe the table sideways to reach the far columns.
 2. Tap a customer chevron and an asset chevron.
 3. Tap an invoice number link.","1. The data table scrolls sideways to show all columns, and the pinned Subtotal column stays visible during that scroll.
 2. The chevron expand and collapse control on each row works on touch.
-3. The invoice number link opens the invoice in the same tab, the same as on desktop.",SV-8618 (specs/sbc-sales-by-customer.md Story 21 S21-R4; S21-R5; S21-R6),,
-Asset and invoice rows are fetched on first expand; one call per customer,SBC — API,Functional,Medium,"1. You are on the report with several customers, with the browser's network activity panel open.","1. Load the report and note the requests made for the summary rows.
+3. The invoice number link opens the invoice in the same tab, the same as on desktop.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S21-R4, S21-R5, S21-R6).",SV-8618 (SBC spec v13 2026-07-31 Story 21 S21-R4; S21-R5; S21-R6),,
+Asset and invoice rows are fetched on first expand; one call per customer,SBC — API,Functional,Medium,"1. You are on the report with several customers, with the browser's network activity panel open.
+2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Load the report and note the requests made for the summary rows.
 2. Expand one customer for the first time and watch the network panel.
 3. Collapse and re-expand the same customer without changing filters.
 4. Use the header chevron's expand-all and count the drill-down requests.","1. Customer summary rows load WITHOUT the asset/invoice detail — the drill-down data is not preloaded.
 2. The first expand of a customer triggers a server fetch for that customer's asset and invoice rows.
-3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.",SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R14; S8-R16),,
-Sorting is applied on the server and re-fetches the first page,SBC — API,Functional,Medium,1. Enough customers exist to span more than one page; the browser's network panel is open.,"1. Click a column header and watch the network panel.
+3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R14, S8-R16).",SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R14; S8-R16),,
+Sorting is applied on the server and re-fetches the first page,SBC — API,Functional,Medium,"1. Enough customers exist to span more than one page; the browser's network panel is open.
+2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Click a column header and watch the network panel.
 2. Compare the returned first page with the previous page contents.
 3. Optional (API tooling): repeat the request with a made-up sort column name and read the response.","1. Clicking a column header issues a server request that returns the customer rows ordered by that column.
 2. The full filtered set is re-ordered and re-paginated on the server — the response is the first page of results in the new order, so page membership can change.
 3. The ordering is not done by re-shuffling rows already in the browser.
-4. A sort request naming a column the report does not offer is safely refused or ignored — never an error page or a crash; sorting works only on the report's own columns.",SV-8608 (specs/sbc-sales-by-customer.md Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist)),,
-The Customer type-ahead queries the server instead of loading every name,SBC — API,Functional,Medium,1. You are on the report with the browser's network panel open.,"1. Open the Customer filter WITHOUT typing and check whether a full customer list was downloaded.
+4. A sort request naming a column the report does not offer is safely refused or ignored — never an error page or a crash; sorting works only on the report's own columns.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S10-R8, S10-R8b).",SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist)),,
+The Customer type-ahead queries the server instead of loading every name,SBC — API,Functional,Medium,"1. You are on the report with the browser's network panel open.
+2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Open the Customer filter WITHOUT typing and check whether a full customer list was downloaded.
 2. Type a query and watch the network panel.
 3. Change the query and watch again.","1. The dropdown does not load the full customer list into the browser up front.
 2. As you type, the browser fetches matching customers from the server — case-insensitive ""contains"" matching on the name, scoped to the active date range, Product Type, and location — and lists the returned customers.
-3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids.",SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R2; S18-R4),,
-Customer rows are server-paginated; the totals row is server-computed,SBC — API,Functional,Medium,1. Enough customers exist to span more than one page; the browser's network panel is open.,"1. Load the report and inspect the summary-row response and the totals values.
+3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R2, S18-R4).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2; S18-R4),,
+Customer rows are server-paginated; the totals row is server-computed,SBC — API,Functional,Medium,"1. Enough customers exist to span more than one page; the browser's network panel is open.
+2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Load the report and inspect the summary-row response and the totals values.
 2. Change the Customer filter selection and watch the requests.
 3. Move between pages and watch the totals.","1. Customer rows arrive page by page from the server (server-paginated), not as one full client-side list.
 2. Changing the Customer selection re-fetches the matching customers as a fresh first page.
-3. The totals are computed on the server over the full set of matching customers — they arrive with the data and do not change as you page.",SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R6; S18-R11),,
-"Exports are server-generated and the 10,000-row cap is counted first",SBC — API,Functional,Medium,1. The browser's network panel is open; an over-cap filter combination is available if the environment allows.,"1. Trigger ""Download (CSV)"" and ""Download (PDF)"" and observe where the file content comes from.
+3. The totals are computed on the server over the full set of matching customers — they arrive with the data and do not change as you page.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R6, S18-R11).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6; S18-R11),,
+"Exports are server-generated and the 10,000-row cap is counted first",SBC — API,Functional,Medium,"1. The browser's network panel is open; an over-cap filter combination is available if the environment allows.
+2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Trigger ""Download (CSV)"" and ""Download (PDF)"" and observe where the file content comes from.
 2. If an over-cap set is available, trigger an export and observe the server's refusal.","1. The CSV and PDF are generated on the server from the active date range, Product Type, location, Customer filter, and sort — not assembled from the rows already loaded in the browser.
-2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download — the count the cap checks is the count the file would contain, against the same filters and sort as the screen.",SV-8612 (specs/sbc-sales-by-customer.md Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22),,
+2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download — the count the cap checks is the count the file would contain, against the same filters and sort as the screen.
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R3, S14-R14, S15-R3, S15-R22).",SV-8612 (SBC spec v13 2026-07-31 Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22),,
 The back end serves SBC report data and export on ordinary reports access,SBC — API,Functional,High,"1. Two sign-ins are available: one user whose role has the ordinary reports access, and one whose role does not have it (for example a Foreman).
-2. You can see the requests the browser makes (the browser's network panel) so you can read the response code.","1. Sign in as the user WHO HAS ordinary reports access and open Sales By Customer.
+2. You can see the requests the browser makes (the browser's network panel) so you can read the response code.
+3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox.","1. Sign in as the user WHO HAS ordinary reports access and open Sales By Customer.
 2. In the network panel, find the request the page makes for the report's data and read its response code.
 3. From the three-dot menu choose ""Download Summary (CSV)"" and read the response code of the export request.
 4. Sign out and sign in as the user WITHOUT reports access.
@@ -487,4 +671,6 @@ The back end serves SBC report data and export on ordinary reports access,SBC �
 2. For that same user, the export request also succeeds (HTTP 200) and a file is produced.
 3. For the user WITHOUT reports access, the data request is refused with HTTP 403 and a message reading ""Access denied."" — no report data comes back.
 4. For that same user, the export request is refused with HTTP 403 as well — no file is produced.
-5. Note for the tester: one single permission controls all four of these. If you find the report data refused but the export allowed (or the other way round), that is a failure — record both response codes.",SV-8600 (SBC spec v13 2026-07-31 S1-R2; S1-N1 — the back-end half of the ordinary-reports-access gate; the SBC twin of the Parts Velocity back-end case C30391; Chris Ward Q1=A; SV-8780 Ready to Fix),,
+5. Note for the tester: one single permission controls all four of these. If you find the report data refused but the export allowed (or the other way round), that is a failure — record both response codes.
+---
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-R2, S1-N1).",SV-8600 (SBC spec v13 2026-07-31 S1-R2; S1-N1 — the back-end half of the ordinary-reports-access gate; the SBC twin of the Parts Velocity back-end case C30391; Chris Ward Q1=A; SV-8780 Ready to Fix),,

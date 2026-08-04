@@ -7,7 +7,8 @@
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
   "preconditions": [
-   "1. You are on the Technician Utilization report with several technician rows loaded."
+   "1. You are on the Technician Utilization report with several technician rows loaded.",
+   "2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
   "steps": [
    "1. Let the report load without clicking any header and read the Technician column top to bottom.",
@@ -17,10 +18,12 @@
   "expected": [
    "1. The technician rows are sorted by Technician name, A to Z.",
    "2. The Technician header shows the ascending sort indicator.",
-   "3. The active sort header exposes its state to assistive technology (aria-sort = ascending on the Technician header; none on the others)."
+   "3. The active sort header exposes its state to assistive technology (aria-sort = ascending on the Technician header; none on the others).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R12, S8-R8, S8-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R12; S8-R8; S8-R10)",
+  "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R12; S8-R8; S8-R10)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -47,10 +50,12 @@
    "2. Clicking a column that is not the active sort sorts it ascending; clicking the active column again toggles to descending; further clicks only ever toggle ascending↔descending - there is NO third 'cleared' state.",
    "3. All six columns are sortable.",
    "4. Sorting is applied on screen to the loaded rows - NO reload/server request happens.",
-   "5. Technicians tied in the sorted column are ordered by Technician name A to Z; two technicians sharing the same display name keep a stable order between renders."
+   "5. Technicians tied in the sorted column are ordered by Technician name A to Z; two technicians sharing the same display name keep a stable order between renders.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R13, S2-R14)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R13; S2-R14)",
+  "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R13; S2-R14)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -72,10 +77,12 @@
   ],
   "expected": [
    "1. After the reload, the rows are back to Technician name A to Z (the sort reset).",
-   "2. On the return visit, the sort is again Technician A to Z - sort is NOT persisted (unlike the date range, technician selection, and location selection, which are)."
+   "2. On the return visit, the sort is again Technician A to Z - sort is NOT persisted (unlike the date range, technician selection, and location selection, which are).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R15)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R15; §3)",
+  "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R15; §3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -98,10 +105,12 @@
   "expected": [
    "1. Only the technician rows reorder.",
    "2. The Summary row stays pinned at the bottom.",
-   "3. Each technician's expanded day rows stay under that technician, still in date order (earliest to latest) - they do not re-sort by the clicked column."
+   "3. Each technician's expanded day rows stay under that technician, still in date order (earliest to latest) - they do not re-sort by the clicked column.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R16)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R16)",
+  "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R16)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -124,10 +133,12 @@
   "expected": [
    "1. Rows whose Est. Lost Labor is \"—\" sort to the BOTTOM in BOTH ascending and descending order - they are never floated to the top by reversing direction.",
    "2. Among themselves, the \"—\" rows are ordered by Technician name A to Z.",
-   "3. A \"$0.00\" value is a number, not \"—\" - it sorts as zero (lowest ascending, above only the — group)."
+   "3. A \"$0.00\" value is a number, not \"—\" - it sorts as zero (lowest ascending, above only the — group).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R17)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R17)",
+  "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R17)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: needs both an unrated-location technician (—) and a zero-internal or $0-rate technician ($0.00) in one view. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -151,10 +162,12 @@
    "1. A Summary row is pinned to the bottom of the report, labeled \"Summary\".",
    "2. It stays visible at the bottom while the rows scroll.",
    "3. It uses the same number formats as the technician rows.",
-   "4. Its values carry NO label prefix such as \"TOTAL:\" or \"AVG:\"."
+   "4. Its values carry NO label prefix such as \"TOTAL:\" or \"AVG:\".",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S3-R1, S3-R2, S3-R6, S3-R7, S8-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8650 (specs/technician-utilization.md S3-R1; S3-R2; S3-R6; S3-R7; S8-R5)",
+  "spec_ref": "SV-8650 (TU spec v5 2026-07-29 S3-R1; S3-R2; S3-R6; S3-R7; S8-R5)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -177,10 +190,12 @@
   "expected": [
    "1. Each Summary hours value is the total of that column across the VISIBLE technicians, computed from unrounded hours and rounded once for display (round-half-up).",
    "2. Eye-summing the displayed rows MAY differ from the displayed Summary by 0.01 — one unit in the last decimal (these values are HOURS, not money) — expected in a compute-from-unrounded report, not a defect.",
-   "3. With every technician selected, the Summary row equals the shop totals for the full date range at the selected location(s)."
+   "3. With every technician selected, the Summary row equals the shop totals for the full date range at the selected location(s).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S3-R3, S5-E1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8650 (specs/technician-utilization.md S3-R3; §3 context note; S5-E1)",
+  "spec_ref": "SV-8650 (TU spec v5 2026-07-29 S3-R3; §3 context note; S5-E1)",
   "viu_status": "VIU-Pending",
   "notes": "'Visible technicians' = the technicians currently selected in the technician filter, not the rows scrolled into view (S3 context note). FIX-WORDING repair 2026-07-28 (sense-check): 'differ by a cent' corrected — the values are hours, so the tolerance is 0.01 (one unit in the last decimal). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -202,10 +217,12 @@
   ],
   "expected": [
    "1. The Summary Utilization % shows the WEIGHTED rate - the visible technicians' total work-order hours as a percentage of their total clocked hours, from unrounded hours (10.0% in the example).",
-   "2. It is NOT the average of the per-technician percentages (not 50.0%)."
+   "2. It is NOT the average of the per-technician percentages (not 50.0%).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S3-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8650 (specs/technician-utilization.md S3-R4)",
+  "spec_ref": "SV-8650 (TU spec v5 2026-07-29 S3-R4)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: two ZZAUTOTEST technicians with the skewed clock records above. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -227,10 +244,12 @@
   "expected": [
    "1. The Summary Est. Lost Labor is computed like a row but over all visible technicians' internal hours: rate × internal hours per contributing rated location, summed at full precision and rounded once.",
    "2. A visible technician whose value is \"—\" contributes NOTHING to the sum - so the Summary understates true lost labor whenever any visible technician is \"—\" or partially valued (documented, expected).",
-   "3. The Summary shows \"—\" only when EVERY visible technician's Est. Lost Labor is \"—\"."
+   "3. The Summary shows \"—\" only when EVERY visible technician's Est. Lost Labor is \"—\".",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S3-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8650 (specs/technician-utilization.md S3-R5)",
+  "spec_ref": "SV-8650 (TU spec v5 2026-07-29 S3-R5)",
   "viu_status": "VIU-Pending",
   "notes": "HEAVY SEEDING: rated, unrated, and mixed-location technicians in one view. AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing preconditions - the assertion is unchanged; the anchor stays in this case's References field where it belongs. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -243,7 +262,8 @@
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
   "preconditions": [
-   "1. You are on the Technician Utilization report with rows loaded."
+   "1. You are on the Technician Utilization report with rows loaded.",
+   "2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
   "steps": [
    "1. Find the expand control on a technician row and read its accessible name (accessibility tree or screen reader).",
@@ -253,10 +273,12 @@
   "expected": [
    "1. Each technician row has a control to expand and collapse it.",
    "2. Its accessible name reflects the NEXT action, scoped to that technician: when collapsed it reads Expand, then that technician's name, then daily breakdown (for example: Expand John Smith's daily breakdown); when expanded it reads Collapse, then the same name and words.",
-   "3. The control is keyboard-focusable, toggles on Enter and Space, and exposes its expanded/collapsed state to assistive technology."
+   "3. The control is keyboard-focusable, toggles on Enter and Space, and exposes its expanded/collapsed state to assistive technology.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R1, S8-R12)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8651 (specs/technician-utilization.md S4-R1; S8-R12)",
+  "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R1; S8-R12)",
   "viu_status": "VIU-Pending",
   "notes": "REPAIRED 2026-07-29 (user-authorized): the 2026-07-22 import swallowed the angle-bracket name placeholder as an HTML tag, so the live case read \"Expand 's daily breakdown\"; wording rewritten in plain words with no angle brackets (TestRail swallows angle-bracket placeholders as HTML - never use them in case text). The spec's printed strings interpolate the technician's name before the apostrophe - VIU-confirm the exact rendered name with a real technician name. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 87 chars; meaning unchanged; awaiting push authorization. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -283,7 +305,9 @@
    "2. The day rows are not there until you expand the row - they arrive at the moment you expand it (you may briefly see the standard loading indicator in that area), and the rest of the report does not reload.",
    "3. A day with no clocked time has NO row.",
    "4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location.",
-   "5. Note for the tester: you do not need developer tools for this test - just watch the screen."
+   "5. Note for the tester: you do not need developer tools for this test - just watch the screen.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R2, S4-N1, S9-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R2; S4-N1; S9-R4 — one row per clocked day in date order; load-on-expand; no row for an unclocked day; per-day pooling across selected locations; the back-end half is covered by C30449 in \"TU - API\")",
@@ -309,10 +333,12 @@
   "expected": [
    "1. Each day row shows the same columns, in the same formats, as the technician row - with that day's values.",
    "2. The day's Est. Lost Labor is valued per location exactly like a technician row (that location's default labor rate × that day's internal hours there).",
-   "3. Hours 2dp / Utilization one decimal + % / dollars with commas - all identical to the row formats, computed from unrounded values and rounded once."
+   "3. Hours 2dp / Utilization one decimal + % / dollars with commas - all identical to the row formats, computed from unrounded values and rounded once.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R3, S2-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8651 (specs/technician-utilization.md S4-R3; S2-R8; §3)",
+  "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R3; S2-R8; §3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -325,7 +351,8 @@
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
   "preconditions": [
-   "1. You are on the Technician Utilization report with several technician rows loaded."
+   "1. You are on the Technician Utilization report with several technician rows loaded.",
+   "2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
   "steps": [
    "1. Find the expand/collapse-all control in the table's header row (in the Technician column) and read its accessible name.",
@@ -337,10 +364,12 @@
    "1. The control lives in the table's header row (Technician column) - NOT in the toolbar action cluster.",
    "2. If ANY row is collapsed, activating it expands ALL rows; only when EVERY row is already expanded does it collapse all rows (so step 3's activation re-expands the one collapsed row).",
    "3. Its accessible name reflects the next action: \"Expand all technicians\" when it will expand, \"Collapse all technicians\" when every row is already expanded.",
-   "4. It is keyboard-focusable, toggles on Enter/Space, and exposes its state to assistive technology."
+   "4. It is keyboard-focusable, toggles on Enter/Space, and exposes its state to assistive technology.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R4, S8-R12, S8-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8651 (specs/technician-utilization.md S4-R4; S8-R12; S8-R3)",
+  "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R4; S8-R12; S8-R3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -363,10 +392,12 @@
   "expected": [
    "1. After the reload (date-range or location change), all rows are collapsed - expansion state resets.",
    "2. On a fresh visit, all rows start collapsed - expansion is never persisted.",
-   "3. Deselecting and re-selecting a technician (an on-screen operation) does NOT change the expansion state of the other rows - the expanded row stays expanded."
+   "3. Deselecting and re-selecting a technician (an on-screen operation) does NOT change the expansion state of the other rows - the expanded row stays expanded.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8651 (specs/technician-utilization.md S4-R5)",
+  "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Nothing is lost by the reset because day rows load on expand (S4-R2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -389,10 +420,12 @@
   "expected": [
    "1. The toolbar has a filter labeled \"Technician\" that allows selecting more than one technician (when several are chosen its label reads, for example, \"2 technicians\").",
    "2. On the first visit, EVERY technician is selected.",
-   "3. All technicians' rows are shown."
+   "3. All technicians' rows are shown.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S5-R1, S5-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8652 (specs/technician-utilization.md S5-R1; S5-R2)",
+  "spec_ref": "SV-8652 (TU spec v5 2026-07-29 S5-R1; S5-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Filter label pinned verbatim in S5-R1. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -418,7 +451,9 @@
    "2. The Summary row recalculates over the technicians that remain visible.",
    "3. The report does NOT reload - the technician filter works on screen only: the rows and the Summary update straight away, no loading indicator appears in the data area, and the date range does not change.",
    "4. Re-selecting the technician shows the row again (and the Summary recalculates back).",
-   "5. Note for the tester: you do not need developer tools for this test - just watch the screen."
+   "5. Note for the tester: you do not need developer tools for this test - just watch the screen.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S5-R3, S5-R4, S5-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8652 (TU spec v5 2026-07-29 S5-R3; S5-R4; S5-R5 + §3 Key Decisions (\"the technician filter works on screen only and does not reload the report\"); S5 context note — the server half is covered by C30450 in \"TU - API\")",
@@ -446,10 +481,12 @@
    "1. \"Clear all\" sets every currently-listed technician to deselected; \"All technicians\" selects all technicians at once.",
    "2. Selection is tracked as the set of DESELECTED technicians: a technician you have not deselected is selected by default.",
    "3. After step 3, your deselected technician STAYS deselected across the range change, while the newly-appearing technician is SELECTED (never explicitly deselected).",
-   "4. After step 4, the newly-appearing technician is selected even though you had cleared all - \"Clear all\" only deselected the technicians listed at the time."
+   "4. After step 4, the newly-appearing technician is selected even though you had cleared all - \"Clear all\" only deselected the technicians listed at the time.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S5-R6, S5-R7, S5-R8, S5-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8652 (specs/technician-utilization.md S5-R6; S5-R7; S5-R8; S5-R9)",
+  "spec_ref": "SV-8652 (TU spec v5 2026-07-29 S5-R6; S5-R7; S5-R8; S5-R9)",
   "viu_status": "VIU-Pending",
   "notes": "Control labels pinned verbatim (\"Select all\" / \"Clear all\"). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -472,10 +509,12 @@
   "expected": [
    "1. The two deselected technicians are STILL deselected on return - the deselected set is what persists (saved in this browser, not on the account).",
    "2. All other technicians - including any who appear for the first time - are selected.",
-   "3. The saved date range and location selection are restored alongside."
+   "3. The saved date range and location selection are restored alongside.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S5-R10, S1-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8652 (specs/technician-utilization.md S5-R10; S1-R8; §3)",
+  "spec_ref": "SV-8652 (TU spec v5 2026-07-29 S5-R10; S1-R8; §3)",
   "viu_status": "VIU-Pending",
   "notes": "Persistence is per browser only - it does not follow the user to another browser or device (§3 context note). AUDIT 2026-07-31 (Rule 20 / Dimension 3): a spec anchor was removed from the tester-facing expected - the assertion is unchanged; the anchor stays in this case's References field where it belongs. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false

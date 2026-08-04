@@ -19,7 +19,9 @@
   "expected": [
    "1. The reports navigation lists a report labeled \"Work In Progress\" under the Performance group, BELOW the pre-existing entries (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency).",
    "2. Clicking it opens the Work In Progress report.",
-   "3. The browser page title is exactly \"Work In Progress - Report | ShopView\" — a plain hyphen with one space on each side."
+   "3. The browser page title is exactly \"Work In Progress - Report | ShopView\" — a plain hyphen with one space on each side.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S1-R1, S1-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R1; S1-R5 — S1-R5 CLOSES the page title verbatim; Performance group below the named anchor items per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",
@@ -46,7 +48,9 @@
   "expected": [
    "1. Four tabs are shown, labeled in this order: \"Approved - Partially Completed\", \"Approved - Not Started\", \"Completed\", and \"Estimates\" - each followed by its count in brackets, for example \"Completed (30)\".",
    "2. The \"Approved - Partially Completed\" tab is selected by default on load.",
-   "3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started)."
+   "3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S1-R2, S1-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement)",
@@ -74,10 +78,12 @@
   "expected": [
    "1. Each tab's label shows the count of work orders currently in that tab, in parentheses — for example, \"Completed (22)\".",
    "2. The count matches the number of work-order rows actually listed in that tab.",
-   "3. A tab with no work orders shows \"(0)\"."
+   "3. A tab with no work orders shows \"(0)\".",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S1-R4, S2-N2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8657 (specs/wip-work-in-progress.md Story 1 S1-R4; Story 2 S2-N2 (count portion))",
+  "spec_ref": "SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R4; Story 2 S2-N2 (count portion))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -123,10 +129,12 @@
   ],
   "expected": [
    "1. Only the four progress tabs exist — there is no Trend tab and no chart of work-in-progress dollars over time.",
-   "2. No screen in the report reads or displays the nightly snapshot history."
+   "2. No screen in the report reads or displays the nightly snapshot history.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8667 (specs/wip-work-in-progress.md §2 Out of scope; §2 Known Limitations (v1); Story 11 S11-R7)",
+  "spec_ref": "SV-8667 (WIP spec v6 2026-07-29 §2 Out of scope; §2 Known Limitations (v1); Story 11 S11-R7)",
   "viu_status": "VIU-Pending",
   "notes": "DOCUMENTED LIMITATION — DO NOT FILE. The missing Trend view is a deliberate v1 boundary; the nightly snapshot IS captured (Story 11, see WIP — API) but no screen reads it in this version. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -148,10 +156,12 @@
   ],
   "expected": [
    "1. All five seeded work orders appear in the report — each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.",
-   "2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases)."
+   "2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S2-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R1)",
+  "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R1)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -176,10 +186,12 @@
   "expected": [
    "1. The Invoiced and Paid work orders do not appear in any tab, any Totals row, the summary strip, or the download.",
    "2. The part-sale work order does not appear anywhere either.",
-   "3. No excluded work order's money is counted in any figure."
+   "3. No excluded work order's money is counted in any figure.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S2-R2, S2-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R2; S2-R3)",
+  "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R2; S2-R3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -202,10 +214,12 @@
   ],
   "expected": [
    "1. Each qualifying work order appears exactly once, in exactly one tab.",
-   "2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\"."
+   "2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\".",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S2-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R4; §3 Key Decisions (every open job is listed))",
+  "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R4; §3 Key Decisions (every open job is listed))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -228,10 +242,12 @@
   "expected": [
    "1. While the report is loading, the data area shows the standard reports loading indicator.",
    "2. The existing rows are replaced only when the new data returns (the table does not go blank and stay blank mid-load).",
-   "3. Both a date-range change and a location change reload the report's rows."
+   "3. Both a date-range change and a location change reload the report's rows.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S2-R5, S2-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R5; S2-R6)",
+  "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-R5; S2-R6)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm what the \"standard reports loading indicator\" looks like in the build (spinner/skeleton) — the spec does not pin its appearance. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -257,7 +273,9 @@
    "1. Each tab shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" in place of rows.",
    "2. No tab shows a Totals row.",
    "3. Every tab label count reads \"(0)\".",
-   "4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a \"(0)\" count while the populated tabs still show their rows normally."
+   "4. When only one tab is empty, that tab shows the no-data message, no Totals row, and a \"(0)\" count while the populated tabs still show their rows normally.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S2-N1, S2-N2, S6-N1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8658 (WIP spec v6 2026-07-29 Story 2 S2-N1; S2-N2; Story 6 S6-N1; §7 User Feedback Summary)",
@@ -310,10 +328,12 @@
   "expected": [
    "1. The Estimate work order appears in the \"Estimates\" tab and nowhere else.",
    "2. The Complete work order appears in the \"Completed\" tab and nowhere else.",
-   "3. The In Progress and Review work orders appear in the \"Approved - partially completed\" tab and nowhere else."
+   "3. The In Progress and Review work orders appear in the \"Approved - partially completed\" tab and nowhere else.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S3-R1, S3-R2, S3-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8659 (specs/wip-work-in-progress.md Story 3 S3-R1; S3-R2; S3-R3)",
+  "spec_ref": "SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-WIP-PLACE-STATUS): absorbed WIP-PLACE-02. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -361,10 +381,12 @@
   "expected": [
    "1. The Approved work order with clocked labor time appears in the \"Approved - partially completed\" tab.",
    "2. The Approved work order with a received part (and no clocked time) also appears in the \"Approved - partially completed\" tab — either kind of started work counts.",
-   "3. The Approved work order with no clocked time and no received part appears in the \"Approved - not started\" tab and nowhere else."
+   "3. The Approved work order with no clocked time and no received part appears in the \"Approved - not started\" tab and nowhere else.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S3-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8659 (specs/wip-work-in-progress.md Story 3 S3-R4 (started + not-started branches + context note))",
+  "spec_ref": "SV-8659 (WIP spec v6 2026-07-29 Story 3 S3-R4 (started + not-started branches + context note))",
   "viu_status": "VIU-Pending",
   "notes": "\"Work has started\" means a technician has clocked time to the job OR a part has been received for it (Story 3 context note). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-WIP-PLACE-START): absorbed WIP-PLACE-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false

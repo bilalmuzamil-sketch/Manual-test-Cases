@@ -18,10 +18,12 @@
   "expected": [
    "1. The icon button's tooltip reads \"Column Selection\".",
    "2. Toggling a column off hides it from the table; toggling it on shows it again.",
-   "3. The Total column is always shown and cannot be turned off — it is not offered in the control at all."
+   "3. The Total column is always shown and cannot be turned off — it is not offered in the control at all.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S8-R1, S8-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8664 (specs/wip-work-in-progress.md Story 8 S8-R1; S8-R2)",
+  "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R1; S8-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Tooltip text \"Column Selection\" is verbatim from the spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -45,10 +47,12 @@
   "expected": [
    "1. Whatever columns are shown, they always appear in the fixed left-to-right order (WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total) — the order you toggled them in never changes their position.",
    "2. Total is always the last column.",
-   "3. The column selection applies to every tab at once — all four tabs show the same set of columns."
+   "3. The column selection applies to every tab at once — all four tabs show the same set of columns.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S8-R5, S8-R6, S4-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8664 (specs/wip-work-in-progress.md Story 8 S8-R5; S8-R6; Story 4 S4-R1)",
+  "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R5; S8-R6; Story 4 S4-R1)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -72,10 +76,12 @@
   ],
   "expected": [
    "1. On return and after a reload, the report restores the saved date range, advisor selection, customer selection, asset selection, location selection, column selection, and active tab.",
-   "2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account."
+   "2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S8-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8664 (specs/wip-work-in-progress.md Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence))",
+  "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -97,10 +103,12 @@
   ],
   "expected": [
    "1. The report loads normally — the invalid saved value falls back to that setting's default rather than breaking the view.",
-   "2. All other saved settings are still restored."
+   "2. All other saved settings are still restored.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S8-R8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8664 (specs/wip-work-in-progress.md Story 8 S8-R8)",
+  "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R8)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -123,10 +131,12 @@
   ],
   "expected": [
    "1. The menu holds the download options \"Download (PDF)\" and \"Download (CSV)\".",
-   "2. Each option downloads a file of the current tab in the chosen format."
+   "2. Each option downloads a file of the current tab in the chosen format.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R1)",
+  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R1)",
   "viu_status": "VIU-Pending",
   "notes": "Menu option labels are verbatim from the spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -154,7 +164,9 @@
    "2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.",
    "3. Both downloads include a Totals row matching the on-screen Totals row for the tab.",
    "4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
-   "5. Note for the tester: the file carries the location column only when you have switched Location ON in the column-selection control - it does not appear just because you have more than one location selected. In the file it is headed \"Branch\", not \"Location\", and the asset column is headed \"Unit\". Both of those names are correct."
+   "5. Note for the tester: the file carries the location column only when you have switched Location ON in the column-selection control - it does not appear just because you have more than one location selected. In the file it is headed \"Branch\", not \"Location\", and the asset column is headed \"Unit\". Both of those names are correct.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the \"Locations:\" line; S7-R13/S9-E1 = the automatic \"Branch\" column)",
@@ -183,10 +195,12 @@
   "expected": [
    "1. Money values use the same \"$1,234.56\" / \"-$1,234.56\" format as on screen; Inv. Hrs uses the same signed one-decimal format.",
    "2. In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.",
-   "3. A value without a comma is written unquoted."
+   "3. A value without a comma is written unquoted.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R5, S9-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R5; S9-R6)",
+  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R5; S9-R6)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -208,10 +222,12 @@
   ],
   "expected": [
    "1. In the PDF, Inv. Hrs keeps the green (positive) / red (negative) coloring.",
-   "2. In the CSV, the Inv. Hrs column is monochrome — plain signed numbers with no color or markup."
+   "2. In the CSV, the Inv. Hrs column is monochrome — plain signed numbers with no color or markup.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R7)",
+  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R7)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -234,10 +250,12 @@
   ],
   "expected": [
    "1. In the download, Days Open is the whole number of days as of the moment the file is generated.",
-   "2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect."
+   "2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R8; Story 4 context note (Days Open live vs frozen))",
+  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R8; Story 4 context note (Days Open live vs frozen))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -260,7 +278,9 @@
   "expected": [
    "1. The PDF is named \"wip-2-report.pdf\".",
    "2. The CSV is named \"wip-2-report.csv\".",
-   "3. These exact names (including the \"-2-\") are the specified current behavior."
+   "3. These exact names (including the \"-2-\") are the specified current behavior.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R9)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the \"-2-\" segment; so the exact strings ARE the requirement)",
@@ -288,7 +308,9 @@
    "1. On screen the headers read \"Asset\" and \"Location\".",
    "2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".",
    "3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.",
-   "4. Note: the on-screen Asset cell now identifies the asset by its VIN (falling back to Unit #, then plate); whether the export header text changes from \"Unit\" is confirmed in the build - record what it shows, do not file a bug either way."
+   "4. Note: the on-screen Asset cell now identifies the asset by its VIN (falling back to Unit #, then plate); whether the export header text changes from \"Unit\" is confirmed in the build - record what it shows, do not file a bug either way.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned)",
@@ -313,10 +335,12 @@
   ],
   "expected": [
    "1. The PDF shows the shop logo at the top.",
-   "2. The CSV never includes a logo (plain data only)."
+   "2. The CSV never includes a logo (plain data only).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R10)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R10)",
+  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R10)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -330,7 +354,8 @@
   "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. The report can be put in three states: rows present, no rows visible (filters leave nothing), and (if simulatable) a failing download, for example by disconnecting the network before the download."
+   "2. The report can be put in three states: rows present, no rows visible (filters leave nothing), and (if simulatable) a failing download, for example by disconnecting the network before the download.",
+   "3. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
   ],
   "steps": [
    "1. With rows present, download the current tab and read the notification.",
@@ -340,10 +365,12 @@
   "expected": [
    "1. On a successful download, a success notification shows with the caption \"Data exported successfully.\"",
    "2. When a download yields no rows, a warning notification shows titled \"Empty export\" with the caption \"Export didn't yield any results\".",
-   "3. When a download fails, an error notification shows: \"An error occurred while exporting the report. Please try again.\""
+   "3. When a download fails, an error notification shows: \"An error occurred while exporting the report. Please try again.\"",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R11, S9-R12, S9-R13)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8665 (specs/wip-work-in-progress.md Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary)",
+  "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
   "notes": "All three notification texts are verbatim from the spec/§7. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -367,7 +394,9 @@
    "1. For both the CSV and the PDF: no file is generated and no download starts.",
    "2. An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user).",
    "3. Below the cap the download works normally.",
-   "4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on."
+   "4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (Story 9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending)",

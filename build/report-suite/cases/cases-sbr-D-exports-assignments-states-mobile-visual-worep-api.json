@@ -16,7 +16,9 @@
   ],
   "expected": [
    "1. The menu lists exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", and \"Download Expanded View (CSV)\".",
-   "2. No other entries appear in the menu."
+   "2. No other entries appear in the menu.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R1, S17-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R1 + Story 17 S17-R3 (position) — S14-R1 CLOSES it in the spec's own words (\"lists exactly four actions\"); so the closed list IS the requirement)",
@@ -47,7 +49,9 @@
    "2. The files reflect the FULL result set for those filters — a collapsed (never-expanded) rep's invoices still appear in the Expanded View files; on-screen expansion state does not matter.",
    "3. Rep rows appear in the report's currently-active order — the active column sort if one is set, otherwise the A→Z default.",
    "4. The Unassigned row (Show Unassigned on) is pinned first, ahead of the sorted reps.",
-   "5. Every file (all four downloads, PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build)."
+   "5. Every file (all four downloads, PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2; S14-R2a; S14-R20 + Story 21 S21-R6 + Story 22 S22-R4 — all four downloads honour the filters; the full result set and the active order; S14-R20 = the \"Locations:\" line in every export)",
@@ -76,7 +80,9 @@
    "2. There is one rolled-up row per rep, in the report's currently-active order; a toggled-off contributor's name carries the \"(Inactive)\" tag.",
    "3. With a single location in scope the columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. When more than one location is in scope a Location column is added with the identifying columns ahead of Inv. Hrs, and a rep who spans more than one location reads \"Multiple\" (this file has no Status column for it to follow — confirm its exact position in the build).",
    "4. Subtotal is bolded across the header, the body rows, and the grand totals row; Inv. Hrs keeps its green/red/default coloring.",
-   "5. The grand totals row reads \"Totals\" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin ÷ total Subtotal (shown \"—\" when that Subtotal is zero or below), never the sum or average of the rows' percentages."
+   "5. The grand totals row reads \"Totals\" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin ÷ total Subtotal (shown \"—\" when that Subtotal is zero or below), never the sum or average of the rows' percentages.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R3, S14-R5, S14-R20, S2-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3; S14-R5; S14-R20; Story 2 S2-R5; §3 Margin % definition — Summary PDF; plus the automatic Location column in all four exports)",
@@ -106,7 +112,9 @@
    "3. The Status column renders the same colored badge as on screen, vertically centered.",
    "4. Invoices are ordered newest first (the same order as the on-screen expansion: invoice date descending, numeric invoice-number tie-break).",
    "5. Each block ends with a per-rep totals row — \"Totals\" in the Date cell; Invoice/Customer/Status blank; each metric aggregated; Margin % recomputed.",
-   "6. There is NO grand-totals row across all reps at the end of the document."
+   "6. There is NO grand-totals row across all reps at the end of the document.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R6, S14-R8, S14-R20, S6-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R6; S14-R8; S14-R20; Story 6 S6-R9 — Expanded PDF page-block per rep; plus the automatic Location column after Status)",
@@ -131,10 +139,12 @@
   "expected": [
    "1. On screen, both invoice numbers show in full — never truncated.",
    "2. In the PDF, the long number is cut to its first 18 characters followed by an ellipsis (the ellipsis is not counted toward the 18).",
-   "3. In the PDF, the 18-character-or-shorter number shows in full with no ellipsis."
+   "3. In the PDF, the 18-character-or-shorter number shows in full with no ellipsis.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R7)",
+  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R7)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm whether an >18-character invoice number is seedable in this environment; if not, mark Blocked-Env with the reason rather than inferring. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -158,12 +168,14 @@
   "expected": [
    "1. The files are named exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\".",
    "2. A footer reading \"Software Powered by ShopView\" appears on EVERY page of both PDFs.",
-   "3. With no configured logo, the logo region falls back to the default ShopView logo and the PDF still generates normally."
+   "3. With no configured logo, the logo region falls back to the default ShopView logo and the PDF still generates normally.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R3a, S14-R4, S14-R11)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3a; S14-R4; S14-R11 — S14-R11 CLOSES both PDF filenames verbatim (\"deterministic\") and S14-R4 closes the footer string; so the exact strings ARE the requirement)",
-  "viu_status": "VIU-Pending",
-  "notes": "Restore the organization logo after the fallback check (shared-env rule). | 2026-08-03 verifier-fix [C/V-10]: Pins the two verbatim PDF filenames and the footer string to SBR S14-R11 / S14-R4 + spec version (Rule 42(b) — the exact strings ARE the requirement). RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-2, steps 1-3, expected 1-3, refs. S14-R11 verbatim L539: \"PDF filenames are deterministic: `sales-by-representative-summary.pdf` and `sales-by-representative-expanded.pdf`.\" S14-R4 L525 closes the footer string; S14-R3a L523 the default-logo fallback. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "viu_status": "DEVIATION",
+  "notes": "Restore the organization logo after the fallback check (shared-env rule). | 2026-08-03 verifier-fix [C/V-10]: Pins the two verbatim PDF filenames and the footer string to SBR S14-R11 / S14-R4 + spec version (Rule 42(b) — the exact strings ARE the requirement). RULE 41: Re-verified whole against SBR spec v15 2026-07-29: title, preconditions 1-2, steps 1-3, expected 1-3, refs. S14-R11 verbatim L539: \"PDF filenames are deterministic: `sales-by-representative-summary.pdf` and `sales-by-representative-expanded.pdf`.\" S14-R4 L525 closes the footer string; S14-R3a L523 the default-logo fallback. No second finding. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | STATUS CORRECTED 2026-08-04 (final-push pass): the recorded VIU-Observed-PASS contradicted this case's own captured evidence, so the ledger status is DEVIATION. Local status only — no TestRail field carries it.",
   "api_related": false
  },
  {
@@ -184,10 +196,12 @@
   "expected": [
    "1. Negative dollar values render in accounting parentheses — for example ($1,234.56) — in both PDFs, with no extra color treatment.",
    "2. The on-screen (N) invoice count does NOT appear next to any rep name in either PDF.",
-   "3. The \"(Inactive)\" tag DOES render on toggled-off contributors' names in both PDFs; other rep names render plainly."
+   "3. The \"(Inactive)\" tag DOES render on toggled-off contributors' names in both PDFs; other rep names render plainly.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R9, S14-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R9; S14-R10)",
+  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R9; S14-R10)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -200,7 +214,8 @@
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
   "preconditions": [
-   "1. You can produce (or seed) filtered views whose LONGEST formatted positive dollar value — checked across every value in the document, including the totals row — falls in different length brackets (for example, $1,234.56 = 9 characters vs $1,000,000.00 = 13 characters)."
+   "1. You can produce (or seed) filtered views whose LONGEST formatted positive dollar value — checked across every value in the document, including the totals row — falls in different length brackets (for example, $1,234.56 = 9 characters vs $1,000,000.00 = 13 characters).",
+   "2. This test reads what is inside a downloaded PDF. Open the file in any PDF viewer and use the viewer's own text search (Ctrl+F) to find the text named below — that is enough. There is nothing to install."
   ],
   "steps": [
    "1. Download the Summary PDF for a view whose longest positive dollar value is 9 characters or fewer; note the body text size (a relative comparison across files is enough).",
@@ -210,10 +225,12 @@
   "expected": [
    "1. As the longest positive dollar value in the document grows past each length bracket, the PDF body text visibly steps DOWN in size — the relative step-downs are the pass criterion for this manual test.",
    "2. Column widths are fixed for the worst case regardless of tier — the layout never breaks and no value overflows or wraps its column.",
-   "3. Both PDF formats adapt the same way."
+   "3. Both PDF formats adapt the same way.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R12, S14-R13)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R12; S14-R13)",
+  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R12; S14-R13)",
   "viu_status": "VIU-Pending",
   "notes": "Exact pixel sizes need a PDF inspector or side-by-side comparison at VIU; verify the relative step-downs and the no-overflow guarantee at minimum. FIX-WORDING repair 2026-07-28 (sense-check): the px tier table is metadata, not the manual pass criterion (it needs a PDF inspector). Spec tier table (S14-R12): longest formatted positive dollar value 9 chars or fewer → 11px; 10 → 10px; 11 → 9px; 12+ → 8px (8px floor, 11px ceiling, totals included). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -266,7 +283,9 @@
    "4. \"# Invoices\" equals the on-screen (N); \"# Customers\" counts distinct customers across those invoices (de-duplicated across locations when several are selected).",
    "5. The CSV has NO totals row.",
    "6. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "7. When more than one location is in scope the file also carries a Location column, with the identifying columns ahead of the metric columns; a rep whose invoices span more than one location reads \"Multiple\". (This file has no Status column for it to follow — confirm its exact position in the build.)"
+   "7. When more than one location is in scope the file also carries a Location column, with the identifying columns ahead of the metric columns; a rep whose invoices span more than one location reads \"Multiple\". (This file has no Status column for it to follow — confirm its exact position in the build.)",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R15, S14-R18, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R15; S14-R18; S14-R20 — Summary CSV headers; plus the automatic Location column in all four exports; S14-R15's header list was left un-updated when S14-R20 was added — spec correction pending)",
@@ -294,7 +313,9 @@
    "2. With a single location in scope the headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
    "3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.",
    "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "5. When more than one location is in scope the file also carries a Location column immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never \"Multiple\"."
+   "5. When more than one location is in scope the file also carries a Location column immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never \"Multiple\".",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R16, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R16; S14-R20 — Expanded CSV headers; plus the automatic Location column after Status; S14-R16's header list was left un-updated when S14-R20 was added — spec correction pending)",
@@ -322,10 +343,12 @@
    "3. Margin % is a plain number to one decimal (for example, 45.2) with no % sign, and the cell is EMPTY where Margin % is undefined (Subtotal ≤ 0).",
    "4. The \"Sales Representative\" name carries the \"(Inactive)\" tag when applicable; the on-screen (N) count is NOT embedded in the name.",
    "5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Inv. Hrs conveys direction only by its sign).",
-   "6. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
+   "6. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R17)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R17; §3 Key Decisions (CSVs monochrome / plain signed numbers))",
+  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R17; §3 Key Decisions (CSVs monochrome / plain signed numbers))",
   "viu_status": "VIU-Pending",
   "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -350,10 +373,12 @@
    "1. With the toggle ON: the Summary PDF and Summary CSV each carry one rolled-up row whose Rep / \"Sales Representative\" cell reads the literal \"Unassigned\", sorted to the top; the Expanded CSV rows for those invoices carry \"Sales Representative\" = \"Unassigned\"; the Expanded View PDF has its own TOP page-block titled \"Unassigned\".",
    "2. The Summary PDF grand-totals row aggregates across all summary rows INCLUDING Unassigned; in the Summary CSV the Unassigned row is simply one of the data rows (no totals row exists).",
    "3. With the toggle OFF: no Unassigned row and no unassigned invoices appear in ANY of the four files.",
-   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R19, S22-R2, S22-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R19; Story 22 S22-R2; S22-R4)",
+  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R19; Story 22 S22-R2; S22-R4)",
   "viu_status": "VIU-Pending",
   "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -367,7 +392,8 @@
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
   "preconditions": [
    "1. You are on the report with data showing.",
-   "2. You can force a download failure (for example, cut the network just after triggering the download) — if not forceable, mark this Blocked with the reason."
+   "2. You can force a download failure (for example, cut the network just after triggering the download) — if not forceable, mark this Blocked with the reason.",
+   "3. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
   ],
   "steps": [
    "1. Trigger a PDF download and watch the menu action while the file is being generated.",
@@ -376,10 +402,12 @@
   "expected": [
    "1. While a PDF is generating, the action shows a loading state and is non-interactive until the file is delivered.",
    "2. A failed download shows the error toast \"Ooooops! An error occured\" (the typo is as-shipped) — it persists 120 seconds or until dismissed.",
-   "3. A genuine failure downloads nothing — never a malformed file."
+   "3. A genuine failure downloads nothing — never a malformed file.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-N1, S14-N2, S14-E1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-N1; S14-N2; S14-E1; §7)",
+  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-N1; S14-N2; S14-E1; §7)",
   "viu_status": "VIU-Pending",
   "notes": "\"Ooooops! An error occured\" is the canonical ShopView fallback wording, verbatim INCLUDING the typo — do not \"correct\" it when comparing. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -401,7 +429,10 @@
   "expected": [
    "1. No file is produced — the server declines rather than generating a truncated file.",
    "2. An error toast reads exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (persists 120 seconds or until dismissed).",
-   "3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected)."
+   "3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected).",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-E2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2; §7 — 10k-row export cap; no truncated file; toast persists 120s; the toast STRING is the ONE suite-wide message ruled by Chris Ward 2026-07-31 Q2=A [newest-wins]; his SBR spec edit is pending)",
@@ -428,10 +459,12 @@
    "2. The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Inv. Hrs columns and \"—\" for Margin %.",
    "3. The Expanded View PDF renders just the header strip with no per-rep blocks (it has no grand-totals row).",
    "4. Both CSVs generate a header-row-only file, still starting with the UTF-8 BOM.",
-   "5. No special \"empty\" treatment or message appears inside the files."
+   "5. No special \"empty\" treatment or message appears inside the files.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-E3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E3)",
+  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -456,10 +489,12 @@
    "1. \"Sales Representative Assignments\" appears in the Report Name dropdown, appended at the BOTTOM of the list (additive — no existing entry moved or removed).",
    "2. Selecting it HIDES the date range picker.",
    "3. The dialog shows the note: \"Snapshot of current sales representative assignments. Both active and inactive reps with assignments are listed.\"",
-   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S15-R1, S15-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R1; S15-R2)",
+  "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R1; S15-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Note text is verbatim from the spec. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -481,11 +516,13 @@
    "3. Open the file in a text editor and read the header row."
   ],
   "expected": [
-   "1. The file downloads as \"sales-representative-assignments.csv (the short form \"rep\" is gone from the file name — confirm the exact final file name in the build)\".",
+   "1. The file downloads as \"sales-representative-assignments.csv\" — the short form \"rep\" is gone from the file name.",
    "2. A success toast shows \"Success\" with the caption \"Report downloaded.\" and auto-fades after 5 seconds.",
    "3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?.",
    "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "5. Note for the tester: this file has only those three columns even if you have several locations in scope. It is a separate customer-to-representative list, not one of the report's four downloads, so it has no Location column - do not fail it for that."
+   "5. Note for the tester: this file has only those three columns even if you have several locations in scope. It is a separate customer-to-representative list, not one of the report's four downloads, so it has no Location column - do not fail it for that.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S15-R3, S15-R4, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R3; S15-R4; §7 — S15-R4 CLOSES the three headers; \"Sales Rep\"→\"Sales Representative\" per Chris Ward 2026-07-31 Q5 [newest-wins]; NOT one of the four report exports so S14-R20 adds no Location)",
@@ -512,10 +549,12 @@
   "expected": [
    "1. Every customer with an assigned sales representative produces exactly ONE row (single-rep model: one rep per customer).",
    "2. Customers with no assigned rep are NOT included.",
-   "3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary)."
+   "3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S15-R5, S15-R7, S15-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R5; S15-R7; S15-R10)",
+  "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R5; S15-R7; S15-R10)",
   "viu_status": "VIU-Pending",
   "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -537,10 +576,12 @@
   "expected": [
    "1. The staff-ACTIVE / toggle-off rep shows \"Rep is active?\" = \"Yes\" — the toggle does not drive this column.",
    "2. The staff-INACTIVE / toggle-on rep shows \"Rep is active?\" = \"No\".",
-   "3. The value is always \"Yes\" or \"No\" (never \"Deactivated\" or another word)."
+   "3. The value is always \"Yes\" or \"No\" (never \"Deactivated\" or another word).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S15-R6, S13-R11)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R6; Story 13 S13-R11)",
+  "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R6; Story 13 S13-R11)",
   "viu_status": "VIU-Pending",
   "notes": "Staff-active status and the sales-rep toggle are independent flags; this column tracks staff-active status ONLY. The report's on-screen \"(Inactive)\" marker is driven by the TOGGLE instead — the two can differ. Restore both staff members afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -564,10 +605,12 @@
    "1. The customer still produces a row — the export never silently drops it.",
    "2. The \"Sales Representative\" name comes from the customer-side stored (denormalized) rep name, and \"Rep is active?\" = \"No\".",
    "3. When stored names differ across customers for the same rep (name drift), each customer's row uses its OWN stored name — drift never adds extra rows for a customer and never overwrites one customer's stored name with another's.",
-   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S15-R8, S15-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R8; S15-R9)",
+  "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R8; S15-R9)",
   "viu_status": "VIU-Pending",
   "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -590,10 +633,12 @@
   ],
   "expected": [
    "1. With zero assigned customers, the CSV downloads with a header row and no data rows, and the dialog shows its empty-export warning: \"There is no data to export for the selected report.\"",
-   "2. On a generation failure, an error toast reads \"An error occurred while exporting the report. Please try again.\" and auto-fades after 5 seconds."
+   "2. On a generation failure, an error toast reads \"An error occurred while exporting the report. Please try again.\" and auto-fades after 5 seconds.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S15-R11, S15-N2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R11; S15-N2; §7)",
+  "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R11; S15-N2; §7)",
   "viu_status": "VIU-Pending",
   "notes": "Both strings are the shared Export Reports dialog's own (5s auto-fade) — a deliberate exception to the canonical \"Ooooops!\" fallback. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -619,7 +664,9 @@
    "2. The grand Totals indicator is NOT shown.",
    "3. The same message appears when no staff member has ever been credited — there is no separate \"no reps configured\" message; the report is contributor-driven.",
    "4. Whenever at least one rep row (or the Unassigned row) IS in the result set, the rep list renders and no empty/error message shows.",
-   "5. In the empty state the toolbar — filters, column selector, and the ⋯ exports — stays visible and interactive; widening the range re-fetches and renders the matching reps normally."
+   "5. In the empty state the toolbar — filters, column selector, and the ⋯ exports — stays visible and interactive; widening the range re-fetches and renders the matching reps normally.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R1; S16-R2; S16-R3; S16-N1; Story 2 S2-N1; Story 21 S21-N2; §7)",
@@ -659,7 +706,8 @@
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
   "preconditions": [
-   "1. You are on the report with data showing (use a slow/throttled connection if available to make the loading state observable)."
+   "1. You are on the report with data showing (use a slow/throttled connection if available to make the loading state observable).",
+   "2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
   ],
   "steps": [
    "1. Reload the report and watch the data area during the initial load.",
@@ -670,10 +718,12 @@
    "1. On the initial load and on every filter-triggered re-fetch, the table shows the standard reports loading indicator — a centered spinner over the data area.",
    "2. The grand Totals indicator is hidden during loading.",
    "3. The toolbar stays interactive so filters can be changed mid-load.",
-   "4. A re-fetch replaces the previous data only when the new data returns — no flash of a blank table beyond the spinner overlay."
+   "4. A re-fetch replaces the previous data only when the new data returns — no flash of a blank table beyond the spinner overlay.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S16-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8633 (specs/sbr-sales-by-representative.md Story 16 S16-R4)",
+  "spec_ref": "SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R4)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -686,7 +736,8 @@
   "type": "Negative",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
   "preconditions": [
-   "1. You can force a load failure (for example, cut the network and change a filter) — if not forceable, mark Blocked with the reason."
+   "1. You can force a load failure (for example, cut the network and change a filter) — if not forceable, mark Blocked with the reason.",
+   "2. To force the failure this test needs, use the browser's own developer tools: press F12, open the \"Network\" tab, and switch the throttling dropdown (it normally reads \"No throttling\") to \"Offline\" to cut the connection, or to \"Slow 3G\" to slow it down. There is nothing to install. Set it back to \"No throttling\" when you finish."
   ],
   "steps": [
    "1. Set several non-default filters.",
@@ -696,10 +747,12 @@
   "expected": [
    "1. The data area shows the inline error message \"Couldn't load the report. Please try again.\" with a \"Retry\" action.",
    "2. The filters and toolbar remain interactive, and the failure does NOT clear the filter selections.",
-   "3. \"Retry\" re-runs the CURRENT request — the report loads with the same filters still applied."
+   "3. \"Retry\" re-runs the CURRENT request — the report loads with the same filters still applied.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S16-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8633 (specs/sbr-sales-by-representative.md Story 16 S16-R5; §7)",
+  "spec_ref": "SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R5; §7)",
   "viu_status": "VIU-Pending",
   "notes": "Inline error message is verbatim from §7 — it is an inline data-area message with a Retry action, not a toast. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -722,10 +775,12 @@
   "expected": [
    "1. Every toolbar control is visible and operable on touch.",
    "2. Below 1024px the toolbar controls stack vertically at full width; the ⋯ exports button — the first control of the action cluster — wraps to a partial row ABOVE the stacked controls.",
-   "3. At 1024px and above the desktop layout applies."
+   "3. At 1024px and above the desktop layout applies.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S17-R1, S17-R2, S17-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8634 (specs/sbr-sales-by-representative.md Story 17 S17-R1; S17-R2; S17-R3)",
+  "spec_ref": "SV-8634 (SBR spec v15 2026-07-29 Story 17 S17-R1; S17-R2; S17-R3)",
   "viu_status": "VIU-Pending",
   "notes": "The dense table is deliberately NOT redesigned for small screens (§2 Out of Scope) — only control operability and stacking are in scope here. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -748,10 +803,12 @@
   "expected": [
    "1. The table scrolls horizontally to expose all columns; the pinned Subtotal column stays visible at the right edge throughout.",
    "2. The mobile external totals bar (\"Totals\" left, grand Subtotal right) sits below the table, OUTSIDE the horizontal scroll container — it does not scroll horizontally and is always fully visible.",
-   "3. The chevron expands/collapses the rep on touch."
+   "3. The chevron expands/collapses the rep on touch.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S17-R4, S17-R5, S10-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8634 (specs/sbr-sales-by-representative.md Story 17 S17-R4; S17-R5; Story 10 S10-R5 (mobile))",
+  "spec_ref": "SV-8634 (SBR spec v15 2026-07-29 Story 17 S17-R4; S17-R5; Story 10 S10-R5 (mobile))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -764,7 +821,8 @@
   "type": "Accessibility",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
   "preconditions": [
-   "1. The report is open on a touch device or touch emulation (under 1024px)."
+   "1. The report is open on a touch device or touch emulation (under 1024px).",
+   "2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the \"Styles\" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing."
   ],
   "steps": [
    "1. Measure (device emulation ruler/inspector) the touch targets of a row chevron, the Show Unassigned toggle, the ⋯ button, and — via the staff deactivation dialog if opened — the dialog's X.",
@@ -772,10 +830,12 @@
   ],
   "expected": [
    "1. Each of these interactive controls presents a touch target of at least 44×44 px.",
-   "2. Hover-only tooltips are not shown on touch; the icons communicate the action and each icon-only control carries an accessible name."
+   "2. Hover-only tooltips are not shown on touch; the icons communicate the action and each icon-only control carries an accessible name.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S17-R6, S17-N1, S18-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8634 (specs/sbr-sales-by-representative.md Story 17 S17-R6; S17-N1; Story 18 S18-R9)",
+  "spec_ref": "SV-8634 (SBR spec v15 2026-07-29 Story 17 S17-R6; S17-N1; Story 18 S18-R9)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -791,19 +851,24 @@
    "1. You are on the report on a desktop browser (light mode) with data showing."
   ],
   "steps": [
-   "1. Look at the toolbar's surface, padding, and how the title and the rightmost control line up with the table columns.",
+   "1. Look at the toolbar strip, at the space between its controls and the edges of the strip, and at how the title and the rightmost control line up with the table columns.",
    "2. Look at the page background around the data area, the line between the toolbar and the column headers, and the table's side edges.",
-   "3. Look at the header cells, the body cells, the pinned Subtotal cells, and the grand Totals indicator's surface."
+   "3. Look at the header cells, the body cells, the pinned Subtotal cells, and the grand Totals indicator's surface.",
+   "4. Open another report in the suite (for example Parts Velocity) side by side and compare."
   ],
   "expected": [
-   "1. The toolbar has a solid white background with padding 32px top / 24px bottom / 2rem left and right; the title's left edge aligns with the leftmost data column, and the rightmost toolbar control (the Location filter) aligns its right edge with the rightmost data column.",
-   "2. The data area sits on the standard blue-grey page background with ZERO horizontal page padding — the toolbar and table run edge-to-edge against the side navigation.",
+   "1. The toolbar has a solid white background and its controls sit clear of the edges rather than pressed up against them; the title's left edge lines up with the leftmost data column, and the rightmost toolbar control (the Location filter) lines its right edge up with the rightmost data column.",
+   "2. The data area sits on the standard blue-grey page background and runs edge-to-edge against the side navigation — there is no strip of empty space down either side.",
    "3. A thin horizontal separator line sits between the toolbar and the column headers.",
    "4. Column-header cells and all body cells render on white; the pinned Subtotal column matches the row background (not a contrasting strip); the grand Totals indicator renders on the white card surface with a thin top border.",
-   "5. Row types are differentiated by font weight and color, not background color. These rules apply unconditionally whenever the report is rendered."
+   "5. Row types are told apart by how heavy and what colour their text is, not by a different background colour.",
+   "6. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.",
+   "7. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the alignment look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this — 32px/24px toolbar padding, 2rem edge padding — are design-token values the design and engineering team check with their own tooling, not by hand.)",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S18-R1, S18-R2, S18-R3, S18-R4, S18-R5, S18-R7, S18-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1)",
+  "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1)",
   "viu_status": "VIU-Pending",
   "notes": "S18-R7 is self-contained and normative — if app-wide report styling has evolved, this spec is still the source of truth until a new spec round says otherwise (S18-R7.6). COMPANION-VIDEO 2026-07-30 (C12, 08:06-08:51) VISUAL-VIU-CONFIRM: 'All reports are modeled after technician efficiency ... the most recently updated visual representation ... that won't hold forever ... ideally all six reports will look as close together as possible.' Use Technician Efficiency as the side-by-side styling reference at VIU (grain of salt — the reference may move); ignore the PO's local coloring drift (fake/local artifact). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -828,10 +893,12 @@
    "1. The page, toolbar, header, body cells, and the grand Totals indicator switch to their dark equivalents.",
    "2. Status badges keep the same canonical payment-status color tokens and stay legible in both modes.",
    "3. Inv. Hrs green/red use the application's positive/negative tokens, mode-appropriate.",
-   "4. PDFs always render in light-mode colors, even when downloaded from dark mode."
+   "4. PDFs always render in light-mode colors, even when downloaded from dark mode.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S18-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R8)",
+  "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R8)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -844,7 +911,8 @@
   "type": "Accessibility",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
   "preconditions": [
-   "1. You are on the report with at least one rep row; a screen reader or the browser's accessibility inspector is available."
+   "1. You are on the report with at least one rep row; a screen reader or the browser's accessibility inspector is available.",
+   "2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
   "steps": [
    "1. Inspect the accessible name of: the ⋯ exports button, the column selector button, one rep row's chevron (collapsed, then expanded), and the header chevron.",
@@ -855,12 +923,14 @@
    "2. Column selector = \"Show or hide columns\".",
    "3. Per-row chevron = \"Expand {rep name}\" when collapsed / \"Collapse {rep name}\" when expanded.",
    "4. Header chevron = \"Expand all reps\" / \"Collapse all reps\".",
-   "5. Dialog X = \"Close\"."
+   "5. Dialog X = \"Close\".",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S18-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R9)",
-  "viu_status": "VIU-Pending",
-  "notes": "All five names are verbatim from the spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R9)",
+  "viu_status": "DEVIATION",
+  "notes": "All five names are verbatim from the spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | STATUS CORRECTED 2026-08-04 (final-push pass): the recorded VIU-Observed-PASS contradicted this case's own captured evidence, so the ledger status is DEVIATION. Local status only — no TestRail field carries it.",
   "api_related": false
  },
  {
@@ -871,7 +941,8 @@
   "type": "Accessibility",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
   "preconditions": [
-   "1. You are on the report with at least two rep rows; a screen reader or accessibility inspector is available."
+   "1. You are on the report with at least two rep rows; a screen reader or accessibility inspector is available.",
+   "2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
   "steps": [
    "1. Tab to a rep row's chevron; press Enter, then Space.",
@@ -881,10 +952,12 @@
   "expected": [
    "1. The row chevrons and the sortable column headers are keyboard-focusable and activate on Enter and on Space.",
    "2. A chevron exposes its expanded/collapsed state to assistive technology.",
-   "3. A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology."
+   "3. A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S18-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8635 (specs/sbr-sales-by-representative.md Story 18 S18-R10)",
+  "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R10)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -906,7 +979,9 @@
   "expected": [
    "1. In BOTH light mode and dark mode the subdued-grey (N) count and the \"(Inactive)\" tag are easy to read against the surface behind them - the smaller text does not fade into the background.",
    "2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.",
-   "3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can read the grey text easily in both modes, and only report it if you cannot. (The design rule behind this is WCAG AA contrast of at least 4.5:1, which the design and engineering team check with a contrast tool - not by hand.)"
+   "3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can read the grey text easily in both modes, and only report it if you cannot. (The design rule behind this is WCAG AA contrast of at least 4.5:1, which the design and engineering team check with a contrast tool - not by hand.)",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S18-R11, S18-R12)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R11; S18-R12 — subdued-grey (N) count and \"(Inactive)\" tag at ≥ 4.5:1 WCAG AA in both modes; nothing conveyed by colour alone; the ratio is a design-token property so the check is by-eye)",
@@ -935,10 +1010,12 @@
    "2. The left panel includes the same \"Sales Representative\" selector on the Part Sale WO.",
    "3. The selector is NOT present on the imported Work Order.",
    "4. The selector is NOT present in History mode.",
-   "5. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
+   "5. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R1, S19-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R1; S19-N1)",
+  "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R1; S19-N1)",
   "viu_status": "VIU-Pending",
   "notes": "COMPANION-VIDEO 2026-07-30 (C15/C16, 09:41-10:53): WO-card dropdown confirmed (default Unassigned, assignable). PENDING Q5: the 'Sales Rep' label may flip to the full word 'Representative' per the no-short-forms ruling — do not edit until Chris answers. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -962,10 +1039,12 @@
    "1. The toggle-ON staff member is offered as a selectable rep.",
    "2. The toggle-OFF staff member is NOT offered as a new selection.",
    "3. The selector carries the accessible name \"Sales Representative\".",
-   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R2, S19-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R2; S19-R8 — toggle entry path Settings -> Staff -> edit the staff member per the PRD companion video 2026-07-30 09:17-09:41; exact toggle label to confirm live in the build)",
+  "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R2; S19-R8 — toggle entry path Settings -> Staff -> edit the staff member per the PRD companion video 2026-07-30 09:17-09:41; exact toggle label to confirm live in the build)",
   "viu_status": "VIU-Pending",
   "notes": "Restore any changed toggles afterward (shared-env rule). COMPANION-VIDEO 2026-07-30 (C14, 09:17-09:41): entry point confirmed — 'We're going to go into settings. We're going to go staff, we're going to edit the staff member, and we have a new toggle here.' Exact on-screen toggle label not in the transcript — VIU-confirm. PENDING (C15/Q5): the selector's 'Sales Rep' label/accessible name may flip to the full word 'Representative' per the no-short-forms ruling — question Q5 to Chris; do not edit until answered. Title shortened to fit (was >80 chars). Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -988,10 +1067,12 @@
   "expected": [
    "1. The new Work Order opens with the Sales Representative field UNASSIGNED — it is not pre-filled at creation.",
    "2. Changing the Sales Representative persists immediately (save-on-change): the selection survives leaving and reopening the WO with no separate Save step.",
-   "3. A new Part Sale WO also opens with the field unassigned."
+   "3. A new Part Sale WO also opens with the field unassigned.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R3, S19-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R3; S19-R4)",
+  "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R3; S19-R4)",
   "viu_status": "VIU-Pending",
   "notes": "Delete the throwaway ZZAUTOTEST WO afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -1014,10 +1095,12 @@
    "1. On the Invoiced WO the Sales Representative selector is read-only (non-interactive) — the assignment cannot be changed.",
    "2. On the Paid WO the selector is also read-only.",
    "3. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
-   "4. Note for the tester: this field is only made read-only on the screen. If you find the sales rep can still be changed another way (through the back-end/API), that is expected — mark this test PASSED and do not raise it as a bug."
+   "4. Note for the tester: this field is only made read-only on the screen. If you find the sales rep can still be changed another way (through the back-end/API), that is expected — mark this test PASSED and do not raise it as a bug.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R5)",
+  "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -1041,10 +1124,12 @@
    "1. Invoice (a) is credited to the WO's Sales Representative.",
    "2. Invoice (b) falls back to the CUSTOMER's assigned rep.",
    "3. Invoice (c) is unassigned — it appears only under the \"Unassigned\" row.",
-   "4. Changing WO (a)'s Sales Representative afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation."
+   "4. Changing WO (a)'s Sales Representative afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R6, S19-N2, S22-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8636 (specs/sbr-sales-by-representative.md Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3)",
+  "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA (§3 build note): the shipped database stores separate parts-side and service-side reps; the spec locks the single-rep model — record a deviation if the build still credits from dual fields. Clean up the ZZAUTOTEST data afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -1069,7 +1154,9 @@
    "1. The customer record's left-panel sidebar shows a single row labeled \"Sales Representative\" (the full word — the product owner explicitly corrected the short-form \"Sales Representative\" label here) with the customer's assigned rep.",
    "2. When no rep is assigned, the row renders \"Unassigned\".",
    "3. On the WO, the selector renders the bound rep's name with an \"(Inactive)\" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list.",
-   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test."
+   "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R7, S19-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec Story 19 S19-R7; S19-E1 — customer-card label RE-RULED to the full \"Sales Representative\" per the PRD companion video 2026-07-30 + Chris Ward answer 2026-07-31 Q5=A; the spec text still says \"Sales Rep\")",
@@ -1094,10 +1181,12 @@
   ],
   "expected": [
    "1. The system NEVER silently deactivates — the warning dialog still opens (fallback), so the type-to-confirm gate still applies.",
-   "2. Because the customer count is unavailable, the dialog OMITS the count headline and shows only the reassurance line \"Their customer assignments will stay where they are.\" above the \"Type YES to confirm\" gate."
+   "2. Because the customer count is unavailable, the dialog OMITS the count headline and shows only the reassurance line \"Their customer assignments will stay where they are.\" above the \"Type YES to confirm\" gate.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S13-N4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-N4)",
+  "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-N4)",
   "viu_status": "VIU-Pending",
   "notes": "Restore the staff member (cancel the dialog / reactivate) afterward. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -1111,7 +1200,8 @@
   "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
   "preconditions": [
    "1. You are on the report with at least two rep rows, one with a large invoice count if seedable.",
-   "2. The browser's network panel is open."
+   "2. The browser's network panel is open.",
+   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
   "steps": [
    "1. Load the report and note which requests deliver the summary rows.",
@@ -1121,10 +1211,12 @@
   "expected": [
    "1. Invoice detail rows are NOT delivered with the initial summary payload — the first expand of a rep triggers a server fetch for that rep's matching invoices, with a brief row-level loading indicator.",
    "2. A re-expand within the session does not necessarily re-fetch (the expansion state is session-preserved); no rep's details load before its first expand.",
-   "3. When a rep's matching-invoice count is large, its detail rows are paginated per rep."
+   "3. When a rep's matching-invoice count is large, its detail rows are paginated per rep.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S6-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R2)",
+  "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R2)",
   "viu_status": "VIU-Pending",
   "notes": "The spec defines no REST contract — observe the browser's real requests; do NOT assume endpoint shapes. The per-rep page size and the expand-all bound are build tuning values (tech plan), not fixed by the spec. BUILD-DELTA: lazy server-side drill-down is the 2026-07-16 committed target (spec ahead of code by design). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -1137,7 +1229,8 @@
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
   "preconditions": [
-   "1. You are on the report with several rep rows; the network panel is open."
+   "1. You are on the report with several rep rows; the network panel is open.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
   "steps": [
    "1. Click a financial column header and watch the network panel.",
@@ -1146,10 +1239,12 @@
   "expected": [
    "1. Each sort change triggers a server re-fetch of the rep summary rows in the requested order (a loading indicator shows during the fetch).",
    "2. The returned rows arrive already ordered by the requested column and direction — the client does not re-sort locally.",
-   "3. Invoice detail rows continue to load lazily per rep on expand, unaffected by the sort mechanism."
+   "3. Invoice detail rows continue to load lazily per rep on expand, unaffected by the sort mechanism.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S11-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8628 (specs/sbr-sales-by-representative.md Story 11 S11-R5)",
+  "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Generic wording on purpose — no endpoint invented. BUILD-DELTA: server-side sort is the 2026-07-16 committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -1162,7 +1257,8 @@
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
   "preconditions": [
-   "1. You are on the report with several reps, at least one large enough that not all of its detail rows are loaded; the network panel is open."
+   "1. You are on the report with several reps, at least one large enough that not all of its detail rows are loaded; the network panel is open.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
   "steps": [
    "1. Load the report with everything collapsed and inspect the summary response and the grand Totals indicator.",
@@ -1171,10 +1267,12 @@
   "expected": [
    "1. The grand totals arrive WITH the summary payload — the client does not derive them by summing loaded rows.",
    "2. The totals cover EVERY matching non-reversed invoice across every rep, independent of which reps are expanded or how many detail rows are loaded.",
-   "3. The on-screen grand Totals match the export's aggregate for the same filter set."
+   "3. The on-screen grand Totals match the export's aggregate for the same filter set.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S10-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8627 (specs/sbr-sales-by-representative.md Story 10 S10-R5)",
+  "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5)",
   "viu_status": "VIU-Pending",
   "notes": "BUILD-DELTA: server-computed grand totals are the 2026-07-16 committed target (spec ahead of code by design). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -1187,7 +1285,8 @@
   "type": "Functional",
   "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
   "preconditions": [
-   "1. You are on the report with filters and a column sort applied; at least one rep is left unexpanded; the network panel is open."
+   "1. You are on the report with filters and a column sort applied; at least one rep is left unexpanded; the network panel is open.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
   "steps": [
    "1. Trigger each of the four downloads and observe the export requests and responses.",
@@ -1197,10 +1296,12 @@
   "expected": [
    "1. Each export is generated by the server, receiving the active filters and sort — the file's contents and order match the screen even for reps never expanded (not built from loaded screen data).",
    "2. A genuine server-side export failure produces NO file and shows the \"Ooooops! An error occured\" toast — never a malformed/partial file.",
-   "3. An empty-but-loaded result still produces a valid file (header-row-only CSV / no-rows PDF)."
+   "3. An empty-but-loaded result still produces a valid file (header-row-only CSV / no-rows PDF).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R2a, S14-N2, S14-E3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-R2a; S14-N2; S14-E3)",
+  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2a; S14-N2; S14-E3)",
   "viu_status": "VIU-Pending",
   "notes": "No endpoint or status code is pinned by the spec — record what is actually observed. BUILD-DELTA: server-side exports are the 2026-07-16 committed target. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -1214,7 +1315,8 @@
   "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
   "preconditions": [
    "1. A filter set producing more than 10,000 invoice detail rows exists or can be seeded — otherwise mark Blocked-Env with the reason.",
-   "2. The network panel is open."
+   "2. The network panel is open.",
+   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
   "steps": [
    "1. Trigger \"Download Expanded View (PDF)\" against the over-cap filter set and observe the export request/response.",
@@ -1223,10 +1325,13 @@
   "expected": [
    "1. The server counts the rows against the 10,000-data-row cap and DECLINES to generate — the refusal happens pre-generation, observed in the export response.",
    "2. NO file (truncated or otherwise) is delivered; the client shows the specific too-large toast.",
-   "3. A filter set just below the cap still generates a complete (possibly very large) PDF."
+   "3. A filter set just below the cap still generates a complete (possibly very large) PDF.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-E2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8631 (specs/sbr-sales-by-representative.md Story 14 S14-E2)",
+  "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2)",
   "viu_status": "VIU-Pending",
   "notes": "Cap value 10,000 data rows is the spec's stated context note (2026-07-21 change log). No endpoint invented — observe the real request. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -1240,7 +1345,8 @@
   "permissions_required": "Owner/Administrator/Manager profile (or equivalent staff-administration access); browser dev tools.",
   "preconditions": [
    "1. A staff member is active with the sales-representative toggle on and at least one customer assigned (seed a throwaway ZZAUTOTEST assignment if needed).",
-   "2. The network panel is open."
+   "2. The network panel is open.",
+   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
   "steps": [
    "1. In staff administration, toggle that staff member's active status off and watch the network panel BEFORE the dialog appears.",
@@ -1250,10 +1356,12 @@
   "expected": [
    "1. A precondition-check request runs FIRST, before any change is applied, returning the count of distinct customers currently assigned to that staff member as their sales representative, plus a flag indicating whether any assignments exist.",
    "2. The dialog's \"{Staff Name} is the sales representative on {N} customer{s}.\" headline matches the returned count.",
-   "3. No deactivation is committed by the pre-check itself — cancelling leaves the staff member's active status unchanged."
+   "3. No deactivation is committed by the pre-check itself — cancelling leaves the staff member's active status unchanged.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S13-R1, S13-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R4)",
+  "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R1; S13-R4)",
   "viu_status": "VIU-Pending",
   "notes": "The spec defines the check's behavior, not its REST shape — observe the real request; no endpoint invented. Restore the staff member and remove ZZAUTOTEST data afterward. Q5 RULED 2026-07-31 (Chris Ward answer 2026-07-31, option A): \"Rep is too much slang, let's do representative everywhere\" — every UI-visible string uses the full word \"Sales Representative\" (label, column header, dropdown entry, dialog sentence, accessible name, file name). The build and the SBR spec text (S19-R1/R7/R8, Story 15) still use the short form — Chris's spec edit + a build change are pending. NOT changed: the second short-form header \"Rep is active?\", which he did not name (queued as an open question, DELTAS.md A2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true

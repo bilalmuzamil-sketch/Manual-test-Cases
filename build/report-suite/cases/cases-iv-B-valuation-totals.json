@@ -19,7 +19,9 @@
    "1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.",
    "2. Part #, Description, Category, and Vendor are left-aligned.",
    "3. Every other column is right-aligned.",
-   "4. Location is one of the columns in the column-selection control; when it is turned on the Location column appears between Vendor and Qty, left-aligned."
+   "4. Location is one of the columns in the column-selection control; when it is turned on the Location column appears between Vendor and Qty, left-aligned.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R1, S3-R2, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand)",
@@ -46,12 +48,14 @@
   "expected": [
    "1. Qty shows the on-hand quantity to two decimal places, with no currency symbol; fractional quantities display correctly.",
    "2. Unit Cost and Unit Sell show per-unit prices as US-dollar currency.",
-   "3. Money values show a leading \"$\", two decimal places, and thousands separators (for example \"$1,234.56\"); a negative value shows a leading minus before the \"$\" (\"-$1,234.56\"); a genuine zero shows \"$0.00\"."
+   "3. Money values show a leading \"$\", two decimal places, and thousands separators (for example \"$1,234.56\"); a negative value shows a leading minus before the \"$\" (\"-$1,234.56\"); a genuine zero shows \"$0.00\".",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R3, S3-R4, S3-R5, S3-R10)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity))",
+  "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity))",
   "viu_status": "VIU-Pending",
-  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
+  "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md | FIX-WORDING 2026-08-04, notes-only by the audit's own verdict (\"reword nothing tester-facing; the deviation is the spec's, not the case's - state that in the notes\"): the live column header is \"Qty\" and the case says \"Qty\", which is build-accurate; the IV spec still calls it \"Qty on Hand\". The difference is the spec's to fix, not the case's. No tester-facing text was changed.",
   "api_related": false
  },
  {
@@ -72,10 +76,12 @@
   ],
   "expected": [
    "1. Unit Sell equals the part's fixed sell price.",
-   "2. The pricing-matrix markup is NOT applied when a fixed sell price is set — the fixed price wins."
+   "2. The pricing-matrix markup is NOT applied when a fixed sell price is set — the fixed price wins.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list))",
+  "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list))",
   "viu_status": "VIU-Pending",
   "notes": "First step of the sell-price fallback chain: fixed price → matrix markup → cost. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -97,10 +103,12 @@
    "3. Compare it to the pricing-matrix markup applied to the part's cost for its category."
   ],
   "expected": [
-   "1. Unit Sell equals the shop's pricing-matrix markup on cost for that part's category (the same way the parts list resolves it)."
+   "1. Unit Sell equals the shop's pricing-matrix markup on cost for that part's category (the same way the parts list resolves it).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R5 (matrix branch); §5 Assumptions)",
+  "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (matrix branch); §5 Assumptions)",
   "viu_status": "VIU-Pending",
   "notes": "Second step of the sell-price fallback chain. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -115,7 +123,8 @@
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
    "2. A ZZAUTOTEST in-stock part exists with a known unit cost, NO fixed sell price, and NO category.",
-   "3. The Margin and Total Sell columns are turned on."
+   "3. The Margin and Total Sell columns are turned on.",
+   "4. Note for the tester: on this build a part cannot be saved without a category, so you may not be able to create the part described in step 2. If you cannot, mark this test Blocked and say so — do not guess the result."
   ],
   "steps": [
    "1. Open the Inventory Value report and find the part's row.",
@@ -124,10 +133,13 @@
   ],
   "expected": [
    "1. A part with no category takes no markup, so its Unit Sell equals its Unit Cost.",
-   "2. Such a part shows a Margin of $0.00 and a Margin % of 0.0% — the stock is valued at cost."
+   "2. Such a part shows a Margin of $0.00 and a Margin % of 0.0% — the stock is valued at cost.",
+   "3. Note for the tester: if no part without a category can be created or found, mark this test Blocked rather than Passed or Failed.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions)",
+  "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions)",
   "viu_status": "VIU-Pending",
   "notes": "Final step of the sell-price fallback chain — do NOT file the zero margin as a defect; it is the specified cost-valuation fallback. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -151,10 +163,12 @@
   ],
   "expected": [
    "1. Total Sell equals the part's on-hand quantity × Unit Sell, shown as US-dollar currency.",
-   "2. Total Cost equals the part's on-hand quantity × Unit Cost, shown as US-dollar currency."
+   "2. Total Cost equals the part's on-hand quantity × Unit Cost, shown as US-dollar currency.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R6, S3-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R6; S3-R7; §4 Terminology)",
+  "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R6; S3-R7; §4 Terminology)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -178,10 +192,12 @@
   ],
   "expected": [
    "1. Margin equals Total Sell − Total Cost for the part's whole on-hand quantity, shown as US-dollar currency.",
-   "2. Margin is the extended (total) margin, not the per-unit difference."
+   "2. Margin is the extended (total) margin, not the per-unit difference.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology)",
+  "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -205,10 +221,12 @@
   "expected": [
    "1. Margin % shows Margin as a percentage of Total Sell, to one decimal place followed by a percent sign — for example \"39.7%\".",
    "2. A Margin % that computes to a real number, including a negative one, shows its signed value.",
-   "3. Margin % shows \"—\" when Total Sell is zero or negative (the percentage is undefined)."
+   "3. Margin % shows \"—\" when Total Sell is zero or negative (the percentage is undefined).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R9, S3-E3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R9; S3-E3)",
+  "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R9; S3-E3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -231,10 +249,12 @@
   "expected": [
    "1. The Total Cost column is pinned to the far right of the row and shown in bold — it is the report's headline column.",
    "2. The Total Cost column header is bold and pinned, matching its cells.",
-   "3. It stays fixed to the right edge while the other columns scroll underneath."
+   "3. It stays fixed to the right edge while the other columns scroll underneath.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R11, S12-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions)",
+  "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -258,7 +278,9 @@
    "1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin %, and Total Cost.",
    "2. The Margin and Total Sell columns are hidden by default.",
    "3. Both can be turned on from the column-selection control and then appear in their fixed positions.",
-   "4. Location is one of the columns in the column-selection control; when it is turned on the Location column shows between Vendor and Qty."
+   "4. Location is one of the columns in the column-selection control; when it is turned on the Location column shows between Vendor and Qty.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R12, S3-R13, S8-R3, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope)",
@@ -286,10 +308,12 @@
    "1. Category shows the part's category name; Vendor shows the part's vendor name.",
    "2. A part with no category shows an em dash (\"—\") in its Category cell.",
    "3. A part with no vendor shows an em dash (\"—\") in its Vendor cell.",
-   "4. Note for the tester: on this build a part cannot be saved without a category, so you will not find a part whose Category cell shows \"—\". Check the Vendor half only."
+   "4. Note for the tester: on this build a part cannot be saved without a category, so you will not find a part whose Category cell shows \"—\". Check the Vendor half only.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R14, S3-E1, S3-E2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8670 (specs/inventory-value.md Story 3 S3-R14; S3-E1; S3-E2)",
+  "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R14; S3-E1; S3-E2)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -297,7 +321,7 @@
  {
   "id": "IV-TOT-01",
   "area": "IV — Totals Row",
-  "title": "Totals row: Totals label, blank identity/per-unit cells, pinned bold Total Cost",
+  "title": "Totals row: Total label, blank identity/per-unit cells, pinned bold Total Cost",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
@@ -313,13 +337,16 @@
    "4. Scroll the rows up and down and watch the totals row."
   ],
   "expected": [
-   "1. A totals row is shown at the bottom, with the label \"Totals\" in the Part # column's cell.",
+   "1. A totals row is shown at the bottom, with the label \"Total\" in the Part # column's cell. In the downloaded files the same row is labelled \"Totals\" — that difference is intended.",
    "2. The Description, Category, and Vendor cells are blank; the Unit Cost and Unit Sell cells are blank (a per-unit price has no meaningful sum).",
    "3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows.",
-   "4. The totals row stays visible at the bottom while the rows scroll."
+   "4. The totals row stays visible at the bottom while the rows scroll.",
+   "5. Note for the tester: if the label on screen reads \"Totals\" instead of \"Total\", mark this test Failed and report it — do not change the test.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8671 (specs/inventory-value.md Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5)",
+  "spec_ref": "SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5)",
   "viu_status": "VIU-Pending",
   "notes": "On screen the label is \"Total\" (S4-R1) while the DOWNLOADED totals row is labeled \"Totals\" (S10-R6) — the spec states both explicitly; VIU-confirm and flag to the owner if the build differs. MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTSTICKY): absorbed IV-VIS-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -347,10 +374,12 @@
    "1. The totals row sums Qty, Margin, Total Sell, and Total Cost across the FULL filtered result set — every qualifying row for the current Date, Location, Category, Vendor, and part-search selection, not only the rows on the visible page.",
    "2. The totals are identical on every page (they do not change as you page).",
    "3. The hand-summed subset matches the server-computed totals to the cent.",
-   "4. After each filter change the totals row recomputes on the server over the full filtered set, independent of which page is shown."
+   "4. After each filter change the totals row recomputes on the server over the full filtered set, independent of which page is shown.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S4-R2, S4-R8, S6-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8671 (specs/inventory-value.md Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set))",
+  "spec_ref": "SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set))",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-TOTFILTER): absorbed IV-TOT-04. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -375,10 +404,12 @@
   "expected": [
    "1. The totals-row Margin % equals total Margin ÷ total Total Sell × 100 (to one decimal place with a percent sign).",
    "2. It is NOT the average of the row percentages.",
-   "3. It shows \"—\" when the total Total Sell is zero or negative."
+   "3. It shows \"—\" when the total Total Sell is zero or negative.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S4-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8671 (specs/inventory-value.md Story 4 S4-R3)",
+  "spec_ref": "SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false

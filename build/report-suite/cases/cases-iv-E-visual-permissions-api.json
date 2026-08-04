@@ -17,7 +17,9 @@
   ],
   "expected": [
    "1. The table has white column headers and white data cells, with no alternating row shading.",
-   "2. The table sits on the standard soft blue-grey report backdrop."
+   "2. The table sits on the standard soft blue-grey report backdrop.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8679 (specs/inventory-value.md Story 12 S12-R1)",
@@ -42,7 +44,9 @@
   ],
   "expected": [
    "1. In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.",
-   "2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost)."
+   "2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R2, S12-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8679 (specs/inventory-value.md Story 12 S12-R2; S12-R3)",
@@ -93,10 +97,12 @@
   "expected": [
    "1. Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column.",
    "2. The full value is available on hover.",
-   "3. The Part # is never truncated."
+   "3. The Part # is never truncated.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8679 (specs/inventory-value.md Story 12 S12-R6)",
+  "spec_ref": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R6)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -118,11 +124,14 @@
    "2. Find a \"—\" cell and check its legibility."
   ],
   "expected": [
-   "1. The report supports dark mode.",
-   "2. The page background, toolbar, cells, and the \"—\" glyph all use dark-mode-legible colors."
+   "1. The report supports dark mode: the page background, the toolbar, and the table cells all switch to their dark equivalents rather than staying light.",
+   "2. In dark mode you can read the toolbar text and the cell text at a glance, and the \"—\" glyph in an empty Category or Vendor cell is clearly visible against the dark cell behind it — it does not disappear into the background.",
+   "3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether everything is easy to read in dark mode, and only report it if something is hard to see. (The exact colour values behind this are design-token values the design and engineering team check with their own tooling, not by hand.)",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8679 (specs/inventory-value.md Story 12 S12-R7)",
+  "spec_ref": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R7)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -136,8 +145,8 @@
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. A screen reader or the browser's accessibility inspector is available.",
-   "3. The Inventory Value report is open with rows loaded."
+   "2. The Inventory Value report is open with rows loaded.",
+   "3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
   "steps": [
    "1. Sort by a column and look at its header for a visual direction indicator.",
@@ -147,10 +156,12 @@
   "expected": [
    "1. The active sort direction is indicated visually on the header.",
    "2. Each sortable column header exposes its sort state to assistive technology (for example, ascending/descending/none).",
-   "3. The exposed state updates when the direction toggles."
+   "3. The exposed state updates when the direction toggles.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8679 (specs/inventory-value.md Story 12 S12-R8)",
+  "spec_ref": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R8)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -164,18 +175,20 @@
   "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
   "preconditions": [
    "1. You are signed in to the ShopView App on a desktop browser.",
-   "2. A screen reader or the browser's accessibility inspector is available.",
-   "3. The Inventory Value report is open."
+   "2. The Inventory Value report is open.",
+   "3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
   "steps": [
    "1. Inspect the three-dot download button's accessible name.",
    "2. Inspect the Column Selection button's accessible name."
   ],
   "expected": [
-   "1. Each icon-only control carries an accessible name exposed to assistive technology (it is not announced as an unnamed button)."
+   "1. Each icon-only control carries an accessible name exposed to assistive technology (it is not announced as an unnamed button).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S12-R9)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8679 (specs/inventory-value.md Story 12 S12-R9)",
+  "spec_ref": "SV-8679 (IV spec v3 2026-07-29 Story 12 S12-R9)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the exact accessible-name strings (unpinned by the spec). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -199,7 +212,9 @@
   "expected": [
    "1. The report is listed and opens normally for a user holding the ordinary reports access.",
    "2. No additional report-specific permission is required — for now the one ordinary reports access covers all six of the new reports.",
-   "3. Note for the tester: for now ONE ordinary reports access opens all six of these new reports; none of them has a permission of its own. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test."
+   "3. Note for the tester: for now ONE ordinary reports access opens all six of these new reports; none of them has a permission of its own. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (Story 1 Prerequisites); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8668 (IV spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the IV prerequisite still names the inventory-reports permission — his spec edit owed)",
@@ -223,7 +238,9 @@
    "2. Look for \"Inventory Value\" under the Parts group."
   ],
   "expected": [
-   "1. The report does not appear in the navigation for this user."
+   "1. The report does not appear in the navigation for this user.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S1-N1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8668 (IV spec Story 1 S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\")",
@@ -241,7 +258,8 @@
   "preconditions": [
    "1. In-stock, non-core parts exist at two or more locations, including a part with non-round cent values.",
    "2. A location with NO in-stock parts also exists.",
-   "3. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers)."
+   "3. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).",
+   "4. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
   ],
   "steps": [
    "1. After the overnight capture, inspect the stored snapshot rows for that calendar date.",
@@ -251,10 +269,12 @@
   "expected": [
    "1. Once per day, overnight, one row per then-in-stock, non-core part is recorded for every location across every organization, under that day's calendar date.",
    "2. Each row captures the part's identity (part, category, vendor), on-hand quantity, unit cost, unit sell, total cost, and total sell, stored to the cent.",
-   "3. A location with no in-stock parts on the date simply has no rows for that date — this is valid, not an error."
+   "3. A location with no in-stock parts on the date simply has no rows for that date — this is valid, not an error.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R1, S11-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8678 (specs/inventory-value.md Story 11 S11-R1; S11-R4)",
+  "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R1; S11-R4)",
   "viu_status": "VIU-Pending",
   "notes": "The spec defines job behavior only — NO endpoint or table name is specified and none is invented here. VIU-confirm with dev how to trigger/inspect the capture. The cross-tenant capture is a reviewed, documented exception to request-scoped tenant filtering (Story 11 context note); every read path keeps full tenant scoping. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -269,7 +289,8 @@
   "preconditions": [
    "1. ZZAUTOTEST parts with known quantities, costs, and sell resolutions (fixed price, matrix markup, and no-category fallback) are in stock and left UNCHANGED across the capture.",
    "2. A core-charge part and a zero-quantity part also exist.",
-   "3. You can read the live report on the capture date and the stored rows afterward."
+   "3. You can read the live report on the capture date and the stored rows afterward.",
+   "4. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
   ],
   "steps": [
    "1. On the capture date, note the live report's rows and values for the seeded parts.",
@@ -280,10 +301,12 @@
   "expected": [
    "1. The captured parts use the same in-stock, non-core scope as the live report (Story 2) — the core-charge and zero-quantity parts are NOT captured.",
    "2. The captured values use the same valuation as the live report (Story 3), including the sell-price fallback chain.",
-   "3. A recorded day equals what the live report would have shown that day — the as-of view of the captured date matches the noted live values."
+   "3. A recorded day equals what the live report would have shown that day — the as-of view of the captured date matches the noted live values.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8678 (specs/inventory-value.md Story 11 S11-R2; §2 Relationship to nightly history)",
+  "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R2; §2 Relationship to nightly history)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -297,7 +320,8 @@
   "permissions_required": "Backend/database (or dev-support) access to re-run the capture and inspect the stored snapshot rows.",
   "preconditions": [
    "1. A capture has already run for the current date.",
-   "2. The capture can be re-run for that date (arrange with the developers)."
+   "2. The capture can be re-run for that date (arrange with the developers).",
+   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
   ],
   "steps": [
    "1. Count the stored rows per location for the date.",
@@ -307,10 +331,12 @@
   "expected": [
    "1. Re-running the capture for a date replaces that date's rows for each location — the existing rows for that location and date are removed, then re-inserted from current data.",
    "2. No duplicate rows exist for the same part, location, and date.",
-   "3. The capture is idempotent and self-healing from current data."
+   "3. The capture is idempotent and self-healing from current data.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8678 (specs/inventory-value.md Story 11 S11-R3)",
+  "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -324,7 +350,8 @@
   "permissions_required": "Backend/database (or dev-support) access to inspect the stored snapshot rows.",
   "preconditions": [
    "1. The date the first capture ran is known.",
-   "2. Stock levels have changed since a past captured date."
+   "2. Stock levels have changed since a past captured date.",
+   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
   ],
   "steps": [
    "1. Check the stored history for any rows dated before the first capture.",
@@ -334,10 +361,12 @@
   "expected": [
    "1. No rows exist for dates before capture began — there is no backfill.",
    "2. A re-run always records current truth under the CURRENT date; it cannot reconstruct a past date.",
-   "3. Past dates' stored rows are unchanged by a current re-run."
+   "3. Past dates' stored rows are unchanged by a current re-run.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R5, S5-E1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8678 (specs/inventory-value.md Story 11 S11-R5; Story 5 S5-E1)",
+  "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R5; Story 5 S5-E1)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -351,7 +380,8 @@
   "permissions_required": "Backend/database (or dev-support) access to inspect the stored snapshot rows across ages.",
   "preconditions": [
    "1. Snapshot history exists (or is seeded/simulated with dev help) spanning both the 0–13-month band and the older-than-13-months band.",
-   "2. The nightly capture (with its pruning) has run."
+   "2. The nightly capture (with its pruning) has run.",
+   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
   ],
   "steps": [
    "1. Inspect the retained captures for dates within the last 13 months.",
@@ -361,10 +391,12 @@
   "expected": [
    "1. For ages 0–13 months (measured from the current date), every daily capture is kept — full daily per-part detail, covering the report's longest date preset (366 days / This Year / Last Year) entirely at daily resolution.",
    "2. For ages older than 13 months, only the last capture of each calendar month is retained; the other daily captures in that band are pruned.",
-   "3. Pruning runs as part of, or alongside, the nightly capture."
+   "3. Pruning runs as part of, or alongside, the nightly capture.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8678 (specs/inventory-value.md Story 11 S11-R6)",
+  "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R6)",
   "viu_status": "VIU-Pending",
   "notes": "The 13-month daily band is OWNER-DECIDED per the spec's bracketed note — confirm it is still current with the owner at VIU before failing anything against it. Verifying the >13-month band on a fresh environment requires dev-seeded/aged history. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -378,7 +410,8 @@
   "permissions_required": "Backend/database (or dev-support) access to confirm the retained capture dates, plus the inventory-reports permission for the on-screen checks.",
   "preconditions": [
    "1. Thinned history exists (dates older than 13 months where only the monthly last-capture remains — dev-seeded if needed).",
-   "2. The retained capture dates around the requested date are known."
+   "2. The retained capture dates around the requested date are known.",
+   "3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser."
   ],
   "steps": [
    "1. On the report, select a range ending on a pruned date between two retained monthly captures.",
@@ -388,10 +421,12 @@
   "expected": [
    "1. The as-of resolution serves the thinned history unchanged: the report resolves to the nearest earlier retained capture (\"closest recorded day on or before\"), even when adjacent retained captures are up to a month apart.",
    "2. The \"As of\" indicator names the day actually shown.",
-   "3. A requested date whose covering captures have all been pruned resolves to the nearest earlier retained capture, or shows the empty state if none remains."
+   "3. A requested date whose covering captures have all been pruned resolves to the nearest earlier retained capture, or shows the empty state if none remains.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-E1, S11-R6, S5-R4, S5-R5, S5-N1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8678 (specs/inventory-value.md Story 11 S11-E1; S11-R6; Story 5 S5-R4; S5-R5; S5-N1)",
+  "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-E1; S11-R6; Story 5 S5-R4; S5-R5; S5-N1)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true

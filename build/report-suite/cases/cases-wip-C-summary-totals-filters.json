@@ -16,7 +16,9 @@
   ],
   "expected": [
    "1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.",
-   "2. Every figure shows US-dollar currency with a leading \"$\", two decimals, and thousands separators."
+   "2. Every figure shows US-dollar currency with a leading \"$\", two decimals, and thousands separators.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S5-R1, S5-R10)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R1; S5-R10 — S5-R1 CLOSES the seven figures and their order verbatim and S5-R10 closes the currency format; so the closed lists ARE the requirement)",
@@ -42,10 +44,12 @@
   ],
   "expected": [
    "1. Total Earned is shown larger than the other figures and with a colored underline — it is the strip's hero figure.",
-   "2. Total Earned equals Started — Earned plus Ready to Invoice, to the cent."
+   "2. Total Earned equals Started — Earned plus Ready to Invoice, to the cent.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S5-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R2)",
+  "spec_ref": "SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R2)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the underline color (unpinned in the spec). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -66,10 +70,12 @@
    "2. Compare the sum to Total Remaining."
   ],
   "expected": [
-   "1. Total Remaining equals Not Started plus Started — Remaining, to the cent."
+   "1. Total Remaining equals Not Started plus Started — Remaining, to the cent.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S5-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R3)",
+  "spec_ref": "SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -94,10 +100,12 @@
   "expected": [
    "1. Not Started equals the total approved value (earned + remaining) of the jobs in the \"Approved - not started\" tab.",
    "2. Started — Earned equals the total Earned of the jobs in the \"Approved - partially completed\" tab, and Started — Remaining equals that tab's total Remaining.",
-   "3. Ready to Invoice equals the total Earned of the jobs in the \"Completed\" tab."
+   "3. Ready to Invoice equals the total Earned of the jobs in the \"Completed\" tab.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S5-R4, S5-R5, S5-R6, S5-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R4; S5-R5; S5-R6; S5-R7)",
+  "spec_ref": "SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R4; S5-R5; S5-R6; S5-R7)",
   "viu_status": "VIU-Pending",
   "notes": "The strip counts \"visible jobs\" across all four tabs together (Story 5 context note) — apply no advisor/customer/asset filter for this check, or account for it. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -121,10 +129,12 @@
   "expected": [
    "1. The Estimates figure equals the total quoted value of the jobs in the Estimates tab.",
    "2. It is shown in a muted style.",
-   "3. The Estimates figure is excluded from Total Earned and from Total Remaining."
+   "3. The Estimates figure is excluded from Total Earned and from Total Remaining.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S5-R8, S5-R9)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R8; S5-R9)",
+  "spec_ref": "SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R8; S5-R9)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -178,10 +188,12 @@
    "5. Started — Remaining — \"Jobs in progress: the work still left to finish.\"",
    "6. Ready to Invoice — \"Finished jobs, ready to bill the customer.\"",
    "7. Estimates — \"Quotes the customer has not approved yet — not counted in the totals.\"",
-   "8. Each explanation appears on hover, on keyboard focus, and on tap."
+   "8. Each explanation appears on hover, on keyboard focus, and on tap.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S5-R12)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8661 (specs/wip-work-in-progress.md Story 5 S5-R12)",
+  "spec_ref": "SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R12)",
   "viu_status": "VIU-Pending",
   "notes": "All seven tooltip texts are VERBATIM from the spec — compare word-for-word, including punctuation. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -205,10 +217,12 @@
   "expected": [
    "1. Each tab's table has a Totals row pinned to the bottom, labeled \"Totals\" in its leftmost cell.",
    "2. The Totals row's Total cell is pinned far right and shown in bold, matching the column.",
-   "3. The Totals row uses the same number formats as the data rows."
+   "3. The Totals row uses the same number formats as the data rows.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S6-R1, S6-R4, S6-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8662 (specs/wip-work-in-progress.md Story 6 S6-R1; S6-R4; S6-R5)",
+  "spec_ref": "SV-8662 (WIP spec v6 2026-07-29 Story 6 S6-R1; S6-R4; S6-R5)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -234,10 +248,12 @@
    "1. The Totals row sums each visible money column across the tab's visible jobs, to the cent.",
    "2. The Totals row's Inv. Hrs shows the sum of the visible jobs' Inv. Hrs, in the same signed one-decimal format (\"+2.0\" / \"-14.0\" / \"0.0\").",
    "3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row.",
-   "4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download that includes Inv. Hrs is refused, so do not try to verify this column from a file."
+   "4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download that includes Inv. Hrs is refused, so do not try to verify this column from a file.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S6-R2, S6-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8662 (specs/wip-work-in-progress.md Story 6 S6-R2; S6-R3)",
+  "spec_ref": "SV-8662 (WIP spec v6 2026-07-29 Story 6 S6-R2; S6-R3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -311,10 +327,12 @@
   "expected": [
    "1. The Advisor filter is a multi-select listing the advisors present in the loaded jobs.",
    "2. Selecting one or more advisors narrows the visible jobs to those advisors instantly, on screen only — no reload and no loading indicator.",
-   "3. With two advisors selected, jobs for either advisor are shown."
+   "3. With two advisors selected, jobs for either advisor are shown.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R1)",
+  "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R1)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -340,10 +358,12 @@
    "1. With no customer selected, the filter reads \"All customers\", every job is shown, and no Clear action is offered.",
    "2. Typing narrows the option list (type-ahead); the options are the customers present in the loaded jobs.",
    "3. Selecting customers narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one customer is selected.",
-   "4. Clear returns the filter to \"All customers\" and every job is shown again."
+   "4. Clear returns the filter to \"All customers\" and every job is shown again.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R2, S7-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R2; S7-R3)",
+  "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R2; S7-R3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -370,7 +390,9 @@
    "2. Each option identifies the asset by its VIN, falling back to Unit #, then plate (the exact option text is confirmed in the build).",
    "3. The typed text matches against the asset's identifier - the VIN, and the Unit # where the asset has one (the exact fields matched are confirmed in the build).",
    "4. Selecting assets narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one asset is selected and returns the filter to \"All assets\".",
-   "5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number."
+   "5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R4, S7-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec Story 7 S7-R4; S7-R5 - option text + match fields RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [supersedes video P24])",
@@ -395,10 +417,12 @@
   "expected": [
    "1. On a fresh visit the date range defaults to \"This Week\".",
    "2. The options offered are: \"Today\", \"Yesterday\", \"This Week\", \"Last Week\", \"This Month\", \"Last Month\", \"This Year\", \"Last Year\", \"This Quarter\", \"Last Quarter\", and \"Custom\".",
-   "3. \"All Time\" is NOT offered."
+   "3. \"All Time\" is NOT offered.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week))",
+  "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week))",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: \"All Time\" was removed and the default changed to \"This Week\" by the 2026-07-21 spec change (a Chris product decision). An older build may still offer \"All Time\" or default differently — record that as a build deviation from the current spec, not as passing. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -423,10 +447,12 @@
    "1. Each preset (or Custom) filters the report to work orders whose CREATED date falls within the selected range — an open work order created outside the range is not listed.",
    "2. Changing the range reloads the report (the loading indicator shows).",
    "3. A range longer than about a year is refused with the message \"Date range cannot be over one year.\" and the wider range is not loaded.",
-   "4. Note for the tester: on this build the exact cut-off sits one day later than the specification says (a 367-day span is accepted, 368 is refused). Record what you see; the one-day difference is already known and is with the product owner."
+   "4. Note for the tester: on this build the exact cut-off sits one day later than the specification says (a 367-day span is accepted, 368 is refused). Record what you see; the one-day difference is already known and is with the product owner.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R7, S7-R8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R7; S7-R8)",
+  "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R7; S7-R8)",
   "viu_status": "VIU-Pending",
   "notes": "The date range narrows by created date — it is NOT a way to see what work-in-progress was on a past date (Story 7 context note). VIU-confirm how the 366-day cap is enforced on screen (disabled dates vs an error). TECH-PLAN SEEDING AID 2026-07-30: in the build the work order's \"created\" date is its START DATE (there is no separate created timestamp) — to seed in-range/out-of-range work orders, set or backdate the start date (engineering plan B1.2). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -455,7 +481,9 @@
    "2. On a first visit it defaults to the user's currently active location.",
    "3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).",
    "4. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
-   "5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders."
+   "5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R9, S7-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator; spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A)",
@@ -482,10 +510,12 @@
   "expected": [
    "1. Only the locations the user can access are offered — a location the user cannot access is never included in the scope.",
    "2. If the selection resolves to none, the report falls back to the user's currently active location rather than showing everything or erroring.",
-   "3. A saved selection that no longer resolves also falls back to the active location."
+   "3. A saved selection that no longer resolves also falls back to the active location.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R11, S8-R8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R11; Story 8 S8-R8)",
+  "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R11; Story 8 S8-R8)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -509,10 +539,12 @@
   "expected": [
    "1. A job must pass all three filters to remain visible (the filters combine with AND).",
    "2. The summary strip and each tab's Totals row recompute immediately from the still-visible jobs after every advisor, customer, or asset change — on screen, with no page reload.",
-   "3. When the combination leaves no visible jobs, every tab shows the no-data message \"Empty bays, endless possibilities. Get Going!\" and no Totals row."
+   "3. When the combination leaves no visible jobs, every tab shows the no-data message \"Empty bays, endless possibilities. Get Going!\" and no Totals row.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R12, S7-N1, S5-R11, S6-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8663 (specs/wip-work-in-progress.md Story 7 S7-R12; S7-N1; Story 5 S5-R11; Story 6 S6-R6; §3 Key Decisions)",
+  "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R12; S7-N1; Story 5 S5-R11; Story 6 S6-R6; §3 Key Decisions)",
   "viu_status": "VIU-Pending",
   "notes": "MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-WIP-RECOMPUTE): absorbed WIP-SUM-06, WIP-TOT-03. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -545,7 +577,9 @@
    "4. The column does not appear or disappear on its own when you change the location selection - it follows the column-selection toggle only.",
    "5. With the toggle off the Location column is not shown, whatever the location selection is.",
    "6. In both downloads the column is headed \"Branch\" (a known naming difference from the screen — do not raise it as a bug).",
-   "7. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection."
+   "7. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; S10-R5a; §4 Location (column) — automatic visibility; never \"Multiple\"; export header \"Branch\")",

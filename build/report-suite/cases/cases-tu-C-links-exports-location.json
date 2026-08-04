@@ -17,10 +17,12 @@
   "expected": [
    "1. Every technician row's Total Hours is rendered as a link (every rendered row has clocked time > 0, so the link always applies).",
    "2. The link is distinguished by more than color - it carries an underline (or equivalent non-color affordance), is keyboard-focusable with a visible focus indicator, and activates on Enter.",
-   "3. The Summary row's Total Hours value is NOT a link."
+   "3. The Summary row's Total Hours value is NOT a link.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S6-R1, S6-N1, S8-R14)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8653 (specs/technician-utilization.md S6-R1; S6-N1; S8-R14)",
+  "spec_ref": "SV-8653 (TU spec v5 2026-07-29 S6-R1; S6-N1; S8-R14)",
   "viu_status": "VIU-Pending",
   "notes": "The affordance and focus indicator must hold in dark mode too (S8-R14 - dark-mode side in TU-VIS-02). COMPANION-VIDEO 2026-07-30 (C6, 02:28) VISUAL-VIU-CONFIRM: 'hyperlinks Different hyperlinks. Bolded, not. Very important.' — two visually distinct link styles (bolded vs not) exist and the distinction matters; the transcript does not say which links are bold (visual-only). At VIU capture which links render bold vs not; spec is silent on the bold split — record, don't fail. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -43,10 +45,12 @@
   "expected": [
    "1. The Timesheet Activities report opens in the SAME browser tab.",
    "2. It is already filtered to that technician.",
-   "3. It uses the same date range that was active on the Technician Utilization report."
+   "3. It uses the same date range that was active on the Technician Utilization report.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S6-R2, S6-R3, S6-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8653 (specs/technician-utilization.md S6-R2; S6-R3; S6-R4)",
+  "spec_ref": "SV-8653 (TU spec v5 2026-07-29 S6-R2; S6-R3; S6-R4)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -70,10 +74,12 @@
   "expected": [
    "1. The two totals MATCH exactly, to two decimals (these values are hours, not money) - both reports read the same clock records and round the same way (round-half-up, from unrounded values).",
    "2. Under this exact scope (same range, same single location, closed records) a mismatch IS a defect.",
-   "3. The two documented scope differences (open clocks, multi-location drill-through) are covered by separate cases and are NOT defects."
+   "3. The two documented scope differences (open clocks, multi-location drill-through) are covered by separate cases and are NOT defects.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R9; §2; §5 Assumptions)",
+  "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R9; §2; §5 Assumptions)",
   "viu_status": "VIU-Pending",
   "notes": "This is the report's headline reconciliation guarantee - verify with controlled, closed clock records. FIX-WORDING repair 2026-07-28 (sense-check): 'to the cent' corrected to 'to two decimals' — the compared totals are hours. The open-clock and multi-location exceptions are TU-LINK-04 and TU-LINK-05. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -96,10 +102,12 @@
   "expected": [
    "1. The open time is counted UP TO THE MOMENT THE REPORT LOADS - a fixed snapshot taken at load, not a value that keeps ticking on screen (matching how Timesheet Activities treats an open record).",
    "2. The two reports, loaded at different moments, MAY differ by the elapsed open time - this is a deliberate scope difference of the reconciliation guarantee, EXPECTED and NOT a defect.",
-   "3. Reloading the Technician Utilization report takes a fresh snapshot (the value grows by the elapsed time)."
+   "3. Reloading the Technician Utilization report takes a fresh snapshot (the value grows by the elapsed time).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-R9, S1-E1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R9(a); S1-E1)",
+  "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R9(a); S1-E1)",
   "viu_status": "VIU-Pending",
   "notes": "Expected-behavior case (documented exception #1 of 2). Seeding: leave a test technician clocked in during the check; clock them out afterwards. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -123,10 +131,12 @@
   "expected": [
    "1. The link passes the technician and the date range ONLY - it does NOT pass the location selection.",
    "2. Timesheet Activities opens for the user's currently active shop, so it shows one location's portion - it will differ from (or be disjoint with) the multi-location row value.",
-   "3. This is a KNOWN drill-through limitation, EXPECTED and NOT a data defect (the same applies when the single selected location is not the active shop)."
+   "3. This is a KNOWN drill-through limitation, EXPECTED and NOT a data defect (the same applies when the single selected location is not the active shop).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S6-R6, S1-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8653 (specs/technician-utilization.md S6-R6; S1-R9(b))",
+  "spec_ref": "SV-8653 (TU spec v5 2026-07-29 S6-R6; S1-R9(b))",
   "viu_status": "VIU-Pending",
   "notes": "Expected-behavior case (documented exception #2 of 2). HEAVY SEEDING: one technician clocked at two locations in the window. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -147,10 +157,12 @@
   ],
   "expected": [
    "1. Timesheet Activities opens filtered to that technician.",
-   "2. The date range covers ONLY that single day."
+   "2. The date range covers ONLY that single day.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S6-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8653 (specs/technician-utilization.md S6-R5)",
+  "spec_ref": "SV-8653 (TU spec v5 2026-07-29 S6-R5)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -172,7 +184,9 @@
   "expected": [
    "1. The three-dot download menu sits LEFTMOST in the toolbar's action cluster, with the Column Selection control immediately after it.",
    "2. The menu holds: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", and \"Download (CSV)\".",
-   "3. The labels match exactly - only the expanded option carries the word \"View\" (the shipped strings, documented as-is)."
+   "3. The labels match exactly - only the expanded option carries the word \"View\" (the shipped strings, documented as-is).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R1, S7-R2, S7-R3, S7-R4, S8-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R1; S7-R2; S7-R3; S7-R4; S8-R2 — S8-R2 now adds \"followed by the Column Selection control\")",
@@ -197,10 +211,12 @@
   "expected": [
    "1. The Summary PDF shows the technician rows and the Summary row (no day rows); it downloads as \"Technician-Utilization-Summary.pdf\".",
    "2. The Expanded PDF shows the technician rows, EACH technician's per-day breakdown, and the Summary row; it downloads as \"Technician-Utilization-Expanded.pdf\".",
-   "3. The PDF filenames are Title-Case as shipped."
+   "3. The PDF filenames are Title-Case as shipped.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R5, S7-R6, S7-R12)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8654 (specs/technician-utilization.md S7-R5; S7-R6; S7-R12)",
+  "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R5; S7-R6; S7-R12)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -223,10 +239,12 @@
   "expected": [
    "1. The file downloads as \"technician-utilization.csv\" (lower-case as shipped, unlike the Title-Case PDFs).",
    "2. The CSV shows the technician rows and the Summary row - always this summary-level content; it does NOT vary by the summary/expanded choice (no day rows).",
-   "3. Any value containing a comma (e.g. \"$1,234.50\") is wrapped in double quotes per standard CSV escaping, so the columns parse correctly."
+   "3. Any value containing a comma (e.g. \"$1,234.50\") is wrapped in double quotes per standard CSV escaping, so the columns parse correctly.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R7, S7-R10, S7-R12)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8654 (specs/technician-utilization.md S7-R7; S7-R10; S7-R12)",
+  "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R7; S7-R10; S7-R12)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: enough internal hours at a rated location to push Est. Lost Labor past $1,000. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -254,7 +272,9 @@
    "3. With every technician selected, the download covers all technicians for the range at the selected location(s).",
    "4. Every download (each PDF and the CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
    "5. Every download also mirrors the columns currently shown on screen — a column hidden in the Column Selection control is absent from the files, and a re-shown column comes back.",
-   "6. Note for the tester: when you have more than one location in scope, the files also carry a Location column even though it is not in the Column Selection control. That is correct - it appears by itself. With a single location in scope there is no Location column, and that is also correct."
+   "6. Note for the tester: when you have more than one location in scope, the files also carry a Location column even though it is not in the Column Selection control. That is correct - it appears by itself. With a single location in scope there is no Location column, and that is also correct.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R8, S7-R9, S7-R10, S7-R13, S7-E1, S9-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-R13; S7-E1; S9-R8 — downloads mirror the shown columns and the technician/location/date scope; S7-R13 = the \"Locations:\" line and the automatic Location column)",
@@ -280,10 +300,12 @@
   ],
   "expected": [
    "1. The downloaded files use the same column order and number formats as the on-screen report, including the \"—\" rendering for an unknown Est. Lost Labor.",
-   "2. Rows in EVERY download are ordered by Technician name A to Z (the default order) - the on-screen column sort is client-side only and is NOT carried into the export."
+   "2. Rows in EVERY download are ordered by Technician name A to Z (the default order) - the on-screen column sort is client-side only and is NOT carried into the export.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R10, S7-R10a)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8654 (specs/technician-utilization.md S7-R10; S7-R10a)",
+  "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R10; S7-R10a)",
   "viu_status": "VIU-Pending",
   "notes": "Expected-behavior case: the export deliberately ignores the on-screen sort (unlike the Parts Velocity report, whose export follows the active sort). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -306,7 +328,9 @@
   "expected": [
    "1. With an uploaded logo, BOTH PDF views show that logo at the top of the report.",
    "2. The CSV never includes the logo.",
-   "3. With NO uploaded logo, the PDF views show the bundled ShopView logo instead — not a blank space and not an error."
+   "3. With NO uploaded logo, the PDF views show the bundled ShopView logo instead — not a blank space and not an error.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R11, S7-N2, S7-N3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R11; S7-N2; S7-N3 — logo now resolved by the shared resolver: the organization's uploaded logo; else the bundled ShopView default)",
@@ -331,10 +355,12 @@
   ],
   "expected": [
    "1. Nothing happens: NO file downloads and NO message appears (not even an error).",
-   "2. This silent no-op is the specified behavior for every download option when no technician is selected."
+   "2. This silent no-op is the specified behavior for every download option when no technician is selected.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8654 (specs/technician-utilization.md S7-N1; §7 context note)",
+  "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-N1; §7 context note)",
   "viu_status": "VIU-Pending",
   "notes": "Expected-behavior case (documented silent no-op). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -356,7 +382,9 @@
   ],
   "expected": [
    "1. When a download starts, a success notification reads exactly: \"Download started\".",
-   "2. When a download fails, an error notification reads exactly: \"Failed to download report\"."
+   "2. When a download fails, an error notification reads exactly: \"Failed to download report\".",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (§7 notifications table, Story 7 has no S, §7 is the closing reference)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8654 (TU spec v5 2026-07-29 Story 7 Error Handling + §7 notifications table — these CLOSE both strings verbatim (\"Download started\" / \"Failed to download report\"); Story 7 has no S-anchor for them so §7 is the closing reference)",
@@ -385,10 +413,12 @@
    "1. The toolbar has a location filter labeled \"Location\" - a multi-select and the RIGHTMOST control.",
    "2. It lists the locations the signed-in user has access to, plus an \"All locations\" option and a \"Clear all\" action. (If you only have access to one location, the \"All locations\" entry is not offered - you see \"Clear all\" and your one location.)",
    "3. \"All locations\" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations.",
-   "4. With more than one location selected, a Location column appears in the table and each row names its location - or reads \"Multiple\" for a technician whose hours span more than one of them. (Where that column sits on screen is checked by its own test.)"
+   "4. With more than one location selected, a Location column appears in the table and each row names its location - or reads \"Multiple\" for a technician whose hours span more than one of them. (Where that column sits on screen is checked by its own test.)",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8656 (specs/technician-utilization.md S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
+  "spec_ref": "SV-8656 (TU spec v5 2026-07-29 S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
   "viu_status": "VIU-Pending",
   "notes": "Labels pinned verbatim (\"Location\" / \"All Locations\"). VIDEO-AUTHORITATIVE ADD (P10, user ruling 2026-07-28: video overrides spec (video newer, last-update-wins)): location identifier in All-Locations view — the current spec has NO per-row location identifier (hours pooled across locations into one row per technician, S9-R4). Exact control/label/form unpinned — VIU-confirm, do not invent (Rule 9). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -415,10 +445,12 @@
    "2. All metrics (technician rows, per-day rows, and the Summary) reflect only clock records at the selected location(s).",
    "3. The technician's hours are POOLED across the selected locations into ONE row (one row per technician, not one per location); per-day rows pool the same way.",
    "4. Scoping never goes beyond the user's accessible locations - a location the user cannot access is never included.",
-   "5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build)."
+   "5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R3, S9-R4, S9-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8656 (specs/technician-utilization.md S9-R3; S9-R4; S9-R5 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "spec_ref": "SV-8656 (TU spec v5 2026-07-29 S9-R3; S9-R4; S9-R5 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
   "viu_status": "VIU-Pending",
   "notes": "HEAVY SEEDING: one technician with clock records at two locations in one window. SCOPE-INDICATOR added 2026-07-29 per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source, last-update-wins) ('Each report now shows which location(s) it's scoped to... on screen') - distinct from the per-row location label (video P10), which stays. Spec anchor pending the updated spec changelog. TITLE TRIMMED LOCALLY 2026-07-29 (concise-title rule, case touched this pass): was 131 chars; meaning unchanged; awaiting push authorization. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -440,10 +472,12 @@
   "expected": [
    "1. Any saved location the user can no longer access is DROPPED from the restored selection; the remaining accessible locations restore normally.",
    "2. If the remaining set is empty, the report falls back to the user's currently active location (the first-visit default).",
-   "3. The report loads without an error in both cases."
+   "3. The report loads without an error in both cases.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R6, S1-R8, S9-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8656 (specs/technician-utilization.md S9-R6; S1-R8; S9-R2)",
+  "spec_ref": "SV-8656 (TU spec v5 2026-07-29 S9-R6; S1-R8; S9-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: save a multi-location selection, then remove the user's access to one/all of them (restore access afterwards - shared env). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -464,10 +498,12 @@
   ],
   "expected": [
    "1. The report falls back to the user's currently active location rather than showing nothing.",
-   "2. Rows for the active location load normally."
+   "2. Rows for the active location load normally.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8656 (specs/technician-utilization.md S9-R7)",
+  "spec_ref": "SV-8656 (TU spec v5 2026-07-29 S9-R7)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -489,7 +525,9 @@
   ],
   "expected": [
    "1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.",
-   "2. For the user with access to two or more locations the Location filter IS shown."
+   "2. For the user with access to two or more locations the Location filter IS shown.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8656 (TU spec S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S9-N1 \"still sees the filter\" note is stale; spec edit pending)",
@@ -517,10 +555,13 @@
   "expected": [
    "1. Neither the CSV nor the PDF is produced — no download starts.",
    "2. A clear too-large message appears telling the user to narrow the date range or filters, then try again — the standard wording is \"This report is too large to export. Narrow the date range or filters, then try again.\"",
-   "3. After narrowing below the cap, the downloads work again."
+   "3. After narrowing below the cap, the downloads work again.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (Story 7 exports)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8654 (specs/technician-utilization.md Story 7 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21)",
+  "spec_ref": "SV-8654 (TU spec v5 2026-07-29 Story 7 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21)",
   "viu_status": "VIU-Pending",
   "notes": "SPEC-SILENT: the Technician Utilization spec page carries no export-cap text; the cap comes from the engineering plan's suite-wide 10,000-row export guard (locked by Chris 2026-07-21; the plan's FR-F4 explicitly lists TU Story 7). Flagged to Chris to ratify into the spec (Questions-for-Chris-dev Q3). VIU-confirm the behavior, the exact message text, and the actual cap value. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -545,8 +586,7 @@
    "5. Read the Location cell on the Summary row at the bottom.",
    "6. Open the Column Selection control and look for Location in the list.",
    "7. Narrow to a single location and read the headers again.",
-   "8. Change the selection between one location, several, and \"All Locations\", watching the filter control's width.",
-   "9. With more than one location still selected, download both PDF views and the CSV and read their columns from the left."
+   "8. With more than one location still selected, download both PDF views and the CSV and read their columns from the left."
   ],
   "expected": [
    "1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Technician.",
@@ -556,8 +596,9 @@
    "5. The Summary row leaves the Location cell blank.",
    "6. Location is never listed in the Column Selection control — it follows the location scope on its own.",
    "7. With a single location in scope the Location column is hidden.",
-   "8. The Location filter control keeps the same width whichever label it shows — one location, several, or \"All locations\" — so the toolbar does not shift as you change the selection.",
-   "9. Every download — both PDF views and the CSV — includes the Location column in its on-screen leftmost position, carrying the same values you just read on screen."
+   "8. Every download — both PDF views and the CSV — includes the Location column in its on-screen leftmost position, carrying the same values you just read on screen.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R9, S9-R10, S8-R15, S10-R4, S7-R13)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8656; SV-8654 (TU spec v5 2026-07-29 S9-R9; S9-R10; S8-R15; S10-R4; S7-R13 — per-row Location column; leftmost before Technician; \"Multiple\" on a spanning row; Summary row blank; not in the selector; S7-R13 = same column in every download)",

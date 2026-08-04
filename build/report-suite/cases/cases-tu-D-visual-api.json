@@ -17,7 +17,9 @@
   "expected": [
    "1. The report uses an all-white table: white column headers and white data cells, with NO alternating row shading.",
    "2. The toolbar controls run, left to right: the three-dot download menu, the Column Selection control, the date-range picker, the technician filter, and the Location filter (rightmost).",
-   "3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (in the Technician column)."
+   "3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (in the Technician column).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S8-R1, S8-R2, S8-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8655 (TU spec v5 2026-07-29 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu; and the date-range picker now precedes the technician filter)",
@@ -46,7 +48,9 @@
    "1. The report supports dark mode: page background, toolbar, cells, the Total Hours link, the information icon, the sort indicator, and the \"—\" glyph are all clearly legible in dark mode.",
    "2. In BOTH light mode and dark mode the information icon is clearly visible against the background behind it - you can see it at a glance and it does not disappear into the background.",
    "3. The Total Hours link's non-color affordance and focus indicator apply in both modes.",
-   "4. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes, and only report it if you cannot. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)"
+   "4. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes, and only report it if you cannot. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S8-R9, S8-R13, S8-R14)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8655 (TU spec v5 2026-07-29 S8-R9; S8-R13; S8-R14 — dark-mode legibility of every named element; the info icon at ≥ 3:1 in both modes; the Total Hours link affordance/focus in both modes; the ratio is design-token-owned)",
@@ -63,7 +67,8 @@
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
   "preconditions": [
    "1. You are on the Technician Utilization report with rows loaded.",
-   "2. This browser has never saved settings for this report (fresh visit), so every column is at its default."
+   "2. This browser has never saved settings for this report (fresh visit), so every column is at its default.",
+   "3. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
   "steps": [
    "1. Find the column-selection button in the toolbar and hover it to read its tooltip.",
@@ -82,7 +87,9 @@
    "5. The Location column is never listed here — it appears on its own whenever more than one location is in scope.",
    "6. Turning a toggle off hides that column (header and cells) immediately, with no reload; turning it back on returns it to its usual place in the fixed left-to-right order — the remaining columns never reorder.",
    "7. Est. Lost Labor can now be hidden like any other column (it used to be always on).",
-   "8. Your column choice is remembered in this browser and is still applied when you come back."
+   "8. Your column choice is remembered in this browser and is still applied when you come back.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R5, S10-R6, S8-R16)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8655; SV-8582 (TU spec v5 2026-07-29 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 column selector + Story 8 S8-R16 accessible name — Story 10 has NO owning Jira story so epic SV-8582 is used and FLAGGED; S8-R16 is owned by SV-8655)",
@@ -98,7 +105,8 @@
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
   "preconditions": [
-   "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open."
+   "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
   "steps": [
    "1. Load the report and inspect the initial data response for per-day content.",
@@ -108,10 +116,12 @@
   "expected": [
    "1. The initial report payload does NOT ship the day rows.",
    "2. Expanding a technician row issues an on-demand backend request that returns that technician's per-day breakdown.",
-   "3. Because expansion state resets (all collapsed) on any data reload, nothing is lost by the lazy loading - re-expanding fetches fresh day data."
+   "3. Because expansion state resets (all collapsed) on any data reload, nothing is lost by the lazy loading - re-expanding fetches fresh day data.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R2, S4-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8651 (specs/technician-utilization.md S4-R2; S4-R5)",
+  "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R2; S4-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Generic backend-behavior case (Standing Rule 4) - the spec pins no REST contract; do NOT assert endpoint paths; record the observed requests at VIU. KNOWN-DELTA WATCH: lazy per-day loading came in the 2026-07-16 round - the build may lag. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true
@@ -124,7 +134,8 @@
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
   "preconditions": [
-   "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open."
+   "1. You are on the Technician Utilization report with rows loaded and browser devtools (network tab) open.",
+   "2. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the \"Network\" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox."
   ],
   "steps": [
    "1. Change the date range and watch the network traffic.",
@@ -136,10 +147,12 @@
    "1. A date-range change triggers a fresh server load of the rows.",
    "2. A location change triggers a fresh server load scoped to the selected set.",
    "3. The technician filter causes NO server request - it works on screen only (hide/show + Summary recalculation).",
-   "4. Column sorting causes NO server request - it is applied on screen to the loaded rows."
+   "4. Column sorting causes NO server request - it is applied on screen to the loaded rows.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-R5, S9-R3, S2-R13)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R5; S9-R3; S5 context note; S2-R13; §3)",
+  "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R5; S9-R3; S5 context note; S2-R13; §3)",
   "viu_status": "VIU-Pending",
   "notes": "Generic backend-behavior case (Standing Rule 4) - no endpoint paths asserted (none exist in the spec); record the observed requests at VIU. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": true

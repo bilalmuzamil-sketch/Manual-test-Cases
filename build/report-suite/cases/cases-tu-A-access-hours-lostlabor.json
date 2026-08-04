@@ -18,7 +18,9 @@
   "expected": [
    "1. The report is listed under the Performance group, labeled \"Technician Utilization\".",
    "2. Clicking it opens the report.",
-   "3. The entry sits BELOW the pre-existing report links — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency — the new reports are added below those items without moving or disturbing them."
+   "3. The entry sits BELOW the pre-existing report links — Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency — the new reports are added below those items without moving or disturbing them.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-R1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec S1-R1 — below the named anchor items [Sales; Technician Efficiency; Advisor Analysis; Shop Efficiency] per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",
@@ -43,10 +45,12 @@
   ],
   "expected": [
    "1. Technician A has exactly ONE row.",
-   "2. Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) appear."
+   "2. Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) appear.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R2)",
+  "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: clock work-order and internal time for one technician; leave another with no clock records in the window. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -68,7 +72,9 @@
   "expected": [
    "1. The date range defaults to the current calendar month (the date picker's \"This Month\" preset).",
    "2. Because a range never extends past now, the current-month default effectively shows the month to date.",
-   "3. The location filter defaults to the user's currently active location (the one in the application's global location switcher)."
+   "3. The location filter defaults to the user's currently active location (the one in the application's global location switcher).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-R3, S1-R6, S9-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R3; S1-R6; S9-R2)",
@@ -94,10 +100,12 @@
   "expected": [
    "1. Each range change reloads the report's rows for the new range.",
    "2. A valid Custom range applies normally.",
-   "3. A Custom span wider than 366 days (matching the largest preset) is rejected - it cannot be applied."
+   "3. A Custom span wider than 366 days (matching the largest preset) is rejected - it cannot be applied.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-R4, S1-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R4; S1-R5)",
+  "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R4; S1-R5)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: the 366-day cap (and All-Time removal) came in the 2026-07-16 spec round - the build may lag. VIU-confirm the date-picker preset labels and how the rejection is presented. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -120,10 +128,12 @@
   "expected": [
    "1. On the initial load and on every reload (date-range or location change), the data area shows the standard reports loading indicator.",
    "2. The existing rows are replaced only when the new data returns.",
-   "3. The toolbar remains interactive during the load."
+   "3. The toolbar remains interactive during the load.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R10)",
+  "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R10)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -149,10 +159,12 @@
    "1. A record that crosses midnight is split by day - each day counts only its own hours; the midnight split is evaluated in the active workplace's time zone.",
    "2. A record that starts before the range (or ends after it) counts only the part inside the range.",
    "3. EVERY record is day-grouped and windowed in a SINGLE report-level time zone - the active workplace's - regardless of the location where it was clocked (a record's day, the current-month boundary, and the midnight split all use that one zone).",
-   "4. This matches the Timesheet Activities report's single-time-zone grouping."
+   "4. This matches the Timesheet Activities report's single-time-zone grouping.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8648 (specs/technician-utilization.md S1-R7; S1 context notes)",
+  "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R7; S1 context notes)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: the single report-level timezone model was set in the 2026-07-16 round (Milan's option 1) - the build may lag. HEAVY SEEDING: cross-midnight and boundary-straddling clock records; two locations in different time zones. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -172,7 +184,9 @@
    "2. Look for Technician Utilization under Performance."
   ],
   "expected": [
-   "1. The Technician Utilization report does NOT appear in the navigation."
+   "1. The Technician Utilization report does NOT appear in the navigation.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec S1-N1 — the gate is the one ordinary reports access per Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the TU prerequisite still names the timesheet-reports permission — his spec edit owed)",
@@ -199,7 +213,9 @@
   "expected": [
    "1. Instead of rows, the data area shows exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).",
    "2. The Summary row is hidden.",
-   "3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter."
+   "3. Clearing every technician shows the SAME message and hides the Summary row — this version does not use distinct copy for genuinely-no-data vs a cleared filter.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-N2, S3-N1, S5-N1, S9-N2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-N2; S3-N1; S5-N1; S9-N2; §7 — §7 CLOSES the no-data string verbatim (\"Empty bays\" ... \"Get Going!\") as the standard reports no-data label; so the exact string IS the requirement)",
@@ -252,7 +268,9 @@
    "3. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.",
    "4. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.",
    "5. Hours show two decimal places with NO thousands separator (e.g. \"107.70\"), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 → 0.01).",
-   "6. When more than one location is in scope the automatic Location column also appears, leftmost before Technician — it is not in the Column Selection control and its presence is expected."
+   "6. When more than one location is in scope the automatic Location column also appears, leftmost before Technician — it is not in the Column Selection control and its presence is expected.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R1, S2-R2, S2-R3, S2-R4, S2-R5, S9-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649; SV-8656 (TU spec v5 2026-07-29 S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3 + Story 9 S9-R9 — header order and the hours columns; plus the automatic Location column leftmost when shown)",
@@ -276,10 +294,12 @@
   ],
   "expected": [
    "1. Utilization % = work-order hours as a percentage of total clocked hours, computed from the unrounded hours (not from the already-rounded displays).",
-   "2. It shows one decimal place followed by a percent sign, rounded round-half-up (66.65% → 66.7%)."
+   "2. It shows one decimal place followed by a percent sign, rounded round-half-up (66.65% → 66.7%).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R6, S2-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R6; S2-R7; §3)",
+  "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R6; S2-R7; §3)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: clock durations that produce an exact .x5 tie to prove the rounding direction. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -302,10 +322,12 @@
   "expected": [
    "1. The internal-only technician shows \"0.0%\".",
    "2. No row shows more than 100% - work-order hours are always part of total clocked hours.",
-   "3. The \"—\" (undefined, total = 0) state is unreachable on a rendered technician or day row, because only technicians with clocked time get rows."
+   "3. The \"—\" (undefined, total = 0) state is unreachable on a rendered technician or day row, because only technicians with clocked time get rows.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-E1, S2-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-E1; S2-R7; S2 context note)",
+  "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-E1; S2-R7; S2 context note)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -330,10 +352,12 @@
   "expected": [
    "1. Est. Lost Labor = the sum, per contributing location, of that location's default labor rate × the technician's internal hours clocked there - summed at full precision, with the technician's total rounded ONCE (round-half-up).",
    "2. In a single-location view it is simply that one location's rate × the technician's internal hours.",
-   "3. The value shows as dollars with two decimals and commas between thousands (e.g. \"$1,234.50\")."
+   "3. The value shows as dollars with two decimals and commas between thousands (e.g. \"$1,234.50\").",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R8, S2-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-R8; S2-R9; §3)",
+  "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R8; S2-R9; §3)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN BUILD-DELTA (owner decision 2026-07-11): the current rollup applies a single (first-encountered) location rate to the technician's TOTAL internal hours - multi-location values will deviate until dev ships the per-location accumulation; single-location views are already exact. HEAVY SEEDING: two rated locations with distinct rates + internal clock time at each. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -359,7 +383,9 @@
    "1. While Est. Lost Labor is shown, the column is pinned to the far right; its cells are bold and its header is bold, matching.",
    "2. The information icon shows exactly: \"Internal hours valued at each location's default labor rate\" — on hover, on keyboard focus, and on tap; it is dismissible.",
    "3. NO column header other than Est. Lost Labor shows the information icon.",
-   "4. Est. Lost Labor can be turned OFF in the Column Selection control; when it is off the column, its bold styling and its information icon are all absent, and the report still works normally."
+   "4. Est. Lost Labor can be turned OFF in the Column Selection control; when it is off the column, its bold styling and its information icon are all absent, and the report still works normally.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R10, S2-R11, S8-R4, S8-R6, S8-R7, S8-N1, S10-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1 — each re-worded \"When shown\" now that Est. Lost Labor is a hideable column; new Story 10 S10-R3)",
@@ -385,10 +411,12 @@
   "expected": [
    "1. Technician A shows \"$0.00\" - there is nothing to value, regardless of whether the location has a rate configured.",
    "2. Technician B also shows \"$0.00\" - a configured rate of exactly $0.00 is a KNOWN rate that values the hours at $0.00, not \"—\".",
-   "3. \"$0.00\" means 'the rate is known and there is nothing (or $0) to value' - a different state from \"—\" ('the rate is unknown')."
+   "3. \"$0.00\" means 'the rate is known and there is nothing (or $0) to value' - a different state from \"—\" ('the rate is unknown').",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-E2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-E2; §5 Assumptions; S2 context note)",
+  "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-E2; §5 Assumptions; S2 context note)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: set a location's default labor rate to exactly $0.00 (restore the original rate afterwards - shared env). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -401,7 +429,8 @@
   "type": "Functional",
   "permissions_required": "The permission that grants access to the timesheet reports (same as Timesheet Activities - no new permission).",
   "preconditions": [
-   "1. A technician's in-range internal hours were all clocked at location(s) with NO default labor rate configured (rate absent, not $0.00)."
+   "1. A technician's in-range internal hours were all clocked at location(s) with NO default labor rate configured (rate absent, not $0.00).",
+   "2. Part of this test checks what a blind user would hear, so you need a screen reader. On Windows install NVDA — it is free, from nvaccess.org. On a Mac use VoiceOver, which is already built in (Cmd+F5 turns it on and off). Alternatively the browser's developer tools (F12) have an \"Accessibility\" panel that shows the same names without you having to listen to anything."
   ],
   "steps": [
    "1. Read that technician's Est. Lost Labor.",
@@ -410,10 +439,12 @@
   "expected": [
    "1. Est. Lost Labor shows \"—\" (an em-dash), NOT \"$0.00\" - the rate is unknown, so the value cannot be computed.",
    "2. The \"—\" cell carries the assistive-technology label \"No default labor rate configured\" (distinguishing it from \"$0.00\", which reads as its dollar value).",
-   "3. The technician's Internal Hours column still shows all the internal hours (they are counted even though they cannot be valued)."
+   "3. The technician's Internal Hours column still shows all the internal hours (they are counted even though they cannot be valued).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-E3, S8-R11, S2-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-E3; S8-R11; S2-R4)",
+  "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-E3; S8-R11; S2-R4)",
   "viu_status": "VIU-Pending",
   "notes": "Seeding: remove/blank a test location's default labor rate (restore afterwards - shared env). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -436,10 +467,12 @@
   "expected": [
    "1. Est. Lost Labor is the sum of the valued (rated-location) portions only - the unrated-location hours are excluded from the dollar amount.",
    "2. The amount shows as a normal \"$X.XX\" with NO partial-value indicator in this version - so the row's Est. Lost Labor values fewer hours than its Internal Hours column shows.",
-   "3. This is a documented known limitation (a partial-value indicator is a possible follow-up) - expected behavior, not a defect."
+   "3. This is a documented known limitation (a partial-value indicator is a possible follow-up) - expected behavior, not a defect.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-E4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
-  "spec_ref": "SV-8649 (specs/technician-utilization.md S2-E4)",
+  "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-E4)",
   "viu_status": "VIU-Pending",
   "notes": "Expected-behavior case. HEAVY SEEDING: rated + unrated locations with internal clock time at each for one technician. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false

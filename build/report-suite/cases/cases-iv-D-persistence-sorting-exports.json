@@ -18,10 +18,12 @@
   "expected": [
    "1. The icon button's tooltip reads \"Column Selection\".",
    "2. Toggling a column off hides it from the table; toggling it on shows it again.",
-   "3. The Total Cost column is always shown and cannot be turned off."
+   "3. The Total Cost column is always shown and cannot be turned off.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S8-R1, S8-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8675 (specs/inventory-value.md Story 8 S8-R1; S8-R2)",
+  "spec_ref": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R1; S8-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Tooltip text \"Column Selection\" is verbatim from the spec. Column selection is the report's ONLY purely client-side view choice (§3). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -43,7 +45,9 @@
   ],
   "expected": [
    "1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.",
-   "2. Total Cost is always the last column."
+   "2. Total Cost is always the last column.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand)",
@@ -70,10 +74,12 @@
   ],
   "expected": [
    "1. On return and after a reload, the report restores the saved date range, category selection, vendor selection, part search text, location selection, column selection, and sort.",
-   "2. In a different browser the report shows the defaults instead — persistence is per browser, not tied to the user's account."
+   "2. In a different browser the report shows the defaults instead — persistence is per browser, not tied to the user's account.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S8-R5, S9-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8675 (specs/inventory-value.md Story 8 S8-R5 (+ context note); Story 9 S9-R5)",
+  "spec_ref": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R5 (+ context note); Story 9 S9-R5)",
   "viu_status": "VIU-Pending",
   "notes": "Unlike the reports whose sort resets each visit, this report remembers the user's sort along with the rest of its setup (Story 9 context note). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -95,10 +101,12 @@
   ],
   "expected": [
    "1. The report loads normally — the saved category or vendor that is no longer present in the data is dropped from the selection instead of breaking the view (the defensive-restore rule applied to the path these steps drive).",
-   "2. All other saved settings are still restored."
+   "2. All other saved settings are still restored.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S8-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8675 (specs/inventory-value.md Story 8 S8-R6)",
+  "spec_ref": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R6)",
   "viu_status": "VIU-Pending",
   "notes": "FIX-WORDING repair 2026-07-28 (sense-check): the Expected is scoped to the stale-category/vendor path the steps actually drive; the general invalid-value fallback across other value classes is covered the SBC-PERS way only where a case drives it. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -120,10 +128,12 @@
   ],
   "expected": [
    "1. The rows are sorted by Total Cost, highest first (descending).",
-   "2. The order holds across pages (page 2 continues below page 1's lowest value) — the server applies the default order over the full set."
+   "2. The order holds across pages (page 2 continues below page 1's lowest value) — the server applies the default order over the full set.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S9-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8676 (specs/inventory-value.md Story 9 S9-R1; §3 Key Decisions (Total Cost default sort))",
+  "spec_ref": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R1; §3 Key Decisions (Total Cost default sort))",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -148,10 +158,12 @@
   "expected": [
    "1. Clicking a column that is not the active sort sorts it ascending; clicking the active sort column again toggles it to descending; there is no third \"cleared\" state.",
    "2. Each header click re-fetches the data from the server ordered by the chosen column and direction, returning the FIRST page of the re-sorted result set.",
-   "3. Only one column sorts at a time."
+   "3. Only one column sorts at a time.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S9-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8676 (specs/inventory-value.md Story 9 S9-R2)",
+  "spec_ref": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R2)",
   "viu_status": "VIU-Pending",
   "notes": "KNOWN-DELTA WATCH: server-side sorting is the 2026-07-21 spec change (per Milan's review). If the build sorts only the loaded page client-side, record it as a build deviation from the current spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -174,10 +186,12 @@
   ],
   "expected": [
    "1. Money and numeric columns sort by their underlying value (so $1,100.00 is treated as more than $900.00, not compared as text).",
-   "2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (\"apple\" and \"Apple\" sort together)."
+   "2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (\"apple\" and \"Apple\" sort together).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S9-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8676 (specs/inventory-value.md Story 9 S9-R3)",
+  "spec_ref": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R3)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -199,10 +213,12 @@
   ],
   "expected": [
    "1. Sorting reorders the data rows only; the totals row stays at the bottom.",
-   "2. On return, the report restores the chosen sort (remembered per browser, Story 8)."
+   "2. On return, the report restores the chosen sort (remembered per browser, Story 8).",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S9-R4, S9-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8676 (specs/inventory-value.md Story 9 S9-R4; S9-R5)",
+  "spec_ref": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R4; S9-R5)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -225,10 +241,12 @@
   ],
   "expected": [
    "1. The menu holds an option labeled \"Download (PDF)\" and an option labeled \"Download (CSV)\".",
-   "2. Each option downloads a file of the current view in the chosen format."
+   "2. Each option downloads a file of the current view in the chosen format.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R1, S10-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R1; S10-R2)",
+  "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R1; S10-R2)",
   "viu_status": "VIU-Pending",
   "notes": "Menu option labels are verbatim from the spec. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -256,7 +274,9 @@
    "2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.",
    "3. Both downloads include a totals row labeled \"Totals\" matching the on-screen totals (the full-filtered-set totals).",
    "4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
-   "5. Note for the tester: the files carry the Location column when Location is turned ON in the column-selection control (it sits between Vendor and Qty). It does not appear just because you have more than one location selected."
+   "5. Note for the tester: the files carry the Location column when Location is turned ON in the column-selection control (it sits between Vendor and Qty). It does not appear just because you have more than one location selected.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the \"Locations:\" line and the automatic Location column)",
@@ -282,7 +302,9 @@
   "expected": [
    "1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows \"—\".",
    "2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).",
-   "3. The PDF uses the same on-screen currency formatting with the \"$\" and thousands separators."
+   "3. The PDF uses the same on-screen currency formatting with the \"$\" and thousands separators.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R7 (+ context note))",
@@ -312,10 +334,12 @@
    "1. The PDF header shows the report name \"Inventory Value\", the organization name, the selected period, and an \"as of\" line naming the day the values represent (or a message that no snapshot is available for the period).",
    "2. The PDF shows the shop logo at the top when one is set.",
    "3. The CSV never includes a logo.",
-   "4. Note for the tester: the two files phrase the as-of line differently - the PDF reads \"As of 2026-08-04\" and the CSV's first line reads \"As of: 2026-08-04\" (with a colon). Both are correct; do not raise the difference."
+   "4. Note for the tester: the two files phrase the as-of line differently - the PDF reads \"As of 2026-08-04\" and the CSV's first line reads \"As of: 2026-08-04\" (with a colon). Both are correct; do not raise the difference.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R8, S10-R9)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R8; S10-R9)",
+  "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R8; S10-R9)",
   "viu_status": "VIU-Pending",
   "notes": "VIU-confirm the exact wording of the header's as-of line and the no-snapshot message (unpinned). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -337,7 +361,9 @@
   ],
   "expected": [
    "1. The PDF is named \"inventory-value-report.pdf\".",
-   "2. The CSV is named \"inventory-value-report.csv\"."
+   "2. The CSV is named \"inventory-value-report.csv\".",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R10)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R10 — S10-R10 CLOSES both file names verbatim; so the exact strings ARE the requirement)",
@@ -364,10 +390,12 @@
   "expected": [
    "1. The export contains the FULL filtered set — every qualifying row across all pages, not only the rows loaded in the browser.",
    "2. Parts from the later pages are present.",
-   "3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser."
+   "3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser.",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R11)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R11)",
+  "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R11)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -392,10 +420,13 @@
    "1. Neither the PDF nor the CSV is produced.",
    "2. The user sees the message: \"This report is too large to export. Narrow the date range or filters, then try again.\" (a blocking notification; no file).",
    "3. After narrowing the filters below the cap, the download works again.",
-   "4. Note for the tester: on this environment the biggest view you can build is about 9,275 rows, which is under the cap, so you cannot make this message appear here. If the PDF fails with a plain error instead, that is the separate timeout problem - see the Inventory Value export-notification case."
+   "4. Note for the tester: on this environment the biggest view you can build is about 9,275 rows, which is under the cap, so you cannot make this message appear here. If the PDF fails with a plain error instead, that is the separate timeout problem - see the Inventory Value export-notification case.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R12)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R12; §7 User Feedback Summary)",
+  "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R12; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
   "notes": "CAP VALUE: the spec's 10,000-row cap was written as a proposed default; the engineering plan (2026-07-21, A3/FR-F4) records 10,000 as the single suite-wide export cap \"locked by Chris 07-21\". Verify the capped BEHAVIOR and the verbatim message live, and record the actual cap value observed. TECH-PLAN EDIT 2026-07-30 (title trimmed — the pending-confirmation clause is resolved by the plan; still VIU-confirm). | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -446,10 +477,13 @@
    "1. Success notifications read verbatim: \"Inventory Value report exported (PDF)\" and \"Inventory Value report exported (CSV)\".",
    "2. Failure notifications read verbatim: \"Failed to export inventory value report (pdf)\" and \"Failed to export inventory value report (csv)\".",
    "3. The lower-case \"(pdf)\"/\"(csv)\" on failure vs the upper-case success ones is the documented spec wording — expected, not a bug.",
-   "4. Note for the tester: on this build a PDF download of a large view fails with a plain error - \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" - after roughly half a minute. It is a timeout, not the too-large-to-export message. Narrow the view with the part search or a single location and the PDF works. The CSV of the same view always works and is quick. Record the failure; it is a known problem, not a mistake you made."
+   "4. Note for the tester: on this build a PDF download of a large view fails with a plain error - \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" - after roughly half a minute. It is a timeout, not the too-large-to-export message. Narrow the view with the part search or a single location and the PDF works. The CSV of the same view always works and is quick. Record the failure; it is a known problem, not a mistake you made.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R13, S10-R14)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8677 (specs/inventory-value.md Story 10 S10-R13; S10-R14; §7 User Feedback Summary)",
+  "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R13; S10-R14; §7 User Feedback Summary)",
   "viu_status": "VIU-Pending",
   "notes": "Notification texts are verbatim from the spec (note the lower-case \"(pdf)\"/\"(csv)\" in the failure messages vs the upper-case success ones). MERGED 2026-07-28 (user-authorized consolidation, MERGE-PLAN G-IV-EXPTOAST): absorbed IV-EXP-08. Members retired locally + deleted from TestRail; bodies kept in cases/ marked Retired. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false
@@ -473,10 +507,14 @@
   ],
   "expected": [
    "1. The narrowed PDF downloads successfully.",
-   "2. On the whole list the PDF does not download. After roughly half a minute a plain error appears reading \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" — record that this happened and roughly how many rows were in the view.",
+   "2. On the whole list the PDF either downloads successfully too, or is refused politely with the message \"This report is too large to export. Narrow the date range or filters, then try again.\" Either of those is a pass.",
    "3. The CSV of that same whole list downloads successfully and quickly.",
    "4. Once the view is narrowed the PDF works again.",
-   "5. Note for the tester: this is NOT the too-large-to-export message. If you see \"This report is too large to export. Narrow the date range or filters, then try again.\" instead, that is the polite refusal working correctly and belongs to the export-cap test, not this one."
+   "5. KNOWN PROBLEM at the time of writing: on the whole list the PDF did not download at all. After roughly half a minute a plain error appeared reading \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" If you still see that, mark this test Failed, note roughly how many rows were in the view, and refer to the reported problem — do not change the test.",
+   "6. Note for the tester: the polite refusal message in item 2 is the correct behaviour. The plain error in item 5 is the problem being tracked. Tell the two apart by the wording.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R11, S10-R12, S10-R14)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 S10-R11; S10-R12; S10-R14 — the observed failure path is a roughly 30-second server-side timeout and not the S10-R12 row cap; observed on build v3.4.1-0ed4433)",
