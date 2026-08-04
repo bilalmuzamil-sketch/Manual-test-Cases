@@ -82,6 +82,14 @@ ADJ = {
                                 "this is a scope clarification of the on-screen pinning rule "
                                 "(covered by SBR-TOT-01 C30237)."),
     ("SBR", "S10-R6", 2): (NIT, "'PDFs have no scroll.' Same as S10-R2 assertion 2."),
+    # ---- covered behaviourally, but a numeric constant is not asserted verbatim -----
+    ("IV", "S10-R12", 1): ("COVERED-HUMAN-READ",
+                           "COVERED BEHAVIOURALLY, WITH A STATED CAVEAT. IV-EXP-07 C30593 "
+                           "drives the over-cap state and asserts the refusal, but the "
+                           "NUMBER 10,000 is never asserted verbatim in the case — it is a "
+                           "design constant a manual tester cannot count. The cap's effect is "
+                           "tested; its value is not. Flagged rather than passed off as a full "
+                           "match."),
     # ---- deliberate cuts, authorized Ruthless Usefulness Audit 2026-07-28 ----------
     ("SBC", "S10-N1", "*"): (CUT, "Covered verbatim by SBC-SORT-07, CUT 2026-07-28 as a no-op "
                                   "assertion (user-authorized audit)."),
@@ -144,6 +152,41 @@ ADJ = {
 # Recorded so the CSV can distinguish machine-substantiated from human-read.
 HUMAN_READ_SETS = ("WEAK-NEEDS-HUMAN-READ", "UNSUBSTANTIATED-NEEDS-HUMAN-READ")
 
+# ---------------------------------------------------------------------------------------
+# QUOTE OVERRIDES.  Rule 45(e) makes a "covered" verdict INVALID without a quoted
+# expected result, and the self-check caught 5 COVERED rows where the automatic
+# best-quote search returned nothing (score 0 — the assertion is very short, or its
+# wording shares no content words with the case that covers it). These are the verbatim
+# expected-result lines from the cases I actually read, copied from the live bodies.
+# key = (prefix, requirement_id, assertion_index) -> (c_id, verbatim quote)
+# ---------------------------------------------------------------------------------------
+QUOTES = {
+    ("SBR", "S12-N2", 1): (
+        30251, "1. The tab navigates to the application's standard not-found/access-denied "
+               "state. 2. Pressing back still returns to the report."),
+    ("SBR", "S14-N3", 1): (
+        30199, "2. The report (and its ⋯ export menu) is not reachable."),
+    ("SBR", "S22-R1", 2): (
+        30261, "1. A \"Show Unassigned\" toggle sits between the column selector and the date "
+               "range picker; it is OFF by default."),
+    ("PV", "S2-R12", 2): (
+        38914, "2. Each inventory row shows its own location's name (an inventory row is one "
+               "part at one location). 3. The merged Special Order row shows \"Multiple\", "
+               "because it is summed across the selected locations."),
+    ("TU", "S9-R9", 2): (
+        38915, "9. Every download — both PDF views and the CSV — includes the Location "
+               "column in its on-screen leftmost position, carrying the same values you just "
+               "read on screen."),
+    ("IV", "S6-R5", 2): (
+        30572, "4. The search applies server-side (whole data set, first page returned); a "
+               "no-match search shows the no-data message."),
+    ("IV", "S10-R12", 1): (
+        30593, "[steps] 1. Set the filters so the filtered set exceeds the export row cap. "
+               "[expected] 4. Note for the tester: on this environment the biggest view you "
+               "can build is about 9,275 rows, which is under the cap, so you cannot make this "
+               "message appear here."),
+}
+
 
 def adj_for(prefix, rid, idx):
     for key in ((prefix, rid, idx), (prefix, rid, "*")):
@@ -188,6 +231,13 @@ def main():
             evidence = "machine-substantiated"
 
         qcid = r["quote_from_c_id"]
+        quote = r["covering_expected_quote"]
+        if key in QUOTES:
+            qc, quote = QUOTES[key]
+            qcid = f"C{qc}"
+        if verdict.startswith("COVERED") and not quote.strip():
+            raise SystemExit(f"Rule 45(e) violation: {key} verdict {verdict} has NO quote. "
+                             "Add it to QUOTES or change the verdict.")
         out.append(OrderedDict([
             ("report", r["report"]), ("spec_prefix", r["prefix"]),
             ("story", r["story"]), ("story_title", r["story_title"]),
@@ -205,7 +255,7 @@ def main():
             ("covering_links", " ".join(TR + c[1:] for c in r["covering_c_ids"])),
             ("quote_from_c_id", qcid),
             ("quote_from_internal_id", cases[int(qcid[1:])]["internal_id"] if qcid else ""),
-            ("covering_expected_quote_verbatim", r["covering_expected_quote"]),
+            ("covering_expected_quote_verbatim", quote),
             ("overlap_score", r["overlap_score"]),
             ("anchor_mapping", r["map_how"]),
         ]))

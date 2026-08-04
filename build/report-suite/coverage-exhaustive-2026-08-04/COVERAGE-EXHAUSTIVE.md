@@ -142,14 +142,24 @@ failure this pass exists to correct:
 
 | Basis | Rows | What it means |
 |---|---|---|
-| **hand-read this run** | **314** | I read the covering case end to end and confirmed it. 201 came from the weak/unsubstantiated set, 113 from the polarity sweep. |
-| **hand-adjudicated this run** | **38** | I wrote an explicit verdict + reason, encoded in `tools/finalize.py` so it is auditable, not buried in prose. |
+| **hand-read this run** | **313** | I read the covering case end to end and confirmed it. 200 came from the weak/unsubstantiated set, 113 from the polarity sweep. |
+| **hand-adjudicated this run** | **39** | I wrote an explicit verdict + reason, encoded in `tools/finalize.py` so it is auditable, not buried in prose. |
 | **machine-substantiated** | **926** | the case cites the anchor **and** a quoted expected-result sentence overlaps the assertion at ≥ 0.34 content-word similarity. **Not individually read.** |
 
 **So: 352 of 1278 rows (27.5%) rest on my own reading; 926 rest on a quoted textual match.** That
 is not a sample — every row was *processed*, and every row that the machine could not substantiate
 on its own was *read*. But a machine-substantiated row is weaker evidence than a read one, and it
 is labelled as such in the CSV rather than presented as equivalent.
+
+**A self-check caught a real Rule-45(e) breach in my own first draft.** Verifying my own output
+found **6 rows written as COVERED with an EMPTY quote** — invalid under Rule 45(e), because the
+automatic best-quote search scored 0 on assertions too short to share content words with their
+covering case (SBR `S12-N2`, SBR `S14-N3`, SBR `S22-R1`, PV `S2-R12`, TU `S9-R9`, IV `S6-R5`, and a
+7th, IV `S10-R12`). All are now quoted verbatim from the live case bodies, and `tools/finalize.py`
+carries a **hard guard** that aborts the build if any COVERED row lacks a quote. **Final state:
+1255 COVERED rows, 0 without a quote.** One of the seven, **IV `S10-R12` a1**, is deliberately
+flagged rather than passed clean: the case drives the over-cap state and asserts the refusal, but
+the **number 10,000 is never asserted verbatim** — the cap's effect is tested, its value is not.
 
 ### The safety net under the overlap score — the POLARITY SWEEP
 
