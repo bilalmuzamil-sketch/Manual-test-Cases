@@ -1,0 +1,394 @@
+{
+ "buildMarker": "v3.4.1-0ed4433",
+ "capturedAt": "2026-08-04T01:04:36.815Z",
+ "results": [
+  {
+   "name": "wip__ApprovedPartiallyCompleted__SINGLE__default",
+   "url": "/api/reporting/reports/work-in-progress/export?format=csv&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=ApprovedPartiallyCompleted&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.csv",
+   "requestId": "ed2df555-68d3-4551-a3a5-fe1cf7a03c28",
+   "bytes": 6293,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__ApprovedPartiallyCompleted__SINGLE__default.csv",
+   "head": [
+    "﻿\"Locations: Staging Heavy Duty - 9919\"",
+    "\"WO #\",Status,Customer,Unit,Advisor,\"Days Open\",Earned,Remaining,Total",
+    "S2-15868,Approved,\"Joshore Farms\",70,\"Kimberly Barnes\",\"52 days\",$480.82,$805.44,\"$1,286.26\"",
+    "S2-15859,Approved,\"Cohaven Mechanical\",,\"Kimberly Barnes\",\"52 days\",$343.09,$934.80,\"$1,277.89\""
+   ]
+  },
+  {
+   "name": "wip__ApprovedPartiallyCompleted__MULTI__allcols",
+   "url": "/api/reporting/reports/work-in-progress/export?format=csv&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=ApprovedPartiallyCompleted&columns=wo_number,status,customer,asset,vin,location,advisor,days_open,last_activity,labor_earned,labor_remaining,parts_earned,parts_remaining,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.csv",
+   "requestId": "fe39495b-8347-4cfc-81a8-e29865dc8164",
+   "bytes": 20552,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__ApprovedPartiallyCompleted__MULTI__allcols.csv",
+   "head": [
+    "﻿\"Locations: All locations\"",
+    "\"WO #\",Status,Customer,Unit,VIN,Branch,Advisor,\"Days Open\",\"Last Activity\",\"Labor Earned\",\"Labor Remaining\",\"Parts Earned\",\"Parts Remaining\",Earned,Remaining,Total",
+    "S3-15871,Approved,\"Vuhaven Solutions\",,1GCHG356291136599,\"Staging Lethbridge - 4310\",\"Taylor Kelley\",\"52 days\",\"52d ago\",$159.95,$0.00,$0.00,$0.00,$159.95,$0.00,$159.95",
+    "S2-15868,Approved,\"Joshore Farms\",70,1XKDD40X8CJ955352,\"Staging Heavy Duty - 9919\",\"Kimberly Barnes\",\"52 days\",\"52d ago\",$154.45,$610.29,$326.37,$195.15,$480.82,$805.44,\"$1,286.26\""
+   ]
+  },
+  {
+   "name": "wip__ApprovedPartiallyCompleted__SINGLE__default",
+   "url": "/api/reporting/reports/work-in-progress/export?format=pdf&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=ApprovedPartiallyCompleted&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.pdf",
+   "requestId": "8ba740f5-f850-4e11-b59d-5eab904e29a5",
+   "bytes": 187579,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__ApprovedPartiallyCompleted__SINGLE__default.pdf"
+  },
+  {
+   "name": "wip__ApprovedPartiallyCompleted__MULTI__allcols",
+   "url": "/api/reporting/reports/work-in-progress/export?format=pdf&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=ApprovedPartiallyCompleted&columns=wo_number,status,customer,asset,vin,location,advisor,days_open,last_activity,labor_earned,labor_remaining,parts_earned,parts_remaining,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.pdf",
+   "requestId": "efa01b8b-d213-41c3-ac7a-ed369d87f1f9",
+   "bytes": 224682,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__ApprovedPartiallyCompleted__MULTI__allcols.pdf"
+  },
+  {
+   "name": "wip__ApprovedNotStarted__SINGLE__default",
+   "url": "/api/reporting/reports/work-in-progress/export?format=csv&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=ApprovedNotStarted&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.csv",
+   "requestId": "00e83eea-e98b-45d6-b58b-cf22ebdd3ef3",
+   "bytes": 2372,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__ApprovedNotStarted__SINGLE__default.csv",
+   "head": [
+    "﻿\"Locations: Staging Heavy Duty - 9919\"",
+    "\"WO #\",Status,Customer,Unit,Advisor,\"Days Open\",Earned,Remaining,Total",
+    "S2-15875,Approved,\"Vuchester Retail\",10154522,,\"52 days\",$0.00,$145.00,$145.00",
+    "S2-15855,Approved,\"Vuchester Retail\",10123073,\"Bonnie Jones\",\"53 days\",$0.00,$0.00,$0.00"
+   ]
+  },
+  {
+   "name": "wip__ApprovedNotStarted__MULTI__allcols",
+   "url": "/api/reporting/reports/work-in-progress/export?format=csv&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=ApprovedNotStarted&columns=wo_number,status,customer,asset,vin,location,advisor,days_open,last_activity,labor_earned,labor_remaining,parts_earned,parts_remaining,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.csv",
+   "requestId": "0f8d450a-ddb1-4b1b-93c0-f9171f06e421",
+   "bytes": 5896,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__ApprovedNotStarted__MULTI__allcols.csv",
+   "head": [
+    "﻿\"Locations: All locations\"",
+    "\"WO #\",Status,Customer,Unit,VIN,Branch,Advisor,\"Days Open\",\"Last Activity\",\"Labor Earned\",\"Labor Remaining\",\"Parts Earned\",\"Parts Remaining\",Earned,Remaining,Total",
+    "S2-15875,Approved,\"Vuchester Retail\",10154522,1T0324GMLPJ445971,\"Staging Heavy Duty - 9919\",,\"52 days\",\"52d ago\",$0.00,$145.00,$0.00,$0.00,$0.00,$145.00,$145.00",
+    "S3-15874,Approved,\"Roridge Holdings\",C8,P631627,\"Staging Lethbridge - 4310\",\"Jennifer Johnston\",\"52 days\",\"52d ago\",$0.00,$224.92,$0.00,$0.00,$0.00,$224.92,$224.92"
+   ]
+  },
+  {
+   "name": "wip__ApprovedNotStarted__SINGLE__default",
+   "url": "/api/reporting/reports/work-in-progress/export?format=pdf&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=ApprovedNotStarted&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.pdf",
+   "requestId": "afb830b2-41c4-41eb-ba65-6136fb09565e",
+   "bytes": 180640,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__ApprovedNotStarted__SINGLE__default.pdf"
+  },
+  {
+   "name": "wip__ApprovedNotStarted__MULTI__allcols",
+   "url": "/api/reporting/reports/work-in-progress/export?format=pdf&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=ApprovedNotStarted&columns=wo_number,status,customer,asset,vin,location,advisor,days_open,last_activity,labor_earned,labor_remaining,parts_earned,parts_remaining,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.pdf",
+   "requestId": "e9a07004-33a5-47ca-b37d-258adcc6638b",
+   "bytes": 190342,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__ApprovedNotStarted__MULTI__allcols.pdf"
+  },
+  {
+   "name": "wip__Completed__SINGLE__default",
+   "url": "/api/reporting/reports/work-in-progress/export?format=csv&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=Completed&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.csv",
+   "requestId": "6ccc0980-0c2f-498d-a13d-1eb304cbced3",
+   "bytes": 1241,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__Completed__SINGLE__default.csv",
+   "head": [
+    "﻿\"Locations: Staging Heavy Duty - 9919\"",
+    "\"WO #\",Status,Customer,Unit,Advisor,\"Days Open\",Earned,Remaining,Total",
+    "S2-15856,Complete,\"Gicastle Ventures\",\"OPEN TOP BUS\",\"Kimberly Barnes\",\"53 days\",\"$1,459.25\",$101.97,\"$1,561.22\"",
+    "S2-15806,Complete,\"Ceview Builders\",6,\"Bonnie Jones\",\"55 days\",$134.95,$1.50,$136.45"
+   ]
+  },
+  {
+   "name": "wip__Completed__MULTI__allcols",
+   "url": "/api/reporting/reports/work-in-progress/export?format=csv&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=Completed&columns=wo_number,status,customer,asset,vin,location,advisor,days_open,last_activity,labor_earned,labor_remaining,parts_earned,parts_remaining,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.csv",
+   "requestId": "d940d015-a1fd-4e03-a0d5-a1c5b5490db1",
+   "bytes": 5587,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__Completed__MULTI__allcols.csv",
+   "head": [
+    "﻿\"Locations: All locations\"",
+    "\"WO #\",Status,Customer,Unit,VIN,Branch,Advisor,\"Days Open\",\"Last Activity\",\"Labor Earned\",\"Labor Remaining\",\"Parts Earned\",\"Parts Remaining\",Earned,Remaining,Total",
+    "S2-15856,Complete,\"Gicastle Ventures\",\"OPEN TOP BUS\",SFEX11114BGN26326,\"Staging Heavy Duty - 9919\",\"Kimberly Barnes\",\"53 days\",\"52d ago\",\"$1,129.34\",$101.97,$329.91,$0.00,\"$1,459.25\",$101.97,\"$1,561.22\"",
+    "S2-15806,Complete,\"Ceview Builders\",6,1NKZX4TX8SJ982536,\"Staging Heavy Duty - 9919\",\"Bonnie Jones\",\"55 days\",\"54d ago\",$134.95,$1.50,$0.00,$0.00,$134.95,$1.50,$136.45"
+   ]
+  },
+  {
+   "name": "wip__Completed__SINGLE__default",
+   "url": "/api/reporting/reports/work-in-progress/export?format=pdf&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=Completed&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.pdf",
+   "requestId": "eedc8561-51a1-4da3-b2c1-3980170d10a0",
+   "bytes": 178975,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__Completed__SINGLE__default.pdf"
+  },
+  {
+   "name": "wip__Completed__MULTI__allcols",
+   "url": "/api/reporting/reports/work-in-progress/export?format=pdf&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=Completed&columns=wo_number,status,customer,asset,vin,location,advisor,days_open,last_activity,labor_earned,labor_remaining,parts_earned,parts_remaining,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.pdf",
+   "requestId": "cf8e1022-df2d-4ffc-851d-80b258e64d06",
+   "bytes": 190589,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__Completed__MULTI__allcols.pdf"
+  },
+  {
+   "name": "wip__Estimates__SINGLE__default",
+   "url": "/api/reporting/reports/work-in-progress/export?format=csv&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=Estimates&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.csv",
+   "requestId": "3deb9f5e-84ca-4ea4-af93-9fe6414b5446",
+   "bytes": 6302,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__Estimates__SINGLE__default.csv",
+   "head": [
+    "﻿\"Locations: Staging Heavy Duty - 9919\"",
+    "\"WO #\",Status,Customer,Unit,Advisor,\"Days Open\",Earned,Remaining,Total",
+    "S2-15866,Estimate,\"Enhall Electrical\",,\"Bonnie Jones\",\"52 days\",$0.00,$0.00,$0.00",
+    "S2-15846,Estimate,\"Pumoor Landscaping\",MOTORHOME,\"Kimberly Barnes\",\"53 days\",$0.00,$0.00,$0.00"
+   ]
+  },
+  {
+   "name": "wip__Estimates__MULTI__allcols",
+   "url": "/api/reporting/reports/work-in-progress/export?format=csv&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=Estimates&columns=wo_number,status,customer,asset,vin,location,advisor,days_open,last_activity,labor_earned,labor_remaining,parts_earned,parts_remaining,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.csv",
+   "requestId": "0e9723d0-801c-41ac-a49a-009ae1b98762",
+   "bytes": 18557,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__Estimates__MULTI__allcols.csv",
+   "head": [
+    "﻿\"Locations: All locations\"",
+    "\"WO #\",Status,Customer,Unit,VIN,Branch,Advisor,\"Days Open\",\"Last Activity\",\"Labor Earned\",\"Labor Remaining\",\"Parts Earned\",\"Parts Remaining\",Earned,Remaining,Total",
+    "S3-15884,Estimate,\"Roriver Hauling\",\"L16 / 461132\",1FTBR3U85RKB68198,\"Staging Lethbridge - 4310\",\"Jennifer Johnston\",\"52 days\",\"52d ago\",$0.00,$0.00,$0.00,$0.00,$0.00,$0.00,$0.00",
+    "S3-15881,Estimate,\"Ieport Mining\",,KMHD84LF2KU748693,\"Staging Lethbridge - 4310\",\"Jennifer Johnston\",\"52 days\",\"52d ago\",$0.00,$0.00,$0.00,$0.00,$0.00,$0.00,$0.00"
+   ]
+  },
+  {
+   "name": "wip__Estimates__SINGLE__default",
+   "url": "/api/reporting/reports/work-in-progress/export?format=pdf&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=Estimates&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.pdf",
+   "requestId": "591d4906-2043-4db7-92fc-55b467823154",
+   "bytes": 187361,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__Estimates__SINGLE__default.pdf"
+  },
+  {
+   "name": "wip__Estimates__MULTI__allcols",
+   "url": "/api/reporting/reports/work-in-progress/export?format=pdf&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=Estimates&columns=wo_number,status,customer,asset,vin,location,advisor,days_open,last_activity,labor_earned,labor_remaining,parts_earned,parts_remaining,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=wip-2-report.pdf",
+   "requestId": "62dbf54b-13d0-40d0-88e8-fec388c3d71c",
+   "bytes": 220683,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/wip__Estimates__MULTI__allcols.pdf"
+  },
+  {
+   "name": "wip__NEG__no-columns",
+   "url": "/api/reporting/reports/work-in-progress/export?format=csv&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=Completed&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 400,
+   "contentType": "application/problem+json",
+   "contentDisposition": "",
+   "requestId": "9b91bc27-e3cf-4d7e-ac9b-029d490448d9",
+   "bytes": 57,
+   "body": "{\"errors\":[{\"error\":\"At least one column is required.\"}]}"
+  },
+  {
+   "name": "wip__NEG__bad-tab",
+   "url": "/api/reporting/reports/work-in-progress/export?format=csv&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=Nonsense&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 400,
+   "contentType": "application/problem+json",
+   "contentDisposition": "",
+   "requestId": "28ce4a09-776a-47a0-820a-55e569689d8a",
+   "bytes": 58,
+   "body": "{\"errors\":[{\"error\":\"Invalid tab \\u0022Nonsense\\u0022.\"}]}"
+  },
+  {
+   "name": "wip__NEG__bad-format",
+   "url": "/api/reporting/reports/work-in-progress/export?format=xlsx&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=Completed&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 400,
+   "contentType": "application/problem+json",
+   "contentDisposition": "",
+   "requestId": "c2c7a1a9-7b88-4bc8-b154-0e8838ec6e92",
+   "bytes": 73,
+   "body": "{\"errors\":[{\"error\":\"Invalid export format. Allowed values: csv, pdf.\"}]}"
+  },
+  {
+   "name": "wip__NEG__invoiced-hours-col",
+   "url": "/api/reporting/reports/work-in-progress/export?format=csv&from=2026-01-01T00:00:00.000Z&to=2026-08-04T23:59:59.000Z&tab=Completed&columns=wo_number,status,customer,asset,advisor,days_open,earned,remaining,total,invoiced_hours&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 400,
+   "contentType": "application/problem+json",
+   "contentDisposition": "",
+   "requestId": "f62a3268-9f23-4b72-a6c4-1b32e4d1ba9b",
+   "bytes": 67,
+   "body": "{\"errors\":[{\"error\":\"Invalid column \\u0022invoiced_hours\\u0022.\"}]}"
+  },
+  {
+   "name": "iv__SINGLE__wholelist__csv",
+   "url": "/api/reporting/reports/inventory-value/export?format=csv&range=custom&start_date=2026-08-01&end_date=2026-08-03&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=inventory-value-report.csv",
+   "requestId": "eca241de-09b7-4546-8dda-8d990d414baa",
+   "bytes": 724109,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/iv__SINGLE__wholelist__csv.csv",
+   "head": [
+    "﻿\"As of: 2026-08-04\"",
+    "\"Locations: Staging Heavy Duty - 9919\"",
+    "\"Part #\",Description,Category,Vendor,Qty,\"Unit Cost\",\"Unit Sell\",\"Total Cost\",\"Total Sell\",Margin,\"Margin %\"",
+    "R134A,Refrigerant,HD-Fluids,—,786.55,$14.21,$21.86,\"$11,176.88\",\"$17,193.98\",\"$6,017.10\",35.0%"
+   ]
+  },
+  {
+   "name": "iv__MULTI__wholelist__csv",
+   "url": "/api/reporting/reports/inventory-value/export?format=csv&range=custom&start_date=2026-08-01&end_date=2026-08-03&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=inventory-value-report.csv",
+   "requestId": "740c9502-46ad-4d89-8d6e-f4c5f248f48b",
+   "bytes": 1426923,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/iv__MULTI__wholelist__csv.csv",
+   "head": [
+    "﻿\"As of: 2026-08-04\"",
+    "\"Locations: All locations\"",
+    "\"Part #\",Description,Category,Vendor,Location,Qty,\"Unit Cost\",\"Unit Sell\",\"Total Cost\",\"Total Sell\",Margin,\"Margin %\"",
+    "AB8724,\"AIR SPRING ROLLING LOBE\",\"HD-Air Brakes & Air Suspension\",—,\"Staging Lethbridge - 4310\",31.00,$702.02,$988.80,\"$21,762.62\",\"$30,652.80\",\"$8,890.18\",29.0%"
+   ]
+  },
+  {
+   "name": "iv__SINGLE__searchnarrow__csv",
+   "url": "/api/reporting/reports/inventory-value/export?format=csv&range=custom&start_date=2026-08-01&end_date=2026-08-03&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&search=W4707QP",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=inventory-value-report.csv",
+   "requestId": "17a36375-d984-4917-beae-6ca2a31d68ef",
+   "bytes": 400,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/iv__SINGLE__searchnarrow__csv.csv",
+   "head": [
+    "﻿\"As of: 2026-08-04\"",
+    "\"Locations: Staging Heavy Duty - 9919\"",
+    "\"Part #\",Description,Category,Vendor,Qty,\"Unit Cost\",\"Unit Sell\",\"Total Cost\",\"Total Sell\",Margin,\"Margin %\"",
+    "W4707QP,\"Brake Shoe Kit w/ Hardware, 16.5x7, Coreless\",\"HD-Heavy Duty Shoes\",\"Qucastle Excavating\",245.00,$41.46,$94.33,\"$10,157.70\",\"$23,110.85\",\"$12,953.15\",56.1%"
+   ]
+  },
+  {
+   "name": "iv__MULTI__searchnarrow__csv",
+   "url": "/api/reporting/reports/inventory-value/export?format=csv&range=custom&start_date=2026-08-01&end_date=2026-08-03&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2&search=BRAKE",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=inventory-value-report.csv",
+   "requestId": "65d3da44-f09d-4645-8384-f4b3c991a241",
+   "bytes": 44762,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/iv__MULTI__searchnarrow__csv.csv",
+   "head": [
+    "﻿\"As of: 2026-08-04\"",
+    "\"Locations: All locations\"",
+    "\"Part #\",Description,Category,Vendor,Location,Qty,\"Unit Cost\",\"Unit Sell\",\"Total Cost\",\"Total Sell\",Margin,\"Margin %\"",
+    "W4707QP,\"Brake Shoe Kit w/ Hardware, 16.5x7, Coreless\",\"HD-Heavy Duty Shoes\",\"Qucastle Excavating\",\"Staging Heavy Duty - 9919\",245.00,$41.46,$94.33,\"$10,157.70\",\"$23,110.85\",\"$12,953.15\",56.1%"
+   ]
+  },
+  {
+   "name": "iv__NOLOC__wholelist__csv",
+   "url": "/api/reporting/reports/inventory-value/export?format=csv&range=custom&start_date=2026-08-01&end_date=2026-08-03",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=inventory-value-report.csv",
+   "requestId": "0db9a147-6905-481d-bd18-30c33d9f37d3",
+   "bytes": 724109,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/iv__NOLOC__wholelist__csv.csv",
+   "head": [
+    "﻿\"As of: 2026-08-04\"",
+    "\"Locations: Staging Heavy Duty - 9919\"",
+    "\"Part #\",Description,Category,Vendor,Qty,\"Unit Cost\",\"Unit Sell\",\"Total Cost\",\"Total Sell\",Margin,\"Margin %\"",
+    "R134A,Refrigerant,HD-Fluids,—,786.55,$14.21,$21.86,\"$11,176.88\",\"$17,193.98\",\"$6,017.10\",35.0%"
+   ]
+  },
+  {
+   "name": "iv__SINGLE__wholelist__pdf",
+   "url": "/api/reporting/reports/inventory-value/export?format=pdf&range=custom&start_date=2026-08-01&end_date=2026-08-03&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 500,
+   "contentType": "application/problem+json",
+   "contentDisposition": "",
+   "requestId": "0d90d5f8-9282-4636-84e9-2652e9b1e80c",
+   "bytes": 173,
+   "body": "{\"errors\":[{\"error\":\"An error occurred. We\\u0027re sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"0d90d5f8-9282-4636-84e9-2652e9b1e80c\"}]}"
+  },
+  {
+   "name": "iv__MULTI__wholelist__pdf",
+   "url": "/api/reporting/reports/inventory-value/export?format=pdf&range=custom&start_date=2026-08-01&end_date=2026-08-03&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2",
+   "status": 500,
+   "contentType": "application/problem+json",
+   "contentDisposition": "",
+   "requestId": "8c694824-5cfe-41a7-8812-cbeaed68f07c",
+   "bytes": 173,
+   "body": "{\"errors\":[{\"error\":\"An error occurred. We\\u0027re sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"8c694824-5cfe-41a7-8812-cbeaed68f07c\"}]}"
+  },
+  {
+   "name": "iv__SINGLE__searchnarrow__pdf",
+   "url": "/api/reporting/reports/inventory-value/export?format=pdf&range=custom&start_date=2026-08-01&end_date=2026-08-03&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a&search=W4707QP",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=inventory-value-report.pdf",
+   "requestId": "863cf90b-bb4b-4685-852d-b74f0d72aa64",
+   "bytes": 177825,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/iv__SINGLE__searchnarrow__pdf.pdf"
+  },
+  {
+   "name": "iv__MULTI__searchnarrow__pdf",
+   "url": "/api/reporting/reports/inventory-value/export?format=pdf&range=custom&start_date=2026-08-01&end_date=2026-08-03&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2&search=BRAKE",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=inventory-value-report.pdf",
+   "requestId": "f2a35f2f-b1fe-476d-bea2-525605288b5f",
+   "bytes": 276794,
+   "file": "/tmp/report-suite-viu/exports-wip-iv/iv__MULTI__searchnarrow__pdf.pdf"
+  },
+  {
+   "name": "iv__NOLOC__wholelist__pdf",
+   "url": "/api/reporting/reports/inventory-value/export?format=pdf&range=custom&start_date=2026-08-01&end_date=2026-08-03",
+   "status": 500,
+   "contentType": "application/problem+json",
+   "contentDisposition": "",
+   "requestId": "dfebaed8-f46c-4a4d-9eca-dfd35a0955b9",
+   "bytes": 173,
+   "body": "{\"errors\":[{\"error\":\"An error occurred. We\\u0027re sorry for this inconvenience, please try again a bit later later.\"},{\"requestId\":\"dfebaed8-f46c-4a4d-9eca-dfd35a0955b9\"}]}"
+  },
+  {
+   "name": "iv__NEG__bad-format",
+   "url": "/api/reporting/reports/inventory-value/export?format=xlsx&range=custom&start_date=2026-08-01&end_date=2026-08-03&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a",
+   "status": 400,
+   "contentType": "application/problem+json",
+   "contentDisposition": "",
+   "requestId": "ed345d74-4662-4783-b210-3cb480eebada",
+   "bytes": 73,
+   "body": "{\"errors\":[{\"error\":\"Invalid export format. Allowed values: csv, pdf.\"}]}"
+  }
+ ]
+}
