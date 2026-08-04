@@ -20,7 +20,7 @@
    "2. The Technician header shows the ascending sort indicator.",
    "3. The active sort header exposes its state to assistive technology (aria-sort = ascending on the Technician header; none on the others).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R12, S8-R8, S8-R10)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-R12, S8-R8, S8-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R12; S8-R8; S8-R10)",
@@ -52,7 +52,7 @@
    "4. Sorting is applied on screen to the loaded rows - NO reload/server request happens.",
    "5. Technicians tied in the sorted column are ordered by Technician name A to Z; two technicians sharing the same display name keep a stable order between renders.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R13, S2-R14)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-R13, S2-R14)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R13; S2-R14)",
@@ -79,7 +79,7 @@
    "1. After the reload, the rows are back to Technician name A to Z (the sort reset).",
    "2. On the return visit, the sort is again Technician A to Z - sort is NOT persisted (unlike the date range, technician selection, and location selection, which are).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R15)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-R15)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R15; §3)",
@@ -107,7 +107,7 @@
    "2. The Summary row stays pinned at the bottom.",
    "3. Each technician's expanded day rows stay under that technician, still in date order (earliest to latest) - they do not re-sort by the clicked column.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R16)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-R16)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R16)",
@@ -135,7 +135,7 @@
    "2. Among themselves, the \"—\" rows are ordered by Technician name A to Z.",
    "3. A \"$0.00\" value is a number, not \"—\" - it sorts as zero (lowest ascending, above only the — group).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S2-R17)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-R17)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8649 (TU spec v5 2026-07-29 S2-R17)",
@@ -164,7 +164,7 @@
    "3. It uses the same number formats as the technician rows.",
    "4. Its values carry NO label prefix such as \"TOTAL:\" or \"AVG:\".",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S3-R1, S3-R2, S3-R6, S3-R7, S8-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S3-R1, S3-R2, S3-R6, S3-R7, S8-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8650 (TU spec v5 2026-07-29 S3-R1; S3-R2; S3-R6; S3-R7; S8-R5)",
@@ -192,7 +192,7 @@
    "2. Eye-summing the displayed rows MAY differ from the displayed Summary by 0.01 — one unit in the last decimal (these values are HOURS, not money) — expected in a compute-from-unrounded report, not a defect.",
    "3. With every technician selected, the Summary row equals the shop totals for the full date range at the selected location(s).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S3-R3, S5-E1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S3-R3, S5-E1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8650 (TU spec v5 2026-07-29 S3-R3; §3 context note; S5-E1)",
@@ -219,7 +219,7 @@
    "1. The Summary Utilization % shows the WEIGHTED rate - the visible technicians' total work-order hours as a percentage of their total clocked hours, from unrounded hours (10.0% in the example).",
    "2. It is NOT the average of the per-technician percentages (not 50.0%).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S3-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S3-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8650 (TU spec v5 2026-07-29 S3-R4)",
@@ -246,7 +246,7 @@
    "2. A visible technician whose value is \"—\" contributes NOTHING to the sum - so the Summary understates true lost labor whenever any visible technician is \"—\" or partially valued (documented, expected).",
    "3. The Summary shows \"—\" only when EVERY visible technician's Est. Lost Labor is \"—\".",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S3-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S3-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8650 (TU spec v5 2026-07-29 S3-R5)",
@@ -275,7 +275,7 @@
    "2. Its accessible name reflects the NEXT action, scoped to that technician: when collapsed it reads Expand, then that technician's name, then daily breakdown (for example: Expand John Smith's daily breakdown); when expanded it reads Collapse, then the same name and words.",
    "3. The control is keyboard-focusable, toggles on Enter and Space, and exposes its expanded/collapsed state to assistive technology.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R1, S8-R12)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S4-R1, S8-R12)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R1; S8-R12)",
@@ -307,7 +307,7 @@
    "4. With several locations selected, a day's row POOLS that day's hours across the selected locations - one day row per date, not one per location.",
    "5. Note for the tester: you do not need developer tools for this test - just watch the screen.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R2, S4-N1, S9-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S4-R2, S4-N1, S9-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R2; S4-N1; S9-R4 — one row per clocked day in date order; load-on-expand; no row for an unclocked day; per-day pooling across selected locations; the back-end half is covered by C30449 in \"TU - API\")",
@@ -335,7 +335,7 @@
    "2. The day's Est. Lost Labor is valued per location exactly like a technician row (that location's default labor rate × that day's internal hours there).",
    "3. Hours 2dp / Utilization one decimal + % / dollars with commas - all identical to the row formats, computed from unrounded values and rounded once.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R3, S2-R8)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S4-R3, S2-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R3; S2-R8; §3)",
@@ -366,7 +366,7 @@
    "3. Its accessible name reflects the next action: \"Expand all technicians\" when it will expand, \"Collapse all technicians\" when every row is already expanded.",
    "4. It is keyboard-focusable, toggles on Enter/Space, and exposes its state to assistive technology.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R4, S8-R12, S8-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S4-R4, S8-R12, S8-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R4; S8-R12; S8-R3)",
@@ -394,7 +394,7 @@
    "2. On a fresh visit, all rows start collapsed - expansion is never persisted.",
    "3. Deselecting and re-selecting a technician (an on-screen operation) does NOT change the expansion state of the other rows - the expanded row stays expanded.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S4-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R5)",
@@ -422,7 +422,7 @@
    "2. On the first visit, EVERY technician is selected.",
    "3. All technicians' rows are shown.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S5-R1, S5-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S5-R1, S5-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8652 (TU spec v5 2026-07-29 S5-R1; S5-R2)",
@@ -453,7 +453,7 @@
    "4. Re-selecting the technician shows the row again (and the Summary recalculates back).",
    "5. Note for the tester: you do not need developer tools for this test - just watch the screen.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S5-R3, S5-R4, S5-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S5-R3, S5-R4, S5-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8652 (TU spec v5 2026-07-29 S5-R3; S5-R4; S5-R5 + §3 Key Decisions (\"the technician filter works on screen only and does not reload the report\"); S5 context note — the server half is covered by C30450 in \"TU - API\")",
@@ -483,7 +483,7 @@
    "3. After step 3, your deselected technician STAYS deselected across the range change, while the newly-appearing technician is SELECTED (never explicitly deselected).",
    "4. After step 4, the newly-appearing technician is selected even though you had cleared all - \"Clear all\" only deselected the technicians listed at the time.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S5-R6, S5-R7, S5-R8, S5-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S5-R6, S5-R7, S5-R8, S5-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8652 (TU spec v5 2026-07-29 S5-R6; S5-R7; S5-R8; S5-R9)",
@@ -511,7 +511,7 @@
    "2. All other technicians - including any who appear for the first time - are selected.",
    "3. The saved date range and location selection are restored alongside.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S5-R10, S1-R8)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S5-R10, S1-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8652 (TU spec v5 2026-07-29 S5-R10; S1-R8; §3)",

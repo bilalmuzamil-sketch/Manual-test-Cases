@@ -18,7 +18,7 @@
    "1. The menu lists exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", and \"Download Expanded View (CSV)\".",
    "2. No other entries appear in the menu.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R1, S17-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R1, S17-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R1 + Story 17 S17-R3 (position) — S14-R1 CLOSES it in the spec's own words (\"lists exactly four actions\"); so the closed list IS the requirement)",
@@ -51,7 +51,7 @@
    "4. The Unassigned row (Show Unassigned on) is pinned first, ahead of the sorted reps.",
    "5. Every file (all four downloads, PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R2, S14-R2a, S14-R20, S21-R6, S22-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2; S14-R2a; S14-R20 + Story 21 S21-R6 + Story 22 S22-R4 — all four downloads honour the filters; the full result set and the active order; S14-R20 = the \"Locations:\" line in every export)",
@@ -85,7 +85,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R3, S14-R5, S14-R20, S2-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R3, S14-R5, S14-R20, S2-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3; S14-R5; S14-R20; Story 2 S2-R5; §3 Margin % definition — Summary PDF; plus the automatic Location column in all four exports)",
@@ -120,7 +120,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R6, S14-R8, S14-R20, S6-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R6, S14-R8, S14-R20, S6-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R6; S14-R8; S14-R20; Story 6 S6-R9 — Expanded PDF page-block per rep; plus the automatic Location column after Status)",
@@ -147,7 +147,7 @@
    "2. In the PDF, the long number is cut to its first 18 characters followed by an ellipsis (the ellipsis is not counted toward the 18).",
    "3. In the PDF, the 18-character-or-shorter number shows in full with no ellipsis.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R7)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R7)",
@@ -176,7 +176,7 @@
    "2. A footer reading \"Software Powered by ShopView\" appears on EVERY page of both PDFs.",
    "3. With no configured logo, the logo region falls back to the default ShopView logo and the PDF still generates normally.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R3a, S14-R4, S14-R11)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R3a, S14-R4, S14-R11)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3a; S14-R4; S14-R11 — S14-R11 CLOSES both PDF filenames verbatim (\"deterministic\") and S14-R4 closes the footer string; so the exact strings ARE the requirement)",
@@ -204,7 +204,7 @@
    "2. The on-screen (N) invoice count does NOT appear next to any rep name in either PDF.",
    "3. The \"(Inactive)\" tag DOES render on toggled-off contributors' names in both PDFs; other rep names render plainly.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R9, S14-R10)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R9, S14-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R9; S14-R10)",
@@ -233,7 +233,7 @@
    "2. Column widths are fixed for the worst case regardless of tier — the layout never breaks and no value overflows or wraps its column.",
    "3. Both PDF formats adapt the same way.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R12, S14-R13)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R12, S14-R13)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R12; S14-R13)",
@@ -294,7 +294,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R15, S14-R18, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R15, S14-R18, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R15; S14-R18; S14-R20 — Summary CSV headers; plus the automatic Location column in all four exports; S14-R15's header list was left un-updated when S14-R20 was added — spec correction pending)",
@@ -327,7 +327,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R16, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R16, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R16; S14-R20 — Expanded CSV headers; plus the automatic Location column after Status; S14-R16's header list was left un-updated when S14-R20 was added — spec correction pending)",
@@ -356,8 +356,10 @@
    "4. The \"Sales Representative\" name carries the \"(Inactive)\" tag when applicable; the on-screen (N) count is NOT embedded in the name.",
    "5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Inv. Hrs conveys direction only by its sign).",
    "6. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
+   "On this build the money in the spreadsheet file comes out as \"$1,979.40\" - with a dollar sign and a comma - instead of the plain number described in point 1 above.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R17)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R17)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R17; §3 Key Decisions (CSVs monochrome / plain signed numbers))",
@@ -387,7 +389,7 @@
    "3. With the toggle OFF: no Unassigned row and no unassigned invoices appear in ANY of the four files.",
    "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R19, S22-R2, S22-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R19, S22-R2, S22-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R19; Story 22 S22-R2; S22-R4)",
@@ -416,7 +418,7 @@
    "2. A failed download shows the error toast \"Ooooops! An error occured\" (the typo is as-shipped) — it persists 120 seconds or until dismissed.",
    "3. A genuine failure downloads nothing — never a malformed file.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-N1, S14-N2, S14-E1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-N1, S14-N2, S14-E1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-N1; S14-N2; S14-E1; §7)",
@@ -444,7 +446,7 @@
    "3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected).",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-E2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-E2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2; §7 — 10k-row export cap; no truncated file; toast persists 120s; the toast STRING is the ONE suite-wide message ruled by Chris Ward 2026-07-31 Q2=A [newest-wins]; his SBR spec edit is pending)",
@@ -473,7 +475,7 @@
    "4. Both CSVs generate a header-row-only file, still starting with the UTF-8 BOM.",
    "5. No special \"empty\" treatment or message appears inside the files.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-E3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-E3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E3)",
@@ -503,7 +505,7 @@
    "3. The dialog shows the note: \"Snapshot of current sales representative assignments. Both active and inactive reps with assignments are listed.\"",
    "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S15-R1, S15-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R1, S15-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R1; S15-R2)",
@@ -534,7 +536,7 @@
    "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
    "5. Note for the tester: this file has only those three columns even if you have several locations in scope. It is a separate customer-to-representative list, not one of the report's four downloads, so it has no Location column - do not fail it for that.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S15-R3, S15-R4, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R3, S15-R4, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R3; S15-R4; §7 — S15-R4 CLOSES the three headers; \"Sales Rep\"→\"Sales Representative\" per Chris Ward 2026-07-31 Q5 [newest-wins]; NOT one of the four report exports so S14-R20 adds no Location)",
@@ -563,7 +565,7 @@
    "2. Customers with no assigned rep are NOT included.",
    "3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S15-R5, S15-R7, S15-R10)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R5, S15-R7, S15-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R5; S15-R7; S15-R10)",
@@ -590,7 +592,7 @@
    "2. The staff-INACTIVE / toggle-on rep shows \"Rep is active?\" = \"No\".",
    "3. The value is always \"Yes\" or \"No\" (never \"Deactivated\" or another word).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S15-R6, S13-R11)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R6, S13-R11)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R6; Story 13 S13-R11)",
@@ -619,7 +621,7 @@
    "3. When stored names differ across customers for the same rep (name drift), each customer's row uses its OWN stored name — drift never adds extra rows for a customer and never overwrites one customer's stored name with another's.",
    "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S15-R8, S15-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R8, S15-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R8; S15-R9)",
@@ -647,7 +649,7 @@
    "1. With zero assigned customers, the CSV downloads with a header row and no data rows, and the dialog shows its empty-export warning: \"There is no data to export for the selected report.\"",
    "2. On a generation failure, an error toast reads \"An error occurred while exporting the report. Please try again.\" and auto-fades after 5 seconds.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S15-R11, S15-N2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S15-R11, S15-N2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R11; S15-N2; §7)",
@@ -678,7 +680,7 @@
    "4. Whenever at least one rep row (or the Unassigned row) IS in the result set, the rep list renders and no empty/error message shows.",
    "5. In the empty state the toolbar — filters, column selector, and the ⋯ exports — stays visible and interactive; widening the range re-fetches and renders the matching reps normally.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S16-R1, S16-R2, S16-R3, S16-N1, S2-N1, S21-N2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R1; S16-R2; S16-R3; S16-N1; Story 2 S2-N1; Story 21 S21-N2; §7)",
@@ -732,7 +734,7 @@
    "3. The toolbar stays interactive so filters can be changed mid-load.",
    "4. A re-fetch replaces the previous data only when the new data returns — no flash of a blank table beyond the spinner overlay.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S16-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S16-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R4)",
@@ -761,7 +763,7 @@
    "2. The filters and toolbar remain interactive, and the failure does NOT clear the filter selections.",
    "3. \"Retry\" re-runs the CURRENT request — the report loads with the same filters still applied.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S16-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S16-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8633 (SBR spec v15 2026-07-29 Story 16 S16-R5; §7)",
@@ -789,7 +791,7 @@
    "2. Below 1024px the toolbar controls stack vertically at full width; the ⋯ exports button — the first control of the action cluster — wraps to a partial row ABOVE the stacked controls.",
    "3. At 1024px and above the desktop layout applies.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S17-R1, S17-R2, S17-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S17-R1, S17-R2, S17-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8634 (SBR spec v15 2026-07-29 Story 17 S17-R1; S17-R2; S17-R3)",
@@ -817,7 +819,7 @@
    "2. The mobile external totals bar (\"Totals\" left, grand Subtotal right) sits below the table, OUTSIDE the horizontal scroll container — it does not scroll horizontally and is always fully visible.",
    "3. The chevron expands/collapses the rep on touch.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S17-R4, S17-R5, S10-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S17-R4, S17-R5, S10-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8634 (SBR spec v15 2026-07-29 Story 17 S17-R4; S17-R5; Story 10 S10-R5 (mobile))",
@@ -844,7 +846,7 @@
    "1. Each of these interactive controls presents a touch target of at least 44×44 px.",
    "2. Hover-only tooltips are not shown on touch; the icons communicate the action and each icon-only control carries an accessible name.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S17-R6, S17-N1, S18-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S17-R6, S17-N1, S18-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8634 (SBR spec v15 2026-07-29 Story 17 S17-R6; S17-N1; Story 18 S18-R9)",
@@ -877,7 +879,7 @@
    "6. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.",
    "7. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the alignment look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this — 32px/24px toolbar padding, 2rem edge padding — are design-token values the design and engineering team check with their own tooling, not by hand.)",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S18-R1, S18-R2, S18-R3, S18-R4, S18-R5, S18-R7, S18-N1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R1, S18-R2, S18-R3, S18-R4, S18-R5, S18-R7, S18-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1)",
@@ -907,7 +909,7 @@
    "3. Inv. Hrs green/red use the application's positive/negative tokens, mode-appropriate.",
    "4. PDFs always render in light-mode colors, even when downloaded from dark mode.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S18-R8)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R8)",
@@ -937,7 +939,7 @@
    "4. Header chevron = \"Expand all reps\" / \"Collapse all reps\".",
    "5. Dialog X = \"Close\".",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S18-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R9)",
@@ -966,7 +968,7 @@
    "2. A chevron exposes its expanded/collapsed state to assistive technology.",
    "3. A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S18-R10)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R10)",
@@ -993,7 +995,7 @@
    "2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline.",
    "3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can read the grey text easily in both modes, and only report it if you cannot. (The design rule behind this is WCAG AA contrast of at least 4.5:1, which the design and engineering team check with a contrast tool - not by hand.)",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S18-R11, S18-R12)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S18-R11, S18-R12)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8635 (SBR spec v15 2026-07-29 Story 18 S18-R11; S18-R12 — subdued-grey (N) count and \"(Inactive)\" tag at ≥ 4.5:1 WCAG AA in both modes; nothing conveyed by colour alone; the ratio is a design-token property so the check is by-eye)",
@@ -1027,7 +1029,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R1, S19-N1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R1, S19-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R1; S19-N1)",
@@ -1056,7 +1058,7 @@
    "3. The selector carries the accessible name \"Sales Representative\".",
    "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R2, S19-R8)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R2, S19-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R2; S19-R8 — toggle entry path Settings -> Staff -> edit the staff member per the PRD companion video 2026-07-30 09:17-09:41; exact toggle label to confirm live in the build)",
@@ -1084,7 +1086,7 @@
    "2. Changing the Sales Representative persists immediately (save-on-change): the selection survives leaving and reopening the WO with no separate Save step.",
    "3. A new Part Sale WO also opens with the field unassigned.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R3, S19-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R3, S19-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R3; S19-R4)",
@@ -1112,7 +1114,7 @@
    "3. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename — do not change the test.",
    "4. Note for the tester: this field is only made read-only on the screen. If you find the sales rep can still be changed another way (through the back-end/API), that is expected — mark this test PASSED and do not raise it as a bug.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R5)",
@@ -1141,7 +1143,7 @@
    "3. Invoice (c) is unassigned — it appears only under the \"Unassigned\" row.",
    "4. Changing WO (a)'s Sales Representative afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R6, S19-N2, S22-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R6, S19-N2, S22-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3)",
@@ -1174,7 +1176,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R7, S19-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S19-R7, S19-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8636 (SBR spec Story 19 S19-R7; S19-E1 — customer-card label RE-RULED to the full \"Sales Representative\" per the PRD companion video 2026-07-30 + Chris Ward answer 2026-07-31 Q5=A; the spec text still says \"Sales Rep\")",
@@ -1201,7 +1203,7 @@
    "1. The system NEVER silently deactivates — the warning dialog still opens (fallback), so the type-to-confirm gate still applies.",
    "2. Because the customer count is unavailable, the dialog OMITS the count headline and shows only the reassurance line \"Their customer assignments will stay where they are.\" above the \"Type YES to confirm\" gate.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S13-N4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-N4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-N4)",
@@ -1231,7 +1233,7 @@
    "2. A re-expand within the session does not necessarily re-fetch (the expansion state is session-preserved); no rep's details load before its first expand.",
    "3. When a rep's matching-invoice count is large, its detail rows are paginated per rep.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S6-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S6-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8624 (SBR spec v15 2026-07-29 Story 6 S6-R2)",
@@ -1259,7 +1261,7 @@
    "2. The returned rows arrive already ordered by the requested column and direction — the client does not re-sort locally.",
    "3. Invoice detail rows continue to load lazily per rep on expand, unaffected by the sort mechanism.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S11-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S11-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8628 (SBR spec v15 2026-07-29 Story 11 S11-R5)",
@@ -1287,7 +1289,7 @@
    "2. The totals cover EVERY matching non-reversed invoice across every rep, independent of which reps are expanded or how many detail rows are loaded.",
    "3. The on-screen grand Totals match the export's aggregate for the same filter set.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S10-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S10-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5)",
@@ -1316,7 +1318,7 @@
    "2. A genuine server-side export failure produces NO file and shows the \"Ooooops! An error occured\" toast — never a malformed/partial file.",
    "3. An empty-but-loaded result still produces a valid file (header-row-only CSV / no-rows PDF).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R2a, S14-N2, S14-E3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R2a, S14-N2, S14-E3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R2a; S14-N2; S14-E3)",
@@ -1346,7 +1348,7 @@
    "3. A filter set just below the cap still generates a complete (possibly very large) PDF.",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-E2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-E2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2)",
@@ -1376,7 +1378,7 @@
    "2. The dialog's \"{Staff Name} is the sales representative on {N} customer{s}.\" headline matches the returned count.",
    "3. No deactivation is committed by the pre-check itself — cancelling leaves the staff member's active status unchanged.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S13-R1, S13-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S13-R1, S13-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8630 (SBR spec v15 2026-07-29 Story 13 S13-R1; S13-R4)",

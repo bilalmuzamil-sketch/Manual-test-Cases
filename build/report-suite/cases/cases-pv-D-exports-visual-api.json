@@ -17,7 +17,7 @@
    "1. The ⋯ overflow button sits leftmost in the toolbar's action cluster.",
    "2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R1 — S6-R1 CLOSES it in the spec's own words (\"an export menu with two items ... Download (PDF) and Download (CSV)\"); so the closed list IS the requirement)",
@@ -45,7 +45,7 @@
    "2. The exported rows match what the on-screen grid was showing.",
    "3. Each file (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R2, S6-R11); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R2, S6-R11); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R2; S6-R11; §3 Key Decisions — both exports reflect the filters and search active at export time; S6-R11 = the \"Locations:\" line in both exports [Chris Ward 2026-07-29; newest-wins])",
@@ -73,7 +73,7 @@
    "2. Columns appear in the CANONICAL order (the fixed on-screen order) - the re-enabled Units Returned sits right after Units Sold, NOT appended at the end.",
    "3. The export mirrors the visible grid.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R3, S4-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R3, S4-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R3; S4-R4)",
@@ -102,7 +102,7 @@
    "2. Every column's sort is honored in the export - including Min and Max.",
    "3. The export renders the EXACT server order, including null placement (nulls first on ascending, last on descending) - the export and the on-screen grid match; there is no on-screen-vs-export null-sorting difference.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R4, S3-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R4, S3-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R4; S3-R3)",
@@ -135,7 +135,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
@@ -166,7 +166,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6, S6-R8)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6, S6-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6; S6-R8)",
@@ -193,7 +193,7 @@
    "1. A null value renders as — (em-dash) in BOTH the CSV and the PDF, in every nullable field: Unit Cost, Sell Price, Margin %, On Hand, Turns / Yr, Last Sale, Min, Max.",
    "2. Revenue, Margin, and the count metrics are never null in the exports either ($0.00 / 0.00 / 0).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R7, S6-R8, S3-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R7, S6-R8, S3-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R7; S6-R8; S3-R9)",
@@ -222,7 +222,7 @@
    "4. This is a deliberate export-only treatment - the on-screen table is all-left-aligned; the difference is documented, not a defect.",
    "5. The CSV is plain data — the alignment assertions apply to the PDF only; how a spreadsheet displays the CSV is not part of this test.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R10, S3-R8)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R10, S3-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R10; S3-R8)",
@@ -276,7 +276,7 @@
    "2. An error toast is shown on failure; when the server provides a message, that server message is shown.",
    "3. Otherwise the failure toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R9, S6-N1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R9, S6-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 S6-R9; S6-N1; §7 (casing note) — S6-R9/S6-N1 CLOSE the toast strings verbatim including the shipped UPPERCASE-success / lowercase-failure casing mix; so the exact strings ARE the requirement)",
@@ -303,7 +303,7 @@
    "2. There is NO card border-radius - the table runs edge to edge.",
    "3. The layout matches the application's other reports.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S7-R1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S7-R1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8647 (PV spec v4 2026-07-29 S7-R1; §2)",
@@ -334,7 +334,7 @@
    "4. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.",
    "5. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this - 32px/24px toolbar padding, a 1px header border, 2rem edge padding - are design-token values the design and engineering team check with their own tooling, not by hand.)",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S7-R2, S7-R3, S7-R4, S7-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S7-R2, S7-R3, S7-R4, S7-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8647 (PV spec v4 2026-07-29 S7-R2; S7-R3; S7-R4; S7-R5)",
@@ -362,7 +362,7 @@
    "2. In BOTH light mode and dark mode the grey ⓘ info icon is clearly visible against the cell behind it - you can see it at a glance without leaning in, and it does not disappear into the background.",
    "3. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes. Only report it if the icon is hard to see. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S7-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S7-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8647 (PV spec v4 2026-07-29 S7-R6 — dark-mode support + the grey info icon's colour token at ≥ 3:1 against the cell background in both modes; the ratio is a design-token property so the manual check is by-eye legibility)",
@@ -391,7 +391,7 @@
    "2. Paging is resolved on the server: moving to another page issues a fresh backend request for that page.",
    "3. This keeps the report responsive at scale (organizations can carry 50-60k parts, multiplied across locations).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R10)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 §2 (server-paginated); S2-R10)",
@@ -419,7 +419,7 @@
    "2. There is no client-side-only narrowing - every filter or search change re-queries the server.",
    "3. Each change returns the FIRST page of the new result set.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R10)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R10)",
@@ -448,7 +448,7 @@
    "2. Null values are placed FIRST on ascending and LAST on descending - as a server sort semantic, so the same order appears on screen and in the exports.",
    "3. Ties keep a stable order (no explicit secondary key).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v4 2026-07-29 S3-R3)",
@@ -478,7 +478,7 @@
    "3. Both requests succeed with only the ordinary reports access turned on - nothing else had to be enabled.",
    "4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the system it must not change these results - for now it is hidden from the screen and enforces nothing. A per-report permission added on purpose in a later release is a planned change, not a bug, and this test will be updated first.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S1-R4, S1-N2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R4, S1-N2); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec S1-R4; S1-N2 - RESCOPED 2026-08-03; same driver as C30327: Chris Ward Q2=A \"single Reports permission\" + \"they can exist and not do anything\"; QA lead \"ONE permission FOR NOW\")",
@@ -509,7 +509,7 @@
    "3. After narrowing below the cap, the downloads work again.",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (Story 6 exports)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (Story 6 exports)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21)",
@@ -543,7 +543,7 @@
    "3. The quantity behind the QuickBooks amount matches the Units Sold value on the report (2.50) — the two systems agree.",
    "4. No second or correcting journal entry is created to patch up a wrong amount.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and this point is not covered by any of the six report specifications — it comes from the engineering technical plan."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and this point is not covered by any of the six report specifications — it comes from the engineering technical plan."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8589 (verbatim Tests: 'QB journal amount exact from fractional movement'; Goal: 'QB journal-entry sync multiplies these into dollar amounts'; tech-plan-2026-07-29 Phase 0 / PR-1 D2 - no report spec covers QuickBooks)",
@@ -575,7 +575,7 @@
    "4. Note for the tester: a very large view is refused politely with \"This report is too large to export. Narrow the date range or filters, then try again.\" — that message is expected and is NOT this failure. This test is about a medium-sized view where the CSV works but the PDF errors.",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (Story 6 exports)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (Story 6 exports)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8646 (PV spec v4 2026-07-29 Story 6 exports — the spec is silent on a renderer size limit; tech-plan-2026-07-29 A3/FR-F4 covers only the ten-thousand-row export cap)",

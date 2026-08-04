@@ -19,7 +19,7 @@
    "2. Each row carries only that one location's On Hand, Min, and Max.",
    "3. On Hand / Min / Max are NEVER summed across locations.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-R1a)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R1a)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v4 2026-07-29 S3-R1a; §3 Key Decisions)",
@@ -48,7 +48,7 @@
    "2. Its movement and profitability values are the SUM of the per-location values.",
    "3. Its inventory-only columns (On Hand, Turns / Yr, Min, Max) show — (em-dash), because special-order parts are not stocked.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-R1a)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R1a)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v4 2026-07-29 S3-R1a; §3 Key Decisions)",
@@ -79,7 +79,7 @@
    "3. Rows with equal Demand keep inventory-before-special-order order.",
    "4. The Demand header shows the descending sort indicator - this initial order IS the active sort (it is what the remembered view saves until you click another header).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v4 2026-07-29 S3-R2)",
@@ -110,7 +110,7 @@
    "3. Null / — values are placed FIRST on ascending and LAST on descending.",
    "4. Every column is sortable; each header click re-fetches the data (server-resolved) and shows the first page of the re-sorted result; ties keep a stable order.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v4 2026-07-29 S3-R3)",
@@ -138,7 +138,7 @@
    "2. The Type column shows each row's kind as plain text (no badge or chip styling): \"Inventory\" or \"Special Order\".",
    "3. ALL columns - header and cell data, including numbers and money - are left-aligned on screen. (The exports right-align numerics instead: a deliberate export-only difference.)",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-R4, S3-R5, S3-R8); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R4, S3-R5, S3-R8); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec S3-R4; S3-R5; S3-R8 - Type value 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31])",
@@ -171,7 +171,7 @@
    "5. The icon is focusable and exposes the same text to assistive technology; activating it does NOT trigger a column sort.",
    "6. No other column header carries an info icon.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v4 2026-07-29 S3-R6 — S3-R6 CLOSES the set (exactly three columns: Units Sold; Demand; Turns / Yr) and quotes each description verbatim; so the closed set and the exact strings ARE the requirement)",
@@ -201,7 +201,7 @@
    "2. The full value shows on native hover (browser tooltip).",
    "3. Part # is NEVER truncated - on screen (and in the exports).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-R7)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v4 2026-07-29 S3-R7)",
@@ -228,7 +228,7 @@
    "1. On Hand, Turns / Yr, Min, and Max show — (em-dash) on special-order rows - always.",
    "2. The count metrics and money totals are NEVER null: Units Sold / Units Returned / Sold (WO) / Sold (Parts Sale) show 0.00, Demand shows 0, Revenue and Margin show $0.00.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-R9, S5-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-R9, S5-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v4 2026-07-29 S3-R9; S5-R5)",
@@ -256,7 +256,7 @@
    "2. Part B DOES appear - a part with billed Revenue > 0 is always kept even with no stock movement and no on-hand stock.",
    "3. (Special Order parts have no such rule: a never-requested special-order part simply produces no row.)",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-N1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S3-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8643 (PV spec v4 2026-07-29 S3-N1)",
@@ -311,7 +311,7 @@
    "1. The picker lists all 20 available columns, each with a toggle: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.",
    "2. No on-hand cost column is offered - the report computes one internally but it is never selectable and never displayed.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S4-R1, S4-R4, S5-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-R1, S4-R4, S5-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8644 (PV spec v4 2026-07-29 S4-R1; S4-R4; S5-R6)",
@@ -337,7 +337,7 @@
    "2. The other 6 columns start hidden: Units Returned, Sold (WO), Sold (Parts Sale), Turns / Yr, Min, Max.",
    "3. When more than one location is in scope the automatic Location column shows as well, leftmost before Type — 15 columns. It is not part of the 14-column default set and is not in the column picker, so its presence is expected and is not a failure of this test.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S4-R2, S4-R3, S3-R10)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-R2, S4-R3, S3-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R2; S4-R3 + Story 3 S3-R10 — the 14 default-visible columns and the 6 hidden ones; plus the automatic Location column leftmost when more than one location is in scope)",
@@ -365,7 +365,7 @@
    "2. Columns always render in the fixed canonical left-to-right order regardless of the order they were toggled on (with the automatic Location column, when shown, sitting leftmost before Type): Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.",
    "3. So Units Returned slots in right after Units Sold, Turns/Yr after On Hand, and Min before Max - not appended at the end.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S4-R4, S4-R5, S3-R10)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-R4, S4-R5, S3-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R4; S4-R5 + Story 3 S3-R10 — canonical column order and immediate re-render; plus the automatic Location column leftmost when shown)",
@@ -394,7 +394,7 @@
    "3. The saved values take precedence over the first-visit defaults (This Year / Both / active location / 14 columns / Demand-descending).",
    "4. The same holds after a full page reload.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S4-R6, S1-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-R6, S1-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8644 (PV spec v4 2026-07-29 S4-R6; S1-R2)",
@@ -421,7 +421,7 @@
    "2. That one setting falls back to its default (e.g. the location falls back to the active location); the other saved settings still restore normally.",
    "3. The report loads without an error.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S4-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8644 (PV spec v4 2026-07-29 S4-R6)",
@@ -448,7 +448,7 @@
    "1. User 2 sees user 1's saved view (Type = Special Order, Last Quarter, the saved columns and sort).",
    "2. This is by design: storage is per browser, not tied to the account - there is no per-account separation.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S4-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8644 (PV spec v4 2026-07-29 S4-R6)",
@@ -499,7 +499,7 @@
    "2. The export produces a file containing only the header/metadata rows and no data columns.",
    "3. On the next visit the all-hidden selection is NOT restored - the report falls back to the default 14-column set (the saved column selection returns to the last NON-EMPTY selection; all-hidden is the exception).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S4-E1, S4-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S4-E1, S4-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8644 (PV spec v4 2026-07-29 S4-E1; S4-R6)",

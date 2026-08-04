@@ -20,7 +20,7 @@
    "2. Under Parts there is an entry labeled Parts Velocity; Inventory Value also lives under Parts. The order of the two inside the Parts section is not fixed — do not fail the test on which of them comes first.",
    "3. Clicking it opens the Parts Velocity report.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S1-R1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec S1-R1 — the \"only report\" sentence is superseded: Parts Velocity and Inventory Value BOTH live under Parts per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",
@@ -48,7 +48,7 @@
    "2. Report data loads automatically - you do not have to press anything to fetch it.",
    "3. Rows appear ranked by Demand, highest first (the default order).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S1-R2, S4-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R2, S4-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec v4 2026-07-29 S1-R2; S4-R6)",
@@ -77,7 +77,7 @@
    "2. During a filter change, the loading indicator shows again.",
    "3. The rows already on screen are replaced only when the new data comes back - the table does not blank out and rebuild mid-request.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S1-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec v4 2026-07-29 S1-R3)",
@@ -107,7 +107,7 @@
    "2. The export downloads successfully — both opening the report and exporting it are allowed by the same ordinary reports access.",
    "3. Note for the tester: for now ONE ordinary reports access opens all six of these new reports; none of them has a permission of its own. If the build demands a separate report permission before this works, mark this Failed and report it — do not change the test.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec S1-R4 — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; PV S1-R4 still names Inventory Reports > View — his spec edit owed)",
@@ -133,7 +133,7 @@
    "1. The user cannot reach the Reports section.",
    "2. The Parts Velocity navigation entry is not shown (this is the Reports section's own access control, not a report-specific rule).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S1-N1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec v4 2026-07-29 S1-N1)",
@@ -163,7 +163,7 @@
    "3. The export downloads.",
    "4. Note for the tester: for now ONE ordinary reports access opens all six of these new reports, and no report has a permission of its own. If an extra Parts or Inventory reports permission does exist and switching it OFF blocks this report or its export, that is wrong - mark this Failed and report it. If a separate per-report permission is ever added on purpose in a later release, this test will be updated first, so treat that as a planned change and not as a bug.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S1-N2, S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S1-N2, S1-R4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8641 (PV spec S1-N2; S1-R4 - RESCOPED 2026-08-03: the old \"Reports access without Inventory Reports View\" state cannot exist under one permission; Chris Ward Q2=A + \"they can exist and not do anything\"; QA lead \"ONE permission FOR NOW\")",
@@ -196,7 +196,7 @@
    "4. Both is an explicit selection returning inventory and Special Order rows together - a deliberate filter value, not the absence of a filter.",
    "5. Each selection immediately reloads the report limited to that type (no separate Apply step) - under Inventory every row's Type column reads Inventory; under Special Order every row's Type column reads Special Order; under Both, rows of both kinds appear.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R1, S3-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R1, S3-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R1; S3-R5 — S2-R1 CLOSES the three Type options and the Both default; 'Catalogue'→'Special Order' per Chris Ward 2026-07-29 [newest-wins])",
@@ -254,7 +254,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (\"offering exactly these options\") and rules out \"All Time\"; so the closed list IS the requirement)",
@@ -284,7 +284,7 @@
    "3. With both valid dates selected, the data reloads for that range.",
    "4. A span wider than 366 days (counting both the start and end dates) is rejected - the selection is not applied.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R3)",
@@ -314,7 +314,7 @@
    "3. With vendors selected, only parts supplied by any of the selected vendors are shown.",
    "4. Each change reloads the data from the server.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R4, S2-R5, S2-R10)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R4, S2-R5, S2-R10)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R4; S2-R5; S2-R10)",
@@ -345,7 +345,7 @@
    "3. The description search returns rows whose description contains the word.",
    "4. Category and vendor names are NOT searched - use their dedicated filters instead (deliberate, to avoid false matches on common words).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R6; §3 Key Decisions)",
@@ -375,7 +375,7 @@
    "2. After step 3 the part disappears - a part must satisfy EVERY active filter to appear (AND logic, not OR).",
    "3. After step 4 the part is listed again.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R7)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R7)",
@@ -403,7 +403,7 @@
    "2. Only inventory parts stocked in ANY of the selected bins are shown.",
    "3. The filter allows more than one bin (multi-select).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R8)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R8)",
@@ -431,7 +431,7 @@
    "1. With any Bin filter active, ALL Special Order rows are excluded (they have no bin location).",
    "2. Special Order combined with any Bin filter yields an empty result showing the empty state - this is by design, not a defect.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R8); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R8); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec S2-R8 - 'Catalogue' RENAMED to the exact label 'Special Order' per Chris Ward msg 2026-07-29 [newest-wins] [cf video P31])",
@@ -466,7 +466,7 @@
    "6. With 'All Locations' active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)",
    "7. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]",
@@ -492,7 +492,7 @@
    "1. The server returns zero rows and the table shows the empty state.",
    "2. The empty-state label reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R11, S2-N1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R11, S2-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-R11; S2-N1; §7 — §7 CLOSES the empty-state string verbatim (\"Empty bays\" ... \"Get Going!\") as the standard reports no-data label; so the exact string IS the requirement)",
@@ -522,7 +522,7 @@
    "2. The part with no vendor does not appear when any Vendor filter is active.",
    "3. The inventory part with no bin location does not appear when any Bin filter is active.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-E1, S2-E2, S2-E3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-E1, S2-E2, S2-E3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec v4 2026-07-29 S2-E1; S2-E2; S2-E3)",
@@ -552,7 +552,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-E4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-E4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S2-E4 \"still sees the filter\" note is stale; spec edit pending)",
@@ -587,7 +587,7 @@
    "5. With a single location in scope the Location column is hidden.",
    "6. Both downloads include the Location column in the same position it holds on screen (leftmost, before Type), with the same values — each inventory row's own location, and \"Multiple\" on the merged Special Order row.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R12, S3-R10, S7-R8, S6-R11)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R12, S3-R10, S7-R8, S6-R11)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8642; SV-8646 (PV spec v4 2026-07-29 S2-R12; S3-R10; S7-R8; S6-R11 — per-row Location column; leftmost before Type; \"Multiple\" on the merged special-order row; not in the picker; S6-R11 = the same column in both exports)",

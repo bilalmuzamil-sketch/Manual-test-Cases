@@ -24,7 +24,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R1, S3-R2, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R1, S3-R2, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand)",
@@ -53,7 +53,7 @@
    "2. Unit Cost and Unit Sell show per-unit prices as US-dollar currency.",
    "3. Money values show a leading \"$\", two decimal places, and thousands separators (for example \"$1,234.56\"); a negative value shows a leading minus before the \"$\" (\"-$1,234.56\"); a genuine zero shows \"$0.00\".",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R3, S3-R4, S3-R5, S3-R10)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R3, S3-R4, S3-R5, S3-R10)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity))",
@@ -81,7 +81,7 @@
    "1. Unit Sell equals the part's fixed sell price.",
    "2. The pricing-matrix markup is NOT applied when a fixed sell price is set — the fixed price wins.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list))",
@@ -108,7 +108,7 @@
   "expected": [
    "1. Unit Sell equals the shop's pricing-matrix markup on cost for that part's category (the same way the parts list resolves it).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (matrix branch); §5 Assumptions)",
@@ -139,7 +139,7 @@
    "2. Such a part shows a Margin of $0.00 and a Margin % of 0.0% — the stock is valued at cost.",
    "3. Note for the tester: if no part without a category can be created or found, mark this test Blocked rather than Passed or Failed.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions)",
@@ -168,7 +168,7 @@
    "1. Total Sell equals the part's on-hand quantity × Unit Sell, shown as US-dollar currency.",
    "2. Total Cost equals the part's on-hand quantity × Unit Cost, shown as US-dollar currency.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R6, S3-R7)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R6, S3-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R6; S3-R7; §4 Terminology)",
@@ -197,7 +197,7 @@
    "1. Margin equals Total Sell − Total Cost for the part's whole on-hand quantity, shown as US-dollar currency.",
    "2. Margin is the extended (total) margin, not the per-unit difference.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R8)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology)",
@@ -226,7 +226,7 @@
    "2. A Margin % that computes to a real number, including a negative one, shows its signed value.",
    "3. Margin % shows \"—\" when Total Sell is zero or negative (the percentage is undefined).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R9, S3-E3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R9, S3-E3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R9; S3-E3)",
@@ -254,7 +254,7 @@
    "2. The Total Cost column header is bold and pinned, matching its cells.",
    "3. It stays fixed to the right edge while the other columns scroll underneath.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R11, S12-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R11, S12-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions)",
@@ -286,7 +286,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R12, S3-R13, S8-R3, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R12, S3-R13, S8-R3, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope)",
@@ -316,7 +316,7 @@
    "3. A part with no vendor shows an em dash (\"—\") in its Vendor cell.",
    "4. Note for the tester: on this build a part cannot be saved without a category, so you will not find a part whose Category cell shows \"—\". Check the Vendor half only.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R14, S3-E1, S3-E2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R14, S3-E1, S3-E2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8670 (IV spec v3 2026-07-29 Story 3 S3-R14; S3-E1; S3-E2)",
@@ -350,7 +350,7 @@
    "5. Note for the tester: if the label on screen reads \"Totals\" instead of \"Total\", mark this test Failed and report it — do not change the test.",
    "6. Sorting by any column reorders the data rows only — the totals row stays at the bottom.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5, S9-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5, S9-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5; Story 9 S9-R4)",
@@ -383,7 +383,7 @@
    "3. The hand-summed subset matches the server-computed totals to the cent.",
    "4. After each filter change the totals row recomputes on the server over the full filtered set, independent of which page is shown.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S4-R2, S4-R8, S6-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S4-R2, S4-R8, S6-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R2; S4-R8; Story 6 S6-R6; §2 Scale and data model; §4 Terminology (Filtered set))",
@@ -413,7 +413,7 @@
    "2. It is NOT the average of the row percentages.",
    "3. It shows \"—\" when the total Total Sell is zero or negative.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S4-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S4-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R3)",

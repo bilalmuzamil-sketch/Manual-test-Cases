@@ -1,0 +1,184 @@
+{
+ "build": "v3.4.1-3d03023",
+ "at": "2026-08-04T14:15:10Z",
+ "reports": {
+  "sales-by-customer": {
+   "base_headlines": null,
+   "results": [
+    {
+     "label": "NO columns param",
+     "status": 502,
+     "sha": null
+    },
+    {
+     "label": "columns=customer,subtotal",
+     "status": 200,
+     "sha": "778271410566279390ac7ad98813fd18534df8c0670ab5a4cfda215e8233a34f",
+     "same_as_base": false,
+     "err": null
+    },
+    {
+     "label": "columns=zzz_nonsense_column",
+     "status": 200,
+     "sha": "778271410566279390ac7ad98813fd18534df8c0670ab5a4cfda215e8233a34f",
+     "same_as_base": false,
+     "err": null
+    }
+   ]
+  },
+  "sales-by-representative": {
+   "base_headlines": [
+    "\ufeff\"Date Range: Jul 1, 2026 - Aug 4, 2026\"",
+    "\"Locations: Staging Heavy Duty - 9919\"",
+    "Representative,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",Margin,\"Margin %\",Subtotal",
+    "\"Parth Fadadu\",0.0,\"$1,979.40\",\"$1,979.40\",\"$2,459.48\",\"$2,459.48\",\"$4,438.88\",100.0%,\"$4,438.88\"",
+    "\"ZZAUTOTEST RepA\",0.0,$224.92,$224.92,$0.00,$0.00,$224.92,100.0%,$224.92",
+    "\"ZZAUTOTEST RepB\",0.0,$799.84,$799.84,$0.00,$0.00,$799.84,100.0%,$799.84"
+   ],
+   "results": [
+    {
+     "label": "NO columns param",
+     "status": 200,
+     "sha": "58ee952ff81803e4ea8f850079384a13e5c54af3b26456617d60022166b8d75f"
+    },
+    {
+     "label": "columns=sales_rep,subtotal",
+     "status": 200,
+     "sha": "58ee952ff81803e4ea8f850079384a13e5c54af3b26456617d60022166b8d75f",
+     "same_as_base": true,
+     "err": null
+    },
+    {
+     "label": "columns=zzz_nonsense_column",
+     "status": 200,
+     "sha": "58ee952ff81803e4ea8f850079384a13e5c54af3b26456617d60022166b8d75f",
+     "same_as_base": true,
+     "err": null
+    }
+   ]
+  },
+  "parts-velocity": {
+   "base_headlines": [
+    "\ufeff\"Date Range: Aug 1, 2026 - Aug 4, 2026\"",
+    "\"Locations: Staging Heavy Duty - 9919\"",
+    "Type,\"Part #\",Description,Category,Vendor,\"Units Sold\",\"Units Returned\",\"Sold (WO)\",\"Sold (Parts Sale)\",\"Unit Cost\",\"Sell Price\",Revenue,Margin,\"Margin %\",Demand,\"Last Sale\",\"On Hand\",Turns/Yr,Min,Max",
+    "Inventory,\"#3 Expanded Steel\",\"#3 Expanded Steel Sheet\",\"HD-Fabrication & Building\",\u2014,0.00,0.00,0.00,0.00,\u2014,\u2014,$0.00,$0.00,\u2014,0,\u2014,1.00,0.00,0,0",
+    "Inventory,0002-060004,\"MUD FLAP SPRING SUPPORT\",\"HD-Truck Accessories\",\u2014,0.00,0.00,0.00,0.00,\u2014,\u2014,$0.00,$0.00,\u2014,0,\u2014,2.00,0.00,0,0",
+    "Inventory,002-011000,\"TRUCK BOX TARP CRANK\",\"HD-Truck Accessories\",\u2014,0.00,0.00,0.00,0.00,\u2014,\u2014,$0.00,$0.00,\u2014,0,\u2014,1.00,0.00,0,0"
+   ],
+   "results": [
+    {
+     "label": "NO columns param",
+     "status": 200,
+     "sha": "d05458fc7aa1bec265180f2b4ed2d1cd4bee47306a1e1787bff3aecbc2317b32"
+    },
+    {
+     "label": "columns=part_number,description",
+     "status": 200,
+     "sha": "68a93778bfd42260b06e537c5a75dbe628fb601b9d6944495c5132db33f19d54",
+     "same_as_base": false,
+     "err": null
+    },
+    {
+     "label": "columns=zzz_nonsense_column",
+     "status": 400,
+     "sha": null,
+     "same_as_base": null,
+     "err": "{'errors': [{'error': 'Invalid column \"zzz_nonsense_column\".'}]}"
+    }
+   ]
+  },
+  "technician-utilization": {
+   "base_headlines": [
+    "\ufeff\"Date Range: Aug 1, 2026 - Aug 4, 2026\"",
+    "\"Locations: Staging Heavy Duty - 9919\"",
+    "Technician,\"Total Hours\",\"WO Hours\",\"Internal Hours\",\"Utilization %\",\"Est. Lost Labor\"",
+    ""
+   ],
+   "results": [
+    {
+     "label": "NO columns param",
+     "status": 200,
+     "sha": "eaea5381ca3d0049a0622e9f91b24d8196da2192f1f45e3f92e4edd6fc2dc459"
+    },
+    {
+     "label": "columns=technician,total_hours",
+     "status": 200,
+     "sha": "8204206ecf5dc4aa8bbb14a806aee336827f5646e2c7166d94864dacb389acaa",
+     "same_as_base": false,
+     "err": null
+    },
+    {
+     "label": "columns=zzz_nonsense_column",
+     "status": 400,
+     "sha": null,
+     "same_as_base": null,
+     "err": "{'errors': [{'error': 'Invalid column \"zzz_nonsense_column\".'}]}"
+    }
+   ]
+  },
+  "inventory-value": {
+   "base_headlines": [
+    "\ufeff\"Date Range: Aug 1, 2026 - Aug 4, 2026\"",
+    "\"As of: 2026-08-04\"",
+    "\"Locations: Staging Heavy Duty - 9919\"",
+    "\"Part #\",Description,Category,Vendor,Qty,\"Unit Cost\",\"Unit Sell\",\"Total Cost\",\"Total Sell\",Margin,\"Margin %\"",
+    "R134A,Refrigerant,HD-Fluids,\u2014,786.55,$14.21,$21.86,\"$11,176.88\",\"$17,193.98\",\"$6,017.10\",35.0%",
+    "W4707QP,\"Brake Shoe Kit w/ Hardware, 16.5x7, Coreless\",\"HD-Heavy Duty Shoes\",\"Qucastle Excavating\",245.00,$41.46,$94.33,\"$10,157.70\",\"$23,110.85\",\"$12,953.15\",56.1%"
+   ],
+   "results": [
+    {
+     "label": "NO columns param",
+     "status": 200,
+     "sha": "15a811e72ff5f52b687a49dd233e19299d31764069a8a09ed290b337fe492187"
+    },
+    {
+     "label": "columns=part_number,description,qty",
+     "status": 200,
+     "sha": "15a811e72ff5f52b687a49dd233e19299d31764069a8a09ed290b337fe492187",
+     "same_as_base": true,
+     "err": null
+    },
+    {
+     "label": "columns=zzz_nonsense_column",
+     "status": 200,
+     "sha": "15a811e72ff5f52b687a49dd233e19299d31764069a8a09ed290b337fe492187",
+     "same_as_base": true,
+     "err": null
+    }
+   ]
+  },
+  "work-in-progress": {
+   "results": [
+    {
+     "label": "columns=number,status,customer,total",
+     "status": 400,
+     "sha": null,
+     "hdr": null,
+     "err": "{'errors': [{'error': 'Invalid column \"number\".'}]}"
+    },
+    {
+     "label": "columns=number,total",
+     "status": 400,
+     "sha": null,
+     "hdr": null,
+     "err": "{'errors': [{'error': 'Invalid column \"number\".'}]}"
+    },
+    {
+     "label": "columns=zzz_nonsense_column",
+     "status": 400,
+     "sha": null,
+     "hdr": null,
+     "err": "{'errors': [{'error': 'Invalid column \"zzz_nonsense_column\".'}]}"
+    },
+    {
+     "label": "columns=None",
+     "status": 400,
+     "sha": null,
+     "hdr": null,
+     "err": "{'errors': [{'error': 'At least one column is required.'}]}"
+    }
+   ]
+  }
+ }
+}

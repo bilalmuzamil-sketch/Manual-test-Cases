@@ -19,7 +19,7 @@
    "2. The link is distinguished by more than color - it carries an underline (or equivalent non-color affordance), is keyboard-focusable with a visible focus indicator, and activates on Enter.",
    "3. The Summary row's Total Hours value is NOT a link.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S6-R1, S6-N1, S8-R14)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S6-R1, S6-N1, S8-R14)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8653 (TU spec v5 2026-07-29 S6-R1; S6-N1; S8-R14)",
@@ -47,7 +47,7 @@
    "2. It is already filtered to that technician.",
    "3. It uses the same date range that was active on the Technician Utilization report.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S6-R2, S6-R3, S6-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S6-R2, S6-R3, S6-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8653 (TU spec v5 2026-07-29 S6-R2; S6-R3; S6-R4)",
@@ -76,7 +76,7 @@
    "2. Under this exact scope (same range, same single location, closed records) a mismatch IS a defect.",
    "3. The two documented scope differences (open clocks, multi-location drill-through) are covered by separate cases and are NOT defects.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S1-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R9; §2; §5 Assumptions)",
@@ -104,7 +104,7 @@
    "2. The two reports, loaded at different moments, MAY differ by the elapsed open time - this is a deliberate scope difference of the reconciliation guarantee, EXPECTED and NOT a defect.",
    "3. Reloading the Technician Utilization report takes a fresh snapshot (the value grows by the elapsed time).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-R9, S1-E1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S1-R9, S1-E1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R9(a); S1-E1)",
@@ -133,7 +133,7 @@
    "2. Timesheet Activities opens for the user's currently active shop, so it shows one location's portion - it will differ from (or be disjoint with) the multi-location row value.",
    "3. This is a KNOWN drill-through limitation, EXPECTED and NOT a data defect (the same applies when the single selected location is not the active shop).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S6-R6, S1-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S6-R6, S1-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8653 (TU spec v5 2026-07-29 S6-R6; S1-R9(b))",
@@ -159,7 +159,7 @@
    "1. Timesheet Activities opens filtered to that technician.",
    "2. The date range covers ONLY that single day.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S6-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S6-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8653 (TU spec v5 2026-07-29 S6-R5)",
@@ -189,7 +189,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R1, S7-R2, S7-R3, S7-R4, S8-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R1, S7-R2, S7-R3, S7-R4, S8-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R1; S7-R2; S7-R3; S7-R4; S8-R2 — S8-R2 now adds \"followed by the Column Selection control\")",
@@ -219,7 +219,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R5, S7-R6, S7-R12)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R5, S7-R6, S7-R12)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R5; S7-R6; S7-R12)",
@@ -247,7 +247,7 @@
    "2. The CSV shows the technician rows and the Summary row - always this summary-level content; it does NOT vary by the summary/expanded choice (no day rows).",
    "3. Any value containing a comma (e.g. \"$1,234.50\") is wrapped in double quotes per standard CSV escaping, so the columns parse correctly.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R7, S7-R10, S7-R12)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R7, S7-R10, S7-R12)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R7; S7-R10; S7-R12)",
@@ -280,7 +280,7 @@
    "5. Every download also mirrors the columns currently shown on screen — a column hidden in the Column Selection control is absent from the files, and a re-shown column comes back.",
    "6. Note for the tester: when you have more than one location in scope, the files also carry a Location column even though it is not in the Column Selection control. That is correct - it appears by itself. With a single location in scope there is no Location column, and that is also correct.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R8, S7-R9, S7-R10, S7-R13, S7-E1, S9-R8)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R8, S7-R9, S7-R10, S7-R13, S7-E1, S9-R8)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R8; S7-R9; S7-R10; S7-R13; S7-E1; S9-R8 — downloads mirror the shown columns and the technician/location/date scope; S7-R13 = the \"Locations:\" line and the automatic Location column)",
@@ -308,7 +308,7 @@
    "1. The downloaded files use the same column order and number formats as the on-screen report, including the \"—\" rendering for an unknown Est. Lost Labor.",
    "2. Rows in EVERY download are ordered by Technician name A to Z (the default order) - the on-screen column sort is client-side only and is NOT carried into the export.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R10, S7-R10a)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R10, S7-R10a)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R10; S7-R10a)",
@@ -339,7 +339,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R11, S7-N2, S7-N3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R11, S7-N2, S7-N3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-R11; S7-N2; S7-N3 — logo now resolved by the shared resolver: the organization's uploaded logo; else the bundled ShopView default)",
@@ -369,7 +369,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-N1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8654 (TU spec v5 2026-07-29 S7-N1; §7 context note)",
@@ -396,7 +396,7 @@
    "1. When a download starts, a success notification reads exactly: \"Download started\".",
    "2. When a download fails, an error notification reads exactly: \"Failed to download report\".",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (§7 notifications table, Story 7 has no S, §7 is the closing reference)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (§7 notifications table, Story 7 has no S, §7 is the closing reference)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8654 (TU spec v5 2026-07-29 Story 7 Error Handling + §7 notifications table — these CLOSE both strings verbatim (\"Download started\" / \"Failed to download report\"); Story 7 has no S-anchor for them so §7 is the closing reference)",
@@ -427,7 +427,7 @@
    "3. \"All locations\" acts as a select-all shortcut: choosing it selects every accessible location; unchecking one location leaves the remaining specific locations selected - the selection is always the concrete set of checked locations.",
    "4. With more than one location selected, a Location column appears in the table and each row names its location - or reads \"Multiple\" for a technician whose hours span more than one of them. (Where that column sits on screen is checked by its own test.)",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-R1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8656 (TU spec v5 2026-07-29 S9-R1 — per-row location identifier in All-Locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
@@ -459,7 +459,7 @@
    "4. Scoping never goes beyond the user's accessible locations - a location the user cannot access is never included.",
    "5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R3, S9-R4, S9-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-R3, S9-R4, S9-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8656 (TU spec v5 2026-07-29 S9-R3; S9-R4; S9-R5 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
@@ -487,7 +487,7 @@
    "3. The report loads without an error in both cases.",
    "4. The same fallback happens when you deselect every location by hand in the Location filter — the report loads the currently active location's rows rather than showing nothing.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R6, S1-R8, S9-R2, S9-R7)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-R6, S1-R8, S9-R2, S9-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8656 (TU spec v5 2026-07-29 S9-R6; S1-R8; S9-R2; S9-R7)",
@@ -543,7 +543,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8656 (TU spec S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S9-N1 \"still sees the filter\" note is stale; spec edit pending)",
@@ -574,7 +574,7 @@
    "3. After narrowing below the cap, the downloads work again.",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (Story 7 exports)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (Story 7 exports)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8654 (TU spec v5 2026-07-29 Story 7 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21)",
@@ -614,7 +614,7 @@
    "7. With a single location in scope the Location column is hidden.",
    "8. Every download — both PDF views and the CSV — includes the Location column in its on-screen leftmost position, carrying the same values you just read on screen.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R9, S9-R10, S8-R15, S10-R4, S7-R13)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-R9, S9-R10, S8-R15, S10-R4, S7-R13)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8656; SV-8654 (TU spec v5 2026-07-29 S9-R9; S9-R10; S8-R15; S10-R4; S7-R13 — per-row Location column; leftmost before Technician; \"Multiple\" on a spanning row; Summary row blank; not in the selector; S7-R13 = same column in every download)",

@@ -20,7 +20,7 @@
    "2. Toggling a column off hides it from the table; toggling it on shows it again.",
    "3. The Total Cost column is always shown and cannot be turned off.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S8-R1, S8-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R1, S8-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R1; S8-R2)",
@@ -50,7 +50,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand)",
@@ -79,7 +79,7 @@
    "1. On return and after a reload, the report restores the saved date range, category selection, vendor selection, part search text, location selection, column selection, and sort.",
    "2. In a different browser the report shows the defaults instead — persistence is per browser, not tied to the user's account.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S8-R5, S9-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R5, S9-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R5 (+ context note); Story 9 S9-R5)",
@@ -106,7 +106,7 @@
    "1. The report loads normally — the saved category or vendor that is no longer present in the data is dropped from the selection instead of breaking the view (the defensive-restore rule applied to the path these steps drive).",
    "2. All other saved settings are still restored.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S8-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8675 (IV spec v3 2026-07-29 Story 8 S8-R6)",
@@ -133,7 +133,7 @@
    "1. The rows are sorted by Total Cost, highest first (descending).",
    "2. The order holds across pages (page 2 continues below page 1's lowest value) — the server applies the default order over the full set.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S9-R1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S9-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R1; §3 Key Decisions (Total Cost default sort))",
@@ -163,7 +163,7 @@
    "2. Each header click re-fetches the data from the server ordered by the chosen column and direction, returning the FIRST page of the re-sorted result set.",
    "3. Only one column sorts at a time.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S9-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S9-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R2)",
@@ -191,7 +191,7 @@
    "1. Money and numeric columns sort by their underlying value (so $1,100.00 is treated as more than $900.00, not compared as text).",
    "2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (\"apple\" and \"Apple\" sort together).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S9-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S9-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R3)",
@@ -246,7 +246,7 @@
    "1. The menu holds an option labeled \"Download (PDF)\" and an option labeled \"Download (CSV)\".",
    "2. Each option downloads a file of the current view in the chosen format.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R1, S10-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R1, S10-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R1; S10-R2)",
@@ -278,13 +278,13 @@
    "3. Both downloads include a totals row labeled \"Totals\" matching the on-screen totals (the full-filtered-set totals).",
    "4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
    "5. Note for the tester: the files carry the Location column when Location is turned ON in the column-selection control (it sits between Vendor and Qty). It does not appear just because you have more than one location selected.",
+   "On this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823",
    "---",
-   "Note for the tester: on this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match. That difference is already written up and a decision on it is pending - record what you see and carry on; you do not need to raise it again.",
-   "",
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the \"Locations:\" line and the automatic Location column)",
@@ -311,11 +311,10 @@
    "1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows \"—\".",
    "2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).",
    "3. The PDF uses the same on-screen currency formatting with the \"$\" and thousands separators.",
-   "---",
    "On this build the money in the spreadsheet file comes out as \"$11,176.88\" - with a dollar sign and a comma - instead of the plain number described in point 2 above.",
-   "Known and accepted: the product behaves this way on purpose for now. Do not raise this as a new problem.",
-   "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R7)."
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823",
+   "---",
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R7 (+ context note))",
@@ -350,7 +349,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R8, S10-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R8, S10-R9)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R8; S10-R9)",
@@ -377,7 +376,7 @@
    "1. The PDF is named \"inventory-value-report.pdf\".",
    "2. The CSV is named \"inventory-value-report.csv\".",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R10)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R10)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R10 — S10-R10 CLOSES both file names verbatim; so the exact strings ARE the requirement)",
@@ -406,7 +405,7 @@
    "2. Parts from the later pages are present.",
    "3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R11)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R11)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R11)",
@@ -437,7 +436,7 @@
    "4. Note for the tester: on this environment the biggest view you can build is about 9,275 rows, which is under the cap, so you cannot make this message appear here. If the PDF fails with a plain error instead, that is the separate timeout problem - see the Inventory Value export-notification case.",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R12)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R12)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R12; §7 User Feedback Summary)",
@@ -494,7 +493,7 @@
    "4. Note for the tester: on this build a PDF download of a large view fails with a plain error - \"An error occurred. We're sorry for this inconvenience, please try again a bit later later.\" - after roughly half a minute. It is a timeout, not the too-large-to-export message. Narrow the view with the part search or a single location and the PDF works. The CSV of the same view always works and is quick. Record the failure; it is a known problem, not a mistake you made.",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R13, S10-R14)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R13, S10-R14)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R13; S10-R14; §7 User Feedback Summary)",
@@ -528,7 +527,7 @@
    "6. Note for the tester: the polite refusal message in item 2 is the correct behaviour. The plain error in item 5 is the problem being tracked. Tell the two apart by the wording.",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R11, S10-R12, S10-R14)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R11, S10-R12, S10-R14)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8677 (IV spec v3 2026-07-29 S10-R11; S10-R12; S10-R14 — the observed failure path is a roughly 30-second server-side timeout and not the S10-R12 row cap; observed on build v3.4.1-0ed4433)",

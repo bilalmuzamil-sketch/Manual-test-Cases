@@ -19,7 +19,7 @@
    "2. The toolbar controls run, left to right: the three-dot download menu, the Column Selection control, the date-range picker, the technician filter, and the Location filter (rightmost).",
    "3. The expand/collapse-all control is NOT a toolbar control - it lives in the table header (in the Technician column).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S8-R1, S8-R2, S8-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S8-R1, S8-R2, S8-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8655 (TU spec v5 2026-07-29 S8-R1; S8-R2; S8-R3 — toolbar order rewritten: Column Selection inserted after the three-dot menu; and the date-range picker now precedes the technician filter)",
@@ -50,7 +50,7 @@
    "3. The Total Hours link's non-color affordance and focus indicator apply in both modes.",
    "4. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether you can see the icon easily in both modes, and only report it if you cannot. (The design rule behind this is a minimum 3:1 contrast ratio, which the design and engineering team check with a contrast tool - not by hand.)",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S8-R9, S8-R13, S8-R14)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S8-R9, S8-R13, S8-R14)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8655 (TU spec v5 2026-07-29 S8-R9; S8-R13; S8-R14 — dark-mode legibility of every named element; the info icon at ≥ 3:1 in both modes; the Total Hours link affordance/focus in both modes; the ratio is design-token-owned)",
@@ -89,7 +89,7 @@
    "7. Est. Lost Labor can now be hidden like any other column (it used to be always on).",
    "8. Your column choice is remembered in this browser and is still applied when you come back.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R5, S10-R6, S8-R16)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S10-R1, S10-R2, S10-R3, S10-R4, S10-R5, S10-R6, S8-R16)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8655; SV-8582 (TU spec v5 2026-07-29 Story 10 S10-R1; S10-R2; S10-R3; S10-R4; S10-R5; S10-R6 column selector + Story 8 S8-R16 accessible name — Story 10 has NO owning Jira story so epic SV-8582 is used and FLAGGED; S8-R16 is owned by SV-8655)",
@@ -118,7 +118,7 @@
    "2. Expanding a technician row issues an on-demand backend request that returns that technician's per-day breakdown.",
    "3. Because expansion state resets (all collapsed) on any data reload, nothing is lost by the lazy loading - re-expanding fetches fresh day data.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S4-R2, S4-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S4-R2, S4-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8651 (TU spec v5 2026-07-29 S4-R2; S4-R5)",
@@ -149,7 +149,7 @@
    "3. The technician filter causes NO server request - it works on screen only (hide/show + Summary recalculation).",
    "4. Column sorting causes NO server request - it is applied on screen to the loaded rows.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S1-R5, S9-R3, S2-R13)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S1-R5, S9-R3, S2-R13)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8648 (TU spec v5 2026-07-29 S1-R5; S9-R3; S5 context note; S2-R13; §3)",

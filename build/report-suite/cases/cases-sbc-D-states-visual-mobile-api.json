@@ -25,7 +25,7 @@
    "5. With a narrowed customer selection and no data, the empty state shows but the selection is KEPT (not cleared) — when the filters change back, the selected customers reappear.",
    "6. While the table is still loading, the empty-state message is NOT shown (the loading state is shown instead); it appears only once loading has finished and there are zero customers.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S17-R1, S17-R2, S17-R3, S17-E1, S2-N1, S3-N1, S4-N2, S8-N1, S17-N1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S17-R1, S17-R2, S17-R3, S17-E1, S2-N1, S3-N1, S4-N2, S8-N1, S17-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1; Story 17 S17-N1)",
@@ -105,7 +105,7 @@
    "1. An error toast is shown: \"An error occurred while fetching the report data.\"",
    "2. The toast auto-fades after 5 seconds.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (§7 User Feedback Summary)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (§7 User Feedback Summary)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8582 (SBC spec §7 User Feedback Summary — the data-fetch error toast; CROSS-CUTTING: the SBC spec carries no error-state story of its own so the epic key is used deliberately)",
@@ -141,7 +141,7 @@
    "8. It all looks the same as the other reports in the suite: put another report side by side and nothing should look out of place.",
    "9. Note for the tester: you do not need to measure anything and you do not need any tool. Just say whether the spacing, the alignment and the dividing line look right and consistent with the other reports, and only report it if something looks obviously off. (The exact figures behind this — 32px/24px toolbar padding, a 1px header border, 2rem edge padding, a 24px arrow — are design-token values the design and engineering team check with their own tooling, not by hand.)",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S20-R1, S20-R2, S20-R3, S20-R4, S20-R5, S20-R6, S20-R7, S20-R12, S20-R13, S20-R15, S20-R17)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S20-R1, S20-R2, S20-R3, S20-R4, S20-R5, S20-R6, S20-R7, S20-R12, S20-R13, S20-R15, S20-R17)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R1; S20-R2; S20-R3; S20-R4; S20-R5; S20-R6; S20-R7; S20-R12; S20-R13; S20-R15; S20-R17)",
@@ -175,7 +175,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S20-R8, S20-R9, S20-R10, S20-R11, S20-R14)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S20-R8, S20-R9, S20-R10, S20-R11, S20-R14)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14)",
@@ -201,7 +201,7 @@
    "1. In dark mode every visual rule applies with the dark equivalent of each color (dark background, dark surfaces).",
    "2. The PDF export always renders in light-mode colors regardless of the user's app mode.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S20-R18)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S20-R18)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R18)",
@@ -229,7 +229,7 @@
    "2. Below 1024px the toolbar uses two rows: the action controls (overflow menu and column selector) on the first row, and the filter dropdowns on the second row, stacked at full width.",
    "3. At 1024px and above the toolbar uses the desktop single-row layout.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S21-R1, S21-R2, S21-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S21-R1, S21-R2, S21-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8618 (SBC spec v13 2026-07-31 Story 21 S21-R1; S21-R2; S21-R3)",
@@ -257,7 +257,7 @@
    "2. The chevron expand and collapse control on each row works on touch.",
    "3. The invoice number link opens the invoice in the same tab, the same as on desktop.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S21-R4, S21-R5, S21-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S21-R4, S21-R5, S21-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8618 (SBC spec v13 2026-07-31 Story 21 S21-R4; S21-R5; S21-R6)",
@@ -287,7 +287,7 @@
    "2. The first expand of a customer triggers a server fetch for that customer's asset and invoice rows.",
    "3. Expand-all triggers at most one drill-down fetch per not-yet-expanded customer on the current page — a bounded number never exceeding the page size; it does not fetch customers beyond the current page or the whole result set.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R14, S8-R16)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S8-R14, S8-R16)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8606 (SBC spec v13 2026-07-31 Story 8 S8-R14; S8-R16)",
@@ -317,7 +317,7 @@
    "3. The ordering is not done by re-shuffling rows already in the browser.",
    "4. A sort request naming a column the report does not offer is safely refused or ignored — never an error page or a crash; sorting works only on the report's own columns.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S10-R8, S10-R8b)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S10-R8, S10-R8b)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8608 (SBC spec v13 2026-07-31 Story 10 S10-R8; S10-R8b; tech-plan-2026-07-29 A2 (server sort whitelist))",
@@ -346,7 +346,7 @@
    "2. As you type, the browser fetches matching customers from the server — case-insensitive \"contains\" matching on the name, scoped to the active date range, Product Type, and location — and lists the returned customers.",
    "3. The all-customers state is stored as an explicit state (a flag), not an enumeration of the fetched ids.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R2, S18-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S18-R2, S18-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2; S18-R4)",
@@ -375,7 +375,7 @@
    "2. Changing the Customer selection re-fetches the matching customers as a fresh first page.",
    "3. The totals are computed on the server over the full set of matching customers — they arrive with the data and do not change as you page.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R6, S18-R11)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S18-R6, S18-R11)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R6; S18-R11)",
@@ -403,7 +403,7 @@
    "2. Over the cap, the server does not generate the file (the request comes back as a refusal, not a file) and the browser starts no download — the count the cap checks is the count the file would contain, against the same filters and sort as the screen.",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8818",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R3, S14-R14, S15-R3, S15-R22)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S14-R3, S14-R14, S15-R3, S15-R22)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8612 (SBC spec v13 2026-07-31 Story 14 S14-R3; S14-R14; Story 15 S15-R3; S15-R22)",
@@ -438,7 +438,7 @@
    "4. For that same user, the export request is refused with HTTP 403 as well — no file is produced.",
    "5. Note for the tester: one single permission controls all four of these. If you find the report data refused but the export allowed (or the other way round), that is a failure — record both response codes.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-R2, S1-N1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S1-R2, S1-N1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8600 (SBC spec v13 2026-07-31 S1-R2; S1-N1 — the back-end half of the ordinary-reports-access gate; the SBC twin of the Parts Velocity back-end case C30391; Chris Ward Q1=A; SV-8780 Ready to Fix)",

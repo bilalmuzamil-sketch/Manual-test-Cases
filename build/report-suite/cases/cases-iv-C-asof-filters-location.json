@@ -21,7 +21,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R1; §2 Known Limitations (v1))",
@@ -51,7 +51,7 @@
    "2. The date control is an \"as of\" anchor, not a created-date filter — narrowing it does not select \"parts added in that range\"; it shows the whole shelf as it stood on that date, so the part stocked before the range still appears.",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R2 (+ context note))",
@@ -79,7 +79,7 @@
    "1. The report values the current live stock — the values represent today.",
    "2. The part's row reflects today's changed quantity (not yesterday's snapshot), proving the live fallback is in use.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R3; §3 Key Decisions (live fallback for today))",
@@ -111,7 +111,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R4; §2 Relationship to nightly history)",
@@ -140,7 +140,7 @@
    "2. When the displayed day matches the date asked for (the common current-view case), the \"As of\" indicator is not shown — the date control already communicates the date.",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R5, S5-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R5, S5-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R5; S5-R6)",
@@ -171,7 +171,7 @@
    "3. Changing the date range reloads the report (the loading indicator shows and the rows re-fetch).",
    "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R7, S5-R8)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R7, S5-R8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R7; S5-R8)",
@@ -223,7 +223,7 @@
    "1. The report shows the empty state — there is no way to reconstruct inventory value for a date before recording began, because there is no historical backfill.",
    "2. This forward-capture-only behavior is the documented v1 boundary, not a defect.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-E1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-E1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8672 (IV spec v3 2026-07-29 Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope)",
@@ -252,7 +252,7 @@
    "2. Selecting one or more categories reloads the report to show only parts in the selected categories.",
    "3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S6-R1, S6-R2, S6-R3, S6-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S6-R1, S6-R2, S6-R3, S6-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R1; S6-R2; S6-R3; S6-R4)",
@@ -282,7 +282,7 @@
    "2. The filtering covers the ENTIRE data set — matching parts that were further down the list appear — not just a narrowing of the rows currently on screen.",
    "3. Every change — date range, location, Category, Vendor, part search, sort — reloads the rows from the server; while loading the standard reports loading indicator shows, and existing rows are replaced only when the new data returns.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S6-R5, S1-R4, S1-R5, S1-R7, S1-R8)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S6-R5, S1-R4, S1-R5, S1-R7, S1-R8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R5; Story 1 S1-R4; S1-R5; S1-R7; S1-R8)",
@@ -311,7 +311,7 @@
    "2. With no vendor selected, parts of all vendors are shown.",
    "3. With the part search empty, no search narrowing is applied.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S6-R7)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S6-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R7)",
@@ -342,7 +342,7 @@
    "3. Matching is case-insensitive.",
    "4. The search applies server-side (whole data set, first page returned); a no-match search shows the no-data message.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S6-R8, S6-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S6-R8, S6-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R8; S6-R5)",
@@ -370,7 +370,7 @@
    "1. A part must satisfy EVERY active filter and the search to appear — the Date range, Location, Category, Vendor, and part search combine with AND.",
    "2. The totals row matches the combined filtered set after each step.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S6-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S6-R9)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8673 (IV spec v3 2026-07-29 Story 6 S6-R9)",
@@ -400,7 +400,7 @@
    "2. On a first visit it defaults to the user's currently active location.",
    "3. With \"All locations\" active you can tell which location each row's stock belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-R1, S7-R2, S12-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
@@ -429,7 +429,7 @@
    "2. With both locations selected, parts from both appear (one row per part per location) and the totals cover both.",
    "3. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-R3)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
@@ -456,7 +456,7 @@
    "1. Only the locations the user has access to are offered — a location the user cannot access is never included in the scope.",
    "2. If the requested location set resolves to none the user can access, the report falls back to the user's currently active location.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R4, S7-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-R4, S7-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8674 (IV spec v3 2026-07-29 Story 7 S7-R4; S7-R5)",
@@ -486,7 +486,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S7-N1 \"still sees the filter\" note is stale; spec edit pending)",
@@ -540,7 +540,7 @@
    "2. The rename/delete causes no blank Category/Vendor cells and no dropped rows on the recorded day.",
    "3. The live view (window reaching today) shows the NEW name for the renamed category.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R2, S5-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S11-R2, S5-R4)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R2; Story 5 S5-R4; tech-plan-2026-07-29 B4.1 — names stored with the recorded rows on purpose)",
@@ -581,7 +581,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never \"Multiple\"; S10-R15 = the same column in every export)",

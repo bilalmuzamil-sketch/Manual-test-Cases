@@ -26,7 +26,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-R1, S1-R3, S1-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S1-R1, S1-R3, S1-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8600 (SBC spec S1-R1; S1-R3; S1-R4 — Confluence 577634305 v-2026-07-31; Performance-group placement per the PRD video 2026-07-30; access = ordinary reports permission per Chris Ward 2026-07-31 Q4=A + SV-8598 sheet Q1=A)",
@@ -80,7 +80,7 @@
    "3. Ordinary reports access alone is enough — this report does NOT need a permission of its own.",
    "4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S1-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8600 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — now reads \"gated by ordinary reports access; not by a report-specific permission\"; Chris Ward Q1=A; built atom hidden-and-inert per his ruling; SV-8780 Ready to Fix)",
@@ -110,7 +110,7 @@
    "3. The gate is the ordinary reports access — there is no separate Sales By Customer permission to remove.",
    "4. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-N1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S1-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8600 (SBC spec S1-N1 — Confluence 577634305 v-2026-07-31 — now reads \"A user without reports access does not see the report in navigation and cannot open it by direct link\"; Chris Ward Q1=A; SV-8780 Ready to Fix)",
@@ -138,7 +138,7 @@
    "1. The destination page shows the application's standard access-denied state.",
    "2. Pressing back returns you to the Sales By Customer report.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S9-N2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S9-N2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-N2)",
@@ -170,7 +170,7 @@
    "3. A requested location the user does not have access to is ignored — the report does NOT widen to the whole organization.",
    "4. The report data never includes invoices from a location the user does not have access to.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R7, S4-R8, S4-R9, S4-N1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S4-R7, S4-R8, S4-R9, S4-N1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8603 (SBC spec v13 2026-07-31 Story 4 S4-R7; S4-R8; S4-R9; S4-N1)",
@@ -199,7 +199,7 @@
    "2. The only reports permission offered is the ordinary reports access, and that one covers all six of the new reports.",
    "3. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a \"Sales By Customer\" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S1-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8598 (SBC spec S1-R2 — Confluence 577634305 v-2026-07-31 — \"there is no dedicated Sales By Customer View permission\"; Chris Ward Q1=A + his ruling to hide an already-built permission from the front end; SV-8780)",
@@ -228,7 +228,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R1, S2-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S2-R1, S2-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes)",
@@ -283,7 +283,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R3, S2-R4, S2-N2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S2-R3, S2-R4, S2-N2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R3; S2-R4; S2-N2)",
@@ -310,7 +310,7 @@
    "1. The chosen date range value is written into the page link.",
    "2. Opening that link in a browser with no saved view for this report restores the sender's date range.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R6, S2-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S2-R6, S2-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R6; S2-R9 (context))",
@@ -368,7 +368,7 @@
    "4. With \"Parts & Service\" selected, no product-type filter is applied — both S and P invoices are included and counts/totals cover both.",
    "5. The whole invoice is classified by its number prefix — there is no per-line-item split.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S3-R1, S3-R2, S3-R3, S3-R4, S3-R5, S3-R6)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8602 (SBC spec v13 2026-07-31 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (\"exactly three options ... in this order\"); so the closed list IS the requirement)",
@@ -425,7 +425,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R1, S4-R2, S4-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S4-R1, S4-R2, S4-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A; applied suite-wide)",
@@ -481,7 +481,7 @@
    "4. With \"All locations\" active you can tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)",
    "5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R5, S4-R6); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S4-R5, S4-R6); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8603 (SBC spec Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]",
@@ -510,7 +510,7 @@
    "3. Before typing, the dropdown shows the pinned all/clear control at the top and a \"Search customers…\" hint; individual customers are revealed by typing.",
    "4. The hint yields to the typed query while you are searching.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R1, S18-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S18-R1, S18-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R1; S18-R2)",
@@ -539,7 +539,7 @@
    "2. The list is scoped to the active date range, Product Type, and location.",
    "3. A selected customer is shown with a checkmark.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S18-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R2)",
@@ -568,7 +568,7 @@
    "3. The control is pinned to the top of the dropdown in both states.",
    "4. After \"Clear all\": the report shows the empty-state message \"No sales data found for the selected filters.\", the totals row shows zeros, and the collapsed label reads \"None.\"",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R3, S18-N1, S17-E1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S18-R3, S18-N1, S17-E1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R3; S18-N1; S17-E1)",
@@ -600,7 +600,7 @@
    "3. The all-customers state is an explicit state — while it is active, any customer that appears later (new data) is included automatically.",
    "4. After the filter change the filter stays in the all-customers state (label still \"All customers\") and every customer matching the new filters is included — including the newly-appearing one, with no manual re-selection.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R4, S18-R5, S18-R9, S18-E1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S18-R4, S18-R5, S18-R9, S18-E1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R4; S18-R5; S18-R9; S18-E1)",
@@ -630,7 +630,7 @@
    "3. With more than one selected the label reads \"N selected\" where N is the number of selected customers (for example \"3 selected\").",
    "4. While typing, the field shows the query text instead of the summary label; the summary label returns when the query is cleared or the field loses focus.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S18-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5)",
@@ -658,7 +658,7 @@
    "2. The table refreshes as a fresh first page of results.",
    "3. The totals row updates to cover only the selected customers' matching invoices.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R5, S18-R11)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S18-R5, S18-R11)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R5; S18-R11)",
@@ -738,7 +738,7 @@
    "3. Customer C (newly present) is NOT auto-selected and is not shown.",
    "4. The Customer filter selection itself is not cleared by the date change.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R9, S18-E1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S18-R9, S18-E1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
   "spec_ref": "SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R9; S18-E1)",
@@ -778,7 +778,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R12, S4-R12a, S4-R13, S20-R19)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S4-R12, S4-R12a, S4-R13, S20-R19)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8603; SV-8612; SV-8613 (SBC spec v13 2026-07-31 S4-R12; S4-R12a; S4-R13; S20-R19 — per-row Location column with automatic visibility; \"Multiple\" on aggregating rows; S4-R13 = the same column in every export)",

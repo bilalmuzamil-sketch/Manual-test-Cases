@@ -21,7 +21,7 @@
    "3. After step 3, Units Sold is UNCHANGED - part returns do not affect Units Sold (they feed Units Returned instead).",
    "4. Units Sold can be 0.00 or negative when reversals exceed sales.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R1, S5-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R1, S5-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R1; S5-R4 (Units Sold; inventory); §4)",
@@ -49,7 +49,7 @@
    "2. The reversed/voided sale is EXCLUDED from the total (net of reversals).",
    "3. Only requests on work orders at status Invoiced or Paid count; the window is anchored to the work-order date.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R2, S5-R4, S5-R4b)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R2, S5-R4, S5-R4b)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R2; S5-R4 (Units Sold; catalogue); S5-R4b)",
@@ -80,7 +80,7 @@
    "3. After step 3, it decreases by 2.00 - the column reflects the CURRENT state of return records (cancelled returns are excluded), not a snapshot.",
    "4. After step 4, Units Returned is UNCHANGED - invoice reversals are not returns (they affect Units Sold instead).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R3, S5-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R3, S5-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R3; S5-R4 (Units Returned); §3 Key Decisions)",
@@ -112,7 +112,7 @@
    "4. Units Returned is independent of the work order's current invoice status.",
    "5. A part whose ONLY in-window event is a return (no sale, no stock, no revenue) produces no row at all - accepted behavior, the row axis is sales/stock activity.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R3)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R3)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R3)",
@@ -142,7 +142,7 @@
    "3. Both are windowed by the WORK-ORDER date (its end date) - with the range moved off those dates, both drop out.",
    "4. Both workflows feed the report - a parts sale is a separate workflow from a service work order but counts fully.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R4 (Sold via WO / Sold via Parts Sale); §5 Assumptions)",
@@ -174,7 +174,7 @@
    "4. Demand is the report's default ranking signal (a whole number, never null - 0 when none).",
    "5. A part whose single in-window sale is invoiced and then fully reversed shows Demand 1 with Units Sold 0.00 — the Demand count is not decremented, while the movement nets to zero.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4, S3-E1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4, S3-E1)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R4 (Demand); §4; §3 Key Decisions; S3-E1)",
@@ -207,7 +207,7 @@
    "4. For a special-order part, the anchor is its most recent vendor-sourced invoiced/paid request.",
    "5. When the most recent sale is reversed, Last Sale re-anchors to the previous remaining sale (the day count grows accordingly); if no other sale remains it shows —.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4, S5-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4, S5-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R4 (Last Sale); §4; S5-R5; tech-plan-2026-07-29 B3.1 (last-sale re-anchor on reversal — spec-silent))",
@@ -235,7 +235,7 @@
    "2. Min and Max show the stored minimum / maximum reorder thresholds for that location, as whole numbers (— when not set).",
    "3. Min and Max are READ-ONLY display columns - no edit control or slide-over opens; editing part attributes from this report is out of scope in this version.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4, S5-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4, S5-R5)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R4 (On Hand / Min / Max); §2 Out of Scope; S5-R5)",
@@ -267,7 +267,7 @@
    "3. Part C shows a NEGATIVE Turns / Yr with a leading minus (because Units Sold can be negative).",
    "4. Special Order rows always show — (not applicable).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R4 (Turns / Yr); S5 Definitions (Window))",
@@ -298,7 +298,7 @@
    "5. All five are computed from the RAW (unrounded) Revenue / COGS / billed-units totals and rounded ONCE at the end - not built from already-rounded intermediates.",
    "6. The same formulas apply to inventory and special-order rows (for special-order, from the vendor part requests).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4a)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4a)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R4a; §4)",
@@ -327,7 +327,7 @@
    "2. This netting is consistent with inventory Units Sold, which already nets reversals via the stock add-back.",
    "3. A voided sale therefore inflates NO column.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4b, S5-R4a)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4b, S5-R4a)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R4b; S5-R4a; §3 Key Decisions)",
@@ -358,7 +358,7 @@
    "3. Row 3: Unit Cost, Sell Price, and Margin % all show — together - which happens ONLY when both billed units ≤ 0 AND Revenue ≤ 0.",
    "4. The three triggers are independent: Unit Cost/Sell Price null on billed units ≤ 0; Margin % null on Revenue ≤ 0.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4a, S3-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R4a, S3-R9)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R4a (null rules + mixed-row paragraph); S3-R9)",
@@ -387,7 +387,7 @@
    "4. Demand: whole number. Min, Max: whole numbers (— when null). Last Sale: 'N days' (42 days), — when null.",
    "5. Rounding is half AWAY from zero: 8.45% displays 8.5% and -8.45% displays -8.5% (a tie rounds up in magnitude); this applies to all money and one-decimal values.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R5, S5-R7)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R5, S5-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R5; S5-R7 (rounding))",
@@ -415,7 +415,7 @@
    "2. The special-order core part does NOT appear either.",
    "3. Parts flagged as a core are excluded from both result sets by design.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R1, S5-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R1, S5-R2)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R1; S5-R2; §3 Key Decisions)",
@@ -445,7 +445,7 @@
    "2. Sold (WO) + Sold (Parts Sale) together DO equal the billed-units basis (work orders are only Service- or Parts-type) - but neither equals the movement-based Units Sold.",
    "3. On the special-order row, everything reconciles: Units Sold = Sold (WO) + Sold (Parts Sale) = billed units (they share the vendor-request quantity as one source).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R7)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5-R7; §3 Key Decisions)",
@@ -475,7 +475,7 @@
    "3. The window is the whole-day span inclusive of BOTH the start and end dates, with a floor of 1 day - a single-day range (Today) computes normally (Window = 1 for the Turns / Yr divisor).",
    "4. Last Sale is not windowed at all (all-time).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R7)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R7)."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite: no designs yet; design-reconciliation later if Figma arrives)",
   "spec_ref": "SV-8645 (PV spec v4 2026-07-29 S5 Definitions (Window / Work-order date); S5-R7)",
@@ -508,7 +508,7 @@
    "3. On Hand has gone down by exactly 2.50 from what it was before the sale.",
    "4. No value anywhere on the row has been quietly rounded to a whole number.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R1, S5-R5)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S5-R1, S5-R5)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8589 (PV spec S5-R1 Units Sold net stock movement + S5-R5 two-decimal movement format; tech-plan-2026-07-29 Phase 0 / PR-1 D2; SV-8589 verbatim Tests: 'fractional-quantity round-trip regression')",

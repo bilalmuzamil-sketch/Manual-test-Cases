@@ -20,7 +20,7 @@
    "2. Toggling a column off hides it from the table; toggling it on shows it again.",
    "3. The Total column is always shown and cannot be turned off — it is not offered in the control at all.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S8-R1, S8-R2)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S8-R1, S8-R2)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R1; S8-R2)",
@@ -49,7 +49,7 @@
    "2. Total is always the last column.",
    "3. The column selection applies to every tab at once — all four tabs show the same set of columns.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S8-R5, S8-R6, S4-R1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S8-R5, S8-R6, S4-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R5; S8-R6; Story 4 S4-R1)",
@@ -78,7 +78,7 @@
    "1. On return and after a reload, the report restores the saved date range, advisor selection, customer selection, asset selection, location selection, column selection, and active tab.",
    "2. In a different browser the report shows the defaults instead — the settings are saved per browser, not on the user's account.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S8-R7)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S8-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R7; §3 Key Decisions (context note: per-browser persistence))",
@@ -105,7 +105,7 @@
    "1. The report loads normally — the invalid saved value falls back to that setting's default rather than breaking the view.",
    "2. All other saved settings are still restored.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S8-R8)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S8-R8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8664 (WIP spec v6 2026-07-29 Story 8 S8-R8)",
@@ -133,7 +133,7 @@
    "1. The menu holds the download options \"Download (PDF)\" and \"Download (CSV)\".",
    "2. Each option downloads a file of the current tab in the chosen format.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R1)",
@@ -166,7 +166,7 @@
    "4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).",
    "5. Note for the tester: the file carries the location column only when you have switched Location ON in the column-selection control - it does not appear just because you have more than one location selected. In the file it is headed \"Branch\", not \"Location\", and the asset column is headed \"Unit\". Both of those names are correct.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R2; S9-R3; S9-R4; S9-R10a + Story 7 S7-R13; S9-E1 — downloads mirror the shown columns; the filters and the Totals row; S9-R10a = the \"Locations:\" line; S7-R13/S9-E1 = the automatic \"Branch\" column)",
@@ -197,7 +197,7 @@
    "2. In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.",
    "3. A value without a comma is written unquoted.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R5, S9-R6)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R5, S9-R6)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R5; S9-R6)",
@@ -224,7 +224,7 @@
    "1. In the PDF, Inv. Hrs keeps the green (positive) / red (negative) coloring.",
    "2. In the CSV, the Inv. Hrs column is monochrome — plain signed numbers with no color or markup.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R7)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R7)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R7)",
@@ -252,7 +252,7 @@
    "1. In the download, Days Open is the whole number of days as of the moment the file is generated.",
    "2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R8)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R8)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R8; Story 4 context note (Days Open live vs frozen))",
@@ -280,7 +280,7 @@
    "2. The CSV is named \"wip-2-report.csv\".",
    "3. These exact names (including the \"-2-\") are the specified current behavior.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R9)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R9)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the \"-2-\" segment; so the exact strings ARE the requirement)",
@@ -313,7 +313,7 @@
    "DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.",
    "The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx",
    "",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned)",
@@ -340,7 +340,7 @@
    "1. The PDF shows the shop logo at the top.",
    "2. The CSV never includes a logo (plain data only).",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R10)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R10)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R10)",
@@ -370,7 +370,7 @@
    "2. When a download yields no rows, a warning notification shows titled \"Empty export\" with the caption \"Export didn't yield any results\".",
    "3. When a download fails, an error notification shows: \"An error occurred while exporting the report. Please try again.\"",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-R11, S9-R12, S9-R13)."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R11, S9-R12, S9-R13)."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary)",
@@ -399,7 +399,7 @@
    "3. Below the cap the download works normally.",
    "4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.",
    "---",
-   "This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (Story 9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
+   "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (Story 9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority."
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
   "spec_ref": "SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending)",
