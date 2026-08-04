@@ -22,8 +22,8 @@ This reconciles exactly against the 84 + 111 = 195 the task specified.
 
 | Verdict | SBC | SBR | Total |
 |---|---:|---:|---:|
-| **VIU-Observed-PASS** | 70 | 75 | **145** |
-| **DEVIATION** | 12 | 17 | **29** |
+| **VIU-Observed-PASS** | 67 | 72 | **139** |
+| **DEVIATION** | 15 | 20 | **35** |
 | **NOT-BUILT** | 2 | 10 | **12** |
 | **EXTERNAL-DEPENDENCY** | 0 | 9 | **9** |
 | **Total** | **84** | **111** | **195** |
@@ -135,7 +135,7 @@ Evidence paths are relative to this folder.
 | `SBC-API-02` | [C30191](https://shopview.testrail.io/index.php?/cases/view/30191) | **VIU-Observed-PASS** | Sorting issues a server request carrying pagination[sortBy] and returns page 1. |
 | `SBC-API-03` | [C30192](https://shopview.testrail.io/index.php?/cases/view/30192) | **VIU-Observed-PASS** | The type-ahead queries the server as you type rather than downloading every name. |
 | `SBC-API-04` | [C30193](https://shopview.testrail.io/index.php?/cases/view/30193) | **VIU-Observed-PASS** | Rows are server-paginated (rowsPerPage/rowsNumber) and totals arrive with the payload, computed over the full set. |
-| `SBC-API-05` | [C30194](https://shopview.testrail.io/index.php?/cases/view/30194) | **VIU-Observed-PASS** | Exports are server-generated and the over-size refusal happens before any file is produced (400 with the specific message). |
+| `SBC-API-05` | [C30194](https://shopview.testrail.io/index.php?/cases/view/30194) | **DEVIATION** | The first half passes — exports are unambiguously server-generated (the file arrives from GET /api/reporting/reports/…/export with Content-Disposition attachment). The second half fails: the 10,000-row cap could not be reached (F55) and the widest Expanded PDF returned HTTP 500 instead of a pre-generation refusal (F54). Same correction as SBC-EXP-14 — my earlier pass on this cited another pass's note rather than my own observation. |
 
 
 #### SBC — Totals & Calculations
@@ -207,8 +207,8 @@ Evidence paths are relative to this folder.
 | `SBC-EXP-09` | [C30167](https://shopview.testrail.io/index.php?/cases/view/30167) | **VIU-Observed-PASS** | PDF header carries the title, organisation, date range, Product Type and the 'Locations:' line. NOTE the date-range end is off by one day — see SBC-EXP-16's re-check note (F13). |
 | `SBC-EXP-10` | [C30168](https://shopview.testrail.io/index.php?/cases/view/30168) | **VIU-Observed-PASS** | A logo is embedded in both PDFs and both render without distortion at 8 and 49 pages respectively. |
 | `SBC-EXP-11` | [C30169](https://shopview.testrail.io/index.php?/cases/view/30169) | **VIU-Observed-PASS** | Expanded PDF body columns match the Expanded CSV's columns and the on-screen row rules. |
-| `SBC-EXP-14` | [C30172](https://shopview.testrail.io/index.php?/cases/view/30172) | **VIU-Observed-PASS** | The server-side over-size guard is real: a wide request returns 400 'This report is too large to export. Narrow the date range or filters, then try again.' and no file is produced. |
-| `SBC-EXP-15` | [C30173](https://shopview.testrail.io/index.php?/cases/view/30173) | **VIU-Observed-PASS** | A no-match export still produces the header row plus a zeroed Totals row. |
+| `SBC-EXP-14` | [C30172](https://shopview.testrail.io/index.php?/cases/view/30172) | **DEVIATION** | HONESTY CORRECTION — I first passed this citing a 'too large' 400. That message came from an EARLIER pass's notes, not from my own observation, so I re-tested it. Result: the 10,000-row cap is UNREACHABLE here (the date range is itself capped at 366 days, so the widest possible export is 5,746 data lines), and when I pushed the Expanded PDF to that widest scope it returned HTTP 500 rather than the specified refusal (requestId ffca8e2c-f6ae-4477-9216-16083355a3e5). READ: the graceful over-size refusal this case describes is NOT what happens — a large export crashes. Genuine defect; the cap clause itself still needs a bigger org to test. |
+| `SBC-EXP-15` | [C30173](https://shopview.testrail.io/index.php?/cases/view/30173) | **DEVIATION** | Half passes, half fails. A no-match export DOES still download (200) with the 'Locations:' line and the column-header row — but there is **NO totals row at all**, in either the empty CSV or the empty PDF (verified by extracting the PDF text: no Totals line). The case requires 'a zero totals row'. READ: likely not-built-yet; as written the case cannot pass. |
 | `SBC-EXP-16` | [C38856](https://shopview.testrail.io/index.php?/cases/view/38856) | **VIU-Observed-PASS** | All four Summary/Expanded x PDF/CSV downloads exist and return 200. |
 
 - `SBC-EXP-05` (C30163) field flags — **expected**: REVIEW — closed enumeration (1): needs a version-pinned anchor or scope-conditional wording (Rule 42)
@@ -342,7 +342,7 @@ Evidence paths are relative to this folder.
 | `SBR-API-02` | [C30317](https://shopview.testrail.io/index.php?/cases/view/30317) | **VIU-Observed-PASS** | Each sort change triggers a server re-fetch that returns page 1 already ordered. |
 | `SBR-API-03` | [C30318](https://shopview.testrail.io/index.php?/cases/view/30318) | **VIU-Observed-PASS** | Grand totals arrive with the summary payload and match the export Totals line over the full filtered set, independent of what is expanded. |
 | `SBR-API-04` | [C30319](https://shopview.testrail.io/index.php?/cases/view/30319) | **VIU-Observed-PASS** | All four exports are server-generated against the active filters and sort; the guard responses (400 with specific messages) were observed. |
-| `SBR-API-05` | [C30320](https://shopview.testrail.io/index.php?/cases/view/30320) | **VIU-Observed-PASS** | The over-cap refusal is server-side and pre-generation: 400 with the too-large message and no file body. |
+| `SBR-API-05` | [C30320](https://shopview.testrail.io/index.php?/cases/view/30320) | **DEVIATION** | Cannot pass as written and the build is worse than the case allows: the 10,000-row cap is unreachable on this org (F55), and at the widest reachable scope the Expanded PDF returns HTTP 500 rather than declining pre-generation (F54). Same correction as SBC-API-05. |
 | `SBR-API-06` | [C30321](https://shopview.testrail.io/index.php?/cases/view/30321) | **EXTERNAL-DEPENDENCY** | Same blocker as SBR-DEACT-02 — the pre-check request only runs when a staff-backed rep holds customer assignments, which cannot be produced while invoice creation returns HTTP 500. |
 
 - `SBR-API-02` (C30317) field flags — **title-vs-expected**: REVIEW — title and expected share <2 significant words
@@ -437,8 +437,8 @@ Evidence paths are relative to this folder.
 | `SBR-EXP-12` | [C30287](https://shopview.testrail.io/index.php?/cases/view/30287) | **DEVIATION** | The CSV cell formatting rule fails. S14-R17: "CSV cell formatting (both CSVs): numeric columns are emitted as plain numbers for re-pivoting — no currency symbol, thousands separators, or parentheses … `Margin %` is a number to one decimal (e.g., `45.2`)" Observed: money is '"$1,979.40"' with a dollar sign and thousands separators and Margin % is '100.0%' with a percent sign. READ: the same shared formatter defect as SBC-EXP-04 — one bug, two reports. The signed-Inv.-Hrs and (Inactive) clauses could not be exercised (F15, SBR-ROW-03). |
 | `SBR-EXP-13` | [C30288](https://shopview.testrail.io/index.php?/cases/view/30288) | **VIU-Observed-PASS** | With the toggle ON the Unassigned row is emitted in the downloads and with it OFF no unassigned data appears — matching the on-screen state. |
 | `SBR-EXP-14` | [C30289](https://shopview.testrail.io/index.php?/cases/view/30289) | **VIU-Observed-PASS** | A failed download surfaces the shared error toast and no file; the 400 guard responses were observed. |
-| `SBR-EXP-15` | [C30290](https://shopview.testrail.io/index.php?/cases/view/30290) | **VIU-Observed-PASS** | The over-size guard returned 400 'This report is too large to export…' with no file. |
-| `SBR-EXP-16` | [C30291](https://shopview.testrail.io/index.php?/cases/view/30291) | **VIU-Observed-PASS** | An empty-data export still generated, with a zeroed Totals row. |
+| `SBR-EXP-15` | [C30290](https://shopview.testrail.io/index.php?/cases/view/30290) | **DEVIATION** | Same correction and same result as SBC-EXP-14: the cap is unreachable (366-day range limit) and the widest Expanded PDF returned HTTP 500 rather than the specified too-large refusal (requestId 139bcca5-44a4-41a6-8255-e4d7b4a1ef30). Genuine defect. |
+| `SBR-EXP-16` | [C30291](https://shopview.testrail.io/index.php?/cases/view/30291) | **DEVIATION** | The export does still generate on empty data (200, header strip + column headers + footer 'Software Powered by ShopView Page 1 of 1'), but the Summary PDF carries **no zeroed totals row** — the Totals line is absent entirely from the extracted text. Same shared gap as SBC-EXP-15. |
 
 - `SBR-EXP-01` (C30276) field flags — **expected**: REVIEW — closed enumeration (2): needs a version-pinned anchor or scope-conditional wording (Rule 42)
 - `SBR-EXP-06` (C30281) field flags — **expected**: REVIEW — closed enumeration (1): needs a version-pinned anchor or scope-conditional wording (Rule 42)
@@ -661,6 +661,10 @@ Each was observed live this run; the path is the captured proof.
 | **F49** | For a genuinely single-location user (one accessible workplace) the per-row Location COLUMN is absent from both reports, while the Location FILTER control remains visible. | `../evidence/singleloc-matrix.json + evidence/sales-by-representative/sbr-deep.json#singleLocation` |
 | **F50** | The CUSTOMER record's Edit Customer dialog carries a 'Sales Representative' dropdown whose options are the WHOLE STAFF LIST — including staff flagged inactive (Louis Mccoy, Mary Higgins) — NOT the is_sales_rep-toggled set that GET /api/sales-reps returns. Saving sends POST /api/customers/change (200) carrying sales_rep_first_name / sales_rep_last_name as STRINGS; there is no sales_rep_id in the payload, and the customer read-back keeps sales_rep_id: null with the name pair populated. So the customer's rep is stored BY NAME, not by rep id. | `evidence/deactivation/customer-edit-dialog.md` |
 | **F51** | The customer record's card label is 'Sales Representative' (title case, spelled in full), whereas the WORK ORDER panel's label is 'Sales rep' (lower-case r). The two surfaces use different wording for the same field. | `evidence/deactivation/customer-edit-dialog.md + evidence/wo-salesrep/wo-finance.json` |
+| **F52** | The date-range span guard is real and its message is exact: a request spanning more than a year returns 400 {"error":"Date range cannot exceed 366 days."} — verbatim, on both reports. | `evidence/export-guards.md` |
+| **F53** | A NO-MATCH export still generates and downloads (HTTP 200): the CSV carries the "Locations: …" line and the column-header row, and the PDF carries the full header strip, the column headers and the footer 'Software Powered by ShopView Page 1 of 1'. BUT neither carries ANY totals row — the Totals line is absent from both the empty CSV and the empty PDF. Also confirmed here: with a single location in scope the export header row correctly has NO Location column. | `evidence/export-guards.md + evidence/*/exports/EMPTY-*.pdf.txt` |
+| **F54** | The EXPANDED PDF returns HTTP 500 at scale. A 2-month expanded PDF renders fine (SBC 49 pages), but a full 12-month, two-location expanded PDF returns 500 on BOTH reports (requestIds ffca8e2c-f6ae-4477-9216-16083355a3e5 and 139bcca5-44a4-41a6-8255-e4d7b4a1ef30). The equivalent CSV succeeds at the same scope (5,746 / 3,555 data lines). The specified graceful 'too large' refusal does NOT happen — it crashes instead. | `evidence/export-guards.md` |
+| **F55** | The 10,000-data-row export cap is UNREACHABLE on this org: because the date range itself is capped at 366 days (F52), the widest obtainable export is 5,746 data lines for SBC and 3,555 for SBR. So no over-cap refusal could be produced this run. | `evidence/export-guards.md` |
 
 ## 10. Honest limits of this pass
 

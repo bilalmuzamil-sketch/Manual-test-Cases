@@ -57,6 +57,12 @@ node tools/capture_all_exports.mjs sales-by-representative && python3 tools/extr
 | `SBR-MOB-03` | [C30304](https://shopview.testrail.io/index.php?/cases/view/30304) | DEVIATION | Re-check the hover-only-tooltip clause — it could not be forced separately. |
 | `SBC-EXP-09` | [C30167](https://shopview.testrail.io/index.php?/cases/view/30167) | VIU-Observed-PASS | Re-confirm the PDF Date Range end date (off by one day this run). |
 | `SBR-ASGN-01` | [C30292](https://shopview.testrail.io/index.php?/cases/view/30292) | NOT-BUILT | Re-check whether the Sales Representative Assignments export has been built. |
+| `SBC-EXP-14` | [C30172](https://shopview.testrail.io/index.php?/cases/view/30172) | DEVIATION | Re-check on a bigger org whether the 10,000-row refusal message exists at all, AND whether the Expanded PDF still 500s at scale. |
+| `SBR-EXP-15` | [C30290](https://shopview.testrail.io/index.php?/cases/view/30290) | DEVIATION | Same as SBC-EXP-14. |
+| `SBC-API-05` | [C30194](https://shopview.testrail.io/index.php?/cases/view/30194) | DEVIATION | Same as SBC-EXP-14 - the cap-counted-first half is still unverified. |
+| `SBR-API-05` | [C30320](https://shopview.testrail.io/index.php?/cases/view/30320) | DEVIATION | Same as SBC-EXP-14. |
+| `SBC-EXP-15` | [C30173](https://shopview.testrail.io/index.php?/cases/view/30173) | DEVIATION | Re-check whether a zeroed totals row has been added to empty exports. |
+| `SBR-EXP-16` | [C30291](https://shopview.testrail.io/index.php?/cases/view/30291) | DEVIATION | Same as SBC-EXP-15. |
 
 `SBR-ASGN-02` C30293, `SBR-ASGN-03` C30294, `SBR-ASGN-04` C30295, `SBR-ASGN-05` C30296 and
 `SBR-ASGN-06` C30297 all re-check together with `SBR-ASGN-01`: none of them can be run until

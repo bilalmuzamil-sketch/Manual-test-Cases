@@ -219,6 +219,36 @@ write against yet.
 - CURRENT: customer record shows a "Sales Representative" row; "Unassigned" when none.
 - PROPOSED: keep the label (it is correct for this surface) and add a note that the picker in Edit Customer lists ALL staff including inactive ones, and that the value is stored as a name rather than a link to the staff record. The "Unassigned" empty text still needs confirming live.
 
+### `SBC-EXP-14` — [C30172](https://shopview.testrail.io/index.php?/cases/view/30172) — verdict **DEVIATION**
+
+- CURRENT: an export over 10,000 data rows is refused with the too-large toast.
+- NO CASE CHANGE PROPOSED, but the case CANNOT PASS on this org and the build is worse than it assumes: the 366-day range limit means 10,000 rows is unreachable, and at the widest reachable scope the Expanded PDF returns HTTP 500 instead of refusing. Raise the dev ticket; re-test the cap clause on a bigger org.
+
+### `SBR-EXP-15` — [C30290](https://shopview.testrail.io/index.php?/cases/view/30290) — verdict **DEVIATION**
+
+- CURRENT: over-cap Expanded View PDF is refused with the too-large message.
+- NO CASE CHANGE PROPOSED — same as SBC-EXP-14.
+
+### `SBC-API-05` — [C30194](https://shopview.testrail.io/index.php?/cases/view/30194) — verdict **DEVIATION**
+
+- CURRENT: exports are server-generated and the 10,000-row cap is counted first.
+- NO CASE CHANGE PROPOSED — the server-generated half passes; the cap half is unverifiable here and the large Expanded PDF 500s.
+
+### `SBR-API-05` — [C30320](https://shopview.testrail.io/index.php?/cases/view/30320) — verdict **DEVIATION**
+
+- CURRENT: the Expanded View PDF cap is enforced server-side BEFORE generation.
+- NO CASE CHANGE PROPOSED — same as SBC-API-05.
+
+### `SBC-EXP-15` — [C30173](https://shopview.testrail.io/index.php?/cases/view/30173) — verdict **DEVIATION**
+
+- CURRENT: a no-match export still downloads headers and a zero totals row.
+- PROPOSED (matches the build) OR dev ticket — the file does download with the "Locations:" line and the column headers, but there is NO totals row in either the empty CSV or the empty PDF. Either the zeroed totals row gets built, or the case drops that clause. QA lead's call.
+
+### `SBR-EXP-16` — [C30291](https://shopview.testrail.io/index.php?/cases/view/30291) — verdict **DEVIATION**
+
+- CURRENT: an empty-data export still generates with zeroed Summary PDF totals.
+- PROPOSED / dev ticket — same as SBC-EXP-15: it generates, but with no totals row.
+
 ### `SBC-CALC-03` — [C30151](https://shopview.testrail.io/index.php?/cases/view/30151) — verdict **DEVIATION**
 
 - CURRENT: "+green / -red / 0.0 on every row".
@@ -259,6 +289,8 @@ observed behaviour with the evidence path attached.
 | 6 | **Accessibility: chevrons expose no `aria-expanded`; column headers are not keyboard focusable** (no `tabindex`). | `SBR-VIS-04` C30308 |
 | 7 | **PDF `Date Range` header is one day later** than the requested end date, on all four PDFs of both reports. | `SBC-EXP-09` C30167 (noted) |
 | 8 | **Customer's Sales Representative picker lists all staff including inactive**, and stores a name pair rather than a rep id. | `SBR-WO-06` C30315 (noted) |
+| 9 | **The Expanded PDF returns HTTP 500 at scale** — a 12-month two-location Expanded PDF dies (requestIds ffca8e2c-f6ae-4477-9216-16083355a3e5, 139bcca5-44a4-41a6-8255-e4d7b4a1ef30) while the equivalent CSV succeeds. It fails WELL BELOW the 10,000-row cap that is supposed to make a big export fail gracefully. **Highest-severity find of this pass.** | `SBC-EXP-14` C30172 · `SBR-EXP-15` C30290 · `SBC-API-05` C30194 · `SBR-API-05` C30320 |
+| 10 | **Empty exports carry no totals row** — a no-match CSV and PDF both generate correctly but omit the Totals line entirely. | `SBC-EXP-15` C30173 · `SBR-EXP-16` C30291 |
 
 Separately, the write-path 500s in `ENV-DEFECTS.md` (§1 invoice creation, §2 customer update, 
 §3 work-order line creation) are almost certainly known work-in-progress on this branch, but 

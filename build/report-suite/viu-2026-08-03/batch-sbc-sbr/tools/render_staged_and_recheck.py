@@ -144,6 +144,30 @@ REWRITES = {
   'PROPOSED: keep the label (it is correct for this surface) and add a note that the picker in Edit '
   'Customer lists ALL staff including inactive ones, and that the value is stored as a name rather '
   'than a link to the staff record. The "Unassigned" empty text still needs confirming live.'),
+ "SBC-EXP-14": (
+  'CURRENT: an export over 10,000 data rows is refused with the too-large toast.',
+  'NO CASE CHANGE PROPOSED, but the case CANNOT PASS on this org and the build is worse than it '
+  'assumes: the 366-day range limit means 10,000 rows is unreachable, and at the widest reachable '
+  'scope the Expanded PDF returns HTTP 500 instead of refusing. Raise the dev ticket; re-test the cap '
+  'clause on a bigger org.'),
+ "SBR-EXP-15": (
+  'CURRENT: over-cap Expanded View PDF is refused with the too-large message.',
+  'NO CASE CHANGE PROPOSED — same as SBC-EXP-14.'),
+ "SBC-API-05": (
+  'CURRENT: exports are server-generated and the 10,000-row cap is counted first.',
+  'NO CASE CHANGE PROPOSED — the server-generated half passes; the cap half is unverifiable here and '
+  'the large Expanded PDF 500s.'),
+ "SBR-API-05": (
+  'CURRENT: the Expanded View PDF cap is enforced server-side BEFORE generation.',
+  'NO CASE CHANGE PROPOSED — same as SBC-API-05.'),
+ "SBC-EXP-15": (
+  'CURRENT: a no-match export still downloads headers and a zero totals row.',
+  'PROPOSED (matches the build) OR dev ticket — the file does download with the "Locations:" line and '
+  'the column headers, but there is NO totals row in either the empty CSV or the empty PDF. Either the '
+  'zeroed totals row gets built, or the case drops that clause. QA lead\'s call.'),
+ "SBR-EXP-16": (
+  'CURRENT: an empty-data export still generates with zeroed Summary PDF totals.',
+  'PROPOSED / dev ticket — same as SBC-EXP-15: it generates, but with no totals row.'),
  "SBC-CALC-03": (
   'CURRENT: "+green / -red / 0.0 on every row".',
   'NO CASE CHANGE PROPOSED — the heading and the 0.0 default are right; the colours simply cannot be '
@@ -288,6 +312,13 @@ def main():
       "PDFs of both reports. | `SBC-EXP-09` C30167 (noted) |")
     A("| 8 | **Customer's Sales Representative picker lists all staff including inactive**, and stores "
       "a name pair rather than a rep id. | `SBR-WO-06` C30315 (noted) |")
+    A("| 9 | **The Expanded PDF returns HTTP 500 at scale** — a 12-month two-location Expanded PDF dies "
+      "(requestIds ffca8e2c-f6ae-4477-9216-16083355a3e5, 139bcca5-44a4-41a6-8255-e4d7b4a1ef30) while the "
+      "equivalent CSV succeeds. It fails WELL BELOW the 10,000-row cap that is supposed to make a big "
+      "export fail gracefully. **Highest-severity find of this pass.** | `SBC-EXP-14` C30172 · "
+      "`SBR-EXP-15` C30290 · `SBC-API-05` C30194 · `SBR-API-05` C30320 |")
+    A("| 10 | **Empty exports carry no totals row** — a no-match CSV and PDF both generate correctly but "
+      "omit the Totals line entirely. | `SBC-EXP-15` C30173 · `SBR-EXP-16` C30291 |")
     A("")
     A("Separately, the write-path 500s in `ENV-DEFECTS.md` (§1 invoice creation, §2 customer update, ")
     A("§3 work-order line creation) are almost certainly known work-in-progress on this branch, but ")
@@ -359,6 +390,12 @@ def main():
      "SBR-MOB-03": "Re-check the hover-only-tooltip clause — it could not be forced separately.",
      "SBC-EXP-09": "Re-confirm the PDF Date Range end date (off by one day this run).",
      "SBR-ASGN-01": "Re-check whether the Sales Representative Assignments export has been built.",
+     "SBC-EXP-14": "Re-check on a bigger org whether the 10,000-row refusal message exists at all, AND whether the Expanded PDF still 500s at scale.",
+     "SBR-EXP-15": "Same as SBC-EXP-14.",
+     "SBC-API-05": "Same as SBC-EXP-14 - the cap-counted-first half is still unverified.",
+     "SBR-API-05": "Same as SBC-EXP-14.",
+     "SBC-EXP-15": "Re-check whether a zeroed totals row has been added to empty exports.",
+     "SBR-EXP-16": "Same as SBC-EXP-15.",
     }
     for iid, what in must.items():
         r = by_id[iid]
