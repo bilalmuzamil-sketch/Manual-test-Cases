@@ -1,0 +1,21 @@
+RULING 3 half (b) — concrete numeric-parse test, per column, one row
+Source: live CSV export, build v3.4.1-0ed4433, 2026-08-04
+
+column       raw cell content              parses as a bare number?
+--------------------------------------------------------------------------------
+Part #       'R134A'                       NO  — lands as TEXT
+Description  'Refrigerant'                 NO  — lands as TEXT
+Category     'HD-Fluids'                   NO  — lands as TEXT
+Vendor       '—'                           NO  — lands as TEXT
+Location     'Staging Heavy Duty - 9919'   NO  — lands as TEXT
+Qty          '786.55'                      YES -> 786.55
+Unit Cost    '$14.21'                      NO  — lands as TEXT
+Unit Sell    '$21.86'                      NO  — lands as TEXT
+Total Cost   '$11,176.88'                  NO  — lands as TEXT
+Total Sell   '$17,193.98'                  NO  — lands as TEXT
+Margin       '$6,017.10'                   NO  — lands as TEXT
+Margin %     '35.0%'                       NO  — lands as TEXT
+
+Whole-file census (9,276 rows x the 6 money/percent columns = 55,656 cells):
+  cells a numeric parse REJECTS : 55,656   (100.0%)
+  cells that parse as a number  :      0   (0.0%)
