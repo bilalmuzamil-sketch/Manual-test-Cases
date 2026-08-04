@@ -43,18 +43,10 @@ async function openRepDialog() {
   // the list is split into "Active(n)" / "Deactivated(n)" tabs; an inactive member is only on the
   // second one, which is what S13-N3 (reactivation) has to be driven from
   if (process.argv.includes('--deactivated')) {
-    // the Active/Deactivated switch is not a [role=tab]; find the smallest element whose own text
-    // is exactly the "Deactivated(n)" label and click its centre
-    const box = await page.evaluate(() => {
-      const els = [...document.querySelectorAll('*')].filter(e =>
-        /^Deactivated\s*\(\d+\)$/.test((e.textContent || '').trim()) && e.children.length === 0);
-      const e = els[0]; if (!e) return null;
-      const r = e.getBoundingClientRect();
-      return { x: r.x + r.width / 2, y: r.y + r.height / 2, tag: e.tagName, cls: e.className };
-    });
-    console.log('Deactivated label:', JSON.stringify(box));
-    if (box) await page.mouse.click(box.x, box.y);
-    console.log('switching to Deactivated tab ->', !!box);
+    // The Active/Deactivated switch is a q-tabs control. Its label text sits in the DOM lowercase
+    // ("deactivated(68)") and is CSS-capitalised for display, so match the stable test id instead.
+    const tab = page.locator('[data-test-id="tab_deactivated_staff"]').first();
+    console.log('switching to Deactivated tab ->', await click(tab, 'Deactivated tab'));
     await page.waitForTimeout(3500);
   }
   const row = page.locator('tr', { hasText: who }).first();
