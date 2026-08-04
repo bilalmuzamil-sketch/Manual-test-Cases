@@ -1,0 +1,12 @@
+import {boot,APP} from './boot.mjs';
+const {browser,page}=await boot({tz:'America/Edmonton'});
+await page.goto(APP+'/schedule',{waitUntil:'domcontentloaded',timeout:90000});
+await page.waitForTimeout(9000);
+console.log('browser tz:',await page.evaluate(()=>Intl.DateTimeFormat().resolvedOptions().timeZone));
+const idx=await page.evaluate(()=>[...document.querySelectorAll('.schedule-block')].findIndex(e=>/Rear ramp/.test(e.innerText)));
+console.log('idx',idx);
+const pos=await page.evaluate(i=>{const r=document.querySelectorAll('.schedule-block')[i].getBoundingClientRect();return{x:r.x+r.width/2,y:r.y+r.height/2};},idx);
+await page.mouse.move(pos.x,pos.y); await page.waitForTimeout(2200);
+console.log('TOOLTIP:',await page.evaluate(()=>document.querySelector('.q-tooltip')?.innerText.trim()));
+await page.screenshot({path:'/tmp/sviu/evidence/30-tz-edmonton.png'});
+await browser.close();

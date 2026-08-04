@@ -26,7 +26,7 @@ export async function boot(opts={}){
   const browser=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome',headless:true,
     proxy:{server:process.env.HTTPS_PROXY},args:['--no-sandbox','--ignore-certificate-errors','--ssl-version-max=tls1.2']});
   const ctx=await browser.newContext({viewport:opts.viewport||{width:1680,height:1050},ignoreHTTPSErrors:true,
-    userAgent:opts.userAgent||UA, isMobile:opts.isMobile||false, hasTouch:opts.hasTouch||false, deviceScaleFactor:opts.dsf||1});
+    userAgent:opts.userAgent||UA, isMobile:opts.isMobile||false, hasTouch:opts.hasTouch||false, deviceScaleFactor:opts.dsf||1, timezoneId:opts.tz||undefined});
   await ctx.addCookies(cookies);
   const page=await ctx.newPage();
   const netlog=[];

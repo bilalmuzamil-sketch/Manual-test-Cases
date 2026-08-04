@@ -1,0 +1,170 @@
+{
+ "reqs": [
+  {
+   "m": "POST",
+   "u": "/api/schedule/shifts",
+   "body": "{\"workOrderId\":\"d4c9382b-7960-4bac-ac3b-feba8bc49fb1\",\"lineIds\":[\"bb215192-6425-4725-af09-5dcad36e8d8a\"],\"staffId\":\"1e81b8a0-9a45-4f16-89e3-209bf240990a\",\"departmentId\":null,\"startDate\":\"2026-08-02\",\"startTime\":\"07:00\",\"spreadMode\":\"single\",\"totalMinutes\":60,\"perDayMinutes\":null,\"color\":null,\"note\":null,\"isAllDay\":false,\"acknowledgeLongSeries\":false}"
+  },
+  {
+   "res": 201,
+   "u": "/api/schedule/shifts",
+   "body": "{\"data\":{\"shifts\":[{\"id\":\"562b6683-1508-45bb-bb57-0b5093c063a7\",\"staffId\":\"1e81b8a0-9a45-4f16-89e3-209bf240990a\",\"departmentId\":null,\"seriesId\":null,\"startsAt\":\"2026-08-02T13:00:00Z\",\"endsAt\":\"2026-08-02T14:00:00Z\",\"isAllDay\":false,\"durationMinutes\":60,\"color\":\"#e2effe\",\"note\":null,\"isConflict\":true,\"conflictReasons\":[\"non_working_day\"],\"workOrder\":{\"id\":\"d4c9382b-7960-4bac-ac3b-feba8bc49fb1\",\"number\":\"S-15855\",\"status\":\"approved\",\"statusLabel\":\"Approved\",\"priority\":null,\"customerName\":\"Vuchester Retail\",\"unit\":\"10123073\",\"vin\":\"F070075685\"},\"lines\":[{\"id\":\"bb215192-6425-4725-af09-5dcad36e8d8a\",\"name\":\" Service - Mobile service call made by George Donald 403-369-7067\",\"status\":\"authorized\",\"statusLabel\":\"Authorized\",\"timeEstimateMinutes\":\"0.00\",\"techTimeMinutes\":\"0.00\"}]}],\"seriesId\":null}}"
+  }
+ ],
+ "card": {
+  "t": "S-15855 / 1 line / Vuchester Retail / 10123073 / Needs Techs / Approved",
+  "x": 168,
+  "y": 490.1328125
+ },
+ "rows": [
+  {
+   "i": 0,
+   "t": "SERVICE/PARTS",
+   "y": 220.609375
+  },
+  {
+   "i": 1,
+   "t": "JY Jose Young Parts Technician",
+   "y": 290.859375
+  },
+  {
+   "i": 2,
+   "t": "SERVICE",
+   "y": 361.359375
+  },
+  {
+   "i": 3,
+   "t": "BA Brittany Anderson HD Technician",
+   "y": 422.859375
+  },
+  {
+   "i": 4,
+   "t": "CG Colleen Guerrero HD Shop Foreman",
+   "y": 586.859375
+  },
+  {
+   "i": 5,
+   "t": "AK Ayesha Khan",
+   "y": 748.359375
+  },
+  {
+   "i": 6,
+   "t": "WJ William Johns Heavy Duty Technician",
+   "y": 863.359375
+  },
+  {
+   "i": 7,
+   "t": "AW Andrew Wade HD Technician",
+   "y": 980.859375
+  },
+  {
+   "i": 8,
+   "t": "MM Mark Morris Heavy Duty Technician",
+   "y": 1062.859375
+  },
+  {
+   "i": 9,
+   "t": "AR Alyssa Randall HD Apprentice",
+   "y": 1142.359375
+  },
+  {
+   "i": 10,
+   "t": "KA Kellie Ayers Foreman",
+   "y": 1219.359375
+  },
+  {
+   "i": 11,
+   "t": "AR Angela Roman Welder",
+   "y": 1296.359375
+  },
+  {
+   "i": 12,
+   "t": "TJ Thomas Jones Apprentice",
+   "y": 1373.359375
+  },
+  {
+   "i": 13,
+   "t": "MM Matthew Mullen Equipment Sales",
+   "y": 1450.359375
+  },
+  {
+   "i": 14,
+   "t": "JP Joel Parker HD Field Foreman",
+   "y": 1527.359375
+  },
+  {
+   "i": 15,
+   "t": "CP Christian Pitts Shop Labourer",
+   "y": 1604.359375
+  },
+  {
+   "i": 16,
+   "t": "MG Margaret Garcia Heavy Duty Apprentice",
+   "y": 1681.359375
+  },
+  {
+   "i": 17,
+   "t": "help_outline Unassigned",
+   "y": 1786.609375
+  }
+ ],
+ "cols": [
+  {
+   "t": "Sunday Aug 2 OT",
+   "cls": "fc-day-sun",
+   "x": 631.640625
+  },
+  {
+   "t": "Monday Aug 3 OT",
+   "cls": "fc-day-mon",
+   "x": 788.921875
+  },
+  {
+   "t": "Tuesday Aug 4 OT",
+   "cls": "fc-day-tue",
+   "x": 946.203125
+  },
+  {
+   "t": "Wednesday Aug 5 OT",
+   "cls": "fc-day-wed",
+   "x": 1103.484375
+  },
+  {
+   "t": "Thursday Aug 6 OT",
+   "cls": "fc-day-thu",
+   "x": 1260.765625
+  },
+  {
+   "t": "Friday Aug 7 OT",
+   "cls": "fc-day-fri",
+   "x": 1418.046875
+  },
+  {
+   "t": "Saturday Aug 8 OT",
+   "cls": "fc-day-sat",
+   "x": 1575.34375
+  }
+ ],
+ "duringDrag": {
+  "mirror": 2,
+  "ghostText": null,
+  "highlightCells": 0,
+  "bodyHas": [
+   "q-field row no-wrap items-start q-field--outlined q-input q-field--float q-field--dense q-field--focused q-field--highlighted col",
+   "sidebar-card sidebar-card--approved sidebar-card--draggable sidebar-card--openable schedule-sidebar__card",
+   "fc-event fc-event-draggable fc-event-start fc-event-end fc-event-past fc-timeline-event fc-h-event",
+   "fc-event fc-event-draggable fc-event-start fc-event-end fc-event-past fc-timeline-event fc-h-event",
+   "fc-event fc-event-draggable fc-event-start fc-event-end fc-event-today fc-event-future fc-timeline-event fc-h-event",
+   "fc-event fc-event-draggable fc-event-start fc-event-end fc-event-future fc-timeline-event fc-h-event",
+   "fc-event fc-event-draggable fc-event-start fc-event-end fc-event-future fc-timeline-event fc-h-event",
+   "fc-event fc-event-draggable fc-event-start fc-event-end fc-event-future fc-timeline-event fc-h-event",
+   "fc-event fc-event-draggable fc-event-start fc-event-end fc-event-future fc-timeline-event fc-h-event",
+   "fc-event fc-event-draggable fc-event-start fc-event-end fc-event-past fc-timeline-event fc-h-event"
+  ]
+ },
+ "afterDrop": {
+  "dialog": null,
+  "menu": null,
+  "toast": null
+ }
+}

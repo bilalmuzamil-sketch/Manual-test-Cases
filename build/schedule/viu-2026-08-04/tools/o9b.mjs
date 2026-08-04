@@ -1,0 +1,31 @@
+import {boot,APP} from './boot.mjs';
+import fs from 'fs';
+const {browser,page}=await boot();
+const E='/tmp/sviu/evidence/'; const F={};
+await page.goto(APP+'/schedule',{waitUntil:'domcontentloaded',timeout:90000});
+await page.waitForTimeout(8000);
+await page.evaluate(()=>{const b=[...document.querySelectorAll('button')].find(e=>e.innerText.trim()==='chevron_right'&&e.closest('.mini-calendar')===null); if(b)b.click();});
+await page.waitForTimeout(4500);
+F.blocks=await page.evaluate(()=>[...document.querySelectorAll('.schedule-block')].map((e,i)=>({i,t:e.innerText.trim().replace(/\n/g,' / ').slice(0,70),cls:e.className})));
+const idx=await page.evaluate(()=>{const bs=[...document.querySelectorAll('.schedule-block')];return bs.findIndex(e=>/10123073/.test(e.innerText)&&!/--conflict/.test(e.className));});
+console.log('idx',idx,JSON.stringify(F.blocks));
+if(idx>=0){
+  await page.evaluate(i=>{document.querySelectorAll('.schedule-block')[i].click();},idx);
+  await page.waitForTimeout(2500);
+  const has=await page.evaluate(()=>!!document.querySelector('.q-dialog'));
+  console.log('dialog open?',has);
+  await page.screenshot({path:E+'27-modal-normal.png'});
+  F.visibleTime=await page.evaluate(()=>{const d=document.querySelector('.q-dialog'); if(!d)return null; return [...d.querySelectorAll('.q-field')].map(f=>({label:f.querySelector('.q-field__label')?.innerText.trim()||'',val:f.querySelector('input')?.value||''}));});
+  F.modalText=await page.evaluate(()=>document.querySelector('.q-dialog')?.innerText.trim());
+  F.icons=await page.evaluate(()=>{const d=document.querySelector('.q-dialog'); if(!d)return null; return [...d.querySelectorAll('i')].map(e=>e.innerText.trim()).filter(Boolean);});
+  await page.evaluate(()=>{const d=document.querySelector('.q-dialog'); if(!d)return; const i=[...d.querySelectorAll('i')].find(e=>/access_time|schedule/.test(e.innerText.trim())); if(i)i.click();});
+  await page.waitForTimeout(1600);
+  await page.screenshot({path:E+'28-time-picker.png'});
+  F.timePicker=await page.evaluate(()=>{const ms=[...document.querySelectorAll('.q-menu')]; const m=ms[ms.length-1]; if(!m)return null; return {text:m.innerText.trim().slice(0,600),positions:[...m.querySelectorAll('.q-time__clock-position')].map(e=>e.innerText.trim())};});
+}
+fs.writeFileSync('/tmp/sviu/f-modal.json',JSON.stringify(F,null,1));
+console.log('VISIBLE TIME',JSON.stringify(F.visibleTime));
+console.log('MODAL TEXT',JSON.stringify(F.modalText));
+console.log('ICONS',JSON.stringify(F.icons));
+console.log('TIME PICKER',JSON.stringify(F.timePicker));
+await browser.close();
