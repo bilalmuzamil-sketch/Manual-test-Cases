@@ -18,42 +18,42 @@
 | 3 | FLT-BAR-03 | [C29559](https://shopview.testrail.io/index.php?/cases/view/29559) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
 | 4 | FLT-STAT-01 | [C29560](https://shopview.testrail.io/index.php?/cases/view/29560) | `custom_expected`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
 | 5 | FLT-STAT-02 | [C29561](https://shopview.testrail.io/index.php?/cases/view/29561) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
-| 6 | FLT-STAT-03 | [C29562](https://shopview.testrail.io/index.php?/cases/view/29562) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
-| 7 | FLT-STAT-04 | [C29563](https://shopview.testrail.io/index.php?/cases/view/29563) | `custom_expected`, `custom_steps`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
-| 8 | FLT-STAT-05 | [C29564](https://shopview.testrail.io/index.php?/cases/view/29564) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
+| 6 | FLT-STAT-03 | [C29562](https://shopview.testrail.io/index.php?/cases/view/29562) | `custom_expected` | **200** | **MATCH** — 28 fields compared | DEVIATION |
+| 7 | FLT-STAT-04 | [C29563](https://shopview.testrail.io/index.php?/cases/view/29563) | `custom_expected`, `custom_steps`, `title` | **200** | **MATCH** — 28 fields compared | DEVIATION |
+| 8 | FLT-STAT-05 | [C29564](https://shopview.testrail.io/index.php?/cases/view/29564) | `custom_expected` | **200** | **MATCH** — 28 fields compared | DEVIATION |
 | 9 | FLT-STAT-06 | [C29565](https://shopview.testrail.io/index.php?/cases/view/29565) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
 | 10 | FLT-STAT-07 | [C38877](https://shopview.testrail.io/index.php?/cases/view/38877) | `custom_expected`, `custom_steps` | **200** | **MATCH** — 28 fields compared | PASS |
 | 11 | FLT-CUST-01 | [C29566](https://shopview.testrail.io/index.php?/cases/view/29566) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
 | 12 | FLT-CUST-02 | [C29567](https://shopview.testrail.io/index.php?/cases/view/29567) | `custom_expected`, `custom_steps` | **200** | **MATCH** — 28 fields compared | PASS |
-| 13 | FLT-CUST-03 | [C29568](https://shopview.testrail.io/index.php?/cases/view/29568) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
+| 13 | FLT-CUST-03 | [C29568](https://shopview.testrail.io/index.php?/cases/view/29568) | `custom_expected` | **200** | **MATCH** — 28 fields compared | DEVIATION |
 | 14 | FLT-CUST-04 | [C29569](https://shopview.testrail.io/index.php?/cases/view/29569) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
-| 15 | FLT-CUST-05 | [C29570](https://shopview.testrail.io/index.php?/cases/view/29570) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
+| 15 | FLT-CUST-05 | [C29570](https://shopview.testrail.io/index.php?/cases/view/29570) | `custom_expected` | **200** | **MATCH** — 28 fields compared | DEVIATION |
 | 16 | FLT-CUST-06 | [C29571](https://shopview.testrail.io/index.php?/cases/view/29571) | `custom_expected`, `custom_steps`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
-| 17 | FLT-CUST-07 | [C29572](https://shopview.testrail.io/index.php?/cases/view/29572) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
+| 17 | FLT-CUST-07 | [C29572](https://shopview.testrail.io/index.php?/cases/view/29572) | `custom_expected` | **200** | **MATCH** — 28 fields compared | DEVIATION |
 | 18 | FLT-CUST-08 | [C29573](https://shopview.testrail.io/index.php?/cases/view/29573) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
 | 19 | FLT-CUST-09 | [C29574](https://shopview.testrail.io/index.php?/cases/view/29574) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
 | 20 | FLT-TECH-01 | [C29575](https://shopview.testrail.io/index.php?/cases/view/29575) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
 | 21 | FLT-TECH-02 | [C29576](https://shopview.testrail.io/index.php?/cases/view/29576) | `custom_expected`, `custom_steps` | **200** | **MATCH** — 28 fields compared | PASS |
-| 22 | FLT-TECH-03 | [C29577](https://shopview.testrail.io/index.php?/cases/view/29577) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
+| 22 | FLT-TECH-03 | [C29577](https://shopview.testrail.io/index.php?/cases/view/29577) | `custom_expected` | **200** | **MATCH** — 28 fields compared | DEVIATION |
 | 23 | FLT-TECH-04 | [C29578](https://shopview.testrail.io/index.php?/cases/view/29578) | `custom_expected`, `custom_steps`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
-| 24 | FLT-TECH-05 | [C29579](https://shopview.testrail.io/index.php?/cases/view/29579) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
+| 24 | FLT-TECH-05 | [C29579](https://shopview.testrail.io/index.php?/cases/view/29579) | `custom_expected` | **200** | **MATCH** — 28 fields compared | DEVIATION |
 | 25 | FLT-TECH-06 | [C29580](https://shopview.testrail.io/index.php?/cases/view/29580) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
 | 26 | FLT-TECH-07 | [C29581](https://shopview.testrail.io/index.php?/cases/view/29581) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
 | 27 | FLT-ADV-01 | [C29582](https://shopview.testrail.io/index.php?/cases/view/29582) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
 | 28 | FLT-ADV-02 | [C29583](https://shopview.testrail.io/index.php?/cases/view/29583) | `custom_expected`, `custom_steps` | **200** | **MATCH** — 28 fields compared | PASS |
-| 29 | FLT-ADV-03 | [C29584](https://shopview.testrail.io/index.php?/cases/view/29584) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
+| 29 | FLT-ADV-03 | [C29584](https://shopview.testrail.io/index.php?/cases/view/29584) | `custom_expected` | **200** | **MATCH** — 28 fields compared | DEVIATION |
 | 30 | FLT-ADV-04 | [C29585](https://shopview.testrail.io/index.php?/cases/view/29585) | `custom_expected`, `custom_steps`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
-| 1 | FLT-ADV-05 | [C29586](https://shopview.testrail.io/index.php?/cases/view/29586) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
+| 1 | FLT-ADV-05 | [C29586](https://shopview.testrail.io/index.php?/cases/view/29586) | `custom_expected` | **200** | **MATCH** — 28 fields compared | DEVIATION |
 | 2 | FLT-ADV-06 | [C29587](https://shopview.testrail.io/index.php?/cases/view/29587) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
 | 3 | FLT-ADV-07 | [C29588](https://shopview.testrail.io/index.php?/cases/view/29588) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
 | 4 | FLT-ASSET-01 | [C29589](https://shopview.testrail.io/index.php?/cases/view/29589) | `custom_expected`, `custom_steps`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
 | 5 | FLT-ASSET-02 | [C29590](https://shopview.testrail.io/index.php?/cases/view/29590) | `custom_expected`, `custom_steps` | **200** | **MATCH** — 28 fields compared | PASS |
 | 6 | FLT-ASSET-03 | [C29591](https://shopview.testrail.io/index.php?/cases/view/29591) | `custom_expected`, `custom_preconds`, `custom_steps`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
 | 7 | FLT-ASSET-04 | [C29592](https://shopview.testrail.io/index.php?/cases/view/29592) | `custom_expected`, `custom_preconds`, `custom_steps`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
-| 8 | FLT-ASSET-05 | [C29593](https://shopview.testrail.io/index.php?/cases/view/29593) | `custom_expected`, `custom_preconds`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
+| 8 | FLT-ASSET-05 | [C29593](https://shopview.testrail.io/index.php?/cases/view/29593) | `custom_expected`, `custom_preconds`, `title` | **200** | **MATCH** — 28 fields compared | DEVIATION |
 | 9 | FLT-ASSET-06 | [C29594](https://shopview.testrail.io/index.php?/cases/view/29594) | `custom_expected`, `custom_steps`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
 | 10 | FLT-ASSET-07 | [C38878](https://shopview.testrail.io/index.php?/cases/view/38878) | `custom_expected`, `custom_steps` | **200** | **MATCH** — 28 fields compared | PASS |
-| 11 | FLT-CHIP-01 | [C29595](https://shopview.testrail.io/index.php?/cases/view/29595) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
+| 11 | FLT-CHIP-01 | [C29595](https://shopview.testrail.io/index.php?/cases/view/29595) | `custom_expected` | **200** | **MATCH** — 28 fields compared | DEVIATION |
 | 12 | FLT-CHIP-02 | [C29596](https://shopview.testrail.io/index.php?/cases/view/29596) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
 | 13 | FLT-CHIP-03 | [C29597](https://shopview.testrail.io/index.php?/cases/view/29597) | `custom_expected`, `custom_steps`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
 | 14 | FLT-CHIP-04 | [C29598](https://shopview.testrail.io/index.php?/cases/view/29598) | `custom_expected`, `custom_preconds`, `custom_steps`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
@@ -123,6 +123,11 @@
 | 18 | FLT-RPTS-01 | [C38909](https://shopview.testrail.io/index.php?/cases/view/38909) | `custom_expected` | **200** | **MATCH** — 28 fields compared | NOTBUILT |
 | 19 | FLT-RPTS-21 | [C38910](https://shopview.testrail.io/index.php?/cases/view/38910) | `custom_expected` | **200** | **MATCH** — 28 fields compared | NOTBUILT |
 | 20 | FLT-RPTS-22 | [C38911](https://shopview.testrail.io/index.php?/cases/view/38911) | `custom_expected` | **200** | **MATCH** — 28 fields compared | NOTBUILT |
+| 1 | FLT-TAB-02 | [C29609](https://shopview.testrail.io/index.php?/cases/view/29609) | `custom_steps`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
+| 2 | FLT-TAB-03 | [C29610](https://shopview.testrail.io/index.php?/cases/view/29610) | `custom_expected`, `custom_steps`, `title` | **200** | **MATCH** — 28 fields compared | PASS |
+| 3 | FLT-TAB-05 | [C29612](https://shopview.testrail.io/index.php?/cases/view/29612) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
+| 4 | FLT-BAR-02 | [C29558](https://shopview.testrail.io/index.php?/cases/view/29558) | `custom_preconds` | **200** | **MATCH** — 28 fields compared | PASS |
+| 1 | FLT-TAB-02 | [C29609](https://shopview.testrail.io/index.php?/cases/view/29609) | `custom_expected` | **200** | **MATCH** — 28 fields compared | PASS |
 
 ## Run 352 — verified UNTOUCHED (Standing Rules 34 / 47 / 50)
 

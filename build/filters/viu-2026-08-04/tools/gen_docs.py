@@ -27,6 +27,10 @@ def assertions(cid):
 
 # ---------------- 1. execution log ----------------
 recs = [json.loads(l) for l in open('/tmp/fviu/exec-log.jsonl')]
+CIDNAME = {r['cid']: r['iid'] for r in ROWS}
+for _r in recs:
+    if _r['iid'] not in BY:
+        _r['iid'] = CIDNAME[_r['cid']]
 L = ['# Filters — TestRail EXECUTION LOG — VIU pass of 2026-08-04', '',
  '> ## STATUS: **EXECUTED 2026-08-04.** **110 × `update_case`.** 0 add · 0 delete · 0 section',
  '> · **0 run writes**. Every operation **HTTP 200** and **byte-verified MATCH, 28 fields',

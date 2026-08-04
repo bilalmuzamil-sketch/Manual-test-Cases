@@ -24,42 +24,42 @@
 | 3 | FLT-BAR-03 | [C29559](https://shopview.testrail.io/index.php?/cases/view/29559) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 4 | FLT-STAT-01 | [C29560](https://shopview.testrail.io/index.php?/cases/view/29560) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 5 | FLT-STAT-02 | [C29561](https://shopview.testrail.io/index.php?/cases/view/29561) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
-| 6 | FLT-STAT-03 | [C29562](https://shopview.testrail.io/index.php?/cases/view/29562) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
-| 7 | FLT-STAT-04 | [C29563](https://shopview.testrail.io/index.php?/cases/view/29563) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
-| 8 | FLT-STAT-05 | [C29564](https://shopview.testrail.io/index.php?/cases/view/29564) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
+| 6 | FLT-STAT-03 | [C29562](https://shopview.testrail.io/index.php?/cases/view/29562) | DEVIATION | whether the reported defect is fixed — if it is, remove the known-issue line and the ticket link |
+| 7 | FLT-STAT-04 | [C29563](https://shopview.testrail.io/index.php?/cases/view/29563) | DEVIATION | whether the reported defect is fixed — if it is, remove the known-issue line and the ticket link |
+| 8 | FLT-STAT-05 | [C29564](https://shopview.testrail.io/index.php?/cases/view/29564) | DEVIATION | whether the reported defect is fixed — if it is, remove the known-issue line and the ticket link |
 | 9 | FLT-STAT-06 | [C29565](https://shopview.testrail.io/index.php?/cases/view/29565) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 10 | FLT-STAT-07 | [C38877](https://shopview.testrail.io/index.php?/cases/view/38877) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 11 | FLT-CUST-01 | [C29566](https://shopview.testrail.io/index.php?/cases/view/29566) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 12 | FLT-CUST-02 | [C29567](https://shopview.testrail.io/index.php?/cases/view/29567) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
-| 13 | FLT-CUST-03 | [C29568](https://shopview.testrail.io/index.php?/cases/view/29568) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
+| 13 | FLT-CUST-03 | [C29568](https://shopview.testrail.io/index.php?/cases/view/29568) | DEVIATION | whether the reported defect is fixed — if it is, remove the known-issue line and the ticket link |
 | 14 | FLT-CUST-04 | [C29569](https://shopview.testrail.io/index.php?/cases/view/29569) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
-| 15 | FLT-CUST-05 | [C29570](https://shopview.testrail.io/index.php?/cases/view/29570) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
+| 15 | FLT-CUST-05 | [C29570](https://shopview.testrail.io/index.php?/cases/view/29570) | DEVIATION | whether the reported defect is fixed — if it is, remove the known-issue line and the ticket link |
 | 16 | FLT-CUST-06 | [C29571](https://shopview.testrail.io/index.php?/cases/view/29571) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
-| 17 | FLT-CUST-07 | [C29572](https://shopview.testrail.io/index.php?/cases/view/29572) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
+| 17 | FLT-CUST-07 | [C29572](https://shopview.testrail.io/index.php?/cases/view/29572) | DEVIATION | whether the reported defect is fixed — if it is, remove the known-issue line and the ticket link |
 | 18 | FLT-CUST-08 | [C29573](https://shopview.testrail.io/index.php?/cases/view/29573) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 19 | FLT-CUST-09 | [C29574](https://shopview.testrail.io/index.php?/cases/view/29574) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 20 | FLT-TECH-01 | [C29575](https://shopview.testrail.io/index.php?/cases/view/29575) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 21 | FLT-TECH-02 | [C29576](https://shopview.testrail.io/index.php?/cases/view/29576) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
-| 22 | FLT-TECH-03 | [C29577](https://shopview.testrail.io/index.php?/cases/view/29577) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
+| 22 | FLT-TECH-03 | [C29577](https://shopview.testrail.io/index.php?/cases/view/29577) | DEVIATION | whether the reported defect is fixed — if it is, remove the known-issue line and the ticket link |
 | 23 | FLT-TECH-04 | [C29578](https://shopview.testrail.io/index.php?/cases/view/29578) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
-| 24 | FLT-TECH-05 | [C29579](https://shopview.testrail.io/index.php?/cases/view/29579) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
+| 24 | FLT-TECH-05 | [C29579](https://shopview.testrail.io/index.php?/cases/view/29579) | DEVIATION | whether the reported defect is fixed — if it is, remove the known-issue line and the ticket link |
 | 25 | FLT-TECH-06 | [C29580](https://shopview.testrail.io/index.php?/cases/view/29580) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 26 | FLT-TECH-07 | [C29581](https://shopview.testrail.io/index.php?/cases/view/29581) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 27 | FLT-ADV-01 | [C29582](https://shopview.testrail.io/index.php?/cases/view/29582) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 28 | FLT-ADV-02 | [C29583](https://shopview.testrail.io/index.php?/cases/view/29583) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
-| 29 | FLT-ADV-03 | [C29584](https://shopview.testrail.io/index.php?/cases/view/29584) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
+| 29 | FLT-ADV-03 | [C29584](https://shopview.testrail.io/index.php?/cases/view/29584) | DEVIATION | whether the reported defect is fixed — if it is, remove the known-issue line and the ticket link |
 | 30 | FLT-ADV-04 | [C29585](https://shopview.testrail.io/index.php?/cases/view/29585) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
-| 31 | FLT-ADV-05 | [C29586](https://shopview.testrail.io/index.php?/cases/view/29586) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
+| 31 | FLT-ADV-05 | [C29586](https://shopview.testrail.io/index.php?/cases/view/29586) | DEVIATION | whether the reported defect is fixed — if it is, remove the known-issue line and the ticket link |
 | 32 | FLT-ADV-06 | [C29587](https://shopview.testrail.io/index.php?/cases/view/29587) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 33 | FLT-ADV-07 | [C29588](https://shopview.testrail.io/index.php?/cases/view/29588) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 34 | FLT-ASSET-01 | [C29589](https://shopview.testrail.io/index.php?/cases/view/29589) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 35 | FLT-ASSET-02 | [C29590](https://shopview.testrail.io/index.php?/cases/view/29590) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 36 | FLT-ASSET-03 | [C29591](https://shopview.testrail.io/index.php?/cases/view/29591) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 37 | FLT-ASSET-04 | [C29592](https://shopview.testrail.io/index.php?/cases/view/29592) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
-| 38 | FLT-ASSET-05 | [C29593](https://shopview.testrail.io/index.php?/cases/view/29593) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
+| 38 | FLT-ASSET-05 | [C29593](https://shopview.testrail.io/index.php?/cases/view/29593) | DEVIATION | whether the reported defect is fixed — if it is, remove the known-issue line and the ticket link |
 | 39 | FLT-ASSET-06 | [C29594](https://shopview.testrail.io/index.php?/cases/view/29594) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 40 | FLT-ASSET-07 | [C38878](https://shopview.testrail.io/index.php?/cases/view/38878) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
-| 41 | FLT-CHIP-01 | [C29595](https://shopview.testrail.io/index.php?/cases/view/29595) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
+| 41 | FLT-CHIP-01 | [C29595](https://shopview.testrail.io/index.php?/cases/view/29595) | DEVIATION | whether the reported defect is fixed — if it is, remove the known-issue line and the ticket link |
 | 42 | FLT-CHIP-02 | [C29596](https://shopview.testrail.io/index.php?/cases/view/29596) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 43 | FLT-CHIP-03 | [C29597](https://shopview.testrail.io/index.php?/cases/view/29597) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |
 | 44 | FLT-CHIP-04 | [C29598](https://shopview.testrail.io/index.php?/cases/view/29598) | PASS | that the behaviour still matches, and that the labels quoted in the case are still the ones on screen |

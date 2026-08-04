@@ -136,7 +136,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
     - assertion 1, verbatim: "The ticked checkbox appears filled (checked)."
     - assertion 2, verbatim: "The table updates immediately to show only work orders in the selected status - there is no confirm or apply button on desktop."
     - assertion 3, verbatim: "Work orders in other statuses are no longer listed."
-- **FLT-STAT-03 = [C29562](https://shopview.testrail.io/index.php?/cases/view/29562)** — verdict **PASS**
+- **FLT-STAT-03 = [C29562](https://shopview.testrail.io/index.php?/cases/view/29562)** — verdict **DEVIATION**
     - assertion 1, verbatim: "Every ticked status shows a filled checkbox."
     - assertion 2, verbatim: "The table shows work orders whose status matches ANY of the ticked statuses (both Estimate and Approved rows appear)."
     - assertion 3, verbatim: "Work orders in statuses that are not ticked are hidden."
@@ -165,7 +165,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 - **FLT-STAT-01 = [C29560](https://shopview.testrail.io/index.php?/cases/view/29560)** — verdict **PASS**
     - assertion 1, verbatim: "A dropdown panel opens under the Status chip. It lists all nine statuses as checkboxes, in this order: Estimate, Approved, In progress, Review, Complete, Invoiced, Paid, Declined, Imported. All checkboxes are unticked (nothing selected yet). A 'Clear Selection' action is shown at the bottom of the dropdown."
-- **FLT-STAT-04 = [C29563](https://shopview.testrail.io/index.php?/cases/view/29563)** — verdict **PASS**
+- **FLT-STAT-04 = [C29563](https://shopview.testrail.io/index.php?/cases/view/29563)** — verdict **DEVIATION**
     - assertion 1, verbatim: "All status checkboxes become unticked."
     - assertion 2, verbatim: "The Status filter is removed and the table returns to showing work orders of every status."
     - assertion 3, verbatim: "Only the Status filter is affected - any other active filters stay applied."
@@ -174,7 +174,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 > **Requirement, verbatim:** "Clicking outside the dropdown closes it"
 
-- **FLT-STAT-05 = [C29564](https://shopview.testrail.io/index.php?/cases/view/29564)** — verdict **PASS**
+- **FLT-STAT-05 = [C29564](https://shopview.testrail.io/index.php?/cases/view/29564)** — verdict **DEVIATION**
     - assertion 1, verbatim: "The dropdown closes."
     - assertion 2, verbatim: "The ticked statuses stay selected - the Status chip stays in its active state showing the selection."
     - assertion 3, verbatim: "The table stays filtered by the selected statuses."
@@ -187,7 +187,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
     - assertion 1, verbatim: "The ticked checkbox appears filled (checked)."
     - assertion 2, verbatim: "The table updates immediately to show only work orders in the selected status - there is no confirm or apply button on desktop."
     - assertion 3, verbatim: "Work orders in other statuses are no longer listed."
-- **FLT-CUST-05 = [C29570](https://shopview.testrail.io/index.php?/cases/view/29570)** — verdict **PASS**
+- **FLT-CUST-05 = [C29570](https://shopview.testrail.io/index.php?/cases/view/29570)** — verdict **DEVIATION**
     - assertion 1, verbatim: "The table shows only work orders whose customer is one of the two selected customers."
     - assertion 2, verbatim: "Work orders belonging to any other customer are hidden."
     - assertion 3, verbatim: "The table updates in real time as you make the selections (no apply button on desktop)."
@@ -226,7 +226,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 > **Requirement, verbatim:** "On the Completed tab, the Status filter chip is not shown: that tab already pre-filters by the Complete status"
 
 - **FLT-TAB-03 = [C29610](https://shopview.testrail.io/index.php?/cases/view/29610)** — verdict **PASS**
-    - assertion 1, verbatim: "The Status chip is shown but greyed out, already filled in with this tab's status, and cannot be clicked or changed - the tab already pre-filters the list to Complete."
+    - assertion 1, verbatim: "The Status chip is not shown on this tab at all - only four chips appear. The tab already pre-filters the list to Complete."
     - assertion 2, verbatim: "Customer, Lead Technician, Service Advisor and Asset on Site chips are shown and usable."
     - assertion 3, verbatim: "After step 4 the table shows only that customer's COMPLETE work orders."
 
@@ -275,14 +275,14 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 > **Requirement, verbatim:** "The user can select one or more customers; each selected customer appears as a tag/chip at the top of the dropdown input area"
 
-- **FLT-CUST-03 = [C29568](https://shopview.testrail.io/index.php?/cases/view/29568)** — verdict **PASS**
+- **FLT-CUST-03 = [C29568](https://shopview.testrail.io/index.php?/cases/view/29568)** — verdict **DEVIATION**
     - assertion 1, verbatim: "Each selected customer appears as a tag (small chip) with an x in the input area at the top of the dropdown. Each selected customer's row in the list shows a checkmark on the right. Long customer names on tags are shortened with an ellipsis (for example 'Texas Truck And Aut...'). You can keep selecting as many customers as needed - there is no selection limit."
 
 ### S3-R4 — covered
 
 > **Requirement, verbatim:** "Selected customers are indicated with a checkmark in the list"
 
-- **FLT-CUST-03 = [C29568](https://shopview.testrail.io/index.php?/cases/view/29568)** — verdict **PASS**
+- **FLT-CUST-03 = [C29568](https://shopview.testrail.io/index.php?/cases/view/29568)** — verdict **DEVIATION**
     - assertion 1, verbatim: "Each selected customer appears as a tag (small chip) with an x in the input area at the top of the dropdown. Each selected customer's row in the list shows a checkmark on the right. Long customer names on tags are shortened with an ellipsis (for example 'Texas Truck And Aut...'). You can keep selecting as many customers as needed - there is no selection limit."
 
 ### S3-R5 — covered
@@ -299,7 +299,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 > **Requirement, verbatim:** "The table updates to show only work orders belonging to any of the selected customers"
 
-- **FLT-CUST-05 = [C29570](https://shopview.testrail.io/index.php?/cases/view/29570)** — verdict **PASS**
+- **FLT-CUST-05 = [C29570](https://shopview.testrail.io/index.php?/cases/view/29570)** — verdict **DEVIATION**
     - assertion 1, verbatim: "The table shows only work orders whose customer is one of the two selected customers."
     - assertion 2, verbatim: "Work orders belonging to any other customer are hidden."
     - assertion 3, verbatim: "The table updates in real time as you make the selections (no apply button on desktop)."
@@ -326,7 +326,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 > **Requirement, verbatim:** "Clicking outside the dropdown closes it; selected tags remain visible"
 
-- **FLT-CUST-07 = [C29572](https://shopview.testrail.io/index.php?/cases/view/29572)** — verdict **PASS**
+- **FLT-CUST-07 = [C29572](https://shopview.testrail.io/index.php?/cases/view/29572)** — verdict **DEVIATION**
     - assertion 1, verbatim: "The dropdown closes when you click outside it."
     - assertion 2, verbatim: "The Customer chip stays in the active (blue) state showing the selection and the table stays filtered."
     - assertion 3, verbatim: "When reopened, the selected customers' tags are still visible in the input area."
@@ -370,7 +370,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 > **Requirement, verbatim:** "The user can select one or more technicians; selected technicians are indicated with a filled checkbox"
 
-- **FLT-TECH-03 = [C29577](https://shopview.testrail.io/index.php?/cases/view/29577)** — verdict **PASS**
+- **FLT-TECH-03 = [C29577](https://shopview.testrail.io/index.php?/cases/view/29577)** — verdict **DEVIATION**
     - assertion 1, verbatim: "Selected technicians show a checkmark on the row, and as a small removable tag above the list in the list."
     - assertion 2, verbatim: "The table shows only work orders where one of the selected technicians is assigned as the LEAD technician."
     - assertion 3, verbatim: "A work order where the technician is assigned only in a non-lead role does not appear."
@@ -380,7 +380,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 > **Requirement, verbatim:** "The table updates to show only work orders where the selected users are assigned as lead technician"
 
-- **FLT-TECH-03 = [C29577](https://shopview.testrail.io/index.php?/cases/view/29577)** — verdict **PASS**
+- **FLT-TECH-03 = [C29577](https://shopview.testrail.io/index.php?/cases/view/29577)** — verdict **DEVIATION**
     - assertion 1, verbatim: "Selected technicians show a checkmark on the row, and as a small removable tag above the list in the list."
     - assertion 2, verbatim: "The table shows only work orders where one of the selected technicians is assigned as the LEAD technician."
     - assertion 3, verbatim: "A work order where the technician is assigned only in a non-lead role does not appear."
@@ -399,7 +399,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 > **Requirement, verbatim:** "Clicking outside the dropdown closes it"
 
-- **FLT-TECH-05 = [C29579](https://shopview.testrail.io/index.php?/cases/view/29579)** — verdict **PASS**
+- **FLT-TECH-05 = [C29579](https://shopview.testrail.io/index.php?/cases/view/29579)** — verdict **DEVIATION**
     - assertion 1, verbatim: "The dropdown closes."
     - assertion 2, verbatim: "The selection stays applied - the chip stays active and the table stays filtered."
 
@@ -434,7 +434,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 > **Requirement, verbatim:** "The user can select one or more advisors; selected advisors are indicated with a filled checkbox"
 
-- **FLT-ADV-03 = [C29584](https://shopview.testrail.io/index.php?/cases/view/29584)** — verdict **PASS**
+- **FLT-ADV-03 = [C29584](https://shopview.testrail.io/index.php?/cases/view/29584)** — verdict **DEVIATION**
     - assertion 1, verbatim: "Selected advisors show a checkmark on the row, and as a small removable tag above the list in the list."
     - assertion 2, verbatim: "The table shows only work orders assigned to any of the selected advisors."
     - assertion 3, verbatim: "The table updates in real time as you select."
@@ -443,7 +443,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 > **Requirement, verbatim:** "The table updates to show only work orders assigned to the selected advisors"
 
-- **FLT-ADV-03 = [C29584](https://shopview.testrail.io/index.php?/cases/view/29584)** — verdict **PASS**
+- **FLT-ADV-03 = [C29584](https://shopview.testrail.io/index.php?/cases/view/29584)** — verdict **DEVIATION**
     - assertion 1, verbatim: "Selected advisors show a checkmark on the row, and as a small removable tag above the list in the list."
     - assertion 2, verbatim: "The table shows only work orders assigned to any of the selected advisors."
     - assertion 3, verbatim: "The table updates in real time as you select."
@@ -461,7 +461,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 > **Requirement, verbatim:** "Clicking outside the dropdown closes it"
 
-- **FLT-ADV-05 = [C29586](https://shopview.testrail.io/index.php?/cases/view/29586)** — verdict **PASS**
+- **FLT-ADV-05 = [C29586](https://shopview.testrail.io/index.php?/cases/view/29586)** — verdict **DEVIATION**
     - assertion 1, verbatim: "The dropdown closes."
     - assertion 2, verbatim: "The selection stays applied - the chip stays active and the table stays filtered."
 
@@ -521,7 +521,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 > **Requirement, verbatim:** "Clicking outside the dropdown closes it"
 
-- **FLT-ASSET-05 = [C29593](https://shopview.testrail.io/index.php?/cases/view/29593)** — verdict **PASS**
+- **FLT-ASSET-05 = [C29593](https://shopview.testrail.io/index.php?/cases/view/29593)** — verdict **DEVIATION**
     - assertion 1, verbatim: "The dropdown closes."
     - assertion 2, verbatim: "The Yes selection stays applied - the chip stays active and the table stays filtered."
 
@@ -537,7 +537,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 > **Requirement, verbatim:** "When a filter has one or more values selected, the chip changes to an active/highlighted visual state (blue pill) and displays the selected value(s)"
 
-- **FLT-CHIP-01 = [C29595](https://shopview.testrail.io/index.php?/cases/view/29595)** — verdict **PASS**
+- **FLT-CHIP-01 = [C29595](https://shopview.testrail.io/index.php?/cases/view/29595)** — verdict **DEVIATION**
     - assertion 1, verbatim: "The Status chip changes to an active/highlighted look (blue pill)."
     - assertion 2, verbatim: "The chip displays the selected value (for example 'Status: Estimate')."
     - assertion 3, verbatim: "The other chips stay in their default state."
@@ -614,7 +614,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 
 > **Requirement, verbatim:** "Each filter dropdown includes a "Clear selection" action that removes only the selections for that specific filter without affecting others"
 
-- **FLT-STAT-04 = [C29563](https://shopview.testrail.io/index.php?/cases/view/29563)** — verdict **PASS**
+- **FLT-STAT-04 = [C29563](https://shopview.testrail.io/index.php?/cases/view/29563)** — verdict **DEVIATION**
     - assertion 1, verbatim: "All status checkboxes become unticked."
     - assertion 2, verbatim: "The Status filter is removed and the table returns to showing work orders of every status."
     - assertion 3, verbatim: "Only the Status filter is affected - any other active filters stay applied."
@@ -749,7 +749,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
     - assertion 2, verbatim: "Customer, Lead Technician, Service Advisor and Asset on Site chips are shown and usable."
     - assertion 3, verbatim: "After step 4 the table shows only that customer's ESTIMATE work orders - the customer filter narrows the pre-filtered Estimates list."
 - **FLT-TAB-05 = [C29612](https://shopview.testrail.io/index.php?/cases/view/29612)** — verdict **PASS**
-    - assertion 1, verbatim: "On the Estimates tab your Status choice is not applied and cannot be changed - the Status chip is greyed out and pre-filled with the tab's own status. The Customer selection is still shown and still filters the list."
+    - assertion 1, verbatim: "On the Estimates tab your Status choice is not applied and cannot be changed - the Status chip is not shown on that tab. The Customer selection is still shown and still filters the list."
     - assertion 2, verbatim: "Back on the All tab the Status chip reappears with the SAME selection (Approved) still applied - the selection was retained in memory, not lost."
     - assertion 3, verbatim: "The Customer selection is unchanged throughout."
 
@@ -758,7 +758,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 > **Requirement, verbatim:** "On the Completed tab, the Status filter chip is hidden; the remaining four filters are shown and apply on top of the Completed pre-filter"
 
 - **FLT-TAB-03 = [C29610](https://shopview.testrail.io/index.php?/cases/view/29610)** — verdict **PASS**
-    - assertion 1, verbatim: "The Status chip is shown but greyed out, already filled in with this tab's status, and cannot be clicked or changed - the tab already pre-filters the list to Complete."
+    - assertion 1, verbatim: "The Status chip is not shown on this tab at all - only four chips appear. The tab already pre-filters the list to Complete."
     - assertion 2, verbatim: "Customer, Lead Technician, Service Advisor and Asset on Site chips are shown and usable."
     - assertion 3, verbatim: "After step 4 the table shows only that customer's COMPLETE work orders."
 
@@ -776,7 +776,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 > **Requirement, verbatim:** "Filter selections are maintained when switching between tabs; selections that are incompatible with a tab (e.g., a Status selection on the Estimates tab) are not applied but are retained in memory so they reappear if the user switches back to the All tab"
 
 - **FLT-TAB-05 = [C29612](https://shopview.testrail.io/index.php?/cases/view/29612)** — verdict **PASS**
-    - assertion 1, verbatim: "On the Estimates tab your Status choice is not applied and cannot be changed - the Status chip is greyed out and pre-filled with the tab's own status. The Customer selection is still shown and still filters the list."
+    - assertion 1, verbatim: "On the Estimates tab your Status choice is not applied and cannot be changed - the Status chip is not shown on that tab. The Customer selection is still shown and still filters the list."
     - assertion 2, verbatim: "Back on the All tab the Status chip reappears with the SAME selection (Approved) still applied - the selection was retained in memory, not lost."
     - assertion 3, verbatim: "The Customer selection is unchanged throughout."
 
@@ -785,7 +785,7 @@ A "covered" verdict with no quoted text is unfalsifiable, so each row quotes the
 > **Requirement, verbatim:** "A Status selection made on the All tab does not carry over visually to the Estimates or Completed tabs, but is not lost"
 
 - **FLT-TAB-05 = [C29612](https://shopview.testrail.io/index.php?/cases/view/29612)** — verdict **PASS**
-    - assertion 1, verbatim: "On the Estimates tab your Status choice is not applied and cannot be changed - the Status chip is greyed out and pre-filled with the tab's own status. The Customer selection is still shown and still filters the list."
+    - assertion 1, verbatim: "On the Estimates tab your Status choice is not applied and cannot be changed - the Status chip is not shown on that tab. The Customer selection is still shown and still filters the list."
     - assertion 2, verbatim: "Back on the All tab the Status chip reappears with the SAME selection (Approved) still applied - the selection was retained in memory, not lost."
     - assertion 3, verbatim: "The Customer selection is unchanged throughout."
 
