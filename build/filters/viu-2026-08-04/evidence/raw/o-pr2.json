@@ -1,0 +1,138 @@
+{
+ "tab_Catalog": {
+  "url": "https://sv8785.qa.shopview.com/parts/parts-catalogue",
+  "chips": [
+   {
+    "t": "Manufacturer|keyboard_arrow_down",
+    "testid": "filter_chip_manufacturer"
+   },
+   {
+    "t": "Category|keyboard_arrow_down",
+    "testid": "filter_chip_category"
+   }
+  ],
+  "toggle": true,
+  "search": "search|Search",
+  "rows": 32,
+  "headers": [
+   "more_vert",
+   "Description",
+   "Part Number",
+   "Tags",
+   "Category",
+   "Manufacturer",
+   "Measurement",
+   "Size"
+  ]
+ },
+ "tab_Vendor_Invoices": {
+  "url": "https://sv8785.qa.shopview.com/parts/deliveries",
+  "chips": [],
+  "toggle": false,
+  "search": "search|Search",
+  "rows": 32,
+  "headers": [
+   "Work Order",
+   "Invoice Number",
+   "Order Number",
+   "Received By",
+   "Vendor Name",
+   "Date Received",
+   "Invoice Date",
+   "Due Date"
+  ]
+ },
+ "tab_Purchase_Orders": {
+  "url": "https://sv8785.qa.shopview.com/parts/orders",
+  "chips": [],
+  "toggle": false,
+  "search": "search|Search",
+  "rows": 32,
+  "headers": [
+   "",
+   "Work Order",
+   "Purchase Order Number",
+   "Vendor",
+   "Order Status",
+   "Created On",
+   "Ordered By",
+   "Total Price"
+  ]
+ },
+ "tab_Vendors": {
+  "url": "https://sv8785.qa.shopview.com/parts/vendors",
+  "chips": [],
+  "toggle": false,
+  "search": "search|Search",
+  "rows": 32,
+  "headers": [
+   "Name",
+   "Telephone",
+   "Email",
+   "Address 1",
+   "Address 2",
+   "City",
+   "State/Province",
+   "Zip/Postal Code"
+  ]
+ },
+ "tab_Part_Sales": {
+  "url": "https://sv8785.qa.shopview.com/parts/part-sales",
+  "chips": [
+   {
+    "t": "Status|keyboard_arrow_down",
+    "testid": "filter_chip_status"
+   }
+  ],
+  "toggle": true,
+  "search": "search|Search",
+  "rows": 32,
+  "headers": [
+   "Number",
+   "Status",
+   "Customer",
+   "Asset",
+   "VIN/Serial #",
+   "Created By",
+   "Total Price",
+   "Created On"
+  ]
+ },
+ "rpt_sales": {
+  "url": "https://sv8785.qa.shopview.com/reports/sales",
+  "chips": [],
+  "toggle": false,
+  "search": null,
+  "rows": 2,
+  "headers": [
+   "Invoice Date",
+   "Invoice",
+   "Customer",
+   "Inv. Hrs",
+   "Billing Efficiency",
+   "Labor Invoiced",
+   "Labor Margin",
+   "Parts Invoiced"
+  ]
+ },
+ "rpt_techeff": {
+  "url": "https://sv8785.qa.shopview.com/reports/technician-efficiency",
+  "chips": [],
+  "toggle": false,
+  "search": null,
+  "rows": 2,
+  "headers": [
+   "Date",
+   "Invoice",
+   "Customer",
+   "WO Line",
+   "Clocked Hrs",
+   "Invoiced Tech Hrs",
+   "Hrs Profit",
+   "Efficiency"
+  ]
+ },
+ "rpt_dateRangePanel": {
+  "absent": true
+ }
+}

@@ -1,0 +1,108 @@
+{
+ "A01_status_customer": {
+  "status": 200,
+  "info": {
+   "n": 5,
+   "statuses": [
+    "paid"
+   ],
+   "customers": [
+    "Lastone Construction"
+   ]
+  }
+ },
+ "A02_multi_status_or": {
+  "status": 200,
+  "info": {
+   "n": 2,
+   "statuses": [
+    "estimate"
+   ],
+   "customers": [
+    "Lastone Construction"
+   ]
+  }
+ },
+ "A03_unknown_uuid": {
+  "status": 200,
+  "info": {
+   "n": 0,
+   "statuses": [],
+   "customers": []
+  }
+ },
+ "A03_nonuuid": {
+  "status": 200,
+  "info": {
+   "n": 0,
+   "statuses": [],
+   "customers": []
+  }
+ },
+ "A04_bad_field": {
+  "status": 400,
+  "info": {
+   "n": 0,
+   "statuses": [],
+   "customers": []
+  }
+ },
+ "A04_bad_status": {
+  "status": 200,
+  "info": {
+   "n": 0,
+   "statuses": [],
+   "customers": []
+  }
+ },
+ "A04_scrambled": {
+  "status": 400,
+  "info": {
+   "n": 0,
+   "statuses": [],
+   "customers": []
+  }
+ },
+ "A04_array_type": {
+  "status": 200,
+  "info": {
+   "n": 0,
+   "statuses": [],
+   "customers": []
+  }
+ },
+ "A05_nomatch": {
+  "status": 200,
+  "info": {
+   "n": 0,
+   "statuses": [],
+   "customers": []
+  }
+ },
+ "A05_vehiclehere_bad": {
+  "status": 200,
+  "info": {
+   "n": 5,
+   "statuses": [
+    "approved",
+    "estimate",
+    "paid"
+   ],
+   "customers": [
+    "Aagate Landscaping"
+   ]
+  }
+ },
+ "P_get": {
+  "status": 200,
+  "body": "{\"data\":{\"pageKey\":\"work-orders-list\",\"value\":{\"tab\":\"all\",\"search\":\"\",\"sortBy\":\"vehicle\",\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":false,\"progress\":true,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"invoicedDate\":false,\"serviceAdvisor\":true,\"partRequestsCount\":false,\"clockedInTechnicians\":true,\"partReturnRequestsCount\":false,\"unreceivedPartRequestsCount\":false},\"fi"
+ },
+ "P_neverSavedKey": {
+  "status": 200,
+  "body": "{\"data\":{\"pageKey\":\"zz-never-saved-key\",\"value\":null,\"updatedAt\":null}}"
+ },
+ "P_badKey": {
+  "status": 404,
+  "body": "{\"errors\":[{\"error\":\"\\u0027resource\\u0027 was not found.\"}]}"
+ }
+}
