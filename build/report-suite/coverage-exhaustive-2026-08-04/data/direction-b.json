@@ -1,0 +1,55 @@
+{
+ "orphan_anchor_cases": {},
+ "cases_with_no_anchor": {
+  "30184": "SV-8582 (SBC spec §7 User Feedback Summary — the data-fetch error toast; CROSS-CUTTING: the SBC spec carries no error-state story of its own so the epic key is used deliberately)",
+  "30235": "SV-8593 (SBR spec §3 Key Decisions accounting parentheses — owned by the shared A5 report-shell formatter module: verbatim 'accounting-parens negatives')",
+  "30236": "SV-8582 (SBR spec §3 half-up rounding rule + round of unrounded rollups; CROSS-CUTTING display rule with no single owning story)",
+  "38885": "SV-8646 (specs/parts-velocity.md Story 6 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21)",
+  "43547": "SV-8646 (PV spec v4 2026-07-29 Story 6 exports — the spec is silent on a renderer size limit; tech-plan-2026-07-29 A3/FR-F4 covers only the ten-thousand-row export cap)",
+  "38925": "SV-8589 (verbatim Tests: 'QB journal amount exact from fractional movement'; Goal: 'QB journal-entry sync multiplies these into dollar amounts'; tech-plan-2026-07-29 Phase 0 / PR-1 D2 - no report spec covers QuickBooks)",
+  "30441": "SV-8654 (TU spec v5 2026-07-29 Story 7 Error Handling + §7 notifications table — these CLOSE both strings verbatim (\"Download started\" / \"Failed to download report\"); Story 7 has no S-anchor for them so §7 is the closing reference)",
+  "38887": "SV-8654 (specs/technician-utilization.md Story 7 exports — spec silent on a cap; tech-plan-2026-07-29 A3/FR-F4: suite-wide 10; 000-row export cap; locked by Chris 2026-07-21)",
+  "38918": "SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending)",
+  "30526": "SV-8657 (WIP spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the WIP prerequisite still names a Work In Progress reports permission — his spec edit owed)",
+  "30544": "SV-8669 (specs/inventory-value.md Story 2 context note (no dead-stock exclusion))",
+  "30603": "SV-8668 (IV spec Story 1 Prerequisites — one reports permission for all six ruled by Chris Ward Q2=A + QA lead 2026-08-03 \"ONE permission FOR NOW\"; the IV prerequisite still names the inventory-reports permission — his spec edit owed)"
+ },
+ "anchor_resolves_only_in_another_spec": {},
+ "foreign_cases": [
+  {
+   "c_id": 38923,
+   "title": "SBR Summary and Expanded CSV exports carry the Location column at its designated slot",
+   "refs": null,
+   "created_by": 1,
+   "section": "SBR — Exports"
+  },
+  {
+   "c_id": 38920,
+   "title": "PV Location column is scope-governed — hidden at one location, Multiple on a merged special-order row",
+   "refs": null,
+   "created_by": 1,
+   "section": "PV — Row Model"
+  },
+  {
+   "c_id": 38919,
+   "title": "TU column selector hides Est. Lost Labor, persists across reload, and the export mirrors it",
+   "refs": null,
+   "created_by": 1,
+   "section": "TU — Visual & Accessibility"
+  },
+  {
+   "c_id": 38922,
+   "title": "WIP CSV export gains the Locations line while its column semantics stay exactly as shipped",
+   "refs": null,
+   "created_by": 1,
+   "section": "WIP — Exports"
+  },
+  {
+   "c_id": 38921,
+   "title": "IV CSV export carries the As of and Locations metadata lines above the header, plus a scope-conditional Location column",
+   "refs": null,
+   "created_by": 1,
+   "section": "IV — Exports"
+  }
+ ]
+}
