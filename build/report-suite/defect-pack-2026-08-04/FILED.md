@@ -12,7 +12,7 @@ pass did not intend to change was proven byte-identical to its pre-write snapsho
 | 1 | **SV-8818** | https://shopview.atlassian.net/browse/SV-8818 | PDF download fails with a server error on a medium-sized report view, on 5 of the 6 reports | Bug | High | SV-8582 | SV-8591 | relates to SV-8591 | 4 |
 | 2 | **SV-8819** | https://shopview.atlassian.net/browse/SV-8819 | Parts Velocity: Turns / Yr is overstated on the "This Year" preset — it divides by one day too few | Bug | High | SV-8582 | SV-8645 | relates to SV-8645 | 5 |
 | 3 | **SV-8820** | https://shopview.atlassian.net/browse/SV-8820 | Inventory Value reports the stock value for one day AFTER the date asked for | Bug | High | SV-8582 | SV-8672 | relates to SV-8672 | 4 |
-| 4 | **SV-8821** | https://shopview.atlassian.net/browse/SV-8821 | Creating an invoice from a completed work order fails with a server error | Bug | High | (none) | (none — standalone) | blocks SV-8582; blocks SV-8592 | 4 |
+| 4 | **SV-8821** | https://shopview.atlassian.net/browse/SV-8821 | Creating an invoice from a completed work order fails with a server error | Bug | High | **SV-8582** (set 2026-08-04, see below) | (none — standalone) | blocks SV-8582; blocks SV-8592 | 4 |
 | 5 | **SV-8822** | https://shopview.atlassian.net/browse/SV-8822 | Saving a customer returns a server error instead of a validation error when a sales-rep id is supplied | Bug | Low | (none) | (none — standalone) | relates to SV-8582 | 3 |
 | 6 | **SV-8823** | https://shopview.atlassian.net/browse/SV-8823 | Inventory Value spreadsheet: money arrives as text, and the file ignores the chosen columns and re-orders them | Bug | Medium | SV-8582 | SV-8677 | relates to SV-8677 | 3 |
 
@@ -28,6 +28,28 @@ So each Bug was filed with **parent = epic SV-8582** and a **`relates to` link t
 named**, which keeps the attribution the pack argued for without changing the issue type it specified.
 **If the QA lead would rather have the story-level attribution as a parent, the change is to re-file (or
 convert) those four as `Story Defect` under their stories — his call, not ours.**
+
+### SV-8821 re-parented to the epic — 2026-08-04 (QA lead's ruling, Standing Rule 52)
+
+The QA lead asked why **SV-8821** was not related to the Report Suite epic. Under **Standing Rule 52** every
+ticket we create is **parented to the Epic**, with the owning story expressed as a **link** — so this one was
+filed inconsistently with the other four and has been corrected.
+
+- **Operation:** `PUT /rest/api/3/issue/SV-8821` with `fields.parent = {"key":"SV-8582"}` → **HTTP 204**.
+- **Before → after parent:** *(none)* → **SV-8582**. Permitted because `Bug` is hierarchy level 0 and takes an
+  Epic parent (same shape as SV-8818/8819/8820/8823).
+- **Links untouched and both still present**, compared by link id in both directions:
+  `32047 Blocks → SV-8582` and `32048 Blocks → SV-8592`. Jira did **not** object to a `blocks` link coexisting
+  with the parent relationship to the same epic, so **no link was removed**.
+- **Byte-level verification (Rule 50):** re-GET compared field by field against the pre-write snapshot —
+  **58 fields compared, only `parent` (intended) and `updated` (server-set) differ**; `description`,
+  all **4 attachments**, `priority` (**Low**), `status` (**Open**), `issuetype` (**Bug**), `labels`,
+  `Severity`, `Product Area` and every other field **byte-identical**. No status transition, no type change.
+
+**Honest caveat (recorded, not an exception):** the underlying cause of SV-8821 sits in **work-order
+invoicing**, not in the Report Suite's own feature, so an epic parent can **misattribute another squad's
+work**. That is why the ticket's technical section says where the fault actually lives, and why the
+**`blocks SV-8582` / `blocks SV-8592` links are kept** — they are what explain why we raised it.
 
 ## Fields set
 
