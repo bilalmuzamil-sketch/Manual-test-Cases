@@ -1,0 +1,46 @@
+[
+ {
+  "case_id": 29927,
+  "internal_id": "",
+  "verdict": "FIX",
+  "ticket": null,
+  "edit": "audit",
+  "changed": true,
+  "intended": {
+   "custom_expected": "1. Day: the grid shows a 24-hour timeline per technician row, with shifts positioned at their times.\n2. Week: the grid shows a 7-column Monday-to-Sunday layout with stacked shift chips per cell.\n3. Month: the grid shows a compact calendar with per-day capacity bars and shift chips.\n4. The same shifts appear in all three views - each one drawn to suit that view: positioned on the hour line in Day, as a chip in the day column in Week, and as a compact chip in Month.\n\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (\u00a73.2, \u00a76)."
+  }
+ },
+ {
+  "case_id": 29988,
+  "internal_id": "",
+  "verdict": "FIX",
+  "ticket": null,
+  "edit": "audit",
+  "changed": true,
+  "intended": {
+   "custom_expected": "1. One banner spans the working days of that week in the technician's row.\n2. Chevrons at the banner's edges indicate the series continues beyond the visible week (both sides, on a middle week).\n3. A 'week N of M' cue shows the position within the series.\n\nKnown issue on the build tested: the Week view does draw one banner - the first day of the run carries the customer name, the line count and the words 'Part of a series', and each following day carries a small 'continues' marker - but there are no arrows at the edges of the banner and no 'week N of M' wording anywhere. Separately, none of those blocks can be clicked open in the Week view; that half is raised with the developers as SV-8849 (https://shopview.atlassian.net/browse/SV-8849). The missing arrows and the missing 'week N of M' have been reported to the QA lead and have no ticket yet. Mark this test FAILED, link SV-8849 and say in your comment which parts you saw; do not raise a new ticket.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (\u00a74.6)."
+  }
+ },
+ {
+  "case_id": 30009,
+  "internal_id": "",
+  "verdict": "FIX",
+  "ticket": null,
+  "edit": "audit",
+  "changed": true,
+  "intended": {
+   "custom_expected": "1. The time pickers offer 15-minute increments (for example 8:00, 8:15, 8:30, 8:45).\n2. Saving/applying the change updates the shift's times.\n3. Changing the date moves the shift to the chosen day.\n4. The grid block reflects the new date/times.\n\nKnown issue on the build tested: the start and end time boxes accept and offer EVERY minute, not quarter-hours - you can set 8:07 if you want to. This is already raised with the developers as SV-8833 (https://shopview.atlassian.net/browse/SV-8833). Until it is fixed this test will fail - mark it FAILED and link SV-8833; do not raise a new ticket. One thing in that ticket is NOT a fault: the little clock icon inside the box is simply how the browser draws a time box, so ignore that part.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (\u00a74.9)."
+  }
+ },
+ {
+  "case_id": 30081,
+  "internal_id": "",
+  "verdict": "FIX",
+  "ticket": null,
+  "edit": "audit",
+  "changed": true,
+  "intended": {
+   "custom_expected": "1. The sidebar hides the work order list and the line drill-down; the mini calendar remains available.\n2. Shifts already on the grid can still be viewed and interacted with per the role's Schedule tier.\n3. New work orders cannot be dragged on - the WO list is simply not visible.\n\nKnown issue on the build tested: a user who has the Schedule but has NOT been given Work Orders: View still sees the whole work order list in the left-hand panel - 18 cards showing the customer name, the unit number, how many lines the job has, the hours estimate and the lead technician. It should be hidden for them. This is already raised with the developers as SV-8854 (https://shopview.atlassian.net/browse/SV-8854). Until it is fixed this test will fail - mark it FAILED and link SV-8854; do not raise a new ticket.\n\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (v3.5-4873abe), and as per epic SV-8685 and the Schedule specification version 23 (\u00a714.2)."
+  }
+ }
+]
