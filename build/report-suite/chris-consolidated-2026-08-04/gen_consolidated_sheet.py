@@ -294,6 +294,15 @@ DEDUP_LOG = build_dedup_log()
 
 
 # ------------------------------------------------------------------- QA-only data
+def links_for(cases_text):
+    """Every C-id in a cases cell, spelled out as a clickable TestRail link (Standing Rule 8)."""
+    cids = []
+    for c in re.findall(r"\bC\d{5}\b", cases_text or ""):
+        if c not in cids:
+            cids.append(c)
+    return " · ".join(f"{c} {LINK}{c[1:]}" for c in cids)
+
+
 def qa_rows():
     """One row per surviving reader-facing item: cases + C-ids + links + anchors + source."""
     rows = []
@@ -648,12 +657,13 @@ def md_qa():
          "## Per-item mapping - every surviving reader-facing item", "",
          NUMBERING_NOTE, "",
          "| Tab | Item | Was | Source sheet | Affected internal case IDs (TestRail C-id) | "
-         "Spec anchors + live evidence | What each answer resolves to |",
-         "|---|---|---|---|---|---|---|"]
+         "TestRail links | Spec anchors + live evidence | What each answer resolves to |",
+         "|---|---|---|---|---|---|---|---|"]
     for r in QA_ROWS:
-        L.append("| {} | {} | {} | {} | {} | {} | {} |".format(
+        L.append("| {} | {} | {} | {} | {} | {} | {} | {} |".format(
             r["tab"], r["n"], r["was"], r["src"].split(" (")[0],
-            _cell(r["cases"]), _cell(r["anchors"]), _cell(r["resolve"])))
+            _cell(r["cases"]), _cell(links_for(r["cases"])),
+            _cell(r["anchors"]), _cell(r["resolve"])))
     L += ["", "### The links, spelled out", "",
           "| Internal ID | TestRail | Link | Report | Spec anchor | What it asserts today |",
           "|---|---|---|---|---|---|"]
@@ -669,11 +679,12 @@ def md_qa():
           "Kept so that not one case id is lost: three of these four rows carry case ids the "
           "surviving item's row does not.", "",
           "| Was | Source sheet | Now asked as | Affected internal case IDs (TestRail C-id) | "
-          "Spec anchors + live evidence | What each answer resolves to |", "|---|---|---|---|---|---|"]
+          "TestRail links | Spec anchors + live evidence | What each answer resolves to |",
+          "|---|---|---|---|---|---|---|"]
     for r in MERGED_OUT:
-        L.append("| {} | {} | {} | {} | {} | {} |".format(
-            r["was"], r["src"].split(" (")[0], r["now"],
-            _cell(r["cases"]), _cell(r["anchors"]), _cell(r["resolve"])))
+        L.append("| {} | {} | {} | {} | {} | {} | {} |".format(
+            r["was"], r["src"].split(" (")[0], r["now"], _cell(r["cases"]),
+            _cell(links_for(r["cases"])), _cell(r["anchors"]), _cell(r["resolve"])))
     L += ["", "## Changes made in consolidation - all of them", "",
           "| Where | What changed | Why |", "|---|---|---|"]
     for a, b, c in CHANGES:
@@ -881,12 +892,12 @@ def write_xlsx():
     ws4.cell(row=r, column=1, value=NUMBERING_NOTE).alignment = WRAP
     r += 1
     _hdr(ws4, r, ["Tab", "Item", "Was", "Source sheet",
-                  "Affected internal case IDs (TestRail C-id)",
+                  "Affected internal case IDs (TestRail C-id)", "TestRail links",
                   "Spec anchors + live evidence", "What each answer resolves to"])
     r += 1
     for q in QA_ROWS:
         for j, v in enumerate([q["tab"], q["n"], q["was"], q["src"], q["cases"],
-                               q["anchors"], q["resolve"]], 1):
+                               links_for(q["cases"]), q["anchors"], q["resolve"]], 1):
             ws4.cell(row=r, column=j, value=v).alignment = WRAP
         r += 1
 
@@ -894,7 +905,7 @@ def write_xlsx():
     ws4.cell(row=r, column=1, value="THE LINKS, SPELLED OUT (Tab 1's eight cases)").font = Font(bold=True)
     r += 1
     _hdr(ws4, r, ["Internal ID", "TestRail C-id", "Link", "Report", "Spec anchor",
-                  "What it asserts today", ""])
+                  "What it asserts today", "", ""])
     r += 1
     for i, c, rep, anchor, says in LOC.QA_CASES:
         for j, v in enumerate([i, c, LINK + c[1:], rep, anchor, says], 1):
@@ -906,7 +917,7 @@ def write_xlsx():
              value=("DE-DUPLICATION LOG - 4 OVERLAPPING ITEMS REMOVED (28 IN, %d OUT)"
                     % (1 + len(TAB2) + len(TAB3)))).font = Font(bold=True)
     r += 1
-    _hdr(ws4, r, ["Removed", "The item", "What happened", "Why, and what was preserved", "", "", ""])
+    _hdr(ws4, r, ["Removed", "The item", "What happened", "Why, and what was preserved", "", "", "", ""])
     r += 1
     for a, b, c, d in DEDUP_LOG:
         for j, v in enumerate([a, b, c, d], 1):
@@ -918,19 +929,19 @@ def write_xlsx():
              value="MERGED OUT - THE REMOVED ITEMS' QA MAPPING ROWS, RETAINED SO NO CASE ID IS LOST").font = Font(bold=True)
     r += 1
     _hdr(ws4, r, ["Was", "Source sheet", "Now asked as",
-                  "Affected internal case IDs (TestRail C-id)",
+                  "Affected internal case IDs (TestRail C-id)", "TestRail links",
                   "Spec anchors + live evidence", "What each answer resolves to", ""])
     r += 1
     for m in MERGED_OUT:
-        for j, v in enumerate([m["was"], m["src"], m["now"], m["cases"], m["anchors"],
-                               m["resolve"]], 1):
+        for j, v in enumerate([m["was"], m["src"], m["now"], m["cases"],
+                               links_for(m["cases"]), m["anchors"], m["resolve"]], 1):
             ws4.cell(row=r, column=j, value=v).alignment = WRAP
         r += 1
 
     r += 1
     ws4.cell(row=r, column=1, value="CHANGES MADE IN CONSOLIDATION - ALL OF THEM").font = Font(bold=True)
     r += 1
-    _hdr(ws4, r, ["Where", "What changed", "Why", "", "", "", ""])
+    _hdr(ws4, r, ["Where", "What changed", "Why", "", "", "", "", ""])
     r += 1
     for a, b, c in CHANGES:
         for j, v in enumerate([a, b, c], 1):
@@ -940,7 +951,7 @@ def write_xlsx():
     r += 1
     ws4.cell(row=r, column=1, value="DECLARED WORDING CARRY-OVER (STANDING RULE 7)").font = Font(bold=True)
     r += 1
-    _hdr(ws4, r, ["Word", "Where", "Why it is kept rather than reworded", "", "", "", ""])
+    _hdr(ws4, r, ["Word", "Where", "Why it is kept rather than reworded", "", "", "", "", ""])
     r += 1
     for w, where, why in RULE7_EXEMPTIONS:
         for j, v in enumerate([w, where, why], 1):
@@ -950,7 +961,7 @@ def write_xlsx():
     r += 1
     ws4.cell(row=r, column=1, value="SOURCE-CURRENCY BLOCK (STANDING RULE 31)").font = Font(bold=True)
     r += 1
-    _hdr(ws4, r, ["Source", "Identifier", "Version / last-updated", "Checked", "Verdict", "", ""])
+    _hdr(ws4, r, ["Source", "Identifier", "Version / last-updated", "Checked", "Verdict", "", "", ""])
     r += 1
     for name, ident, ver, checked, verdict in SOURCE_CURRENCY:
         for j, v in enumerate([name, ident, ver, checked, verdict], 1):
@@ -966,7 +977,7 @@ def write_xlsx():
     r += 2
     ws4.cell(row=r, column=1, value="COMPLETENESS PROOF - EVERY SOURCE SWEPT (STANDING RULE 17)").font = Font(bold=True)
     r += 1
-    _hdr(ws4, r, ["Source", "Items found", "Notes", "Swept by", "", "", ""])
+    _hdr(ws4, r, ["Source", "Items found", "Notes", "Swept by", "", "", "", ""])
     r += 1
     for s, n, note, by in SOURCES_SWEPT:
         for j, v in enumerate([s, n, note, by], 1):
@@ -978,7 +989,7 @@ def write_xlsx():
              value=("WITHDRAWN - ALREADY ANSWERED, NOT ASKED (%d candidates; 0 added by this pass)"
                     % len(WITHDRAWN))).font = Font(bold=True)
     r += 1
-    _hdr(ws4, r, ["Candidate question", "Already answered by", "Withdrawn on", "", "", "", ""])
+    _hdr(ws4, r, ["Candidate question", "Already answered by", "Withdrawn on", "", "", "", "", ""])
     r += 1
     for cand, ans, where in WITHDRAWN:
         for j, v in enumerate([cand, ans, where], 1):
@@ -988,7 +999,7 @@ def write_xlsx():
     r += 1
     ws4.cell(row=r, column=1, value="NOT ASKED HERE (QA REFERENCE)").font = Font(bold=True)
     r += 1
-    _hdr(ws4, r, ["Item", "Why it is not on any tab", "From", "", "", "", ""])
+    _hdr(ws4, r, ["Item", "Why it is not on any tab", "From", "", "", "", "", ""])
     r += 1
     for item, why, where in NOT_ASKED:
         for j, v in enumerate([item, why, where], 1):
@@ -998,7 +1009,7 @@ def write_xlsx():
     r += 1
     ws4.cell(row=r, column=1, value="LIVE EVIDENCE BEHIND TAB 1'S 'WHAT HAPPENS NOW' TEXT").font = Font(bold=True)
     r += 1
-    _hdr(ws4, r, ["Observation", "What was seen", "Evidence", "", "", "", ""])
+    _hdr(ws4, r, ["Observation", "What was seen", "Evidence", "", "", "", "", ""])
     r += 1
     for a, b, c in LOC.EVIDENCE:
         for j, v in enumerate([a, b, c], 1):
@@ -1012,7 +1023,7 @@ def write_xlsx():
         ws4.cell(row=r, column=1, value="- " + h).alignment = WRAP
         r += 1
 
-    for col, w in zip("ABCDEFG", [16, 14, 30, 30, 46, 56, 56]):
+    for col, w in zip("ABCDEFGH", [16, 14, 30, 30, 46, 44, 56, 56]):
         ws4.column_dimensions[col].width = w
 
     path = os.path.join(HERE, BASE + ".xlsx")
