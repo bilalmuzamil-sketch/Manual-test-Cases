@@ -91,13 +91,31 @@ absolutely.)
 - Push the area to TestRail via **`update_case`** only:
   - **curl only** against `shopview.testrail.io`; **Basic auth from env / `/tmp` only**
     (never hard-code or commit credentials).
-  - Loop: **GET current case → diff → update only changed fields → re-verify 200/200**.
-    **Skip no-ops** (don't rewrite unchanged cases).
+  - Loop: **GET current case (keep it as the PRE-WRITE SNAPSHOT) → diff → update only changed
+    fields → re-GET → BYTE-LEVEL verify**. **Skip no-ops** (don't rewrite unchanged cases).
+  - **BYTE-LEVEL VERIFICATION IS MANDATORY (Standing Rule 50) — a 200 OK is NOT verification.**
+    Byte-compare the **intended payload** against **what the re-GET returned, field by field**, AND
+    prove **every field you did not intend to change is byte-identical to the pre-write snapshot**
+    (that is how collateral damage is caught). **On ANY mismatch the write FAILED: stop the batch,
+    do not proceed to the next case, report both byte sequences — never retry blindly, never log it
+    as success.**
+  - **DECLARED NORMALISATIONS — the honest caveat.** A server may legitimately transform a value on
+    write, so a raw byte compare can differ for a *correct* write. Accept that **only** when it is a
+    **KNOWN, RECORDED** behaviour, and **assert it explicitly as the expected transformation** —
+    never "close enough". The recorded one: **TestRail's `refs` splits on commas, trims each entry
+    and rejoins with a bare comma, and rejects any single entry > 248 chars with HTTP 400 `Field
+    :refs does not match the required pattern.`** (a *pattern* error, not a length error; 248
+    passes, 249 fails) — so verify `refs` under `','.join(p.strip() for p in s.split(','))` and say
+    so in the log. Details in `build/APP-ACTIONS-PLAYBOOK.md` §J. **Any NEWLY discovered
+    normalisation must be recorded in the playbook with its evidence BEFORE it is relied on.**
   - **Respect the API-section rule** (Standing Rule 4): any case with API endpoints / HTTP
     methods / status codes / backend request-response checks stays in an **API-titled
     section**; UI-only cases stay in their functional sections.
   - Append a **per-case audit log** (`testrail-wording-viu-log.md`): what changed, status,
-    push result (e.g. "N updated · 0 error").
+    push result (e.g. "N updated · 0 error"). **Per Rule 50 each entry records the operation · the
+    target C-id · the HTTP status · the BYTE-LEVEL verification result (and any declared
+    normalisation applied) — an entry that says only "200 OK" is non-compliant.** Keep the
+    pre-write snapshot and the post-write re-GET as evidence.
 
 **(5) Report the area as tester-ready.**
 State the area's per-status counts and that its cases are wording-corrected + VIU'd +

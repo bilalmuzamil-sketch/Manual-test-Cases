@@ -1067,7 +1067,9 @@ deliver the 7-tab management report.
     rewrite every case Title/Preconditions/Steps/Expected into build-accurate,
     layman, non-technical wording (never invented; flag anything unconfirmable) →
     VIU-verify behavior **LIVE with evidence** → checkpoint-commit → push to TestRail via `update_case`
-    with a per-case audit log (subject to that project's TestRail authorization) →
+    with a per-case audit log (subject to that project's TestRail authorization; **the push step's
+    verification is BYTE-LEVEL per Standing Rule 50** — re-GET and byte-compare intended vs returned,
+    with untouched fields proven byte-identical) →
     regenerate deliverables (Blockers Tracker + Results workbook + import, with
     TestRail Case ID + Link columns) → report each area tester-ready and **ALWAYS
     state the TestRail update status explicitly.** This is the default meaning of
@@ -1651,7 +1653,8 @@ deliver the 7-tab management report.
     list DELETES the omitted tests AND THEIR RECORDED RESULTS.** This is the single most dangerous
     operation in the sync: **always union, and always snapshot the run's tests + results
     (`get_tests` + `get_results_for_run`) BEFORE writing**, then re-verify after (test count ==
-    expected, every prior result still present). **Deleted/retired cases drop out of runs
+    expected, every prior result still present). **The before/after check is BYTE-LEVEL per Standing
+    Rule 50: every prior result verified present BY ID, never by count alone.** **Deleted/retired cases drop out of runs
     automatically** — so the sync is add-only; still **record the run's test count before→after in
     the audit log** (proven 2026-07-28: R359 went 515→458 when the consolidated cases were
     deleted). **Runs owned by other testers** (R359 = Nebojsa/Viktoria Report Suite; run 357 =
@@ -1926,7 +1929,9 @@ deliver the 7-tab management report.
     the execution log a line **"re-verified whole against `<spec document + version + date>`"** plus
     the fields checked — **title · preconditions · steps · expected results · refs · notes** — and
     any second finding the re-read produced. **A push log whose entries name only the edited field is
-    non-compliant.** Where the re-read finds a further problem the pass was not chartered to fix,
+    non-compliant.** **The comparison is BYTE-LEVEL per Standing Rule 50** — the case text
+    byte-compared against the current spec text, and every field the pass did NOT intend to change
+    proven **byte-identical to its pre-write snapshot**. Where the re-read finds a further problem the pass was not chartered to fix,
     **RECORD IT** (in the manifest and the Outstanding register) rather than silently leaving it;
     where it finds nothing, the recorded line is the positive evidence that it was looked at.
     **RATIONALE (2026-07-31):** **SBR-EXP-10 = C30285** and **SBR-EXP-11 = C30286** were touched that
@@ -2242,6 +2247,66 @@ deliver the 7-tab management report.
     durable store), 31 (source currency — the build is a source), 35 (the design-fetch queue is the
     same due-dated-queue pattern), 36 (an OPEN queue is an outstanding item and belongs in the
     register) and 46 (a provisional finding recorded as final is indistinguishable from a miss).
+50. **BYTE-LEVEL VERIFICATION IS THE ONLY VERIFICATION — never by eye, never by "looks right",
+    never by a substring check, never by a matching total (all projects).**
+    USER DIRECTIVE (2026-08-04, verbatim): *"Also remember, the verification should always be
+    byte-level verification"*
+    **THE RULE:** every verification claim we make is established by a **BYTE-LEVEL COMPARISON** of
+    the intended value against the actual value. **Not by eye. Not by "looks right". Not by a
+    substring/`contains` check. Not by a matching total.** A claim we cannot express as *"these two
+    byte sequences are identical"* (or *"they differ at exactly these enumerated positions, for this
+    stated reason"*) is **NOT VERIFIED** (Rule 12) — and must be labelled that way.
+    **WHAT IT APPLIES TO — all of these, explicitly:**
+    **(1) EVERY TESTRAIL WRITE.** After each `update_case` / `add_case` / `update_run` / section
+    change, **re-GET the object** and compare the **INTENDED payload** against **what came back**,
+    **field by field, byte for byte**. **And every field we did NOT intend to change must be
+    byte-identical to its pre-write snapshot** — that is how **collateral damage** is caught, and it
+    is the half a "200 OK" can never tell you.
+    **(2) EVERY CLAIMED NON-WRITE.** Prove untouched objects are untouched by **byte-comparing them
+    against a pre-run snapshot INCLUDING their `updated_on` / `updated_by` values**. This is how we
+    prove a foreign case (Rule 38) was never touched: **"we didn't write to it" is an ASSERTION; a
+    byte-identical snapshot is EVIDENCE.**
+    **(3) EVERY COUNT RECONCILIATION. Equal totals are NOT verification.** Prove **SET EQUALITY in
+    BOTH DIRECTIONS** — `A − B` and `B − A` both empty — across live vs local vs `testrail-id-map.csv`
+    vs import rows. **A past pass had matching totals over different sets**, which is precisely the
+    failure a total cannot detect.
+    **(4) EVERY DELIVERABLE.** Import header **byte-identical to its peer projects (hash it)**,
+    id-map **zero blanks**, **no duplicate titles**, **no leaked internal IDs** (Rules 16/8/9).
+    **(5) EVERY SOURCE MIRROR.** A spec mirror is **"current" only when its body is byte-compared
+    against the live fetch**, or **the exact differing lines are enumerated**. **Never infer currency
+    from a version number alone** — Rule 31's two staleness traps are exactly this mistake.
+    **(6) EVERY BEFORE/AFTER CLAIM IN A RUN SYNC** (Rules 34/47): the **test count** AND **every
+    prior result record verified present BY ID**, never by count alone.
+    **THE HONEST CAVEAT — DECLARED NORMALISATIONS.** Some servers legitimately **transform** a value
+    on write, so a raw byte compare will differ **for a correct write**. Such a transformation may be
+    accepted **ONLY when it is a KNOWN, RECORDED server behaviour**, and it must then be **ASSERTED
+    EXPLICITLY as the expected transformation** — **never waved away as "close enough"**. The one
+    recorded for us: **TestRail's `refs` field splits on commas, trims each entry, and rejoins with a
+    bare comma, and rejects any single entry over 248 characters with HTTP 400 `Field :refs does not
+    match the required pattern.` — a PATTERN error, not a length error** (248 passes, 249 fails; total
+    length unbounded; our house style is **one comma-free entry ≤ 248 chars**). So a `refs` write is
+    verified under `','.join(p.strip() for p in s.split(','))`, declared as such in the log. **Any
+    NEWLY discovered normalisation must be recorded in `build/APP-ACTIONS-PLAYBOOK.md` the moment it
+    is proven, with its evidence, BEFORE it may be relied on** (Rule 27 — the books are the shared
+    brain; an undeclared normalisation is indistinguishable from a silent write failure).
+    **ON A MISMATCH: THE WRITE FAILED.** **STOP the batch. Do NOT proceed to the next operation.**
+    Report it with **BOTH byte sequences**. **Do not retry blindly, and do not log it as success.**
+    **EVIDENCE DUTY:** keep **the pre-write snapshot AND the post-write re-GET**, and record **per
+    operation** in the audit log: **the operation · the target id · the HTTP status · the byte-level
+    verification result**. **An audit log that says only "200 OK" is NON-COMPLIANT.**
+    **RATIONALE, 2026-08-04:** the QA lead requires **zero risk of error on the Report Suite**, and
+    byte-level checking is what actually caught things **this week**: a **`refs` normalisation** that
+    would otherwise have read as a failed write; a **run holding 539 result records when the staged
+    plan said zero** — where a partial `case_ids` list would have **destroyed them** (Rule 34's
+    union-only law); **foreign cases proven untouched** by comparing their timestamps (Rule 38); and
+    **a pass that had equal counts across different sets**. **Eyeballing would have missed all four.**
+    Ties to Standing Rules 6 (nothing written without permission — and nothing *claimed* written
+    without proof), 8 (the C-id is how a target id is named), 12 (observed, never inferred — this is
+    its mechanical form), 17 (100% of the population, no sampling), 25 (quote the bytes, verbatim),
+    27 (record a proven normalisation in the playbook), 34 and 47 (run-sync before/after), 41 (the
+    whole-case re-verification, and untouched fields proven byte-identical), 48 (a claim carries its
+    evidence) and 49 (a provisional finding is still byte-verified — its *durability* is what is
+    limited, not its rigour).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
