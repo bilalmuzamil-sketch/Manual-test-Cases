@@ -19,6 +19,8 @@ def adf_text(node, out=None):
         if "code" in marks: s = "`%s`" % s
         out.append(s); return out
     if t in ("hardBreak",): out.append("\n"); return out
+    if t in ("inlineCard", "blockCard", "embedCard"):
+        out.append((node.get("attrs") or {}).get("url") or ""); return out
     for c in node.get("content", []) or []:
         adf_text(c, out)
     if t in ("paragraph", "heading"): out.append("\n\n")
@@ -27,6 +29,21 @@ def adf_text(node, out=None):
     if t == "tableRow": out.append("\n")
     if t == "tableCell" or t == "tableHeader": out.append(" | ")
     return out
+
+def links_of(node, acc=None):
+    """Collect every smart-card url and link href (ADF drops these from text)."""
+    if acc is None: acc = []
+    if isinstance(node, dict):
+        if node.get("type") in ("inlineCard", "blockCard", "embedCard"):
+            u = (node.get("attrs") or {}).get("url")
+            if u: acc.append(u)
+        for m in node.get("marks", []) or []:
+            if m.get("type") == "link":
+                h = (m.get("attrs") or {}).get("href")
+                if h: acc.append(h)
+        for c in node.get("content", []) or []: links_of(c, acc)
+    return acc
+
 
 def desc_text(f):
     d = f.get("description")
@@ -70,6 +87,7 @@ def main():
                        l.get("type", {}).get("inward" if l.get("inwardIssue") else "outward"))
                       for l in (f.get("issuelinks") or [])],
             "desc": desc_text(f),
+            "links_in_desc": sorted(set(links_of(f.get("description")))),
             "desc_edits": desc_edits,
             "status_hist": status_hist,
             "changelog_total": cl.get("total", 0),
@@ -81,5 +99,10 @@ def main():
     print("total comments:", sum(r["comments_total"] for r in recs))
     print("total attachments:", sum(r["attachments"] for r in recs))
     print("subtasks:", [(r["key"], r["subtasks"]) for r in recs if r["subtasks"]])
+    allu = {}
+    for r in recs:
+        for u in r["links_in_desc"]: allu[u] = allu.get(u, 0) + 1
+    print("distinct spec/doc urls referenced:", len(allu))
+    for u, n in sorted(allu.items(), key=lambda x: -x[1]): print("   %3d  %s" % (n, u))
 
 main()

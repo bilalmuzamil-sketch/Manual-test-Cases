@@ -21,7 +21,8 @@ async function probe(label, slug, qs) {
   } catch (e) { err = String(e); }
   const ms = Date.now() - t0;
   const rec = { label, slug, qs, ms, status: r ? r.status : null, err,
-    headers: r ? Object.fromEntries([...r.headers.entries()]) : null,
+    // NEVER persist set-cookie: it carries the live session id (CLAUDE.md secrets rule).
+    headers: r ? Object.fromEntries([...r.headers.entries()].filter(([k]) => k.toLowerCase() !== 'set-cookie')) : null,
     bytes: buf ? buf.length : 0,
     bodyIfSmall: buf && buf.length < 2000 ? buf.toString('utf8') : null };
   console.log(`${label.padEnd(46)} ${rec.status}  ${String(ms).padStart(7)} ms  bytes=${rec.bytes}`);

@@ -12,7 +12,15 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Epic: Reporting Suite\n\nGoal\n\nShip a consolidated reporting suite of six shop-management reports that live under one **Reports** nav, share one visual chassis, and give shops a consistent, drillable, exportable view of labor productivity, customer/rep revenue, parts velocity, inventory value, and open work. Built together so they look and behave as one product, not six bolt-ons.\n\nOutcome for shops\n\nOne place to answer: Are my techs productive? Who are my best customers and reps? What parts actually move? What is my inventory worth? What work is open and how much of it is earned?\n\nEvery report reads the same way \u2014 identifier columns left, financials middle, a bold pinned **Subtotal** far right \u2014 so there's nothing to relearn per report.\n\nDrill in (customer \u2192 asset \u2192 invoice, tech \u2192 line), filter by date range and location, and export the on-screen view to CSV/PDF.\n\nThe six reports\n\n**Technician Utilization** \u2014 how much of each technician's available time is productive/billed vs. lost. Tech multi-select filter, deep-link to Timesheet Activities, org-wide location filter.\n\n**Sales By Customer** \u2014 revenue, margin, and labor-delta per customer with a Customer \u2192 Asset \u2192 Invoice drill and cross-customer asset compare.\n\n**Sales By Representative** \u2014 sales grouped by sales rep (parts + service reps), with unassigned/House Account handling.\n\n**Inventory Velocity** \u2014 parts movement / ABC velocity with per-part profitability (unit cost, sell price, revenue, margin, margin %).\n\n**Inventory Value** \u2014 current on-hand stock valued at cost and sell (qty on hand, unit cost/sell, margin, margin %, extended Total Sell and pinned Total Cost), with an as-of date backed by nightly snapshots.\n\n**Work In Progress (WIP)** \u2014 open work orders split into earned vs. remaining (True-WIP accounting model), with summary cards and asset/customer filters.\n\nSpecs\n\n**Technician Utilization \u2014 **\n\n**Sales By Customer \u2014 **\n\n**Sales By Representative \u2014 **\n\n**Inventory Velocity (Parts Velocity) \u2014 **\n\n**Inventory Value \u2014 **\n\n**Work In Progress (WIP) \u2014 **\n\nShared chassis (suite-wide, built once)\n\nConsolidated **Reports** nav; single visual theme (two-tone Tech-Efficiency).\n\n**Subtotal** column pinned far-right + bolded across header/rows/totals.\n\nShared **Labor Delta (\u201cInv. Hrs\u201d)** treatment where applicable.\n\nShared date-range selector, org-wide **multi-location filter** (`AccessibleWorkplaceResolver`, requested \u2229 accessible), and per-report **filter persistence**.\n\nCSV + PDF exports mirror the on-screen view.\n\nOut of scope / follow-ups\n\nServer-side rework to safely offer \u201cAll Time\u201d on the history-scan reports (SBC / SBR / Tech Utilization) \u2014 per engineering review, All Time stays on WIP only until this lands.\n\nParts Velocity row-scale (server-side paging / virtual scroll) before it can offer All Time or handle very large tenants.\n\nTrend/as-of history views for WIP (snapshot rig is forward-capture, write-only).\n\nE2E (Playwright) coverage is being authored per report as part of the suite.\n\nBranch\n\n`project/reports-suite-bravo` (local suite worktree; source report branches untouched).",
+  "desc": "Epic: Reporting Suite\n\nGoal\n\nShip a consolidated reporting suite of six shop-management reports that live under one **Reports** nav, share one visual chassis, and give shops a consistent, drillable, exportable view of labor productivity, customer/rep revenue, parts velocity, inventory value, and open work. Built together so they look and behave as one product, not six bolt-ons.\n\nOutcome for shops\n\nOne place to answer: Are my techs productive? Who are my best customers and reps? What parts actually move? What is my inventory worth? What work is open and how much of it is earned?\n\nEvery report reads the same way \u2014 identifier columns left, financials middle, a bold pinned **Subtotal** far right \u2014 so there's nothing to relearn per report.\n\nDrill in (customer \u2192 asset \u2192 invoice, tech \u2192 line), filter by date range and location, and export the on-screen view to CSV/PDF.\n\nThe six reports\n\n**Technician Utilization** \u2014 how much of each technician's available time is productive/billed vs. lost. Tech multi-select filter, deep-link to Timesheet Activities, org-wide location filter.\n\n**Sales By Customer** \u2014 revenue, margin, and labor-delta per customer with a Customer \u2192 Asset \u2192 Invoice drill and cross-customer asset compare.\n\n**Sales By Representative** \u2014 sales grouped by sales rep (parts + service reps), with unassigned/House Account handling.\n\n**Inventory Velocity** \u2014 parts movement / ABC velocity with per-part profitability (unit cost, sell price, revenue, margin, margin %).\n\n**Inventory Value** \u2014 current on-hand stock valued at cost and sell (qty on hand, unit cost/sell, margin, margin %, extended Total Sell and pinned Total Cost), with an as-of date backed by nightly snapshots.\n\n**Work In Progress (WIP)** \u2014 open work orders split into earned vs. remaining (True-WIP accounting model), with summary cards and asset/customer filters.\n\nSpecs\n\n**Technician Utilization \u2014 **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report\n\n**Sales By Customer \u2014 **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\n**Sales By Representative \u2014 **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\n**Inventory Velocity (Parts Velocity) \u2014 **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report\n\n**Inventory Value \u2014 **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\n**Work In Progress (WIP) \u2014 **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\n\nShared chassis (suite-wide, built once)\n\nConsolidated **Reports** nav; single visual theme (two-tone Tech-Efficiency).\n\n**Subtotal** column pinned far-right + bolded across header/rows/totals.\n\nShared **Labor Delta (\u201cInv. Hrs\u201d)** treatment where applicable.\n\nShared date-range selector, org-wide **multi-location filter** (`AccessibleWorkplaceResolver`, requested \u2229 accessible), and per-report **filter persistence**.\n\nCSV + PDF exports mirror the on-screen view.\n\nOut of scope / follow-ups\n\nServer-side rework to safely offer \u201cAll Time\u201d on the history-scan reports (SBC / SBR / Tech Utilization) \u2014 per engineering review, All Time stays on WIP only until this lands.\n\nParts Velocity row-scale (server-side paging / virtual scroll) before it can offer All Time or handle very large tenants.\n\nTrend/as-of history views for WIP (snapshot rig is forward-capture, write-only).\n\nE2E (Playwright) coverage is being authored per report as part of the suite.\n\nBranch\n\n`project/reports-suite-bravo` (local suite worktree; source report branches untouched).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report",
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report",
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report",
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report",
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report",
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [
    "2026-07-26T23:26:41"
   ],
@@ -32,7 +40,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "How much of each technician's available time is productive/billed vs. lost. Tech multi-select filter, deep-link to Timesheet Activities, org-wide location filter.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "desc": "How much of each technician's available time is productive/billed vs. lost. Tech multi-select filter, deep-link to Timesheet Activities, org-wide location filter.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report"
+  ],
   "desc_edits": [],
   "status_hist": [
    [
@@ -65,7 +76,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Revenue, margin, and labor-delta per customer with a Customer \u2192 Asset \u2192 Invoice drill and cross-customer asset compare.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "desc": "Revenue, margin, and labor-delta per customer with a Customer \u2192 Asset \u2192 Invoice drill and cross-customer asset compare.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [
    [
@@ -98,7 +112,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Sales grouped by sales rep (parts + service reps), with unassigned/House Account handling.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "desc": "Sales grouped by sales rep (parts + service reps), with unassigned/House Account handling.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [
    [
@@ -131,7 +148,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Parts movement / ABC velocity with per-part profitability (unit cost, sell price, revenue, margin, margin %).\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "desc": "Parts movement / ABC velocity with per-part profitability (unit cost, sell price, revenue, margin, margin %).\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report"
+  ],
   "desc_edits": [],
   "status_hist": [
    [
@@ -164,7 +184,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Current on-hand stock valued at cost and sell (qty on hand, unit cost/sell, margin, margin %, extended Total Sell and pinned Total Cost), with an as-of date backed by nightly snapshots.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "desc": "Current on-hand stock valued at cost and sell (qty on hand, unit cost/sell, margin, margin %, extended Total Sell and pinned Total Cost), with an as-of date backed by nightly snapshots.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [],
   "status_hist": [
    [
@@ -197,7 +220,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Open work orders split into earned vs. remaining (True-WIP accounting model), with summary cards and asset/customer filters.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "desc": "Open work orders split into earned vs. remaining (True-WIP accounting model), with summary cards and asset/customer filters.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+  ],
   "desc_edits": [],
   "status_hist": [
    [
@@ -240,6 +266,7 @@
    ]
   ],
   "desc": "**Plan:** Reports Suite Tech Plan \u2014 Phase 0 / PR-1 (ships as its own PR, ahead of the suite).\n\n**Goal:** Fix the live QuickBooks-corruption bug caused by `inventory_changes.old_quantity`/`new_quantity` being mapped `integer` while the domain types them `float` \u2014 fractional units are truncated at hydrate/persist and QB journal-entry sync multiplies these into dollar amounts.\n\n**Scope:**\n\nHand-written migration: `ALTER TABLE inventory_changes MODIFY old_quantity/new_quantity DECIMAL(10,2)` (ALGORITHM=COPY, ~10\u201340s write-pause; measured 714,814 rows / 517 MB \u2192 single off-peak migration, no online-DDL tooling).\n\nUpdate mapping `InventoryChanges.orm.xml:20-21` integer \u2192 decimal so `migrations:diff` stays a no-op.\n\nVerify QB sync read paths (`JournalEntry/Services/ReportGenerator.php`, `JournalEntrySyncService.php`) receive un-truncated quantities.\n\nForward-only (historical truncation unreconstructible).\n\n**Tests:** fractional-quantity round-trip regression; QB journal amount exact from fractional movement.\n\n**DoD gates:** cs-fix / phpstan / pest (Inventory + JournalEntry mirrors); migration gate (`migrations:diff --allow-empty-diff` = \"No changes detected\"); smoke.\n\nDepends on: nothing. Blocks: B3 (PV \u2014 Units Sold precision).",
+  "links_in_desc": [],
   "desc_edits": [],
   "status_hist": [
    [
@@ -307,6 +334,7 @@
    ]
   ],
   "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part A / Phase 2 (Foundation). PR-2, first foundation phase.\n\n**Goal:** Build the rule-compliant server-side contract every report plugs into (do NOT extend the legacy `ReportRequestPayload`, which violates RequestDto-vs-Query separation and guards \"over one year\" not 366 days).\n\n**Scope (**`api/`):\n\n`Reporting/Shared/UI/HTTP/DTO/ReportListRequestDto` \u2014 `#[Pagination]` + bounded date range (11 presets + Custom, **366-day cap**) + `search`.\n\n`Reporting/Shared/Application/ReportListQuery` \u2014 plain Query the DTO maps to.\n\n`Reporting/Shared/Infrastructure/Persistence/PaginatedReportResult` (+ count-and-page helper) \u2014 generalizes BinLocationQueryRepository's COUNT-clone + `Paginator` page query \u2192 `{collection, pagination:{rowsNumber}}`.\n\n`Reporting/Shared/Domain/NonVoidInvoicePredicate` \u2014 `status NOT IN Status::getNotVoidStatuses()` shared helper.\n\nMoney rule: bless `FixedDecimal2`/`DecimalValue` (HalfAwayFromZero) as round-once helpers; SUM unrounded in SQL.\n\nFetchers take a `Connection` via constructor injection (replica-ready seam; no replica in this plan).\n\n**Tests:** rowsNumber correctness, sort-whitelist enforcement, page-size clamp, 366-day boundary (367 rejected), void exclusion.\n\n**DoD gates:** cs-fix / phpstan / pest on `Reporting/Shared`; smoke (container wiring).\n\nDepends on: nothing. Blocks: A3, A5, and all six reports.",
+  "links_in_desc": [],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 11
@@ -366,6 +394,7 @@
    ]
   ],
   "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part A / Phase 3 (Foundation). Depends on A2 (count helper).\n\n**Goal:** Shared export machinery for all reports \u2014 a uniform 10k row cap and true file-attachment CSV/PDF (deliberate departure from the legacy JSON-wrapped export convention; existing export controllers untouched).\n\n**Scope (**`api/`):\n\n`Reporting/Shared/Application/Export/ExportRowCapGuard` \u2014 runs a per-report count callable, throws `ReportExportTooLargeError extends DomainError` at `> 10_000` (single suite-wide constant). Takes a count callable/query per report (SBC counts customers + invoices \u2014 two-level).\n\n`ReportExportTooLargeError` \u2014 mapped to 4xx carrying the exact spec toast.\n\nPDF scaffold \u2014 copy the `TechnicianEfficiency` Summary/Expanded PdfQueryHandler pair over `WeasyPrintPdfGenerator` (600s timeout).\n\nCSV attachment helper \u2014 `text/csv` + `Content-Disposition: attachment` (D5).\n\n**Tests:** cap boundary at 10,000 / 10,001 (both single-table and two-level count callables); empty-set export = header-only file, guard does not fire at zero.\n\n**DoD gates:** cs-fix / phpstan / pest; smoke.\n\nDepends on: A2. Blocks: all six reports' exports.",
+  "links_in_desc": [],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 11
@@ -417,6 +446,7 @@
    ]
   ],
   "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part A / Phase 4 (Foundation). Feeds SBC + SBR.\n\n**Goal:** Denormalize six invoice financial values as individual nullable columns so SBC/SBR can `SUM`/`GROUP BY` on real columns instead of deriving per request.\n\n**Scope (**`api/`):\n\nMigration: `ALTER TABLE invoice ADD` labor_sell, labor_cost, parts_sell, parts_cost (INT cents), hours_invoiced, hours_worked (DECIMAL(10,2)) \u2014 all nullable, ALGORITHM=INSTANT. Map in `Invoice.orm.xml`.\n\n`Invoice.php` \u2014 add fields (+ `captureFinancialSnapshot(...)`).\n\n`InvoiceBuilder::buildInvoice()` AND `updateInvoice()` \u2014 compute+set the six columns inside the existing `processCreate` transaction (sources: `WorkOrderStatsFetcher` + labor/parts sell queries).\n\n`InvoiceFinancialSnapshotService` \u2014 assembles the six values for one WO.\n\n`BackfillInvoiceFinancialColumnsCommand` \u2014 `app:invoicing:backfill-financial-columns`, idempotent (`WHERE labor_sell IS NULL`), batched, writer-only, `--dry-run`/`--limit`/`--organization-id`/`--workplace-id`.\n\n`RecomputeInvoiceLaborOnClockChange` subscriber \u2014 recompute `hours_worked`+`labor_cost` for the affected WO's non-void invoice; new past-tense `TaskChangedEvent` dispatched from `ChangeCommandHandler` (+ Move flow) \u2014 these flows dispatch no domain event today.\n\n**Tests:** snapshot matches per-request derivation; TTR edit after invoicing recomputes hours_worked/labor_cost on non-void invoice, sell columns untouched; backfill idempotent; void/reversal excluded.\n\n**DoD gates:** cs-fix / phpstan / pest (Invoicing + LabourBilling); migration gate (diff no-op); smoke (create/update invoice must not 500); backfill dry-run.\n\nDepends on: sequenced after A2/A3. Blocks: B5 (SBC), B6 (SBR).",
+  "links_in_desc": [],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 9
@@ -520,6 +550,7 @@
    ]
   ],
   "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part A / Phase 5 (Foundation). Depends on A2/A3 (envelope + export contract). Buildable in parallel with A4.\n\n**Goal:** Build the shared FE chassis all six reports consume \u2014 server-paged table, per-browser remembered view, shared toolbar, two themes, nav, formatters.\n\n**Scope (**`app/`):\n\n`composables/useReportTableQuery.ts` \u2014 paged (NOT infinite) TanStack useQuery, `rowsNumber` from envelope, `disable-virtual-scroll`; keys in `api/reporting/keys.ts`.\n\n`composables/useRememberedView.ts` \u2014 per-browser localStorage, schema-versioned, defensive restore (drop inaccessible location / dead sort column / column-set mismatch), restore synchronously before first fetch, restore beats URL. Migration-path note to `UserPagePreference`.\n\n`components/ts/reporting/shell/LocationFilter.vue` \u2014 location multi-select + pinned \"All Locations\"; default from `useLocation()` validated against `useMyWorkplaces()`; scoping stays BE-enforced.\n\n`DateRangeSelector.vue` \u2014 enforce 366-day cap.\n\n`shell/ColumnSelector.vue`, `shell/ReportSearchInput.vue` (page-local, NOT global search), `SubActionsDropDown.vue` (per-item loading).\n\n`css/app.scss` \u2014 theme layer `report-shell--two-tone` / `report-shell--all-white`.\n\n`ReportLeftMenuNav.vue` \u2014 add net-new **Parts** group; report-registration 4-touch contract (route / componentMap / nav / permission).\n\n`utils/reporting.ts` \u2014 formatter module (accounting-parens negatives, margin% 1dp + em-dash, signed Inv. Hrs coloring, \"N days\", em-dash null).\n\n**Tests (Vitest):** remembered-view round-trip/defensive-drop/version-bump/restore-before-fetch; useReportTableQuery paging/sort/filter key behavior; formatter module; LocationFilter default seed + All-Locations toggle.\n\n**DoD gates:** eslint / vitest related / vue-tsc; compile (Vite up at :7200). Browser-walk deferred to first consuming report (WIP) \u2014 shell has no route of its own.\n\nDepends on: A2, A3. Blocks: all six reports (FE).",
+  "links_in_desc": [],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 22
@@ -543,6 +574,7 @@
    ]
   ],
   "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part B / B1. **Spec:** WIP page 703660034. Depends on A2, A5. First report built. **Complexity: High** (new money model + first cross-tenant snapshot cron).\n\n**Architecture note:** WIP does NOT use the paged table \u2014 it loads the entire bounded open-WO set in one fetch and does tabs/counts/summary/filters client-side (plain TanStack useQuery, not useReportTableQuery). Still consumes the rest of the shell (all-white theme, remembered-view, LocationFilter, DateRange 366, ColumnSelector, export).\n\n**Scope:**\n\nDB: `work_order_wip_snapshot` table (one row per open WO per date; join org-purge path; no FK; no reader this version).\n\nBE fetcher: open-WO set (`type=SERVICE`, open statuses), date anchor = `work_order.start_date`; earned/remaining money model (Labor Earned = \u03a3 min(clocked value, quoted); Parts Earned/Remaining by request status); 4-tab placement; Last Activity from `entity_event`. Delete dead WIP code (segment handler + Dashboard sections).\n\n\ud83d\udd34 Nightly snapshot cron `app:reporting:capture-wip-snapshots` \u2014 **cross-tenant Golden-Rule exemption** (record in PR \"Golden Rule Exemptions\" block); EventBridge\u2192ECS RunTask ~08:00 UTC; idempotent delete+reinsert per (workplace, WO, date).\n\nFE: `WorkInProgressReport.vue` (4 tabs), `WipSummaryStrip.vue` (7-figure band), two-line asset cell, status badge (reuse WO tokens), per-tab Totals row, client filters (advisor/customer/asset), export per tab. Reuse route name/path `WorkInProgress`. `formatLastActivity` added to formatter module.\n\n**E2E (hard-block):** reference-breakage scan (deleted `table_work_in_progress_report` test-id + old nav ids) + happy paths + edge (empty per tab, Estimates all-$0.00, permission-denied nav).\n\nDepends on: A2, A5.",
+  "links_in_desc": [],
   "desc_edits": [],
   "status_hist": [
    [
@@ -604,6 +636,7 @@
   "subtasks": [],
   "links": [],
   "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part B / B2. **Spec:** TU page 641400833. Depends on A2, A5. **Complexity: Medium-High** (must reconcile to the cent with the existing Timesheet Activities report).\n\n**Architecture note:** reuse the existing Timesheet Activities methodology (`TimesheetActivity/Services/DataProvider` + `ReportGenerator`) and add a per-technician grouping layer \u2014 do NOT re-derive. Compute every displayed number from unrounded values and round once (avoids the Timesheet two-methodology trap). Server-paginate technician rows; per-day rows lazy on expand.\n\n**Scope:**\n\nDB: none (read-only over technician_task_record, labour_type, workplace, staff).\n\nBE fetcher: one row per staff who clocked time in range at selected location(s); Total / WO Hours (work_order_id) / Internal Hours (department_id); day-grouping + windowing in ONE report-level timezone (active workplace's); **Est. Lost Labor** = \u03a3 per contributing location (default labor rate \u00d7 internal hours) \u2014 default rate is a `labour_type` row with `is_default=1` (no unique constraint \u2014 pick deterministically; workplace may have none \u2192 partial/\"\u2014\"). NULL workplace_id records excluded from valuation. Reconcile to the cent vs Timesheet Activities.\n\nFE: technician rows + pinned Est. Lost Labor column + tooltip; Summary over visible techs; per-day lazy expand; tech filter on-screen only, location filter reloads; sort resets to Technician A\u2013Z on reload (NOT remembered); Total Hours deep-links to Timesheet Activities filtered to tech+range. All-white theme.\n\n**\u26a0\ufe0f Re-verify at implementation:** Timesheet methodology alignment + `labour_type` default-rate query (TU-BE agent stalled during planning).\n\n**E2E:** reference-breakage scan + happy paths (load, expand tech, deep-link, tech filter, CSV) + edge (no-clocked-time, \"\u2014\" Est. Lost Labor).\n\nDepends on: A2, A5.",
+  "links_in_desc": [],
   "desc_edits": [],
   "status_hist": [
    [
@@ -663,6 +696,7 @@
    ]
   ],
   "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part B / B3. **Spec:** PV page 620888066. Depends on **A1/PR-1** (inventory_changes DECIMAL \u2014 Units Sold precision), A2, A5. **Complexity: High** (multi-source movement math, per-location vs merged rows).\n\n**Scope:**\n\nDB: new composite index `inventory_changes (workplace_id, inventory_part_id, origin, created_at)` (+ catalog_part_id variant); new `part.last_sold_at` (nullable) denorm column killing the all-time MAX() sub-select; backfill command `app:inventory:backfill-last-sold-at`; maintain on invoice create + reversal.\n\nBE fetcher: INVENTORY parts = per-(part, workplace) rows; CATALOGUE parts = one merged row; core parts excluded; Type filter Both/Inventory/Catalogue. **Units Sold** = net over invoicing origins (`WorkOrderInvoiceCreate` +, `WorkOrderInvoiceReverse` \u2212) \u2014 origin filter mandatory. **Demand** = count of in-window invoicing events. Returns via `work_order_part_return_request` + `part_sale_credit`. Profitability from billed part lines (`work_order_part` + `invoice_statement_item`), net reversals via void predicate. Last Sale from denorm column. Permission: existing Inventory Reports\u2192View (no new atom).\n\nFE: **two-tone theme**, new Parts nav group, 20 columns/14 default (column picker), catalogue rows render \"\u2014\" for stock; server pagination; export; page-local search.\n\n**\u26a0\ufe0f Re-verify at implementation:** movement queries + `InventoryQueryHandler` discriminators (PV-BE agent stalled). Do NOT copy its WO-type IN-list heuristic or workplace_location_id hack.\n\n**E2E:** reference-breakage scan + happy paths (Parts nav, Type=Catalogue \"\u2014\" cells, filters, search, column picker, CSV) + edge (bin+catalogue empty, >10k cap toast).\n\nDepends on: PR-1, A2, A5.",
+  "links_in_desc": [],
   "desc_edits": [],
   "status_hist": [
    [
@@ -717,6 +751,7 @@
   "subtasks": [],
   "links": [],
   "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part B / B4. **Spec:** IV page 720142338. Depends on A2, A3, A5. **Complexity: High** (pricing-matrix sell in SQL + second cross-tenant snapshot cron + retention).\n\n**Scope:**\n\nDB: `inventory_value_snapshot` table (denormalized category/vendor names to survive rename/delete on as-of replay; join org-purge path). **\u26a0\ufe0f Sizing gate before locking:** `COUNT(*) FROM part WHERE quantity>0 AND is_core=0` per workplace \u2014 fleet-wide could be 50\u2013200M/yr; retention bounds it, else month-RANGE partition. Verify `pricing_rule.matrix_id` index exists.\n\nBE fetcher: one row per (part, workplace), is_core=0, in-stock; join skeleton = `DbalPartListFetcher::searchParts` with multi-location. **Qty** = `AVAILABLE_QUANTITY_SQL` (positive-bins-only, agrees with Parts page \u2014 do NOT copy Dashboard's raw p.quantity). **Unit sell** = ONE shared SQL sell expression (used by live query AND capture INSERT\u2026SELECT): fixed / no-category=cost / matrix markup via `part_category.pricing_matrix_id` \u2192 org default \u2192 interval clamp. Ship cent-parity test vs `PricingRulesApplier`. As-of resolution (live today / nearest snapshot / none\u2192empty). Permission `ROLE_REPORT_VIEW`.\n\n\ud83d\udd34 Nightly snapshot `app:reporting:capture-inventory-value-snapshots` \u2014 **cross-tenant Golden-Rule exemption** (record in PR block); set-based DELETE+INSERT\u2026SELECT with shared sell expression; likely no session-injection hack (pure DBAL). Retention prune (\u226413mo daily \u2192 monthly last-capture) as in-command step. EventBridge\u2192ECS nightly.\n\nFE: all-white theme, Parts nav (shared w/ PV), server-paginated, Total Cost pinned + default sort desc, column picker (Margin/Total Sell off by default), date-range as \"as-of\" anchor + \"As of X\" indicator, category/vendor filters + page-local search, export.\n\n**E2E:** reference-breakage scan + happy paths (Parts nav, filters, search, column toggle, CSV) + edge (past date before first capture empty, >10k cap, qty-drift positive-bins).\n\nDepends on: A2, A3, A5.",
+  "links_in_desc": [],
   "desc_edits": [],
   "status_hist": [
    [
@@ -776,6 +811,7 @@
    ]
   ],
   "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part B / B5. **Spec:** SBC page 577634305. Depends on A2, **A4** (invoice financial columns), A5. **Complexity: High** (3-level tree + lazy drill-down + dedicated permission).\n\n**Scope:**\n\nDB: no new report tables (aggregates A4 columns). One new permission atom.\n\nBE fetcher: customer rows GROUP BY `company_id` (NOT customer_id/contact) over A4 columns, filtered by (work_place_id IN, created_on range, status != void via A2 predicate). Subtotal = labor_sell+parts_sell+shop_supplies_charge; Margin excludes shop supplies. Sort-by-Date = MAX(created_on). Totals over full filtered set. Customer type-ahead. Lazy asset drill-down (group by COALESCE(vehicle_id, snapshot key); \"Parts Sales\" bucket = vehicle_id IS NULL; labels from invoice_vehicle_details text; dup-label tiebreaker). Invoice rows emit workOrderId + type. Exports flat (Customer\u2192Invoice); 10k cap counts customers + invoices (two-level).\n\n\ud83d\udd34 **Multi-location tenant scoping:** intersect requested workplaceIds with `WorkplaceFetcher::getByUserId()` (admin\u2192getAllForOrganization) AND keep OrganizationDecorator. Do NOT copy TimesheetActivity precedent that skips validation. Backfill-NULL guard (COALESCE or gate on backfill completion).\n\nDedicated view permission (SV-5319 model, must land in one commit or `be-permission-drift` CI fails): atom `ROLE_SALES_BY_CUSTOMER_REPORT::VIEW`, bundle decision (43rd bundle vs ride existing \u2014 product call), FEPermissionMappings, IntentionalAtomChanges, seeder CLIs, FE bundleCatalog.ts. Every SBC endpoint gates on the new atom via `#[IsGranted]`, NOT ROLE_REPORT_VIEW.\n\nFE: **two-tone theme**, 3-level tree Customer\u2192Asset\u2192Invoice (server-paged customers, lazy asset+invoice on expand, expand-all bounded to page), type-ahead all-customers state flag, product-type dropdown, Inv. Hrs colored, invoice link by type, column selector, remembered-view.\n\n**E2E:** reference-breakage scan + happy paths (permission-gated nav, expand tree, invoice link, filter, CSV/PDF) + edge (empty, Parts Sales bucket, permission-denied nav hidden + direct-link denied).\n\nDepends on: A2, A4, A5.",
+  "links_in_desc": [],
   "desc_edits": [],
   "status_hist": [
    [
@@ -835,6 +871,7 @@
    ]
   ],
   "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part B / B6. **Spec:** SBR page 585629698. Depends on A2, **A4**, A5. **Complexity: Highest** (net-new rep schema chain + WO field + staff dialog + 4-format export). Built last.\n\n**Scope:**\n\nDB (net-new, forward-only, NO backfill): `staff.is_sales_rep` BOOLEAN; `work_order.sales_rep_id` (+ index); `invoice.sales_rep_id` + `invoice.sales_rep_name` (+ index). \ud83d\udd34 **No dual parts/service rep fields exist** (spec build-note describes a dead prototype) \u2014 build single-rep chain fresh.\n\n\ud83d\udd34 **Identity decision (most bug-prone point):** `work_order.service_advisor_id` = staff.id but `company.sales_rep_id` = user.id. Pick ONE identity for the new rep columns (**staff.id recommended**) + translate customer fallback via `staff.user_id`.\n\nBE: rep snapshot write at invoice creation (WO rep \u2192 customer rep \u2192 null); **must NOT recompute in updateInvoice** (immutable). Per-rep rows GROUP BY sales_rep_id; Unassigned pinned top; contributor gate; (Inactive) marker. \ud83d\udd34 **Payment 5\u21923 mapping** \u2014 `balance_owed \u2260 total_balance \u2212 paid_balance` (deposits excluded from paid_balance per SV-6616); prepaid branch needs deposit-contribution join or every prepaid invoice misclassifies (coordinate with Minja's payments rewrite). WO rep assignment endpoint (clone ChangeServiceAdvisor); rep selector listing (is_sales_rep=1); staff-deactivation precondition count (keys on user.id). Sales Rep Assignments export stays on legacy JSON-wrapped convention (NOT D5). Summary/Expanded PDF+CSV via A3 scaffold.\n\nFE: all-white theme, per-rep lazy detail, payment badge (feed MAPPED display key \u2014 colorCoding('overpaid') is wrong), responsive grand totals (desktop sticky row / mobile external bar), 4-item export menu. WO \"Sales Rep\" field in OrderStatusCard.vue (save via mutation, gate Part-Sale WOs). Staff deactivation type-YES dialog (net-new) \u2014 \ud83d\udd34 S13-R8 wants Esc-to-dismiss but Golden Rule #9 forbids Esc \u2014 surface as decision. `is_sales_rep` toggle in StaffDialog.vue. Nav at bottom of Performance group + padding fix.\n\n**E2E:** reference-breakage scan + happy paths (expand rep, badge, filter, sort, 4 exports, assign WO rep\u2192credited, assignments CSV) + edge (Unassigned, (Inactive) still credited, deactivation dialog blocks until yes, empty).\n\nDepends on: A2, A4, A5.",
+  "links_in_desc": [],
   "desc_edits": [],
   "status_hist": [
    [
@@ -893,7 +930,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Where the report lives in the Reports navigation, and who can open it.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Where the report lives in the Reports navigation, and who can open it.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -911,7 +951,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Set the time window the report covers.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Set the time window the report covers.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -929,7 +972,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Limit the report to service invoices, parts invoices, or both.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Limit the report to service invoices, parts invoices, or both.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -952,7 +998,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Scope the report to one, several, or all of the locations the user has access to.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Scope the report to one, several, or all of the locations the user has access to.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -975,7 +1024,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Restore the user's last filters, sort, and columns when they return to the report.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Restore the user's last filters, sort, and columns when they return to the report.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1002,7 +1054,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Show one row per customer that rolls up their revenue.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Show one row per customer that rolls up their revenue.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 3
@@ -1020,7 +1075,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Drill from a customer down to the vehicles the work was done on, then to the individual invoices.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Drill from a customer down to the vehicles the work was done on, then to the individual invoices.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1038,7 +1096,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Click into an invoice from the report without losing filters or expansion.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Click into an invoice from the report without losing filters or expansion.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1061,7 +1122,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Rank customers by any meaningful column.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Rank customers by any meaningful column.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1084,7 +1148,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Keep the headline number unmistakable and always on screen.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Keep the headline number unmistakable and always on screen.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1107,7 +1174,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Show whether a customer or invoice was billed for more time than was worked.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Show whether a customer or invoice was billed for more time than was worked.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1130,7 +1200,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Hide columns the user does not need.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Hide columns the user does not need.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1153,7 +1226,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Download the on-screen report as a CSV file.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Download the on-screen report as a CSV file.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1176,7 +1252,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Download a printable copy of the report.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Download a printable copy of the report.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1199,7 +1278,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Print directly from the toolbar without first saving a PDF.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Print directly from the toolbar without first saving a PDF.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1217,7 +1299,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Give clear feedback when the filters produce no data.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Give clear feedback when the filters produce no data.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1235,7 +1320,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Narrow the report to a chosen set of customers with a multi-select Customer filter.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Narrow the report to a chosen set of customers with a multi-select Customer filter.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1253,7 +1341,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Make the report look and feel like the rest of the suite.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Make the report look and feel like the rest of the suite.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1271,7 +1362,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Keep every control usable on a phone even though the table is dense.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Keep every control usable on a phone even though the table is dense.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1294,7 +1388,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Access the Sales By Representative Report\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Access the Sales By Representative Report\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1312,7 +1409,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Filter the report by date range\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Filter the report by date range\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1330,7 +1430,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Filter the report by product type\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Filter the report by product type\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1348,7 +1451,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Filter the report by invoice payment status\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Filter the report by invoice payment status\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1375,7 +1481,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "View per-rep summary rows\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "View per-rep summary rows\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 3
@@ -1393,7 +1502,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Expand a rep to view their invoices\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Expand a rep to view their invoices\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1411,7 +1523,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Invoice payment status badge\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Invoice payment status badge\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1434,7 +1549,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Inv. Hrs (Labor Delta) column display\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Inv. Hrs (Labor Delta) column display\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1457,7 +1575,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Subtotal column and grand Totals indicator\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Subtotal column and grand Totals indicator\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1480,7 +1601,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Sort the report\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Sort the report\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1498,7 +1622,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Navigate to an invoice or customer\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Navigate to an invoice or customer\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1516,7 +1643,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Deactivate a sales rep with customer assignments\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Deactivate a sales rep with customer assignments\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1539,7 +1669,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "PDF and CSV exports\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "PDF and CSV exports\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1557,7 +1690,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Sales Rep Assignments CSV export\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Sales Rep Assignments CSV export\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1575,7 +1711,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Loading, empty, and error states\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Loading, empty, and error states\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1593,7 +1732,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Mobile usability\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Mobile usability\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1611,7 +1753,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Visual conformance and accessibility\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Visual conformance and accessibility\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1629,7 +1774,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Work Order Sales Rep assignment\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Work Order Sales Rep assignment\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1652,7 +1800,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Column selector\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Column selector\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1675,7 +1826,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Filter the report by location\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Filter the report by location\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1693,7 +1847,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Show Unassigned invoices\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Show Unassigned invoices\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1716,7 +1873,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Remember filters and view\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Remember filters and view\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1739,7 +1899,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Where the report lives in the Reports navigation, and the access required to open it.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Where the report lives in the Reports navigation, and the access required to open it.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1757,7 +1920,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "The filters and search available on the report; each reloads data from the server.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The filters and search available on the report; each reloads data from the server.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1780,7 +1946,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "One row per part (per location for inventory): how rows rank and sort, and how each cell renders.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "One row per part (per location for inventory): how rows rank and sort, and how each cell renders.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1803,7 +1972,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "Which columns show by default, and how each user's filters, column choices, and sort are remembered and restored.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Which columns show by default, and how each user's filters, column choices, and sort are remembered and restored.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1826,7 +1998,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "The authoritative source, formula, and on-screen format for every column - the single reference for the table, the exports, and the tests.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The authoritative source, formula, and on-screen format for every column - the single reference for the table, the exports, and the tests.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1849,7 +2024,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "What the CSV and PDF exports contain and how they are formatted.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "What the CSV and PDF exports contain and how they are formatted.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -1867,7 +2045,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "The report's visual treatment (self-contained normative rules).\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The report's visual treatment (self-contained normative rules).\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1894,7 +2075,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "The report is reachable from the reports navigation and shows technician rows for the selected date range and location(s).\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The report is reachable from the reports navigation and shows technician rows for the selected date range and location(s).\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 3
@@ -1912,7 +2096,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Each technician row shows the hours breakdown, the utilization rate, and the Est. Lost Labor value, in a fixed column order.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Each technician row shows the hours breakdown, the utilization rate, and the Est. Lost Labor value, in a fixed column order.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1930,7 +2117,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "A pinned Summary row shows the totals for the visible technicians.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "A pinned Summary row shows the totals for the visible technicians.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1948,7 +2138,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Each technician row can expand to show that technician's day-by-day clock totals.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Each technician row can expand to show that technician's day-by-day clock totals.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1966,7 +2159,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "A filter lets the user choose which technicians the report shows, and the Summary updates to match.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "A filter lets the user choose which technicians the report shows, and the Summary updates to match.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -1984,7 +2180,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Each technician's Total Hours value links to the Timesheet Activities report, filtered to that technician and date range.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Each technician's Total Hours value links to the Timesheet Activities report, filtered to that technician and date range.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2007,7 +2206,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "The user can download the report as a Summary PDF, an Expanded PDF, or a CSV file, and the download respects the current filters.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The user can download the report as a Summary PDF, an Expanded PDF, or a CSV file, and the download respects the current filters.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -2025,7 +2227,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "The report conforms to the application's standard all-white reporting theme and layout, and meets the accessibility requirements.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The report conforms to the application's standard all-white reporting theme and layout, and meets the accessibility requirements.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2048,7 +2253,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "A filter lets the user scope the report to one, several, or all of the locations they have access to.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "A filter lets the user scope the report to one, several, or all of the locations they have access to.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -2071,7 +2279,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "The report is reachable from the reports navigation and opens on the first section tab, with four tabs in total.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The report is reachable from the reports navigation and opens on the first section tab, with four tabs in total.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -2089,7 +2300,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "The report lists every open work order for the selected location(s).\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The report lists every open work order for the selected location(s).\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2107,7 +2321,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Each open work order is placed in exactly one tab, derived from its status and whether work has started.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Each open work order is placed in exactly one tab, derived from its status and whether work has started.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2125,7 +2342,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Each row shows the work order's identity, its aging, and its earned/remaining money breakdown, in a fixed column order.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Each row shows the work order's identity, its aging, and its earned/remaining money breakdown, in a fixed column order.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2143,7 +2363,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "A strip across the top shows the whole floor as headline figures, and recomputes as the user filters.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "A strip across the top shows the whole floor as headline figures, and recomputes as the user filters.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2161,7 +2384,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Each tab has a Totals row that sums the visible jobs in that tab.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Each tab has a Totals row that sums the visible jobs in that tab.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2184,7 +2410,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "The report can be filtered by advisor, customer, asset, date range, and location.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The report can be filtered by advisor, customer, asset, date range, and location.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -2207,7 +2436,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "The user can choose which columns show, and the report remembers its setup.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The user can choose which columns show, and the report remembers its setup.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -2230,7 +2462,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "The user can download the current tab as a PDF or CSV.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The user can download the current tab as a PDF or CSV.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -2248,7 +2483,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "The report conforms to the application's standard all-white reporting theme and layout, and meets the accessibility requirements.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The report conforms to the application's standard all-white reporting theme and layout, and meets the accessibility requirements.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2266,7 +2504,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Once per day the report captures every open work order's earned/remaining value, so a future Trend view can read a consistent history.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Once per day the report captures every open work order's earned/remaining value, so a future Trend view can read a consistent history.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2293,7 +2534,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "The report is reachable from the reports navigation and shows in-stock part rows for the selected date and location(s).\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The report is reachable from the reports navigation and shows in-stock part rows for the selected date and location(s).\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 3
@@ -2311,7 +2555,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "The report values only real, sellable on-hand stock.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The report values only real, sellable on-hand stock.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2329,7 +2576,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "Each row shows the part's identity, its on-hand quantity, its unit and extended cost and sell, and its margin, in a fixed column order.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "Each row shows the part's identity, its on-hand quantity, its unit and extended cost and sell, and its margin, in a fixed column order.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2347,7 +2597,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "A totals row sums the full filtered set, computed on the server.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "A totals row sums the full filtered set, computed on the server.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2365,7 +2618,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "A date control chooses the date the report is valued as of, served from the current stock or from nightly history.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "A date control chooses the date the report is valued as of, served from the current stock or from nightly history.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2383,7 +2639,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "The user can narrow the report by category, by vendor, and by a part search over part number and description. All three apply server-side.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The user can narrow the report by category, by vendor, and by a part search over part number and description. All three apply server-side.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2406,7 +2665,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "A filter lets the user scope the report to one, several, or all of the locations they have access to.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "A filter lets the user scope the report to one, several, or all of the locations they have access to.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -2429,7 +2691,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "The user can choose which columns show, and the report remembers its setup.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The user can choose which columns show, and the report remembers its setup.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -2452,7 +2717,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "The user can sort the report by any column; sorting is resolved server-side.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The user can sort the report by any column; sorting is resolved server-side.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -2475,7 +2743,10 @@
     "is blocked by"
    ]
   ],
-  "desc": "The user can download the current view as a PDF or CSV, generated server-side, respecting the current filters, search, columns, and sort.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The user can download the current view as a PDF or CSV, generated server-side, respecting the current filters, search, columns, and sort.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 2
@@ -2493,7 +2764,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "The as-of history is built from a once-daily recorded snapshot of every location's inventory value, retained at reducing granularity as it ages.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The as-of history is built from a once-daily recorded snapshot of every location's inventory value, retained at reducing granularity as it ages.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
@@ -2511,7 +2785,10 @@
   "attachments": 0,
   "subtasks": [],
   "links": [],
-  "desc": "The report conforms to the application's standard all-white reporting theme and layout.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc": "The report conforms to the application's standard all-white reporting theme and layout.\n\n**Spec: **https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report\n\nPart of the Reporting Suite epic (SV-8582).",
+  "links_in_desc": [
+   "https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/720142338/Inventory+Value+Report"
+  ],
   "desc_edits": [],
   "status_hist": [],
   "changelog_total": 1
