@@ -1,0 +1,80 @@
+{
+ "capturedAt": "2026-08-04T04:05:37.451Z",
+ "buildMarker": "v3.4.1-0ed4433",
+ "today": "2026-08-04",
+ "probes": [
+  {
+   "label": "this_year   (Jan 1 -> Aug 4 : spec 216)",
+   "rangeQs": "range=this_year",
+   "status": 200,
+   "impliedWindows": [
+    {
+     "W": 215,
+     "rows": 440
+    }
+   ]
+  },
+  {
+   "label": "this_month  (Aug 1 -> Aug 4 : spec 4)",
+   "rangeQs": "range=this_month",
+   "status": 200,
+   "impliedWindows": []
+  },
+  {
+   "label": "this_quarter(Jul 1 -> Aug 4 : spec 35)",
+   "rangeQs": "range=this_quarter",
+   "status": 200,
+   "impliedWindows": [
+    {
+     "W": 92,
+     "rows": 6
+    }
+   ]
+  },
+  {
+   "label": "this_week   (spec = days so far incl.)",
+   "rangeQs": "range=this_week",
+   "status": 200,
+   "impliedWindows": []
+  },
+  {
+   "label": "last_12_months (spec 366 incl.)",
+   "rangeQs": "range=last_12_months",
+   "status": 400,
+   "impliedWindows": []
+  },
+  {
+   "label": "last_month  (Jul 1 -> Jul 31 : spec 31)",
+   "rangeQs": "range=last_month",
+   "status": 200,
+   "impliedWindows": [
+    {
+     "W": 31,
+     "rows": 6
+    }
+   ]
+  },
+  {
+   "label": "last_year   (2025 full : spec 365)",
+   "rangeQs": "range=last_year",
+   "status": 200,
+   "impliedWindows": [
+    {
+     "W": 365,
+     "rows": 416
+    }
+   ]
+  },
+  {
+   "label": "last_quarter(Apr 1 -> Jun 30 : spec 91)",
+   "rangeQs": "range=last_quarter",
+   "status": 200,
+   "impliedWindows": [
+    {
+     "W": 91,
+     "rows": 447
+    }
+   ]
+  }
+ ]
+}
