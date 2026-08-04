@@ -180,6 +180,51 @@ else owes).
 
 ---
 
+## 3. FILTERS — PO: Branko · Epic **SV-8785** · **110 active cases** · **LIVE VIU DONE 2026-08-04 against QA branch `sv8785`, build `v3.4.2-4f8211c`** — 60 correct on the build · 32 broken against an open ticket · 8 held for Branko · 9 not built yet · 1 needs a second login · **88 of 110 ready to automate today**
+
+### 2026-08-04 — THE FILTERS VIU RAN. What moved, and the five Rule-48 fields on what did not
+
+**Report for the QA lead: `build/filters/READINESS-2026-08-04.md`** (one table, plain English, ends
+with its own outstanding section). Full pass: `build/filters/viu-2026-08-04/`.
+
+**✅ CLEARED — "GO-AHEAD NEEDED: start the Filters VIU".** Given and executed 2026-08-04. All 110
+cases now have a definite verdict; **zero are "partly observed" and zero are "blocked"**. 115
+`update_case` operations (110 cases + 5 corrective), every one HTTP 200 and byte-verified MATCH with
+28 fields compared and every unintended field proven byte-identical. **Run 352 verified untouched** —
+110 tests set-equal both ways, **all 398 result records present by id** (the brief said 396;
+verified, not trusted). 0 add, 0 delete, 0 section, 0 run writes. 0 foreign cases.
+
+**✅ CLEARED — "the 19 dropdown merges await a live check of the shared-component assumption".** The
+assumption is CONFIRMED: every filter dropdown across Work Orders, Parts and Reports is one of just
+two shared components, `.filter-option-list-panel` (checkbox lists) or `.filter-search-list-panel`
+(search + list + tags). **The merge can go ahead on your word — it is now a decision, not a
+question.**
+
+**✅ CLEARED — "the API host `sv8785api` is inferred, not verified".** It answered `quick-login` with
+HTTP 200 on the first attempt. The `sv<epic>api` naming pattern is now proven on two of three
+branches.
+
+| What is missing | Category | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|
+| **NEW — Branko must answer SV-8825: do phone filters apply as you tap, or only on an Apply button?** He answered our sheet on 2026-08-04 saying **"A - no apply button"** (instant, which is what the build does), and then **hours later the same day** added a brand-new requirement **S12-R6** to his own spec saying the exact opposite — *"mobile does not filter in real time… the table updates only when the user taps an \"Apply filters\" button"* (Confluence version 15/16/17, 12:04–12:33 UTC, changelog comment *"Clarify mobile deferred apply"*). **The timing is the crux:** the QA executing run 352 raised **SV-8825** at 10:58 UTC asking exactly this, and Branko's spec edits landed 1h06m later — so S12-R6 reads as his written answer, which would put the **build** in the wrong. But the ticket is still Open with no comment, and his sheet says the reverse. **We are not choosing between two answers from the same person on the same day** (Rule 32(iii)). | QUESTION | **Branko** (via SV-8825) | **8 mobile cases** FLT-MOB-01…07 + FLT-MOB-10 ([C29621](https://shopview.testrail.io/index.php?/cases/view/29621)–[C29627](https://shopview.testrail.io/index.php?/cases/view/29627), [C29630](https://shopview.testrail.io/index.php?/cases/view/29630)) cannot be automated and cannot be given a pass or a fail. Each carries, verbatim, *"DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner."* Also the only **HIGH** risk left in the defence register. | **2026-08-04** |
+| **NEW — GO-AHEAD or a "no": one API-only finding, written up and NOT filed.** A nonsense value for the Yes/No filter is silently ignored (`vehicleHere=banana` → HTTP 200, full unfiltered list) while a nonsense field *name* is properly rejected (HTTP 400). **No customer and no manual tester can reach it** — the screen only ever sends `1` or `0` — so under Standing Rule 51 it is never raised without your word, and a batch approval does not cover it. Arguably not a defect at all: silently ignoring an unusable value is what S11-R3/S11-N1 ask for elsewhere. Ready either way at priority Low, parent SV-8785, linked to SV-8796. Paper: `build/filters/viu-2026-08-04/API-ASK.md`. | GO-AHEAD | **You** | Nothing is held. Listed so the decision is visibly yours and provably not taken by us. | **2026-08-04** |
+| **NEW — a second test login.** Proving one user's saved filters do not leak to another needs a second sign-in. We could not self-serve it: `POST /api/switch-user` returns **HTTP 400** on this branch, and a freshly created staff member cannot complete sign-up because the invitation email cannot be received here. A manual tester who already has two accounts can run it in a minute. | ACCESS | **You** | **1 case** — FLT-API-06 ([C38895](https://shopview.testrail.io/index.php?/cases/view/38895)) step 3. Steps 1, 2 and 4 were confirmed working, and the case now tells the tester to mark it **blocked, not failed**, if they have no second account. | **2026-08-04** |
+| **NEW — tell us when engineering declares the `sv8785` branch FINAL.** It has not been declared final, and a per-epic QA branch of exactly this kind redeployed twice within hours on Report Suite the same day. So **all 110 verdicts are PROVISIONAL** (Standing Rule 49) and the re-check queue is **OPEN**: `build/filters/viu-2026-08-04/RECHECK-QUEUE.md`, one row per case, with the build marker `v3.4.2-4f8211c` and what each row must re-confirm. Re-run it at every session start for Filters and immediately if the app-version marker moves. | SOURCE | **Engineering**, relayed by you | Nothing is blocked from proceeding, but **nothing may be described as VIU-complete while the queue is OPEN** — including the readiness report, which says so. | **2026-08-04** |
+| **NEW — GO-AHEAD: the 19 dropdown merges.** The shared-component assumption they waited on is now confirmed live (two panel components serve every dropdown in the app). This is now purely your call. | GO-AHEAD | **You** | 19 cases stay as they are. No authenticity or coverage risk either way. | Raised 2026-07-31 · **unblocked 2026-08-04** |
+| **NEW — for Branko, three spec-side corrections we are NOT acting on unilaterally.** (a) **S12-R2 points at the wrong requirement** — it says *"one exception (see S12-R5)"* but S12-R5 is page search; the exception is S12-R6. An editing slip from his own version-17 renumber. (b) **S7-R2 contradicts its own worked example** — the sentence says the chip shows *"the first value followed by a count of additional selections"*, the example shows `"Status: Estimate, In progress, Approved…"`, and **the build matches the example**; we wrote the case to the example. (c) **His 17 July answer is now contradicted by his own spec and by the shipped build** — he said the Status chip would be greyed out and pre-filled on Estimates/Completed and the design frame draws it that way, but S9-R2/S2-N1 say *hidden* and the build hides it; **we corrected six of our own cases to the spec and the build** and he should know. | OTHER TEAM | **Branko** | Nothing testable is blocked. This is the document-versus-decision gap again — the shape of gap that makes us look wrong in public when we are not. | **2026-08-04** |
+| **NEW — one question for Ahtasham, not a contradiction of him.** We **could not reproduce SV-8828** (*saved filters do not auto-restore after closing the tab/window*). On the same build, in a brand-new browser context with empty localStorage and sessionStorage, `/workorders` was requested with no query string, the app rewrote the URL to `?status=invoiced&vehicleHere=1&tab=all`, the chips came back active, 16 rows were filtered and **no "Back To My Saved Filters" button appeared**. **We are not saying he is wrong** (Rule 33 — judge the claim, not the claimant): the likeliest difference is that his previous visit was URL-driven, because that button is exactly the S11-R7 shared-link control and it **does** appear for us on a URL-driven visit. **His case keeps its Failed result and we changed nothing about it.** | QUESTION | **Ahtasham**, via you | Nothing. FLT-PERS-02 ([C29614](https://shopview.testrail.io/index.php?/cases/view/29614)) is untouched. | **2026-08-04** |
+
+**Five new dev tickets were filed today** (all priority **Low**, all parent **SV-8785**, each linked
+to its owning story): [SV-8843](https://shopview.atlassian.net/browse/SV-8843) filter bar shares the
+tab row · [SV-8844](https://shopview.atlassian.net/browse/SV-8844) the page search query is saved to
+the account and empties the list on a later visit ·
+[SV-8845](https://shopview.atlassian.net/browse/SV-8845) phone shared links list the wrong work
+orders · [SV-8846](https://shopview.atlassian.net/browse/SV-8846) no Clear Filters on a phone ·
+[SV-8847](https://shopview.atlassian.net/browse/SV-8847) the empty screen offers the one action that
+cannot help. **Three already existed and we did not duplicate them** — SV-8824 (12 of our cases,
+independently reproduced), SV-8832 (4 cases, reproduced on the shared-link route too), SV-8828 (not
+reproduced, see above).
+
 ## 3. FILTERS — PO: Branko · Epic **SV-8785** · **110 active cases, all live in TestRail, all VIU-Pending** · **Branko's sheet ANSWERED 9 of 9 on 2026-08-04**
 
 | Item | Category | Who owes it | What it blocks | Outstanding since |
