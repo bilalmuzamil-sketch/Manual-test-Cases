@@ -1,4 +1,4 @@
-# TICKET 6 — ready to paste into Jira
+# TICKET 6 — FILED as SV-8823
 
 > **Status: the QA lead asked for this one FLAGGED FOR AWARENESS rather than filed.** It is written
 > paste-ready so it can be filed in one move if he decides to, because it has a concrete daily cost.
@@ -16,10 +16,19 @@
 | **Affects build** | `v3.4.1-0ed4433` on `sv8582.qa.shopview.com` |
 | **Observed** | 2026-08-04 |
 | **Labels (suggested)** | `reports-suite`, `inventory-value`, `export`, `csv`, `qa-found` |
+| **FILED AS** | **SV-8823** — https://shopview.atlassian.net/browse/SV-8823 |
+| **Ticket format** | The organisation's required 7-section format (see `build/APP-ACTIONS-PLAYBOOK.md` § "Filing a defect ticket") |
+
+> **This file mirrors what is actually filed in Jira.** It carries the organisation's required
+> seven sections in order: Description · Branch/Environment · Steps to reproduce · Expected
+> behaviour · Current behaviour · Images · Technical details for developers. Two things are
+> deliberately ABSENT from the ticket by standing instruction: any reference to our test cases,
+> and any "this branch is not final / finding is provisional" disclaimer. The case mapping is
+> kept in `CASE-IMPACT.md` in this folder instead.
 
 ---
 
-## What's wrong
+## 1. Description
 
 Two things, both in the Inventory Value spreadsheet download.
 
@@ -31,8 +40,6 @@ numbers.
 If you switch **Margin** or **Total Sell** off on screen, they still appear in the file. And the columns
 come out in a different order: **Total Cost** is ninth in the file but last on screen.
 
-## Why it matters
-
 **On the money:** the person downloading this is almost always downloading it in order to do sums — total
 the shelf, sort by value, chart it, paste it into a stock valuation. Because the money columns arrive as
 text, **none of that works** until they clean every column by hand first. A total comes out as zero, or
@@ -43,27 +50,19 @@ downloads it, gets all twelve back anyway. Their choice was silently ignored —
 explanation. And because the order differs from the screen, anyone who has built a template or a habit
 around the screen's layout finds the file does not match it.
 
-## What should happen instead
+---
 
-Both are written requirements in the Inventory Value specification, version 3.
+## 2. Branch / Environment
 
-**On the money** — the Story 10 context note, verbatim:
+- **Branch / environment tested:** QA branch `sv8582` — app `https://sv8582.qa.shopview.com`, API `https://sv8582api.qa.shopview.com`
+- **Build marker:** `v3.4.1-0ed4433`
+- **Organisation:** `d55bc308-e61a-438d-b5f1-c7a73c89d49f`
+- **Observed:** 2026-08-04
+- **Report affected:** Inventory Value (the spreadsheet download)
 
-> "in the CSV, money values are written as **plain numbers with two decimals and no thousands
-> separators** (so they **parse cleanly in a spreadsheet**); the PDF uses the same on-screen currency
-> formatting with the '$' and thousands separators."
+---
 
-Note that the requirement anticipated this exact problem — "so they parse cleanly in a spreadsheet" is
-the reason it is written that way. **The PDF half is correct.** Only the spreadsheet breaches it.
-
-**On the columns** — requirement S10-R3, verbatim:
-
-> "Both downloads include **only the columns currently shown**, in the **same left-to-right order as the
-> screen**, with **Total Cost last**."
-
-That is three separate promises in one sentence, and the file breaks all three.
-
-## How to see it yourself
+## 3. Steps to reproduce
 
 No special data is needed.
 
@@ -83,17 +82,53 @@ For comparison, take the **Download (PDF)** of the same view — that one is for
 not part of this ticket.
 
 ---
+
+## 4. Expected behaviour
+
+Both are written requirements in the Inventory Value specification, version 3.
+
+**On the money** — the Story 10 context note, verbatim:
+
+> "in the CSV, money values are written as **plain numbers with two decimals and no thousands
+> separators** (so they **parse cleanly in a spreadsheet**); the PDF uses the same on-screen currency
+> formatting with the '$' and thousands separators."
+
+Note that the requirement anticipated this exact problem — "so they parse cleanly in a spreadsheet" is
+the reason it is written that way. **The PDF half is correct.** Only the spreadsheet breaches it.
+
+**On the columns** — requirement S10-R3, verbatim:
+
+> "Both downloads include **only the columns currently shown**, in the **same left-to-right order as the
+> screen**, with **Total Cost last**."
+
+That is three separate promises in one sentence, and the file breaks all three.
+
 ---
 
-# FOR ENGINEERING — technical evidence
+## 5. Current behaviour
 
-**Environment.** API `https://sv8582api.qa.shopview.com`, build `v3.4.1-0ed4433`. Org
-`d55bc308-e61a-438d-b5f1-c7a73c89d49f`.
+**On the money:** every money column in the spreadsheet arrives as text — written exactly as the screen
+shows it, with a dollar sign and comma separators — so spreadsheet software reads it as words. Totals
+come out as zero or as an error, and it is not obvious why. The person has to clean every money column
+by hand before they can do any arithmetic.
 
-⚠️ **This QA branch was declared NOT FINAL by engineering.** This finding is provisional. **If it is
-already fixed or still in progress, please close saying so.**
+**On the columns:** the file ignores which columns you chose. Switch **Margin** or **Total Sell** off on
+screen and they still appear in the file. The order is different too: **Total Cost** is ninth in the file
+but last on screen.
 
-## Symptom 1 — money written with currency presentation
+---
+
+## 6. Images
+
+![inventory-value-screen-column-order.png](inventory-value-screen-column-order.png)
+
+*The Inventory Value report on screen. **Total Cost is the last column** — in the downloaded spreadsheet it is ninth, which is the ordering difference described above.*
+
+---
+
+## 7. Technical details for developers
+
+### Symptom 1 — money written with currency presentation
 
 Line 4 of the downloaded CSV, verbatim:
 
@@ -104,7 +139,7 @@ R134A,Refrigerant,HD-Fluids,—,786.55,$14.21,$21.86,"$11,176.88","$17,193.98","
 `Total Cost`, `Total Sell` and `Margin` are quoted **because** they contain the thousands separator, so
 every one of them imports as text. Requirement asks for plain two-decimal numbers with no separators.
 
-## Symptom 2 — `columns=` ignored, and the file order differs from the screen
+### Symptom 2 — `columns=` ignored, and the file order differs from the screen
 
 Verbatim file header
 (`build/report-suite/viu-2026-08-03/batch-wip-iv/evidence/exports/iv__MULTI__wholelist__csv.head.txt`):
@@ -145,7 +180,7 @@ contract clearly can honour and validate it — the Inventory Value writer just 
 instead of the default `W4707QP`), and the date, location, category, vendor and search filters are all
 honoured — so this is specifically the column set and its order.
 
-## A third, smaller observation in the same area — recorded, not part of the fix request
+### A third, smaller observation in the same area — recorded, not part of the fix request
 
 For part `W4707QP` the API returns `margin_pct: 56.05`; **the screen renders `56.0%`** (truncating) while
 **both the CSV and the PDF render `56.1%`** (rounding). The same row therefore disagrees between screen
@@ -153,16 +188,9 @@ and file by a tenth of a percent. Requirement S10-R7 asks only for "one-decimal"
 non-compliant — but the two surfaces should presumably agree with each other. Flagged for a decision
 rather than asserted as a defect.
 
-## Evidence files (in the QA repo)
+### Evidence files (in the QA repo)
 
 - `build/report-suite/viu-2026-08-03/batch-wip-iv/evidence/exports/iv__MULTI__wholelist__csv.head.txt`
   and `iv__SINGLE__searchnarrow__csv.head.txt`
 - `build/report-suite/viu-2026-08-03/batch-wip-iv/VERDICTS.md` lines 1838, 2672, 2692
 - `build/report-suite/viu-2026-08-03/batch-wip-iv/STAGED-CHANGES.md` §B22, §B23
-
-> **Note on attachments:** files were not attached — the verbatim data line, the verbatim file header,
-> the verbatim on-screen header and the ignored-parameter results are inlined above.
-
-## QA test cases affected
-
-IV-EXP-02 = C30588 · IV-EXP-03 = C30589.

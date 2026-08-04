@@ -1,4 +1,4 @@
-# TICKET 5 — ready to paste into Jira
+# TICKET 5 — FILED as SV-8822
 
 | Field | Value |
 |---|---|
@@ -12,16 +12,23 @@
 | **Affects build** | `v3.4.1-0ed4433` on `sv8582.qa.shopview.com` |
 | **Observed** | 2026-08-04 |
 | **Labels (suggested)** | `customers`, `api-robustness`, `qa-found` |
+| **FILED AS** | **SV-8822** — https://shopview.atlassian.net/browse/SV-8822 |
+| **Ticket format** | The organisation's required 7-section format (see `build/APP-ACTIONS-PLAYBOOK.md` § "Filing a defect ticket") |
+
+> **This file mirrors what is actually filed in Jira.** It carries the organisation's required
+> seven sections in order: Description · Branch/Environment · Steps to reproduce · Expected
+> behaviour · Current behaviour · Images · Technical details for developers. Two things are
+> deliberately ABSENT from the ticket by standing instruction: any reference to our test cases,
+> and any "this branch is not final / finding is provisional" disclaimer. The case mapping is
+> kept in `CASE-IMPACT.md` in this folder instead.
 
 ---
 
-## What's wrong
+## 1. Description
 
 Saving a customer record crashes with a server error if the request includes a sales-representative
 **id**. The same save works normally when it carries the representative's **name** instead — which is
 what the screen actually sends.
-
-## Why it matters
 
 Modestly, and we would rather say so plainly than overstate it.
 
@@ -38,7 +45,27 @@ sales representative is stored as a first-name and last-name pair, not as a link
 Anything that later needs to know whether a customer's representative is still an active member of staff
 cannot follow a link to find out — it would have to match on the name.
 
-## What should happen instead
+---
+
+## 2. Branch / Environment
+
+- **Branch / environment tested:** QA branch `sv8582` — app `https://sv8582.qa.shopview.com`, API `https://sv8582api.qa.shopview.com`
+- **Build marker:** `v3.4.1-0ed4433`
+- **Organisation:** `d55bc308-e61a-438d-b5f1-c7a73c89d49f`
+- **Customer used:** `Aaborough Works`, id `7af75d7c-c9f8-4209-860a-e685e9bd7c1c`
+- **Observed:** 2026-08-04
+- **Area affected:** Customers → saving a customer record
+
+---
+
+## 3. Steps to reproduce
+
+This one is only reachable through the interface behind the screen, so there are no on-screen steps —
+which is exactly why its impact is low. The technical reproduction is below.
+
+---
+
+## 4. Expected behaviour
 
 An unrecognised or unsupported field should be answered with a validation error explaining what is
 wrong, not a server error.
@@ -47,24 +74,31 @@ wrong, not a server error.
 general robustness expectation, not a quoted requirement, and if the team's view is that it does not
 matter, that is a reasonable answer and this can be closed.
 
-## How to see it yourself
-
-This one is only reachable through the interface behind the screen, so there are no on-screen steps —
-which is exactly why its impact is low. The technical reproduction is below.
-
----
 ---
 
-# FOR ENGINEERING — technical evidence
+## 5. Current behaviour
 
-**Environment.** API `https://sv8582api.qa.shopview.com`, build `v3.4.1-0ed4433`. Org
-`d55bc308-e61a-438d-b5f1-c7a73c89d49f`. Customer used: `Aaborough Works`,
-id `7af75d7c-c9f8-4209-860a-e685e9bd7c1c`.
+The save comes back as a server error and nothing is saved.
 
-⚠️ **This QA branch was declared NOT FINAL by engineering.** This finding is provisional. **If it is
-already fixed or still in progress, please close saying so.**
+The same save works normally when the request carries the representative's **name** instead of an id —
+and the name version is what the Edit Customer screen actually sends, so **nobody using the product can
+hit this today**. What it shows is that the save does not defend itself: an unexpected field produces a
+server error rather than a clear "that field is not valid" message.
 
-## Reproduction
+---
+
+## 6. Images
+
+No screenshot is attached, because **there is nothing to photograph**: this failure cannot be produced
+from any screen. The Edit Customer dialog sends a different (working) shape, so a picture of the dialog
+would show a successful save and would mislead. The exact failing request and response are in the
+technical section below.
+
+---
+
+## 7. Technical details for developers
+
+### Reproduction
 
 ```
 1. GET /api/customers/view/{id}
@@ -95,15 +129,15 @@ POST /api/customers/change
 **⚠️ Honest limit: no request id was captured for the 500.** The probe was not logging response ids at
 that moment. The reproduction above regenerates one in about a minute.
 
-## Honest correction — this did NOT block the 15 test cases
+### Honest correction — this is not the blocker it was first paired with
 
 An earlier framing paired this with the invoice-create 500 as *"what stopped the invoiced-hours pipeline
 and the sales-rep deactivation prerequisites"*. On the evidence that is not right, and the record should
 say so: **this 500 blocked one API-only shortcut**, which was then completed successfully through the
-shape the UI uses. **The load-bearing blocker for all 15 cases is the invoice-create 500** (filed
+shape the UI uses. **The load-bearing blocker is the invoice-create server error** (filed
 separately). Nothing depends on this one. It is filed on its own merits and rated Low accordingly.
 
-## A related observation, NOT filed, flagged for your view
+### A related observation, NOT filed, flagged for your view
 
 While inspecting this dialog: the customer's **Sales Representative** dropdown offers the **whole staff
 list, including staff flagged inactive** (`Louis Mccoy`, `Mary Higgins` both appear), rather than the
@@ -112,17 +146,14 @@ uses. That is a genuine inconsistency between two surfaces of the same concept, 
 user-visible than the 500 in this ticket — but it is outside what QA was asked to raise, so it has not
 been filed. Say the word and it will be.
 
-## Evidence files (in the QA repo)
+### Evidence files (in the QA repo)
 
 - `build/report-suite/viu-2026-08-03/batch-sbc-sbr/evidence/deactivation/customer-edit-dialog.md` — the
   full dialog inspection, the working payload, and the read-back showing `sales_rep_id: null`
 - `build/report-suite/viu-2026-08-03/batch-sbc-sbr/ENV-DEFECTS.md` §2
 - `build/report-suite/viu-2026-08-03/batch-sbc-sbr/VERDICTS.md` finding **F50**
 
-> **Note on attachments:** files were not attached — the full working request body and the read-back
-> field values are inlined above.
-
-## Clean-up already done
+### Clean-up already done
 
 No change was persisted to the customer: the value picked was never in the offered list, so the save
 carried the customer's original `Dalton Daniel` straight back. Verified by re-reading the record

@@ -1,4 +1,4 @@
-# TICKET 4 — ready to paste into Jira
+# TICKET 4 — FILED as SV-8821
 
 | Field | Value |
 |---|---|
@@ -12,16 +12,23 @@
 | **Affects build** | `v3.4.1-0ed4433` on `sv8582.qa.shopview.com` |
 | **Observed** | 2026-08-03 / 2026-08-04 |
 | **Labels (suggested)** | `invoicing`, `blocks-qa`, `qa-found` |
+| **FILED AS** | **SV-8821** — https://shopview.atlassian.net/browse/SV-8821 |
+| **Ticket format** | The organisation's required 7-section format (see `build/APP-ACTIONS-PLAYBOOK.md` § "Filing a defect ticket") |
+
+> **This file mirrors what is actually filed in Jira.** It carries the organisation's required
+> seven sections in order: Description · Branch/Environment · Steps to reproduce · Expected
+> behaviour · Current behaviour · Images · Technical details for developers. Two things are
+> deliberately ABSENT from the ticket by standing instruction: any reference to our test cases,
+> and any "this branch is not final / finding is provisional" disclaimer. The case mapping is
+> kept in `CASE-IMPACT.md` in this folder instead.
 
 ---
 
-## What's wrong
+## 1. Description
 
 You cannot create an invoice. On a work order that has been taken all the way through to complete, with
 a finished, priced job line on it, pressing **Create Invoice** fails with a server error. No invoice is
 produced.
-
-## Why it matters
 
 Two reasons, and the second is the reason QA raised it.
 
@@ -34,24 +41,23 @@ because the only way to put hours into that pipeline is to create an invoice. An
 Representative report, a new invoice is the **only** way a salesperson can get a line in the report at
 all, because the credit is stamped onto the invoice at the moment it is created.
 
-The practical effect on testing: **15 test cases cannot be checked at all until this is fixed** —
-they are not failing, they simply cannot be run. They are listed at the end.
+The practical effect on testing: a group of checks on invoiced hours and on sales-representative
+credit **cannot be run at all** until this is fixed — they are not failing, they simply cannot be
+exercised.
 
-## What should happen instead
+---
 
-An invoice is created from the completed work order.
+## 2. Branch / Environment
 
-There is no report requirement to quote here, because invoicing is not part of the reporting work — and
-that is exactly why this is raised as a standalone bug. What the reports then require **of** an invoice
-is this, from the Sales By Representative specification, version 15:
+- **Branch / environment tested:** QA branch `sv8582` — app `https://sv8582.qa.shopview.com`, API `https://sv8582api.qa.shopview.com`
+- **Build marker:** `v3.4.1-0ed4433`
+- **Organisation:** `d55bc308-e61a-438d-b5f1-c7a73c89d49f` — location **Staging Heavy Duty - 9919** (`b3c8c820-f815-4cf1-8938-10956c5ee71a`)
+- **Observed:** 2026-08-03 and 2026-08-04
+- **Area affected:** Work Orders → Create Invoice (and, downstream, every report that reads invoice figures)
 
-> "**S19-R6:** At invoice creation, the WO's Sales Rep is snapshotted onto the resulting invoice, and
-> that snapshot is what the report reads."
+---
 
-That is why a broken invoice-create makes a whole area of the report untestable rather than merely
-inconvenient.
-
-## How to see it yourself
+## 3. Steps to reproduce
 
 The work order this needs can be made from scratch in a couple of minutes — the whole chain works, right
 up to the invoicing step.
@@ -66,19 +72,48 @@ up to the invoicing step.
 Everything before step 4 works normally, which is what makes the failure easy to isolate.
 
 ---
+
+## 4. Expected behaviour
+
+An invoice is created from the completed work order.
+
+There is no report requirement to quote here, because invoicing is not part of the reporting work — and
+that is exactly why this is raised as a standalone bug. What the reports then require **of** an invoice
+is this, from the Sales By Representative specification, version 15:
+
+> "**S19-R6:** At invoice creation, the WO's Sales Rep is snapshotted onto the resulting invoice, and
+> that snapshot is what the report reads."
+
+That is why a broken invoice-create makes a whole area of the report untestable rather than merely
+inconvenient.
+
 ---
 
-# FOR ENGINEERING — technical evidence
+## 5. Current behaviour
 
-**Environment.** App `https://sv8582.qa.shopview.com`, API `https://sv8582api.qa.shopview.com`, build
-`v3.4.1-0ed4433`. Org `d55bc308-e61a-438d-b5f1-c7a73c89d49f`, workplace
-`b3c8c820-f815-4cf1-8938-10956c5ee71a`.
+Pressing **Create Invoice** fails with a server error and no invoice is produced. The work order stays
+as it was.
 
-⚠️ **This QA branch was declared NOT FINAL by engineering.** This finding is provisional. **If it is
-already fixed or still work in progress, please close saying so** — that is a perfectly good answer and
-it saves an argument.
+Because several of the new reports read their figures off invoices, the knock-on effect is that the
+**Inv. Hrs**, **Hrs Worked** and **Hrs Invoiced** columns read **0.0 on every single row, everywhere, in
+every date range, across the whole company** — there is no other way to put hours into that pipeline.
+And on the Sales By Representative report, a salesperson cannot appear at all, because the credit is
+stamped onto the invoice at the moment it is created.
 
-## The failing calls
+---
+
+## 6. Images
+
+No screenshot is attached, and we would rather say why than attach something that does not show the
+fault: the failure is a server error returned to the browser, so the screen simply stays as it was with
+a generic error notification — a picture of it would add nothing to the exact request, response body and
+request ids recorded in the technical section below.
+
+---
+
+## 7. Technical details for developers
+
+### The failing calls
 
 ```
 POST /api/invoices/create
@@ -104,7 +139,7 @@ a7ab157a-dc44-48fb-8440-b7a92576645c
 b7bf4a22-eff4-4b71-9c68-c0792be63a48
 ```
 
-## The exact working chain up to that point (so the state is reproducible in one run)
+### The exact working chain up to that point (so the state is reproducible in one run)
 
 Scripted at `build/report-suite/viu-2026-08-03/batch-sbc-sbr/tools/seed_invoiced_wo.mjs`. 264 work
 orders were created this way and all 264 deleted and verified absent afterwards.
@@ -128,7 +163,7 @@ orders were created this way and all 264 deleted and verified absent afterwards.
 5. POST /api/invoices/create {work_order_id}                                 -> 500   ← THE DEFECT
 ```
 
-## Two adjacent 500s found on the same chain — recording them here, not claiming they are the same bug
+### Two adjacent 500s found on the same chain — recording them here, not claiming they are the same bug
 
 - **`POST /api/work-orders/lines/create` returns 500** as soon as validation is satisfied — supply
   `line_name` plus any price field and it crashes rather than returning a 400. Request ids
@@ -142,7 +177,7 @@ Whether these share a cause with the invoice 500 is **not established**. They ar
 developer reproducing the chain will hit them, and because if they do share a cause that is useful to
 know early.
 
-## What is NOT established — an honest gap in this reproduction
+### What is NOT established — an honest gap in this reproduction
 
 Every attempt used an **API-created** work order. The UI's own **Create Invoice** button then failed on
 that same work order, through its own endpoint — so the fault is not merely in the API entry point. But
@@ -153,48 +188,14 @@ before anyone digs deep.
 Also not established: the cause of the 500 (the request ids above should say), and whether this is
 intentional unfinished work on this branch.
 
-## QA test cases blocked until this is fixed
-
-**Nine blocked outright** — the sales-rep deactivation flow needs a rep who is a staff record *and*
-holds customer assignments, and the only rep carrying report credit on this org is not a staff record
-at all; the reps that can be created hold no invoices, and invoices cannot be created:
-
-| Case | TestRail |
-|---|---|
-| SBR-API-06 | C30321 |
-| SBR-DEACT-02 | C30253 |
-| SBR-DEACT-03 | C30254 |
-| SBR-DEACT-04 | C30255 |
-| SBR-DEACT-05 | C30256 |
-| SBR-DEACT-06 | C30257 |
-| SBR-DEACT-07 | C30258 |
-| SBR-DEACT-08 | C30259 |
-| SBR-DEACT-09 | C30260 |
-
-**Five** whose arithmetic cannot be exercised while every hours value is `0.0`:
-
-| Case | TestRail |
-|---|---|
-| SBC-CALC-03 | C30151 |
-| SBR-CALC-01 | C30229 |
-| SBR-CALC-02 | C30230 |
-| SBR-CALC-03 | C30231 |
-| SBR-CALC-09 | C38894 |
-
-**One partially blocked:** SBR-WO-05 = C30314 passes overall, but its customer-rep fallback leg only
-applies at invoice creation and so cannot be exercised.
-
-## Evidence files (in the QA repo)
+### Evidence files (in the QA repo)
 
 - `build/report-suite/viu-2026-08-03/batch-sbc-sbr/ENV-DEFECTS.md` §1, §3, §4
 - `build/report-suite/viu-2026-08-03/batch-sbc-sbr/VERDICTS.md` finding **F15**
 - `build/report-suite/viu-2026-08-03/batch-sbc-sbr/verdicts.csv` — per-case verdicts and reasons
 - `build/report-suite/viu-2026-08-03/batch-sbc-sbr/tools/seed_invoiced_wo.mjs` — the working chain
 
-> **Note on attachments:** files were not attached — the request bodies, both failing endpoints, all five
-> request ids and the full reproducible chain are inlined above.
-
-## Clean-up already done
+### Clean-up already done
 
 All 264 work orders created while probing this were deleted and verified absent; three staff sales-rep
 flags and twelve borrowed rep assignments were restored from a pre-write snapshot; the live work-order

@@ -1,4 +1,4 @@
-# TICKET 1 — ready to paste into Jira
+# TICKET 1 — FILED as SV-8818
 
 | Field | Value |
 |---|---|
@@ -12,10 +12,19 @@
 | **Affects build** | `v3.4.1-0ed4433` on `sv8582.qa.shopview.com` |
 | **Observed** | 2026-08-03 and 2026-08-04 (re-confirmed 2026-08-04 03:58–04:00 UTC) |
 | **Labels (suggested)** | `reports-suite`, `export`, `pdf`, `qa-found` |
+| **FILED AS** | **SV-8818** — https://shopview.atlassian.net/browse/SV-8818 |
+| **Ticket format** | The organisation's required 7-section format (see `build/APP-ACTIONS-PLAYBOOK.md` § "Filing a defect ticket") |
+
+> **This file mirrors what is actually filed in Jira.** It carries the organisation's required
+> seven sections in order: Description · Branch/Environment · Steps to reproduce · Expected
+> behaviour · Current behaviour · Images · Technical details for developers. Two things are
+> deliberately ABSENT from the ticket by standing instruction: any reference to our test cases,
+> and any "this branch is not final / finding is provisional" disclaimer. The case mapping is
+> kept in `CASE-IMPACT.md` in this folder instead.
 
 ---
 
-## What's wrong
+## 1. Description
 
 When you ask a report for a PDF and the view has more than a few hundred lines in it, no file arrives.
 Instead you get an error message saying something went wrong. Asking for the **spreadsheet** version of
@@ -23,8 +32,6 @@ exactly the same view works perfectly, and takes about a second.
 
 This happens on five of the six new reports: Parts Velocity, Technician Utilization, Inventory Value,
 Sales By Customer and Sales By Representative.
-
-## Why it matters
 
 Anyone trying to print or share a report for a full year — or a whole parts list — gets an error page
 instead of a document. The reports were built with a deliberate safety net so that an over-large
@@ -35,26 +42,19 @@ of a 6,219-line list — so the polite message never appears and the user just s
 There is no way for the person to tell how big is "too big", because a view that works one minute can be
 made to fail simply by turning more columns on.
 
-## What should happen instead
+---
 
-The written requirement (Inventory Value specification, version 3) says a download that is too large
-should be **refused gracefully with a clear message**, not fail:
+## 2. Branch / Environment
 
-> "To keep a single-shot export renderable, an export is capped at a maximum of 10,000 rows in the
-> filtered set. When the current filtered set exceeds the cap, neither the PDF nor the CSV is produced;
-> instead the user sees the message: 'This report is too large to export. Narrow the date range or
-> filters, then try again.'"
+- **Branch / environment tested:** QA branch `sv8582` — app `https://sv8582.qa.shopview.com`, API `https://sv8582api.qa.shopview.com`
+- **Build marker:** `v3.4.1-0ed4433` (`<meta name="app-version">`; `index.html` `last-modified` `Mon, 03 Aug 2026 13:40:38 GMT`, `etag` `02091e9dc11f187d7739b4efa166ea21`)
+- **Organisation:** `d55bc308-e61a-438d-b5f1-c7a73c89d49f` — locations **Staging Heavy Duty - 9919** (`b3c8c820-f815-4cf1-8938-10956c5ee71a`) and **Staging Lethbridge - 4310** (`f8a8b802-7780-4b16-bf10-343caeb616b2`)
+- **Observed:** 2026-08-03 and 2026-08-04, re-confirmed 2026-08-04 03:58–04:00 UTC
+- **Reports affected:** Parts Velocity, Technician Utilization, Inventory Value, Sales By Customer, Sales By Representative
 
-And if a download does fail for another reason, the same specification says the user should get a clear
-message naming the report and the format — not a generic error:
+---
 
-> "If a download fails, the user sees an error notification: 'Failed to export inventory value report
-> (pdf)' or 'Failed to export inventory value report (csv)'."
-
-So: either the PDF should succeed at these ordinary sizes, or the safety net should catch it and explain
-itself. At the moment neither happens.
-
-## How to see it yourself
+## 3. Steps to reproduce
 
 No special data is needed — the existing test data is already big enough, which is part of the problem.
 
@@ -76,22 +76,53 @@ If you want a *smaller* view for comparison, narrow the search box further — t
 needed in either direction.
 
 ---
+
+## 4. Expected behaviour
+
+The written requirement (Inventory Value specification, version 3) says a download that is too large
+should be **refused gracefully with a clear message**, not fail:
+
+> "To keep a single-shot export renderable, an export is capped at a maximum of 10,000 rows in the
+> filtered set. When the current filtered set exceeds the cap, neither the PDF nor the CSV is produced;
+> instead the user sees the message: 'This report is too large to export. Narrow the date range or
+> filters, then try again.'"
+
+And if a download does fail for another reason, the same specification says the user should get a clear
+message naming the report and the format — not a generic error:
+
+> "If a download fails, the user sees an error notification: 'Failed to export inventory value report
+> (pdf)' or 'Failed to export inventory value report (csv)'."
+
+So: either the PDF should succeed at these ordinary sizes, or the safety net should catch it and explain
+itself. At the moment neither happens.
+
 ---
 
-# FOR ENGINEERING — technical evidence
+## 5. Current behaviour
 
-**Environment.** App `https://sv8582.qa.shopview.com`, API `https://sv8582api.qa.shopview.com`.
-Build marker `<meta name="app-version"> = v3.4.1-0ed4433` (`index.html` `last-modified`
-`Mon, 03 Aug 2026 13:40:38 GMT`, `etag` `02091e9dc11f187d7739b4efa166ea21`).
-Org `d55bc308-e61a-438d-b5f1-c7a73c89d49f`. Workplaces
-`b3c8c820-f815-4cf1-8938-10956c5ee71a` (Heavy Duty) and `f8a8b802-7780-4b16-bf10-343caeb616b2`
-(Lethbridge). Renderer, from the `Producer` metadata of every successful PDF: **`WeasyPrint 69.0`**.
+You get no file. After about half a minute an error message appears saying something went wrong, and
+nothing is downloaded.
 
-⚠️ **This QA branch was declared NOT FINAL by engineering.** These findings are provisional. **If this
-is already fixed, or is work still in progress, please close this ticket saying so** — we will re-run
-the probes and update our test cases accordingly. We would rather be told than guess.
+The spreadsheet version of the very same view downloads normally, in about a second, with all the data
+in it — so the information itself is fine and only the PDF is failing.
 
-## The failing request, and a passing one beside it
+The polite "too large, narrow your filters" message never appears, because the view is nowhere near
+large enough to trigger it. From the user's side there is no way to tell how big is too big: a view that
+downloads fine can be made to fail simply by switching more columns on.
+
+---
+
+## 6. Images
+
+![parts-velocity-download-menu.png](parts-velocity-download-menu.png)
+
+*The Parts Velocity report with the three-dot menu open, showing the **Download (PDF)** and **Download (CSV)** choices referred to in the steps. This is the control that fails on PDF and succeeds on CSV for the identical view.*
+
+---
+
+## 7. Technical details for developers
+
+### The failing request, and a passing one beside it
 
 ```
 # PASS — 344 rows, all 20 columns, 31 pages
@@ -121,7 +152,7 @@ GET /api/reporting/reports/inventory-value/export?range=custom&start_date=2026-0
  -> 200  text/csv   724,109 bytes   2,426 ms   x-request-id 8c6d3848-a126-4271-91af-93954e1512af
 ```
 
-## Full probe data — Parts Velocity
+### Full probe data — Parts Velocity
 
 | Rows | Columns | Result | Elapsed | request id |
 |---:|---|---|---:|---|
@@ -145,7 +176,7 @@ GET /api/reporting/reports/inventory-value/export?range=custom&start_date=2026-0
 
 Every CSV in the same series returned **200 in 0.15–5.1 s**, including the full 6,219-row list.
 
-## Full probe data — Inventory Value
+### Full probe data — Inventory Value
 
 | Rows | Result | Elapsed |
 |---|---|---|
@@ -162,7 +193,7 @@ Sample request ids: `dde055bf-d63b-4053-94c2-9ddd2f024e9c` (648 rows, 500, 31.5 
 `5309d12c-8710-4a5d-8de9-9a3964e7727a` (3,872), `c0758b2f-8687-459a-970e-07fe8818b5ad` (5,657),
 `8cab25cb-07b1-42ee-a8f9-8de8d4f061d9` (9,275).
 
-## The other three reports
+### The other three reports
 
 - **Sales By Customer** — 12-month, two-location **Expanded** PDF → **500**, request id
   `ffca8e2c-f6ae-4477-9216-16083355a3e5`. The Expanded CSV of the same scope → **200**, 5,746 data
@@ -172,7 +203,7 @@ Sample request ids: `dde055bf-d63b-4053-94c2-9ddd2f024e9c` (648 rows, 500, 31.5 
 - **Technician Utilization** — This-Year **Expanded** PDF → **500** after 32.8 s, request id
   `87142301-9ebe-4330-9f3d-c23c91837800`. Its **Summary** PDF returns in 1.95 s.
 
-## What is ESTABLISHED
+### What is ESTABLISHED
 
 1. **PDF only.** Every CSV of every failing scope succeeded, and fast (0.8–5.1 s).
 2. **Well below the 10,000-row guard**, so the graceful refusal never runs. The guard itself **does**
@@ -186,7 +217,7 @@ Sample request ids: `dde055bf-d63b-4053-94c2-9ddd2f024e9c` (648 rows, 500, 31.5 
 6. **Deterministic outside a narrow band.** Inventory Value is reliable to ~532 rows, unstable at
    538–578 (each went both ways), and always fails from 648.
 
-## What is NOT established — please do not read a cause into the above
+### What is NOT established — please do not read a cause into the above
 
 **We do not know the mechanism, and we are deliberately not asserting one.** Two readings each fit part
 of the data and cannot be separated from outside the server:
@@ -202,7 +233,7 @@ variable stage would produce both patterns — but **that is a hypothesis, not a
 
 **One look at the server log for any request id above should settle it.** That is the ask.
 
-## Evidence files (in the QA repo)
+### Evidence files (in the QA repo)
 
 - `build/report-suite/viu-2026-08-03/batch-pv-tu/evidence/pv/exports/exports-log.jsonl` — 29 probes,
   each with query string, status, byte count, elapsed ms and request id
@@ -211,13 +242,3 @@ variable stage would produce both patterns — but **that is a hypothesis, not a
 - `build/report-suite/viu-2026-08-03/batch-sbc-sbr/evidence/export-guards.md` §3
 - `build/report-suite/defect-pack-2026-08-04/probe/pdf500-mechanism-probe.json` — the columns A/B
 - Successful PDFs kept for comparison: `batch-pv-tu/evidence/pv/exports/*.pdf`
-
-> **Note on attachments:** these files were not attached to this ticket — see the covering report; the
-> key extracts (request ids, timings, row counts, byte counts and the verbatim error body) are inlined
-> above so nothing rests on our word alone.
-
-## QA test cases affected
-
-PV-EXP-11 = C38885 · TU-EXP-09 = C38887 · IV-EXP-07 = C30593 · IV-EXP-09 = C30595 ·
-SBC-EXP-14 = C30172 · SBC-API-05 = C30194 · SBR-EXP-15 = C30290 · SBR-API-05 = C30320,
-plus one new case proposed to cover this failure specifically.
