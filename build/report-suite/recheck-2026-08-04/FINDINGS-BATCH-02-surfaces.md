@@ -164,3 +164,79 @@ user a *single-location user* — they still have access to both locations, whic
 still offers "All locations". The **definitive** answer needs a staff member whose access is
 restricted to one location. The server-side half **is** settled independently and cleanly: at SINGLE
 scope the file has **no Location column** on all five reports that gate it, so the data rule is right.
+
+---
+
+# Batch 3 — the environment, the validation contract, and the calculations
+
+## Environment facts E1–E5 — all CONFIRMED
+
+`evidence/env-validation-calc-recheck.json`.
+
+| Row | Fact | Outcome on `v3.4.1-3d03023` |
+|---|---|---|
+| **E1** | auth route works | **CONFIRMED** — `POST /api/quick-login {key:'admin'}` → **200**, fresh `PHPSESSID` |
+| **E2** | no Report Suite feature flag | **CONFIRMED** — the org's flag list contains **no** report-related entry; all six render unflagged |
+| **E3** | the six report routes | **CONFIRMED** — all six data endpoints answer (Work In Progress requires `from`/`to` rather than `range`, which is its documented shape, not a fault) |
+| **E4** | nav groups | **CONFIRMED** — `LABOR · PERFORMANCE · PARTS · SALES · FINANCE · ACCOUNTS RECEIVABLE · ACCOUNTS PAYABLE · ACCOUNTING · COMMUNICATIONS`. The "high churn" worry did not materialise. |
+| **E5** | `/reports` redirect | **CONFIRMED** — still lands on the punch-clock activities page; there is no neutral reports index |
+
+## The export parameter contract (queue row B33) — CONFIRMED, every message verbatim
+
+| Probe | Status | Message, byte-exact |
+|---|---|---|
+| bad `format` | 400 | `Invalid export format. Allowed values: csv, pdf.` |
+| bad `variant` | 400 | `Invalid export variant. Allowed values: summary, expanded.` |
+| bad WIP `tab` | 400 | `Invalid tab "zzz".` |
+| WIP `columns` omitted | 400 | `At least one column is required.` |
+| WIP invalid column | 400 | `Invalid column "invoiced_hours".` |
+| bad `range` | 400 | `Selected date range is invalid.` |
+
+All six identical to the previous build. **The candidate gap stands unchanged: no test case covers any
+of these six refusals.** Not authored — that needs authorisation (Rule 6).
+
+**Note on `Invalid column "invoiced_hours"`:** this is the same refusal behind queue row B5 — `Inv. Hrs`
+is offered on screen but rejected by the export. **Still true**, so WIP-EXP-02 = [C30511](https://shopview.testrail.io/index.php?/cases/view/30511)
+and WIP-TOT-02 = [C30495](https://shopview.testrail.io/index.php?/cases/view/30495) keep their notes.
+
+## Queue row B32 — Parts Velocity still has **no** `totals` object: CONFIRMED
+
+| Report | `data` keys returned |
+|---|---|
+| Sales By Customer | `collection`, `pagination`, **`totals`** |
+| Sales By Representative | `collection`, `pagination`, **`totals`** |
+| **Parts Velocity** | `collection`, `pagination` — **no `totals`** |
+| Technician Utilization | `collection` only |
+| Inventory Value | `as_of_date`, `collection`, `pagination`, **`totals`** |
+
+**Unchanged**, so the candidate gap stands: any Parts Velocity totals expectation is unsupported by the
+payload.
+
+## The money contracts (queue rows B30 / B31) — CONFIRMED, 0 mismatches
+
+**Work In Progress** (`evidence/b30-wip-contract.json`) — recomputed over every returned row:
+`Earned = labor_earned + parts_earned`, `Remaining = labor_remaining + parts_remaining`,
+`Total = Earned + Remaining`. **63 rows, 0 mismatches**, every total an **integer number of cents**, and
+**63 unique work orders each appearing in exactly one tab** — the invariant the case asserts.
+
+**Inventory Value** — `Total Cost = Qty × Unit Cost`, `Total Sell = Qty × Unit Sell`,
+`Margin = Total Sell − Total Cost`, recomputed over **500 rows: 0 mismatches**. The worked example the
+QA lead's own note used still holds exactly: part **`R134A`** at **Staging Heavy Duty - 9919** —
+`786.55 × $14.21 = $11,176.88`, `× $21.86 = $17,193.98`, margin `$6,017.10`, `35.0%`.
+
+**A correction to my own first attempt, recorded rather than buried:** the Work In Progress check first
+reported 1 mismatch per tab. That was **my field names, not the build** — this report uses
+`labor_earned` / `parts_earned`, not `earned_labor` / `earned_parts`. With the right names: **0**.
+
+## A new observation on Parts Velocity — recorded, NOT filed
+
+While proving PV-CALC-09 = [C30367](https://shopview.testrail.io/index.php?/cases/view/30367) passes,
+six rows looked like formula failures. They are not: **Turns/Yr is floored to `0` whenever stock is
+negative**, e.g. `Fuel` at **−5,137** on hand, `FUEL STK` at **−275**. Zero stock behaves the same way
+(**57 rows, all `0`**), which the case does assert. Among rows with **positive** stock there are **0**
+mismatches, and the one genuinely negative Turns/Yr (`B3157 = −0.1689814814`) is driven by negative
+`units_sold`, exactly as the case describes.
+
+**No case asserts anything about negative stock, and no specification text was cited against it, so this
+is not a defect claim** (Rule 25) — it is written down so the next pass does not rediscover it as an
+anomaly, which is precisely what it looked like for ten minutes.
