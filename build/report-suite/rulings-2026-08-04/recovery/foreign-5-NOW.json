@@ -1,0 +1,321 @@
+[
+ {
+  "ai_automated_test": null,
+  "created_by": 1,
+  "created_on": 1785426840,
+  "custom_ai_model": null,
+  "custom_ai_type": null,
+  "custom_atmstatus": 3,
+  "custom_automation_type": null,
+  "custom_expected": null,
+  "custom_goals": null,
+  "custom_mission": null,
+  "custom_preconds": "Owner/admin logged in with TU access (reports project storage state)\nA technician with a 3h WO clock and a 1h internal clock exists in the current calendar month (seeded via API), so the report is non-empty and Est. Lost Labor is non-zero\nNo saved TU view in this browser context, so the default five visible metric columns apply",
+  "custom_steps": null,
+  "custom_steps_separated": [
+   {
+    "additional_info": "",
+    "content": "Open TU via the Reporting",
+    "expected": "Performance nav entry",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Open the Column Selection menu",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Toggle Est. Lost Labor OFF (and only that one column)",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Reload the page",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Download Summary (CSV) from the export menu",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Re-open the selector and toggle Est. Lost Labor back ON",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   }
+  ],
+  "custom_testrail_bdd_scenario": null,
+  "display_order": 4,
+  "estimate": null,
+  "estimate_forecast": null,
+  "id": 38919,
+  "is_deleted": 0,
+  "labels": [],
+  "milestone_id": null,
+  "priority_id": 3,
+  "refs": null,
+  "section_id": 4348,
+  "suite_id": 1,
+  "template_id": 2,
+  "title": "TU column selector hides Est. Lost Labor, persists across reload, and the export mirrors it",
+  "type_id": 7,
+  "updated_by": 1,
+  "updated_on": 1785433307
+ },
+ {
+  "ai_automated_test": null,
+  "created_by": 1,
+  "created_on": 1785426843,
+  "custom_ai_model": null,
+  "custom_ai_type": null,
+  "custom_atmstatus": 3,
+  "custom_automation_type": null,
+  "custom_expected": null,
+  "custom_goals": null,
+  "custom_mission": null,
+  "custom_preconds": "Owner/admin with PV access and at least two accessible workplaces\nOne inventory part sold on an invoiced WO at the active workplace (seeded via API)\nThe SAME vendor special-order part sold on invoiced WOs at BOTH workplaces, so PV merges them into one special-order row (seeded via API)",
+  "custom_steps": null,
+  "custom_steps_separated": [
+   {
+    "additional_info": "",
+    "content": "Open PV at the default single-location scope",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Turn on All Locations and wait for the server refetch",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Set Type = Special Order and search the merged part number",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Set Type = Inventory and search the seeded inventory part number",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Open the Column Selection menu",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   }
+  ],
+  "custom_testrail_bdd_scenario": null,
+  "display_order": 11,
+  "estimate": null,
+  "estimate_forecast": null,
+  "id": 38920,
+  "is_deleted": 0,
+  "labels": [],
+  "milestone_id": null,
+  "priority_id": 2,
+  "refs": null,
+  "section_id": 4332,
+  "suite_id": 1,
+  "template_id": 2,
+  "title": "PV Location column is scope-governed \u2014 hidden at one location, Multiple on a merged special-order row",
+  "type_id": 7,
+  "updated_by": 1,
+  "updated_on": 1785433306
+ },
+ {
+  "ai_automated_test": null,
+  "created_by": 1,
+  "created_on": 1785426846,
+  "custom_ai_model": null,
+  "custom_ai_type": null,
+  "custom_atmstatus": 3,
+  "custom_automation_type": null,
+  "custom_expected": null,
+  "custom_goals": null,
+  "custom_mission": null,
+  "custom_preconds": "Owner/admin with IV access and at least two accessible workplaces\nOne in-stock, non-core, fixed-price part valued at the active workplace (seeded via API)",
+  "custom_steps": null,
+  "custom_steps_separated": [
+   {
+    "additional_info": "",
+    "content": "Open the report at the default scope and search the seeded part number so the export is a single known row",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Download the CSV from the export menu",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Turn on All Locations, wait for the refetch, and download again",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Inspect the data row's Location cell",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   }
+  ],
+  "custom_testrail_bdd_scenario": null,
+  "display_order": 10,
+  "estimate": null,
+  "estimate_forecast": null,
+  "id": 38921,
+  "is_deleted": 0,
+  "labels": [],
+  "milestone_id": null,
+  "priority_id": 3,
+  "refs": null,
+  "section_id": 4373,
+  "suite_id": 1,
+  "template_id": 2,
+  "title": "IV CSV export carries the As of and Locations metadata lines above the header, plus a scope-conditional Location column",
+  "type_id": 7,
+  "updated_by": 1,
+  "updated_on": 1785433304
+ },
+ {
+  "ai_automated_test": null,
+  "created_by": 1,
+  "created_on": 1785426848,
+  "custom_ai_model": null,
+  "custom_ai_type": null,
+  "custom_atmstatus": 3,
+  "custom_automation_type": null,
+  "custom_expected": null,
+  "custom_goals": null,
+  "custom_mission": null,
+  "custom_preconds": "Owner/admin with WIP access (reports project storage state)\nThe org has at least two accessible workplaces\nOne approved WO with clocked time on a unique-VIN vehicle exists in the default (This Week) range, so it lands in the default \"Approved - partially completed\" tab (seeded via API)\nThe browser context carries NO saved WIP view, so Location starts default-hidden",
+  "custom_steps": null,
+  "custom_steps_separated": [
+   {
+    "additional_info": "",
+    "content": "Open WIP from the Performance nav, isolate to the unique VIN via the asset filter, and download the CSV",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Turn on All Locations, wait for the refetch, and download again",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Toggle Location ON in the Column Selection menu and download again",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   }
+  ],
+  "custom_testrail_bdd_scenario": null,
+  "display_order": 11,
+  "estimate": null,
+  "estimate_forecast": null,
+  "id": 38922,
+  "is_deleted": 0,
+  "labels": [],
+  "milestone_id": null,
+  "priority_id": 3,
+  "refs": null,
+  "section_id": 4360,
+  "suite_id": 1,
+  "template_id": 2,
+  "title": "WIP CSV export gains the Locations line while its column semantics stay exactly as shipped",
+  "type_id": 7,
+  "updated_by": 1,
+  "updated_on": 1785433307
+ },
+ {
+  "ai_automated_test": null,
+  "created_by": 1,
+  "created_on": 1785426851,
+  "custom_ai_model": null,
+  "custom_ai_type": null,
+  "custom_atmstatus": 3,
+  "custom_automation_type": null,
+  "custom_expected": null,
+  "custom_goals": null,
+  "custom_mission": null,
+  "custom_preconds": "Admin with the SBR view permission (reports project storage state)\nThe org has at least two accessible workplaces\nONE sales rep is credited on invoiced service WOs at BOTH workplaces, so the rep's summary row aggregates across locations and carries one invoice detail row per workplace (seeded via API)",
+  "custom_steps": null,
+  "custom_steps_separated": [
+   {
+    "additional_info": "",
+    "content": "At the default single-location scope, download Summary (CSV)",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Turn on All Locations, wait for the refetch, and download Summary (CSV) again",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Download Expanded (CSV) in the same widened scope",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   },
+   {
+    "additional_info": "",
+    "content": "Inspect the Expanded footer totals row",
+    "expected": "",
+    "markdown_editor_id": null,
+    "refs": ""
+   }
+  ],
+  "custom_testrail_bdd_scenario": null,
+  "display_order": 17,
+  "estimate": null,
+  "estimate_forecast": null,
+  "id": 38923,
+  "is_deleted": 0,
+  "labels": [],
+  "milestone_id": null,
+  "priority_id": 3,
+  "refs": null,
+  "section_id": 4322,
+  "suite_id": 1,
+  "template_id": 2,
+  "title": "SBR Summary and Expanded CSV exports carry the Location column at its designated slot",
+  "type_id": 7,
+  "updated_by": 1,
+  "updated_on": 1785433306
+ }
+]
