@@ -1,0 +1,2980 @@
+[
+ {
+  "internal_id": "IV-LOC-01",
+  "c_id": 30574,
+  "prefix": "IV",
+  "title": "The Location filter is a rightmost multi-select with an All locations toggle",
+  "section": "IV — Location Filter",
+  "refs": "SV-8674 (specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3 — per-row location identifier in All-locations view ADDED per kickoff video P10 40:58-41:20; user ruling 2026-07-28: video overrides spec (video newer; last-update-wins))",
+  "anchors": [
+   "S12-R3",
+   "S7-R1",
+   "S7-R2"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": " tell which location each row's stock belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PRD/walkthrough VIDEO",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "IV-LOC-02",
+  "c_id": 30575,
+  "prefix": "IV",
+  "title": "Selecting one, several, or all locations reloads the report scoped to that set",
+  "section": "IV — Location Filter",
+  "refs": "SV-8674 (specs/inventory-value.md Story 7 S7-R3 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "anchors": [
+   "S7-R3"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": " which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "IV-LOC-04",
+  "c_id": 30577,
+  "prefix": "IV",
+  "title": "Inventory Value: the Location filter is hidden for a one-location user",
+  "section": "IV — Location Filter",
+  "refs": "SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S7-N1 \"still sees the filter\" note is stale; spec edit pending)",
+  "anchors": [
+   "S7-N1"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "he Location filter is hidden for a one-location user | 1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward). | 2. You are signed in as that user on a desktop browser. | 1. Open the Inventory Value report and look for the Location filter in the toolbar. | 2. Then",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "he Location filter is hidden for a one-location user | 1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward). | 2. You are signed in as that user on a desktop browser. | 1. Open the Inventory Value report and look for the Location filter in the toolbar. | 2. Then",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "IV-SCOPE-01",
+  "c_id": 30540,
+  "prefix": "IV",
+  "title": "A part appears only if not a core charge and on-hand quantity is above zero",
+  "section": "IV — Row Scope",
+  "refs": "SV-8669 (specs/inventory-value.md Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions)",
+  "anchors": [
+   "S2-N1",
+   "S2-N2",
+   "S2-R1",
+   "S2-R2"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": " with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity. | 1. Open the Inventory Value report scoped to the location. | 2. Look for the normal in-stock part. | 3. Search for the core-charge part, the zero-quantity ",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "PV-API-04",
+  "c_id": 30391,
+  "prefix": "PV",
+  "title": "The back end serves report data and export on ordinary reports access",
+  "section": "PV — API",
+  "refs": "SV-8641 (PV spec S1-R4; S1-N2 - RESCOPED 2026-08-03; same driver as C30327: Chris Ward Q2=A \"single Reports permission\" + \"they can exist and not do anything\"; QA lead \"ONE permission FOR NOW\")",
+  "anchors": [
+   "S1-N2",
+   "S1-R4"
+  ],
+  "closers": [
+   "no other",
+   "nothing else"
+  ],
+  "hits": [
+   {
+    "closer": "no other",
+    "context": "s | 1. You are signed in as a user whose role has the ordinary reports access turned on and no other reports-related permission turned on. | 2. Browser devtools (network tab) are open. | 1. Open the Parts Velocity report and observe the backend data request's outcome. | 2. Attempt the export and observe the backend export request's outc",
+    "adverbial": false
+   },
+   {
+    "closer": "nothing else",
+    "context": "s not refused. | 3. Both requests succeed with only the ordinary reports access turned on - nothing else had to be enabled. | 4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the s",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward",
+   "QA lead ruling"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "PV-CALC-07",
+  "c_id": 30365,
+  "prefix": "PV",
+  "title": "Last Sale is whole days since the most recent sale over all-time history",
+  "section": "PV — Columns & Calculations",
+  "refs": "SV-8645 (specs/parts-velocity.md S5-R4 (Last Sale); §4; S5-R5; tech-plan-2026-07-29 B3.1 (last-sale re-anchor on reversal — spec-silent))",
+  "anchors": [
+   "S5-R4",
+   "S5-R5"
+  ],
+  "closers": [
+   "no other"
+  ],
+  "hits": [
+   {
+    "closer": "no other",
+    "context": "Last Sale re-anchors to the previous remaining sale (the day count grows accordingly); if no other sale remains it shows —.",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)",
+   "engineering TECH PLAN"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "PV-CALC-13",
+  "c_id": 30371,
+  "prefix": "PV",
+  "title": "Number formats match the spec per column; rounding is half away from zero",
+  "section": "PV — Columns & Calculations",
+  "refs": "SV-8645 (specs/parts-velocity.md S5-R5; S5-R7 (rounding))",
+  "anchors": [
+   "S5-R5",
+   "S5-R7"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "lue, a Demand value, Min/Max values, and a Last Sale value. | 2. Seed a Margin % that lands exactly on a rounding tie (e.g. computes to 8.45% / -8.45%) and read the display. | 1. Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), On Hand, Turns / Yr: two decimals with thousands separators (1,250.00); negatives with a leading ",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "PV-COL-02",
+  "c_id": 30352,
+  "prefix": "PV",
+  "title": "First visit shows exactly the 14 default columns in the specified order",
+  "section": "PV — Columns & Remembered View",
+  "refs": "SV-8644; SV-8643 (PV spec v4 2026-07-29 S4-R2; S4-R3 + Story 3 S3-R10 — the 14 default-visible columns and the 6 hidden ones; plus the automatic Location column leftmost when more than one location is in scope)",
+  "anchors": [
+   "S3-R10",
+   "S4-R2",
+   "S4-R3"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly these"
+  ],
+  "hits": [
+   {
+    "closer": "exactly these",
+    "context": "umn headers left to right without touching the picker. | 1. With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand. | 2. The other 6 columns start hidden: Units Re",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "First visit shows exactly the 14 default columns in the specified order | 1. You are on the Parts Velocity report on a first visit (no saved column selection). | 1. Read the visible column headers left to right without touching the picker. | 1. With a single locat",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "umn headers left to right without touching the picker. | 1. With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand. | 2. The other 6 columns start hidden: Units Re",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": true,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "PV-EXP-01",
+  "c_id": 30375,
+  "prefix": "PV",
+  "title": "The overflow button opens Download (PDF) then Download (CSV) in that order",
+  "section": "PV — Exports",
+  "refs": "SV-8646 (PV spec v4 2026-07-29 S6-R1 — S6-R1 CLOSES it in the spec's own words (\"an export menu with two items ... Download (PDF) and Download (CSV)\"); so the closed list IS the requirement)",
+  "anchors": [
+   "S6-R1"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "1. The ⋯ overflow button sits leftmost in the toolbar's action cluster. | 2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "1. The ⋯ overflow button sits leftmost in the toolbar's action cluster. | 2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "PV-EXP-10",
+  "c_id": 30384,
+  "prefix": "PV",
+  "title": "Export toasts: exact success texts; server or fallback error text on failure",
+  "section": "PV — Exports",
+  "refs": "SV-8646 (PV spec v4 2026-07-29 S6-R9; S6-N1; §7 (casing note) — S6-R9/S6-N1 CLOSE the toast strings verbatim including the shipped UPPERCASE-success / lowercase-failure casing mix; so the exact strings ARE the requirement)",
+  "anchors": [
+   "S6-N1",
+   "S6-R9"
+  ],
+  "closers": [
+   "are/read exactly",
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "are/read exactly",
+    "context": "ger a PDF export under the failure condition and read the toast. | 1. On success the toasts read exactly \"Velocity report exported (CSV)\" / \"Velocity report exported (PDF)\" and auto-fade — UPPERCASE (CSV)/(PDF). | 2. An error toast is shown on failure; when the server provides a message, that server message is shown. | 3. Otherwise th",
+    "adverbial": false
+   },
+   {
+    "closer": "are/read exactly",
+    "context": "e server provides a message, that server message is shown. | 3. Otherwise the failure toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " PDF export under the failure condition and read the toast. | 1. On success the toasts read exactly \"Velocity report exported (CSV)\" / \"Velocity report exported (PDF)\" and auto-fade — UPPERCASE (CSV)/(PDF). | 2. An error toast is shown on failure; when the server provides a message, that server message is shown. | 3. Otherwise the fai",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "er provides a message, that server message is shown. | 3. Otherwise the failure toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "PV-FILT-01",
+  "c_id": 30328,
+  "prefix": "PV",
+  "title": "Type filter: single-select, first in row, three options, default Both; reloads",
+  "section": "PV — Filters",
+  "refs": "SV-8642 (PV spec v4 2026-07-29 S2-R1; S3-R5 — S2-R1 CLOSES the three Type options and the Both default; 'Catalogue'→'Special Order' per Chris Ward 2026-07-29 [newest-wins])",
+  "anchors": [
+   "S2-R1",
+   "S3-R5"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "The Type filter is the first control in the filter row. | 2. It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock). | 3. On a first visit the default is Both. | 4. Both is an explicit selection returning inventory and Special Order rows tog",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "The Type filter is the first control in the filter row. | 2. It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock). | 3. On a first visit the default is Both. | 4. Both is an explicit selection returning inventory and Special Order rows tog",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "PV-FILT-03",
+  "c_id": 30330,
+  "prefix": "PV",
+  "title": "Date range selector offers exactly the eleven bounded options and no All Time",
+  "section": "PV — Filters",
+  "refs": "SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (\"offering exactly these options\") and rules out \"All Time\"; so the closed list IS the requirement)",
+  "anchors": [
+   "S2-R2"
+  ],
+  "closers": [
+   "are/read exactly",
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "are/read exactly",
+    "context": "read every option. | 2. Select a non-custom option (for example Last Month). | 1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom. | 2. There is NO 'All Time' option - the report always operates over a bounded date window (deliberate, per",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "Date range selector offers exactly the eleven bounded options and no All Time | 1. You are on the Parts Velocity report with data loaded. | 1. Open the date range selector and read every option. | 2. Select a non-custom option (for example Last Month). | 1. The options are e",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " every option. | 2. Select a non-custom option (for example Last Month). | 1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom. | 2. There is NO 'All Time' option - the report always operates over a bounded date window (deliberate, per the",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "PV-FILT-10",
+  "c_id": 30337,
+  "prefix": "PV",
+  "title": "Location filter is rightmost, defaults to the active location, accessible-only",
+  "section": "PV — Filters",
+  "refs": "SV-8642 (PV spec S2-R9 — per-row location identifier in All-Locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]",
+  "anchors": [
+   "S2-R9"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "n tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.) | 7. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
+    "adverbial": true
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward",
+   "PRD/walkthrough VIDEO"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "PV-FILT-11",
+  "c_id": 30338,
+  "prefix": "PV",
+  "title": "Empty state shows the standard no-data message when no parts match the filters",
+  "section": "PV — Filters",
+  "refs": "SV-8642 (PV spec v4 2026-07-29 S2-R11; S2-N1; §7 — §7 CLOSES the empty-state string verbatim (\"Empty bays\" ... \"Get Going!\") as the standard reports no-data label; so the exact string IS the requirement)",
+  "anchors": [
+   "S2-N1",
+   "S2-R11"
+  ],
+  "closers": [
+   "are/read exactly",
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "are/read exactly",
+    "context": "he server returns zero rows and the table shows the empty state. | 2. The empty-state label reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "ver returns zero rows and the table shows the empty state. | 2. The empty-state label reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "PV-FILT-13",
+  "c_id": 30340,
+  "prefix": "PV",
+  "title": "Parts Velocity: the Location filter is hidden for a one-location user",
+  "section": "PV — Filters",
+  "refs": "SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S2-E4 \"still sees the filter\" note is stale; spec edit pending)",
+  "anchors": [
+   "S2-E4"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "on filter is hidden for a one-location user | 1. You are signed in as a user with access to exactly one location. | 2. You are on the Parts Velocity report with data loaded. | 1. Look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two or more locations and look again. | 1. For the single-location user t",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "on filter is hidden for a one-location user | 1. You are signed in as a user with access to exactly one location. | 2. You are on the Parts Velocity report with data loaded. | 1. Look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two or more locations and look again. | 1. For the single-location user t",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "PV-PERM-03",
+  "c_id": 30327,
+  "prefix": "PV",
+  "title": "Ordinary reports access alone opens Parts Velocity and its export",
+  "section": "PV — Permissions",
+  "refs": "SV-8641 (PV spec S1-N2; S1-R4 - RESCOPED 2026-08-03: the old \"Reports access without Inventory Reports View\" state cannot exist under one permission; Chris Ward Q2=A + \"they can exist and not do anything\"; QA lead \"ONE permission FOR NOW\")",
+  "anchors": [
+   "S1-N2",
+   "S1-R4"
+  ],
+  "closers": [
+   "no other"
+  ],
+  "hits": [
+   {
+    "closer": "no other",
+    "context": "rdinary reports access turned on (the standard \"can this person see reports\" setting) and no other reports-related permission turned on. | 1. Open the Reports section and look for the Parts Velocity entry under Parts. | 2. Click the Parts Velocity entry. | 3. Use the export control on the report and download a file. | 1. The Parts Veloc",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward",
+   "QA lead ruling"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "PV-PREC-01",
+  "c_id": 38924,
+  "prefix": "PV",
+  "title": "Units Sold keeps an exact part-of-a-unit quantity and is never rounded off",
+  "section": "PV — Columns & Calculations",
+  "refs": "SV-8589 (PV spec S5-R1 Units Sold net stock movement + S5-R5 two-decimal movement format; tech-plan-2026-07-29 Phase 0 / PR-1 D2; SV-8589 verbatim Tests: 'fractional-quantity round-trip regression')",
+  "anchors": [
+   "S5-R1",
+   "S5-R5"
+  ],
+  "closers": [
+   "are/read exactly",
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "are/read exactly",
+    "context": " the Units Sold value, then switch the On Hand column on and read that too. | 1. Units Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone d",
+    "adverbial": false
+   },
+   {
+    "closer": "are/read exactly",
+    "context": "Units Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by exactly 2.50 from what it was before the sale. | 4. No value anywhere on t",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly N",
+    "context": "nits Sold value, then switch the On Hand column on and read that too. | 1. Units Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly N",
+    "context": "Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by exactly 2.50 from what it was before the sale. | 4. No value anywhere on the row",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly N",
+    "context": "of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by exactly 2.50 from what it was before the sale. | 4. No value anywhere on the row has been quietly rounded to a whole number.",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "nits Sold value, then switch the On Hand column on and read that too. | 1. Units Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by exactly 2.50 from what it was before the sale. | 4. No value anywhere on the row",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by exactly 2.50 from what it was before the sale. | 4. No value anywhere on the row has been quietly rounded to a whole number.",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "engineering TECH PLAN"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "PV-PREC-02",
+  "c_id": 38925,
+  "prefix": "PV",
+  "title": "QuickBooks amount for a part-of-a-unit sale is exact and never inflated",
+  "section": "PV — API",
+  "refs": "SV-8589 (verbatim Tests: 'QB journal amount exact from fractional movement'; Goal: 'QB journal-entry sync multiplies these into dollar amounts'; tech-plan-2026-07-29 Phase 0 / PR-1 D2 - no report spec covers QuickBooks)",
+  "anchors": [],
+  "closers": [
+   "are/read exactly",
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "are/read exactly",
+    "context": "Parts Velocity report and read the same part's Units Sold value. | 1. The QuickBooks amount is exactly the hand-worked figure to the cent — $25.00 for 2.5 at $10.00. | 2. It is NOT a whole-unit amount such as $20.00 or $30.00, and it is NOT a bigger, multiplied figure. | 3. The quantity behind the QuickBooks amount matches the Units S",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "ts Velocity report and read the same part's Units Sold value. | 1. The QuickBooks amount is exactly the hand-worked figure to the cent — $25.00 for 2.5 at $10.00. | 2. It is NOT a whole-unit amount such as $20.00 or $30.00, and it is NOT a bigger, multiplied figure. | 3. The quantity behind the QuickBooks amount matches the Units Sold",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": false,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "engineering TECH PLAN"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "PV-ROW-06",
+  "c_id": 30346,
+  "prefix": "PV",
+  "title": "Info icons sit on Units Sold, Demand and Turns/Yr with descriptions",
+  "section": "PV — Row Model",
+  "refs": "SV-8643 (PV spec v4 2026-07-29 S3-R6 — S3-R6 CLOSES the set (exactly three columns: Units Sold; Demand; Turns / Yr) and quotes each description verbatim; so the closed set and the exact strings ARE the requirement)",
+  "anchors": [
+   "S3-R6"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "no other"
+  ],
+  "hits": [
+   {
+    "closer": "no other",
+    "context": "s the same text to assistive technology; activating it does NOT trigger a column sort. | 6. No other column header carries an info icon.",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " visible; the Turns/Yr icon appears only once that column is enabled. | 2. Units Sold shows exactly: \"Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Sell Price.\" | 3. Demand shows exactly: \"Number of separate transaction",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "t, so it can differ from the units billed behind Revenue and Sell Price.\" | 3. Demand shows exactly: \"Number of separate transactions (work orders or parts sales) this part appeared on in the selected date range. Each transaction counts once, no matter how many units were sold on it.\" | 4. Turns/Yr shows exactly: \"How many times you",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "ach transaction counts once, no matter how many units were sold on it.\" | 4. Turns/Yr shows exactly: \"How many times you sell through this part in a year. Higher is better.\" | 5. The icon is focusable and exposes the same text to assistive technology; activating it does NOT trigger a column sort. | 6. No other column header carries an",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-CALC-05",
+  "c_id": 30153,
+  "prefix": "SBC",
+  "title": "Invoice subtotals sum to their asset row and asset subtotals to the customer",
+  "section": "SBC — Totals & Calculations",
+  "refs": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-R13)",
+  "anchors": [
+   "S8-R13"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "Sum the asset rows and compare with the customer row. | 1. An asset's invoice subtotals sum exactly to that asset's row total. | 2. A customer's asset subtotals sum exactly to the customer's row total. | 3. This holds for every financial column, not only Subtotal.",
+    "adverbial": true
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "oice subtotals sum exactly to that asset's row total. | 2. A customer's asset subtotals sum exactly to the customer's row total. | 3. This holds for every financial column, not only Subtotal.",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-COL-01",
+  "c_id": 30156,
+  "prefix": "SBC",
+  "title": "Column selector is its own toolbar button with nine toggles all on",
+  "section": "SBC — Column Selector",
+  "refs": "SV-8611 (SBC spec v13 2026-07-31 Story 13 S13-R1; S13-R2; S13-R3; S13-R4; S13-R7 — S13-R4 CLOSES the nine-toggle list and its order; Location is automatic and never a toggle [S4-R12; S4-R13])",
+  "anchors": [
+   "S13-R1",
+   "S13-R2",
+   "S13-R3",
+   "S13-R4",
+   "S13-R7",
+   "S4-R12",
+   "S4-R13"
+  ],
+  "closers": [
+   "in order are"
+  ],
+  "hits": [
+   {
+    "closer": "in order are",
+    "context": "menu. | 2. Hovering it shows the tooltip \"Column Selection.\" | 3. The panel lists nine toggles, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %. | 4. With no saved selection, all nine toggleable columns default to visible. | 5. Note for the tester: there is no Locatio",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-CUST-05",
+  "c_id": 30116,
+  "prefix": "SBC",
+  "title": "Collapsed label reads None, the customer's name, or N selected",
+  "section": "SBC — Customer Filter",
+  "refs": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R5)",
+  "anchors": [
+   "S18-R5"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "er filter and use \"Clear all\" to empty the selection; read the collapsed label. | 2. Select exactly one customer; read the collapsed label. | 3. Select a second and third customer; read the collapsed label. | 4. Start typing a search query in the filter field and watch the field text, then clear the query or click away. | 1. With an emp",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly N",
+    "context": "query or click away. | 1. With an empty selection the collapsed label reads \"None.\" | 2. With exactly one customer selected the label shows that customer's name. | 3. With more than one selected the label reads \"N selected\" where N is the number of selected customers (for example \"3 selected\"). | 4. While typing, the field shows the que",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "er filter and use \"Clear all\" to empty the selection; read the collapsed label. | 2. Select exactly one customer; read the collapsed label. | 3. Select a second and third customer; read the collapsed label. | 4. Start typing a search query in the filter field and watch the field text, then clear the query or click away. | 1. With an emp",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "query or click away. | 1. With an empty selection the collapsed label reads \"None.\" | 2. With exactly one customer selected the label shows that customer's name. | 3. With more than one selected the label reads \"N selected\" where N is the number of selected customers (for example \"3 selected\"). | 4. While typing, the field shows the que",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": true,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-CUST-06",
+  "c_id": 30117,
+  "prefix": "SBC",
+  "title": "Changing the customer selection narrows the table and refreshes the totals",
+  "section": "SBC — Customer Filter",
+  "refs": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R5; S18-R11)",
+  "anchors": [
+   "S18-R11",
+   "S18-R5"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "e customers and the totals row values. | 2. Open the Customer filter, clear all, and select exactly two customers. | 3. Read the table rows and the totals row. | 1. The report shows only the two selected customers. | 2. The table refreshes as a fresh first page of results. | 3. The totals row updates to cover only the selected customers' ",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "e customers and the totals row values. | 2. Open the Customer filter, clear all, and select exactly two customers. | 3. Read the table rows and the totals row. | 1. The report shows only the two selected customers. | 2. The table refreshes as a fresh first page of results. | 3. The totals row updates to cover only the selected customers' ",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-CUST-09",
+  "c_id": 30120,
+  "prefix": "SBC",
+  "title": "A subset customer selection reconciles on a filter change; kept if present",
+  "section": "SBC — Customer Filter",
+  "refs": "SV-8616 (specs/sbc-sales-by-customer.md Story 18 S18-R9; S18-E1)",
+  "anchors": [
+   "S18-E1",
+   "S18-R9"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "st month (seed ZZAUTOTEST data as needed). | 2. Date range is This Month; you have selected exactly customers A and B in the Customer filter. | 1. Change the date range to Last Month. | 2. Read the table rows and the Customer filter selection. | 1. Customer A (still present in the new results) stays selected and is shown. | 2. Customer B ",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-EXP-01",
+  "c_id": 30159,
+  "prefix": "SBC",
+  "title": "The overflow menu holds exactly the four download items - no Print",
+  "section": "SBC — Exports",
+  "refs": "SV-8612; SV-8613 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S15-R1; S15-R2; S20-R16 — these CLOSE the four-item menu and its verbatim labels; menu reshaped + \"Print\" removed per Chris Ward 2026-07-29 [newest-wins])",
+  "anchors": [
+   "S14-R1",
+   "S14-R2",
+   "S15-R1",
+   "S15-R2",
+   "S20-R16"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "in order are"
+  ],
+  "hits": [
+   {
+    "closer": "in order are",
+    "context": "ction area and is the application's standard overflow-menu control. | 2. The menu items read, in order: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\" - and there is NO \"Print\" item anywhere in the menu. | 3. There are no separate always-visible export buttons - all",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "The overflow menu holds exactly the four download items - no Print | 1. You are on the Sales By Customer report. | 1. Find the overflow menu in the toolbar's action area and note its position. | 2. Open it and read the items in order. | 3. Look around the toolbar for any ",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "SBC-EXP-03",
+  "c_id": 30161,
+  "prefix": "SBC",
+  "title": "Expanded View CSV: column order, blank-cell rules, and the Locations line",
+  "section": "SBC — Exports",
+  "refs": "SV-8612; SV-8603 (SBC spec v12 2026-07-29 Story 14 S14-R5; S14-R6; S14-R7; S14-R8; S14-R13 + Story 4 S4-R13 — Expanded CSV thirteen columns INCLUDING Asset; per-level blank-cell rules; plus the automatic Location column in every export)",
+  "anchors": [
+   "S14-R13",
+   "S14-R5",
+   "S14-R6",
+   "S14-R7",
+   "S14-R8",
+   "S4-R13"
+  ],
+  "closers": [
+   "in this exact order"
+  ],
+  "hits": [
+   {
+    "closer": "in this exact order",
+    "context": "rows. | 1. With a single location in scope the Expanded View CSV has these thirteen columns in this exact order: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal. When more than one location is in scope the file also carries a Location",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": true,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-EXP-05",
+  "c_id": 30163,
+  "prefix": "SBC",
+  "title": "CSV and PDF hold exactly the customers matching the active filters and sort",
+  "section": "SBC — Exports",
+  "refs": "SV-8601 (specs/sbc-sales-by-customer.md Story 2 S2-R7; Story 3 S3-R7; Story 4 S4-R10; Story 14 S14-R3; Story 15 S15-R3; Story 18 S18-R7)",
+  "anchors": [
+   "S14-R3",
+   "S15-R3",
+   "S18-R7",
+   "S2-R7",
+   "S3-R7",
+   "S4-R10"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "CSV and PDF hold exactly the customers matching the active filters and sort | 1. Data exists across two locations, both product types, and several customers. | 1. Set a specific date range, Product Type \"Service only\", one location, a two-customer selection in ",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " PDF. | 3. Compare each file's contents against the on-screen rows. | 1. Each export contains exactly the customers matching the active filters — the selected customers, within the active date range, Product Type, and location — in the active sort order. | 2. When every customer is selected, the export contains the full set of custome",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-EXP-16",
+  "c_id": 38856,
+  "prefix": "SBC",
+  "title": "Summary and Expanded View downloads exist for both PDF and CSV",
+  "section": "SBC — Exports",
+  "refs": "SV-8612; SV-8613; SV-8603 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export)",
+  "anchors": [
+   "S14-R1",
+   "S14-R2",
+   "S14-R4",
+   "S15-R1",
+   "S15-R2",
+   "S15-R4",
+   "S15-R5",
+   "S4-R13"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N",
+   "in this exact order"
+  ],
+  "hits": [
+   {
+    "closer": "in this exact order",
+    "context": "wn on screen. | 5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column ",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly N",
+    "context": "ed View version in both formats and compare against the Summary files. | 1. The menu offers exactly four items: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\". | 2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows. | 3. Each Expan",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "ed View version in both formats and compare against the Summary files. | 1. The menu offers exactly four items: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\". | 2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows. | 3. Each Expan",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "contains the full Customer, then Asset, then Invoice breakdown. | 4. All four files reflect exactly the filtered data shown on screen. | 5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margi",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": true,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-LINK-02",
+  "c_id": 30139,
+  "prefix": "SBC",
+  "title": "Browser back from an invoice restores filters; sort and columns; rows shut",
+  "section": "SBC — Invoice Links & Navigation",
+  "refs": "SV-8607 (specs/sbc-sales-by-customer.md Story 9 S9-R3; S9-R4)",
+  "anchors": [
+   "S9-R3",
+   "S9-R4"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "link. | 2. Pressing back returns to the report with its filters, sort, and columns restored exactly as set. | 3. Expanded rows are shown collapsed again — expansion is not restored (this is the specified behavior, not a defect).",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-LOC-03",
+  "c_id": 30111,
+  "prefix": "SBC",
+  "title": "Selecting locations scopes the data; All locations covers every accessible one",
+  "section": "SBC — Location Filter",
+  "refs": "SV-8603 (SBC spec Story 4 S4-R5; S4-R6 — per-row location identifier in All-locations view ADDED per kickoff video P10; [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward msg 2026-07-29 [newest-wins]",
+  "anchors": [
+   "S4-R5",
+   "S4-R6"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "n tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.) | 5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
+    "adverbial": true
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward",
+   "PRD/walkthrough VIDEO"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "SBC-LOC-04",
+  "c_id": 38912,
+  "prefix": "SBC",
+  "title": "The Location column shows only with more than one location; Multiple on totals",
+  "section": "SBC — Location Filter",
+  "refs": "SV-8603; SV-8612; SV-8613 (SBC spec v12 2026-07-29 S4-R12; S4-R12a; S4-R13; S20-R19 — per-row Location column with automatic visibility; \"Multiple\" on aggregating rows; S4-R13 = the same column in every export)",
+  "anchors": [
+   "S20-R19",
+   "S4-R12",
+   "S4-R12a",
+   "S4-R13"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "n a row that aggregates more than one, and the invoice's own location on an invoice row. (Exactly where the column sits inside each file is confirmed in the build.)",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": true,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-TREE-01",
+  "c_id": 30121,
+  "prefix": "SBC",
+  "title": "Each customer gets one summary row with its invoice count in parentheses",
+  "section": "SBC — Tree & Rows",
+  "refs": "SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R1; S7-R2; S7-R3; S7-R4; S7-R5)",
+  "anchors": [
+   "S7-R1",
+   "S7-R2",
+   "S7-R3",
+   "S7-R4",
+   "S7-R5"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": " fewer of that customer's invoices match, and re-read the count. | 1. The customer occupies exactly one summary row at the top level of the table. | 2. The customer's name is shown at the start of the row, followed by the number of contributing invoices in parentheses — for example, Acme Corp (5). | 3. The count is rendered in color #",
+    "adverbial": true
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " fewer of that customer's invoices match, and re-read the count. | 1. The customer occupies exactly one summary row at the top level of the table. | 2. The customer's name is shown at the start of the row, followed by the number of contributing invoices in parentheses — for example, Acme Corp (5). | 3. The count is rendered in color #",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-TREE-10",
+  "c_id": 30130,
+  "prefix": "SBC",
+  "title": "Edge: a single-invoice asset can still be expanded",
+  "section": "SBC — Tree & Rows",
+  "refs": "SV-8606 (specs/sbc-sales-by-customer.md Story 8 S8-E1; S8-E2)",
+  "anchors": [
+   "S8-E1",
+   "S8-E2"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "Edge: a single-invoice asset can still be expanded | 1. Customer A has an asset with exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the current view (seed ZZAUTOTEST data). | 1. Expand customer A and click the chevron of the single-invoice asset. | 2. Expand customer B and read its asset ro",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly N",
+    "context": " Expand customer B and read its asset rows. | 1. The single-invoice asset expands and shows exactly one invoice detail row. | 2. Customer B shows a single \"Parts Sales\" row and no vehicle rows.",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "Edge: a single-invoice asset can still be expanded | 1. Customer A has an asset with exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the current view (seed ZZAUTOTEST data). | 1. Expand customer A and click the chevron of the single-invoice asset. | 2. Expand customer B and read its asset ro",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " Expand customer B and read its asset rows. | 1. The single-invoice asset expands and shows exactly one invoice detail row. | 2. Customer B shows a single \"Parts Sales\" row and no vehicle rows.",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-TREE-12",
+  "c_id": 30132,
+  "prefix": "SBC",
+  "title": "Reversed and voided invoices are excluded from every row; count and total",
+  "section": "SBC — Tree & Rows",
+  "refs": "SV-8605 (specs/sbc-sales-by-customer.md Story 7 S7-R7; S7-N2; §3 Key Decisions)",
+  "anchors": [
+   "S7-N2",
+   "S7-R7"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "ry row total, regardless of the Product Type filter. | 3. The customer/asset totals drop by exactly that invoice's amounts.",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBC-TYPE-02",
+  "c_id": 30107,
+  "prefix": "SBC",
+  "title": "Product Type: three options with Parts & Service default; S/P prefix filtering",
+  "section": "SBC — Product Type Filter",
+  "refs": "SV-8602 (SBC spec v13 2026-07-31 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6 — S3-R2 CLOSES the list itself (\"exactly three options ... in this order\"); so the closed list IS the requirement)",
+  "anchors": [
+   "S3-R1",
+   "S3-R2",
+   "S3-R3",
+   "S3-R4",
+   "S3-R5",
+   "S3-R6"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "oice numbers again. | 4. Set Product Type back to \"Parts & Service.\" | 1. The dropdown offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" selected by default on first load. | 2. Under \"Service only,\" every invoice shown has a number starting with S; parts invoices are ",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "oice numbers again. | 4. Set Product Type back to \"Parts & Service.\" | 1. The dropdown offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" selected by default on first load. | 2. Under \"Service only,\" every invoice shown has a number starting with S; parts invoices are ",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-ASGN-02",
+  "c_id": 30293,
+  "prefix": "SBR",
+  "title": "Sales Representative Assignments CSV: file name, headers, success toast",
+  "section": "SBR — Sales Rep Assignments Export",
+  "refs": "SV-8632 (SBR spec v15 2026-07-29 Story 15 S15-R3; S15-R4; §7 — S15-R4 CLOSES the three headers; \"Sales Rep\"→\"Sales Representative\" per Chris Ward 2026-07-31 Q5 [newest-wins]; NOT one of the four report exports so S14-R20 adds no Location)",
+  "anchors": [
+   "S14-R20",
+   "S15-R3",
+   "S15-R4"
+  ],
+  "closers": [
+   "are/read exactly",
+   "exactly (bare)",
+   "in order are"
+  ],
+  "hits": [
+   {
+    "closer": "are/read exactly",
+    "context": "auto-fades after 5 seconds. | 3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?. | 4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sa",
+    "adverbial": false
+   },
+   {
+    "closer": "in order are",
+    "context": "ded.\" and auto-fades after 5 seconds. | 3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?. | 4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "-fades after 5 seconds. | 3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?. | 4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales ",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": true,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "SBR-ASGN-03",
+  "c_id": 30294,
+  "prefix": "SBR",
+  "title": "Assignments CSV: one row per assigned customer, sorted customer then rep",
+  "section": "SBR — Sales Rep Assignments Export",
+  "refs": "SV-8632 (specs/sbr-sales-by-representative.md Story 15 S15-R5; S15-R7; S15-R10)",
+  "anchors": [
+   "S15-R10",
+   "S15-R5",
+   "S15-R7"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": ". | 4. Read the row order. | 1. Every customer with an assigned sales representative produces exactly ONE row (single-rep model: one rep per customer). | 2. Customers with no assigned rep are NOT included. | 3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary).",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": ". | 4. Read the row order. | 1. Every customer with an assigned sales representative produces exactly ONE row (single-rep model: one rep per customer). | 2. Customers with no assigned rep are NOT included. | 3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary).",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-CALC-06",
+  "c_id": 30234,
+  "prefix": "SBR",
+  "title": "Money columns use the standardized labels and definitions",
+  "section": "SBR — Inv. Hrs & Calculations",
+  "refs": "SV-8623; SV-8582 (SBR spec v15 2026-07-29 S5-R2 = the authoritative 12-column left-to-right order; §3 definitions; §4 Terminology — S5-R2 CLOSES the money-label list; Location sits after Status [S21-R7] and is not a money column)",
+  "anchors": [
+   "S21-R7",
+   "S5-R2"
+  ],
+  "closers": [
+   "are/read exactly",
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "are/read exactly",
+    "context": "mn headers. | 2. Read that invoice's row values and recalculate each by hand. | 1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 2. Subtotal = Labor Invoiced + Parts Invoiced, BEFORE tax. | 3. Labor Margin = Labor Invoiced − labor cost; Parts Margin = Parts Invoiced − ",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "aders. | 2. Read that invoice's row values and recalculate each by hand. | 1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 2. Subtotal = Labor Invoiced + Parts Invoiced, BEFORE tax. | 3. Labor Margin = Labor Invoiced − labor cost; Parts Margin = Parts Invoiced − parts",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-DATE-04",
+  "c_id": 30204,
+  "prefix": "SBR",
+  "title": "An invoice sits in the range by its own invoice date; endpoints included",
+  "section": "SBR — Date Range Filter",
+  "refs": "SV-8620 (specs/sbr-sales-by-representative.md Story 2 S2-R5; S2-R8; §3)",
+  "anchors": [
+   "S2-R5",
+   "S2-R8"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": " the range by its own invoice date; endpoints included | 1. ZZAUTOTEST invoices exist dated exactly ON the start date and exactly ON the end date of a custom range, plus one dated just outside it. | 1. Set a custom range whose start and end dates equal those two invoice dates. | 2. Check which invoices appear (expand the owning rep). | ",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "date; endpoints included | 1. ZZAUTOTEST invoices exist dated exactly ON the start date and exactly ON the end date of a custom range, plus one dated just outside it. | 1. Set a custom range whose start and end dates equal those two invoice dates. | 2. Check which invoices appear (expand the owning rep). | 3. Download both PDFs (Summary",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-DEACT-02",
+  "c_id": 30253,
+  "prefix": "SBR",
+  "title": "Deactivate dialog: counted pluralized headline, reassurance, focus trap",
+  "section": "SBR — Staff Deactivation",
+  "refs": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R3; S13-R4; S13-R12)",
+  "anchors": [
+   "S13-R1",
+   "S13-R12",
+   "S13-R3",
+   "S13-R4"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": " trap | 1. ZZAUTOTEST rep \"A\" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers. | 1. Toggle rep B's active status off and read the dialog before confirming anything. | 2. Press Tab repeatedly and watch where focus goes; dismiss and watch where focus returns. | 3",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " trap | 1. ZZAUTOTEST rep \"A\" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers. | 1. Toggle rep B's active status off and read the dialog before confirming anything. | 2. Press Tab repeatedly and watch where focus goes; dismiss and watch where focus returns. | 3",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-DEACT-09",
+  "c_id": 30260,
+  "prefix": "SBR",
+  "title": "If the assignment pre-check fails, the warning dialog still opens",
+  "section": "SBR — Staff Deactivation",
+  "refs": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-N4)",
+  "anchors": [
+   "S13-N4"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "You can force the pre-deactivation assignment check to fail (for example, cut the network exactly when toggling active off) — if not forceable, mark Blocked with the reason. | 1. Toggle the staff member's active status off while forcing the check to fail. | 2. Read the dialog that opens. | 1. The system NEVER silently deactivates — th",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-EXP-01",
+  "c_id": 30276,
+  "prefix": "SBR",
+  "title": "The ⋯ overflow menu lists exactly four download actions",
+  "section": "SBR — Exports",
+  "refs": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R1 + Story 17 S17-R3 (position) — S14-R1 CLOSES it in the spec's own words (\"lists exactly four actions\"); so the closed list IS the requirement)",
+  "anchors": [
+   "S14-R1",
+   "S17-R3"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N",
+   "no other"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "The ⋯ overflow menu lists exactly four download actions | 1. You are signed in to the ShopView App on a desktop browser. | 2. You are on the Sales By Representative report. | 1. Find the ⋯ (three-dot) button in the report toolbar — it is the first control in the toolbar's",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly N",
+    "context": "'s action cluster. | 2. Click it and read the menu entries top to bottom. | 1. The menu lists exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", and \"Download Expanded View (CSV)\". | 2. No other entries appear in the menu.",
+    "adverbial": false
+   },
+   {
+    "closer": "no other",
+    "context": "ad Expanded View (PDF)\", \"Download Summary (CSV)\", and \"Download Expanded View (CSV)\". | 2. No other entries appear in the menu.",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "The ⋯ overflow menu lists exactly four download actions | 1. You are signed in to the ShopView App on a desktop browser. | 2. You are on the Sales By Representative report. | 1. Find the ⋯ (three-dot) button in the report toolbar — it is the first control in the toolbar's",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "'s action cluster. | 2. Click it and read the menu entries top to bottom. | 1. The menu lists exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", and \"Download Expanded View (CSV)\". | 2. No other entries appear in the menu.",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-EXP-06",
+  "c_id": 30281,
+  "prefix": "SBR",
+  "title": "PDF footer on every page, default-logo fallback, and deterministic PDF filenames",
+  "section": "SBR — Exports",
+  "refs": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3a; S14-R4; S14-R11 — S14-R11 CLOSES both PDF filenames verbatim (\"deterministic\") and S14-R4 closes the footer string; so the exact strings ARE the requirement)",
+  "anchors": [
+   "S14-R11",
+   "S14-R3a",
+   "S14-R4"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": ", download a PDF again and look at the header strip's logo region. | 1. The files are named exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\". | 2. A footer reading \"Software Powered by ShopView\" appears on EVERY page of both PDFs. | 3. With no configured logo, the logo region falls back to the d",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-EXP-10",
+  "c_id": 30285,
+  "prefix": "SBR",
+  "title": "Summary CSV: file name, UTF-8 BOM, verbatim headers, one row per rep",
+  "section": "SBR — Exports",
+  "refs": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R15; S14-R18; S14-R20 — Summary CSV headers; plus the automatic Location column in all four exports; S14-R15's header list was left un-updated when S14-R20 was added — spec correction pending)",
+  "anchors": [
+   "S14-R15",
+   "S14-R18",
+   "S14-R20"
+  ],
+  "closers": [
+   "are/read exactly",
+   "exactly (bare)",
+   "in order are"
+  ],
+  "hits": [
+   {
+    "closer": "are/read exactly",
+    "context": "v\" and starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 3. There is one header row plus one row per rep in the c",
+    "adverbial": false
+   },
+   {
+    "closer": "in order are",
+    "context": "summary.csv\" and starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 3. There is one header row plus one row per re",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "nd starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 3. There is one header row plus one row per rep in the curre",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": true,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-EXP-11",
+  "c_id": 30286,
+  "prefix": "SBR",
+  "title": "Expanded CSV: file name, verbatim headers, one row per invoice",
+  "section": "SBR — Exports",
+  "refs": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R16; S14-R20 — Expanded CSV headers; plus the automatic Location column after Status; S14-R16's header list was left un-updated when S14-R20 was added — spec correction pending)",
+  "anchors": [
+   "S14-R16",
+   "S14-R20"
+  ],
+  "closers": [
+   "are/read exactly",
+   "exactly (bare)",
+   "in order are"
+  ],
+  "hits": [
+   {
+    "closer": "are/read exactly",
+    "context": "v\" and starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 3. There is one header row plus one row per in",
+    "adverbial": false
+   },
+   {
+    "closer": "in order are",
+    "context": "xpanded.csv\" and starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 3. There is one header row plus one ",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "nd starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 3. There is one header row plus one row per invoic",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": true,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-EXP-15",
+  "c_id": 30290,
+  "prefix": "SBR",
+  "title": "Over-cap Expanded View PDF is refused with the too-large message",
+  "section": "SBR — Exports",
+  "refs": "SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-E2; §7 — 10k-row export cap; no truncated file; toast persists 120s; the toast STRING is the ONE suite-wide message ruled by Chris Ward 2026-07-31 Q2=A [newest-wins]; his SBR spec edit is pending)",
+  "anchors": [
+   "S14-E2"
+  ],
+  "closers": [
+   "are/read exactly",
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "are/read exactly",
+    "context": "produced — the server declines rather than generating a truncated file. | 2. An error toast reads exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (persists 120 seconds or until dismissed). | 3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoice",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "ed — the server declines rather than generating a truncated file. | 2. An error toast reads exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (persists 120 seconds or until dismissed). | 3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is e",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "SBR-LINK-03",
+  "c_id": 30249,
+  "prefix": "SBR",
+  "title": "Browser back from a drilldown restores expansion and scroll; no reload",
+  "section": "SBR — Links & Navigation",
+  "refs": "SV-8629 (specs/sbr-sales-by-representative.md Story 12 S12-R3a; Story 23 S23-R2)",
+  "anchors": [
+   "S12-R3a",
+   "S23-R2"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "ice status, location, Show Unassigned, every rep's expansion state, and scroll position — exactly as they were. | 2. Back-navigation does not trigger a full report reload. | 3. This is deliberately different from a page reload, which restores persisted filters/columns/sort but resets expansion and scroll.",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-LOC-03",
+  "c_id": 30215,
+  "prefix": "SBR",
+  "title": "Location selection cascades; an inaccessible location's data is never included",
+  "section": "SBR — Location Filter",
+  "refs": "SV-8638 (SBR spec Story 21 S21-R3; S21-R4; S21-R5; §3 — per-row location identifier in All-Locations view ADDED per kickoff video P10 [ruling 2026-07-28 video-overrides-spec]) + on-screen location-scope indicator per Chris Ward 2026-07-29",
+  "anchors": [
+   "S21-R3",
+   "S21-R4",
+   "S21-R5"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "n tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.) | 5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
+    "adverbial": true
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward",
+   "PRD/walkthrough VIDEO"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "SBR-LOC-04",
+  "c_id": 30216,
+  "prefix": "SBR",
+  "title": "Sales By Representative: Location filter hidden for a one-location user",
+  "section": "SBR — Location Filter",
+  "refs": "SV-8638 (SBR spec S21-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S21-N1 \"still sees the filter\" note is stale; spec edit pending)",
+  "anchors": [
+   "S21-N1"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "Location filter hidden for a one-location user | 1. You are signed in as a user assigned to exactly one location. | 1. Open the report and look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two or more locations and look again. | 1. For the single-location user the Location filter is NOT shown at all",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "Location filter hidden for a one-location user | 1. You are signed in as a user assigned to exactly one location. | 1. Open the report and look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two or more locations and look again. | 1. For the single-location user the Location filter is NOT shown at all",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-ROW-01",
+  "c_id": 30217,
+  "prefix": "SBR",
+  "title": "A rep row appears only when the rep has a matching non-reversed invoice",
+  "section": "SBR — Rep Rows & Tree",
+  "refs": "SV-8623 (specs/sbr-sales-by-representative.md Story 5 S5-R1; S5-R4; S5-N1; §3 Key Decisions)",
+  "anchors": [
+   "S5-N1",
+   "S5-R1",
+   "S5-R4"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": " for reps B and C. | 3. Read the count in parentheses after rep A's name. | 1. Rep A occupies exactly one summary row. | 2. Reps B and C do not appear — there are no blank placeholder rows, and a reversed invoice never satisfies the contributor gate. | 3. The number of contributing invoices shows in parentheses after the rep's name, in ",
+    "adverbial": true
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " for reps B and C. | 3. Read the count in parentheses after rep A's name. | 1. Rep A occupies exactly one summary row. | 2. Reps B and C do not appear — there are no blank placeholder rows, and a reversed invoice never satisfies the contributor gate. | 3. The number of contributing invoices shows in parentheses after the rep's name, in ",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-ROW-02",
+  "c_id": 30218,
+  "prefix": "SBR",
+  "title": "Row layout: 12 columns in order, blanks in position, bold summary rows",
+  "section": "SBR — Rep Rows & Tree",
+  "refs": "SV-8623; SV-8638 (SBR spec v15 2026-07-29 Story 5 S5-R2; S5-R3; S5-R6; S5-R8; S5-R10; S5-N2; Story 6 S6-R4; Story 18 S18-R4; S18-R6a + Story 21 S21-R7 — plus the Location column after Status)",
+  "anchors": [
+   "S18-R4",
+   "S18-R6a",
+   "S21-R7",
+   "S5-N2",
+   "S5-R10",
+   "S5-R2",
+   "S5-R3",
+   "S5-R6",
+   "S5-R8",
+   "S6-R4"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "0) — row type is distinguished by font weight, not background color. | 5. Every row renders exactly the report's column count with blanks in position — a cell with nothing to show is blank, never shifted or wrapped (a drifted row is a defect). The grand Totals indicator is exempt: the desktop Totals row merges the four leading ide",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": true,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-STAT-01",
+  "c_id": 30208,
+  "prefix": "SBR",
+  "title": "Invoice Status offers exactly four options; All Statuses is the default",
+  "section": "SBR — Invoice Status Filter",
+  "refs": "SV-8622 (SBR spec v15 2026-07-29 Story 4 S4-R1; S4-R2; S4-R3; S4-R5 — S4-R2 CLOSES the list itself (\"exactly four options\"); so the closed list IS the requirement)",
+  "anchors": [
+   "S4-R1",
+   "S4-R2",
+   "S4-R3",
+   "S4-R5"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "Invoice Status offers exactly four options; All Statuses is the default | 1. You are on the report with no remembered settings. | 1. Find the \"Invoice Status\" dropdown in the toolbar and read its default value. | 2. Open it and read the options. | 3. Change the selectio",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly N",
+    "context": " watch the table. | 1. An \"Invoice Status\" dropdown is visible in the toolbar. | 2. It offers exactly four options: \"All Statuses,\" \"Unpaid,\" \"Partially Paid,\" \"Paid.\" | 3. \"All Statuses\" is the default on first load. | 4. Changing the selection re-fetches and re-renders the report.",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "Invoice Status offers exactly four options; All Statuses is the default | 1. You are on the report with no remembered settings. | 1. Find the \"Invoice Status\" dropdown in the toolbar and read its default value. | 2. Open it and read the options. | 3. Change the selectio",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " watch the table. | 1. An \"Invoice Status\" dropdown is visible in the toolbar. | 2. It offers exactly four options: \"All Statuses,\" \"Unpaid,\" \"Partially Paid,\" \"Paid.\" | 3. \"All Statuses\" is the default on first load. | 4. Changing the selection re-fetches and re-renders the report.",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-STAT-04",
+  "c_id": 30211,
+  "prefix": "SBR",
+  "title": "Filters compose: a rep appears only with an invoice matching ALL active filters",
+  "section": "SBR — Invoice Status Filter",
+  "refs": "SV-8622 (specs/sbr-sales-by-representative.md Story 4 S4-R7; S4-R6; S4-N1; Story 3 S3-R8; S3-N1)",
+  "anchors": [
+   "S3-N1",
+   "S3-R8",
+   "S4-N1",
+   "S4-R6",
+   "S4-R7"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "y with an invoice matching ALL active filters | 1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location — plus one invoice matching all four. | 2. For the per-filter legs: rep A has only service invoices and rep B both types; rep C has only Paid invoices and rep D a mix (seed ZZ",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "y with an invoice matching ALL active filters | 1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location — plus one invoice matching all four. | 2. For the per-filter legs: rep A has only service invoices and rep B both types; rep C has only Paid invoices and rep D a mix (seed ZZ",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-TOT-03",
+  "c_id": 30239,
+  "prefix": "SBR",
+  "title": "Mobile shows a simplified totals bar below the table; Subtotal at right",
+  "section": "SBR — Subtotal & Totals",
+  "refs": "SV-8627 (SBR spec v15 2026-07-29 Story 10 S10-R5 (mobile branch) + Story 17 S17-R4 — S10-R5 CLOSES it in the spec's own words: \"Totals\" left and the grand Subtotal right \"(no other metrics)\")",
+  "anchors": [
+   "S10-R5",
+   "S17-R4"
+  ],
+  "closers": [
+   "no other"
+  ],
+  "hits": [
+   {
+    "closer": "no other",
+    "context": "ontal scroll container, showing \"Totals\" on the left and the grand Subtotal on the right (no other metrics). | 2. It does not scroll horizontally — it is always fully visible across. | 3. During vertical page scroll it sits after the table in normal flow (not pinned to the viewport bottom). | 4. It uses the white card surface with a t",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-TREE-07",
+  "c_id": 30223,
+  "prefix": "SBR",
+  "title": "Each invoice appears under exactly one rep or the Unassigned row",
+  "section": "SBR — Rep Rows & Tree",
+  "refs": "SV-8624 (specs/sbr-sales-by-representative.md Story 6 S6-R7; §3 Key Decisions)",
+  "anchors": [
+   "S6-R7"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "Each invoice appears under exactly one rep or the Unassigned row | 1. A known ZZAUTOTEST invoice set exists across two reps plus at least one unassigned invoice; Show Unassigned is on. | 1. Expand every rep and the Unassigned row. | 2. Search the expanded rows for each see",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly N",
+    "context": ". Search the expanded rows for each seeded invoice number. | 1. Every invoice appears under exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never under two rows. | 2. The sum of all (N) counts equals the number of matching invoices.",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "Each invoice appears under exactly one rep or the Unassigned row | 1. A known ZZAUTOTEST invoice set exists across two reps plus at least one unassigned invoice; Show Unassigned is on. | 1. Expand every rep and the Unassigned row. | 2. Search the expanded rows for each see",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": ". Search the expanded rows for each seeded invoice number. | 1. Every invoice appears under exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never under two rows. | 2. The sum of all (N) counts equals the number of matching invoices.",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "SBR-TYPE-02",
+  "c_id": 30206,
+  "prefix": "SBR",
+  "title": "Product Type: three options, Parts & Service default, each option filters right",
+  "section": "SBR — Product Type Filter",
+  "refs": "SV-8621 (SBR spec v15 2026-07-29 Story 3 S3-R1; S3-R2; S3-R3; S3-R4; S3-R5; S3-R6; S3-R7 — S3-R2 CLOSES the list itself (\"exactly three options\"); so the closed list IS the requirement)",
+  "anchors": [
+   "S3-R1",
+   "S3-R2",
+   "S3-R3",
+   "S3-R4",
+   "S3-R5",
+   "S3-R6",
+   "S3-R7"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "t \"Service only\" and read them again. | 4. Select \"Parts & Service.\" | 1. The dropdown offers exactly three options: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" as the default on first load. | 2. \"Parts only\" includes only invoices whose number starts with P. | 3. \"Service only\" includes only invoices whose ",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "t \"Service only\" and read them again. | 4. Select \"Parts & Service.\" | 1. The dropdown offers exactly three options: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" as the default on first load. | 2. \"Parts only\" includes only invoices whose number starts with P. | 3. \"Service only\" includes only invoices whose ",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "TU-DAY-03",
+  "c_id": 30420,
+  "prefix": "TU",
+  "title": "Day rows use the same columns and formats as the technician rows",
+  "section": "TU — Per-Day Breakdown",
+  "refs": "SV-8651 (specs/technician-utilization.md S4-R3; S2-R8; §3)",
+  "anchors": [
+   "S2-R8",
+   "S4-R3"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "hnician row - with that day's values. | 2. The day's Est. Lost Labor is valued per location exactly like a technician row (that location's default labor rate × that day's internal hours there). | 3. Hours 2dp / Utilization one decimal + % / dollars with commas - all identical to the row formats, computed from unrounded values and ro",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "TU-ELL-02",
+  "c_id": 30405,
+  "prefix": "TU",
+  "title": "Est. Lost Labor, when shown, is pinned right and bold with the info icon",
+  "section": "TU — Est. Lost Labor",
+  "refs": "SV-8649 (TU spec v5 2026-07-29 S2-R10; S2-R11; S8-R4; S8-R6; S8-R7; S8-N1 — each re-worded \"When shown\" now that Est. Lost Labor is a hideable column; new Story 10 S10-R3)",
+  "anchors": [
+   "S10-R3",
+   "S2-R10",
+   "S2-R11",
+   "S8-N1",
+   "S8-R4",
+   "S8-R6",
+   "S8-R7"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "right; its cells are bold and its header is bold, matching. | 2. The information icon shows exactly: \"Internal hours valued at each location's default labor rate\" — on hover, on keyboard focus, and on tap; it is dismissible. | 3. NO column header other than Est. Lost Labor shows the information icon. | 4. Est. Lost Labor can be turned",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": true,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "TU-ELL-03",
+  "c_id": 30406,
+  "prefix": "TU",
+  "title": "Zero internal hours - or a configured $0.00 rate - shows $0.00, never an em-dash",
+  "section": "TU — Est. Lost Labor",
+  "refs": "SV-8649 (specs/technician-utilization.md S2-E2; §5 Assumptions; S2 context note)",
+  "anchors": [
+   "S2-E2"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": ". Technician B has internal hours at a location whose default labor rate is configured as exactly $0.00. | 1. Read technician A's Est. Lost Labor. | 2. Read technician B's Est. Lost Labor. | 1. Technician A shows \"$0.00\" - there is nothing to value, regardless of whether the location has a rate configured. | 2. Technician B also shows \"",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "location has a rate configured. | 2. Technician B also shows \"$0.00\" - a configured rate of exactly $0.00 is a KNOWN rate that values the hours at $0.00, not \"—\". | 3. \"$0.00\" means 'the rate is known and there is nothing (or $0) to value' - a different state from \"—\" ('the rate is unknown').",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "TU-EXP-01",
+  "c_id": 30434,
+  "prefix": "TU",
+  "title": "Three-dot menu is leftmost, then Column Selection; three download options",
+  "section": "TU — Exports",
+  "refs": "SV-8654 (TU spec v5 2026-07-29 S7-R1; S7-R2; S7-R3; S7-R4; S8-R2 — S8-R2 now adds \"followed by the Column Selection control\")",
+  "anchors": [
+   "S7-R1",
+   "S7-R2",
+   "S7-R3",
+   "S7-R4",
+   "S8-R2"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "Summary (PDF)\", \"Download Expanded View (PDF)\", and \"Download (CSV)\". | 3. The labels match exactly - only the expanded option carries the word \"View\" (the shipped strings, documented as-is).",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "TU-EXP-08",
+  "c_id": 30441,
+  "prefix": "TU",
+  "title": "A starting download notifies; a failed one shows the failure message",
+  "section": "TU — Exports",
+  "refs": "SV-8654 (TU spec v5 2026-07-29 Story 7 Error Handling + §7 notifications table — these CLOSE both strings verbatim (\"Download started\" / \"Failed to download report\"); Story 7 has no S-anchor for them so §7 is the closing reference)",
+  "anchors": [],
+  "closers": [
+   "are/read exactly",
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "are/read exactly",
+    "context": "re condition and read the notification. | 1. When a download starts, a success notification reads exactly: \"Download started\". | 2. When a download fails, an error notification reads exactly: \"Failed to download report\".",
+    "adverbial": false
+   },
+   {
+    "closer": "are/read exactly",
+    "context": "cation reads exactly: \"Download started\". | 2. When a download fails, an error notification reads exactly: \"Failed to download report\".",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "dition and read the notification. | 1. When a download starts, a success notification reads exactly: \"Download started\". | 2. When a download fails, an error notification reads exactly: \"Failed to download report\".",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " reads exactly: \"Download started\". | 2. When a download fails, an error notification reads exactly: \"Failed to download report\".",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": false,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "TU-HRS-02",
+  "c_id": 30401,
+  "prefix": "TU",
+  "title": "Headers in fixed order; Total, WO and Internal Hours show clocked hours (2 dp)",
+  "section": "TU — Hours & Utilization",
+  "refs": "SV-8649; SV-8656 (TU spec v5 2026-07-29 S2-R1; S2-R2; S2-R3; S2-R4; S2-R5; §3 + Story 9 S9-R9 — header order and the hours columns; plus the automatic Location column leftmost when shown)",
+  "anchors": [
+   "S2-R1",
+   "S2-R2",
+   "S2-R3",
+   "S2-R4",
+   "S2-R5",
+   "S9-R9"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "ormat on a value over 100 hours. | 1. With a single location in scope the headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor. | 2. Total Hours = all time the technician was clocked in for the range. | 3. WO Hours = time clocked directly to work orders; Internal Hours",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": true,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "TU-LINK-03",
+  "c_id": 30430,
+  "prefix": "TU",
+  "title": "Same range, single location, closed records: Total Hours matches Timesheet",
+  "section": "TU — Deep Links",
+  "refs": "SV-8648 (specs/technician-utilization.md S1-R9; §2; §5 Assumptions)",
+  "anchors": [
+   "S1-R9"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "(clocked-out) records in the range - no open clock. | 2. The report's location filter holds exactly ONE location, and it is the user's currently active shop. | 1. Read the technician's Total Hours on the Technician Utilization report (two decimals). | 2. Click the Total Hours link and read the same technician's total on the opened Tim",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "(clocked-out) records in the range - no open clock. | 2. The report's location filter holds exactly ONE location, and it is the user's currently active shop. | 1. Read the technician's Total Hours on the Technician Utilization report (two decimals). | 2. Click the Total Hours link and read the same technician's total on the opened Tim",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "Timesheet Activities report. | 3. Compare the two, to two decimals. | 1. The two totals MATCH exactly, to two decimals (these values are hours, not money) - both reports read the same clock records and round the same way (round-half-up, from unrounded values). | 2. Under this exact scope (same range, same single location, closed recor",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "TU-LOC-02",
+  "c_id": 30443,
+  "prefix": "TU",
+  "title": "Location changes reload with hours pooled into one row per technician",
+  "section": "TU — Location Filter",
+  "refs": "SV-8656 (specs/technician-utilization.md S9-R3; S9-R4; S9-R5 + on-screen location-scope indicator per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins))",
+  "anchors": [
+   "S9-R3",
+   "S9-R4",
+   "S9-R5"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": " which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "TU-LOC-05",
+  "c_id": 30446,
+  "prefix": "TU",
+  "title": "Technician Utilization: Location filter hidden for a one-location user",
+  "section": "TU — Location Filter",
+  "refs": "SV-8656 (TU spec S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A \"classic spec drift\"; the S9-N1 \"still sees the filter\" note is stale; spec edit pending)",
+  "anchors": [
+   "S9-N1"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "ation filter hidden for a one-location user | 1. You are signed in as a user with access to exactly one location. | 2. You are on the Technician Utilization report. | 1. Look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two or more locations and look again. | 1. For the single-location user the Locati",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "ation filter hidden for a one-location user | 1. You are signed in as a user with access to exactly one location. | 2. You are on the Technician Utilization report. | 1. Look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two or more locations and look again. | 1. For the single-location user the Locati",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "TU-NAV-02",
+  "c_id": 30393,
+  "prefix": "TU",
+  "title": "One row per technician who clocked time in the range at those locations",
+  "section": "TU — Access & Display",
+  "refs": "SV-8648 (specs/technician-utilization.md S1-R2)",
+  "anchors": [
+   "S1-R2"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "or that range and location. | 2. Look for rows for technicians A and B. | 1. Technician A has exactly ONE row. | 2. Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) appear.",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "or that range and location. | 2. Look for rows for technicians A and B. | 1. Technician A has exactly ONE row. | 2. Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) appear.",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "TU-NAV-08",
+  "c_id": 30399,
+  "prefix": "TU",
+  "title": "Standard no-data message when no time in scope or all technicians cleared",
+  "section": "TU — Access & Display",
+  "refs": "SV-8648 (TU spec v5 2026-07-29 S1-N2; S3-N1; S5-N1; S9-N2; §7 — §7 CLOSES the no-data string verbatim (\"Empty bays\" ... \"Get Going!\") as the standard reports no-data label; so the exact string IS the requirement)",
+  "anchors": [
+   "S1-N2",
+   "S3-N1",
+   "S5-N1",
+   "S9-N2"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "er and re-read the data area and the Summary row. | 1. Instead of rows, the data area shows exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label). | 2. The Summary row is hidden. | 3. Clearing every technician shows the SAME message and hides the Summary row — this version does not",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "WIP-CALC-02",
+  "c_id": 30475,
+  "prefix": "WIP",
+  "title": "Labor Earned is the clocked share of each approved line's quoted value",
+  "section": "WIP — Earned & Remaining",
+  "refs": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R15; §4 Terminology (Earned))",
+  "anchors": [
+   "S4-R15"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": " quoted at a known time and rate (for example 4.0 hours at $100/hour = $400 quoted), with exactly 1.0 hour clocked to it. | 4. A second ZZAUTOTEST open work order exists with an approved labor line where MORE time has been clocked than was quoted (for example 5.0 hours clocked against a 4.0-hour quote). | 1. Open the Work In Progres",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " quoted at a known time and rate (for example 4.0 hours at $100/hour = $400 quoted), with exactly 1.0 hour clocked to it. | 4. A second ZZAUTOTEST open work order exists with an approved labor line where MORE time has been clocked than was quoted (for example 5.0 hours clocked against a 4.0-hour quote). | 1. Open the Work In Progres",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "WIP-CALC-08",
+  "c_id": 30481,
+  "prefix": "WIP",
+  "title": "Inv. Hrs shows quoted minus worked hours; signed to one decimal",
+  "section": "WIP — Earned & Remaining",
+  "refs": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R23; S4-R24; S4-E2)",
+  "anchors": [
+   "S4-E2",
+   "S4-R23",
+   "S4-R24"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "oted), a job that has overrun its estimate (more hours clocked than quoted), and a job at exactly its quote. | 1. Read the Inv. Hrs value of the under-estimate job. | 2. Read the Inv. Hrs value of the overrun job. | 3. Read the Inv. Hrs value of the exactly-on-quote job. | 1. Inv. Hrs shows the quoted labor hours minus the worked (clock",
+    "adverbial": true
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "ate job. | 2. Read the Inv. Hrs value of the overrun job. | 3. Read the Inv. Hrs value of the exactly-on-quote job. | 1. Inv. Hrs shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place — for example \"+2.0\" or \"-14.0\". | 2. On screen it is colored green whe",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " shows a negative red value, the under-estimate job a positive green value. | 3. A value of exactly zero shows unsigned as \"0.0\" (never \"+0.0\" or blank) in the default text color.",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "WIP-COL-07",
+  "c_id": 30472,
+  "prefix": "WIP",
+  "title": "Days Open shows whole days since creation and reads 0 days / 1 days",
+  "section": "WIP — Columns & Rows",
+  "refs": "SV-8660 (specs/wip-work-in-progress.md Story 4 S4-R12; §2 Known Limitations (v1))",
+  "anchors": [
+   "S4-R12"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "iew App on a desktop browser. | 2. The report shows a work order created today, one created exactly one day ago, and one created several days ago. | 1. Read the Days Open cell of the work order created today. | 2. Read the Days Open cell of the one-day-old work order. | 3. Read the Days Open cell of the older work order and compare agai",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "iew App on a desktop browser. | 2. The report shows a work order created today, one created exactly one day ago, and one created several days ago. | 1. Read the Days Open cell of the work order created today. | 2. Read the Days Open cell of the one-day-old work order. | 3. Read the Days Open cell of the older work order and compare agai",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "WIP-EXP-10",
+  "c_id": 38918,
+  "prefix": "WIP",
+  "title": "An over-cap Work In Progress download is refused with the too-large message",
+  "section": "WIP — Exports",
+  "refs": "SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending)",
+  "anchors": [],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": "o file is generated and no download starts. | 2. An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user). | 3. Below the cap the download works normally. | 4. Note for the tester: on this environment the biggest single tab holds",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": false,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "WIP-FLT-06",
+  "c_id": 30503,
+  "prefix": "WIP",
+  "title": "Location filter: rightmost multi-select with All locations, reloads on change",
+  "section": "WIP — Filters",
+  "refs": "SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator; spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A)",
+  "anchors": [
+   "S7-R10",
+   "S7-R9"
+  ],
+  "closers": [
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "exactly (bare)",
+    "context": " which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build). | 5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.",
+    "adverbial": true
+   }
+  ],
+  "true_closed_list": false,
+  "adverbial_only": true,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PO answer — Chris Ward",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 3
+ },
+ {
+  "internal_id": "WIP-FLT-09",
+  "c_id": 38916,
+  "prefix": "WIP",
+  "title": "The Location column is automatic and never reads Multiple on a work-order row",
+  "section": "WIP — Filters",
+  "refs": "SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; S10-R5a; §4 Location (column) — automatic visibility; never \"Multiple\"; export header \"Branch\")",
+  "anchors": [
+   "S10-R5a",
+   "S4-R3",
+   "S7-R13",
+   "S7-R14",
+   "S9-E1"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": " its own work order's location. | 3. NO row ever shows \"Multiple\" — a work order belongs to exactly one location, and this report has no grouped or drill-down rows. | 4. The column does not appear or disappear on its own when you change the location selection - it follows the column-selection toggle only. | 5. With the toggle off the ",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " its own work order's location. | 3. NO row ever shows \"Multiple\" — a work order belongs to exactly one location, and this report has no grouped or drill-down rows. | 4. The column does not appear or disappear on its own when you change the location selection - it follows the column-selection toggle only. | 5. With the toggle off the ",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "WIP-SCOPE-03",
+  "c_id": 30458,
+  "prefix": "WIP",
+  "title": "Each qualifying work order appears exactly once in exactly one tab",
+  "section": "WIP — Scope & Loading",
+  "refs": "SV-8658 (specs/wip-work-in-progress.md Story 2 S2-R4; §3 Key Decisions (every open job is listed))",
+  "anchors": [
+   "S2-R4"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": "Each qualifying work order appears exactly once in exactly one tab | 1. You are signed in to the ShopView App on a desktop browser. | 2. Several open ZZAUTOTEST service work orders exist within the current date range, including one open estimate with no approved line items at all. | 1. Open the W",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly N",
+    "context": "proved and read its money columns. | 1. Each qualifying work order appears exactly once, in exactly one tab. | 2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\".",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "Each qualifying work order appears exactly once in exactly one tab | 1. You are signed in to the ShopView App on a desktop browser. | 2. Several open ZZAUTOTEST service work orders exist within the current date range, including one open estimate with no approved line items at al",
+    "adverbial": true
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "e with nothing approved and read its money columns. | 1. Each qualifying work order appears exactly once, in exactly one tab. | 2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\".",
+    "adverbial": true
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "proved and read its money columns. | 1. Each qualifying work order appears exactly once, in exactly one tab. | 2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\".",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ },
+ {
+  "internal_id": "WIP-TAB-01",
+  "c_id": 30451,
+  "prefix": "WIP",
+  "title": "Work In Progress appears in the reports navigation under the Performance group",
+  "section": "WIP — Tabs",
+  "refs": "SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R1; S1-R5 — S1-R5 CLOSES the page title verbatim; Performance group below the named anchor items per the PRD video 2026-07-30; access = the one ordinary reports permission per QA lead 2026-08-03)",
+  "anchors": [
+   "S1-R1",
+   "S1-R5"
+  ],
+  "closers": [
+   "are/read exactly",
+   "exactly (bare)"
+  ],
+  "hits": [
+   {
+    "closer": "are/read exactly",
+    "context": " Efficiency). | 2. Clicking it opens the Work In Progress report. | 3. The browser page title is exactly \"Work In Progress - Report | ShopView\" — a plain hyphen with one space on each side.",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": "ficiency). | 2. Clicking it opens the Work In Progress report. | 3. The browser page title is exactly \"Work In Progress - Report | ShopView\" — a plain hyphen with one space on each side.",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": true,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "PRD/walkthrough VIDEO",
+   "QA lead ruling",
+   "SPEC (version-pinned)"
+  ],
+  "source_count": 4
+ },
+ {
+  "internal_id": "WIP-TOT-02",
+  "c_id": 30495,
+  "prefix": "WIP",
+  "title": "The Totals row sums each visible money column and the Inv. Hrs column",
+  "section": "WIP — Totals Row",
+  "refs": "SV-8662 (specs/wip-work-in-progress.md Story 6 S6-R2; S6-R3)",
+  "anchors": [
+   "S6-R2",
+   "S6-R3"
+  ],
+  "closers": [
+   "exactly (bare)",
+   "exactly N"
+  ],
+  "hits": [
+   {
+    "closer": "exactly N",
+    "context": " \"0.0\"). | 3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row. | 4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download that includes Inv. Hrs is refused, so do not try to verify this column from a file.",
+    "adverbial": false
+   },
+   {
+    "closer": "exactly (bare)",
+    "context": " \"0.0\"). | 3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row. | 4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download that includes Inv. Hrs is refused, so do not try to verify this column from a file.",
+    "adverbial": false
+   }
+  ],
+  "true_closed_list": true,
+  "adverbial_only": false,
+  "has_version_pin": false,
+  "has_closing_anchor": true,
+  "scope_conditional": false,
+  "source_documents": [
+   "JIRA ticket",
+   "SPEC (local file path, NO version)"
+  ],
+  "source_count": 2
+ }
+]
