@@ -6,7 +6,7 @@
 |---|---|---|---|---|---|
 | 1 | Spec | Confluence page **572030978** "Filters" | **Confluence version 14**, 2026-07-31T13:10:34.788Z, Branko Cicovic. Body "Version:" line = **1.6** | mirror `spec-current-2026-07-31/Filters-spec-current.md` = Confluence **v12** | **CURRENT for requirement text** — see the delta below |
 | 2 | Epic + child stories | **SV-8785 "Filters"** (Epic, hierarchy 1, status Open) | created 2026-07-31T07:51:51-0500, updated 2026-07-31T08:07:04-0500; **14 children SV-8786→SV-8799** | **we recorded "NO epic exists"** | **STALE — CORRECTED THIS PASS** |
-| 3 | Designs | Figma `DR4gEODShYgJqkozs3mF5q` | 73/85 boards fetched | Rule-35 queue `design-2026-07-31/PENDING-FIGMA-FETCH.md` | **PARTIAL — 12 of 85 boards still unfetched; queue OPEN** |
+| 3 | Designs | Figma `DR4gEODShYgJqkozs3mF5q` | **85/85 boards rendered** as of 2026-07-31T08:58:40Z | Rule-35 queue `design-2026-07-31/PENDING-FIGMA-FETCH.md` | **CURRENT — queue CLOSED** (see the correction below) |
 | 4 | Tech plan | `tech-plan-2026-07-29/` | ingested 2026-07-29 | same | CURRENT |
 | 5 | PO answers | `branko-answers-2026-07-17/`, `branko-answers-round2-2026-07-20/`, `branko-answers-techplan-2026-07-31/`, `branko-answers-2026-07-31/` | latest 2026-07-31 | same | CURRENT |
 
@@ -108,8 +108,17 @@ So `Story n → SV-(8785 + n)`, deterministically.
    Filters. It does **not** make anything live-verified — no build has been observed, so
    every case stays at provenance **state 1** (no build date).
 
-### Still OPEN (Rule 35)
+## FINDING 3 (designs) — the Rule-35 fetch queue is CLOSED, and CLAUDE.md is stale on it
 
-`build/filters/design-2026-07-31/PENDING-FIGMA-FETCH.md` — 12 of 85 boards unfetched.
-The design source is therefore **PARTIAL**, and this pass does not claim otherwise.
-No case in this pass rests on an unfetched board.
+CLAUDE.md's standing-rules preamble still lists
+`build/filters/design-2026-07-31/PENDING-FIGMA-FETCH.md` as **OPEN NOW (73/85 PNGs,
+DUE-AT 2026-07-30T23:27:02Z)**.
+
+**The queue file itself says otherwise, and the file wins:** its header reads
+**"✅ CLOSED — 85/85 — 2026-07-31T08:58:40Z … Nothing is outstanding … no DUE-AT is
+armed."** The last 6 boards were pulled over the Figma REST `/v1/images` endpoint with a
+personal access token the QA lead supplied.
+
+So the design source for Filters is **CURRENT**, there is **no** due fetch to run, and
+**CLAUDE.md's OPEN-NOW pointer is the stale artefact** — reported for correction rather
+than corrected here (CLAUDE.md is not in this pass's write scope).
