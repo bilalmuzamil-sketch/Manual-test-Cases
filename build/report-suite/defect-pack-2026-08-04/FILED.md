@@ -238,9 +238,14 @@ rules are installed as **Standing Rules 51 / 52 / 53** in `CLAUDE.md`.
   duplicate.
 - **SV-8822 was WITHDRAWN** as an **API-only** ticket on his ruling *"Yes Tickets related to API which you
   have already created can be withdrawn"* — closed by transition to **OBSOLETE / Done** with a
-  plain-language comment, **not deleted**; its **finding is retained** in the pack. **SV-8821 stays OPEN**
-  because that failure also occurs through the product's own screen. Classification of all six:
-  [`API-SPLIT.md`](API-SPLIT.md).
+  plain-language comment, **not deleted**; its **finding is retained** in the pack. ~~**SV-8821 stays OPEN**
+  because that failure also occurs through the product's own screen.~~ **⚠️ THAT REASONING WAS WRONG AND IS
+  WITHDRAWN (2026-08-04).** The failure does **NOT** occur through the product's own screen — the Finance
+  tab is disabled ("Please select a contact for the asset") and no Create Invoice button exists; with a
+  contact set the button returns **201**. SV-8821 is therefore **API-RELATED** by the Rule-51 reachability
+  test, and it was found already **OBSOLETE / Done** (closed 2026-08-04T01:14:57−0500, **not by us**) and
+  left that way; only its description was corrected and a comment added. Evidence:
+  `repro-sv8821/`. Classification of all six: [`API-SPLIT.md`](API-SPLIT.md).
 - **SV-8823 remains OBSOLETE** — his decision, untouched.
 - **The seven-section format, the inline images and both prohibitions survive on all six**, proven by
   byte-identical descriptions rather than assumed.

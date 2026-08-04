@@ -2277,6 +2277,15 @@ deliver the 7-tab management report.
     · verifying an **export** means **EVERY FORMAT and EVERY VIEW**, and **reading the file's actual
     CONTENT** — not merely that a download occurred
     · verifying **counts** means **SET EQUALITY BOTH WAYS**, **never matching totals**
+    · verifying a **REPRODUCTION** means **NAMING EVERY PIECE OF TEST DATA IT DEPENDS ON** — the canned
+    line, customer, contact, part, asset, work-order state, location, role/user and date range, each by
+    its exact on-screen name, plus **which values were tried and ruled out**. *"Create a work order with
+    a canned line"* is **not exhaustively specified**; *"add canned line **HD CVIP air brake trailer
+    single/tandem**"* is. **An unnamed variable is an unverified variable** — the reader picks a different
+    one, gets a different result, and closes the ticket (SV-8821, 2026-08-04: the QA lead could not
+    reproduce it because our steps named no canned line, and the real condition turned out to be a
+    missing CONTACT, not the canned line at all). Format requirement:
+    `build/APP-ACTIONS-PLAYBOOK.md` § "HARD REQUIREMENT ON SECTION 3 — NAME THE EXACT TEST DATA".
     **IF THE POPULATION IS LARGE, THAT CHANGES THE SCHEDULE, NOT THE SCOPE:** batch it, checkpoint it
     (Rule 29), and **FINISH it**. **State the EXACT number verified and the EXACT remainder** — and
     **never let a sample be reported in language that implies the whole** (Rules 12/17).
