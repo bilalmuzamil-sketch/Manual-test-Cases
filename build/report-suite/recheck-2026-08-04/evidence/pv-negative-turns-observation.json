@@ -1,0 +1,44 @@
+{
+ "build": "v3.4.1-3d03023",
+ "negativeStockRows": [
+  {
+   "part_number": "Fuel",
+   "units_sold": 7111,
+   "on_hand": -5137,
+   "turns_per_year": 0
+  },
+  {
+   "part_number": "84-4005PK",
+   "units_sold": 129,
+   "on_hand": -1,
+   "turns_per_year": 0
+  },
+  {
+   "part_number": "8WS-075",
+   "units_sold": 437,
+   "on_hand": -24,
+   "turns_per_year": 0
+  },
+  {
+   "part_number": "WS1",
+   "units_sold": 16,
+   "on_hand": -1,
+   "turns_per_year": 0
+  },
+  {
+   "part_number": "FUEL STK",
+   "units_sold": 275,
+   "on_hand": -275,
+   "turns_per_year": 0
+  },
+  {
+   "part_number": "51372MP",
+   "units_sold": 4,
+   "on_hand": -1,
+   "turns_per_year": 0
+  }
+ ],
+ "zeroStockRows": 57,
+ "formulaMismatchesPositiveStock": [],
+ "conclusion": "Turns/Yr is floored to 0 whenever on_hand <= 0 (zero OR negative stock); with positive stock it matches (units_sold/on_hand)*(365/W) exactly, W=216 inclusive. The one negative Turns/Yr row is driven by negative units_sold, not negative stock."
+}

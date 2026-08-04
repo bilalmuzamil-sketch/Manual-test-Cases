@@ -1,0 +1,89 @@
+{
+ "build": "v3.4.1-3d03023",
+ "cases": {
+  "C30367": {
+   "rows": 500,
+   "zeroStock": 57,
+   "negRows": 1,
+   "formulaMismatches": [
+    [
+     "formula",
+     "Fuel",
+     0,
+     -2.339162
+    ],
+    [
+     "formula",
+     "84-4005PK",
+     0,
+     -217.986111
+    ],
+    [
+     "formula",
+     "8WS-075",
+     0,
+     -30.768711
+    ],
+    [
+     "formula",
+     "WS1",
+     0,
+     -27.037037
+    ],
+    [
+     "formula",
+     "FUEL STK",
+     0,
+     -1.689815
+    ],
+    [
+     "formula",
+     "51372MP",
+     0,
+     -6.759259
+    ]
+   ],
+   "formula": "(units_sold/on_hand)*(365/W), W=216 inclusive"
+  },
+  "C30374": {
+   "tests": [
+    {
+     "label": "this_year (Jan1->Aug4)",
+     "units_sold": 512,
+     "on_hand": 618,
+     "turns_per_year": 1.39997602781,
+     "impliedWindow": 216,
+     "expectedWindow": 216,
+     "pass": true
+    },
+    {
+     "label": "custom Jan1->Aug4",
+     "units_sold": 512,
+     "on_hand": 618,
+     "turns_per_year": 1.39997602781,
+     "impliedWindow": 216,
+     "expectedWindow": 216,
+     "pass": true
+    },
+    {
+     "label": "custom single day Aug4 (floor 1)",
+     "units_sold": 0,
+     "on_hand": 618,
+     "turns_per_year": 0,
+     "impliedWindow": null,
+     "expectedWindow": 1,
+     "pass": "n/a (no sales in window)"
+    },
+    {
+     "label": "custom Jan1->Dec31 2025",
+     "units_sold": 1650,
+     "on_hand": 618,
+     "turns_per_year": 2.66990291262,
+     "impliedWindow": 365,
+     "expectedWindow": 365,
+     "pass": true
+    }
+   ]
+  }
+ }
+}
