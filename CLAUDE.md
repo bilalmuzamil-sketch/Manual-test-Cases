@@ -2330,6 +2330,132 @@ deliver the 7-tab management report.
     untouched fields proven byte-identical), 45 (both directions, and one row per assertion), 48 (a
     claim carries its evidence) and 49 (a provisional finding is still verified exhaustively and
     exactly — its *durability* is what is limited, not its rigour).
+51. **NEVER file an API-related ticket without ASKING — every time, even inside an approved batch (all
+    projects).**
+    USER DIRECTIVE (2026-08-04, verbatim): *"do not create the tickets which are related to API , if
+    there are any ASK me (ask again if I have previously given a go ahead for the API tickets with the
+    Non API tickets) and create them ONLY if I ask you to create them"*.
+    **THE RULE:** an **API-related defect is NEVER filed on our own initiative.** It is **ASKED ABOUT
+    SEPARATELY and filed ONLY if the QA lead explicitly says to file it.** **A BATCH APPROVAL DOES NOT
+    COVER AN API ITEM** — the parenthesis in his directive is the whole point: *"ask again if I have
+    previously given a go ahead for the API tickets with the Non API tickets"*. So *"file these six"*
+    is **NOT** authorisation for the API one among the six; **ask again, naming it.** Silence is not
+    consent, and an earlier yes to the batch is not a yes to the API item.
+    **HOW TO JUDGE WHETHER A FINDING IS API-RELATED (the test, in one line):** **if the defect is
+    invisible to a user AND to a manual tester — reachable only by calling an endpoint directly with a
+    request the product's own screens never send — it is API-RELATED.** **If the same failure ALSO
+    occurs through the product's own screens, it is a USER-FACING defect** that merely happens to be
+    *characterised* technically (a 500 in the response is technical *evidence*; it is not what makes
+    the ticket API-related). Judge by **reachability from the product**, never by whether our evidence
+    happens to be an endpoint capture.
+    **METHOD (so the split is visible BEFORE anything is filed):** **(1)** every defect pack **LISTS
+    API-RELATED FINDINGS IN THEIR OWN SEPARATE SECTION**, with the reachability reason stated per item
+    — a dated `API-SPLIT.md` beside the pack is the canonical vehicle (`build/report-suite/
+    defect-pack-2026-08-04/API-SPLIT.md`). **(2)** the ask goes to the QA lead **separately from the
+    non-API batch**, in plain layman words (Rule 7): what the defect is, that it cannot be reached from
+    any screen, and the explicit question *file it or not?* **(3)** nothing is filed until he answers.
+    **(4)** if an API ticket was already filed before this rule was known, **withdraw it on his ruling**
+    — **CLOSE it via a workflow transition with a plain-language closing comment, NEVER DELETE it**
+    (a withdrawn ticket with its reasoning on the record is worth more than a deleted one, and deletion
+    is irreversible); set **priority Low first** (Rule 53) so it does not sit closed at the wrong
+    priority; and **keep the underlying finding written up in the defect pack** — we withdraw the
+    *ticket*, we do not discard the *finding*.
+    **TIE TO RULE 24 (read them together):** Rule 24 already says **front-end blocks + back-end/API
+    allows = a PASS, not a defect.** This rule is its filing-side sibling: even where an API-only
+    behaviour is a genuine hardening opportunity rather than a Rule-24 pass, **it is still not ours to
+    raise unasked.** Between them: an FE-gated/BE-allowed action is **not a defect at all**, and an
+    API-only fault that IS a defect is **not a ticket without his say-so**.
+    **RATIONALE, 2026-08-04 (the worked example that produced the rule — and it was our miss):**
+    **SV-8822** *"Saving a customer returns a server error instead of a validation error when a
+    sales-rep id is supplied"* was filed **inside the approved batch of six** defect tickets, because
+    the batch had been approved as a whole and nobody separated out the API item. It is **API-only**:
+    the fault is reachable only by sending the customer-save request directly in a shape the product's
+    own dialog never produces, so **no customer and no manual tester can see it**. The QA lead then
+    stated the rule above, and when asked, ruled verbatim: *"Yes Tickets related to API which you have
+    already created can be withdrawn"* — so SV-8822 was **transitioned to OBSOLETE (resolution Done)
+    with a plain-language withdrawal comment, not deleted**, while **SV-8821** (the create-invoice
+    server error) **stayed OPEN** precisely because that one **also fails through the product's own
+    screen** and is therefore user-facing despite its technical characterisation. **That contrast —
+    8822 withdrawn, 8821 kept — IS the reachability test in practice.** Records:
+    `build/report-suite/defect-pack-2026-08-04/API-SPLIT.md` + `FILED.md`. Ties to Standing Rules 1
+    (never proceed without the complete input set — an unanswered ask is a missing input), 6 (nothing
+    written to a system of record without permission), 7 (plain layman wording for the ask), 12
+    (observed, never inferred), 24 (FE-blocks/BE-allows is a PASS), 36 (an unanswered ask is an
+    OUTSTANDING item and belongs in the register), 48 (a blocked item cites the ruling that blocks it)
+    and 53 (priority Low).
+52. **A defect ticket is parented to the EPIC, and its relationship to the owning STORY is expressed as
+    a LINK of the story-defect kind — never as a parent, never as a subtask (all projects).**
+    USER DIRECTIVE (2026-08-04, verbatim): *"when you attach a ticket to a story that should ALWAYS be
+    attached as a Story Defect and NOT as a bug"* — **CLARIFIED by him the same day, verbatim, and the
+    clarification is the operative wording:** *"So Yes, attach the tickets to the Epic as Parent but
+    when you liunk th etickets to the stories they should be linked as their story defects. You did it
+    correctly before."*
+    **THE RULE — the correct shape, both halves together:** **(a) PARENT = THE EPIC.** **(b) THE OWNING
+    STORY IS LINKED, NOT PARENTED**, and that link must read as a **story-defect** relationship rather
+    than a bare association. **Do NOT reparent a defect onto a story. Do NOT convert it to a subtask.
+    Do NOT create replacement issues or close the original as a duplicate to achieve a story parent.**
+    **THE PROJECT FACT THAT MAKES THIS THE CORRECT SHAPE, NOT A WORKAROUND** (verified live from
+    `GET /rest/api/3/issue/createmeta/SV/issuetypes`): in project **SV**, **`Bug` (id 10008) is
+    HIERARCHY LEVEL 0**, exactly like `Story` (10245) and `Task` (10005) — **so its parent may only be
+    an `Epic` (10006, level 1)**; a Story cannot be a Bug's parent at all. The only story-level child
+    vehicle is **`Story Defect` (id 10007), a SUBTASK at hierarchy level −1**. **Jira REFUSES the
+    level-0 → subtask conversion:** `PUT /rest/api/3/issue/{key}` with `issuetype:10007` + `parent`
+    returns **HTTP 400 `{"pid":"Issues with this Issue Type must be created in the same project as the
+    parent."}`** (a misleading message — the parent WAS in the same project), and `issuetype` alone
+    returns **HTTP 400 `{"issuetype":"Issue type is a sub-task but parent issue key or id not
+    specified."}`** — an unwinnable pair. **So epic-parent + story-link is not a compromise forced by a
+    limitation; it is the shape the QA lead requires.**
+    **METHOD:** file with `parent` = the epic and the story attached via `POST /rest/api/3/issueLink`.
+    **The link TYPE is the QA lead's to name — never guessed.** The types available in this Jira
+    (`GET /rest/api/3/issueLinkType`, read live 2026-08-04) are exactly: **Blocks** (`is blocked by` /
+    `blocks`) · **Cause** (`caused by` / `causes`) · **Cloners** · **Duplicate** · **Fixes** (`Fixes` /
+    `Fixed by`) · **Polaris work item link** (`is implemented by` / `implements`) · **Relates**
+    (`relates to` / `relates to`) · **Split**. **NONE of them is a defect-of / is-defect-for type**, so
+    where a "story defect link" is called for and no such type exists, **CHANGE NOTHING and ASK him
+    which of the eight he means** (Rule 7 — plain question; Rule 12 — never invent a semantic).
+    **RATIONALE, 2026-08-04:** the six Report-Suite defect tickets were filed as `Bug`s parented to
+    epic **SV-8582** with the owning story merely **linked** (`Relates`) — SV-8818→SV-8591,
+    SV-8819→SV-8645, SV-8820→SV-8672, SV-8823→SV-8677. **An intermediate pass then wrongly proposed
+    CONVERTING those four into `Story Defect` subtasks parented to their stories, and the QA lead
+    corrected it: *"You did it correctly before."*** Both conversion attempts had already been
+    **rejected by Jira with the two HTTP 400s quoted above, so nothing was converted** and no repair
+    was needed — but the lesson is that **the original shape was right and the "fix" was the error.**
+    Record: `build/report-suite/defect-pack-2026-08-04/FILED.md`. Ties to Standing Rules 6 (no write
+    without permission), 12 (observed, never inferred — the hierarchy levels and the refusals were read
+    live, not assumed), 25 (quote the source and the error verbatim), 27 (recorded in the playbook so it
+    is never re-derived), 32/33 (the latest ruling wins — his clarification supersedes the first
+    reading) and 51.
+53. **NEVER set a ticket's priority to High — always file at Low; and NEVER "restore" a field the QA
+    lead has changed (all projects).**
+    USER DIRECTIVE (2026-08-04, verbatim): *"never mark the priority as High for the tickets you create
+    always keep the priority as LOW"*.
+    **THE RULE:** **every ticket we create is filed at priority `Low`.** Not Medium, not "the severity
+    the pack states", not High however bad the defect looks to us. **Priority is the QA lead's to
+    RAISE, not ours to ASSERT** — he triages; we report. This is unconditional and applies to every
+    project and every ticket type. **Where the finding genuinely is severe, that belongs in the ticket's
+    own words and in the project's `Severity` field — not in `Priority`.**
+    **THE COROLLARY THAT BURNED US — A CHANGE MADE UNDER HIS ACCOUNT IS HIS TRIAGE, NOT AN ANOMALY:**
+    **NEVER "restore", "correct" or "repair" a field value that has changed without an action of ours.**
+    He works in the Jira UI **under this same account** (`bilal.muzamil@shopview.com`, accountId
+    `712020:6d590212-…`), so **his edits are INDISTINGUISHABLE FROM OURS in the changelog** — the author
+    column will read our own name. Therefore: an unexplained field change is to be **READ AS HIS
+    DELIBERATE ACTION and ASKED ABOUT, never reversed.** The signature to look for: a change that is
+    **selective and semantically coherent** (only the `High` ones moved; the `Low` and `Medium` ones did
+    not) or a **status transition that sets a resolution** — both are human triage, not a stray write.
+    **RATIONALE, 2026-08-04 (the whole sequence, because the evidence is the lesson):** the six tickets
+    were created at the severity their pack stated (High ×4 · Low · Medium). The QA lead then downgraded
+    the four to `Low` at **00:35:27 / 00:35:32 / 00:35:37 / 00:36:58 (−0500)** and closed **SV-8823** to
+    **OBSOLETE** at **00:55:27** — all under our shared account. A pass read the four downgrades as
+    unexplained drift and **"restored" them to `High` at 00:54:23–00:54:27, reversing his deliberate
+    decision.** He then **re-applied `Low` at 00:56:00–00:56:29** — the changelog now carries the full
+    embarrassing round trip **`High → Low → High → Low`** on all four, and it is on the record precisely
+    so nobody repeats it. **The restore was WRONG twice over: wrong because it undid his triage, and
+    wrong because the correct value under this rule was `Low` all along.** Ties to Standing Rules 6
+    (nothing changed in a system of record without permission — *including* changing it back), 12
+    (observed, never inferred — "drift" was an inference and it was false), 25 (cite the changelog
+    verbatim), 32/33 (his ruling outranks our reading of a pack), 48 (never imply his decision is an
+    obstacle, and never carry a "restore" forward silently), 50 (the byte-level re-read is what surfaced
+    the change — reading it correctly is the other half of the job) and 51/52.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

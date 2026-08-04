@@ -677,14 +677,71 @@ Reusable converter: `/tmp`-side `md2wiki.py` pattern documented in
 `build/ATLASSIAN-JIRA-ACCESS-METHOD.md` §5a; give descriptions to v2 as wiki markup, **not** ADF, when
 they contain images.
 
+### THREE HARD GATES BEFORE AND WHILE FILING (QA lead, 2026-08-04 — Standing Rules 51 / 52 / 53)
+
+**These three came in AFTER the six tickets below were filed, and each one corrected something that
+pass got wrong. Read them before you file anything.**
+
+**1. API-RELATED TICKETS ARE NEVER FILED WITHOUT ASKING — EVERY TIME (Rule 51).**
+His words: *"do not create the tickets which are related to API , if there are any ASK me (ask again if
+I have previously given a go ahead for the API tickets with the Non API tickets) and create them ONLY
+if I ask you to create them"*. **A BATCH APPROVAL DOES NOT COVER THE API ITEM INSIDE IT** — ask again,
+naming it, even if he already approved the batch.
+**The reachability test:** if the defect is **invisible to a user and to a manual tester — reachable
+only by calling an endpoint directly with a request the product's own screens never send — it is
+API-RELATED.** If **the same failure also happens through the product's own screens**, it is a
+**user-facing** defect that merely happens to be characterised technically (a 500 in the evidence does
+**not** make it API-related).
+**Method:** list API-related findings in **their own section of the defect pack BEFORE filing** (canonical
+vehicle: a dated `API-SPLIT.md` beside the pack, e.g.
+`build/report-suite/defect-pack-2026-08-04/API-SPLIT.md`), ask separately in plain words, file only on a
+yes. **Already filed one? Withdraw on his ruling — CLOSE it by workflow transition with a plain-language
+comment, set priority Low first, and NEVER DELETE** (deletion is irreversible; a withdrawn ticket with
+its reasoning on the record is worth more). **Keep the finding in the pack — we withdraw the ticket, not
+the finding.** Read alongside **Rule 24**: FE-blocks + BE-allows is a **PASS**, not a defect at all.
+
+**2. PARENT = THE EPIC; THE OWNING STORY IS *LINKED*, NOT PARENTED (Rule 52).**
+His clarification, verbatim and operative: *"So Yes, attach the tickets to the Epic as Parent but when
+you liunk th etickets to the stories they should be linked as their story defects. You did it correctly
+before."*
+**Do NOT reparent a defect onto a story, do NOT convert it to a `Story Defect` subtask, do NOT create
+replacement issues or close the original as a duplicate to get a story parent.**
+**Why this shape is CORRECT and not a workaround:** in project **SV**, **`Bug` (10008) is hierarchy
+level 0** — same level as `Story` (10245) and `Task` (10005) — so **its parent may only be an `Epic`
+(10006, level 1)**. The only story-level child vehicle is **`Story Defect` (10007), a SUBTASK at level
+−1**, and **Jira REFUSES the level-0 → subtask conversion** (both attempts proven 2026-08-04):
+`PUT /rest/api/3/issue/{key}` with `issuetype:10007` + `parent` → **400
+`{"pid":"Issues with this Issue Type must be created in the same project as the parent."}`** (misleading
+— the parent *was* in the same project); `issuetype` alone → **400 `{"issuetype":"Issue type is a
+sub-task but parent issue key or id not specified."}`**. An unwinnable pair.
+**The LINK TYPE is his to name — never guess.** Available in this Jira (`GET /rest/api/3/issueLinkType`,
+read live 2026-08-04): **Blocks** · **Cause** (`caused by`/`causes`) · **Cloners** · **Duplicate** ·
+**Fixes** · **Polaris work item link** · **Relates** · **Split**. **None is a defect-of / is-defect-for
+type**, so if a "story defect link" is asked for, **change nothing and ask which of the eight he means.**
+
+**3. PRIORITY IS ALWAYS `Low` — NEVER `High` (Rule 53).**
+His words: *"never mark the priority as High for the tickets you create always keep the priority as
+LOW"*. Priority is **his to raise, not ours to assert**. Severity belongs in the ticket's words and in
+the `Severity` field, **never** in `Priority`.
+**⚠️ AND NEVER "RESTORE" A FIELD HE HAS CHANGED.** He works in the Jira UI **under this same account**,
+so **his edits are indistinguishable from ours in the changelog** — the author column reads our own
+name. A change with no action of ours is **his triage**, to be **asked about, never reversed**. Tells: a
+**selective, semantically coherent** change (only the `High` ones moved) or a **transition that sets a
+resolution**. On 2026-08-04 a pass read his four `High → Low` downgrades as drift and "restored" them;
+he re-applied `Low`, and the changelog now carries **`High → Low → High → Low`** on all four.
+
 ### Fields to set on a ShopView `SV` bug (from `createmeta`, 2026-08-04)
 
-`project` · `issuetype` (**`Bug`**) · `summary` · `description` · `labels` · `priority`
-(Highest/High/Medium/Low) · `customfield_10418` **Severity** (High/Medium/Low) ·
-**`customfield_10153` "Product Area" — REQUIRED** (Reports & Dashboards · Work Orders · Customers · …).
-**Parent:** a `Bug` is hierarchy level 0, so its parent may only be an **Epic**; to hang a defect off a
-**Story**, the issue type must be **`Story Defect`** (subtask). Link the owning story with `Relates`
-(or `Blocks`) when the epic is the parent.
+`project` · `issuetype` (**`Bug`**) · `summary` · `description` · `labels` · **`priority` — ALWAYS
+`Low`** (Rule 53; the field offers Highest/High/Medium/Low, we use `Low`) · `customfield_10418`
+**Severity** (High/Medium/Low — put the real severity HERE) · **`customfield_10153` "Product Area" —
+REQUIRED** (Reports & Dashboards · Work Orders · Customers · …).
+**Parent:** the **Epic** (see gate 2 above) — a `Bug` is hierarchy level 0 so an Epic is the only parent
+it can take. **Attach the owning story as a LINK** (`POST /rest/api/3/issueLink`), not a parent.
+**Withdrawing a ticket:** read `GET /rest/api/3/issue/{KEY}/transitions` and use the closest close
+transition — on `SV` that is **`Close` (id 8) → status `OBSOLETE`**, whose post-function sets
+**`resolution: Done`** with no resolution screen. Comment first (v2 `POST /rest/api/2/issue/{KEY}/comment`
+takes a plain string), then transition, then read back status + resolution + priority + comment.
 
 ---
 
