@@ -2582,6 +2582,25 @@ deliver the 7-tab management report.
     the general "no §-anchors in tester-facing text" guidance of Rules 7/20. **This is a DELIBERATE,
     QA-LEAD-AUTHORISED EXCEPTION and it is stated here explicitly so that a future pass does not strip
     it as a Rule-7 violation.**
+    **NAME THE SOURCE FILE, AND GIVE ITS LINK (added 2026-08-04 by the QA lead's ruling, verbatim:
+    *"If Branko said this in his new file then yes, but below the expected behavior give the file link
+    and mention that this is coming from Branko's responses here. Anyting that you do if that has the
+    reference from the file only - follow the same practice."*).** Where an expectation derives from a
+    **NAMED SOURCE FILE rather than the specification** — a **PO's answer sheet**, a **walkthrough /
+    Loom video**, an **engineering tech plan**, a **design export**, any document that is not the spec
+    — the provenance line **NAMES THAT SOURCE, GIVES ITS LINK, and says plainly that the position comes
+    from there**, e.g. *"…and as per Branko's answers in this file: <link>"*. **THE LINK IN
+    TESTER-FACING TEXT IS A DELIBERATE, QA-LEAD-AUTHORISED EXCEPTION** to the no-jargon guidance of
+    Rules 7/20, exactly as the requirement anchor above is — **stated here so a future pass does not
+    strip it.** **A LINK MAY ONLY BE CITED WHERE THAT SOURCE IS GENUINELY LOAD-BEARING FOR THE
+    ASSERTION:** pasting an answer-file link onto a case the file does not govern manufactures false
+    authority just as surely as omitting a source does, so **distinguish the two cases in the wording**
+    — the file is either the **BASIS** (*"that decision is recorded in <who>'s answers, in this file:
+    <link>"*) or a **CONFIRMATION** of a spec-backed expectation (*"<who> confirmed this on <date> in
+    his answers in this file: <link>"*). **Keep the answer's DATE where it clarifies things**, and
+    **re-stamp when a newer file supersedes it** (Rule 32). Canonical example:
+    `build/filters/branko-answers-2026-08-04/testrail-execution-log.md` — 12 Filters cases, 10 cited
+    the file as governing and 2 as confirming, while the other 98 kept the ordinary line.
     **HONESTY CLAUSE — THE IMPORTANT ONE.** Where a case **deliberately follows a LATER PRODUCT
     DECISION instead of the spec text** (Rule 32 latest-wins — e.g. a PO ruling the spec has not
     caught up with), the line **MUST NOT claim plain spec agreement**: it names the spec **AND states
