@@ -2405,6 +2405,16 @@ deliver the 7-tab management report.
     returns **HTTP 400 `{"issuetype":"Issue type is a sub-task but parent issue key or id not
     specified."}`** — an unwinnable pair. **So epic-parent + story-link is not a compromise forced by a
     limitation; it is the shape the QA lead requires.**
+    **NO STANDALONE TICKETS — EVERY ticket we create gets the EPIC as its parent (clarified by the QA lead
+    2026-08-04), INCLUDING a defect we found during our testing whose UNDERLYING CAUSE SITS IN ANOTHER
+    TEAM'S AREA.** "It is not really a reporting bug" is **NOT** a reason to leave a ticket parentless: we
+    found it, we raised it from this epic's testing, so it hangs off this epic. **HONEST CAVEAT (a note, not
+    an exception): an epic parent CAN MISATTRIBUTE another squad's work** — so where the defect is not the
+    epic's own feature, **SAY SO IN THE TICKET'S TECHNICAL SECTION** (name the real area/endpoint) and
+    **KEEP the `blocks` link that explains WHY we raised it**. The parent records who found and owns the
+    report; the links and the text record where the fault actually lives. **A `blocks` link to the epic and
+    an epic parent COEXIST FINE** — Jira raised no objection (proven live on **SV-8821**, 2026-08-04:
+    `parent = SV-8582` set while `blocks SV-8582` + `blocks SV-8592` were both retained).
     **METHOD:** file with `parent` = the epic and the story attached via `POST /rest/api/3/issueLink`.
     **The link TYPE is the QA lead's to name — never guessed.** The types available in this Jira
     (`GET /rest/api/3/issueLinkType`, read live 2026-08-04) are exactly: **Blocks** (`is blocked by` /
@@ -2420,6 +2430,12 @@ deliver the 7-tab management report.
     corrected it: *"You did it correctly before."*** Both conversion attempts had already been
     **rejected by Jira with the two HTTP 400s quoted above, so nothing was converted** and no repair
     was needed — but the lesson is that **the original shape was right and the "fix" was the error.**
+    **SECOND RATIONALE, same day — the no-standalone half:** **SV-8821** (the create-invoice server error) was
+    filed with **NO parent** because its cause is work-order invoicing rather than reporting, and the QA lead
+    asked why it was not related to the Report Suite epic. It was corrected to **`parent = SV-8582`**
+    (`PUT /rest/api/3/issue/SV-8821` → **HTTP 204**, byte-verified: 58 fields compared, only `parent` and the
+    server's `updated` changed, both `blocks` links intact). **`SV-8822` was left alone** — it is
+    **OBSOLETE / Done / withdrawn**, and re-parenting a closed ticket is his decision, not ours.
     Record: `build/report-suite/defect-pack-2026-08-04/FILED.md`. Ties to Standing Rules 6 (no write
     without permission), 12 (observed, never inferred — the hierarchy levels and the refusals were read
     live, not assumed), 25 (quote the source and the error verbatim), 27 (recorded in the playbook so it

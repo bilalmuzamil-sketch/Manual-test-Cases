@@ -76,3 +76,21 @@ route is to **ask the QA lead separately**, per Rule 51.
    **separately** — **even if the batch has already been approved.**
 3. File **only** what he says to file, **at priority `Low`** (Rule 53), **parented to the Epic with the
    owning story LINKED** (Rule 52).
+
+---
+
+## Parent correction — 2026-08-04
+
+**SV-8821 now has `parent = SV-8582`.** The QA lead asked why it was not related to the Report Suite epic;
+under **Rule 52** it should have been parented to the epic from the start, like the other four. Set live with
+`PUT /rest/api/3/issue/SV-8821` → **HTTP 204**, byte-verified against a pre-write snapshot (58 fields
+compared; only `parent` and the server's `updated` changed). Its **`blocks SV-8582`** and
+**`blocks SV-8592`** links were **both kept** — Jira raised no objection to the `blocks` link coexisting with
+the epic parent. Rule 52 now says explicitly that this applies **even when the defect's underlying cause sits
+in another team's area** (SV-8821's does — work-order invoicing, not reporting); the caveat is that an epic
+parent can misattribute another squad's work, so the ticket's technical section says where the fault really
+lives and the `blocks` links stay to explain why we raised it.
+
+**SV-8822 is deliberately NOT re-parented.** It is **OBSOLETE / Done / withdrawn** and still has **no epic
+parent** (it carries a `relates to SV-8582` link only). Re-parenting a closed, withdrawn ticket is the QA
+lead's decision, not ours — see the recommendation in `FILED.md`.
