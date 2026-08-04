@@ -1,0 +1,293 @@
+[
+ {
+  "case_id": 29621,
+  "kind": "design_po_ruled",
+  "refs_kind": "refs rewritten - Branko 2026-08-04 recorded",
+  "intended": {
+   "refs": "SV-8797 (S12-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+   "custom_expected": "1. A filter chip row is shown below the tabs, starting with an 'All Filters' chip (with a filter icon) followed by the individual filter chips (Status, Customer, Lead Technician, ...).\n2. The row scrolls horizontally - chips that do not fit are reachable by swiping.\n3. An arrow at the right-hand edge shows that the row can be scrolled. (This is what the design shows - if your screen looks different, write down what you actually see and carry on.)\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
+  },
+  "snapshot": {
+   "title": "Mobile: chips sit in a scrollable row below the tabs, starting All Filters",
+   "refs": "SV-8797 (S12-R1) [spec v1.6 2026-07-28]",
+   "custom_preconds": "1. You are signed in to the ShopView App on a mobile device (or a mobile-size browser window).\n2. You are on the Work Orders page.",
+   "custom_steps": "1. Look at the row below the tab row (All, Estimates, Completed, My Work Orders).\n2. Swipe the chip row sideways.",
+   "custom_expected": "1. A filter chip row is shown below the tabs, starting with an 'All Filters' chip (with a filter icon) followed by the individual filter chips (Status, Customer, Lead Technician, ...).\n2. The row scrolls horizontally - chips that do not fit are reachable by swiping.\n3. An arrow at the right-hand edge shows that the row can be scrolled. (This is what the design shows - if your screen looks different, write down what you actually see and carry on.)\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R1). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited.",
+   "custom_atmstatus": 3,
+   "custom_automation_type": 0,
+   "section_id": 4123,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 29622,
+  "kind": "design_po_ruled",
+  "refs_kind": "refs rewritten - Branko 2026-08-04 recorded",
+  "intended": {
+   "refs": "SV-8797 (S12-R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+   "custom_expected": "1. A bottom sheet slides up with a drag handle at the top, the centered title 'All Filters' and a close (x) button.\n2. It lists the five filters as expandable accordion rows, each with its icon, name and a down arrow: Status, Customer, Lead Technician, Service Advisor, Asset on site.\n3. A sticky blue 'Apply filters' button sits at the bottom of the sheet.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R3). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
+  },
+  "snapshot": {
+   "title": "Mobile: All Filters opens a sheet of expandable rows with Apply filters",
+   "refs": "SV-8797 (S12-R3) [spec v1.6 2026-07-28]",
+   "custom_preconds": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page.",
+   "custom_steps": "1. Tap the 'All Filters' chip.\n2. Read the sheet from top to bottom.",
+   "custom_expected": "1. A bottom sheet slides up with a drag handle at the top, the centered title 'All Filters' and a close (x) button.\n2. It lists the five filters as expandable accordion rows, each with its icon, name and a down arrow: Status, Customer, Lead Technician, Service Advisor, Asset on site.\n3. A sticky blue 'Apply filters' button sits at the bottom of the sheet.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R3). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited.",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4123,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 29623,
+  "kind": "design_po_ruled",
+  "refs_kind": "refs rewritten - Branko 2026-08-04 recorded",
+  "intended": {
+   "refs": "SV-8785 [epic] (S12-R2; S12-R3; S2-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+   "custom_expected": "1. Expanding Status reveals the same nine status checkboxes as desktop (Estimate, Approved, In progress, Review, Complete, Invoiced, Paid, Declined, Imported) plus 'Clear selection'.\n2. After 'Apply filters' the sheet closes and the work order list shows only the ticked statuses.\n3. The reopened sheet's title shows the applied-filter count, for example 'All Filters (1)', and the Status accordion header is highlighted with the selected values ticked.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S12-R3, S2-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
+  },
+  "snapshot": {
+   "title": "Mobile: tapping Apply filters applies the statuses and updates the count",
+   "refs": "SV-8785 [epic] (S12-R2; S12-R3; S2-R1) [spec v1.6 2026-07-28]",
+   "custom_preconds": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page on the All tab; work orders exist in several statuses.\n3. The 'All Filters' bottom sheet is open.",
+   "custom_steps": "1. Tap the Status accordion row to expand it.\n2. Tick one or more statuses.\n3. Tap the 'Apply filters' button.\n4. Reopen the All Filters sheet and look at its title.",
+   "custom_expected": "1. Expanding Status reveals the same nine status checkboxes as desktop (Estimate, Approved, In progress, Review, Complete, Invoiced, Paid, Declined, Imported) plus 'Clear selection'.\n2. After 'Apply filters' the sheet closes and the work order list shows only the ticked statuses.\n3. The reopened sheet's title shows the applied-filter count, for example 'All Filters (1)', and the Status accordion header is highlighted with the selected values ticked.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S12-R3, S2-R1). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited.",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4123,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 4,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 29624,
+  "kind": "plain",
+  "refs_kind": "refs rewritten - Branko 2026-08-04 recorded",
+  "intended": {
+   "title": "Mobile: tapping one chip opens its own sheet and applies in real time",
+   "custom_preconds": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page.",
+   "custom_steps": "1. Tap the Status chip (not the 'All Filters' chip).\n2. Read the sheet that opens.\n3. Tick one status and watch the work order list.\n4. Untick it, then tick a different status, and watch the list again.",
+   "custom_expected": "1. A bottom sheet opens for that single filter: its title row shows the filter's icon and name (for example 'Status') with a close (x) button, and no accordion list of the other filters.\n2. The sheet shows only that filter's options (the nine status checkboxes plus 'Clear selection').\n3. There is no 'Apply filter' button. Ticking or unticking a status filters the work order list immediately, the same as on desktop, with no submit step.\n4. The chip's active state and value update live as the selection changes; closing the sheet with the x just dismisses it and keeps the applied filter.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S12-R3, S2-R6). Branko confirmed this on 2026-08-04 in his answers in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit",
+   "refs": "SV-8797 (S12-R2; S12-R3; S2-R6) [spec v1.6 2026-07-28] ; individual-chip real-time per S12-R2 + S2-R6 + tech-plan 2026-07-29; only the combined All Filters sheet is batch; CONFIRMED by Branko answers 2026-08-04 Q1"
+  },
+  "snapshot": {
+   "title": "Mobile: tapping one chip opens its own sheet and applies in real time",
+   "refs": "SV-8797 (S12-R2; S12-R3) [spec v1.6 2026-07-28] ; individual-chip real-time per S12-R2 + tech-plan 2026-07-29; only the combined All Filters sheet is batch",
+   "custom_preconds": "<ol><li>You are signed in to the ShopView App on a mobile device.</li><li>You are on the Work Orders page.</li></ol>",
+   "custom_steps": "<ol><li>Tap the Status chip (not All Filters).</li><li>Read the sheet.</li><li>Tick a status</li><li>Untick it/ tick another</li></ol>",
+   "custom_expected": "<ol><li data-pasted=\"true\">A bottom sheet opens for that single filter: its title row shows the filter's icon and name (for example 'Status') with a close (x) button \u2014 no accordion list of the other filters.</li><li>The sheet shows only that filter's options (the nine status checkboxes plus 'Clear selection').</li><li>There is <strong>no 'Apply filter' button</strong>. Ticking/unticking a status filters the work-order list <strong>immediately</strong>, the same as desktop \u2014 no submit step.</li><li>The chip's active state and value update live as the selection changes; closing the sheet (x) just dismisses it and keeps the applied filter.</li></ol>\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S12-R3). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited.",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4123,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 29625,
+  "kind": "design_po_ruled",
+  "refs_kind": "refs rewritten - Branko 2026-08-04 recorded",
+  "intended": {
+   "refs": "SV-8785 [epic] (S12-R2; S3-R2/R3/R5) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+   "custom_expected": "<ol>\n<li>The list narrows to matching names as you type.</li>\n<li>Each selected customer appears as a tag with an x in the input area, and its list row shows a checkmark.</li>\n<li>Removing a tag deselects just that customer.</li>\n<li>After 'Apply filters' the list shows only work orders of the remaining selected customers, and the sheet title counts the applied filters (for example 'All Filters (2)').</li>\n</ol>\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S3-R2/R3/R5). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
+  },
+  "snapshot": {
+   "title": "Mobile Customer filter has search, multi-select and removable tags",
+   "refs": "SV-8785 [epic] (S12-R2; S3-R2/R3/R5) [spec v1.6 2026-07-28]",
+   "custom_preconds": "<ol>\n<li>You are signed in to the ShopView App on a mobile device.</li>\n<li>You are on the Work Orders page; several customers exist.</li>\n<li>The All Filters sheet is open with the Customer accordion expanded.</li>\n</ol>\n",
+   "custom_steps": "<ol>\n<li>Type part of a customer name in the 'Search customer' field and watch the list.</li>\n<li>Select two or three customers.</li>\n<li>Look at the input area and the list rows.</li>\n<li>Remove one customer with the x on its tag, then tap 'Apply filters'.</li>\n</ol>\n",
+   "custom_expected": "<ol>\n<li>The list narrows to matching names as you type.</li>\n<li>Each selected customer appears as a tag with an x in the input area, and its list row shows a checkmark.</li>\n<li>Removing a tag deselects just that customer.</li>\n<li>After 'Apply filters' the list shows only work orders of the remaining selected customers, and the sheet title counts the applied filters (for example 'All Filters (2)').</li>\n</ol>\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S3-R2/R3/R5). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited.",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4123,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 29626,
+  "kind": "design_po_ruled",
+  "refs_kind": "refs rewritten - Branko 2026-08-04 recorded",
+  "intended": {
+   "refs": "SV-8785 [epic] (S12-R2; S4-R1; S5-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+   "custom_expected": "1. The Lead Technician row opens with a 'Search technician' field and the technician list.\n2. The Service Advisor row opens with a 'Search advisor' field and the advisor list.\n3. Applying a selection filters the work order list just like on desktop.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S4-R1, S5-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
+  },
+  "snapshot": {
+   "title": "Mobile Lead Technician and Service Advisor filters offer their search lists",
+   "refs": "SV-8785 [epic] (S12-R2; S4-R1; S5-R1) [spec v1.6 2026-07-28]",
+   "custom_preconds": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page; technicians and advisors exist.\n3. The All Filters sheet is open.",
+   "custom_steps": "1. Expand the Lead Technician accordion row and look at its content.\n2. Collapse it, expand the Service Advisor row and look at its content.\n3. Select one name in either list and tap 'Apply filters'.",
+   "custom_expected": "1. The Lead Technician row opens with a 'Search technician' field and the technician list.\n2. The Service Advisor row opens with a 'Search advisor' field and the advisor list.\n3. Applying a selection filters the work order list just like on desktop.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S4-R1, S5-R1). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited.",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4123,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 29627,
+  "kind": "design_po_ruled",
+  "refs_kind": "refs rewritten - Branko 2026-08-04 recorded",
+  "intended": {
+   "refs": "SV-8785 [epic] (S12-R2; S6-R1/R2/R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+   "custom_expected": "1. The Asset on site row opens showing the two options Yes and No plus 'Clear selection'.\n2. Only one option can be selected at a time.\n3. After applying, the list shows only work orders matching the chosen on-site state.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S6-R1/R2/R3). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
+  },
+  "snapshot": {
+   "title": "The mobile Asset on site filter offers Yes/No with Clear selection in the sheet",
+   "refs": "SV-8785 [epic] (S12-R2; S6-R1/R2/R3) [spec v1.6 2026-07-28]",
+   "custom_preconds": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page; work orders exist in both on-site states.\n3. The All Filters sheet is open.",
+   "custom_steps": "1. Expand the Asset on site accordion row.\n2. Choose Yes and tap 'Apply filters'.\n3. Look at the list.",
+   "custom_expected": "1. The Asset on site row opens showing the two options Yes and No plus 'Clear selection'.\n2. Only one option can be selected at a time.\n3. After applying, the list shows only work orders matching the chosen on-site state.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S6-R1/R2/R3). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited.",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4123,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 29628,
+  "kind": "design_po_ruled",
+  "refs_kind": "refs rewritten - Branko 2026-08-04 recorded",
+  "intended": {
+   "refs": "SV-8785 [epic] (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button",
+   "custom_expected": "1. The chip for the applied filter shows the active state with the selected value(s), like on desktop.\n2. A 'Clear filters' control appears while at least one filter is active.\n3. Using it removes all active filters, the chips return to default and the full list comes back.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S7-R1/R3, S8-R1). The screen described above comes from the agreed design rather than that specification, and the product owner approved it on 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
+  },
+  "snapshot": {
+   "title": "Active chips and Clear filters behave on mobile the same way as on desktop",
+   "refs": "SV-8785 [epic] (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28]",
+   "custom_preconds": "1. You are signed in to the ShopView App on a mobile device.\n2. You are on the Work Orders page with at least one filter applied via the sheet.",
+   "custom_steps": "1. Look at the chip row after applying the filter.\n2. Look for a 'Clear filters' control while a filter is active.\n3. Use it and look at the chips and the list.",
+   "custom_expected": "1. The chip for the applied filter shows the active state with the selected value(s), like on desktop.\n2. A 'Clear filters' control appears while at least one filter is active.\n3. Using it removes all active filters, the chips return to default and the full list comes back.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S12-R2, S7-R1/R3, S8-R1). The screen described above comes from the agreed design rather than that specification, and a product owner decision is still awaited.",
+   "custom_atmstatus": 1,
+   "custom_automation_type": 0,
+   "section_id": 4123,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 38876,
+  "kind": "po_ruling_no_anchor",
+  "refs_kind": "refs rewritten - Branko 2026-08-04 recorded",
+  "intended": {
+   "refs": "SV-8785 [epic] (no requirement in spec v1.6 - default/last-used tab is not in the spec; RULED by Branko answers 2026-08-04 Q2 \"A - it's fine\"); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists) [spec v1.6 2026-07-28]",
+   "custom_expected": "1. On the very first visit the Estimates tab is the selected one, even though All is the FIRST tab in the row (order and default are different on purpose).\n2. After switching to All and returning, the All tab is selected - the app remembers your last-used tab per account.\n\n---\nThis is the expected behaviour as per epic SV-8785 and a product owner decision dated 2026-08-04. No numbered requirement in the Filters specification version 1.6 covers this point. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
+  },
+  "snapshot": {
+   "title": "First visit opens the Estimates tab; your last-used tab is remembered",
+   "refs": "SV-8785 [epic] (no requirement in the ratified spec v1.6 - default/last-used tab is engineering-plan-only - confirmation requested); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists) [spec v1.6 2026-07-28]",
+   "custom_preconds": "1. You can sign in as a user who has never used the redesigned Work Orders page (no saved page choices for that account).",
+   "custom_steps": "1. Sign in as that fresh user and open the Work Orders page.\n2. Note which tab is selected and the tab order.\n3. Switch to the All tab.\n4. Go to another area of the app and come back to the Work Orders page.",
+   "custom_expected": "1. On the very first visit the Estimates tab is the selected one, even though All is the FIRST tab in the row (order and default are different on purpose).\n2. After switching to All and returning, the All tab is selected - the app remembers your last-used tab per account.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the engineering technical plan. No numbered requirement in the Filters specification version 1.6 covers this point yet.",
+   "custom_atmstatus": 3,
+   "custom_automation_type": 0,
+   "section_id": 4120,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 38904,
+  "kind": "po_prose_only",
+  "refs_kind": "refs rewritten - Branko 2026-08-04 recorded",
+  "intended": {
+   "custom_expected": "1. Inventory shows four filter buttons: Bin Location, Category, Supply and Vendor.\n2. Part Sales shows four filter buttons: Status, Customer, Created by and Date.\n3. Catalog shows two filter buttons: Manufacturer and Category.\n4. The Returns tab shows three filter buttons: Vendor, Category and Part Type.\n5. The Credits tab shows three filter buttons: Vendor, Date and Processed by.\n6. Purchase Orders shows four filter buttons: Vendor, Status, Date and Ordered by.\n7. Vendor Invoices shows four filter buttons: Vendor, Invoice date, Date received and Received by.\n8. The Vendors list page shows two filter buttons: Vendor and State/Province.\n9. On every page above, each filter button shows a small icon, the filter name and a down arrow.\n10. Every Parts list page also shows a Search (magnifier) icon and a filter icon in the toolbar; some pages (for example Inventory) also show a column/layout toggle icon.\n11. Every filter button shown above is a working filter on that page - none of them is display-only.\n12. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.\n13. Still to check on the live build: what the filter icon and the column/layout icon do (the written description does not cover the toolbar icons).\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (\u00a72, \u00a74), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit",
+   "refs": "SV-8785 [epic] (spec v1.6 \u00a72 Parts Filters; \u00a74 context-specific filter sets + multi-select); Branko answers 2026-07-31 Q2/Q3/Q5/Q7 + 2026-08-04 Q3 (Vendors design exists Figma 11903-10461) + Q8 (Part Sales chips); Figma 11884-16885"
+  },
+  "snapshot": {
+   "title": "Every Parts list page shows its designed filter buttons",
+   "refs": "SV-8785 [epic] (spec v1.6 \u00a72 Feature Overview -> Parts Filters; \u00a74 Key Decisions -> \"Context-specific filter sets on Parts and Reports\" + \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. You are on the Parts area of the app with some sample data present.",
+   "custom_steps": "1. Open the Parts area and go to the Inventory page, and look at the filter buttons shown above the table.\n2. Go to the Part Sales page and look at the filter buttons.\n3. Go to the Catalog page and look at the filter buttons.\n4. Go to the Returns page, make sure the Returns tab is selected, and look at the filter buttons.\n5. Select the Credits tab on the same page and look at the filter buttons.\n6. Go to the Purchase Orders page and look at the filter buttons.\n7. Go to the Vendor Invoices page and look at the filter buttons.\n8. Go to the Vendors list page and look at the filter buttons.\n9. On any one of these pages, look at the small icons on the right-hand side of the toolbar.\n10. On each page above, open one of its filter buttons, look at the list of choices inside it, and pick a value to check the list changes.",
+   "custom_expected": "1. Inventory shows four filter buttons: Bin Location, Category, Supply and Vendor.\n2. Part Sales shows four filter buttons: Status, Customer, Created by and Date.\n3. Catalog shows two filter buttons: Manufacturer and Category.\n4. The Returns tab shows three filter buttons: Vendor, Category and Part Type.\n5. The Credits tab shows three filter buttons: Vendor, Date and Processed by.\n6. Purchase Orders shows four filter buttons: Vendor, Status, Date and Ordered by.\n7. Vendor Invoices shows four filter buttons: Vendor, Invoice date, Date received and Received by.\n8. The Vendors list page shows two filter buttons: Vendor and State/Province. Note: the developers have not been given a design for the Vendors page filters yet, so this page may not have them \u2014 write down what you actually see instead of failing the whole test.\n9. On every page above, each filter button shows a small icon, the filter name and a down arrow.\n10. Every Parts list page also shows a Search (magnifier) icon and a filter icon in the toolbar; some pages (for example Inventory) also show a column/layout toggle icon.\n11. Every filter button shown above is a working filter on that page - none of them is display-only.\n12. The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.\n13. Still to check on the live build: what the filter icon and the column/layout icon do (the written description does not cover the toolbar icons).\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (\u00a72, \u00a74), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-07-31.",
+   "custom_atmstatus": 3,
+   "custom_automation_type": 0,
+   "section_id": 5411,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 38908,
+  "kind": "po_prose_only",
+  "refs_kind": "refs rewritten - Branko 2026-08-04 recorded",
+  "intended": {
+   "refs": "SV-8785 [epic] (spec v1.6 \u00a72 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 + 2026-08-04 Q8 (\"we should have all filters we support now per each page plus we should add new ones\"); tech plan 2026-07-29 rollout rule",
+   "custom_expected": "1. Every filter the page offered before is still offered - nothing has been taken away.\n2. Every choice each of those filters offered before is still available inside the new button.\n3. If any filter or choice is missing, write down exactly which page, which filter and which choice - that is a bug worth reporting.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (\u00a72), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-08-04. That decision is recorded in Branko's answers, in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
+  },
+  "snapshot": {
+   "title": "Every filter a page had before is still available in the new filter bar",
+   "refs": "SV-8785 [epic] (spec v1.6 \u00a72 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 (\"support all the filters we have right now in the app as well as all choices per filter\"); tech plan 2026-07-29 rollout rule",
+   "custom_preconds": "1. You are signed in to the ShopView App on a desktop browser.\n2. You have a written list of the filters each Parts page and each report offers today, before the new filter bar (take screenshots of the old screens first, or ask the developers for the list).\n3. Sample data is present in the Parts area and in the Reports area.",
+   "custom_steps": "1. Take your before-list for one page.\n2. Open the same page with the new filter bar.\n3. Compare the filter buttons you now see against your before-list.\n4. Open each button and compare the choices inside it against the choices the old filter offered.\n5. Repeat steps 1 to 4 for the other Parts pages and for each report.",
+   "custom_expected": "1. Every filter the page offered before is still offered - nothing has been taken away.\n2. Every choice each of those filters offered before is still available inside the new button.\n3. If any filter or choice is missing, write down exactly which page, which filter and which choice - that is a bug worth reporting.\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (\u00a72), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-07-31.",
+   "custom_atmstatus": 3,
+   "custom_automation_type": 0,
+   "section_id": 5411,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 3,
+   "estimate": null,
+   "milestone_id": null
+  }
+ },
+ {
+  "case_id": 38911,
+  "kind": "po_prose_only",
+  "refs_kind": "refs rewritten - Branko 2026-08-04 recorded",
+  "intended": {
+   "refs": "SV-8785 [epic] (spec v1.6 \u00a72 Reports Filters; \u00a74 \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q3/Q5 + 2026-08-04 Q8 (\"We do not have list of all filter items\" - confirms no option list exists); Figma 11903-10573",
+   "custom_expected": "<ol>\n<li>Each of these filter buttons - Location, Transaction Type, Invoice Status, Type, User and Mention - opens a list of choices, lets you tick more than one, and narrows the report straight away with no Apply button.</li>\n<li>The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.</li>\n<li>Write down the choices you actually see behind each of these six buttons. They have not been written down anywhere yet, so your list becomes the record.</li>\n</ol>\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (\u00a72, \u00a74), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-07-31. Branko confirmed this on 2026-08-04 in his answers in this file: https://docs.google.com/spreadsheets/d/1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2/edit"
+  },
+  "snapshot": {
+   "title": "New Reports filter types behave correctly (Location, Transaction Type, etc.)",
+   "refs": "SV-8785 [epic] (spec v1.6 \u00a72 Reports Filters; \u00a74 \"Multi-select where it makes sense\"); Branko answers 2026-07-31 Q3/Q5 + Q4 (pointer only - the 6 new types are not enumerated in v1.6; see DELTAS.md F1); Figma 11903-10573",
+   "custom_preconds": "<ol>\n<li>You are signed in to the ShopView App on a desktop browser.</li>\n<li>You are on the Reports area of the app with some sample data present.</li>\n</ol>\n",
+   "custom_steps": "<ol>\n<li>Open the Reports area and go to a report that uses them - for example A/R Aging Detail (Location, Transaction Type) or Notes (Mention).</li>\n<li>Look at the filter buttons shown above the report table.</li>\n<li>Open each of those filter buttons in turn, tick two choices where possible, and watch the report.</li>\n</ol>\n",
+   "custom_expected": "<ol>\n<li>Each of these filter buttons - Location, Transaction Type, Invoice Status, Type, User and Mention - opens a list of choices, lets you tick more than one, and narrows the report straight away with no Apply button.</li>\n<li>The choices inside each filter come from your own shop's data (for example your real vendors or categories), so there is no fixed list to compare against - check that the choices you see match the data in your shop.</li>\n<li>Write down the choices you actually see behind each of these six buttons. They have not been written down anywhere yet, so your list becomes the record.</li>\n</ol>\n\n---\nThis is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (\u00a72, \u00a74), which covers this area in its overview and key decisions only. The detailed behaviour above follows a later product owner decision dated 2026-07-31.",
+   "custom_atmstatus": 3,
+   "custom_automation_type": 0,
+   "section_id": 5412,
+   "type_id": 6,
+   "template_id": 1,
+   "priority_id": 2,
+   "estimate": null,
+   "milestone_id": null
+  }
+ }
+]
