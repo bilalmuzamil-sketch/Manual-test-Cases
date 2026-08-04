@@ -5,7 +5,100 @@
 > (staging/QA access method, harness scripts, TestRail API patterns, the two process
 > docs) across all projects.
 
-## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-08-04)
+## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-08-04, after the live VIU + its recovery)
+
+### 0.0-VIU-DONE  **THE LIVE VIU RAN, AND WAS RECOVERED AND FINISHED — 2026-08-04 (READ THIS FIRST; it SUPERSEDES §0.0-QA-ENV, which said no VIU had begun)**
+
+**Resume order:** `build/schedule/READINESS-2026-08-04.md` → `build/schedule/recovery-2026-08-04/STATE.md`
+→ `build/schedule/viu-2026-08-04/FINDINGS.md`.
+
+**What happened.** The first-ever live VIU of the Schedule suite ran against QA branch
+`sv8685.qa.shopview.com` (API `sv8685api.qa.shopview.com`), build **`v3.5-4873abe`**. The worker
+driving it was cut off during its wrap-up; a recovery pass then verified everything it had done
+against the live systems and finished the remainder. **Nothing was lost.**
+
+**The headline: all 165 cases carry a DEFINITE verdict. Zero partly-observed, zero unobserved.**
+
+| verdict | count |
+|---|---|
+| works correctly on the build | **138** |
+| broken on the build (a ticket is open) | **19** |
+| not built yet | **4** |
+| held for Branko (the shop-closure contradiction) | **2** |
+| cannot be set up on this estate | **2** |
+| **ready to automate today** | **161** |
+
+**Verified, not assumed.**
+
+- **Build marker identical at FOUR reads** (start, mid-run, end, and the recovery re-read):
+  `v3.5-4873abe`, `index.html` last-modified Tue 04 Aug 2026 14:47:39 GMT, etag
+  `9b4b1fc776ebbfb04a9a0ca051d847f7`. **No redeploy**, so no observation is invalidated.
+- **179 `update_case` operations total** — 169 by the original worker + **10 in recovery** — every
+  one HTTP 200 and **byte-verified MATCH with 28 fields compared**, each intended field byte-equal
+  to intent and every untouched field byte-identical to its pre-write snapshot. **0 mismatches.**
+- **Run 357 proven untouched BOTH times:** `include_all` false, **165 tests**, **all 429 result
+  records present BY ID**, case-id sets equal in both directions against the snapshot AND against
+  the live case list. No case added or retired, so **no `update_run` union was needed**.
+- **Provenance at Rule-54 STATE 2 on 165/165** — build date **and** marker — each present **exactly
+  once**. **0 foreign cases** under group 4254; every case `created_by: 3`.
+- **Four counts reconcile at 165 and are set-equal both ways:** live-ours · local active · id-map
+  (0 blanks) · import.
+- **0 titles over 80 characters** (longest exactly 80) · **0 cases carrying API content outside the
+  API-titled section**.
+
+**10 defects filed: SV-8848 … SV-8857** — all **type `Bug`, priority `Low`, `parent` SV-8685, owning
+story linked, status Open**, each read back from Jira. **All ten are now named on their case** with a
+link (the recovery fixed eight cases that still said *"has no developer ticket yet"*).
+
+**The epic is now 28 children** — the 15 stories all `Ready for QA`, **SV-8812 Done** (it is this
+branch), and **12 `Bug` tickets SV-8826…SV-8841 raised 2026-08-04 by Mudassir Qamar**: 6 confirmed
+independently, 2 do not reproduce as written (SV-8830, SV-8827), **2 contradict Branko's own rulings
+(SV-8835 VIN, SV-8829 money) — the rulings STAND and nothing was changed on either side**, and
+**SV-8831 is a REAL coverage gap we missed** (a corrective case is drafted, not authored).
+
+**⚠️ Rule-49 queue is OPEN.** Engineering has NOT declared `sv8685` final, so **all 165 verdicts are
+PROVISIONAL** — `build/schedule/viu-2026-08-04/RECHECK-QUEUE.md`, one row per case, plus a recovery
+addendum naming ten rows that now carry an extra obligation (check the ticket's status too).
+
+**FIVE half-states the recovery caught — read these before touching anything:**
+
+1. **A pre-existing shift was left damaged on the branch.** `ebdd3e03…` (work order **S-9379**,
+   Xiriver Apparel) had been moved by the Day-view drag test; its **start time was restored but its
+   owner and its length were not** — a different technician, 270 minutes instead of 720.
+   **RESTORED**, and proven **byte-identical on all 14 fields**, series total back to 1980 minutes.
+   **Lesson: a restore is not restored until it is compared FIELD BY FIELD.**
+2. **The generated import was corrupt** — a newline between **every single character** of
+   preconditions, steps and expected results, in all 165 rows. `gen_import.py`'s `joinlines()` did
+   `"\n".join(x)` over its argument, and the live re-sync now writes those fields as **strings**
+   where they had been **lists**, so the join iterated them letter by letter. **FIXED** (it splits a
+   string first) and regenerated. **⚠️ The IDENTICAL bug is still in the Filters generator and has
+   corrupted `testrail-import/filters-v1-testrail-import.csv` (all 110 rows)** — out of that pass's
+   scope, on the outstanding register.
+3. **The local case source had gone stale** for the four audit-repair cases — re-synced; local now
+   byte-matches live on all 165 across title, preconditions, steps, expected and refs.
+4. **17 cases claimed a defect had no ticket when 8 of them did** — corrected.
+5. **2 cases leaked developer jargon into tester text** in non-API sections — cleaned.
+
+**Reported, deliberately NOT changed:** **16 cases show raw `<ol>`/`<li>` markup** to the tester —
+**this PREDATES the pass** (the same 16 are in the pre-write snapshot), and a repair is 16 writes
+needing the QA lead's go-ahead; and **SCH-MODAL-03 = [C30010](https://shopview.testrail.io/index.php?/cases/view/30010)**
+is a real deviation with **no ticket** (the time-logged bar reads full when nothing was clocked) —
+an eleventh ticket is an open ask.
+
+**Environment left clean:** the 3 `ZZAUTOTEST` roles already deleted (the org holds exactly its 11
+system roles), the borrowed staff member (Henry Hess) back on **Technician**, seeded shifts on 9–11
+Aug all removed, events unchanged at 4, exactly **1** technician with custom working hours and the
+original ranges, and the location business-hours toggle still off (the overlapping working windows
+are byte-identical to the snapshot).
+
+**Deliverables index:** `READINESS-2026-08-04.md` · `recovery-2026-08-04/{STATE,
+testrail-execution-log}.md` + `exec_fixes.py` · `viu-2026-08-04/{FINDINGS, COVERAGE-REDERIVATION,
+AUDIT, GAP-HUNT, SURFACE-MATRIX, DELIBERATE-DECISIONS (22 entries · HIGH 3 / MEDIUM 7 / LOW 12),
+RECHECK-QUEUE, API-ASK, SOURCE-CURRENCY, testrail-execution-log}.md` + `evidence/` (96 screenshots)
++ `snapshots/` · refreshed `provenance-2026-08-04/PO-RULING-DEFENCE.md` (all four Branko rulings
+re-confirmed live).
+
+**One API-only finding is written up and NOT filed** (Rule 51) — `viu-2026-08-04/API-ASK.md`.
 
 ### 0.0-QA-ENV  **SCHEDULE HAS A QA BRANCH — ITS FIRST EVER** (supplied 2026-08-04, read this first)
 
