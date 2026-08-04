@@ -1,0 +1,74 @@
+{
+ "reqs": [
+  {
+   "m": "POST",
+   "u": "/api/schedule/events",
+   "body": "{\"title\":\"ZZAUTOTEST Event\",\"staffId\":\"0aac76eb-0de3-4ef9-8163-89424c7a20b9\",\"departmentId\":null,\"startsAt\":\"2026-08-12T08:00:00.000Z\",\"endsAt\":\"2026-08-12T09:00:00.000Z\",\"color\":\"#f0f0f1\",\"note\":null}"
+  },
+  {
+   "res": 201,
+   "body": "{\"data\":{\"event\":{\"id\":\"8a31b82c-63e3-44c1-9c03-13021c4539e0\",\"staffId\":\"0aac76eb-0de3-4ef9-8163-89424c7a20b9\",\"departmentId\":null,\"title\":\"ZZAUTOTEST Event\",\"startsAt\":\"2026-08-12T08:00:00Z\",\"endsAt\":\"2026-08-12T09:00:00Z\",\"durationMinutes\":60,\"color\":\"#f0f0f1\",\"note\":null}}}"
+  }
+ ],
+ "eventModal": {
+  "text": "Create Event\nclose\nEvent name\nAssign to\nBrittany Anderson\narrow_drop_down\nAll day\nStart date\nStart time\n8:00 AM\narrow_drop_down\nEnd date\nEnd time\n9:00 AM\narrow_drop_down\nGrey\nexpand_more\nNote (optional)\nCancel\nCreate Event",
+  "btns": [
+   "close",
+   "Grey\nexpand_more",
+   "Cancel",
+   "Create Event"
+  ],
+  "inputs": [
+   {
+    "ph": "",
+    "v": "",
+    "type": "text"
+   },
+   {
+    "ph": "",
+    "v": "Brittany Anderson",
+    "type": "text"
+   },
+   {
+    "ph": "",
+    "v": "on",
+    "type": "checkbox"
+   },
+   {
+    "ph": "",
+    "v": "2026-08-12",
+    "type": "date"
+   },
+   {
+    "ph": "",
+    "v": "8:00 AM",
+    "type": "text"
+   },
+   {
+    "ph": "",
+    "v": "2026-08-12",
+    "type": "date"
+   },
+   {
+    "ph": "",
+    "v": "9:00 AM",
+    "type": "text"
+   }
+  ],
+  "toggles": [
+   {
+    "t": "All day",
+    "a": null
+   }
+  ]
+ },
+ "saveBtn": "Create Event",
+ "toastAfterCreate": {
+  "n": 0,
+  "t": null
+ },
+ "toastAt4s": {
+  "n": 0,
+  "t": null
+ }
+}

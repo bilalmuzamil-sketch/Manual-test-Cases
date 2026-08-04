@@ -14,9 +14,31 @@
 ## 0. The grid is FullCalendar — the single most useful fact for automation
 
 The schedule grid is **FullCalendar** (`fc-resourceTimelineWeek-view` / `fc-resourceTimelineDay-view`
-/ `fc-dayGridMonth-view`). **There are no `data-testid` attributes anywhere on the Schedule page**
-(the only one on the whole page is `active-notifications` in the header). Automation therefore hooks
-the semantic classes:
+/ `fc-dayGridMonth-view`).
+
+> ### CORRECTION (and the best news in this pass)
+> An early sweep looked for `data-testid` and found none, and this document said so. **That was
+> wrong.** The attribute is spelled **`data-test-id`** (hyphenated) and the Schedule carries
+> **166 of them** with stable snake_case values — enumerated in
+> `snapshots/testids-union.json`. Highlights:
+> `schedule_page` · `schedule_calendar` · `schedule_sidebar` · `schedule_view_toggle` ·
+> `schedule_shift_block` · `schedule_series_block` · `schedule_event_block` ·
+> `schedule_block_series_cue` · `text_schedule_series_continues` · `capacity_bar` (with
+> `aria-valuenow`, `aria-label` and `data-capacity-date`) · `button_schedule_today` ·
+> `button_schedule_prev` / `_next` · `button_schedule_conflicts` · `item_schedule_conflict_<shiftId>` ·
+> `input_schedule_search` · `input_sidebar_search` · `sidebar_work_order_card` ·
+> `sidebar_wo_status_<woId>` · `sidebar_wo_needs_techs_<woId>` · `checkbox_sidebar_status_*` /
+> `_assignment_*` / `_priority_*` · `toggle_schedule_business_hours` / `_technician_hours` /
+> `_capacity_bars` / `_events` / `_saturday` / `_sunday` / `_my_shifts` / `_show_vin` /
+> `_department_<deptId>` · `dialog_schedule_shift_detail` with
+> `text_shift_detail_{title,status,work_order,unit,vin,scheduled,technician,scope,logged,line_count}`,
+> `input_shift_detail_start_time` / `_end_time`, `table_shift_lines`, `shift_line_row`,
+> `text_shift_line_{name,hours,status}`, `button_shift_detail_{delete,color,add_note,open_work_order}` ·
+> `button_mini_calendar_day_<YYYY-MM-DD>` for every visible date.
+> **Automation does not need to hang off CSS classes.** The class map below is still recorded
+> because a handful of states (conflict, colour, the FullCalendar overflow link) are class-only.
+
+Class map, for the states that have no test id:
 
 | What | Selector |
 |---|---|

@@ -1,0 +1,33 @@
+import {boot,APP} from './boot.mjs';
+import fs from 'fs';
+const {browser,page}=await boot({tz:'America/Edmonton'});
+const E='/tmp/sviu/evidence/'; const F={reqs:[]};
+page.on('request',r=>{const u=r.url(); if(u.includes('/api/schedule')&&r.method()!=='GET') F.reqs.push({m:r.method(),u:u.replace(/^https:\/\/[^/]+/,''),body:(r.postData()||'').slice(0,300)});});
+page.on('response',async r=>{const u=r.url(); if(u.includes('/api/schedule')&&r.request().method()!=='GET'){try{F.reqs.push({res:r.status(),body:(await r.text()).slice(0,250)});}catch{}}});
+await page.goto(APP+'/schedule',{waitUntil:'domcontentloaded',timeout:90000});
+await page.waitForTimeout(9000);
+await page.evaluate(()=>{const b=[...document.querySelectorAll('button')].find(e=>e.innerText.trim()==='Day'); b.click();});
+await page.waitForTimeout(3500);
+// Aug 11 = middle shift of the series (shift 2 of 4)
+await page.evaluate(()=>{const d=[...document.querySelectorAll('.mini-calendar__day')].find(e=>e.innerText.trim()==='11'&&!e.className.includes('outside')); if(d)d.click();});
+await page.waitForTimeout(4000);
+const qi=await page.evaluate(()=>[...document.querySelectorAll('.schedule-block')].findIndex(e=>/Qispring/.test(e.innerText)));
+console.log('qi',qi);
+await page.evaluate(i=>document.querySelectorAll('.schedule-block')[i].click(),qi);
+await page.waitForTimeout(2400);
+F.modal=await page.evaluate(()=>document.querySelector('.q-dialog')?.innerText.trim()||null);
+console.log('MODAL',JSON.stringify(F.modal));
+await page.evaluate(()=>{const d=document.querySelector('.q-dialog'); const b=[...d.querySelectorAll('button')].find(e=>/delete_outline/.test(e.innerText)); b.click();});
+await page.waitForTimeout(2400);
+await page.screenshot({path:E+'55-delete-scope-mid.png'});
+F.scope=await page.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(d=>({t:d.innerText.trim().slice(0,800),btns:[...d.querySelectorAll('button')].map(x=>x.innerText.trim().replace(/\n/g,' ')).filter(Boolean)})));
+console.log('SCOPE',JSON.stringify(F.scope,null,1));
+// Escape closes the delete-scope first, leaving the detail modal
+await page.keyboard.press('Escape'); await page.waitForTimeout(1100);
+F.esc1=await page.evaluate(()=>({n:document.querySelectorAll('.q-dialog').length,heads:[...document.querySelectorAll('.q-dialog')].map(d=>d.innerText.trim().slice(0,60))}));
+console.log('ESC1',JSON.stringify(F.esc1));
+await page.keyboard.press('Escape'); await page.waitForTimeout(1000);
+F.esc2=await page.evaluate(()=>document.querySelectorAll('.q-dialog').length);
+console.log('ESC2',F.esc2);
+fs.writeFileSync('/tmp/sviu/f-delscope.json',JSON.stringify(F,null,1));
+await browser.close();

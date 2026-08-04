@@ -1,0 +1,31 @@
+{
+ "reqs": [
+  {
+   "m": "POST",
+   "u": "/api/schedule/shifts",
+   "body": "{\"workOrderId\":\"c9f7faf1-2ce9-45a1-90cd-975beebbf719\",\"lineIds\":[\"990471c4-fd32-4667-a956-e3c12e71ce17\",\"413b1ff3-2df8-490d-92c8-2ca6f8f75b80\",\"030ac471-3ecb-46dd-8ebe-0e82ea8739e2\",\"d3404478-d586-4b07-b60c-a21c1fabcb1d\",\"c247e7f5-6fed-49f2-9242-3fac95f1a508\"],\"staffId\":\"0aac76eb-0de3-4ef9-8163-89424c7a20b9\",\"departmentId\":null,\"startDate\":\"2026-08-10\",\"startTime\":null,\"spreadMode\":\"series\",\"totalMinutes\":2419,\"perDayMinutes\":null,\"color\":null,\"note\":null,\"isAllDay\":false,\"acknowledgeLongSeries\":false}"
+  },
+  {
+   "res": 201,
+   "body": "{\"data\":{\"shifts\":[{\"id\":\"544ec670-d5d6-4b09-ba86-1172c8d35e50\",\"staffId\":\"0aac76eb-0de3-4ef9-8163-89424c7a20b9\",\"departmentId\":null,\"seriesId\":\"1655435d-8826-4eb6-bc4a-6dc978bdfc01\",\"startsAt\":\"2026-08-10T13:00:00Z\",\"endsAt\":\"2026-08-11T01:00:00Z\",\"isAllDay\":false,\"durationMinutes\":720,\"color\":\"#e2effe\",\"note\":null,\"isConflict\":false,\"conflictReasons\":[],\"workOrder\":{\"id\":\"c9f7faf1-2ce9-45a1-90cd-975beebbf719\",\"number\":\"S-14527\",\"status\":\"approved\",\"statusLabel\":\"Approved\",\"priority\":null,\"customerName\":\"Qispring Rentals\",\"unit\":null,\"vin\":\"GHL0V400E00151254\"},\"lines\":[{\"id\":\"990471c4-fd32-4667-a956-e3c12e71ce17\",\"name\":\"Diagnose - Hydraulic system \",\"status\":\"complete\",\"statusLabel\":\"Compl"
+  }
+ ],
+ "spreadOptions": [
+  "check Full estimate (40h 19m)",
+  "check 1 week",
+  "check 2 weeks",
+  "check Until a date…",
+  "check Specific hours…"
+ ],
+ "previewOpen": "S-14527 · Qispring Rentals\nchevron_left\nChange scope\n\nBrittany Anderson · Whole order · 40h 19m\n\nclose\nSchedule\nFull estimate (40h 19m)\narrow_drop_down\ncalendar_month\n4 shifts · 40h 19m\nAug 10 to Aug 13 · 12h/day, Mon–Thu\nexpand_less\n\nWeek of Aug 10: Mon 10, Tue 11, Wed 12, Thu 13\n\nCancel\nCreate 4 shifts",
+ "toast": {
+  "n": 0,
+  "t": null
+ },
+ "series": [
+  {
+   "t": "Qispring Rentals / 5 Lines / Part of a series",
+   "cls": "schedule-block schedule-block--blue"
+  }
+ ]
+}
