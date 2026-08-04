@@ -120,8 +120,23 @@ if (mode === 'precheck') {
 
 if (mode === 'submit') {
   console.log('\n=== S13-N5 (C30259) ===');
-  await page.locator('[data-test-id="input_confirm_yes"] input').first().fill('YES');
-  await page.waitForTimeout(600);
+  // Quasar renders the dialog through a portal with transforms, so Playwright's actionability
+  // check reports the input as not visible. Click by element-centre coordinate and type
+  // (APP-ACTIONS-PLAYBOOK self-seed playbook, technique (e)).
+  const ib = await page.evaluate(() => {
+    const el = document.querySelector('[data-test-id="input_confirm_yes"] input')
+            || document.querySelector('[data-test-id="input_confirm_yes"]');
+    if (!el) return null; const r = el.getBoundingClientRect();
+    return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+  });
+  if (!ib) { console.log('confirmation input not found'); await browser.close(); process.exit(5); }
+  await page.mouse.click(ib.x, ib.y);
+  await page.keyboard.type('YES');
+  await page.waitForTimeout(800);
+  console.log('  typed YES; Deactivate disabled =', await page.evaluate(() => {
+    const d = [...document.querySelectorAll('.q-dialog')].find(x => /Deactivate sales rep/.test(x.innerText));
+    const b = d && [...d.querySelectorAll('button')].find(x => /^Deactivate$/i.test(x.innerText.trim()));
+    return b ? b.disabled : null; }));
   const n1 = calls.length;
   await click(page.locator('[data-test-id="button_confirm_deactivate_sales_rep"]').first(), 'Deactivate');
   await page.waitForTimeout(7000);
@@ -137,7 +152,9 @@ if (mode === 'submit') {
   await page.waitForTimeout(1500);
   await click(page.locator('[data-test-id="button_change_account_status"]').first(), 'reopen');
   await page.waitForTimeout(4000);
-  const v = await page.locator('[data-test-id="input_confirm_yes"] input').first().inputValue().catch(() => null);
+  const v = await page.evaluate(() => {
+    const el = document.querySelector('[data-test-id="input_confirm_yes"] input');
+    return el ? el.value : null; });
   console.log('  confirmation input on fresh reopen:', JSON.stringify(v));
 }
 
