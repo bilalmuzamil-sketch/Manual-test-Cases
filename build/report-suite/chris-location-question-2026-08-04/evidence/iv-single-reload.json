@@ -1,0 +1,63 @@
+{
+ "observed_at_utc": "2026-08-04T07:34:38.025Z",
+ "build": "v3.4.1-0ed4433",
+ "phases": [
+  {
+   "phase": "A. fresh, All locations",
+   "filter": "Location|All locations|close|arrow_drop_down",
+   "headers": [
+    "Part #",
+    "Description",
+    "Category",
+    "Vendor",
+    "Location",
+    "Qty",
+    "Unit Cost",
+    "Unit Sell",
+    "Margin",
+    "Margin %",
+    "Total Sell",
+    "Total Cost"
+   ],
+   "location_present": true
+  },
+  {
+   "phase": "B. narrowed to ONE location (no reload)",
+   "filter": "Location|No locations|arrow_drop_down",
+   "headers": [
+    "Part #",
+    "Description",
+    "Category",
+    "Vendor",
+    "Location",
+    "Qty",
+    "Unit Cost",
+    "Unit Sell",
+    "Margin",
+    "Margin %",
+    "Total Sell",
+    "Total Cost"
+   ],
+   "location_present": true
+  },
+  {
+   "phase": "C. after RELOAD at single scope",
+   "filter": "Location|All locations|close|arrow_drop_down",
+   "headers": [
+    "Part #",
+    "Description",
+    "Category",
+    "Vendor",
+    "Location",
+    "Qty",
+    "Unit Cost",
+    "Unit Sell",
+    "Margin",
+    "Margin %",
+    "Total Sell",
+    "Total Cost"
+   ],
+   "location_present": true
+  }
+ ]
+}
