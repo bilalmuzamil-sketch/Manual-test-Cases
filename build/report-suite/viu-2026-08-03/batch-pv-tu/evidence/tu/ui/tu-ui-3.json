@@ -1,0 +1,217 @@
+{
+ "startHeaders": [
+  "keyboard_double_arrow_down Technician arrow_drop_up",
+  "Location",
+  "Total Hours",
+  "WO Hours",
+  "Internal Hours",
+  "Utilization %",
+  "Est. Lost Labor info_outline"
+ ],
+ "startRows": [
+  [
+   "keyboard_arrow_right Christian Pitts",
+   "Multiple",
+   "0.01",
+   "0.00",
+   "0.01",
+   "0.0%",
+   "$1.74"
+  ],
+  [
+   "keyboard_arrow_right Margaret Garcia",
+   "Staging Heavy Duty - 9919",
+   "0.13",
+   "0.00",
+   "0.13",
+   "0.0%",
+   "$18.73"
+  ],
+  [
+   "keyboard_arrow_right Wesley Mcclure",
+   "Staging Lethbridge - 4310",
+   "0.01",
+   "0.00",
+   "0.01",
+   "0.0%",
+   "$0.93"
+  ],
+  [
+   "Summary",
+   "",
+   "0.15",
+   "0.00",
+   "0.15",
+   "0.0%",
+   "$21.40"
+  ]
+ ],
+ "techNames": [
+  "Christian Pitts",
+  "Margaret Garcia",
+  "Wesley Mcclure"
+ ],
+ "afterDeselect": {
+  "picked": "Christian Pitts",
+  "rows": [
+   [
+    "keyboard_arrow_right Margaret Garcia",
+    "Staging Heavy Duty - 9919",
+    "0.13",
+    "0.00",
+    "0.13",
+    "0.0%",
+    "$18.73"
+   ],
+   [
+    "keyboard_arrow_right Wesley Mcclure",
+    "Staging Lethbridge - 4310",
+    "0.01",
+    "0.00",
+    "0.01",
+    "0.0%",
+    "$0.93"
+   ],
+   [
+    "Summary",
+    "",
+    "0.14",
+    "0.00",
+    "0.14",
+    "0.0%",
+    "$19.66"
+   ]
+  ],
+  "selLabel": "Technician 2 technicians close arrow_drop_down",
+  "reloadCalls": 0
+ },
+ "afterClearAll": {
+  "clicked": "Clear all",
+  "rows": [],
+  "bodyHas": true,
+  "emptyText": "l Hours | \t | Utilization % | \t | Est. Lost Labor | info_outline | Empty bays, endless possibilities. Get Going! ~~ keyboard_double_arrow_down | Technician | arrow_drop_up | \t | Location | \t | Total Hours | \t | WO Hours | \t | Internal Hours | \t | Utilization % | \t | Est. Lost Labor | info_outline | ",
+  "reloadCalls": 0
+ },
+ "noSelectionDownload": {
+  "clicked": "Summary (CSV)",
+  "toasts": [
+   "check_circle Success Data exported successfully. Close",
+   "Success Data exported successfully."
+  ],
+  "exportCalls": [
+   "200 /api/reporting/reports/technician-utilization/export?variant=summary&format=csv&range=custom&start_date=2026-08-01&end_d"
+  ]
+ },
+ "afterRestoreAll": {
+  "rows": 4
+ },
+ "afterToggleOffELL": {
+  "clicked": "Est. Lost Labor",
+  "headers": [
+   "keyboard_double_arrow_down Technician arrow_drop_up",
+   "Location",
+   "Total Hours",
+   "WO Hours",
+   "Internal Hours",
+   "Utilization %",
+   "Est. Lost Labor info_outline"
+  ],
+  "reloadCalls": 0
+ },
+ "afterToggleOffTotal": {
+  "headers": [
+   "keyboard_double_arrow_down Technician arrow_drop_up",
+   "Location",
+   "Total Hours",
+   "WO Hours",
+   "Internal Hours",
+   "Utilization %",
+   "Est. Lost Labor info_outline"
+  ]
+ },
+ "afterToggleBackOn": {
+  "headers": [
+   "keyboard_double_arrow_down Technician arrow_drop_up",
+   "Location",
+   "Total Hours",
+   "WO Hours",
+   "Internal Hours",
+   "Utilization %",
+   "Est. Lost Labor info_outline"
+  ]
+ },
+ "lsColumns": "{\"version\":\"1\",\"view\":{\"dateRange\":\"this-month\",\"locationIds\":[\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"f8a8b802-7780-4b16-bf10-343caeb616b2\"],\"sortBy\":\"technician\",\"descending\":false,\"columns\":[\"total_hours\",\"wo_hours\",\"internal_hours\",\"utilization\",\"est_lost_labor\"]},\"extra\":{\"deselectedTechnicianIds\":[]}}",
+ "downloads": [
+  {
+   "item": "Summary (PDF)",
+   "clicked": "Summary (PDF)",
+   "filename": "technician-utilization-summary.pdf",
+   "toastsAtStart": [],
+   "toastsAfter": [
+    "check_circle Success Data exported successfully. Close",
+    "Success Data exported successfully."
+   ],
+   "calls": [
+    "200 /api/reporting/reports/technician-utilization/export?variant=summary&format=pdf&range=custom&start_date=2026-08-01&end_date=2026-08-04&locations=b3c8c820-f815-4"
+   ]
+  },
+  {
+   "item": "Summary (CSV)",
+   "clicked": "Summary (CSV)",
+   "filename": "technician-utilization-summary.csv",
+   "toastsAtStart": [
+    "check_circle Success Data exported successfully. Close 2",
+    "Success Data exported successfully."
+   ],
+   "toastsAfter": [
+    "check_circle Success Data exported successfully. Close 2",
+    "Success Data exported successfully."
+   ],
+   "calls": [
+    "200 /api/reporting/reports/technician-utilization/export?variant=summary&format=csv&range=custom&start_date=2026-08-01&end_date=2026-08-04&locations=b3c8c820-f815-4"
+   ]
+  },
+  {
+   "item": "Expanded (PDF)",
+   "clicked": "Expanded (PDF)",
+   "filename": "technician-utilization-expanded.pdf",
+   "toastsAtStart": [
+    "check_circle Success Data exported successfully. Close 2",
+    "Success Data exported successfully."
+   ],
+   "toastsAfter": [
+    "check_circle Success Data exported successfully. Close",
+    "Success Data exported successfully."
+   ],
+   "calls": [
+    "200 /api/reporting/reports/technician-utilization/export?variant=expanded&format=pdf&range=custom&start_date=2026-08-01&end_date=2026-08-04&locations=b3c8c820-f815-"
+   ]
+  },
+  {
+   "item": "Expanded (CSV)",
+   "clicked": "Expanded (CSV)",
+   "filename": "technician-utilization-expanded.csv",
+   "toastsAtStart": [
+    "check_circle Success Data exported successfully. Close 2",
+    "Success Data exported successfully."
+   ],
+   "toastsAfter": [
+    "check_circle Success Data exported successfully. Close 2",
+    "Success Data exported successfully."
+   ],
+   "calls": [
+    "200 /api/reporting/reports/technician-utilization/export?variant=expanded&format=csv&range=custom&start_date=2026-08-01&end_date=2026-08-04&locations=b3c8c820-f815-"
+   ]
+  }
+ ],
+ "dark": {
+  "bodyClass": "desktop no-touch body--dark reports-page",
+  "bodyBg": "rgb(20, 24, 36)",
+  "thBg": "rgb(15, 17, 26)",
+  "thColor": "rgb(255, 255, 255)",
+  "tdBg": "rgb(15, 17, 26)",
+  "tdColor": "rgb(255, 255, 255)",
+  "linkColor": "rgb(34, 118, 218)",
+  "iconColor": "rgb(165, 173, 186)"
+ }
+}
