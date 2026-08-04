@@ -437,7 +437,7 @@ PDF header shows report name; org; period and an as-of line; logo if set,IV — 
 4. If reachable, repeat the PDF download on a period with no available snapshot and read the header's as-of line.","1. The PDF header shows the report name ""Inventory Value"", the organization name, the selected period, and an ""as of"" line naming the day the values represent (or a message that no snapshot is available for the period).
 2. The PDF shows the shop logo at the top when one is set.
 3. The CSV never includes a logo.
-4. Note for the tester: the two files phrase the as-of line differently - the PDF reads ""As of 2026-08-04"" and the CSV's first line reads ""As of: 2026-08-04"" (with a colon). Both are correct; do not raise the difference.
+4. Note for the tester: the two files phrase the as-of line differently - the PDF reads ""As of 2026-08-04"", and in the spreadsheet it is one of the short summary lines that sit above the column headings, reading ""As of: 2026-08-04"" (with a colon). Both are correct; do not raise the difference, and do not count the summary lines - more of them may be added.
 ---
 DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
 The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
