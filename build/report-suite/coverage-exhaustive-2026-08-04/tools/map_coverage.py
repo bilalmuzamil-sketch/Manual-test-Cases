@@ -73,7 +73,15 @@ SURFACE_WORDS = {
     "toast": "Toast/notification", "tooltip": "Tooltip",
     "empty state": "Empty / zero state", "no data": "Empty / zero state",
 }
-SENT_SPLIT = re.compile(r"(?<=[.;])\s+(?=[A-Z(\"'“*_]|\*\*)")
+# Do NOT split after a known abbreviation — "Inv. Hrs", "Est. Lost Labor", "e.g." etc.
+# would otherwise be torn in half and produce a meaningless one-word assertion.
+ABBREV = r"(?<!\bInv\.)(?<!\bEst\.)(?<!\bQty\.)(?<!\bNo\.)(?<!\be\.g\.)(?<!\bi\.e\.)" \
+         r"(?<!\bvs\.)(?<!\betc\.)(?<!\bApprox\.)(?<!\bMax\.)(?<!\bMin\.)(?<!\bHrs\.)" \
+         r"(?<!\bcf\.)(?<!\bMr\.)(?<!\bDr\.)(?<!\bJan\.)(?<!\bDec\.)"
+# Split on sentence-ending periods only. A semicolon does NOT end an assertion — the specs
+# use semicolons to separate the items of ONE enumeration (e.g. the range->filename map),
+# and splitting there would tear one closed list into fragments.
+SENT_SPLIT = re.compile(ABBREV + r"(?<=\.)\s+(?=[A-Z(\"'“*_]|\*\*)")
 RATIONALE = re.compile(
     r"^\s*(this matches|this is|this mirrors|because\b|the reason|rationale|the intent|"
     r"that is why|matching the|per the|see \b|as with|consistent with|the point is)", re.I)
@@ -165,12 +173,28 @@ def split_assertions(text):
     return out
 
 
+XREF_TAIL = re.compile(
+    r"\s*[—\-–(]\s*(?:see\s+)?(?:Story|Stories)\s+\d+[^)]*\)?|"
+    r"\s*\((?:see\s+)?(?:" + REQ_ID + r"|§\d+[^)]*)\)|"
+    r"\s*—\s*see\s+" + REQ_ID + r"\.?|"
+    r"\s*\bper\s+" + REQ_ID + r"\b", re.I)
+
+
+def score_text(assertion):
+    """Assertion normalised FOR SCORING ONLY — cross-references stripped, because a
+    pointer such as '— see Story 6' carries no independently observable content. The
+    verbatim assertion text is always what is written to the deliverable."""
+    s = XREF_TAIL.sub(" ", assertion)
+    s = re.sub(r"\(" + REQ_ID + r"\)", " ", s)
+    return s
+
+
 def best_quote(assertion, expected):
     """Highest-overlap sentence of `expected` against `assertion`. -> (quote, score)"""
     if not expected:
         return "", 0.0
     parts = [p.strip() for p in re.split(r"(?<=[.;:])\s+|\n+", expected) if p.strip()]
-    a = content(assertion)
+    a = content(score_text(assertion))
     if not a:
         return (parts[0] if parts else ""), 0.0
     best, bs = "", 0.0

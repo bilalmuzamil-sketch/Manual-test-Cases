@@ -83,7 +83,8 @@ SECTION_RE = re.compile(r"^##\s+(\d+)\.\s+(.*?)\s*$")
 STORY_RE = re.compile(r"^###\s+Story\s+(\d+)\s*:\s*(.*?)\s*$")
 LABEL_RE = re.compile(
     r"^\s*(?:[*\-+]\s+)?\*\*(Requirements|Negative cases|Negative Cases|Edge cases|Edge Cases|"
-    r"Prerequisites|Design|Jira|API|Acceptance|Acceptance criteria|Out of scope|Notes)\b")
+    r"Prerequisites|Design|Jira|API|Acceptance|Acceptance criteria|Out of scope|Notes|"
+    r"Error Handling|Error handling|Error cases|Performance|Analytics|Telemetry|Data)\b")
 DESIGN_JIRA_RE = re.compile(r"^\*\*Design:\*\*|^\*\*Jira:\*\*|\*\*Jira:\*\*")
 CONTEXT_RE = re.compile(r"^\s*>?\s*_?\*?\s*\\?\*\s*Context note", re.I)
 CONTEXT2_RE = re.compile(r"^\s*>\s*\*?\\?\*?\s*Context", re.I)

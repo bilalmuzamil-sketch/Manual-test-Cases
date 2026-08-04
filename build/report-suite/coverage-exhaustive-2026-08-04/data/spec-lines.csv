@@ -1480,7 +1480,7 @@ TU,474,REQ-DEF,Requirements,7,S7-N2,"  * **S7-N2:** If the organization has no u
 TU,476,REQ-DEF,Requirements,7,S7-N3,  * **S7-N3:** The CSV file never includes the logo.
 TU,481,LABEL,Requirements,7,,**Edge Cases:**
 TU,483,REQ-DEF,Requirements,7,S7-E1,"  * **S7-E1:** When every technician is selected, the download covers all technicians for the range at the selected location(s)."
-TU,488,REQ-CONT,Requirements,7,S7-E1,**Error Handling:**
+TU,488,LABEL,Requirements,7,,**Error Handling:**
 TU,490,REQ-CONT,Requirements,7,S7-E1,"  * When a download starts, the user sees a success notification: ""Download started""."
 TU,492,REQ-CONT,Requirements,7,S7-E1,"  * If a download fails, the user sees an error notification: ""Failed to download report""."
 TU,497,HEADING,Requirements,8,,### Story 8: Visual Conformance and Accessibility
@@ -1805,7 +1805,7 @@ WIP,413,REQ-DEF,Requirements,9,S9-R10,  * **S9-R10:** The PDF shows the shop log
 WIP,414,REQ-DEF,Requirements,9,S9-R10a,"  * **S9-R10a:** Both downloads include a ""Locations:"" line naming the location or locations the report is scoped to, or ""All locations"" when every location the user has access to is selected. In the PDF it appears in the header area; in the CSV it appears as a leading metadata line above the column-header row. When the Location column is shown on screen (more than one location in scope), the download includes it too, headed ""Branch"" (S9-E1)."
 WIP,418,LABEL,Requirements,9,,**Edge Cases:**
 WIP,420,REQ-DEF,Requirements,9,S9-E1,"  * **S9-E1:** In a download, the asset column is headed ""Unit"" and the location column is headed ""Branch"" (they read ""Asset"" and ""Location"" on screen). This label difference is a known v1 limitation, not a defect."
-WIP,424,REQ-CONT,Requirements,9,S9-E1,**Error Handling:**
+WIP,424,LABEL,Requirements,9,,**Error Handling:**
 WIP,426,REQ-DEF,Requirements,9,S9-R11,"  * **S9-R11:** On a successful download the user sees a success notification with the caption ""Data exported successfully."""
 WIP,427,REQ-DEF,Requirements,9,S9-R12,"  * **S9-R12:** If a download yields no rows, the user sees a warning notification titled ""Empty export"" with the caption ""Export didn't yield any results""."
 WIP,428,REQ-DEF,Requirements,9,S9-R13,"  * **S9-R13:** If a download fails, the user sees an error notification: ""An error occurred while exporting the report. Please try again."""
@@ -2102,7 +2102,7 @@ IV,439,REQ-DEF,Requirements,10,S10-R10,"  * **S10-R10:** The downloaded files ar
 IV,440,REQ-DEF,Requirements,10,S10-R11,"  * **S10-R11: Server-side generation.** Both exports are generated **server-side** against the current filters, part search, and sort — the full filtered set, not only the loaded page. The export is not built from the rows currently in the browser."
 IV,441,REQ-DEF,Requirements,10,S10-R12,"  * **S10-R12: Export size guardrail.** To keep a single-shot export renderable, an export is capped at a maximum of **10,000 rows** in the filtered set. When the current filtered set exceeds the cap, neither the PDF nor the CSV is produced; instead the user sees the message: **"" This report is too large to export. Narrow the date range or filters, then try again.""** [Cap value 10,000 is a proposed default — confirm the exact suite-standard value with the owner before dev.]"
 IV,442,REQ-DEF,Requirements,10,S10-R15,"  * **S10-R15:** Every export (each CSV and each PDF) includes the **Location** column whenever it is shown on screen (S7-R6), and always includes a ""Locations:"" line naming the location or locations the report is scoped to, or ""All locations"" when every location the user has access to is selected — matching the on-screen scope. In a PDF the ""Locations:"" line appears in the header area; in a CSV it appears as a leading metadata line above the column-header row."
-IV,446,REQ-CONT,Requirements,10,S10-R15,**Error Handling:**
+IV,446,LABEL,Requirements,10,,**Error Handling:**
 IV,448,REQ-DEF,Requirements,10,S10-R13,"  * **S10-R13:** On a successful download the user sees a success notification: ""Inventory Value report exported (PDF)"" or ""Inventory Value report exported (CSV)""."
 IV,449,REQ-DEF,Requirements,10,S10-R14,"  * **S10-R14:** If a download fails, the user sees an error notification: ""Failed to export inventory value report (pdf)"" or ""Failed to export inventory value report (csv)""."
 IV,453,CONTEXT-NOTE,Requirements,10,S10-R14,"_* Context note: in the CSV, money values are written as plain numbers with two decimals and no thousands separators (so they parse cleanly in a spreadsheet); the PDF uses the same on-screen currency formatting with the ""$"" and thousands separators._"
