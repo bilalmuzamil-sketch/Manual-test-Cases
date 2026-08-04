@@ -1,0 +1,82 @@
+{
+  "buildMarker": "v3.4.1-0ed4433",
+  "capturedAt": "2026-08-04T02:06:53.556Z",
+  "method": "seed Sales Representative + single workplace, switch-user impersonate, observe, restore",
+  "subject": {
+    "email": "wesley.mcclure@staging.shopview.local",
+    "staff_id": "33c930dd-7a9c-462c-9400-d5e30fbfe0f3"
+  },
+  "seedAssign": 201,
+  "impersonated": {
+    "slug": "sales_representative",
+    "atoms": 8,
+    "workplaces": [
+      "Staging Lethbridge - 4310"
+    ],
+    "hasReports": true
+  },
+  "singleLoc": {
+    "parts-velocity": {
+      "selectTexts": [
+        "Type Both arrow_drop_down",
+        "Category All categories arrow_drop_down",
+        "Vendor All vendors arrow_drop_down",
+        "Bin All bins arrow_drop_down",
+        "Location All locations close arrow_drop_down"
+      ],
+      "fieldLabels": [
+        "Type",
+        "Category",
+        "Vendor",
+        "Bin",
+        "Location"
+      ],
+      "hasLocationControl": true,
+      "columnHeaders": [
+        "Type",
+        "Part #",
+        "Description",
+        "Category",
+        "Vendor",
+        "Units Sold",
+        "Unit Cost",
+        "Sell Price",
+        "Revenue",
+        "Margin",
+        "Margin %",
+        "Demand",
+        "Last Sale",
+        "On Hand"
+      ],
+      "dateRangeLabel": "This Year",
+      "locationMenu": "Clear all\nStaging Lethbridge - 4310"
+    },
+    "technician-utilization": {
+      "selectTexts": [
+        "Technician All technicians close arrow_drop_down",
+        "Location All locations close arrow_drop_down"
+      ],
+      "fieldLabels": [
+        "Technician",
+        "Location"
+      ],
+      "hasLocationControl": true,
+      "columnHeaders": [
+        "Technician",
+        "Total Hours",
+        "WO Hours",
+        "Internal Hours",
+        "Utilization %",
+        "Est. Lost Labor"
+      ],
+      "dateRangeLabel": "This Month",
+      "locationMenu": "Clear all\nStaging Lethbridge - 4310"
+    }
+  },
+  "restore": 201,
+  "restoreVerify": {
+    "role_label": "Technician",
+    "workplace_id": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+    "matchesOriginal": true
+  }
+}

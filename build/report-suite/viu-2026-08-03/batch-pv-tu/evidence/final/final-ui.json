@@ -1,0 +1,214 @@
+{
+ "buildMarker": "v3.4.1-0ed4433",
+ "at": "2026-08-04T02:08:48.751Z",
+ "pvLoadingIndicator": {
+  "spinners": 1,
+  "text": null,
+  "rowsWhileLoading": 2
+ },
+ "pvFirstVisit": {
+  "dateLabel": "This Year",
+  "headers": [
+   "Type",
+   "Part #",
+   "Description",
+   "Category",
+   "Vendor",
+   "Location",
+   "Units Sold",
+   "Unit Cost",
+   "Sell Price",
+   "Revenue",
+   "Margin",
+   "Margin %",
+   "Demand",
+   "Last Sale",
+   "On Hand"
+  ],
+  "typeLabel": "Type Both arrow_drop_down",
+  "locLabel": "Location All locations close arrow_drop_down",
+  "ls": "{\"version\":\"1\",\"view\":{\"dateRange\":\"this-year\",\"locationIds\":[\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"f8a8b802-7780-4b16-bf10-343caeb616b2\"],\"sortBy\":\"demand\",\"descending\":true,\"columns\":[\"type\",\"part_number\",\"description\",\"category\",\"vendor\",\"units_sold\",\"unit_cost\",\"sell_price\",\"revenue\",\"margin\",\"margin_pct\",\"demand\",\"last_sale\",\"on_hand\"]},\"extra\":{\"type\":\"both\",\"categoryIds\":[],\"vendorIds\":[],\"binIds\":[]}}",
+  "firstCalls": [
+   "200 ?type=both&range=custom&start_date=2026-01-01&end_date=2026-08-04&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=demand&pagination[descending]=true",
+   "200 ?type=both&range=custom&start_date=2026-01-01&end_date=2026-08-04&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2&pagination[page]=1&pagination[rowsPerPage]=30&pagination[sortBy]=demand&pagination[descending]=true"
+  ]
+ },
+ "pvBadSavedView": {
+  "dateLabel": "Select Date Range",
+  "headers": [
+   "Type",
+   "Part #",
+   "Description",
+   "Category",
+   "Vendor",
+   "Units Sold",
+   "Unit Cost",
+   "Sell Price",
+   "Revenue",
+   "Margin",
+   "Margin %",
+   "Demand",
+   "Last Sale",
+   "On Hand"
+  ],
+  "typeLabel": "Type Both arrow_drop_down",
+  "locLabel": "Location close arrow_drop_down",
+  "calls": [],
+  "lsAfter": "{\"version\":\"1\",\"view\":{\"dateRange\":\"not-a-range\",\"locationIds\":[\"00000000-0000-0000-0000-000000000000\"],\"sortBy\":\"demand\",\"descending\":true,\"columns\":[\"type\",\"part_number\",\"description\",\"category\",\"vendor\",\"units_sold\",\"unit_cost\",\"sell_price\",\"revenue\",\"margin\",\"margin_pct\",\"demand\",\"last_sale\",\"on_hand\"]},\"extra\":{\"type\":\"both\",\"categoryIds\":[\"bad\"],\"vendorIds\":[],\"binIds\":[]}}"
+ },
+ "allColumnsOff": {
+  "toggledOff": 14,
+  "headers": [],
+  "ls": "{\"version\":\"1\",\"view\":{\"dateRange\":\"not-a-range\",\"locationIds\":[\"00000000-0000-0000-0000-000000000000\"],\"sortBy\":\"demand\",\"descending\":true,\"columns\":[]},\"extra\":{\"type\":\"both\",\"categoryIds\":[\"bad\"],\"vendorIds\":[],\"binIds\":[]}}"
+ },
+ "zeroColumnExport": {
+  "calls": [],
+  "toasts": [
+   "priority_high Empty export Export didn't yield any results Close"
+  ]
+ },
+ "afterReloadFromEmpty": {
+  "headers": [
+   "Type",
+   "Part #",
+   "Description",
+   "Category",
+   "Vendor",
+   "Units Sold",
+   "Unit Cost",
+   "Sell Price",
+   "Revenue",
+   "Margin",
+   "Margin %",
+   "Demand",
+   "Last Sale",
+   "On Hand"
+  ],
+  "ls": "{\"version\":\"1\",\"view\":{\"dateRange\":\"not-a-range\",\"locationIds\":[\"00000000-0000-0000-0000-000000000000\"],\"sortBy\":\"demand\",\"descending\":true,\"columns\":[\"type\",\"part_number\",\"description\",\"category\",\"vendor\",\"units_sold\",\"unit_cost\",\"sell_price\",\"revenue\",\"margin\",\"margin_pct\",\"demand\",\"last_sale\",\"on_hand\"]},\"extra\":{\"type\":\"both\",\"categoryIds\":[\"bad\"],\"vendorIds\":[],\"binIds\":[]}}"
+ },
+ "pvVisual": {
+  "pageBg": "rgba(0, 0, 0, 0)",
+  "mainBg": "rgb(249, 250, 251)",
+  "toolbarBg": "rgb(249, 250, 251)",
+  "toolbarPadding": "0px 0px 24px",
+  "tableWrapperBg": "rgb(249, 250, 251)",
+  "thBg": "rgb(249, 250, 251)",
+  "thBorderTop": "0px solid rgba(0, 0, 0, 0.12)",
+  "tdBg": null,
+  "firstThPadLeft": "14.28px",
+  "lastThPadRight": "14.28px",
+  "firstTdPadLeft": null,
+  "lastTdPadRight": null,
+  "cardRadius": "4px",
+  "infoIconColor": "rgb(97, 97, 97)"
+ },
+ "pvDark": {
+  "bodyClass": "desktop no-touch body--dark reports-page",
+  "bodyBg": "rgb(20, 24, 36)",
+  "thBg": "rgb(15, 17, 26)",
+  "thColor": "rgb(255, 255, 255)",
+  "infoIconColor": "rgb(165, 173, 186)"
+ },
+ "narrowTruncation": null,
+ "narrowViewport": "900x800",
+ "tuLoadingIndicator": {
+  "spinners": 1,
+  "rowsWhileLoading": 2
+ },
+ "tuFirstVisit": {
+  "dateLabel": "This Month",
+  "headers": [
+   "Technician",
+   "Location",
+   "Total Hours",
+   "WO Hours",
+   "Internal Hours",
+   "Utilization %",
+   "Est. Lost Labor"
+  ],
+  "techLabel": "Technician All technicians close arrow_drop_down",
+  "locLabel": "Location All locations close arrow_drop_down",
+  "rows": [
+   [
+    "keyboard_arrow_right Christian Pitts",
+    "Multiple",
+    "0.01",
+    "0.00",
+    "0.01",
+    "0.0%",
+    "$1.74"
+   ],
+   [
+    "keyboard_arrow_right Margaret Garcia",
+    "Staging Heavy Duty - 9919",
+    "0.76",
+    "0.00",
+    "0.76",
+    "0.0%",
+    "$109.96"
+   ],
+   [
+    "keyboard_arrow_right Wesley Mcclure",
+    "Staging Lethbridge - 4310",
+    "0.01",
+    "0.00",
+    "0.01",
+    "0.0%",
+    "$0.93"
+   ],
+   [
+    "Summary",
+    "",
+    "0.78",
+    "0.00",
+    "0.78",
+    "0.0%",
+    "$112.63"
+   ]
+  ],
+  "ls": "{\"version\":\"1\",\"view\":{\"dateRange\":\"this-month\",\"locationIds\":[\"b3c8c820-f815-4cf1-8938-10956c5ee71a\",\"f8a8b802-7780-4b16-bf10-343caeb616b2\"],\"sortBy\":\"technician\",\"descending\":false,\"columns\":[\"total_hours\",\"wo_hours\",\"internal_hours\",\"utilization\",\"est_lost_labor\"]},\"extra\":{\"deselectedTechnicianIds\":[]}}",
+  "calls": [
+   "200 ?range=custom&start_date=2026-08-01&end_date=2026-08-04",
+   "200 ?range=custom&start_date=2026-08-01&end_date=2026-08-04&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2"
+  ]
+ },
+ "linkBefore": {
+  "text": "0.01",
+  "href": "/reports/punch-clock-activities?range=custom&startDate=2026-08-01&endDate=2026-08-04&technicianId=bd9a5aa1-75d8-4b99-a9f4-0a7e47e43cd1",
+  "deco": "none",
+  "color": "rgb(34, 118, 218)"
+ },
+ "linkFocus": {
+  "deco": "underline",
+  "outline": "rgb(34, 118, 218) solid 2px",
+  "outlineWidth": "2px",
+  "boxShadow": "none"
+ },
+ "linkHover": {
+  "deco": "underline"
+ },
+ "linkAfterClick": {
+  "url": "https://sv8582.qa.shopview.com/reports/punch-clock-activities?range=custom&startDate=2026-08-01&endDate=2026-08-04&technicianId=bd9a5aa1-75d8-4b99-a9f4-0a7e47e43cd1",
+  "title": "Punch Clock Activities | ShopView",
+  "pageText": "S | chat | Notes | alarm | Reminders | Timesheet Activities | This Month | expand_more | Filter By Staff | Christian Pitts | arrow_drop_down | download | New | Datearrow_drop_up\tEmployeearrow_drop_up\tWork Orderarrow_drop_up\tClock In Activity\tClock In\tClock Out\tTotal Hours\tWO Hours\tInternal Hours\tModified Byarrow_drop_up\tModified Date/Timearrow_drop_up\tComment\t | Aug 03 2026\tChristian Pitts\tN/A\tTraining\t07:25 PM\t07:26 PM\t0.01\t0.00\t0.01\t\tN/A\tZZAUTOTEST Internal HD\t | edit_note | Totals\t0.01\t0\t0.01",
+  "headers": [
+   "Date",
+   "Employee",
+   "Work Order",
+   "Clock In Activity",
+   "Clock In",
+   "Clock Out",
+   "Total Hours",
+   "WO Hours",
+   "Internal Hours",
+   "Modified By",
+   "Modified Date/Time",
+   "Comment"
+  ],
+  "filterTexts": [
+   "Search Ctrl+K",
+   "Filter By Staff Christian Pitts arrow_drop_down"
+  ]
+ },
+ "adminOpenTask": "{\"data\":{\"technician_task\":[]}}"
+}

@@ -1,0 +1,40 @@
+{
+ "reportAtoms": [
+  "\"reportsPageAccess\""
+ ],
+ "catalogueStatus": 200,
+ "rolesAvailable": {
+  "Admin": 18,
+  "Technician": 12,
+  "Foreman": 3
+ },
+ "perRole": {
+  "Admin": {
+   "user": "Edward Brown",
+   "slug": "administrator",
+   "atoms": 42,
+   "reportsPageAccess": true,
+   "pvData": 200,
+   "tuData": 200,
+   "pvExport": 200,
+   "tuExport": 200,
+   "pvErr": null,
+   "tuErr": null
+  },
+  "Technician": {
+   "err": "switch-user failed"
+  },
+  "Foreman": {
+   "user": "Fernando Mercer",
+   "slug": "foreman",
+   "atoms": 23,
+   "reportsPageAccess": false,
+   "pvData": 403,
+   "tuData": 403,
+   "pvExport": 403,
+   "tuExport": 403,
+   "pvErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}",
+   "tuErr": "{\"errors\":[{\"error\":\"Access denied.\"}]}"
+  }
+ }
+}
