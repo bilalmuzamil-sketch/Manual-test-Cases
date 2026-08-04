@@ -239,10 +239,46 @@ quietly corrected. Found by the Rule-41 whole-case re-read — which is the argu
 
 ---
 
-## D11 · 9 MERGE groups and 1 CUT — STAGED, NOT EXECUTED · RISK: **LOW**
+## D11 · 9 MERGE groups and 1 CUT — **SUPERSEDED 2026-08-04: 8 merges + the cut EXECUTED, 1 merge DECLINED** · RISK: **LOW**
 
-**Plain answer:** merging or deleting cases is irreversible and structural, so it waits for the QA
-lead's explicit go-ahead — we only ever recommend.
+> ### UPDATE 2026-08-04 — this entry is no longer a hold. Read this first.
+>
+> **The QA lead authorised the merges later the same day.** The authorising instruction, verbatim:
+>
+> > *"Since the automation developers are going to automate the test cases today, for now consider
+> > the branch verification as final for now and make the required changes in the test cases."*
+>
+> followed by the explicit ordered instruction to execute the merge plan last, *"only if Step 1
+> proved they have not already happened"*, with the standing condition *"if folding would make the
+> survivor incoherent, **keep both and report**."*
+>
+> **What was executed (2026-08-04 ~10:11 UTC):** **8 merges + the 1 cut = 9 deletions.** Each
+> absorbed case's unique content was folded into its survivor **first** (9 `update_case`, each *"30
+> fields compared, 0 mismatch"*), and only then deleted (9 `delete_case`, each **HTTP 200** with the
+> re-GET returning **HTTP 400 = gone**). Verified after: live under group 4281 went 483 → 474 and
+> ours 478 → 469; run 359 went 478 → 469 tests with **all 529 results for surviving cases present by
+> id**; the 5 foreign cases re-proved byte-identical. Full evidence in
+> `../count-reconciliation-2026-08-04.md`.
+>
+> **What was DECLINED, and this is the part that needs a word from the QA lead:**
+> **`MG-WIP-TOTAL-PINNED`** — absorb **WIP-VIS-03 = [C30521](https://shopview.testrail.io/index.php?/cases/view/30521)**
+> into **WIP-TOT-01 = [C30494](https://shopview.testrail.io/index.php?/cases/view/30494)**.
+> **Both cases are still live and unchanged.** No exclusion had ever been recorded for it, so it was
+> re-derived from scratch, and the honest verdict is **do not do it**:
+>
+> | Reason | Evidence |
+> |---|---|
+> | **Different requirements** | C30521 cites **Story 4 `S4-R22`, Story 10 `S10-R3`**; C30494 cites **Story 6 `S6-R1`, `S6-R4`, `S6-R5`**. One case under two unrelated anchors is the coupling Rule 42 exists to prevent. |
+> | **Different observables — a column, not a row** | C30521: *"The Total **column** … stays fixed to the right edge while the rest of the columns scroll underneath."* C30494's title names a **Totals row**; bolting sideways-scroll column behaviour onto it breaks the title-vs-expected check Rule 28 requires. |
+> | **Every other report keeps it standalone** | Sales By Customer [C30154](https://shopview.testrail.io/index.php?/cases/view/30154), Sales By Representative [C30237](https://shopview.testrail.io/index.php?/cases/view/30237), Inventory Value [C30553](https://shopview.testrail.io/index.php?/cases/view/30553). Merging would make Work In Progress the only report of six without one. |
+> | **It is load-bearing** | A sweep of all 469 cases found **C30521 is the only Work In Progress case covering the Total column under sideways scroll** (C30522 covers the Totals *row* under *vertical* scroll). |
+>
+> **Consequence for the count:** the audit's *"468 recommended"* assumed 10 removals. With 9 executed
+> and this one declined, the honest figure is **469 — exactly what is live.**
+> **Who closes it:** the QA lead, with a yes or no. Nothing is written either way.
+
+**Plain answer (as originally written):** merging or deleting cases is irreversible and structural, so
+it waits for the QA lead's explicit go-ahead — we only ever recommend.
 
 Standing Rule 28: the audit **recommends**; nothing is merged, cut or deleted without explicit
 authorisation (Rule 6). The 9 groups are `MG-IV-SNAPSHOT-RERUN`, `MG-IV-TOTALS-POSITION`,
