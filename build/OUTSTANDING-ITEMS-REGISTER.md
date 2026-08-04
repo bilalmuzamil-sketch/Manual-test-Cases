@@ -12,6 +12,15 @@
 > removed **only when genuinely satisfied**; a satisfied item moves to **§7 Recently cleared** with
 > the date and how it was satisfied, so nothing quietly disappears and nothing gets re-asked.
 >
+> **VERIFICATION CONVENTION FOR THIS REGISTER (Standing Rule 50, 2026-08-04):** every verification
+> claim made in this register — an item recorded as **cleared**, a count, a "pushed and verified"
+> row, a "run is in sync" row, a "their cases untouched" row — is established by **BYTE-LEVEL
+> comparison**, never by eye and never by a matching total. A write is re-GET and byte-compared
+> against the intended payload (with untouched fields proven byte-identical to their pre-write
+> snapshot); a count is proven as **set equality in both directions**; a run sync verifies **each
+> prior result present by id**. An item may only move to **§7 Recently cleared** on that basis —
+> anything short of it stays OPEN and is labelled **NOT VERIFIED** (Rule 12).
+>
 > **Why this exists:** the end goal is **100% authentic test cases**. Most of our remaining
 > authenticity gaps are not our own work — they are inputs we are waiting on. A missing epic means
 > Rule-20 ticket traceability cannot be satisfied at all. An unanswered PO question means a case
