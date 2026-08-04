@@ -76,8 +76,10 @@ TRUE_CLOSER = re.compile(
     r"in (?:this )?exact order|in order,? are|,?\s*in order:|exactly these|only these|"
     r"no other|nothing else|the complete list|only the following|"
     r"exactly\s+(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\s+(?:" + SET_NOUN + r")|"
-    # "reads/are exactly" + a quoted verbatim string
-    r"(?:reads?|are|is|lists?|offers?|holds?|shows?)\s+exactly[:,]?\s*[\"“']", re.I)
+    # "reads/are/named exactly" + a quoted verbatim string -- naming a file "exactly
+    # <string>" is as brittle as a list, so it counts (SBR-EXP-06 C30281 is this shape)
+    r"(?:reads?|are|is|lists?|offers?|holds?|shows?|named?|titled?|labell?ed)\s+"
+    r"exactly[:,]?\s*[\"“']", re.I)
 # "... exactly: A, B, C, D" -- a colon-introduced comma list of three or more items is a
 # closed enumeration even without quote marks (e.g. "The labels read exactly: Labor
 # Invoiced, Labor Margin, ...").
@@ -114,7 +116,9 @@ def main():
         for pat, name in CLOSERS:
             for m in re.finditer(pat, blob, re.I):
                 seg = blob[max(0, m.start() - 90):m.start() + 240].replace("\n", " | ")
-                window = blob[m.start():m.start() + 90]
+                # the window starts 44 chars EARLIER than the keyword so that the verb in
+                # front of it ("the files are named exactly ...") is inside the window
+                window = blob[max(0, m.start() - 44):m.start() + 90]
                 closes = bool(TRUE_CLOSER.search(window)) or (
                     "exactly" in window.lower() and bool(COLON_LIST.search(window)))
                 adverbial = bool(ADVERBIAL.search(window)) or not closes
