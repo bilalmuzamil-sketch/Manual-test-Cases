@@ -1,5 +1,25 @@
 # RULING 3 — the Inventory Value spreadsheet export, re-driven live from scratch · 2026-08-04
 
+> ## 🔴 ADDENDUM, 2026-08-04 11:30 UTC — THE BUILD HAS SINCE MOVED
+>
+> Everything below was observed live on **`v3.4.1-0ed4433`** with evidence captured that run, and
+> **none of it is retracted.** But the QA branch was **redeployed at 10:41:58 UTC** — after this
+> drive finished — to **`v3.4.1-3d03023`** (all three markers changed; see
+> `../build-change-2026-08-04/BUILD-MOVED-2026-08-04.md`).
+>
+> **A confirming re-drive was attempted and could not be done:** the deploy killed the session
+> (`quick-login` → **HTTP 401 `sso_required`**), and SSO needs a browser login this container cannot
+> perform. **I am therefore not asserting that these findings still hold on the build live now**
+> (Rule 12) — they hold on `v3.4.1-0ed4433`, and both halves are queued for re-check.
+>
+> **The two facts most worth re-confirming first**, because an automation engineer will code
+> straight into them: that money cells are still `"$11,176.88"`-style text, and that the `columns=`
+> parameter is still ignored with the file's order still differing from the screen. A deploy is
+> exactly where such a thing gets fixed.
+>
+> **What does NOT need re-checking:** §0's spec correction. That is a reading of the written
+> Inventory Value spec v3, not an observation of the build, and a deploy cannot change it.
+
 The previous pass's Ruling-3 analysis was lost when it was interrupted (see
 `recovery/RECOVERY-FINDINGS.md` §2). **This is a fresh live drive, not a reconstruction.**
 
