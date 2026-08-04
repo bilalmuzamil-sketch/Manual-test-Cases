@@ -1163,3 +1163,61 @@ sections will be needed mainly for the two nightly-snapshot backend stories
    OQ-5); designs still pending; live-observed evidence only (Rules
    10/12/13/14).
 6. Keep PO attribution straight: Report Suite = **Chris Ward**.
+
+---
+
+# UPDATE 2026-08-04 (final unattended session) — READ THIS FIRST TO RESUME
+
+**Canonical deliverable: `READINESS-2026-08-04.md`.** Outstanding asks (11) live in
+`../OUTSTANDING-ITEMS-REGISTER.md` under the 2026-08-04 final-session block.
+
+## The state, in numbers — all set-equal BOTH directions
+
+**ours 469 · live under group 4281 = 474 (5 foreign, hands-off) · run 359 = 469 tests / 529 results ·
+local bodies 535 = 469 active + 66 Retired · id-map 469 rows, 0 blanks · unified import 469 rows ·
+six split imports 84+111+71+59+76+68 = 469 · verdict ledger 469.**
+324 verified against the build · 115 deviations · 13 not built · 17 external · 16 failing an open
+ticket · 47 held for Chris · 52 needing a tool · **392 automatable today.**
+
+## ⚠️ THE BUILD MOVED — everything live is provisional
+
+`v3.4.1-0ed4433` → **`v3.4.1-3d03023`** at **2026-08-04 10:41:58 UTC** (all three markers changed).
+`build-change-2026-08-04/BUILD-MOVED-2026-08-04.md`. The Rule-49 queue
+(`viu-2026-08-03/RECHECK-QUEUE.md`) is **OPEN for two reasons now** and covers **all 469** (C30098 was
+added — it had never been on it). **The provenance lines say "the build tested on 8/4/2026", which is
+ambiguous because two builds existed that day** — re-stamping needs a live session.
+
+## What this session did
+
+1. **Settled the count** — `count-reconciliation-2026-08-04.md`. 9 cases were genuinely deleted (the
+   authorised merges); both earlier counts were correct, an hour apart. Every deletion was **folded
+   into its survivor first**, verified by re-reading the absorbed bodies and locating the three
+   "covered elsewhere" lines verbatim in C30354, C30460 and C30359/C30367/C30369/C30371.
+2. **Answered Ruling 3, re-driven LIVE on the new build** —
+   `rulings-2026-08-04/RULING-3-RECONFIRMED-NEW-BUILD.md`. Money **correct** (0 arithmetic failures
+   over 9,275 rows) but **text** (55,656/55,656 cells); `columns=` still ignored (3 exports, identical
+   SHA-256). **The deploy added a `"Date Range:"` metadata line, which breaks C30590** — not edited,
+   needs approval.
+3. **Stamped the different-reason notes** — `step3-notes-2026-08-04/`. 8 `update_case`, all 200 +
+   byte-verified, 0 collateral. C30528/30530/30531/30533 (nightly) and C30609/30610 (history) now say
+   **mark BLOCKED, not failed**; C30589 carries the verbatim known-and-accepted line; C30588 carries an
+   accurate non-contradictory variant.
+4. **Fixed the local-source landmine** — `step4-retire-2026-08-04/LOCAL-SOURCE-FIX.md`. The 9 merge
+   deletions marked `Retired`; **and the real hazard found**: the local source was stale, so
+   regenerating the import **silently deleted all 47 do-not-automate warnings**. Re-synced from live,
+   regenerated, re-merged C-ids. **Never run `gen_import.py` without `sync_local.py` before it and the
+   C-id re-merge after it.**
+5. **Closed out the merges** in the Rule-46 register — `final-push-2026-08-04/DELIBERATE-DECISIONS.md`
+   D11. 8 merges + the cut executed; **`MG-WIP-TOTAL-PINNED` DECLINED** (C30521 and C30494 both live).
+6. **Reconciled and reported** — `step6-reconcile-2026-08-04/` + `READINESS-2026-08-04.md`. Rule-28
+   sweep re-run over all 469 across the 253 shared anchors: **0 contradictions**, and the 5 automatic
+   polarity flags are all **correct** scope-conditional wording, not conflicts.
+
+## Honest limits
+
+- Two Ruling-3 items are **carried forward from `0ed4433`, not re-observed**: the on-screen column
+  order, and a per-cell API cross-check. **My own fault** — I burned the refreshed session with ~10
+  `quick-login` calls. `quick-login` is stateful on the shared `PHPSESSID`; probe **sequentially**.
+- The report **data** endpoint `GET /api/reporting/reports/inventory-value` returned **409 "Session has
+  expired."** on `3d03023` even on a fresh single login, while the **export** endpoint returned 200 on
+  the identical scope. **Not asserting which** — one clean probe next time.
