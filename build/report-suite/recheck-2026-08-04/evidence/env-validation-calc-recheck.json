@@ -1,0 +1,193 @@
+{
+ "build": "v3.4.1-3d03023",
+ "at": "2026-08-04T13:27:46Z",
+ "E2_featureFlags": {
+  "count": 2,
+  "reportRelated": [],
+  "all": [
+   "features",
+   "pagination"
+  ]
+ },
+ "E3_routes": {
+  "sales-by-customer": 200,
+  "sales-by-representative": 200,
+  "parts-velocity": 200,
+  "technician-utilization": 200,
+  "work-in-progress": 400,
+  "inventory-value": 200
+ },
+ "B33_validation": {
+  "format bad": {
+   "status": 400,
+   "message": "[{\"error\": \"Invalid export format. Allowed values: csv, pdf.\"}]"
+  },
+  "variant bad": {
+   "status": 400,
+   "message": "[{\"error\": \"Invalid export variant. Allowed values: summary, expanded.\"}]"
+  },
+  "wip tab bad": {
+   "status": 400,
+   "message": "[{\"error\": \"Invalid tab \\\"zzz\\\".\"}]"
+  },
+  "wip columns missing": {
+   "status": 400,
+   "message": "[{\"error\": \"At least one column is required.\"}]"
+  },
+  "wip column invalid": {
+   "status": 400,
+   "message": "[{\"error\": \"Invalid column \\\"invoiced_hours\\\".\"}]"
+  },
+  "range bad": {
+   "status": 400,
+   "message": "[{\"error\": \"Selected date range is invalid.\"}]"
+  }
+ },
+ "B32_totals": {
+  "sales-by-customer": {
+   "status": 200,
+   "dataKeys": [
+    "collection",
+    "pagination",
+    "totals"
+   ],
+   "hasTotals": true
+  },
+  "sales-by-representative": {
+   "status": 200,
+   "dataKeys": [
+    "collection",
+    "pagination",
+    "totals"
+   ],
+   "hasTotals": true
+  },
+  "parts-velocity": {
+   "status": 200,
+   "dataKeys": [
+    "collection",
+    "pagination"
+   ],
+   "hasTotals": false
+  },
+  "technician-utilization": {
+   "status": 200,
+   "dataKeys": [
+    "collection"
+   ],
+   "hasTotals": false
+  },
+  "work-in-progress": {
+   "status": 400,
+   "dataKeys": [],
+   "hasTotals": false
+  },
+  "inventory-value": {
+   "status": 200,
+   "dataKeys": [
+    "as_of_date",
+    "collection",
+    "pagination",
+    "totals"
+   ],
+   "hasTotals": true
+  }
+ },
+ "B30_wip": {
+  "tabs": {
+   "ApprovedNotStarted": {
+    "status": 200,
+    "rows": 63,
+    "mismatches": 1,
+    "sample": [
+     {
+      "wo": null,
+      "diffs": [
+       [
+        "earned",
+        9000,
+        0
+       ],
+       [
+        "remaining",
+        22492,
+        0
+       ]
+      ]
+     }
+    ]
+   },
+   "ApprovedPartiallyCompleted": {
+    "status": 200,
+    "rows": 63,
+    "mismatches": 1,
+    "sample": [
+     {
+      "wo": null,
+      "diffs": [
+       [
+        "earned",
+        9000,
+        0
+       ],
+       [
+        "remaining",
+        22492,
+        0
+       ]
+      ]
+     }
+    ]
+   },
+   "Completed": {
+    "status": 200,
+    "rows": 63,
+    "mismatches": 1,
+    "sample": [
+     {
+      "wo": null,
+      "diffs": [
+       [
+        "earned",
+        9000,
+        0
+       ],
+       [
+        "remaining",
+        22492,
+        0
+       ]
+      ]
+     }
+    ]
+   },
+   "Estimates": {
+    "status": 200,
+    "rows": 63,
+    "mismatches": 1,
+    "sample": [
+     {
+      "wo": null,
+      "diffs": [
+       [
+        "earned",
+        9000,
+        0
+       ],
+       [
+        "remaining",
+        22492,
+        0
+       ]
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "B31_iv": {
+  "rows": 500,
+  "mismatches": 0,
+  "sample": []
+ }
+}
