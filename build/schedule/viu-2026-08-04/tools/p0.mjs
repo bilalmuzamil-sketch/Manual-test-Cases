@@ -1,0 +1,12 @@
+import {boot,APP} from './boot.mjs';
+const {browser,page,netlog}=await boot();
+await page.goto(APP+'/schedule',{waitUntil:'domcontentloaded',timeout:90000});
+await page.waitForTimeout(9000);
+console.log('URL',page.url());
+console.log('TITLE',await page.title());
+await page.screenshot({path:'/tmp/sviu/evidence/00-schedule.png',fullPage:false});
+const txt=await page.evaluate(()=>document.body.innerText);
+console.log('---BODY TEXT---'); console.log(txt.slice(0,3000));
+console.log('---API CALLS---');
+for(const n of netlog.filter(n=>n.phase==='res')) console.log(n.status,n.method,n.url.replace(/^https:\/\/[^/]+/,''));
+await browser.close();

@@ -1,0 +1,4602 @@
+{
+ "SV-8826": {
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "54945",
+  "self": "https://shopview.atlassian.net/rest/api/3/issue/54945",
+  "key": "SV-8826",
+  "renderedFields": {
+   "summary": null,
+   "creator": null,
+   "created": "Today 5:02 PM",
+   "description": "<p><b>Description:</b> <br/>\nThe week view grid renders columns Sunday \u2192 Saturday. The PRD and story \n    <span class=\"jira-issue-macro\" data-jira-key=\"SV-8686\" >\n                <a href=\"https://shopview.atlassian.net/browse/SV-8686\" class=\"jira-issue-macro-key issue-link\"  title=\"Schedule Grid Layout &amp; Navigation\" >\n            <img class=\"icon\" src=\"https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium\" />\n            SV-8686\n        </a>\n                                                    <span class=\"aui-lozenge aui-lozenge-subtle aui-lozenge-current jira-macro-single-issue-export-pdf\">Ready for QA</span>\n            </span>\n define the week as a Mon\u2013Sun grid. The sidebar mini calendar on the same screen is already Monday-first, so the page shows two different week orders at once. </p>\n\n<p><b>Steps to Reproduce:</b> <br/>\n1. Open <a href=\"http://sv8685.qa.shopview.com\" title=\"smart-link\" class=\"external-link\" rel=\"nofollow noreferrer\">http://sv8685.qa.shopview.com</a>  and go to Schedule. <br/>\n2. Select the Week view. <br/>\n3. Compare the grid's first column with the mini calendar's first column.</p>\n\n<p><b>Expected Result:</b> Week grid columns are ordered Monday \u2192 Sunday (Saturday/Sunday still individually toggleable via View Options). </p>\n\n<p><b>Actual Result:</b> Week grid columns are ordered Sunday \u2192 Saturday; mini calendar is Monday-first on the same screen.</p>\n\n<p><a href=\"https://shopview.atlassian.net/secure/ViewProfile.jspa?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e\" class=\"user-hover\" rel=\"712020:6d590212-5c9b-4135-ae11-277f3826110e\" data-account-id=\"712020:6d590212-5c9b-4135-ae11-277f3826110e\" accountid=\"712020:6d590212-5c9b-4135-ae11-277f3826110e\" rel=\"noreferrer\">Bilal Muzamil</a> </p>\n\n<p><b>PRD:</b></p>\n\n\n<p><span class=\"image-wrap\" style=\"\"><img src=\"https://shopview.atlassian.net/rest/api/3/attachment/content/59264\" alt=\"image-20260804-120151.png\" width=\"667\" style=\"border: 0px solid black\" /></span></p>\n\n\n<p><b>QA Env:</b></p>\n\n\n<p><span class=\"image-wrap\" style=\"\"><img src=\"https://shopview.atlassian.net/rest/api/3/attachment/content/59265\" alt=\"image-20260804-120233.png\" width=\"667\" style=\"border: 0px solid black\" /></span></p>\n\n",
+   "reporter": null,
+   "issuelinks": null,
+   "customfield_10153": null,
+   "priority": null,
+   "status": null,
+   "labels": null
+  },
+  "fields": {
+   "summary": "Schedule week view starts on Sunday instead of Monday",
+   "parent": {
+    "id": "54707",
+    "key": "SV-8685",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+    "fields": {
+     "summary": "Schedule \u2014 Technician Scheduling Module",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+      "id": "10006",
+      "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+      "name": "Epic",
+      "subtask": false,
+      "avatarId": 10306,
+      "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+      "hierarchyLevel": 1
+     }
+    }
+   },
+   "creator": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "created": "2026-08-04T07:02:56.147-0500",
+   "description": {
+    "type": "doc",
+    "version": 1,
+    "content": [
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Description: ",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "text",
+        "text": "The week view grid renders columns Sunday \u2192 Saturday. The PRD and story SV-8686 define the week as a Mon\u2013Sun grid. The sidebar mini calendar on the same screen is already Monday-first, so the page shows two different week orders at once. "
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "text",
+        "text": "Steps to Reproduce: ",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "text",
+        "text": "1. Open "
+       },
+       {
+        "type": "inlineCard",
+        "attrs": {
+         "url": "http://sv8685.qa.shopview.com",
+         "localId": "d0460ec26f3b"
+        }
+       },
+       {
+        "type": "text",
+        "text": "  and go to Schedule. "
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "text",
+        "text": "2. Select the Week view. "
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "text",
+        "text": "3. Compare the grid's first column with the mini calendar's first column."
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "text",
+        "text": "Expected Result:",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       },
+       {
+        "type": "text",
+        "text": " Week grid columns are ordered Monday \u2192 Sunday (Saturday/Sunday still individually toggleable via View Options). "
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "text",
+        "text": "Actual Result:",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       },
+       {
+        "type": "text",
+        "text": " Week grid columns are ordered Sunday \u2192 Saturday; mini calendar is Monday-first on the same screen."
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "mention",
+        "attrs": {
+         "id": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+         "text": "@Bilal Muzamil",
+         "accessLevel": "",
+         "localId": "f3cdaffb-714a-4f1e-9398-609f50a6fea4"
+        }
+       },
+       {
+        "type": "text",
+        "text": " "
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "text",
+        "text": "PRD:",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       },
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "40269c44aa7e"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 667,
+       "widthType": "pixel",
+       "localId": "ab734102431d",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "c16637b2-a7b9-463e-b071-80fd391a227f",
+         "alt": "image-20260804-120151.png",
+         "collection": "",
+         "localId": "030199dc52be",
+         "height": 455,
+         "width": 977
+        }
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "text",
+        "text": "QA Env:",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       },
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "989d5d7774a0"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 667,
+       "widthType": "pixel",
+       "localId": "3e2c08cde361",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "b6190269-d03b-4357-b1ff-3b368482fda9",
+         "alt": "image-20260804-120233.png",
+         "collection": "",
+         "localId": "4a4b99b4c689",
+         "height": 1172,
+         "width": 1909
+        }
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "989d5d7774a0"
+      }
+     }
+    ]
+   },
+   "reporter": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "issuelinks": [],
+   "customfield_10153": {
+    "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+    "value": "Schedule",
+    "id": "10123",
+    "color": "GREY"
+   },
+   "priority": {
+    "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+    "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+    "name": "Medium",
+    "id": "3"
+   },
+   "status": {
+    "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+    "description": "",
+    "iconUrl": "https://shopview.atlassian.net/",
+    "name": "Open",
+    "id": "10349",
+    "statusCategory": {
+     "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+     "id": 2,
+     "key": "new",
+     "colorName": "blue-gray",
+     "name": "To Do"
+    }
+   },
+   "labels": [
+    "FS-Schedule"
+   ]
+  }
+ },
+ "SV-8827": {
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "54946",
+  "self": "https://shopview.atlassian.net/rest/api/3/issue/54946",
+  "key": "SV-8827",
+  "renderedFields": {
+   "summary": null,
+   "creator": null,
+   "created": "Today 5:26 PM",
+   "description": "<p><b>Description</b></p>\n\n<p>On a fresh session with no saved view preferences, all six View Options toggles are enabled. </p>\n\n<p><b>Steps to Reproduce</b></p>\n\n<ol>\n\t<li>Log in to qa environment.</li>\n\t<li>Click the View Options control in the grid toolbar</li>\n\t<li>Observe the default state of each toggle</li>\n</ol>\n\n\n<p><b>Expected Result</b></p>\n\n<p>Business Hours is OFF, Tech Hours is OFF, Capacity Planning is ON, Events is ON, Show Saturday is ON, Show Sunday is ON.</p>\n\n<p><b>Actual Result</b></p>\n\n<p>All six toggles are ON. Business Hours and Tech Hours are enabled when they should be disabled by default.</p>\n\n\n<p><span class=\"nobr\"><a href=\"/rest/api/3/attachment/content/59266\" title=\"screen-capture (25).webm attached to SV-8827\" data-attachment-type=\"file\" data-attachment-name=\"screen-capture (25).webm\" data-media-services-type=\"file\" data-media-services-id=\"1b1b1be0-4782-4669-82bd-6491680322e8\" rel=\"noreferrer\">screen-capture (25).webm<sup><img class=\"rendericon\" src=\"/images/icons/link_attachment_7.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\"/></sup></a></span></p>\n\n<p><b>PRD:</b></p>\n\n\n<p><span class=\"image-wrap\" style=\"\"><img src=\"https://shopview.atlassian.net/rest/api/3/attachment/content/59267\" alt=\"image-20260804-122614.png\" width=\"667\" style=\"border: 0px solid black\" /></span></p>",
+   "reporter": null,
+   "issuelinks": null,
+   "customfield_10153": null,
+   "priority": null,
+   "status": null,
+   "labels": null
+  },
+  "fields": {
+   "summary": "[Schedule] View Options \u2014 Business Hours and Tech Hours default to ON instead of OFF",
+   "parent": {
+    "id": "54707",
+    "key": "SV-8685",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+    "fields": {
+     "summary": "Schedule \u2014 Technician Scheduling Module",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+      "id": "10006",
+      "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+      "name": "Epic",
+      "subtask": false,
+      "avatarId": 10306,
+      "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+      "hierarchyLevel": 1
+     }
+    }
+   },
+   "creator": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "created": "2026-08-04T07:26:45.475-0500",
+   "description": {
+    "type": "doc",
+    "version": 1,
+    "content": [
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Description",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "21059f2649c7"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "On a fresh session with no saved view preferences, all six View Options toggles are enabled. "
+       }
+      ],
+      "attrs": {
+       "localId": "c00345328ab4"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Steps to Reproduce",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "3f89fd26ecad"
+      }
+     },
+     {
+      "type": "orderedList",
+      "attrs": {
+       "order": 1,
+       "localId": "1d64cf0d458a"
+      },
+      "content": [
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "c107349449a2"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Log in to qa environment."
+           }
+          ],
+          "attrs": {
+           "localId": "79cbb3ff6c44"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "755dfcffafc6"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Click the View Options control in the grid toolbar"
+           }
+          ],
+          "attrs": {
+           "localId": "4713494b1308"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "85acdf8d8062"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Observe the default state of each toggle"
+           }
+          ],
+          "attrs": {
+           "localId": "d7509f9c7ff2"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Expected Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "465f38c02211"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Business Hours is OFF, Tech Hours is OFF, Capacity Planning is ON, Events is ON, Show Saturday is ON, Show Sunday is ON."
+       }
+      ],
+      "attrs": {
+       "localId": "60bf952afb6f"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Actual Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "b67d7bd27ceb"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "All six toggles are ON. Business Hours and Tech Hours are enabled when they should be disabled by default."
+       },
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "2a3af81fde3b"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 320,
+       "widthType": "pixel",
+       "localId": "f289f27595fa",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "1b1b1be0-4782-4669-82bd-6491680322e8",
+         "alt": "screen-capture (25).webm",
+         "collection": "",
+         "localId": "53729a7e476f"
+        }
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "PRD:",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       },
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "5c3da3483ee5"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 667,
+       "widthType": "pixel",
+       "localId": "f9804fdf1f99",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "c034e5cc-58aa-4e44-8cc7-ddfbc9424e03",
+         "alt": "image-20260804-122614.png",
+         "collection": "",
+         "localId": "e77f54bf82b2",
+         "height": 633,
+         "width": 1212
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "reporter": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "issuelinks": [],
+   "customfield_10153": {
+    "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+    "value": "Schedule",
+    "id": "10123",
+    "color": "GREY"
+   },
+   "priority": {
+    "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+    "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+    "name": "Medium",
+    "id": "3"
+   },
+   "status": {
+    "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+    "description": "",
+    "iconUrl": "https://shopview.atlassian.net/",
+    "name": "Open",
+    "id": "10349",
+    "statusCategory": {
+     "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+     "id": 2,
+     "key": "new",
+     "colorName": "blue-gray",
+     "name": "To Do"
+    }
+   },
+   "labels": [
+    "FS-Schedule"
+   ]
+  }
+ },
+ "SV-8829": {
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "54948",
+  "self": "https://shopview.atlassian.net/rest/api/3/issue/54948",
+  "key": "SV-8829",
+  "renderedFields": {
+   "summary": null,
+   "creator": null,
+   "created": "Today 5:47 PM",
+   "description": "<p><b>Description</b></p>\n\n<p>The PRD requires the shift modal to show estimated hours with inline edit, and the scheduled line to show labor and total figures. The estimated hours value is displayed but cannot be edited, and no labor or total figures appear on the line.</p>\n\n<p><b>Steps to Reproduce</b></p>\n\n<ol>\n\t<li>Open the Schedule module</li>\n\t<li>Go to the week of Aug 2 to 8, 2026</li>\n\t<li>Click the Pamill Paving shift on the Jose Young row, Sunday Aug 2</li>\n\t<li>Click the 1h value on the \"Replace - Rear ramp handles\" line</li>\n\t<li>Look at the line row for labor and total figures</li>\n</ol>\n\n\n<p><b>Expected Result</b></p>\n\n<p>Clicking the estimated hours opens an inline edit control so the value can be changed. The line row shows labor and total figures.</p>\n\n<p><b>Actual Result</b></p>\n\n<p>The estimated hours value is not clickable or editable. The line row shows only 1h and an Authorized badge, with no labor or total figures.<br/>\n<a href=\"https://shopview.atlassian.net/secure/ViewProfile.jspa?accountId=712020%3A6d590212-5c9b-4135-ae11-277f3826110e\" class=\"user-hover\" rel=\"712020:6d590212-5c9b-4135-ae11-277f3826110e\" data-account-id=\"712020:6d590212-5c9b-4135-ae11-277f3826110e\" accountid=\"712020:6d590212-5c9b-4135-ae11-277f3826110e\" rel=\"noreferrer\">Bilal Muzamil</a> </p>\n\n\n<p><span class=\"nobr\"><a href=\"/rest/api/3/attachment/content/59269\" title=\"screen-capture (27).webm attached to SV-8829\" data-attachment-type=\"file\" data-attachment-name=\"screen-capture (27).webm\" data-media-services-type=\"file\" data-media-services-id=\"f4aab02f-3437-4fbc-8ccb-66b7b3efba50\" rel=\"noreferrer\">screen-capture (27).webm<sup><img class=\"rendericon\" src=\"/images/icons/link_attachment_7.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\"/></sup></a></span></p>\n\n<p><span class=\"image-wrap\" style=\"\"><img src=\"https://shopview.atlassian.net/rest/api/3/attachment/content/59270\" alt=\"image-20260804-124546.png\" width=\"667\" style=\"border: 0px solid black\" /></span></p>",
+   "reporter": null,
+   "issuelinks": null,
+   "customfield_10153": null,
+   "priority": null,
+   "status": null,
+   "labels": null
+  },
+  "fields": {
+   "summary": "Shift detail modal: estimated hours is not editable and line labor/total figures are missing",
+   "parent": {
+    "id": "54707",
+    "key": "SV-8685",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+    "fields": {
+     "summary": "Schedule \u2014 Technician Scheduling Module",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+      "id": "10006",
+      "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+      "name": "Epic",
+      "subtask": false,
+      "avatarId": 10306,
+      "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+      "hierarchyLevel": 1
+     }
+    }
+   },
+   "creator": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "created": "2026-08-04T07:47:35.788-0500",
+   "description": {
+    "type": "doc",
+    "version": 1,
+    "content": [
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Description",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "e90ecdfe86f1"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The PRD requires the shift modal to show estimated hours with inline edit, and the scheduled line to show labor and total figures. The estimated hours value is displayed but cannot be edited, and no labor or total figures appear on the line."
+       }
+      ],
+      "attrs": {
+       "localId": "d58a35a9416c"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Steps to Reproduce",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "a4b359273f34"
+      }
+     },
+     {
+      "type": "orderedList",
+      "attrs": {
+       "order": 1,
+       "localId": "531e1645baeb"
+      },
+      "content": [
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "238796950c71"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Open the Schedule module"
+           }
+          ],
+          "attrs": {
+           "localId": "d4d968d016cc"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "1db4e0cbbc6f"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Go to the week of Aug 2 to 8, 2026"
+           }
+          ],
+          "attrs": {
+           "localId": "81aae35862ca"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "2c8c39874f1c"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Click the Pamill Paving shift on the Jose Young row, Sunday Aug 2"
+           }
+          ],
+          "attrs": {
+           "localId": "f15489af3907"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "512733580721"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Click the 1h value on the \"Replace - Rear ramp handles\" line"
+           }
+          ],
+          "attrs": {
+           "localId": "90a0c40a03ed"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "10d6c865616c"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Look at the line row for labor and total figures"
+           }
+          ],
+          "attrs": {
+           "localId": "8a203db20e34"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Expected Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "0291da52c93d"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Clicking the estimated hours opens an inline edit control so the value can be changed. The line row shows labor and total figures."
+       }
+      ],
+      "attrs": {
+       "localId": "ad7e6a1bfa73"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Actual Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "a1a97eec1296"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The estimated hours value is not clickable or editable. The line row shows only 1h and an Authorized badge, with no labor or total figures."
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "mention",
+        "attrs": {
+         "id": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+         "text": "@Bilal Muzamil",
+         "accessLevel": "",
+         "localId": "875bcd0b-2a7d-4a11-9289-5ef96a3a63fa"
+        }
+       },
+       {
+        "type": "text",
+        "text": " "
+       },
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "4818cfccbb36"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 320,
+       "widthType": "pixel",
+       "localId": "5446ccbbe51a",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "f4aab02f-3437-4fbc-8ccb-66b7b3efba50",
+         "alt": "screen-capture (27).webm",
+         "collection": "",
+         "localId": "c2ce7a8107e6"
+        }
+       }
+      ]
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 667,
+       "widthType": "pixel",
+       "localId": "8c894fd41818",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "02b75bfb-3e20-4589-a425-a2c8d4ad0d22",
+         "alt": "image-20260804-124546.png",
+         "collection": "",
+         "localId": "9b25252b7cf3",
+         "height": 362,
+         "width": 1124
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "reporter": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "issuelinks": [],
+   "customfield_10153": {
+    "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+    "value": "Schedule",
+    "id": "10123",
+    "color": "GREY"
+   },
+   "priority": {
+    "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+    "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+    "name": "Medium",
+    "id": "3"
+   },
+   "status": {
+    "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+    "description": "",
+    "iconUrl": "https://shopview.atlassian.net/",
+    "name": "Open",
+    "id": "10349",
+    "statusCategory": {
+     "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+     "id": 2,
+     "key": "new",
+     "colorName": "blue-gray",
+     "name": "To Do"
+    }
+   },
+   "labels": [
+    "FS-Schedule"
+   ]
+  }
+ },
+ "SV-8830": {
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "54949",
+  "self": "https://shopview.atlassian.net/rest/api/3/issue/54949",
+  "key": "SV-8830",
+  "renderedFields": {
+   "summary": null,
+   "creator": null,
+   "created": "Today 6:10 PM",
+   "description": "<p><b>Description</b></p>\n\n<p>A shift scheduled on Sunday for a technician who is not working weekends is not detected as a conflict. No warning icon on the block, no conflict pill in the toolbar, and no conflict banner in the modal. The PRD lists Weekend shift as a conflict type.</p>\n\n<p><b>Steps to Reproduce</b></p>\n\n<ol>\n\t<li>Open the Schedule module</li>\n\t<li>Go to the week of Aug 2 to 8, 2026</li>\n\t<li>Look at the Pamill Paving shift on the Jose Young row, Sunday Aug 2, 07:00 AM to 08:00 AM</li>\n\t<li>Check the block for a warning icon</li>\n\t<li>Check the toolbar for a conflict pill</li>\n\t<li>Click the block and check the modal for a conflict banner</li>\n</ol>\n\n\n<p><b>Expected Result</b></p>\n\n<p>The shift is flagged as a Weekend shift conflict. A warning icon shows on the block, the toolbar conflict pill shows a count and lists it in the dropdown, and the modal shows a conflict banner with an Adjust action.</p>\n\n<p><b>Actual Result</b></p>\n\n<p>No warning icon, no conflict pill, and no conflict banner. The shift is treated as normal even though the technician is set to Not working on Sunday.</p>\n\n\n\n<p><span class=\"image-wrap\" style=\"\"><img src=\"https://shopview.atlassian.net/rest/api/3/attachment/content/59271\" alt=\"image-20260804-125855.png\" width=\"667\" style=\"border: 0px solid black\" /></span></p>\n\n<p><span class=\"nobr\"><a href=\"/rest/api/3/attachment/content/59272\" title=\"screen-capture (28).webm attached to SV-8830\" data-attachment-type=\"file\" data-attachment-name=\"screen-capture (28).webm\" data-media-services-type=\"file\" data-media-services-id=\"4e3c3b6d-c0ee-4f2f-9675-9ee60e220138\" rel=\"noreferrer\">screen-capture (28).webm<sup><img class=\"rendericon\" src=\"/images/icons/link_attachment_7.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\"/></sup></a></span></p>",
+   "reporter": null,
+   "issuelinks": null,
+   "customfield_10153": null,
+   "priority": null,
+   "status": null,
+   "labels": null
+  },
+  "fields": {
+   "summary": "Weekend shift is not flagged as a conflict",
+   "parent": {
+    "id": "54707",
+    "key": "SV-8685",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+    "fields": {
+     "summary": "Schedule \u2014 Technician Scheduling Module",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+      "id": "10006",
+      "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+      "name": "Epic",
+      "subtask": false,
+      "avatarId": 10306,
+      "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+      "hierarchyLevel": 1
+     }
+    }
+   },
+   "creator": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "created": "2026-08-04T08:10:16.558-0500",
+   "description": {
+    "type": "doc",
+    "version": 1,
+    "content": [
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Description",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "8be2dd95c0ad"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "A shift scheduled on Sunday for a technician who is not working weekends is not detected as a conflict. No warning icon on the block, no conflict pill in the toolbar, and no conflict banner in the modal. The PRD lists Weekend shift as a conflict type."
+       }
+      ],
+      "attrs": {
+       "localId": "87903f776d96"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Steps to Reproduce",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "e8bf16a3c573"
+      }
+     },
+     {
+      "type": "orderedList",
+      "attrs": {
+       "order": 1,
+       "localId": "e177e88d491e"
+      },
+      "content": [
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "4c572dca3ae1"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Open the Schedule module"
+           }
+          ],
+          "attrs": {
+           "localId": "f6e6b512a591"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "dea3fa5b29c6"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Go to the week of Aug 2 to 8, 2026"
+           }
+          ],
+          "attrs": {
+           "localId": "a52cf3c02e52"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "5d12861ec91b"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Look at the Pamill Paving shift on the Jose Young row, Sunday Aug 2, 07:00 AM to 08:00 AM"
+           }
+          ],
+          "attrs": {
+           "localId": "63f812b8a1cf"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "8f5b85b96ada"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Check the block for a warning icon"
+           }
+          ],
+          "attrs": {
+           "localId": "d7d4a399d681"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "e5ce6cfd006f"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Check the toolbar for a conflict pill"
+           }
+          ],
+          "attrs": {
+           "localId": "1160c5aa2293"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "6c43883d7316"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Click the block and check the modal for a conflict banner"
+           }
+          ],
+          "attrs": {
+           "localId": "9669aef76216"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Expected Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "ae131bb6c208"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The shift is flagged as a Weekend shift conflict. A warning icon shows on the block, the toolbar conflict pill shows a count and lists it in the dropdown, and the modal shows a conflict banner with an Adjust action."
+       }
+      ],
+      "attrs": {
+       "localId": "6841b66144cb"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Actual Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "f24e428b3d91"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "No warning icon, no conflict pill, and no conflict banner. The shift is treated as normal even though the technician is set to Not working on Sunday."
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "7d74a6194717"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 667,
+       "widthType": "pixel",
+       "localId": "ee7adbd22b41",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "11166a50-040a-4b4a-8dab-11d8aab65eef",
+         "alt": "image-20260804-125855.png",
+         "collection": "",
+         "localId": "8ea3fdc539fa",
+         "height": 465,
+         "width": 783
+        }
+       }
+      ]
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 320,
+       "widthType": "pixel",
+       "localId": "e3f423ddf20a",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "4e3c3b6d-c0ee-4f2f-9675-9ee60e220138",
+         "alt": "screen-capture (28).webm",
+         "collection": "",
+         "localId": "bb827f108882"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "reporter": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "issuelinks": [],
+   "customfield_10153": {
+    "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+    "value": "Schedule",
+    "id": "10123",
+    "color": "GREY"
+   },
+   "priority": {
+    "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+    "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+    "name": "Medium",
+    "id": "3"
+   },
+   "status": {
+    "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+    "description": "",
+    "iconUrl": "https://shopview.atlassian.net/",
+    "name": "Open",
+    "id": "10349",
+    "statusCategory": {
+     "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+     "id": 2,
+     "key": "new",
+     "colorName": "blue-gray",
+     "name": "To Do"
+    }
+   },
+   "labels": [
+    "FS-Schedule"
+   ]
+  }
+ },
+ "SV-8831": {
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "54950",
+  "self": "https://shopview.atlassian.net/rest/api/3/issue/54950",
+  "key": "SV-8831",
+  "renderedFields": {
+   "summary": null,
+   "creator": null,
+   "created": "Today 6:11 PM",
+   "description": "<p><b>Description</b></p>\n\n<p>The Schedule grid shows Jose Young as a Parts Technician row and he is listed as lead tech on WO S8685-12876, but searching Staff for Jose Young returns no results. Grid rows are supposed to come from staff records with a department assignment.</p>\n\n<p><b>Steps to Reproduce</b></p>\n\n<ol>\n\t<li>Open the Schedule module, week of Aug 2 to 8, 2026</li>\n\t<li>Note the Jose Young row with the Pamill Paving shift on Sunday Aug 2</li>\n\t<li>Go to Staff</li>\n\t<li>Search for Jose Young</li>\n</ol>\n\n\n<p><b>Expected Result</b></p>\n\n<p>Jose Young exists as an active staff member with a department assignment.</p>\n\n<p><b>Actual Result</b></p>\n\n<p>No staff record is found for Jose Young, yet he renders as a technician row on the Schedule and as lead tech on a work order.</p>\n\n<p><span class=\"nobr\"><a href=\"/rest/api/3/attachment/content/59273\" title=\"screen-capture (28).webm attached to SV-8831\" data-attachment-type=\"file\" data-attachment-name=\"screen-capture (28).webm\" data-media-services-type=\"file\" data-media-services-id=\"fd050979-81e3-4167-8e8b-579994e30f7d\" rel=\"noreferrer\">screen-capture (28).webm<sup><img class=\"rendericon\" src=\"/images/icons/link_attachment_7.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\"/></sup></a></span></p>",
+   "reporter": null,
+   "issuelinks": null,
+   "customfield_10153": null,
+   "priority": null,
+   "status": null,
+   "labels": null
+  },
+  "fields": {
+   "summary": "Technician Jose Young appears on the Schedule grid but has no staff record",
+   "parent": {
+    "id": "54707",
+    "key": "SV-8685",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+    "fields": {
+     "summary": "Schedule \u2014 Technician Scheduling Module",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+      "id": "10006",
+      "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+      "name": "Epic",
+      "subtask": false,
+      "avatarId": 10306,
+      "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+      "hierarchyLevel": 1
+     }
+    }
+   },
+   "creator": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "created": "2026-08-04T08:11:27.164-0500",
+   "description": {
+    "type": "doc",
+    "version": 1,
+    "content": [
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Description",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "d5c4fc8f900f"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The Schedule grid shows Jose Young as a Parts Technician row and he is listed as lead tech on WO S8685-12876, but searching Staff for Jose Young returns no results. Grid rows are supposed to come from staff records with a department assignment."
+       }
+      ],
+      "attrs": {
+       "localId": "cb3f6046953f"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Steps to Reproduce",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "57836a2cc237"
+      }
+     },
+     {
+      "type": "orderedList",
+      "attrs": {
+       "order": 1,
+       "localId": "4a4eefb6ec75"
+      },
+      "content": [
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "a9f963bc4dad"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Open the Schedule module, week of Aug 2 to 8, 2026"
+           }
+          ],
+          "attrs": {
+           "localId": "c913a3164e20"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "17291f247928"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Note the Jose Young row with the Pamill Paving shift on Sunday Aug 2"
+           }
+          ],
+          "attrs": {
+           "localId": "36de52288b24"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "27a5fdfc9efb"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Go to Staff"
+           }
+          ],
+          "attrs": {
+           "localId": "16c6c67d29d9"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "94f4784f6cb7"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Search for Jose Young"
+           }
+          ],
+          "attrs": {
+           "localId": "c22682a55733"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Expected Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "75b1e77bec9b"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Jose Young exists as an active staff member with a department assignment."
+       }
+      ],
+      "attrs": {
+       "localId": "51d761b6b4a2"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Actual Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "677429e5cf7c"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "No staff record is found for Jose Young, yet he renders as a technician row on the Schedule and as lead tech on a work order."
+       }
+      ],
+      "attrs": {
+       "localId": "26c2619d4205"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 320,
+       "widthType": "pixel",
+       "localId": "17f4b885aef9",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "fd050979-81e3-4167-8e8b-579994e30f7d",
+         "alt": "screen-capture (28).webm",
+         "collection": "",
+         "localId": "d226800a6767"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "reporter": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "issuelinks": [],
+   "customfield_10153": {
+    "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+    "value": "Schedule",
+    "id": "10123",
+    "color": "GREY"
+   },
+   "priority": {
+    "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+    "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+    "name": "Medium",
+    "id": "3"
+   },
+   "status": {
+    "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+    "description": "",
+    "iconUrl": "https://shopview.atlassian.net/",
+    "name": "Open",
+    "id": "10349",
+    "statusCategory": {
+     "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+     "id": 2,
+     "key": "new",
+     "colorName": "blue-gray",
+     "name": "To Do"
+    }
+   },
+   "labels": [
+    "FS-Schedule"
+   ]
+  }
+ },
+ "SV-8833": {
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "54953",
+  "self": "https://shopview.atlassian.net/rest/api/3/issue/54953",
+  "key": "SV-8833",
+  "renderedFields": {
+   "summary": null,
+   "creator": null,
+   "created": "Today 6:29 PM",
+   "description": "<p><b>Description</b></p>\n\n<p>The start and end time pickers in the shift modal let you pick any minute value. The PRD requires 15-minute increments, and the design shows a dropdown stepping 6:45, 7:00, 7:15, 7:30. Secondary issue: in QA the picker only opens from the clock icon, while in the design clicking the time field itself opens it.</p>\n\n<p><b>Steps to Reproduce</b></p>\n\n<ol>\n\t<li>Open the Schedule module, week of Aug 2 to 8, 2026</li>\n\t<li>Click any shift block to open the modal</li>\n\t<li>Click the clock icon in the start time field</li>\n\t<li>Look at the minute column</li>\n</ol>\n\n\n<p><b>Expected Result</b></p>\n\n<p>The picker offers 15-minute increments only, such as 7:00, 7:15, 7:30, 7:45, and it opens when the time field is clicked.</p>\n\n<p><b>Actual Result</b></p>\n\n<p>The minute column lists every minute, 00, 01, 02, 03, 04, 05 and so on, so any minute can be selected. The picker also opens only from the clock icon, not by clicking the field.</p>\n\n<p><b>PRD:</b></p>\n\n\n<p><span class=\"image-wrap\" style=\"\"><img src=\"https://shopview.atlassian.net/rest/api/3/attachment/content/59275\" alt=\"image-20260804-132823.png\" width=\"667\" style=\"border: 0px solid black\" /></span></p>\n\n\n\n\n<p><span class=\"nobr\"><a href=\"/rest/api/3/attachment/content/59276\" title=\"screen-capture (29).webm attached to SV-8833\" data-attachment-type=\"file\" data-attachment-name=\"screen-capture (29).webm\" data-media-services-type=\"file\" data-media-services-id=\"ff52fdcc-1620-4568-a46c-c027d54f2e71\" rel=\"noreferrer\">screen-capture (29).webm<sup><img class=\"rendericon\" src=\"/images/icons/link_attachment_7.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\"/></sup></a></span></p>",
+   "reporter": null,
+   "issuelinks": null,
+   "customfield_10153": null,
+   "priority": null,
+   "status": null,
+   "labels": null
+  },
+  "fields": {
+   "summary": "Shift time picker allows any minute instead of 15-minute increments",
+   "parent": {
+    "id": "54707",
+    "key": "SV-8685",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+    "fields": {
+     "summary": "Schedule \u2014 Technician Scheduling Module",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+      "id": "10006",
+      "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+      "name": "Epic",
+      "subtask": false,
+      "avatarId": 10306,
+      "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+      "hierarchyLevel": 1
+     }
+    }
+   },
+   "creator": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "created": "2026-08-04T08:29:29.513-0500",
+   "description": {
+    "type": "doc",
+    "version": 1,
+    "content": [
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Description",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "99be5146651b"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The start and end time pickers in the shift modal let you pick any minute value. The PRD requires 15-minute increments, and the design shows a dropdown stepping 6:45, 7:00, 7:15, 7:30. Secondary issue: in QA the picker only opens from the clock icon, while in the design clicking the time field itself opens it."
+       }
+      ],
+      "attrs": {
+       "localId": "86bf394e8b16"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Steps to Reproduce",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "0b833d96e63b"
+      }
+     },
+     {
+      "type": "orderedList",
+      "attrs": {
+       "order": 1,
+       "localId": "996372f22ecc"
+      },
+      "content": [
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "a6002c32657a"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Open the Schedule module, week of Aug 2 to 8, 2026"
+           }
+          ],
+          "attrs": {
+           "localId": "191232472112"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "5ac148b0cec9"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Click any shift block to open the modal"
+           }
+          ],
+          "attrs": {
+           "localId": "835007a84cd9"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "eeeeeaea777c"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Click the clock icon in the start time field"
+           }
+          ],
+          "attrs": {
+           "localId": "97d4e5244357"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "3afcb72c4f30"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Look at the minute column"
+           }
+          ],
+          "attrs": {
+           "localId": "ef91f54d1f90"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Expected Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "426b7c4711c5"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The picker offers 15-minute increments only, such as 7:00, 7:15, 7:30, 7:45, and it opens when the time field is clicked."
+       }
+      ],
+      "attrs": {
+       "localId": "e9369ae9dad8"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Actual Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "dcb49bea55b4"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The minute column lists every minute, 00, 01, 02, 03, 04, 05 and so on, so any minute can be selected. The picker also opens only from the clock icon, not by clicking the field."
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "text",
+        "text": "PRD:",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       },
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "667de10d2158"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 667,
+       "widthType": "pixel",
+       "localId": "fa572094d998",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "2494dff7-ea2f-4a11-b90d-1c3bf3348f46",
+         "alt": "image-20260804-132823.png",
+         "collection": "",
+         "localId": "dd224cafa1c0",
+         "height": 331,
+         "width": 919
+        }
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "bfd80ccf22eb"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 320,
+       "widthType": "pixel",
+       "localId": "670c2b4ece02",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "ff52fdcc-1620-4568-a46c-c027d54f2e71",
+         "alt": "screen-capture (29).webm",
+         "collection": "",
+         "localId": "9efcd07372ec"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "reporter": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "issuelinks": [],
+   "customfield_10153": {
+    "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+    "value": "Schedule",
+    "id": "10123",
+    "color": "GREY"
+   },
+   "priority": {
+    "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+    "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+    "name": "Medium",
+    "id": "3"
+   },
+   "status": {
+    "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+    "description": "",
+    "iconUrl": "https://shopview.atlassian.net/",
+    "name": "Open",
+    "id": "10349",
+    "statusCategory": {
+     "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+     "id": 2,
+     "key": "new",
+     "colorName": "blue-gray",
+     "name": "To Do"
+    }
+   },
+   "labels": [
+    "FS-Schedule"
+   ]
+  }
+ },
+ "SV-8834": {
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "54954",
+  "self": "https://shopview.atlassian.net/rest/api/3/issue/54954",
+  "key": "SV-8834",
+  "renderedFields": {
+   "summary": null,
+   "creator": null,
+   "created": "Today 6:39 PM",
+   "description": "<p><b>Description</b></p>\n\n<p>The shift tooltip and shift detail modal show TIME LOGGED as 1h / 1h with a full progress bar, but the work order shows Actual 0.00 of 1.00 and Progress 0%. No time has been clocked against the line, so the schedule is reporting work that never happened.</p>\n\n<p><b>Steps to Reproduce</b></p>\n\n<ol>\n\t<li>Open WO S8685-12876 and note line 1 shows Actual/Estimate 0.00 / 1.00 and Progress 0%</li>\n\t<li>Open the Schedule module, week of Aug 2 to 8, 2026</li>\n\t<li>Hover the Pamill Paving shift on the Jose Young row, Sunday Aug 2</li>\n\t<li>Also click the block to open the modal</li>\n\t<li>Compare the TIME LOGGED values</li>\n</ol>\n\n\n<p><b>Expected Result</b></p>\n\n<p>Time logged reflects actual clocked time, so it shows 0h / 1h with an empty progress bar.</p>\n\n<p><b>Actual Result</b></p>\n\n<p>Both the tooltip and the modal show 1h / 1h with a full progress bar, indicating the line is complete while the work order reports 0% and zero actual hours.</p>\n\n<p><span class=\"nobr\"><a href=\"/rest/api/3/attachment/content/59277\" title=\"screen-capture (30).webm attached to SV-8834\" data-attachment-type=\"file\" data-attachment-name=\"screen-capture (30).webm\" data-media-services-type=\"file\" data-media-services-id=\"bc3cf31e-08a6-4c1a-8870-d6b499853caa\" rel=\"noreferrer\">screen-capture (30).webm<sup><img class=\"rendericon\" src=\"/images/icons/link_attachment_7.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\"/></sup></a></span></p>",
+   "reporter": null,
+   "issuelinks": null,
+   "customfield_10153": null,
+   "priority": null,
+   "status": null,
+   "labels": null
+  },
+  "fields": {
+   "summary": "Schedule shows time logged as complete when nothing has been clocked",
+   "parent": {
+    "id": "54707",
+    "key": "SV-8685",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+    "fields": {
+     "summary": "Schedule \u2014 Technician Scheduling Module",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+      "id": "10006",
+      "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+      "name": "Epic",
+      "subtask": false,
+      "avatarId": 10306,
+      "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+      "hierarchyLevel": 1
+     }
+    }
+   },
+   "creator": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "created": "2026-08-04T08:39:57.685-0500",
+   "description": {
+    "type": "doc",
+    "version": 1,
+    "content": [
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Description",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "14b7a21f7762"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The shift tooltip and shift detail modal show TIME LOGGED as 1h / 1h with a full progress bar, but the work order shows Actual 0.00 of 1.00 and Progress 0%. No time has been clocked against the line, so the schedule is reporting work that never happened."
+       }
+      ],
+      "attrs": {
+       "localId": "f1c32b2fdd78"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Steps to Reproduce",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "dc61fc7b278f"
+      }
+     },
+     {
+      "type": "orderedList",
+      "attrs": {
+       "order": 1,
+       "localId": "7a8590e2fe39"
+      },
+      "content": [
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "a80fcc220859"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Open WO S8685-12876 and note line 1 shows Actual/Estimate 0.00 / 1.00 and Progress 0%"
+           }
+          ],
+          "attrs": {
+           "localId": "32041a985b14"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "7dbbb7285b73"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Open the Schedule module, week of Aug 2 to 8, 2026"
+           }
+          ],
+          "attrs": {
+           "localId": "e51d398b6a0c"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "dfad4d3fb7b1"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Hover the Pamill Paving shift on the Jose Young row, Sunday Aug 2"
+           }
+          ],
+          "attrs": {
+           "localId": "68647bb72aa2"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "ab2151c4495b"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Also click the block to open the modal"
+           }
+          ],
+          "attrs": {
+           "localId": "80edd66fef77"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "8f1a71b3e341"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Compare the TIME LOGGED values"
+           }
+          ],
+          "attrs": {
+           "localId": "eb9951f5a05f"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Expected Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "104310b08b27"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Time logged reflects actual clocked time, so it shows 0h / 1h with an empty progress bar."
+       }
+      ],
+      "attrs": {
+       "localId": "dd36f633919c"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Actual Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "09bece8e4622"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Both the tooltip and the modal show 1h / 1h with a full progress bar, indicating the line is complete while the work order reports 0% and zero actual hours."
+       }
+      ],
+      "attrs": {
+       "localId": "192305f9b6a0"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 320,
+       "widthType": "pixel",
+       "localId": "23d0abc26926",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "bc3cf31e-08a6-4c1a-8870-d6b499853caa",
+         "alt": "screen-capture (30).webm",
+         "collection": "",
+         "localId": "7ed6644d5bd8"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "reporter": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "issuelinks": [],
+   "customfield_10153": {
+    "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+    "value": "Schedule",
+    "id": "10123",
+    "color": "GREY"
+   },
+   "priority": {
+    "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+    "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+    "name": "Medium",
+    "id": "3"
+   },
+   "status": {
+    "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+    "description": "",
+    "iconUrl": "https://shopview.atlassian.net/",
+    "name": "Open",
+    "id": "10349",
+    "statusCategory": {
+     "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+     "id": 2,
+     "key": "new",
+     "colorName": "blue-gray",
+     "name": "To Do"
+    }
+   },
+   "labels": [
+    "FS-Schedule"
+   ]
+  }
+ },
+ "SV-8835": {
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "54955",
+  "self": "https://shopview.atlassian.net/rest/api/3/issue/54955",
+  "key": "SV-8835",
+  "renderedFields": {
+   "summary": null,
+   "creator": null,
+   "created": "Today 6:46 PM",
+   "description": "<p><b>Description</b></p>\n\n<p>The VIN Number toggle in Filter and Display is off by default, which should hide the VIN from shift blocks and hover tooltips. Blocks hide it correctly, but the tooltip still shows it.</p>\n\n<p><b>Steps to Reproduce</b></p>\n\n<ol>\n\t<li>Open the Schedule module, week of Aug 2 to 8, 2026</li>\n\t<li>Open Filter and Display and confirm VIN Number is unchecked</li>\n\t<li>Close the dropdown</li>\n\t<li>Hover any shift block for about one second</li>\n</ol>\n\n\n<p><b>Expected Result</b></p>\n\n<p>The tooltip does not show a VIN line while the VIN Number toggle is off.</p>\n\n<p><b>Actual Result</b></p>\n\n<p>The tooltip shows the VIN, for example \"713 \u00b7 VIN 3HAEUMMP1NL291283\", despite the toggle being off.</p>\n\n<p><span class=\"nobr\"><a href=\"/rest/api/3/attachment/content/59278\" title=\"screen-capture (31).webm attached to SV-8835\" data-attachment-type=\"file\" data-attachment-name=\"screen-capture (31).webm\" data-media-services-type=\"file\" data-media-services-id=\"a31890de-8a04-40f5-9ae8-b39746b40371\" rel=\"noreferrer\">screen-capture (31).webm<sup><img class=\"rendericon\" src=\"/images/icons/link_attachment_7.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\"/></sup></a></span></p>\n\n<p><b>PRD:</b></p>\n\n\n<p><span class=\"image-wrap\" style=\"\"><img src=\"https://shopview.atlassian.net/rest/api/3/attachment/content/59279\" alt=\"image-20260804-134623.png\" width=\"667\" style=\"border: 0px solid black\" /></span></p>",
+   "reporter": null,
+   "issuelinks": null,
+   "customfield_10153": null,
+   "priority": null,
+   "status": null,
+   "labels": null
+  },
+  "fields": {
+   "summary": "Hover tooltip shows VIN even when the VIN toggle is off",
+   "parent": {
+    "id": "54707",
+    "key": "SV-8685",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+    "fields": {
+     "summary": "Schedule \u2014 Technician Scheduling Module",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+      "id": "10006",
+      "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+      "name": "Epic",
+      "subtask": false,
+      "avatarId": 10306,
+      "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+      "hierarchyLevel": 1
+     }
+    }
+   },
+   "creator": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "created": "2026-08-04T08:46:42.213-0500",
+   "description": {
+    "type": "doc",
+    "version": 1,
+    "content": [
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Description",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "9b1689f29468"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The VIN Number toggle in Filter and Display is off by default, which should hide the VIN from shift blocks and hover tooltips. Blocks hide it correctly, but the tooltip still shows it."
+       }
+      ],
+      "attrs": {
+       "localId": "f4220d2d175c"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Steps to Reproduce",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "15e1a6732931"
+      }
+     },
+     {
+      "type": "orderedList",
+      "attrs": {
+       "order": 1,
+       "localId": "42a4ff9a36d7"
+      },
+      "content": [
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "1c14b2b22968"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Open the Schedule module, week of Aug 2 to 8, 2026"
+           }
+          ],
+          "attrs": {
+           "localId": "efb14938fe61"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "ea18a9e5b46d"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Open Filter and Display and confirm VIN Number is unchecked"
+           }
+          ],
+          "attrs": {
+           "localId": "b2119ca25099"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "b10ef47af261"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Close the dropdown"
+           }
+          ],
+          "attrs": {
+           "localId": "6f938e73c27d"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "fed4bf8aa671"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Hover any shift block for about one second"
+           }
+          ],
+          "attrs": {
+           "localId": "5f8f04ac4081"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Expected Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "9b7b8e5b98a9"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The tooltip does not show a VIN line while the VIN Number toggle is off."
+       }
+      ],
+      "attrs": {
+       "localId": "7e7c5bf84e49"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Actual Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "c000746b4ae0"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The tooltip shows the VIN, for example \"713 \u00b7 VIN 3HAEUMMP1NL291283\", despite the toggle being off."
+       }
+      ],
+      "attrs": {
+       "localId": "3995abaefaae"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 320,
+       "widthType": "pixel",
+       "localId": "83de50b657d7",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "a31890de-8a04-40f5-9ae8-b39746b40371",
+         "alt": "screen-capture (31).webm",
+         "collection": "",
+         "localId": "7113415f898d"
+        }
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "PRD:",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       },
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "33791a641ac6"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 667,
+       "widthType": "pixel",
+       "localId": "0485fce21146",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "80ce4342-808c-438d-a2eb-d654fe77be19",
+         "alt": "image-20260804-134623.png",
+         "collection": "",
+         "localId": "c04428a94833",
+         "height": 642,
+         "width": 902
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "reporter": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "issuelinks": [],
+   "customfield_10153": {
+    "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+    "value": "Schedule",
+    "id": "10123",
+    "color": "GREY"
+   },
+   "priority": {
+    "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+    "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+    "name": "Medium",
+    "id": "3"
+   },
+   "status": {
+    "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+    "description": "",
+    "iconUrl": "https://shopview.atlassian.net/",
+    "name": "Open",
+    "id": "10349",
+    "statusCategory": {
+     "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+     "id": 2,
+     "key": "new",
+     "colorName": "blue-gray",
+     "name": "To Do"
+    }
+   },
+   "labels": [
+    "FS-Schedule"
+   ]
+  }
+ },
+ "SV-8837": {
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "54957",
+  "self": "https://shopview.atlassian.net/rest/api/3/issue/54957",
+  "key": "SV-8837",
+  "renderedFields": {
+   "summary": null,
+   "creator": null,
+   "created": "Today 6:54 PM",
+   "description": "<p><b>Description</b></p>\n\n<p>Day view always opens with the timeline at 12 AM. It should scroll so the working-day start sits at the left edge with a small buffer before it. Shop business hours are off and Jose Young's hours start at 7:00 AM, so the timeline should open near 6:30 AM.</p>\n\n<p><b>Steps to Reproduce</b></p>\n\n<ol>\n\t<li>Open the Schedule module</li>\n\t<li>Click Day</li>\n\t<li>Note the leftmost time column</li>\n\t<li>Click the forward arrow to move to the next day</li>\n\t<li>Note the leftmost time column again</li>\n</ol>\n\n\n<p><b>Expected Result</b></p>\n\n<p>On load and on day navigation the timeline auto-scrolls so the working-day start is at the left edge, showing roughly 6:30 AM first.</p>\n\n<p><b>Actual Result</b></p>\n\n<p>The timeline starts at 12 AM on load and stays at 12 AM after navigating to the next day. The user has to scroll manually to reach working hours.</p>\n\n<p><b>PRD:</b></p>\n\n\n<p><span class=\"image-wrap\" style=\"\"><img src=\"https://shopview.atlassian.net/rest/api/3/attachment/content/59283\" alt=\"image-20260804-135314.png\" width=\"667\" style=\"border: 0px solid black\" /></span></p>\n\n<p><span class=\"nobr\"><a href=\"/rest/api/3/attachment/content/59284\" title=\"screen-capture (32).webm attached to SV-8837\" data-attachment-type=\"file\" data-attachment-name=\"screen-capture (32).webm\" data-media-services-type=\"file\" data-media-services-id=\"a1b88b19-1099-4db2-aa32-648eb3f1ef15\" rel=\"noreferrer\">screen-capture (32).webm<sup><img class=\"rendericon\" src=\"/images/icons/link_attachment_7.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\"/></sup></a></span></p>",
+   "reporter": null,
+   "issuelinks": null,
+   "customfield_10153": null,
+   "priority": null,
+   "status": null,
+   "labels": null
+  },
+  "fields": {
+   "summary": "Day view does not auto-scroll to the working-day start",
+   "parent": {
+    "id": "54707",
+    "key": "SV-8685",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+    "fields": {
+     "summary": "Schedule \u2014 Technician Scheduling Module",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+      "id": "10006",
+      "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+      "name": "Epic",
+      "subtask": false,
+      "avatarId": 10306,
+      "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+      "hierarchyLevel": 1
+     }
+    }
+   },
+   "creator": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "created": "2026-08-04T08:54:17.835-0500",
+   "description": {
+    "type": "doc",
+    "version": 1,
+    "content": [
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Description",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "53cdc066adfa"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Day view always opens with the timeline at 12 AM. It should scroll so the working-day start sits at the left edge with a small buffer before it. Shop business hours are off and Jose Young's hours start at 7:00 AM, so the timeline should open near 6:30 AM."
+       }
+      ],
+      "attrs": {
+       "localId": "590040969953"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Steps to Reproduce",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "3f1bcd0a7152"
+      }
+     },
+     {
+      "type": "orderedList",
+      "attrs": {
+       "order": 1,
+       "localId": "c30926766cb2"
+      },
+      "content": [
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "9247dc6e9cae"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Open the Schedule module"
+           }
+          ],
+          "attrs": {
+           "localId": "49d25e6ea474"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "f985253e8b57"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Click Day"
+           }
+          ],
+          "attrs": {
+           "localId": "b6124bb50dac"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "84f784b73185"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Note the leftmost time column"
+           }
+          ],
+          "attrs": {
+           "localId": "664a62e4ddce"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "f870146df910"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Click the forward arrow to move to the next day"
+           }
+          ],
+          "attrs": {
+           "localId": "3e04820879dd"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "bce46b139471"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Note the leftmost time column again"
+           }
+          ],
+          "attrs": {
+           "localId": "b7e1b825cb6b"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Expected Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "914d3434b281"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "On load and on day navigation the timeline auto-scrolls so the working-day start is at the left edge, showing roughly 6:30 AM first."
+       }
+      ],
+      "attrs": {
+       "localId": "1b9843735e34"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Actual Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "a6e34f843165"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The timeline starts at 12 AM on load and stays at 12 AM after navigating to the next day. The user has to scroll manually to reach working hours."
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "text",
+        "text": "PRD:",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       },
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "574085687ec5"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 667,
+       "widthType": "pixel",
+       "localId": "81f922c2d2dd",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "a6f8a156-ef00-4a7f-a9f2-461a6c683d27",
+         "alt": "image-20260804-135314.png",
+         "collection": "",
+         "localId": "022953b6e155",
+         "height": 224,
+         "width": 849
+        }
+       }
+      ]
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 320,
+       "widthType": "pixel",
+       "localId": "e588f356b448",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "a1b88b19-1099-4db2-aa32-648eb3f1ef15",
+         "alt": "screen-capture (32).webm",
+         "collection": "",
+         "localId": "ec0c4e09b25b"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "reporter": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "issuelinks": [],
+   "customfield_10153": {
+    "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+    "value": "Schedule",
+    "id": "10123",
+    "color": "GREY"
+   },
+   "priority": {
+    "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+    "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+    "name": "Medium",
+    "id": "3"
+   },
+   "status": {
+    "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+    "description": "",
+    "iconUrl": "https://shopview.atlassian.net/",
+    "name": "Open",
+    "id": "10349",
+    "statusCategory": {
+     "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+     "id": 2,
+     "key": "new",
+     "colorName": "blue-gray",
+     "name": "To Do"
+    }
+   },
+   "labels": [
+    "FS-Schedule"
+   ]
+  }
+ },
+ "SV-8839": {
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "54960",
+  "self": "https://shopview.atlassian.net/rest/api/3/issue/54960",
+  "key": "SV-8839",
+  "renderedFields": {
+   "summary": null,
+   "creator": null,
+   "created": "Today 7:29 PM",
+   "description": "<p><b>Description</b></p>\n\n<p>The capacity tooltip gives every technician their normal daily capacity on weekends, even when their staff record says Not working. Sunday Aug 2 shows the same 168h total capacity as Thursday Aug 6, a normal working day. Capacity should be the sum of the technicians' actual working hours for that day..</p>\n\n<p><b>Steps to Reproduce</b></p>\n\n<ol>\n\t<li>Open the Schedule module, Week view, week of Aug 2 to 8, 2026</li>\n\t<li>Hover the capacity bar under Thursday Aug 6 and note the total capacity</li>\n\t<li>Hover the capacity bar under Sunday Aug 2</li>\n\t<li>Compare the totals and Jose Young's capacity</li>\n</ol>\n\n\n<p><b>Expected Result</b></p>\n\n<p>Sunday capacity only counts technicians who work Sunday. Since nobody has Sunday hours, the total is 0h and Jose is not listed with a 12h capacity.</p>\n\n<p><b>Actual Result</b></p>\n\n<p>Sunday shows 31.7h assigned of 168h capacity, the same capacity as Thursday. Jose is listed as 1.2h / 12h even though Sunday is Not working for him.</p>\n\n<p><b>PRD:</b></p>\n\n\n<p><span class=\"image-wrap\" style=\"\"><img src=\"https://shopview.atlassian.net/rest/api/3/attachment/content/59286\" alt=\"image-20260804-142921.png\" width=\"667\" style=\"border: 0px solid black\" /></span></p>\n\n<p><span class=\"image-wrap\" style=\"\"><img src=\"https://shopview.atlassian.net/rest/api/3/attachment/content/59287\" alt=\"image-20260804-142901.png\" width=\"667\" style=\"border: 0px solid black\" /></span></p>",
+   "reporter": null,
+   "issuelinks": null,
+   "customfield_10153": null,
+   "priority": null,
+   "status": null,
+   "labels": null
+  },
+  "fields": {
+   "summary": "Capacity bar counts full capacity on days technicians are not working",
+   "parent": {
+    "id": "54707",
+    "key": "SV-8685",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+    "fields": {
+     "summary": "Schedule \u2014 Technician Scheduling Module",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+      "id": "10006",
+      "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+      "name": "Epic",
+      "subtask": false,
+      "avatarId": 10306,
+      "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+      "hierarchyLevel": 1
+     }
+    }
+   },
+   "creator": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "created": "2026-08-04T09:29:36.368-0500",
+   "description": {
+    "type": "doc",
+    "version": 1,
+    "content": [
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Description",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "4af62e45d8c4"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The capacity tooltip gives every technician their normal daily capacity on weekends, even when their staff record says Not working. Sunday Aug 2 shows the same 168h total capacity as Thursday Aug 6, a normal working day. Capacity should be the sum of the technicians' actual working hours for that day.."
+       }
+      ],
+      "attrs": {
+       "localId": "516dab19aeeb"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Steps to Reproduce",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "15c5362b760a"
+      }
+     },
+     {
+      "type": "orderedList",
+      "attrs": {
+       "order": 1,
+       "localId": "67d6e65ae9ca"
+      },
+      "content": [
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "6461a7529e4e"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Open the Schedule module, Week view, week of Aug 2 to 8, 2026"
+           }
+          ],
+          "attrs": {
+           "localId": "655430fe6328"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "360df98c056f"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Hover the capacity bar under Thursday Aug 6 and note the total capacity"
+           }
+          ],
+          "attrs": {
+           "localId": "929fa7f33779"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "306c99156d15"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Hover the capacity bar under Sunday Aug 2"
+           }
+          ],
+          "attrs": {
+           "localId": "dc5a2f99c2db"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "6d4410fecdb5"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Compare the totals and Jose Young's capacity"
+           }
+          ],
+          "attrs": {
+           "localId": "263eddd93fd6"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Expected Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "7403c07ff558"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Sunday capacity only counts technicians who work Sunday. Since nobody has Sunday hours, the total is 0h and Jose is not listed with a 12h capacity."
+       }
+      ],
+      "attrs": {
+       "localId": "584175c5fb2f"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Actual Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "d527d85e1b9a"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Sunday shows 31.7h assigned of 168h capacity, the same capacity as Thursday. Jose is listed as 1.2h / 12h even though Sunday is Not working for him."
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "text",
+        "text": "PRD:",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       },
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "516a55e21062"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 667,
+       "widthType": "pixel",
+       "localId": "57b0d06acaab",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "51a3abda-4cd5-4670-945e-fd9f4b4d1505",
+         "alt": "image-20260804-142921.png",
+         "collection": "",
+         "localId": "df759b4fef37",
+         "height": 366,
+         "width": 1078
+        }
+       }
+      ]
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 667,
+       "widthType": "pixel",
+       "localId": "860dd37c327b",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "5cb32a62-5719-49c5-919f-530c1614dc83",
+         "alt": "image-20260804-142901.png",
+         "collection": "",
+         "localId": "406844019bad",
+         "height": 1280,
+         "width": 1920
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "reporter": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "issuelinks": [],
+   "customfield_10153": {
+    "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+    "value": "Schedule",
+    "id": "10123",
+    "color": "GREY"
+   },
+   "priority": {
+    "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+    "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+    "name": "Medium",
+    "id": "3"
+   },
+   "status": {
+    "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+    "description": "",
+    "iconUrl": "https://shopview.atlassian.net/",
+    "name": "Open",
+    "id": "10349",
+    "statusCategory": {
+     "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+     "id": 2,
+     "key": "new",
+     "colorName": "blue-gray",
+     "name": "To Do"
+    }
+   },
+   "labels": [
+    "FS-Schedule"
+   ]
+  }
+ },
+ "SV-8840": {
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "54961",
+  "self": "https://shopview.atlassian.net/rest/api/3/issue/54961",
+  "key": "SV-8840",
+  "renderedFields": {
+   "summary": null,
+   "creator": null,
+   "created": "Today 7:39 PM",
+   "description": "<p><b>Description</b></p>\n\n<p>While dragging a work order or line from the sidebar, nothing appears on the grid. The block only shows up after the drop. The spec requires drop-target cells to highlight and a ghost block showing the line name and hours to follow the cursor.</p>\n\n<p><b>Steps to Reproduce</b></p>\n\n<ol>\n\t<li>Open the Schedule module, Week view, week of Aug 2 to 8, 2026</li>\n\t<li>In the sidebar open WO S8685-15875 Vuchester Retail</li>\n\t<li>Drag the \"Replace - Windshield button\" line over a technician cell and hold it there</li>\n\t<li>Observe the grid before releasing</li>\n</ol>\n\n\n<p><b>Expected Result</b></p>\n\n<p>The target cell highlights and a ghost block showing the line name and hours follows the cursor.</p>\n\n<p><b>Actual Result</b></p>\n\n<p>Nothing is shown during the drag. The block appears only after the mouse is released.</p>\n\n<p><b>PRD:</b></p>\n\n\n<p><span class=\"image-wrap\" style=\"\"><img src=\"https://shopview.atlassian.net/rest/api/3/attachment/content/59288\" alt=\"image-20260804-143857.png\" width=\"667\" style=\"border: 0px solid black\" /></span></p>\n\n<p><span class=\"nobr\"><a href=\"/rest/api/3/attachment/content/59289\" title=\"screen-capture (33).webm attached to SV-8840\" data-attachment-type=\"file\" data-attachment-name=\"screen-capture (33).webm\" data-media-services-type=\"file\" data-media-services-id=\"88c0528f-4b35-4873-9945-a17b0350f991\" rel=\"noreferrer\">screen-capture (33).webm<sup><img class=\"rendericon\" src=\"/images/icons/link_attachment_7.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\"/></sup></a></span></p>",
+   "reporter": null,
+   "issuelinks": null,
+   "customfield_10153": null,
+   "priority": null,
+   "status": null,
+   "labels": null
+  },
+  "fields": {
+   "summary": "No drag feedback while dragging a line onto the grid",
+   "parent": {
+    "id": "54707",
+    "key": "SV-8685",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+    "fields": {
+     "summary": "Schedule \u2014 Technician Scheduling Module",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+      "id": "10006",
+      "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+      "name": "Epic",
+      "subtask": false,
+      "avatarId": 10306,
+      "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+      "hierarchyLevel": 1
+     }
+    }
+   },
+   "creator": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "created": "2026-08-04T09:39:48.714-0500",
+   "description": {
+    "type": "doc",
+    "version": 1,
+    "content": [
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Description",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "d3fdad4ff432"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "While dragging a work order or line from the sidebar, nothing appears on the grid. The block only shows up after the drop. The spec requires drop-target cells to highlight and a ghost block showing the line name and hours to follow the cursor."
+       }
+      ],
+      "attrs": {
+       "localId": "b7d034596b45"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Steps to Reproduce",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "d5ff5bed22c2"
+      }
+     },
+     {
+      "type": "orderedList",
+      "attrs": {
+       "order": 1,
+       "localId": "e300dd52c272"
+      },
+      "content": [
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "8c5a8e717fca"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Open the Schedule module, Week view, week of Aug 2 to 8, 2026"
+           }
+          ],
+          "attrs": {
+           "localId": "94fc541d0208"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "c8df07124d5c"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "In the sidebar open WO S8685-15875 Vuchester Retail"
+           }
+          ],
+          "attrs": {
+           "localId": "7d1764b844d3"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "9bfd6329f1ef"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Drag the \"Replace - Windshield button\" line over a technician cell and hold it there"
+           }
+          ],
+          "attrs": {
+           "localId": "2edae94fb144"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "fa9f5220350e"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Observe the grid before releasing"
+           }
+          ],
+          "attrs": {
+           "localId": "582bc91e683c"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Expected Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "86f3ce33d616"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The target cell highlights and a ghost block showing the line name and hours follows the cursor."
+       }
+      ],
+      "attrs": {
+       "localId": "02d3051ced82"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Actual Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "5197d4b0e7be"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Nothing is shown during the drag. The block appears only after the mouse is released."
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "hardBreak"
+       },
+       {
+        "type": "text",
+        "text": "PRD:",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       },
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "1e11776a660d"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 667,
+       "widthType": "pixel",
+       "localId": "9ff298ecce9e",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "c6767feb-3cc2-4d35-8b3c-dff6c60724a2",
+         "alt": "image-20260804-143857.png",
+         "collection": "",
+         "localId": "bea7c53b7160",
+         "height": 93,
+         "width": 695
+        }
+       }
+      ]
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 320,
+       "widthType": "pixel",
+       "localId": "407a4144619d",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "88c0528f-4b35-4873-9945-a17b0350f991",
+         "alt": "screen-capture (33).webm",
+         "collection": "",
+         "localId": "3dd130ee19b3"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "reporter": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "issuelinks": [],
+   "customfield_10153": {
+    "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+    "value": "Schedule",
+    "id": "10123",
+    "color": "GREY"
+   },
+   "priority": {
+    "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+    "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+    "name": "Medium",
+    "id": "3"
+   },
+   "status": {
+    "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+    "description": "",
+    "iconUrl": "https://shopview.atlassian.net/",
+    "name": "Open",
+    "id": "10349",
+    "statusCategory": {
+     "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+     "id": 2,
+     "key": "new",
+     "colorName": "blue-gray",
+     "name": "To Do"
+    }
+   },
+   "labels": [
+    "FS-Schedule"
+   ]
+  }
+ },
+ "SV-8841": {
+  "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+  "id": "54962",
+  "self": "https://shopview.atlassian.net/rest/api/3/issue/54962",
+  "key": "SV-8841",
+  "renderedFields": {
+   "summary": null,
+   "creator": null,
+   "created": "Today 7:46 PM",
+   "description": "<p><b>Description</b></p>\n\n<p>The sidebar search matches the numeric part of a work order number but not the full number shown on the card. Typing S8685-9379 returns \"No schedulable work orders match this filter\", while typing 9379 returns the card. The spec says the search matches on WO number.</p>\n\n<p><b>Steps to Reproduce</b></p>\n\n<ol>\n\t<li>Open the Schedule module</li>\n\t<li>In the sidebar search type <tt>S8685-9379</tt></li>\n\t<li>Note the result</li>\n\t<li>Clear the search and type <tt>9379</tt></li>\n\t<li>Note the result</li>\n</ol>\n\n\n<p><b>Expected Result</b></p>\n\n<p>Both searches return the S8685-9379 Xiriver Apparel card, since S8685-9379 is the number displayed on the card.</p>\n\n<p><b>Actual Result</b></p>\n\n<p><tt>S8685-9379</tt> returns \"No schedulable work orders match this filter\". <tt>9379</tt> returns the card. Users copying the number as displayed get no results.</p>\n\n<p><b>PRD:</b></p>\n\n\n<p><span class=\"image-wrap\" style=\"\"><img src=\"https://shopview.atlassian.net/rest/api/3/attachment/content/59290\" alt=\"image-20260804-144513.png\" width=\"667\" style=\"border: 0px solid black\" /></span></p>\n\n<p><span class=\"nobr\"><a href=\"/rest/api/3/attachment/content/59291\" title=\"screen-capture (34).webm attached to SV-8841\" data-attachment-type=\"file\" data-attachment-name=\"screen-capture (34).webm\" data-media-services-type=\"file\" data-media-services-id=\"aba9e04a-b5f4-40cb-ac78-7564255f3f04\" rel=\"noreferrer\">screen-capture (34).webm<sup><img class=\"rendericon\" src=\"/images/icons/link_attachment_7.gif\" height=\"7\" width=\"7\" align=\"absmiddle\" alt=\"\" border=\"0\"/></sup></a></span></p>",
+   "reporter": null,
+   "issuelinks": null,
+   "customfield_10153": null,
+   "priority": null,
+   "status": null,
+   "labels": null
+  },
+  "fields": {
+   "summary": "Sidebar search returns no results when you type the full work order number",
+   "parent": {
+    "id": "54707",
+    "key": "SV-8685",
+    "self": "https://shopview.atlassian.net/rest/api/3/issue/54707",
+    "fields": {
+     "summary": "Schedule \u2014 Technician Scheduling Module",
+     "status": {
+      "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+      "description": "",
+      "iconUrl": "https://shopview.atlassian.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     },
+     "priority": {
+      "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+      "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+      "name": "Medium",
+      "id": "3"
+     },
+     "issuetype": {
+      "self": "https://shopview.atlassian.net/rest/api/3/issuetype/10006",
+      "id": "10006",
+      "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://shopview.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+      "name": "Epic",
+      "subtask": false,
+      "avatarId": 10306,
+      "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+      "hierarchyLevel": 1
+     }
+    }
+   },
+   "creator": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "created": "2026-08-04T09:46:56.162-0500",
+   "description": {
+    "type": "doc",
+    "version": 1,
+    "content": [
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Description",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "7127ac08072d"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "The sidebar search matches the numeric part of a work order number but not the full number shown on the card. Typing S8685-9379 returns \"No schedulable work orders match this filter\", while typing 9379 returns the card. The spec says the search matches on WO number."
+       }
+      ],
+      "attrs": {
+       "localId": "2e9e370be4a6"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Steps to Reproduce",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "fec308e9b1c9"
+      }
+     },
+     {
+      "type": "orderedList",
+      "attrs": {
+       "order": 1,
+       "localId": "8d5d9cfbaef3"
+      },
+      "content": [
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "f12903c243ae"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Open the Schedule module"
+           }
+          ],
+          "attrs": {
+           "localId": "80dcfb803abd"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "8ba3f57c0c1f"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "In the sidebar search type "
+           },
+           {
+            "type": "text",
+            "text": "S8685-9379",
+            "marks": [
+             {
+              "type": "code"
+             }
+            ]
+           }
+          ],
+          "attrs": {
+           "localId": "791c64bfb7fe"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "2c0884147157"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Note the result"
+           }
+          ],
+          "attrs": {
+           "localId": "1759b52a4363"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "86627da0d3db"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Clear the search and type "
+           },
+           {
+            "type": "text",
+            "text": "9379",
+            "marks": [
+             {
+              "type": "code"
+             }
+            ]
+           }
+          ],
+          "attrs": {
+           "localId": "ee360b731cac"
+          }
+         }
+        ]
+       },
+       {
+        "type": "listItem",
+        "attrs": {
+         "localId": "c9776845165d"
+        },
+        "content": [
+         {
+          "type": "paragraph",
+          "content": [
+           {
+            "type": "text",
+            "text": "Note the result"
+           }
+          ],
+          "attrs": {
+           "localId": "c45cc1930488"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Expected Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "b51d14fb1c8f"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Both searches return the S8685-9379 Xiriver Apparel card, since S8685-9379 is the number displayed on the card."
+       }
+      ],
+      "attrs": {
+       "localId": "fa728c61fa70"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "Actual Result",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       }
+      ],
+      "attrs": {
+       "localId": "b0c64789f4bb"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "S8685-9379",
+        "marks": [
+         {
+          "type": "code"
+         }
+        ]
+       },
+       {
+        "type": "text",
+        "text": " returns \"No schedulable work orders match this filter\". "
+       },
+       {
+        "type": "text",
+        "text": "9379",
+        "marks": [
+         {
+          "type": "code"
+         }
+        ]
+       },
+       {
+        "type": "text",
+        "text": " returns the card. Users copying the number as displayed get no results."
+       }
+      ],
+      "attrs": {
+       "localId": "fc5a1ffcf8e9"
+      }
+     },
+     {
+      "type": "paragraph",
+      "content": [
+       {
+        "type": "text",
+        "text": "PRD:",
+        "marks": [
+         {
+          "type": "strong"
+         }
+        ]
+       },
+       {
+        "type": "hardBreak"
+       }
+      ],
+      "attrs": {
+       "localId": "0fa552a9b518"
+      }
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 667,
+       "widthType": "pixel",
+       "localId": "7467314d6024",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "3ea8fb69-ea89-475b-96cf-25ea759460ac",
+         "alt": "image-20260804-144513.png",
+         "collection": "",
+         "localId": "16be8085d115",
+         "height": 254,
+         "width": 891
+        }
+       }
+      ]
+     },
+     {
+      "type": "mediaSingle",
+      "attrs": {
+       "width": 320,
+       "widthType": "pixel",
+       "localId": "39e3314bbedd",
+       "layout": "align-start"
+      },
+      "content": [
+       {
+        "type": "media",
+        "attrs": {
+         "type": "file",
+         "id": "aba9e04a-b5f4-40cb-ac78-7564255f3f04",
+         "alt": "screen-capture (34).webm",
+         "collection": "",
+         "localId": "1104912ac910"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "reporter": {
+    "self": "https://shopview.atlassian.net/rest/api/3/user?accountId=712020%3A84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "accountId": "712020:84ecb06c-438d-4faa-b4c4-b1cba819f6a8",
+    "avatarUrls": {
+     "48x48": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "24x24": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "16x16": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png",
+     "32x32": "https://secure.gravatar.com/avatar/3e58a5daa7c0e75809d3411e4323e040?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMQ-0.png"
+    },
+    "displayName": "Mudassir Qamar",
+    "active": true,
+    "timeZone": "America/Bogota",
+    "accountType": "atlassian"
+   },
+   "issuelinks": [],
+   "customfield_10153": {
+    "self": "https://shopview.atlassian.net/rest/api/3/customFieldOption/10123",
+    "value": "Schedule",
+    "id": "10123",
+    "color": "GREY"
+   },
+   "priority": {
+    "self": "https://shopview.atlassian.net/rest/api/3/priority/3",
+    "iconUrl": "https://shopview.atlassian.net/images/icons/priorities/medium_new.svg",
+    "name": "Medium",
+    "id": "3"
+   },
+   "status": {
+    "self": "https://shopview.atlassian.net/rest/api/3/status/10349",
+    "description": "",
+    "iconUrl": "https://shopview.atlassian.net/",
+    "name": "Open",
+    "id": "10349",
+    "statusCategory": {
+     "self": "https://shopview.atlassian.net/rest/api/3/statuscategory/2",
+     "id": 2,
+     "key": "new",
+     "colorName": "blue-gray",
+     "name": "To Do"
+    }
+   },
+   "labels": [
+    "FS-Schedule"
+   ]
+  }
+ }
+}
