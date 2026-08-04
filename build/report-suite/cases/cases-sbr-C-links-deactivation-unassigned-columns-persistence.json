@@ -230,7 +230,7 @@
    "5. After each action, check the staff member's active status."
   ],
   "expected": [
-   "1. The dialog has a \"Cancel\" button (red outline) and an \"X\" close icon.",
+   "1. The dialog has a \"Cancel\" button (grey) and an \"X\" close icon; the \"Deactivate\" button is the red one.",
    "2. Clicking \"Cancel\" closes the dialog; clicking the \"X\" icon closes the dialog.",
    "3. Pressing the \"Esc\" key does NOT close the dialog - it stays open (the app's general rule is that pop-ups do not close with the Esc key).",
    "4. Clicking outside the dialog does NOT close it.",
@@ -345,7 +345,7 @@
    "3. Dismiss, re-open the dialog, and look at the confirmation input."
   ],
   "expected": [
-   "1. An error toast is shown: \"Ooooops! An error occured\" with the caption \"For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance.\" — it persists 120 seconds or until dismissed.",
+   "1. An error toast is shown: \"Ooooops! An error occurred\" with the caption \"For more information, please contact support. Include your request ID: [{request-id}] when reaching out for faster assistance.\" — it persists 120 seconds or until dismissed.",
    "2. The active status is unchanged.",
    "3. Each fresh dialog open requires a fresh confirmation entry — the input clears on open.",
    "---",
