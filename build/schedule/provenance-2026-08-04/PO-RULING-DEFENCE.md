@@ -251,3 +251,50 @@ is still HELD pending Branko on those two points.**
 | Fix the §9 View-options VIN row so it stops tying the tooltip to the toggle | Branko | Nothing testable; contradicts his own 2026-07-31 answer | flagged 2026-07-22, re-flagged 2026-07-31, **never asked** |
 | Confirm the 8-week / 120-shift spread caps are product-intended | Branko / engineering | 2 cases (group C) | **never asked** |
 | Confirm the two user-visible tech-plan behaviours: Dashboard one-row, multi-location scoping | Branko | 2 cases (D2, D4) | **never asked** |
+
+---
+
+# REFRESH — 2026-08-04, after the live VIU on QA branch `sv8685`
+
+This register was written from the documents alone, before the Schedule had a build. It has now
+been re-checked against the running app and against a refreshed read of the epic. **Nothing in it
+was wrong. Two things got sharper and one count changed.**
+
+## What changed
+
+| | as written above | **now** |
+|---|---|---|
+| epic children | 16 (SV-8812 new) | **28** — the 15 stories all moved to `Ready for QA`, SV-8812 is **Done** (it is this branch), and **twelve `Bug` tickets SV-8826…SV-8841 were raised on 2026-08-04 by Mudassir Qamar** |
+| the rulings' standing | asserted from the documents | **each one now also confirmed against the build** |
+| group B (spec says it both ways, no ruling) | 3 cases, HIGH ×2 | **unchanged — and now provably unsettleable by testing:** there is **no shop-closure setting anywhere in the app**, so no amount of live work can decide it. Only Branko can. |
+
+## The rulings, re-confirmed on the build
+
+| ruling | live observation on `v3.5-4873abe` |
+|---|---|
+| **the money ruling** (2026-07-22, *"We do not show total $ anywhere in the schedule"*) | **holds** — no money field appears in the shift window's line rows, and none appears in the board, work-orders or shift data at all. The lines carry only name, status and time. |
+| **the VIN ruling** (2026-07-31, Q6 = A, *"Vin is always visible on hover regardless of the toggle"*) | **holds** — the hover summary shows the VIN with the switch off. |
+| **the modal-Reassign descope** (2026-07-22) | **holds** — the shift window has a delete bin, close, colour, Add Note and Open Work Order, and no Reassign control. Reassignment is by dragging, which works. |
+| **events count toward capacity** (2026-07-31) | **holds** — confirmed live, as recorded above. |
+
+## The sharper point: two of the twelve new tickets argue AGAINST two of these rulings
+
+This is now the register's most likely challenge, so it is stated plainly here as well as in
+`../viu-2026-08-04/DELIBERATE-DECISIONS.md` entries 1 and 2:
+
+| ticket | what it says | the ruling it contradicts | our position |
+|---|---|---|---|
+| **[SV-8835](https://shopview.atlassian.net/browse/SV-8835)** | the hover summary should hide the VIN when the switch is off | Branko, **2026-07-31, Q6 = A** — *"Vin is always visible on hover regardless of the toggle"* | the ruling stands (Rule 33); **his ticket was not touched** (Rule 38); it is on the QA lead's desk with both texts |
+| **[SV-8829](https://shopview.atlassian.net/browse/SV-8829)** | the shift window should show labor and total figures | Branko, **2026-07-22** — *"We do not show total $ anywhere in the schedule."* | same. Note the ticket's **other** half — no inline editor on the estimated hours — **is** a genuine gap against §4.9 and is confirmed, so the ticket is not simply wrong |
+
+**Why this matters for the defence:** the spec text those tickets were read from **is still
+present in version 23**. So if this is raised in public we are not arguing that the reviewer
+misread the document — we are arguing that a later ruling supersedes it, and **that only works if
+the spec is corrected.** Both corrections are already on the outstanding list above and **neither
+has ever been asked for.** That is the concession, and it is ours to make, not Branko's.
+
+## Nothing here was changed on the strength of this refresh
+
+No case was re-worded to follow a ticket over a ruling, and no ticket of another author's was
+touched. The only writes made during the recovery were the ten logged in
+`../recovery-2026-08-04/testrail-execution-log.md`, none of which touch a group A or group B case.
