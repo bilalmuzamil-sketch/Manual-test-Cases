@@ -68,7 +68,7 @@ else owes).
 
 ---
 
-## 1. REPORT SUITE — PO: Chris Ward · Epic **SV-8582** · **ours: 475 active cases, all VIU-Pending** (live folder total 480 — the other 5 are Vladimir Tomovic's automation cases, hands-off per Standing Rule 38)
+## 1. REPORT SUITE — PO: Chris Ward · Epic **SV-8582** · **ours: 469 active cases** (live folder total 474 — the other 5 are Vladimir Tomovic's automation cases, hands-off per Standing Rule 38) · **324 verified against the build · 392 of 469 automatable today**
 
 > **UPDATED 2026-08-04 — the exhaustive audit changes the counts and adds 6 asks.**
 > **Population is 478, not 475** (the three cases authored 2026-08-04 — SBC-API-06 = C43546,
@@ -645,3 +645,44 @@ gap.** The ruling remains right: the question it was filed about was settled the
 is hidden and inert — and **today's read confirms that call**, because SV-8598's contrary text is the
 *older* source and loses under Rule 32. **Nothing would unblock it except you reversing the ruling, and
 I see no reason to suggest that.**
+
+---
+
+## 2026-08-04 (final unattended session) — REPORT SUITE: the count settled, the merges closed out, and ELEVEN asks
+
+**Canonical readiness deliverable: `build/report-suite/READINESS-2026-08-04.md`.** Full evidence:
+`count-reconciliation-2026-08-04.md` · `rulings-2026-08-04/RULING-3-RECONFIRMED-NEW-BUILD.md` ·
+`build-change-2026-08-04/BUILD-MOVED-2026-08-04.md` · `step3-notes-2026-08-04/EXECUTION-LOG.md` ·
+`step4-retire-2026-08-04/LOCAL-SOURCE-FIX.md` · `step6-reconcile-2026-08-04/`.
+
+**THE HEADLINE NUMBERS, all set-equal both directions: ours 469 / live 474 / run 359 = 469 tests /
+529 results.** 324 verified against the build · 16 failing against an open ticket · 47 held for Chris ·
+52 needing a tool · **392 automatable today**.
+
+**⚠️ THE QA BRANCH WAS REDEPLOYED at 10:41:58 UTC** — `v3.4.1-0ed4433` → **`v3.4.1-3d03023`**, all
+three markers changed. Every earlier finding is now **provisional against a superseded build**, the
+Rule-49 queue is due in full, and **the 469 provenance lines say "the build tested on 8/4/2026", which
+is ambiguous because two builds existed that day.** Re-stamping needs a live session.
+
+### What I need from you — eleven items
+
+| # | What | What it blocks | Since |
+|---|---|---|---|
+| 1 | **Approve the correction to [C30590](https://shopview.testrail.io/index.php?/cases/view/30590)** — the deploy added a `"Date Range:"` first line, so its *"the CSV's first line reads As of:"* note is now **false** and a tester will report a non-defect | one case is actively misleading | 2026-08-04 |
+| 2 | **Yes or no on DECLINING `MG-WIP-TOTAL-PINNED`** — keep [C30521](https://shopview.testrail.io/index.php?/cases/view/30521) and [C30494](https://shopview.testrail.io/index.php?/cases/view/30494) separate. Different anchors, a column vs a row, and C30521 is the only Work In Progress case covering the Total column under sideways scroll | only the "recommended count" wording; both cases are live and correct | 2026-08-04 |
+| 3 | **A decision on raising the "Inventory Value download ignores your chosen columns and re-orders them" ticket.** User-facing, so Rule 51 does not bar it; **nothing filed** | a real, spec-breaching fault has no ticket | 2026-08-04 |
+| 4 | **Should the verbatim "Known and accepted" line also go on [C30588](https://shopview.testrail.io/index.php?/cases/view/30588)?** I put it only on [C30589](https://shopview.testrail.io/index.php?/cases/view/30589), because item 3 asks for a ticket on C30588's problem and telling a tester to ignore it would contradict that | one wording point | 2026-08-04 |
+| 5 | **Approve the 3 wording fixes** that make [C30605](https://shopview.testrail.io/index.php?/cases/view/30605), [C30606](https://shopview.testrail.io/index.php?/cases/view/30606), [C30607](https://shopview.testrail.io/index.php?/cases/view/30607) runnable today | 3 cases read as blocked when they are not | 2026-08-04 |
+| 6 | **Permission to make the import a ONE-COMMAND wrapper** (sync from live → generate → re-merge C-ids). Today the generator silently deleted **all 47** do-not-automate warnings and I had to restore them | a repeat of today's near-miss, which no output would reveal | 2026-08-04 |
+| 7 | **Fresh cookies**, if you want the two carried-forward items re-observed on `3d03023`: the on-screen column order, and a per-cell value comparison of the download. **This was my own error** — I burned the refreshed session by calling `quick-login` about ten times | 2 findings are carried forward rather than re-seen | 2026-08-04 |
+| 8 | **The 7 leftover `refs` spec-version pins** — C30519, C30536, C30565, C30574, C30589, C30596, C30597. Still open from 2026-08-03; one word completes it | 7 cases cite a spec with no version | 2026-08-03 |
+| 9 | **Chris Ward's answers** to the consolidated workbook | **47 cases cannot be automated** | 2026-08-04 |
+| 10 | **Chris Ward to correct the Inventory Value Story 10 context note** so our mirror stops saying the build is wrong on a point you accepted | our own record contradicts your ruling | 2026-08-04 |
+| 11 | **From engineering: a nightly-capture trigger · history older than 13 months · and what `3d03023` changed / whether the branch is final** | 6 cases can never run, 2 more not until ~Sept 2027, and the Rule-49 queue cannot close | 2026-08-03/04 |
+
+### Cleared today
+
+- ~~**Rule on the 9 MERGE groups + 1 CUT**~~ — **CLEARED.** Authorised and **8 merges + the cut EXECUTED** (content folded into every survivor first, all byte-verified); the 9th, `MG-WIP-TOTAL-PINNED`, is **declined pending item 2**.
+- ~~**Are the counts 478 or 469?**~~ — **CLEARED.** Both were right, an hour apart, across the deletions. `478 − 469 = 9`.
+- ~~**Ruling 3: is SV-8823 good to stay closed?**~~ — **ANSWERED, both halves separately, and re-driven live on the new build.** The money **is** visible and correct (zero arithmetic failures across all 9,275 rows), so your condition is met; but it **does** land as text (55,656 of 55,656 money cells), and the spec requires the opposite in writing — so it stays closed **as an accepted deviation**, which is item 10.
+- ~~**The local case source was 57 bodies out of step**~~ — **CLEARED and it was a different, worse problem:** the 57 were already marked Retired; the real gap was the **9** from today's merges, **plus** a stale local source that reverted 63 rows of live content on regeneration.
