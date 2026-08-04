@@ -1,0 +1,667 @@
+{
+ "dateSpans": {
+  "365d": {
+   "status": 200,
+   "rows": 6434,
+   "err": null
+  },
+  "366d": {
+   "status": 200,
+   "rows": 6434,
+   "err": null
+  },
+  "367d": {
+   "status": 200,
+   "rows": 6434,
+   "err": null
+  },
+  "500d": {
+   "status": 400,
+   "err": "[{\"error\":\"Date range cannot exceed 366 days.\"}]"
+  },
+  "2y": {
+   "status": 400,
+   "err": "[{\"error\":\"Date range cannot exceed 366 days.\"}]"
+  },
+  "reversed": {
+   "status": 400,
+   "err": "[{\"error\":\"Invalid start date provided. Must be less than end date.\"}]"
+  }
+ },
+ "scanned": 10064,
+ "fractional": [
+  {
+   "p": "MOB122046",
+   "us": 240,
+   "oh": 238.11
+  },
+  {
+   "p": "ATFMVDD",
+   "us": 116,
+   "oh": 128.55
+  },
+  {
+   "p": "DTE24UD",
+   "us": 741,
+   "oh": 189.6
+  },
+  {
+   "p": "SH550045136",
+   "us": 23,
+   "oh": 48.7
+  },
+  {
+   "p": "R134A",
+   "us": 23,
+   "oh": 113.99
+  },
+  {
+   "p": "NL329-08",
+   "us": 119,
+   "oh": 43.5
+  }
+ ],
+ "demand1zero": [
+  {
+   "p": "CHHD2436",
+   "type": "inventory",
+   "us": 0,
+   "d": 4,
+   "oh": 1,
+   "rev": 16704
+  },
+  {
+   "p": "5-3256X",
+   "type": "inventory",
+   "us": 0,
+   "d": 3,
+   "oh": 0,
+   "rev": 17372
+  },
+  {
+   "p": "CR1643",
+   "type": "inventory",
+   "us": 0,
+   "d": 3,
+   "oh": 2,
+   "rev": 5654
+  },
+  {
+   "p": "FD-4647",
+   "type": "inventory",
+   "us": 0,
+   "d": 2,
+   "oh": 0,
+   "rev": 16568
+  },
+  {
+   "p": "6207",
+   "type": "special_order",
+   "us": 0,
+   "d": 2,
+   "oh": null,
+   "rev": 0
+  },
+  {
+   "p": "84693643",
+   "type": "special_order",
+   "us": 0,
+   "d": 2,
+   "oh": null,
+   "rev": 0
+  }
+ ],
+ "negativeUnits": [
+  {
+   "p": "B3157",
+   "us": -1,
+   "d": 3,
+   "oh": 10,
+   "rev": 268,
+   "tpy": -0.1697674418
+  },
+  {
+   "p": "B921",
+   "us": -1,
+   "d": 2,
+   "oh": 4,
+   "rev": 100,
+   "tpy": -0.4244186045
+  },
+  {
+   "p": "DBJD16053",
+   "us": -1,
+   "d": 2,
+   "oh": 1,
+   "rev": 7420,
+   "tpy": -1.697674418
+  },
+  {
+   "p": "FS19727",
+   "us": -1,
+   "d": 2,
+   "oh": 1,
+   "rev": 3312,
+   "tpy": -1.697674418
+  },
+  {
+   "p": "N64CTH-262",
+   "us": -3,
+   "d": 2,
+   "oh": 4,
+   "rev": 661,
+   "tpy": -1.27325581375
+  },
+  {
+   "p": "1221-308",
+   "us": -24,
+   "d": 1,
+   "oh": 0,
+   "rev": 0,
+   "tpy": 0
+  }
+ ],
+ "zeroKeptByRevenue": [
+  {
+   "p": "5-3256X",
+   "type": "inventory",
+   "us": 0,
+   "oh": 0,
+   "rev": 17372
+  },
+  {
+   "p": "FD-4647",
+   "type": "inventory",
+   "us": 0,
+   "oh": 0,
+   "rev": 16568
+  },
+  {
+   "p": "293105-500",
+   "type": "inventory",
+   "us": 0,
+   "oh": 0.5,
+   "rev": 5370
+  },
+  {
+   "p": "2108982",
+   "type": "inventory",
+   "us": 0,
+   "oh": 0,
+   "rev": 256413
+  },
+  {
+   "p": "571.LD60A24",
+   "type": "inventory",
+   "us": 0,
+   "oh": 0,
+   "rev": 7144
+  },
+  {
+   "p": "DONJ009486",
+   "type": "inventory",
+   "us": 0,
+   "oh": 0,
+   "rev": 1207
+  }
+ ],
+ "violatesS3N1": [],
+ "specialOrderNulls": [
+  {
+   "p": "SUBLET",
+   "type": "special_order",
+   "oh": null,
+   "tpy": null,
+   "min": null,
+   "max": null,
+   "loc": "Multiple"
+  },
+  {
+   "p": "FREIGHT",
+   "type": "special_order",
+   "oh": null,
+   "tpy": null,
+   "min": null,
+   "max": null,
+   "loc": "Multiple"
+  },
+  {
+   "p": "--",
+   "type": "special_order",
+   "oh": null,
+   "tpy": null,
+   "min": null,
+   "max": null,
+   "loc": "Staging Lethbridge - 4310"
+  },
+  {
+   "p": "SSR922",
+   "type": "special_order",
+   "oh": null,
+   "tpy": null,
+   "min": null,
+   "max": null,
+   "loc": "Staging Heavy Duty - 9919"
+  }
+ ],
+ "perLocationRows": {
+  "part": "2750",
+  "rows": [
+   {
+    "loc": "Staging Heavy Duty - 9919",
+    "oh": 1,
+    "min": 0,
+    "max": 1,
+    "us": 0
+   },
+   {
+    "loc": "Staging Lethbridge - 4310",
+    "oh": 2,
+    "min": 0,
+    "max": 0,
+    "us": 0
+   }
+  ]
+ },
+ "calcSample": [
+  {
+   "p": "BRAKECLEAN",
+   "revenue": 433211,
+   "margin": 163406,
+   "cogs": 269805,
+   "unit_cost": 479,
+   "sell_price": 769,
+   "margin_pct": 37.72,
+   "mp_recomputed": 37.72,
+   "impliedBilledUnitsFromSell": 563.34,
+   "impliedBilledUnitsFromCost": 563.27,
+   "soldWo": 563,
+   "soldPs": 0,
+   "unitsSold": 512
+  },
+  {
+   "p": "BRAKECLEAN",
+   "revenue": 257305,
+   "margin": 23123,
+   "cogs": 234182,
+   "unit_cost": 621,
+   "sell_price": 683,
+   "margin_pct": 8.99,
+   "mp_recomputed": 8.99,
+   "impliedBilledUnitsFromSell": 376.73,
+   "impliedBilledUnitsFromCost": 377.1,
+   "soldWo": 375,
+   "soldPs": 2,
+   "unitsSold": 359
+  },
+  {
+   "p": "GREASETUBE",
+   "revenue": 168273,
+   "margin": 81516,
+   "cogs": 86757,
+   "unit_cost": 404,
+   "sell_price": 783,
+   "margin_pct": 48.44,
+   "mp_recomputed": 48.44,
+   "impliedBilledUnitsFromSell": 214.91,
+   "impliedBilledUnitsFromCost": 214.75,
+   "soldWo": 214,
+   "soldPs": 1,
+   "unitsSold": 208
+  },
+  {
+   "p": "REC15204",
+   "revenue": 131764,
+   "margin": 40558,
+   "cogs": 91206,
+   "unit_cost": 432,
+   "sell_price": 624,
+   "margin_pct": 30.78,
+   "mp_recomputed": 30.78,
+   "impliedBilledUnitsFromSell": 211.16,
+   "impliedBilledUnitsFromCost": 211.13,
+   "soldWo": 209,
+   "soldPs": 2,
+   "unitsSold": 207
+  },
+  {
+   "p": "GREASETUBE",
+   "revenue": 212878,
+   "margin": 127236,
+   "cogs": 85642,
+   "unit_cost": 437,
+   "sell_price": 1086,
+   "margin_pct": 59.77,
+   "mp_recomputed": 59.77,
+   "impliedBilledUnitsFromSell": 196.02,
+   "impliedBilledUnitsFromCost": 195.98,
+   "soldWo": 196,
+   "soldPs": 0,
+   "unitsSold": 182
+  },
+  {
+   "p": "WWF",
+   "revenue": 106631,
+   "margin": 35850,
+   "cogs": 70781,
+   "unit_cost": 398,
+   "sell_price": 599,
+   "margin_pct": 33.62,
+   "mp_recomputed": 33.62,
+   "impliedBilledUnitsFromSell": 178.02,
+   "impliedBilledUnitsFromCost": 177.84,
+   "soldWo": 164,
+   "soldPs": 14,
+   "unitsSold": 170
+  },
+  {
+   "p": "76-2405PK",
+   "revenue": 18895,
+   "margin": 12152,
+   "cogs": 6743,
+   "unit_cost": 13,
+   "sell_price": 38,
+   "margin_pct": 64.31,
+   "mp_recomputed": 64.31,
+   "impliedBilledUnitsFromSell": 497.24,
+   "impliedBilledUnitsFromCost": 518.69,
+   "soldWo": 501,
+   "soldPs": 0,
+   "unitsSold": 485
+  },
+  {
+   "p": "SERVICE CALL FUEL SURCHARGE",
+   "revenue": 932687,
+   "margin": 924243,
+   "cogs": 8444,
+   "unit_cost": 1,
+   "sell_price": 110,
+   "margin_pct": 99.09,
+   "mp_recomputed": 99.09,
+   "impliedBilledUnitsFromSell": 8478.97,
+   "impliedBilledUnitsFromCost": 8444,
+   "soldWo": 8444,
+   "soldPs": 0,
+   "unitsSold": 8200
+  }
+ ],
+ "marginPctMismatches": [],
+ "billedUnitsConsistency": [
+  {
+   "p": "BRAKECLEAN",
+   "revenue": 433211,
+   "margin": 163406,
+   "cogs": 269805,
+   "unit_cost": 479,
+   "sell_price": 769,
+   "margin_pct": 37.72,
+   "mp_recomputed": 37.72,
+   "impliedBilledUnitsFromSell": 563.34,
+   "impliedBilledUnitsFromCost": 563.27,
+   "soldWo": 563,
+   "soldPs": 0,
+   "unitsSold": 512
+  },
+  {
+   "p": "BRAKECLEAN",
+   "revenue": 257305,
+   "margin": 23123,
+   "cogs": 234182,
+   "unit_cost": 621,
+   "sell_price": 683,
+   "margin_pct": 8.99,
+   "mp_recomputed": 8.99,
+   "impliedBilledUnitsFromSell": 376.73,
+   "impliedBilledUnitsFromCost": 377.1,
+   "soldWo": 375,
+   "soldPs": 2,
+   "unitsSold": 359
+  },
+  {
+   "p": "GREASETUBE",
+   "revenue": 168273,
+   "margin": 81516,
+   "cogs": 86757,
+   "unit_cost": 404,
+   "sell_price": 783,
+   "margin_pct": 48.44,
+   "mp_recomputed": 48.44,
+   "impliedBilledUnitsFromSell": 214.91,
+   "impliedBilledUnitsFromCost": 214.75,
+   "soldWo": 214,
+   "soldPs": 1,
+   "unitsSold": 208
+  },
+  {
+   "p": "WWF",
+   "revenue": 106631,
+   "margin": 35850,
+   "cogs": 70781,
+   "unit_cost": 398,
+   "sell_price": 599,
+   "margin_pct": 33.62,
+   "mp_recomputed": 33.62,
+   "impliedBilledUnitsFromSell": 178.02,
+   "impliedBilledUnitsFromCost": 177.84,
+   "soldWo": 164,
+   "soldPs": 14,
+   "unitsSold": 170
+  },
+  {
+   "p": "76-2405PK",
+   "revenue": 18895,
+   "margin": 12152,
+   "cogs": 6743,
+   "unit_cost": 13,
+   "sell_price": 38,
+   "margin_pct": 64.31,
+   "mp_recomputed": 64.31,
+   "impliedBilledUnitsFromSell": 497.24,
+   "impliedBilledUnitsFromCost": 518.69,
+   "soldWo": 501,
+   "soldPs": 0,
+   "unitsSold": 485
+  }
+ ],
+ "soldSumVsBilled": [
+  {
+   "p": "BRAKECLEAN",
+   "soldWoPlusPs": 563,
+   "impliedBilled": 563.34,
+   "unitsSold": 512
+  },
+  {
+   "p": "BRAKECLEAN",
+   "soldWoPlusPs": 377,
+   "impliedBilled": 376.73,
+   "unitsSold": 359
+  },
+  {
+   "p": "GREASETUBE",
+   "soldWoPlusPs": 215,
+   "impliedBilled": 214.91,
+   "unitsSold": 208
+  },
+  {
+   "p": "REC15204",
+   "soldWoPlusPs": 211,
+   "impliedBilled": 211.16,
+   "unitsSold": 207
+  },
+  {
+   "p": "GREASETUBE",
+   "soldWoPlusPs": 196,
+   "impliedBilled": 196.02,
+   "unitsSold": 182
+  },
+  {
+   "p": "WWF",
+   "soldWoPlusPs": 178,
+   "impliedBilled": 178.02,
+   "unitsSold": 170
+  },
+  {
+   "p": "76-2405PK",
+   "soldWoPlusPs": 501,
+   "impliedBilled": 497.24,
+   "unitsSold": 485
+  },
+  {
+   "p": "SERVICE CALL FUEL SURCHARGE",
+   "soldWoPlusPs": 8444,
+   "impliedBilled": 8478.97,
+   "unitsSold": 8200
+  },
+  {
+   "p": "HDEO14",
+   "soldWoPlusPs": 2117,
+   "impliedBilled": 2116.35,
+   "unitsSold": 1858
+  },
+  {
+   "p": "Fuel",
+   "soldWoPlusPs": 7210,
+   "impliedBilled": 7234.57,
+   "unitsSold": 7111
+  }
+ ],
+ "turnsCheck": [
+  {
+   "p": "BRAKECLEAN",
+   "us": 512,
+   "oh": 618,
+   "tpy": 1.40648754422,
+   "recomputed": 1.39998
+  },
+  {
+   "p": "BRAKECLEAN",
+   "us": 359,
+   "oh": 12,
+   "tpy": 50.78875968992,
+   "recomputed": 50.55363
+  },
+  {
+   "p": "GREASETUBE",
+   "us": 208,
+   "oh": 39,
+   "tpy": 9.05426356587,
+   "recomputed": 9.01235
+  },
+  {
+   "p": "REC15204",
+   "us": 207,
+   "oh": 297,
+   "tpy": 1.18322762509,
+   "recomputed": 1.17775
+  },
+  {
+   "p": "GREASETUBE",
+   "us": 182,
+   "oh": 23,
+   "tpy": 13.43377148635,
+   "recomputed": 13.37158
+  },
+  {
+   "p": "WWF",
+   "us": 170,
+   "oh": 200,
+   "tpy": 1.44302325581,
+   "recomputed": 1.43634
+  }
+ ],
+ "turnsZeroOnHand": [
+  {
+   "p": "WS2",
+   "us": 23,
+   "oh": 0,
+   "tpy": 0
+  },
+  {
+   "p": "14-17927-000",
+   "us": 17,
+   "oh": 0,
+   "tpy": 0
+  },
+  {
+   "p": "57151",
+   "us": 11,
+   "oh": 0,
+   "tpy": 0
+  },
+  {
+   "p": "7502MP",
+   "us": 11,
+   "oh": 0,
+   "tpy": 0
+  }
+ ],
+ "nullMixed": {
+  "costNullRevenuePositive": [],
+  "marginPctNullSellZero": [
+   {
+    "p": "200905",
+    "rev": 0,
+    "uc": 4055,
+    "sp": 0,
+    "mp": null
+   },
+   {
+    "p": "131095",
+    "rev": 0,
+    "uc": 3495,
+    "sp": 0,
+    "mp": null
+   },
+   {
+    "p": "3049221",
+    "rev": 0,
+    "uc": 407,
+    "sp": 0,
+    "mp": null
+   },
+   {
+    "p": "3684284",
+    "rev": 0,
+    "uc": 1017,
+    "sp": 0,
+    "mp": null
+   }
+  ],
+  "allThreeNull": [
+   {
+    "p": "6207",
+    "rev": 0,
+    "mg": 0
+   },
+   {
+    "p": "84693643",
+    "rev": 0,
+    "mg": 0
+   },
+   {
+    "p": "N000000004751",
+    "rev": 0,
+    "mg": 0
+   }
+  ],
+  "revenueOrMarginNull": 0,
+  "lastSaleNull": 6478
+ },
+ "coreLookup": {
+  "status": 200,
+  "sample": [
+   {
+    "pn": "P550848",
+    "core": 0,
+    "coreId": null
+   },
+   {
+    "pn": "FS19732",
+    "core": 0,
+    "coreId": null
+   }
+  ]
+ },
+ "corePartsFound": [],
+ "corePartsInReport": []
+}

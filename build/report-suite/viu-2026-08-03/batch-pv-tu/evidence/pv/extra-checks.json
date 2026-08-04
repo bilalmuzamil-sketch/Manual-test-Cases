@@ -1,0 +1,149 @@
+{
+ "spanBoundary": {
+  "368incl": {
+   "status": 400,
+   "err": "[{\"error\":\"Date range cannot exceed 366 days.\"}]"
+  },
+  "369incl": {
+   "status": 400,
+   "err": "[{\"error\":\"Date range cannot exceed 366 days.\"}]"
+  },
+  "400incl": {
+   "status": 400,
+   "err": "[{\"error\":\"Date range cannot exceed 366 days.\"}]"
+  },
+  "367incl": {
+   "status": 200,
+   "err": null,
+   "rows": 6434
+  }
+ },
+ "inventoryScanned": 6879,
+ "coreFlaggedCount": 20,
+ "coreFlaggedSample": [
+  {
+   "pn": "FLT1443E23",
+   "core": 43.47,
+   "coreId": "cc06f6cc-9bdf-4625-b6a2-a159cb545158",
+   "oh": 0
+  },
+  {
+   "pn": "213-4760",
+   "core": 32.76,
+   "coreId": "a12d4741-c9da-4be7-ba56-b3e9d565be5e",
+   "oh": 0
+  },
+  {
+   "pn": "XSS504692DFCII",
+   "core": 56,
+   "coreId": "130e23de-2564-443b-8796-34f6f3b0e3de",
+   "oh": 1
+  },
+  {
+   "pn": "S31S-950",
+   "core": 32.4,
+   "coreId": "4805fcee-e7fe-4b81-b884-291f2bd2f194",
+   "oh": 17
+  },
+  {
+   "pn": "MT47HH5",
+   "core": 16,
+   "coreId": "010312b6-e54b-4e6a-9743-e9af3d75eca3",
+   "oh": 1
+  },
+  {
+   "pn": "DDE-EA0101531928",
+   "core": 158.6,
+   "coreId": "703bd446-d290-4e05-9916-6732b15778c7",
+   "oh": 0
+  },
+  {
+   "pn": "MT47/H5",
+   "core": 16,
+   "coreId": "2a8b7842-f825-4894-ba3e-0e05534b5260",
+   "oh": 0
+  },
+  {
+   "pn": "C12200235EX",
+   "core": 305.9,
+   "coreId": "3920a140-6880-4cbc-8d26-e94f2a1a20f5",
+   "oh": 0
+  }
+ ],
+ "catalogProbe": {
+  "status": 200,
+  "keys": [
+   "id",
+   "work_order_id",
+   "line_id",
+   "vendor_id",
+   "inventory_part_id",
+   "status",
+   "cost",
+   "core_charge",
+   "margin",
+   "discount",
+   "sell_price",
+   "arrived_date",
+   "quantity",
+   "part_number",
+   "description",
+   "number",
+   "cost_display",
+   "core_charge_display",
+   "sell_price_display"
+  ]
+ },
+ "lastSaleBeyondWindow": [
+  {
+   "p": "5009041-G3",
+   "lastSale": 574,
+   "us": 0,
+   "demand": 0
+  },
+  {
+   "p": "1471-6C",
+   "lastSale": 573,
+   "us": 0,
+   "demand": 0
+  },
+  {
+   "p": "2--PC1469S-4B",
+   "lastSale": 573,
+   "us": 0,
+   "demand": 0
+  },
+  {
+   "p": "3--PC1468-6B",
+   "lastSale": 573,
+   "us": 0,
+   "demand": 0
+  },
+  {
+   "p": "FOIL-TAPE",
+   "lastSale": 572,
+   "us": 0,
+   "demand": 0
+  }
+ ],
+ "thisMonthWindowDays": 4,
+ "tuSummary": {
+  "rows": 28,
+  "totalHours": "15915.24",
+  "woHours": "12841.91",
+  "internalHours": "3073.32",
+  "weightedPct": "80.7",
+  "averageOfRowPct": "85.2",
+  "ellSumCents": 46276339
+ },
+ "reconcileTarget": {
+  "name": "Colleen Guerrero",
+  "staff_id": "16469a2e-c167-4797-b16e-a17bdc5f32e9",
+  "total": "1024.57"
+ },
+ "timesheetProbe": [
+  "/api/reporting/reports/punch-clock-activities?range=this_year&technicianId=16469a2e-c167-4797-b16e-a17bdc5f32e9 -> 404",
+  "/api/reporting/punch-clock?range=this_year&technicianId=16469a2e-c167-4797-b16e-a17bdc5f32e9 -> 404",
+  "/api/reporting/reports/punch-clock?range=this_year -> 404"
+ ]
+}

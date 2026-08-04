@@ -1,0 +1,10 @@
+import { login, api } from './qa8582.mjs';
+const t=await login('admin'); const S=t.sessCookie;
+const p=(n,r,l=700)=>console.log('#',n,r.status,(typeof r.body==='string'?r.body:JSON.stringify(r.body)).slice(0,l));
+p('cat empty', await api(S,'POST','/api/parts-catalogue/add-catalogue-part',{}));
+const cats=await api(S,'GET','/api/categories?pagination[rowsPerPage]=5');
+p('categories', cats, 400);
+const bins=await api(S,'GET','/api/bin-locations?pagination[rowsPerPage]=5');
+p('bins', bins, 400);
+const cat=await api(S,'GET','/api/parts-catalogue?pagination[rowsPerPage]=2');
+p('catalogue list', cat, 900);

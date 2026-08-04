@@ -1,0 +1,15 @@
+import { login, api } from './qa8582.mjs';
+const t=await login('admin'); const S=t.sessCookie;
+const HD='b3c8c820-f815-4cf1-8938-10956c5ee71a',LE='f8a8b802-7780-4b16-bf10-343caeb616b2';
+const PID='2233f83f-c915-45bf-9170-2370cb83425a', CAT='dbc8e4da-65d7-4fdd-871d-3b744d0c8afd', CATEG='d64e8f1b-31e7-4c39-bedf-0846d97963cc', BIN='12954f55-479b-11f1-9bed-020a144de1a3';
+const p=(n,r,l=500)=>console.log('#',n,r.status,(typeof r.body==='string'?r.body:JSON.stringify(r.body)).slice(0,l));
+const full={id:PID, catalog_part_id:CAT, category_id:CATEG, quantity:5, purchase_price:10, tags:[], bins:[{id:BIN,quantity:5,isDefault:true}], workplace_id:HD, sell_price:20, min:0, max:10};
+p('change +is_core', await api(S,'POST','/api/inventory/parts/change',{...full, is_core:true}));
+let l=await api(S,'GET','/api/inventory/parts?search=ZZAUTOTEST&pagination[rowsPerPage]=5');
+console.log('after is_core:', JSON.stringify((l.body?.data?.collection||[]).map(x=>({is_core:x.is_core,core_charge:x.core_charge,cpid:x.core_part_id}))));
+p('change +isCore', await api(S,'POST','/api/inventory/parts/change',{...full, isCore:true}));
+p('change +core', await api(S,'POST','/api/inventory/parts/change',{...full, core:true, core_charge:25}));
+l=await api(S,'GET','/api/inventory/parts?search=ZZAUTOTEST&pagination[rowsPerPage]=5');
+console.log('final:', JSON.stringify((l.body?.data?.collection||[]).map(x=>({is_core:x.is_core,core_charge:x.core_charge,cpid:x.core_part_id}))));
+const r=await api(S,'GET',`/api/reporting/reports/parts-velocity?type=both&range=this_year&locations=${HD},${LE}&search=ZZAUTOTEST&pagination[rowsPerPage]=20`);
+console.log('PV rows:', JSON.stringify((r.body?.data?.collection||[]).map(x=>({pn:x.part_number,oh:x.on_hand}))));
