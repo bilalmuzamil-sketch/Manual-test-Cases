@@ -1484,3 +1484,79 @@ does — that is the core exclusion, and `core_charge > 0` is **not** the same t
 spec's inclusive 216: `512/215*365/618 = 1.40648754422` matches the payload exactly (216 would give
 1.39998). Reproduced on a second row. Useful as a worked example of settling a calculation dispute
 from the payload alone.
+
+### N.2 SBC / SBR report internals + the seeding chain (proven 2026-08-04, build v3.4.1-0ed4433)
+
+**Report UI selectors (Quasar) — do not re-derive.**
+- Date range trigger is **`span.date-range-label`** (NOT a `.q-btn`). Presets inside the popup are
+  **`div.preset-option`** in **`div.preset-sidebar`** (active one also carries `.active`); the readout
+  is **`span.range-indicator`** ("Range: N days"); then an **Apply** `.q-btn`.
+  **Exactly NINE presets, and NO "Custom"/"Today"/"Yesterday":** Last 12 Months · This Year · Last Year ·
+  This Quarter · Last Quarter · This Month · Last Month · This Week · Last Week. Default is **This Month**,
+  which on this org is EMPTY — always widen to Last 12 Months before observing anything.
+- Export menu = **`[aria-label="Export report"]`** (`btn_dropdown_<sbc|sbr>_export`), exactly four items:
+  `Download Summary (PDF)` · `Download Expanded View (PDF)` · `Download Summary (CSV)` · `Download Expanded View (CSV)`.
+  **No Print control exists on any report page.**
+- Column selector = **`[aria-label="Column Selection"]`** (`button_column_selection`). **The menu ROW is
+  NOT clickable** — the control is the **`q-toggle` `role="switch"` `data-test-id="toggle_column_<key>"`**
+  beside the label. Clicking the row centre does nothing and reads as "the selector is broken"; clicking
+  the toggle removes the column correctly. (Cost an hour once — don't repeat it.)
+- Grand totals row = **`tbody tr.report-totals-row`**, label `Totals`. Row classes: `sbc-row--customer`
+  / `sbc-row--asset` / `sbc-row--invoice`, `sbr-row--rep` / `sbr-row--invoice`.
+- Expand-all is a header `.q-btn` with aria-label **"Expand all customers"** / **"Expand all representatives"**.
+- Entity-filter menus have a real search input (`placeholder="Search customers"`) — you must **click the
+  input inside the `.q-menu`** before typing, or the keystrokes go nowhere and it looks like search is broken.
+- Filter state persists in **`localStorage['report_view:<slug>']`**; the **URL carries no filter state**.
+
+**Report data + drill-down endpoints.**
+- `GET /api/reporting/reports/sales-by-customer/{customerId}/assets?<filters>` then
+  `.../assets/vehicle%3A{vehicleId}/invoices?<filters>` — SBC is a 3-level tree, loaded on demand.
+- `GET /api/reporting/reports/sales-by-representative/{repKey}/invoices?<filters>`; the **Unassigned
+  bucket's key is `00000000-0000-0000-0000-000000000000`**.
+- **`showUnassigned=1`** is the Show Unassigned parameter (`show_unassigned`/`showUnassigned=true` also work;
+  `includeUnassigned`/`unassigned` do NOT). It is the cheapest way to get a big SBR dataset without seeding.
+- `productType=all|parts|service`; `invoiceStatus=all|paid|partially_paid|unpaid`; `customers=<uuid>`.
+- A **span beyond ~2 years returns 400** — use `start_date` within 12 months for real data.
+- Money is integer **CENTS** in every payload.
+
+**Sales reps.**
+- `GET /api/sales-reps` → `[{id (= the staff_id), name}]` — this is what the **work-order** selector uses.
+- A staff member becomes selectable by setting **`is_sales_rep`** via
+  `POST /api/staff/{staff_id}/change` (echo the whole record; **`workplace_id` must be non-null** or it
+  400s "Missing required parameter").
+- Assign on a WO: `POST /api/work-orders/change-sales-rep {work_order_id, sales_rep_id}` → 201.
+  **⚠️ Returns 201 but SILENTLY NO-OPS for a work order in another workplace** — switch first with
+  `POST /api/iam/change-location {workplace_id, workplace_timezone}`.
+- The **customer's** rep is a different mechanism: `POST /api/customers/change` stores
+  **`sales_rep_first_name` / `sales_rep_last_name` as STRINGS** (no `sales_rep_id`; sending one → 500), and
+  its picker offers **all staff including inactive**, unlike the WO selector.
+- **The report reads a SNAPSHOT taken at invoice creation** (SBR S19-R6/S19-N2): changing a WO's rep after
+  invoicing does NOT move the invoice. So **a new invoice is the only way to create a new rep row.**
+
+**The invoiced-work-order chain (each step's exact gotcha).**
+1. `POST /api/work-orders/create {company_id, vehicle_id, workplace_id, start_date, is_vehicle_here:true}`
+   → 201; the response key is **`work_order_id`**, NOT `id` (getting this wrong silently strands work orders).
+2. `POST /api/work-orders/{woId}/lines/create-from-canned-line {canned_line_id, status:'authorized'}` → 201
+   `{line_id}`. Canned lines: `GET /api/work-orders/canned-lines` (filter to `fixed_price` set + your
+   `workplace_id`). **The generic `POST /api/work-orders/lines/create` returns 500** once validation passes.
+3. `POST /api/work-orders/change-mileage {work_order_id, mileage:'123456'}` → 201.
+   **`mileage` MUST be a STRING** — a number returns 500. Without it, line-complete 400s
+   "Line can not be completed without a Work Order mileage".
+4. `POST /api/work-orders/lines/change-story {line_id, tech_story, work_order_id}` → 201. Required before
+   completing a line ("Line can not be completed without a tech story"). **`/lines/change` returns 500.**
+5. `POST /api/work-orders/lines/change-status {line_id, status:'complete'}` → 200.
+6. `POST /api/work-orders/change-status {id, status:'complete'}` → 201. **The field is `id`, not `work_order_id`.**
+7. `POST /api/invoices/create {work_order_id}` — **returns 500 on this branch** (the UI's Create Invoice on
+   the Finance tab fails too, via `POST /api/work-orders/invoices/estimate`). This is the one step that
+   blocks seeding new rep rows.
+
+**Deleting seeded work orders.** A Complete/Invoiced WO cannot be deleted — first
+`POST /api/work-orders/change-status {id, status:'estimate'}`, then
+`POST /api/work-orders/delete {work_order_id}`. **⚠️ A missing work order answers
+`400 {"workOrderId":"Not found"}`, NOT 404** — a cleanup verifier checking for 404 will wrongly report
+everything still present.
+
+**Reading PDF exports (the "PDF is an external dependency" excuse is wrong).**
+`pip install pypdf` — and if it fails to import with `ModuleNotFoundError: _cffi_backend`, `pip install cffi`
+repairs the broken system `cryptography` module. `apt-get install poppler-utils` 404s on this image, and is
+unnecessary. Extractor: `build/report-suite/viu-2026-08-03/batch-sbc-sbr/tools/extract_pdf.py`.
