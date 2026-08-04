@@ -1,0 +1,2519 @@
+[
+ {
+  "key": "SV-8582",
+  "summary": "Reporting Suite \u2014 Technician Utilization, Sales By Customer, Sales By Representative, Inventory Velocity, Inventory Value, WIP",
+  "type": "Epic",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T01:12:35.143-0500",
+  "created": "2026-07-26T23:23:01.466-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Epic: Reporting Suite\n\nGoal\n\nShip a consolidated reporting suite of six shop-management reports that live under one **Reports** nav, share one visual chassis, and give shops a consistent, drillable, exportable view of labor productivity, customer/rep revenue, parts velocity, inventory value, and open work. Built together so they look and behave as one product, not six bolt-ons.\n\nOutcome for shops\n\nOne place to answer: Are my techs productive? Who are my best customers and reps? What parts actually move? What is my inventory worth? What work is open and how much of it is earned?\n\nEvery report reads the same way \u2014 identifier columns left, financials middle, a bold pinned **Subtotal** far right \u2014 so there's nothing to relearn per report.\n\nDrill in (customer \u2192 asset \u2192 invoice, tech \u2192 line), filter by date range and location, and export the on-screen view to CSV/PDF.\n\nThe six reports\n\n**Technician Utilization** \u2014 how much of each technician's available time is productive/billed vs. lost. Tech multi-select filter, deep-link to Timesheet Activities, org-wide location filter.\n\n**Sales By Customer** \u2014 revenue, margin, and labor-delta per customer with a Customer \u2192 Asset \u2192 Invoice drill and cross-customer asset compare.\n\n**Sales By Representative** \u2014 sales grouped by sales rep (parts + service reps), with unassigned/House Account handling.\n\n**Inventory Velocity** \u2014 parts movement / ABC velocity with per-part profitability (unit cost, sell price, revenue, margin, margin %).\n\n**Inventory Value** \u2014 current on-hand stock valued at cost and sell (qty on hand, unit cost/sell, margin, margin %, extended Total Sell and pinned Total Cost), with an as-of date backed by nightly snapshots.\n\n**Work In Progress (WIP)** \u2014 open work orders split into earned vs. remaining (True-WIP accounting model), with summary cards and asset/customer filters.\n\nSpecs\n\n**Technician Utilization \u2014 **\n\n**Sales By Customer \u2014 **\n\n**Sales By Representative \u2014 **\n\n**Inventory Velocity (Parts Velocity) \u2014 **\n\n**Inventory Value \u2014 **\n\n**Work In Progress (WIP) \u2014 **\n\nShared chassis (suite-wide, built once)\n\nConsolidated **Reports** nav; single visual theme (two-tone Tech-Efficiency).\n\n**Subtotal** column pinned far-right + bolded across header/rows/totals.\n\nShared **Labor Delta (\u201cInv. Hrs\u201d)** treatment where applicable.\n\nShared date-range selector, org-wide **multi-location filter** (`AccessibleWorkplaceResolver`, requested \u2229 accessible), and per-report **filter persistence**.\n\nCSV + PDF exports mirror the on-screen view.\n\nOut of scope / follow-ups\n\nServer-side rework to safely offer \u201cAll Time\u201d on the history-scan reports (SBC / SBR / Tech Utilization) \u2014 per engineering review, All Time stays on WIP only until this lands.\n\nParts Velocity row-scale (server-side paging / virtual scroll) before it can offer All Time or handle very large tenants.\n\nTrend/as-of history views for WIP (snapshot rig is forward-capture, write-only).\n\nE2E (Playwright) coverage is being authored per report as part of the suite.\n\nBranch\n\n`project/reports-suite-bravo` (local suite worktree; source report branches untouched).",
+  "desc_edits": [
+   "2026-07-26T23:26:41"
+  ],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8583",
+  "summary": "Technician Utilization Report",
+  "type": "Story",
+  "status": "OBSOLETE",
+  "resolution": "Done",
+  "updated": "2026-07-26T23:55:00.532-0500",
+  "created": "2026-07-26T23:34:51.950-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "How much of each technician's available time is productive/billed vs. lost. Tech multi-select filter, deep-link to Timesheet Activities, org-wide location filter.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "desc_edits": [],
+  "status_hist": [
+   [
+    "2026-07-26T23:55:00",
+    "Chris Ward",
+    "resolution",
+    null,
+    "Done"
+   ],
+   [
+    "2026-07-26T23:55:00",
+    "Chris Ward",
+    "status",
+    "Open",
+    "OBSOLETE"
+   ]
+  ],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8584",
+  "summary": "Sales By Customer Report",
+  "type": "Story",
+  "status": "OBSOLETE",
+  "resolution": "Done",
+  "updated": "2026-07-26T23:55:00.513-0500",
+  "created": "2026-07-26T23:35:32.626-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Revenue, margin, and labor-delta per customer with a Customer \u2192 Asset \u2192 Invoice drill and cross-customer asset compare.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "desc_edits": [],
+  "status_hist": [
+   [
+    "2026-07-26T23:55:00",
+    "Chris Ward",
+    "resolution",
+    null,
+    "Done"
+   ],
+   [
+    "2026-07-26T23:55:00",
+    "Chris Ward",
+    "status",
+    "Open",
+    "OBSOLETE"
+   ]
+  ],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8585",
+  "summary": "Sales By Representative Report",
+  "type": "Story",
+  "status": "OBSOLETE",
+  "resolution": "Done",
+  "updated": "2026-07-26T23:55:00.525-0500",
+  "created": "2026-07-26T23:35:34.701-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Sales grouped by sales rep (parts + service reps), with unassigned/House Account handling.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "desc_edits": [],
+  "status_hist": [
+   [
+    "2026-07-26T23:55:00",
+    "Chris Ward",
+    "resolution",
+    null,
+    "Done"
+   ],
+   [
+    "2026-07-26T23:55:00",
+    "Chris Ward",
+    "status",
+    "Open",
+    "OBSOLETE"
+   ]
+  ],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8586",
+  "summary": "Inventory Velocity Report",
+  "type": "Story",
+  "status": "OBSOLETE",
+  "resolution": "Done",
+  "updated": "2026-07-26T23:55:01.142-0500",
+  "created": "2026-07-26T23:35:36.741-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Parts movement / ABC velocity with per-part profitability (unit cost, sell price, revenue, margin, margin %).\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "desc_edits": [],
+  "status_hist": [
+   [
+    "2026-07-26T23:55:01",
+    "Chris Ward",
+    "resolution",
+    null,
+    "Done"
+   ],
+   [
+    "2026-07-26T23:55:01",
+    "Chris Ward",
+    "status",
+    "Open",
+    "OBSOLETE"
+   ]
+  ],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8587",
+  "summary": "Inventory Value Report",
+  "type": "Story",
+  "status": "OBSOLETE",
+  "resolution": "Done",
+  "updated": "2026-07-26T23:55:01.102-0500",
+  "created": "2026-07-26T23:35:38.904-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Current on-hand stock valued at cost and sell (qty on hand, unit cost/sell, margin, margin %, extended Total Sell and pinned Total Cost), with an as-of date backed by nightly snapshots.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "desc_edits": [],
+  "status_hist": [
+   [
+    "2026-07-26T23:55:01",
+    "Chris Ward",
+    "resolution",
+    null,
+    "Done"
+   ],
+   [
+    "2026-07-26T23:55:01",
+    "Chris Ward",
+    "status",
+    "Open",
+    "OBSOLETE"
+   ]
+  ],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8588",
+  "summary": "Work In Progress (WIP) Report",
+  "type": "Story",
+  "status": "OBSOLETE",
+  "resolution": "Done",
+  "updated": "2026-07-26T23:55:01.099-0500",
+  "created": "2026-07-26T23:35:41.573-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Open work orders split into earned vs. remaining (True-WIP accounting model), with summary cards and asset/customer filters.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582). Built on branch `project/reports-suite-bravo`.",
+  "desc_edits": [],
+  "status_hist": [
+   [
+    "2026-07-26T23:55:01",
+    "Chris Ward",
+    "resolution",
+    null,
+    "Done"
+   ],
+   [
+    "2026-07-26T23:55:01",
+    "Chris Ward",
+    "status",
+    "Open",
+    "OBSOLETE"
+   ]
+  ],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8589",
+  "summary": "[Reports Suite][PR-1] inventory_changes INT\u2192DECIMAL precision fix + QB correction",
+  "type": "Story",
+  "status": "In Progress",
+  "resolution": null,
+  "updated": "2026-07-30T09:44:17.587-0500",
+  "created": "2026-07-26T23:50:10.372-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8596",
+    "blocks"
+   ],
+   [
+    "SV-8645",
+    "blocks"
+   ]
+  ],
+  "desc": "**Plan:** Reports Suite Tech Plan \u2014 Phase 0 / PR-1 (ships as its own PR, ahead of the suite).\n\n**Goal:** Fix the live QuickBooks-corruption bug caused by `inventory_changes.old_quantity`/`new_quantity` being mapped `integer` while the domain types them `float` \u2014 fractional units are truncated at hydrate/persist and QB journal-entry sync multiplies these into dollar amounts.\n\n**Scope:**\n\nHand-written migration: `ALTER TABLE inventory_changes MODIFY old_quantity/new_quantity DECIMAL(10,2)` (ALGORITHM=COPY, ~10\u201340s write-pause; measured 714,814 rows / 517 MB \u2192 single off-peak migration, no online-DDL tooling).\n\nUpdate mapping `InventoryChanges.orm.xml:20-21` integer \u2192 decimal so `migrations:diff` stays a no-op.\n\nVerify QB sync read paths (`JournalEntry/Services/ReportGenerator.php`, `JournalEntrySyncService.php`) receive un-truncated quantities.\n\nForward-only (historical truncation unreconstructible).\n\n**Tests:** fractional-quantity round-trip regression; QB journal amount exact from fractional movement.\n\n**DoD gates:** cs-fix / phpstan / pest (Inventory + JournalEntry mirrors); migration gate (`migrations:diff --allow-empty-diff` = \"No changes detected\"); smoke.\n\nDepends on: nothing. Blocks: B3 (PV \u2014 Units Sold precision).",
+  "desc_edits": [],
+  "status_hist": [
+   [
+    "2026-07-29T06:22:21",
+    "parth fadadu",
+    "status",
+    "Open",
+    "In Progress"
+   ]
+  ],
+  "changelog_total": 5
+ },
+ {
+  "key": "SV-8590",
+  "summary": "[Reports Suite][A2] Shared paginated-report contract (RequestDto + Query + count/page helper)",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:08:33.471-0500",
+  "created": "2026-07-26T23:50:18.461-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8591",
+    "blocks"
+   ],
+   [
+    "SV-8593",
+    "blocks"
+   ],
+   [
+    "SV-8605",
+    "blocks"
+   ],
+   [
+    "SV-8608",
+    "blocks"
+   ],
+   [
+    "SV-8623",
+    "blocks"
+   ],
+   [
+    "SV-8628",
+    "blocks"
+   ],
+   [
+    "SV-8643",
+    "blocks"
+   ],
+   [
+    "SV-8648",
+    "blocks"
+   ],
+   [
+    "SV-8668",
+    "blocks"
+   ],
+   [
+    "SV-8676",
+    "blocks"
+   ]
+  ],
+  "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part A / Phase 2 (Foundation). PR-2, first foundation phase.\n\n**Goal:** Build the rule-compliant server-side contract every report plugs into (do NOT extend the legacy `ReportRequestPayload`, which violates RequestDto-vs-Query separation and guards \"over one year\" not 366 days).\n\n**Scope (**`api/`):\n\n`Reporting/Shared/UI/HTTP/DTO/ReportListRequestDto` \u2014 `#[Pagination]` + bounded date range (11 presets + Custom, **366-day cap**) + `search`.\n\n`Reporting/Shared/Application/ReportListQuery` \u2014 plain Query the DTO maps to.\n\n`Reporting/Shared/Infrastructure/Persistence/PaginatedReportResult` (+ count-and-page helper) \u2014 generalizes BinLocationQueryRepository's COUNT-clone + `Paginator` page query \u2192 `{collection, pagination:{rowsNumber}}`.\n\n`Reporting/Shared/Domain/NonVoidInvoicePredicate` \u2014 `status NOT IN Status::getNotVoidStatuses()` shared helper.\n\nMoney rule: bless `FixedDecimal2`/`DecimalValue` (HalfAwayFromZero) as round-once helpers; SUM unrounded in SQL.\n\nFetchers take a `Connection` via constructor injection (replica-ready seam; no replica in this plan).\n\n**Tests:** rowsNumber correctness, sort-whitelist enforcement, page-size clamp, 366-day boundary (367 rejected), void exclusion.\n\n**DoD gates:** cs-fix / phpstan / pest on `Reporting/Shared`; smoke (container wiring).\n\nDepends on: nothing. Blocks: A3, A5, and all six reports.",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 11
+ },
+ {
+  "key": "SV-8591",
+  "summary": "[Reports Suite][A3] Export contract + 10k row-cap guard (CSV attachment + PDF scaffold)",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:13.176-0500",
+  "created": "2026-07-26T23:50:26.087-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8590",
+    "is blocked by"
+   ],
+   [
+    "SV-8593",
+    "blocks"
+   ],
+   [
+    "SV-8612",
+    "blocks"
+   ],
+   [
+    "SV-8613",
+    "blocks"
+   ],
+   [
+    "SV-8614",
+    "blocks"
+   ],
+   [
+    "SV-8631",
+    "blocks"
+   ],
+   [
+    "SV-8646",
+    "blocks"
+   ],
+   [
+    "SV-8654",
+    "blocks"
+   ],
+   [
+    "SV-8665",
+    "blocks"
+   ],
+   [
+    "SV-8677",
+    "blocks"
+   ]
+  ],
+  "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part A / Phase 3 (Foundation). Depends on A2 (count helper).\n\n**Goal:** Shared export machinery for all reports \u2014 a uniform 10k row cap and true file-attachment CSV/PDF (deliberate departure from the legacy JSON-wrapped export convention; existing export controllers untouched).\n\n**Scope (**`api/`):\n\n`Reporting/Shared/Application/Export/ExportRowCapGuard` \u2014 runs a per-report count callable, throws `ReportExportTooLargeError extends DomainError` at `> 10_000` (single suite-wide constant). Takes a count callable/query per report (SBC counts customers + invoices \u2014 two-level).\n\n`ReportExportTooLargeError` \u2014 mapped to 4xx carrying the exact spec toast.\n\nPDF scaffold \u2014 copy the `TechnicianEfficiency` Summary/Expanded PdfQueryHandler pair over `WeasyPrintPdfGenerator` (600s timeout).\n\nCSV attachment helper \u2014 `text/csv` + `Content-Disposition: attachment` (D5).\n\n**Tests:** cap boundary at 10,000 / 10,001 (both single-table and two-level count callables); empty-set export = header-only file, guard does not fire at zero.\n\n**DoD gates:** cs-fix / phpstan / pest; smoke.\n\nDepends on: A2. Blocks: all six reports' exports.",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 11
+ },
+ {
+  "key": "SV-8592",
+  "summary": "[Reports Suite][A4] Denormalized invoice financial columns + backfill + clock subscriber",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:34.628-0500",
+  "created": "2026-07-26T23:50:36.255-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8598",
+    "blocks"
+   ],
+   [
+    "SV-8599",
+    "blocks"
+   ],
+   [
+    "SV-8609",
+    "blocks"
+   ],
+   [
+    "SV-8610",
+    "blocks"
+   ],
+   [
+    "SV-8605",
+    "blocks"
+   ],
+   [
+    "SV-8623",
+    "blocks"
+   ],
+   [
+    "SV-8626",
+    "blocks"
+   ],
+   [
+    "SV-8627",
+    "blocks"
+   ]
+  ],
+  "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part A / Phase 4 (Foundation). Feeds SBC + SBR.\n\n**Goal:** Denormalize six invoice financial values as individual nullable columns so SBC/SBR can `SUM`/`GROUP BY` on real columns instead of deriving per request.\n\n**Scope (**`api/`):\n\nMigration: `ALTER TABLE invoice ADD` labor_sell, labor_cost, parts_sell, parts_cost (INT cents), hours_invoiced, hours_worked (DECIMAL(10,2)) \u2014 all nullable, ALGORITHM=INSTANT. Map in `Invoice.orm.xml`.\n\n`Invoice.php` \u2014 add fields (+ `captureFinancialSnapshot(...)`).\n\n`InvoiceBuilder::buildInvoice()` AND `updateInvoice()` \u2014 compute+set the six columns inside the existing `processCreate` transaction (sources: `WorkOrderStatsFetcher` + labor/parts sell queries).\n\n`InvoiceFinancialSnapshotService` \u2014 assembles the six values for one WO.\n\n`BackfillInvoiceFinancialColumnsCommand` \u2014 `app:invoicing:backfill-financial-columns`, idempotent (`WHERE labor_sell IS NULL`), batched, writer-only, `--dry-run`/`--limit`/`--organization-id`/`--workplace-id`.\n\n`RecomputeInvoiceLaborOnClockChange` subscriber \u2014 recompute `hours_worked`+`labor_cost` for the affected WO's non-void invoice; new past-tense `TaskChangedEvent` dispatched from `ChangeCommandHandler` (+ Move flow) \u2014 these flows dispatch no domain event today.\n\n**Tests:** snapshot matches per-request derivation; TTR edit after invoicing recomputes hours_worked/labor_cost on non-void invoice, sell columns untouched; backfill idempotent; void/reversal excluded.\n\n**DoD gates:** cs-fix / phpstan / pest (Invoicing + LabourBilling); migration gate (diff no-op); smoke (create/update invoice must not 500); backfill dry-run.\n\nDepends on: sequenced after A2/A3. Blocks: B5 (SBC), B6 (SBR).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 9
+ },
+ {
+  "key": "SV-8593",
+  "summary": "[Reports Suite][A5] FE report shell (table/remembered-view/filters/themes/nav/formatters)",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:43.141-0500",
+  "created": "2026-07-26T23:50:51.048-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8590",
+    "is blocked by"
+   ],
+   [
+    "SV-8591",
+    "is blocked by"
+   ],
+   [
+    "SV-8594",
+    "blocks"
+   ],
+   [
+    "SV-8600",
+    "blocks"
+   ],
+   [
+    "SV-8619",
+    "blocks"
+   ],
+   [
+    "SV-8641",
+    "blocks"
+   ],
+   [
+    "SV-8648",
+    "blocks"
+   ],
+   [
+    "SV-8657",
+    "blocks"
+   ],
+   [
+    "SV-8668",
+    "blocks"
+   ],
+   [
+    "SV-8604",
+    "blocks"
+   ],
+   [
+    "SV-8640",
+    "blocks"
+   ],
+   [
+    "SV-8644",
+    "blocks"
+   ],
+   [
+    "SV-8664",
+    "blocks"
+   ],
+   [
+    "SV-8675",
+    "blocks"
+   ],
+   [
+    "SV-8611",
+    "blocks"
+   ],
+   [
+    "SV-8637",
+    "blocks"
+   ],
+   [
+    "SV-8603",
+    "blocks"
+   ],
+   [
+    "SV-8638",
+    "blocks"
+   ],
+   [
+    "SV-8656",
+    "blocks"
+   ],
+   [
+    "SV-8674",
+    "blocks"
+   ],
+   [
+    "SV-8663",
+    "blocks"
+   ]
+  ],
+  "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part A / Phase 5 (Foundation). Depends on A2/A3 (envelope + export contract). Buildable in parallel with A4.\n\n**Goal:** Build the shared FE chassis all six reports consume \u2014 server-paged table, per-browser remembered view, shared toolbar, two themes, nav, formatters.\n\n**Scope (**`app/`):\n\n`composables/useReportTableQuery.ts` \u2014 paged (NOT infinite) TanStack useQuery, `rowsNumber` from envelope, `disable-virtual-scroll`; keys in `api/reporting/keys.ts`.\n\n`composables/useRememberedView.ts` \u2014 per-browser localStorage, schema-versioned, defensive restore (drop inaccessible location / dead sort column / column-set mismatch), restore synchronously before first fetch, restore beats URL. Migration-path note to `UserPagePreference`.\n\n`components/ts/reporting/shell/LocationFilter.vue` \u2014 location multi-select + pinned \"All Locations\"; default from `useLocation()` validated against `useMyWorkplaces()`; scoping stays BE-enforced.\n\n`DateRangeSelector.vue` \u2014 enforce 366-day cap.\n\n`shell/ColumnSelector.vue`, `shell/ReportSearchInput.vue` (page-local, NOT global search), `SubActionsDropDown.vue` (per-item loading).\n\n`css/app.scss` \u2014 theme layer `report-shell--two-tone` / `report-shell--all-white`.\n\n`ReportLeftMenuNav.vue` \u2014 add net-new **Parts** group; report-registration 4-touch contract (route / componentMap / nav / permission).\n\n`utils/reporting.ts` \u2014 formatter module (accounting-parens negatives, margin% 1dp + em-dash, signed Inv. Hrs coloring, \"N days\", em-dash null).\n\n**Tests (Vitest):** remembered-view round-trip/defensive-drop/version-bump/restore-before-fetch; useReportTableQuery paging/sort/filter key behavior; formatter module; LocationFilter default seed + All-Locations toggle.\n\n**DoD gates:** eslint / vitest related / vue-tsc; compile (Vite up at :7200). Browser-walk deferred to first consuming report (WIP) \u2014 shell has no route of its own.\n\nDepends on: A2, A3. Blocks: all six reports (FE).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 22
+ },
+ {
+  "key": "SV-8594",
+  "summary": "[Reports Suite][B1] Work In Progress (WIP) report + nightly snapshot cron",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-29T06:21:00.002-0500",
+  "created": "2026-07-26T23:50:59.166-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part B / B1. **Spec:** WIP page 703660034. Depends on A2, A5. First report built. **Complexity: High** (new money model + first cross-tenant snapshot cron).\n\n**Architecture note:** WIP does NOT use the paged table \u2014 it loads the entire bounded open-WO set in one fetch and does tabs/counts/summary/filters client-side (plain TanStack useQuery, not useReportTableQuery). Still consumes the rest of the shell (all-white theme, remembered-view, LocationFilter, DateRange 366, ColumnSelector, export).\n\n**Scope:**\n\nDB: `work_order_wip_snapshot` table (one row per open WO per date; join org-purge path; no FK; no reader this version).\n\nBE fetcher: open-WO set (`type=SERVICE`, open statuses), date anchor = `work_order.start_date`; earned/remaining money model (Labor Earned = \u03a3 min(clocked value, quoted); Parts Earned/Remaining by request status); 4-tab placement; Last Activity from `entity_event`. Delete dead WIP code (segment handler + Dashboard sections).\n\n\ud83d\udd34 Nightly snapshot cron `app:reporting:capture-wip-snapshots` \u2014 **cross-tenant Golden-Rule exemption** (record in PR \"Golden Rule Exemptions\" block); EventBridge\u2192ECS RunTask ~08:00 UTC; idempotent delete+reinsert per (workplace, WO, date).\n\nFE: `WorkInProgressReport.vue` (4 tabs), `WipSummaryStrip.vue` (7-figure band), two-line asset cell, status badge (reuse WO tokens), per-tab Totals row, client filters (advisor/customer/asset), export per tab. Reuse route name/path `WorkInProgress`. `formatLastActivity` added to formatter module.\n\n**E2E (hard-block):** reference-breakage scan (deleted `table_work_in_progress_report` test-id + old nav ids) + happy paths + edge (empty per tab, Estimates all-$0.00, permission-denied nav).\n\nDepends on: A2, A5.",
+  "desc_edits": [],
+  "status_hist": [
+   [
+    "2026-07-29T06:21:00",
+    "parth fadadu",
+    "status",
+    "Board Backlog",
+    "Open"
+   ],
+   [
+    "2026-07-29T06:20:57",
+    "parth fadadu",
+    "status",
+    "Blocked",
+    "Board Backlog"
+   ],
+   [
+    "2026-07-29T06:20:54",
+    "parth fadadu",
+    "resolution",
+    "Done",
+    null
+   ],
+   [
+    "2026-07-29T06:20:54",
+    "parth fadadu",
+    "status",
+    "OBSOLETE",
+    "Blocked"
+   ],
+   [
+    "2026-07-27T00:07:17",
+    "parth fadadu",
+    "resolution",
+    null,
+    "Done"
+   ],
+   [
+    "2026-07-27T00:07:17",
+    "parth fadadu",
+    "status",
+    "Open",
+    "OBSOLETE"
+   ]
+  ],
+  "changelog_total": 6
+ },
+ {
+  "key": "SV-8595",
+  "summary": "[Reports Suite][B2] Technician Utilization (TU) report",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-29T06:21:09.560-0500",
+  "created": "2026-07-26T23:51:08.641-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part B / B2. **Spec:** TU page 641400833. Depends on A2, A5. **Complexity: Medium-High** (must reconcile to the cent with the existing Timesheet Activities report).\n\n**Architecture note:** reuse the existing Timesheet Activities methodology (`TimesheetActivity/Services/DataProvider` + `ReportGenerator`) and add a per-technician grouping layer \u2014 do NOT re-derive. Compute every displayed number from unrounded values and round once (avoids the Timesheet two-methodology trap). Server-paginate technician rows; per-day rows lazy on expand.\n\n**Scope:**\n\nDB: none (read-only over technician_task_record, labour_type, workplace, staff).\n\nBE fetcher: one row per staff who clocked time in range at selected location(s); Total / WO Hours (work_order_id) / Internal Hours (department_id); day-grouping + windowing in ONE report-level timezone (active workplace's); **Est. Lost Labor** = \u03a3 per contributing location (default labor rate \u00d7 internal hours) \u2014 default rate is a `labour_type` row with `is_default=1` (no unique constraint \u2014 pick deterministically; workplace may have none \u2192 partial/\"\u2014\"). NULL workplace_id records excluded from valuation. Reconcile to the cent vs Timesheet Activities.\n\nFE: technician rows + pinned Est. Lost Labor column + tooltip; Summary over visible techs; per-day lazy expand; tech filter on-screen only, location filter reloads; sort resets to Technician A\u2013Z on reload (NOT remembered); Total Hours deep-links to Timesheet Activities filtered to tech+range. All-white theme.\n\n**\u26a0\ufe0f Re-verify at implementation:** Timesheet methodology alignment + `labour_type` default-rate query (TU-BE agent stalled during planning).\n\n**E2E:** reference-breakage scan + happy paths (load, expand tech, deep-link, tech filter, CSV) + edge (no-clocked-time, \"\u2014\" Est. Lost Labor).\n\nDepends on: A2, A5.",
+  "desc_edits": [],
+  "status_hist": [
+   [
+    "2026-07-29T06:21:09",
+    "parth fadadu",
+    "status",
+    "Board Backlog",
+    "Open"
+   ],
+   [
+    "2026-07-29T06:21:03",
+    "parth fadadu",
+    "resolution",
+    "Done",
+    null
+   ],
+   [
+    "2026-07-29T06:21:03",
+    "parth fadadu",
+    "status",
+    "OBSOLETE",
+    "Board Backlog"
+   ],
+   [
+    "2026-07-27T00:07:21",
+    "parth fadadu",
+    "resolution",
+    null,
+    "Done"
+   ],
+   [
+    "2026-07-27T00:07:21",
+    "parth fadadu",
+    "status",
+    "Open",
+    "OBSOLETE"
+   ]
+  ],
+  "changelog_total": 4
+ },
+ {
+  "key": "SV-8596",
+  "summary": "[Reports Suite][B3] Parts Velocity (PV) report + part.last_sold_at",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-29T06:21:17.547-0500",
+  "created": "2026-07-26T23:51:18.797-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8589",
+    "is blocked by"
+   ]
+  ],
+  "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part B / B3. **Spec:** PV page 620888066. Depends on **A1/PR-1** (inventory_changes DECIMAL \u2014 Units Sold precision), A2, A5. **Complexity: High** (multi-source movement math, per-location vs merged rows).\n\n**Scope:**\n\nDB: new composite index `inventory_changes (workplace_id, inventory_part_id, origin, created_at)` (+ catalog_part_id variant); new `part.last_sold_at` (nullable) denorm column killing the all-time MAX() sub-select; backfill command `app:inventory:backfill-last-sold-at`; maintain on invoice create + reversal.\n\nBE fetcher: INVENTORY parts = per-(part, workplace) rows; CATALOGUE parts = one merged row; core parts excluded; Type filter Both/Inventory/Catalogue. **Units Sold** = net over invoicing origins (`WorkOrderInvoiceCreate` +, `WorkOrderInvoiceReverse` \u2212) \u2014 origin filter mandatory. **Demand** = count of in-window invoicing events. Returns via `work_order_part_return_request` + `part_sale_credit`. Profitability from billed part lines (`work_order_part` + `invoice_statement_item`), net reversals via void predicate. Last Sale from denorm column. Permission: existing Inventory Reports\u2192View (no new atom).\n\nFE: **two-tone theme**, new Parts nav group, 20 columns/14 default (column picker), catalogue rows render \"\u2014\" for stock; server pagination; export; page-local search.\n\n**\u26a0\ufe0f Re-verify at implementation:** movement queries + `InventoryQueryHandler` discriminators (PV-BE agent stalled). Do NOT copy its WO-type IN-list heuristic or workplace_location_id hack.\n\n**E2E:** reference-breakage scan + happy paths (Parts nav, Type=Catalogue \"\u2014\" cells, filters, search, column picker, CSV) + edge (bin+catalogue empty, >10k cap toast).\n\nDepends on: PR-1, A2, A5.",
+  "desc_edits": [],
+  "status_hist": [
+   [
+    "2026-07-29T06:21:17",
+    "parth fadadu",
+    "status",
+    "Board Backlog",
+    "Open"
+   ],
+   [
+    "2026-07-29T06:21:14",
+    "parth fadadu",
+    "resolution",
+    "Done",
+    null
+   ],
+   [
+    "2026-07-29T06:21:14",
+    "parth fadadu",
+    "status",
+    "OBSOLETE",
+    "Board Backlog"
+   ],
+   [
+    "2026-07-27T00:07:25",
+    "parth fadadu",
+    "resolution",
+    null,
+    "Done"
+   ],
+   [
+    "2026-07-27T00:07:25",
+    "parth fadadu",
+    "status",
+    "Open",
+    "OBSOLETE"
+   ]
+  ],
+  "changelog_total": 5
+ },
+ {
+  "key": "SV-8597",
+  "summary": "[Reports Suite][B4] Inventory Value (IV) report + nightly snapshot + retention",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-29T06:21:36.647-0500",
+  "created": "2026-07-26T23:51:30.266-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part B / B4. **Spec:** IV page 720142338. Depends on A2, A3, A5. **Complexity: High** (pricing-matrix sell in SQL + second cross-tenant snapshot cron + retention).\n\n**Scope:**\n\nDB: `inventory_value_snapshot` table (denormalized category/vendor names to survive rename/delete on as-of replay; join org-purge path). **\u26a0\ufe0f Sizing gate before locking:** `COUNT(*) FROM part WHERE quantity>0 AND is_core=0` per workplace \u2014 fleet-wide could be 50\u2013200M/yr; retention bounds it, else month-RANGE partition. Verify `pricing_rule.matrix_id` index exists.\n\nBE fetcher: one row per (part, workplace), is_core=0, in-stock; join skeleton = `DbalPartListFetcher::searchParts` with multi-location. **Qty** = `AVAILABLE_QUANTITY_SQL` (positive-bins-only, agrees with Parts page \u2014 do NOT copy Dashboard's raw p.quantity). **Unit sell** = ONE shared SQL sell expression (used by live query AND capture INSERT\u2026SELECT): fixed / no-category=cost / matrix markup via `part_category.pricing_matrix_id` \u2192 org default \u2192 interval clamp. Ship cent-parity test vs `PricingRulesApplier`. As-of resolution (live today / nearest snapshot / none\u2192empty). Permission `ROLE_REPORT_VIEW`.\n\n\ud83d\udd34 Nightly snapshot `app:reporting:capture-inventory-value-snapshots` \u2014 **cross-tenant Golden-Rule exemption** (record in PR block); set-based DELETE+INSERT\u2026SELECT with shared sell expression; likely no session-injection hack (pure DBAL). Retention prune (\u226413mo daily \u2192 monthly last-capture) as in-command step. EventBridge\u2192ECS nightly.\n\nFE: all-white theme, Parts nav (shared w/ PV), server-paginated, Total Cost pinned + default sort desc, column picker (Margin/Total Sell off by default), date-range as \"as-of\" anchor + \"As of X\" indicator, category/vendor filters + page-local search, export.\n\n**E2E:** reference-breakage scan + happy paths (Parts nav, filters, search, column toggle, CSV) + edge (past date before first capture empty, >10k cap, qty-drift positive-bins).\n\nDepends on: A2, A3, A5.",
+  "desc_edits": [],
+  "status_hist": [
+   [
+    "2026-07-29T06:21:36",
+    "parth fadadu",
+    "status",
+    "Board Backlog",
+    "Open"
+   ],
+   [
+    "2026-07-29T06:21:32",
+    "parth fadadu",
+    "resolution",
+    "Done",
+    null
+   ],
+   [
+    "2026-07-29T06:21:32",
+    "parth fadadu",
+    "status",
+    "OBSOLETE",
+    "Board Backlog"
+   ],
+   [
+    "2026-07-27T00:07:29",
+    "parth fadadu",
+    "resolution",
+    null,
+    "Done"
+   ],
+   [
+    "2026-07-27T00:07:29",
+    "parth fadadu",
+    "status",
+    "Open",
+    "OBSOLETE"
+   ]
+  ],
+  "changelog_total": 4
+ },
+ {
+  "key": "SV-8598",
+  "summary": "[Reports Suite][B5] Sales By Customer (SBC) report + dedicated permission",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-29T06:21:49.270-0500",
+  "created": "2026-07-26T23:51:42.789-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8592",
+    "is blocked by"
+   ]
+  ],
+  "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part B / B5. **Spec:** SBC page 577634305. Depends on A2, **A4** (invoice financial columns), A5. **Complexity: High** (3-level tree + lazy drill-down + dedicated permission).\n\n**Scope:**\n\nDB: no new report tables (aggregates A4 columns). One new permission atom.\n\nBE fetcher: customer rows GROUP BY `company_id` (NOT customer_id/contact) over A4 columns, filtered by (work_place_id IN, created_on range, status != void via A2 predicate). Subtotal = labor_sell+parts_sell+shop_supplies_charge; Margin excludes shop supplies. Sort-by-Date = MAX(created_on). Totals over full filtered set. Customer type-ahead. Lazy asset drill-down (group by COALESCE(vehicle_id, snapshot key); \"Parts Sales\" bucket = vehicle_id IS NULL; labels from invoice_vehicle_details text; dup-label tiebreaker). Invoice rows emit workOrderId + type. Exports flat (Customer\u2192Invoice); 10k cap counts customers + invoices (two-level).\n\n\ud83d\udd34 **Multi-location tenant scoping:** intersect requested workplaceIds with `WorkplaceFetcher::getByUserId()` (admin\u2192getAllForOrganization) AND keep OrganizationDecorator. Do NOT copy TimesheetActivity precedent that skips validation. Backfill-NULL guard (COALESCE or gate on backfill completion).\n\nDedicated view permission (SV-5319 model, must land in one commit or `be-permission-drift` CI fails): atom `ROLE_SALES_BY_CUSTOMER_REPORT::VIEW`, bundle decision (43rd bundle vs ride existing \u2014 product call), FEPermissionMappings, IntentionalAtomChanges, seeder CLIs, FE bundleCatalog.ts. Every SBC endpoint gates on the new atom via `#[IsGranted]`, NOT ROLE_REPORT_VIEW.\n\nFE: **two-tone theme**, 3-level tree Customer\u2192Asset\u2192Invoice (server-paged customers, lazy asset+invoice on expand, expand-all bounded to page), type-ahead all-customers state flag, product-type dropdown, Inv. Hrs colored, invoice link by type, column selector, remembered-view.\n\n**E2E:** reference-breakage scan + happy paths (permission-gated nav, expand tree, invoice link, filter, CSV/PDF) + edge (empty, Parts Sales bucket, permission-denied nav hidden + direct-link denied).\n\nDepends on: A2, A4, A5.",
+  "desc_edits": [],
+  "status_hist": [
+   [
+    "2026-07-29T06:21:49",
+    "parth fadadu",
+    "status",
+    "Board Backlog",
+    "Open"
+   ],
+   [
+    "2026-07-29T06:21:44",
+    "parth fadadu",
+    "resolution",
+    "Done",
+    null
+   ],
+   [
+    "2026-07-29T06:21:44",
+    "parth fadadu",
+    "status",
+    "OBSOLETE",
+    "Board Backlog"
+   ],
+   [
+    "2026-07-27T00:07:32",
+    "parth fadadu",
+    "resolution",
+    null,
+    "Done"
+   ],
+   [
+    "2026-07-27T00:07:32",
+    "parth fadadu",
+    "status",
+    "Open",
+    "OBSOLETE"
+   ]
+  ],
+  "changelog_total": 5
+ },
+ {
+  "key": "SV-8599",
+  "summary": "[Reports Suite][B6] Sales By Representative (SBR) report + rep schema + staff dialog",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-29T06:20:45.195-0500",
+  "created": "2026-07-26T23:51:55.835-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8592",
+    "is blocked by"
+   ]
+  ],
+  "desc": "**Plan:** Reports Suite Tech Plan \u2014 Part B / B6. **Spec:** SBR page 585629698. Depends on A2, **A4**, A5. **Complexity: Highest** (net-new rep schema chain + WO field + staff dialog + 4-format export). Built last.\n\n**Scope:**\n\nDB (net-new, forward-only, NO backfill): `staff.is_sales_rep` BOOLEAN; `work_order.sales_rep_id` (+ index); `invoice.sales_rep_id` + `invoice.sales_rep_name` (+ index). \ud83d\udd34 **No dual parts/service rep fields exist** (spec build-note describes a dead prototype) \u2014 build single-rep chain fresh.\n\n\ud83d\udd34 **Identity decision (most bug-prone point):** `work_order.service_advisor_id` = staff.id but `company.sales_rep_id` = user.id. Pick ONE identity for the new rep columns (**staff.id recommended**) + translate customer fallback via `staff.user_id`.\n\nBE: rep snapshot write at invoice creation (WO rep \u2192 customer rep \u2192 null); **must NOT recompute in updateInvoice** (immutable). Per-rep rows GROUP BY sales_rep_id; Unassigned pinned top; contributor gate; (Inactive) marker. \ud83d\udd34 **Payment 5\u21923 mapping** \u2014 `balance_owed \u2260 total_balance \u2212 paid_balance` (deposits excluded from paid_balance per SV-6616); prepaid branch needs deposit-contribution join or every prepaid invoice misclassifies (coordinate with Minja's payments rewrite). WO rep assignment endpoint (clone ChangeServiceAdvisor); rep selector listing (is_sales_rep=1); staff-deactivation precondition count (keys on user.id). Sales Rep Assignments export stays on legacy JSON-wrapped convention (NOT D5). Summary/Expanded PDF+CSV via A3 scaffold.\n\nFE: all-white theme, per-rep lazy detail, payment badge (feed MAPPED display key \u2014 colorCoding('overpaid') is wrong), responsive grand totals (desktop sticky row / mobile external bar), 4-item export menu. WO \"Sales Rep\" field in OrderStatusCard.vue (save via mutation, gate Part-Sale WOs). Staff deactivation type-YES dialog (net-new) \u2014 \ud83d\udd34 S13-R8 wants Esc-to-dismiss but Golden Rule #9 forbids Esc \u2014 surface as decision. `is_sales_rep` toggle in StaffDialog.vue. Nav at bottom of Performance group + padding fix.\n\n**E2E:** reference-breakage scan + happy paths (expand rep, badge, filter, sort, 4 exports, assign WO rep\u2192credited, assignments CSV) + edge (Unassigned, (Inactive) still credited, deactivation dialog blocks until yes, empty).\n\nDepends on: A2, A4, A5.",
+  "desc_edits": [],
+  "status_hist": [
+   [
+    "2026-07-29T06:20:45",
+    "parth fadadu",
+    "status",
+    "Board Backlog",
+    "Open"
+   ],
+   [
+    "2026-07-29T06:20:42",
+    "parth fadadu",
+    "resolution",
+    "Done",
+    null
+   ],
+   [
+    "2026-07-29T06:20:42",
+    "parth fadadu",
+    "status",
+    "OBSOLETE",
+    "Board Backlog"
+   ],
+   [
+    "2026-07-27T00:07:36",
+    "parth fadadu",
+    "resolution",
+    null,
+    "Done"
+   ],
+   [
+    "2026-07-27T00:07:36",
+    "parth fadadu",
+    "status",
+    "Open",
+    "OBSOLETE"
+   ]
+  ],
+  "changelog_total": 5
+ },
+ {
+  "key": "SV-8600",
+  "summary": "SBC - Story 1 - Report access and navigation placement",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:42.020-0500",
+  "created": "2026-07-26T23:54:12.700-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Where the report lives in the Reports navigation, and who can open it.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8601",
+  "summary": "SBC - Story 2 - Filter by date range",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:54:14.679-0500",
+  "created": "2026-07-26T23:54:14.532-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Set the time window the report covers.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8602",
+  "summary": "SBC - Story 3 - Filter by product type",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:54:16.891-0500",
+  "created": "2026-07-26T23:54:16.719-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Limit the report to service invoices, parts invoices, or both.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8603",
+  "summary": "SBC - Story 4 - Filter by location",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:30.536-0500",
+  "created": "2026-07-26T23:54:18.648-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Scope the report to one, several, or all of the locations the user has access to.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8604",
+  "summary": "SBC - Story 6 - Remember filters and view between visits",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:05.490-0500",
+  "created": "2026-07-26T23:54:20.618-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Restore the user's last filters, sort, and columns when they return to the report.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8605",
+  "summary": "SBC - Story 7 - View customer summary rows",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:22.754-0500",
+  "created": "2026-07-26T23:54:22.457-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8590",
+    "is blocked by"
+   ],
+   [
+    "SV-8592",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Show one row per customer that rolls up their revenue.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 3
+ },
+ {
+  "key": "SV-8606",
+  "summary": "SBC - Story 8 - Expand a customer to its assets, and an asset to its invoices",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:54:24.383-0500",
+  "created": "2026-07-26T23:54:24.212-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Drill from a customer down to the vehicles the work was done on, then to the individual invoices.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8607",
+  "summary": "SBC - Story 9 - Open an invoice",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:54:26.493-0500",
+  "created": "2026-07-26T23:54:26.311-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Click into an invoice from the report without losing filters or expansion.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8608",
+  "summary": "SBC - Story 10 - Sort the report",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:08:12.942-0500",
+  "created": "2026-07-26T23:54:28.177-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8590",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Rank customers by any meaningful column.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8609",
+  "summary": "SBC - Story 11 - Subtotal column behavior",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:16.580-0500",
+  "created": "2026-07-26T23:54:30.247-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8592",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Keep the headline number unmistakable and always on screen.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8610",
+  "summary": "SBC - Story 12 - Inv. Hrs (Labor Delta) display",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:19.898-0500",
+  "created": "2026-07-26T23:54:32.532-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8592",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Show whether a customer or invoice was billed for more time than was worked.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8611",
+  "summary": "SBC - Story 13 - Show or hide columns",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:22.883-0500",
+  "created": "2026-07-26T23:54:34.197-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Hide columns the user does not need.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8612",
+  "summary": "SBC - Story 14 - Export as CSV",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:08:45.254-0500",
+  "created": "2026-07-26T23:54:35.885-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8591",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Download the on-screen report as a CSV file.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8613",
+  "summary": "SBC - Story 15 - Download as PDF",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:08:49.071-0500",
+  "created": "2026-07-26T23:54:37.653-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8591",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Download a printable copy of the report.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8614",
+  "summary": "SBC - Story 16 - Print the report",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:08:52.054-0500",
+  "created": "2026-07-26T23:54:39.389-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8591",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Print directly from the toolbar without first saving a PDF.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8615",
+  "summary": "SBC - Story 17 - Empty state",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:54:41.491-0500",
+  "created": "2026-07-26T23:54:41.326-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Give clear feedback when the filters produce no data.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8616",
+  "summary": "SBC - Story 18 - Filter by customer",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:54:43.415-0500",
+  "created": "2026-07-26T23:54:43.250-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Narrow the report to a chosen set of customers with a multi-select Customer filter.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8617",
+  "summary": "SBC - Story 20 - Visual conformance with the reports suite",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:54:45.094-0500",
+  "created": "2026-07-26T23:54:44.930-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Make the report look and feel like the rest of the suite.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8618",
+  "summary": "SBC - Story 21 - Mobile usability",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:54:46.744-0500",
+  "created": "2026-07-26T23:54:46.597-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Keep every control usable on a phone even though the table is dense.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8619",
+  "summary": "SBR - Story 1 - Access the Sales By Representative Report",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:50.303-0500",
+  "created": "2026-07-26T23:54:48.485-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Access the Sales By Representative Report\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8620",
+  "summary": "SBR - Story 2 - Filter the report by date range",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:54:50.342-0500",
+  "created": "2026-07-26T23:54:50.185-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Filter the report by date range\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8621",
+  "summary": "SBR - Story 3 - Filter the report by product type",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:54:52.098-0500",
+  "created": "2026-07-26T23:54:51.932-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Filter the report by product type\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8622",
+  "summary": "SBR - Story 4 - Filter the report by invoice payment status",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:54:55.037-0500",
+  "created": "2026-07-26T23:54:54.879-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Filter the report by invoice payment status\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8623",
+  "summary": "SBR - Story 5 - View per-rep summary rows",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:26.740-0500",
+  "created": "2026-07-26T23:54:56.762-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8590",
+    "is blocked by"
+   ],
+   [
+    "SV-8592",
+    "is blocked by"
+   ]
+  ],
+  "desc": "View per-rep summary rows\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 3
+ },
+ {
+  "key": "SV-8624",
+  "summary": "SBR - Story 6 - Expand a rep to view their invoices",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:54:58.693-0500",
+  "created": "2026-07-26T23:54:58.470-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Expand a rep to view their invoices\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8625",
+  "summary": "SBR - Story 8 - Invoice payment status badge",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:00.490-0500",
+  "created": "2026-07-26T23:55:00.348-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Invoice payment status badge\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8626",
+  "summary": "SBR - Story 9 - Inv. Hrs (Labor Delta) column display",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:30.607-0500",
+  "created": "2026-07-26T23:55:02.068-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8592",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Inv. Hrs (Labor Delta) column display\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8627",
+  "summary": "SBR - Story 10 - Subtotal column and grand Totals indicator",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:34.654-0500",
+  "created": "2026-07-26T23:55:03.888-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8592",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Subtotal column and grand Totals indicator\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8628",
+  "summary": "SBR - Story 11 - Sort the report",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:08:18.924-0500",
+  "created": "2026-07-26T23:55:05.511-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8590",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Sort the report\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8629",
+  "summary": "SBR - Story 12 - Navigate to an invoice or customer",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:07.444-0500",
+  "created": "2026-07-26T23:55:07.312-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Navigate to an invoice or customer\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8630",
+  "summary": "SBR - Story 13 - Deactivate a sales rep with customer assignments",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:09.255-0500",
+  "created": "2026-07-26T23:55:09.119-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Deactivate a sales rep with customer assignments\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8631",
+  "summary": "SBR - Story 14 - PDF and CSV exports",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:08:54.965-0500",
+  "created": "2026-07-26T23:55:11.026-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8591",
+    "is blocked by"
+   ]
+  ],
+  "desc": "PDF and CSV exports\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8632",
+  "summary": "SBR - Story 15 - Sales Rep Assignments CSV export",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:13.156-0500",
+  "created": "2026-07-26T23:55:12.973-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Sales Rep Assignments CSV export\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8633",
+  "summary": "SBR - Story 16 - Loading, empty, and error states",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:15.114-0500",
+  "created": "2026-07-26T23:55:14.964-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Loading, empty, and error states\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8634",
+  "summary": "SBR - Story 17 - Mobile usability",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:17.124-0500",
+  "created": "2026-07-26T23:55:16.964-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Mobile usability\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8635",
+  "summary": "SBR - Story 18 - Visual conformance and accessibility",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:19.209-0500",
+  "created": "2026-07-26T23:55:18.972-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Visual conformance and accessibility\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8636",
+  "summary": "SBR - Story 19 - Work Order Sales Rep assignment",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:21.183-0500",
+  "created": "2026-07-26T23:55:21.050-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Work Order Sales Rep assignment\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8637",
+  "summary": "SBR - Story 20 - Column selector",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:27.226-0500",
+  "created": "2026-07-26T23:55:22.836-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Column selector\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8638",
+  "summary": "SBR - Story 21 - Filter the report by location",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:33.801-0500",
+  "created": "2026-07-26T23:55:24.634-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Filter the report by location\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8639",
+  "summary": "SBR - Story 22 - Show Unassigned invoices",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:26.611-0500",
+  "created": "2026-07-26T23:55:26.474-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Show Unassigned invoices\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8640",
+  "summary": "SBR - Story 23 - Remember filters and view",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:09.005-0500",
+  "created": "2026-07-26T23:55:28.074-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Remember filters and view\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8641",
+  "summary": "Velocity - Story 1 - Report Access & Location",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:53.350-0500",
+  "created": "2026-07-26T23:55:29.873-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Where the report lives in the Reports navigation, and the access required to open it.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8642",
+  "summary": "Velocity - Story 2 - Filters & Search",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:31.833-0500",
+  "created": "2026-07-26T23:55:31.705-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "The filters and search available on the report; each reloads data from the server.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8643",
+  "summary": "Velocity - Story 3 - Data Table",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:08:23.044-0500",
+  "created": "2026-07-26T23:55:33.331-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8590",
+    "is blocked by"
+   ]
+  ],
+  "desc": "One row per part (per location for inventory): how rows rank and sort, and how each cell renders.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8644",
+  "summary": "Velocity - Story 4 - Columns & Remembered View",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:12.231-0500",
+  "created": "2026-07-26T23:55:35.082-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "Which columns show by default, and how each user's filters, column choices, and sort are remembered and restored.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8645",
+  "summary": "Velocity - Story 5 - Metric Calculations",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:08:06.592-0500",
+  "created": "2026-07-26T23:55:36.917-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8589",
+    "is blocked by"
+   ]
+  ],
+  "desc": "The authoritative source, formula, and on-screen format for every column - the single reference for the table, the exports, and the tests.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8646",
+  "summary": "Velocity - Story 6 - Exports (CSV & PDF)",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:00.654-0500",
+  "created": "2026-07-26T23:55:38.627-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8591",
+    "is blocked by"
+   ]
+  ],
+  "desc": "What the CSV and PDF exports contain and how they are formatted.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8647",
+  "summary": "Velocity - Story 7 - Visual Conformance",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:40.530-0500",
+  "created": "2026-07-26T23:55:40.389-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "The report's visual treatment (self-contained normative rules).\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8648",
+  "summary": "Tech Util - Story 1 - Report Access and Display",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:56.533-0500",
+  "created": "2026-07-26T23:55:43.282-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8590",
+    "is blocked by"
+   ],
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "The report is reachable from the reports navigation and shows technician rows for the selected date range and location(s).\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 3
+ },
+ {
+  "key": "SV-8649",
+  "summary": "Tech Util - Story 2 - Columns and Calculations",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:45.245-0500",
+  "created": "2026-07-26T23:55:45.087-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Each technician row shows the hours breakdown, the utilization rate, and the Est. Lost Labor value, in a fixed column order.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8650",
+  "summary": "Tech Util - Story 3 - Summary Totals Row",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:47.193-0500",
+  "created": "2026-07-26T23:55:47.066-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "A pinned Summary row shows the totals for the visible technicians.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8651",
+  "summary": "Tech Util - Story 4 - Per-Day Breakdown",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:48.956-0500",
+  "created": "2026-07-26T23:55:48.804-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Each technician row can expand to show that technician's day-by-day clock totals.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8652",
+  "summary": "Tech Util - Story 5 - Technician Filter",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:50.601-0500",
+  "created": "2026-07-26T23:55:50.477-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "A filter lets the user choose which technicians the report shows, and the Summary updates to match.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8653",
+  "summary": "Tech Util - Story 6 - Total Hours Links to Timesheet Activities",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:52.562-0500",
+  "created": "2026-07-26T23:55:52.409-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Each technician's Total Hours value links to the Timesheet Activities report, filtered to that technician and date range.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8654",
+  "summary": "Tech Util - Story 7 - Export to PDF and CSV",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:04.639-0500",
+  "created": "2026-07-26T23:55:54.287-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8591",
+    "is blocked by"
+   ]
+  ],
+  "desc": "The user can download the report as a Summary PDF, an Expanded PDF, or a CSV file, and the download respects the current filters.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8655",
+  "summary": "Tech Util - Story 8 - Visual Conformance and Accessibility",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:55:56.533-0500",
+  "created": "2026-07-26T23:55:56.400-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "The report conforms to the application's standard all-white reporting theme and layout, and meets the accessibility requirements.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8656",
+  "summary": "Tech Util - Story 9 - Location Filter",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:36.831-0500",
+  "created": "2026-07-26T23:55:58.140-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "A filter lets the user scope the report to one, several, or all of the locations they have access to.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8657",
+  "summary": "WIP - Story 1 - Report Access and Tabs",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:59.620-0500",
+  "created": "2026-07-26T23:55:59.716-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "The report is reachable from the reports navigation and opens on the first section tab, with four tabs in total.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8658",
+  "summary": "WIP - Story 2 - Work-Order Scope, Loading, and Empty State",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:01.531-0500",
+  "created": "2026-07-26T23:56:01.366-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "The report lists every open work order for the selected location(s).\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8659",
+  "summary": "WIP - Story 3 - Tab Placement (Sectioning)",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:03.337-0500",
+  "created": "2026-07-26T23:56:03.218-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Each open work order is placed in exactly one tab, derived from its status and whether work has started.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8660",
+  "summary": "WIP - Story 4 - Columns and Calculations",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:05.159-0500",
+  "created": "2026-07-26T23:56:04.989-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Each row shows the work order's identity, its aging, and its earned/remaining money breakdown, in a fixed column order.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8661",
+  "summary": "WIP - Story 5 - Summary Strip",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:07.148-0500",
+  "created": "2026-07-26T23:56:06.988-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "A strip across the top shows the whole floor as headline figures, and recomputes as the user filters.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8662",
+  "summary": "WIP - Story 6 - Per-Tab Totals Row",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:09.054-0500",
+  "created": "2026-07-26T23:56:08.867-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Each tab has a Totals row that sums the visible jobs in that tab.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8663",
+  "summary": "WIP - Story 7 - Filters",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:43.172-0500",
+  "created": "2026-07-26T23:56:10.628-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "The report can be filtered by advisor, customer, asset, date range, and location.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8664",
+  "summary": "WIP - Story 8 - Column Selection and Persistence",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:15.386-0500",
+  "created": "2026-07-26T23:56:12.484-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "The user can choose which columns show, and the report remembers its setup.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8665",
+  "summary": "WIP - Story 9 - Export to PDF and CSV",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:07.914-0500",
+  "created": "2026-07-26T23:56:14.088-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8591",
+    "is blocked by"
+   ]
+  ],
+  "desc": "The user can download the current tab as a PDF or CSV.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8666",
+  "summary": "WIP - Story 10 - Visual Conformance and Accessibility",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:16.157-0500",
+  "created": "2026-07-26T23:56:15.987-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "The report conforms to the application's standard all-white reporting theme and layout, and meets the accessibility requirements.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8667",
+  "summary": "WIP - Story 11 - Nightly WIP Snapshot Capture",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:18.137-0500",
+  "created": "2026-07-26T23:56:17.995-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Once per day the report captures every open work order's earned/remaining value, so a future Trend view can read a consistent history.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8668",
+  "summary": "Inv Value - Story 1 - Report Access and Display",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:02.572-0500",
+  "created": "2026-07-26T23:56:19.746-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8590",
+    "is blocked by"
+   ],
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "The report is reachable from the reports navigation and shows in-stock part rows for the selected date and location(s).\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 3
+ },
+ {
+  "key": "SV-8669",
+  "summary": "Inv Value - Story 2 - Row Scope",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:21.916-0500",
+  "created": "2026-07-26T23:56:21.781-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "The report values only real, sellable on-hand stock.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8670",
+  "summary": "Inv Value - Story 3 - Columns and Calculations",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:23.695-0500",
+  "created": "2026-07-26T23:56:23.557-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "Each row shows the part's identity, its on-hand quantity, its unit and extended cost and sell, and its margin, in a fixed column order.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8671",
+  "summary": "Inv Value - Story 4 - Totals Row",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:25.597-0500",
+  "created": "2026-07-26T23:56:25.464-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "A totals row sums the full filtered set, computed on the server.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8672",
+  "summary": "Inv Value - Story 5 - As-Of Date and History",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:27.439-0500",
+  "created": "2026-07-26T23:56:27.287-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "A date control chooses the date the report is valued as of, served from the current stock or from nightly history.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8673",
+  "summary": "Inv Value - Story 6 - Category, Vendor, and Part Search Filters",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:29.179-0500",
+  "created": "2026-07-26T23:56:29.016-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "The user can narrow the report by category, by vendor, and by a part search over part number and description. All three apply server-side.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8674",
+  "summary": "Inv Value - Story 7 - Location Filter",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:39.866-0500",
+  "created": "2026-07-26T23:56:30.982-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "A filter lets the user scope the report to one, several, or all of the locations they have access to.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8675",
+  "summary": "Inv Value - Story 8 - Column Selection and Persistence",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:10:19.670-0500",
+  "created": "2026-07-26T23:56:33.223-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8593",
+    "is blocked by"
+   ]
+  ],
+  "desc": "The user can choose which columns show, and the report remembers its setup.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8676",
+  "summary": "Inv Value - Story 9 - Sorting",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:08:33.509-0500",
+  "created": "2026-07-26T23:56:34.987-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8590",
+    "is blocked by"
+   ]
+  ],
+  "desc": "The user can sort the report by any column; sorting is resolved server-side.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8677",
+  "summary": "Inv Value - Story 10 - Export to PDF and CSV",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-27T00:09:13.202-0500",
+  "created": "2026-07-26T23:56:36.900-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [
+   [
+    "SV-8591",
+    "is blocked by"
+   ]
+  ],
+  "desc": "The user can download the current view as a PDF or CSV, generated server-side, respecting the current filters, search, columns, and sort.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 2
+ },
+ {
+  "key": "SV-8678",
+  "summary": "Inv Value - Story 11 - Nightly Snapshot Capture",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:39.131-0500",
+  "created": "2026-07-26T23:56:38.950-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "The as-of history is built from a once-daily recorded snapshot of every location's inventory value, retained at reducing granularity as it ages.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ },
+ {
+  "key": "SV-8679",
+  "summary": "Inv Value - Story 12 - Visual Conformance and Accessibility",
+  "type": "Story",
+  "status": "Open",
+  "resolution": null,
+  "updated": "2026-07-26T23:56:41.266-0500",
+  "created": "2026-07-26T23:56:41.080-0500",
+  "labels": [],
+  "comments_total": 0,
+  "attachments": 0,
+  "subtasks": [],
+  "links": [],
+  "desc": "The report conforms to the application's standard all-white reporting theme and layout.\n\n**Spec: **\n\nPart of the Reporting Suite epic (SV-8582).",
+  "desc_edits": [],
+  "status_hist": [],
+  "changelog_total": 1
+ }
+]
