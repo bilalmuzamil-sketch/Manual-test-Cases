@@ -1,5 +1,13 @@
 # REPORT SUITE — IS IT READY FOR AUTOMATION? · 2026-08-04
 
+> ## ⚠️ SUPERSEDED — read `READINESS-2026-08-04-POST-DEPLOY.md` instead
+>
+> This table was compiled against build **`v3.4.1-0ed4433`**. The QA branch was **redeployed at
+> 2026-08-04 10:41:58 UTC** to **`v3.4.1-3d03023`** and the whole re-check was re-run against it.
+> **The headline changed: 394 of 469 are automatable, not 392**, because SV-8819 was fixed — and one
+> case (C30590) had to be corrected because the deploy broke it. This file is kept for the record.
+
+
 **Short answer: yes — 392 of the 469 tests can be automated starting now.** The other 77 should be
 left alone for the moment, and every one of them is listed below with the reason.
 
