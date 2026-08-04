@@ -12,10 +12,13 @@
 > removed **only when genuinely satisfied**; a satisfied item moves to **§7 Recently cleared** with
 > the date and how it was satisfied, so nothing quietly disappears and nothing gets re-asked.
 >
-> **VERIFICATION CONVENTION FOR THIS REGISTER (Standing Rule 50, 2026-08-04):** every verification
-> claim made in this register — an item recorded as **cleared**, a count, a "pushed and verified"
-> row, a "run is in sync" row, a "their cases untouched" row — is established by **BYTE-LEVEL
-> comparison**, never by eye and never by a matching total. A write is re-GET and byte-compared
+> **VERIFICATION CONVENTION FOR THIS REGISTER (Standing Rule 50, 2026-08-04 — the QA lead's gloss on
+> "byte-level" is *"not to miss anything"*):** every verification claim made in this register — an
+> item recorded as **cleared**, a count, a "pushed and verified" row, a "run is in sync" row, a
+> "their cases untouched" row — is **EXHAUSTIVE FIRST** (the WHOLE population, every case/field/
+> requirement/role/surface — **no sampling**, and a sample is never described in words that imply the
+> whole) and **THEN EXACT**, established by **BYTE-LEVEL comparison**, never by eye and never by a
+> matching total. A write is re-GET and byte-compared
 > against the intended payload (with untouched fields proven byte-identical to their pre-write
 > snapshot); a count is proven as **set equality in both directions**; a run sync verifies **each
 > prior result present by id**. An item may only move to **§7 Recently cleared** on that basis —

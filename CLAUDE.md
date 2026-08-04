@@ -2330,6 +2330,7 @@ deliver the 7-tab management report.
     untouched fields proven byte-identical), 45 (both directions, and one row per assertion), 48 (a
     claim carries its evidence) and 49 (a provisional finding is still verified exhaustively and
     exactly — its *durability* is what is limited, not its rigour).
+
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related

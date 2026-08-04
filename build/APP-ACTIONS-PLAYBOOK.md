@@ -348,6 +348,14 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   under the normalisation** `','.join(p.strip() for p in s.split(','))`, or a byte compare will
   report a false mismatch. Probe + validator: `build/report-suite/verifier-fixes-2026-08-03/tools/`
   (`refs_final.json` asserts comma-free + ≤ 248 before every run).
+  **⚠️ THIS IS THE ONE DECLARED NORMALISATION PERMITTED BY STANDING RULE 50** ("verify exhaustively —
+  byte-level means nothing is skipped, sampled, or assumed": **every case, every field, no sampling**,
+  and then **exact** byte comparison). It may be applied **only because it is recorded HERE with
+  its evidence**, and it must be **asserted explicitly as the expected transformation** in the audit
+  log — never treated as "close enough". Every OTHER field is compared **raw byte-for-byte**, and any
+  **NEWLY discovered normalisation must be added to this section, with its evidence, BEFORE it may be
+  relied on** to explain away a mismatch. Until it is recorded here, **a mismatch means the write
+  FAILED** — stop the batch and report both byte sequences (Rule 50).
 - **TestRail swallows angle-bracket `<placeholders>` as HTML — never use `<` `>` in case text; write
   plain words instead** (e.g. "Expand, then the technician's name" — not an angle-bracket
   placeholder). Confirmed live 2026-07-29: TU-DAY-01/C30418's expected result imported 2026-07-22 as

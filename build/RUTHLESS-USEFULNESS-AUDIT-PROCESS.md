@@ -43,6 +43,15 @@
 > genuine + layman-runnable check — hunt the named slop patterns, credit the load-bearing
 > coverage, and give me the per-case verdicts CSV (with the sense columns) + the audit report
 > (with the NONSENSE list **and the CONTRADICTION list with its resolution**) + the merge plan.
+>
+> **STANDING RULE 50 — EXHAUSTIVE, NOT SAMPLED (the QA lead's gloss on "byte-level" is *"not to miss
+> anything"*):** "score 100%" is literal — **EVERY case is COLD-READ on all three dimensions, and the
+> COLD READ IS NOT A SAMPLE.** A spot-check of N cases is **never** reported in language implying the
+> whole suite; if the suite is large that changes the **schedule**, not the **scope** — batch it,
+> checkpoint it (Rule 29), finish it, and state the **exact number read out of the exact population**.
+> The same applies to the Stage-2b consistency sweep and to any independent certification/verification
+> of this audit: **a sampled judgement check must be labelled a sample, with its size and population,
+> and may not be called a certification of the suite.**
 > Do NOT change anything in TestRail — recommendations only until I approve."
 
 ## Originating instructions + corrections (Rule 18 — verbatim)

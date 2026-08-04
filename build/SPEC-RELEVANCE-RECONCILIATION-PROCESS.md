@@ -123,6 +123,17 @@ byte-identical re-deliveries** (hash the files; a re-zipped design bundle that i
 byte-identical is *no new work* — record that fact and stop the delta pass for it).
 Output: a delta list `[req-id → what changed → cases likely affected]`.
 
+**THE EXTRACTION MUST BE COMPLETE, AND ITS COMPLETENESS MUST BE PROVEN (Standing Rule 50 — the QA
+lead's gloss on "byte-level" is *"not to miss anything"*).** The requirement set is **not** "as many
+anchors as the parser happened to find". Prove it: **account for EVERY non-blank line of the spec
+body** — each line either (a) maps to an extracted requirement id, or (b) is explicitly classified as
+non-requirement content (heading, rationale prose, changelog row, table formatting) — and **state the
+two totals: lines accounted for / requirements extracted, with ZERO unaccounted remainder.** A
+`856 of ~895` extraction is an **UNFINISHED JOB, not a "partial pass"**, and must not be reported as
+one: either finish it or state the exact missing ids as an open remainder. Run the map in **BOTH
+directions** (requirement→case and case→requirement) so orphaned/stale-anchored cases surface too,
+and **re-derive, never patch** the previous version's matrix (Rule 43).
+
 **THEN — MANDATORY, and the step is NOT COMPLETE without it (Standing Rule 43):** convert that
 delta list into a **PER-REQUIREMENT COVERAGE VERDICT TABLE**. **EVERY** added / changed / removed
 requirement gets **ITS OWN ROW**, and every row gets **EXACTLY ONE VERDICT**. A **narrative summary

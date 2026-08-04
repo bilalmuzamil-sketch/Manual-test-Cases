@@ -39,6 +39,30 @@
 > read the Confluence spec** (via Atlassian MCP) and reconcile against it — it never assumes the
 > local copy is current or silently skips it.
 >
+> **Exhaustive-and-exact verification qualifier (Standing Rule 50) — applies to EVERY process row
+> below whose deliverable involves a TESTRAIL WRITE (`update_case` / `add_case` / `update_run` /
+> section change) or a COUNT RECONCILIATION (live vs local vs id-map vs import rows), i.e. rows 1, 2,
+> 3, 4, 5, 6, 7, 8 and any future push/audit/sync process.**
+> **EXHAUSTIVE FIRST — the QA lead's own gloss on "byte-level" is *"not to miss anything"*:** every
+> case, every field, every requirement (both directions), every surface, every role, every export
+> format — **no sampling, no "representative subset", no spot-check reported in language implying the
+> whole**; a large population changes the **schedule**, not the **scope** (batch, checkpoint, finish,
+> and state the exact number done and the exact remainder). A sample is acceptable **only when you
+> explicitly ask for one**, and is labelled as such with its size and population.
+> **THEN EXACT** — the verification is **BYTE-LEVEL, never by eye and never by a matching total**. Every write is **re-GET and byte-compared field-by-field against the
+> intended payload**, with **every field not intended to change proven byte-identical to its
+> pre-write snapshot**; every claimed **non-write** is proven by a byte-identical snapshot
+> **including `updated_on`/`updated_by`** (that is how a foreign case is proven untouched, Rule 38);
+> every **count** claim is proven as **SET EQUALITY in BOTH directions** (`A − B` and `B − A` both
+> empty) — **equal totals are NOT verification**; every **run sync** verifies **each prior result
+> present BY ID**, not by count (Rules 34/47). **A mismatch means the write FAILED** — the batch
+> STOPS, both byte sequences are reported, nothing is retried blindly or logged as success. The only
+> permitted exception is a **DECLARED NORMALISATION** already recorded in
+> `build/APP-ACTIONS-PLAYBOOK.md` §J (today: TestRail's `refs` comma-split/trim/rejoin + the 248-char
+> per-entry pattern error), asserted explicitly in the audit log — never "close enough". Audit logs
+> record **operation · target C-id · HTTP status · byte-level verification result**; an entry saying
+> only *"200 OK"* is non-compliant.
+>
 > **Two-session note:** this workspace is worked by more than one Claude session in parallel.
 > This catalog + `CLAUDE.md` + the `build/*-PROCESS.md`/`*-METHOD.md`/`*-RECIPE.md` docs are the
 > **shared brain** — both sessions read and update them, so any process is callable from either.

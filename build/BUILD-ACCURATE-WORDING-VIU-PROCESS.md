@@ -93,7 +93,15 @@ absolutely.)
     (never hard-code or commit credentials).
   - Loop: **GET current case (keep it as the PRE-WRITE SNAPSHOT) → diff → update only changed
     fields → re-GET → BYTE-LEVEL verify**. **Skip no-ops** (don't rewrite unchanged cases).
-  - **BYTE-LEVEL VERIFICATION IS MANDATORY (Standing Rule 50) — a 200 OK is NOT verification.**
+  - **EXHAUSTIVE FIRST (Standing Rule 50, Part 1 — the QA lead's own gloss on "byte-level" is
+    "not to miss anything"):** the pass covers **EVERY case in the area and EVERY field of each case**
+    (title · preconditions · every step · every expected result · refs · section · type · notes) —
+    **no sampling, no "the important ones", no spot-check reported as the whole.** A large area
+    changes the **schedule**, not the **scope**: batch + checkpoint (Rule 29) and **finish it**, and
+    state the **exact number verified and the exact remainder**. A sample is acceptable **only if the
+    QA lead asks for one**, and must be labelled as a sample with its size and population.
+  - **THEN EXACT — BYTE-LEVEL VERIFICATION IS MANDATORY (Standing Rule 50, Part 2) — a 200 OK is NOT
+    verification.**
     Byte-compare the **intended payload** against **what the re-GET returned, field by field**, AND
     prove **every field you did not intend to change is byte-identical to the pre-write snapshot**
     (that is how collateral damage is caught). **On ANY mismatch the write FAILED: stop the batch,
