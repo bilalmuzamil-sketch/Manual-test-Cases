@@ -27,8 +27,16 @@ page.on('response', async r => {
 
 // ---- the injected fault ----
 if (mode === 'precheck') {
-  await page.route('**/sales-rep-assignments', route => route.abort('failed'));
-  console.log('FAULT INJECTED: GET .../sales-rep-assignments will be aborted');
+  // A server-side 500 is the fault S13-N4 actually describes ("if the precondition check
+  // itself fails"). An earlier attempt used route.abort(), but a transport-level abort made the
+  // SPA re-request the document, which the hibernating sandbox answered with its
+  // "Environment Sleeping" interstitial - an environment artefact that must not be mistaken for
+  // build behaviour (Rule 12). A fulfilled 500 keeps the page alive and isolates the build.
+  await page.route('**/sales-rep-assignments', route => route.fulfill({
+    status: 500, contentType: 'application/json',
+    body: JSON.stringify({ errors: [{ error: 'An error occurred.' },
+                                    { requestId: 'ZZAUTOTEST-FAULT-PRECHECK-0001' }] }) }));
+  console.log('FAULT INJECTED: GET .../sales-rep-assignments returns HTTP 500');
 } else {
   await page.route('**/api/iam/change-status', route => route.fulfill({
     status: 500, contentType: 'application/json',
@@ -51,8 +59,26 @@ const repDlg = () => page.evaluate(() => {
            buttons: [...d.querySelectorAll('button')].map(b => ({ t: b.innerText.trim(), dis: b.disabled })) };
 });
 
-await page.goto(APP + '/administration/staff', { waitUntil: 'domcontentloaded', timeout: 60000 });
-await page.waitForTimeout(7000);
+
+// The QA sandbox hibernates within a minute or two of idleness and serves an
+// "Environment Sleeping" interstitial with a Wake Up button. That page is NOT a build
+// behaviour, so every navigation must clear it before anything is observed (Rule 12 -
+// an environment artefact must never be recorded as a finding).
+async function ensureAwake(path) {
+  for (let i = 0; i < 12; i++) {
+    await page.goto(APP + path, { waitUntil: 'domcontentloaded', timeout: 90000 }).catch(() => {});
+    await page.waitForTimeout(4000);
+    const txt = await page.locator('body').innerText().catch(() => '');
+    if (!/Environment Sleeping/.test(txt)) { await page.waitForTimeout(5000); return true; }
+    console.log('  environment asleep - clicking Wake Up (attempt ' + (i + 1) + ')');
+    const b = page.locator('button', { hasText: 'Wake Up' }).first();
+    if (await b.count()) await b.click().catch(() => {});
+    await page.waitForTimeout(20000);
+  }
+  return false;
+}
+
+if (!(await ensureAwake('/administration/staff'))) { console.log('ENV WILL NOT WAKE'); await browser.close(); process.exit(4); }
 await page.locator('.q-field input').first().fill('ZZAUTOTEST');
 await page.waitForTimeout(3500);
 const row = page.locator('tr', { hasText: who }).first();
