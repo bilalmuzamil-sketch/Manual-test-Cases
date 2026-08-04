@@ -70,6 +70,40 @@ else owes).
 
 ## 1. REPORT SUITE — PO: Chris Ward · Epic **SV-8582** · **ours: 475 active cases, all VIU-Pending** (live folder total 480 — the other 5 are Vladimir Tomovic's automation cases, hands-off per Standing Rule 38)
 
+> **UPDATED 2026-08-04 — the exhaustive audit changes the counts and adds 6 asks.**
+> **Population is 478, not 475** (the three cases authored 2026-08-04 — SBC-API-06 = C43546,
+> PV-EXP-12 = C43547, IV-EXP-10 = C43548); **live folder total is 483**, not 480. All 478 have now
+> been **cold-read on all three dimensions** — the first genuinely exhaustive pass; the previous
+> certification read 24 of 475. Single authoritative status ledger, replacing every other total in
+> the repo: **`build/report-suite/audit-exhaustive-2026-08-04/VERDICT-LEDGER.md`**
+> (**327 VIU-Observed-PASS · 109 DEVIATION · 13 NOT-BUILT · 20 EXTERNAL-DEPENDENCY ·
+> 9 BLOCKED-BY-DEFECT = 478**, with the 9-case `invoices/create` HTTP 500 / SV-8821 reclassification
+> applied and independently re-derived).
+> **Six NEW asks, all on the QA lead, all raised 2026-08-04** — full five-field detail in
+> `build/report-suite/audit-exhaustive-2026-08-04/AUDIT.md` §OUTSTANDING:
+> 1. **A ruling on the Location-column contradiction** — the IV and WIP specs say the column appears
+>    automatically; **7 of our cases say the user switches it on**, matching the build. As written
+>    they **cannot fail a build that breaks the current spec**, and one says so in its own text
+>    (*"That is what the build does today."*). Aligning them reverses a prior authorised choice, so it
+>    is your call. Vladimir's C38920 already asserts the spec model, so it is visible from outside.
+> 2. **Authorisation for the 25-case FIX-WORDING list** — all wording, none wrong about the product.
+> 3. **Authorisation for the 9-group merge plan + 1 CUT** (478 → 468).
+> 4. **A decision on the shared-shell family** — 114 cases assert behaviour from one shared component
+>    across six reports; consolidating is a defensible ~90-case reduction, keeping it is defensible
+>    too. Not our choice to make.
+> 5. **A decision on re-verdicting 3 cases from PASS to DEVIATION** (SBR-EXP-06 = C30281,
+>    SBR-VIS-03 = C30307, SBC-EXP-09 = C30167) — each recorded as passing while the observation
+>    written underneath it contradicts the case. Ledger would become 324 PASS / 112 DEVIATION.
+> 6. **Authorisation to extend 2 cases for two small surface gaps** (PV-EXP-04 needs a PDF leg;
+>    SBR-EXP-11 needs the per-invoice order) — same defect class as the 2026-07-31 export miss.
+>
+> **Also updated:** the master re-check queue now represents **478 of 478** cases (was 341) and stays
+> **OPEN**. **Still needed from others:** the **Jira ticket key for TU Story 10** (the only
+> traceability shortfall in 478 cases), a **decision on re-reading epic SV-8582** (6 stories reopened
+> 2026-07-31, source is PARTIAL), **Chris Ward's 5 pending spec edits**, **confirmation of when branch
+> `sv8582` becomes final**, and **a technical tester for the 56 tool-dependent cases** (30 network
+> panel, 25 screen reader/inspector, 1 QuickBooks — 422 of 478 are runnable unaided).
+
 | Item | Category | Who owes it | What it blocks | Outstanding since |
 |---|---|---|---|---|
 | ~~**QA branch / environment + feature-flag state.**~~ **✅ CLEARED 2026-08-03 — the QA branch arrived and access is PROVEN.** App `https://sv8582.qa.shopview.com`, API `https://sv8582api.qa.shopview.com`, build marker **`v3.4.1-0ed4433`**. `quick-login` 200, `reportsPageAccess` held, all six reports reachable, exact routes captured. **Flag state answered: there is NO Report Suite feature flag** — the 13-flag catalogue contains no such entry and all six reports render unflagged (9 flags enabled for the org). Evidence `build/report-suite/viu-2026-08-03/ACCESS-PROOF-2026-08-03.md`. **⚠️ BUT engineering says the branch is NOT FINAL**, so every finding is provisional under new **Standing Rule 49** and queued in `build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md` (**OPEN, 35 rows, 0 re-checked**). | ACCESS | — **closed**, but see the new re-check row below | **The suite is no longer theoretical: 86 cases have a live-matched assertion, 9 wordings are proven wrong, 13 are right-but-the-build-is-behind, 124 are still untouched.** No case may be called VIU-complete while the build is non-final. | Raised 2026-07-22 · **cleared 2026-08-03** |

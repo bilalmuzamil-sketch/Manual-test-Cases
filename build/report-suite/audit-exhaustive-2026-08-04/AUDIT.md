@@ -181,6 +181,11 @@ appears saying something went wrong, **that is a failure**"*. Rewrite IV-EXP-10 
 | MG-WIP-TAB-COUNTS | WIP-TAB-03 = [C30453](https://shopview.testrail.io/index.php?/cases/view/30453) | WIP-TAB-02 = [C30452](https://shopview.testrail.io/index.php?/cases/view/30452) | nothing — the count and the "(0)" case are already in WIP-TAB-02 and WIP-SCOPE-05 |
 | MG-WIP-TOTAL-PINNED | WIP-VIS-03 = [C30521](https://shopview.testrail.io/index.php?/cases/view/30521) | WIP-TOT-01 = [C30494](https://shopview.testrail.io/index.php?/cases/view/30494) | the horizontal-scroll line |
 
+**One disclosure:** eight of the nine survivors are KEEP cases; **IV-API-03** = [C30607](https://shopview.testrail.io/index.php?/cases/view/30607)
+is itself **WEAK-KEEP**. Merging into a low-value survivor is deliberate here — both cases are
+dev-access-only snapshot re-run checks, so the pair collapses to one low-value case rather than
+promoting either. The recommended count is unaffected (WEAK-KEEP is inside the 468).
+
 ## The CUT list — 1 case
 
 **IV-SCOPE-05** = [C30544](https://shopview.testrail.io/index.php?/cases/view/30544) — *"There is no
@@ -288,6 +293,25 @@ just do not make sense"*.
 > hostile reading, against his 70%. On coherence he is right about 6.7% — and the most serious
 > instances are ours, not the AI's: four cases written to match a broken build instead of the
 > specification. We found them, quoted them, and staged the fix.**
+
+---
+
+## Files in this folder, and what each is for
+
+| File | What it is |
+|---|---|
+| `AUDIT.md` | this report — the three-dimension tally, the lists, the critic answer, the outstanding asks |
+| `per-case-verdicts.csv` | **one row per case, all 478** — three dimensions, the seven-field review status, the status ledger, C-id + clickable link |
+| `VERDICT-LEDGER.md` | the single authoritative status of all 478, the reclassification verified, and the reconciliation of the two tallies that were in circulation |
+| `CONTRADICTIONS.md` | the Stage-2b sweep — all four helpers, both texts quoted per contradiction, the resolutions, the two surface-split candidates |
+| `DELIBERATE-DECISIONS.md` | the Rule-46 register — 27 entries, six fields each, honest risk ratings |
+| `audit-tally.json` | machine-readable totals |
+| `gen_audit.py` | regenerates the CSV and the tally; **exits non-zero** if the population is not fully scored, a count fails to reconcile, a contradiction lacks a resolution, or any case is KEEP-but-NONSENSE |
+| `sweeps/sweep_stage2b.py` | the four Stage-2b helpers, read-only |
+| `sweeps/STAGE-2B-SWEEP-OUTPUT.txt` | that script's raw output |
+| `sweeps/sweep-f7-enumerations.txt` | the Rule-42 / F7 closed-enumeration sweep, all 60 hits classified |
+| `merge_recheck_queue.py` | completes the master re-check queue to 478/478; idempotent |
+| `data/live-cases-4281.json` | the read-only TestRail snapshot the population was confirmed against |
 
 ---
 
