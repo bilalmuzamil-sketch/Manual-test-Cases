@@ -144,3 +144,29 @@ picture does not show (Rule 12). The reusable format lives in **`build/APP-ACTIO
 **Post-edit verification, all six:** seven H2 sections present **in the exact required order**; zero
 C-ids / internal case IDs / TestRail references; zero provisional-disclaimer wording; no endpoint, HTTP
 status or request id anywhere **before** section 7; images render inline where present.
+
+## Priority drifted after creation — caught, corrected, and reported rather than quietly fixed
+
+**What happened.** All six were created with `priority` set to the severity the pack states, and that was
+verified at creation (High · High · High · High · Low · Medium). A later re-read found **four of them
+sitting at `Low`**: the changelog shows `priority High -> Low` on **SV-8818 at 00:35:27**, **SV-8819 at
+00:35:32**, **SV-8820 at 00:35:37** and **SV-8821 at 00:36:58** (−0500), attributed to our own account.
+
+**We cannot attribute it to an action of ours, and we are not going to pretend otherwise.** Our
+description writes landed at **00:28–00:29** and the format rework at **00:49–00:50**; the four changes
+sit in a window in which this session issued **only GET requests** (the epic verification). The pattern
+also argues against a blanket overwrite: **only the four `High` ones moved**, while `SV-8822` (Low) and
+`SV-8823` (Medium) were untouched — consistent with a rule that downgrades `High` specifically. The most
+likely explanation is a **Jira automation rule running under the triggering user**, but that is a
+hypothesis, not a finding — it cannot be confirmed from outside the instance.
+
+**What was done.** `priority` was restored to the pack's stated value on the four
+(`PUT /rest/api/3/issue/{key}`, HTTP 204 each), each re-read and confirmed, **with every other field
+proven byte-identical to its pre-write snapshot**. A second check after a pause confirmed the values
+**held** and had not been downgraded again.
+
+**Note for whoever looks next:** the project's own **`Severity` field (`customfield_10418`) never
+drifted** — it read High/High/High/High/Low/Medium throughout — so the severity information was never
+actually lost, only the `Priority` field. **If these tickets show `Low` again, it is this same effect and
+not a re-classification by QA;** worth asking whether an automation rule is downgrading High-priority
+bugs, because it would silently mis-rank every High defect the team files.
