@@ -34,6 +34,9 @@ Date range picker is in the toolbar and offers the standard presets plus Custom,
 2. The standard presets are offered: Today, Yesterday, This Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
 3. There is no ""All Time"" option (removed by the 2026-07-16 spec round).
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S2-R1, S2-R2).",SV-8620 (SBR spec v15 2026-07-29 Story 2 S2-R1; S2-R2),,
 A Custom range uses the date-picker and holds a 366-day maximum span,SBR — Date Range Filter,Functional,Medium,1. You are on the Sales By Representative report.,"1. Open the date range picker and select a start and end date within 366 days on the calendar shown inside it; apply.
 2. Open it again and try to select a start-to-end span of more than 366 days (start and end dates inclusive).","1. A custom range within the cap applies normally via the date-picker dialog.
@@ -108,6 +111,9 @@ Sales By Representative: Location filter hidden for a one-location user,SBR — 
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
 2. For the user with access to two or more locations the Location filter IS shown.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S21-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8638 (SBR spec S21-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S21-N1 ""still sees the filter"" note is stale; spec edit pending)",,
 The Location column shows only with more than one location; rep rows Multiple,SBR — Location Filter,Functional,High,"1. You are on the Sales By Representative report as a user with access to two or more locations.
 2. One rep has invoices at a single location and another rep has invoices at two different locations.
@@ -127,6 +133,9 @@ The Location column shows only with more than one location; rep rows Multiple,SB
 7. With a single location in scope the Location column is hidden.
 8. All four downloads include the Location column in the same position it occupies on screen. In the Summary files a rep's row carries that rep's location and reads ""Multiple"" when the rep spans more than one location; in the Expanded View files each invoice row carries that invoice's own exact location.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S21-R7, S21-R8, S18-R13, S14-R20).","SV-8638; SV-8631 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13; S14-R20 — per-row Location column; ""Multiple"" on a rep row spanning locations; position after Status; constant-width filter; S14-R20 = the same column in all four exports)",,
 A rep row appears only when the rep has a matching non-reversed invoice,SBR — Rep Rows & Tree,Functional,Critical,1. Rep A has invoices in the current filtered view; rep B (sales-rep toggle on) has NONE; rep C has only a reversed invoice (seed ZZAUTOTEST data).,"1. Open the report and read the summary rows.
 2. Look for reps B and C.
@@ -500,6 +509,9 @@ Summary PDF: one rolled-up row per rep with a recomputed grand totals row,SBR �
 4. Subtotal is bolded across the header, the body rows, and the grand totals row; Inv. Hrs keeps its green/red/default coloring.
 5. The grand totals row reads ""Totals"" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin ÷ total Subtotal (shown ""—"" when that Subtotal is zero or below), never the sum or average of the rows' percentages.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R3, S14-R5, S14-R20, S2-R5).",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3; S14-R5; S14-R20; Story 2 S2-R5; §3 Margin % definition — Summary PDF; plus the automatic Location column in all four exports),,
 Expanded View PDF: one page-block per rep with its own totals; no grand,SBR — Exports,Functional,Critical,"1. You are on the report with at least two reps showing, each with at least one invoice.","1. Choose ""Download Expanded View (PDF)"" from the ⋯ menu and open the file.
 2. Check how each rep's section starts and what its table contains.
@@ -511,6 +523,9 @@ Expanded View PDF: one page-block per rep with its own totals; no grand,SBR — 
 5. Each block ends with a per-rep totals row — ""Totals"" in the Date cell; Invoice/Customer/Status blank; each metric aggregated; Margin % recomputed.
 6. There is NO grand-totals row across all reps at the end of the document.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R6, S14-R8, S14-R20, S6-R9).",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R6; S14-R8; S14-R20; Story 6 S6-R9 — Expanded PDF page-block per rep; plus the automatic Location column after Status),,
 Expanded View PDF truncates invoice numbers longer than 18 characters,SBR — Exports,Functional,Medium,"1. At least one invoice in the current view has an invoice number LONGER than 18 characters, and one has a number of 18 characters or fewer (seed data if needed).","1. Expand the rep on screen and read both invoice numbers.
 2. Download the Expanded View PDF and read the same two invoice numbers.","1. On screen, both invoice numbers show in full — never truncated.
@@ -552,6 +567,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 6. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 7. When more than one location is in scope the file also carries a Location column, with the identifying columns ahead of the metric columns; a rep whose invoices span more than one location reads ""Multiple"". (This file has no Status column for it to follow — confirm its exact position in the build.)
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R15, S14-R18, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R15; S14-R18; S14-R20 — Summary CSV headers; plus the automatic Location column in all four exports; S14-R15's header list was left un-updated when S14-R20 was added — spec correction pending),,
 "Expanded CSV: file name, verbatim headers, one row per invoice",SBR — Exports,Functional,High,"1. You are on the report with at least two reps showing, each with at least one invoice.","1. Choose ""Download Expanded View (CSV)"" from the ⋯ menu and note the saved file's name.
 2. Open the file in a text editor and read the header row.
@@ -561,6 +579,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 5. When more than one location is in scope the file also carries a Location column immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never ""Multiple"".
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R16, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R16; S14-R20 — Expanded CSV headers; plus the automatic Location column after Status; S14-R16's header list was left un-updated when S14-R20 was added — spec correction pending),,
 "CSV cells: plain numbers, signed Inv. Hrs, empty Margin %, (Inactive)",SBR — Exports,Functional,Medium,"1. You have downloaded both report CSVs from a view that includes a negative money value, a rep whose Margin % shows ""—"" on screen (Subtotal ≤ 0), and an ""(Inactive)"" contributor (seed what is missing).","1. Open each CSV in a text editor (not a spreadsheet).
 2. Read a money cell, the negative value's cell, an Inv. Hrs cell, the undefined Margin % cell, and the (Inactive) rep's ""Sales Representative"" cell.","1. Numeric columns are plain numbers — NO currency symbol, thousands separators, or parentheses; a negative uses a leading minus (for example, -1234.56).
@@ -751,6 +772,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. The selector is NOT present in History mode.
 5. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R1, S19-N1).",SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R1; S19-N1),,
 Selector offers only reps whose sales-representative toggle is on,SBR — Work Order Sales Rep,Functional,High,"1. At least one staff member has the sales-representative toggle ON and at least one has it OFF. To arrange this: open Settings, go to Staff, edit the staff member, and use the sales-representative toggle there (restore both afterward).","1. Open a Work Order and open the ""Sales Representative"" selector.
 2. Search the option list for both staff members.
@@ -790,6 +814,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 3. On the WO, the selector renders the bound rep's name with an ""(Inactive)"" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list.
 4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R7, S19-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8636 (SBR spec Story 19 S19-R7; S19-E1 — customer-card label RE-RULED to the full ""Sales Representative"" per the PRD companion video 2026-07-30 + Chris Ward answer 2026-07-31 Q5=A; the spec text still says ""Sales Rep"")",,
 A rep's invoice detail rows are fetched from the server only on the first expand,SBR — API,Functional,Medium,"1. You are on the report with at least two rep rows, one with a large invoice count if seedable.
 2. The browser's network panel is open.

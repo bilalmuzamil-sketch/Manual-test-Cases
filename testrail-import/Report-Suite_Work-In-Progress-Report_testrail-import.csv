@@ -14,17 +14,9 @@ Four tabs in a fixed order with the partially-completed tab selected,WIP — Tab
 3. Look at which tab is selected when the report loads.","1. Four tabs are shown, labeled in this order: ""Approved - Partially Completed"", ""Approved - Not Started"", ""Completed"", and ""Estimates"" - each followed by its count in brackets, for example ""Completed (30)"".
 2. The ""Approved - Partially Completed"" tab is selected by default on load.
 3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).
+4. Each tab's count matches the number of work-order rows actually listed in that tab.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S1-R2, S1-R3).",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement),,
-Each tab label shows its work-order count in parentheses,WIP — Tabs,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. Open work orders exist in at least one tab for the current date range and location (seed ZZAUTOTEST work orders if needed).
-3. At least one tab currently has no work orders.","1. Open the Work In Progress report.
-2. Read each tab's label.
-3. Count the rows shown in each tab and compare to that tab's label.","1. Each tab's label shows the count of work orders currently in that tab, in parentheses — for example, ""Completed (22)"".
-2. The count matches the number of work-order rows actually listed in that tab.
-3. A tab with no work orders shows ""(0)"".
----
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S1-R4, S2-N2).",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R4; Story 2 S2-N2 (count portion)),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S1-R2, S1-R3, S1-R4).",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement; Story 1 S1-R4),,
 There is no Trend / over-time tab or chart,WIP — Tabs,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open.","1. Look through the report's tabs, toolbar, and menus for any trend, history, or over-time view.
 2. Confirm the report only shows the floor as it stands right now.","1. Only the four progress tabs exist — there is no Trend tab and no chart of work-in-progress dollars over time.
@@ -92,6 +84,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.
 3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S4-R1, S4-R3, S4-R4); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope),,
 First visit shows the default columns; the rest are in the column selector,WIP — Columns & Rows,Functional,High,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (use a fresh browser profile or clear the site's saved data).,"1. Open the Work In Progress report.
 2. Read the visible column headers.
@@ -100,6 +95,9 @@ First visit shows the default columns; the rest are in the column selector,WIP �
 3. Location IS offered in the column-selection control, between VIN and Advisor, and is off by default. Turning it on adds a Location column that names each job's location; turning it off removes it again.
 4. Note for the tester: the Location column does NOT appear on its own when you have more than one location selected - you have to switch it on yourself. That is what the build does today.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S4-R2, S4-R3, S8-R3, S8-R4); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.","SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: ""The Location column is not offered in the column selector; its visibility is automatic"")",,
 The WO # is a link that opens the WO in the same browser tab,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Click a row's WO # link.
@@ -125,6 +123,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. The VIN column (off by default) shows the VIN on its own line as a separate, sortable column.
 5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S4-R7, S4-R8, S4-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8660 (WIP spec Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's unit-number rule),,
 Customer shows the customer's company name,WIP — Columns & Rows,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a work order with a customer that has a company name, and one with no customer name.","1. Read the Customer cell of the row whose customer has a company name.
@@ -264,6 +265,9 @@ Columns sort by underlying values; Asset sorts by the identifier shown,WIP — S
 4. The Asset column sorts by the identifier it shows - the VIN, falling back to Unit #, then plate.
 5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S4-R27, S4-R9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8660 (WIP spec Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's 'sorts by unit number' rule),,
 Sorting reorders only the active tab's rows; Totals stays at the bottom,WIP — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. At least two tabs have several rows each.","1. In the active tab, sort by a column and note the new order.
@@ -307,6 +311,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 2. It is shown in a muted style.
 3. The Estimates figure is excluded from Total Earned and from Total Remaining.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S5-R8, S5-R9).",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R8; S5-R9),,
 Each summary figure's information icon reveals its plain explanation,WIP — Summary Strip,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with the summary strip visible.","1. Hover (or focus, or tap) the small information icon next to each of the seven summary figures, one at a time.
@@ -366,12 +373,18 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. Selecting assets narrows the visible jobs on screen only (no reload); a single ""Clear"" action appears once at least one asset is selected and returns the filter to ""All assets"".
 5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R4, S7-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8663 (WIP spec Story 7 S7-R4; S7-R5 - option text + match fields RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [supersedes video P24]),,
 The date range offers the presets plus Custom; This Week default; no All Time,WIP — Filters,Functional,Critical,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).,"1. Open the Work In Progress report and read the date-range control's current value.
 2. Open the date-range control and read every option offered.","1. On a fresh visit the date range defaults to ""This Week"".
 2. The options offered are: ""Today"", ""Yesterday"", ""This Week"", ""Last Week"", ""This Month"", ""Last Month"", ""This Year"", ""Last Year"", ""This Quarter"", ""Last Quarter"", and ""Custom"".
 3. ""All Time"" is NOT offered.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R6).",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week)),,
 The date range filters on the WO's created date and reloads on change,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Open work orders exist with created dates both inside and outside the current week.","1. With ""This Week"" selected, check which work orders are listed.
@@ -381,6 +394,9 @@ The date range filters on the WO's created date and reloads on change,WIP — Fi
 3. A range longer than about a year is refused with the message ""Date range cannot be over one year."" and the wider range is not loaded.
 4. Note for the tester: on this build the exact cut-off sits one day later than the specification says (a 367-day span is accepted, 368 is refused). Record what you see; the one-day difference is already known and is with the product owner.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R7, S7-R8).",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R7; S7-R8),,
 "Location filter: rightmost multi-select with All locations, reloads on change",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. This browser has never saved settings for this report (fresh visit).
@@ -394,6 +410,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).
 5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R9, S7-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator; spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A),,
 The location scope never includes an inaccessible location,WIP — Filters,Negative,High,"1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.
 2. The Work In Progress report is open.","1. Open the Location filter and read the locations offered.
@@ -427,6 +446,9 @@ The Location column is automatic and never reads Multiple on a work-order row,WI
 6. In both downloads the column is headed ""Branch"" (a known naming difference from the screen — do not raise it as a bug).
 7. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.","SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; S10-R5a; §4 Location (column) — automatic visibility; never ""Multiple""; export header ""Branch"")",,
 Column Selection toggles columns; Total is not offered at all,WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
@@ -515,6 +537,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.
 4. Note: the on-screen Asset cell now identifies the asset by its VIN (falling back to Unit #, then plate); whether the export header text changes from ""Unit"" is confirmed in the build - record what it shows, do not file a bug either way.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned),,
 The PDF shows the shop logo at the top when one is set,WIP — Exports,Functional,Low,"1. You are signed in to the ShopView App on a desktop browser.
 2. The shop has a logo set in its settings.","1. Download the current tab as a PDF and look at the top of the document.
@@ -607,21 +632,18 @@ Nightly snapshot records one row per then-open job per calendar date,WIP — API
 4. If a manual re-run of the capture is available, re-run it for the same date and inspect that date's rows again.","1. Once per day the system records one row per then-open work order — one row per work order per calendar date.
 2. The next day's capture adds a new row per open work order under the new date; a work order open on both days has one row for each date, never two rows for the same date.
 3. Re-running the capture for the SAME date replaces that date's rows — the day's existing rows are removed and re-recorded from current data, never duplicated.
+4. Each snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R1).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs)),,
-Each snapshot row captures the WO; status; money; location and the date,WIP — API,Functional,High,"1. At least one open work order with known status, location, and organization existed when the nightly capture ran.
-2. You can inspect that date's stored snapshot rows.
-3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. Find the seeded work order's snapshot row for the capture date.
-2. Read each captured field and compare to the work order.","1. The snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.
----
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R2).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R2),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R1, S11-R2).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs); Story 11 S11-R2),,
 Captured Earned and Remaining use the same maths as the on-screen report,WIP — API,Functional,Critical,"1. An open ZZAUTOTEST work order with known approved labor (partly clocked) and approved parts (partly received) exists and is left UNCHANGED across the capture.
 2. You can read the on-screen report on the capture date and the stored snapshot row afterward.
-3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. On the capture date, note the work order's Earned and Remaining on the Work In Progress report.
+3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.
+4. The work order's Earned/Remaining include non-round cent values (for example $123.45), so lost cents would be visible.","1. On the capture date, note the work order's Earned and Remaining on the Work In Progress report.
 2. After the nightly capture, read the same work order's captured Earned and Remaining in the snapshot row.
 3. Compare the pairs.","1. The captured Earned equals the on-screen Earned and the captured Remaining equals the on-screen Remaining, to the cent — the snapshot uses the identical computation for both figures, so the two can never diverge for a given work order on the capture date.
+2. The captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R3).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R3),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R3, S11-R5).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R3; Story 11 S11-R5),,
 Nightly snapshot spans every location with no user location filter,WIP — API,Functional,High,"1. Open service work orders exist at two or more different locations.
 2. An Invoiced (or Paid/Declined) work order and a part-sale work order also exist.
 3. You can inspect the capture date's snapshot rows.
@@ -632,12 +654,6 @@ Nightly snapshot spans every location with no user location filter,WIP — API,F
 3. Invoiced, Paid, and Declined work orders and part-sale work orders are not captured.
 ---
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R4, S2-R1).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R4; Story 2 S2-R1 (first two conditions)),,
-Nightly snapshot: captured dollar values are stored to the cent,WIP — API,Functional,Medium,"1. An open work order whose Earned/Remaining include non-round cent values (for example $123.45) existed at capture time.
-2. You can inspect the stored snapshot rows.
-3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. Read the captured Earned and Remaining values for the work order.
-2. Compare their precision to the on-screen values.","1. Captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents.
----
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R5).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R5),,
 Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped,WIP — API,Functional,Medium,"1. An open ZZAUTOTEST estimate with no approved line items existed at capture time.
 2. You can inspect the capture date's snapshot rows.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. After the nightly capture, look for the nothing-approved work order among the date's snapshot rows.

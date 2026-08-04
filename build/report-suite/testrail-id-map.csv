@@ -71,7 +71,6 @@ SBC-PERS-05,C30178,With no saved view every setting uses its own default,SBC —
 SBC-PERS-06,C30179,When a saved view and a page-link range clash the saved view wins,SBC — Saved View & Persistence
 SBC-PERS-07,C30180,Customer filter restore: all-customers stays all; an id set is intersected,SBC — Saved View & Persistence
 SBC-EMPTY-01,C30181,Empty state shows in the table body; toolbar interactive; kept selection returns,SBC — Empty & Edge States
-SBC-EMPTY-02,C30182,The empty-state message never appears while the table is still loading,SBC — Empty & Edge States
 SBC-EMPTY-04,C30184,A failed data fetch shows the error toast which fades after 5 seconds,SBC — Empty & Edge States
 SBC-VIS-01,C30185,Page and toolbar match the suite theme in padding; surface and alignment,SBC — Visual Conformance
 SBC-VIS-02,C30186,Row surfaces alternate by tree level; header and totals rows stay white,SBC — Visual Conformance
@@ -223,7 +222,6 @@ PV-ROW-06,C30346,"Info icons sit on Units Sold, Demand and Turns/Yr with descrip
 PV-ROW-07,C30347,Description; Category and Vendor truncate on hover; Part # never does,PV — Row Model
 PV-ROW-08,C30348,Em-dash only in nullable fields; counts and Revenue/Margin are never null,PV — Row Model
 PV-ROW-09,C30349,"An inventory part drops out only with no movement, no stock and no revenue",PV — Row Model
-PV-ROW-10,C30350,A sale invoiced then fully reversed shows Demand 1 with Units Sold 0.00,PV — Row Model
 PV-COL-01,C30351,Column picker lists all 20 columns and never offers the internal cost,PV — Columns & Remembered View
 PV-COL-02,C30352,First visit shows exactly the 14 default columns in the specified order,PV — Columns & Remembered View
 PV-COL-03,C30353,"A re-enabled column returns to its canonical slot, with no reload",PV — Columns & Remembered View
@@ -319,7 +317,6 @@ TU-EXP-09,C38887,An over-cap Technician Utilization export is refused with the t
 TU-LOC-01,C30442,The Location filter is the rightmost multi-select; All Locations = select-all,TU — Location Filter
 TU-LOC-02,C30443,Location changes reload with hours pooled into one row per technician,TU — Location Filter
 TU-LOC-03,C30444,The saved location selection restores defensively; bad ones are dropped,TU — Location Filter
-TU-LOC-04,C30445,Deselecting every location falls back to the active location,TU — Location Filter
 TU-LOC-05,C30446,Technician Utilization: Location filter hidden for a one-location user,TU — Location Filter
 TU-LOC-06,C38915,The Location column shows only with more than one location; Summary row blank,TU — Location Filter
 TU-COL-01,C38859,"Column Selection: Technician always on, the other five toggleable, remembered",TU — Visual & Accessibility
@@ -329,7 +326,6 @@ TU-API-01,C30449,The per-day breakdown is fetched only when a technician row is 
 TU-API-02,C30450,Date-range and location changes trigger a fresh server load,TU — API
 WIP-TAB-01,C30451,Work In Progress appears in the reports navigation under the Performance group,WIP — Tabs
 WIP-TAB-02,C30452,Four tabs in a fixed order with the partially-completed tab selected,WIP — Tabs
-WIP-TAB-03,C30453,Each tab label shows its work-order count in parentheses,WIP — Tabs
 WIP-TAB-05,C30455,There is no Trend / over-time tab or chart,WIP — Tabs
 WIP-SCOPE-01,C30456,Every open service WO at a selected location appears in the report,WIP — Scope & Loading
 WIP-SCOPE-02,C30457,Invoiced; Paid and part-sale work orders never appear,WIP — Scope & Loading
@@ -401,10 +397,8 @@ WIP-VIS-07,C30525,In dark mode every table; strip; link and coloring stays legib
 WIP-PERM-01,C30526,Ordinary reports access covers opening and downloading Work In Progress,WIP — Permissions
 WIP-PERM-02,C30527,Without reports access Work In Progress is absent from the navigation,WIP — Permissions
 WIP-API-01,C30528,Nightly snapshot records one row per then-open job per calendar date,WIP — API
-WIP-API-02,C30529,Each snapshot row captures the WO; status; money; location and the date,WIP — API
 WIP-API-03,C30530,Captured Earned and Remaining use the same maths as the on-screen report,WIP — API
 WIP-API-04,C30531,Nightly snapshot spans every location with no user location filter,WIP — API
-WIP-API-05,C30532,Nightly snapshot: captured dollar values are stored to the cent,WIP — API
 WIP-API-06,C30533,Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped,WIP — API
 IV-NAV-01,C30534,Inventory Value appears in the reports navigation under the Parts group,IV — Access & Display
 IV-NAV-02,C30535,One row per in-stock part at the selected locations valued at the resolved date,IV — Access & Display
@@ -413,7 +407,6 @@ IV-NAV-05,C30538,The report is server-paginated: one page of rows at a time,IV �
 IV-NAV-06,C30539,"No qualifying parts, day or location: the no-data message shows and no totals",IV — Access & Display
 IV-SCOPE-01,C30540,A part appears only if not a core charge and on-hand quantity is above zero,IV — Row Scope
 IV-SCOPE-02,C30541,A part stocked at two selected locations shows as two rows; never merged,IV — Row Scope
-IV-SCOPE-05,C30544,There is no dead-stock exclusion - a slow-moving part still appears,IV — Row Scope
 IV-CALC-01,C30545,Unit Sell uses the part's fixed sell price when one is set,IV — Valuation & Columns
 IV-CALC-02,C30546,With no fixed sell price Unit Sell is the category's pricing-matrix markup,IV — Valuation & Columns
 IV-CALC-03,C30547,"With no fixed sell price and no category, Unit Sell equals Unit Cost",IV — Valuation & Columns
@@ -453,7 +446,6 @@ IV-PERS-04,C30582,Defensive restore: a stale saved category or vendor is dropped
 IV-SORT-01,C30583,Rows are sorted by Total Cost highest first on load and after any reload,IV — Sorting
 IV-SORT-02,C30584,Header clicks sort ascending then descending; no third state; page 1 returns,IV — Sorting
 IV-SORT-03,C30585,Money and numeric columns sort by value; text columns sort as text,IV — Sorting
-IV-SORT-04,C30586,Sorting reorders only the data rows — the totals row stays at the bottom,IV — Sorting
 IV-EXP-01,C30587,Inventory Value: a three-dot menu holds Download (PDF) and Download (CSV),IV — Exports
 IV-EXP-02,C30588,"Downloads keep shown columns and order, honor filters, and include Totals",IV — Exports
 IV-EXP-03,C30589,Export number formats: money to 2 decimals; Margin % to 1 with em-dash,IV — Exports
@@ -474,6 +466,5 @@ IV-PERM-02,C30604,Without reports access Inventory Value is absent from the navi
 IV-API-01,C30605,Nightly snapshot records one row per in-stock non-core part per location,IV — API
 IV-API-02,C30606,A recorded snapshot day equals what the live report showed that day,IV — API
 IV-API-03,C30607,Nightly snapshot: re-running the capture for a date replaces that date's rows,IV — API
-IV-API-04,C30608,Nightly snapshot: a re-run records today's truth; it cannot rebuild a past day,IV — API
 IV-API-05,C30609,Snapshot retention: daily captures are kept for 0–13 months,IV — API
 IV-API-06,C30610,Thinned history still served by the closest-recorded-day rule,IV — API

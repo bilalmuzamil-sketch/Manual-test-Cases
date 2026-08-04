@@ -9,6 +9,9 @@ Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
 4. The browser tab title reads ""Sales By Customer - Report | ShopView"".
 5. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-R1, S1-R3, S1-R4).",SV-8600 (SBC spec S1-R1; S1-R3; S1-R4 — Confluence 577634305 v-2026-07-31; Performance-group placement per the PRD video 2026-07-30; access = ordinary reports permission per Chris Ward 2026-07-31 Q4=A + SV-8598 sheet Q1=A),,
 Ordinary reports access opens Sales By Customer — no separate permission,SBC — Permissions,Functional,Critical,"1. A test user exists whose role has the ordinary reports access (the standard ""can this person see reports"" setting) and NO report-specific permission (create a ZZAUTOTEST custom role if needed; restore afterwards).
 2. You are signed in as that user.","1. Open the Reports area.
@@ -58,6 +61,9 @@ Date range picker offers eleven options in the specified order,SBC — Date Rang
 2. It offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
 3. There is no ""All Time"" option.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R1, S2-R2).",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes),,
 Custom range opens a start/end date dialog and cannot exceed a 366-day span,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Open the date range picker. A month calendar is shown inside it, which is how a custom start and end date are picked on this build.
 2. Pick a start and end date less than 366 days apart on that calendar and apply.
@@ -65,6 +71,9 @@ Custom range opens a start/end date dialog and cannot exceed a 366-day span,SBC 
 2. A range of 366 days or fewer applies normally.
 3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R3, S2-R4, S2-N2).",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R3; S2-R4; S2-N2),,
 Changing the date range writes it into the page link for sharing,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Change the date range (for example to ""Last Month"").
 2. Look at the browser's address bar.
@@ -92,6 +101,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. Activating ""All locations"" selects every listed location at once; activating it again clears them all at once.
 5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R1, S4-R2, S4-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A; applied suite-wide),,
 Selecting locations scopes the data; All locations covers every accessible one,SBC — Location Filter,Functional,High,"1. At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed).
 2. You are on the Sales By Customer report.","1. Select only location A in the location filter and note the customers/totals.
@@ -119,6 +131,9 @@ The Location column shows only with more than one location; Multiple on totals,S
 6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.
 7. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at one location, ""Multiple"" on a row that aggregates more than one, and the invoice's own location on an invoice row. (Exactly where the column sits inside each file is confirmed in the build.)
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R12, S4-R12a, S4-R13, S20-R19).","SV-8603; SV-8612; SV-8613 (SBC spec v13 2026-07-31 S4-R12; S4-R12a; S4-R13; S20-R19 — per-row Location column with automatic visibility; ""Multiple"" on aggregating rows; S4-R13 = the same column in every export)",,
 "Customer filter sits between Product Type and Location, carries a search icon",SBC — Customer Filter,Functional,High,1. You are on the Sales By Customer report with at least one customer in the current results.,"1. Look at the toolbar filters from left to right.
 2. Open the Customer filter without typing anything.
@@ -271,6 +286,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. For asset (d) (no VIN, Unit #, or plate), note what the label shows - what stands in when all three are missing is confirmed in the build (the older rule showed ""Unknown Asset"").
 5. Note whether the year/make/model text still appears anywhere in the row - the update says the VIN identifier REPLACES the year/make/model label; confirm the exact rendering in the build.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R7, S8-R8, S8-R9, S8-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8606 (SBC spec Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward msg 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's year/make/model rule),,
 Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads,SBC — Asset Labels,Functional,Medium,"1. One customer has TWO ZZAUTOTEST assets whose labels come out identical (same year/make/model and same identifier situation), each with an invoice in range.","1. Expand the customer and read the two asset labels.
 2. Note which asset carries "" (#1)"" and which "" (#2)"".
@@ -468,6 +486,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 3. When no logo is available at all, the logo column is not rendered and the text column fills the full width.
 4. The logo is embedded in the PDF (renders offline, not loaded from a network address).
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18).",SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18),,
 Expanded View PDF body matches the CSV's columns and on-screen rules,SBC — Exports,Functional,Medium,"1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal ≤ 0 row.
 2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the ""Styles"" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing.","1. Read the body table's columns and row structure.
@@ -502,6 +523,9 @@ Summary and Expanded View downloads exist for both PDF and CSV,SBC — Exports,F
 4. All four files reflect exactly the filtered data shown on screen.
 5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added with the identifying columns, ahead of the money columns (the Summary files have no Date column for it to follow — confirm its exact position in the build).
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13).",SV-8612; SV-8613; SV-8603 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export),,
 Filters; sort and visible columns are restored on the next visit,SBC — Saved View & Persistence,Functional,Critical,1. You are on the report in a browser you can revisit.,"1. Set a non-default date range, Product Type, location selection, a two-customer Customer selection, a non-default sort, and hide one column.
 2. Navigate away to another part of the application, then return to the report.
@@ -552,7 +576,8 @@ Customer filter restore: all-customers stays all; an id set is intersected,SBC �
 2. Scenario B: still-present saved ids are re-selected; a saved id no longer present is dropped (a stale saved id never forces an empty view); a customer that appeared since the set was saved is NOT auto-selected.
 ---
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R8).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R8),,
-Empty state shows in the table body; toolbar interactive; kept selection returns,SBC — Empty & Edge States,Functional,High,1. You are on the report with data on screen.,"1. Set a date range that contains no invoices (for example a Custom range over a quiet week far back).
+Empty state shows in the table body; toolbar interactive; kept selection returns,SBC — Empty & Edge States,Functional,High,"1. You are on the report with data on screen.
+2. To slow the load enough to watch this, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Slow 3G"". There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Set a date range that contains no invoices (for example a Custom range over a quiet week far back).
 2. Read the table body and try each toolbar control.
 3. Also provoke the empty state via Product Type and via a location with no data, and re-check.
 4. Look at the table header row's chevron.
@@ -561,14 +586,9 @@ Empty state shows in the table body; toolbar interactive; kept selection returns
 3. The same empty state appears whichever filter caused it (date range, Product Type, or location).
 4. The header-row chevron is hidden when the table has no visible rows.
 5. With a narrowed customer selection and no data, the empty state shows but the selection is KEPT (not cleared) — when the filters change back, the selected customers reappear.
+6. While the table is still loading, the empty-state message is NOT shown (the loading state is shown instead); it appears only once loading has finished and there are zero customers.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S17-R1, S17-R2, S17-R3, S17-E1, S2-N1, S3-N1, S4-N2, S8-N1).",SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1),,
-The empty-state message never appears while the table is still loading,SBC — Empty & Edge States,Negative,Medium,"1. You are on the report; a slow network helps (throttle via browser dev tools if needed).
-2. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Change a filter and watch the table area during the load.
-2. Watch what appears once loading finishes with zero customers.","1. While the table is loading, the empty-state message is NOT shown (the loading state is shown instead).
-2. The message appears only after the table finishes its initial loading and shows zero customers.
----
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S17-N1).",SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-N1),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S17-R1, S17-R2, S17-R3, S17-E1, S2-N1, S3-N1, S4-N2, S8-N1, S17-N1).",SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1; Story 17 S17-N1),,
 A failed data fetch shows the error toast which fades after 5 seconds,SBC — Empty & Edge States,Negative,Medium,"1. You can interrupt the network (browser dev tools offline mode).
 2. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Go offline, then open the report (or change a filter to force a re-fetch).
 2. Read the toast and time how long it stays.","1. An error toast is shown: ""An error occurred while fetching the report data.""
@@ -599,6 +619,9 @@ Row surfaces alternate by tree level; header and totals rows stay white,SBC — 
 4. The pinned Subtotal cell on any row uses that row's own background — never a contrasting strip.
 5. The three tree levels show by indentation: customer at the base, asset rows one level in (chevron and vehicle icon sit in from the customer), invoice rows one level deeper.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S20-R8, S20-R9, S20-R10, S20-R11, S20-R14).",SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14),,
 Dark mode darkens every surface while the PDF always renders light,SBC — Visual Conformance,Functional,Medium,1. You can switch the application to dark mode.,"1. Switch to dark mode and review the page background, toolbar, header cells, customer rows, asset/invoice rows, and totals row.
 2. While still in dark mode, download the PDF and open it.","1. In dark mode every visual rule applies with the dark equivalent of each color (dark background, dark surfaces).

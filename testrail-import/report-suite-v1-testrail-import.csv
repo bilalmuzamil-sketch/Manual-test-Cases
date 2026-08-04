@@ -9,6 +9,9 @@ Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
 4. The browser tab title reads ""Sales By Customer - Report | ShopView"".
 5. Note for the tester: the product owner has ruled that every report in this suite opens with the ordinary reports access, and the written description now says the same. If the build still demands a separate Sales By Customer permission, mark this test Failed and report it against the change already raised with the developers — do not change the test. You may also find a ""Sales By Customer"" permission still listed for an administrator to switch on and off: that should have been hidden from the screen, so please report that too. If it is listed but switching it on or off changes nothing at all, that part is expected for now — just report that it is still visible.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S1-R1, S1-R3, S1-R4).",SV-8600 (SBC spec S1-R1; S1-R3; S1-R4 — Confluence 577634305 v-2026-07-31; Performance-group placement per the PRD video 2026-07-30; access = ordinary reports permission per Chris Ward 2026-07-31 Q4=A + SV-8598 sheet Q1=A),,
 Ordinary reports access opens Sales By Customer — no separate permission,SBC — Permissions,Functional,Critical,"1. A test user exists whose role has the ordinary reports access (the standard ""can this person see reports"" setting) and NO report-specific permission (create a ZZAUTOTEST custom role if needed; restore afterwards).
 2. You are signed in as that user.","1. Open the Reports area.
@@ -58,6 +61,9 @@ Date range picker offers eleven options in the specified order,SBC — Date Rang
 2. It offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
 3. There is no ""All Time"" option.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R1, S2-R2).",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R1; S2-R2 — S2-R2 CLOSES the eleven-option list and its order itself; so the closed list IS the requirement; re-check this case whenever S2-R2 changes),,
 Custom range opens a start/end date dialog and cannot exceed a 366-day span,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Open the date range picker. A month calendar is shown inside it, which is how a custom start and end date are picked on this build.
 2. Pick a start and end date less than 366 days apart on that calendar and apply.
@@ -65,6 +71,9 @@ Custom range opens a start/end date dialog and cannot exceed a 366-day span,SBC 
 2. A range of 366 days or fewer applies normally.
 3. A range wider than 366 days cannot be applied — the report prevents the selection rather than loading the wider range.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S2-R3, S2-R4, S2-N2).",SV-8601 (SBC spec v13 2026-07-31 Story 2 S2-R3; S2-R4; S2-N2),,
 Changing the date range writes it into the page link for sharing,SBC — Date Range Filter,Functional,Medium,1. You are on the Sales By Customer report.,"1. Change the date range (for example to ""Last Month"").
 2. Look at the browser's address bar.
@@ -92,6 +101,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. Activating ""All locations"" selects every listed location at once; activating it again clears them all at once.
 5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's data.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R1, S4-R2, S4-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8603 (SBC spec Story 4 S4-R1; S4-R2; S4-R3 + single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A; applied suite-wide),,
 Selecting locations scopes the data; All locations covers every accessible one,SBC — Location Filter,Functional,High,"1. At least two accessible locations each have invoices in the chosen date range (seed ZZAUTOTEST data if needed).
 2. You are on the Sales By Customer report.","1. Select only location A in the location filter and note the customers/totals.
@@ -119,6 +131,9 @@ The Location column shows only with more than one location; Multiple on totals,S
 6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.
 7. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at one location, ""Multiple"" on a row that aggregates more than one, and the invoice's own location on an invoice row. (Exactly where the column sits inside each file is confirmed in the build.)
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R12, S4-R12a, S4-R13, S20-R19).","SV-8603; SV-8612; SV-8613 (SBC spec v13 2026-07-31 S4-R12; S4-R12a; S4-R13; S20-R19 — per-row Location column with automatic visibility; ""Multiple"" on aggregating rows; S4-R13 = the same column in every export)",,
 "Customer filter sits between Product Type and Location, carries a search icon",SBC — Customer Filter,Functional,High,1. You are on the Sales By Customer report with at least one customer in the current results.,"1. Look at the toolbar filters from left to right.
 2. Open the Customer filter without typing anything.
@@ -271,6 +286,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. For asset (d) (no VIN, Unit #, or plate), note what the label shows - what stands in when all three are missing is confirmed in the build (the older rule showed ""Unknown Asset"").
 5. Note whether the year/make/model text still appears anywhere in the row - the update says the VIN identifier REPLACES the year/make/model label; confirm the exact rendering in the build.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S8-R7, S8-R8, S8-R9, S8-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8606 (SBC spec Story 8 S8-R7; S8-R8; S8-R9; S8-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward msg 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's year/make/model rule),,
 Duplicate asset labels get stable (#1)/(#2) suffixes that survive reloads,SBC — Asset Labels,Functional,Medium,"1. One customer has TWO ZZAUTOTEST assets whose labels come out identical (same year/make/model and same identifier situation), each with an invoice in range.","1. Expand the customer and read the two asset labels.
 2. Note which asset carries "" (#1)"" and which "" (#2)"".
@@ -468,6 +486,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 3. When no logo is available at all, the logo column is not rendered and the text column fills the full width.
 4. The logo is embedded in the PDF (renders offline, not loaded from a network address).
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18).",SV-8613 (SBC spec v13 2026-07-31 Story 15 S15-R12; S15-R13; S15-R14; S15-R15; S15-R16; S15-R17; S15-R18),,
 Expanded View PDF body matches the CSV's columns and on-screen rules,SBC — Exports,Functional,Medium,"1. You have downloaded the PDF for a view with positive and negative Inv. Hrs values and (if seedable) a Subtotal ≤ 0 row.
 2. This test names exact colours or sizes. Use the browser's own developer tools: press F12, pick the element with the inspector, and read its colour or size from the ""Styles"" panel. There is nothing to install. If you cannot get a clear reading, mark this test Blocked rather than guessing.","1. Read the body table's columns and row structure.
@@ -502,6 +523,9 @@ Summary and Expanded View downloads exist for both PDF and CSV,SBC — Exports,F
 4. All four files reflect exactly the filtered data shown on screen.
 5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added with the identifying columns, ahead of the money columns (the Summary files have no Date column for it to follow — confirm its exact position in the build).
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13).",SV-8612; SV-8613; SV-8603 (SBC spec v13 2026-07-31 S14-R1; S14-R2; S14-R4; S15-R1; S15-R2; S15-R4; S15-R5; S4-R13 — the four-item Summary/Expanded menu; the Summary column list; the automatic Location column in every export),,
 Filters; sort and visible columns are restored on the next visit,SBC — Saved View & Persistence,Functional,Critical,1. You are on the report in a browser you can revisit.,"1. Set a non-default date range, Product Type, location selection, a two-customer Customer selection, a non-default sort, and hide one column.
 2. Navigate away to another part of the application, then return to the report.
@@ -552,7 +576,8 @@ Customer filter restore: all-customers stays all; an id set is intersected,SBC �
 2. Scenario B: still-present saved ids are re-selected; a saved id no longer present is dropped (a stale saved id never forces an empty view); a customer that appeared since the set was saved is NOT auto-selected.
 ---
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S18-R8).",SV-8616 (SBC spec v13 2026-07-31 Story 18 S18-R8),,
-Empty state shows in the table body; toolbar interactive; kept selection returns,SBC — Empty & Edge States,Functional,High,1. You are on the report with data on screen.,"1. Set a date range that contains no invoices (for example a Custom range over a quiet week far back).
+Empty state shows in the table body; toolbar interactive; kept selection returns,SBC — Empty & Edge States,Functional,High,"1. You are on the report with data on screen.
+2. To slow the load enough to watch this, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Slow 3G"". There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Set a date range that contains no invoices (for example a Custom range over a quiet week far back).
 2. Read the table body and try each toolbar control.
 3. Also provoke the empty state via Product Type and via a location with no data, and re-check.
 4. Look at the table header row's chevron.
@@ -561,14 +586,9 @@ Empty state shows in the table body; toolbar interactive; kept selection returns
 3. The same empty state appears whichever filter caused it (date range, Product Type, or location).
 4. The header-row chevron is hidden when the table has no visible rows.
 5. With a narrowed customer selection and no data, the empty state shows but the selection is KEPT (not cleared) — when the filters change back, the selected customers reappear.
+6. While the table is still loading, the empty-state message is NOT shown (the loading state is shown instead); it appears only once loading has finished and there are zero customers.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S17-R1, S17-R2, S17-R3, S17-E1, S2-N1, S3-N1, S4-N2, S8-N1).",SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1),,
-The empty-state message never appears while the table is still loading,SBC — Empty & Edge States,Negative,Medium,"1. You are on the report; a slow network helps (throttle via browser dev tools if needed).
-2. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Change a filter and watch the table area during the load.
-2. Watch what appears once loading finishes with zero customers.","1. While the table is loading, the empty-state message is NOT shown (the loading state is shown instead).
-2. The message appears only after the table finishes its initial loading and shows zero customers.
----
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S17-N1).",SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-N1),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S17-R1, S17-R2, S17-R3, S17-E1, S2-N1, S3-N1, S4-N2, S8-N1, S17-N1).",SV-8615 (SBC spec v13 2026-07-31 Story 17 S17-R1; S17-R2; S17-R3; S17-E1; Story 2 S2-N1; Story 3 S3-N1; Story 4 S4-N2; Story 8 S8-N1; Story 17 S17-N1),,
 A failed data fetch shows the error toast which fades after 5 seconds,SBC — Empty & Edge States,Negative,Medium,"1. You can interrupt the network (browser dev tools offline mode).
 2. To force the failure this test needs, use the browser's own developer tools: press F12, open the ""Network"" tab, and switch the throttling dropdown (it normally reads ""No throttling"") to ""Offline"" to cut the connection, or to ""Slow 3G"" to slow it down. There is nothing to install. Set it back to ""No throttling"" when you finish.","1. Go offline, then open the report (or change a filter to force a re-fetch).
 2. Read the toast and time how long it stays.","1. An error toast is shown: ""An error occurred while fetching the report data.""
@@ -599,6 +619,9 @@ Row surfaces alternate by tree level; header and totals rows stay white,SBC — 
 4. The pinned Subtotal cell on any row uses that row's own background — never a contrasting strip.
 5. The three tree levels show by indentation: customer at the base, asset rows one level in (chevron and vehicle icon sit in from the customer), invoice rows one level deeper.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Customer report specification version 13 (S20-R8, S20-R9, S20-R10, S20-R11, S20-R14).",SV-8617 (SBC spec v13 2026-07-31 Story 20 S20-R8; S20-R9; S20-R10; S20-R11; S20-R14),,
 Dark mode darkens every surface while the PDF always renders light,SBC — Visual Conformance,Functional,Medium,1. You can switch the application to dark mode.,"1. Switch to dark mode and review the page background, toolbar, header cells, customer rows, asset/invoice rows, and totals row.
 2. While still in dark mode, download the PDF and open it.","1. In dark mode every visual rule applies with the dark equivalent of each color (dark background, dark surfaces).
@@ -709,6 +732,9 @@ Date range picker is in the toolbar and offers the standard presets plus Custom,
 2. The standard presets are offered: Today, Yesterday, This Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.
 3. There is no ""All Time"" option (removed by the 2026-07-16 spec round).
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S2-R1, S2-R2).",SV-8620 (SBR spec v15 2026-07-29 Story 2 S2-R1; S2-R2),,
 A Custom range uses the date-picker and holds a 366-day maximum span,SBR — Date Range Filter,Functional,Medium,1. You are on the Sales By Representative report.,"1. Open the date range picker and select a start and end date within 366 days on the calendar shown inside it; apply.
 2. Open it again and try to select a start-to-end span of more than 366 days (start and end dates inclusive).","1. A custom range within the cap applies normally via the date-picker dialog.
@@ -783,6 +809,9 @@ Sales By Representative: Location filter hidden for a one-location user,SBR — 
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
 2. For the user with access to two or more locations the Location filter IS shown.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S21-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8638 (SBR spec S21-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S21-N1 ""still sees the filter"" note is stale; spec edit pending)",,
 The Location column shows only with more than one location; rep rows Multiple,SBR — Location Filter,Functional,High,"1. You are on the Sales By Representative report as a user with access to two or more locations.
 2. One rep has invoices at a single location and another rep has invoices at two different locations.
@@ -802,6 +831,9 @@ The Location column shows only with more than one location; rep rows Multiple,SB
 7. With a single location in scope the Location column is hidden.
 8. All four downloads include the Location column in the same position it occupies on screen. In the Summary files a rep's row carries that rep's location and reads ""Multiple"" when the rep spans more than one location; in the Expanded View files each invoice row carries that invoice's own exact location.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S21-R7, S21-R8, S18-R13, S14-R20).","SV-8638; SV-8631 (SBR spec v15 2026-07-29 S21-R7; S21-R8; S18-R13; S14-R20 — per-row Location column; ""Multiple"" on a rep row spanning locations; position after Status; constant-width filter; S14-R20 = the same column in all four exports)",,
 A rep row appears only when the rep has a matching non-reversed invoice,SBR — Rep Rows & Tree,Functional,Critical,1. Rep A has invoices in the current filtered view; rep B (sales-rep toggle on) has NONE; rep C has only a reversed invoice (seed ZZAUTOTEST data).,"1. Open the report and read the summary rows.
 2. Look for reps B and C.
@@ -1175,6 +1207,9 @@ Summary PDF: one rolled-up row per rep with a recomputed grand totals row,SBR �
 4. Subtotal is bolded across the header, the body rows, and the grand totals row; Inv. Hrs keeps its green/red/default coloring.
 5. The grand totals row reads ""Totals"" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin ÷ total Subtotal (shown ""—"" when that Subtotal is zero or below), never the sum or average of the rows' percentages.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R3, S14-R5, S14-R20, S2-R5).",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R3; S14-R5; S14-R20; Story 2 S2-R5; §3 Margin % definition — Summary PDF; plus the automatic Location column in all four exports),,
 Expanded View PDF: one page-block per rep with its own totals; no grand,SBR — Exports,Functional,Critical,"1. You are on the report with at least two reps showing, each with at least one invoice.","1. Choose ""Download Expanded View (PDF)"" from the ⋯ menu and open the file.
 2. Check how each rep's section starts and what its table contains.
@@ -1186,6 +1221,9 @@ Expanded View PDF: one page-block per rep with its own totals; no grand,SBR — 
 5. Each block ends with a per-rep totals row — ""Totals"" in the Date cell; Invoice/Customer/Status blank; each metric aggregated; Margin % recomputed.
 6. There is NO grand-totals row across all reps at the end of the document.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R6, S14-R8, S14-R20, S6-R9).",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R6; S14-R8; S14-R20; Story 6 S6-R9 — Expanded PDF page-block per rep; plus the automatic Location column after Status),,
 Expanded View PDF truncates invoice numbers longer than 18 characters,SBR — Exports,Functional,Medium,"1. At least one invoice in the current view has an invoice number LONGER than 18 characters, and one has a number of 18 characters or fewer (seed data if needed).","1. Expand the rep on screen and read both invoice numbers.
 2. Download the Expanded View PDF and read the same two invoice numbers.","1. On screen, both invoice numbers show in full — never truncated.
@@ -1227,6 +1265,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 6. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 7. When more than one location is in scope the file also carries a Location column, with the identifying columns ahead of the metric columns; a rep whose invoices span more than one location reads ""Multiple"". (This file has no Status column for it to follow — confirm its exact position in the build.)
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R15, S14-R18, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R15; S14-R18; S14-R20 — Summary CSV headers; plus the automatic Location column in all four exports; S14-R15's header list was left un-updated when S14-R20 was added — spec correction pending),,
 "Expanded CSV: file name, verbatim headers, one row per invoice",SBR — Exports,Functional,High,"1. You are on the report with at least two reps showing, each with at least one invoice.","1. Choose ""Download Expanded View (CSV)"" from the ⋯ menu and note the saved file's name.
 2. Open the file in a text editor and read the header row.
@@ -1236,6 +1277,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 5. When more than one location is in scope the file also carries a Location column immediately after Status — the position it holds on screen — and every row shows that invoice's own exact location, never ""Multiple"".
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S14-R16, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8631 (SBR spec v15 2026-07-29 Story 14 S14-R16; S14-R20 — Expanded CSV headers; plus the automatic Location column after Status; S14-R16's header list was left un-updated when S14-R20 was added — spec correction pending),,
 "CSV cells: plain numbers, signed Inv. Hrs, empty Margin %, (Inactive)",SBR — Exports,Functional,Medium,"1. You have downloaded both report CSVs from a view that includes a negative money value, a rep whose Margin % shows ""—"" on screen (Subtotal ≤ 0), and an ""(Inactive)"" contributor (seed what is missing).","1. Open each CSV in a text editor (not a spreadsheet).
 2. Read a money cell, the negative value's cell, an Inv. Hrs cell, the undefined Margin % cell, and the (Inactive) rep's ""Sales Representative"" cell.","1. Numeric columns are plain numbers — NO currency symbol, thousands separators, or parentheses; a negative uses a leading minus (for example, -1234.56).
@@ -1426,6 +1470,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. The selector is NOT present in History mode.
 5. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R1, S19-N1).",SV-8636 (SBR spec v15 2026-07-29 Story 19 S19-R1; S19-N1),,
 Selector offers only reps whose sales-representative toggle is on,SBR — Work Order Sales Rep,Functional,High,"1. At least one staff member has the sales-representative toggle ON and at least one has it OFF. To arrange this: open Settings, go to Staff, edit the staff member, and use the sales-representative toggle there (restore both afterward).","1. Open a Work Order and open the ""Sales Representative"" selector.
 2. Search the option list for both staff members.
@@ -1465,6 +1512,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 3. On the WO, the selector renders the bound rep's name with an ""(Inactive)"" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list.
 4. Note for the tester: the product owner has ruled that the full word ""Sales Representative"" replaces the short ""Sales Rep"" everywhere. If the screen or file still shows ""Sales Rep"", mark this test Failed and report it as the pending rename — do not change the test.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Sales By Representative report specification version 15 (S19-R7, S19-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8636 (SBR spec Story 19 S19-R7; S19-E1 — customer-card label RE-RULED to the full ""Sales Representative"" per the PRD companion video 2026-07-30 + Chris Ward answer 2026-07-31 Q5=A; the spec text still says ""Sales Rep"")",,
 A rep's invoice detail rows are fetched from the server only on the first expand,SBR — API,Functional,Medium,"1. You are on the report with at least two rep rows, one with a large invoice count if seedable.
 2. The browser's network panel is open.
@@ -1579,6 +1629,9 @@ Date range selector offers exactly the eleven bounded options and no All Time,PV
 3. Selecting a non-custom option immediately reloads the report data.
 4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-R2).","SV-8642 (PV spec v4 2026-07-29 S2-R2; §2 Out of Scope — S2-R2 CLOSES it in the spec's own words (""offering exactly these options"") and rules out ""All Time""; so the closed list IS the requirement)",,
 A Custom date range needs valid dates and rejects a span over 366 days,PV — Filters,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the date range selector and choose Custom.
 2. Pick only a start date and observe - then pick an end date earlier than the start and observe.
@@ -1664,6 +1717,9 @@ Parts Velocity: the Location filter is hidden for a one-location user,PV — Fil
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
 2. For the user with access to two or more locations the Location filter IS shown.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S2-E4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8642 (PV spec S2-E4 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S2-E4 ""still sees the filter"" note is stale; spec edit pending)",,
 "The Location column shows only with more than one location, leftmost before Type",PV — Filters,Functional,High,"1. You are on the Parts Velocity report as a user with access to two or more locations, with data loaded.
 2. The same inventory part is stocked at two of those locations, and at least one Special Order part has vendor requests at two of them.","1. Select two or more locations and read the column headers from the left.
@@ -1755,13 +1811,6 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 3. (Special Order parts have no such rule: a never-requested special-order part simply produces no row.)
 ---
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-N1).",SV-8643 (PV spec v4 2026-07-29 S3-N1),,
-A sale invoiced then fully reversed shows Demand 1 with Units Sold 0.00,PV — Row Model,Functional,Medium,"1. Inventory part C: one sale invoiced AND fully reversed inside the window, and the part still has on-hand stock (so it stays in the result set).
-2. Inventory part D: reversals exceed sales in the window (net-negative movement), with on-hand stock or other billed revenue keeping it in the result set.","1. Find part C and read its Demand and Units Sold.
-2. Find part D and read its Units Sold.","1. Part C shows Demand 1 (the reversal does not decrement the Demand count) with Units Sold 0.00 (the reversal nets the movement to zero).
-2. Part D shows a NEGATIVE Units Sold with a leading minus (e.g. -3.00) - negative movement is not floored to zero.
-3. A fully-reversed part with zero net movement, no on-hand stock, and no residual revenue would be excluded altogether (a Demand count alone does not keep a row).
----
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S3-E1, S5-R5).",SV-8643 (PV spec v4 2026-07-29 S3-E1; S5-R5),,
 Column picker lists all 20 columns and never offers the internal cost,PV — Columns & Remembered View,Functional,High,1. You are on the Parts Velocity report with data loaded.,"1. Open the column picker from its toolbar button.
 2. Count the columns listed and check each has a toggle.
 3. Look for any on-hand cost / inventory-value entry.","1. The picker lists all 20 available columns, each with a toggle: Type, Part #, Description, Category, Vendor, Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand, Turns/Yr, Min, Max.
@@ -1861,8 +1910,9 @@ Demand counts each transaction once; a reversal neither adds nor subtracts,PV �
 2. After the reversal, Demand is STILL 2 - a reversal event neither adds to nor subtracts from the count (while Units Sold nets down).
 3. The special-order part's Demand is 2 - the count of its in-window vendor part requests.
 4. Demand is the report's default ranking signal (a whole number, never null - 0 when none).
+5. A part whose single in-window sale is invoiced and then fully reversed shows Demand 1 with Units Sold 0.00 — the Demand count is not decremented, while the movement nets to zero.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4).",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Demand); §4; §3 Key Decisions),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4, S3-E1).",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Demand); §4; §3 Key Decisions; S3-E1),,
 Last Sale is whole days since the most recent sale over all-time history,PV — Columns & Calculations,Functional,Medium,"1. A part whose most recent sale was N days ago, OUTSIDE the currently selected date range (e.g. range = This Month, last sale 42 days ago).
 2. The part still appears in the report (it has on-hand stock).
 3. For the location check: the part's most recent sale at location A is more recent than at location B.
@@ -2003,6 +2053,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. Part # is NOT truncated.
 5. The shop logo shows at the top of the PDF when one is set. With no uploaded logo the PDF shows the bundled ShopView default logo instead of a blank space, the same as the other reports in this suite. The CSV never includes a logo.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6).",SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6 + same-logo-treatment for every report per Chris Ward group message 2026-07-29 (chris-update-2026-07-29/chris-message-2026-07-29.md; NEWEST source; last-update-wins)),,
 CSV is named velocity-report.csv and holds full untruncated text values,PV — Exports,Functional,Medium,"1. You are on the Parts Velocity report with data loaded, including a part with a Description longer than 18 characters and a part with a Last Sale value.","1. Download the CSV and check the saved filename.
 2. Open it and read the long part's Description, Category, and Vendor.
@@ -2010,6 +2063,9 @@ CSV is named velocity-report.csv and holds full untruncated text values,PV — E
 2. The CSV carries the FULL, untruncated Description / Category / Vendor values (unlike the PDF's 18-character cut).
 3. Last Sale is a raw integer in the CSV (e.g. 42) - the 'N days' wording is PDF/on-screen only.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6, S6-R8).",SV-8646 (PV spec v4 2026-07-29 S6-R5; S6-R6; S6-R8),,
 "Em-dash in both exports; Last Sale reads ""N days"" in the PDF",PV — Exports,Functional,Medium,"1. Rows with null values exist (a special-order row for On Hand / Turns / Yr / Min / Max; a row with billed units 0 for Unit Cost / Sell Price; a never-sold row for Last Sale).
 2. All nullable columns are enabled.","1. Download the CSV and locate the null cells.
@@ -2431,12 +2487,18 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 2. The menu holds: ""Download Summary (PDF)"", ""Download Expanded View (PDF)"", and ""Download (CSV)"".
 3. The labels match exactly - only the expanded option carries the word ""View"" (the shipped strings, documented as-is).
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R1, S7-R2, S7-R3, S7-R4, S8-R2).","SV-8654 (TU spec v5 2026-07-29 S7-R1; S7-R2; S7-R3; S7-R4; S8-R2 — S8-R2 now adds ""followed by the Column Selection control"")",,
 The Summary PDF holds the technician rows plus the Summary,TU — Exports,Functional,High,1. You are on the Technician Utilization report with several technicians who have multi-day clock records.,"1. Choose ""Download Summary (PDF)"" and open the file; check its filename.
 2. Choose ""Download Expanded View (PDF)"" and open the file; check its filename.","1. The Summary PDF shows the technician rows and the Summary row (no day rows); it downloads as ""Technician-Utilization-Summary.pdf"".
 2. The Expanded PDF shows the technician rows, EACH technician's per-day breakdown, and the Summary row; it downloads as ""Technician-Utilization-Expanded.pdf"".
 3. The PDF filenames are Title-Case as shipped.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R5, S7-R6, S7-R12).",SV-8654 (TU spec v5 2026-07-29 S7-R5; S7-R6; S7-R12),,
 "The CSV is always summary-level, quotes comma-containing values",TU — Exports,Functional,High,"1. At least one technician's Est. Lost Labor exceeds $1,000 (so a value contains a comma).","1. Choose ""Download (CSV)"" and check the filename.
 2. Open the file in a plain-text editor and find the over-$1,000 value.
@@ -2470,12 +2532,18 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 2. The CSV never includes the logo.
 3. With NO uploaded logo, the PDF views show the bundled ShopView logo instead — not a blank space and not an error.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-R11, S7-N2, S7-N3).",SV-8654 (TU spec v5 2026-07-29 S7-R11; S7-N2; S7-N3 — logo now resolved by the shared resolver: the organization's uploaded logo; else the bundled ShopView default),,
 Choosing a download with no technician selected is a silent no-op,TU — Exports,Negative,Medium,1. You are on the Technician Utilization report with rows loaded.,"1. Use ""Clear all"" in the Filter by Technician filter so no technician is selected.
 2. Choose each download option in turn (Summary PDF, Expanded PDF, CSV).
 3. Watch for any file download and any notification.","1. Nothing happens: NO file downloads and NO message appears (not even an error).
 2. This silent no-op is the specified behavior for every download option when no technician is selected.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S7-N1).",SV-8654 (TU spec v5 2026-07-29 S7-N1; §7 context note),,
 A starting download notifies; a failed one shows the failure message,TU — Exports,Functional,Medium,"1. You are on the Technician Utilization report with rows loaded.
 2. You can force a download failure (e.g. drop the network connection just before triggering the download).","1. Trigger a normal download and read the notification.
@@ -2518,18 +2586,17 @@ The saved location selection restores defensively; bad ones are dropped,TU — L
 2. Repeat with a saved selection consisting ONLY of now-inaccessible locations.","1. Any saved location the user can no longer access is DROPPED from the restored selection; the remaining accessible locations restore normally.
 2. If the remaining set is empty, the report falls back to the user's currently active location (the first-visit default).
 3. The report loads without an error in both cases.
+4. The same fallback happens when you deselect every location by hand in the Location filter — the report loads the currently active location's rows rather than showing nothing.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R6, S1-R8, S9-R2).",SV-8656 (TU spec v5 2026-07-29 S9-R6; S1-R8; S9-R2),,
-Deselecting every location falls back to the active location,TU — Location Filter,Negative,Medium,1. You are on the Technician Utilization report with at least one location selected.,"1. In the Location filter, deselect every location (empty the filter).
-2. Watch what the report loads.","1. The report falls back to the user's currently active location rather than showing nothing.
-2. Rows for the active location load normally.
----
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R7).",SV-8656 (TU spec v5 2026-07-29 S9-R7),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-R6, S1-R8, S9-R2, S9-R7).",SV-8656 (TU spec v5 2026-07-29 S9-R6; S1-R8; S9-R2; S9-R7),,
 Technician Utilization: Location filter hidden for a one-location user,TU — Location Filter,Functional,Low,"1. You are signed in as a user with access to exactly one location.
 2. You are on the Technician Utilization report.","1. Look for the Location filter in the toolbar.
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's data.
 2. For the user with access to two or more locations the Location filter IS shown.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Technician Utilization report specification version 5 (S9-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8656 (TU spec S9-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S9-N1 ""still sees the filter"" note is stale; spec edit pending)",,
 The Location column shows only with more than one location; Summary row blank,TU — Location Filter,Functional,High,"1. You are on the Technician Utilization report as a user with access to two or more locations.
 2. One technician clocked time at a single location in the range and another clocked time at two different locations.
@@ -2618,17 +2685,9 @@ Four tabs in a fixed order with the partially-completed tab selected,WIP — Tab
 3. Look at which tab is selected when the report loads.","1. Four tabs are shown, labeled in this order: ""Approved - Partially Completed"", ""Approved - Not Started"", ""Completed"", and ""Estimates"" - each followed by its count in brackets, for example ""Completed (30)"".
 2. The ""Approved - Partially Completed"" tab is selected by default on load.
 3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).
+4. Each tab's count matches the number of work-order rows actually listed in that tab.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S1-R2, S1-R3).",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement),,
-Each tab label shows its work-order count in parentheses,WIP — Tabs,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
-2. Open work orders exist in at least one tab for the current date range and location (seed ZZAUTOTEST work orders if needed).
-3. At least one tab currently has no work orders.","1. Open the Work In Progress report.
-2. Read each tab's label.
-3. Count the rows shown in each tab and compare to that tab's label.","1. Each tab's label shows the count of work orders currently in that tab, in parentheses — for example, ""Completed (22)"".
-2. The count matches the number of work-order rows actually listed in that tab.
-3. A tab with no work orders shows ""(0)"".
----
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S1-R4, S2-N2).",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R4; Story 2 S2-N2 (count portion)),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S1-R2, S1-R3, S1-R4).",SV-8657 (WIP spec v6 2026-07-29 Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter) — S1-R2 CLOSES the four tab labels and their order verbatim; so the closed list IS the requirement; Story 1 S1-R4),,
 There is no Trend / over-time tab or chart,WIP — Tabs,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open.","1. Look through the report's tabs, toolbar, and menus for any trend, history, or over-time view.
 2. Confirm the report only shows the floor as it stands right now.","1. Only the four progress tabs exist — there is no Trend tab and no chart of work-in-progress dollars over time.
@@ -2696,6 +2755,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.
 3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S4-R1, S4-R3, S4-R4); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope),,
 First visit shows the default columns; the rest are in the column selector,WIP — Columns & Rows,Functional,High,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (use a fresh browser profile or clear the site's saved data).,"1. Open the Work In Progress report.
 2. Read the visible column headers.
@@ -2704,6 +2766,9 @@ First visit shows the default columns; the rest are in the column selector,WIP �
 3. Location IS offered in the column-selection control, between VIN and Advisor, and is off by default. Turning it on adds a Location column that names each job's location; turning it off removes it again.
 4. Note for the tester: the Location column does NOT appear on its own when you have more than one location selected - you have to switch it on yourself. That is what the build does today.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S4-R2, S4-R3, S8-R3, S8-R4); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.","SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: ""The Location column is not offered in the column selector; its visibility is automatic"")",,
 The WO # is a link that opens the WO in the same browser tab,WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Click a row's WO # link.
@@ -2729,6 +2794,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. The VIN column (off by default) shows the VIN on its own line as a separate, sortable column.
 5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S4-R7, S4-R8, S4-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8660 (WIP spec Story 4 S4-R7; S4-R8; S4-R10 - identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate); by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's unit-number rule),,
 Customer shows the customer's company name,WIP — Columns & Rows,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a work order with a customer that has a company name, and one with no customer name.","1. Read the Customer cell of the row whose customer has a company name.
@@ -2868,6 +2936,9 @@ Columns sort by underlying values; Asset sorts by the identifier shown,WIP — S
 4. The Asset column sorts by the identifier it shows - the VIN, falling back to Unit #, then plate.
 5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S4-R27, S4-R9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8660 (WIP spec Story 4 S4-R27; S4-R9 - Asset sort key RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling AND the spec's 'sorts by unit number' rule),,
 Sorting reorders only the active tab's rows; Totals stays at the bottom,WIP — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. At least two tabs have several rows each.","1. In the active tab, sort by a column and note the new order.
@@ -2911,6 +2982,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 2. It is shown in a muted style.
 3. The Estimates figure is excluded from Total Earned and from Total Remaining.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S5-R8, S5-R9).",SV-8661 (WIP spec v6 2026-07-29 Story 5 S5-R8; S5-R9),,
 Each summary figure's information icon reveals its plain explanation,WIP — Summary Strip,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with the summary strip visible.","1. Hover (or focus, or tap) the small information icon next to each of the seven summary figures, one at a time.
@@ -2970,12 +3044,18 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. Selecting assets narrows the visible jobs on screen only (no reload); a single ""Clear"" action appears once at least one asset is selected and returns the filter to ""All assets"".
 5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R4, S7-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8663 (WIP spec Story 7 S7-R4; S7-R5 - option text + match fields RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [supersedes video P24]),,
 The date range offers the presets plus Custom; This Week default; no All Time,WIP — Filters,Functional,Critical,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).,"1. Open the Work In Progress report and read the date-range control's current value.
 2. Open the date-range control and read every option offered.","1. On a fresh visit the date range defaults to ""This Week"".
 2. The options offered are: ""Today"", ""Yesterday"", ""This Week"", ""Last Week"", ""This Month"", ""Last Month"", ""This Year"", ""Last Year"", ""This Quarter"", ""Last Quarter"", and ""Custom"".
 3. ""All Time"" is NOT offered.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R6).",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week)),,
 The date range filters on the WO's created date and reloads on change,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Open work orders exist with created dates both inside and outside the current week.","1. With ""This Week"" selected, check which work orders are listed.
@@ -2985,6 +3065,9 @@ The date range filters on the WO's created date and reloads on change,WIP — Fi
 3. A range longer than about a year is refused with the message ""Date range cannot be over one year."" and the wider range is not loaded.
 4. Note for the tester: on this build the exact cut-off sits one day later than the specification says (a 367-day span is accepted, 368 is refused). Record what you see; the one-day difference is already known and is with the product owner.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R7, S7-R8).",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R7; S7-R8),,
 "Location filter: rightmost multi-select with All locations, reloads on change",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. This browser has never saved settings for this report (fresh visit).
@@ -2998,6 +3081,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).
 5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R9, S7-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8663 (WIP spec Story 7 S7-R9; S7-R10 + on-screen location-scope indicator; spec v6 2026-07-29; single-location filter HIDDEN per Chris Ward answer 2026-07-31 Q1=A),,
 The location scope never includes an inaccessible location,WIP — Filters,Negative,High,"1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.
 2. The Work In Progress report is open.","1. Open the Location filter and read the locations offered.
@@ -3031,6 +3117,9 @@ The Location column is automatic and never reads Multiple on a work-order row,WI
 6. In both downloads the column is headed ""Branch"" (a known naming difference from the screen — do not raise it as a bug).
 7. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.","SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; S10-R5a; §4 Location (column) — automatic visibility; never ""Multiple""; export header ""Branch"")",,
 Column Selection toggles columns; Total is not offered at all,WIP — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
@@ -3119,6 +3208,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.
 4. Note: the on-screen Asset cell now identifies the asset by its VIN (falling back to Unit #, then plate); whether the export header text changes from ""Unit"" is confirmed in the build - record what it shows, do not file a bug either way.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S9-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned),,
 The PDF shows the shop logo at the top when one is set,WIP — Exports,Functional,Low,"1. You are signed in to the ShopView App on a desktop browser.
 2. The shop has a logo set in its settings.","1. Download the current tab as a PDF and look at the top of the document.
@@ -3211,21 +3303,18 @@ Nightly snapshot records one row per then-open job per calendar date,WIP — API
 4. If a manual re-run of the capture is available, re-run it for the same date and inspect that date's rows again.","1. Once per day the system records one row per then-open work order — one row per work order per calendar date.
 2. The next day's capture adds a new row per open work order under the new date; a work order open on both days has one row for each date, never two rows for the same date.
 3. Re-running the capture for the SAME date replaces that date's rows — the day's existing rows are removed and re-recorded from current data, never duplicated.
+4. Each snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R1).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs)),,
-Each snapshot row captures the WO; status; money; location and the date,WIP — API,Functional,High,"1. At least one open work order with known status, location, and organization existed when the nightly capture ran.
-2. You can inspect that date's stored snapshot rows.
-3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. Find the seeded work order's snapshot row for the capture date.
-2. Read each captured field and compare to the work order.","1. The snapshot row captures, at minimum: the work order, its status, its Earned value, its Remaining value, the location and organization (copied from the work order), and the snapshot's calendar date.
----
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R2).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R2),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R1, S11-R2).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R1; tech-plan-2026-07-29 B1.2 (idempotent re-run — WIP spec Story 11 is silent on re-runs); Story 11 S11-R2),,
 Captured Earned and Remaining use the same maths as the on-screen report,WIP — API,Functional,Critical,"1. An open ZZAUTOTEST work order with known approved labor (partly clocked) and approved parts (partly received) exists and is left UNCHANGED across the capture.
 2. You can read the on-screen report on the capture date and the stored snapshot row afterward.
-3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. On the capture date, note the work order's Earned and Remaining on the Work In Progress report.
+3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.
+4. The work order's Earned/Remaining include non-round cent values (for example $123.45), so lost cents would be visible.","1. On the capture date, note the work order's Earned and Remaining on the Work In Progress report.
 2. After the nightly capture, read the same work order's captured Earned and Remaining in the snapshot row.
 3. Compare the pairs.","1. The captured Earned equals the on-screen Earned and the captured Remaining equals the on-screen Remaining, to the cent — the snapshot uses the identical computation for both figures, so the two can never diverge for a given work order on the capture date.
+2. The captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R3).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R3),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R3, S11-R5).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R3; Story 11 S11-R5),,
 Nightly snapshot spans every location with no user location filter,WIP — API,Functional,High,"1. Open service work orders exist at two or more different locations.
 2. An Invoiced (or Paid/Declined) work order and a part-sale work order also exist.
 3. You can inspect the capture date's snapshot rows.
@@ -3236,12 +3325,6 @@ Nightly snapshot spans every location with no user location filter,WIP — API,F
 3. Invoiced, Paid, and Declined work orders and part-sale work orders are not captured.
 ---
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R4, S2-R1).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R4; Story 2 S2-R1 (first two conditions)),,
-Nightly snapshot: captured dollar values are stored to the cent,WIP — API,Functional,Medium,"1. An open work order whose Earned/Remaining include non-round cent values (for example $123.45) existed at capture time.
-2. You can inspect the stored snapshot rows.
-3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. Read the captured Earned and Remaining values for the work order.
-2. Compare their precision to the on-screen values.","1. Captured dollar values are stored to the cent — no rounding to whole dollars and no lost cents.
----
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Work In Progress report specification version 6 (S11-R5).",SV-8667 (WIP spec v6 2026-07-29 Story 11 S11-R5),,
 Nightly snapshot: a job with nothing approved is captured at $0.00; not skipped,WIP — API,Functional,Medium,"1. An open ZZAUTOTEST estimate with no approved line items existed at capture time.
 2. You can inspect the capture date's snapshot rows.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. After the nightly capture, look for the nothing-approved work order among the date's snapshot rows.
@@ -3292,19 +3375,15 @@ A part appears only if not a core charge and on-hand quantity is above zero,IV �
 2. The core-charge part is never listed — even with a positive quantity — and its value is not counted in the totals row.
 3. The zero-quantity and negative-quantity parts are not listed — only quantities greater than zero are valued.
 4. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed.
+5. A part that has sat without movement for a long time still appears and is still counted — there is no dead-stock exclusion; how long stock has sat makes no difference.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S2-R1, S2-R2, S2-N1, S2-N2).",SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S2-R1, S2-R2, S2-N1, S2-N2).",SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R1; S2-R2; S2-N1; S2-N2; §3 Key Decisions; Story 2 context note (no dead-stock exclusion)),,
 A part stocked at two selected locations shows as two rows; never merged,IV — Row Scope,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
 2. The same ZZAUTOTEST part is in stock (positive quantity) at two of those locations.","1. Open the Inventory Value report and select both locations in the Location filter.
 2. Search for the part and count its rows.","1. The part appears twice — one row per location, each with that location's own quantity and values.
 2. The rows are NOT merged into one combined row; this is the documented v1 behavior.
 ---
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S2-R3).",SV-8669 (IV spec v3 2026-07-29 Story 2 S2-R3; §2 Known Limitations (v1)),,
-There is no dead-stock exclusion - a slow-moving part still appears,IV — Row Scope,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. A part with positive, non-core stock exists that has had no movement for a long time (or the oldest-stocked part at the location is known).","1. Open the Inventory Value report scoped to the location.
-2. Search for the long-sitting part.","1. The long-sitting part appears and its value is counted — every part currently holding positive, non-core stock contributes to the on-hand value, however long it has sat.
----
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3.",SV-8669 (IV spec v3 2026-07-29 Story 2 context note (no dead-stock exclusion)),,
 Unit Sell uses the part's fixed sell price when one is set,IV — Valuation & Columns,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. A ZZAUTOTEST in-stock part exists with a known unit cost, a known FIXED sell price, and a category whose pricing-matrix markup would give a DIFFERENT figure.","1. Open the Inventory Value report and find the part's row.
 2. Read its Unit Sell value.
@@ -3360,6 +3439,9 @@ With every column on they appear in the fixed order with the set alignment,IV �
 3. Every other column is right-aligned.
 4. Location is one of the columns in the column-selection control; when it is turned on the Location column appears between Vendor and Qty, left-aligned.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R1, S3-R2, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand),,
 Value formats: Qty to two decimals; money as US-dollar currency,IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a part with a fractional quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value.","1. Read the Qty cell of the fractional-quantity part.
@@ -3383,6 +3465,9 @@ On a first visit the default columns show and the rest stay available,IV — Val
 3. Both can be turned on from the column-selection control and then appear in their fixed positions.
 4. Location is one of the columns in the column-selection control; when it is turned on the Location column shows between Vendor and Qty.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S3-R12, S3-R13, S8-R3, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope),,
 "Category and Vendor show their names; an em dash (""—"") when the part has none",IV — Valuation & Columns,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows a part with a category and a vendor, a part with no category, and a part with no vendor.","1. Read the Category and Vendor cells of the fully-populated part.
@@ -3403,8 +3488,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows.
 4. The totals row stays visible at the bottom while the rows scroll.
 5. Note for the tester: if the label on screen reads ""Totals"" instead of ""Total"", mark this test Failed and report it — do not change the test.
+6. Sorting by any column reorders the data rows only — the totals row stays at the bottom.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5).",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S4-R1, S4-R4, S4-R5, S4-R6, S4-R7, S12-R5, S9-R4).",SV-8671 (IV spec v3 2026-07-29 Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7; Story 12 S12-R5; Story 9 S9-R4),,
 "Totals row sums the FULL filtered set on the server, not just the visible page",IV — Totals Row,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current filtered set spans more than one page (more rows than one page shows).
 3. The Margin and Total Sell columns are turned on.
@@ -3431,6 +3517,9 @@ Date range offers the standard presets plus Custom; no All Time option,IV — As
 2. Read every option offered.","1. The control offers the standard presets: ""Today"", ""Yesterday"", ""This Week"", ""Last Week"", ""This Month"", ""Last Month"", ""This Year"", ""Last Year"", ""This Quarter"", ""Last Quarter"", and ""Custom"".
 2. ""All Time"" is NOT offered — because the report is valued as of a single date, an All-Time option would be meaningless; its absence is the documented v1 behavior.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R1).",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R1; §2 Known Limitations (v1)),,
 The report values inventory as of the END of the selected range,IV — As-of Date & Snapshots,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. Nightly snapshots exist for past dates at the selected location (recording has been running).
@@ -3455,6 +3544,9 @@ For a past date the report replays the closest recorded day on or before it,IV �
 2. The part's row shows the quantity and values recorded for that day, not today's live stock.
 Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8820
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S5-R4).",SV-8672 (IV spec v3 2026-07-29 Story 5 S5-R4; §2 Relationship to nightly history),,
 """As of"" indicator names the day shown; hidden when it matches the ask",IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. A past date exists that has NO snapshot of its own but has an earlier recorded day before it (for example, a gap day, or a date in the thinned monthly-retention band).","1. Select a Custom range ending on the gap date (a date with no snapshot of its own).
@@ -3559,6 +3651,9 @@ Inventory Value: the Location filter is hidden for a one-location user,IV — Lo
 2. Then sign in as a user with access to two or more locations and look again.","1. For the single-location user the Location filter is NOT shown at all — the report simply shows that one location's stock.
 2. For the user with access to two or more locations the Location filter IS shown.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.","SV-8674 (IV spec Story 7 S7-N1 — RULED HIDDEN by Chris Ward answer 2026-07-31 Q1=A ""classic spec drift""; the S7-N1 ""still sees the filter"" note is stale; spec edit pending)",,
 The Location column sits after Vendor and never reads Multiple,IV — Location Filter,Functional,High,"1. You are signed in on a desktop browser as a user with access to at least two locations.
 2. The same part is in stock at two of those locations.
@@ -3576,6 +3671,9 @@ The Location column sits after Vendor and never reads Multiple,IV — Location F
 6. The Location filter control keeps the same width whichever label it shows — one location, several, or ""All locations"" — so the toolbar does not shift as you change the selection.
 7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty), naming each row's own location.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.","SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never ""Multiple""; S10-R15 = the same column in every export)",,
 Column Selection toggles columns; Total Cost cannot be turned off,IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
@@ -3590,6 +3688,9 @@ Toggling columns never reorders them,IV — Column Selection & Persistence,Funct
 2. Read the resulting column order after each change.","1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.
 2. Total Cost is always the last column.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand),,
 The report remembers all filters; columns and sort per browser,IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open.","1. Change the date range, select a category and a vendor, type a part search, change the location selection, change the column selection, and sort by a non-default column.
@@ -3627,12 +3728,6 @@ Money and numeric columns sort by value; text columns sort as text,IV — Sortin
 2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (""apple"" and ""Apple"" sort together).
 ---
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S9-R3).",SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R3),,
-Sorting reorders only the data rows — the totals row stays at the bottom,IV — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. The Inventory Value report is open with rows and a totals row.","1. Sort by any column and watch the totals row's position.
-2. Sort by a non-default column, leave the report, and return.","1. Sorting reorders the data rows only; the totals row stays at the bottom.
-2. On return, the report restores the chosen sort (remembered per browser, Story 8).
----
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S9-R4, S9-R5).",SV-8676 (IV spec v3 2026-07-29 Story 9 S9-R4; S9-R5),,
 Inventory Value: a three-dot menu holds Download (PDF) and Download (CSV),IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Find and open the three-dot button in the toolbar.
 2. Read the menu options.
@@ -3651,6 +3746,9 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 4. Each download (PDF and CSV) carries a ""Locations:"" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).
 5. Note for the tester: the files carry the Location column when Location is turned ON in the column-selection control (it sits between Vendor and Qty). It does not appear just because you have more than one location selected.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.","SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the ""Locations:"" line and the automatic Location column)",,
 Export number formats: money to 2 decimals; Margin % to 1 with em-dash,IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (""—"").","1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.
@@ -3669,6 +3767,9 @@ PDF header shows report name; org; period and an as-of line; logo if set,IV — 
 3. The CSV never includes a logo.
 4. Note for the tester: the two files phrase the as-of line differently - the PDF reads ""As of 2026-08-04"" and the CSV's first line reads ""As of: 2026-08-04"" (with a colon). Both are correct; do not raise the difference.
 ---
+DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.
+The open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx — https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx
+
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S10-R8, S10-R9).",SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R8; S10-R9),,
 Downloaded files are named inventory-value-report.pdf and .csv,IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inventory Value report is open with rows loaded.","1. Download the current view as a PDF and read the saved file's name.
@@ -3803,17 +3904,11 @@ Nightly snapshot: re-running the capture for a date replaces that date's rows,IV
 3. Count and inspect the rows again.","1. Re-running the capture for a date replaces that date's rows for each location — the existing rows for that location and date are removed, then re-inserted from current data.
 2. No duplicate rows exist for the same part, location, and date.
 3. The capture is idempotent and self-healing from current data.
+4. No rows exist for dates before capture began — there is no backfill.
+5. A re-run always records current truth under the CURRENT date; it cannot reconstruct a past date.
+6. A past date's stored rows are unchanged by a current re-run.
 ---
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R3).",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R3),,
-Nightly snapshot: a re-run records today's truth; it cannot rebuild a past day,IV — API,Functional,Medium,"1. The date the first capture ran is known.
-2. Stock levels have changed since a past captured date.
-3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. Check the stored history for any rows dated before the first capture.
-2. Re-run the capture and check which date its rows are recorded under.
-3. Compare a past date's stored rows to confirm they were not rewritten by the re-run.","1. No rows exist for dates before capture began — there is no backfill.
-2. A re-run always records current truth under the CURRENT date; it cannot reconstruct a past date.
-3. Past dates' stored rows are unchanged by a current re-run.
----
-This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R5, S5-E1).",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R5; Story 5 S5-E1),,
+This is the expected behaviour as per the build tested on 8/4/2026, and as per the Inventory Value report specification version 3 (S11-R3, S11-R5, S5-E1).",SV-8678 (IV spec v3 2026-07-29 Story 11 S11-R3; Story 11 S11-R5; Story 5 S5-E1),,
 Snapshot retention: daily captures are kept for 0–13 months,IV — API,Functional,High,"1. Snapshot history exists (or is seeded/simulated with dev help) spanning both the 0–13-month band and the older-than-13-months band.
 2. The nightly capture (with its pruning) has run.
 3. To see the information this test asks for you need the browser's own developer tools: press F12 (or Ctrl+Shift+I; on a Mac Cmd+Option+I) and open the ""Network"" tab, then reload the page. There is nothing to install — it is built into Chrome, Edge and Firefox. Where a check also asks you to confirm what is stored on the server, ask a developer to read it back for you — that part cannot be seen from the browser.","1. Inspect the retained captures for dates within the last 13 months.
