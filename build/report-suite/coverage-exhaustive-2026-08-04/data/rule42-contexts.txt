@@ -1,0 +1,197 @@
+## IV IV-LOC-04 C30577 vpin=Y anch=Y
+   [exactly N] ...he Location filter is hidden for a one-location user | 1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward). | 2. You are signed in as that user on a desk
+   [exactly (bare)] ...he Location filter is hidden for a one-location user | 1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward). | 2. You are signed in as that user on a desk
+## IV IV-SCOPE-01 C30540 vpin=N anch=Y
+   [exactly (bare)] ... with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity. | 1. Open the Inventory Value report scoped to the 
+## PV PV-API-04 C30391 vpin=Y anch=Y
+   [no other] ...s | 1. You are signed in as a user whose role has the ordinary reports access turned on and no other reports-related permission turned on. | 2. Browser devtools (network tab) are open. | 1. Open the Parts Velocity report and obser
+   [nothing else] ...s not refused. | 3. Both requests succeed with only the ordinary reports access turned on - nothing else had to be enabled. | 4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports a
+## PV PV-CALC-07 C30365 vpin=Y anch=Y
+   [no other] ...Last Sale re-anchors to the previous remaining sale (the day count grows accordingly); if no other sale remains it shows —.
+## PV PV-CALC-13 C30371 vpin=N anch=Y
+   [exactly (bare)] ...lue, a Demand value, Min/Max values, and a Last Sale value. | 2. Seed a Margin % that lands exactly on a rounding tie (e.g. computes to 8.45% / -8.45%) and read the display. | 1. Units Sold, Units Returned, Sold (WO), Sold (Parts 
+## PV PV-COL-02 C30352 vpin=Y anch=Y
+   [exactly these] ...umn headers left to right without touching the picker. | 1. With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price
+   [exactly (bare)] ...First visit shows exactly the 14 default columns in the specified order | 1. You are on the Parts Velocity report on a first visit (no saved column selection). | 1. Read the visible column headers left to right without touching th
+   [exactly (bare)] ...umn headers left to right without touching the picker. | 1. With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price
+## PV PV-EXP-01 C30375 vpin=Y anch=Y
+   [exactly N] ...1. The ⋯ overflow button sits leftmost in the toolbar's action cluster. | 2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).
+   [exactly (bare)] ...1. The ⋯ overflow button sits leftmost in the toolbar's action cluster. | 2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).
+## PV PV-EXP-10 C30384 vpin=Y anch=Y
+   [are/read exactly] ...ger a PDF export under the failure condition and read the toast. | 1. On success the toasts read exactly "Velocity report exported (CSV)" / "Velocity report exported (PDF)" and auto-fade — UPPERCASE (CSV)/(PDF). | 2. An error toas
+   [are/read exactly] ...e server provides a message, that server message is shown. | 3. Otherwise the failure toast reads exactly: "Failed to export velocity report (csv)" or "Failed to export velocity report (pdf)" — lowercase (csv)/(pdf); the success/f
+   [exactly (bare)] ... PDF export under the failure condition and read the toast. | 1. On success the toasts read exactly "Velocity report exported (CSV)" / "Velocity report exported (PDF)" and auto-fade — UPPERCASE (CSV)/(PDF). | 2. An error toast is 
+   [exactly (bare)] ...er provides a message, that server message is shown. | 3. Otherwise the failure toast reads exactly: "Failed to export velocity report (csv)" or "Failed to export velocity report (pdf)" — lowercase (csv)/(pdf); the success/failure
+## PV PV-FILT-01 C30328 vpin=Y anch=Y
+   [exactly N] ...The Type filter is the first control in the filter row. | 2. It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock). | 3. On a first vi
+   [exactly (bare)] ...The Type filter is the first control in the filter row. | 2. It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock). | 3. On a first vi
+## PV PV-FILT-03 C30330 vpin=Y anch=Y
+   [are/read exactly] ...read every option. | 2. Select a non-custom option (for example Last Month). | 1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom. |
+   [exactly (bare)] ...Date range selector offers exactly the eleven bounded options and no All Time | 1. You are on the Parts Velocity report with data loaded. | 1. Open the date range selector and read every option. | 2. Select a non-custom option (fo
+   [exactly (bare)] ... every option. | 2. Select a non-custom option (for example Last Month). | 1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom. | 2. 
+## PV PV-FILT-11 C30338 vpin=Y anch=Y
+   [are/read exactly] ...he server returns zero rows and the table shows the empty state. | 2. The empty-state label reads exactly: "Empty bays, endless possibilities. Get Going!" (the application's standard reports no-data label).
+   [exactly (bare)] ...ver returns zero rows and the table shows the empty state. | 2. The empty-state label reads exactly: "Empty bays, endless possibilities. Get Going!" (the application's standard reports no-data label).
+## PV PV-FILT-13 C30340 vpin=Y anch=Y
+   [exactly N] ...on filter is hidden for a one-location user | 1. You are signed in as a user with access to exactly one location. | 2. You are on the Parts Velocity report with data loaded. | 1. Look for the Location filter in the toolbar. | 2. T
+   [exactly (bare)] ...on filter is hidden for a one-location user | 1. You are signed in as a user with access to exactly one location. | 2. You are on the Parts Velocity report with data loaded. | 1. Look for the Location filter in the toolbar. | 2. T
+## PV PV-PERM-03 C30327 vpin=Y anch=Y
+   [no other] ...rdinary reports access turned on (the standard "can this person see reports" setting) and no other reports-related permission turned on. | 1. Open the Reports section and look for the Parts Velocity entry under Parts. | 2. Click t
+## PV PV-PREC-01 C38924 vpin=Y anch=Y
+   [are/read exactly] ... the Units Sold value, then switch the On Hand column on and read that too. | 1. Units Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, w
+   [are/read exactly] ...Units Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once
+   [exactly N] ...nits Sold value, then switch the On Hand column on and read that too. | 1. Units Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which p
+   [exactly N] ...Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3.
+   [exactly N] ...of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by exactly 2.50 from what it was before the sale. | 4. No value anywhere on the row has been quietly rounded to a whole number.
+   [exactly (bare)] ...nits Sold value, then switch the On Hand column on and read that too. | 1. Units Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which p
+   [exactly (bare)] ...Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3.
+   [exactly (bare)] ...of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by exactly 2.50 from what it was before the sale. | 4. No value anywhere on the row has been quietly rounded to a whole number.
+## PV PV-PREC-02 C38925 vpin=Y anch=N
+   [are/read exactly] ...Parts Velocity report and read the same part's Units Sold value. | 1. The QuickBooks amount is exactly the hand-worked figure to the cent — $25.00 for 2.5 at $10.00. | 2. It is NOT a whole-unit amount such as $20.00 or $30.00, and
+   [exactly (bare)] ...ts Velocity report and read the same part's Units Sold value. | 1. The QuickBooks amount is exactly the hand-worked figure to the cent — $25.00 for 2.5 at $10.00. | 2. It is NOT a whole-unit amount such as $20.00 or $30.00, and it
+## PV PV-ROW-06 C30346 vpin=Y anch=Y
+   [no other] ...s the same text to assistive technology; activating it does NOT trigger a column sort. | 6. No other column header carries an info icon.
+   [exactly (bare)] ... visible; the Turns/Yr icon appears only once that column is enabled. | 2. Units Sold shows exactly: "Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the
+   [exactly (bare)] ...t, so it can differ from the units billed behind Revenue and Sell Price." | 3. Demand shows exactly: "Number of separate transactions (work orders or parts sales) this part appeared on in the selected date range. Each transaction 
+   [exactly (bare)] ...ach transaction counts once, no matter how many units were sold on it." | 4. Turns/Yr shows exactly: "How many times you sell through this part in a year. Higher is better." | 5. The icon is focusable and exposes the same text to 
+## SBC SBC-COL-01 C30156 vpin=Y anch=Y
+   [in order are] ...menu. | 2. Hovering it shows the tooltip "Column Selection." | 3. The panel lists nine toggles, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %. | 4. With no sa
+## SBC SBC-CUST-05 C30116 vpin=N anch=Y
+   [exactly N] ...er filter and use "Clear all" to empty the selection; read the collapsed label. | 2. Select exactly one customer; read the collapsed label. | 3. Select a second and third customer; read the collapsed label. | 4. Start typing a sea
+   [exactly N] ...query or click away. | 1. With an empty selection the collapsed label reads "None." | 2. With exactly one customer selected the label shows that customer's name. | 3. With more than one selected the label reads "N selected" where 
+   [exactly (bare)] ...er filter and use "Clear all" to empty the selection; read the collapsed label. | 2. Select exactly one customer; read the collapsed label. | 3. Select a second and third customer; read the collapsed label. | 4. Start typing a sea
+   [exactly (bare)] ...query or click away. | 1. With an empty selection the collapsed label reads "None." | 2. With exactly one customer selected the label shows that customer's name. | 3. With more than one selected the label reads "N selected" where 
+## SBC SBC-CUST-06 C30117 vpin=N anch=Y
+   [exactly N] ...e customers and the totals row values. | 2. Open the Customer filter, clear all, and select exactly two customers. | 3. Read the table rows and the totals row. | 1. The report shows only the two selected customers. | 2. The table 
+   [exactly (bare)] ...e customers and the totals row values. | 2. Open the Customer filter, clear all, and select exactly two customers. | 3. Read the table rows and the totals row. | 1. The report shows only the two selected customers. | 2. The table 
+## SBC SBC-CUST-09 C30120 vpin=N anch=Y
+   [exactly (bare)] ...st month (seed ZZAUTOTEST data as needed). | 2. Date range is This Month; you have selected exactly customers A and B in the Customer filter. | 1. Change the date range to Last Month. | 2. Read the table rows and the Customer filt
+## SBC SBC-EXP-01 C30159 vpin=Y anch=Y
+   [in order are] ...ction area and is the application's standard overflow-menu control. | 2. The menu items read, in order: "Download Summary (PDF)", "Download Expanded View (PDF)", "Download Summary (CSV)", "Download Expanded View (CSV)" - and there
+   [exactly (bare)] ...The overflow menu holds exactly the four download items - no Print | 1. You are on the Sales By Customer report. | 1. Find the overflow menu in the toolbar's action area and note its position. | 2. Open it and read the items in or
+## SBC SBC-EXP-03 C30161 vpin=Y anch=Y
+   [in this exact order] ...rows. | 1. With a single location in scope the Expanded View CSV has these thirteen columns in this exact order: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies
+## SBC SBC-EXP-05 C30163 vpin=N anch=Y
+   [exactly (bare)] ...CSV and PDF hold exactly the customers matching the active filters and sort | 1. Data exists across two locations, both product types, and several customers. | 1. Set a specific date range, Product Type "Service only", one locatio
+   [exactly (bare)] ... PDF. | 3. Compare each file's contents against the on-screen rows. | 1. Each export contains exactly the customers matching the active filters — the selected customers, within the active date range, Product Type, and location — i
+## SBC SBC-EXP-16 C38856 vpin=Y anch=Y
+   [in this exact order] ...wn on screen. | 5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subt
+   [exactly N] ...ed View version in both formats and compare against the Summary files. | 1. The menu offers exactly four items: "Download Summary (PDF)", "Download Expanded View (PDF)", "Download Summary (CSV)", "Download Expanded View (CSV)". | 
+   [exactly (bare)] ...ed View version in both formats and compare against the Summary files. | 1. The menu offers exactly four items: "Download Summary (PDF)", "Download Expanded View (PDF)", "Download Summary (CSV)", "Download Expanded View (CSV)". | 
+   [exactly (bare)] ...contains the full Customer, then Asset, then Invoice breakdown. | 4. All four files reflect exactly the filtered data shown on screen. | 5. With a single location in scope the Summary files have these ten columns in this exact ord
+## SBC SBC-TREE-10 C30130 vpin=N anch=Y
+   [exactly N] ...Edge: a single-invoice asset can still be expanded | 1. Customer A has an asset with exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the current view (seed ZZAUTOTEST data). | 1. Expand custome
+   [exactly N] ... Expand customer B and read its asset rows. | 1. The single-invoice asset expands and shows exactly one invoice detail row. | 2. Customer B shows a single "Parts Sales" row and no vehicle rows.
+   [exactly (bare)] ...Edge: a single-invoice asset can still be expanded | 1. Customer A has an asset with exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the current view (seed ZZAUTOTEST data). | 1. Expand custome
+   [exactly (bare)] ... Expand customer B and read its asset rows. | 1. The single-invoice asset expands and shows exactly one invoice detail row. | 2. Customer B shows a single "Parts Sales" row and no vehicle rows.
+## SBC SBC-TYPE-02 C30107 vpin=Y anch=Y
+   [exactly N] ...oice numbers again. | 4. Set Product Type back to "Parts & Service." | 1. The dropdown offers exactly three options, in this order: "Parts & Service," "Parts only," "Service only" — with "Parts & Service" selected by default on fi
+   [exactly (bare)] ...oice numbers again. | 4. Set Product Type back to "Parts & Service." | 1. The dropdown offers exactly three options, in this order: "Parts & Service," "Parts only," "Service only" — with "Parts & Service" selected by default on fi
+## SBR SBR-ASGN-02 C30293 vpin=Y anch=Y
+   [are/read exactly] ...auto-fades after 5 seconds. | 3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?. | 4. Note for the tester: the product owner has ruled that the full word
+   [in order are] ...ded." and auto-fades after 5 seconds. | 3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?. | 4. Note for the tester: the product owner has ruled that the
+   [exactly (bare)] ...-fades after 5 seconds. | 3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?. | 4. Note for the tester: the product owner has ruled that the full word "Sa
+## SBR SBR-ASGN-03 C30294 vpin=N anch=Y
+   [exactly N] .... | 4. Read the row order. | 1. Every customer with an assigned sales representative produces exactly ONE row (single-rep model: one rep per customer). | 2. Customers with no assigned rep are NOT included. | 3. Rows are sorted by 
+   [exactly (bare)] .... | 4. Read the row order. | 1. Every customer with an assigned sales representative produces exactly ONE row (single-rep model: one rep per customer). | 2. Customers with no assigned rep are NOT included. | 3. Rows are sorted by 
+## SBR SBR-CALC-06 C30234 vpin=Y anch=Y
+   [are/read exactly] ...mn headers. | 2. Read that invoice's row values and recalculate each by hand. | 1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 2. Subtotal = Labor Invoiced + P
+   [exactly (bare)] ...aders. | 2. Read that invoice's row values and recalculate each by hand. | 1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 2. Subtotal = Labor Invoiced + Parts 
+## SBR SBR-DATE-04 C30204 vpin=N anch=Y
+   [exactly (bare)] ... the range by its own invoice date; endpoints included | 1. ZZAUTOTEST invoices exist dated exactly ON the start date and exactly ON the end date of a custom range, plus one dated just outside it. | 1. Set a custom range whose sta
+   [exactly (bare)] ...date; endpoints included | 1. ZZAUTOTEST invoices exist dated exactly ON the start date and exactly ON the end date of a custom range, plus one dated just outside it. | 1. Set a custom range whose start and end dates equal those t
+## SBR SBR-DEACT-02 C30253 vpin=N anch=Y
+   [exactly N] ... trap | 1. ZZAUTOTEST rep "A" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep "B" likewise to 3 customers. | 1. Toggle rep B's active status off and read the dialog before confirmin
+   [exactly (bare)] ... trap | 1. ZZAUTOTEST rep "A" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep "B" likewise to 3 customers. | 1. Toggle rep B's active status off and read the dialog before confirmin
+## SBR SBR-EXP-01 C30276 vpin=Y anch=Y
+   [exactly N] ...The ⋯ overflow menu lists exactly four download actions | 1. You are signed in to the ShopView App on a desktop browser. | 2. You are on the Sales By Representative report. | 1. Find the ⋯ (three-dot) button in the report toolbar 
+   [exactly N] ...'s action cluster. | 2. Click it and read the menu entries top to bottom. | 1. The menu lists exactly four actions: "Download Summary (PDF)", "Download Expanded View (PDF)", "Download Summary (CSV)", and "Download Expanded View (C
+   [no other] ...ad Expanded View (PDF)", "Download Summary (CSV)", and "Download Expanded View (CSV)". | 2. No other entries appear in the menu.
+   [exactly (bare)] ...The ⋯ overflow menu lists exactly four download actions | 1. You are signed in to the ShopView App on a desktop browser. | 2. You are on the Sales By Representative report. | 1. Find the ⋯ (three-dot) button in the report toolbar 
+   [exactly (bare)] ...'s action cluster. | 2. Click it and read the menu entries top to bottom. | 1. The menu lists exactly four actions: "Download Summary (PDF)", "Download Expanded View (PDF)", "Download Summary (CSV)", and "Download Expanded View (C
+## SBR SBR-EXP-06 C30281 vpin=Y anch=Y
+   [exactly (bare)] ..., download a PDF again and look at the header strip's logo region. | 1. The files are named exactly "sales-by-representative-summary.pdf" and "sales-by-representative-expanded.pdf". | 2. A footer reading "Software Powered by ShopV
+## SBR SBR-EXP-10 C30285 vpin=Y anch=Y
+   [are/read exactly] ...v" and starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoic
+   [in order are] ...summary.csv" and starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Pa
+   [exactly (bare)] ...nd starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, 
+## SBR SBR-EXP-11 C30286 vpin=Y anch=Y
+   [are/read exactly] ...v" and starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Pa
+   [in order are] ...xpanded.csv" and starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor 
+   [exactly (bare)] ...nd starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts 
+## SBR SBR-EXP-15 C30290 vpin=Y anch=Y
+   [are/read exactly] ...produced — the server declines rather than generating a truncated file. | 2. An error toast reads exactly: "This report is too large to export. Narrow the date range or filters, then try again." (persists 120 seconds or until dism
+   [exactly (bare)] ...ed — the server declines rather than generating a truncated file. | 2. An error toast reads exactly: "This report is too large to export. Narrow the date range or filters, then try again." (persists 120 seconds or until dismissed)
+## SBR SBR-LOC-04 C30216 vpin=Y anch=Y
+   [exactly N] ...Location filter hidden for a one-location user | 1. You are signed in as a user assigned to exactly one location. | 1. Open the report and look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two
+   [exactly (bare)] ...Location filter hidden for a one-location user | 1. You are signed in as a user assigned to exactly one location. | 1. Open the report and look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two
+## SBR SBR-ROW-02 C30218 vpin=Y anch=Y
+   [exactly (bare)] ...0) — row type is distinguished by font weight, not background color. | 5. Every row renders exactly the report's column count with blanks in position — a cell with nothing to show is blank, never shifted or wrapped (a drifted row 
+## SBR SBR-STAT-01 C30208 vpin=Y anch=Y
+   [exactly N] ...Invoice Status offers exactly four options; All Statuses is the default | 1. You are on the report with no remembered settings. | 1. Find the "Invoice Status" dropdown in the toolbar and read its default value. | 2. Open it and re
+   [exactly N] ... watch the table. | 1. An "Invoice Status" dropdown is visible in the toolbar. | 2. It offers exactly four options: "All Statuses," "Unpaid," "Partially Paid," "Paid." | 3. "All Statuses" is the default on first load. | 4. Changin
+   [exactly (bare)] ...Invoice Status offers exactly four options; All Statuses is the default | 1. You are on the report with no remembered settings. | 1. Find the "Invoice Status" dropdown in the toolbar and read its default value. | 2. Open it and re
+   [exactly (bare)] ... watch the table. | 1. An "Invoice Status" dropdown is visible in the toolbar. | 2. It offers exactly four options: "All Statuses," "Unpaid," "Partially Paid," "Paid." | 3. "All Statuses" is the default on first load. | 4. Changin
+## SBR SBR-STAT-04 C30211 vpin=N anch=Y
+   [exactly N] ...y with an invoice matching ALL active filters | 1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location — plus one invoice matching all four. | 2. For the per-filter legs: rep
+   [exactly (bare)] ...y with an invoice matching ALL active filters | 1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location — plus one invoice matching all four. | 2. For the per-filter legs: rep
+## SBR SBR-TOT-03 C30239 vpin=Y anch=Y
+   [no other] ...ontal scroll container, showing "Totals" on the left and the grand Subtotal on the right (no other metrics). | 2. It does not scroll horizontally — it is always fully visible across. | 3. During vertical page scroll it sits after 
+## SBR SBR-TREE-07 C30223 vpin=N anch=Y
+   [exactly N] ...Each invoice appears under exactly one rep or the Unassigned row | 1. A known ZZAUTOTEST invoice set exists across two reps plus at least one unassigned invoice; Show Unassigned is on. | 1. Expand every rep and the Unassigned row.
+   [exactly N] .... Search the expanded rows for each seeded invoice number. | 1. Every invoice appears under exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never under two rows. | 2. The sum of all (N) counts eq
+   [exactly (bare)] ...Each invoice appears under exactly one rep or the Unassigned row | 1. A known ZZAUTOTEST invoice set exists across two reps plus at least one unassigned invoice; Show Unassigned is on. | 1. Expand every rep and the Unassigned row.
+   [exactly (bare)] .... Search the expanded rows for each seeded invoice number. | 1. Every invoice appears under exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never under two rows. | 2. The sum of all (N) counts eq
+## SBR SBR-TYPE-02 C30206 vpin=Y anch=Y
+   [exactly N] ...t "Service only" and read them again. | 4. Select "Parts & Service." | 1. The dropdown offers exactly three options: "Parts & Service," "Parts only," "Service only" — with "Parts & Service" as the default on first load. | 2. "Part
+   [exactly (bare)] ...t "Service only" and read them again. | 4. Select "Parts & Service." | 1. The dropdown offers exactly three options: "Parts & Service," "Parts only," "Service only" — with "Parts & Service" as the default on first load. | 2. "Part
+## TU TU-DAY-03 C30420 vpin=N anch=Y
+   [exactly (bare)] ...hnician row - with that day's values. | 2. The day's Est. Lost Labor is valued per location exactly like a technician row (that location's default labor rate × that day's internal hours there). | 3. Hours 2dp / Utilization one dec
+## TU TU-ELL-02 C30405 vpin=Y anch=Y
+   [exactly (bare)] ...right; its cells are bold and its header is bold, matching. | 2. The information icon shows exactly: "Internal hours valued at each location's default labor rate" — on hover, on keyboard focus, and on tap; it is dismissible. | 3. 
+## TU TU-ELL-03 C30406 vpin=N anch=Y
+   [exactly (bare)] .... Technician B has internal hours at a location whose default labor rate is configured as exactly $0.00. | 1. Read technician A's Est. Lost Labor. | 2. Read technician B's Est. Lost Labor. | 1. Technician A shows "$0.00" - there i
+   [exactly (bare)] ...location has a rate configured. | 2. Technician B also shows "$0.00" - a configured rate of exactly $0.00 is a KNOWN rate that values the hours at $0.00, not "—". | 3. "$0.00" means 'the rate is known and there is nothing (or $0) 
+## TU TU-EXP-01 C30434 vpin=Y anch=Y
+   [exactly (bare)] ...Summary (PDF)", "Download Expanded View (PDF)", and "Download (CSV)". | 3. The labels match exactly - only the expanded option carries the word "View" (the shipped strings, documented as-is).
+## TU TU-EXP-08 C30441 vpin=Y anch=N
+   [are/read exactly] ...re condition and read the notification. | 1. When a download starts, a success notification reads exactly: "Download started". | 2. When a download fails, an error notification reads exactly: "Failed to download report".
+   [are/read exactly] ...cation reads exactly: "Download started". | 2. When a download fails, an error notification reads exactly: "Failed to download report".
+   [exactly (bare)] ...dition and read the notification. | 1. When a download starts, a success notification reads exactly: "Download started". | 2. When a download fails, an error notification reads exactly: "Failed to download report".
+   [exactly (bare)] ... reads exactly: "Download started". | 2. When a download fails, an error notification reads exactly: "Failed to download report".
+## TU TU-LINK-03 C30430 vpin=N anch=Y
+   [exactly N] ...(clocked-out) records in the range - no open clock. | 2. The report's location filter holds exactly ONE location, and it is the user's currently active shop. | 1. Read the technician's Total Hours on the Technician Utilization rep
+   [exactly (bare)] ...(clocked-out) records in the range - no open clock. | 2. The report's location filter holds exactly ONE location, and it is the user's currently active shop. | 1. Read the technician's Total Hours on the Technician Utilization rep
+   [exactly (bare)] ...Timesheet Activities report. | 3. Compare the two, to two decimals. | 1. The two totals MATCH exactly, to two decimals (these values are hours, not money) - both reports read the same clock records and round the same way (round-ha
+## TU TU-LOC-05 C30446 vpin=Y anch=Y
+   [exactly N] ...ation filter hidden for a one-location user | 1. You are signed in as a user with access to exactly one location. | 2. You are on the Technician Utilization report. | 1. Look for the Location filter in the toolbar. | 2. Then sign 
+   [exactly (bare)] ...ation filter hidden for a one-location user | 1. You are signed in as a user with access to exactly one location. | 2. You are on the Technician Utilization report. | 1. Look for the Location filter in the toolbar. | 2. Then sign 
+## TU TU-NAV-02 C30393 vpin=N anch=Y
+   [exactly N] ...or that range and location. | 2. Look for rows for technicians A and B. | 1. Technician A has exactly ONE row. | 2. Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) app
+   [exactly (bare)] ...or that range and location. | 2. Look for rows for technicians A and B. | 1. Technician A has exactly ONE row. | 2. Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) app
+## TU TU-NAV-08 C30399 vpin=Y anch=Y
+   [exactly (bare)] ...er and re-read the data area and the Summary row. | 1. Instead of rows, the data area shows exactly: "Empty bays, endless possibilities. Get Going!" (the application's standard reports no-data label). | 2. The Summary row is hidde
+## WIP WIP-CALC-02 C30475 vpin=N anch=Y
+   [exactly N] ... quoted at a known time and rate (for example 4.0 hours at $100/hour = $400 quoted), with exactly 1.0 hour clocked to it. | 4. A second ZZAUTOTEST open work order exists with an approved labor line where MORE time has been clocked
+   [exactly (bare)] ... quoted at a known time and rate (for example 4.0 hours at $100/hour = $400 quoted), with exactly 1.0 hour clocked to it. | 4. A second ZZAUTOTEST open work order exists with an approved labor line where MORE time has been clocked
+## WIP WIP-CALC-08 C30481 vpin=N anch=Y
+   [exactly (bare)] ...ate job. | 2. Read the Inv. Hrs value of the overrun job. | 3. Read the Inv. Hrs value of the exactly-on-quote job. | 1. Inv. Hrs shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a 
+   [exactly (bare)] ... shows a negative red value, the under-estimate job a positive green value. | 3. A value of exactly zero shows unsigned as "0.0" (never "+0.0" or blank) in the default text color.
+## WIP WIP-COL-07 C30472 vpin=Y anch=Y
+   [exactly N] ...iew App on a desktop browser. | 2. The report shows a work order created today, one created exactly one day ago, and one created several days ago. | 1. Read the Days Open cell of the work order created today. | 2. Read the Days Op
+   [exactly (bare)] ...iew App on a desktop browser. | 2. The report shows a work order created today, one created exactly one day ago, and one created several days ago. | 1. Read the Days Open cell of the work order created today. | 2. Read the Days Op
+## WIP WIP-EXP-10 C38918 vpin=Y anch=N
+   [exactly (bare)] ...o file is generated and no download starts. | 2. An error toast is shown each time, reading exactly: "This report is too large to export. Narrow the date range or filters, then try again." (dismissed by the user). | 3. Below the c
+## WIP WIP-FLT-09 C38916 vpin=Y anch=Y
+   [exactly N] ... its own work order's location. | 3. NO row ever shows "Multiple" — a work order belongs to exactly one location, and this report has no grouped or drill-down rows. | 4. The column does not appear or disappear on its own when you 
+   [exactly (bare)] ... its own work order's location. | 3. NO row ever shows "Multiple" — a work order belongs to exactly one location, and this report has no grouped or drill-down rows. | 4. The column does not appear or disappear on its own when you 
+## WIP WIP-SCOPE-03 C30458 vpin=N anch=Y
+   [exactly N] ...Each qualifying work order appears exactly once in exactly one tab | 1. You are signed in to the ShopView App on a desktop browser. | 2. Several open ZZAUTOTEST service work orders exist within the current date range, including on
+   [exactly N] ...proved and read its money columns. | 1. Each qualifying work order appears exactly once, in exactly one tab. | 2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both sh
+   [exactly (bare)] ...proved and read its money columns. | 1. Each qualifying work order appears exactly once, in exactly one tab. | 2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both sh
+## WIP WIP-TAB-01 C30451 vpin=Y anch=Y
+   [are/read exactly] ... Efficiency). | 2. Clicking it opens the Work In Progress report. | 3. The browser page title is exactly "Work In Progress - Report | ShopView" — a plain hyphen with one space on each side.
+   [exactly (bare)] ...ficiency). | 2. Clicking it opens the Work In Progress report. | 3. The browser page title is exactly "Work In Progress - Report | ShopView" — a plain hyphen with one space on each side.
+## WIP WIP-TOT-02 C30495 vpin=N anch=Y
+   [exactly N] ... "0.0"). | 3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row. | 4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download 
+   [exactly (bare)] ... "0.0"). | 3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row. | 4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download 

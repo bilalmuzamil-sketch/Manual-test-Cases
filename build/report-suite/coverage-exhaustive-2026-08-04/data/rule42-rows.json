@@ -18,7 +18,8 @@
    {
     "closer": "exactly (bare)",
     "context": " tell which location each row's stock belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.)",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "Exactly where and how it appears is confirmed in the build.)"
    }
   ],
   "true_closed_list": false,
@@ -50,7 +51,8 @@
    {
     "closer": "exactly (bare)",
     "context": " which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly where and how it appears is confirmed in the build)."
    }
   ],
   "true_closed_list": false,
@@ -83,16 +85,18 @@
    {
     "closer": "exactly N",
     "context": "he Location filter is hidden for a one-location user | 1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward). | 2. You are signed in as that user on a desktop browser. | 1. Open the Inventory Value report and look for the Location filter in the toolbar. | 2. Then",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward"
    },
    {
     "closer": "exactly (bare)",
     "context": "he Location filter is hidden for a one-location user | 1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward). | 2. You are signed in as that user on a desktop browser. | 1. Open the Inventory Value report and look for the Location filter in the toolbar. | 2. Then",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -122,11 +126,12 @@
    {
     "closer": "exactly (bare)",
     "context": " with positive on-hand quantity, a core-charge part with a positive quantity, a part with exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity. | 1. Open the Inventory Value report scoped to the location. | 2. Look for the normal in-stock part. | 3. Search for the core-charge part, the zero-quantity ",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly zero on-hand quantity, and (if producible) one with a negative on-hand quantity. | 1"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -155,12 +160,14 @@
    {
     "closer": "no other",
     "context": "s | 1. You are signed in as a user whose role has the ordinary reports access turned on and no other reports-related permission turned on. | 2. Browser devtools (network tab) are open. | 1. Open the Parts Velocity report and observe the backend data request's outcome. | 2. Attempt the export and observe the backend export request's outc",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "no other reports-related permission turned on. | 2. Browser devtools (network tab) are open."
    },
    {
     "closer": "nothing else",
     "context": "s not refused. | 3. Both requests succeed with only the ordinary reports access turned on - nothing else had to be enabled. | 4. Note for the tester: if the back end refuses either request for a user who has the ordinary reports access, mark this Failed and report it. If an extra Parts or Inventory reports permission exists in the s",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "nothing else had to be enabled. | 4. Note for the tester: if the back end refuses either req"
    }
   ],
   "true_closed_list": true,
@@ -193,7 +200,8 @@
    {
     "closer": "no other",
     "context": "Last Sale re-anchors to the previous remaining sale (the day count grows accordingly); if no other sale remains it shows —.",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "no other sale remains it shows —."
    }
   ],
   "true_closed_list": true,
@@ -226,11 +234,12 @@
    {
     "closer": "exactly (bare)",
     "context": "lue, a Demand value, Min/Max values, and a Last Sale value. | 2. Seed a Margin % that lands exactly on a rounding tie (e.g. computes to 8.45% / -8.45%) and read the display. | 1. Units Sold, Units Returned, Sold (WO), Sold (Parts Sale), On Hand, Turns / Yr: two decimals with thousands separators (1,250.00); negatives with a leading ",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly on a rounding tie (e.g. computes to 8.45% / -8.45%) and read the display. | 1. Units"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -260,17 +269,20 @@
    {
     "closer": "exactly these",
     "context": "umn headers left to right without touching the picker. | 1. With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand. | 2. The other 6 columns start hidden: Units Re",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Cat"
    },
    {
     "closer": "exactly (bare)",
     "context": "First visit shows exactly the 14 default columns in the specified order | 1. You are on the Parts Velocity report on a first visit (no saved column selection). | 1. Read the visible column headers left to right without touching the picker. | 1. With a single locat",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly the 14 default columns in the specified order | 1. You are on the Parts Velocity rep"
    },
    {
     "closer": "exactly (bare)",
     "context": "umn headers left to right without touching the picker. | 1. With a single location in scope exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Category, Vendor, Units Sold, Unit Cost, Sell Price, Revenue, Margin, Margin %, Demand, Last Sale, On Hand. | 2. The other 6 columns start hidden: Units Re",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly these 14 columns show, in this left-to-right order: Type, Part #, Description, Cat"
    }
   ],
   "true_closed_list": true,
@@ -302,12 +314,14 @@
    {
     "closer": "exactly N",
     "context": "1. The ⋯ overflow button sits leftmost in the toolbar's action cluster. | 2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly two items, in this order: Download (PDF), then Download (CSV)."
    },
    {
     "closer": "exactly (bare)",
     "context": "1. The ⋯ overflow button sits leftmost in the toolbar's action cluster. | 2. The menu holds exactly two items, in this order: Download (PDF), then Download (CSV).",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly two items, in this order: Download (PDF), then Download (CSV)."
    }
   ],
   "true_closed_list": true,
@@ -340,22 +354,26 @@
    {
     "closer": "are/read exactly",
     "context": "ger a PDF export under the failure condition and read the toast. | 1. On success the toasts read exactly \"Velocity report exported (CSV)\" / \"Velocity report exported (PDF)\" and auto-fade — UPPERCASE (CSV)/(PDF). | 2. An error toast is shown on failure; when the server provides a message, that server message is shown. | 3. Otherwise th",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "read exactly \"Velocity report exported (CSV)\" / \"Velocity report exported (PDF)\" and auto-"
    },
    {
     "closer": "are/read exactly",
     "context": "e server provides a message, that server message is shown. | 3. Otherwise the failure toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity repo"
    },
    {
     "closer": "exactly (bare)",
     "context": " PDF export under the failure condition and read the toast. | 1. On success the toasts read exactly \"Velocity report exported (CSV)\" / \"Velocity report exported (PDF)\" and auto-fade — UPPERCASE (CSV)/(PDF). | 2. An error toast is shown on failure; when the server provides a message, that server message is shown. | 3. Otherwise the fai",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly \"Velocity report exported (CSV)\" / \"Velocity report exported (PDF)\" and auto-fade "
    },
    {
     "closer": "exactly (bare)",
     "context": "er provides a message, that server message is shown. | 3. Otherwise the failure toast reads exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pdf)\" — lowercase (csv)/(pdf); the success/failure casing mix is the shipped wording, documented as-is (not a bug).",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly: \"Failed to export velocity report (csv)\" or \"Failed to export velocity report (pd"
    }
   ],
   "true_closed_list": true,
@@ -388,12 +406,14 @@
    {
     "closer": "exactly N",
     "context": "The Type filter is the first control in the filter row. | 2. It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock). | 3. On a first visit the default is Both. | 4. Both is an explicit selection returning inventory and Special Order rows tog",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly three choices: Both, Inventory, and Special Order (special-order catalog parts tha"
    },
    {
     "closer": "exactly (bare)",
     "context": "The Type filter is the first control in the filter row. | 2. It is single-select and offers exactly three choices: Both, Inventory, and Special Order (special-order catalog parts that were never put into stock). | 3. On a first visit the default is Both. | 4. Both is an explicit selection returning inventory and Special Order rows tog",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly three choices: Both, Inventory, and Special Order (special-order catalog parts tha"
    }
   ],
   "true_closed_list": true,
@@ -426,17 +446,20 @@
    {
     "closer": "are/read exactly",
     "context": "read every option. | 2. Select a non-custom option (for example Last Month). | 1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom. | 2. There is NO 'All Time' option - the report always operates over a bounded date window (deliberate, per",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, La"
    },
    {
     "closer": "exactly (bare)",
     "context": "Date range selector offers exactly the eleven bounded options and no All Time | 1. You are on the Parts Velocity report with data loaded. | 1. Open the date range selector and read every option. | 2. Select a non-custom option (for example Last Month). | 1. The options are e",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly the eleven bounded options and no All Time | 1. You are on the Parts Velocity report"
    },
    {
     "closer": "exactly (bare)",
     "context": " every option. | 2. Select a non-custom option (for example Last Month). | 1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom. | 2. There is NO 'All Time' option - the report always operates over a bounded date window (deliberate, per the",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Y"
    }
   ],
   "true_closed_list": true,
@@ -467,12 +490,14 @@
    {
     "closer": "exactly (bare)",
     "context": "n tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.) | 7. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "Exactly where and how it appears is confirmed in the build.) | 7. The page itself shows whic"
    },
    {
     "closer": "exactly (bare)",
     "context": " which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly where and how it appears is confirmed in the build)."
    }
   ],
   "true_closed_list": false,
@@ -506,12 +531,14 @@
    {
     "closer": "are/read exactly",
     "context": "he server returns zero rows and the table shows the empty state. | 2. The empty-state label reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard"
    },
    {
     "closer": "exactly (bare)",
     "context": "ver returns zero rows and the table shows the empty state. | 2. The empty-state label reads exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label).",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard repor"
    }
   ],
   "true_closed_list": true,
@@ -543,16 +570,18 @@
    {
     "closer": "exactly N",
     "context": "on filter is hidden for a one-location user | 1. You are signed in as a user with access to exactly one location. | 2. You are on the Parts Velocity report with data loaded. | 1. Look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two or more locations and look again. | 1. For the single-location user t",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one location. | 2. You are on the Parts Velocity report with data loaded. | 1. Look fo"
    },
    {
     "closer": "exactly (bare)",
     "context": "on filter is hidden for a one-location user | 1. You are signed in as a user with access to exactly one location. | 2. You are on the Parts Velocity report with data loaded. | 1. Look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two or more locations and look again. | 1. For the single-location user t",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one location. | 2. You are on the Parts Velocity report with data loaded. | 1. Look fo"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -580,7 +609,8 @@
    {
     "closer": "no other",
     "context": "rdinary reports access turned on (the standard \"can this person see reports\" setting) and no other reports-related permission turned on. | 1. Open the Reports section and look for the Parts Velocity entry under Parts. | 2. Click the Parts Velocity entry. | 3. Use the export control on the report and download a file. | 1. The Parts Veloc",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "no other reports-related permission turned on. | 1. Open the Reports section and look for th"
    }
   ],
   "true_closed_list": true,
@@ -615,46 +645,54 @@
    {
     "closer": "are/read exactly",
     "context": " the Units Sold value, then switch the On Hand column on and read that too. | 1. Units Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone d",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exact"
    },
    {
     "closer": "are/read exactly",
     "context": "Units Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by exactly 2.50 from what it was before the sale. | 4. No value anywhere on t",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit qu"
    },
    {
     "closer": "exactly N",
     "context": "nits Sold value, then switch the On Hand column on and read that too. | 1. Units Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.5"
    },
    {
     "closer": "exactly N",
     "context": "Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by exactly 2.50 from what it was before the sale. | 4. No value anywhere on the row",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity"
    },
    {
     "closer": "exactly N",
     "context": "of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by exactly 2.50 from what it was before the sale. | 4. No value anywhere on the row has been quietly rounded to a whole number.",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly 2.50 from what it was before the sale. | 4. No value anywhere on the row has been qu"
    },
    {
     "closer": "exactly (bare)",
     "context": "nits Sold value, then switch the On Hand column on and read that too. | 1. Units Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.5"
    },
    {
     "closer": "exactly (bare)",
     "context": "Sold reads exactly 2.50 — not 2.00, not 3.00, not blank and not a dash. | 2. It still reads exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by exactly 2.50 from what it was before the sale. | 4. No value anywhere on the row",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly 2.50 after the sign-out and sign-back-in, which proves the part-of-a-unit quantity"
    },
    {
     "closer": "exactly (bare)",
     "context": "of-a-unit quantity was really stored and not just shown once. | 3. On Hand has gone down by exactly 2.50 from what it was before the sale. | 4. No value anywhere on the row has been quietly rounded to a whole number.",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly 2.50 from what it was before the sale. | 4. No value anywhere on the row has been qu"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -680,16 +718,18 @@
    {
     "closer": "are/read exactly",
     "context": "Parts Velocity report and read the same part's Units Sold value. | 1. The QuickBooks amount is exactly the hand-worked figure to the cent — $25.00 for 2.5 at $10.00. | 2. It is NOT a whole-unit amount such as $20.00 or $30.00, and it is NOT a bigger, multiplied figure. | 3. The quantity behind the QuickBooks amount matches the Units S",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "is exactly the hand-worked figure to the cent — $25.00 for 2.5 at $10.00. | 2. It is NOT a w"
    },
    {
     "closer": "exactly (bare)",
     "context": "ts Velocity report and read the same part's Units Sold value. | 1. The QuickBooks amount is exactly the hand-worked figure to the cent — $25.00 for 2.5 at $10.00. | 2. It is NOT a whole-unit amount such as $20.00 or $30.00, and it is NOT a bigger, multiplied figure. | 3. The quantity behind the QuickBooks amount matches the Units Sold",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly the hand-worked figure to the cent — $25.00 for 2.5 at $10.00. | 2. It is NOT a whol"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": false,
   "scope_conditional": false,
@@ -717,22 +757,26 @@
    {
     "closer": "no other",
     "context": "s the same text to assistive technology; activating it does NOT trigger a column sort. | 6. No other column header carries an info icon.",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "No other column header carries an info icon."
    },
    {
     "closer": "exactly (bare)",
     "context": " visible; the Turns/Yr icon appears only once that column is enabled. | 2. Units Sold shows exactly: \"Units taken out of inventory stock on invoiced work orders in this date range. This is stock movement, so it can differ from the units billed behind Revenue and Sell Price.\" | 3. Demand shows exactly: \"Number of separate transaction",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly: \"Units taken out of inventory stock on invoiced work orders in this date range. T"
    },
    {
     "closer": "exactly (bare)",
     "context": "t, so it can differ from the units billed behind Revenue and Sell Price.\" | 3. Demand shows exactly: \"Number of separate transactions (work orders or parts sales) this part appeared on in the selected date range. Each transaction counts once, no matter how many units were sold on it.\" | 4. Turns/Yr shows exactly: \"How many times you",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly: \"Number of separate transactions (work orders or parts sales) this part appeared "
    },
    {
     "closer": "exactly (bare)",
     "context": "ach transaction counts once, no matter how many units were sold on it.\" | 4. Turns/Yr shows exactly: \"How many times you sell through this part in a year. Higher is better.\" | 5. The icon is focusable and exposes the same text to assistive technology; activating it does NOT trigger a column sort. | 6. No other column header carries an",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly: \"How many times you sell through this part in a year. Higher is better.\" | 5. The i"
    }
   ],
   "true_closed_list": true,
@@ -763,12 +807,14 @@
    {
     "closer": "exactly (bare)",
     "context": "Sum the asset rows and compare with the customer row. | 1. An asset's invoice subtotals sum exactly to that asset's row total. | 2. A customer's asset subtotals sum exactly to the customer's row total. | 3. This holds for every financial column, not only Subtotal.",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly to that asset's row total. | 2. A customer's asset subtotals sum exactly to the cust"
    },
    {
     "closer": "exactly (bare)",
     "context": "oice subtotals sum exactly to that asset's row total. | 2. A customer's asset subtotals sum exactly to the customer's row total. | 3. This holds for every financial column, not only Subtotal.",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly to the customer's row total. | 3. This holds for every financial column, not only Su"
    }
   ],
   "true_closed_list": false,
@@ -805,7 +851,8 @@
    {
     "closer": "in order are",
     "context": "menu. | 2. Hovering it shows the tooltip \"Column Selection.\" | 3. The panel lists nine toggles, in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %. | 4. With no saved selection, all nine toggleable columns default to visible. | 5. Note for the tester: there is no Locatio",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": ", in order: Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Sh"
    }
   ],
   "true_closed_list": true,
@@ -837,26 +884,30 @@
    {
     "closer": "exactly N",
     "context": "er filter and use \"Clear all\" to empty the selection; read the collapsed label. | 2. Select exactly one customer; read the collapsed label. | 3. Select a second and third customer; read the collapsed label. | 4. Start typing a search query in the filter field and watch the field text, then clear the query or click away. | 1. With an emp",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one customer; read the collapsed label. | 3. Select a second and third customer; rea"
    },
    {
     "closer": "exactly N",
     "context": "query or click away. | 1. With an empty selection the collapsed label reads \"None.\" | 2. With exactly one customer selected the label shows that customer's name. | 3. With more than one selected the label reads \"N selected\" where N is the number of selected customers (for example \"3 selected\"). | 4. While typing, the field shows the que",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one customer selected the label shows that customer's name. | 3. With more than one "
    },
    {
     "closer": "exactly (bare)",
     "context": "er filter and use \"Clear all\" to empty the selection; read the collapsed label. | 2. Select exactly one customer; read the collapsed label. | 3. Select a second and third customer; read the collapsed label. | 4. Start typing a search query in the filter field and watch the field text, then clear the query or click away. | 1. With an emp",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one customer; read the collapsed label. | 3. Select a second and third customer; rea"
    },
    {
     "closer": "exactly (bare)",
     "context": "query or click away. | 1. With an empty selection the collapsed label reads \"None.\" | 2. With exactly one customer selected the label shows that customer's name. | 3. With more than one selected the label reads \"N selected\" where N is the number of selected customers (for example \"3 selected\"). | 4. While typing, the field shows the que",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one customer selected the label shows that customer's name. | 3. With more than one "
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": true,
@@ -885,16 +936,18 @@
    {
     "closer": "exactly N",
     "context": "e customers and the totals row values. | 2. Open the Customer filter, clear all, and select exactly two customers. | 3. Read the table rows and the totals row. | 1. The report shows only the two selected customers. | 2. The table refreshes as a fresh first page of results. | 3. The totals row updates to cover only the selected customers' ",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly two customers. | 3. Read the table rows and the totals row. | 1. The report shows only"
    },
    {
     "closer": "exactly (bare)",
     "context": "e customers and the totals row values. | 2. Open the Customer filter, clear all, and select exactly two customers. | 3. Read the table rows and the totals row. | 1. The report shows only the two selected customers. | 2. The table refreshes as a fresh first page of results. | 3. The totals row updates to cover only the selected customers' ",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly two customers. | 3. Read the table rows and the totals row. | 1. The report shows only"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -922,11 +975,12 @@
    {
     "closer": "exactly (bare)",
     "context": "st month (seed ZZAUTOTEST data as needed). | 2. Date range is This Month; you have selected exactly customers A and B in the Customer filter. | 1. Change the date range to Last Month. | 2. Read the table rows and the Customer filter selection. | 1. Customer A (still present in the new results) stays selected and is shown. | 2. Customer B ",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly customers A and B in the Customer filter. | 1. Change the date range to Last Month. | "
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -958,12 +1012,14 @@
    {
     "closer": "in order are",
     "context": "ction area and is the application's standard overflow-menu control. | 2. The menu items read, in order: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\" - and there is NO \"Print\" item anywhere in the menu. | 3. There are no separate always-visible export buttons - all",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": ", in order: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (C"
    },
    {
     "closer": "exactly (bare)",
     "context": "The overflow menu holds exactly the four download items - no Print | 1. You are on the Sales By Customer report. | 1. Find the overflow menu in the toolbar's action area and note its position. | 2. Open it and read the items in order. | 3. Look around the toolbar for any ",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly the four download items - no Print | 1. You are on the Sales By Customer report. | 1. "
    }
   ],
   "true_closed_list": true,
@@ -1000,7 +1056,8 @@
    {
     "closer": "in this exact order",
     "context": "rows. | 1. With a single location in scope the Expanded View CSV has these thirteen columns in this exact order: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal. When more than one location is in scope the file also carries a Location",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "in this exact order: Customer, Asset, Invoice #, Date, Inv. Hrs, Labor Invoiced, Labor Mar"
    }
   ],
   "true_closed_list": true,
@@ -1036,16 +1093,18 @@
    {
     "closer": "exactly (bare)",
     "context": "CSV and PDF hold exactly the customers matching the active filters and sort | 1. Data exists across two locations, both product types, and several customers. | 1. Set a specific date range, Product Type \"Service only\", one location, a two-customer selection in ",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly the customers matching the active filters and sort | 1. Data exists across two locat"
    },
    {
     "closer": "exactly (bare)",
     "context": " PDF. | 3. Compare each file's contents against the on-screen rows. | 1. Each export contains exactly the customers matching the active filters — the selected customers, within the active date range, Product Type, and location — in the active sort order. | 2. When every customer is selected, the export contains the full set of custome",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly the customers matching the active filters — the selected customers, within the act"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -1081,22 +1140,26 @@
    {
     "closer": "in this exact order",
     "context": "wn on screen. | 5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal — no Asset, Invoice # or Date columns. When more than one location is in scope a Location column ",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Par"
    },
    {
     "closer": "exactly N",
     "context": "ed View version in both formats and compare against the Summary files. | 1. The menu offers exactly four items: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\". | 2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows. | 3. Each Expan",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly four items: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Su"
    },
    {
     "closer": "exactly (bare)",
     "context": "ed View version in both formats and compare against the Summary files. | 1. The menu offers exactly four items: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\". | 2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows. | 3. Each Expan",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly four items: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Su"
    },
    {
     "closer": "exactly (bare)",
     "context": "contains the full Customer, then Asset, then Invoice breakdown. | 4. All four files reflect exactly the filtered data shown on screen. | 5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margi",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly the filtered data shown on screen. | 5. With a single location in scope the Summary "
    }
   ],
   "true_closed_list": true,
@@ -1128,7 +1191,8 @@
    {
     "closer": "exactly (bare)",
     "context": "link. | 2. Pressing back returns to the report with its filters, sort, and columns restored exactly as set. | 3. Expanded rows are shown collapsed again — expansion is not restored (this is the specified behavior, not a defect).",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly as set. | 3. Expanded rows are shown collapsed again — expansion is not restored (th"
    }
   ],
   "true_closed_list": false,
@@ -1160,12 +1224,14 @@
    {
     "closer": "exactly (bare)",
     "context": "n tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.) | 5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "Exactly where and how it appears is confirmed in the build.) | 5. The page itself shows whic"
    },
    {
     "closer": "exactly (bare)",
     "context": " which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly where and how it appears is confirmed in the build)."
    }
   ],
   "true_closed_list": false,
@@ -1200,7 +1266,8 @@
    {
     "closer": "exactly (bare)",
     "context": "n a row that aggregates more than one, and the invoice's own location on an invoice row. (Exactly where the column sits inside each file is confirmed in the build.)",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "Exactly where the column sits inside each file is confirmed in the build.)"
    }
   ],
   "true_closed_list": false,
@@ -1236,12 +1303,14 @@
    {
     "closer": "exactly N",
     "context": " fewer of that customer's invoices match, and re-read the count. | 1. The customer occupies exactly one summary row at the top level of the table. | 2. The customer's name is shown at the start of the row, followed by the number of contributing invoices in parentheses — for example, Acme Corp (5). | 3. The count is rendered in color #",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly one summary row at the top level of the table. | 2. The customer's name is shown at "
    },
    {
     "closer": "exactly (bare)",
     "context": " fewer of that customer's invoices match, and re-read the count. | 1. The customer occupies exactly one summary row at the top level of the table. | 2. The customer's name is shown at the start of the row, followed by the number of contributing invoices in parentheses — for example, Acme Corp (5). | 3. The count is rendered in color #",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly one summary row at the top level of the table. | 2. The customer's name is shown at "
    }
   ],
   "true_closed_list": false,
@@ -1274,26 +1343,30 @@
    {
     "closer": "exactly N",
     "context": "Edge: a single-invoice asset can still be expanded | 1. Customer A has an asset with exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the current view (seed ZZAUTOTEST data). | 1. Expand customer A and click the chevron of the single-invoice asset. | 2. Expand customer B and read its asset ro",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the c"
    },
    {
     "closer": "exactly N",
     "context": " Expand customer B and read its asset rows. | 1. The single-invoice asset expands and shows exactly one invoice detail row. | 2. Customer B shows a single \"Parts Sales\" row and no vehicle rows.",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one invoice detail row. | 2. Customer B shows a single \"Parts Sales\" row and no vehi"
    },
    {
     "closer": "exactly (bare)",
     "context": "Edge: a single-invoice asset can still be expanded | 1. Customer A has an asset with exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the current view (seed ZZAUTOTEST data). | 1. Expand customer A and click the chevron of the single-invoice asset. | 2. Expand customer B and read its asset ro",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the c"
    },
    {
     "closer": "exactly (bare)",
     "context": " Expand customer B and read its asset rows. | 1. The single-invoice asset expands and shows exactly one invoice detail row. | 2. Customer B shows a single \"Parts Sales\" row and no vehicle rows.",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one invoice detail row. | 2. Customer B shows a single \"Parts Sales\" row and no vehi"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -1321,7 +1394,8 @@
    {
     "closer": "exactly (bare)",
     "context": "ry row total, regardless of the Product Type filter. | 3. The customer/asset totals drop by exactly that invoice's amounts.",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly that invoice's amounts."
    }
   ],
   "true_closed_list": false,
@@ -1358,12 +1432,14 @@
    {
     "closer": "exactly N",
     "context": "oice numbers again. | 4. Set Product Type back to \"Parts & Service.\" | 1. The dropdown offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" selected by default on first load. | 2. Under \"Service only,\" every invoice shown has a number starting with S; parts invoices are ",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only\" — wi"
    },
    {
     "closer": "exactly (bare)",
     "context": "oice numbers again. | 4. Set Product Type back to \"Parts & Service.\" | 1. The dropdown offers exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" selected by default on first load. | 2. Under \"Service only,\" every invoice shown has a number starting with S; parts invoices are ",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly three options, in this order: \"Parts & Service,\" \"Parts only,\" \"Service only\" — wi"
    }
   ],
   "true_closed_list": true,
@@ -1398,17 +1474,20 @@
    {
     "closer": "are/read exactly",
     "context": "auto-fades after 5 seconds. | 3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?. | 4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sa",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "are exactly: Customer Name, Sales Representative, Rep is active?. | 4. Note for the tester: "
    },
    {
     "closer": "in order are",
     "context": "ded.\" and auto-fades after 5 seconds. | 3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?. | 4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "in order, are exactly: Customer Name, Sales Representative, Rep is active?. | 4. Note for th"
    },
    {
     "closer": "exactly (bare)",
     "context": "-fades after 5 seconds. | 3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Representative, Rep is active?. | 4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales ",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly: Customer Name, Sales Representative, Rep is active?. | 4. Note for the tester: the "
    }
   ],
   "true_closed_list": true,
@@ -1443,16 +1522,18 @@
    {
     "closer": "exactly N",
     "context": ". | 4. Read the row order. | 1. Every customer with an assigned sales representative produces exactly ONE row (single-rep model: one rep per customer). | 2. Customers with no assigned rep are NOT included. | 3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary).",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly ONE row (single-rep model: one rep per customer). | 2. Customers with no assigned re"
    },
    {
     "closer": "exactly (bare)",
     "context": ". | 4. Read the row order. | 1. Every customer with an assigned sales representative produces exactly ONE row (single-rep model: one rep per customer). | 2. Customers with no assigned rep are NOT included. | 3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary).",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly ONE row (single-rep model: one rep per customer). | 2. Customers with no assigned re"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -1481,12 +1562,14 @@
    {
     "closer": "are/read exactly",
     "context": "mn headers. | 2. Read that invoice's row values and recalculate each by hand. | 1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 2. Subtotal = Labor Invoiced + Parts Invoiced, BEFORE tax. | 3. Labor Margin = Labor Invoiced − labor cost; Parts Margin = Parts Invoiced − ",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %"
    },
    {
     "closer": "exactly (bare)",
     "context": "aders. | 2. Read that invoice's row values and recalculate each by hand. | 1. The labels read exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 2. Subtotal = Labor Invoiced + Parts Invoiced, BEFORE tax. | 3. Labor Margin = Labor Invoiced − labor cost; Parts Margin = Parts Invoiced − parts",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly: Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Sub"
    }
   ],
   "true_closed_list": true,
@@ -1518,16 +1601,18 @@
    {
     "closer": "exactly (bare)",
     "context": " the range by its own invoice date; endpoints included | 1. ZZAUTOTEST invoices exist dated exactly ON the start date and exactly ON the end date of a custom range, plus one dated just outside it. | 1. Set a custom range whose start and end dates equal those two invoice dates. | 2. Check which invoices appear (expand the owning rep). | ",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly ON the start date and exactly ON the end date of a custom range, plus one dated ju"
    },
    {
     "closer": "exactly (bare)",
     "context": "date; endpoints included | 1. ZZAUTOTEST invoices exist dated exactly ON the start date and exactly ON the end date of a custom range, plus one dated just outside it. | 1. Set a custom range whose start and end dates equal those two invoice dates. | 2. Check which invoices appear (expand the owning rep). | 3. Download both PDFs (Summary",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly ON the end date of a custom range, plus one dated just outside it. | 1. Set a custom"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -1558,16 +1643,18 @@
    {
     "closer": "exactly N",
     "context": " trap | 1. ZZAUTOTEST rep \"A\" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers. | 1. Toggle rep B's active status off and read the dialog before confirming anything. | 2. Press Tab repeatedly and watch where focus goes; dismiss and watch where focus returns. | 3",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers. | 1. Toggle rep B's active s"
    },
    {
     "closer": "exactly (bare)",
     "context": " trap | 1. ZZAUTOTEST rep \"A\" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers. | 1. Toggle rep B's active status off and read the dialog before confirming anything. | 2. Press Tab repeatedly and watch where focus goes; dismiss and watch where focus returns. | 3",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly 1 customer; ZZAUTOTEST rep \"B\" likewise to 3 customers. | 1. Toggle rep B's active s"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -1594,7 +1681,8 @@
    {
     "closer": "exactly (bare)",
     "context": "You can force the pre-deactivation assignment check to fail (for example, cut the network exactly when toggling active off) — if not forceable, mark Blocked with the reason. | 1. Toggle the staff member's active status off while forcing the check to fail. | 2. Read the dialog that opens. | 1. The system NEVER silently deactivates — th",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly when toggling active off) — if not forceable, mark Blocked with the reason. | 1. Tog"
    }
   ],
   "true_closed_list": false,
@@ -1628,27 +1716,32 @@
    {
     "closer": "exactly N",
     "context": "The ⋯ overflow menu lists exactly four download actions | 1. You are signed in to the ShopView App on a desktop browser. | 2. You are on the Sales By Representative report. | 1. Find the ⋯ (three-dot) button in the report toolbar — it is the first control in the toolbar's",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly four download actions | 1. You are signed in to the ShopView App on a desktop browse"
    },
    {
     "closer": "exactly N",
     "context": "'s action cluster. | 2. Click it and read the menu entries top to bottom. | 1. The menu lists exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", and \"Download Expanded View (CSV)\". | 2. No other entries appear in the menu.",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download "
    },
    {
     "closer": "no other",
     "context": "ad Expanded View (PDF)\", \"Download Summary (CSV)\", and \"Download Expanded View (CSV)\". | 2. No other entries appear in the menu.",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "No other entries appear in the menu."
    },
    {
     "closer": "exactly (bare)",
     "context": "The ⋯ overflow menu lists exactly four download actions | 1. You are signed in to the ShopView App on a desktop browser. | 2. You are on the Sales By Representative report. | 1. Find the ⋯ (three-dot) button in the report toolbar — it is the first control in the toolbar's",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly four download actions | 1. You are signed in to the ShopView App on a desktop browse"
    },
    {
     "closer": "exactly (bare)",
     "context": "'s action cluster. | 2. Click it and read the menu entries top to bottom. | 1. The menu lists exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", and \"Download Expanded View (CSV)\". | 2. No other entries appear in the menu.",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download "
    }
   ],
   "true_closed_list": true,
@@ -1681,11 +1774,12 @@
    {
     "closer": "exactly (bare)",
     "context": ", download a PDF again and look at the header strip's logo region. | 1. The files are named exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\". | 2. A footer reading \"Software Powered by ShopView\" appears on EVERY page of both PDFs. | 3. With no configured logo, the logo region falls back to the d",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\". | "
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -1716,17 +1810,20 @@
    {
     "closer": "are/read exactly",
     "context": "v\" and starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 3. There is one header row plus one row per rep in the c",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv."
    },
    {
     "closer": "in order are",
     "context": "summary.csv\" and starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 3. There is one header row plus one row per re",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invo"
    },
    {
     "closer": "exactly (bare)",
     "context": "nd starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 3. There is one header row plus one row per rep in the curre",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs"
    }
   ],
   "true_closed_list": true,
@@ -1760,17 +1857,20 @@
    {
     "closer": "are/read exactly",
     "context": "v\" and starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 3. There is one header row plus one row per in",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invo"
    },
    {
     "closer": "in order are",
     "context": "xpanded.csv\" and starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 3. There is one header row plus one ",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked"
    },
    {
     "closer": "exactly (bare)",
     "context": "nd starts with a UTF-8 BOM. | 2. With a single location in scope the headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. | 3. There is one header row plus one row per invoic",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced"
    }
   ],
   "true_closed_list": true,
@@ -1802,12 +1902,14 @@
    {
     "closer": "are/read exactly",
     "context": "produced — the server declines rather than generating a truncated file. | 2. An error toast reads exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (persists 120 seconds or until dismissed). | 3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoice",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "reads exactly: \"This report is too large to export. Narrow the date range or filters, then"
    },
    {
     "closer": "exactly (bare)",
     "context": "ed — the server declines rather than generating a truncated file. | 2. An error toast reads exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (persists 120 seconds or until dismissed). | 3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is e",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly: \"This report is too large to export. Narrow the date range or filters, then try a"
    }
   ],
   "true_closed_list": true,
@@ -1840,7 +1942,8 @@
    {
     "closer": "exactly (bare)",
     "context": "ice status, location, Show Unassigned, every rep's expansion state, and scroll position — exactly as they were. | 2. Back-navigation does not trigger a full report reload. | 3. This is deliberately different from a page reload, which restores persisted filters/columns/sort but resets expansion and scroll.",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly as they were. | 2. Back-navigation does not trigger a full report reload. | 3. This is"
    }
   ],
   "true_closed_list": false,
@@ -1873,12 +1976,14 @@
    {
     "closer": "exactly (bare)",
     "context": "n tell which location each row's data belongs to — a location label or marking is shown. (Exactly where and how it appears is confirmed in the build.) | 5. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "Exactly where and how it appears is confirmed in the build.) | 5. The page itself shows whic"
    },
    {
     "closer": "exactly (bare)",
     "context": " which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly where and how it appears is confirmed in the build)."
    }
   ],
   "true_closed_list": false,
@@ -1911,16 +2016,18 @@
    {
     "closer": "exactly N",
     "context": "Location filter hidden for a one-location user | 1. You are signed in as a user assigned to exactly one location. | 1. Open the report and look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two or more locations and look again. | 1. For the single-location user the Location filter is NOT shown at all",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one location. | 1. Open the report and look for the Location filter in the toolbar. | "
    },
    {
     "closer": "exactly (bare)",
     "context": "Location filter hidden for a one-location user | 1. You are signed in as a user assigned to exactly one location. | 1. Open the report and look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two or more locations and look again. | 1. For the single-location user the Location filter is NOT shown at all",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one location. | 1. Open the report and look for the Location filter in the toolbar. | "
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -1950,12 +2057,14 @@
    {
     "closer": "exactly N",
     "context": " for reps B and C. | 3. Read the count in parentheses after rep A's name. | 1. Rep A occupies exactly one summary row. | 2. Reps B and C do not appear — there are no blank placeholder rows, and a reversed invoice never satisfies the contributor gate. | 3. The number of contributing invoices shows in parentheses after the rep's name, in ",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly one summary row. | 2. Reps B and C do not appear — there are no blank placeholder ro"
    },
    {
     "closer": "exactly (bare)",
     "context": " for reps B and C. | 3. Read the count in parentheses after rep A's name. | 1. Rep A occupies exactly one summary row. | 2. Reps B and C do not appear — there are no blank placeholder rows, and a reversed invoice never satisfies the contributor gate. | 3. The number of contributing invoices shows in parentheses after the rep's name, in ",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly one summary row. | 2. Reps B and C do not appear — there are no blank placeholder ro"
    }
   ],
   "true_closed_list": false,
@@ -1995,11 +2104,12 @@
    {
     "closer": "exactly (bare)",
     "context": "0) — row type is distinguished by font weight, not background color. | 5. Every row renders exactly the report's column count with blanks in position — a cell with nothing to show is blank, never shifted or wrapped (a drifted row is a defect). The grand Totals indicator is exempt: the desktop Totals row merges the four leading ide",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly the report's column count with blanks in position — a cell with nothing to show is"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": true,
   "scope_conditional": true,
@@ -2030,22 +2140,26 @@
    {
     "closer": "exactly N",
     "context": "Invoice Status offers exactly four options; All Statuses is the default | 1. You are on the report with no remembered settings. | 1. Find the \"Invoice Status\" dropdown in the toolbar and read its default value. | 2. Open it and read the options. | 3. Change the selectio",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly four options; All Statuses is the default | 1. You are on the report with no remembe"
    },
    {
     "closer": "exactly N",
     "context": " watch the table. | 1. An \"Invoice Status\" dropdown is visible in the toolbar. | 2. It offers exactly four options: \"All Statuses,\" \"Unpaid,\" \"Partially Paid,\" \"Paid.\" | 3. \"All Statuses\" is the default on first load. | 4. Changing the selection re-fetches and re-renders the report.",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly four options: \"All Statuses,\" \"Unpaid,\" \"Partially Paid,\" \"Paid.\" | 3. \"All Statuses"
    },
    {
     "closer": "exactly (bare)",
     "context": "Invoice Status offers exactly four options; All Statuses is the default | 1. You are on the report with no remembered settings. | 1. Find the \"Invoice Status\" dropdown in the toolbar and read its default value. | 2. Open it and read the options. | 3. Change the selectio",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly four options; All Statuses is the default | 1. You are on the report with no remembe"
    },
    {
     "closer": "exactly (bare)",
     "context": " watch the table. | 1. An \"Invoice Status\" dropdown is visible in the toolbar. | 2. It offers exactly four options: \"All Statuses,\" \"Unpaid,\" \"Partially Paid,\" \"Paid.\" | 3. \"All Statuses\" is the default on first load. | 4. Changing the selection re-fetches and re-renders the report.",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly four options: \"All Statuses,\" \"Unpaid,\" \"Partially Paid,\" \"Paid.\" | 3. \"All Statuses"
    }
   ],
   "true_closed_list": true,
@@ -2081,16 +2195,18 @@
    {
     "closer": "exactly N",
     "context": "y with an invoice matching ALL active filters | 1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location — plus one invoice matching all four. | 2. For the per-filter legs: rep A has only service invoices and rep B both types; rep C has only Paid invoices and rep D a mix (seed ZZ",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one of: date range, product type, invoice status, location — plus one invoice matc"
    },
    {
     "closer": "exactly (bare)",
     "context": "y with an invoice matching ALL active filters | 1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location — plus one invoice matching all four. | 2. For the per-filter legs: rep A has only service invoices and rep B both types; rep C has only Paid invoices and rep D a mix (seed ZZ",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one of: date range, product type, invoice status, location — plus one invoice matc"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -2118,7 +2234,8 @@
    {
     "closer": "no other",
     "context": "ontal scroll container, showing \"Totals\" on the left and the grand Subtotal on the right (no other metrics). | 2. It does not scroll horizontally — it is always fully visible across. | 3. During vertical page scroll it sits after the table in normal flow (not pinned to the viewport bottom). | 4. It uses the white card surface with a t",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "no other metrics). | 2. It does not scroll horizontally — it is always fully visible across."
    }
   ],
   "true_closed_list": true,
@@ -2150,26 +2267,30 @@
    {
     "closer": "exactly N",
     "context": "Each invoice appears under exactly one rep or the Unassigned row | 1. A known ZZAUTOTEST invoice set exists across two reps plus at least one unassigned invoice; Show Unassigned is on. | 1. Expand every rep and the Unassigned row. | 2. Search the expanded rows for each see",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one rep or the Unassigned row | 1. A known ZZAUTOTEST invoice set exists across two "
    },
    {
     "closer": "exactly N",
     "context": ". Search the expanded rows for each seeded invoice number. | 1. Every invoice appears under exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never under two rows. | 2. The sum of all (N) counts equals the number of matching invoices.",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never u"
    },
    {
     "closer": "exactly (bare)",
     "context": "Each invoice appears under exactly one rep or the Unassigned row | 1. A known ZZAUTOTEST invoice set exists across two reps plus at least one unassigned invoice; Show Unassigned is on. | 1. Expand every rep and the Unassigned row. | 2. Search the expanded rows for each see",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one rep or the Unassigned row | 1. A known ZZAUTOTEST invoice set exists across two "
    },
    {
     "closer": "exactly (bare)",
     "context": ". Search the expanded rows for each seeded invoice number. | 1. Every invoice appears under exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never under two rows. | 2. The sum of all (N) counts equals the number of matching invoices.",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one rep (the rep credited at invoicing time) or under the Unassigned row — never u"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -2203,12 +2324,14 @@
    {
     "closer": "exactly N",
     "context": "t \"Service only\" and read them again. | 4. Select \"Parts & Service.\" | 1. The dropdown offers exactly three options: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" as the default on first load. | 2. \"Parts only\" includes only invoices whose number starts with P. | 3. \"Service only\" includes only invoices whose ",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly three options: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Ser"
    },
    {
     "closer": "exactly (bare)",
     "context": "t \"Service only\" and read them again. | 4. Select \"Parts & Service.\" | 1. The dropdown offers exactly three options: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Service\" as the default on first load. | 2. \"Parts only\" includes only invoices whose number starts with P. | 3. \"Service only\" includes only invoices whose ",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly three options: \"Parts & Service,\" \"Parts only,\" \"Service only\" — with \"Parts & Ser"
    }
   ],
   "true_closed_list": true,
@@ -2240,11 +2363,12 @@
    {
     "closer": "exactly (bare)",
     "context": "hnician row - with that day's values. | 2. The day's Est. Lost Labor is valued per location exactly like a technician row (that location's default labor rate × that day's internal hours there). | 3. Hours 2dp / Utilization one decimal + % / dollars with commas - all identical to the row formats, computed from unrounded values and ro",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly like a technician row (that location's default labor rate × that day's internal ho"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -2277,11 +2401,12 @@
    {
     "closer": "exactly (bare)",
     "context": "right; its cells are bold and its header is bold, matching. | 2. The information icon shows exactly: \"Internal hours valued at each location's default labor rate\" — on hover, on keyboard focus, and on tap; it is dismissible. | 3. NO column header other than Est. Lost Labor shows the information icon. | 4. Est. Lost Labor can be turned",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly: \"Internal hours valued at each location's default labor rate\" — on hover, on keyb"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": true,
   "scope_conditional": true,
@@ -2308,16 +2433,18 @@
    {
     "closer": "exactly (bare)",
     "context": ". Technician B has internal hours at a location whose default labor rate is configured as exactly $0.00. | 1. Read technician A's Est. Lost Labor. | 2. Read technician B's Est. Lost Labor. | 1. Technician A shows \"$0.00\" - there is nothing to value, regardless of whether the location has a rate configured. | 2. Technician B also shows \"",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly $0.00. | 1. Read technician A's Est. Lost Labor. | 2. Read technician B's Est. Lost La"
    },
    {
     "closer": "exactly (bare)",
     "context": "location has a rate configured. | 2. Technician B also shows \"$0.00\" - a configured rate of exactly $0.00 is a KNOWN rate that values the hours at $0.00, not \"—\". | 3. \"$0.00\" means 'the rate is known and there is nothing (or $0) to value' - a different state from \"—\" ('the rate is unknown').",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly $0.00 is a KNOWN rate that values the hours at $0.00, not \"—\". | 3. \"$0.00\" means 't"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -2348,11 +2475,12 @@
    {
     "closer": "exactly (bare)",
     "context": "Summary (PDF)\", \"Download Expanded View (PDF)\", and \"Download (CSV)\". | 3. The labels match exactly - only the expanded option carries the word \"View\" (the shipped strings, documented as-is).",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly - only the expanded option carries the word \"View\" (the shipped strings, documente"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -2378,22 +2506,26 @@
    {
     "closer": "are/read exactly",
     "context": "re condition and read the notification. | 1. When a download starts, a success notification reads exactly: \"Download started\". | 2. When a download fails, an error notification reads exactly: \"Failed to download report\".",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "reads exactly: \"Download started\". | 2. When a download fails, an error notification reads e"
    },
    {
     "closer": "are/read exactly",
     "context": "cation reads exactly: \"Download started\". | 2. When a download fails, an error notification reads exactly: \"Failed to download report\".",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "reads exactly: \"Failed to download report\"."
    },
    {
     "closer": "exactly (bare)",
     "context": "dition and read the notification. | 1. When a download starts, a success notification reads exactly: \"Download started\". | 2. When a download fails, an error notification reads exactly: \"Failed to download report\".",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly: \"Download started\". | 2. When a download fails, an error notification reads exactly"
    },
    {
     "closer": "exactly (bare)",
     "context": " reads exactly: \"Download started\". | 2. When a download fails, an error notification reads exactly: \"Failed to download report\".",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly: \"Failed to download report\"."
    }
   ],
   "true_closed_list": true,
@@ -2429,7 +2561,8 @@
    {
     "closer": "exactly (bare)",
     "context": "ormat on a value over 100 hours. | 1. With a single location in scope the headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor. | 2. Total Hours = all time the technician was clocked in for the range. | 3. WO Hours = time clocked directly to work orders; Internal Hours",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est."
    }
   ],
   "true_closed_list": false,
@@ -2461,21 +2594,24 @@
    {
     "closer": "exactly N",
     "context": "(clocked-out) records in the range - no open clock. | 2. The report's location filter holds exactly ONE location, and it is the user's currently active shop. | 1. Read the technician's Total Hours on the Technician Utilization report (two decimals). | 2. Click the Total Hours link and read the same technician's total on the opened Tim",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly ONE location, and it is the user's currently active shop. | 1. Read the technician's"
    },
    {
     "closer": "exactly (bare)",
     "context": "(clocked-out) records in the range - no open clock. | 2. The report's location filter holds exactly ONE location, and it is the user's currently active shop. | 1. Read the technician's Total Hours on the Technician Utilization report (two decimals). | 2. Click the Total Hours link and read the same technician's total on the opened Tim",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly ONE location, and it is the user's currently active shop. | 1. Read the technician's"
    },
    {
     "closer": "exactly (bare)",
     "context": "Timesheet Activities report. | 3. Compare the two, to two decimals. | 1. The two totals MATCH exactly, to two decimals (these values are hours, not money) - both reports read the same clock records and round the same way (round-half-up, from unrounded values). | 2. Under this exact scope (same range, same single location, closed recor",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly, to two decimals (these values are hours, not money) - both reports read the same "
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -2504,7 +2640,8 @@
    {
     "closer": "exactly (bare)",
     "context": " which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly where and how it appears is confirmed in the build)."
    }
   ],
   "true_closed_list": false,
@@ -2537,16 +2674,18 @@
    {
     "closer": "exactly N",
     "context": "ation filter hidden for a one-location user | 1. You are signed in as a user with access to exactly one location. | 2. You are on the Technician Utilization report. | 1. Look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two or more locations and look again. | 1. For the single-location user the Locati",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one location. | 2. You are on the Technician Utilization report. | 1. Look for the Loc"
    },
    {
     "closer": "exactly (bare)",
     "context": "ation filter hidden for a one-location user | 1. You are signed in as a user with access to exactly one location. | 2. You are on the Technician Utilization report. | 1. Look for the Location filter in the toolbar. | 2. Then sign in as a user with access to two or more locations and look again. | 1. For the single-location user the Locati",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one location. | 2. You are on the Technician Utilization report. | 1. Look for the Loc"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -2574,16 +2713,18 @@
    {
     "closer": "exactly N",
     "context": "or that range and location. | 2. Look for rows for technicians A and B. | 1. Technician A has exactly ONE row. | 2. Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) appear.",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly ONE row. | 2. Technician B has NO row - only technicians with clocked time in the se"
    },
    {
     "closer": "exactly (bare)",
     "context": "or that range and location. | 2. Look for rows for technicians A and B. | 1. Technician A has exactly ONE row. | 2. Technician B has NO row - only technicians with clocked time in the selected range at the selected location(s) appear.",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly ONE row. | 2. Technician B has NO row - only technicians with clocked time in the se"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -2613,11 +2754,12 @@
    {
     "closer": "exactly (bare)",
     "context": "er and re-read the data area and the Summary row. | 1. Instead of rows, the data area shows exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard reports no-data label). | 2. The Summary row is hidden. | 3. Clearing every technician shows the SAME message and hides the Summary row — this version does not",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly: \"Empty bays, endless possibilities. Get Going!\" (the application's standard repor"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -2645,16 +2787,18 @@
    {
     "closer": "exactly N",
     "context": " quoted at a known time and rate (for example 4.0 hours at $100/hour = $400 quoted), with exactly 1.0 hour clocked to it. | 4. A second ZZAUTOTEST open work order exists with an approved labor line where MORE time has been clocked than was quoted (for example 5.0 hours clocked against a 4.0-hour quote). | 1. Open the Work In Progres",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly 1.0 hour clocked to it. | 4. A second ZZAUTOTEST open work order exists with an appr"
    },
    {
     "closer": "exactly (bare)",
     "context": " quoted at a known time and rate (for example 4.0 hours at $100/hour = $400 quoted), with exactly 1.0 hour clocked to it. | 4. A second ZZAUTOTEST open work order exists with an approved labor line where MORE time has been clocked than was quoted (for example 5.0 hours clocked against a 4.0-hour quote). | 1. Open the Work In Progres",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly 1.0 hour clocked to it. | 4. A second ZZAUTOTEST open work order exists with an appr"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -2683,21 +2827,24 @@
    {
     "closer": "exactly (bare)",
     "context": "oted), a job that has overrun its estimate (more hours clocked than quoted), and a job at exactly its quote. | 1. Read the Inv. Hrs value of the under-estimate job. | 2. Read the Inv. Hrs value of the overrun job. | 3. Read the Inv. Hrs value of the exactly-on-quote job. | 1. Inv. Hrs shows the quoted labor hours minus the worked (clock",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly its quote. | 1. Read the Inv. Hrs value of the under-estimate job. | 2. Read the Inv. "
    },
    {
     "closer": "exactly (bare)",
     "context": "ate job. | 2. Read the Inv. Hrs value of the overrun job. | 3. Read the Inv. Hrs value of the exactly-on-quote job. | 1. Inv. Hrs shows the quoted labor hours minus the worked (clocked) labor hours across the approved lines, as a signed number with one decimal place — for example \"+2.0\" or \"-14.0\". | 2. On screen it is colored green whe",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly-on-quote job. | 1. Inv. Hrs shows the quoted labor hours minus the worked (clocked) "
    },
    {
     "closer": "exactly (bare)",
     "context": " shows a negative red value, the under-estimate job a positive green value. | 3. A value of exactly zero shows unsigned as \"0.0\" (never \"+0.0\" or blank) in the default text color.",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly zero shows unsigned as \"0.0\" (never \"+0.0\" or blank) in the default text color."
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -2725,16 +2872,18 @@
    {
     "closer": "exactly N",
     "context": "iew App on a desktop browser. | 2. The report shows a work order created today, one created exactly one day ago, and one created several days ago. | 1. Read the Days Open cell of the work order created today. | 2. Read the Days Open cell of the one-day-old work order. | 3. Read the Days Open cell of the older work order and compare agai",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one day ago, and one created several days ago. | 1. Read the Days Open cell of the w"
    },
    {
     "closer": "exactly (bare)",
     "context": "iew App on a desktop browser. | 2. The report shows a work order created today, one created exactly one day ago, and one created several days ago. | 1. Read the Days Open cell of the work order created today. | 2. Read the Days Open cell of the one-day-old work order. | 3. Read the Days Open cell of the older work order and compare agai",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one day ago, and one created several days ago. | 1. Read the Days Open cell of the w"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -2759,11 +2908,12 @@
    {
     "closer": "exactly (bare)",
     "context": "o file is generated and no download starts. | 2. An error toast is shown each time, reading exactly: \"This report is too large to export. Narrow the date range or filters, then try again.\" (dismissed by the user). | 3. Below the cap the download works normally. | 4. Note for the tester: on this environment the biggest single tab holds",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly: \"This report is too large to export. Narrow the date range or filters, then try a"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": false,
   "scope_conditional": false,
@@ -2791,7 +2941,8 @@
    {
     "closer": "exactly (bare)",
     "context": " which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build). | 5. For a user with access to only one location the Location filter is NOT shown at all — the report simply shows that one location's work orders.",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly where and how it appears is confirmed in the build). | 5. For a user with access to "
    }
   ],
   "true_closed_list": false,
@@ -2828,16 +2979,18 @@
    {
     "closer": "exactly N",
     "context": " its own work order's location. | 3. NO row ever shows \"Multiple\" — a work order belongs to exactly one location, and this report has no grouped or drill-down rows. | 4. The column does not appear or disappear on its own when you change the location selection - it follows the column-selection toggle only. | 5. With the toggle off the ",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one location, and this report has no grouped or drill-down rows. | 4. The column doe"
    },
    {
     "closer": "exactly (bare)",
     "context": " its own work order's location. | 3. NO row ever shows \"Multiple\" — a work order belongs to exactly one location, and this report has no grouped or drill-down rows. | 4. The column does not appear or disappear on its own when you change the location selection - it follows the column-selection toggle only. | 5. With the toggle off the ",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly one location, and this report has no grouped or drill-down rows. | 4. The column doe"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": true,
   "has_closing_anchor": true,
   "scope_conditional": false,
@@ -2865,27 +3018,32 @@
    {
     "closer": "exactly N",
     "context": "Each qualifying work order appears exactly once in exactly one tab | 1. You are signed in to the ShopView App on a desktop browser. | 2. Several open ZZAUTOTEST service work orders exist within the current date range, including one open estimate with no approved line items at all. | 1. Open the W",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly one tab | 1. You are signed in to the ShopView App on a desktop browser. | 2. Several "
    },
    {
     "closer": "exactly N",
     "context": "proved and read its money columns. | 1. Each qualifying work order appears exactly once, in exactly one tab. | 2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\".",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly one tab. | 2. The work order with nothing approved yet still appears (in the Estimat"
    },
    {
     "closer": "exactly (bare)",
     "context": "Each qualifying work order appears exactly once in exactly one tab | 1. You are signed in to the ShopView App on a desktop browser. | 2. Several open ZZAUTOTEST service work orders exist within the current date range, including one open estimate with no approved line items at al",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly once in exactly one tab | 1. You are signed in to the ShopView App on a desktop brow"
    },
    {
     "closer": "exactly (bare)",
     "context": "e with nothing approved and read its money columns. | 1. Each qualifying work order appears exactly once, in exactly one tab. | 2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\".",
-    "adverbial": true
+    "adverbial": true,
+    "closing_window": "exactly once, in exactly one tab. | 2. The work order with nothing approved yet still appear"
    },
    {
     "closer": "exactly (bare)",
     "context": "proved and read its money columns. | 1. Each qualifying work order appears exactly once, in exactly one tab. | 2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\".",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "exactly one tab. | 2. The work order with nothing approved yet still appears (in the Estimat"
    }
   ],
   "true_closed_list": true,
@@ -2918,12 +3076,14 @@
    {
     "closer": "are/read exactly",
     "context": " Efficiency). | 2. Clicking it opens the Work In Progress report. | 3. The browser page title is exactly \"Work In Progress - Report | ShopView\" — a plain hyphen with one space on each side.",
-    "adverbial": false
+    "adverbial": false,
+    "closing_window": "is exactly \"Work In Progress - Report | ShopView\" — a plain hyphen with one space on each "
    },
    {
     "closer": "exactly (bare)",
     "context": "ficiency). | 2. Clicking it opens the Work In Progress report. | 3. The browser page title is exactly \"Work In Progress - Report | ShopView\" — a plain hyphen with one space on each side.",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly \"Work In Progress - Report | ShopView\" — a plain hyphen with one space on each sid"
    }
   ],
   "true_closed_list": true,
@@ -2958,16 +3118,18 @@
    {
     "closer": "exactly N",
     "context": " \"0.0\"). | 3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row. | 4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download that includes Inv. Hrs is refused, so do not try to verify this column from a file.",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly 0.0) coloring as a data row. | 4. Note for the tester: the Inv. Hrs total can only b"
    },
    {
     "closer": "exactly (bare)",
     "context": " \"0.0\"). | 3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row. | 4. Note for the tester: the Inv. Hrs total can only be checked on screen. On this build a download that includes Inv. Hrs is refused, so do not try to verify this column from a file.",
-    "adverbial": false
+    "adverbial": true,
+    "closing_window": "exactly 0.0) coloring as a data row. | 4. Note for the tester: the Inv. Hrs total can only b"
    }
   ],
-  "true_closed_list": true,
-  "adverbial_only": false,
+  "true_closed_list": false,
+  "adverbial_only": true,
   "has_version_pin": false,
   "has_closing_anchor": true,
   "scope_conditional": false,

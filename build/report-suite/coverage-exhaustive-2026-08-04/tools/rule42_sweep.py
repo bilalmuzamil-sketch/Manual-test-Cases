@@ -41,12 +41,49 @@ CLOSERS = [
     (r"\bonly the following\b", "only the following"),
     (r"\bexactly\b", "exactly (bare)"),
 ]
-# adverbial / non-enumerating uses of "exactly" -- keyword hits that are NOT closed lists
+# ---------------------------------------------------------------------------------------
+# WHAT COUNTS AS A CLOSED ENUMERATION (refined after reading all 137 keyword contexts)
+#
+# A Rule-42 closed enumeration is one of:
+#   (a) an explicit closing phrase over a SET  -- "in this exact order", "in order are",
+#       "exactly these", "only these", "no other", "nothing else", "the complete list"
+#   (b) "exactly N <UI-SET NOUN>"              -- items / options / columns / toggles /
+#       entries / actions / choices / downloads / headers / tabs / toasts
+#   (c) "reads/are exactly" followed by a QUOTED STRING -- a verbatim label assertion,
+#       which is just as brittle as a list (it fails the moment the copy changes)
+#
+# It is NOT a closed enumeration when "exactly" is ADVERBIAL -- a precise quantity or an
+# equality in a precondition, step or calculation:
+#   "access to exactly one location" · "an asset with exactly one invoice" · "select
+#   exactly two customers" · "dated exactly ON the start date" · "reads exactly 2.50" ·
+#   "gone down by exactly 2.50" · "sums exactly to that row total" · "restored exactly as
+#   set" · "drop by exactly that invoice's amounts"
+# Pinning a spec version into the refs of those adds noise, not traceability.
+# ---------------------------------------------------------------------------------------
+SET_NOUN = (r"items?|options?|columns?|toggles?|entries|entry|actions?|choices?|downloads?|"
+            r"headers?|tabs?|toasts?|values in|menu items?|presets?|statuses|filters?")
 ADVERBIAL = re.compile(
-    r"exactly\s+(?:to|that|as|the same|one summary row|once|matches|match|equal|equals|"
-    r"reproduc\w+|mirror\w*|by\b|what\b|where\b|how\b|when\b|it\b|its\b|this\b|those\b)"
+    r"exactly\s+(?:to|that|as|the same|once|matches|match|equal|equals|reproduc\w+|"
+    r"mirror\w*|by\b|what\b|where\b|how\b|when\b|it\b|its\b|this\b|those\b|the hand|"
+    r"on\b|the filtered|the customers|the \d|\d)"
     r"|sum(?:s|med)?\s+exactly|drop\s+by\s+exactly|restored\s+exactly|"
-    r"reads?\s+exactly\s+the\s+same|belongs?\s+to\s+exactly", re.I)
+    r"reads?\s+exactly\s+the\s+same|belongs?\s+to\s+exactly|down\s+by\s+exactly"
+    # "exactly one/two/.../N <data noun>" -- a seeded quantity, not a list
+    r"|exactly\s+(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\s+"
+    r"(?!(?:" + SET_NOUN + r"))\w+", re.I)
+# (b) and (c): a keyword hit is a TRUE closer only if one of these also matches
+TRUE_CLOSER = re.compile(
+    r"in (?:this )?exact order|in order,? are|,?\s*in order:|exactly these|only these|"
+    r"no other|nothing else|the complete list|only the following|"
+    r"exactly\s+(?:one|two|three|four|five|six|seven|eight|nine|ten|\d+)\s+(?:" + SET_NOUN + r")|"
+    # "reads/are exactly" + a quoted verbatim string
+    r"(?:reads?|are|is|lists?|offers?|holds?|shows?)\s+exactly[:,]?\s*[\"“']", re.I)
+# "... exactly: A, B, C, D" -- a colon-introduced comma list of three or more items is a
+# closed enumeration even without quote marks (e.g. "The labels read exactly: Labor
+# Invoiced, Labor Margin, ...").
+COLON_LIST = re.compile(
+    r"(?:reads?|are|is|lists?|offers?|holds?|shows?|,)\s*(?:exactly)?\s*:?\s*"
+    r"(?:[^,;:\n]{2,42},){2,}", re.I)
 
 VERSION_PIN = re.compile(
     r"\bv\d+\b|\bversion\s*\d+|\bv-\d{4}-\d{2}-\d{2}\b|\b20\d\d-\d\d-\d\d\b", re.I)
@@ -77,8 +114,12 @@ def main():
         for pat, name in CLOSERS:
             for m in re.finditer(pat, blob, re.I):
                 seg = blob[max(0, m.start() - 90):m.start() + 240].replace("\n", " | ")
-                hits.append({"closer": name, "context": seg,
-                             "adverbial": bool(ADVERBIAL.search(blob[m.start():m.start() + 60]))})
+                window = blob[m.start():m.start() + 90]
+                closes = bool(TRUE_CLOSER.search(window)) or (
+                    "exactly" in window.lower() and bool(COLON_LIST.search(window)))
+                adverbial = bool(ADVERBIAL.search(window)) or not closes
+                hits.append({"closer": name, "context": seg, "adverbial": adverbial,
+                             "closing_window": window.replace("\n", " | ")})
         if not hits:
             continue
         # de-duplicate on the (closer, first 70 chars of context)
