@@ -1941,7 +1941,6 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 2. Part B shows 0.00 (renders 0.00 when On Hand is 0 - not an error, not —).
 3. Part C shows a NEGATIVE Turns / Yr with a leading minus (because Units Sold can be negative).
 4. Special Order rows always show — (not applicable).
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8819
 ---
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R4).",SV-8645 (PV spec v4 2026-07-29 S5-R4 (Turns / Yr); S5 Definitions (Window)),,
 "Revenue, Margin, Unit Cost, Sell Price and Margin % use the billed formulas",PV — Columns & Calculations,Functional,Critical,"1. A part with known billed lines in the window - e.g. two invoiced work-order part lines: 2 units at $50.00 sell / $30.00 cost, and 1 unit at $40.00 sell / $30.00 cost.
@@ -2003,7 +2002,6 @@ This is the expected behaviour as per the build tested on 8/4/2026, and as per t
 2. In W2 (movement date in window): Units Sold / Demand count it, the billed columns do not - the two anchors CAN differ for an inventory part and that is intended.
 3. The window is the whole-day span inclusive of BOTH the start and end dates, with a floor of 1 day - a single-day range (Today) computes normally (Window = 1 for the Turns / Yr divisor).
 4. Last Sale is not windowed at all (all-time).
-Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8819
 ---
 This is the expected behaviour as per the build tested on 8/4/2026, and as per the Parts Velocity report specification version 4 (S5-R7).",SV-8645 (PV spec v4 2026-07-29 S5 Definitions (Window / Work-order date); S5-R7),,
 Units Sold keeps an exact part-of-a-unit quantity and is never rounded off,PV — Columns & Calculations,Functional,Critical,"1. You can sign in with a role that opens the Parts Velocity report.

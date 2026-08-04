@@ -128,3 +128,54 @@ C30590 sentence, confirmed by diff.
 
 **DO-NOT-AUTOMATE warnings:** counted **live on the build after the push** — **47**, exactly the expected
 number. A regeneration silently removed them once before; they are all present.
+
+
+---
+
+## FINAL RESULT — verified after the run, exhaustively
+
+`data/verify-after.json`, produced by `tools/verify_after.py` (read-only).
+
+| Check | Result |
+|---|---|
+| Operations run | **471** — 469 re-stamps + 2 line removals |
+| HTTP 200 | **471 / 471** |
+| Byte-verified | **471 / 471**, **28 fields compared each**, **0 mismatches** |
+| Cases carrying the new build stamp | **469 / 469** |
+| Cases missing it | **0** |
+| Cases with a **doubled** `(build …)` clause | **0** — the stamper is idempotent |
+| **Collateral field changes across all 469** | **0** |
+| DO-NOT-AUTOMATE warnings present | **47** (expected 47) |
+| Cases still citing **SV-8819** | **0** (expected 0 — removed) |
+| Cases still citing **SV-8818** | **10** (expected 10 — still open) |
+| Cases still citing **SV-8820** | **4** (expected 4 — still open) |
+| Foreign cases byte-identical **incl. `updated_on` / `updated_by`** | **True**, 0 diffs |
+| Live under group 4281 | **474** = **ours 469** + **5 foreign** |
+
+### Run 359 — before and after
+
+| | Before | After |
+|---|---|---|
+| `include_all` | `false` | `false` |
+| Tests | 469 | **469** |
+| Result records | 529 | **529** |
+| Every prior result present **BY ID** | — | **True**, 0 missing |
+| case_ids set-equal to our 469, **both directions** | True | **True** |
+
+### Build marker — read three times
+
+| Phase | App version | `Last-Modified` | `ETag` |
+|---|---|---|---|
+| Start | `v3.4.1-3d03023` | `Tue, 04 Aug 2026 10:41:58 GMT` | `9875201c58ba78d9851c37f7039c16e1` |
+| Mid-run | `v3.4.1-3d03023` | same | same |
+| End | `v3.4.1-3d03023` | same | same |
+
+**The build did not move during the run.** Had it moved, that would itself have been a finding.
+
+### Reconciliation, after the push
+
+**Four counts all 469** — live-ours / local active / id-map / import — **set-equal in both directions**.
+Import header SHA-256 `a82ca60c36074512…` — **identical to Filters, Simple Flow and Fees & Discounts**.
+0 duplicate titles · 0 "VIU" words · 0 feature-flag words · 0 internal-ID leaks · 0 titles over 80
+(longest exactly 80) · 0 blank C-ids. **0 secrets in any tracked file** (checked with `grep -F` on every
+live cookie value, the session token, and the TestRail password).
