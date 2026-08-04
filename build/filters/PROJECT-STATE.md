@@ -3,7 +3,107 @@
 
 ---
 
-## 0. LATEST — **CLOSING AUTHENTICITY PASS: EXECUTED + RECONCILED** (2026-07-31)
+## 0. LATEST — **STANDING RULE 54 PROVENANCE RETROFIT: EXECUTED** (2026-08-04)
+
+**Read this section first.** Folder **`build/filters/provenance-2026-08-04/`** —
+`SOURCE-CURRENCY.md` · **`PO-RULING-DEFENCE.md`** (the quote-ready defence pack) ·
+`STAGED-REPAIRS.md` · `testrail-execution-log.md` (per-operation) · `plan.json` ·
+`exec-log.jsonl` · `snapshots/` · `tools/`.
+
+### 🔴 THE HEADLINE: **FILTERS HAS A JIRA EPIC — SV-8785**
+
+The single most important fact change on this project. Our long-standing *"no epic exists,
+proven by enumerating all 170 SV epics"* finding was **true on 2026-07-31 and went stale
+within hours**: the epic was created **2026-07-31T07:51:51-0500 = 12:51 UTC**, AFTER that
+enumeration ran, and Branko linked it into the spec at 13:07 / 13:10 UTC. Found by the
+Rule-31 pre-flight of this pass; **verified live** (`GET /rest/api/3/issue/SV-8785` →
+HTTP 200, type **Epic**, hierarchy 1, status Open).
+
+**Rule-37 Tier-1 check, two independent ways, no paging remainder:** `parent = SV-8785`
+→ **14**; `"Epic Link" = SV-8785` → **14**; same keys. The 14 children map **1:1 by title
+and in order** onto the spec's 14 stories, so **`Story n → SV-(8785 + n)`** deterministically.
+**SV-8795 (Filter Persistence) and SV-8796 (URL State) are already `Ready for QA`** — the
+first hint a QA environment may be near. **Nothing is live-verified yet.**
+
+**Consequence: all 110 cases carry a REAL TICKET for the first time.** The literal
+`Filters (no Jira epic)` in every `refs` field was replaced — **66** cases get their single
+owning story key, **44** get the epic marked `[epic]` (cross-cutting or unanchored). The
+compact `[epic]` marker is deliberate: TestRail rejects any `refs` comma-entry over 248
+characters with HTTP 400, and these refs already ran to 248. Mirrored into a **NEW `refs`
+column** on `testrail-id-map.csv` (110/110 populated, 0 blanks). **Rule 20 is satisfiable
+for Filters for the first time.**
+
+### What was done
+
+All **110/110** cases now END their Expected Results with a separator line and one plain
+sentence naming **epic SV-8785** and the **Filters specification version 1.6**, plus that
+case's own anchors. Rule 54 **state 1 — NO build date** (no Filters QA environment exists).
+
+### How it was verified (Rule 50)
+
+`update_case` **ONLY** — 0 add, 0 delete, 0 section move, 0 run write. **110 cases / 111
+operations, every one HTTP 200 and byte-verified MATCH, 28 fields compared per operation**;
+each wrote `custom_expected` **and** `refs`, with every unintended field proven
+byte-identical. `refs` compared under the **declared** TestRail normalisation (split on
+comma, trim, rejoin bare comma). **Run 352 verified untouched:** 110 tests set-equal both
+ways, **all 395 result records present BY ID**, `include_all` still false.
+
+### What the Rule-41 whole-case re-read found
+
+All 110 cold-read end-to-end against v1.6. **One real defect: FLT-MOB-04 = C29624 is
+paste-corrupted** — two preconditions on one line, four steps run together, and the whole
+expected result inside a stray `<li data-pasted="true">` with no `<ol>`. Its **`refs`
+artefact was FIXED** in the same write (`,-,` → ` ; `). Its **BODY reflow is STAGED, NOT
+EXECUTED** (`STAGED-REPAIRS.md`) because the case sits in the frozen mobile cluster and
+reflowing it would restate the very assertion Branko has not ruled on. **0 other defects**
+across the suite.
+
+### Rule-28 cross-case sweep: 0 contradictions — and it caught one of ours
+
+39 anchors are shared by 2+ cases; 0 title-vs-expected hits. It did find one coherence
+issue **of our own making**: **FLT-MOB-08 = C29628** had been classified `plain`, but its
+own precondition 2 reads *"at least one filter applied **via the sheet**"* — its route
+depends on the same design-only screen as its six siblings. Reclassified
+`plain → design_awaiting` and re-pushed. The first re-push attempt was **correctly refused
+by the drift guard** (the plan's snapshot predated our own earlier write); snapshot
+refreshed, re-pushed, MATCH, and confirmed live to carry **exactly one** provenance sentence.
+
+### The honesty breakdown (Rule 54's clause)
+
+| Variant | Cases | Which |
+|---|---|---|
+| **PO ruling overrides the spec text** | **4** | Status chip on Estimates/Completed: C29559, C29609, C29610, C29612 — Branko 2026-07-17 Q4=B *"Shown but greyed out, pre-filled …"* vs **five** live requirements still saying "hidden"/"not shown" (S1-N1, S2-N1, S2-N2, S9-R2, S9-R3). Risk **LOW** — the QA lead ruled 2026-07-30 that the two readings describe the same behaviour |
+| **Spec covers the area in prose only; PO answers supply the detail** | **9** | Parts/Reports: C38904/05/06/07/08, C38909/10/11, C38882 — spec §7 has **no Parts story and no Reports story**, so there is not one `S#-R#` anchor for them; Branko 2026-07-31 Q2/Q3/Q5/Q7 |
+| **Agreed design, spec silent/contrary, NO ruling** | **8** | mobile "All Filters" + "Apply filters": C29621–C29628. **C29622 and C29623 are HIGH risk** — S2-R6 says verbatim *"no confirm/apply button needed"*. **The ask has NEVER been sent.** If Branko rules mobile behaves like desktop, **we concede those two** |
+| **No numbered requirement at all** | **2** | C38876 (default/last-used tab — **HIGH**, engineering-plan-only) · C38881 (one-off migration) |
+| **Plain** | **87** | the spec supports the expectation as written |
+
+### Two items on the QA lead's list were NOT real conflicts
+
+1. **Permanent persistence — NO LONGER a conflict.** Branko **fixed the spec**: v1.6
+   **S10-R2** now reads *"…stored server-side against the user account. They survive logout
+   and sync across the user's devices … does not expire with a browser session"*. So
+   **FLT-PERS-02 = C29614** and siblings agree with the spec outright and carry the **plain**
+   line.
+2. **The pop-up / ⌘K search ownership ruling — no case among the 110 is affected.** The nine
+   `FLT-SRCH` cases it governs have **never been pushed** to TestRail. The 13 `FLT-PSRCH`
+   cases *are* in TestRail but they are the **page toolbar search** (spec Story 13, 29
+   numbered requirements) — a different feature, fully spec-backed.
+
+**One group the QA lead did NOT name is the highest-risk in this suite:** the mobile
+Apply-button cluster (8 cases, no ruling of any kind).
+
+### Source currency (Rule 31)
+
+Spec live **Confluence version 14** vs our v12 mirror — but a full body diff shows the only
+change is the header link block plus the added epic link: **131 requirement anchors,
+SET-EQUAL both directions, no requirement text changed**, and the body's own version line
+still reads **1.6**. Designs: the Rule-35 Figma queue is **CLOSED at 85/85** (CLAUDE.md's
+"OPEN NOW 73/85" preamble pointer was stale and has been corrected).
+
+---
+
+## 0-PRIOR. **CLOSING AUTHENTICITY PASS: EXECUTED + RECONCILED** (2026-07-31)
 
 **Read this section first.** Everything lives in **`authenticity-2026-07-31/`**:
 `TRACEABILITY-AUDIT.md` (Phase 2) · `RULE28-THREE-DIMENSION-AUDIT.md` (Phase 4) ·

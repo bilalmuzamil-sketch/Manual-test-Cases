@@ -5,7 +5,71 @@
 > (staging/QA access method, harness scripts, TestRail API patterns, the two process
 > docs) across all projects.
 
-## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-31)
+## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-08-04)
+
+### 0.0-PROVENANCE  STANDING RULE 54 PROVENANCE RETROFIT — **EXECUTED 2026-08-04 (LATEST — read this first)**
+
+**Folder: `build/schedule/provenance-2026-08-04/`** — `SOURCE-CURRENCY.md` ·
+**`PO-RULING-DEFENCE.md`** (the quote-ready defence pack) · `testrail-execution-log.md`
+(per-operation) · `plan.json` · `exec-log.jsonl` · `snapshots/` · `tools/`.
+
+**WHAT WAS DONE.** All **165/165** cases now END their Expected Results with a separator
+line and one plain sentence naming **epic SV-8685** and the **Schedule specification
+version 23**, plus that case's own § anchors taken from its own `refs`. This is Rule 54
+**state 1 — NO build date**, because there is still no Schedule QA environment.
+
+**HOW IT WAS VERIFIED (Rule 50).** `update_case` **ONLY** — 0 add, 0 delete, 0 section
+move, 0 run write. **165 operations, every one HTTP 200 and byte-verified MATCH, 28 fields
+compared per operation**, with every field we did not intend to change proven
+byte-identical to its pre-write snapshot. **Run 357 verified untouched:** 165 tests
+set-equal both ways, **all 429 result records present BY ID** (not by count),
+`include_all` still false, every status count identical.
+
+**WHAT THE RULE-41 WHOLE-CASE RE-READ FOUND.** All 165 cases were cold-read end-to-end
+against spec v23. **1 fix:** SCH-HRS-04 = **C38849** — precondition 1 leaked a bare
+internal cross-reference `(/02)` into tester-facing text; rewritten in the same write.
+**0 other defects:** 0 malformed refs, 0 stale anchors (every cited § exists in v23),
+0 titles over 80 chars, 0 empty fields, 0 Rule-4 misplacements, 0 internal-ID or C-id
+leaks, 0 duplicate titles. **⚠️ The `gen_import.py` `clean()` bug that CAUSED the `(/02)`
+is still unfixed** — it strips the ID but leaves the bracket, so a future regeneration
+would reintroduce the pattern on any case carrying one.
+
+**RULE-28 CROSS-CASE SWEEP: 0 contradictions.** 33 anchors are shared by 2+ cases; all 3
+title-vs-expected keyword hits were checked individually and are **negation false
+positives** (C29940, C30011, C30076 — the "opposite" word appears inside *"no …"* /
+*"not …"*). Mixed provenance variants inside one anchor cluster are **correct, not a
+defect**: only the case that actually contradicts a clause carries the ruling wording.
+
+**THE HONESTY BREAKDOWN (Rule 54's clause, and the important part).**
+
+| Variant | Cases | Which |
+|---|---|---|
+| **PO ruling overrides the spec text** | **5** | money: C30011, C30614, C38874 (Branko 2026-07-22 *"We do not show total $ anywhere in the schedule."* vs §4.9 *"with labor/total figures"*) · tooltip VIN: C30034, C30045 (Branko 2026-07-31 *"Vin is always visible on hover regardless of the toggle"* vs the §9 VIN row) |
+| **Spec states it BOTH ways, NO ruling** | **3** | shop closures: **C30089 + C29983 (both HIGH risk)** + C29984 — §4.5 *"not skipped in V1"* vs §12 *"block the spread step"*, both live in v23, question **NQ-1 unanswered** |
+| **Tech-plan limits** | **2** | C38863, C38873 (8-week / 120-shift caps exist nowhere in the spec) |
+| **No spec anchor at all** | **5** | C38867, C38868, C38869, C38870, C38875 (tech-plan only — said in words, never invented) |
+| **Plain** | **150** | the spec supports the expectation as written |
+
+**FOUR OF THE FIVE items the QA lead listed turned out NOT to be live conflicts** —
+v19–v23 folded Branko's answers in: right-click (spec agrees), modal Reassign (v23
+deleted it), Week Export (both cases already deleted from TestRail), default hours (spec
+agrees). Only the modal money figures is real. Detail in `PO-RULING-DEFENCE.md`.
+
+**MECHANICS.** The spec version is **ONE constant** in `tools/classify.py`, not 165
+strings. The stamper is **IDEMPOTENT — proven over three consecutive runs on all 275
+cases across both projects**: a re-stamp REPLACES the line and never appends a second.
+Local case source, id-map and import all regenerated; import header sha256 **identical to
+all four peer projects**, 165 records, provenance on 100%, 0 VIU/flag words.
+
+**SOURCE CURRENCY (Rule 31).** Spec **v23 CURRENT** (live body 58,584 chars — byte-length
+identical to our mirror). Epic **SV-8685 gained a 16th child, SV-8812 "Set up a dedicated
+QA environment for testing"** (Task, Board Backlog) — the ticket for the very thing
+blocking our VIU; **all 15 stories moved Open → In Progress**, which changes *when* we can
+verify, not *what* we expect, so no case content changed.
+
+---
+
+## 0-PRIOR. STATUS / WHAT'S LEFT TO DO (Last updated 2026-07-31)
 
 ### 0.0-COVERAGE  COVERAGE RE-DERIVATION vs spec v23 — DONE + PUSHED (2026-07-31, **LATEST — read this first**)
 
