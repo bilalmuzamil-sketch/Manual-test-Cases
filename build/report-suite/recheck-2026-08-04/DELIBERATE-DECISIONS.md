@@ -92,33 +92,34 @@ line unchanged. **SV-8819** is a different matter — see D4.
 
 ---
 
-## D4 · SV-8819 is fixed, but its cases' "known issue" line was **NOT removed** · RISK: **MEDIUM**
+## D4 · SV-8819 is fixed, and its "known issue" line was **REMOVED** · RISK: **LOW**
 
-**Plain answer:** the Turns/Yr bug is genuinely fixed in the build, but the ticket is still open and
-nobody has told us to treat it as done, so we left the warning on the cases and are flagging it
-instead of deciding for you.
+**Plain answer:** the Turns/Yr bug is genuinely fixed, so the sentence telling testers to ignore it has
+been taken off both affected cases — but the Jira ticket is still Open and needs closing by someone else.
 
-**What we observed** (`evidence/sv8819-turns-recheck.json`, `evidence/sv8819-presets-recheck.json`):
-the `This Year` preset now implies a **216-day** inclusive window, exactly matching the same period
-picked by hand, where on the previous build it implied **215**. Measured across **500 rows per
-preset**, not sampled.
+**The authorisation is explicit** — the QA lead's brief for this pass, verbatim: *"**If any is now
+FIXED, that is important**: the case should pass, and its **'known issue / filed for a fix' line must
+come off**."* So this is an instructed change, not our initiative.
 
-**Why the line stays for now, and this is a judgement we are exposing rather than hiding:**
-- **[SV-8819](https://shopview.atlassian.net/browse/SV-8819) is still `Open` in Jira** (read live this
-  run). A case that says "this is a known issue, do not raise it" is *wrong* once the build is fixed —
-  but removing the line while the ticket is open would make our cases disagree with Jira.
-- The QA lead's standing instruction is *"where there is a bug and you found that, do not change those
-  test cases"*. **The mirror instruction — what to do when the bug is FIXED — has never been given.**
-- Removing the line is a **tester-facing wording change on a passing case**, which is exactly the kind
-  of change Rule 6 says we do not make unasked.
+**We proved both cases pass BEFORE removing anything** (`evidence/sv8819-case-verification.json`), because
+removing a warning from a case that still fails would be worse than leaving it:
 
-**The honest cost of leaving it:** a tester running those Parts Velocity cases will read "known issue"
-against behaviour that is now **correct**, and may under-report a genuine future regression.
-**That is a real risk and it is why this entry is MEDIUM, not LOW.**
-**Who closes it:** **the QA lead** — one word, and the line comes off the affected Parts Velocity
-cases in a follow-up write, ideally alongside moving SV-8819 to a resolved status.
+| Case | Its assertion | Verified how | Result |
+|---|---|---|---|
+| **PV-CALC-16 = [C30374](https://shopview.testrail.io/index.php?/cases/view/30374)** | *"the whole-day span **inclusive of BOTH** the start and end dates"* | `This Year` vs the same dates by hand; and 2025 full year | **216 = 216** and **365 = 365** — TRUE |
+| **PV-CALC-09 = [C30367](https://shopview.testrail.io/index.php?/cases/view/30367)** | the formula; `0.00` at zero stock; a negative value with a leading minus | recomputed over **500 rows** | **0 formula mismatches** on every positive-stock row · **57** zero-stock rows all `0` · one genuine negative (`B3157 = -0.1689814814`) |
 
----
+**A new observation this produced, recorded rather than filed:** Turns/Yr is also floored to `0` when
+stock is **negative** (6 rows, e.g. `Fuel` at `-5,137` on hand). That is sensible and **no case asserts
+otherwise**, so it is **not** a defect claim — it is written here so the next pass does not rediscover it
+as an anomaly. It was, briefly, exactly that: it showed up as "6 formula mismatches" until the negative
+stock explained it.
+
+**⚠️ THE ONE THING STILL OWED BY SOMEONE ELSE:** **[SV-8819](https://shopview.atlassian.net/browse/SV-8819)
+is still `Open` in Jira** (read live this run) while the build no longer has the fault. **Jira and the
+build now disagree.** We did not change the ticket — priority and status are the QA lead's to move
+(Rules 6 and 53).
+**Who closes it:** **the QA lead / the developers**, by moving SV-8819 to a resolved status.
 
 ## D5 · The single-location Location filter is still not definitively settled · RISK: **LOW**
 
