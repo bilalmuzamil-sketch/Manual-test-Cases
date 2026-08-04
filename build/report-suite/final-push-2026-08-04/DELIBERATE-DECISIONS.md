@@ -307,3 +307,59 @@ it**; the other **360** pins were applied.
 | Cases with no spec anchor, stated plainly in words | **1** (the QuickBooks journal case, C38925) |
 | Local-only status corrections (PASS → DEVIATION) | **3** |
 | `add_case` · `delete_case` · section moves · run writes | **0** |
+
+---
+
+## D15 · Three filed tickets were deliberately NOT linked, because they are closed · RISK: **MEDIUM**
+
+**Plain answer:** we put a "filed for a fix here" link on the cases the build breaches, but only for
+the three tickets that are genuinely still open — linking a closed ticket would tell a tester a fix
+is coming when it is not.
+
+**Verified live in Jira on 2026-08-04 before a single link was written**
+(`GET /rest/api/3/issue/<key>?fields=status,resolution`):
+
+| Ticket | Status | Resolution | Linked? |
+|---|---|---|---|
+| [SV-8818](https://shopview.atlassian.net/browse/SV-8818) PDF export failure | **Open** | none | **YES** — 10 cases |
+| [SV-8819](https://shopview.atlassian.net/browse/SV-8819) Turns / Yr divisor | **Open** | none | **YES** — 2 cases |
+| [SV-8820](https://shopview.atlassian.net/browse/SV-8820) as-of date one day late | **Open** | none | **YES** — 4 cases |
+| [SV-8821](https://shopview.atlassian.net/browse/SV-8821) invoice create 500 | **OBSOLETE** | Done | **NO** |
+| [SV-8822](https://shopview.atlassian.net/browse/SV-8822) customer save 500 | **OBSOLETE** | Done | **NO** |
+| [SV-8823](https://shopview.atlassian.net/browse/SV-8823) IV spreadsheet formatting | **OBSOLETE** | Done | **NO** |
+
+**The consequence to be honest about, and it needs your decision.** Two families of case now describe
+behaviour a tester will hit, with **no explanation on the case**:
+
+- **IV-EXP-02 = [C30588](https://shopview.testrail.io/index.php?/cases/view/30588)** and
+  **IV-EXP-03 = [C30589](https://shopview.testrail.io/index.php?/cases/view/30589)** — the spreadsheet
+  writes money as text and ignores the chosen columns. **SV-8823 covered this and you set it to
+  OBSOLETE.** A tester will fail these two and re-report a defect that has been closed.
+- **The 15 cases blocked by SV-8821** (9 deactivation + 5 calculation + 1 partial) — that ticket is
+  also OBSOLETE, on the grounds that the failure is reachable only through the back end.
+
+We did **not** write *"reviewed and not raised"* on any of them, because that is **not true** — they
+**were** raised and then closed. Rather than put a half-truth on a case, the line was omitted and the
+gap is reported here. **Who closes it:** **you** — either re-open SV-8823, or tell us to write a plain
+"known and accepted, do not re-report" line on those cases.
+
+## D16 · Seven cases that were owed a spec-version pin did not get one · RISK: **LOW**
+
+Covered as **D14** above; repeated here only because it is the one place this pass knowingly left a
+task unfinished, and it was to obey an instruction rather than to save effort. C30519, C30536, C30565,
+C30574, C30589, C30596, C30597. **One word of authorisation completes it.**
+
+## D17 · Four of the 56 "needs a tool" cases got no tool line, on purpose · RISK: **LOW**
+
+**Plain answer:** we removed the measurement from those four instead, so there is no tool left to name.
+
+SBC-TREE-01 = [C30121](https://shopview.testrail.io/index.php?/cases/view/30121) ·
+SBC-TREE-13 = [C30133](https://shopview.testrail.io/index.php?/cases/view/30133) ·
+SBC-VIS-01 = [C30185](https://shopview.testrail.io/index.php?/cases/view/30185) ·
+SBR-VIS-01 = [C30305](https://shopview.testrail.io/index.php?/cases/view/30305)
+were repaired to a by-eye check (the C30386 pattern), which names the exact figures only to tell the
+tester **not** to measure them. Adding *"use dev tools"* would have contradicted the repair.
+**A related miss, caught and fixed:** C30185's **precondition** still read *"with dev tools
+available"* after its expected result had been changed to say no tool is needed — a self-contradiction
+we introduced. The Rule-28 cross-case sweep caught it and it was corrected in a one-case follow-up
+write. **Who closes it:** closed.

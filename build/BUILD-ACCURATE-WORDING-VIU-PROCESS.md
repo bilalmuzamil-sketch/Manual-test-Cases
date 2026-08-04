@@ -140,6 +140,34 @@ instead of the spec text, the line **says so** rather than claiming plain spec a
 a line asserting a source that does not support the expectation is worse than none). **A push that
 corrects wording but leaves a stale or absent provenance line is NOT complete.**
 
+**(4c) LINK THE FILED TICKET ON EVERY CASE THE BUILD BREACHES — but VERIFY THE TICKET IS STILL OPEN
+FIRST (QA lead, 2026-08-04).**
+Where a case's expected result is correct and the **build** is wrong, and a ticket exists, the case
+carries one plain line **below the numbered expected items and directly above the provenance line**:
+`Known issue: the product does not currently do this. It has been filed for a fix here: <url>`.
+**Read the ticket's CURRENT status from Jira before writing the link** (`GET
+/rest/api/3/issue/<key>?fields=status,resolution`). **NEVER link a closed / withdrawn / OBSOLETE
+ticket as though a fix were coming** — that tells a tester something untrue and the case carries the
+lie indefinitely (Rule 12); omit the line and report the omission instead. Take the ticket→case
+mapping from the defect pack, never from memory. **The case's assertions are NOT touched** — the QA
+lead's ruling governs: *"where there is a bug and you found that, do not change those test cases,
+because you found the bug due to those test cases."* Corollary worth stating: a case must never be
+written so that **the defect is its pass condition** — on a fixed build the tester would have to mark
+it Failed, and automation would encode the bug as correct.
+
+**(4d) NAME THE TOOL IN EVERY CASE THAT NEEDS ONE — in the preconditions (QA lead, 2026-08-04).**
+A case needing a tool is not un-runnable; it is **silent about what to use**. Every such case names
+the tool **and where to get it**, in the preconditions, in Rule-7 plain words: the browser's own
+developer tools (**F12 → Network tab**, nothing to install) · **NVDA** (free, Windows) or
+**VoiceOver** (built into macOS) for anything checking what a blind user hears · the PDF viewer's own
+**Ctrl+F** for file-content checks · and for a genuine external dependency (a QuickBooks-connected
+company) say plainly that the test **cannot** run without it and to mark it **Blocked**, never guess.
+Where a value lives only on the server, say that a **developer must read it back** — do not imply the
+browser can show it. **Do not add a tool line to a case whose measurement you have just removed**
+(the by-eye repair) — that contradicts the repair; and when you remove a measurement, **re-read the
+preconditions too**, because a stale *"with dev tools available"* precondition contradicts an expected
+result that says no tool is needed (found exactly this way on 2026-08-04 by the Rule-28 sweep).
+
 **(5) Report the area as tester-ready.**
 State the area's per-status counts and that its cases are wording-corrected + VIU'd +
 pushed.
