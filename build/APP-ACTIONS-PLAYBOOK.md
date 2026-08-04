@@ -1257,3 +1257,102 @@ FINANCE · ACCOUNTS RECEIVABLE · ACCOUNTS PAYABLE · ACCOUNTING · COMMUNICATIO
   browser profile keeps the previous user's persisted **column selection** in localStorage, which can
   fake a Location column — use a fresh profile, and note that `localStorage.clear()` alone breaks SPA
   hydration (the SPA needs the full `user` payload, not just `fe_permissions_wrapper`).
+
+### §N addendum — WIP + Inventory Value recipes (proven 2026-08-04, build v3.4.1-0ed4433)
+Everything here was observed working. Reuse it; do not re-derive it (Rule 27).
+
+**READ A PDF EXPORT'S CONTENTS.** `pdftotext -layout <file>.pdf -` works — **poppler-utils 24.02.0 is
+already installed** at `/usr/bin/pdftotext`. Use `-layout` so the column order survives. Page count:
+`pdfinfo <file>.pdf | grep ^Pages`. (`import pypdf` fails on this container with a
+`pyo3_runtime.PanicException` out of `cryptography`; `pdfplumber` is not installed. Do not waste time
+on either — `pdftotext` is the route.)
+
+**TOGGLE A COLUMN IN THE Column Selection PANEL (the recipe that actually works).** Click
+`[data-testid="button_column_selection"]` by coordinate, then click the **`.q-toggle` INSIDE** the
+`.q-item` whose exact `innerText` is the column name — clicking the `.q-item` centre does NOT toggle
+it (that is why an earlier pass reported "no change"). Then `Escape` and **re-read `table thead th`**
+to confirm: the rendered header row is the only reliable state, because the toggles' `aria-checked`
+reads `false` on every item regardless of state. Working script:
+`build/report-suite/viu-2026-08-03/batch-wip-iv/tools/probe_colselector.mjs <slug> <ColumnLabel>`.
+
+**DATE-RANGE PRESET, applied.** Click `span.date-range-label`, click the leaf element whose text is
+the preset (e.g. `Last 12 Months`), then click the popup's **`Apply`** button, then wait ~9 s. Without
+the Apply click the range does not take. The default range leaves 3 of the 4 WIP tabs empty, so widen
+first or you will observe an empty report.
+
+**WIP data payload.** `GET /api/reporting/reports/work-in-progress?from=<ISO>&to=<ISO>&locations=…`
+→ `{data:{collection:[…]}}` — a FLAT list, **no `totals` and no `summary`**, each row carrying
+`tab` (`ApprovedPartiallyCompleted|ApprovedNotStarted|Completed|Estimates`). Row keys: `work_order_id,
+number, status, customer, unit_number, vin, location, advisor, start_date, last_activity,
+labor_earned, labor_remaining, parts_earned, parts_remaining, earned, remaining, total, quoted_hours,
+worked_hours, tab`. **Money is INTEGER CENTS** (`15000` = $150.00). There is **no `days_open`** (the
+browser derives it from `start_date`) and **no `invoiced_hours`** (Inv. Hrs = `quoted_hours −
+worked_hours`, computed in the browser) — which is exactly why the export rejects
+`columns=…,invoiced_hours` with `400 Invalid column`. **Span cap = 367 days**: 367 → 200, 368 → `400
+{"error":"Date range cannot be over one year."}`. An unrecognised or omitted `locations` falls back to
+the active workplace only.
+
+**Inventory Value data payload.** `GET /api/reporting/reports/inventory-value?range=custom&
+start_date=&end_date=&locations=…&search=&categories=<uuid>&pagination[…]` →
+`{data:{collection:[…], pagination:{rowsNumber}, totals:{qty,total_cost,total_sell,margin,margin_pct},
+as_of_date}}`. Row keys: `key, workplace_id, location, part_number, description, category, vendor,
+qty, unit_cost, unit_sell, total_cost, total_sell, margin, margin_pct`. **Money is INTEGER CENTS**;
+`margin_pct` carries **2 decimals** (the screen renders 1 dp truncating, the exports render 1 dp
+rounding — the same row can read `56.0%` on screen and `56.1%` in the file). `totals` is computed
+server-side over the FULL filtered set from UNROUNDED values, so a hand sum of displayed cents can
+differ by a few cents (6 cents over 5,657 rows) — that is correct.
+- **Category filter param is `categories=<uuid>`** (comma-separated for several). The option list is
+  `GET /api/inventory/categories?limit=500` → `{data:{collection:[{value,label}]}}` — **`value` is the
+  id, not `id`**. Passing a category NAME returns 400; `category` / `category_ids` / `categoryIds` are
+  silently ignored. `GET /api/vendors` is **404** on this build — the vendor param was not established;
+  drive the Vendor filter through the UI dropdown.
+- **The IV export IGNORES `columns=` entirely** — it always emits every column, and a nonsense column
+  name is silently accepted. It DOES honour `pagination[sortBy]`/`[descending]`.
+- **The IV PDF export TIMES OUT at ~30 s.** `format=pdf` 500s (`"…please try again a bit later
+  later."`) on any scope big enough to take >~31 s to render — 200 at 1–578 rows, 500 at 538–9,275
+  rows, **non-deterministic at the boundary** (578 rows passed at 25.4 s and failed at 32.2 s). The
+  CSV of the identical scope returns in 0.8–2.2 s. Narrow with `&search=<term>` or one location to get
+  a PDF. Bisector: `batch-wip-iv/tools/iv_pdf_boundary.mjs`.
+
+**EXPORT FILE NAMES** come back in `Content-Disposition`: `wip-2-report.csv|pdf` and
+`inventory-value-report.csv|pdf`. **CSV metadata lines:** WIP line 1 = `"Locations: …"`; IV line 1 =
+`"As of: YYYY-MM-DD"` then line 2 = `"Locations: …"`. `"Locations: All locations"` when every
+accessible location is selected. **WIP export renames two headers:** screen `Asset`/`Location` → file
+`Unit`/`Branch` (confirmed in the extracted PDF text as well as the CSV).
+
+**WORK-ORDER STATUS ENUM.** `GET /api/work-orders/statuses` → `{data:{collection:[{value,label}]}}` =
+`estimate/Estimate · approved/Approved · in_progress/`**`In progress`**` · ready_for_review/Review ·
+complete/Complete · invoiced/Invoiced · paid/Paid`. **There is no `declined` status.** Note the
+lower-case "p" in the In-progress label.
+
+**CREATE / DELETE a work order — the gotcha that leaves strays.**
+`POST /api/work-orders/create {company_id, vehicle_id, workplace_id, start_date, is_vehicle_here:true}`
+→ **201 `{data:{work_order_id:"…"}}`** — the id is `work_order_id`, **NOT `id`**. Reading `.id` returns
+`undefined` and the cleanup `POST /api/work-orders/delete {work_order_id}` is silently skipped, leaving
+a stray WO in the report. Always read `data.work_order_id ?? data.id`, then delete (201) and re-read
+the report to confirm it is gone. On this build `GET /api/canned-lines` is **404**, so the
+canned-line line-create recipe is unavailable; and driving a WO to In progress via
+`POST /api/work-orders/change` was not achieved (`{id}` → `400 "Work Order ID is missing."`,
+`{work_order_id}` → 500) — status transitions go through the UI wizard.
+
+**CREATE an inventory part.** `POST /api/inventory/parts/create` requires
+`catalog_part_id, category_id, quantity, cost, tags, bins` (learned by posting `{}` and reading the
+validation errors). **`category_id` is mandatory, so a part with NO category cannot exist** — which is
+why 0 of 5,657 Inventory Value rows show a "—" Category. `POST /api/inventory/parts` is 405 (GET only).
+Check whether a part is a core charge with `GET /api/inventory/parts?search=<pn>` → `is_core` /
+`core_charge` (a part merely NAMED "…-CORE" in a "CORE / FEE" category is **not** a core charge).
+
+**SEED A MINIMAL *POSITIVE* PERMISSION SUBJECT (better than creating a fresh staff member).**
+`switch-user` 403s on inactive/unconfirmed users, and on this org only Admin, Technician and Foreman
+have an active+confirmed holder. So: take an existing active+confirmed holder, **temporarily reassign
+their role** to the smallest role that holds the atom you need, impersonate, observe, then **restore
+the original `role_id` and verify it**. `GET /api/organizations/{org}/roles` + `GET /api/roles/{id}`
+gives each role's permission count; on this org the roles holding `reportsPageAccess` are Service
+Manager (36), Office User (25), **Sales Representative (8 — the ideal minimal subject)**, Parts
+Manager (31), Admin (42). Executor: `batch-wip-iv/tools/seed2_wo_and_minimal_role.mjs`.
+
+**PRE-COMMIT SECRET GUARD.** `bash build/report-suite/viu-2026-08-03/batch-wip-iv/tools/secret_scan.sh
+[paths]` reads the live secret VALUES from `/tmp` at run time and greps the staged folder for each
+one; exit 1 = leak. Scope it to genuine secret KEYS only (`sv_sso_session`, `PHPSESSID`,
+`cf_clearance`, `token`, `password`, `email`, `user`) — including the `host`/`api` values from
+`cookies.json` produces false positives, because the host names are deliberately documented.
