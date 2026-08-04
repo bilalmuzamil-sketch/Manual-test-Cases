@@ -1,0 +1,2236 @@
+{
+ "reqs": [
+  {
+   "line": 153,
+   "anchor": "S1-R1",
+   "text": "The filter bar is displayed below the tab navigation row (All, Estimates, Completed, My Work Orders) by default",
+   "story": "S1",
+   "story_title": "Filter Bar Layout & Visibility",
+   "raw": "S1-R1: The filter bar is displayed below the tab navigation row (All, Estimates, Completed, My Work Orders) by default"
+  },
+  {
+   "line": 155,
+   "anchor": "S1-R2",
+   "text": "The filter bar contains five filter chips in this order: Status, Customer, Lead Technician, Service Advisor, Asset on Site",
+   "story": "S1",
+   "story_title": "Filter Bar Layout & Visibility",
+   "raw": "S1-R2: The filter bar contains five filter chips in this order: Status, Customer, Lead Technician, Service Advisor, Asset on Site"
+  },
+  {
+   "line": 157,
+   "anchor": "S1-R3",
+   "text": "Each chip displays the filter name and a chevron icon indicating it opens a dropdown",
+   "story": "S1",
+   "story_title": "Filter Bar Layout & Visibility",
+   "raw": "S1-R3: Each chip displays the filter name and a chevron icon indicating it opens a dropdown"
+  },
+  {
+   "line": 159,
+   "anchor": "S1-R4",
+   "text": "The page toolbar contains a toggle button that collapses and expands the filter bar",
+   "story": "S1",
+   "story_title": "Filter Bar Layout & Visibility",
+   "raw": "S1-R4: The page toolbar contains a toggle button that collapses and expands the filter bar"
+  },
+  {
+   "line": 161,
+   "anchor": "S1-R5",
+   "text": "When the user collapses the filter bar, the bar is hidden and the table expands to use the reclaimed vertical space",
+   "story": "S1",
+   "story_title": "Filter Bar Layout & Visibility",
+   "raw": "S1-R5: When the user collapses the filter bar, the bar is hidden and the table expands to use the reclaimed vertical space"
+  },
+  {
+   "line": 163,
+   "anchor": "S1-R6",
+   "text": "When the user expands the filter bar, the bar reappears in its previous state (with any active filters still shown)",
+   "story": "S1",
+   "story_title": "Filter Bar Layout & Visibility",
+   "raw": "S1-R6: When the user expands the filter bar, the bar reappears in its previous state (with any active filters still shown)"
+  },
+  {
+   "line": 165,
+   "anchor": "S1-R7",
+   "text": "The collapsed/expanded state of the filter bar persists across navigation",
+   "story": "S1",
+   "story_title": "Filter Bar Layout & Visibility",
+   "raw": "S1-R7: The collapsed/expanded state of the filter bar persists across navigation"
+  },
+  {
+   "line": 168,
+   "anchor": "S1-N1",
+   "text": "If no filters are available for the current tab (e.g., Estimates tab where Status is hidden), the filter bar still displays the remaining filter chips",
+   "story": "S1",
+   "story_title": "Filter Bar Layout & Visibility",
+   "raw": "S1-N1: If no filters are available for the current tab (e.g., Estimates tab where Status is hidden), the filter bar still displays the remaining filter chips"
+  },
+  {
+   "line": 177,
+   "anchor": "S2-R1",
+   "text": "Clicking the Status chip opens a dropdown panel with a checkbox list of all possible work order statuses: Estimate, Approved, In Progress, Review, Complete, Invoiced, Paid, Declined, Imported",
+   "story": "S2",
+   "story_title": "Status Filter",
+   "raw": "S2-R1: Clicking the Status chip opens a dropdown panel with a checkbox list of all possible work order statuses: Estimate, Approved, In Progress, Review, Complete, Invoiced, Paid, Declined, Imported"
+  },
+  {
+   "line": 179,
+   "anchor": "S2-R2",
+   "text": "The user can select one or more statuses; the table updates to show only work orders matching any of the selected statuses",
+   "story": "S2",
+   "story_title": "Status Filter",
+   "raw": "S2-R2: The user can select one or more statuses; the table updates to show only work orders matching any of the selected statuses"
+  },
+  {
+   "line": 181,
+   "anchor": "S2-R3",
+   "text": "Selected statuses are indicated with a filled checkbox",
+   "story": "S2",
+   "story_title": "Status Filter",
+   "raw": "S2-R3: Selected statuses are indicated with a filled checkbox"
+  },
+  {
+   "line": 183,
+   "anchor": "S2-R4",
+   "text": "The dropdown includes a \"Clear selection\" action at the bottom that deselects all selected statuses and removes the filter",
+   "story": "S2",
+   "story_title": "Status Filter",
+   "raw": "S2-R4: The dropdown includes a \"Clear selection\" action at the bottom that deselects all selected statuses and removes the filter"
+  },
+  {
+   "line": 185,
+   "anchor": "S2-R5",
+   "text": "Clicking outside the dropdown closes it",
+   "story": "S2",
+   "story_title": "Status Filter",
+   "raw": "S2-R5: Clicking outside the dropdown closes it"
+  },
+  {
+   "line": 187,
+   "anchor": "S2-R6",
+   "text": "The table filters in real time as the user makes selections (no confirm/apply button needed)",
+   "story": "S2",
+   "story_title": "Status Filter",
+   "raw": "S2-R6: The table filters in real time as the user makes selections (no confirm/apply button needed)"
+  },
+  {
+   "line": 189,
+   "anchor": "S2-R7",
+   "text": "Imported is an exception to S2-R2 and cannot be combined with anything else. Imported work orders come from a different data source rather than being a status of the existing records, so selecting Imported switches the list to the imported records and disables the other filter chips while it is active. Deselecting Imported returns the list and re-enables the other chips. This is current production behaviour and is unchanged by this work",
+   "story": "S2",
+   "story_title": "Status Filter",
+   "raw": "S2-R7: Imported is an exception to S2-R2 and cannot be combined with anything else. Imported work orders come from a different data source rather than being a status of the existing records, so selecting Imported switches the list to the imported records and disables the other filter chips while it is active. Deselecting Imported returns the list and re-enables the other chips. This is current production behaviour and is unchanged by this work"
+  },
+  {
+   "line": 192,
+   "anchor": "S2-N1",
+   "text": "On the Estimates tab, the Status filter chip is not shown: that tab already pre-filters by the Estimate status",
+   "story": "S2",
+   "story_title": "Status Filter",
+   "raw": "S2-N1: On the Estimates tab, the Status filter chip is not shown: that tab already pre-filters by the Estimate status"
+  },
+  {
+   "line": 194,
+   "anchor": "S2-N2",
+   "text": "On the Completed tab, the Status filter chip is not shown: that tab already pre-filters by the Complete status",
+   "story": "S2",
+   "story_title": "Status Filter",
+   "raw": "S2-N2: On the Completed tab, the Status filter chip is not shown: that tab already pre-filters by the Complete status"
+  },
+  {
+   "line": 196,
+   "anchor": "S2-N3",
+   "text": "If no work orders match the selected statuses, the table shows an empty state (see Story 8)",
+   "story": "S2",
+   "story_title": "Status Filter",
+   "raw": "S2-N3: If no work orders match the selected statuses, the table shows an empty state (see Story 8)"
+  },
+  {
+   "line": 198,
+   "anchor": "S2-N4",
+   "text": "Selecting Imported alongside another status, customer, technician, advisor or asset filter is not a supported combination and is prevented by S2-R7 rather than returning an empty result",
+   "story": "S2",
+   "story_title": "Status Filter",
+   "raw": "S2-N4: Selecting Imported alongside another status, customer, technician, advisor or asset filter is not a supported combination and is prevented by S2-R7 rather than returning an empty result"
+  },
+  {
+   "line": 207,
+   "anchor": "S3-R1",
+   "text": "Clicking the Customer chip opens a dropdown panel with a search input at the top and a scrollable list of customers below",
+   "story": "S3",
+   "story_title": "Customer Filter",
+   "raw": "S3-R1: Clicking the Customer chip opens a dropdown panel with a search input at the top and a scrollable list of customers below"
+  },
+  {
+   "line": 209,
+   "anchor": "S3-R2",
+   "text": "As the user types in the search field, the customer list filters to show only matching names",
+   "story": "S3",
+   "story_title": "Customer Filter",
+   "raw": "S3-R2: As the user types in the search field, the customer list filters to show only matching names"
+  },
+  {
+   "line": 211,
+   "anchor": "S3-R3",
+   "text": "The user can select one or more customers; each selected customer appears as a tag/chip at the top of the dropdown input area",
+   "story": "S3",
+   "story_title": "Customer Filter",
+   "raw": "S3-R3: The user can select one or more customers; each selected customer appears as a tag/chip at the top of the dropdown input area"
+  },
+  {
+   "line": 213,
+   "anchor": "S3-R4",
+   "text": "Selected customers are indicated with a checkmark in the list",
+   "story": "S3",
+   "story_title": "Customer Filter",
+   "raw": "S3-R4: Selected customers are indicated with a checkmark in the list"
+  },
+  {
+   "line": 215,
+   "anchor": "S3-R5",
+   "text": "The user can remove an individual selected customer by clicking the \u00d7 on their tag",
+   "story": "S3",
+   "story_title": "Customer Filter",
+   "raw": "S3-R5: The user can remove an individual selected customer by clicking the \u00d7 on their tag"
+  },
+  {
+   "line": 217,
+   "anchor": "S3-R6",
+   "text": "The table updates to show only work orders belonging to any of the selected customers",
+   "story": "S3",
+   "story_title": "Customer Filter",
+   "raw": "S3-R6: The table updates to show only work orders belonging to any of the selected customers"
+  },
+  {
+   "line": 219,
+   "anchor": "S3-R7",
+   "text": "The dropdown includes a \"Clear selection\" action at the bottom that removes all selected customers",
+   "story": "S3",
+   "story_title": "Customer Filter",
+   "raw": "S3-R7: The dropdown includes a \"Clear selection\" action at the bottom that removes all selected customers"
+  },
+  {
+   "line": 221,
+   "anchor": "S3-R8",
+   "text": "Clicking outside the dropdown closes it; selected tags remain visible",
+   "story": "S3",
+   "story_title": "Customer Filter",
+   "raw": "S3-R8: Clicking outside the dropdown closes it; selected tags remain visible"
+  },
+  {
+   "line": 224,
+   "anchor": "S3-N1",
+   "text": "If the search query returns no matching customers, the list shows a \"No results\" message",
+   "story": "S3",
+   "story_title": "Customer Filter",
+   "raw": "S3-N1: If the search query returns no matching customers, the list shows a \"No results\" message"
+  },
+  {
+   "line": 226,
+   "anchor": "S3-N2",
+   "text": "If no work orders match the selected customers, the table shows an empty state (see Story 8)",
+   "story": "S3",
+   "story_title": "Customer Filter",
+   "raw": "S3-N2: If no work orders match the selected customers, the table shows an empty state (see Story 8)"
+  },
+  {
+   "line": 238,
+   "anchor": "S4-R1",
+   "text": "Clicking the Lead Technician chip opens a dropdown panel with a search input at the top and a scrollable list of technicians below",
+   "story": "S4",
+   "story_title": "Lead Technician Filter",
+   "raw": "S4-R1: Clicking the Lead Technician chip opens a dropdown panel with a search input at the top and a scrollable list of technicians below"
+  },
+  {
+   "line": 240,
+   "anchor": "S4-R2",
+   "text": "As the user types in the search field, the technician list filters to show only matching names",
+   "story": "S4",
+   "story_title": "Lead Technician Filter",
+   "raw": "S4-R2: As the user types in the search field, the technician list filters to show only matching names"
+  },
+  {
+   "line": 242,
+   "anchor": "S4-R3",
+   "text": "The user can select one or more technicians; selected technicians are indicated with a filled checkbox",
+   "story": "S4",
+   "story_title": "Lead Technician Filter",
+   "raw": "S4-R3: The user can select one or more technicians; selected technicians are indicated with a filled checkbox"
+  },
+  {
+   "line": 244,
+   "anchor": "S4-R4",
+   "text": "The table updates to show only work orders where the selected users are assigned as lead technician",
+   "story": "S4",
+   "story_title": "Lead Technician Filter",
+   "raw": "S4-R4: The table updates to show only work orders where the selected users are assigned as lead technician"
+  },
+  {
+   "line": 246,
+   "anchor": "S4-R5",
+   "text": "The dropdown includes a \"Clear selection\" action at the bottom",
+   "story": "S4",
+   "story_title": "Lead Technician Filter",
+   "raw": "S4-R5: The dropdown includes a \"Clear selection\" action at the bottom"
+  },
+  {
+   "line": 248,
+   "anchor": "S4-R6",
+   "text": "Clicking outside the dropdown closes it",
+   "story": "S4",
+   "story_title": "Lead Technician Filter",
+   "raw": "S4-R6: Clicking outside the dropdown closes it"
+  },
+  {
+   "line": 251,
+   "anchor": "S4-N1",
+   "text": "If no work orders match the selected technicians, the table shows an empty state (see Story 8)",
+   "story": "S4",
+   "story_title": "Lead Technician Filter",
+   "raw": "S4-N1: If no work orders match the selected technicians, the table shows an empty state (see Story 8)"
+  },
+  {
+   "line": 263,
+   "anchor": "S5-R1",
+   "text": "Clicking the Service Advisor chip opens a dropdown panel with a search input at the top and a scrollable list of advisors below",
+   "story": "S5",
+   "story_title": "Service Advisor Filter",
+   "raw": "S5-R1: Clicking the Service Advisor chip opens a dropdown panel with a search input at the top and a scrollable list of advisors below"
+  },
+  {
+   "line": 265,
+   "anchor": "S5-R2",
+   "text": "As the user types, the list filters to matching names",
+   "story": "S5",
+   "story_title": "Service Advisor Filter",
+   "raw": "S5-R2: As the user types, the list filters to matching names"
+  },
+  {
+   "line": 267,
+   "anchor": "S5-R3",
+   "text": "The user can select one or more advisors; selected advisors are indicated with a filled checkbox",
+   "story": "S5",
+   "story_title": "Service Advisor Filter",
+   "raw": "S5-R3: The user can select one or more advisors; selected advisors are indicated with a filled checkbox"
+  },
+  {
+   "line": 269,
+   "anchor": "S5-R4",
+   "text": "The table updates to show only work orders assigned to the selected advisors",
+   "story": "S5",
+   "story_title": "Service Advisor Filter",
+   "raw": "S5-R4: The table updates to show only work orders assigned to the selected advisors"
+  },
+  {
+   "line": 271,
+   "anchor": "S5-R5",
+   "text": "The dropdown includes a \"Clear selection\" action at the bottom",
+   "story": "S5",
+   "story_title": "Service Advisor Filter",
+   "raw": "S5-R5: The dropdown includes a \"Clear selection\" action at the bottom"
+  },
+  {
+   "line": 273,
+   "anchor": "S5-R6",
+   "text": "Clicking outside the dropdown closes it",
+   "story": "S5",
+   "story_title": "Service Advisor Filter",
+   "raw": "S5-R6: Clicking outside the dropdown closes it"
+  },
+  {
+   "line": 276,
+   "anchor": "S5-N1",
+   "text": "If no work orders match the selected advisors, the table shows an empty state (see Story 8)",
+   "story": "S5",
+   "story_title": "Service Advisor Filter",
+   "raw": "S5-N1: If no work orders match the selected advisors, the table shows an empty state (see Story 8)"
+  },
+  {
+   "line": 288,
+   "anchor": "S6-R1",
+   "text": "Clicking the Asset on Site chip opens a dropdown panel with two options: Yes and No",
+   "story": "S6",
+   "story_title": "Asset on Site Filter",
+   "raw": "S6-R1: Clicking the Asset on Site chip opens a dropdown panel with two options: Yes and No"
+  },
+  {
+   "line": 290,
+   "anchor": "S6-R2",
+   "text": "The user selects one option; the table updates to show only work orders matching that asset on-site status",
+   "story": "S6",
+   "story_title": "Asset on Site Filter",
+   "raw": "S6-R2: The user selects one option; the table updates to show only work orders matching that asset on-site status"
+  },
+  {
+   "line": 292,
+   "anchor": "S6-R3",
+   "text": "Only one option can be selected at a time (single-select)",
+   "story": "S6",
+   "story_title": "Asset on Site Filter",
+   "raw": "S6-R3: Only one option can be selected at a time (single-select)"
+  },
+  {
+   "line": 294,
+   "anchor": "S6-R4",
+   "text": "The dropdown includes a \"Clear selection\" action that removes the filter",
+   "story": "S6",
+   "story_title": "Asset on Site Filter",
+   "raw": "S6-R4: The dropdown includes a \"Clear selection\" action that removes the filter"
+  },
+  {
+   "line": 296,
+   "anchor": "S6-R5",
+   "text": "Clicking outside the dropdown closes it",
+   "story": "S6",
+   "story_title": "Asset on Site Filter",
+   "raw": "S6-R5: Clicking outside the dropdown closes it"
+  },
+  {
+   "line": 299,
+   "anchor": "S6-N1",
+   "text": "If no work orders match the selected option, the table shows an empty state (see Story 8)",
+   "story": "S6",
+   "story_title": "Asset on Site Filter",
+   "raw": "S6-N1: If no work orders match the selected option, the table shows an empty state (see Story 8)"
+  },
+  {
+   "line": 308,
+   "anchor": "S7-R1",
+   "text": "When a filter has one or more values selected, the chip changes to an active/highlighted visual state (blue pill) and displays the selected value(s)",
+   "story": "S7",
+   "story_title": "Active Filter Chip Appearance",
+   "raw": "S7-R1: When a filter has one or more values selected, the chip changes to an active/highlighted visual state (blue pill) and displays the selected value(s)"
+  },
+  {
+   "line": 310,
+   "anchor": "S7-R2",
+   "text": "If multiple values are selected for a single filter, the chip displays the first value followed by a count of additional selections (e.g., \"Status: Estimate, In progress, Approved\u2026\")",
+   "story": "S7",
+   "story_title": "Active Filter Chip Appearance",
+   "raw": "S7-R2: If multiple values are selected for a single filter, the chip displays the first value followed by a count of additional selections (e.g., \"Status: Estimate, In progress, Approved\u2026\")"
+  },
+  {
+   "line": 312,
+   "anchor": "S7-R3",
+   "text": "When at least one filter is active, a \"Clear filters\" button appears in the filter bar to the right of all chips",
+   "story": "S7",
+   "story_title": "Active Filter Chip Appearance",
+   "raw": "S7-R3: When at least one filter is active, a \"Clear filters\" button appears in the filter bar to the right of all chips"
+  },
+  {
+   "line": 314,
+   "anchor": "S7-R4",
+   "text": "When the filter bar is collapsed and at least one filter is active, the toolbar collapse/expand toggle displays a visual indicator (e.g., filters icon in primary blue color) signalling that active filters are in effect",
+   "story": "S7",
+   "story_title": "Active Filter Chip Appearance",
+   "raw": "S7-R4: When the filter bar is collapsed and at least one filter is active, the toolbar collapse/expand toggle displays a visual indicator (e.g., filters icon in primary blue color) signalling that active filters are in effect"
+  },
+  {
+   "line": 316,
+   "anchor": "S7-R5",
+   "text": "When the filter bar is collapsed with active filters, the table continues to apply all active filters",
+   "story": "S7",
+   "story_title": "Active Filter Chip Appearance",
+   "raw": "S7-R5: When the filter bar is collapsed with active filters, the table continues to apply all active filters"
+  },
+  {
+   "line": 319,
+   "anchor": "S7-N1",
+   "text": "When no filters are active, the \"Clear filters\" button is not shown",
+   "story": "S7",
+   "story_title": "Active Filter Chip Appearance",
+   "raw": "S7-N1: When no filters are active, the \"Clear filters\" button is not shown"
+  },
+  {
+   "line": 321,
+   "anchor": "S7-N2",
+   "text": "When no filters are active and the bar is collapsed, the toolbar toggle shows no indicator",
+   "story": "S7",
+   "story_title": "Active Filter Chip Appearance",
+   "raw": "S7-N2: When no filters are active and the bar is collapsed, the toolbar toggle shows no indicator"
+  },
+  {
+   "line": 330,
+   "anchor": "S8-R1",
+   "text": "Clicking \"Clear filters\" removes all active filter selections across all filters; all chips return to their default (inactive) state",
+   "story": "S8",
+   "story_title": "Clearing Filters & Empty State",
+   "raw": "S8-R1: Clicking \"Clear filters\" removes all active filter selections across all filters; all chips return to their default (inactive) state"
+  },
+  {
+   "line": 332,
+   "anchor": "S8-R2",
+   "text": "Each filter dropdown includes a \"Clear selection\" action that removes only the selections for that specific filter without affecting others",
+   "story": "S8",
+   "story_title": "Clearing Filters & Empty State",
+   "raw": "S8-R2: Each filter dropdown includes a \"Clear selection\" action that removes only the selections for that specific filter without affecting others"
+  },
+  {
+   "line": 334,
+   "anchor": "S8-R3",
+   "text": "When the combination of active filters and any active search query produces no matching records, the table shows an empty state with a message indicating no results were found for the current filters and search",
+   "story": "S8",
+   "story_title": "Clearing Filters & Empty State",
+   "raw": "S8-R3: When the combination of active filters and any active search query produces no matching records, the table shows an empty state with a message indicating no results were found for the current filters and search"
+  },
+  {
+   "line": 336,
+   "anchor": "S8-R4",
+   "text": "The empty state includes a prompt or link to clear filters and, where a search query is active, to clear the query",
+   "story": "S8",
+   "story_title": "Clearing Filters & Empty State",
+   "raw": "S8-R4: The empty state includes a prompt or link to clear filters and, where a search query is active, to clear the query"
+  },
+  {
+   "line": 338,
+   "anchor": "S8-R5",
+   "text": "Where both a query and filters are active, each is cleared independently from the empty state. Clearing filters does not clear the query and clearing the query does not clear the filters, consistent with S13-R13",
+   "story": "S8",
+   "story_title": "Clearing Filters & Empty State",
+   "raw": "S8-R5: Where both a query and filters are active, each is cleared independently from the empty state. Clearing filters does not clear the query and clearing the query does not clear the filters, consistent with S13-R13"
+  },
+  {
+   "line": 341,
+   "anchor": "S8-N1",
+   "text": "If no filters are active, the \"Clear filters\" button is not visible and cannot be clicked",
+   "story": "S8",
+   "story_title": "Clearing Filters & Empty State",
+   "raw": "S8-N1: If no filters are active, the \"Clear filters\" button is not visible and cannot be clicked"
+  },
+  {
+   "line": 350,
+   "anchor": "S9-R1",
+   "text": "On the All tab, all five filters (Status, Customer, Lead Technician, Service Advisor, Asset on Site) are shown and active",
+   "story": "S9",
+   "story_title": "Tab Behaviour with Active Filters",
+   "raw": "S9-R1: On the All tab, all five filters (Status, Customer, Lead Technician, Service Advisor, Asset on Site) are shown and active"
+  },
+  {
+   "line": 352,
+   "anchor": "S9-R2",
+   "text": "On the Estimates tab, the Status filter chip is hidden; the remaining four filters are shown and apply on top of the Estimates pre-filter",
+   "story": "S9",
+   "story_title": "Tab Behaviour with Active Filters",
+   "raw": "S9-R2: On the Estimates tab, the Status filter chip is hidden; the remaining four filters are shown and apply on top of the Estimates pre-filter"
+  },
+  {
+   "line": 354,
+   "anchor": "S9-R3",
+   "text": "On the Completed tab, the Status filter chip is hidden; the remaining four filters are shown and apply on top of the Completed pre-filter",
+   "story": "S9",
+   "story_title": "Tab Behaviour with Active Filters",
+   "raw": "S9-R3: On the Completed tab, the Status filter chip is hidden; the remaining four filters are shown and apply on top of the Completed pre-filter"
+  },
+  {
+   "line": 356,
+   "anchor": "S9-R4",
+   "text": "On the My Work Orders tab, all five filters are shown; the table already scopes results to work orders assigned to the logged-in user, and the filters apply on top of that scope",
+   "story": "S9",
+   "story_title": "Tab Behaviour with Active Filters",
+   "raw": "S9-R4: On the My Work Orders tab, all five filters are shown; the table already scopes results to work orders assigned to the logged-in user, and the filters apply on top of that scope"
+  },
+  {
+   "line": 358,
+   "anchor": "S9-R5",
+   "text": "Filter selections are maintained when switching between tabs; selections that are incompatible with a tab (e.g., a Status selection on the Estimates tab) are not applied but are retained in memory so they reappear if the user switches back to the All tab",
+   "story": "S9",
+   "story_title": "Tab Behaviour with Active Filters",
+   "raw": "S9-R5: Filter selections are maintained when switching between tabs; selections that are incompatible with a tab (e.g., a Status selection on the Estimates tab) are not applied but are retained in memory so they reappear if the user switches back to the All tab"
+  },
+  {
+   "line": 361,
+   "anchor": "S9-N1",
+   "text": "A Status selection made on the All tab does not carry over visually to the Estimates or Completed tabs, but is not lost",
+   "story": "S9",
+   "story_title": "Tab Behaviour with Active Filters",
+   "raw": "S9-N1: A Status selection made on the All tab does not carry over visually to the Estimates or Completed tabs, but is not lost"
+  },
+  {
+   "line": 370,
+   "anchor": "S10-R1",
+   "text": "When the user navigates away from the Work Orders page (e.g., to a Work Order detail, then back), the filter selections and collapsed/expanded state are restored exactly as they were left",
+   "story": "S10",
+   "story_title": "Filter Persistence",
+   "raw": "S10-R1: When the user navigates away from the Work Orders page (e.g., to a Work Order detail, then back), the filter selections and collapsed/expanded state are restored exactly as they were left"
+  },
+  {
+   "line": 372,
+   "anchor": "S10-R2",
+   "text": "Filter selections are stored server-side against the user account. They survive logout and sync across the user's devices. Where two devices write different state, last write wins. This is not browser-local storage and does not expire with a browser session",
+   "story": "S10",
+   "story_title": "Filter Persistence",
+   "raw": "S10-R2: Filter selections are stored server-side against the user account. They survive logout and sync across the user's devices. Where two devices write different state, last write wins. This is not browser-local storage and does not expire with a browser session"
+  },
+  {
+   "line": 374,
+   "anchor": "S10-R3",
+   "text": "Filter selections are saved per user: one user's filters do not affect another user's view",
+   "story": "S10",
+   "story_title": "Filter Persistence",
+   "raw": "S10-R3: Filter selections are saved per user: one user's filters do not affect another user's view"
+  },
+  {
+   "line": 376,
+   "anchor": "S10-R4",
+   "text": "Persistence applies uniformly to every view or tab that has filters, with no per-page exceptions. Persistence and scope are separate concerns: each Parts view and each Report tab keeps its own separate filter set (see Key Decisions), and each of those sets persists independently on the terms in S10-R2",
+   "story": "S10",
+   "story_title": "Filter Persistence",
+   "raw": "S10-R4: Persistence applies uniformly to every view or tab that has filters, with no per-page exceptions. Persistence and scope are separate concerns: each Parts view and each Report tab keeps its own separate filter set (see Key Decisions), and each of those sets persists independently on the terms in S10-R2"
+  },
+  {
+   "line": 378,
+   "anchor": "S10-R5",
+   "text": "The search query is not covered by this story. It is scoped to the browser tab session and is never written to the user account. See S13-R14 and S13-R25",
+   "story": "S10",
+   "story_title": "Filter Persistence",
+   "raw": "S10-R5: The search query is not covered by this story. It is scoped to the browser tab session and is never written to the user account. See S13-R14 and S13-R25"
+  },
+  {
+   "line": 381,
+   "anchor": "S10-N1",
+   "text": "If a previously selected filter value no longer exists (e.g., a customer was deleted), the system silently ignores that value and the filter updates to reflect only valid selections",
+   "story": "S10",
+   "story_title": "Filter Persistence",
+   "raw": "S10-N1: If a previously selected filter value no longer exists (e.g., a customer was deleted), the system silently ignores that value and the filter updates to reflect only valid selections"
+  },
+  {
+   "line": 390,
+   "anchor": "S11-R1",
+   "text": "When a user applies one or more filters, the page URL updates to reflect the active filter state",
+   "story": "S11",
+   "story_title": "URL State & Shareable Links",
+   "raw": "S11-R1: When a user applies one or more filters, the page URL updates to reflect the active filter state"
+  },
+  {
+   "line": 392,
+   "anchor": "S11-R2",
+   "text": "When a user opens a URL that contains filter state, the Work Orders page loads with those filters pre-applied and the table already filtered",
+   "story": "S11",
+   "story_title": "URL State & Shareable Links",
+   "raw": "S11-R2: When a user opens a URL that contains filter state, the Work Orders page loads with those filters pre-applied and the table already filtered"
+  },
+  {
+   "line": 394,
+   "anchor": "S11-R3",
+   "text": "If the URL contains a filter value that no longer exists (e.g., a deleted customer), the system ignores that value and loads the page without it",
+   "story": "S11",
+   "story_title": "URL State & Shareable Links",
+   "raw": "S11-R3: If the URL contains a filter value that no longer exists (e.g., a deleted customer), the system ignores that value and loads the page without it"
+  },
+  {
+   "line": 396,
+   "anchor": "S11-R4",
+   "text": "The active search query is reflected in the page URL alongside the filter state, so a filtered-and-searched view can be shared or bookmarked",
+   "story": "S11",
+   "story_title": "URL State & Shareable Links",
+   "raw": "S11-R4: The active search query is reflected in the page URL alongside the filter state, so a filtered-and-searched view can be shared or bookmarked"
+  },
+  {
+   "line": 398,
+   "anchor": "S11-R5",
+   "text": "Opening a URL that contains a search query loads the page with that query pre-applied and the search control in its filled state, matching the filter behaviour in S11-R2",
+   "story": "S11",
+   "story_title": "URL State & Shareable Links",
+   "raw": "S11-R5: Opening a URL that contains a search query loads the page with that query pre-applied and the search control in its filled state, matching the filter behaviour in S11-R2"
+  },
+  {
+   "line": 400,
+   "anchor": "S11-R6",
+   "text": "Filter state arriving from a URL applies at runtime only. It never overwrites the user's saved filter state (S10-R2). Changes the user makes to filters while viewing a shared link are also not written back to their saved state: the entire visit is treated as a temporary view",
+   "story": "S11",
+   "story_title": "URL State & Shareable Links",
+   "raw": "S11-R6: Filter state arriving from a URL applies at runtime only. It never overwrites the user's saved filter state (S10-R2). Changes the user makes to filters while viewing a shared link are also not written back to their saved state: the entire visit is treated as a temporary view"
+  },
+  {
+   "line": 402,
+   "anchor": "S11-R7",
+   "text": "While viewing filter state that arrived from a URL, a \"Back to my view\" action is available. It discards the shared view and restores the user's own saved filters. It also clears any active search query, because the query is not part of saved state and there is nothing to restore it to. The label is deliberately \"my view\" rather than \"my filters\", since the action affects both filters and search",
+   "story": "S11",
+   "story_title": "URL State & Shareable Links",
+   "raw": "S11-R7: While viewing filter state that arrived from a URL, a \"Back to my view\" action is available. It discards the shared view and restores the user's own saved filters. It also clears any active search query, because the query is not part of saved state and there is nothing to restore it to. The label is deliberately \"my view\" rather than \"my filters\", since the action affects both filters and search"
+  },
+  {
+   "line": 404,
+   "anchor": "S11-R8",
+   "text": "S11-R6 does not need to protect the search query. Because the query is never saved (S13-R25), a query arriving from a URL has no stored value to overwrite: it simply becomes that browser tab's session query",
+   "story": "S11",
+   "story_title": "URL State & Shareable Links",
+   "raw": "S11-R8: S11-R6 does not need to protect the search query. Because the query is never saved (S13-R25), a query arriving from a URL has no stored value to overwrite: it simply becomes that browser tab's session query"
+  },
+  {
+   "line": 407,
+   "anchor": "S11-N1",
+   "text": "If the URL filter state is malformed or unrecognizable, the page loads without any filters applied and does not show an error",
+   "story": "S11",
+   "story_title": "URL State & Shareable Links",
+   "raw": "S11-N1: If the URL filter state is malformed or unrecognizable, the page loads without any filters applied and does not show an error"
+  },
+  {
+   "line": 409,
+   "anchor": "S11-N2",
+   "text": "If the URL search parameter is malformed, the page loads without a query applied and does not show an error, matching S11-N1",
+   "story": "S11",
+   "story_title": "URL State & Shareable Links",
+   "raw": "S11-N2: If the URL search parameter is malformed, the page loads without a query applied and does not show an error, matching S11-N1"
+  },
+  {
+   "line": 411,
+   "anchor": "S11-N3",
+   "text": "\"Back to my view\" is not shown when the user is viewing their own state rather than state that arrived from a URL",
+   "story": "S11",
+   "story_title": "URL State & Shareable Links",
+   "raw": "S11-N3: \"Back to my view\" is not shown when the user is viewing their own state rather than state that arrived from a URL"
+  },
+  {
+   "line": 420,
+   "anchor": "S12-R1",
+   "text": "The filter chips are displayed in a horizontally scrollable row below the tab navigation",
+   "story": "S12",
+   "story_title": "Mobile Filter Bar",
+   "raw": "S12-R1: The filter chips are displayed in a horizontally scrollable row below the tab navigation"
+  },
+  {
+   "line": 422,
+   "anchor": "S12-R2",
+   "text": "The filter chips behave like desktop with one exception (see S12-R5): tapping a chip opens its dropdown, selections update the chip appearance, and \"Clear filters\" appears when active",
+   "story": "S12",
+   "story_title": "Mobile Filter Bar",
+   "raw": "S12-R2: The filter chips behave like desktop with one exception (see S12-R5): tapping a chip opens its dropdown, selections update the chip appearance, and \"Clear filters\" appears when active"
+  },
+  {
+   "line": 424,
+   "anchor": "S12-R3",
+   "text": "Filter dropdowns open as a bottom sheet or overlay appropriate for the mobile viewport",
+   "story": "S12",
+   "story_title": "Mobile Filter Bar",
+   "raw": "S12-R3: Filter dropdowns open as a bottom sheet or overlay appropriate for the mobile viewport"
+  },
+  {
+   "line": 426,
+   "anchor": "S12-R4",
+   "text": "The filter bar collapse toggle is not shown on mobile; the filter bar is always visible",
+   "story": "S12",
+   "story_title": "Mobile Filter Bar",
+   "raw": "S12-R4: The filter bar collapse toggle is not shown on mobile; the filter bar is always visible"
+  },
+  {
+   "line": 428,
+   "anchor": "S12-R5",
+   "text": "The page search control is shown on mobile and behaves as it does on desktop (Story 13, S13-R16 to S13-R21). S12-R4, which hides the filter bar collapse toggle on mobile, does not apply to the search control",
+   "story": "S12",
+   "story_title": "Mobile Filter Bar",
+   "raw": "S12-R5: The page search control is shown on mobile and behaves as it does on desktop (Story 13, S13-R16 to S13-R21). S12-R4, which hides the filter bar collapse toggle on mobile, does not apply to the search control"
+  },
+  {
+   "line": 430,
+   "anchor": "S12-R6",
+   "text": "Unlike desktop, mobile does not filter in real time. Selections made inside a dropdown / bottom sheet are staged, and the table updates only when the user taps an \"Apply filters\" button within the sheet. This confirms intent on smaller screens and avoids repeated table reflows / data fetches while the user scrolls a long option list. \"Clear selection\" and \"Clear filters\" behave as on desktop.",
+   "story": "S12",
+   "story_title": "Mobile Filter Bar",
+   "raw": "S12-R6: Unlike desktop, mobile does not filter in real time. Selections made inside a dropdown / bottom sheet are staged, and the table updates only when the user taps an \"Apply filters\" button within the sheet. This confirms intent on smaller screens and avoids repeated table reflows / data fetches while the user scrolls a long option list. \"Clear selection\" and \"Clear filters\" behave as on desktop."
+  },
+  {
+   "line": 433,
+   "anchor": "S12-N1",
+   "text": "If no work orders match the active filters on mobile, the list shows the same empty state as desktop",
+   "story": "S12",
+   "story_title": "Mobile Filter Bar",
+   "raw": "S12-N1: If no work orders match the active filters on mobile, the list shows the same empty state as desktop"
+  },
+  {
+   "line": 442,
+   "anchor": "S13-R1",
+   "text": "A Search control is displayed in the page toolbar, in the right-hand action group, positioned before any icon-only actions and before the primary CTA",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R1: A Search control is displayed in the page toolbar, in the right-hand action group, positioned before any icon-only actions and before the primary CTA"
+  },
+  {
+   "line": 444,
+   "anchor": "S13-R2",
+   "text": "In its default state the control is a low-emphasis text button: magnifier icon (20\u00d720) and the label \"Search\", Inter Medium 14/20, grey/600 (#4B5565), 8px corner radius, transparent background, 10px padding",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R2: In its default state the control is a low-emphasis text button: magnifier icon (20\u00d720) and the label \"Search\", Inter Medium 14/20, grey/600 (#4B5565), 8px corner radius, transparent background, 10px padding"
+  },
+  {
+   "line": 446,
+   "anchor": "S13-R3",
+   "text": "On hover the control takes a grey/100 (#EEF2F6) background fill; the label colour is unchanged",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R3: On hover the control takes a grey/100 (#EEF2F6) background fill; the label colour is unchanged"
+  },
+  {
+   "line": 448,
+   "anchor": "S13-R4",
+   "text": "On desktop, clicking the control expands it in place into a text input and moves focus into the input. The field grows leftward from its anchor and the remaining toolbar actions stay in position. The expanded width is 180px",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R4: On desktop, clicking the control expands it in place into a text input and moves focus into the input. The field grows leftward from its anchor and the remaining toolbar actions stay in position. The expanded width is 180px"
+  },
+  {
+   "line": 450,
+   "anchor": "S13-R5",
+   "text": "The expanded empty state shows the magnifier icon, the text caret, and the placeholder \"Type to search\" in grey/500 (#697586)",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R5: The expanded empty state shows the magnifier icon, the text caret, and the placeholder \"Type to search\" in grey/500 (#697586)"
+  },
+  {
+   "line": 452,
+   "anchor": "S13-R6",
+   "text": "Once the user types, the entered text is shown in grey/900 (#121926) and an X-circle clear icon (16\u00d716) appears at the right edge of the field",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R6: Once the user types, the entered text is shown in grey/900 (#121926) and an X-circle clear icon (16\u00d716) appears at the right edge of the field"
+  },
+  {
+   "line": 454,
+   "anchor": "S13-R7",
+   "text": "The query applies as the user types, debounced at 300ms. There is no apply or submit button and Enter is not required. Inventory uses 350ms because of its load characteristics. Any other table needing a longer interval must be listed here rather than deviating silently",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R7: The query applies as the user types, debounced at 300ms. There is no apply or submit button and Enter is not required. Inventory uses 350ms because of its load characteristics. Any other table needing a longer interval must be listed here rather than deviating silently"
+  },
+  {
+   "line": 456,
+   "anchor": "S13-R8",
+   "text": "Long queries use standard text input behaviour: the field neither grows nor truncates, the text scrolls horizontally within it, and the caret follows the insertion point. Keyboard navigation and click-and-drag selection behave as in any text input",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R8: Long queries use standard text input behaviour: the field neither grows nor truncates, the text scrolls horizontally within it, and the caret follows the insertion point. Keyboard navigation and click-and-drag selection behave as in any text input"
+  },
+  {
+   "line": 458,
+   "anchor": "S13-R9",
+   "text": "Search is scoped strictly to the records in the current table. It never returns results from another table, another page, another module, or any content outside that table. There is no cross-page lookup and no fallback to a wider search when the query returns nothing",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R9: Search is scoped strictly to the records in the current table. It never returns results from another table, another page, another module, or any content outside that table. There is no cross-page lookup and no fallback to a wider search when the query returns nothing"
+  },
+  {
+   "line": 460,
+   "anchor": "S13-R10",
+   "text": "Search and filters are additive (AND). A query narrows within the active filters; applying a filter narrows within the active query",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R10: Search and filters are additive (AND). A query narrows within the active filters; applying a filter narrows within the active query"
+  },
+  {
+   "line": 462,
+   "anchor": "S13-R11",
+   "text": "On pages with tabs, search applies within the active tab only",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R11: On pages with tabs, search applies within the active tab only"
+  },
+  {
+   "line": 464,
+   "anchor": "S13-R12",
+   "text": "Results replace the table contents in place. There is no separate results view or results page",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R12: Results replace the table contents in place. There is no separate results view or results page"
+  },
+  {
+   "line": 466,
+   "anchor": "S13-R13",
+   "text": "Clicking the X-circle clears the query and restores the list to its filtered-but-unsearched state. \"Clear filters\" (S8-R1) does not clear the search query, and clearing the search query does not clear any filters",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R13: Clicking the X-circle clears the query and restores the list to its filtered-but-unsearched state. \"Clear filters\" (S8-R1) does not clear the search query, and clearing the search query does not clear any filters"
+  },
+  {
+   "line": 468,
+   "anchor": "S13-R14",
+   "text": "The search query is retained for the browser tab session. It survives sorting, pagination, and navigating away from the page and returning. Tab-switch behaviour within a page is governed by S13-R24",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R14: The search query is retained for the browser tab session. It survives sorting, pagination, and navigating away from the page and returning. Tab-switch behaviour within a page is governed by S13-R24"
+  },
+  {
+   "line": 470,
+   "anchor": "S13-R15",
+   "text": "On desktop, blur with an empty field collapses the control to its default state. Blur with a query keeps the field expanded so the active query stays visible",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R15: On desktop, blur with an empty field collapses the control to its default state. Blur with a query keeps the field expanded so the active query stays visible"
+  },
+  {
+   "line": 472,
+   "anchor": "S13-R16",
+   "text": "Mobile uses the same inline expansion as desktop. There is no modal, no separate search screen, and no mobile-only state in the component. Tapping the collapsed control expands it in place within the action row, moves focus into the field and raises the keyboard",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R16: Mobile uses the same inline expansion as desktop. There is no modal, no separate search screen, and no mobile-only state in the component. Tapping the collapsed control expands it in place within the action row, moves focus into the field and raises the keyboard"
+  },
+  {
+   "line": 474,
+   "anchor": "S13-R17",
+   "text": "On mobile the expanded field fills the remaining width of the action row rather than taking the fixed 180px desktop width. On Work Orders that resolves to 162px. All other toolbar actions remain visible and in position throughout; nothing is hidden while searching",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R17: On mobile the expanded field fills the remaining width of the action row rather than taking the fixed 180px desktop width. On Work Orders that resolves to 162px. All other toolbar actions remain visible and in position throughout; nothing is hidden while searching"
+  },
+  {
+   "line": 476,
+   "anchor": "S13-R18",
+   "text": "To create that room, the primary CTA on mobile uses its natural hug width instead of stretching to fill the row: \"New Work Order\" is 144px, the same width it has on desktop, not 211px. The action group is right-aligned as on desktop, so the free space sits to the left and the field expands into it",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R18: To create that room, the primary CTA on mobile uses its natural hug width instead of stretching to fill the row: \"New Work Order\" is 144px, the same width it has on desktop, not 211px. The action group is right-aligned as on desktop, so the free space sits to the left and the field expands into it"
+  },
+  {
+   "line": 478,
+   "anchor": "S13-R19",
+   "text": "Where a page has more than one icon-only action in its toolbar, those actions collapse into a single \"more\" kebab on mobile. This applies to Inventory, Purchase Orders, Timesheet Activities, both Technician Efficiency reports, Sales Tax (Collected), and any other page carrying two or more icon actions",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R19: Where a page has more than one icon-only action in its toolbar, those actions collapse into a single \"more\" kebab on mobile. This applies to Inventory, Purchase Orders, Timesheet Activities, both Technician Efficiency reports, Sales Tax (Collected), and any other page carrying two or more icon actions"
+  },
+  {
+   "line": 480,
+   "anchor": "S13-R20",
+   "text": "No separate active-query indicator is needed on mobile. Because the field stays expanded and visible whenever a query is present, the desktop blur rules (S13-R15) apply unchanged: empty collapses, non-empty stays expanded showing the query",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R20: No separate active-query indicator is needed on mobile. Because the field stays expanded and visible whenever a query is present, the desktop blur rules (S13-R15) apply unchanged: empty collapses, non-empty stays expanded showing the query"
+  },
+  {
+   "line": 482,
+   "anchor": "S13-R21",
+   "text": "All query behaviour is identical across breakpoints: additive with filters (S13-R10), tab scoping (S13-R11, S13-R24), clearing (S13-R13), retention (S13-R14) and the four component states (S13-R2 to S13-R6). Only the expanded width differs, and that is a fill rule rather than a distinct behaviour",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R21: All query behaviour is identical across breakpoints: additive with filters (S13-R10), tab scoping (S13-R11, S13-R24), clearing (S13-R13), retention (S13-R14) and the four component states (S13-R2 to S13-R6). Only the expanded width differs, and that is a fill rule rather than a distinct behaviour"
+  },
+  {
+   "line": 484,
+   "anchor": "S13-R22",
+   "text": "Every table in the application carries a search control, delivered through the shared table component. This covers the list pages across Work Orders, Parts and Reports, and also tables on detail pages and tables inside dialogs (see S14-R6). Any exception must be listed explicitly here; there are none at time of writing. This replaces the enumerated page list used in earlier versions, which did not account for tables outside list pages. Note the scope of this requirement is wider than the S14-R6 surface list: that list covers only tables global search filters today, so tables it never touched still fall under this rule",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R22: Every table in the application carries a search control, delivered through the shared table component. This covers the list pages across Work Orders, Parts and Reports, and also tables on detail pages and tables inside dialogs (see S14-R6). Any exception must be listed explicitly here; there are none at time of writing. This replaces the enumerated page list used in earlier versions, which did not account for tables outside list pages. Note the scope of this requirement is wider than the S14-R6 surface list: that list covers only tables global search filters today, so tables it never touched still fall under this rule"
+  },
+  {
+   "line": 486,
+   "anchor": "S13-R23",
+   "text": "Each table searches the fields its existing search endpoint already covers today. This is deliberate reuse rather than a newly defined set, so that no page changes behaviour it already has. Where a table needs to search fields beyond what its endpoint covers today, that is scoped separately as backend work and called out against that table. Pending: the per-table list of fields currently covered, from engineering. Until it exists the searchable set is undocumented and QA has no baseline to test against. Five of the surfaces listed under S14-R6 (Customer Contacts, Customer Assets, Customer Fees & Discounts, Administration Locations, Administration Fees & Discounts) narrow rows already loaded in the browser rather than querying an endpoint. For those, no list of covered fields exists to document: the searchable set is whatever the client-side filter happens to match today. Closing this item for them means either scoping the fields as new backend work or stating that the existing client-side narrowing is accepted as-is",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R23: Each table searches the fields its existing search endpoint already covers today. This is deliberate reuse rather than a newly defined set, so that no page changes behaviour it already has. Where a table needs to search fields beyond what its endpoint covers today, that is scoped separately as backend work and called out against that table. Pending: the per-table list of fields currently covered, from engineering. Until it exists the searchable set is undocumented and QA has no baseline to test against. Five of the surfaces listed under S14-R6 (Customer Contacts, Customer Assets, Customer Fees & Discounts, Administration Locations, Administration Fees & Discounts) narrow rows already loaded in the browser rather than querying an endpoint. For those, no list of covered fields exists to document: the searchable set is whatever the client-side filter happens to match today. Closing this item for them means either scoping the fields as new backend work or stating that the existing client-side narrowing is accepted as-is"
+  },
+  {
+   "line": 488,
+   "anchor": "S13-R24",
+   "text": "On pages with tabs, the query scopes the same way that page's filters do. The Work Orders tabs share a single query, because they are views of one dataset. Reports sub-tabs and Parts views each keep their own query, matching their per-view filter scoping, because carrying a query between them would apply it to a different table with different columns",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R24: On pages with tabs, the query scopes the same way that page's filters do. The Work Orders tabs share a single query, because they are views of one dataset. Reports sub-tabs and Parts views each keep their own query, matching their per-view filter scoping, because carrying a query between them would apply it to a different table with different columns"
+  },
+  {
+   "line": 490,
+   "anchor": "S13-R25",
+   "text": "The query is stored in the browser tab session, never against the user account. This is deliberately different from filters, which are stored server-side and sync across devices (S10-R2). The query does not sync across devices, does not survive the tab session ending, and two browser tabs open on the same page each keep their own independent query. A shared link opened in a new tab therefore starts clean",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-R25: The query is stored in the browser tab session, never against the user account. This is deliberately different from filters, which are stored server-side and sync across devices (S10-R2). The query does not sync across devices, does not survive the tab session ending, and two browser tabs open on the same page each keep their own independent query. A shared link opened in a new tab therefore starts clean"
+  },
+  {
+   "line": 493,
+   "anchor": "S13-N1",
+   "text": "If no records match the query, the table shows an empty state (see Story 8)",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-N1: If no records match the query, the table shows an empty state (see Story 8)"
+  },
+  {
+   "line": 495,
+   "anchor": "S13-N2",
+   "text": "If the query is cleared while filters remain active, the table returns to the filtered result set rather than the unfiltered list",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-N2: If the query is cleared while filters remain active, the table returns to the filtered result set rather than the unfiltered list"
+  },
+  {
+   "line": 497,
+   "anchor": "S13-N3",
+   "text": "Hover states for the expanded field, and disabled and loading states, are not defined and are out of scope for this release",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-N3: Hover states for the expanded field, and disabled and loading states, are not defined and are out of scope for this release"
+  },
+  {
+   "line": 499,
+   "anchor": "S13-N4",
+   "text": "A query is never restored on a later visit after the tab session has ended. A user returning the next day sees an unsearched list",
+   "story": "S13",
+   "story_title": "Page Search",
+   "raw": "S13-N4: A query is never restored on a later visit after the tab session has ended. A user returning the next day sees an unsearched list"
+  },
+  {
+   "line": 511,
+   "anchor": "S14-R1",
+   "text": "The global header search returns navigational results only. It takes the user to a record or page and does not modify the contents of the list the user is currently viewing",
+   "story": "S14",
+   "story_title": "Remove Page Filtering from Global Search",
+   "raw": "S14-R1: The global header search returns navigational results only. It takes the user to a record or page and does not modify the contents of the list the user is currently viewing"
+  },
+  {
+   "line": 513,
+   "anchor": "S14-R2",
+   "text": "The existing code path that applies a global search query as a filter on the current page's table is removed, not hidden behind a flag or left dormant",
+   "story": "S14",
+   "story_title": "Remove Page Filtering from Global Search",
+   "raw": "S14-R2: The existing code path that applies a global search query as a filter on the current page's table is removed, not hidden behind a flag or left dormant"
+  },
+  {
+   "line": 515,
+   "anchor": "S14-R3",
+   "text": "Any state, URL parameters or persisted values that carry a global search term into page-level filtering are removed with it",
+   "story": "S14",
+   "story_title": "Remove Page Filtering from Global Search",
+   "raw": "S14-R3: Any state, URL parameters or persisted values that carry a global search term into page-level filtering are removed with it"
+  },
+  {
+   "line": 517,
+   "anchor": "S14-R4",
+   "text": "Entering a query in the global search while on a list page leaves that list untouched",
+   "story": "S14",
+   "story_title": "Remove Page Filtering from Global Search",
+   "raw": "S14-R4: Entering a query in the global search while on a list page leaves that list untouched"
+  },
+  {
+   "line": 519,
+   "anchor": "S14-R5",
+   "text": "This applies to every page in the application. Global search must no longer alter the visible record set anywhere, including pages outside Work Orders, Parts and Reports, and pages with no design in the current explorations. QA should treat this as an app-wide sweep, not a per-module check",
+   "story": "S14",
+   "story_title": "Remove Page Filtering from Global Search",
+   "raw": "S14-R5: This applies to every page in the application. Global search must no longer alter the visible record set anywhere, including pages outside Work Orders, Parts and Reports, and pages with no design in the current explorations. QA should treat this as an app-wide sweep, not a per-module check"
+  },
+  {
+   "line": 521,
+   "anchor": "S14-R6",
+   "text": "The audit of surfaces where global search currently filters content is complete. No surface loses text narrowing: every affected surface keeps a search control, delivered through the shared table component (S13-R22). The audit identified 42 surfaces across 39 components, listed under Affected Surfaces below. It confirmed that global search filters tables well outside the list pages, including Work Order notes, Customer notes, Work Order history, customer and vendor transaction tabs, and the audit log dialog. One candidate was examined and excluded: Work Order Parts, which already has its own local search input independent of global search and therefore loses nothing",
+   "story": "S14",
+   "story_title": "Remove Page Filtering from Global Search",
+   "raw": "S14-R6: The audit of surfaces where global search currently filters content is complete. No surface loses text narrowing: every affected surface keeps a search control, delivered through the shared table component (S13-R22). The audit identified 42 surfaces across 39 components, listed under Affected Surfaces below. It confirmed that global search filters tables well outside the list pages, including Work Order notes, Customer notes, Work Order history, customer and vendor transaction tabs, and the audit log dialog. One candidate was examined and excluded: Work Order Parts, which already has its own local search input independent of global search and therefore loses nothing"
+  },
+  {
+   "line": 617,
+   "anchor": "S14-N1",
+   "text": "Page search (Story 13) is a hard prerequisite. Removing global-search filtering from a page before page search is available there would leave that page with no way to narrow by text. If the rollout is phased, S14-R2 is scoped per page and S14-R5 is verified once at the end",
+   "story": "S14",
+   "story_title": "Remove Page Filtering from Global Search",
+   "raw": "S14-N1: Page search (Story 13) is a hard prerequisite. Removing global-search filtering from a page before page search is available there would leave that page with no way to narrow by text. If the rollout is phased, S14-R2 is scoped per page and S14-R5 is verified once at the end"
+  }
+ ],
+ "nonreq": [
+  {
+   "line": 0,
+   "text": "Version: 1.6",
+   "reason": "document metadata"
+  },
+  {
+   "line": 2,
+   "text": "Figma design:",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 3,
+   "text": "| Feature Design",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 5,
+   "text": "Claude design:",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 6,
+   "text": "| https://claude.ai/design/p/fac6efcf-a972-4c02-96a5-def12ed8b037?file=Filters.html&via=share",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 8,
+   "text": "Parts filters design:",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 9,
+   "text": "| Parts Filters Design",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 11,
+   "text": "Reports filters design:",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 12,
+   "text": "| Reports Filters Design",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 14,
+   "text": "Page search component:",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 15,
+   "text": "| Search Component Design",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 17,
+   "text": "Jira epic:",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 22,
+   "text": "1. Business Case",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 23,
+   "text": "Users managing large volumes of work orders need to quickly narrow down the list to a relevant subset: by status, customer, technician, advisor, or on-site asset status. Currently, the Work Orders page lacks a dedicated filter bar, forcing users to scroll through long lists or rely on the tab shortcuts (Estimates, Completed) as the only filtering mechanism. This makes day-to-day triage slower and increases the chance of missing urgent work orders. Adding a persistent, multi-criteria filter bar directly addresses this pain point and aligns ShopView with the workflow expectations of shop managers and service advisors.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 24,
+   "text": "2. Feature Overview",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 25,
+   "text": "Core Work Orders Filters",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 26,
+   "text": "A filter bar appears below the tab navigation on the Work Orders page, providing quick access to five filters: Status, Customer, Lead Technician, Service Advisor, and Asset on Site",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 28,
+   "text": "Each filter is a labelled chip that opens a dropdown panel when clicked",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 30,
+   "text": "Status, Customer, Lead Technician, and Service Advisor are multi-select filters; Asset on Site is a two-option (Yes / No) dropdown",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 32,
+   "text": "Customer, Lead Technician, and Service Advisor dropdowns include a search field to quickly locate a specific value",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 34,
+   "text": "When one or more values are selected in a filter, the chip updates to display the selected values and a \"Clear filters\" button appears in the filter bar",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 36,
+   "text": "The filter bar can be collapsed and expanded via a toggle in the page toolbar; when collapsed with active filters, the toolbar toggle shows a visual indicator",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 38,
+   "text": "Filter selections persist when the user navigates away from the Work Orders page and returns",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 40,
+   "text": "The active filter state is reflected in the page URL, enabling users to share or bookmark a filtered view",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 42,
+   "text": "Filters apply to all tabs except where noted (see Tab Behavior, Story 9)",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 44,
+   "text": "Supported on both desktop and mobile",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 46,
+   "text": "Parts Filters",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 47,
+   "text": "A filter bar appears below the page header on each view of the Parts area (Inventory, Part Sales, Catalog, Returns, Credits, Purchase Orders, Vendor Invoices, Vendors), following the same chip-and-dropdown pattern as Work Orders",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 49,
+   "text": "Filters are context-specific per view: each view shows only the chips relevant to its data (e.g., Inventory filters by Bin Location, Category, Supply, and Vendor; Purchase Orders by Vendor, Status, Date, and Ordered by)",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 51,
+   "text": "Entity filters (Customer, Vendor, Created by, Ordered by, Received by, Processed by) use the searchable multi-select dropdown; long lists such as Category and Manufacturer also include a search field; short attribute filters (Supply, Part Type, Bin Location, State/Province, Status) use the checkbox list",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 53,
+   "text": "Date-based columns (Date, Invoice date, Date received) use the new date-range filter",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 55,
+   "text": "Active-chip appearance, \"Clear filters\", \"Clear selection\", collapse/expand, per-view persistence, URL state, and mobile behavior all match the Work Orders definitions",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 57,
+   "text": "Reports Filters",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 58,
+   "text": "A filter bar appears below the report header on each report, following the same chip-and-dropdown pattern as Work Orders",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 60,
+   "text": "Filters are context-specific per report: nearly every report includes a Date filter as its primary scoping control, alongside the entity dimensions relevant to that report (Customer, Vendor, Technician, Advisor, Staff, Employee, and so on)",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 62,
+   "text": "A new date-range filter type is introduced: the chip opens a start/end date picker with no presets and no default range selected, so the user always chooses the period, and the range applies immediately when the second date is picked. The selected range is reflected in the URL (e.g., range=custom&from=2026-04-01&to=2026-04-25) so a filtered report is shareable",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 64,
+   "text": "Reports with sub-report tabs keep a separate filter set per tab",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 66,
+   "text": "Active-chip appearance, \"Clear filters\", \"Clear selection\", collapse/expand, persistence, URL state, and mobile behavior all match the Work Orders definitions",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 68,
+   "text": "Page Search",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 69,
+   "text": "Each list page gains a search control in the page toolbar, sitting alongside the filter bar toggle and the primary action. It narrows the records in that page's table only",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 71,
+   "text": "The control is collapsed by default (magnifier icon + \"Search\") and expands in place into a text input when clicked, on both desktop and mobile",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 73,
+   "text": "Search applies as the user types, with no apply button, and works additively with the filter bar: a query narrows within the active filters, and vice versa",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 75,
+   "text": "Available on every table in the application, delivered through the shared table component: the list pages across Work Orders, Parts and Reports, plus tables on detail pages and in dialogs. Desktop and mobile",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 77,
+   "text": "The query is scoped to the browser tab session rather than saved to the user account, unlike filters. See Key Decisions",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 79,
+   "text": "Because page-level narrowing now lives on the page, the global header search stops filtering page content; this behaviour is removed app-wide (Story 14)",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 81,
+   "text": "3. Jobs to be Done / Goals",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 82,
+   "text": "When I'm opening my work queue at the start of the day, I want to filter work orders by technician and status, so I can see exactly what's in progress for my team without scrolling through everything.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 83,
+   "text": "When a customer calls about their vehicle, I want to filter by customer name, so I can instantly see all their open work orders.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 84,
+   "text": "When I'm doing a lot check, I want to filter by \"Asset on Site: Yes\", so I can see only vehicles currently on premises.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 85,
+   "text": "When I'm counting stock, I want to filter Inventory by Bin Location and Category, so I can verify quantities for one shelf without scrolling the whole catalog.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 86,
+   "text": "When a vendor invoice arrives, I want to filter Vendor Invoices by Vendor and Date received, so I can find and reconcile the matching record quickly.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 87,
+   "text": "When I run month-end A/R aging, I want to set the Date range and filter by Customer, so I can produce the exact statement a customer is disputing.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 88,
+   "text": "When I review payroll, I want to filter Timesheets by Employee and a pay-period Date range, so I can approve hours for one person at a time.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 89,
+   "text": "When I know the work order number but not who it belongs to, I want to type it straight into the page, so I can jump to it without setting up a filter.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 90,
+   "text": "When I have already filtered Inventory down to one bin, I want to search within that result, so I can find one part without clearing my filters.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 91,
+   "text": "Goals:",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 92,
+   "text": "Reduce time to find a relevant subset of work orders",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 94,
+   "text": "Allow multi-criteria filtering in a single interaction",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 96,
+   "text": "Persist filter state to avoid re-applying filters on every visit",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 98,
+   "text": "Enable sharing of filtered views via URL",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 100,
+   "text": "4. Key Decisions",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 101,
+   "text": "Asset on Site changed from toggle to dropdown to maintain visual and interaction consistency with the other four filters, all of which use the dropdown chip pattern.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 103,
+   "text": "No selection limit on multi-select filters: users can select as many values as needed.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 105,
+   "text": "\"Clear filters\" clears all active filters at once; a separate \"Clear selection\" action within each dropdown clears only that filter individually.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 107,
+   "text": "Status filter is hidden on the Estimates and Completed tabs, because those tabs are shortcuts that already pre-filter by a single status, so showing a Status filter would be redundant and potentially confusing.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 109,
+   "text": "Imported is exclusive, not a status. Imported work orders come from a different data source, so selecting Imported switches the list to the imported records rather than filtering the existing set, and the other filter chips are disabled while it is active. Current production behaviour, unchanged by this work.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 111,
+   "text": "My Work Orders tab does not remove filters: filters continue to work on top of the user-scoped result set.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 113,
+   "text": "Filters persist across sessions, devices and logout: filter state is stored server-side against the user account, syncs across the user's devices, and survives logout. Where two devices write different state, last write wins. This applies uniformly, with no per-page exceptions.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 115,
+   "text": "A shared link never overwrites saved state: filter state carried in a URL applies at runtime only. Edits the user makes while viewing a shared link are not written back to their saved filters either. A \"Back to my view\" action returns them to their own state. The label covers filters and search together, since the action restores saved filters and clears any active query.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 117,
+   "text": "Context-specific filter sets on Parts and Reports: each Parts view and each Report defines its own filter chips rather than sharing a single set, because the underlying datasets and relevant dimensions differ per view.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 119,
+   "text": "New date-range filter type: Date chips open a custom start/end picker with no presets and no default range, and apply immediately on selection of the second date. Used across Reports and the date columns on Parts views.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 121,
+   "text": "Parts and Reports selections are scoped to their view/tab and persist there: filters do not carry across Parts views, Report tabs, or sub-report tabs; each view/tab retains its own selections and restores them on return. Scope and persistence are separate concerns: every one of those separate sets persists on the terms above.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 123,
+   "text": "Long enumerations get a search field: Category and Manufacturer use the searchable dropdown rather than a plain checkbox list.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 125,
+   "text": "Multi-select where it makes sense: all Parts and Reports filters are multi-select except the date-range filter, which is a single range.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 127,
+   "text": "Page search is separate from the filter bar, not a filter chip. It lives in the toolbar row with the collapse toggle and primary action; the chips stay in the row below. The two are additive but independently cleared: \"Clear filters\" does not clear the query, and clearing the query does not clear the chips.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 129,
+   "text": "Global search no longer filters page content. Narrowing the current list is now the job of the page's own filters and search. The global search filtering behaviour is removed across the whole application, not only on the pages covered by these designs.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 131,
+   "text": "One shared search component, scoped strictly to its own table. Page-specific behaviour is configuration (which fields are searched), not a per-module variant. Each search input queries only the records in its own table; it cannot reach content in any other table, on any other page, or in any other module. Cross-page and cross-module lookup is the job of the global header search, which is the whole basis for the split in Story 14.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 133,
+   "text": "The search query is deliberately not persisted the way filters are. It is scoped to the browser tab session rather than stored against the user account: it survives navigating away and returning, does not sync across devices, and each browser tab keeps its own. A search is momentary in a way a filter set is not, so returning to a list days later narrowed by something typed once would be surprising. The contrast with filter persistence above is intentional.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 135,
+   "text": "Generic placeholder. The expanded field reads \"Type to search\" on every page rather than being parameterised per page, unlike the filter dropdowns which use targeted copy (\"Search customer\", \"Search technician\").",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 137,
+   "text": "Mobile and desktop use one pattern, not two. Search expands inline in the action row on both, with the same four component states. Two layout changes make this possible on a 370px mobile row: the primary CTA stops stretching and uses its natural hug width (144px for \"New Work Order\", the same as desktop) instead of filling the row at 211px; and pages with more than one icon-only action collapse those into a \"more\" kebab. Together these free enough space for the field to expand with every other control still visible. No modal, no separate search screen, no active-query indicator, and no mobile-only variant to maintain.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 139,
+   "text": "Hover-on-expanded, disabled and loading states are out of scope for this release; the component does not define them.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 141,
+   "text": "Mobile uses deferred apply: desktop filters in real time, while mobile stages the user's selections and applies them only when the user taps an \"Apply filters\" button \u2014 a deliberate difference for small-screen ergonomics (see Story 12).",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 143,
+   "text": "7. Requirements",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 144,
+   "text": "Story 1: Filter Bar Layout & Visibility",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 145,
+   "text": "As a user, I want to see a filter bar on the Work Orders page so that I can quickly narrow down the list.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 146,
+   "text": "Design: https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=11854-23562 Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 147,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 148,
+   "text": "The user is on the Work Orders page",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 150,
+   "text": "The user has access to the Work Orders page",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 152,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 167,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 170,
+   "text": "Story 2: Status Filter",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 171,
+   "text": "As a user, I want to filter work orders by status so that I can focus on a specific stage of the workflow.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 172,
+   "text": "Design: https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=11854-24194 Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 173,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 174,
+   "text": "The user is on the Work Orders page on the All or My Work Orders tab",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 176,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 191,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 200,
+   "text": "Story 3: Customer Filter",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 201,
+   "text": "As a user, I want to filter work orders by customer so that I can see all work orders for a specific account.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 202,
+   "text": "Design: https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=11854-19595 Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 203,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 204,
+   "text": "The user is on the Work Orders page",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 206,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 223,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 228,
+   "text": "Edge Cases:",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 229,
+   "text": "S3-E1: If a customer has no open work orders, they still appear in the filter list: filtering by them simply returns an empty result set",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 231,
+   "text": "Story 4: Lead Technician Filter",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 232,
+   "text": "As a user, I want to filter work orders by lead technician so that I can see the workload assigned to a specific technician.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 233,
+   "text": "Design: https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=11854-24452 Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 234,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 235,
+   "text": "The user is on the Work Orders page",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 237,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 250,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 253,
+   "text": "Edge Cases:",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 254,
+   "text": "S4-E1: If a technician is no longer active, they are not shown in the filter list",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 256,
+   "text": "Story 5: Service Advisor Filter",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 257,
+   "text": "As a user, I want to filter work orders by service advisor so that I can see work assigned to a specific advisor.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 258,
+   "text": "Design: https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=11854-24553 Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 259,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 260,
+   "text": "The user is on the Work Orders page",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 262,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 275,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 278,
+   "text": "Edge Cases:",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 279,
+   "text": "S5-E1: If an advisor is no longer active, they are not shown in the filter list",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 281,
+   "text": "Story 6: Asset on Site Filter",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 282,
+   "text": "As a user, I want to filter by whether an asset is currently on site so that I can see which vehicles are physically at the shop.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 283,
+   "text": "Design: https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=11854-23562 Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 284,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 285,
+   "text": "The user is on the Work Orders page",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 287,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 298,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 301,
+   "text": "Story 7: Active Filter Chip Appearance",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 302,
+   "text": "As a user, I want the filter chips to clearly show when a filter is active so that I can tell at a glance what is being applied.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 303,
+   "text": "Design: https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=11854-26246 Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 304,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 305,
+   "text": "At least one filter has a value selected",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 307,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 318,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 323,
+   "text": "Story 8: Clearing Filters & Empty State",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 324,
+   "text": "As a user, I want to easily clear filters so that I can return to the full list.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 325,
+   "text": "Design: https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=11854-23562 Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 326,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 327,
+   "text": "The user is on the Work Orders page",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 329,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 340,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 343,
+   "text": "Story 9: Tab Behaviour with Active Filters",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 344,
+   "text": "As a user, I want filters to work correctly as I switch between Work Orders tabs so that my filtered view is consistent.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 345,
+   "text": "Design: https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=11854-23562 Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 346,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 347,
+   "text": "The user is on the Work Orders page",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 349,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 360,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 363,
+   "text": "Story 10: Filter Persistence",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 364,
+   "text": "As a user, I want my filter selections to be remembered so that I don't have to re-apply them every time I visit the Work Orders page.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 365,
+   "text": "Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 366,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 367,
+   "text": "The user has previously applied one or more filters on the Work Orders page",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 369,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 380,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 383,
+   "text": "Story 11: URL State & Shareable Links",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 384,
+   "text": "As a user, I want the active filter state to be reflected in the page URL so that I can share or bookmark a filtered view.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 385,
+   "text": "Design: https://claude.ai/design/p/fac6efcf-a972-4c02-96a5-def12ed8b037?file=Filters.html&via=share Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 386,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 387,
+   "text": "The user is on the Work Orders page",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 389,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 406,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 413,
+   "text": "Story 12: Mobile Filter Bar",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 414,
+   "text": "As a mobile user, I want to access filters on the Work Orders page so that I can narrow down results on a smaller screen.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 415,
+   "text": "Design: https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=11857-31046 Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 416,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 417,
+   "text": "The user is accessing Work Orders on a mobile device",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 419,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 432,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 435,
+   "text": "Story 13: Page Search",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 436,
+   "text": "As a user, I want to search within the page I'm on so that I can find a specific record without setting up a filter.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 437,
+   "text": "Design: https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=11829-8908 Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 438,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 439,
+   "text": "The user is on a page or view containing a table (see S13-R22)",
+   "reason": "prose that CITES anchors (S13-R22) but states no new requirement of its own"
+  },
+  {
+   "line": 441,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 492,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 501,
+   "text": "Edge Cases:",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 502,
+   "text": "S13-E1: If the user collapses the filter bar (S1-R5) while a search query is active, the query continues to apply and the search control remains in the toolbar",
+   "reason": "prose that CITES anchors (S1-R5) but states no new requirement of its own"
+  },
+  {
+   "line": 504,
+   "text": "Story 14: Remove Page Filtering from Global Search",
+   "reason": "heading \u2014 story title"
+  },
+  {
+   "line": 505,
+   "text": "As a user, I want the global header search to take me to records rather than silently filter the page I'm on, so that narrowing a list is done by that page's own filters and search.",
+   "reason": "user-story narrative (not independently testable)"
+  },
+  {
+   "line": 506,
+   "text": "Jira: TBD",
+   "reason": "reference link line"
+  },
+  {
+   "line": 507,
+   "text": "Prerequisites:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 508,
+   "text": "Page search (Story 13) is available on the page in question",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 510,
+   "text": "Requirements:",
+   "reason": "label \u2014 section heading inside a story"
+  },
+  {
+   "line": 523,
+   "text": "Affected Surfaces (S14-R6):",
+   "reason": "prose that CITES anchors (S14-R6) but states no new requirement of its own"
+  },
+  {
+   "line": 524,
+   "text": "Server-side means the query triggers a refetch; client-side means it narrows rows already loaded in the browser. The client-side surfaces have no search endpoint today, which is what S13-R23 remains pending on for them. The Dashboard surfaces are in scope for S13-R22 but are not regressions: their filter binding is dead code, so there is no existing behaviour for QA to compare against.",
+   "reason": "prose that CITES anchors (S13-R22,S13-R23) but states no new requirement of its own"
+  },
+  {
+   "line": 525,
+   "text": "Work Orders",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 526,
+   "text": "Work Orders list \u2014 /workorders \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 528,
+   "text": "Work Order \u2192 History tab \u2014 /workorders/:id/history \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 530,
+   "text": "Work Order \u2192 Work Order Log dialog, opened from the History tab kebab menu \u2014 /workorders/:id/history \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 532,
+   "text": "Work Order \u2192 Line Log dialog, opened per line from the Lines tab \u2014 /workorders/:id/lines \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 534,
+   "text": "Work Order \u2192 Notes tab \u2014 /workorders/:id/notes \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 536,
+   "text": "Customers",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 537,
+   "text": "Customers list \u2014 /customers \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 539,
+   "text": "Customer \u2192 Contacts \u2014 /customers/:id/contacts \u2014 client-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 541,
+   "text": "Customer \u2192 Assets \u2014 /customers/:id/vehicles \u2014 client-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 543,
+   "text": "Customer \u2192 Invoices \u2014 /customers/:id/invoices \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 545,
+   "text": "Customer \u2192 Work Orders \u2014 /customers/:id/work-orders \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 547,
+   "text": "Customer \u2192 Part Sales \u2014 /customers/:id/part-sales \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 549,
+   "text": "Customer \u2192 Fees & Discounts \u2014 /customers/:id/default-adjustments \u2014 client-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 551,
+   "text": "Customer \u2192 Notes \u2014 /customers/:id/notes \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 553,
+   "text": "Asset \u2192 Work Orders \u2014 /customers/vehicle/:id/work-orders \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 555,
+   "text": "Asset \u2192 Invoices \u2014 /customers/vehicle/:id/invoices \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 557,
+   "text": "Asset \u2192 Notes \u2014 /customers/vehicle/:id/notes \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 559,
+   "text": "Parts",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 560,
+   "text": "Inventory \u2014 /parts/inventory \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 562,
+   "text": "Catalog \u2014 /parts/parts-catalogue \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 564,
+   "text": "Part Sales \u2014 /parts/part-sales \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 566,
+   "text": "Purchase Orders \u2014 /parts/orders \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 568,
+   "text": "Returns \u2192 Returns \u2014 /parts/returns \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 570,
+   "text": "Returns \u2192 Credits \u2014 /parts/returns \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 572,
+   "text": "Vendors \u2014 /parts/vendors \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 574,
+   "text": "Vendor Invoices \u2014 /parts/deliveries \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 576,
+   "text": "Vendor \u2192 Unpaid Invoices \u2014 /parts/vendor/:id/unpaid-invoices \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 578,
+   "text": "Part History \u2014 /parts/history/:id \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 580,
+   "text": "Administration",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 581,
+   "text": "Locations \u2014 /administration/locations \u2014 client-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 583,
+   "text": "Roles & Permissions \u2014 /administration/roles-permissions \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 585,
+   "text": "Staff \u2014 /administration/staff \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 587,
+   "text": "Departments \u2014 /administration/departments \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 589,
+   "text": "Taxes \u2014 /administration/taxes \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 591,
+   "text": "Labor Rates \u2014 /administration/labour-types \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 593,
+   "text": "Canned Lines \u2014 /administration/canned-lines \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 595,
+   "text": "Payment Methods \u2014 /administration/payment-methods \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 597,
+   "text": "Fees & Discounts \u2014 /administration/adjustment-templates \u2014 client-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 599,
+   "text": "Asset Types \u2014 /administration/vehicle-types \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 601,
+   "text": "Categories \u2014 /administration/categories \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 603,
+   "text": "Pricing \u2014 /administration/pricing \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 605,
+   "text": "Reports",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 606,
+   "text": "IBS Batch Transactions \u2014 /reports/batch-transactions \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 608,
+   "text": "Sales Tax \u2192 Invoices \u2014 /reports/sales-tax/invoices \u2014 server-side",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 610,
+   "text": "Dashboard",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 611,
+   "text": "Dashboard \u2014 /dashboard \u2014 no working narrowing today (the filter binding is never assigned)",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 613,
+   "text": "Dashboard report drill-down \u2014 /dashboard/:reportKey \u2014 no working narrowing today (the filter binding is never assigned)",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 615,
+   "text": "Naming note for QA: seven surfaces are named differently in code than in the UI \u2014 Locations (component Workplaces), Labor Rates (route title \"Labour Types\"), Asset Types (route title \"Vehicle Types\"), Catalog (route title \"Parts Catalogue\"), IBS Batch Transactions (route title \"Batch Transactions\"), Roles & Permissions (the component name carries a typo, RolesPermisson), and Vendor Invoices (route /parts/deliveries). Locate surfaces by URL rather than by name.",
+   "reason": "prose / rationale / key-decision narrative"
+  },
+  {
+   "line": 616,
+   "text": "Negative Cases:",
+   "reason": "label \u2014 section heading inside a story"
+  }
+ ],
+ "nonblank": 369
+}
