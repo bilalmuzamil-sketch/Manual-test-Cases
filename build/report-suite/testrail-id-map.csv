@@ -83,6 +83,7 @@ SBC-API-02,C30191,Sorting is applied on the server and re-fetches the first page
 SBC-API-03,C30192,The Customer type-ahead queries the server instead of loading every name,SBC — API
 SBC-API-04,C30193,Customer rows are server-paginated; the totals row is server-computed,SBC — API
 SBC-API-05,C30194,"Exports are server-generated and the 10,000-row cap is counted first",SBC — API
+SBC-API-06,C43546,The back end serves SBC report data and export on ordinary reports access,SBC — API
 SBR-NAV-01,C30195,"Sales By Representative under Performance, below existing links; titles correct",SBR — Access & Navigation
 SBR-NAV-03,C30197,The nav entry fits the full Sales By Representative label; no truncation,SBR — Access & Navigation
 SBR-PERM-01,C30198,Sales By Representative is visible to anyone who sees another Performance report,SBR — Permissions
@@ -218,7 +219,7 @@ PV-ROW-02,C30342,A Special Order part is one merged row summed across selected l
 PV-ROW-03,C30343,"Rows load ranked by Demand descending, indicator on the Demand header",PV — Row Model
 PV-ROW-04,C30344,"A header click sorts ascending first, toggles, and places nulls by direction",PV — Row Model
 PV-ROW-05,C30345,"Sticky header, all-left alignment on screen, and plain-text Type values",PV — Row Model
-PV-ROW-06,C30346,Info icons sit on Units Sold; Demand and Turns / Yr with descriptions,PV — Row Model
+PV-ROW-06,C30346,"Info icons sit on Units Sold, Demand and Turns/Yr with descriptions",PV — Row Model
 PV-ROW-07,C30347,Description; Category and Vendor truncate on hover; Part # never does,PV — Row Model
 PV-ROW-08,C30348,Em-dash only in nullable fields; counts and Revenue/Margin are never null,PV — Row Model
 PV-ROW-09,C30349,"An inventory part drops out only with no movement, no stock and no revenue",PV — Row Model
@@ -257,6 +258,7 @@ PV-EXP-07,C30381,"Em-dash in both exports; Last Sale reads ""N days"" in the PDF
 PV-EXP-08,C30382,"PDF export alignment: Type centered, text left, numeric and money right",PV — Exports
 PV-EXP-10,C30384,Export toasts: exact success texts; server or fallback error text on failure,PV — Exports
 PV-EXP-11,C38885,An over-cap Parts Velocity export is refused with the too-large message,PV — Exports
+PV-EXP-12,C43547,A large PDF download fails outright while the CSV of the same view works,PV — Exports
 PV-VIS-01,C30385,The report uses the standard two-tone layout,PV — Visual Conformance
 PV-VIS-02,C30386,Toolbar and table detail styling matches the suite paddings and borders,PV — Visual Conformance
 PV-VIS-03,C30387,Dark mode is supported and the grey info icon keeps 3:1 contrast in both,PV — Visual Conformance
@@ -297,7 +299,7 @@ TU-DAY-04,C30421,One control in the table header expands or collapses all techni
 TU-DAY-05,C30422,Expansion state is view-only: it resets on any reload and fresh visit,TU — Per-Day Breakdown
 TU-TECH-01,C30423,Filter by Technician starts with every technician selected on a first visit,TU — Technician Filter
 TU-TECH-02,C30424,Deselecting a technician hides the row and recalculates the Summary,TU — Technician Filter
-TU-TECH-03,C30425,Select all and Clear all controls set every technician on or off,TU — Technician Filter
+TU-TECH-03,C30425,All technicians and Clear all controls set every technician on or off,TU — Technician Filter
 TU-TECH-04,C30426,Previously deselected technicians stay deselected on the next visit,TU — Technician Filter
 TU-LINK-01,C30428,Total Hours is a real link with a non-color affordance and keyboard access,TU — Deep Links
 TU-LINK-02,C30429,The Total Hours link opens Timesheet Activities in the same tab,TU — Deep Links
@@ -330,7 +332,7 @@ WIP-TAB-02,C30452,Four tabs in a fixed order with the partially-completed tab se
 WIP-TAB-03,C30453,Each tab label shows its work-order count in parentheses,WIP — Tabs
 WIP-TAB-05,C30455,There is no Trend / over-time tab or chart,WIP — Tabs
 WIP-SCOPE-01,C30456,Every open service WO at a selected location appears in the report,WIP — Scope & Loading
-WIP-SCOPE-02,C30457,Invoiced; Paid; Declined and part-sale work orders never appear,WIP — Scope & Loading
+WIP-SCOPE-02,C30457,Invoiced; Paid and part-sale work orders never appear,WIP — Scope & Loading
 WIP-SCOPE-03,C30458,Each qualifying work order appears exactly once in exactly one tab,WIP — Scope & Loading
 WIP-SCOPE-04,C30459,While loading the standard indicator shows and old rows stay until data,WIP — Scope & Loading
 WIP-SCOPE-05,C30460,No qualifying work orders: every tab shows the no-data message and no Totals,WIP — Scope & Loading
@@ -419,11 +421,11 @@ IV-CALC-04,C30548,Total Sell is quantity × Unit Sell and Total Cost is quantity
 IV-CALC-05,C30549,Margin is Total Sell minus Total Cost for the whole on-hand quantity,IV — Valuation & Columns
 IV-CALC-06,C30550,Margin % is Margin over Total Sell to one decimal; em-dash when Sell <= 0,IV — Valuation & Columns
 IV-COL-01,C30551,With every column on they appear in the fixed order with the set alignment,IV — Valuation & Columns
-IV-COL-02,C30552,Value formats: Qty on Hand to two decimals; money as US-dollar currency,IV — Valuation & Columns
+IV-COL-02,C30552,Value formats: Qty to two decimals; money as US-dollar currency,IV — Valuation & Columns
 IV-COL-03,C30553,Total Cost is bold and pinned far right; it stays put on sideways scroll,IV — Valuation & Columns
 IV-COL-04,C30554,On a first visit the default columns show and the rest stay available,IV — Valuation & Columns
 IV-COL-05,C30555,"Category and Vendor show their names; an em dash (""—"") when the part has none",IV — Valuation & Columns
-IV-TOT-01,C30556,"Totals row: Total label, blank identity/per-unit cells, pinned bold Total Cost",IV — Totals Row
+IV-TOT-01,C30556,"Totals row: Totals label, blank identity/per-unit cells, pinned bold Total Cost",IV — Totals Row
 IV-TOT-02,C30557,"Totals row sums the FULL filtered set on the server, not just the visible page",IV — Totals Row
 IV-TOT-03,C30558,Totals-row Margin % is recomputed from the totals; not an average of rows,IV — Totals Row
 IV-DATE-01,C30561,Date range offers the standard presets plus Custom; no All Time option,IV — As-of Date & Snapshots
@@ -443,7 +445,7 @@ IV-LOC-01,C30574,The Location filter is a rightmost multi-select with an All loc
 IV-LOC-02,C30575,"Selecting one, several, or all locations reloads the report scoped to that set",IV — Location Filter
 IV-LOC-03,C30576,Scoping never includes an inaccessible location,IV — Location Filter
 IV-LOC-04,C30577,Inventory Value: the Location filter is hidden for a one-location user,IV — Location Filter
-IV-LOC-06,C38917,"The Location column is automatic, sits after Vendor, and never reads Multiple",IV — Location Filter
+IV-LOC-06,C38917,The Location column sits after Vendor and never reads Multiple,IV — Location Filter
 IV-PERS-01,C30579,Column Selection toggles columns; Total Cost cannot be turned off,IV — Column Selection & Persistence
 IV-PERS-02,C30580,Toggling columns never reorders them,IV — Column Selection & Persistence
 IV-PERS-03,C30581,The report remembers all filters; columns and sort per browser,IV — Column Selection & Persistence
@@ -460,6 +462,7 @@ IV-EXP-05,C30591,Downloaded files are named inventory-value-report.pdf and .csv,
 IV-EXP-06,C30592,Exports are generated server-side over the full filtered set,IV — Exports
 IV-EXP-07,C30593,An over-cap set produces no file and shows the too-large-to-export message,IV — Exports
 IV-EXP-09,C30595,Download notifications: verbatim success and failure texts per format,IV — Exports
+IV-EXP-10,C43548,A large Inventory Value PDF fails instead of being refused politely,IV — Exports
 IV-VIS-01,C30596,All-white table with no row shading on the standard report backdrop,IV — Visual & Accessibility
 IV-VIS-02,C30597,Toolbar layout: menu leftmost then Column Selection; then the 5 filters,IV — Visual & Accessibility
 IV-VIS-04,C30599,Long Description; Category and Vendor truncate on hover; Part # never does,IV — Visual & Accessibility
