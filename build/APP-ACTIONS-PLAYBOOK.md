@@ -632,7 +632,7 @@ uses these SEVEN sections IN THIS ORDER.** Do not re-derive this (Rule 27). Cano
 |---|---|---|
 | 1 | **Description** | Simple, layman-understandable. Plain words, **no jargon, no codes, no endpoints**. What is wrong, so anyone in the business understands it — plus why it matters. |
 | 2 | **Branch / Environment** | **Stated explicitly, never assumed:** the branch/URL tested (e.g. `https://sv8582.qa.shopview.com`), the API host, the **build marker** (`<meta name="app-version">`, e.g. `v3.4.1-0ed4433`), the org/location ids, and the **date/time observed**. |
-| 3 | **Steps to reproduce** | **REAL numbered steps a layman can follow**, using the **exact on-screen labels** (Rule 9). **If data is needed, include the steps that CREATE it.** **NO API calls in this section**, and no "requires a large dataset" hand-waving — a person clicking the product must get end to end. If the fault genuinely cannot be reached from any screen, **say exactly that** and point at section 7. |
+| 3 | **Steps to reproduce** | **REAL numbered steps a layman can follow**, using the **exact on-screen labels** (Rule 9). **If data is needed, include the steps that CREATE it.** **NAME THE EXACT TEST DATA — see the hard requirement below; a step that does not name it is non-compliant.** **NO API calls in this section**, and no "requires a large dataset" hand-waving — a person clicking the product must get end to end. If the fault genuinely cannot be reached from any screen, **say exactly that** and point at section 7. |
 | 4 | **Expected behaviour** | What should happen, in plain words. Quote the governing requirement if there is one (Rule 25). |
 | 5 | **Current behaviour** | What actually happens, in plain words. |
 | 6 | **Images** | Attach them **AND embed them inline so they RENDER in the description** — not merely a file list. If no image exists, **say so and say why** (never imply one). |
@@ -652,6 +652,52 @@ uses these SEVEN sections IN THIS ORDER.** Do not re-derive this (Rule 27). Cano
 > obligation still stands INTERNALLY** — the `RECHECK-QUEUE.md` files stay exactly as they are, and a
 > finding taken from a non-final build is still re-checked when the build moves. A future pass must not
 > read "no provisional disclaimer" as "no re-check duty".
+
+### HARD REQUIREMENT ON SECTION 3 — NAME THE EXACT TEST DATA (QA lead, 2026-08-04)
+
+**His words, verbatim:** *"This is not reproducible with the canned line I used, either you used a
+different canned line (You should always name the canned line you used) unblock yourself by using
+different canned lines."*
+
+**THE RULE: a reproduction that does not name the data it used is NOT A REPRODUCTION.** Steps to
+reproduce must name **every piece of data the behaviour could depend on, by its exact on-screen
+name** — because the reader will pick a *different* one, get a *different* result, and close the
+ticket. That is exactly what happened to SV-8821.
+
+**NAME ALL OF THESE (every one that the flow touches; write "any" ONLY where you have PROVEN it does
+not matter, and say how you proved it):**
+
+| What | How to name it |
+|---|---|
+| **the canned line / pre-set job** | its exact name, e.g. *HD CVIP air brake trailer single/tandem* — and its price shape (fixed labour · fixed line total · hourly rate), because the catalogue mixes all three |
+| **the customer** | the exact company name, e.g. *Aaborough Works* |
+| **the contact person** | the exact name — **and whether one is set at all**, which is itself a behaviour-changing state |
+| **the part** | part number **and** whether it is cored / special-order / in stock |
+| **the asset** | year + make + model **and** VIN/serial, e.g. *2020 Ford Transit, VIN 86J8FAC1VALJ43SJY* |
+| **the work-order state** | Estimate · Approved · Complete · **Invoiced** · Paid — these behave differently |
+| **the location / workplace** | e.g. *Staging Heavy Duty - 9919* — writes are workplace-scoped |
+| **the role / user** | who you were signed in as, e.g. `admin@shopview.com` (Administrator) |
+| **the date range** | the exact from/to used, and the report's own date basis |
+| **money** | the resulting totals, so the reader can confirm they built the same thing |
+
+**COMPLIANCE TEST — apply it to your own text before filing:**
+- ❌ *"Create a work order with a canned line."* — non-compliant.
+- ✅ *"Create a work order and add canned line **HD CVIP air brake trailer single/tandem** (fixed
+  labour, $350.00). The total should read **$406.09**."* — compliant.
+
+**AND STATE WHAT YOU RULED OUT.** If several values were tried, list them and their results — a
+short table of *"these behave the same"* saves the reader the work you already did, and it is the
+proof that the variable is not the cause. If a value could **not** be tried, say which and why.
+
+**RATIONALE — this is exactly how SV-8821 was lost.** Its steps said *"choosing a pre-set (canned)
+job so it carries a price"*, naming none. The seeding script behind the evidence had silently
+filtered the catalogue to `c.fixed_price && workplace === HD` — **11 of the 79 canned lines** — so the
+report rested on a narrow slice nobody could see. The QA lead used a different one, saw it work, and
+closed the ticket. **Re-testing then showed the canned line was never the variable at all: the real
+condition was that the work order had no CONTACT person, which disables the Finance tab entirely
+("Please select a contact for the asset") and makes the failure unreachable from any screen.** Naming
+the data in the first place would have surfaced that in the first hour. Full evidence:
+`build/report-suite/defect-pack-2026-08-04/repro-sv8821/` and the corrected SV-8821 description.
 
 ### INLINE IMAGES — the mechanism that actually works (proven 2026-08-04)
 
@@ -1676,9 +1722,48 @@ from the payload alone.
    completing a line ("Line can not be completed without a tech story"). **`/lines/change` returns 500.**
 5. `POST /api/work-orders/lines/change-status {line_id, status:'complete'}` → 200.
 6. `POST /api/work-orders/change-status {id, status:'complete'}` → 201. **The field is `id`, not `work_order_id`.**
-7. `POST /api/invoices/create {work_order_id}` — **returns 500 on this branch** (the UI's Create Invoice on
-   the Finance tab fails too, via `POST /api/work-orders/invoices/estimate`). This is the one step that
-   blocks seeding new rep rows.
+7. `POST /api/invoices/create {work_order_id}` → **201** — **but ONLY if the work order carries a
+   CONTACT PERSON.** Without one it returns **500**. See the next block: this is the single most
+   expensive thing this chain got wrong.
+
+**⚠️ THE CONTACT IS MANDATORY FOR INVOICING — the correction that cost us SV-8821 (proven 2026-08-04,
+build `v3.4.1-0ed4433`).** The earlier version of this recipe said `invoices/create` "returns 500 on
+this branch" and that the UI's Create Invoice failed too. **Both statements were wrong**, and they were
+wrong because the chain above never set a contact.
+
+- **`POST /api/work-orders/create` does NOT set a contact unless you pass one.** Add
+  **`customer_id: <contactId>`** to the create payload — on this build **`company_id` is the business
+  and `customer_id` is the CONTACT PERSON**, which is easy to misread as the same thing.
+- **Get a contact id from `GET /api/customers/view/{companyId}` → `data.company.contacts[]`.**
+  (`/api/customers/{id}/contacts` is **404**; not every company has one — pick a company where
+  `contacts_count > 0`.)
+- **On an existing work order:** `POST /api/work-orders/change-contact
+  {work_order_id, vehicle_id, contact_id, update_vehicle:true}` → **200**. This is what the UI sends;
+  `update_vehicle:true` writes the contact onto the **asset** permanently (the UI asks *"Would you like
+  to change to the new contact for this asset permanently?"* → **YES**).
+- **With a contact: `invoices/create` → 201** (work order status → **Invoiced**) and
+  `POST /api/work-orders/invoices/estimate` → **200**. **Without: both → 500** with the generic
+  `"An error occurred…"` body. Proven with everything else held constant (same customer, same asset,
+  same canned line, identical `sub_total 386.75` / `total_cost 406.09`).
+- **The bare `{work_order_id}` body is fine** — the UI sends a much larger body, but the minimal one
+  returns 201 once a contact exists, so **do not chase the payload shape.**
+- **UI-side gate (useful for any invoicing test):** with no contact the work order's **Finance tab is
+  disabled** (`aria-disabled="true"`, tooltip **"Please select a contact for the asset"**) and **no
+  Create Invoice button exists in the DOM**. The **Create Work Order** dialog has only *Customer ·
+  Asset · Asset Here?* — **no Contact field** — so every freshly created work order starts in that
+  state. The **New Asset** dialog makes **`Contact *`** required, which is why the tooltip says
+  "for the asset".
+
+**⚠️ Canned lines that bring PARTS cannot reach Complete without receiving them first.**
+`GET /api/work-orders/canned-lines` on this branch returns **79** lines (all at Heavy Duty): **11**
+with `fixed_price` (Fixed labour), **3** with `fixed_line_total`, **65** hourly via `labour_rate`;
+**37 pull catalogue parts**. For a parts-bearing line,
+`POST /api/work-orders/lines/change-status {status:'complete'}` → **400 ``"Line can`t be completed with
+unfulfilled part requests."``**, so the work order never completes and `invoices/create` correctly
+answers **400 `"Work order is not complete."`**. **Pick a `total_parts === 0` canned line** for any
+seed that only needs a completed, priced line — filtering on `fixed_price` (as the original script did)
+narrows you to 11 lines for no reason and hides the parts distinction that actually matters.
+Enumerator: `build/report-suite/defect-pack-2026-08-04/repro-sv8821/tools/enumerate_canned.mjs`.
 
 **Deleting seeded work orders.** A Complete/Invoiced WO cannot be deleted — first
 `POST /api/work-orders/change-status {id, status:'estimate'}`, then
