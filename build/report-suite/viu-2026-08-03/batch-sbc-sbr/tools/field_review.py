@@ -32,9 +32,18 @@ SPEC_FILES = {
 TITLE_MAX = 80
 BUILD_MARKER = "v3.4.1-0ed4433"
 
+# Rule-4 API detector. Deliberately NARROW: an earlier broad version produced 7 false positives
+# from ordinary English ("delete it", "inclusive endpoints", "post-click links", font weight "400",
+# "get back to"). API content means an actual route, an uppercase HTTP verb used as a verb, an
+# HTTP status code named as such, or an explicit request/response reference.
 API_PAT = re.compile(
-    r"(/api/|\bHTTP\b|\bGET\b|\bPOST\b|\bPUT\b|\bPATCH\b|\bDELETE\b|"
-    r"\b(?:200|201|204|400|401|403|404|409|422|500)\b|endpoint|payload|response body)", re.I)
+    r"(/api/[a-z0-9\-/{}]+"                             # a real route
+    r"|\bHTTP\s*(?:status\s*)?\d{3}\b"                # "HTTP 200"
+    r"|\b(?:status|returns?|responds?\s+with)\s+(?:code\s+)?(?:200|201|204|400|401|403|404|409|422|500)\b"
+    r"|\b(?:GET|POST|PUT|PATCH|DELETE)\s+/"             # "GET /api/..."
+    r"|\bresponse\s+(?:body|payload|JSON)\b"
+    r"|\brequest\s+(?:body|payload)\b"
+    r"|\bAPI\s+(?:call|request|response|endpoint)\b)")
 BRITTLE_PAT = re.compile(r"\b(exactly|only these|no other|the complete list|and nothing else)\b", re.I)
 TICKET_PAT = re.compile(r"\bSV-\d+\b")
 ANCHOR_PAT = re.compile(r"\bS\d+-[RNE]\d+[a-z]?\b")
