@@ -38,8 +38,11 @@
 >   DESIGN-FETCH QUEUES (Rule 35) — `ls build/*/design-*/PENDING-FIGMA-FETCH.md`; if a queue is
 >   OPEN and now >= its DUE-AT, run its fetch command IMMEDIATELY without asking (no
 >   authorization needed), and on another rate limit append the attempt + re-arm DUE-AT = new
->   error time + 9 h. OPEN NOW: `build/filters/design-2026-07-31/PENDING-FIGMA-FETCH.md`
->   (73/85 PNGs, DUE-AT `2026-07-30T23:27:02Z`).**
+>   error time + 9 h. **NO QUEUE IS OPEN as of 2026-08-04** — the Filters queue
+>   `build/filters/design-2026-07-31/PENDING-FIGMA-FETCH.md` is **CLOSED at 85/85**
+>   (2026-07-31T08:58:40Z, cleared over REST `/v1/images` with the QA lead's token). The
+>   earlier "OPEN NOW 73/85, DUE-AT `2026-07-30T23:27:02Z`" pointer that stood here was
+>   **STALE** — corrected 2026-08-04. Still run the glob at every session start.**
 > - **AT EVERY SESSION START (and before/after any project work): CHECK FOR OPEN NON-FINAL-BUILD
 >   RE-CHECK QUEUES (Rule 49) — `ls build/*/viu-*/RECHECK-QUEUE.md`; a build declared NOT FINAL
 >   yields PROVISIONAL findings only, so every finding is queued with its BUILD MARKER and no suite
@@ -746,8 +749,24 @@ deliver the 7-tab management report.
    **PO: Branko** (full name TBC — same PO as Global Search; never mix PO
    attributions: Filters=Branko, Global Search=Branko, Fees&Discounts=Chris Ward,
    Simple Flow=Milos).
-   **⚠️ Epic/Jira key: NOT AVAILABLE YET — ASK THE USER for it when VIU begins**
-   (every story's Jira field reads "TBD"; do NOT invent).
+   **✅ Epic/Jira key: SV-8785 "Filters" — FOUND + VERIFIED LIVE 2026-08-04.** This
+   **SUPERSEDES** the long-standing "no epic exists / all 170 SV epics enumerated, none is
+   Filters" finding, which was **true on 2026-07-31 and went stale within hours**: the epic
+   was created **2026-07-31T07:51:51-0500 = 12:51 UTC**, AFTER that enumeration ran, and
+   Branko linked it into the spec at 13:07/13:10 UTC (Confluence v13→v14 — the ONLY content
+   change in either version). Verified `GET /rest/api/3/issue/SV-8785` → HTTP 200, type
+   **Epic**, hierarchy level 1, status Open. **14 children SV-8786…SV-8799 map 1:1 BY TITLE
+   AND IN ORDER onto the spec's 14 stories, so `Story n → SV-(8785+n)`** (Rule-37 Tier-1
+   check, two independent ways: `parent=SV-8785` → 14, `"Epic Link"=SV-8785` → 14, same keys,
+   no paging remainder). **All 110 cases now carry a real ticket in `refs`** — 66 single-story
+   keys + 44 the epic marked `[epic]` for cross-cutting/unanchored cases (the compact marker
+   is deliberate: TestRail rejects a `refs` comma-entry over 248 chars, and these already run
+   to 248) — pushed + byte-verified 2026-08-04 and mirrored into a **NEW `refs` column** on
+   `build/filters/testrail-id-map.csv` (110/110). **Rule 20 is satisfiable for Filters for the
+   first time.** **SV-8795 (Filter Persistence) and SV-8796 (URL State) are already `Ready for
+   QA`** — the first sign a QA env may be near. Evidence:
+   `build/filters/provenance-2026-08-04/SOURCE-CURRENCY.md`. **LESSON (Rule 31): a
+   proven-absence finding has a shelf life — re-check it, do not cache it.**
    **CANONICAL STATE DOC (read first for resume):** `build/filters/PROJECT-STATE.md`
    — single authoritative snapshot (status, deliverables index, open questions,
    env/access TBD, how-to-resume).
@@ -767,10 +786,29 @@ deliver the 7-tab management report.
    Branko PRD/answers → SPEC-RELEVANCE-RECONCILIATION + build-accurate wording + live
    VIU on the 43 new cases → authorized add_case push. Canonical resume doc:
    build/filters/PROJECT-STATE.md (2026-07-27 header).
-   **STATUS 2026-07-31 (LATEST — three-dimension Ruthless Usefulness Audit RUN + consolidation
+   **STATUS 2026-08-04 (LATEST — STANDING RULE 54 PROVENANCE RETROFIT EXECUTED, user-authorized;
+   resume `build/filters/provenance-2026-08-04/`):** all **110/110** cases now end their Expected
+   Results with a plain provenance sentence naming **epic SV-8785** (see the epic entry above) + the
+   **Filters specification version 1.6** + the case's own anchors — **state 1 (NO build date; still
+   no Filters QA env)**. `update_case` ONLY: 110 cases / 111 ops, every one HTTP 200 +
+   **byte-verified MATCH, 28 fields compared each** (Rule 50); **each op wrote `custom_expected` +
+   `refs`**, the refs being the **epic backfill that replaced the now-false literal "Filters (no Jira
+   epic)"**. **Run 352 verified untouched** — 110 tests set-equal both ways, **all 395 result records
+   present BY ID**. **Rule-41 whole-case re-read of all 110** found the paste-corrupted **FLT-MOB-04
+   C29624** (refs artefact FIXED in the same write; the BODY reflow is **STAGED not executed** —
+   `STAGED-REPAIRS.md` — because the case sits in the frozen mobile cluster) and **0 other defects**.
+   **Rule-28 cross-case sweep: 0 contradictions**, and it caught one coherence issue of our own —
+   **FLT-MOB-08 C29628** reclassified `plain` → `design_awaiting` and re-pushed. **Honesty variants:
+   4 PO-ruling (Status chip) · 9 prose-only+PO-answers (Parts/Reports) · 8 design-awaiting (mobile
+   "Apply filters" — 2 HIGH risk, and the ask has NEVER been sent) · 2 no-anchor · 87 plain.**
+   Defence register: `build/filters/provenance-2026-08-04/PO-RULING-DEFENCE.md`. **NOTE: the
+   permanent-persistence ruling is NO LONGER a conflict — Branko fixed S10-R2 in v1.6.**
+   **STATUS 2026-07-31 (three-dimension Ruthless Usefulness Audit RUN + consolidation
    EXECUTED; audit dir build/filters/quality-audit-2026-07-31/):** 137 → **110 local / 94 live**
    (2 update_case + 27 local-only retirements + 12 sense repairs); audit tally = **1 nonsense
-   (RETAINED per user ruling) + 0 missing-traceability**. **PENDING:** 39 title trims; the 19
+   (RETAINED per user ruling) + 0 missing-traceability**. **PENDING:** ~~39 title trims~~
+   (**DONE — re-measured live 2026-08-04: 0 of 110 titles exceed 80 chars, longest is exactly
+   80**); the 19
    dropdown merges (await QA-branch LIVE check of the shared-dropdown-component assumption); the
    9 FLT-SRCH cases (await Branko's Global-Search ownership confirmation — user ruling 2026-07-31:
    do NOT delete unless he confirms).
@@ -837,7 +875,10 @@ deliver the 7-tab management report.
    assessment §0.6, deliverables index, open questions, env/access TBD, how-to-resume).
    **STATUS 2026-07-27 (LATEST — EPIC SV-8685 BACKFILL + DESIGN/JIRA DELTAS + NEW-SCOPE, LOCAL
    ONLY, NO TestRail writes; resume `build/schedule/PROJECT-STATE.md` §0.0-EPIC):** epic = **SV-8685**
-   / 15 stories SV-8686..SV-8700. Applied locally (plan item 1): (1) Rule-20 refs backfilled on ALL
+   / 15 stories SV-8686..SV-8700 **(+ SV-8812 since 2026-08-04 = 16 children — a Task,
+   "Set up a dedicated QA environment for testing", Board Backlog; NOT a testable requirement,
+   it is the ticket for the very thing blocking our VIU. All 15 stories also moved Open →
+   In Progress by 2026-08-04 — a status move, so NO case content changed).** Applied locally (plan item 1): (1) Rule-20 refs backfilled on ALL
    **167** active cases (`<TICKET> (<spec-anchor>)`, cross-cutting perms → epic SV-8685; resolves
    OQ-2); (2) 10 tester-facing edits — SCH-FILT-01/C29942 "Filters", SCH-VIEW-01/C30042 "Filter &
    Display", SCH-EVT-01/C30016 "Create Event", SCH-REAS-03/C30054 menu=Create Event+New Work Order,
@@ -862,10 +903,27 @@ deliver the 7-tab management report.
    transient HTTP 000). Audit `testrail-execution-log-epic-2026-07-27.md`; manifest header = EXECUTED.**
    Scripts: `epic-sv8685/backfill_refs.py`, `epic-sv8685/patch_edits.py`. Design-pinned ≠
    VIU-Verified (Rule 12); live VIU still pending QA branch (OQ-3).
-   **STATUS 2026-07-31 (LATEST — three-dimension Ruthless Usefulness Audit RUN + consolidation
+   **STATUS 2026-08-04 (LATEST — STANDING RULE 54 PROVENANCE RETROFIT EXECUTED, user-authorized;
+   resume `build/schedule/provenance-2026-08-04/`):** all **165/165** cases now end their Expected
+   Results with a plain provenance sentence naming **epic SV-8685** + the **Schedule specification
+   version 23** + the case's own § anchors — **state 1 (NO build date; there is still no Schedule QA
+   env, SV-8812)**. `update_case` ONLY: 165 ops, every one HTTP 200 + **byte-verified MATCH, 28
+   fields compared each**, every unintended field proven byte-identical (Rule 50). **Run 357 verified
+   untouched** — 165 tests set-equal both ways, **all 429 result records present BY ID**,
+   include_all still false. **Rule-41 whole-case re-read of all 165** produced 1 fix (SCH-HRS-04
+   C38849 `(/02)` leak) and **0 other defects** (0 stale anchors, 0 over-80 titles, 0 Rule-4
+   misplacements). **Rule-28 cross-case sweep: 0 contradictions.** **Honesty variants: 5 PO-ruling ·
+   3 spec-states-it-BOTH-WAYS-with-no-ruling (2 HIGH risk: shop closures) · 2 tech-plan limits ·
+   5 no-spec-anchor · 150 plain.** Defence register (quote-ready if challenged):
+   `build/schedule/provenance-2026-08-04/PO-RULING-DEFENCE.md`; source currency
+   `SOURCE-CURRENCY.md`; per-op audit `testrail-execution-log.md`. **Spec version is ONE generator
+   constant** (`tools/classify.py`), and the stamper is **idempotent** (proven over 3 runs) — a
+   re-stamp REPLACES the line, never appends.
+   **STATUS 2026-07-31 (three-dimension Ruthless Usefulness Audit RUN + consolidation
    EXECUTED; audit dir build/schedule/quality-audit-2026-07-31/):** 190 → **165 ACTIVE**
    (49/49 TestRail ops verified — 20 merge groups + 2 cuts + 6 sense repairs); audit tally =
-   **0 nonsense + 0 missing-traceability**. **PENDING: 79 title trims.**
+   **0 nonsense + 0 missing-traceability**. **PENDING:** ~~79 title trims~~ (**DONE —
+   re-measured live 2026-08-04: 0 of 165 titles exceed 80 chars, longest is exactly 80**).
    **PRIOR STATUS: TestRail SYNC EXECUTED 2026-07-22 (user-authorized, incl. delete) — the staged
    spec_1+design+Branko reconciliation is now LIVE in TestRail: 7 update_case + 2 add_case +
    1 delete_case, ALL HTTP 200, ALL re-GET verified MATCH; run 325 untouched, only group 4254
