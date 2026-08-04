@@ -1,0 +1,9 @@
+{
+ "30557": {
+  "custom_steps": "1. Note the totals row's Qty, Margin, Total Sell, and Total Cost on page 1.\n2. Move to page 2 and read the totals row again.\n3. Cross-check the Total Cost total against a known seeded subset (filter down to a handful of ZZAUTOTEST parts whose values you can sum by hand).\n4. Select one Category and read the totals row; clear it, select one Vendor; clear it, type a part search matching a subset — reading the totals row each time (from a later page too if the set spans pages).",
+  "custom_expected": "1. The totals row sums Qty, Margin, Total Sell, and Total Cost across the FULL filtered result set — every qualifying row for the current Date, Location, Category, Vendor, and part-search selection, not only the rows on the visible page.\n2. The totals are identical on every page (they do not change as you page).\n3. The hand-summed subset matches the server-computed totals to the cent.\n4. After each filter change the totals row recomputes on the server over the full filtered set, independent of which page is shown."
+ },
+ "30585": {
+  "custom_steps": "1. Sort by Total Cost and check the order of values like $900.00 vs $1,100.00.\n2. Sort by Qty and check the numeric order.\n3. Sort by Description (or Vendor) and check how differently-cased values order."
+ }
+}

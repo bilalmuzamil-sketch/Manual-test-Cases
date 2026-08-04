@@ -356,3 +356,21 @@ if __name__ == '__main__':
     json.dump({str(k): v for k, v in out.items()},
               open(os.path.join(ROOT, 'edit-set.json'), 'w'), indent=1, ensure_ascii=False)
     print('wrote edit-set.json')
+
+
+# ---------------------------------------------------------------------------
+# FOLLOW-UP, added by the mandatory Rule-28 consistency sweep AFTER the first
+# batch: correcting "Qty on Hand" -> "Qty" on C30551/C30552/C30554/C30580 left
+# two cases still using the old label, which is a contradiction we introduced.
+# Same live evidence (the header row and BOTH export files read "Qty").
+FOLLOWUP = {}
+E = FOLLOWUP_E = {}
+
+ed(30557,
+   ('steps', "1. Note the totals row's Qty on Hand, Margin, Total Sell, and Total Cost on page 1.",
+             "1. Note the totals row's Qty, Margin, Total Sell, and Total Cost on page 1."),
+   ('exp', '1. The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost across the FULL filtered result set',
+           '1. The totals row sums Qty, Margin, Total Sell, and Total Cost across the FULL filtered result set'))
+
+ed(30585,
+   ('steps', '2. Sort by Qty on Hand and check the numeric order.', '2. Sort by Qty and check the numeric order.'))

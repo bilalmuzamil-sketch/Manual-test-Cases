@@ -1,0 +1,197 @@
+# TICKET 2 — ready to paste into Jira
+
+| Field | Value |
+|---|---|
+| **Project** | SV (shopview.atlassian.net) |
+| **Issue type** | Bug |
+| **Summary** | Parts Velocity: Turns / Yr is overstated on the "This Year" preset — it divides by one day too few |
+| **Suggested parent** | **SV-8645** — `Velocity - Story 5 - Metric Calculations` |
+| **Parent reasoning** | Turns / Yr is a Parts Velocity metric calculation and SV-8645 is the story that owns those calculations, including the Window divisor definition the defect breaches. It is not an export or filter defect, so SV-8646 / SV-8642 do not own it; and it is specific enough not to belong on the epic. **Caveat for the assignee:** the faulty part is the *date-range window derivation for the preset*, which may physically live in shared range-resolution code (SV-8590's shared report contract) rather than in the Velocity calculation itself. Re-parent if the code says otherwise — the reproduction below tells you which. |
+| **Suggested severity / priority** | **High** |
+| **Severity reasoning** | It puts a **wrong number** on a report a shop uses to decide reordering, **and nobody can tell it is wrong by looking at it** — unlike a failed download, which announces itself. Today's error is 0.47%; the same bug is a 2× error in early January, so its size grows the earlier in the year you look. |
+| **Affects build** | `v3.4.1-0ed4433` on `sv8582.qa.shopview.com` |
+| **Observed** | 2026-08-04, re-confirmed live 04:10–04:16 UTC the same day |
+| **Labels (suggested)** | `reports-suite`, `parts-velocity`, `calculation`, `qa-found` |
+
+---
+
+## What's wrong
+
+On the Parts Velocity report, the **Turns/Yr** figure is worked out over the wrong number of days when
+you use the **This Year** shortcut on the date picker. It leaves one day out of the count, so every
+Turns/Yr number on that view comes out slightly too high.
+
+If you set the very same period by picking the dates by hand instead of using the shortcut, the figure
+is correct. So the sum itself is right — it is the shortcut's idea of how long the period is that is
+wrong.
+
+## Why it matters
+
+Turns/Yr tells a parts manager how fast a part sells through in a year, and it is one of the numbers
+used to decide what to reorder and how much stock to hold. **A wrong figure here cannot be spotted by
+eye** — the number looks perfectly reasonable, and the report gives the reader no reason to doubt it.
+Two people looking at the same period, one using the shortcut and one picking the dates, will see
+different numbers and have no way to know which is right.
+
+Right now the overstatement is small — under half a percent. But the missing day matters more the
+shorter the period is: on 2 January, "This Year" would count **one** day instead of two, and every
+Turns/Yr figure would be **double** what it should be.
+
+**440 parts on the test data are showing an overstated figure at this moment.**
+
+## What should happen instead
+
+The written requirement (Parts Velocity specification, version 4, section 5) is explicit that both the
+first and the last day of the chosen period must be counted:
+
+> "**Window** — the whole-day span of the selected range, **inclusive of both the start and end dates**,
+> with a floor of 1 day (so a single-day range such as Today has Window = 1). This is the divisor used
+> to annualize Turns / Yr."
+
+and the calculation itself:
+
+> "**Turns / Yr** … `(Units Sold ÷ Window days × 365) ÷ On Hand`; renders `0.00` when On Hand is 0."
+
+1 January 2026 to 4 August 2026, counting both ends, is **216** days. The report is using **215**.
+
+## How to see it yourself
+
+No special data is needed — the part below already exists in the test data.
+
+1. Open the **Parts Velocity** report.
+2. Set the date range using the **This Year** shortcut, and press **Apply**.
+3. Open **Column Selection** and switch **Turns/Yr** on — it is hidden until you do.
+4. Search for the part **`BRAKECLEAN`** and note its **Units Sold**, **On Hand** and **Turns/Yr**.
+5. Now set the **same period by hand** on the calendar — **1 January 2026 to 4 August 2026** — and
+   press **Apply**. Look at the same part again.
+6. **The two Turns/Yr figures are different, even though the period is identical.** The hand-picked one
+   is the correct one.
+
+You can check the arithmetic yourself with the two numbers on the row:
+
+- The shortcut gives **1.40648754422**, which is `512 ÷ **215** × 365 ÷ 618`.
+- The hand-picked dates give **1.39997602781**, which is `512 ÷ **216** × 365 ÷ 618` — and 216 is what
+  the requirement asks for.
+
+---
+---
+
+# FOR ENGINEERING — technical evidence
+
+**Environment.** API `https://sv8582api.qa.shopview.com`, build `v3.4.1-0ed4433`. Org
+`d55bc308-e61a-438d-b5f1-c7a73c89d49f`, workplaces `b3c8c820-f815-4cf1-8938-10956c5ee71a` (Heavy Duty)
+and `f8a8b802-7780-4b16-bf10-343caeb616b2` (Lethbridge). Server date at observation: **2026-08-04**.
+
+⚠️ **This QA branch was declared NOT FINAL by engineering.** This finding is provisional. **If it is
+already fixed or still in progress, please close saying so** — we will re-run the probe and correct our
+test cases.
+
+## ⚠️ Read this before looking at the code — the fault is NARROWER than "the divisor is off by one"
+
+An earlier QA note recorded this as *"the window divisor is one day short"* for the range *"Jan 1 –
+Aug 4"*. Re-probing showed that is **not** the whole truth, and the difference is the entire bug:
+
+**`range=this_year` is wrong. `range=custom` over the identical dates is correct.** So **the Turns / Yr
+formula is fine**; it is the **window derived for the preset** that is short. Someone inspecting the
+metric calculation will find nothing wrong with it.
+
+## The decisive A/B — same part, same locations, same type, only the range form changes
+
+```
+A) THE PRESET
+GET /api/reporting/reports/parts-velocity?range=this_year&type=both
+    &locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2
+    &search=BRAKECLEAN
+ -> 200
+    units_sold 512  on_hand 618  turns_per_year 1.40648754422    => implied Window 215
+    units_sold 359  on_hand  12  turns_per_year 50.78875968992   => implied Window 215
+
+B) THE IDENTICAL DATES, AS A CUSTOM RANGE
+GET /api/reporting/reports/parts-velocity?range=custom&start_date=2026-01-01&end_date=2026-08-04
+    &type=both&locations=<same two>&search=BRAKECLEAN
+ -> 200
+    units_sold 512  on_hand 618  turns_per_year 1.39997602781    => implied Window 216   ✅
+    units_sold 359  on_hand  12  turns_per_year 50.55362654317   => implied Window 216   ✅
+```
+
+The divisor is **recovered from the response itself**, so it does not depend on reading any code:
+
+```
+Window = units_sold × 365 ÷ (turns_per_year × on_hand)
+```
+
+## The arithmetic, both ways, on two independent rows
+
+**Row 1 — `BRAKECLEAN` @ Heavy Duty — Units Sold 512, On Hand 618**
+| | Calculation | Result | Matches |
+|---|---|---|---|
+| Build (215) | `512 ÷ 215 × 365 ÷ 618` | **1.40648754422** | the `this_year` value, to all 11 decimals |
+| Spec (216) | `512 ÷ 216 × 365 ÷ 618` | **1.39997602781** | the `custom` value, exactly |
+
+**Row 2 — `BRAKECLEAN` @ Lethbridge — Units Sold 359, On Hand 12**
+| | Calculation | Result | Matches |
+|---|---|---|---|
+| Build (215) | `359 ÷ 215 × 365 ÷ 12` | **50.78875968992** | the `this_year` value |
+| Spec (216) | `359 ÷ 216 × 365 ÷ 12` | **50.55362654317** | the `custom` value |
+
+**Third corroborating row** from the earlier pass — `GREASETUBE`, 208 sold / 39 on hand, returned
+**9.05426356587**; `208 ÷ 215 × 365 ÷ 39` = 9.05426356589; with 216 it is 9.01235.
+
+Error factor = exactly **216 ÷ 215 → every figure 0.465 % high**, and it scales with `1/(days so far)`.
+
+## Which presets are affected — measured on 440–447 rows each, not assumed
+
+| `range=` | Inclusive span the spec requires | Window the build used | Rows measured | Verdict |
+|---|---|---|---|---|
+| **`this_year`** (Jan 1 → today) | **216** | **215** | 440 | **✗ ONE DAY SHORT** |
+| `last_month` (Jul 1 → Jul 31) | 31 | **31** | 6 | ✅ |
+| `last_quarter` (Apr 1 → Jun 30) | 91 | **91** | 447 | ✅ |
+| `last_year` (2025 in full) | 365 | **365** | 416 | ✅ |
+| `this_quarter` (Jul 1 → today) | 35 | **92** | 6 | ⚠️ **not asserted — please check, see below** |
+| `this_month` · `this_week` | 4 / — | not measurable | 0 | no row had both in-period sales and stock |
+
+**Every closed past period is correct.** That is further proof the formula is sound and only the
+current-period window derivation is at fault.
+
+## ⚠️ A second observation we are NOT asserting — `this_quarter`
+
+`range=this_quarter` divided by **92**, which is exactly the inclusive span of the **whole** quarter
+(1 Jul → 30 Sep) rather than quarter-to-date (35). Whether that is wrong depends on what end date the
+**This Quarter** picker actually sets, which we could not read from the API, and only 6 rows carried a
+usable figure. **Please check it while you are in this code** — but we are not claiming it is a defect.
+
+Note also the inconsistency worth a glance: if `this_quarter` uses the whole calendar quarter, then
+`this_year` using 215 (rather than the whole calendar year's 365) means the two current-period presets
+do not derive their windows the same way.
+
+*(Aside, not a defect: `range=last_12_months` is rejected by this endpoint with **HTTP 400**, even
+though the date picker offers a **Last 12 Months** preset — the picker evidently maps it to other
+parameters. Recorded so it is not mistaken for a bug.)*
+
+## What is NOT established
+
+- Whether `this_month`, `this_week` and `last_12_months` share the fault. **Nothing was measurable** —
+  no part on this org has both in-period sales and on-hand stock in those ranges. Producing one needs a
+  new invoice, and invoice creation currently returns HTTP 500 (filed separately), so this is blocked
+  behind that, not skipped.
+- Whether the short window feeds any other calculation. Only Turns / Yr is documented as dividing by
+  Window; the movement and money columns are windowed but not divided by it, and no discrepancy was
+  observed in them.
+- Whether the fault is in the preset→date resolution or in a separate day-count helper.
+
+## Evidence files (in the QA repo)
+
+- `build/report-suite/defect-pack-2026-08-04/probe/turns-ab-probe.json` — the decisive A/B, with the
+  implied window recovered per row
+- `build/report-suite/defect-pack-2026-08-04/probe/turns-presets-probe.json` — all eight presets
+- `build/report-suite/defect-pack-2026-08-04/probe/turns-window-probe.json`
+- `build/report-suite/viu-2026-08-03/batch-pv-tu/evidence/pv/calc-checks.json` → `turnsCheck`
+- `build/report-suite/viu-2026-08-03/batch-pv-tu/VERDICTS.md` line 150
+
+> **Note on attachments:** files were not attached — the actual figures, both arithmetic paths, the
+> recovered divisors and the per-preset table are inlined above so the case can be checked without them.
+
+## QA test cases affected
+
+PV-CALC-09 = C30367 · PV-CALC-16 = C30374. Both will also need their own reproduction wording corrected
+to name the **This Year preset**, since as written they would not reproduce this.
