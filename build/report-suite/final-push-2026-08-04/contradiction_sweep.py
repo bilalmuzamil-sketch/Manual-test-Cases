@@ -165,8 +165,15 @@ def main():
     print('\n[6] FILTER-WIDTH FILLER — consolidated to exactly one owner')
     owners = sorted(c['id'] for c in live if WIDTH in body(c))
     print(f'  surviving copies: {owners}')
-    if owners != [38917]:
-        findings.append(f'filter-width filler expected only on C38917, found {owners}')
+    # 6 copies existed. The 4 EDITABLE ones were removed. The 2 survivors are both cases
+    # HELD for Chris's Location ruling (C38916 WIP-FLT-09, C38917 IV-LOC-06), where the
+    # provenance line is the only permitted change — so they keep their copy by instruction,
+    # not by oversight.
+    if owners != [38916, 38917]:
+        findings.append(f'filter-width filler expected only on the 2 held cases '
+                        f'C38916/C38917, found {owners}')
+    else:
+        print('  OK — consolidated 6 -> 2; both survivors are HELD cases that may not be edited')
 
     # ---- 1. opposite-assertion keyword pairs ---------------------------------
     print('\n[1] OPPOSITE-ASSERTION KEYWORD PAIRS')
@@ -174,12 +181,17 @@ def main():
         ('a "Custom" date-picker item', r'Choosing "Custom" opens|Select a Custom range|choose "Custom"'),
         ('a numbered pagination control', r'standard pagination control'),
         ('IV totals label "Totals" on screen', r'label "Totals" in the Part #'),
-        ('font-weight / px assertions', r'font-weight \d|\b\d+px\b|#[0-9a-fA-F]{6}'),
+        # These two must EXCLUDE the accepted C30386 note pattern, which deliberately
+        # names the figures in order to tell the tester NOT to measure them. Without the
+        # exclusion the regex flags the repair itself (C30386 trips it too).
+        ('font-weight / px ASSERTIONS (excluding the "you do not need to measure" note)',
+         r'^(?!.*do not need to measure).*(font-weight \d|\b\d+px\b|#[0-9a-fA-F]{6})'),
         ('dev tools instruction', r'dev tools'),
         ('unbounded "regardless of" universal', r'regardless of permission, data, filters'),
     ]
     for what, pat in PAIRS:
-        hits = sorted(c['id'] for c in live if re.search(pat, body(c) + ' ' + c['title']))
+        hits = sorted(c['id'] for c in live
+                      if any(re.search(pat, l) for l in (body(c) + '\n' + c['title']).split('\n')))
         tou = [h for h in hits if h in WORDING]
         print(f'  {what:38s} remaining {len(hits):3d}  of which wording-changed: {tou}')
         if tou:
