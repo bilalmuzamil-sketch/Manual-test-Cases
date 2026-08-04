@@ -76,9 +76,13 @@ def main():
 
     by = {c['id']: c for c in under}
     plan = json.load(open(os.path.join(HERE, 'plan.json')))
+    plan2 = json.load(open(os.path.join(HERE, 'plan2.json')))
+    p2 = {p['case_id']: p for p in plan2}
 
     # ── B. EXHAUSTIVE per-case, per-field re-verification ──────────────────
-    print('\n=== B. EXHAUSTIVE RE-VERIFY — every case, every field (Rule 50) ===')
+    # The FINAL expected state of a case = its pre-write snapshot, overlaid with pass-1
+    # intent, overlaid with pass-2 intent. Every field of every case is compared.
+    print('\n=== B. EXHAUSTIVE RE-VERIFY — every case, every field, both passes (Rule 50) ===')
     checked_fields = 0
     for p in plan:
         cid = p['case_id']
@@ -86,22 +90,55 @@ def main():
         if not live:
             fails.append(f'C{cid} MISSING from live')
             continue
-        for f, want in p['intended'].items():
+        expect = dict(p['snapshot'])
+        expect.update(p['intended'])
+        if cid in p2:
+            expect.update(p2[cid]['intended'])
+        for f, want in expect.items():
             got = live.get(f)
             eq = (norm_refs(got) == norm_refs(want)) if f == 'refs' else (got == want)
             checked_fields += 1
             if not eq:
-                fails.append(f'C{cid}.{f} INTENDED mismatch: live={got!r} want={want!r}')
-        for f, was in p['snapshot'].items():
-            if f in p['intended']:
-                continue
-            got = live.get(f)
-            eq = (norm_refs(got) == norm_refs(was)) if f == 'refs' else (got == was)
-            checked_fields += 1
-            if not eq:
-                fails.append(f'C{cid}.{f} UNTOUCHED field changed: live={got!r} was={was!r}')
-    print(f'  cases verified {len(plan)}/{len(plan)}  ·  field comparisons {checked_fields}')
-    print(f'  mismatches: {len([f for f in fails])}')
+                fails.append(f'C{cid}.{f} mismatch: live={got!r} want={want!r}')
+    # any pass-2 case not in pass 1 (there should be none — pass 1 covered all 478)
+    for cid in p2:
+        if cid not in {p['case_id'] for p in plan}:
+            fails.append(f'C{cid} in plan2 but not plan1')
+    print(f'  cases verified {len(plan)}/{len(plan)} (478 expected)  ·  '
+          f'field comparisons {checked_fields}')
+    print(f'  pass-2 cases folded in: {len(p2)}')
+    print(f'  mismatches: {len(fails)}')
+
+    # ── B2. the provenance line + ticket line, checked on ALL 478 ──────────
+    print('\n=== B2. PROVENANCE LINE (all 478) + TICKET LINE placement ===')
+    LEAD = 'This is the expected behaviour as per the build tested on'
+    KNOWN = 'Known issue: the product does not currently do this. It has been filed for a fix here: '
+    n_prov = n_tick = 0
+    for c in ours:
+        e = str(c.get('custom_expected') or '')
+        lines = e.split('\n')
+        if e.count(LEAD) != 1:
+            fails.append(f'C{c["id"]} provenance line count {e.count(LEAD)}')
+        elif not lines[-1].startswith(LEAD):
+            fails.append(f'C{c["id"]} provenance line is not last')
+        elif lines[-2].strip() != '---':
+            fails.append(f'C{c["id"]} no separator above the provenance line')
+        else:
+            n_prov += 1
+        if 'VIU' in e:
+            fails.append(f'C{c["id"]} contains the word VIU')
+        k = e.count(KNOWN)
+        if k > 1:
+            fails.append(f'C{c["id"]} ticket line appears {k} times')
+        elif k == 1:
+            n_tick += 1
+            if lines[-3].startswith(KNOWN) is False:
+                fails.append(f'C{c["id"]} ticket line not directly above the separator')
+            for closed in ('SV-8821', 'SV-8822', 'SV-8823'):
+                if closed in lines[-3]:
+                    fails.append(f'C{c["id"]} links CLOSED ticket {closed}')
+    print(f'  provenance line correct, single and last: {n_prov}/{len(ours)}')
+    print(f'  ticket lines present: {n_tick} (expected 16, all SV-8818/8819/8820)')
 
     # ── C. Rule 38 — foreign cases byte-identical INCLUDING timestamps ─────
     print('\n=== C. RULE 38 — the 5 foreign cases proven untouched ===')

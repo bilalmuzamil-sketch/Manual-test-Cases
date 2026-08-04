@@ -15,9 +15,24 @@ FULL = {'SBC': 'Sales By Customer', 'SBR': 'Sales By Representative',
         'WIP': 'Work In Progress', 'IV': 'Inventory Value'}
 
 plan = {p['case_id']: p for p in json.load(open(os.path.join(HERE, 'plan.json')))}
+plan2 = {p['case_id']: p for p in json.load(open(os.path.join(HERE, 'plan2.json')))}
 rows = [json.loads(l) for l in open(os.path.join(HERE, 'exec-log.jsonl'))]
-ok = [r for r in rows if r.get('verify') == 'MATCH']
+rows2 = [json.loads(l) for l in open(os.path.join(HERE, 'exec-log-pass2.jsonl'))]
+# de-duplicate the 11 identical-payload double-writes caused by two drivers overlapping
+seen = set()
+ok = []
+for r in rows:
+    if r.get('verify') == 'MATCH' and r['case_id'] not in seen:
+        seen.add(r['case_id'])
+        ok.append(r)
 bad = [r for r in rows if r.get('verify') != 'MATCH']
+seen2 = set()
+ok2 = []
+for r in rows2:
+    if r.get('verify') == 'MATCH' and r['case_id'] not in seen2:
+        seen2.add(r['case_id'])
+        ok2.append(r)
+bad2 = [r for r in rows2 if r.get('verify') != 'MATCH']
 iid = {}
 for r in csv.DictReader(open(os.path.join(RS, 'testrail-id-map.csv'))):
     iid[int(r['testrail_case_id'].lstrip('C'))] = r['internal_id']
@@ -71,13 +86,38 @@ A('**DECLARED NORMALISATION (the only one).** TestRail\'s `refs` splits on comma
 A('')
 A('## TOTALS')
 A('')
-A('| | Count |')
-A('|---|---:|')
-A(f'| `update_case` operations attempted | **{len(rows)}** |')
-A(f'| HTTP 200 | **{len(ok)}** |')
-A(f'| Byte-level verification MATCH | **{len(ok)}** |')
-A(f'| Failures of any kind | **{len(bad)}** |')
-A('| `add_case` / `delete_case` / section move / run write | **0** |')
+A('| | Pass 1 | Pass 2 | Total |')
+A('|---|---:|---:|---:|')
+A(f'| Distinct cases written | **{len(ok)}** | **{len(ok2)}** | **{len(set(seen)|set(seen2))}** distinct |')
+A(f'| `update_case` operations | {len(rows)} | {len(rows2)} | {len(rows)+len(rows2)} |')
+A(f'| HTTP 200 | {len([r for r in rows if r.get("http")==200])} | '
+  f'{len([r for r in rows2 if r.get("http")==200])} | — |')
+A(f'| Byte-level verification MATCH | **{len(ok)}** | **{len(ok2)}** | — |')
+A(f'| Verification FAILURES | **{len(bad)}** | **{len(bad2)}** | **{len(bad)+len(bad2)}** |')
+A('| `add_case` / `delete_case` / section move / run write | 0 | 0 | **0** |')
+A('')
+A('**Pass 1** = the provenance line on all 478 + the `refs` spec-version pins + the 22 wording '
+  'repairs. **Pass 2** = the two additions the QA lead sent mid-run (the filed-ticket line and '
+  'the tool names). Pass 1 was already ~85% written when they arrived, so the 66 pass-2 cases '
+  'took a **second write** rather than a combined one. That is stated plainly rather than '
+  'presented as a single-write pass.')
+A('')
+A('### THE ONE ANOMALY, AND IT WAS MINE')
+A('')
+A('The pass-1 log holds **1 `FAIL-DRIFT` (C30272)** and **11 duplicate MATCH entries** '
+  '(C30258-C30262, C30264, C30265, C30267, C30268, C30269, C30271). Cause: **I left two batch '
+  'drivers running concurrently for one batch**, so two executors processed an overlapping slice. '
+  'Both read the SAME `plan.json`, so both wrote the SAME intended payload — the writes are '
+  'idempotent and the end state is correct. The `FAIL-DRIFT` is the Rule-50 guard doing exactly '
+  'its job: the second process re-read C30272, found a state that did not match its snapshot '
+  '(because its sibling had just written it), refused to write over an unexplained state and '
+  'stopped the batch. C30272 was then written and verified cleanly. **The authoritative proof '
+  'that nothing was corrupted is section B of `verify_after.py`**, which re-compares every field '
+  'of all 478 cases against the intended payload and the pre-write snapshot. '
+  '**Process fix applied:** the first driver piped the executor into `tail`, so `set -e` saw '
+  "`tail`'s exit status instead of the executor's and carried on past the stop; and its "
+  'completion test counted log LINES rather than distinct case ids. Both were corrected, and '
+  'the finisher waits for any sibling driver to exit before starting.')
 A('')
 fields = collections.Counter()
 for r in ok:
@@ -132,6 +172,75 @@ A('| **The Location-column set is 8 cases, not 7** | The brief said "the 7 Locat
   'cases" but enumerated eight. Verified against `DELIBERATE-DECISIONS.md` D1: **8**. | All 8 '
   'held; attestation only. |')
 A('')
+A('## PASS 2 — THE FILED-TICKET LINE')
+A('')
+A('**Every ticket status was verified LIVE in Jira before a single link was written** '
+  '(`GET /rest/api/3/issue/<key>?fields=status,resolution`, 2026-08-04):')
+A('')
+A('| Ticket | Live status | Resolution | Linked? |')
+A('|---|---|---|---|')
+A('| [SV-8818](https://shopview.atlassian.net/browse/SV-8818) | **Open** | none | **YES** — 10 cases |')
+A('| [SV-8819](https://shopview.atlassian.net/browse/SV-8819) | **Open** | none | **YES** — 2 cases |')
+A('| [SV-8820](https://shopview.atlassian.net/browse/SV-8820) | **Open** | none | **YES** — 4 cases |')
+A('| [SV-8821](https://shopview.atlassian.net/browse/SV-8821) | **OBSOLETE** | Done | **NO** |')
+A('| [SV-8822](https://shopview.atlassian.net/browse/SV-8822) | **OBSOLETE** | Done | **NO** |')
+A('| [SV-8823](https://shopview.atlassian.net/browse/SV-8823) | **OBSOLETE** | Done | **NO** |')
+A('')
+A('Linking a closed, withdrawn or obsolete ticket as though it were an open fix would tell a '
+  'tester a fix is coming when none is. That is a lie a test case would carry indefinitely, so '
+  'it was refused (Rule 12) and is reported here instead.')
+A('')
+A('**The line written, verbatim:** `Known issue: the product does not currently do this. It has '
+  'been filed for a fix here: https://shopview.atlassian.net/browse/SV-XXXX` — placed below the '
+  'numbered expected items and directly above the provenance line.')
+A('')
+A('**Mapping source:** `../defect-pack-2026-08-04/CASE-IMPACT.md` (never guessed).')
+A('')
+import build_plan2 as B2
+for t, ids in sorted(B2.OPEN_TICKETS.items()):
+    A(f'**{t}** ({len(ids)}): ' + ' · '.join(
+        f'{iid.get(i,"?")} = [C{i}](https://shopview.testrail.io/index.php?/cases/view/{i})'
+        for i in ids))
+    A('')
+A('### Cases whose defect got NO ticket line, and exactly why')
+A('')
+A('| Reason | Cases |')
+A('|---|---|')
+for reason, ids in B2.NO_TICKET.items():
+    A(f'| {reason} | ' + ' · '.join(
+        f'[C{i}](https://shopview.testrail.io/index.php?/cases/view/{i})' for i in ids) + ' |')
+A('')
+A('**None of these had their assertions touched** — the QA lead\'s ruling stands.')
+A('')
+A('## PASS 2 — THE TOOL NAMES')
+A('')
+A('The audit marked **56** cases as needing a tool. They were never unrunnable; they simply never '
+  'said WHAT to use. Each now names the tool and where to get it, **in the preconditions**, in '
+  'plain words. No step and no expected result was changed.')
+A('')
+A('| Tool named | Cases | What the case now tells the tester |')
+A('|---|---:|---|')
+A('| Browser network panel | 18 | press F12 (Ctrl+Shift+I; Mac Cmd+Option+I), open the "Network" tab, reload. **Nothing to install** — built into Chrome, Edge and Firefox |')
+A('| Browser network panel **+ a developer read-back** | 12 | the same, plus the honest addition that a server-stored value cannot be seen from the browser and a developer must read it back |')
+A('| Screen reader | 10 | **NVDA** on Windows (free, nvaccess.org) or **VoiceOver** built into macOS (Cmd+F5); or the F12 "Accessibility" panel as an alternative |')
+A('| Offline / throttling | 7 | F12 → "Network" tab → the throttling dropdown → "Offline" or "Slow 3G"; set it back afterwards |')
+A('| Element inspector (colour / size) | 3 | F12 → inspector → read the value from the "Styles" panel; mark Blocked rather than guess |')
+A('| PDF viewer text search | 1 | open the downloaded PDF and use Ctrl+F. **Nothing to install** |')
+A('| QuickBooks-connected company | 1 | a genuine external dependency — **mark Blocked** if none is available, do not guess |')
+A('| **Total tool lines written** | **52** | |')
+A('')
+A('**Why 52 and not 56.** Four of the original 56 — SBC-TREE-01 = C30121, SBC-TREE-13 = C30133, '
+  'SBC-VIS-01 = C30185, SBR-VIS-01 = C30305 — were **repaired in pass 1** to remove the '
+  'measurement entirely (the C30386 by-eye pattern), so they need no tool at all. Adding a '
+  '"use dev tools" line to them would have contradicted the repair.')
+A('')
+A('**Layman-runnable figure: 422 of 478 → 478 of 478 have an actionable route.** Read that '
+  'honestly: **426** are now runnable by a non-technical tester with no tool beyond the browser '
+  '(422 + the 4 repaired), **51** name a free built-in or free-to-install tool and say exactly '
+  'how to use it, and **1** (the QuickBooks case) remains a genuine external dependency that '
+  'says so plainly and tells the tester to mark it Blocked. **No case is now silent about what '
+  'it needs.**')
+A('')
 A('## PER-OPERATION LOG')
 A('')
 A('| # | Op | Case | Internal ID | Report | HTTP | Byte-level verification | Fields written | '
@@ -147,10 +256,27 @@ for i, r in enumerate(sorted(ok, key=lambda x: x['case_id']), 1):
       + f' | {", ".join("`%s`" % f for f in r["fields"])} | re-verified whole against '
       f'{SPECV.get(rep,"?")} | {"YES — attestation only" if r["held"] else "—"} |')
 A('')
-if bad:
+A('')
+A('### PASS 2 PER-OPERATION LOG')
+A('')
+A('| # | Op | Case | Internal ID | HTTP | Byte-level verification | Fields written | What it added |')
+A('|---:|---|---|---|---:|---|---|---|')
+for i, r in enumerate(sorted(ok2, key=lambda x: x['case_id']), 1):
+    cid = r['case_id']
+    what = []
+    if 'custom_expected' in r['fields']:
+        what.append('filed-ticket line')
+    if 'custom_preconds' in r['fields']:
+        what.append('tool name')
+    A(f'| {i} | `update_case` | [C{cid}](https://shopview.testrail.io/index.php?/cases/view/{cid}) '
+      f'| {iid.get(cid,"?")} | 200 | **MATCH** — {r["intended_checked"]} intended field(s) '
+      f'byte-equal; {r["untouched_checked"]} untouched field(s) byte-identical | '
+      f'{", ".join("`%s`" % f for f in r["fields"])} | {" + ".join(what)} |')
+A('')
+if bad or bad2:
     A('## FAILURES')
     A('')
-    for r in bad:
+    for r in bad + bad2:
         A(f'- C{r["case_id"]} `{r["op"]}` HTTP {r["http"]} — {json.dumps(r)[:400]}')
 else:
     A('## FAILURES')
@@ -170,4 +296,5 @@ for cid in sorted(EDITS):
       f'{iid.get(cid,"?")} | {e["why"]} | {e["ref"]} |')
 A('')
 open(os.path.join(HERE, 'testrail-execution-log.md'), 'w').write('\n'.join(L) + '\n')
-print('wrote testrail-execution-log.md ·', len(ok), 'MATCH ·', len(bad), 'failures')
+print('wrote testrail-execution-log.md · pass1', len(ok), 'MATCH ·', len(bad), 'fail · pass2',
+      len(ok2), 'MATCH ·', len(bad2), 'fail · distinct cases', len(set(seen) | set(seen2)))
