@@ -1,5 +1,90 @@
 # Report Suite — PROJECT-STATE (canonical resume doc)
 
+## §0 UPDATE 2026-08-04-C — THE RULE-49 RE-CHECK WAS RE-RUN AFTER THE REDEPLOY (read this first)
+
+**The QA branch was redeployed at 2026-08-04 10:41:58 UTC**, `v3.4.1-0ed4433` → **`v3.4.1-3d03023`**
+(all three markers moved). Under Standing Rule 49 the entire re-check queue fell due, and the QA lead
+instructed: *"If recheck is due and if that is for Reports. Please do it."* **It is done.**
+
+**Canonical resume folder: `build/report-suite/recheck-2026-08-04/`** —
+`FINDINGS-BATCH-01-defects.md` · `FINDINGS-BATCH-02-surfaces.md` (batch 3 appended) ·
+`DELIBERATE-DECISIONS.md` · `testrail-execution-log.md` · `per-case-recheck-verdicts.csv` ·
+`evidence/`. Readiness: **`READINESS-2026-08-04-POST-DEPLOY.md`** (the pre-deploy one is
+banner-marked SUPERSEDED).
+
+### Outcome, all 469 cases
+**451 CONFIRMED · 4 CHANGED · 14 RESIDUAL.** Row-level cells in the queue: **212 CONFIRMED · 5 CHANGED**.
+Build marker read at **start, middle and end** of the run — **`v3.4.1-3d03023` all three times**, so it
+did not move under us.
+
+### The three open defects, re-driven
+- **SV-8818** (PDF 500 at scale) — **CONFIRMED still reproducible.** Parts Velocity, Technician
+  Utilization Expanded and Inventory Value all 500 after 30–45 s; the same scope as CSV succeeds; PDF
+  succeeds narrowed. 10 cases keep their known-issue line.
+- **SV-8819** (Turns/Yr window) — ⭐ **FIXED.** The `This Year` preset now implies the inclusive **216**-day
+  window and matches a hand-picked range exactly; previously **215**. Measured over **500 rows per preset**.
+  **Both its cases were proven to pass and their known-issue line was REMOVED** (C30367, C30374) under the
+  QA lead's explicit instruction. **SV-8819 is still `Open` in Jira — that needs moving.**
+- **SV-8820** (IV values stock one day late) — **CONFIRMED**, identical +1 day shift on every date tried.
+  4 cases keep their line.
+
+### What the deploy broke, and the sweep for it
+The deploy added a **`"Date Range:"` line as line 1 of EVERY export** (36 of 36 surfaces re-captured).
+**All 469 cases were swept** for claims about an export's first line or line order: **24 candidates,
+exactly ONE genuinely false** — **IV-EXP-04 = C30590**, which said the CSV's as-of line was the *first
+line*. Corrected, and rewritten **scope-conditionally** so a further added line cannot break it.
+**The other 23 survived because they were written scope-conditionally in the first place — Rule 42
+earning its keep.**
+
+### The three carried-forward items, all settled
+1. **IV on-screen column order** — observed live: `Total Cost` is **last on screen** but **9th of 12 in the
+   file**. Deviation real and CONFIRMED.
+2. **Per-cell API cross-check** — **55,584 cells, 0 genuine value mismatches** (honest caveats: a
+   first run's 10 "mismatches" were my own negative-money formatter, and 11 rows are unpaired because
+   several part numbers contain embedded quotes).
+3. **Money format** — **55,656 of 55,656** money/percent cells still fail a numeric parse; Qty parses
+   fine. **Amounts are correct**, so the QA lead's closing condition for SV-8823 still holds.
+
+### TestRail writes — `update_case` ONLY
+**471 operations, every one HTTP 200 + byte-verified, 28 fields compared each, 0 mismatches.**
+469 = the Rule-54 provenance re-stamp (one of which also carried the C30590 correction) + 2 = the SV-8819
+line removal. **No add, no delete, no section, no run write, no result write.**
+**The provenance line now names the build as well as the date** — two builds existed on 2026-08-04, so the
+date alone had become ambiguous, and **Rule 49 obligation (3) requires the marker on the case**.
+Stamper is **idempotent** (proven).
+
+### Verification
+**Run 359 untouched** — 469 tests before and after, **all 529 result records present BY ID**, `include_all`
+still `false`, case_ids **set-equal both directions** to our 469. **No `update_run` sent** (none needed).
+**The 5 foreign cases (C38919–C38923) proven byte-identical**, timestamps included.
+**Four counts all 469** — live-ours / local active / id-map / import — **set-equal in both directions**.
+Import header **SHA-256 identical to all three peer projects**; 0 dup titles, 0 "VIU" words, 0 flag words,
+0 internal-ID leaks, 0 titles over 80 (longest exactly 80). **47 DO-NOT-AUTOMATE warnings counted live —
+all present.** **Rule-28 cross-case sweep: 0 contradictions introduced**, and 0 line-number pins remain on
+any export metadata line.
+
+### Automation readiness
+**394 of 469 automatable, up from 392** — the two Parts Velocity cases moved from "expected to fail" to
+"passing" because SV-8819 was fixed.
+
+### ⚠️ THE QUEUE STAYS OPEN
+Engineering never withdrew the "not final" declaration, and **this deploy proved the point within hours**.
+All findings remain **PROVISIONAL** under Rule 49; every row keeps a standing obligation against the next
+marker change. Re-read with `curl -s https://sv8582.qa.shopview.com/ | grep app-version` — expect
+**`v3.4.1-3d03023`**.
+
+### Outstanding
+1. **SV-8819 fixed but still Open in Jira** — needs a status move (not ours: Rules 6/53).
+2. **The IV columns defect was NOT filed — a duplicate exists.** **SV-8823** covers both halves by title
+   but is **OBSOLETE/Done**, closed on the money half only. Instruction was *"do not file if one exists —
+   report instead"*, so nothing was filed. **Re-open SV-8823 for the columns half, or authorise a split
+   ticket.** Behaviour re-confirmed live: three different `columns=` requests return a **byte-identical**
+   file.
+3. **Chris Ward's 47 answers** still outstanding.
+4. **A single-location user account** would close the last Location question.
+5. **Word when the branch is declared final** — the trigger to close the queue.
+
+
 > **READ THIS FIRST to resume the Report Suite project.** Single authoritative
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
