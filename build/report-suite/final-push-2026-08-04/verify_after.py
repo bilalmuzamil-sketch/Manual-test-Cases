@@ -78,6 +78,9 @@ def main():
     plan = json.load(open(os.path.join(HERE, 'plan.json')))
     plan2 = json.load(open(os.path.join(HERE, 'plan2.json')))
     p2 = {p['case_id']: p for p in plan2}
+    # pass 3 = the single follow-up the Rule-28 sweep found (C30185's stale precondition)
+    plan3 = json.load(open(os.path.join(HERE, 'plan3.json')))
+    p3 = {p['case_id']: p for p in plan3}
 
     # ── B. EXHAUSTIVE per-case, per-field re-verification ──────────────────
     # The FINAL expected state of a case = its pre-write snapshot, overlaid with pass-1
@@ -94,6 +97,8 @@ def main():
         expect.update(p['intended'])
         if cid in p2:
             expect.update(p2[cid]['intended'])
+        if cid in p3:
+            expect.update(p3[cid]['intended'])
         for f, want in expect.items():
             got = live.get(f)
             eq = (norm_refs(got) == norm_refs(want)) if f == 'refs' else (got == want)
@@ -106,7 +111,7 @@ def main():
             fails.append(f'C{cid} in plan2 but not plan1')
     print(f'  cases verified {len(plan)}/{len(plan)} (478 expected)  ·  '
           f'field comparisons {checked_fields}')
-    print(f'  pass-2 cases folded in: {len(p2)}')
+    print(f'  pass-2 cases folded in: {len(p2)}  ·  pass-3 cases folded in: {len(p3)}')
     print(f'  mismatches: {len(fails)}')
 
     # ── B2. the provenance line + ticket line, checked on ALL 478 ──────────
