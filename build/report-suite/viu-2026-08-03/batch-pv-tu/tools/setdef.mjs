@@ -1,0 +1,11 @@
+import { login, api } from './qa8582.mjs';
+const t=await login('admin'); const S=t.sessCookie;
+const HD='b3c8c820-f815-4cf1-8938-10956c5ee71a';
+const p=(n,r,l=400)=>console.log('#',n,r.status,(typeof r.body==='string'?r.body:JSON.stringify(r.body)).slice(0,l));
+const read=async()=>{const c=(await api(S,'GET','/api/labour-types?pagination[rowsPerPage]=200')).body.data.collection;
+ return c.filter(x=>x.is_default).map(x=>({id:x.id,name:x.name,rate:x.labour_rate}));};
+console.log('defaults now:',JSON.stringify(await read()));
+p('null', await api(S,'POST','/api/labour-types/set-default',{labour_type_id:null}));
+p('empty', await api(S,'POST','/api/labour-types/set-default',{labour_type_id:''}));
+p('bogus', await api(S,'POST','/api/labour-types/set-default',{labour_type_id:'00000000-0000-0000-0000-000000000000'}));
+console.log('defaults after probes:',JSON.stringify(await read()));

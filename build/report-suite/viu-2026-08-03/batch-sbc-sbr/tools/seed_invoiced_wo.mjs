@@ -43,15 +43,31 @@ const readL = () => (fs.existsSync(LEDGER) ? JSON.parse(fs.readFileSync(LEDGER, 
 const writeL = l => fs.writeFileSync(LEDGER, JSON.stringify(l, null, 1));
 
 if (mode === '--cleanup') {
+  // De-duplicate: several runs appended the same work order id more than once.
   const led = readL();
-  L('deleting', led.length, 'seeded work orders');
-  for (const e of led) {
-    const r = await api(sessCookie, 'POST', '/api/work-orders/delete', { work_order_id: e.woId });
-    const chk = await api(sessCookie, 'GET', '/api/work-orders/view/' + e.woId);
-    L('DELETE', e.woNumber || e.woId, '->', r.status, '| re-GET', chk.status,
-      chk.status === 404 ? 'GONE' : 'STILL PRESENT ' + JSON.stringify(r.body).slice(0, 160));
+  const ids = [...new Set(led.map(e => e.woId).filter(Boolean))];
+  L('cleaning up', ids.length, 'distinct seeded work orders (ledger rows:', led.length, ')');
+  let gone = 0, stuck = [];
+  for (const woId of ids) {
+    const chk0 = await api(sessCookie, 'GET', '/api/work-orders/view/' + woId);
+    if (chk0.status === 404) { gone++; continue; }               // already deleted
+    // A Completed/Invoiced work order cannot be deleted — drop it back to Estimate first.
+    await api(sessCookie, 'POST', '/api/work-orders/change-status', { id: woId, status: 'estimate' });
+    let r = await api(sessCookie, 'POST', '/api/work-orders/delete', { work_order_id: woId });
+    if (r.status >= 400) {   // second chance: strip its lines, then retry
+      const lines = (await api(sessCookie, 'GET', `/api/work-orders/lines/${woId}`)).body?.data?.collection || [];
+      for (const ln of lines) {
+        await api(sessCookie, 'POST', '/api/work-orders/lines/change-status', { line_id: ln.line_id, status: 'authorized' });
+        await api(sessCookie, 'POST', '/api/work-orders/lines/delete', { line_id: ln.line_id, work_order_id: woId });
+      }
+      r = await api(sessCookie, 'POST', '/api/work-orders/delete', { work_order_id: woId });
+    }
+    const chk = await api(sessCookie, 'GET', '/api/work-orders/view/' + woId);
+    if (chk.status === 404) { gone++; } else { stuck.push({ woId, why: JSON.stringify(r.body).slice(0, 150) }); }
   }
-  process.exit(0);
+  L('\nDELETED/absent:', gone, '/', ids.length, '| still present:', stuck.length);
+  stuck.slice(0, 20).forEach(s => L('   STUCK', s.woId, s.why));
+  process.exit(stuck.length ? 4 : 0);
 }
 
 await api(sessCookie, 'POST', '/api/iam/change-location', { workplace_id: WP_HD, workplace_timezone: 'America/Edmonton' });
