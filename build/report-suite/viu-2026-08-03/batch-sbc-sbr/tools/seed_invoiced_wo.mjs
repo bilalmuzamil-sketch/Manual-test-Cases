@@ -49,8 +49,10 @@ if (mode === '--cleanup') {
   L('cleaning up', ids.length, 'distinct seeded work orders (ledger rows:', led.length, ')');
   let gone = 0, stuck = [];
   for (const woId of ids) {
+    // ⚠️ a MISSING work order answers 400 {"workOrderId":"Not found"} on this build, NOT 404.
+    const absent = r => r.status === 404 || (r.status === 400 && /not found/i.test(JSON.stringify(r.body)));
     const chk0 = await api(sessCookie, 'GET', '/api/work-orders/view/' + woId);
-    if (chk0.status === 404) { gone++; continue; }               // already deleted
+    if (absent(chk0)) { gone++; continue; }                      // already deleted
     // A Completed/Invoiced work order cannot be deleted — drop it back to Estimate first.
     await api(sessCookie, 'POST', '/api/work-orders/change-status', { id: woId, status: 'estimate' });
     let r = await api(sessCookie, 'POST', '/api/work-orders/delete', { work_order_id: woId });
@@ -63,7 +65,7 @@ if (mode === '--cleanup') {
       r = await api(sessCookie, 'POST', '/api/work-orders/delete', { work_order_id: woId });
     }
     const chk = await api(sessCookie, 'GET', '/api/work-orders/view/' + woId);
-    if (chk.status === 404) { gone++; } else { stuck.push({ woId, why: JSON.stringify(r.body).slice(0, 150) }); }
+    if (absent(chk)) { gone++; } else { stuck.push({ woId, why: JSON.stringify(r.body).slice(0, 150) }); }
   }
   L('\nDELETED/absent:', gone, '/', ids.length, '| still present:', stuck.length);
   stuck.slice(0, 20).forEach(s => L('   STUCK', s.woId, s.why));
