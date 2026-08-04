@@ -222,6 +222,17 @@ F = {
          "Representative (8 atoms, holds it) got 200 on data AND export for all six reports; without it "
          "every one returns 403.",
          "../evidence/permissions/permission-matrix.json + minimal-role-proof.json"),
+ "F50": ("The CUSTOMER record's Edit Customer dialog carries a 'Sales Representative' dropdown whose "
+         "options are the WHOLE STAFF LIST — including staff flagged inactive (Louis Mccoy, Mary Higgins) — "
+         "NOT the is_sales_rep-toggled set that GET /api/sales-reps returns. Saving sends "
+         "POST /api/customers/change (200) carrying sales_rep_first_name / sales_rep_last_name as STRINGS; "
+         "there is no sales_rep_id in the payload, and the customer read-back keeps sales_rep_id: null with "
+         "the name pair populated. So the customer's rep is stored BY NAME, not by rep id.",
+         "evidence/deactivation/customer-edit-dialog.md"),
+ "F51": ("The customer record's card label is 'Sales Representative' (title case, spelled in full), whereas "
+         "the WORK ORDER panel's label is 'Sales rep' (lower-case r). The two surfaces use different wording "
+         "for the same field.",
+         "evidence/deactivation/customer-edit-dialog.md + evidence/wo-salesrep/wo-finance.json"),
  "F49": ("For a genuinely single-location user (one accessible workplace) the per-row Location COLUMN is "
          "absent from both reports, while the Location FILTER control remains visible.",
          "../evidence/singleloc-matrix.json + evidence/sales-by-representative/sbr-deep.json#singleLocation"),
@@ -561,8 +572,10 @@ V = {
  "SBR-DEACT-05": (EXT, "F42", "Same blocker as SBR-DEACT-02."),
  "SBR-DEACT-06": (EXT, "F41,F42", "Same blocker for the dialog half. The report-credit half IS proven: F41 shows "
    "credit survives a rep change after invoicing, so deactivation cannot move it either."),
- "SBR-DEACT-07": (PASS, "F42", "Observed: turning the sales-rep toggle off for a seeded rep with no assignments "
-   "produced NO dialog and applied straight away — the no-dialog path the case describes."),
+ "SBR-DEACT-07": (EXT, "F42,F50", "HONESTY CORRECTION: I initially credited this as a pass because switching "
+   "is_sales_rep off through POST /api/staff/{staff_id}/change applied with no pre-check. That is NOT the same "
+   "thing the case describes — the case is about the STAFF-ADMINISTRATION deactivation UI's no-dialog paths, "
+   "which I did not drive. Same blocker as SBR-DEACT-02. Recorded EXTERNAL-DEPENDENCY rather than claimed."),
  "SBR-DEACT-08": (EXT, "F42", "Same blocker as SBR-DEACT-02 — a deactivation failure cannot be forced without the "
    "flow."),
  "SBR-DEACT-09": (EXT, "F42", "Same blocker as SBR-DEACT-02."),
@@ -572,7 +585,10 @@ V = {
    "Recorded NOT-BUILT on that evidence."),
  "SBR-ASGN-02": (NB, "F2", "Same evidence as SBR-ASGN-01 — the Assignments CSV has no entry point on this branch."),
  "SBR-ASGN-03": (NB, "F2", "Same evidence as SBR-ASGN-01."),
- "SBR-ASGN-04": (NB, "F2", "Same evidence as SBR-ASGN-01."),
+ "SBR-ASGN-04": (NB, "F2,F50", "Same absence evidence as SBR-ASGN-01 (no Assignments export exists). Worth "
+   "recording for whoever builds it: the customer's rep is stored as a NAME PAIR "
+   "(sales_rep_first_name/sales_rep_last_name), not a rep id, so a \"Rep is active?\" column cannot be derived "
+   "from a staff link — it would have to be matched by name."),
  "SBR-ASGN-05": (NB, "F2", "Same evidence as SBR-ASGN-01."),
  "SBR-ASGN-06": (NB, "F2", "Same evidence as SBR-ASGN-01."),
  "SBR-EXP-01": (PASS, "F2,F3", "Exactly four download actions on the overflow menu, and no Print."),
@@ -654,8 +670,11 @@ V = {
  "SBR-WO-01": (PASS, "F40", "The left panel carries the field on a standard work order. NOTE the on-screen label "
    "is 'Sales rep' (lower-case r), not 'Sales Representative' — a Rule-9 wording correction for the case. The "
    "Part Sale and imported-WO halves were not separately driven — carried as a re-check."),
- "SBR-WO-02": (PASS, "F40,F42", "GET /api/sales-reps returned only the reps whose sales-rep toggle is on: it grew "
-   "from 2 to 5 entries as I switched is_sales_rep on for three staff, and back to 2 when restored."),
+ "SBR-WO-02": (PASS, "F40,F42", "GET /api/sales-reps — which is what feeds the WORK ORDER selector — returned "
+   "only the reps whose sales-rep toggle is on: it grew from 2 to 5 entries as I switched is_sales_rep on for "
+   "three staff, and back to 2 when restored. NOTE (F50) the CUSTOMER record's picker does NOT honour this: it "
+   "offers the whole staff list including inactive staff. The case is about the WO selector, so it passes, but "
+   "the customer-side inconsistency is worth a ticket."),
  "SBR-WO-03": (PASS, "F40,F42", "A newly created work order opened with no rep, and setting one persisted "
    "immediately with no Save step (POST /api/work-orders/change-sales-rep -> 201, confirmed by re-reading the "
    "work order)."),
@@ -666,9 +685,12 @@ V = {
  "SBR-WO-05": (PASS, "F41", "Proven directly: " + Q["SBR-S19-R6"] + " " + Q["SBR-S19-N2"] + " I changed S-15826's "
    "work-order rep to Daniel Padilla and the report kept crediting Parth Fadadu. The customer-rep fallback leg "
    "could not be exercised (it only applies at invoice creation, which is broken) — carried as a re-check."),
- "SBR-WO-06": (PASS, "F40", "The customer record's sidebar carries a single Sales Rep row. NOTE the observed "
-   "on-screen label casing is 'Sales rep'; and the 'Unassigned' empty text was not separately produced — carried "
-   "as a re-check."),
+ "SBR-WO-06": (PASS, "F50,F51", "The customer record does carry a single 'Sales Representative' row and its "
+   "Edit Customer dialog carries a matching 'Sales Representative' dropdown. TWO wording/behaviour notes for the "
+   "case: (a) the customer surface says 'Sales Representative' in full while the WORK ORDER surface says 'Sales "
+   "rep' — the case must use each surface's own label (Rule 9); (b) the dropdown offers the WHOLE staff list "
+   "including inactive staff, not just toggled-on reps, and the value is saved as a name pair rather than a rep "
+   "id. The 'Unassigned' empty text was not separately produced — carried as a re-check."),
  "SBR-API-01": (PASS, "F32", "Invoice detail rows are not in the initial payload; the first expand fires the "
    "per-rep /invoices call."),
  "SBR-API-02": (PASS, "F36", "Each sort change triggers a server re-fetch that returns page 1 already ordered."),
