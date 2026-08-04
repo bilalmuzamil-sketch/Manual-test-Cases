@@ -1,0 +1,168 @@
+# TICKET 6 — ready to paste into Jira
+
+> **Status: the QA lead asked for this one FLAGGED FOR AWARENESS rather than filed.** It is written
+> paste-ready so it can be filed in one move if he decides to, because it has a concrete daily cost.
+
+| Field | Value |
+|---|---|
+| **Project** | SV (shopview.atlassian.net) |
+| **Issue type** | Bug |
+| **Summary** | Inventory Value spreadsheet: money arrives as text, and the file ignores the chosen columns and re-orders them |
+| **Suggested parent** | **SV-8677** — `Inv Value - Story 10 - Export to PDF and CSV` |
+| **Parent reasoning** | Both symptoms are in the Inventory Value export writer, and SV-8677 is the story that owns that export — it carries S10-R3 (columns and their order) and the Story 10 context note (number formatting), which are the two requirements breached. Not the epic; a single story plainly owns it. |
+| **Grouping justification** | **Two symptoms, one ticket, deliberately.** Both are produced by the same component — the Inventory Value export writer — and one fix touches both, so splitting them would mean two developers in the same file. They are **not** merged with the PDF-crash ticket (TICKET 1), which is a different failure in a different layer and reproduces across five reports. |
+| **Suggested severity / priority** | **Medium** |
+| **Severity reasoning** | Real, repeated friction for anyone doing arithmetic on the file, and a column choice that is silently ignored — but the data itself is correct and complete, and there is an obvious manual workaround. Not High: nothing is wrong, only awkward. |
+| **Affects build** | `v3.4.1-0ed4433` on `sv8582.qa.shopview.com` |
+| **Observed** | 2026-08-04 |
+| **Labels (suggested)** | `reports-suite`, `inventory-value`, `export`, `csv`, `qa-found` |
+
+---
+
+## What's wrong
+
+Two things, both in the Inventory Value spreadsheet download.
+
+**One — the money comes through as text, not numbers.** Every money column is written the way the screen
+shows it, with a dollar sign and comma separators. Spreadsheet software reads that as words rather than
+numbers.
+
+**Two — the file ignores which columns you chose, and puts them in a different order from the screen.**
+If you switch **Margin** or **Total Sell** off on screen, they still appear in the file. And the columns
+come out in a different order: **Total Cost** is ninth in the file but last on screen.
+
+## Why it matters
+
+**On the money:** the person downloading this is almost always downloading it in order to do sums — total
+the shelf, sort by value, chart it, paste it into a stock valuation. Because the money columns arrive as
+text, **none of that works** until they clean every column by hand first. A total comes out as zero, or
+as an error, and it is not obvious why.
+
+**On the columns:** someone who tidies the report down to the four columns they care about, then
+downloads it, gets all twelve back anyway. Their choice was silently ignored — no message, no
+explanation. And because the order differs from the screen, anyone who has built a template or a habit
+around the screen's layout finds the file does not match it.
+
+## What should happen instead
+
+Both are written requirements in the Inventory Value specification, version 3.
+
+**On the money** — the Story 10 context note, verbatim:
+
+> "in the CSV, money values are written as **plain numbers with two decimals and no thousands
+> separators** (so they **parse cleanly in a spreadsheet**); the PDF uses the same on-screen currency
+> formatting with the '$' and thousands separators."
+
+Note that the requirement anticipated this exact problem — "so they parse cleanly in a spreadsheet" is
+the reason it is written that way. **The PDF half is correct.** Only the spreadsheet breaches it.
+
+**On the columns** — requirement S10-R3, verbatim:
+
+> "Both downloads include **only the columns currently shown**, in the **same left-to-right order as the
+> screen**, with **Total Cost last**."
+
+That is three separate promises in one sentence, and the file breaks all three.
+
+## How to see it yourself
+
+No special data is needed.
+
+1. Open the **Inventory Value** report.
+2. Open **Column Selection** and switch **Margin** and **Total Sell** **off**. The screen loses those two
+   columns, as it should.
+3. Open the **three-dot** menu and choose **Download (CSV)**.
+4. Open the file in Excel, Numbers or Google Sheets.
+5. **The two columns you switched off are still there** — the file has all twelve.
+6. Look at the order: **Total Cost** sits ninth, not last, and **Margin %** is the final column. On
+   screen, Total Cost is last.
+7. Now select any money column and try to total it. **You get nothing usable**, because the cells are
+   text. You can confirm it directly: the cell reads `$11,176.88` including the dollar sign and comma,
+   which is why the spreadsheet treats it as words.
+
+For comparison, take the **Download (PDF)** of the same view — that one is formatted correctly and is
+not part of this ticket.
+
+---
+---
+
+# FOR ENGINEERING — technical evidence
+
+**Environment.** API `https://sv8582api.qa.shopview.com`, build `v3.4.1-0ed4433`. Org
+`d55bc308-e61a-438d-b5f1-c7a73c89d49f`.
+
+⚠️ **This QA branch was declared NOT FINAL by engineering.** This finding is provisional. **If it is
+already fixed or still in progress, please close saying so.**
+
+## Symptom 1 — money written with currency presentation
+
+Line 4 of the downloaded CSV, verbatim:
+
+```
+R134A,Refrigerant,HD-Fluids,—,786.55,$14.21,$21.86,"$11,176.88","$17,193.98","$6,017.10",35.0%
+```
+
+`Total Cost`, `Total Sell` and `Margin` are quoted **because** they contain the thousands separator, so
+every one of them imports as text. Requirement asks for plain two-decimal numbers with no separators.
+
+## Symptom 2 — `columns=` ignored, and the file order differs from the screen
+
+Verbatim file header
+(`build/report-suite/viu-2026-08-03/batch-wip-iv/evidence/exports/iv__MULTI__wholelist__csv.head.txt`):
+
+```
+"As of: 2026-08-04"
+"Locations: All locations"
+"Part #",Description,Category,Vendor,Location,Qty,"Unit Cost","Unit Sell","Total Cost","Total Sell",Margin,"Margin %"
+Totals,,,,,"195,249.93",,,"$977,080.47","$1,832,152.49","$855,072.02",46.7%
+```
+
+Live on-screen header row, read from the rendered table:
+
+```
+Part #, Description, Category, Vendor, Location, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost
+```
+
+| | Position of Total Cost | Last column |
+|---|---|---|
+| Screen | 12th (last) | Total Cost |
+| File | **9th** | **Margin %** |
+
+**And the `columns=` parameter is ignored entirely:**
+
+```
+GET /api/reporting/reports/inventory-value/export?...&format=csv&columns=part_number,description,qty
+ -> 200, but the file still carries ALL eleven/twelve columns
+
+GET /api/reporting/reports/inventory-value/export?...&format=csv&columns=<a nonsense column name>
+ -> 200, same full file, NO validation error
+```
+
+For contrast, the same parameter **is** enforced on the WIP export
+(`columns=…,invoiced_hours` → `400 {"error":"Invalid column \"invoiced_hours\"."}`), so the shared export
+contract clearly can honour and validate it — the Inventory Value writer just does not.
+
+`pagination[sortBy]` / `[descending]` **are** honoured in the file (a sorted export starts at `02-507`
+instead of the default `W4707QP`), and the date, location, category, vendor and search filters are all
+honoured — so this is specifically the column set and its order.
+
+## A third, smaller observation in the same area — recorded, not part of the fix request
+
+For part `W4707QP` the API returns `margin_pct: 56.05`; **the screen renders `56.0%`** (truncating) while
+**both the CSV and the PDF render `56.1%`** (rounding). The same row therefore disagrees between screen
+and file by a tenth of a percent. Requirement S10-R7 asks only for "one-decimal", so neither is strictly
+non-compliant — but the two surfaces should presumably agree with each other. Flagged for a decision
+rather than asserted as a defect.
+
+## Evidence files (in the QA repo)
+
+- `build/report-suite/viu-2026-08-03/batch-wip-iv/evidence/exports/iv__MULTI__wholelist__csv.head.txt`
+  and `iv__SINGLE__searchnarrow__csv.head.txt`
+- `build/report-suite/viu-2026-08-03/batch-wip-iv/VERDICTS.md` lines 1838, 2672, 2692
+- `build/report-suite/viu-2026-08-03/batch-wip-iv/STAGED-CHANGES.md` §B22, §B23
+
+> **Note on attachments:** files were not attached — the verbatim data line, the verbatim file header,
+> the verbatim on-screen header and the ignored-parameter results are inlined above.
+
+## QA test cases affected
+
+IV-EXP-02 = C30588 · IV-EXP-03 = C30589.
