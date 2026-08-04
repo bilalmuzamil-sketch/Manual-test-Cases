@@ -156,16 +156,30 @@ def attestation(case, report_key) -> str:
     return f'{ATTEST_SEP}\n{body}'
 
 
+STALE_PIN_RE = re.compile(r'(SBC|SBR|PV|TU|WIP|IV) spec v(\d+) (\d{4}-\d{2}-\d{2})')
+
+
 def pin_refs(refs: str):
-    """Rule 42 version pin. Returns (new_refs, changed)."""
+    """Rule 42 version pin. Returns (new_refs, kind) where kind is
+    'pin' (bare file path -> version pin), 'refresh' (stale pin -> current), or None."""
     if not refs:
-        return refs, False
-    if re.search(r'spec v\d+ \d{4}-\d{2}-\d{2}', refs):
-        return refs, False
+        return refs, None
+    # (a) refresh a STALE pin — a stale spec version is itself a finding
+    def _fix(m):
+        rk = m.group(1)
+        _n, ver, _d = SPEC[rk]
+        d = SPEC[rk][2]
+        return f'{rk} spec v{ver} {d}'
+    refreshed = STALE_PIN_RE.sub(_fix, refs)
+    if refreshed != refs:
+        return refreshed, 'refresh'
+    if STALE_PIN_RE.search(refs):
+        return refs, None
+    # (b) pin a bare spec file path
     for path, pin in PATH_PIN.items():
         if path in refs:
-            return refs.replace(path, pin), True
-    return refs, False
+            return refs.replace(path, pin), 'pin'
+    return refs, None
 
 
 def norm_refs(s: str) -> str:
@@ -226,14 +240,14 @@ def main():
             stats['L1_attestation'] += 1
 
         # ---- L2 refs version pin ----
-        nr, changed = pin_refs(c.get('refs') or '')
-        if changed:
+        nr, kind = pin_refs(c.get('refs') or '')
+        if kind:
             if len(nr) > 248:
                 raise SystemExit(f'FATAL C{cid}: pinned refs {len(nr)} chars > 248')
             if ',' in nr:
                 raise SystemExit(f'FATAL C{cid}: pinned refs contains a comma')
             intended['refs'] = nr
-            stats['L2_refs_pin'] += 1
+            stats['L2_refs_' + kind] += 1
 
         if not intended:
             stats['no_op'] += 1
