@@ -763,3 +763,42 @@ EVERY case observed on this non-final build to carry a re-check obligation, so t
 **Highest-churn rows to re-check first when the build moves:** **B18** (the single-location Location
 filter — the riskiest open question), **B7** (nav grouping), **B16/B17** (the SBR export headers),
 **B28** (the PDF 500s), **B6** (the VIN chain), **B5** (the exportable-column list).
+
+---
+
+# QUEUE COVERAGE RECONCILIATION — 2026-08-04 (Step 6)
+
+**Checked programmatically against the live suite, not by eye.** The queue names **477** distinct
+C-ids; live ours is **469**.
+
+## The 9 the queue names that NO LONGER EXIST — closed by deletion, not by re-check
+
+These were absorbed by the QA-lead-authorised merges/cut on 2026-08-04 **after their content was
+folded into their survivors**, so their re-check obligation transfers to the survivor named beside
+each. Evidence: `../count-reconciliation-2026-08-04.md`.
+
+| Deleted | Its obligation now belongs to |
+|---|---|
+| C30182 | SBC-EMPTY-01 = [C30181](https://shopview.testrail.io/index.php?/cases/view/30181) |
+| C30350 | PV-CALC-06 = [C30364](https://shopview.testrail.io/index.php?/cases/view/30364) |
+| C30445 | TU-LOC-03 = [C30444](https://shopview.testrail.io/index.php?/cases/view/30444) |
+| C30453 | WIP-TAB-02 = [C30452](https://shopview.testrail.io/index.php?/cases/view/30452) |
+| C30529 | WIP-API-01 = [C30528](https://shopview.testrail.io/index.php?/cases/view/30528) |
+| C30532 | WIP-API-03 = [C30530](https://shopview.testrail.io/index.php?/cases/view/30530) |
+| C30544 | IV-SCOPE-01 = [C30540](https://shopview.testrail.io/index.php?/cases/view/30540) |
+| C30586 | IV-TOT-01 = [C30556](https://shopview.testrail.io/index.php?/cases/view/30556) |
+| C30608 | IV-API-03 = [C30607](https://shopview.testrail.io/index.php?/cases/view/30607) |
+
+## The 1 live case the queue had NEVER named — now added
+
+**SBC-PERM-06 = [C30098](https://shopview.testrail.io/index.php?/cases/view/30098)** — *"Ordinary
+reports access opens Sales By Customer — no separate permission"*. **This was a real coverage hole in
+the queue**, found by set-differencing the queue's C-ids against the live suite rather than trusting
+the count. Its re-check obligation is the same as every other case's: re-confirm the observation
+against the settled build, and **re-stamp its provenance line** (Rule 54).
+
+## Coverage now
+
+**469 live cases, 469 named in this queue, 0 unaccounted for — set-equal both directions.**
+The queue **stays OPEN**, and is now open for two independent reasons: engineering has not withdrawn
+the not-final declaration, **and** the build has moved to `v3.4.1-3d03023`.
