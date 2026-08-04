@@ -279,9 +279,11 @@ surface; every surface that appears has a verdict on every row; no surface is le
 
 See **`RULE-42-CONTRADICTIONS.md`**. Headline: the *"30 Rule-42 cases have two source documents
 contradicting each other"* claim conflated a **keyword list** with an **internal QA-document
-disagreement**, and neither half survives an exhaustive check. **29** cases contain a genuine closed
-enumeration; **29/29 are version-pinned** and **28/29 carry a closing anchor**. The genuine
-source-vs-source conflicts on those cases number **5**, all named, all following the newer source.
+disagreement**, and neither half survives an exhaustive check. **30** cases contain a genuine closed
+enumeration; **30/30 are version-pinned** and **28/30 carry a closing anchor** (the 2 exceptions
+state their own reason). The genuine source-vs-source conflicts on those cases number **5**, all
+named, all following the newer source. Only **12** of my 30 appear on the earlier pass's 30-case
+list, and **15 of mine are in PV / TU / WIP, which that list never swept**.
 
 ---
 
@@ -306,9 +308,9 @@ foreign-coverage diff in both directions against C38919–C38923 (**4 COVERED-BY
    so those verdicts are **PROVISIONAL** under Rule 49 and sit in an **OPEN** re-check queue.
 3. **Epic SV-8582 was not re-read.** A Tier-2 full re-read is user-gated (Rule 37) and the epic's
    content is not the source of the requirement population.
-4. **The enumeration diff is partly mechanical.** 6 of the 29 closed enumerations paired cleanly
-   with a spec list and matched; 3 mismatched (all the same one item); the remaining 20 could not be
-   machine-paired and were read by hand instead — stated per case in `RULE-42-CONTRADICTIONS.md` §2.
+4. **The enumeration diff is partly mechanical.** Of the 30 closed enumerations, **9 were
+   machine-diffed** against a spec list (6 matched, 3 mismatched on the same single item) and
+   **21 were read by hand** — stated per case in `RULE-42-CONTRADICTIONS.md` §2d. None was assumed.
 
 ---
 
