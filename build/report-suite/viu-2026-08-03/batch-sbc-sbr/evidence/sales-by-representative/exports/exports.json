@@ -1,0 +1,82 @@
+{
+ "slug": "sales-by-representative",
+ "single": false,
+ "capturedAt": "2026-08-04T01:25:42.509Z",
+ "buildMarker": "v3.4.1-0ed4433",
+ "queryBase": "range=custom&start_date=2026-06-01&end_date=2026-08-04&productType=all&invoiceStatus=all&locations=b3c8c820-f815-4cf1-8938-10956c5ee71a,f8a8b802-7780-4b16-bf10-343caeb616b2",
+ "files": [
+  {
+   "format": "csv",
+   "variant": "summary",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=sales-by-representative-summary-custom.csv",
+   "bytes": 373,
+   "file": "sales-by-representative__summary.csv",
+   "csvLineCount": 5,
+   "csvHead": [
+    "﻿\"Locations: All locations\"",
+    "Representative,Location,\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",Margin,\"Margin %\",Subtotal",
+    "\"Parth Fadadu\",\"Staging Heavy Duty - 9919\",0.0,\"$1,979.40\",\"$1,979.40\",\"$2,459.48\",\"$2,459.48\",\"$4,438.88\",100.0%,\"$4,438.88\"",
+    "Totals,,0.0,\"$1,979.40\",\"$1,979.40\",\"$2,459.48\",\"$2,459.48\",\"$4,438.88\",100.0%,\"$4,438.88\"",
+    ""
+   ],
+   "csvTail": [
+    "\"Parth Fadadu\",\"Staging Heavy Duty - 9919\",0.0,\"$1,979.40\",\"$1,979.40\",\"$2,459.48\",\"$2,459.48\",\"$4,438.88\",100.0%,\"$4,438.88\"",
+    "Totals,,0.0,\"$1,979.40\",\"$1,979.40\",\"$2,459.48\",\"$2,459.48\",\"$4,438.88\",100.0%,\"$4,438.88\""
+   ]
+  },
+  {
+   "format": "csv",
+   "variant": "expanded",
+   "status": 200,
+   "contentType": "text/csv; charset=UTF-8",
+   "contentDisposition": "attachment; filename=sales-by-representative-expanded-custom.csv",
+   "bytes": 633,
+   "file": "sales-by-representative__expanded.csv",
+   "csvLineCount": 6,
+   "csvHead": [
+    "﻿\"Locations: All locations\"",
+    "Representative,\"Invoice #\",Date,Customer,\"Invoice Status\",Location,\"Hrs Worked\",\"Hrs Invoiced\",\"Inv. Hrs\",\"Labor Invoiced\",\"Labor Margin\",\"Parts Invoiced\",\"Parts Margin\",Margin,\"Margin %\",Subtotal",
+    "\"Parth Fadadu\",,,,,\"Staging Heavy Duty - 9919\",0.0,0.0,0.0,\"$1,979.40\",\"$1,979.40\",\"$2,459.48\",\"$2,459.48\",\"$4,438.88\",100.0%,\"$4,438.88\"",
+    ",S-15826,\"Jul 31 2026\",\"Beman Systems\",Unpaid,\"Staging Heavy Duty - 9919\",0.0,0.0,0.0,\"$1,979.40\",\"$1,979.40\",\"$2,459.48\",\"$2,459.48\",\"$4,438.88\",100.0%,\"$4,438.88\"",
+    "Totals,,,,,,0.0,0.0,0.0,\"$1,979.40\",\"$1,979.40\",\"$2,459.48\",\"$2,459.48\",\"$4,438.88\",100.0%,\"$4,438.88\"",
+    ""
+   ],
+   "csvTail": [
+    ",S-15826,\"Jul 31 2026\",\"Beman Systems\",Unpaid,\"Staging Heavy Duty - 9919\",0.0,0.0,0.0,\"$1,979.40\",\"$1,979.40\",\"$2,459.48\",\"$2,459.48\",\"$4,438.88\",100.0%,\"$4,438.88\"",
+    "Totals,,,,,,0.0,0.0,0.0,\"$1,979.40\",\"$1,979.40\",\"$2,459.48\",\"$2,459.48\",\"$4,438.88\",100.0%,\"$4,438.88\""
+   ]
+  },
+  {
+   "format": "pdf",
+   "variant": "summary",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=sales-by-representative-summary-custom.pdf",
+   "bytes": 177064,
+   "file": "sales-by-representative__summary.pdf"
+  },
+  {
+   "format": "pdf",
+   "variant": "expanded",
+   "status": 200,
+   "contentType": "application/pdf; charset=UTF-8",
+   "contentDisposition": "attachment; filename=sales-by-representative-expanded-custom.pdf",
+   "bytes": 178241,
+   "file": "sales-by-representative__expanded.pdf"
+  }
+ ],
+ "bad_format": {
+  "status": 400,
+  "body": "{\"errors\":[{\"error\":\"Invalid export format. Allowed values: csv, pdf.\"}]}"
+ },
+ "missing_variant": {
+  "status": 400,
+  "body": "{\"errors\":[{\"error\":\"Invalid export variant. Allowed values: summary, expanded.\"}]}"
+ },
+ "bad_variant": {
+  "status": 400,
+  "body": "{\"errors\":[{\"error\":\"Invalid export variant. Allowed values: summary, expanded.\"}]}"
+ }
+}
