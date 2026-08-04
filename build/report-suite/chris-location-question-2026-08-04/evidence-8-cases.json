@@ -1,0 +1,116 @@
+{
+ "IV-COL-01": {
+  "cid": 30551,
+  "title": "With every column on they appear in the fixed order with the set alignment",
+  "refs": "SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R1; S3-R2 + Story 7 S7-R6 — fixed column order and alignment; plus the automatic Location column between Vendor and Qty on Hand)",
+  "section": 4366,
+  "asserts_selector": true,
+  "mentions_automatic": false,
+  "quotes": [
+   " Every column (including Margin and Total Sell) is turned on in the column-selection control",
+   " Location is one of the columns in the column-selection control; when it is turned on the Location column appears between Vendor and Qty, left-aligned"
+  ],
+  "updated_on": 1785827785,
+  "updated_by": 3
+ },
+ "IV-COL-04": {
+  "cid": 30554,
+  "title": "On a first visit the default columns show and the rest stay available",
+  "refs": "SV-8670; SV-8674 (IV spec v3 2026-07-29 Story 3 S3-R12; S3-R13; Story 8 S8-R3 + Story 7 S7-R6 — first-visit default columns; plus the automatic Location column when more than one location is in scope)",
+  "section": 4366,
+  "asserts_selector": true,
+  "mentions_automatic": false,
+  "quotes": [
+   " Open the column-selection control and read which columns are on and off",
+   " Both can be turned on from the column-selection control and then appear in their fixed positions",
+   " Location is one of the columns in the column-selection control; when it is turned on the Location column shows between Vendor and Qty"
+  ],
+  "updated_on": 1785827791,
+  "updated_by": 3
+ },
+ "IV-PERS-02": {
+  "cid": 30580,
+  "title": "Toggling columns never reorders them",
+  "refs": "SV-8675; SV-8674 (IV spec v3 2026-07-29 Story 8 S8-R4; Story 3 S3-R1 + Story 7 S7-R6 — toggling never reorders; plus the automatic Location column between Vendor and Qty on Hand)",
+  "section": 4371,
+  "asserts_selector": true,
+  "mentions_automatic": false,
+  "quotes": [
+   " Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns"
+  ],
+  "updated_on": 1785827832,
+  "updated_by": 3
+ },
+ "IV-EXP-02": {
+  "cid": 30588,
+  "title": "Downloads keep shown columns and order, honor filters, and include Totals",
+  "refs": "SV-8677 (IV spec v3 2026-07-29 Story 10 S10-R3; S10-R4; S10-R5; S10-R6; S10-R15 — downloads keep the shown columns and order; honour the filters; include the Totals row; S10-R15 = the \"Locations:\" line and the automatic Location column)",
+  "section": 4373,
+  "asserts_selector": true,
+  "mentions_automatic": false,
+  "quotes": [
+   " Note for the tester: the files carry the Location column when Location is turned ON in the column-selection control (it sits between Vendor and Qty)"
+  ],
+  "updated_on": 1785827847,
+  "updated_by": 3
+ },
+ "IV-LOC-06": {
+  "cid": 38917,
+  "title": "The Location column sits after Vendor and never reads Multiple",
+  "refs": "SV-8674; SV-8677 (IV spec v3 2026-07-29 S7-R6; S7-R7; S3-R1; S12-R10; S10-R15 — Location column inserted between Vendor and Qty on Hand; automatic visibility; never \"Multiple\"; S10-R15 = the same column in every export)",
+  "section": 4370,
+  "asserts_selector": true,
+  "mentions_automatic": false,
+  "quotes": [
+   " Turn Location on in the column-selection control, select two or more locations, and read the column headers from the left",
+   " Open the column-selection control and look for Location in the list",
+   " With Location turned on in the column-selection control, a Location column is shown, inserted between Vendor and Qty"
+  ],
+  "updated_on": 1785827911,
+  "updated_by": 3
+ },
+ "WIP-COL-01": {
+  "cid": 30466,
+  "title": "With all toggleable columns on, the fixed column order and alignment hold",
+  "refs": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R1; S4-R3; S4-R4 — the Location column is no longer in the column selector; it shows automatically when more than one location is in scope)",
+  "section": 4353,
+  "asserts_selector": true,
+  "mentions_automatic": false,
+  "quotes": [
+   " Every toggleable column is turned on in the column-selection control",
+   " Location is turned ON in the column-selection control (it is off by default)"
+  ],
+  "updated_on": 1785827636,
+  "updated_by": 3
+ },
+ "WIP-COL-02": {
+  "cid": 30467,
+  "title": "First visit shows the default columns; the rest are in the column selector",
+  "refs": "SV-8660; SV-8664 (WIP spec v6 2026-07-29 Story 4 S4-R2; S4-R3 + Story 8 S8-R3; S8-R4 — S4-R3 verbatim: \"The Location column is not offered in the column selector; its visibility is automatic\")",
+  "section": 4353,
+  "asserts_selector": true,
+  "mentions_automatic": true,
+  "quotes": [
+   "First visit shows the default columns; the rest are in the column selector",
+   " Open the column-selection control and read which columns are offered and which are on",
+   " Hrs) is available in the column-selection control and off by default"
+  ],
+  "updated_on": 1785827638,
+  "updated_by": 3
+ },
+ "WIP-FLT-09": {
+  "cid": 38916,
+  "title": "The Location column is automatic and never reads Multiple on a work-order row",
+  "refs": "SV-8663 (WIP spec v6 2026-07-29 S7-R13; S7-R14; S4-R3; S9-E1; S10-R5a; §4 Location (column) — automatic visibility; never \"Multiple\"; export header \"Branch\")",
+  "section": 4358,
+  "asserts_selector": true,
+  "mentions_automatic": true,
+  "quotes": [
+   " Open the column-selection control and look for Location in the list",
+   " Location is offered in the column-selection control, between VIN and Advisor, and is off by default",
+   " The column does not appear or disappear on its own when you change the location selection - it follows the column-selection toggle only"
+  ],
+  "updated_on": 1785827909,
+  "updated_by": 3
+ }
+}
