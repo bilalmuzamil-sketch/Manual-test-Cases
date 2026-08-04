@@ -1,0 +1,37 @@
+{
+ "reqs": [
+  {
+   "m": "POST",
+   "u": "/api/schedule/shifts",
+   "body": "{\"workOrderId\":\"c4ed6d18-93b8-4c47-b2a1-1a2da0756846\",\"lineIds\":[\"e26d827c-ed5b-4419-8481-0c6a2948790a\"],\"staffId\":null,\"departmentId\":null,\"startDate\":\"2026-08-07\",\"startTime\":\"07:00\",\"spreadMode\":\"single\",\"totalMinutes\":60,\"perDayMinutes\":null,\"color\":null,\"note\":null,\"isAllDay\":false,\"acknowledgeLongSeries\":false}"
+  },
+  {
+   "res": 201,
+   "body": "{\"data\":{\"shifts\":[{\"id\":\"0dc591f6-5957-4849-97d9-2759e0a3dc32\",\"staffId\":null,\"departmentId\":null,\"seriesId\":null,\"startsAt\":\"2026-08-07T13:00:00Z\",\"endsAt\":\"2026-08-07T14:00:00Z\",\"isAllDay\":false,\"durationMinutes\":60,\""
+  }
+ ],
+ "drill": {
+  "sidebar": "chevron_left\nS-13053\n· 2 lines\nGoport Energy\nsearch\nAll 2\nUnscheduled 0\ndrag_indicator\nService - Wheels off trailer single or tandem\nEst. 2.5h\nTJ\nThomas Jones\nComplete\ndrag_indicator\nDiagnose - Brakes\nEst. 1h\nJP\nJoel Parker\nAuthorized",
+  "ph": [
+   "Search lines"
+  ],
+  "ids": [
+   "button_sidebar_lines_back",
+   "text_sidebar_lines_customer",
+   "input_sidebar_line_search",
+   "button_sidebar_line_scope_all",
+   "button_sidebar_line_scope_unscheduled",
+   "sidebar_line_row",
+   "sidebar_line_status_051c5b5a-a0a4-4bab-8dde-ec19be82c07b",
+   "sidebar_line_status_db71cb6a-5faf-4544-af30-cefbd3f43913"
+  ]
+ },
+ "afterBack": 18,
+ "unassignedRowPresent": true,
+ "unassignedDrop": {
+  "toast": "check | Shift scheduled | Undo | close",
+  "blocks": [
+   "Xemill Mining / Sublet - Towing"
+  ]
+ }
+}

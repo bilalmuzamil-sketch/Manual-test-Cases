@@ -1,0 +1,52 @@
+{
+ "No Schedule permission": {
+  "atoms": [
+   "woFullViewMode",
+   "workOrdersView"
+  ],
+  "probes": {
+   "GET /api/schedule/board": 403,
+   "GET /api/schedule/work-orders": 403,
+   "POST /api/schedule/shifts": 403,
+   "PATCH /api/schedule/shifts/{id}": 403,
+   "DELETE /api/schedule/shifts/{id}": 403,
+   "POST /api/schedule/events": 403
+  },
+  "created": []
+ },
+ "Schedule View, no Work Orders View": {
+  "atoms": [
+   "scheduleView",
+   "woFullViewMode"
+  ],
+  "probes": {
+   "GET /api/schedule/board": 200,
+   "GET /api/schedule/work-orders": 200,
+   "POST /api/schedule/shifts": 403,
+   "PATCH /api/schedule/shifts/{id}": 403,
+   "DELETE /api/schedule/shifts/{id}": 403,
+   "POST /api/schedule/events": 403
+  },
+  "created": []
+ },
+ "Schedule View + Edit, no Delete": {
+  "atoms": [
+   "scheduleCreateAndEdit",
+   "scheduleView",
+   "woFullViewMode",
+   "workOrdersView"
+  ],
+  "probes": {
+   "GET /api/schedule/board": 200,
+   "GET /api/schedule/work-orders": 200,
+   "POST /api/schedule/shifts": 201,
+   "PATCH /api/schedule/shifts/{id}": 200,
+   "DELETE /api/schedule/shifts/{id}": 403,
+   "POST /api/schedule/events": 201
+  },
+  "created": [
+   "847c6245-efa7-4d7a-acf0-2d0ba2ecd1cd",
+   "EV:9ad98d4d-99cf-407a-92e8-d21aeb0ffea1"
+  ]
+ }
+}

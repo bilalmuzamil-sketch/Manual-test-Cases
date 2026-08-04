@@ -1,0 +1,37 @@
+{
+ "reqs": [
+  {
+   "m": "DELETE",
+   "u": "/api/schedule/shifts/cea79194-02d3-46d1-958b-a76f17ee1cec?scope=shift",
+   "body": ""
+  },
+  {
+   "res": 204,
+   "body": ""
+  },
+  {
+   "m": "PATCH",
+   "u": "/api/schedule/shifts/ebdd3e03-ab10-40f3-b820-4dd7e6192892",
+   "body": "{\"startsAt\":\"2026-08-04T14:00:00.000Z\",\"isAllDay\":false,\"reassign\":false,\"changeNote\":false,\"scope\":\"shift\"}"
+  },
+  {
+   "res": 200,
+   "body": "{\"data\":{\"shifts\":[{\"id\":\"ebdd3e03-ab10-40f3-b820-4dd7e6192892\",\"staffId\":\"0aac76eb-0de3-4ef9-8163-89424c7a20b9\",\"departmentId\":null,\"seriesId\":\"1bb9ffbb-7d5c-4f67-bfb6-5ea1996694d6\",\"startsAt\":\"2026-"
+  }
+ ],
+ "palette": {
+  "text": "Blue\nedit\nTeal\nedit\nViolet\nedit\ncheck\nPink\nedit\nCyan\nedit\nAmber\nedit\nGrey\nedit",
+  "items": []
+ },
+ "modalOpen": true,
+ "singleDelete": [],
+ "escAfterSingleDelete": {
+  "n": 0
+ },
+ "dayIds": [
+  "text_schedule_now_time"
+ ],
+ "dayDrag": {
+  "toast": "check | Shift moved | Undo | close"
+ }
+}

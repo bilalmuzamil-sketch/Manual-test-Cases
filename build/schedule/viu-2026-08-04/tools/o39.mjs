@@ -1,0 +1,18 @@
+import {boot,APP} from './boot.mjs';
+import fs from 'fs';
+const {browser,page}=await boot({tz:'America/Edmonton'});
+const E='/tmp/sviu/evidence/'; const F={};
+await page.goto(APP+'/administration/locations',{waitUntil:'domcontentloaded',timeout:90000});
+await page.waitForTimeout(7000);
+F.rows=await page.evaluate(()=>[...document.querySelectorAll('tbody tr')].map((t,i)=>({i,t:t.innerText.trim().replace(/\n/g,' | ').slice(0,90)})));
+console.log('ROWS',JSON.stringify(F.rows,null,1));
+const hi=F.rows.findIndex(r=>/Heavy Duty/.test(r.t));
+await page.evaluate(i=>{const tr=document.querySelectorAll('tbody tr')[i]; tr.click(); const b=tr.querySelector('button,i'); if(b)b.click();},hi<0?0:hi);
+await page.waitForTimeout(4500);
+await page.screenshot({path:E+'85-location-edit.png',fullPage:true});
+F.dlg=await page.evaluate(()=>document.querySelector('.q-dialog')?.innerText.trim().slice(0,1800)||null);
+console.log('DLG',JSON.stringify(F.dlg));
+F.ids=await page.evaluate(()=>[...new Set([...document.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')))].filter(x=>/hour|business|shop/i.test(x)));
+console.log('IDS',JSON.stringify(F.ids));
+fs.writeFileSync('/tmp/sviu/f-location2.json',JSON.stringify(F,null,1));
+await browser.close();
