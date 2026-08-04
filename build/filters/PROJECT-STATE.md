@@ -3,6 +3,35 @@
 
 ---
 
+## 0-QA-ENV. **FILTERS HAS A QA BRANCH — ITS FIRST EVER** (supplied 2026-08-04)
+
+**Read this alongside section 0.** This is a **facts-and-credentials record only. NO VIU has
+begun, and none may begin without the QA lead's explicit go-ahead** — he has **reserved that
+permission until the Report Suite is finished**. Nothing on this branch has been touched: **not
+one network request has been made to it** (no login, no probe, no page load).
+
+| Fact | Value |
+|---|---|
+| App URL | **`https://sv8785.qa.shopview.com`** — the filter bar lives on **`/workorders`** (the QA lead supplied `https://sv8785.qa.shopview.com/workorders`) |
+| API host | **`https://sv8785api.qa.shopview.com`** — ⚠️ **INFERRED from the `sv<number>api…` naming shape, NOT VERIFIED.** Do not treat it as fact until it answers |
+| Branch naming | `sv8785` matches **epic SV-8785**, consistent with `sv8582` → Report Suite SV-8582 and `sv8685` → Schedule SV-8685 (see `build/APP-ACTIONS-PLAYBOOK.md`) |
+| Credentials | **SUPPLIED 2026-08-04.** They live **only** in **`/tmp/filters-viu/cookies.json`** (`chmod 600`, directory `chmod 700`) — three cookies for `.qa.shopview.com`. **No value is recorded in this repo, and none ever may be (Standing Rule 6).** `/tmp` is ephemeral, so expect to ask for a fresh set when the VIU is authorised |
+| Cookie lifetime | ~**24 hours**, or until a deployment — so a fresh set is likely needed at authorisation time |
+| VIU status | **NOT STARTED — awaiting the QA lead's explicit go-ahead** |
+
+**WHY THIS MATTERS: this is the FIRST QA branch Filters has ever had.** Until an authorised VIU
+runs against it, **all 110 active cases remain SPEC-VERIFIED ONLY** — nothing in this suite has
+ever been observed on a running build, every case stays `VIU-Pending`, and every provenance line
+stays deliberately at **Rule 54 state 1 (no build date)**. **Design-pinned and spec-pinned are
+NOT verified** (Rule 12). The ~18 design-sourced on-screen labels stay unconfirmed.
+
+**When the go-ahead comes:** ASK which process(es) to run (Rule 11), request a **fresh** cookie
+set, and run the Rule-31 pre-flight on all sources first. Because the branch's finality has not
+been stated either way, treat **Standing Rule 49** as live until engineering confirms otherwise —
+open a `RECHECK-QUEUE.md` and record the build marker (`<meta name="app-version">`).
+
+---
+
 ## 0. LATEST — **STANDING RULE 54 PROVENANCE RETROFIT: EXECUTED** (2026-08-04)
 
 **Read this section first.** Folder **`build/filters/provenance-2026-08-04/`** —
@@ -928,8 +957,14 @@ screens with no spec (PO Q1).
 
 ## §4 Env / access
 
-- **TBD** — no QA environment, feature-flag status, or API endpoint known yet
-  (OQ-7). Reuse the shared infra when VIU begins: `build/TESTING-RUNBOOK.md`,
+- ⚠️ **SUPERSEDED 2026-08-04 — SEE §0-QA-ENV AT THE TOP OF THIS DOC.** A QA branch now
+  exists (`https://sv8785.qa.shopview.com`, filter bar on `/workorders`) and credentials
+  are supplied in `/tmp/filters-viu/cookies.json` (path only — never a value in this repo).
+  The API host `https://sv8785api.qa.shopview.com` is **inferred, not verified**. The
+  feature-flag/settings state is **still unknown**. **No VIU has begun — the QA lead's
+  explicit go-ahead is required and he has reserved it until Report Suite is complete.**
+- ~~**TBD** — no QA environment, feature-flag status, or API endpoint known yet~~
+  (OQ-7 — the environment half is now answered). Reuse the shared infra when VIU begins: `build/TESTING-RUNBOOK.md`,
   `build/APP-ACTIONS-PLAYBOOK.md`, quick-login/cookie method, harness scripts,
   TestRail API patterns. Secrets in `/tmp` only — never in the repo.
 

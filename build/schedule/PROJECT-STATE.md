@@ -7,7 +7,40 @@
 
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-08-04)
 
-### 0.0-PROVENANCE  STANDING RULE 54 PROVENANCE RETROFIT — **EXECUTED 2026-08-04 (LATEST — read this first)**
+### 0.0-QA-ENV  **SCHEDULE HAS A QA BRANCH — ITS FIRST EVER** (supplied 2026-08-04, read this first)
+
+**Facts-and-credentials record only. NO VIU has begun, and none may begin without the QA lead's
+explicit go-ahead** — he has **reserved that permission until the Report Suite is finished**.
+Nothing on this branch has been touched: **not one network request has been made to it** (no
+login, no probe, no page load).
+
+| Fact | Value |
+|---|---|
+| App URL | **`https://sv8685.qa.shopview.com`** |
+| API host | **`https://sv8685api.qa.shopview.com`** — ⚠️ **INFERRED from the `sv<number>api…` naming shape, NOT VERIFIED.** Do not treat it as fact until it answers |
+| Branch naming | `sv8685` matches **epic SV-8685**, consistent with `sv8582` → Report Suite SV-8582 and `sv8785` → Filters SV-8785 (see `build/APP-ACTIONS-PLAYBOOK.md`) |
+| Credentials | **SUPPLIED 2026-08-04.** They live **only** in **`/tmp/schedule-viu/cookies.json`** (`chmod 600`, directory `chmod 700`) — three cookies for `.qa.shopview.com`. **No value is recorded in this repo, and none ever may be (Standing Rule 6).** `/tmp` is ephemeral, so expect to ask for a fresh set when the VIU is authorised |
+| Cookie lifetime | ~**24 hours**, or until a deployment — so a fresh set is likely needed at authorisation time |
+| Related ticket | **[SV-8812](https://shopview.atlassian.net/browse/SV-8812)** "Set up a dedicated QA environment for testing" (the epic's 16th child, Board Backlog) — the ticket for this very thing. It was still in Backlog at last read; the branch appearing anyway is worth noting, not assuming |
+| VIU status | **NOT STARTED — awaiting the QA lead's explicit go-ahead** |
+
+**WHY THIS MATTERS: this is the FIRST QA branch Schedule has ever had.** Until an authorised VIU
+runs against it, **all 165 active cases remain SPEC-VERIFIED ONLY** — nothing in this suite has
+ever been observed on a running build, every case stays `VIU-Pending`, and every provenance line
+stays deliberately at **Rule 54 state 1 (no build date)**. **Design-pinned is NOT verified**
+(Rule 12) — the ~18 design-pinned on-screen labels stay unconfirmed.
+
+**When the go-ahead comes:** ASK which process(es) to run (Rule 11), request a **fresh** cookie
+set, and run the Rule-31 pre-flight on all sources first. Because the branch's finality has not
+been stated either way, treat **Standing Rule 49** as live until engineering confirms otherwise —
+open a `RECHECK-QUEUE.md` and record the build marker (`<meta name="app-version">`).
+
+**OQ-3 is therefore HALF-ANSWERED:** the environment exists; the **feature-flag / settings state
+is still unknown** and remains an open ask.
+
+---
+
+### 0.0-PROVENANCE  STANDING RULE 54 PROVENANCE RETROFIT — **EXECUTED 2026-08-04 (read after 0.0-QA-ENV)**
 
 **Folder: `build/schedule/provenance-2026-08-04/`** — `SOURCE-CURRENCY.md` ·
 **`PO-RULING-DEFENCE.md`** (the quote-ready defence pack) · `testrail-execution-log.md`
