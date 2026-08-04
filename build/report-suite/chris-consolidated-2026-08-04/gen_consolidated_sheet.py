@@ -102,41 +102,10 @@ SOURCE_NAME_PQ = "PO-Questions-Chris-ReportSuite-2026-08-03 (the 17-item sheet)"
 DROP_SVB = {2}          # the Location-column model question — Tab 1 asks it, wider
 DROP_PQ = {6, 7, 13}    # each one's ask is contained in a Tab 2 item's options
 
-DEDUP_LOG = [
-    ("Tab 2, item 2 of the 10-row sheet",
-     "\"The extra location column works one way on Work In Progress and the exact opposite way "
-     "on Inventory Value\"",
-     "REMOVED — the same question, asked wider, is Tab 1",
-     "Tab 1 asks the identical question (automatic versus a switch the user controls) but across "
-     "all SIX reports and adds the screen-versus-download split on Inventory Value, so it is the "
-     "superset. Asking both would have let him answer the two-report version and the six-report "
-     "version differently. Its QA mapping row is RETAINED below — it carries WIP-PERS-02 "
-     "(C30507), which Tab 1's own eight-case list does not."),
-    ("Tab 3, item 6 of the 17-item sheet",
-     "\"Work In Progress: which number identifies the vehicle or machine first\" — will you update "
-     "the description?",
-     "REMOVED — subsumed by Tab 2 item 3",
-     "Tab 2 item 3 asks which side moves now the product disagrees with his 29 July ruling, and "
-     "BOTH of its options already name who edits the write-up. Keeping the separate tick-box "
-     "allowed a contradiction: he could tick \"yes I will update it\" here and choose \"keep the "
-     "product as it is\" there. Its QA mapping row is RETAINED below."),
-    ("Tab 3, item 7 of the 17-item sheet",
-     "\"The location chooser is hidden for someone with only one location\" — will you correct "
-     "those four lines?",
-     "REMOVED — subsumed by Tab 2 item 1",
-     "Tab 2 item 1 puts the same four quoted lines in front of him and says in BOTH options that "
-     "the four lines need correcting. Same contradiction risk as above. Its QA mapping row is "
-     "RETAINED below."),
-    ("Tab 3, item 13 of the 17-item sheet",
-     "\"Five descriptions still say the report needs its own area permission\"",
-     "REMOVED — exact duplicate of Tab 2 item 9",
-     "The 10-row sheet already recorded this as the one overlap between the two sheets. Tab 2's "
-     "version is the better one: it carries the live both-ways proof, and its figure is right — "
-     "it says FOUR write-ups and lists four, whereas this row said \"five\" and then listed four. "
-     "So the removal also retires a stale figure. Its QA mapping row is RETAINED below — it "
-     "carries four navigation/tab cases (PV-NAV-01, IV-NAV-01, TU-NAV-01, WIP-TAB-01) that Tab 2 "
-     "item 9's row does not."),
-]
+# Where each removed item's question now lives, BY ITS SOURCE-SHEET NUMBER.
+# Resolved to the NEW tab numbering by DEDUP_LANDING below — never hard-coded, because the
+# renumbering moves them: the 10-row sheet's items 3 and 9 become Tab 2 items 2 and 8.
+DEDUP_LANDS_PQ = {6: 3, 7: 1, 13: 9}     # 17-item sheet item -> 10-row sheet item that covers it
 
 # Text changes made in consolidation — every one of them, no silent edits.
 CHANGES = [
@@ -274,6 +243,54 @@ TAB3 = tab3_rows()
 # old item number -> new item number, per tab (used by the QA-only mapping)
 MAP2 = {r["old"]: r["n"] for r in TAB2}
 MAP3 = {r["old"]: r["n"] for r in TAB3}
+# "Tab 2 item N", with N the NEW number
+DEDUP_LANDING = {old: f"Tab 2 item {MAP2[svb_old]}" for old, svb_old in DEDUP_LANDS_PQ.items()}
+
+
+def build_dedup_log():
+    """Built AFTER the renumbering so every pointer names the NEW item number, never the source
+    sheet's. The first draft hard-coded 'Tab 2 item 3' and 'Tab 2 item 9'; once item 2 moved to
+    Tab 1 those became item 2 and item 8, which is precisely the stale-cross-reference class of
+    defect Standing Rules 41/42 exist to stop."""
+    L3, L1, L9 = DEDUP_LANDING[6], DEDUP_LANDING[7], DEDUP_LANDING[13]
+    return [
+        ("Tab 2, item 2 of the 10-row sheet",
+         "\"The extra location column works one way on Work In Progress and the exact opposite "
+         "way on Inventory Value\"",
+         "REMOVED - the same question, asked wider, is Tab 1",
+         "Tab 1 asks the identical question (automatic versus a switch the user controls) but "
+         "across all SIX reports and adds the screen-versus-download split on Inventory Value, so "
+         "it is the superset. Asking both would have let him answer the two-report version and "
+         "the six-report version differently. Its QA mapping row is RETAINED below - it carries "
+         "WIP-PERS-02 (C30507), which Tab 1's own eight-case list does not."),
+        ("Tab 3, item 6 of the 17-item sheet",
+         "\"Work In Progress: which number identifies the vehicle or machine first\" - will you "
+         "update the description?",
+         f"REMOVED - subsumed by {L3}",
+         f"{L3} asks which side moves now the product disagrees with his 29 July ruling, and BOTH "
+         "of its options already name who edits the write-up. Keeping the separate tick-box "
+         "allowed a contradiction: he could tick \"yes I will update it\" here and choose \"keep "
+         "the product as it is\" there. Its QA mapping row is RETAINED below."),
+        ("Tab 3, item 7 of the 17-item sheet",
+         "\"The location chooser is hidden for someone with only one location\" - will you "
+         "correct those four lines?",
+         f"REMOVED - subsumed by {L1}",
+         f"{L1} puts the same four quoted lines in front of him and says in BOTH options that the "
+         "four lines need correcting. Same contradiction risk as above. Its QA mapping row is "
+         "RETAINED below."),
+        ("Tab 3, item 13 of the 17-item sheet",
+         "\"Five descriptions still say the report needs its own area permission\"",
+         f"REMOVED - exact duplicate of {L9}",
+         "The 10-row sheet already recorded this as the one overlap between the two sheets. Tab "
+         "2's version is the better one: it carries the live both-ways proof, and its figure is "
+         "right - it says FOUR write-ups and lists four, whereas this row said \"five\" and then "
+         "listed four. So the removal also retires a stale figure. Its QA mapping row is RETAINED "
+         "below - it carries four navigation/tab cases (PV-NAV-01, IV-NAV-01, TU-NAV-01, "
+         f"WIP-TAB-01) that {L9}'s row does not."),
+    ]
+
+
+DEDUP_LOG = build_dedup_log()
 
 
 # ------------------------------------------------------------------- QA-only data
@@ -310,12 +327,15 @@ def qa_rows():
     for r in TAB3:
         m = pq_by_item.get(str(r["old"]), {})
         note = ""
+        cases = m.get("cases", "")
         if m.get("q") == "6-12":
             survivors = ", ".join(str(MAP3[o]) for o in sorted(MAP3) if 6 <= o <= 12)
             note = (f" [this mapping row covers items 6-12 of the source sheet; after the "
                     f"de-duplication its surviving items are Tab 3 items {survivors}]")
+            cases += (f" [\"row 2\" here means the source sheet's own item-2 mapping row, which "
+                      f"is Tab 3 item {MAP3[2]} above]")
         rows.append(dict(tab="Tab 3", n=str(r["n"]), was=f"item {r['old']} of the 17-item sheet",
-                         src=SOURCE_NAME_PQ, cases=m.get("cases", ""),
+                         src=SOURCE_NAME_PQ, cases=cases,
                          anchors=m.get("refs", "") + note, resolve=m.get("resolve", "")))
     return rows
 
@@ -330,19 +350,36 @@ def merged_out_rows():
         out.append(dict(was=f"item {old} of the 10-row sheet", src=SOURCE_NAME_SVB,
                         now="asked once, as Tab 1", cases=m.get("cases", ""),
                         anchors=m.get("refs", ""), resolve=m.get("resolve", "")))
-    lands = {6: "Tab 2 item 3", 7: "Tab 2 item 1", 13: "Tab 2 item 9"}
     for old in sorted(DROP_PQ):
         m = pq_by_item.get(str(old), {})
+        grouped = ""
         if not m:                              # items 6-12 share one grouped mapping row
             m = pq_by_item.get("6-12", {})
+            grouped = (" [this is the grouped mapping row the source sheet used for its items "
+                       "6-12; \"row 2\" in its text means the sheet's own item-2 row, which is "
+                       f"carried above as Tab 3 item {MAP3[2]}]")
         out.append(dict(was=f"item {old} of the 17-item sheet", src=SOURCE_NAME_PQ,
-                        now=f"asked once, as {lands[old]}", cases=m.get("cases", ""),
+                        now=f"asked once, as {DEDUP_LANDING[old]}",
+                        cases=m.get("cases", "") + grouped,
                         anchors=m.get("refs", ""), resolve=m.get("resolve", "")))
     return out
 
 
 QA_ROWS = qa_rows()
 MERGED_OUT = merged_out_rows()
+
+# The carried source-refs / resolves cells sometimes cross-reference their own sheet ("the same
+# case as item 4"). Those are the SOURCE sheet's numbers, so the translation is stated once here
+# rather than editing carried text and risking mangling it.
+NUMBERING_NOTE = (
+    "NOTE ON NUMBERING: every \"item N\" INSIDE a carried Source-refs or Resolves cell is the "
+    "SOURCE SHEET's number, not this workbook's. The \"Was\" column gives each row's source "
+    "number. Old -> new: 10-row sheet "
+    + ", ".join(f"{o}->Tab 2 item {n}" for o, n in sorted(MAP2.items()))
+    + " (its item 2 moved to Tab 1); 17-item sheet "
+    + ", ".join(f"{o}->Tab 3 item {n}" for o, n in sorted(MAP3.items()))
+    + " (its items 6, 7 and 13 were de-duplicated out)."
+)
 
 # ---- SOURCE-CURRENCY (Standing Rule 31) — the six descriptions RE-READ LIVE 2026-08-04
 SOURCE_CURRENCY = [
@@ -609,6 +646,7 @@ def md_qa():
          "**PV-API-04 = C30391**, and **C30388 = PV-API-01**. Anyone acting on that row would have "
          "edited the wrong case.", "",
          "## Per-item mapping - every surviving reader-facing item", "",
+         NUMBERING_NOTE, "",
          "| Tab | Item | Was | Source sheet | Affected internal case IDs (TestRail C-id) | "
          "Spec anchors + live evidence | What each answer resolves to |",
          "|---|---|---|---|---|---|---|"]
@@ -840,6 +878,8 @@ def write_xlsx():
     r = 3
     ws4.cell(row=r, column=1, value="PER-ITEM MAPPING - EVERY SURVIVING READER-FACING ITEM").font = Font(bold=True)
     r += 1
+    ws4.cell(row=r, column=1, value=NUMBERING_NOTE).alignment = WRAP
+    r += 1
     _hdr(ws4, r, ["Tab", "Item", "Was", "Source sheet",
                   "Affected internal case IDs (TestRail C-id)",
                   "Spec anchors + live evidence", "What each answer resolves to"])
@@ -1046,6 +1086,11 @@ JARGON = ["API", "HTTP", "endpoint", "payload", "JSON", "403", "404", "500", "20
           "frontend", "VIU", "TestRail", "Confluence", "Jira", "feature flag", "feature-flag",
           "CSV", "PDF", "UTF-8", "BOM", "server-side", "toggle", "column selector"]
 EXEMPT_WORDS = {w.lower() for w, _, _ in RULE7_EXEMPTIONS}
+# expected occurrences of each declared carry-over in the reader-facing output, so the exemption
+# is COUNTED rather than silently skipped: 'toggle' twice - once inside Chris's own quoted
+# description on Tab 1 (exempt anyway, altering his quote would be dishonest) and once in the
+# carried-over Tab 3 item 10 wording.
+EXEMPT_EXPECTED = {"toggle": 2}
 
 
 def rule7_scan(blob, label):
@@ -1134,6 +1179,15 @@ def verify_output(md_path, xlsx_path):
         print(f"  xlsx tab {name!r} ({n_cells} non-empty cells): "
               f"{len(v)} findings {sorted(set(v)) if v else ''}")
     print(f"  TOTAL across the reader-facing .md and all three reader-facing tabs: {total}")
+    # the declared carry-over is COUNTED, not silently skipped
+    for w, where, _ in RULE7_EXEMPTIONS:
+        hits = re.findall(r"(?<![A-Za-z])" + re.escape(w) + r"(?![A-Za-z])", reader_md, re.I)
+        exp = EXEMPT_EXPECTED.get(w.lower())
+        ok = "as expected" if len(hits) == exp else f"UNEXPECTED - expected {exp}"
+        print(f"  declared carry-over {w!r}: {len(hits)} occurrence(s) in the reader-facing .md "
+              f"- {ok} (1 inside Chris's own quoted description on Tab 1, 1 at {where})")
+        if len(hits) != exp:
+            raise SystemExit("DECLARED CARRY-OVER COUNT CHANGED - re-check the reader-facing text")
     if total:
         raise SystemExit("OUTPUT-LEVEL GATE FAILED")
     # the QA-only half must, by contrast, carry the traceability
