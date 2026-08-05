@@ -1078,6 +1078,123 @@ stated — those ten are honest about it in their own `refs`.
 
 ---
 
+## Steps correctly VIU'd but the expectation altered in the same pass
+
+The QA lead asked for this specifically, and gave the reason that makes it matter:
+
+> *"For the rule: 'the case should be matched to the build' — That doesn't mean the expected behavior
+> should match the build. That kills the purpose of the test case. I think when we said 'the case
+> should be matched to the build' it meant that the test case should be VIU'd from the build"*
+
+**The consequence, stated plainly: if the expected behaviour bends to whatever shipped, the case can no
+longer fail — and a test that cannot fail is not a test.** A build-derived expected result is not a
+wording problem. It is a case that has been silently disarmed. And the reason this particular pattern is
+the hardest to catch is that the case comes out looking **freshly maintained**, with a current provenance
+line, which is worse than an obviously stale case rather than better.
+
+**How it was searched.** Not by reading the cases — by replaying **26 commits** of the local case source
+since 28 July and, for every case in every commit, comparing the **steps** and the **assertion body**
+(the expected result with the provenance line, the automation marker, the HTML and the list numbering all
+stripped, so only the assertion itself is compared). The commit is flagged only when **both** changed.
+Tooling: `final-viu-2026-08-05/tools/stepsweep2.py`.
+
+**Result: 16 cases had steps and assertion change together. 14 are legitimate. 2 are real reversals, and
+both were driven by a document, not by the build.**
+
+### First — where did the five class-A waivers come from?
+
+The precise question: were the five waivers slipped in alongside a legitimate step correction?
+
+**No.** In all five the steps text is **byte-identical across the commit that introduced the waiver**:
+
+| Case | Commit that introduced the waiver | Steps changed in the same commit? |
+|---|---|---|
+| FLT-BAR-01 C29557 | `ef02f7f2` 2026-08-05 | **NO** — 145 chars before and after |
+| FLT-COLL-02 C29602 | `ef02f7f2` 2026-08-05 | **NO** — 73 chars before and after |
+| FLT-EMPTY-01 C29606 | `ef02f7f2` 2026-08-05 | **NO** — 87 chars before and after |
+| FLT-EMPTY-02 C29607 | `ef02f7f2` 2026-08-05 | **NO** — 131 chars before and after |
+| FLT-PSRCH-09 C38899 | `ef02f7f2` 2026-08-05 | **NO** — 330 chars before and after |
+
+So the waivers were **not** camouflaged by a VIU edit. They were added on their own, deliberately, in the
+belief that a closed ticket settled the question. That is the failure this audit's main section addresses.
+
+### The two genuine reversals
+
+**FLT-RPTS-23 = C38882** — [TestRail](https://shopview.testrail.io/index.php?/cases/view/38882) — commit
+`ef02f7f2`, 5 August. Steps and expectation changed together, and the expectation was **reversed**:
+
+> **Before:** *"a start/end date picker opens — there are **no preset ranges** (no 'last 30 days'
+> shortcuts) and **no pre-filled default range**."*
+>
+> **After:** *"The panel that opens offers a set of ready-made periods to choose from — on the build
+> tested these are Today, Yesterday, This week…"*
+
+**Was the driver the build or a document?** A document. Branko published Confluence **version 18** at
+**2026-08-04T18:19:21Z**, the day before, with the note *"Date-range filter: reflect current in-app
+default range and standard predefined ranges"*, and the §4 text reads:
+
+> *"New date-range filter type: Date chips open a picker offering **standard predefined ranges** plus a
+> custom start/end range, **pre-populated with the application's current default range** for that
+> report/page. A predefined range applies on selection; a custom range applies when the second date is
+> picked."*
+
+So reversing the assertion was **correct and spec-driven**. What is *not* correct is enumerating the
+build's ten periods inside the expected result — that is the class-D finding, and it is repaired by
+removal, never by substitution.
+
+**FLT-TAB-02 = C29609 / FLT-TAB-03 = C29610** — [C29609](https://shopview.testrail.io/index.php?/cases/view/29609)
+· [C29610](https://shopview.testrail.io/index.php?/cases/view/29610) — commit `5e3f4df3`, 4 August. Also
+reversed:
+
+> **Before:** *"the status chip **is shown but greyed out, already filled in** with this tab's status, and
+> cannot be clicked or changed"*
+>
+> **After:** *"The Status chip **is not shown** on this tab at all — only four chips appear."*
+
+**Was the driver the build or a document?** A document, and it is the newer one. Quoting both:
+
+> **S9-R3 (spec v18):** *"On the Completed tab, the Status filter chip is **hidden**; the remaining four
+> filters are shown and apply on top of the Completed pre-filter"*
+>
+> **S2-N2 (spec v18):** *"On the Completed tab, the Status filter chip is **not shown**: that tab already
+> pre-filters by the Complete status"*
+
+The superseded position was **Branko's own answer of 2026-07-17** (greyed out and pre-filled), which the
+design frame also showed. The specification is the newer authoritative source (Standing Rule 32), so the
+cases follow it — and, to their credit, **both already carry a Rule-56 divergence sentence** saying so.
+**Verdict: substantively correct, class C.**
+
+Two blemishes are repaired anyway, because opening a case means re-reading the whole of it (Rule 41):
+
+1. **The `refs` on both cases still assert the superseded position** — *"behaviour per Branko Q4=B
+   2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled"* — which now directly contradicts
+   the case's own body. Stale metadata.
+2. The divergence sentence ends *"so this test follows the specification **and the build**"*. The build is
+   not a source of the expectation and should not be named as a co-author of it. The clause is dropped;
+   the specification alone carries it.
+
+### The 14 legitimate ones — this is the rule working as intended
+
+| Case | What changed | Why it is legitimate |
+|---|---|---|
+| FLT-COLL-01 C29601, FLT-COLL-04 C29604 | *"funnel icon"* → *"filter icon"* in both steps and expectation | pure label correction (Standing Rule 9). The assertion — the bar hides and the table takes the space — is untouched and is S1-R5 |
+| FLT-MOB-05 C29625 | *"'Search customer' field"* → *"'Search' field"* | label correction |
+| FLT-URL-05 C38879, FLT-URL-06 C38896 | *"Back to my view"* → *"Back to my saved filters"* | label correction. The specification writes it *"Back to my view"* in S11-N3; the button on screen reads otherwise, and the tester must read what they will see. The assertion — the control is absent on your own view — is unchanged |
+| FLT-MOB-04 C29624 | reversed to the deferred-apply requirement | driven by S12-R6 and Branko closing SV-8825; carries a proper Rule-56 divergence sentence |
+| FLT-PARTS-01 C38904, FLT-RPTS-01 C38909 | assertion widened from one page to all pages | driven by the Figma boards and Branko's answers, not the build |
+| FLT-PARTS-09 C38905, FLT-PARTS-12 C38907, FLT-RPTS-22 C38911 | *"behaviour to confirm — pending Branko's product write-up"* replaced by a definite assertion | Branko answered. A hedge becoming an assertion **because the PO ruled** is exactly right |
+| FLT-PSRCH-03 C38886, FLT-PSRCH-05 C38889, FLT-PSRCH-06 C38891 | assertions rewritten during the phase-2 authoring of the uncovered v1.6 requirements | driven by S13-R7/R12/R16–R20 and S13-N4 |
+
+### The pattern to recognise next time
+
+The tell is not that steps and expectation changed together — 14 of the 16 did, legitimately. **The tell
+is whether the new expectation can be quoted back to a document.** If the answer to *"which requirement,
+which version, which anchor?"* is the build, the case has been disarmed. If it is a spec anchor, a story,
+or a dated PO answer, it has been maintained. That question is cheap to ask and it separates all 16 rows
+above without ambiguity.
+
+---
+
 ## What this audit cannot fix, and who owns it
 
 **Nothing here needs Branko to settle an expected behaviour** — that is the good news, and it is why
