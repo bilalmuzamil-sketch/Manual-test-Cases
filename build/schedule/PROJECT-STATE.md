@@ -1,5 +1,96 @@
 # Schedule — PROJECT STATE (canonical cold-resume doc)
 
+## 0-RECHECK-ATTEMPT-2026-08-05. **THE RE-CHECK COULD NOT RUN — NO SESSION ON THE NEW BUILD. NEWEST STATE.**
+
+**Read this first, then `build/schedule/recheck-2026-08-05/`** (SOURCE-CURRENCY · FINDINGS ·
+testrail-execution-log · RECHECK-QUEUE · FILED · WRITE-PLAN + `evidence/`).
+
+A **full Standing Rule 49 re-check of all 165 rows** against the redeployed branch was attempted and
+**0 of 165 rows were re-observed.** The Schedule cookies (`/tmp/schedule-viu/cookies.json`, dated
+2026-08-04 11:31 UTC, ~24.5 h old) return `HTTP 401 {"error":"sso_required"}`. The **Filters and Report
+Suite** sets are dead too, and the Filters cookie also 401s against the Schedule API — so it is the
+ordinary **~24-hour expiry across the whole `.qa.shopview.com` estate**, compounded by the deploy, and it
+**cannot be worked around from the container.**
+
+**ALL 165 VERDICTS ARE PROVISIONAL AND UNCONFIRMED.** No verdict was inferred to fill the gap (Rule 12).
+
+**Build marker, read three times this pass:** `v3.5-be42149` · `index.html` last-modified **Wed 05 Aug
+2026 08:09:19 GMT** · etag `70e496609e155994b93f515db32d0289` — at **12:01:46Z** and **12:09Z**, and the
+file was **byte-identical** between the reads, so **nothing redeployed under the attempt**. The 4 August
+verdicts were measured on `v3.5-4873abe`, which is gone.
+
+**ZERO WRITES ANYWHERE, and it is proven, not asserted.** All **165 cases byte-identical** before and
+after — **30 fields each, `updated_on` and `updated_by` included, 0 differences**. **Run 357 untouched** —
+165 tests, **429** result records, **every one present BY ID and byte-identical field by field**,
+`case_id` sets equal **both** directions, `include_all` still false. **Jira: 0 writes.** **No foreign
+cases exist in group 4254** (all 165 `created_by = 3`).
+
+### What the pass DID establish, live
+
+| Source | Verdict |
+|---|---|
+| **Spec** — Confluence `713031682` | **CURRENT at version 23**, and proven **exactly**: the live page body was fetched and word-diffed against our mirror — **0 runs of 6+ words exist live and are missing from ours**. The page's **in-body "Version" field reads `1.0`** — the Rule-31(a) trap, confirmed live. |
+| **Epic SV-8685** | **CURRENT.** 26 direct children, verified two ways (`parent=` and `"Epic Link"=`) with **equal key sets both directions**. Changelog's last entry is 2026-08-04T07:07 (Stefan Vukovic, Severity + QA Test Plan) — administrative only. |
+| **Our 10 tickets SV-8848…SV-8857** | **All still Open**, priority Low, parent the epic, story linked. **Not one is fixed.** Only change: Mudassir Qamar added label `FS-Schedule` to all ten. |
+| **Story defects** | **STALE — now refreshed. 22, not 12.** Ten arrived after our ingest: 7 from Ayesha Khan (SV-8863/8864/8865/8867/8868/8869/8870) and 3 from Mudassir Qamar today (SV-8873/8874/8877). |
+| **Designs / tech plan / PO answers** | CURRENT; no Rule-35 queue open for Schedule. |
+| **The build** | **MOVED, and not observable.** |
+
+### The findings that change our records
+
+1. **Two of our four unticketed deviations now HAVE tickets, raised by other QAs.**
+   **[SV-8834](https://shopview.atlassian.net/browse/SV-8834)** covers SCH-MODAL-03 =
+   [C30010](https://shopview.testrail.io/index.php?/cases/view/30010) **exactly** (same `1h / 1h`
+   symptom) — **so the "eleventh ticket" ask is answered: it would be a duplicate.**
+   **[SV-8874](https://shopview.atlassian.net/browse/SV-8874)** covers SCH-TOOL-03 =
+   [C30041](https://shopview.testrail.io/index.php?/cases/view/30041), which decisions-register entry 8
+   deliberately left unticketed. **Both cases' text still says "no developer ticket yet" — now false,
+   queued for repair.**
+2. **Two of our PASS verdicts are contradicted by accepted (Ready to Fix) defects, and they are probably
+   right.** SV-8873 vs [C29939](https://shopview.testrail.io/index.php?/cases/view/29939) — our evidence
+   never says which **form** of the technician name we typed. SV-8868 vs
+   [C29944](https://shopview.testrail.io/index.php?/cases/view/29944) — **we proved one status of many
+   and called the filter good; one status is a sample.** Carried as open contradictions, not resolved in
+   our favour. Their tickets untouched (Rule 38).
+3. **Three candidate coverage GAPS** with no counterpart among our 165: SV-8863 (which view the module
+   opens on), SV-8870 (drag-create in Month view), SV-8867 (reassigning a series member). **Not
+   authored** — needs authorisation and live observation.
+4. **Our epic record was wrong in four ways** (corrected in `SOURCE-CURRENCY.md` §2): 26 children not
+   28; the 12 "epic-level Bugs" are **Story Defect subtasks of stories**; the SV-8826–8841 range is **16**
+   tickets, **4 of them not Schedule at all** (2 Ahtasham Filters defects, 2 Ryan Fyfe unparented Bugs);
+   and there are 22 story defects, not 12.
+5. **16 raw-markup cases confirmed by searching all 165**, not by trusting the count. All named with
+   C-ids in `FINDINGS.md` finding 7.
+6. **0 of 165 carry an `AUTOMATION:` marker**; all 165 provenance lines name `v3.5-4873abe` + `8/4/2026`,
+   **exactly once each, none doubled**.
+
+### Deliverables: no regeneration needed, and that was verified not assumed
+
+Live **165** = local active **165** (192 bodies − 27 retired) = id-map **165** (**0 blank C-ids**, `refs`
+**165/165**) = import **165** rows. **id-map C-ids vs live: sets equal BOTH directions.** **Local vs live
+text: 0 field mismatches** across all 165 on title/preconditions/steps/expected. **Shredding guard
+PASSED** (0 shredded cells — the `gen_import.py` fix is holding). **Import header sha256
+`a45eae40ec73b8ac` — identical to all five peer imports.** Nothing regenerated deliberately: a rerun
+would blank the id-map C-ids and drop the `refs` column for no gain.
+
+### How to resume, in order
+
+1. **Get fresh cookies** for `https://sv8685.qa.shopview.com` — `sv_sso_session`, `PHPSESSID`,
+   `cf_clearance` for `.qa.shopview.com` → `/tmp/schedule-viu/cookies.json`.
+2. Read the build marker (start / mid / end). **If it is not `v3.5-be42149`, it moved again.**
+3. Work `build/schedule/recheck-2026-08-05/RECHECK-QUEUE.md` — 165 rows, all `NOT YET`. Start with the
+   10 priority rows named at the top of it.
+4. Execute `build/schedule/recheck-2026-08-05/WRITE-PLAN.md` as **ONE write per case** — provenance
+   re-stamp + automation marker + the 16 formatting repairs + the 2 false "no ticket" sentences.
+5. Check the arithmetic gate: **READY + READY-EXPECT-FAIL must equal the ready-to-automate figure.**
+6. **Then** build `READINESS-2026-08-05.md` in the Filters template. **It was deliberately NOT written
+   today** — a readiness report is a statement about a build, and we could not see the build; publishing
+   one would have restated 4 August's numbers under today's date. `READINESS-2026-08-04.md` is kept and
+   banner-marked *"its verdicts are no longer confirmed"* rather than superseded, because there is
+   nothing newer to supersede it with.
+
+---
+
 ## 0-BUILD-MOVED-2026-08-05. **THE QA BRANCH WAS REBUILT. NOTHING WAS WRITTEN. NEWEST STATE.**
 
 **Read this first.** Source: `build/automation-markers-2026-08-05/SCHEDULE-HALTED.md` + `BUILD-MARKERS.md`.

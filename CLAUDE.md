@@ -51,10 +51,39 @@
 >   `build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md` (Report Suite QA branch `sv8582`, build
 >   `v3.4.1-0ed4433`) · `build/filters/recheck-2026-08-05/RECHECK-QUEUE.md` (Filters QA branch `sv8785`, build
 >   **`v3.4.2-d00239b`** — **RE-RUN IN FULL 2026-08-05: 110/110 rows, 91 CONFIRMED / 19 CHANGED**;
->   still OPEN only because the branch is not declared final) · `build/schedule/viu-2026-08-04/RECHECK-QUEUE.md` (Schedule QA branch
->   `sv8685` — **⚠️ THE BUILD MOVED 2026-08-05: `v3.5-4873abe` → `v3.5-be42149`, redeployed 08:09 UTC,
->   so this queue is DUE IN FULL over all 165 rows and NOTHING may be asserted from those verdicts until
->   it is re-run**). **None of the three branches has been declared final, so every finding on all three
+>   still OPEN only because the branch is not declared final) · **`build/schedule/recheck-2026-08-05/RECHECK-QUEUE.md`** (Schedule QA branch
+>   `sv8685` — **THE LIVE QUEUE, re-armed 2026-08-05; the 2026-08-04 file is now the RECORD only and is
+>   banner-marked as such.** The build MOVED 2026-08-05: `v3.5-4873abe` → **`v3.5-be42149`**, redeployed
+>   08:09 UTC. **A FULL 165-row re-check was ATTEMPTED 2026-08-05 and COULD NOT START: 0 of 165 rows
+>   re-observed** — the QA-branch cookies (2026-08-04 11:31 UTC, ~24.5 h old) return HTTP 401
+>   `sso_required`, and the Filters + Report Suite sets are dead too, so it is the ordinary ~24 h expiry
+>   across the whole `.qa.shopview.com` estate plus the deploy. **ALL 165 VERDICTS ARE PROVISIONAL AND
+>   UNCONFIRMED; nothing was inferred and ZERO writes were made anywhere** (all 165 cases proven
+>   byte-identical incl. `updated_on`; run 357 proven untouched with all **429** results present BY ID;
+>   Jira 0 writes). **NEEDED: fresh `sv_sso_session` / `PHPSESSID` / `cf_clearance` for
+>   `.qa.shopview.com`.** Everything else is ready and staged as ONE write per case —
+>   `build/schedule/recheck-2026-08-05/WRITE-PLAN.md`. **Established live that pass:** spec **CURRENT at
+>   Confluence v23, proven by word-diff of the live body (0 runs of 6+ words missing from our mirror) —
+>   and its in-body "Version" field reads `1.0`, the Rule-31(a) trap confirmed**; epic **SV-8685 = 26
+>   direct children** verified two ways with equal key sets (**our recorded "28 children incl. 12
+>   epic-level Bugs" was WRONG — those 12 are Story Defect SUBTASKS of the stories, and the SV-8826–8841
+>   range is 16 tickets of which 4 are not Schedule at all**); **story defects are now 22, not 12** (7 new
+>   from Ayesha Khan, 3 from Mudassir Qamar on 5 Aug); **all 10 of our tickets SV-8848…SV-8857 still
+>   Open, none fixed** (only a `FS-Schedule` label added). **TWO ASKS ANSWERED WITHOUT US:
+>   [SV-8834](https://shopview.atlassian.net/browse/SV-8834) already covers SCH-MODAL-03 = C30010
+>   exactly, so the "eleventh ticket" would be a DUPLICATE — do not file it; and
+>   [SV-8874](https://shopview.atlassian.net/browse/SV-8874) now covers SCH-TOOL-03 = C30041, so
+>   decisions-register entry 8 must stop calling it unticketed. Both cases' text still says "no developer
+>   ticket yet" — FALSE, queued for repair.** **TWO OF OUR PASS VERDICTS ARE CONTRADICTED by accepted
+>   Ready-to-Fix defects and they are probably right:** SV-8873 vs C29939 (our evidence never says which
+>   FORM of the technician name we typed) and SV-8868 vs C29944 (**we proved ONE status of many and called
+>   the filter good — a sample, not the filter**). **THREE CANDIDATE COVERAGE GAPS** with no counterpart
+>   in our 165: SV-8863 (which view the module opens on), SV-8870 (drag-create in Month view), SV-8867
+>   (reassigning a series member) — not authored, needs authorisation. **`READINESS-2026-08-05.md` was
+>   DELIBERATELY NOT WRITTEN** — a readiness report is a statement about a build we could not see;
+>   `READINESS-2026-08-04.md` is kept and banner-marked "its verdicts are no longer confirmed" rather than
+>   superseded, because there is nothing newer to supersede it with. Canonical resume:
+>   `build/schedule/PROJECT-STATE.md` §0-RECHECK-ATTEMPT-2026-08-05). **None of the three branches has been declared final, so every finding on all three
 >   is PROVISIONAL.** **AUTOMATION MARKERS (QA-lead-authorised 2026-08-05, `build/automation-markers-2026-08-05/`):
 >   Filters carries the marker on 102/110 cases (build byte-identical, safe); Schedule carries it on
 >   0/165 BY DESIGN because of the redeploy above. The marker goes at the VERY END of Expected Results,
@@ -1018,9 +1047,66 @@ deliver the 7-tab management report.
    not *currently passing*; 2 waiting on Branko for the shop-closure contradiction; 2 un-settable on this
    estate) **and 23 were NOT** (19 `READY - EXPECT FAIL (SV-88xx)` + 4 "not built"). **All ten defect
    tickets SV-8848…SV-8857 were read live and are STILL Open**, so the 19 probably still reproduce — but
-   probably is not observed. **NEXT: re-run the Rule-49 queue over all 165 rows against `v3.5-be42149`,
-   then write all 165 markers from fresh verdicts — or, on the QA lead's word, write the 142
-   build-independent markers now and hold the 23.**
+   probably is not observed.
+   **STATUS 2026-08-05 (LATEST — THE RULE-49 RE-CHECK WAS ATTEMPTED AND COULD NOT RUN; resume
+   `build/schedule/PROJECT-STATE.md` §0-RECHECK-ATTEMPT-2026-08-05 then
+   `build/schedule/recheck-2026-08-05/`):** the branch redeployed at **08:09 UTC** (`v3.5-4873abe` →
+   **`v3.5-be42149`**, last-modified Wed 05 Aug 08:09:19 GMT, etag `70e496609e155994b93f515db32d0289`;
+   marker read at start **12:01:46Z** and mid **12:09Z** — `index.html` **byte-identical between the
+   reads**, so nothing redeployed under the attempt). **0 OF 165 ROWS RE-OBSERVED** — the QA-branch
+   cookies (2026-08-04 11:31 UTC, ~24.5 h old) return HTTP 401 `sso_required`, and the Filters +
+   Report Suite sets are dead too (the Filters cookie also 401s against the Schedule API), so it is the
+   ordinary **~24 h expiry across the whole `.qa.shopview.com` estate** plus the deploy, and it cannot be
+   worked around from the container. **ALL 165 VERDICTS ARE PROVISIONAL AND UNCONFIRMED and NOTHING was
+   inferred** (Rule 12). **ZERO WRITES, PROVEN:** all 165 cases byte-identical before/after — **30 fields
+   each, `updated_on` + `updated_by` included, 0 differences**; **run 357 untouched** — 165 tests, **429**
+   result records, **every one present BY ID and byte-identical field by field**, `case_id` sets equal
+   BOTH directions, `include_all` still false; **Jira 0 writes**; **no foreign cases exist in group 4254**
+   (all 165 `created_by = 3`). **WHY NOTHING WAS WRITTEN even for the build-independent fixes:** every
+   touched case owes a Rule-54 re-stamp, and a write today would either leave a dead build marker on a
+   freshly-updated case or claim an observation we did not make — so the 16 formatting repairs, the 2
+   false "no ticket yet" sentences, the 165 provenance re-stamps and the 165 automation markers are ALL
+   staged as **ONE write per case** in `recheck-2026-08-05/WRITE-PLAN.md`. **Option (ii) — the 142
+   build-independent markers — is no longer worth taking: 2 of the 19 "expect fail" cases have changed
+   since.** **ESTABLISHED LIVE:** spec **CURRENT at Confluence v23**, proven by word-diff of the live body
+   (**0 runs of 6+ words present live and missing from our mirror**) — **and its in-body "Version" field
+   reads `1.0`, the Rule-31(a) trap confirmed live**; epic **SV-8685 = 26 direct children**, verified two
+   ways with equal key sets, changelog's last entry administrative only (Stefan Vukovic, Severity + QA
+   Test Plan, 2026-08-04T07:07); **all 10 of our tickets SV-8848…SV-8857 STILL OPEN, none fixed** (only
+   Mudassir Qamar adding label `FS-Schedule`). **FOUR CORRECTIONS TO OUR OWN RECORD:** the epic has **26**
+   children not 28; the 12 tickets we recorded as epic-level Bugs are **`Story Defect` SUBTASKS of the
+   stories**; the SV-8826–8841 range is **16** tickets of which **4 are not Schedule at all** (2 Ahtasham
+   Filters defects on SV-8795, 2 Ryan Fyfe unparented Bugs); and there are **22 story defects, not 12** —
+   10 arrived after our ingest (7 Ayesha Khan, 3 Mudassir Qamar on 5 Aug). **TWO ASKS ANSWERED WITHOUT
+   US:** [SV-8834](https://shopview.atlassian.net/browse/SV-8834) (Mudassir, 4 Aug 08:39) covers
+   SCH-MODAL-03 = C30010 **exactly** — same `1h / 1h` symptom — **so the "eleventh ticket" would be a
+   DUPLICATE and must not be filed**; and [SV-8874](https://shopview.atlassian.net/browse/SV-8874)
+   (Mudassir, 5 Aug 05:26) now covers SCH-TOOL-03 = C30041, so **decisions-register entry 8 must stop
+   calling it unticketed**. Both cases' text still says the fault *"has no developer ticket yet"* — **now
+   false**, queued. **TWO OF OUR PASS VERDICTS ARE CONTRADICTED by accepted Ready-to-Fix defects and they
+   are probably right (Rule 44):** SV-8873 vs C29939 (our evidence **never records which FORM of the
+   technician name we typed**) and SV-8868 vs C29944 (**we proved Approved alone and called the filter
+   good — one status is a sample, not the filter**; a Rule-50 exhaustiveness failure of our own). **THREE
+   CANDIDATE COVERAGE GAPS** with no counterpart among our 165, found by reverse-coverage diff: SV-8863
+   (which view the module opens on), SV-8870 (drag-create in Month view), SV-8867 (reassigning a series
+   member) — **not authored**, needs authorisation + live observation. **STILL UNKNOWN and most wanted:**
+   whether any of the **4 not-built** features shipped in this deploy (SCH-API-02 C38873, SCH-DND-08
+   C29962, SCH-EVT-02 C30017, SCH-SPREAD-11 C38863) and whether the **2 un-settable** rows (SCH-EDGE-07
+   C38865, SCH-START-02 C29970) can now be seeded. **MARKERS: 0 of 165**; all 165 provenance lines name
+   `v3.5-4873abe` + `8/4/2026`, exactly once each, none doubled. **Arithmetic gate not runnable yet;
+   target recorded = READY + READY-EXPECT-FAIL must equal 157** (165 − 2 PO − 2 un-settable − 4
+   not-built), **and it will move if a not-built feature shipped or a contradicted PASS flips.**
+   **16 raw-markup cases CONFIRMED by searching all 165** (not by trusting the count), all named with
+   C-ids. **DELIVERABLES: nothing regenerated, deliberately** — live **165** = local active **165** (192
+   bodies − 27 retired) = id-map **165** (0 blank C-ids, `refs` 165/165) = import **165** rows; **id-map
+   C-ids vs live sets equal BOTH directions**; **local vs live text 0 field mismatches** across all 165;
+   **shredding guard PASSED**; import header **sha256 `a45eae40ec73b8ac` identical to all five peers** — a
+   rerun would only blank the id-map C-ids and drop `refs` for no gain. **`READINESS-2026-08-05.md` was
+   DELIBERATELY NOT WRITTEN** (a readiness report is a statement about a build we could not see);
+   **`READINESS-2026-08-04.md` is KEPT and banner-marked "its verdicts are no longer confirmed" rather
+   than SUPERSEDED, because there is nothing newer to supersede it with.** **NEEDED FROM THE QA LEAD:
+   fresh `sv_sso_session` / `PHPSESSID` / `cf_clearance` for `.qa.shopview.com` — that is the only
+   blocker; every other source is current and proven current.**
    **PRIOR STATUS 2026-08-04 (FIRST-EVER LIVE VIU DONE on QA branch `sv8685`, then RECOVERED +
    FINISHED after the worker was cut off mid-wrap-up; resume `build/schedule/READINESS-2026-08-04.md`
    then `build/schedule/recovery-2026-08-04/STATE.md`):** all **165 cases carry a DEFINITE verdict** —

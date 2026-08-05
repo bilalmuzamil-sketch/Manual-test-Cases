@@ -1,3 +1,14 @@
+> ## ⚠️ SUPERSEDED AS THE LIVE QUEUE — 5 August 2026
+>
+> **This file is now the RECORD of what was observed on 4 August, not the queue.** The live queue is
+> **`build/schedule/recheck-2026-08-05/RECHECK-QUEUE.md`**, re-armed with the current build marker and
+> **`NOT YET` on all 165 rows**.
+>
+> A re-check was attempted on 5 August and **0 of the 165 rows could be re-observed** — the QA-branch
+> cookies had expired (HTTP 401 `sso_required`). Every verdict below remains **PROVISIONAL AND
+> UNCONFIRMED** against the build now being served (`v3.5-be42149`). Nothing was written to TestRail
+> and no verdict was inferred. See `build/schedule/recheck-2026-08-05/FINDINGS.md`.
+
 > ## ⚠️ THE BUILD HAS MOVED — 2026-08-05 11:34 UTC. THIS QUEUE IS NOW DUE, IN FULL.
 >
 > The Schedule QA branch was **redeployed at 08:09 UTC on 5 August**. Read live:

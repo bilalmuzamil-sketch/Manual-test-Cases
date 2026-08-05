@@ -65,7 +65,7 @@ cases; Schedule is at 0 of 165 by design.** Sources: `build/automation-markers-2
 | # | What I need | Who owes it | What it blocks | Since |
 |---|---|---|---|---|
 | **A1** | **One word on the 8 Filters phone cases.** **Branko ANSWERED and CLOSED [SV-8825](https://shopview.atlassian.net/browse/SV-8825) at 2026-08-05 05:18 UTC** — *"This is updated in the filters prd, I'm closing it."* — **28 minutes after our readiness report was finished saying it was still open with no comments.** Spec **v18 S12-R6** now rules it: a phone applies **only when you tap "Apply filters"**. The build applies **as you tap**. So those 8 cases are **no longer waiting on him**, the line inside each of them saying they are is **now false**, and their real verdict is *"the product is wrong"* — with **no defect ticket**. **Say go and one pass fixes all of it:** correct the 8, raise **one Low defect** on epic SV-8785 with story SV-8797 linked, and mark them `AUTOMATION: READY - EXPECT FAIL`. | **the QA lead** | **8 cases carry a statement that is untrue, and 8 cases the automation engineer is being told to skip that he could be automating.** Fixing it takes the Filters ready figure **from 93 to 101 of 110**. | 2026-08-05 |
-| **A2** | **A choice on Schedule's markers.** The `sv8685` branch **redeployed at 08:09 UTC on 5 August** (`v3.5-4873abe` → **`v3.5-be42149`**), so all 165 verdicts describe a build that is gone and **nothing was written**. **Either** (i) authorise a full Rule-49 re-check of all 165 rows against the new build, then all 165 markers land from fresh verdicts; **or** (ii) tell me to write the **142 build-independent markers now** — 138 `READY`, 2 waiting on Branko, 2 un-settable here — and hold the **23** that assert something about the build (19 "expect fail", 4 "not built"). | **the QA lead** | **Vlad has no marker at all on any of the 165 Schedule cases**, so he cannot tell which to start on. | 2026-08-05 |
+| **A2** | **~~A choice on Schedule's markers.~~ NOW A SINGLE, SIMPLER ASK: fresh QA-branch cookies.** A full Rule-49 re-check of all 165 rows was attempted on 5 August and **could not start — 0 of 165 rows were re-observed.** The Schedule cookies (dated 2026-08-04 11:31 UTC, ~24.5 h old) return `HTTP 401 {"error":"sso_required"}`; the Filters and Report Suite sets are dead too, so it is the ordinary ~24-hour expiry across the whole `.qa.shopview.com` estate plus this morning's deploy, and it **cannot be worked around from here**. **What I need: fresh `sv_sso_session`, `PHPSESSID` and `cf_clearance` for `.qa.shopview.com`.** Everything else is ready and staged as a **single** write per case — `build/schedule/recheck-2026-08-05/WRITE-PLAN.md`. **Option (ii) — writing the 142 build-independent markers now — is no longer worth taking:** two of the 19 "expect fail" cases have changed since (they now have tickets), which is exactly the kind of drift that makes a half-pass need re-writing. | **the QA lead** | **All 165 Schedule cases still carry NO automation marker, and all 165 provenance lines still name the dead build `v3.5-4873abe`.** Vlad cannot tell which to start on. | 2026-08-05 |
 
 **Two defects in our OWN data, found by this pass, reported and NOT silently fixed:**
 
@@ -77,6 +77,28 @@ cases; Schedule is at 0 of 165 by design.** Sources: `build/automation-markers-2
    C29573, C29575, C29582, C29613, C29625, C38911. **This predates this pass** (the same 10 are in the
    pre-write snapshot), and it is the same defect already recorded for 16 Schedule cases. A repair is
    10 writes and **needs your go-ahead**.
+
+**2026-08-05, the Schedule re-check attempt — TWO OLD ASKS ARE NOW ANSWERED, and neither needed us:**
+
+1. **✅ CLEARED — the "eleventh Schedule ticket" ask is answered: it is NOT needed.** The 4 August
+   readiness report asked whether to raise a ticket for SCH-MODAL-03 =
+   [C30010](https://shopview.testrail.io/index.php?/cases/view/30010) (the shift window's time-logged bar
+   reading fully worked when nothing had been clocked). A duplicate search across all 22 story defects on
+   the epic found **[SV-8834](https://shopview.atlassian.net/browse/SV-8834)** — raised by **Mudassir
+   Qamar on 04 Aug 08:39**, Open — describing the identical fault with the identical `1h / 1h` figure.
+   **Filing ours would be a duplicate of another tester's ticket.** The case's own text still says the
+   fault *"has no developer ticket yet"*, which is now false and is queued for repair in the single write.
+2. **✅ CLEARED — SCH-TOOL-03 = [C30041](https://shopview.testrail.io/index.php?/cases/view/30041) is no
+   longer an unticketed deliberate omission.** **[SV-8874](https://shopview.atlassian.net/browse/SV-8874)**
+   (Mudassir Qamar, **05 Aug 05:26**) files the toolbar-search behaviour as a defect. Our reasoning for not
+   filing it stands as reasoning, but the decisions-register entry must stop calling it unticketed.
+
+**Two NEW items from the same pass, both needing the build to settle — recorded so they are not lost:**
+
+| # | What it is | Who owes it | What it blocks | Since |
+|---|---|---|---|---|
+| **A3** | **Two of our PASS verdicts are contradicted by other testers' accepted defects, and they are probably right.** [SV-8873](https://shopview.atlassian.net/browse/SV-8873) (**Ready to Fix**) says sidebar search returns nothing for a technician's **full** name — our [C29939](https://shopview.testrail.io/index.php?/cases/view/29939) passed, and our evidence never records which form of the name we typed. [SV-8868](https://shopview.atlassian.net/browse/SV-8868) (**Ready to Fix**) says the Status filter returns nothing for **most** statuses — our [C29944](https://shopview.testrail.io/index.php?/cases/view/29944) passed on **Approved alone**, which is a sample, not the filter. Both look like **our verdict being wrong, not their ticket**. Needs the build to settle; their tickets were not touched. | **needs build access** (then us) | Two cases would tell an automation engineer to expect a pass where the product is accepted as broken. | 2026-08-05 |
+| **A4** | **Three of their new defects look like coverage gaps we have no case for.** [SV-8863](https://shopview.atlassian.net/browse/SV-8863) (**Ready to Fix**) — which view the Schedule **opens on**; [SV-8870](https://shopview.atlassian.net/browse/SV-8870) — creating a shift by dragging onto a day in **Month view**; [SV-8867](https://shopview.atlassian.net/browse/SV-8867) — reassigning a **series member** by drag. A reverse-coverage diff against all 165 found no plausible counterpart for any of the three. **Authorising three new cases would close it** — not authored, because new cases need your go-ahead and live observation first. | **the QA lead** | Three real, already-accepted product faults that our suite would not catch on a re-run. | 2026-08-05 |
 
 **Also worth knowing, and nothing is needed from you:** **Ahtasham has logged two more Passed results**
 on Filters run 352 since this morning — he now stands at **25 Passed / 7 Failed** across **427** result

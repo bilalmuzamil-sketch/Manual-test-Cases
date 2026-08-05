@@ -88,3 +88,30 @@ error. Verify `refs` under `','.join(p.strip() for p in s.split(','))` and decla
 
 **None** — because there were no writes. Had any occurred, the rule is: the write **failed**, stop the
 batch, do not proceed to the next operation, report both byte sequences, never retry blindly.
+
+## Verification 5 — the four counts reconcile, and the deliverables needed no regeneration
+
+Local source was compared **against live** before deciding anything (Step 6's rule: never regenerate
+from a possibly-stale local copy).
+
+| Population | Count |
+|---|---|
+| Live in TestRail under group 4254 | **165** |
+| Local case source, active | **165** (192 bodies − 27 retired) |
+| `testrail-id-map.csv` rows | **165**, **0 blank C-ids**, `refs` populated **165/165** |
+| `testrail-import/schedule-v1-testrail-import.csv` data rows | **165** |
+
+- **id-map C-ids vs live case ids: sets equal in BOTH directions** (map−live empty, live−map empty).
+- **Local vs live text: 0 field mismatches** across all 165 on title, preconditions, steps and
+  expected results. The local source is genuinely in sync, not assumed to be.
+- **Shredding guard PASSED** — 0 cells in the import carry the newline-between-every-character
+  corruption that `joinlines()` once produced across all 165 rows. The fix made in `gen_import.py`
+  during the 4 August recovery is holding.
+- **Import header sha256 `a45eae40ec73b8ac` — identical to all five peer project imports**
+  (fees-discounts, filters, global-search, report-suite, simple-flow).
+
+**Nothing was regenerated**, deliberately. There were no writes, live and local already agree field
+for field, and all four counts already reconcile — so a regeneration would produce no change while
+running the known `gen_import.py` gotcha (it blanks the id-map C-ids and drops the `refs` column on
+every rerun, both of which then have to be re-merged from live). Running it for the sake of it would be
+risk with no benefit.

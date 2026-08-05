@@ -1,3 +1,24 @@
+> ## ⚠️ ITS VERDICTS ARE NO LONGER CONFIRMED — 5 August 2026
+>
+> **Every figure in this report was measured on build `v3.5-4873abe`. That build is gone** — the QA
+> branch was redeployed at **08:09 UTC on 5 August** and now serves **`v3.5-be42149`**.
+>
+> A full re-check was attempted the same day and **could not run: 0 of the 165 rows were re-observed**,
+> because the QA-branch session had expired (HTTP 401 `sso_required`). **So this report is NOT
+> superseded — there is nothing newer to replace it with — but none of its outcomes is confirmed
+> against the build being served today.** Do not quote the 138 / 19 / 4 / 2 / 2 split, or the
+> **157** ready-to-automate figure, as current.
+>
+> Two things in it are already known to have changed, from Jira rather than the build:
+> **outstanding item 5 is answered** — the eleventh ticket is not needed, because
+> [SV-8834](https://shopview.atlassian.net/browse/SV-8834) already covers SCH-MODAL-03 =
+> [C30010](https://shopview.testrail.io/index.php?/cases/view/30010) exactly — and SCH-TOOL-03 =
+> [C30041](https://shopview.testrail.io/index.php?/cases/view/30041) is no longer unticketed either
+> ([SV-8874](https://shopview.atlassian.net/browse/SV-8874)).
+>
+> The queue that is owed: `build/schedule/recheck-2026-08-05/RECHECK-QUEUE.md`. Why it could not run:
+> `build/schedule/recheck-2026-08-05/SOURCE-CURRENCY.md`.
+
 # Schedule — is it ready for automation? (4 August 2026, table restructured and the ready-figure rule finished 5 August)
 
 **What this is.** We ran every one of the **165 Schedule test cases against the real, running app**
