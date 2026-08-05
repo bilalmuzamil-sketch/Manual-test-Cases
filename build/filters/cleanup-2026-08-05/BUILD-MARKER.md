@@ -10,6 +10,11 @@ any earlier pass** — read fresh at the start, and again after the last write.
 | `index.html` etag | `b9ab1d41718b5e871432064ed914e2e7` | `b9ab1d41718b5e871432064ed914e2e7` | **IDENTICAL** |
 | sha256 of the whole file | `d4845701337c6836b3513eb8be4c6d08f78ecd8a9ce8765bd0732e5789d480cd` | same | **IDENTICAL** |
 
+Read a **third** time at **2026-08-05T12:34:11Z**, after every write and after the deliverables were
+regenerated: `v3.4.2-d00239b`, last-modified Tue, 04 Aug 2026 22:51:02 GMT, etag
+`b9ab1d41718b5e871432064ed914e2e7` — **still identical**. And the live case text was re-read one final
+time at the same moment: **110 cases, 0 fields drifted** from our final snapshot, **93 READY / 17 HOLD**.
+
 **The build expected by the brief was `v3.4.2-d00239b`, and that is what is serving. No redeploy
 happened under us**, so nothing written in this pass rests on a build that has since moved.
 
