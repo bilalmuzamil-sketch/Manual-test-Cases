@@ -1,5 +1,54 @@
 # Filters — is it ready for automation? (5 August 2026)
 
+> ## ⚠️ SUPERSEDED LATER THE SAME DAY — 5 August, 14:25 UTC. READ THIS BANNER FIRST.
+>
+> **A fresh QA sign-in arrived, the eight phone cases were finally observed on the running app, and the
+> QA lead found a fault of principle in five other cases. Both change this report's figures.**
+>
+> **THE READY-TO-AUTOMATE FIGURE IS NOW 100 OF 110** — not 93, and not the 101 predicted below.
+> It is 100 rather than 101 because the eight phone cases came off HOLD (+8) **and one case correctly
+> went ON to HOLD (−1)**: FLT-RPTS-23 [C38882](https://shopview.testrail.io/index.php?/cases/view/38882)
+> tests a report date filter that is not in the product beyond the first report tab.
+>
+> Live marker count, read back from TestRail after the writes:
+> **`AUTOMATION: READY` 82 + `READY - EXPECT FAIL` 18 + `HOLD` 10 = 110.** The arithmetic gate holds.
+>
+> **THE PHONE QUESTION IS ANSWERED AND OBSERVED.** At a 390 × 844 viewport on build `v3.4.2-d00239b`:
+> the **combined "All Filters" sheet defers correctly** (ticking two statuses fired **zero** list
+> requests and left the address bar untouched; pressing the button then applied both), but a **single
+> filter's own sheet applies the moment you tap and has no button at all**. **The button's exact
+> on-screen label is `Apply Filters` — with a capital F** (`data-test-id="apply_filters"`), while the
+> specification writes *"Apply filters"*. The tester reads the screen, so the cases follow the build on
+> the label and the specification on the behaviour.
+>
+> **FIVE CASES WERE TELLING TESTERS TO IGNORE A REAL SPEC VIOLATION, AND THAT IS NOW FIXED.** The QA
+> lead read [C29557](https://shopview.testrail.io/index.php?/cases/view/29557) and found it had been
+> rewritten to describe the build instead of the specification. An audit of **all 110** found **5 such
+> cases** (C29557, C29602, C29606, C29607, C38899), plus **1 over-specified** case and **0** where the
+> specification is silent. All six are repaired. Full evidence:
+> `../expected-behaviour-audit-2026-08-05.md`.
+>
+> **THREE CLOSED TICKETS STILL REPRODUCE ON THIS BUILD** — SV-8843 (the filter bar sits beside the tabs,
+> measured: tabs y81–121, bar y86–116, side by side), SV-8847 (the empty-state message never mentions
+> the search and there is no way to clear the query), and SV-8845 (**on a phone every filter link is
+> ignored and `estimate` is sent instead** — proven on declined, paid and imported, while the same link
+> works correctly on desktop). None was reopened; that is the QA lead's decision.
+>
+> **What is corrected in the body below:**
+> - the ready figure **93 → 100**, and the predicted 101 **→ 100**
+> - the eight phone cases are **no longer HOLD**; six are READY and two are READY - EXPECT FAIL (SV-8875)
+> - point 5 of the previous banner says SV-8876 covers *"ground the QA lead has already closed as accepted
+>   in SV-8843"*. **That framing was wrong and it is the root of the whole class-A problem: a closed
+>   ticket is not an acceptance of a spec violation.** Ahtasham's SV-8876 is a legitimate open question
+>   for Branko.
+> - all 110 provenance lines now name the specification at **Confluence version 18**, not the in-body
+>   *"1.6"* that never moves
+>
+> **Still true, and not to be dropped from any summary: the branch has NOT been declared final, so every
+> verdict remains PROVISIONAL** (Standing Rule 49) and `final-viu-2026-08-05/RECHECK-QUEUE.md` is OPEN.
+>
+> Detail: `final-viu-2026-08-05/` — read `FINDINGS.md`, then `testrail-execution-log.md`.
+
 > ## ⚠️ UPDATED LATER THE SAME DAY — 5 August, 12:30 UTC
 >
 > **Two numbers in this report were already out of date when it was written, and the phone question

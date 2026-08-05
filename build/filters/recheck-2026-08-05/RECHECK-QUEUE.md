@@ -1,5 +1,16 @@
 # Filters — RE-CHECK QUEUE (Standing Rule 49)
 
+> ## ⚠️ SUPERSEDED 5 August 2026, 14:25 UTC — but STILL OPEN
+>
+> Its 110 rows are folded into `../final-viu-2026-08-05/RECHECK-QUEUE.md`, which is the live queue now.
+> **This one stays OPEN on the same ground: the branch has not been declared final.**
+>
+> What changed since: a fresh sign-in let **29 of the 110 be re-driven live** on the same build marker,
+> the **8 phone cases were observed and came off HOLD**, **5 cases were found to be waiving a documented
+> requirement and were repaired**, and **all 110 provenance lines were corrected** from the in-body
+> *"version 1.6"* to **Confluence version 18**. Ready-to-automate went **93 → 100**.
+
+
 > ## STATUS: **OPEN — but every row has been re-checked against the build now serving**
 >
 > The branch was redeployed overnight and **all 110 rows have been re-run against the new

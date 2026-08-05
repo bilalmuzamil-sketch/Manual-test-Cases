@@ -88,6 +88,54 @@ build any more.** Vlad can start. Sources: `build/schedule/expected-behaviour-au
 
 ---
 
+## ⚠️ NEWEST — 2026-08-05, 14:25 UTC, the Filters FINAL-CHECK pass. **F1 AND F2 ARE BOTH CLEARED. TWO NEW ASKS, AND ONE OF THEM IS A JUDGEMENT CALL ONLY YOU CAN MAKE.**
+
+Source: `build/filters/final-viu-2026-08-05/` and `build/filters/expected-behaviour-audit-2026-08-05.md`.
+**Cookies arrived, so all 110 Filters cases were rewritten and byte-verified, the 8 phone cases were
+finally observed on the running app, and the QA lead's correction of principle was audited across all
+110.** Run 352 proven undamaged — 438 results, 0 missing by ID, Ahtasham's 36 Passed / 2 Failed untouched.
+
+**✅ F1 CLEARED** — the cookies worked. **All 8 phone cases observed at 390 × 844.** The combined
+"All Filters" sheet defers correctly; a single filter's own sheet applies on tap with **no button at all**.
+**The label is `Apply Filters` — capital F** (`data-test-id="apply_filters"`). **Ready-to-automate is now
+100 of 110**, not the predicted 101, because C38882 correctly moved *on* to HOLD (its report date filter
+is not in the product).
+
+**✅ F2 CLEARED, all three parts.** (a) SV-8845 is qualified as *"reported, closed without a fix"* — and
+note it **still reproduces**, see N1 below. (b) **All 110 provenance lines now name Confluence version 18**
+instead of the in-body *"1.6"*. (c) The capital-F label is corrected wherever it appears.
+
+**⚠️ AND THE ANSWER TO F2(a) TURNED OUT TO BE THE OPPOSITE OF WHAT WE PROPOSED.** We asked whether the
+closed-ticket cases should now say *"known and accepted"*. **They should not, and five cases already did.**
+Your ruling settled it: *"A closed ticket does not change the expected behaviour."*
+
+| # | What I need from you | Who owes it | What it blocks | Since |
+|---|---|---|---|---|
+| **F3** | **A decision on whether to reopen [SV-8845](https://shopview.atlassian.net/browse/SV-8845), and our recommendation is YES.** It is closed **OBSOLETE / Done** (Ahtasham, 2026-08-05 04:41:58 −0500) and **it still reproduces, worse than it was reported.** On a phone, **every** shared filter link is ignored and the app requests `filters[0][value]=estimate` instead — proven on `?status=declined`, `?status=paid` and `?status=imported`, all three listing 30 Estimate work orders — while the chips read *"All Filters (1)"* and *"Status (1)"* as though the filter had taken. The **same link on desktop** correctly requested `declined` and returned 7 Declined rows. This is a data-correctness fault, not a layout preference: a user shares a filtered link and the recipient sees the wrong work orders with no sign anything is wrong. **Two more closed tickets also still reproduce — [SV-8843](https://shopview.atlassian.net/browse/SV-8843) and [SV-8847](https://shopview.atlassian.net/browse/SV-8847), both closed under your own account on 4 Aug — and those two are cosmetic-to-moderate, so we are not recommending reopening them.** Nothing was reopened; that is your call, not ours. | **the QA lead** | Nothing is blocked in the suite — the cases keep the documented expectation and their markers say `EXPECT FAIL (SV-88xx - reported, closed without a fix)` so no tester waits. But **a real functional defect currently has no open ticket**, so it will not reach a developer. | 2026-08-05 |
+| **F4** | **A one-line note in `build/APP-ACTIONS-PLAYBOOK.md` §J, from a worker that owns that file.** We discovered a **new TestRail normalisation** the hard way: **`update_case` re-renders any TEXT field you OMIT from the payload through its HTML pipeline** — it wrapped `custom_preconds` and `custom_steps` in `<p>…</p>` and turned `\n` into `\r\n` on the very first of 110 writes. A field **sent explicitly** is stored **verbatim**. The byte-check caught it on case 1, the batch stopped as Rule 50 requires, the two fields were restored byte-exact, and every later payload carried all three text fields. **This matters on this project specifically, because TestRail shows this markup literally to the tester here** — it is the same class of damage as the raw `<ol>`/`<li>` we repaired this morning. **We did not edit the playbook because it is outside this task's ownership.** | **the QA lead, or whichever worker owns the playbook** | Any future partial `update_case` on any project silently corrupts the fields it did not send. Report Suite and Schedule are both doing partial updates. | 2026-08-05 |
+
+### Still open on Filters, unchanged
+
+| # | What | Who | Note |
+|---|---|---|---|
+| **F5** | **Branko owes an answer on [SV-8876](https://shopview.atlassian.net/browse/SV-8876)** — the PRD (S1-R1, *"below the tab navigation row"*), the design (chips on their own row) and the build (chips beside the tabs) all disagree. Ahtasham raised it 2026-08-05 06:17 −0500, status **Ready**. **He quoted one of our own cases in it**, and he was right to. | **Branko**, via Ahtasham's ticket | Our cases follow the PRD until he rules. Not touched (Rule 38). |
+| **F6** | **A second test login** to prove one person's saved filters do not reach another — FLT-PERS-03 [C29615](https://shopview.testrail.io/index.php?/cases/view/29615). Not a tool limit; a genuinely absent second account. | **the QA lead** | The only genuinely un-settable case of the 110. It is 1 of the 10 `HOLD`. |
+| **F7** | **The `sv8785` branch declared final.** | engineering | Until then **every one of the 110 verdicts is PROVISIONAL** (Rule 49) and `final-viu-2026-08-05/RECHECK-QUEUE.md` stays OPEN. |
+| **F8** | **Branko's Parts/Reports PRD.** Your ruling stands: *"lets wait for Brankos PRD"*, so **no new Parts/Reports coverage was authored.** | **Branko** | 8 cases sit on `HOLD - the feature is not in the product yet` (C38904–C38911) plus C38882. That is absent product, not a readiness shortfall. |
+
+### The honest item — our own miss, on the record
+
+**Five Filters cases were telling testers to ignore a real specification violation, and they said so in
+writing.** Each carried *"Known and accepted: … The product behaves this way on purpose for now. **Do not
+raise this as a new problem.**"* over a requirement the PRD states plainly. **Nothing supported "on
+purpose"** — the tickets behind them had merely been *closed*. **You found it in C29557. Ahtasham had
+independently filed [SV-8876](https://shopview.atlassian.net/browse/SV-8876) about it eight hours
+earlier.** All five are repaired, the audit covers all 110 (**A=5 · B=0 · C=104 · D=1**), and it was
+committed **before** the repairs so the evidence stands alone. **Class B being zero is the one piece of
+good news: every affected case had a documented requirement to go back to, so none of them needs Branko.**
+
+---
+
 ## ⚠️ NEWEST — 2026-08-05, 12:30 UTC, the Filters cleanup pass. **TWO OF THE THREE ASKS BELOW ARE NOW CLEARED. ONE NEW ASK, AND IT IS THE SAME COOKIE ASK AS A2.**
 
 Source: `build/filters/cleanup-2026-08-05/`. **25 Filters cases were repaired, all byte-verified, run

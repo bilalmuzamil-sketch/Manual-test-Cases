@@ -3,6 +3,132 @@
 
 ---
 
+
+## §0-FINAL-VIU-2026-08-05 — THE CANONICAL RESUME POINT (read this first)
+
+**Resume order:** `expected-behaviour-audit-2026-08-05.md` → `final-viu-2026-08-05/FINDINGS.md` →
+`final-viu-2026-08-05/testrail-execution-log.md` → `READINESS-2026-08-05.md` (banner first).
+
+### What happened, in one paragraph
+
+The QA lead found that **FLT-BAR-01 = C29557** stated what the build does instead of what the
+specification requires, and asked whether the fault was systemic. **It was, in five cases.** An audit of
+**all 110** classified every case — **A=5 build-derived over a documented requirement · B=0 spec silent ·
+C=104 legitimate · D=1 over-specified** — and it was committed **before** any repair so the evidence
+stands alone. Separately, a fresh QA sign-in arrived, so **the eight phone cases were finally observed on
+the running app** after two passes could not reach it. **All 110 cases were then rewritten in one write
+each, every one byte-verified.**
+
+### The five that were wrong, and what they said
+
+Each carried *"Known and accepted: … The product behaves this way **on purpose for now. Do not raise this
+as a new problem.**"* over a requirement the specification states plainly. **Nothing supported "on
+purpose".** The tickets behind them had been *closed*, and a closed ticket is a decision about whether to
+fix — never an amendment to the specification.
+
+| Case | Requirement it waived |
+|---|---|
+| FLT-BAR-01 [C29557](https://shopview.testrail.io/index.php?/cases/view/29557) | **S1-R1** — the bar is displayed **below** the tab row |
+| FLT-COLL-02 [C29602](https://shopview.testrail.io/index.php?/cases/view/29602) | **S1-R5** — the table expands into the reclaimed space |
+| FLT-EMPTY-01 [C29606](https://shopview.testrail.io/index.php?/cases/view/29606) | **S8-R3** — the message names the filters **and the search** |
+| FLT-EMPTY-02 [C29607](https://shopview.testrail.io/index.php?/cases/view/29607) | **S8-R4 / S8-R5** — clear the query as well, independently |
+| FLT-PSRCH-09 [C38899](https://shopview.testrail.io/index.php?/cases/view/38899) | **S8-R4** — and the paragraph was about a screen **this case does not test**; it had been pasted onto a debounce case |
+
+**Class B is zero**, so every one had a documented requirement to return to and **none needs Branko**.
+
+**Two findings the QA lead should see:** **SV-8843 and SV-8847 were closed OBSOLETE under our own shared
+account** (Bilal Muzamil, 4 Aug 21:41:31 and 22:02:41 −0500) — his triage, indistinguishable from ours in
+the changelog. And **Ahtasham raised [SV-8876](https://shopview.atlassian.net/browse/SV-8876) at 06:17
+today saying the same thing**, quoting C29557's waiver note: *"a test case has waived it without the PRD
+being updated"*. **He found it before we did.** Untouched (Rule 38); it is Branko's question.
+
+### The steps-VIU'd-but-expectation-altered sweep
+
+Asked for separately. **26 commits replayed**, comparing steps against the **assertion body only**
+(provenance, marker, HTML and numbering stripped). **16 cases had both change together; 14 are legitimate
+label work** (*"funnel icon"* → *"filter icon"*, *"Search customer"* → *"Search"*, hedges becoming
+assertions because Branko answered) **and 2 are genuine reversals, both driven by a document**: C38882 by
+Confluence v18 published the previous evening, and C29609/C29610 by S9-R2/S9-R3 superseding Branko's own
+17 July answer. **The five waivers were NOT camouflaged** — the steps text is byte-identical across the
+commit that introduced each one. **The tell to reuse: if the new expectation cannot be quoted back to a
+document, the case has been disarmed.**
+
+### The phone cases — settled
+
+Observed at **390 × 844 with touch**. **The combined "All Filters" sheet defers correctly** (ticking two
+statuses fired **zero** list requests and left the address bar untouched; the button then applied both).
+**A single filter's own sheet does not** — tapping *Paid* changed the address bar at once, the sheet
+closed, and **there is no Apply button anywhere in the document**. Covered by **SV-8875**, so nothing was
+filed. **THE BUTTON'S EXACT LABEL IS `Apply Filters` — CAPITAL F**, `data-test-id="apply_filters"`, while
+the specification writes *"Apply filters"*.
+
+### Three closed tickets that still reproduce
+
+- **SV-8843** — measured: tabs y81–121, filter bar y86–116, **flex siblings in one row**. The bar is
+  beside the tabs. **But its own claim "collapsing frees no space" is WRONG** — collapsing moved the
+  table top y184 → y144 and hid all five chips, so **S1-R5 passes** and only C29557 is the deviation.
+- **SV-8847** — both halves reproduce. **One thing passes:** pressing Clear Filters leaves the search in
+  place, exactly as S8-R5 requires.
+- **SV-8845** — **still reproduces and worse than reported: on a phone EVERY filter link is ignored and
+  `filters[0][value]=estimate` is sent instead** (proven on declined, paid and imported), while the chips
+  read *"Status (1)"*. The same link on desktop correctly returned 7 Declined rows. **Closed OBSOLETE by
+  Ahtasham this morning. Not reopened — the QA lead's call. Our recommendation: this is the one worth
+  reopening.**
+
+### Numbers
+
+**MARKERS, read back from live: `READY` 82 + `READY - EXPECT FAIL` 18 + `HOLD` 10 = 110.**
+**READY-TO-AUTOMATE = 100** (was 93: +8 phone cases observed, −1 for C38882 correctly moving to HOLD).
+The arithmetic gate holds.
+
+**110 `update_case`, every one HTTP 200 + byte-verified MATCH, 28 fields compared each, 0 mismatches.**
+0 add / 0 delete / 0 section / **0 run writes**. **No test result was logged anywhere.**
+
+**RUN 352 PROVEN UNDAMAGED** — `include_all` still false, 110 tests, test-id and case_id sets equal both
+directions, **438 result records before and after with 0 missing BY ID**, counters unchanged at 36 Passed
+/ 2 Failed. **The only field that moved is `case_refs` on 10 records**, traced to exactly C29609 and
+C29610, the only two cases whose `refs` we edited — a **derived read-time echo**, the same class as the
+declared `case_title` echo. No graded field moved on any of the 438. Ahtasham logged nothing during the
+write window.
+
+**FOUR COUNTS: live 110 · local active 110 · id-map 110 · import 110, set-equal BOTH directions.** id-map
+0 blanks, refs 110/110, header byte-identical, refs and titles byte-equal to live 110/110. Shredding
+guard **PASSED** and independently re-checked (0 rows carry the signature). Import header sha256
+identical to **all five** peer imports.
+
+### A NEW TESTRAIL NORMALISATION — worth putting in the playbook
+
+**`update_case` re-renders any TEXT field you OMIT from the payload through TestRail's HTML pipeline** —
+it wrapped `custom_preconds` and `custom_steps` in `<p>` and turned `\n` into `\r\n` on the very first
+write. **A field sent explicitly is stored verbatim.** This matters here because **this project shows
+markup literally to the tester**. The byte-check caught it on case 1 of 110, **the batch stopped as Rule
+50 requires**, the two fields were restored byte-exact, and every later payload carried all three text
+fields. **Belongs in `build/APP-ACTIONS-PLAYBOOK.md` §J — not edited from this worker, flagged instead.**
+
+### Honest limits
+
+- **29 of the 110 were driven live this pass**, not all 110. The other **81** carry forward from the
+  04:20–04:53Z re-check **on the same build marker**, and each says so in `FINDINGS.md`.
+- **The branch is NOT declared final**, so **every verdict is PROVISIONAL** and
+  `final-viu-2026-08-05/RECHECK-QUEUE.md` is **OPEN**.
+
+### Queue status
+
+- `cleanup-2026-08-05/RECHECK-QUEUE.md` — **CLOSED**, all 8 phone rows observed.
+- `cleanup-2026-08-05/PENDING-LIVE-CHECK.md` — **CLOSED**, the check was run.
+- `recheck-2026-08-05/RECHECK-QUEUE.md` — banner-marked SUPERSEDED, **still OPEN** (branch not final).
+- `final-viu-2026-08-05/RECHECK-QUEUE.md` — **OPEN**, the live queue.
+
+### Outstanding
+
+1. **Reopen SV-8845?** Our recommendation is yes. QA lead's call.
+2. **Branko owes an answer on SV-8876** — the PRD, the design and the build disagree on where the bar sits.
+3. **A second test login** for FLT-PERS-03 C29615 — the only genuinely un-settable case.
+4. **The branch declared final**, to close the Rule-49 queue.
+5. **The playbook §J note** on the omitted-field re-render, from a worker that owns that file.
+6. **Branko's Parts/Reports PRD** — 8 cases HOLD on absent product; the QA lead ruled *"lets wait for
+   Brankos PRD"*, so no new Parts/Reports coverage was authored.
+
 ## 0-MARKERS-2026-08-05. **AUTOMATION MARKERS WRITTEN — 102 of 110 cases. NEWEST STATE.**
 
 **Read this first.** Source: `build/automation-markers-2026-08-05/` —

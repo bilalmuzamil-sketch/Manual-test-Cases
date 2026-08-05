@@ -1,6 +1,19 @@
-# The phone Apply-filters check — what is waiting, and what it needs
+# The phone Apply-filters check — DONE 5 August 2026, 14:25 UTC
 
-**Status: OPEN.** Nothing here can be settled until one fresh set of QA cookies arrives. It is then
+> ## ✅ CLOSED. The check was run.
+>
+> Cookies arrived and all six observation steps below were carried out at 390 × 844 on build
+> `v3.4.2-d00239b`. **Outcome: the single-filter sheet still applies on tap and has no button** (the
+> second of the three predicted outcomes), **and the label really is "Apply Filters" with a capital F**
+> (the third). So C29624 and C29625 are `READY - EXPECT FAIL (SV-8875)` and the other six phone cases
+> are `READY`; ready-to-automate went **93 → 100**, not 101, because C38882 correctly moved on to HOLD.
+> Nothing was filed — SV-8875 already covers it.
+>
+> Full evidence: `../final-viu-2026-08-05/FINDINGS.md`. The text below is kept as the record of what
+> was asked for.
+
+
+**Status: CLOSED — the check was run on 5 August 2026 at 14:25 UTC.** Nothing here can be settled until one fresh set of QA cookies arrives. It is then
 about **ten minutes** of work.
 
 ## Why nothing was observed

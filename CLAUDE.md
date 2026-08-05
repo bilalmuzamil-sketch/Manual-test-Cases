@@ -836,7 +836,74 @@ deliver the 7-tab management report.
    Branko PRD/answers → SPEC-RELEVANCE-RECONCILIATION + build-accurate wording + live
    VIU on the 43 new cases → authorized add_case push. Canonical resume doc:
    build/filters/PROJECT-STATE.md (2026-07-27 header).
-   **STATUS 2026-08-05 12:30 UTC (LATEST — CLEANUP PASS: 25 CASES REPAIRED, ALL BYTE-VERIFIED; resume
+   **STATUS 2026-08-05 14:25 UTC (LATEST — THE FINAL-CHECK PASS: THE BUILD IS NO LONGER TREATED AS A
+   SOURCE OF EXPECTED BEHAVIOUR, AND THE 8 PHONE CASES ARE FINALLY OBSERVED; resume
+   `build/filters/expected-behaviour-audit-2026-08-05.md` then `build/filters/final-viu-2026-08-05/FINDINGS.md`):**
+   the QA lead found **FLT-BAR-01 = C29557** stating what the build does instead of what the spec
+   requires — *"I am shocked to see that how come you considered the Build behavior as the expected
+   behavior?"* — and **he was right**. An audit of **all 110** (committed BEFORE any repair) classified
+   every case: **A=5 build-derived over a documented requirement · B=0 spec silent · C=104 legitimate ·
+   D=1 over-specified**. The five all carried *"Known and accepted: … The product behaves this way **on
+   purpose for now. Do not raise this as a new problem.**"* over a requirement the PRD states plainly —
+   **C29557 vs S1-R1, C29602 vs S1-R5, C29606 vs S8-R3, C29607 vs S8-R4/R5, and C38899 whose waiver was
+   about a screen that case does not even test.** **Nothing supported "on purpose"**; the tickets behind
+   them had merely been *closed*, and **a closed ticket is a decision about whether to fix, never an
+   amendment to the spec.** **Class B is ZERO**, so every one had a documented requirement to return to
+   and **none needs Branko**. **SV-8843 and SV-8847 were closed OBSOLETE under OUR OWN shared account**
+   (4 Aug 21:41:31 / 22:02:41 −0500 — Rule 53's corollary), and **Ahtasham had independently filed
+   [SV-8876](https://shopview.atlassian.net/browse/SV-8876) at 06:17 today quoting C29557's waiver note
+   back at us — he found it eight hours before we did** (untouched, Rule 38; it is Branko's question).
+   **A second sweep answered his follow-up ask** (*"steps correctly VIU'd but the expectation quietly
+   changed in the same edit"*): 26 commits replayed comparing steps against the **assertion body only**
+   → **16 both-changed, 14 legitimate label work, 2 genuine reversals both driven by a document** (C38882
+   by Confluence v18 published the previous evening; C29609/C29610 by S9-R2/S9-R3 superseding Branko's own
+   17 July answer). **The five waivers were NOT camouflaged — steps byte-identical across the introducing
+   commit.** **The reusable tell: if the new expectation cannot be quoted back to a document, the case has
+   been disarmed.** **A FRESH SIGN-IN ARRIVED, so THE 8 PHONE CASES ARE SETTLED** at **390 × 844 touch**:
+   the **combined "All Filters" sheet defers correctly** (two ticks fired **ZERO** list requests, address
+   bar untouched, the button then applied both), a **single filter's own sheet does NOT** (tapping *Paid*
+   changed the URL at once, the sheet closed, **no Apply button anywhere in the document**) — covered by
+   **SV-8875**, so **nothing filed**; and **THE BUTTON'S EXACT LABEL IS `Apply Filters` WITH A CAPITAL F**
+   (`data-test-id="apply_filters"`) while the spec writes *"Apply filters"*. **THREE CLOSED TICKETS STILL
+   REPRODUCE:** **SV-8843** — measured tabs y81–121 vs bar y86–116, **flex siblings in one row**, so the
+   bar is beside the tabs — **but its own claim "collapsing frees no space" is WRONG** (collapse moved the
+   table y184→y144 and hid all 5 chips, so **S1-R5 PASSES** and only C29557 deviates); **SV-8847** — both
+   halves, though **"clearing filters does not clear the query" PASSES**; **SV-8845** — **still reproduces
+   and worse: on a phone EVERY filter link is ignored and `filters[0][value]=estimate` is sent instead**
+   (proven on declined/paid/imported, 30 Estimates each) while the chips read *"Status (1)"*, and the same
+   link on desktop correctly returns 7 Declined. **Closed OBSOLETE by Ahtasham this morning; NOT reopened
+   — the QA lead's call, and our recommendation is that this is the one worth reopening.** **110
+   `update_case`, every one HTTP 200 + byte-verified MATCH, 28 fields each, 0 mismatches, one write per
+   case; 0 add / 0 delete / 0 section / 0 run writes; NO result logged anywhere.** **ALL 110 provenance
+   lines now name the spec at CONFLUENCE VERSION 18** (the in-body *"1.6"* is the Rule-31(a) trap), and
+   **16 EXPECT-FAIL cases no longer open "as per the build tested on…"** — literally false when the build
+   fails the requirement. **MARKERS on all 110, read back live: READY 82 + READY-EXPECT-FAIL 18 + HOLD 10
+   = 110 → READY-TO-AUTOMATE 100** (was 93: +8 phone, −1 for C38882 correctly moving to HOLD; the
+   arithmetic gate holds). **⚠️ A NEW TESTRAIL NORMALISATION, FOUND THE HARD WAY: `update_case`
+   RE-RENDERS ANY TEXT FIELD YOU OMIT FROM THE PAYLOAD through its HTML pipeline** — it wrapped
+   `custom_preconds` and `custom_steps` in `<p>` and turned `\n` into `\r\n` on write 1 of 110; **a field
+   sent explicitly is stored verbatim.** The byte-check caught it on case 1, **the batch STOPPED as Rule
+   50 requires**, the fields were restored byte-exact, and every later payload carried all three text
+   fields. **This matters here because this project shows markup LITERALLY to the tester** — same class as
+   this morning's raw `<ol>`/`<li>`. **BELONGS IN `build/APP-ACTIONS-PLAYBOOK.md` §J — not edited from
+   that worker, flagged in the register as F4.** **RUN 352 PROVEN UNDAMAGED** — include_all still false,
+   110 tests, test-id and case_id sets equal both directions, **438 result records before and after with
+   0 missing BY ID**, counters unchanged 36 Passed / 2 Failed; **the only field that moved is `case_refs`
+   on 10 records, traced to exactly C29609/C29610, the only two cases whose `refs` we edited — a DERIVED
+   read-time echo, same class as the declared `case_title` echo**; no graded field moved on any of the 438;
+   Ahtasham logged nothing during the write window. **FOUR COUNTS live 110 · local 110 · id-map 110 ·
+   import 110, set-equal BOTH directions**; id-map 0 blanks, refs 110/110, header byte-identical; shredding
+   guard **PASSED** and independently re-checked; import header sha256 identical to all five peers.
+   **0 deletions, 0 retirements — `delete_case` is irreversible and nothing earned it; the 27 July-retired
+   cases and the 9 FLT-SRCH palette cases were NOT resurrected.** **QUEUES: `cleanup-2026-08-05/RECHECK-QUEUE.md`
+   and its `PENDING-LIVE-CHECK.md` are CLOSED** (all 8 phone rows observed); `recheck-2026-08-05/` is
+   banner-marked SUPERSEDED but **still OPEN**; **`final-viu-2026-08-05/RECHECK-QUEUE.md` is the live OPEN
+   queue.** **HONEST LIMITS: 29 of the 110 were driven live THIS pass, not all 110** — the other 81 carry
+   forward from the 04:20–04:53Z re-check **on the same build marker**, each labelled as such in
+   `FINDINGS.md`; and **the branch is still NOT declared final, so every verdict is PROVISIONAL.**
+   **OUTSTANDING: reopen SV-8845? (recommended) · Branko owes SV-8876 · a second test login for C29615 ·
+   the branch declared final · the playbook §J note · Branko's Parts/Reports PRD.**
+   **PRIOR STATUS 2026-08-05 12:30 UTC (CLEANUP PASS: 25 CASES REPAIRED, ALL BYTE-VERIFIED; resume
    `build/filters/cleanup-2026-08-05/` then `build/filters/READINESS-2026-08-05.md`):** build confirmed
    by us at **both ends** — `v3.4.2-d00239b`, last-mod Tue 04 Aug 22:51:02 GMT, etag `b9ab1d41…`,
    **identical at 11:59:30Z and 12:20:02Z down to the sha256 of `index.html`**, so no redeploy under us.

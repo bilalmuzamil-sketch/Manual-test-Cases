@@ -1,4 +1,34 @@
-# RE-CHECK QUEUE — the 8 phone cases · STATUS: **OPEN**
+# RE-CHECK QUEUE — the 8 phone cases · STATUS: **CLOSED 2026-08-05 14:25 UTC**
+
+> ## ✅ CLOSED — 5 August 2026, 14:25 UTC
+>
+> **All 8 phone rows were observed live** at a 390 × 844 viewport with touch, on build `v3.4.2-d00239b`
+> (etag `b9ab1d41…`, byte-identical at 13:22Z, 14:13Z and 14:25Z). This queue existed solely because
+> nobody could reach the app; a fresh sign-in arrived and the check took one pass.
+>
+> **What was found:** the **combined "All Filters" sheet defers correctly** — ticking two statuses fired
+> **zero** list requests and left the address bar untouched, and pressing the button applied both. A
+> **single filter's own sheet does not** — tapping *Paid* changed the address bar to `?status=paid`
+> immediately, the sheet closed, and **there is no Apply button anywhere in the document**. That
+> contradicts S12-R6 and is already covered by
+> [SV-8875](https://shopview.atlassian.net/browse/SV-8875), so **nothing was filed**.
+>
+> **The button's exact on-screen label is `Apply Filters` — with a capital F**
+> (`data-test-id="apply_filters"`). The specification writes *"Apply filters"*.
+>
+> **All 8 markers moved off HOLD:** 6 are `AUTOMATION: READY` and 2 are
+> `AUTOMATION: READY - EXPECT FAIL (SV-8875)` — C29624 (a single chip's sheet) and C29625 (the mobile
+> Customer sheet). Their provenance is now **state 2**, naming the build and the date it was tested.
+> **Ready-to-automate went 93 → 100.**
+>
+> Two further phone faults were confirmed while there: **no Clear Filters control at all on a phone**
+> (our own [SV-8846](https://shopview.atlassian.net/browse/SV-8846), Open) and **every shared filter
+> link ignored, with `estimate` sent instead** ([SV-8845](https://shopview.atlassian.net/browse/SV-8845),
+> **closed OBSOLETE this morning and still reproducing**).
+>
+> Successor queue, still OPEN because the branch is not declared final:
+> `../final-viu-2026-08-05/RECHECK-QUEUE.md`. Evidence: `../final-viu-2026-08-05/FINDINGS.md`.
+
 
 **Read this at every session start, and before and after any Filters work.**
 There is **no background timer** — this file plus that habit *is* the mechanism.
