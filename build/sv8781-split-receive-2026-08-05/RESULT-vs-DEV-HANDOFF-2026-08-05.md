@@ -72,3 +72,48 @@ customer **Aaborough Works**, **2020 Ford Transit** VIN **86J8FAC1VALJ43SJY**
 2. **Raise a ticket for the duplicated Delivery total?** Pre-existing, but newly easy to hit.
 3. **Two regression checks** not run (non-split single-PO receive; never-split WO).
 4. **Screenshots still need attaching to the ticket** — no Jira attachment API in my tooling.
+
+---
+
+## Closed out 2026-08-05 (final)
+
+**SV-8781 → QA Complete.** Comment `74580` carries the result in the QA-lead's required format:
+overall status first, the 13-row table, the separate-issue note, 5 inline images, then technical
+details after a rule.
+
+**Both previously-unverified items were unblocked and now PASS:**
+* The on-screen **"Split work order"** control is a **click-twice-to-confirm** — first click arms it and
+  turns the entry red while the menu stays open, second click performs the split (`201 POST
+  work-orders/split`, landed on new WO **S-15890**). My earlier no-op was my own script reopening the
+  menu and discarding the armed state. **Not a defect.**
+* **Both regressions** run: never-split WO **S2-15891** received its single PO normally; order-scoped
+  inventory PO **I-1201** received via `POST /api/inventory/orders/accept` → **201**, showing no Work
+  Order Number as expected. (First attempt there returned `400 "Invoice number is too long. Max length
+  is 21 characters."` — my 26-char invoice string, not a defect.)
+
+**Follow-up ticket raised: [SV-8910](https://shopview.atlassian.net/browse/SV-8910)** — *Vendor invoice
+total is duplicated onto every purchase order when one receive spans two POs* · Bug · **Low** ·
+Product Area **Parts** · linked to SV-8781 as **Relates** · Open. Carries what-happens-now vs
+what-should-happen, 9 numbered reproduction steps naming every value, impact, two **annotated**
+screenshots, and the technical section with the raw delivery rows and object ids.
+
+**Also found:** the "Vendor Invoices" page *does* exist (Parts → Vendor Invoices, Total Cost column),
+correcting my earlier note that it did not — that is where the duplicated total is visible.
+
+**Removed from the comment at the QA lead's instruction:** the handoff-drift notes, the test-data
+inventory, and the false-alarm note. They remain recorded here.
+
+### Notes kept here rather than on the ticket
+* The handoff names `data-test-id` **`menu_item_split_wo`**, which does not exist in this build; the
+  control is the line bulk-action entry labelled **"Split work order"**.
+* The receive button refuses until an invoice number plus a non-zero cost and sell price are set on
+  every selected part, and its tooltip says exactly that — a good self-explaining guard. The
+  order-scoped receive enforces a 21-character invoice-number limit.
+* Test data left on the QA branch: customer **Aaborough Works**, **2020 Ford Transit** VIN
+  **86J8FAC1VALJ43SJY**; work orders **S2-15886, S2-15887, S2-15888, S2-15889, S-15890, S2-15891**;
+  purchase orders **S-15886, S-15887, S-15888, S-15889**, inventory PO **I-1201**; parts **ZZ-P1,
+  ZZ-P2, ZZ-L1, ZZ-L2, ZZ-OWN, ZZ-NS**; vendor **Aabridge Beverages**; invoices
+  **ZZAUTOTEST-INV-1, -PARTIAL, -MERGED, -NOSPLIT, ZZTEST-ORD-1**.
+* One false alarm of mine: a "Something went wrong loading this section" on the receive screen was my
+  test rig — `feature-flags` called with an empty `organization_id` because my scripted sign-in had not
+  populated it. Not a defect.
