@@ -385,6 +385,45 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   whole-record compare will otherwise report a false "results changed" and stop a clean batch. Confirmed by
   reading a live run-359 result record whose `case_refs` reproduced its case's full Rule-20 reference
   string verbatim.
+- **🛑 DECLARED NORMALISATION #3 — `update_case` RE-RENDERS ANY TEXT FIELD YOU *OMIT* FROM THE PAYLOAD
+  (found the hard way 2026-08-05, Filters).** Send a partial payload — say only `custom_expected` — and
+  TestRail may push the fields you did **not** send back through its HTML pipeline: `custom_preconds`
+  and `custom_steps` came back **wrapped in `<p>…</p>` with every `\n` converted to `\r\n`**. A field
+  **sent explicitly is stored verbatim**. **THE MITIGATION, APPLY IT WITHOUT EXCEPTION: on EVERY
+  `update_case`, send ALL THREE text fields — `custom_preconds` + `custom_steps` + `custom_expected` —
+  even when you are changing only one**, setting the unchanged ones to their exact pre-write snapshot
+  value. It costs nothing and it is the only reliable protection.
+  **WHY IT MATTERS SO MUCH HERE: these projects render that markup LITERALLY to the manual tester.**
+  This is not cosmetic — on the very same day, **10 Filters cases and 16 Schedule cases** had to be
+  repaired for showing raw `<ol>`/`<li>` to the tester. A partial payload silently manufactures that
+  same defect.
+  **HOW IT WAS FOUND:** write **1 of 110** (**C29557**) sent only `custom_expected`, returned **HTTP
+  200**, and the Rule-50 byte-check flagged **two UNINTENDED field changes**. The batch **stopped
+  immediately**, the two fields were **restored byte-exact** from the pre-write snapshot, and all 110
+  subsequent payloads carried all three fields and verified clean. An untouched control case
+  (**C29558**) was byte-identical **including `updated_on`**, so the re-render was caused by the
+  partial payload, not by anything ambient. **A "200 OK" tells you nothing about this — only the
+  byte-check catches it.**
+  **⚠️ IT IS CONDITIONAL OR INTERMITTENT — DO NOT ASSUME YOU ARE SAFE (independently verified
+  2026-08-05, all three active projects).** The same day, in the **same project 1 / suite 1**, the
+  **Report Suite** pass sent **469 partial payloads** (`custom_expected` only) over content
+  structurally identical to the Filters cases — same plain numbered text, same `\n`, same `---`
+  separators — and was **NOT affected at all**; **Schedule** sent all three fields on all 165 payloads
+  and was **immune by design**. So the trigger condition is **NOT characterised**, and it fired on one
+  pass while sparing another hours earlier. **Therefore treat every partial payload as unsafe rather
+  than trying to predict it.** (Independent audit that established this: all **753** live cases across
+  groups 4281 / 4254 / 4110 re-read **twice**, by `get_cases` and by per-case `get_case`, with **0
+  field differences**, and every project's committed pre-write snapshot diffed field-by-field against
+  live — **0 damage signatures introduced anywhere**.)
+  **THIS IS NOT A NORMALISATION YOU MAY USE TO EXPLAIN AWAY A MISMATCH.** Unlike the `refs` re-join
+  and the `case_title` / `case_refs` echoes, this one is **silent data corruption**, not a benign
+  server transformation. If a byte-check flags `custom_preconds` or `custom_steps` moving on a write
+  that did not intend to touch them, **the write FAILED**: stop the batch, restore from the snapshot,
+  and re-send with all three fields (Rule 50).
+  **SCOPE:** the exposure is the three text fields above. The other text-ish custom fields
+  (`custom_mission`, `custom_goals`, `custom_steps_separated`, `custom_testrail_bdd_scenario`) are
+  **null on all 753 of our cases**, so they cannot be damaged today — but if any project ever populates
+  one, it joins the send-it-every-time list.
 - **`/api/reporting/reports/{slug}/export` REQUIRES `variant` (proven live 2026-08-05, `sv8582`,
   `v3.5-16cf83f`).** `?format=pdf&range=this_year` alone returns **HTTP 400** `{"errors":[{"error":"Invalid
   export variant. Allowed values: summary, expanded."}]}`. The working shape is
