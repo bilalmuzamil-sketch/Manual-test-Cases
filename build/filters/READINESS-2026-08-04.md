@@ -1,3 +1,11 @@
+> # ⚠️ SUPERSEDED — read `READINESS-2026-08-05.md` instead
+>
+> Everything in this file was measured on build **`v3.4.2-4f8211c`**, which no longer exists. The
+> branch was rebuilt overnight to **`v3.4.2-d00239b`**, all 110 cases were re-checked against it on
+> 5 August, and **19 of the answers changed**. The counts below were deliberately never re-added up
+> at the time; that has now been done properly in the 5 August report, where **every row adds up**.
+> This file is kept only for the record.
+
 # Filters — is it ready for automation? (4 August 2026)
 
 **What this is.** We ran every one of the **110 Filters test cases against the real, running
