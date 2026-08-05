@@ -1,5 +1,102 @@
 # Report Suite — PROJECT-STATE (canonical resume doc)
 
+## §0-CHRIS-NEWREQS-2026-08-05 — the suite-wide link-permission rule now has cases, and two real defects came out of the pass
+
+**Paper: `build/report-suite/chris-newreqs-2026-08-05/`** — read `FINDINGS.md` §0 first (it says plainly
+what was and was not observed), then `SPEC-DIFF.md`, `LINK-SURFACE-MATRIX.md`, `FILED.md`,
+`ROLE-RESET-LOG.md`, `DELIBERATE-DECISIONS.md`, `RECHECK-QUEUE.md`, `testrail-execution-log.md`, then
+`READINESS-2026-08-05.md`. Machine evidence: `PRE/` + `POST/` snapshots of all live cases and run 359,
+`writeplan.json` committed **before** any write, `oplog.json`, `audit.json`, `evidence/`, and re-runnable
+`tools/wip_probe.py`.
+
+**SOURCES.** All six specs re-read live at **18:34Z** and **again at 19:06:53Z immediately before the
+writes** (Rule 59): **SBC 15 · SBR 17 · PV 5 · TU 6 · WIP 9 · IV 4**, byte-identical between the two
+reads on all six, so **nothing moved under this pass** — unlike the two previous passes. Build
+`v3.5-16cf83f`, identical at both reads. Epic **SV-8582 = 105 children**, verified two ways with equal
+key sets. **Session alive; `quick-login` never called.**
+
+**SIX REQUIREMENT-LEVEL DELTAS, SIX VERDICT ROWS, totals reconciled.** **⚠️ THE CAUTION FIRED ON ONE OF
+THE THREE ITEMS:** SBC properly **ADDED** a numbered requirement (**S9-R1a**) and WIP properly **REWROTE**
+**S4-R5 / S7-R1 / S7-R2 / S7-R4** — but **SBR changed ZERO numbered requirements**; its link-permission
+rule landed in the **§2 narrative only**, while **S12-R1 and S12-R3 still read unconditionally**.
+**And SBC now contradicts itself:** the new S9-R1a says an unpermitted user sees plain text, while the
+untouched **S9-N2** still says that user clicks through to an access-denied page. **No winner picked on
+either** (Rules 15/57).
+
+**THE LINK SWEEP — all 735 requirements across the six live specs.** **Exactly SEVEN navigable elements
+on FOUR reports** (SBC invoice # ×2 targets · SBR invoice # · SBR customer name · TU Total Hours ×2 · WIP
+WO #). **Parts Velocity and Inventory Value have NONE — proven, not assumed.** **Across all seven the
+positive half is covered and the negative half was covered NOWHERE**, which confirms the previous
+worker's report from the case text. **Every Rule-40 surface carries a verdict and each N/A carries its
+reason** — the PDF surface is N/A because a live 268,586-byte report PDF holds **`/URI` × 0, `/Link` × 0,
+`/Annots` × 0**; print and scheduled delivery are N/A because those words appear **0 times in all six
+specs**.
+
+**⚠️ THE ONE THING THIS PASS DID NOT DELIVER: the negative half was NOT observed on any report, and
+NOTHING was observed on screen at all.** **Every one of the eleven roles holds `workOrdersView`**, so
+"reports access without work-order access" is held by nobody; `switch-user` acts on the session you
+present and the only way back is the barred `quick-login`; a fresh staff member cannot confirm its
+invitation here; setting a password as an admin is not built (SV-8225); and the front end **bounces to
+`/login`** because it needs a `user` payload only a login produces — **which we refused to fabricate**
+(Rule 12). **This is an ACCESS blocker, not a seeding one.** Any ONE of three things clears it in ten
+minutes: permission to use `quick-login`, a second real sign-in, or one live check by a tester with two
+accounts.
+
+**WRITTEN: 13 `update_case` + 3 `add_case`, every one HTTP 200 + byte-verified, 28 fields compared each,
+0 mismatch, 0 collateral change; all three text fields on every payload.** **3 NEW CASES: WIP-COL-09 =
+C43557 · SBC-LINK-05 = C43558 · SBR-LINK-06 = C43559**, internal ids proven never used anywhere in the
+repo (the numbering gaps are retired ids and were avoided). **C30498 / C30499** rewritten off the
+replaced "loaded jobs" wording; **C30500** given the scope assertion it never had; **C30100 FLAGGED NOT
+FLIPPED**. **0 delete_case · 0 add_section · 0 results logged.**
+
+**TWO DEFECTS FILED in the Rule-52 amended shape** (Story Defect · parent = the owning STORY · priority
+Low · `relates to` link · no Product Area), 12 field checks each, all PASS, duplicate-searched with five
+JQL queries first:
+· **[SV-8907](https://shopview.atlassian.net/browse/SV-8907)** (parent SV-8665, Severity High) — **the
+Work In Progress download fails with a server error on EVERY non-empty tab**, both formats; only an empty
+tab produces a file. The other five reports export fine on the same build. **Not SV-8818**, which is
+PDF-only, size-dependent and explicitly on the other five. Looks like a regression: the identical request
+shape returned a populated file on 2026-08-03. **Nine WIP export cases now `READY - EXPECT FAIL`.**
+· **[SV-8908](https://shopview.atlassian.net/browse/SV-8908)** (parent SV-8663, Severity Medium) — **the
+WIP Asset filter is keyed one entry per unit number**, so where two vehicles share a unit number only one
+is offered and the other's identification number matches nothing. **Six vehicles named with their VINs,
+work orders and customers.**
+
+**ITEM 1 IS MET — and by a mechanism the spec does not describe.** The filter option lists come from
+`…/work-in-progress/filters` and are the **exact union across all 392 rows of all four tabs** — advisors
+**15 = 15**, customers **215 = 215**, unit numbers **172 = 172**, set-equal both directions. **But the
+new requirement's parenthetical "loads the complete set of open jobs in one request" is WRONG:** the
+report paginates in pages of 100 (`pagination[page]` / `pagination[rowsPerPage]` honoured, eleven other
+spellings ignored). **A specification wording problem, not a defect — reported, not filed.**
+
+**MARKERS on all 476, exactly one each: READY 419 · READY-EXPECT-FAIL 27 · HOLD 30. GATE 419 + 27 = 446 =
+476 − 30.** **Ready to automate 447 → 446 while the suite GREW by three cases** — the honest direction,
+because the new cases are held for want of a sign-in and C30100 for want of Chris's answer. **The new
+requirements' coverage is in the denominator and NOT in the ready figure.**
+
+**PROOFS.** **465 untouched cases byte-identical including `updated_on`/`updated_by`; the 5 foreign cases
+C38919–C38923 likewise.** **Run 359 union-synced 473 → 476** with the FULL union: `include_all` still
+false, case_id set equal to our 476 both directions, **all 535 prior results present BY ID with 0
+graded-field changes and 0 new results**; the only field that moved on any result is **`case_refs` on 3
+records, traced to exactly C30498/C30499/C30500 — the only three cases whose refs we edited** — a declared
+read-time echo. **Runs 357 and 352 needed nothing and were NOT written.** **Four counts reconcile
+476/476/476/476 set-equal both directions**; id-map 0 blanks, refs 476/476 byte-equal to live; **shredding
+guard PASSED and independently re-verified** (0 single-character lines in any of the seven CSVs); import
+header sha256 **identical to all five peers**. **Nothing seeded, no role modified, no organisation setting
+touched — so there was nothing to restore.**
+
+**ALSO REPORTED NOT FIXED:** **PV S1-N1** still describes role-based report access (*"Users without the
+Manager or Office User role cannot reach the Reports section"*) while **S1-R4 in the same version** states
+the single-permission model, and the build agrees with S1-R4.
+
+**⚠️ Rule-49 queue OPEN** — the branch is not declared final, so all 476 verdicts are PROVISIONAL, and
+`chris-newreqs-2026-08-05/RECHECK-QUEUE.md` joins the two already open.
+
+**OUTSTANDING: a second sign-in (or permission to use `quick-login`) · one sentence from Chris on the SBC
+S9-R1a vs S9-N2 contradiction · the same for SBR's numbered requirements · his correction of the WIP
+"one request" parenthetical and of PV S1-N1 · whether the three new HOLD cases should instead be READY ·
+the branch declared final.**
+
 ## §0-PROVENANCE-RESTAMP-2026-08-05 — the build is no longer named as the source of any expectation, and 7 wrongly-held cases are released
 
 **Paper: `build/report-suite/prov-restamp-2026-08-05/`** — read `FINDINGS.md` first, then
