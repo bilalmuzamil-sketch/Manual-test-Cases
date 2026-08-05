@@ -88,7 +88,21 @@ def clean(s):
 
 
 def joinlines(lst):
-    return "\n".join(clean(x.rstrip()) for x in (lst or []))
+    """Join a case field into the import's text form.
+
+    The field may be a LIST of lines (how the cases were originally authored) or a
+    single STRING already carrying its own newlines (how the 2026-08-04 re-sync from
+    live TestRail now writes it).  A string MUST NOT be iterated: doing so joins it
+    character by character and puts a newline between every letter, which is exactly
+    how the 2026-08-04 Filters import was corrupted across all 110 rows (and the
+    Schedule one across all 165).  So: split a string on its own newlines, and only
+    then clean and rejoin.
+    """
+    if not lst:
+        return ""
+    if isinstance(lst, str):
+        lst = lst.split("\n")
+    return "\n".join(clean(x.rstrip()) for x in lst)
 
 
 def load_cases():
@@ -152,6 +166,25 @@ def main():
             "",
             "",
         ])
+
+    # --- REGRESSION GUARD: the character-shredding bug must never ship again ---
+    # The 2026-08-04 corruption put a newline between EVERY CHARACTER of
+    # Preconditions/Steps/Expected in all 110 rows, because joinlines() iterated a
+    # STRING.  joinlines() is fixed above; this guard makes the failure loud rather
+    # than silent if anyone reintroduces it (here or in a caller).  Signature: a
+    # field whose lines are overwhelmingly single characters.
+    shredded = []
+    for iid, r in zip(ids, rows):
+        for col, val in (("Preconditions", r[4]), ("Steps", r[5]), ("Expected Result", r[6])):
+            lines = [ln for ln in (val or "").split("\n") if ln != ""]
+            if len(lines) >= 10 and sum(1 for ln in lines if len(ln) == 1) / len(lines) > 0.5:
+                shredded.append(f"{iid}/{col}")
+    if shredded:
+        raise SystemExit(
+            "ABORTED - character-shredded fields detected in %d place(s): %s\n"
+            "joinlines() has been fed a string and iterated it character by character. "
+            "Fix joinlines(); do NOT ship this file." % (len(shredded), shredded[:10]))
+    print("Character-shredding guard: PASSED (0 shredded fields)")
 
     with open(OUT_CSV, "w", newline="") as f:
         w = csv.writer(f, quoting=csv.QUOTE_MINIMAL, lineterminator="\r\n")
