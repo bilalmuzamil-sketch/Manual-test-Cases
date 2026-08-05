@@ -1817,15 +1817,30 @@ deliver the 7-tab management report.
     the Jira ticket/story, and/or the design — with the reference AND the verbatim text, so
     the user can see the basis and judge it. If the expectation turns out NOT to be in the
     spec/ticket (e.g. it came from a design mock only, or was over-specified), SAY SO
-    explicitly — that often means the build is actually spec-compliant and the case should be
-    matched to the build, not flagged as a bug. Never assert a deviation from memory or a
+    explicitly — that often means the build is actually spec-compliant and the case is not a
+    bug. **THE CORRECT REPAIR IS TO REMOVE THE UNSUPPORTED ASSERTION, OR TO MAKE IT
+    SCOPE-CONDITIONAL (Rule 42) — NEVER TO SUBSTITUTE WHAT THE BUILD DOES.** **"MATCHED TO THE
+    BUILD" MEANS VIU'D AGAINST THE BUILD** — correct the **LABELS**, the screen/field names, the
+    button text, the step order and the navigation path so a manual tester can actually follow
+    the case (Rule 9). **It has NEVER meant rewriting what the case EXPECTS.** QA lead's
+    clarification, 2026-08-05, verbatim: *"For the rule: 'the case should be matched to the
+    build' That doesnt mean the expected behavior should match the build. That kills the purpose
+    of the test case. I think when we said 'the case should be matched to the build' it meant
+    that the test case should be VIU'd from the build"*. The reasoning in one line: **if the
+    expected behaviour bends to whatever shipped, the case can no longer fail, and a test that
+    cannot fail is not a test.** The source of expected behaviour is governed by **Standing Rule
+    57**. Never assert a deviation from memory or a
     prose summary; pull the wording from the canonical spec/ticket (Rule 15 verbatim
     truth-table; Rule 23 read Confluence when unsure). Rationale, 2026-07-23: FD-STATS-002
     (C28460) "expected a per-row target + clickable link" — but the FD spec only says
     adjustments "appear on the Statistics tab" (§3) "oldest first" (§5-R9); the target/link
-    was design-only, not in the spec, so the build was spec-compliant and the case was matched
-    to the build. User: "whenever you discuss a deviation, give specs/tickets/stories reference
-    with the wordings from which the test case is deviating." Ties to Standing Rules 12/15/20/23.
+    was design-only, not in the spec, so the build was spec-compliant and the case was not a bug.
+    **THE CORRECT REPAIR THERE WAS TO DELETE THE DESIGN-ONLY EXPECTATION — NOT to describe what
+    the build renders instead.** The original wording of this rationale was ambiguous on exactly
+    that point, and **that ambiguity is what cost us 2026-08-05** (see Rule 57). User: "whenever
+    you discuss a deviation, give specs/tickets/stories reference
+    with the wordings from which the test case is deviating." Ties to Standing Rules 12/15/20/23
+    and 57 (the source of expected behaviour is the document, never the build).
 26. **Reset roles to template/default BEFORE any permission/role verification on a shared/
     disposable environment (all projects).** Whenever verifying permission- or role-gated
     behavior — a permission/role VIU (e.g. role-matrix cases), a prod-vs-staging (or any
@@ -3108,6 +3123,71 @@ deliver the 7-tab management report.
     a case → re-verify it whole and re-stamp), 43 (a spec/answer delta re-stamps every affected case),
     46 (an undocumented deliberate decision is indistinguishable from a miss) and 54 (the provenance
     line this sentence sits with).
+57. **THE SOURCE OF EXPECTED BEHAVIOUR IS THE DOCUMENT, NEVER THE BUILD — from the build we take
+    only the labels and the verdict (all projects).**
+    USER DIRECTIVE (2026-08-05, verbatim): *"The expected behaviors are NOT the ones 'how the build
+    is behaving'. Expected behaviors are the ones which are either in PRD-COnfluence/Epic STories/
+    Verified in the Anser sheets by the PO. From the Build we are JUST doing the VIU and the
+    processes attached to that VIU process. I am shocked to see that how come you considered the
+    Build behavior as the expected behavior?"* — and, naming the root cause himself, verbatim: *"For
+    the rule: 'the case should be matched to the build' That doesnt mean the expected behavior should
+    match the build. That kills the purpose of the test case. I think when we said 'the case should
+    be matched to the build' it meant that the test case should be VIU'd from the build"*.
+    **EXPECTED BEHAVIOUR COMES FROM EXACTLY THREE PLACES, AND NOWHERE ELSE:** **(a)** the **PRD /
+    Confluence specification** · **(b)** the **epic's stories** — description, acceptance criteria,
+    comments · **(c)** the **PO's verified answers** in an answer sheet or message. That is the whole
+    list. **A build is not on it.**
+    **FROM THE BUILD WE TAKE EXACTLY TWO THINGS:** **(1)** the **exact on-screen labels and wording**,
+    so the tester reads what they will actually see (Rule 9); and **(2)** the **PASS / FAIL /
+    deviation VERDICT** (Rules 10/12/13). **Nothing else. Not the assertion, not the rule, not the
+    "accepted behaviour".**
+    **IF THE BUILD DIFFERS FROM THE DOCUMENTED EXPECTATION, THE CASE KEEPS THE DOCUMENTED
+    EXPECTATION** and becomes a **DEVIATION with a ticket**. **Never the reverse.** That is the
+    entire point of holding an expectation in the first place.
+    **A CLOSED TICKET DOES NOT CHANGE THE EXPECTED BEHAVIOUR.** A ticket closed as **"accepted"**,
+    **"obsolete"** or **"not reproducible"** is a **triage decision about whether to FIX** — it is
+    **NOT a specification change** and it is not the PO ratifying anything. If the spec requires **X**
+    and the build does **Y**, the case **still expects X**; the **automation marker** qualifies the
+    closed ticket (`AUTOMATION: READY - EXPECT FAIL (SV-xxxx)`) so nobody waits for a fix that is not
+    coming. **Only a source in (a)/(b)/(c) can move an expectation.**
+    **THE ONE NARROW EXCEPTION — stated here precisely so it cannot be read as the rule:** where
+    **OUR OWN case asserted something NO source supports** (a design-only detail, an over-specified
+    enumeration), the repair is **REMOVAL or scope-conditional wording (Rule 42)** — **never
+    substitution of observed behaviour.** Rule 25 now says this in the same words.
+    **WHERE NO SOURCE SPEAKS AT ALL, THE CASE MUST NOT INVENT A REQUIREMENT FROM THE BUILD.** It
+    asserts **only what a source supports**, and the **gap becomes a PO QUESTION** (Rules 7/55),
+    recorded in the **OUTSTANDING-ITEMS REGISTER** (Rule 36) until answered. **An unsourced
+    expectation filled in from the build HIDES the gap — and that is the deeper harm**, because the
+    missing requirement stops being visible to anyone: no reviewer, no PO and no future pass can tell
+    that nothing was ever decided.
+    **THE DIAGNOSTIC TO CARRY FORWARD (the hardest failure to spot):** a case whose **STEPS were
+    correctly VIU'd** while its **EXPECTED RESULT was quietly changed in the same edit** looks
+    **freshly maintained**, and its **Rule-54 provenance line looks current** — so it reads as our
+    best work. **That is WORSE than an obviously stale case, not better**, because staleness at least
+    announces itself. When auditing, diff the **expected result** against its **cited source**, not
+    against how recently the case was touched.
+    **RATIONALE, 2026-08-05:** the QA lead found **FLT-BAR-01 =
+    [C29557](https://shopview.testrail.io/index.php?/cases/view/29557)** asserting **build behaviour
+    as expected behaviour**. It was **one of five Filters cases rewritten into "accepted behaviour"
+    wording after [SV-8843](https://shopview.atlassian.net/browse/SV-8843) and
+    [SV-8847](https://shopview.atlassian.net/browse/SV-8847) were closed** — **closing the tickets was
+    read as ratifying the behaviour, which it was not.** He ordered a **full FOUR-WAY AUDIT of all
+    three active projects' 748 cases**, categorising every expected result as: **build-derived but
+    matching a documented requirement** / **build-derived with the source SILENT** / **legitimate
+    label-only VIU correction** / **unsourced assertion to be REMOVED** — with the **audit committed
+    as standalone evidence BEFORE any repair**, so the scale of the drift is on the record and cannot
+    be quietly absorbed into a fix pass. Ties to Standing Rules 9 (build-accurate LABELS — the
+    legitimate half of what the build gives us), 10 (VIU is a verification, not a rewrite), 12
+    (observed, never inferred — and observing is not deciding), 13 (live feature-by-feature), 20
+    (traceability — an expectation with no source is not authentic), 25 (cite the source you deviate
+    from; its ambiguous clause is what produced this rule), 31 (source currency), 32 (latest
+    authoritative source wins — a build is not a source), 33 (authority precedence), 41 (touch a case
+    → re-verify it whole), 42 (scope-conditional wording is the repair, not substitution), 43
+    (per-requirement coverage verdicts), 44 (a contradicting case is a bug report against ours), 45
+    (the outside-in hunt), 46 (the deliberate-decisions register), 49 (a non-final build yields
+    PROVISIONAL findings — all the more reason it cannot rewrite an expectation), 54 (the provenance
+    line must name a real supporting source), 55 (an unclear answer goes back to the PO) and 56 (a
+    later DECISION can move an expectation; a build cannot).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -3276,6 +3356,10 @@ regression / bug-fix re-testing.
 ## Deliverable conventions the user likes
 - Plain, layman English.
 - Numbered **Preconditions / Steps / Expected**, each with line breaks.
+- **EXPECTED RESULTS STATE WHAT THE DOCUMENT REQUIRES — the spec/PRD, the epic's stories, or the
+  PO's verified answers. The build supplies ONLY the labels and the pass/fail verdict (Standing
+  Rule 57).** Never write an expected result to describe how the build behaves; if the build
+  differs, the case keeps the documented expectation and becomes a deviation with a ticket.
 - **A PROVENANCE LINE ends every case's Expected Results (Standing Rule 54):** after a separator
   line, one plain sentence saying what the expectation is based on — the **epic + specification
   version + requirement reference** before live verification, and **also the build + the date it was

@@ -112,6 +112,30 @@
 > 1:1 (Rule 16) — canonical example
 > `build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx`.
 >
+> **Source-of-expected-behaviour qualifier (Standing Rule 57, added 2026-08-05) — applies to EVERY
+> process row below that AUTHORS, VIU's or UPDATES test cases (rows 1, 2, 3, 4, 5, 6, 7, 8, 11 and any
+> future authoring / VIU / spec-recheck / spec-delta / recheck / retrofit process).** **EXPECTED
+> BEHAVIOUR COMES FROM THE DOCUMENT, NEVER FROM THE BUILD.** Its only three sources are **(a)** the
+> **PRD / Confluence specification**, **(b)** the **epic's stories** (description, acceptance criteria,
+> comments) and **(c)** the **PO's verified answers** in an answer sheet or message. **FROM THE BUILD
+> THESE PROCESSES TAKE EXACTLY TWO THINGS: the exact on-screen LABELS/wording (Rule 9) and the PASS /
+> FAIL / deviation VERDICT (Rules 10/12/13) — nothing else.** QA lead, 2026-08-05, verbatim: *"For the
+> rule: 'the case should be matched to the build' That doesnt mean the expected behavior should match
+> the build. That kills the purpose of the test case. I think when we said 'the case should be matched
+> to the build' it meant that the test case should be VIU'd from the build"*. **If the build differs
+> from the documented expectation, the case KEEPS the documented expectation and becomes a DEVIATION
+> with a ticket — never the reverse**; and **a CLOSED ticket does not change it** (closing as
+> "accepted"/"obsolete"/"not reproducible" is triage about whether to FIX, not a spec change — the
+> automation marker `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` carries that qualification instead).
+> **ONE NARROW EXCEPTION:** where OUR case asserted something **no source supports**, the repair is
+> **REMOVAL or scope-conditional wording (Rule 42)** — **never substitution of observed behaviour**.
+> **WHERE NO SOURCE SPEAKS AT ALL**, assert only what a source supports and raise the gap as a **PO
+> question** (Rules 7/55) in the Outstanding register (Rule 36) — filling it in from the build **HIDES
+> the gap**, which is the deeper harm. **AUDIT DIAGNOSTIC: a case whose STEPS were correctly VIU'd
+> while its EXPECTED RESULT was quietly changed in the same edit looks freshly maintained and its
+> provenance line looks current — diff the expected result against its CITED SOURCE, never against how
+> recently the case was touched.**
+>
 > **Two-session note:** this workspace is worked by more than one Claude session in parallel.
 > This catalog + `CLAUDE.md` + the `build/*-PROCESS.md`/`*-METHOD.md`/`*-RECIPE.md` docs are the
 > **shared brain** — both sessions read and update them, so any process is callable from either.
