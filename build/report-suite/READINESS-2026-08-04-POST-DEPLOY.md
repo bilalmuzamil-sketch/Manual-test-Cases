@@ -1,3 +1,11 @@
+> # ⚠️ SUPERSEDED — 2026-08-05
+> **This file is superseded by `READINESS-2026-08-05.md` and is kept for the record only.**
+> Its ready-to-automate figure of **401 is out of date on two counts**: 4 cases have been added
+> since, and 35 cases it held have been released. The current figure is **440 of 473**, derived
+> by one written formula in the new file.
+> **Its verdicts are also no longer confirmed** — they were taken on build `v3.4.1-3d03023` and
+> the branch has since redeployed twice, to `v3.5-16cf83f`.
+
 # Report Suite — is it ready for automation? (4 August 2026, table restructured 5 August)
 
 **What this is.** We have checked all **469 Report Suite test cases** against the real, running app —
