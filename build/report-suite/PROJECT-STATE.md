@@ -1,5 +1,130 @@
 # Report Suite — PROJECT-STATE (canonical resume doc)
 
+## §0 UPDATE 2026-08-05 — THE EXPECTED-BEHAVIOUR CORRECTION (read this first)
+
+**Resume order:** `build/report-suite/expected-behaviour-audit-2026-08-05.md` →
+`build/report-suite/final-viu-2026-08-05/` (SOURCE-CURRENCY · FINDINGS · testrail-execution-log ·
+RECHECK-QUEUE · DELIBERATE-DECISIONS · OUTSIDE-IN · API-ASK · DELETIONS) →
+`build/report-suite/READINESS-2026-08-05.md` →
+`build/report-suite/rulings-2026-08-05/FOLLOW-UP-QUESTIONS-ROUND-2-2026-08-05.md`.
+
+### WHY THIS PASS EXISTS — the QA lead's correction, verbatim
+
+> "The expected behaviors are NOT the ones 'how the build is behaving'. Expected behaviors are the ones
+> which are either in PRD-COnfluence/Epic STories/Verified in the Anser sheets by the PO. From the Build we
+> are JUST doing the VIU… I am shocked to see that how come you considered the Build behavior as the
+> expected behavior?"
+
+And his clarification: *"'the case should be matched to the build' … meant that the test case should be
+VIU'd from the build"* — **labels and steps from the build, never the expectation.** The reasoning to hold
+on to: **if the expectation bends to whatever shipped, the case can no longer fail, and a test that cannot
+fail is not a test.**
+
+### THE AUDIT RESULT — all 473 classified, no sampling
+
+| Class | Meaning | Count |
+|---|---|---|
+| **A** | build-derived expectation, a documented requirement says otherwise | **16** |
+| **A\*** | the spec now states it BOTH WAYS — nothing to restore to | **2** |
+| **B** | build-derived, source silent | **8** |
+| **C** | legitimate — the assertion is documented | **440** |
+| **D** | unsourced assertion, repaired by REMOVAL (never substitution) | **7** |
+
+**The systemic error was ONE boilerplate paragraph about the Location column, pasted into 14 cases across
+all six reports.** In 13 it asserts the exact opposite of that report's own specification —
+**PV S3-R10** *"is not user-toggleable"* · **TU S10-R4** *"never listed in the column selector"* ·
+**WIP S4-R3** *"not offered in the column selector"* · **IV S7-R6** *"not one of the columns offered"* ·
+**SBR S20-R1** (a closed list of seven metric columns). It also **overwrote wording that was right**:
+C30352's line 3 said the column is not in the picker — which is PV S3-R10 almost verbatim — and the
+manifest recorded it as *"wrong under both readings"*.
+
+**The Rule-32 "his newer answer wins" defence does NOT hold:** his answer is **self-contradictory** on this
+exact point (Rule 32(iii) says ask, not pick), and **for Parts Velocity the spec is now NEWER than the
+answer** — v5 was saved **2026-08-05T13:21:40Z** and still says not user-toggleable.
+
+**Where the contamination entered — and it was NOT a VIU pass.** Checked across **all 41 commits** that
+touched the case source: **no pass ever changed a case's steps and its expectation body together**, and
+**the two pure VIU passes changed ZERO expectations**. The one build re-check that touched an expectation
+only **removed** a stale "known issue" line once SV-8819 was fixed — correct maintenance. It came from an
+**answer-ingest pass** where an ambiguous PO answer met an observed build and **the observation won**.
+
+**Three of our own suspicions were WRONG and the specs proved them wrong** — C30356, C30336, C30384 are
+near-verbatim from their specs. **C30265 is correct as written and was deliberately NOT changed** despite
+the brief asking for it: it follows Sales By Representative's own spec, and changing it would have imported
+one report's rules into another.
+
+### SOURCE CURRENCY — two specs moved DURING the pass
+
+| Spec | Baseline | Live | Verdict |
+|---|---|---|---|
+| Sales By Customer | v13 | **v14** (saved **13:07:07Z**) | **9 semantic changes + new S20-R19a** |
+| Parts Velocity | v4 | **v5** (saved **13:21:40Z** — one minute before it was fetched) | **1 real change: S1-R4** |
+| SBR · TU · WIP · IV | v15 · v5 · v6 · v3 | unchanged | CURRENT |
+
+**Chris ratified four things we were waiting on:** the access-gate Location rule (S4-R12), the
+load-failure-only logo rule (**S15-R17** — which makes ticket **B5 not a defect**), the nine-preset date
+picker (S2-R2, "Last 12 Months" first, no Today/Yesterday/"Custom"), and the removal of Print.
+
+**THREE SPEC DEFECTS REPORTED, not worked around:** (1) the Location model is now specified **two different
+ways across the six specs**; (2) **SBC contradicts itself** — S4-R12 says the column is in the column
+selector, S13-R4 closes that list at nine without it; (3) **S14-R14 still maps "Today → today" and
+"Yesterday → yesterday"** although S2-R2 has just deleted both presets.
+
+**Epic SV-8582: 105 children**, verified two ways with equal key sets (our record said 102 — the difference
+is **the three tickets we filed ourselves**). 1 story-defect subtask (SV-8780, Ready to Fix).
+**SV-8819 is now `Done` (fixed); SV-8821 is `OBSOLETE`** — neither was reopened or "restored" (Rule 53).
+
+### LIVE EVIDENCE TAKEN THIS PASS on `v3.5-16cf83f`
+
+The **first live Report Suite session since the deploy** — the previous two passes got HTTP 401.
+Build byte-identical at **13:20:39Z and 13:55:25Z**. `quick-login` was **never called** (it rotates the
+session two other workers share).
+
+- **The decisive Location capture:** the SBC Summary CSV carries a `Location` column with **both**
+  locations selected and **not** with one. Our user has access to **two**, so the build **does not meet SBC
+  v14 S4-R12** *"regardless of how many locations are currently selected"* while it **does meet** PV S2-R12,
+  SBR S21-R7, TU S9-R9, WIP S7-R13, IV S7-R6. **Held, not flipped — SBC contradicts itself and we do not
+  settle that from the build.**
+- **Two brand-new v14 requirements are already correctly built:** S20-R19a (Location after Customer in the
+  Summary download) and S20-R19 (after Date in the Expanded one).
+- **S14-R14 filenames · UTF-8 BOM · the `"Locations:"` metadata line — all met.**
+- **S15-R15 met** — the PDF holds exactly one embedded image and **zero** `http` references.
+- **SV-8823 STILL REPRODUCES** — `$224.92` and `90.5%` in the live CSV.
+- **NEW, unticketed:** the server **rejects `last_12_months`** (v14's new first preset) and **still accepts
+  `today` and `yesterday`** (both deleted). **Asked, not filed** — `final-viu-2026-08-05/API-ASK.md`.
+
+### WHAT WAS WRITTEN
+
+`update_case` **only** — **0 add · 0 delete · 0 section · 0 run writes.** One write per case carrying every
+intent for that case. **30 fields compared per operation, 0 mismatch, 0 collateral change, HTTP 200
+throughout.** **The build clause was deliberately NOT re-stamped** — all 473 still read
+`8/4/2026 (build v3.4.1-3d03023)`, because we did not re-observe them on `v3.5-16cf83f` and a fresh date
+would be a false claim.
+
+**A second pass corrected 15 cases whose provenance still said the PO's decision overrode the spec while
+their body now followed the spec** — a Rule-56 divergence sentence pointing the wrong way, found by
+reading our own repairs back live.
+
+### MARKERS — 473 of 473, one grep-able literal each
+
+**423 `AUTOMATION: READY` · 17 `AUTOMATION: READY - EXPECT FAIL` · 33 `AUTOMATION: HOLD` = 473.**
+**Arithmetic gate: 423 + 17 = 440 = the ready-to-automate figure. PASSES.**
+Before this pass **453 cases carried no marker at all** and two competing styles coexisted on the other 20.
+**`READY` asserts *automatable*, not *passing*** — the pass/fail verdicts are the 2026-08-04 ones and are
+**two builds old**.
+
+### ⚠️ STILL OPEN
+
+- **Rule-49 queue OPEN** (`final-viu-2026-08-05/RECHECK-QUEUE.md`) — the branch has never been declared
+  final and has now redeployed **three times** since 2026-08-03. **All 473 verdicts are PROVISIONAL.**
+- **This pass was NOT a per-case live VIU of all 473** and does not claim to be.
+- **16 cases HOLD on one sentence from Chris** about the Location column (readiness 440 → 456).
+- **4 of our cases are not in run 359** (C43550–C43553) and `include_all` is `false`, so it will never pick
+  them up. **No run write was made.**
+- **The missing-logo state was deliberately not seeded** — the organisation is shared with two live workers.
+
+---
+
 ## §0 UPDATE 2026-08-04-C — THE RULE-49 RE-CHECK WAS RE-RUN AFTER THE REDEPLOY (read this first)
 
 **The QA branch was redeployed at 2026-08-04 10:41:58 UTC**, `v3.4.1-0ed4433` → **`v3.4.1-3d03023`**
