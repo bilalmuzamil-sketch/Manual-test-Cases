@@ -2135,3 +2135,61 @@ browser receives a file) is **not** reachable this way — nor by emulation, mob
 spoofing. That is Rule 14's genuine-blocker exception; it needs a human with the device, and a
 `PENDING-LIVE-CHECK.md` queue (Rule 49). Canonical example:
 `build/sv7324-heic-2026-08-05/`.
+
+---
+
+## §Q — QA-branch auth: **NEVER call `quick-login`** — the supplied cookies already work (learned the hard way 2026-08-05, sv8781)
+
+**THE GOTCHA, stated first because it cost five cookie sets:** on a per-ticket QA branch
+(`sv<ticket>.qa.shopview.com`), **`POST /api/quick-login` ROTATES the `PHPSESSID` and INVALIDATES the
+session you were given.** It returns **200**, which looks like success — and then **every subsequent
+authenticated call returns `409 {"errors":[{"error":"Session has expired."}]}`**. The cookies the QA
+lead sent are now dead and only a fresh set can recover it.
+
+**PROVEN SEQUENCE (2026-08-05, sv8781, one browser context):**
+```
+1) GET /api/auth/me/fe-permissions   -> 200 OK          <-- the supplied cookies ALREADY WORK
+2) POST /api/quick-login             -> 200 OK          <-- looks fine, but PHPSESSID rotates
+   cookies: PHPSESSID=2c605fbd03..  ->  PHPSESSID=d39bfc5702..
+3) GET /api/auth/me/fe-permissions   -> 409 Session has expired.   <-- session destroyed
+```
+
+**SO: DO NOT CALL `quick-login` ON A QA BRANCH.** Set the supplied cookies and use the session as-is.
+This **supersedes**, for per-ticket QA branches, the older CLAUDE.md guidance *"prefer quick-login SSO
+over raw-cookie API"* — that was learned on the shared `staging`/`qb` estates, where quick-login is the
+login mechanism. On a QA branch the cookies are already an authenticated SSO session and quick-login
+**destroys** it.
+
+**SECOND GOTCHA — curl gets 401 where the browser gets 200, with the SAME cookie values.** Do not read
+a curl `401 sso_required` as "the cookies are dead". On page load the browser acquires a **second,
+host-scoped `PHPSESSID`** for `sv<ticket>.qa.shopview.com` alongside the `.qa.shopview.com` one, and
+sends the app's `Origin`/`Referer`; a bare curl call has neither. **Verify a session from inside the
+page** (`page.evaluate` + `fetch(..., {credentials:'include'})`) before concluding anything:
+```js
+await page.goto(APP + '/login');            // establishes the host-scoped cookie
+const r = await page.evaluate(async API => {
+  const x = await fetch(API + '/api/auth/me/fe-permissions', { credentials: 'include' });
+  return { s: x.status, b: await x.text() };
+}, API);                                     // 200 here = the session is FINE
+```
+
+**THIRD GOTCHA — the SSO is Google OAuth, so a dead session cannot be revived from the container.**
+Following the API's `sso_redirect_url` lands on `accounts.google.com/o/oauth2/v2/auth`
+(`hd=shopview.com`, `redirect_uri=https://auth.qa.shopview.com/callback`). `sv_sso_session` is minted
+only by a real Google sign-in — there is **no programmatic recovery**. One careless `quick-login`
+therefore costs a human round-trip. **`sv_sso_session` appears to be shared across QA branches and
+long-lived; the `PHPSESSID` is the per-session part that dies.**
+
+**FOURTH GOTCHA — the MITM bridge dies when the agent proxy port rotates.** `$HTTPS_PROXY` changed
+`36459` → `38595` mid-session; the running bridge kept its stale upstream and every request through it
+returned **HTTP 000**. **Re-read `$HTTPS_PROXY` and rebuild the bridge whenever Chromium starts
+failing**, and verify it before launching:
+```bash
+curl -sS -x "http://127.0.0.1:$PORT" -o /dev/null -w "%{http_code}\n" https://<env>.qa.shopview.com/
+```
+Also: start the bridge as a **background task**, not inside a compound command — a Bash-tool timeout
+kills the whole pipeline and can truncate a heredoc written later in the same call.
+
+**Cost of not knowing this: five cookie sets and roughly an hour.** Session cookies last ~24 h
+(`Max-Age=86400`), so **one live `PHPSESSID` is enough to work for a whole session** — provided
+nothing calls `quick-login`.
