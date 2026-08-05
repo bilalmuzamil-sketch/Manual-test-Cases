@@ -1,5 +1,35 @@
 # Schedule — PROJECT STATE (canonical cold-resume doc)
 
+## 0-BUILD-MOVED-2026-08-05. **THE QA BRANCH WAS REBUILT. NOTHING WAS WRITTEN. NEWEST STATE.**
+
+**Read this first.** Source: `build/automation-markers-2026-08-05/SCHEDULE-HALTED.md` + `BUILD-MARKERS.md`.
+
+The 5 August automation-marker pass was authorised for Schedule and **deliberately wrote nothing**,
+because the branch **redeployed at 08:09 UTC that morning**:
+
+| Field | The 165 verdicts were measured on | Serving now (read 11:34 UTC, 5 Aug) |
+|---|---|---|
+| `<meta name="app-version">` | `v3.5-4873abe` | **`v3.5-be42149`** |
+| `index.html` last-modified | Tue, 04 Aug 2026 14:47:39 GMT | **Wed, 05 Aug 2026 08:09:19 GMT** |
+| etag | `9b4b1fc776ebbfb04a9a0ca051d847f7` | **`70e496609e155994b93f515db32d0289`** |
+
+**All 165 cases proven byte-identical before and after, including `updated_on` and `updated_by`** — so
+"nothing was written" is evidence, not an assertion. **Run 357 also proven untouched:** 165 tests,
+**429** result records, `case_id` sets equal both ways, every prior result present **BY ID** and
+byte-identical field by field.
+
+**What is and is not in doubt, honestly.** **142 of the 165 markers were safe** and did not depend on
+the build (138 `READY`, which asserts *automatable* not *currently passing*; 2 waiting on Branko for the
+shop-closure contradiction; 2 that cannot be set up on this estate). **23 were NOT safe** and are the
+whole reason for stopping — **19** would have asserted `READY - EXPECT FAIL (SV-88xx)`, a claim the
+product is wrong right now, and **4** would have asserted a feature *"is not in the product yet"* on a
+build nobody has looked at. **All ten defect tickets (SV-8848 … SV-8857) were read live and are still
+Open**, which makes it likely the 19 still reproduce — but likely is not observed (Rule 12).
+
+**NEXT:** re-run `viu-2026-08-04/RECHECK-QUEUE.md` — **all 165 rows, no sampling** — against
+`v3.5-be42149`, then write all 165 markers from the fresh verdicts. Or, on the QA lead's word, write
+the 142 build-independent markers now and hold the 23.
+
 > **Read this first to resume the Schedule project.** Single authoritative snapshot.
 > Keep this project's memory SEPARATE from other projects; reuse shared infrastructure
 > (staging/QA access method, harness scripts, TestRail API patterns, the two process

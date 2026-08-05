@@ -17,6 +17,17 @@
 > **Re-check outcome: 91 rows CONFIRMED · 19 rows CHANGED · 110 of 110 done, no sampling.**
 > Every one of the 110 cases has had its provenance line re-stamped to name this build.
 
+> **UPDATE 2026-08-05 (automation-marker pass, `build/automation-markers-2026-08-05/`).** The build
+> marker was re-read before that pass and was **byte-identical** on all three fields
+> (`v3.4.2-d00239b`, last-modified Tue 04 Aug 2026 22:51:02 GMT, etag `b9ab1d41718b5e871432064ed914e2e7`),
+> so these verdicts still describe the build serving now. **102 of the 110 cases were given an
+> automation marker** at the end of Expected Results; **provenance lines were deliberately left
+> untouched** because nothing was re-observed. **The 8 phone rows are now stale for a different
+> reason:** Branko **answered and closed SV-8825** at 05:18 UTC, after this queue was written, so
+> those rows' "waiting on the product owner" basis no longer holds and each needs a fresh verdict
+> against spec v18 **S12-R6**. See `automation-markers-2026-08-05/SV-8825-ANSWERED.md`.
+> **The queue stays OPEN — the branch is still not declared final.**
+
 ## What CHANGED, and why it matters
 
 | # | Case | C-id | 4 Aug | 5 Aug | What changed |

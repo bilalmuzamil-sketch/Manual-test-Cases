@@ -57,6 +57,36 @@ else owes).
 
 ---
 
+## ⚠️ NEWEST — 2026-08-05, the automation-marker pass. TWO NEW ASKS, BOTH SMALL.
+
+**Filters and Schedule were both authorised for the automation marker. Filters is DONE on 102 of 110
+cases; Schedule is at 0 of 165 by design.** Sources: `build/automation-markers-2026-08-05/`.
+
+| # | What I need | Who owes it | What it blocks | Since |
+|---|---|---|---|---|
+| **A1** | **One word on the 8 Filters phone cases.** **Branko ANSWERED and CLOSED [SV-8825](https://shopview.atlassian.net/browse/SV-8825) at 2026-08-05 05:18 UTC** — *"This is updated in the filters prd, I'm closing it."* — **28 minutes after our readiness report was finished saying it was still open with no comments.** Spec **v18 S12-R6** now rules it: a phone applies **only when you tap "Apply filters"**. The build applies **as you tap**. So those 8 cases are **no longer waiting on him**, the line inside each of them saying they are is **now false**, and their real verdict is *"the product is wrong"* — with **no defect ticket**. **Say go and one pass fixes all of it:** correct the 8, raise **one Low defect** on epic SV-8785 with story SV-8797 linked, and mark them `AUTOMATION: READY - EXPECT FAIL`. | **the QA lead** | **8 cases carry a statement that is untrue, and 8 cases the automation engineer is being told to skip that he could be automating.** Fixing it takes the Filters ready figure **from 93 to 101 of 110**. | 2026-08-05 |
+| **A2** | **A choice on Schedule's markers.** The `sv8685` branch **redeployed at 08:09 UTC on 5 August** (`v3.5-4873abe` → **`v3.5-be42149`**), so all 165 verdicts describe a build that is gone and **nothing was written**. **Either** (i) authorise a full Rule-49 re-check of all 165 rows against the new build, then all 165 markers land from fresh verdicts; **or** (ii) tell me to write the **142 build-independent markers now** — 138 `READY`, 2 waiting on Branko, 2 un-settable here — and hold the **23** that assert something about the build (19 "expect fail", 4 "not built"). | **the QA lead** | **Vlad has no marker at all on any of the 165 Schedule cases**, so he cannot tell which to start on. | 2026-08-05 |
+
+**Two defects in our OWN data, found by this pass, reported and NOT silently fixed:**
+
+1. **The GitHub links inside the Filters case provenance lines do not work.** They point at
+   **`bmuzamil-shopview/Manual-test-Cases`** (HTTP **403**); the repository is
+   **`bilalmuzamil-sketch/Manual-test-Cases`** (HTTP 200). A tester following the link in a case gets
+   nothing. Fixing it means editing the provenance line on the affected cases — **needs your go-ahead**.
+2. **10 Filters cases show raw `<ol>` / `<li>` markup to the tester** — C29557, C29560, C29566, C29568,
+   C29573, C29575, C29582, C29613, C29625, C38911. **This predates this pass** (the same 10 are in the
+   pre-write snapshot), and it is the same defect already recorded for 16 Schedule cases. A repair is
+   10 writes and **needs your go-ahead**.
+
+**Also worth knowing, and nothing is needed from you:** **Ahtasham has logged two more Passed results**
+on Filters run 352 since this morning — he now stands at **25 Passed / 7 Failed** across **427** result
+records, not the 23/7 and 425 our own morning report recorded. **Every one of his results was proven
+present by ID and byte-identical before and after our writes.** And the standing note that the Filters
+import file was still character-shredded is **out of date — it was already repaired**; the guard passed
+and the file is clean.
+
+---
+
 ## THE SHORT VERSION — one line per project
 
 | Project | The single thing I most need from you |

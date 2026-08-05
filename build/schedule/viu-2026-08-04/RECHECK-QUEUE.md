@@ -1,3 +1,22 @@
+> ## ⚠️ THE BUILD HAS MOVED — 2026-08-05 11:34 UTC. THIS QUEUE IS NOW DUE, IN FULL.
+>
+> The Schedule QA branch was **redeployed at 08:09 UTC on 5 August**. Read live:
+>
+> | Field | Verdicts below were measured on | Serving now |
+> |---|---|---|
+> | `<meta name="app-version">` | `v3.5-4873abe` | **`v3.5-be42149`** |
+> | `index.html` last-modified | Tue, 04 Aug 2026 14:47:39 GMT | **Wed, 05 Aug 2026 08:09:19 GMT** |
+> | etag | `9b4b1fc776ebbfb04a9a0ca051d847f7` | **`70e496609e155994b93f515db32d0289`** |
+>
+> **Every verdict below, and every provenance line, names a build that no longer exists.** All ten
+> defect tickets raised from the 4 August pass (SV-8848 … SV-8857) were read live and are **still
+> Open**, so the 19 deviations probably still reproduce — but **probably is not observed** (Rule 12).
+>
+> **Because of this, the 5 August automation-marker pass wrote NOTHING to Schedule** — all 165 cases
+> are proven byte-identical before and after, including `updated_on`. Reason and the safe/unsafe split:
+> `build/automation-markers-2026-08-05/SCHEDULE-HALTED.md`. **Re-run all 165 rows against
+> `v3.5-be42149` before anything is asserted from them.**
+
 # Schedule — Standing Rule 49 RE-CHECK QUEUE
 
 **STATUS: OPEN**

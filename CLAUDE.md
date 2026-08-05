@@ -52,8 +52,16 @@
 >   `v3.4.1-0ed4433`) · `build/filters/recheck-2026-08-05/RECHECK-QUEUE.md` (Filters QA branch `sv8785`, build
 >   **`v3.4.2-d00239b`** — **RE-RUN IN FULL 2026-08-05: 110/110 rows, 91 CONFIRMED / 19 CHANGED**;
 >   still OPEN only because the branch is not declared final) · `build/schedule/viu-2026-08-04/RECHECK-QUEUE.md` (Schedule QA branch
->   `sv8685`, build `v3.5-4873abe`, 165 rows). **None of the three branches has been declared final,
->   so every finding on all three is PROVISIONAL.**
+>   `sv8685` — **⚠️ THE BUILD MOVED 2026-08-05: `v3.5-4873abe` → `v3.5-be42149`, redeployed 08:09 UTC,
+>   so this queue is DUE IN FULL over all 165 rows and NOTHING may be asserted from those verdicts until
+>   it is re-run**). **None of the three branches has been declared final, so every finding on all three
+>   is PROVISIONAL.** **AUTOMATION MARKERS (QA-lead-authorised 2026-08-05, `build/automation-markers-2026-08-05/`):
+>   Filters carries the marker on 102/110 cases (build byte-identical, safe); Schedule carries it on
+>   0/165 BY DESIGN because of the redeploy above. The marker goes at the VERY END of Expected Results,
+>   AFTER the Rule-54 provenance line, blank line before and a line break after, in exactly three forms:
+>   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
+>   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
+>   external account we do not have) does.**
 > - **OUTSTANDING-ITEMS REGISTER (Standing Rule 36) — the single cross-project list of everything we
 >   are WAITING ON: build/OUTSTANDING-ITEMS-REGISTER.md. READ IT before writing any status report or
 >   management deliverable, and UPDATE IT the moment an item is raised or cleared. EVERY project
@@ -790,7 +798,43 @@ deliver the 7-tab management report.
    Branko PRD/answers → SPEC-RELEVANCE-RECONCILIATION + build-accurate wording + live
    VIU on the 43 new cases → authorized add_case push. Canonical resume doc:
    build/filters/PROJECT-STATE.md (2026-07-27 header).
-   **STATUS 2026-08-05 (LATEST — FULL RULE-49 RE-CHECK AGAINST THE REBUILT BRANCH; resume
+   **STATUS 2026-08-05 (LATEST — AUTOMATION MARKERS WRITTEN, 102 of 110; resume
+   `build/automation-markers-2026-08-05/` then `build/filters/PROJECT-STATE.md` §0-MARKERS-2026-08-05):**
+   the QA lead's machine-findable automation marker is now on **102 of the 110** cases, at the **very end
+   of Expected Results after the Rule-54 provenance line**, blank line before, line break after (his exact
+   placement). **74 `AUTOMATION: READY` · 19 `AUTOMATION: READY - EXPECT FAIL (<ticket>)` · 9
+   `AUTOMATION: HOLD - <reason>`** (8 not-built + 1 needing a second test login). **Arithmetic check
+   PASSED: READY + READY-EXPECT-FAIL = 93 = the readiness figure exactly.** **102 × `update_case`, every
+   one HTTP 200 + byte-verified MATCH, 30 fields compared each, 0 collateral changes**; `refs` not written
+   on any op; **0 add / 0 delete / 0 section / 0 run writes**; **provenance lines deliberately NOT
+   re-stamped** (nothing was re-observed, so a new tested-on date would be a false claim). Build confirmed
+   **byte-identical at the start on all three markers** (`v3.4.2-d00239b`, last-mod Tue 04 Aug 22:51:02
+   GMT, etag `b9ab1d41…`). **Run 352 PROVEN UNTOUCHED** — 110 tests, **427** result records (not 425:
+   Ahtasham has since logged 2 more Passed, so he now stands at **25 Passed / 7 Failed**), case_id sets
+   equal both ways, every prior result present BY ID and byte-identical.
+   **⚠️ THE 8 PHONE CASES WERE DELIBERATELY NOT WRITTEN — Branko ANSWERED AND CLOSED
+   [SV-8825](https://shopview.atlassian.net/browse/SV-8825) at 2026-08-05T05:18:22Z** (*"This is updated
+   in the filters prd, I'm closing it."*) — **28 minutes AFTER `READINESS-2026-08-05.md` was finished
+   saying it was still Open with zero comments.** Spec **v18** now rules it (§4 Key Decisions + **S12-R6**
+   *"mobile does not filter in real time… only when the user taps an 'Apply filters' button"*, and *"This
+   confirms intent"*). So FLT-MOB-01/02/03/04/05/06/07/10 (C29621–C29627, C29630) are **no longer waiting
+   on the PO**, their existing *"the question is open as SV-8825"* line is **now FALSE**, and their verdict
+   is **unknown** (the build applies as you tap = contradicts a ratified requirement, and there is **no
+   defect ticket**). **Needs ONE authorised pass: correct the 8, raise one Low defect on epic SV-8785 with
+   story SV-8797 linked, set their markers to READY-EXPECT-FAIL → ready figure 93 → 101 of 110.** Write-up
+   `automation-markers-2026-08-05/SV-8825-ANSWERED.md`. **LESSON (Rule 31): a readiness figure has a shelf
+   life measured in MINUTES when a PO is active — re-read the blocking ticket at the moment you rely on
+   it.** Deliverables re-verified: local source re-synced FROM LIVE first (exactly 102 `expected` fields
+   moved), shredding guard **PASSED** (and note: **the Filters import was NOT still corrupt** — the
+   5 Aug recheck pass had already repaired it, correcting the standing note), import differs from its
+   predecessor in **one column, 102 rows, only by the appended marker**, all four counts **= 110 set-equal
+   both ways**, id-map came back **byte-identical (0 blanks, refs 110/110)**, import header **sha256
+   identical to all 5 peers**. **Two defects in our own data, reported not fixed:** the GitHub links inside
+   the provenance lines point at **`bmuzamil-shopview/Manual-test-Cases`, which does NOT resolve (403)** —
+   the repo is `bilalmuzamil-sketch/Manual-test-Cases`; and **10 cases show raw `<ol>`/`<li>` markup to the
+   tester** (C29557/29560/29566/29568/29573/29575/29582/29613/29625/38911, **predates this pass**).
+   **⚠️ Rule-49 queue STILL OPEN — branch not declared final, all 110 verdicts PROVISIONAL.**
+   **PRIOR STATUS 2026-08-05 (FULL RULE-49 RE-CHECK AGAINST THE REBUILT BRANCH; resume
    `build/filters/recheck-2026-08-05/` then `build/filters/PROJECT-STATE.md` §0-RECHECK-2026-08-05):**
    the `sv8785` branch redeployed overnight (`v3.4.2-4f8211c` → **`v3.4.2-d00239b`**, last-modified
    Tue 04 Aug 22:51:02 GMT, etag `b9ab1d41…`; marker read at start/mid/end — **identical all three, no
@@ -960,7 +1004,24 @@ deliver the 7-tab management report.
    transient HTTP 000). Audit `testrail-execution-log-epic-2026-07-27.md`; manifest header = EXECUTED.**
    Scripts: `epic-sv8685/backfill_refs.py`, `epic-sv8685/patch_edits.py`. Design-pinned ≠
    VIU-Verified (Rule 12); live VIU still pending QA branch (OQ-3).
-   **STATUS 2026-08-04 (LATEST — FIRST-EVER LIVE VIU DONE on QA branch `sv8685`, then RECOVERED +
+   **STATUS 2026-08-05 (LATEST — THE QA BRANCH WAS REBUILT; the authorised automation-marker pass
+   DELIBERATELY WROTE NOTHING; resume `build/automation-markers-2026-08-05/SCHEDULE-HALTED.md` then
+   `build/schedule/PROJECT-STATE.md` §0-BUILD-MOVED-2026-08-05):** the `sv8685` branch **redeployed at
+   08:09 UTC on 5 August** — **`v3.5-4873abe` → `v3.5-be42149`**, last-modified Wed 05 Aug 2026 08:09:19
+   GMT, etag `70e496609e155994b93f515db32d0289` (all three read live). **So every one of the 165 verdicts,
+   and every one of the 165 provenance lines, names a build that no longer exists**, and the marker pass
+   stopped before writing rather than assert "expect this to fail" / "this feature is not built" from a
+   build nobody has observed (Rule 12 + Rule 49). **All 165 cases proven byte-identical before and after,
+   including `updated_on`/`updated_by`; run 357 proven untouched** (165 tests, **429** result records,
+   case_id sets equal both ways, every prior result present BY ID and byte-identical). **Honest split:
+   142 of the 165 markers were build-INDEPENDENT and safe** (138 `READY` — which asserts *automatable*,
+   not *currently passing*; 2 waiting on Branko for the shop-closure contradiction; 2 un-settable on this
+   estate) **and 23 were NOT** (19 `READY - EXPECT FAIL (SV-88xx)` + 4 "not built"). **All ten defect
+   tickets SV-8848…SV-8857 were read live and are STILL Open**, so the 19 probably still reproduce — but
+   probably is not observed. **NEXT: re-run the Rule-49 queue over all 165 rows against `v3.5-be42149`,
+   then write all 165 markers from fresh verdicts — or, on the QA lead's word, write the 142
+   build-independent markers now and hold the 23.**
+   **PRIOR STATUS 2026-08-04 (FIRST-EVER LIVE VIU DONE on QA branch `sv8685`, then RECOVERED +
    FINISHED after the worker was cut off mid-wrap-up; resume `build/schedule/READINESS-2026-08-04.md`
    then `build/schedule/recovery-2026-08-04/STATE.md`):** all **165 cases carry a DEFINITE verdict** —
    **138 PASS / 19 DEVIATION (ticketed) / 4 NOT-BUILT / 2 HELD (shop closures) / 2 un-settable on this

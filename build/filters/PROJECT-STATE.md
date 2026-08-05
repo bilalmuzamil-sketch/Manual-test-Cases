@@ -3,6 +3,54 @@
 
 ---
 
+## 0-MARKERS-2026-08-05. **AUTOMATION MARKERS WRITTEN — 102 of 110 cases. NEWEST STATE.**
+
+**Read this first.** Source: `build/automation-markers-2026-08-05/` —
+`{BUILD-MARKERS,testrail-execution-log-filters,RUN-PROOF,SV-8825-ANSWERED,SCHEDULE-HALTED}.md`.
+
+The QA lead asked for one machine-findable line per case telling the automation engineer whether to
+automate it. It sits at the **very end of Expected Results, after the provenance line**, with a blank
+line before it and a line break after it (his wording, followed exactly).
+
+| | |
+|---|---|
+| Build confirmed at the start | **`v3.4.2-d00239b`** · last-modified **Tue, 04 Aug 2026 22:51:02 GMT** · etag `b9ab1d41718b5e871432064ed914e2e7` — **byte-identical on all three markers to the build the 110 verdicts were measured on**, so nothing moved under us |
+| Cases written | **102 of 110** · `update_case` only · **0** add · **0** delete · **0** section · **0 run writes** |
+| Markers | **74 `AUTOMATION: READY`** · **19 `AUTOMATION: READY - EXPECT FAIL (<ticket>)`** · **9 `AUTOMATION: HOLD - <reason>`** (8 not-built + 1 needing a second test login) |
+| Arithmetic check | **READY + READY-EXPECT-FAIL = 93 = the readiness report's ready-to-automate figure.** PASSED |
+| Verification | every op **HTTP 200 + byte-verified MATCH, 30 fields compared each**; **0 collateral changes**; the whole body before the marker proven byte-identical. `refs` **not written on any op**, so the comma-normalisation exception did not arise |
+| Runs 352 + 357 | **PROVEN UNTOUCHED both times** — 110/165 tests, **427/429** result records, `case_id` sets equal **both** ways, **every prior result present BY ID and byte-identical field by field**, 0 new results |
+| Provenance lines | **NOT re-stamped** — the verdicts were not re-observed in this pass, so changing the tested-on date would have been a false claim (Rule 12) |
+
+**⚠️ THE 8 PHONE CASES WERE DELIBERATELY NOT WRITTEN — and this is the most important thing on this
+page.** **Branko ANSWERED and CLOSED [SV-8825](https://shopview.atlassian.net/browse/SV-8825) at
+2026-08-05T05:18:22Z** — *"This is updated in the filters prd, I'm closing it."* — **28 minutes after
+`READINESS-2026-08-05.md` was finished saying the question was still open with zero comments.** Spec
+**v18** now rules it plainly (§4 Key Decisions + **S12-R6**: mobile *"does not filter in real time…
+the table updates only when the user taps an 'Apply filters' button"*, and *"This confirms intent"*).
+So FLT-MOB-01/02/03/04/05/06/07/10 (C29621–C29627, C29630) are **no longer waiting on the product
+owner**, their existing *"waiting on an answer… the question is open as SV-8825"* line is **now
+false**, and their verdict is **unknown** — the build applies as you tap, which now contradicts a
+ratified requirement. **Needs one authorised pass:** correct the 8, raise one Low defect on epic
+SV-8785 with story SV-8797 linked, set their markers to READY-EXPECT-FAIL. **That would take the
+ready figure from 93 to 101 of 110.** Full write-up: `automation-markers-2026-08-05/SV-8825-ANSWERED.md`.
+
+**Deliverables re-verified:** local source re-synced **FROM LIVE first** (exactly **102** `expected`
+fields moved — matching the 102 writes and nothing else); shredding guard **PASSED**; the import
+differs from its previous version in **one column, 102 rows, only by the appended marker**; **all four
+counts = 110 and set-equal both directions** (live / local source / id-map / import rows); the id-map
+came back **byte-identical** after the re-merge (**0 blanks, refs 110/110**); import header **sha256
+identical to all 5 peer imports**. **⚠️ Rule-49 queue still OPEN — the branch is not declared final,
+so all 110 verdicts remain PROVISIONAL.**
+
+**Two things found wrong in our own data, reported not silently fixed:** (1) the GitHub links inside
+the case provenance lines point at **`bmuzamil-shopview/Manual-test-Cases`, which does not resolve
+(HTTP 403)** — the repository is `bilalmuzamil-sketch/Manual-test-Cases`; (2) **10 cases show raw
+`<ol>`/`<li>` markup to the tester** (C29557, C29560, C29566, C29568, C29573, C29575, C29582, C29613,
+C29625, C38911) — this **predates this pass** (same 10 in the pre-write snapshot).
+
+---
+
 ## 0-RECHECK-2026-08-05. **THE FULL RULE-49 RE-CHECK AGAINST THE REBUILT BRANCH — DONE. 110/110.**
 
 **Read this first — it is the newest state.** Sources:
