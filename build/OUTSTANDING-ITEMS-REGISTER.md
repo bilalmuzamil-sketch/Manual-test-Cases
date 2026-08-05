@@ -30,7 +30,7 @@
 > stays hedged instead of asserted. A missing QA branch means **nothing is live-verified** and a
 > whole suite sits VIU-Pending.
 
-**Last updated:** 2026-08-04
+**Last updated:** 2026-08-05 (~17:05 UTC — the PO question-sheet pass)
 **Active projects:** Report Suite · Schedule · Filters (user ruling 2026-07-27)
 **Predecessor snapshot (kept for the record):** `build/PROJECTS-NEEDS-2026-07-27.md`
 **Companion defensibility register (read before answering any QA challenge in a public channel):** `build/qa-preemptive-answers-2026-07-31/ANTICIPATED-QUESTIONS-AND-ANSWERS.md` / `.xlsx` — 65 rows of *what someone could say* → *the paste-ready answer* → *the evidence*, across the three active projects, with a TOP 10 and an open list of what we would genuinely have to concede.
@@ -54,6 +54,90 @@ we do not have) · `QUESTION` (asked, not answered) · `GO-AHEAD` (your authoriz
 we may write anything) · `ACCESS` (a login, branch, token or connected account) · `DECISION`
 (something you or the QA lead held or deferred) · `OTHER TEAM` (a PO, dev or Jira artefact someone
 else owes).
+
+---
+
+## ⚠️⚠️⚠️ NEWEST — 2026-08-05, ~17:05 UTC, the PO QUESTION-SHEET pass. **THE TWO SHEETS ARE WRITTEN AND READY TO SEND. NOTHING NEW IS BLOCKED — WHAT CHANGES IS THAT 26 QUESTIONS NOW EXIST IN SENDABLE FORM, AND THREE PREVIOUS ROWS WERE WRONG.**
+
+**DOCUMENTATION ONLY. No TestRail write, no Jira write, no case edit.** Both sheets are drafts for
+the QA lead to send, mirroring the established format 1:1 (Rule 16) with a QA-only tab that must not
+be forwarded, and every reader-facing row naming its **project and feature** with no case IDs, no
+requirement anchors and no jargon (Rule 55).
+
+| Deliverable | Questions | Path |
+|---|---|---|
+| **Chris Ward — Report Suite, round 3** | **13** | `build/report-suite/rulings-2026-08-05/Questions-for-Chris-Ward_Report-Suite_Round-3_2026-08-05.xlsx` / `.md` |
+| **Branko Cicovic — Schedule AND Filters, one combined file** | **13** | `build/branko-questions-2026-08-05/Questions-for-Branko-Cicovic_Schedule-and-Filters_2026-08-05.xlsx` / `.md` |
+
+**All eight specifications were re-fetched LIVE immediately before drafting** (Rule 31 — and it paid
+for itself twice, see the corrections below). Report Suite at **2026-08-05T16:56:26Z**: SBC **v14** ·
+SBR **v16** · PV **v5** · TU **v6** · WIP **v7** · IV **v4**, all HTTP 200. Schedule and Filters at
+**17:00:12Z**: Schedule **v23** · Filters **v18**, both HTTP 200.
+
+### 🔴 THREE ROWS IN THIS REGISTER WERE WRONG, AND THE LIVE RE-CHECK IS WHAT CAUGHT THEM
+
+| Row | What it said | What is actually true | Consequence |
+|---|---|---|---|
+| **F5** (above) | *"Branko owes an answer on [SV-8876](https://shopview.atlassian.net/browse/SV-8876) … status **Ready**"* | **SV-8876 is CLOSED — `Done`.** Ahtasham closed it **himself** at **2026-08-05T08:38:16 −0500**, 2 h 21 min after raising it, commenting *"closing this as it was a gap with test case, I've updated the test case here >> C29557 And created a story defect >> as the build is not behaving as per PRD"*. He raised **[SV-8883](https://shopview.atlassian.net/browse/SV-8883)** (Story Defect, Open, parent SV-8786) instead. **Branko never answered it.** | **F5 is superseded, not cleared** — his *second* question (*"please update S1-R1 if the same-row layout is approved"*) died with the ticket and is still genuinely open. It is now **Filters question 1** on the Branko sheet, narrowed to the half that is his: *did you want them on one row, in which case SV-8883 should be cancelled?* Asking him to answer a closed ticket would have been wrong. **For the record, Ahtasham's resolution was CORRECT under Rule 57** — a closed ticket is not a spec amendment, so the build failing S1-R1 is a defect, not a spec question. |
+| **The Report Suite "4 specs still state it both ways" framing** | four contradictions, TU among them | **TU v6 is now internally consistent** — S9-R9 **and** S10-R4 both state the access-gate + toggleable model. Only three stray sentences elsewhere in TU still read the old way. | **TU is deliberately NOT asked as a fifth contradiction.** It appears on Chris's sheet as a no-answer-needed tidy-up note. Asking it would have been asking about something he had already fixed. |
+| **3 Report Suite cases marked "waiting on the product owner"** | implied Chris owes an answer | **He does not — this is OUR defect.** **SBC-VIS-02 = [C30186](https://shopview.testrail.io/index.php?/cases/view/30186)**: all five assertions are SBC v14 **S20-R8/R9/R10/R11/R14** almost verbatim, checked live — there is no product question behind it. **WIP-FLT-05 = [C30502](https://shopview.testrail.io/index.php?/cases/view/30502)**: WIP v7 **S7-R8** says *"A Custom range is capped at a 366-day maximum span"* and the build accepts 367 — per Rule 57 that is a **developer defect** with the documented expectation kept, not a PO question. **SBC-COL-04 = [C43550](https://shopview.testrail.io/index.php?/cases/view/43550)**: SBC v14 **S4-R12** answers it outright. | **All three were deliberately NOT put in front of Chris.** They need an authorised repair pass, not an answer — **+3 to ready-to-automate for free**, and one defect ticket to write. |
+
+### The asks — what is outstanding after this pass
+
+| # | What is missing | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|
+| **P1** | **Send the two sheets.** Both are finished drafts; neither has been sent. The QA lead sends them. | **the QA lead** | **26 questions cannot be answered until they are sent.** Chris's Tab 1 alone releases the **16** Location cases (Report Suite ready-to-automate **440 → 456**); Branko's Schedule question 1 releases **2** (Schedule **158 → 160**). | 2026-08-05 |
+| **P2** | **Chris Ward to finish the location-column edit in four documents.** He has **DECIDED** it — his own version messages on SBR/TU/WIP/IV say *"Location column changed to an access gate and made toggleable in the column selector"* — but four documents still carry the older paragraph, quoted verbatim on his sheet: **SBR v16 S21-R7** · **WIP v7 S7-R13** (contradicting **S4-R3** in the *same version*) · **IV v4 S7-R6** · **SBC v14 S13-R4** (a closed list of nine without Location). | **Chris Ward** | The **16** held cases. This is *"please finish"*, not *"please decide"* — a much smaller ask than it was this morning. | 2026-08-05 |
+| **P3** | **Chris Ward to RULE on Parts Velocity — the one report he has not touched on this point.** PV **v5 S3-R10** still reads *"…it is not one of the 20 columns in the picker, S4-R1, and is not user-toggleable"*, and **he republished PV v5 today at 13:21:40Z**, so latest-wins (Rule 32) currently points **at the specification** for that report. It is now the odd one out of six. | **Chris Ward** | PV-COL-02 = [C30352](https://shopview.testrail.io/index.php?/cases/view/30352), PV-FILT-14 = [C38914](https://shopview.testrail.io/index.php?/cases/view/38914). **Deliberately not changed on the strength of what he decided for the other reports** — that is exactly the mistake that produced the boilerplate we spent today removing. | 2026-08-05 |
+| **P4** | **Chris Ward — the 5 round-2 questions his updates did not touch**, carried forward: where the branch line sits in a Parts Velocity / Technician Utilization download · whether an on-screen indicator naming the branches should exist at all (**we removed it — 0 mentions in all six specs — and the sheet tells him so plainly**) · the export-filename leftover still mapping *Today* and *Yesterday* · the screen-reader name for the column button · whether Technician Utilization is meant to offer two spreadsheet downloads. | **Chris Ward** | C30160, C38859, C43552 and the 7 repaired-by-removal cases. Only the two-spreadsheet answer moves the count (**+1**). | 2026-08-04 |
+| **P5** | **Chris Ward — the 2 questions now asked for the THIRD time**, each holding a live test: which menu group Sales By Customer belongs in (our build notes say SALES, his description says Performance) and whether the full word *"Representative"* applies on screen and on the customer record as well as in the files. Left blank on both previous sheets. | **Chris Ward** | SBC-NAV-01 = [C30096](https://shopview.testrail.io/index.php?/cases/view/30096) · SBR-WO-01 = [C30310](https://shopview.testrail.io/index.php?/cases/view/30310) · SBR-WO-06 = [C30315](https://shopview.testrail.io/index.php?/cases/view/30315). **+3** when answered either way. | 2026-08-04 |
+| **P6** | **Chris Ward to confirm the new nine-preset date list is what he intends.** SBC v14 **S2-R2** puts *"Last 12 Months"* first and states *"There is no Today, no Yesterday, and no option labeled 'Custom'"*. Observed live: the two he deleted still work and **the new first one is refused**. **NOTHING HAS BEEN FILED** — the requirement was hours old, the picker was never driven on screen, and per Rule 51 an interface-only difference is asked about, never filed unasked. Reader-facing wording carries **no technical detail at all**. | **Chris Ward** first, then **the QA lead** for the Rule-51 filing call | Six date cases across all six reports, all currently READY. No count moves; what moves is whether they are written to a list the product actually has. | 2026-08-05 |
+| **P7** | **Branko to answer whether the filter bar was meant to sit on the tabs' row — because a developer job has ALREADY been raised on the other reading.** Filters **v18 S1-R1**: *"The filter bar is displayed below the tab navigation row (All, Estimates, Completed, My Work Orders) by default."* The build puts the chips beside the tabs. **[SV-8883](https://shopview.atlassian.net/browse/SV-8883) is Open and will move the product.** | **Branko** | FLT-BAR-01 = [C29557](https://shopview.testrail.io/index.php?/cases/view/29557), now `READY - EXPECT FAIL`. **If he wanted the same row, SV-8883 should be cancelled and S1-R1 updated** — better asked before the change is built than after. **Note it would NOT restore our old waiver note either way** (Rule 57). | 2026-08-05 |
+| **P8** | **Branko to ratify or correct 6 expectations that rest on the ENGINEERING PLAN only** — the specification is entirely **silent** on five of them: pre-existing shifts and events surviving the release · the Dashboard showing a multi-day job as one row · a work-order appointment reaching the board · a shift being scoped to the **job's** branch and never the technician's · the work-order priority choices and their default · whether an 8-week / 120-shift spread cap exists at all (**neither number appears anywhere in spec v23**). Covers **8 cases**: [C38867](https://shopview.testrail.io/index.php?/cases/view/38867)–[C38871](https://shopview.testrail.io/index.php?/cases/view/38871), [C38875](https://shopview.testrail.io/index.php?/cases/view/38875), [C38863](https://shopview.testrail.io/index.php?/cases/view/38863), [C38873](https://shopview.testrail.io/index.php?/cases/view/38873). **This is S4 above, now in sendable form as 6 plain questions.** | **Branko** | **Rule 20 AUTHENTICITY, not readiness** — and the distinction is stated rather than blurred: 6 of the 8 are `READY` (a case can be automatable while its basis is un-ratified) and 2 are `HOLD` on the not-built ground. **The sheet tells him to his face that we will not call something a requirement when no product document says it, and that those tests stay parked until he answers.** | 2026-08-05 |
+| **P9** | **Branko to settle a Schedule gap that is a gap rather than a contradiction:** for a technician with **no working hours of their own**, is a weekend an ordinary working day or a day to warn about? Three parts of v23 do not add up — §4.2's default *"7:00 AM to 7:00 PM"* carries no weekday restriction, §4.5 says the spread *"automatically skips weekends"*, §4.11 counts a weekend shift as a conflict. | **Branko** | SCH-CONF-02 = [C30024](https://shopview.testrail.io/index.php?/cases/view/30024), SCH-CAP-01 = [C30030](https://shopview.testrail.io/index.php?/cases/view/30030) — **both READY, neither held.** No count moves. Included because we would otherwise be relying on our own reading of three sentences that disagree. | 2026-08-05 |
+| **P10** | **Branko — two small Filters items.** (a) The phone button reads **"Apply Filters"** with a capital F while v18 writes *"Apply filters"* in both places — our cases must quote the screen (Rule 9), so we would rather the document matched. (b) **NO DECISION NEEDED:** **S12-R2** says the chips behave like desktop *"with one exception (see S12-R5)"* but **S12-R5 is the page-search paragraph**; the real exception is **S12-R6**. **Cause proven from his own v17 version message, read live:** *"Fix Story 12 numbering: deferred-apply requirement renumbered to S12-R6, placed after the page-search S12-R5."* He moved the target and the pointer stayed. | **Branko** | Nothing blocked. The stale pointer already cost one round of confusion in the 12:30 UTC cleanup pass. | 2026-08-05 |
+
+### 🔴 BLOCKED ON THE QA LEAD — Standing Rule 48, all five fields
+
+| Field | **P11 — the Report Suite repair pass for the 3 mis-held cases** | **P12 — the Parts/Reports PRD freeze (restates F8)** |
+|---|---|---|
+| **(1) The ruling, verbatim** | *"The ONLY real/production system is TestRail — NEVER write to TestRail (create/update/delete cases, runs, or results) without explicit user permission."* (Standing Rule 6) | *"lets wait for Brankos PRD"* |
+| **(2) When, and what it answered** | Standing, and reaffirmed on every push this week. It answers *"may a worker fix a case it can see is wrong?"* — no, not without a go-ahead. | Given when he was asked what it would take to apply the staged Parts/Reports groups. |
+| **(3) What it blocks, named** | **SBC-VIS-02 = [C30186](https://shopview.testrail.io/index.php?/cases/view/30186)** (spec-backed, wrongly held) · **WIP-FLT-05 = [C30502](https://shopview.testrail.io/index.php?/cases/view/30502)** (a developer defect, not a PO question) · **SBC-COL-04 = [C43550](https://shopview.testrail.io/index.php?/cases/view/43550)** (answered by S4-R12). **+3 ready-to-automate**, and one defect ticket to write for the 366-vs-367-day cap. | The **8** Filters cases on `HOLD - the feature is not in the product yet`: [C38904](https://shopview.testrail.io/index.php?/cases/view/38904)–[C38911](https://shopview.testrail.io/index.php?/cases/view/38911), plus [C38882](https://shopview.testrail.io/index.php?/cases/view/38882). |
+| **(4) Why it was reasonable** | **Entirely reasonable, and this pass obeyed it** — the three were found, written up and left alone. Today's whole lesson is what happens when a pass edits on its own initiative. | **Correct, and today's audit proves it.** Applying them means asserting behaviour no written product source supports — precisely what Rule 57 forbids. Nothing has changed to reopen it. |
+| **(5) The one thing that would unblock it** | A go-ahead for **3 `update_case` operations** (plus a Rule-51-free defect ticket for the day-cap). From **the QA lead**. | Branko's write-up — and **honestly, that alone does not move the count**: the feature must still ship before anyone can run these. The sheet says exactly that to Branko rather than implying his answer unblocks work it does not. |
+
+### ✅ What this pass CLEARED
+
+- **`S1` (Schedule shop closures — "never sent, the blocker is US")** — **no longer un-drafted.** It is
+  **question 1 on Branko's sheet**, with both v23 sentences quoted, and it carries an **explicit apology
+  in the reader-facing text**: drafted 22 July, never sent, two cases parked for two weeks waiting on an
+  answer nobody asked him for. **It is not cleared until it is SENT** (that is P1).
+- **`S4` and `S5` (Schedule)** — both are now sendable plain-English questions rather than internal notes
+  (P8 and Branko Tab 1 question 2).
+- **`F8` (Parts/Reports PRD)** — restated as a **gentle status ask** in Branko's own reading, per the QA
+  lead's ruling, not as a new question.
+- **The Report Suite round-2 sheet's Q1** — superseded. Chris **decided** the location column today; the
+  question is no longer *what should it be* but *which leftover sentence to drop*.
+
+### Honesty notes
+
+- **Nothing was written anywhere.** Read-only Confluence GETs and read-only Jira GETs only. **SV-8876 and
+  SV-8883 were read and NOT touched** (Rule 38 — and SV-8883 is Ahtasham's).
+- **Both QA branches are still PARTIAL sources** — neither declared final, so the Rule-49 queues for
+  Schedule, Filters and Report Suite all stay **OPEN** and every pass/fail verdict on all three is
+  **PROVISIONAL**. That weakens none of the 26 questions: **all of them are decided by documents, not by
+  a build.**
+- **One combined Branko file, not two — deliberately.** Rule 55 says to sweep every open ambiguity onto
+  **one** sheet so a PO answers in a single sitting *"rather than a drip of separate asks"*, and two files
+  to the same person on the same day **is** that drip. Rule 55's real worry — a PO who owns three projects
+  answering the wrong one — is handled by naming the project on **every row** and giving each project its
+  **own tab**. Pointer stubs sit in `build/filters/branko-questions-2026-08-05/` and
+  `build/schedule/branko-questions-2026-08-05/`.
+- **The Rule-31 lesson landed again, and cheaply this time.** Re-fetching immediately before drafting
+  turned one question into a different question (SV-8876), removed a question that no longer existed (TU),
+  and stopped three cases being blamed on Chris that were our own defect. **A question sheet written off a
+  40-minute-old read would have been wrong in three places.**
 
 ---
 
@@ -118,7 +202,7 @@ Your ruling settled it: *"A closed ticket does not change the expected behaviour
 
 | # | What | Who | Note |
 |---|---|---|---|
-| **F5** | **Branko owes an answer on [SV-8876](https://shopview.atlassian.net/browse/SV-8876)** — the PRD (S1-R1, *"below the tab navigation row"*), the design (chips on their own row) and the build (chips beside the tabs) all disagree. Ahtasham raised it 2026-08-05 06:17 −0500, status **Ready**. **He quoted one of our own cases in it**, and he was right to. | **Branko**, via Ahtasham's ticket | Our cases follow the PRD until he rules. Not touched (Rule 38). |
+| **F5** | ⚠️ **SUPERSEDED 2026-08-05 17:00 UTC — SEE ROW P7 IN THE NEWEST SECTION. This row was WRONG: [SV-8876](https://shopview.atlassian.net/browse/SV-8876) is NOT `Ready`, it is `Done`.** Ahtasham closed it **himself** at 08:38:16 −0500, 2 h 21 min after raising it, and raised **[SV-8883](https://shopview.atlassian.net/browse/SV-8883)** (Story Defect, Open, parent SV-8786) instead. **Branko never answered it**, so the half that is still genuinely his — *did you want the buttons on the tabs' row, in which case SV-8883 should be cancelled?* — is now Filters question 1 on his sheet. | **Branko** (narrowed), via our own sheet, **not** via Ahtasham's closed ticket | Our cases follow the PRD until he rules. Neither ticket touched (Rule 38). | 
 | **F6** | **A second test login** to prove one person's saved filters do not reach another — FLT-PERS-03 [C29615](https://shopview.testrail.io/index.php?/cases/view/29615). Not a tool limit; a genuinely absent second account. | **the QA lead** | The only genuinely un-settable case of the 110. It is 1 of the 10 `HOLD`. |
 | **F7** | **The `sv8785` branch declared final.** | engineering | Until then **every one of the 110 verdicts is PROVISIONAL** (Rule 49) and `final-viu-2026-08-05/RECHECK-QUEUE.md` stays OPEN. |
 | **F8** | **Branko's Parts/Reports PRD.** Your ruling stands: *"lets wait for Brankos PRD"*, so **no new Parts/Reports coverage was authored.** | **Branko** | 8 cases sit on `HOLD - the feature is not in the product yet` (C38904–C38911) plus C38882. That is absent product, not a readiness shortfall. |
