@@ -1,5 +1,30 @@
 # Schedule — PROJECT STATE
 
+## §0-RUN-SYNC-2026-08-05 — run 357 checked and ALREADY COMPLETE; nothing was written
+
+**Paper: `build/testrail-run-sync-2026-08-05/`.**
+
+The QA lead authorised a run sync across the three active projects. **Run 357 was checked and needed
+nothing: 165 of 165 of our cases are already in it**, proven by **set equality in both directions**
+(nothing live is missing from the run, nothing in the run is absent from group 4254). **No
+`update_run` was called** — a no-op write is still a write, and this run holds **429** result records
+of Ayesha Khan's graded work.
+
+**Proven untouched, not merely asserted:** re-read after the sibling write to run 359 and diffed
+against the committed pre-write snapshot — **165 tests, all 429 result records present BY ID and
+byte-identical field for field, 0 graded-field changes, 0 new results, and 0 movement even on the two
+declared read-time echoes** (`case_title` / `case_refs`), which is expected because this pass made no
+case writes at all.
+
+**Four counts reconcile: live 165 · run 357 = 165 · id-map 165 · import 165.** **No foreign cases
+exist in group 4254** — all 165 are `created_by = 3` (ours), re-confirmed live this pass.
+
+**⚠️ `include_all` is `false`, so the run freezes at its current selection** — re-run the sync after
+any authorised `add_case` (Rules 34/47), including if the three reserved coverage-gap IDs
+(`SCH-NAV-08`, `SCH-DND-09`, `SCH-REAS-07`) are ever authored.
+
+---
+
 ## §0-FINAL-VIU-2026-08-05 — CANONICAL RESUME (read this first)
 
 **Resume order:** `expected-behaviour-audit-2026-08-05.md` → `final-viu-2026-08-05/FINDINGS.md` →

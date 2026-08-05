@@ -4,6 +4,34 @@
 ---
 
 
+## §0-RUN-SYNC-2026-08-05 — run 352 checked and ALREADY COMPLETE; nothing was written
+
+**Paper: `build/testrail-run-sync-2026-08-05/`.**
+
+The QA lead authorised a run sync across the three active projects. **Run 352 was checked and needed
+nothing: 110 of 110 of our cases are already in it**, proven by **set equality in both directions**
+(nothing live is missing from the run, nothing in the run is absent from group 4110). **No
+`update_run` was called.**
+
+**Proven untouched, not merely asserted:** re-read after the sibling write to run 359 and diffed
+against the committed pre-write snapshot — **110 tests, all result records present BY ID and
+byte-identical field for field, 0 graded-field changes, 0 new results, 0 movement on the declared
+`case_title` / `case_refs` echoes** (expected — this pass made no case writes).
+
+**⚠️ ONE NUMBER TO CORRECT: run 352 now holds 443 result records, not the 438 recorded earlier
+today.** Ahtasham Amjad has graded **five more** since that figure was taken and he was working in
+the run during this pass. Nothing of his was disturbed — all 443 verified byte-identical — but it is
+a live run, which is exactly why snapshot → union → verify is not optional.
+
+**Four counts reconcile: live 110 · run 352 = 110 · id-map 110 · import 110.** **No foreign cases
+exist in group 4110** — all 110 are `created_by = 3` (ours), re-confirmed live this pass.
+
+**⚠️ `include_all` is `false`, so the run freezes at its current selection** — re-run the sync after
+any authorised `add_case` (Rules 34/47). Note this bites here if the **9 retired FLT-SRCH palette
+cases** ever land as Global Search coverage, or if any Parts/Reports authoring follows Branko's PRD.
+
+---
+
 ## §0-FINAL-VIU-2026-08-05 — THE CANONICAL RESUME POINT (read this first)
 
 **Resume order:** `expected-behaviour-audit-2026-08-05.md` → `final-viu-2026-08-05/FINDINGS.md` →

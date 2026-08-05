@@ -1,5 +1,40 @@
 # Report Suite — PROJECT-STATE (canonical resume doc)
 
+## §0-RUN-SYNC-2026-08-05 — run 359 is now COMPLETE at 473 tests
+
+**Paper: `build/testrail-run-sync-2026-08-05/`** (RUN-SYNC-2026-08-05.md · the execution log · full
+before/after snapshots · the executor).
+
+The QA lead authorised the sync (*"Please run this sync and the syncs for other projects too."*) and
+it is **executed**. **Run 359 went 469 → 473 tests**, gaining the four cases authored earlier today:
+**SBC-COL-04 = [C43550](https://shopview.testrail.io/index.php?/cases/view/43550)** · **WIP-PERS-05 =
+[C43551](https://shopview.testrail.io/index.php?/cases/view/43551)** · **TU-EXP-10 =
+[C43552](https://shopview.testrail.io/index.php?/cases/view/43552)** · **SBC-EXP-17 =
+[C43553](https://shopview.testrail.io/index.php?/cases/view/43553)**. Nebojsa and Viktoria can now
+see and execute them; before this they were invisible in the run.
+
+**ONE `update_run`, union-only, HTTP 200, and the run's graded work is proven intact:** all **535**
+prior result records **present BY ID and byte-identical** on every graded field (`status_id`,
+`comment`, `defects`, `elapsed`, `version`, `assignedto_id`, `created_by`, `created_on`, `test_id`,
+`case_id`, `id`, `attachment_ids`); all 469 prior tests present by id with **0 rebound**; the
+`case_id` set proven equal to the union **in both directions**; the run record diffed field by field
+with **only `untested_count` (463 → 467) and `updated_on`** moving. **0 result writes, 0 case writes,
+0 other run fields touched.** Verified twice — once in the executor and once by a cold re-read against
+the committed snapshot.
+
+**The five Vladimir Tomovic cases (C38919–C38923) were EXCLUDED from the union** and were **not in
+the run to begin with**, so nothing of his was added or removed (Rule 38). **Authorship was derived
+live from `created_by`, not a hard-coded list** — no new foreign case has appeared. **So run 359
+holding 473 tests against 478 live cases in group 4281 is CORRECT: the five-case gap IS the five
+foreign cases.**
+
+**Four counts reconcile: live ours 473 · run 473 · id-map 473 · import 473**, set-equal both ways.
+
+**⚠️ STANDING DUTY, NOT A CLOSED TASK:** `include_all` is **`false`**, so the run will **never** pick
+up a new case on its own — **re-run the sync after every authorised `add_case`** (Rules 34/47).
+
+---
+
 ## §0 UPDATE 2026-08-05 — THE EXPECTED-BEHAVIOUR CORRECTION (read this first)
 
 **Resume order:** `build/report-suite/expected-behaviour-audit-2026-08-05.md` →
