@@ -1,0 +1,114 @@
+{
+ "29978": {
+  "iid": "SCH-SPREAD-02",
+  "v": "PASS",
+  "ev": "B3a/B3b/B3j.json spread step is step 2 of the same modal, header 'William Johns - Whole order - 20h', 'chevron_left Change scope' present; Change scope returned to the picker with 0 shifts created; re-ticking 2 lines (4h+6h) gave '2 selected - 10h' and confirming produced a 600-minute shift",
+  "note": "all 5 items observed"
+ },
+ "29979": {
+  "iid": "SCH-SPREAD-03",
+  "v": "PASS",
+  "ev": "B3a/B3b.json selector defaults to 'Full estimate (20h)'; options are exactly Full estimate / 1 week / 2 weeks / Until a date\u2026 / Specific hours\u2026; the three presets add no extra input; preview went 2 shifts -> 7 shifts -> 14 shifts -> 2 shifts",
+  "note": "all 4 items observed"
+ },
+ "29980": {
+  "iid": "SCH-SPREAD-04",
+  "v": "PASS",
+  "ev": "B3b.json 'Until a date\u2026' reveals exactly one control, input_spread_until_date type=date labelled 'Finish by'. B3j.json setting 2026-12-18 changed the preview from '2 shifts - Dec 2 to Dec 3' to '17 shifts - Dec 2 to Dec 18'",
+  "note": "both items observed"
+ },
+ "29981": {
+  "iid": "SCH-SPREAD-05",
+  "v": "PASS",
+  "ev": "B3b.json 'Specific hours\u2026' reveals input_spread_specific_hours type=number labelled 'Hours per day'. B3j.json setting 4 changed the preview to '5 shifts - Dec 2 to Dec 6 - 4h/day, Wed-Sun'",
+  "note": "both items observed. Build label is 'Hours per day' - a number field, not a stepper with arrows; wording worth aligning."
+ },
+ "29982": {
+  "iid": "SCH-SPREAD-06",
+  "v": "DEVIATION",
+  "ticket": "SV-8855",
+  "ev": "B3b.json startDateControl hasStartWord=false and the spread step's complete test-id list contains no start-date control: dialog_title, button_spread_change_scope, text_spread_scope, button_close_dialog, schedule_spread_body, select_spread_option, input_spread_specific_hours, button_spread_toggle_preview, text_spread_summary, text_spread_cadence, button_spread_cancel, button_spread_confirm",
+  "note": "SV-8855 STILL REPRODUCES - there is no start date control at all"
+ },
+ "29983": {
+  "iid": "SCH-SPREAD-07",
+  "v": "HELD",
+  "ev": "B3b/B3e.json items 1,2,4 ARE observable and behave per the spec: William Johns spread 'every day' at 12h/day (he has weekend hours) while Ayesha Khan spread 'Mon-Fri' at 2h/day (she does not) - so weekends are skipped per-technician, not on a fixed Mon-Fri window; the end date follows from the daily distribution (20h at 2h/day from Wed 4 Nov ended Tue 17 Nov, 10 working days)",
+  "note": "STAYS HELD. Item 3 (shop closures and public holidays not skipped in V1) is the half the specification states two different ways, no PO ruling exists, and THE QUESTION HAS STILL NOT BEEN SENT TO BRANKO. Rule 58 - held and asked, never resolved from the build."
+ },
+ "29984": {
+  "iid": "SCH-SPREAD-08",
+  "v": "DEVIATION-NEW",
+  "ev": "B3e.json collapsed '10 shifts - 20h' + 'Nov 4 to Nov 17 - 2h/day, Mon-Fri'; expanded 'Week of Nov 4: Wed 4, Thu 5, Fri 6 / Week of Nov 9: Mon 9, Tue 10, Wed 11, Thu 12, Fri 13 / Week of Nov 16: Mon 16, Tue 17'. Struck-through elements found: 0 by tag (s/del/strike), 0 by computed text-decoration",
+  "note": "Items 1 and 2 PASS. ITEM 3 FAILS: the weekend days (Sat 7, Sun 8, Sat 14, Sun 15) are simply OMITTED from the breakdown - not struck through, and no reason shown. Spec section 4.5 requires 'a week-by-week breakdown with skipped days struck through and their reasons'. NO TICKET EXISTS."
+ },
+ "29985": {
+  "iid": "SCH-SPREAD-09",
+  "v": "DEVIATION-NEW",
+  "ev": "B3e.json confirming created 10 daily shifts sharing ONE seriesId 2d145d7e-e318-45b7-ae30-8015ca548001, each 120 minutes on its own day Nov 4,5,6,9,10,11,12,13,16,17; B3f.json they render as one connected banner. B3k.json the toast was polled 24 times at 300ms intervals over 7 seconds after confirming and NOTHING appeared",
+  "note": "Items 1,2,3 PASS. ITEM 4 FAILS: no toast and no Undo on confirming a spread. A single-shift drag DOES show 'Shift scheduled / Undo' (evidence batch2 B2f), so this is specific to the spread confirm. NO TICKET EXISTS."
+ },
+ "29986": {
+  "iid": "SCH-SPREAD-10",
+  "v": "PASS",
+  "ev": "B3j.json a second technician (Kellie Ayers) got scope header 'Kellie Ayers - Whole order - 20h' - the FULL 20h again while Ayesha Khan already held a 20h series of the same order; no remaining-hours counter anywhere; confirming a 10h subset succeeded with no error while the order's estimate was already fully booked elsewhere",
+  "note": "all 3 items observed"
+ },
+ "38863": {
+  "iid": "SCH-SPREAD-11",
+  "v": "PASS-HOLD-LIFTED",
+  "ev": "B3c/B3d.json 105-day spread: confirming showed 'This series runs 105 days - longer than 8 weeks. Schedule it anyway?' and the button became 'Create 105 shifts anyway'; 0 shifts existed until confirmed; confirming created 105 shifts under ONE seriesId 89fd410a-18a8-403d-a09f-cde720de7aad running 2026-11-04 to 2027-02-16. At 0.5h/day the preview capped at '120 shifts - 60h' with 'This pace needs more than 120 shifts, which is past the limit for one gesture. Put more time on each day, or schedule part of the job now.' and the confirm button was DISABLED (aria/disabled true); 0 shifts created and no way to override",
+  "note": "THE FEATURE IS NOW BUILT. All 3 items PASS. The HOLD 'the feature is not built yet' is FALSE on v3.5-d122eef and must be lifted - marker becomes READY. This CHANGES THE ARITHMETIC GATE."
+ },
+ "29987": {
+  "iid": "SCH-SER-01",
+  "v": "DEVIATION-NEW",
+  "ev": "B3f/B3g.json Month view: one continuous bar wrapping week rows, first week labelled 'Vuchester Retail | 11 Lines | Week 1 of 3' at opacity 1.0 and later weeks 'chevron_left | continues | chevron_right' at opacity 0.75 (genuinely faded). Weekend columns inside Ayesha Khan's series are empty (Week view blocks run x710 Monday to x1339 Friday; Sunday x553 and Saturday x1497 carry nothing) while William Johns' every-day series spans all seven. hasTech=false on every one of the 8 series blocks",
+  "note": "Items 1 and 3 PASS. ITEM 2 PARTLY FAILS: the label does NOT include the technician. Spec section 4.6: 'Month view: a continuous bar wrapping across week rows, labeled once at the start (with the technician)'. In Month view the rows are not per technician, so without the name you cannot tell whose series it is. NO TICKET EXISTS."
+ },
+ "29988": {
+  "iid": "SCH-SER-02",
+  "v": "DEVIATION-TEXT-STALE",
+  "ticket": "SV-8849",
+  "ev": "B3f/B3g.json Week view: 12 series blocks - the first day of each run carries 'Vuchester Retail | 11 Lines | chevron_left | continues | chevron_right' and each following day a 'subdirectory_arrow_right | continues' chip. chevronCount=4 so ARROWS ARE PRESENT at the banner edges. hasWeekNofM=false - no 'week N of M' anywhere in Week view. Clicking a series block returned null - still not openable",
+  "note": "SV-8849 STILL REPRODUCES (blocks not clickable in Week view) so the case stays a deviation. BUT THE CASE'S KNOWN-ISSUE TEXT IS NOW PARTLY FALSE: it says 'there are no arrows at the edges of the banner' and the arrows ARE now there. Also the newest series banner reads 'Part of a series' (B3k) matching the rest of that note. The stale sentence must be corrected."
+ },
+ "29989": {
+  "iid": "SCH-SER-03",
+  "v": "PASS",
+  "ev": "B3f.json Day view 2026-11-11: single time-positioned blocks 'Vuchester Retail | 11 Lines | Week 2 of 3' and 'Vuchester Retail | 37 Lines | Week 2 of 16', 0 series-spanning bars. B3i.json the modal cue reads 'Part of a 3-week job - Week 2 of 3'",
+  "note": "both items observed"
+ },
+ "29990": {
+  "iid": "SCH-SER-04",
+  "v": "PASS",
+  "ev": "B3f/B3i.json per-day capacity on the series week reads 1h, 3h, 3h, 3h, 3h, 3h, 1h - per day, not one 20h lump. Adding a 07:30 60-minute shift on Ayesha Khan on 2026-11-11 flagged BOTH shifts double_booked and the modal shows 'Scheduling conflict / Double-booked with Vuchester Retail'. That modal shows only that day ('Wed, Nov 11, 2026', '11 lines - 2h') plus 'event_repeat / Part of a 3-week job - Week 2 of 3'",
+  "note": "all 3 items observed"
+ },
+ "29996": {
+  "iid": "SCH-LANE-01",
+  "v": "PASS",
+  "ev": "B3g.json two shifts from DIFFERENT orders (Vuchester Retail 08:00-09:00 and Xiriver Apparel 09:00-10:00) on Brittany Anderson 2026-11-25: both rendered at the SAME y=591 in one lane, lane height 82 (normal), conflicts pill EMPTY",
+  "note": "all 4 items observed"
+ },
+ "29997": {
+  "iid": "SCH-LANE-02",
+  "v": "PASS",
+  "ev": "B3h.json five shifts all 10:00-12:00 on Colleen Guerrero 2026-11-26: the API returned conflictReasons ['double_booked'] on shifts 2-5; Day view drew them at distinct y 668/739/810 with no collision and the lane grew from 82 to 246; toolbar 'warning_amber 5 conflicts'",
+  "note": "all 3 items observed"
+ },
+ "29998": {
+  "iid": "SCH-LANE-03",
+  "v": "DEVIATION-MARKER-WRONG",
+  "ticket": "SV-8850",
+  "ev": "B3h.json 5 overlapping shifts: exactly 3 lanes visible (lane height 246 = 3 x 82), overflow link reads '+2 more'; clicking it opened a popover whose text is EMPTY with 0 shift blocks inside and 1 capacity bar",
+  "note": "Items 1 and 2 PASS. ITEMS 3 AND 4 FAIL - the popover lists no shifts, so the hidden shifts are unreachable. That is SV-8850, the same defect as SCH-LANE-04. THE MARKER ON THIS CASE IS WRONG: it reads AUTOMATION: READY when it should read READY - EXPECT FAIL (SV-8850)."
+ },
+ "29999": {
+  "iid": "SCH-LANE-04",
+  "v": "DEVIATION",
+  "ticket": "SV-8850",
+  "ev": "B3h.json Day '+2 more', Week '+2 more', Month '+3 more'; blocks never collide in any view (distinct y in each); the popover is empty in each view - 0 shift blocks, 1 capacity bar",
+  "note": "SV-8850 STILL REPRODUCES. Items 1 and 2 pass, item 3 fails in all three views. One detail has moved: the case says the popover is 'headed with just the date' and it now has NO heading text at all."
+ }
+}

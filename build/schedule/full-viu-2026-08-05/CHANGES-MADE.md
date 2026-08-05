@@ -59,7 +59,25 @@ byte-identical to the pre-batch snapshot.
 
 ## 3. Shifts and series LEFT IN PLACE (created after the ruling)
 
-*(Filled in as later batches run — see the table maintained at the end of this file.)*
+All of these are on **work orders that already existed**; nothing here creates a customer,
+asset or work order. Everything sits in **November and December 2026**, which held
+**zero** shifts and **zero** events before this pass, so nothing here can be confused
+with real data.
+
+| Series / shift | Work order | Technician | Dates | Detail |
+|---|---|---|---|---|
+| series `89fd410a-18a8-403d-a09f-cde720de7aad` | **S-15681** Vuchester Retail | **William Johns** | 4 Nov 2026 → 16 Feb 2027 | **105 daily shifts**, 1h/day — created to prove the over-8-weeks confirmation. Renders as "37 Lines · Week 1 of 16" |
+| series `2d145d7e-e318-45b7-ae30-8015ca548001` | **S-15683** Vuchester Retail | **Ayesha Khan** | 4 → 17 Nov 2026 | **10 daily shifts**, 2h/day, Mon–Fri. Renders as "11 Lines · Week 1 of 3" |
+| series (4 shifts) | **S-15683** Vuchester Retail | **Brittany Anderson** | from 16 Dec 2026 | 5h/day — created to test the confirm toast |
+| shift `b07bf2e7-b192-47f3-823b-e9fafb83ea47` | **S-15875** Vuchester Retail | Brittany Anderson | 25 Nov 2026 08:00–09:00 | back-to-back pair, same lane |
+| shift `45055358-1a55-436b-99da-85fcee4c69f3` | **S-15732** Xiriver Apparel | Brittany Anderson | 25 Nov 2026 09:00–10:00 | the other half of that pair |
+| **5 overlapping shifts** | S-15875, S-15732, S-15599, S-15807, S-15847 | **Colleen Guerrero** | 26 Nov 2026, all 10:00–12:00 | created to exceed the 3-lane cap; four of them are flagged double-booked **on purpose** |
+| shift `844a5ce1-2e79-4ea8-af2f-35ed9de5c7fa` | **S-15875** Vuchester Retail | Ayesha Khan | 11 Nov 2026 07:30–08:30 | deliberately overlaps her series day, to prove a series member conflicts like any shift |
+| shift (10h) | **S-15683** Vuchester Retail | **Kellie Ayers** | 2 Dec 2026 | a 2-line subset, created to prove a second technician gets the full estimate again |
+
+**Anyone reading the board later should know: every double-booked conflict on Colleen
+Guerrero on 26 November 2026 and on Ayesha Khan on 11 November 2026 was created
+deliberately by this test pass. They are not real scheduling problems.**
 
 ## 4. Settings, roles, staff, customers, assets
 

@@ -13,7 +13,7 @@ started with `NODE_USE_ENV_PROXY=1 node /tmp/schedule-viu/bridge.mjs`, port in
 |---|---|---|---|
 | 1 | Navigation, Mini Calendar, WO List/Search, WO Filters | 22 | **OBSERVED 22/22** |
 | 2 | Line Drill-Down, Drag-and-Drop, Scope Picker, Shift Block Anatomy | 22 | **OBSERVED 22/22** |
-| 3 | Multi-Day Spread, Linked Series, Overlap/Lane Stacking | 18 | not started |
+| 3 | Multi-Day Spread, Linked Series, Overlap/Lane Stacking | 18 | **OBSERVED 18/18** |
 | 4 | Day View Timeline, Shift Detail Modal, Hover Tooltips | 18 | not started |
 | 5 | Events, Conflict Detection, Capacity Bars | 17 | not started |
 | 6 | Deletion/Series/Undo, Reassignment, Shift Start Times | 20 | not started |
@@ -21,9 +21,12 @@ started with `NODE_USE_ENV_PROXY=1 node /tmp/schedule-viu/bridge.mjs`, port in
 | 8 | Permissions, Edge Cases | 20 | not started |
 | 9 | Cross-Module Regression, API | 9 | not started |
 
-**Observed so far: 44 of 168.** Next case: batch 3, SCH-SPREAD-01.
+**Observed so far: 62 of 168.** Next case: batch 4, SCH-DAY-01.
 
-**Verdicts so far:** PASS 37 · DEVIATION 6 · HELD 1 (see `evidence/batch*/VERDICTS.json`).
+**Verdicts so far:** PASS 47 · DEVIATION 14 · HELD 2 · one HOLD lifted (see `evidence/batch*/VERDICTS.json`).
+
+**Teardown is no longer required** (QA lead, 2026-08-05). Data is left in place and
+recorded in `CHANGES-MADE.md`.
 
 **NO TestRail write has been made yet.** Pre-write snapshot committed at
 `snapshots/PRE-cases-168.json` (SHA 5bf6100).
