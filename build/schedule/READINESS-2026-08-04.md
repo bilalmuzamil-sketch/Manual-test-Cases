@@ -17,9 +17,21 @@ they are still working on it. So every answer below is **today's answer, not a p
 165 are queued to be checked again when they tell us the branch is done, and until then nobody should
 describe the Schedule suite as finished.
 
+**Note added 5 August: two column names in the table below have been changed, because they were
+being misread.**
+
+- *"Broken on the build (a ticket is open)"* is now **"Product is wrong (ticket open) — the case
+  correctly fails"**. It never meant that our test case was broken. It means **the product is wrong,
+  the ticket is open, and the case correctly comes out red.**
+- *"Needs a free tool built into the browser"* is now **"Manual tester can run it; needs a tool only
+  for automated checking"**. It never meant a manual tester could not run those cases. **They can,
+  today, with nothing to install.**
+
+**Only the labels and the legend changed. No number, no verdict and no finding was altered.**
+
 ## The one table
 
-| Part of the feature | Test cases | Work correctly on the build | Broken on the build (a ticket is open) | Waiting on the product owner | Not built yet | Cannot be set up in this test environment | Needs a free tool built into the browser | **Ready to automate** |
+| Part of the feature | Test cases | Work correctly on the build | Product is wrong (ticket open) — the case correctly fails | Waiting on the product owner | Not built yet | Cannot be set up in this test environment | Manual tester can run it; needs a tool only for automated checking | **Ready to automate** |
 |---|---|---|---|---|---|---|---|---|
 | Who is allowed to do what | 13 | 12 | 1 | 0 | 0 | 0 | 0 | **13** |
 | Spreading a big job over several days | 10 | 7 | 1 | 1 | 1 | 0 | 0 | **9** |
@@ -52,17 +64,56 @@ describe the Schedule suite as finished.
 | What a block on the board says | 3 | 3 | 0 | 0 | 0 | 0 | 0 | **3** |
 | **TOTAL** | **165** | **138** | **19** | **2** | **4** | **2** | **3** | **161** |
 
-**Every row adds up.** Working + broken + waiting + not built + cannot-be-set-up equals the case
-count on every single line, and 138 + 19 + 2 + 4 + 2 = 165. The last two columns overlap the others
-on purpose: the three that need a browser tool all work correctly, and they are counted there too.
+## LEGEND — what every column above means, in plain words
+
+**Read this before drawing any conclusion from the table.** Two of these column names were misread
+before, so they are now spelled out in full — and the two most important points are these:
+
+- **A case in the "Product is wrong (ticket open)" column is a GOOD case.** The **case** is correct;
+  the **product** is wrong. A ticket is open and named on the case itself. **A FAIL there is the
+  expected result** until the ticket is fixed. Nothing in that column means our test case is faulty —
+  those are the cases that *caught* the faults.
+- **A case in the "Manual tester can run it; needs a tool only for automated checking" column CAN be
+  run by a manual tester today, with nothing to install.** The tool is the browser's own developer
+  tools, which are already on every machine. It is what an *automated* check needs; it is not
+  something that stops a person testing it.
+
+Column by column:
+
+- **Part of the feature** — the area of Schedule the row groups together.
+- **Test cases** — how many cases exist for that area.
+- **Work correctly on the build** — we drove it on the live build and the product did what the case
+  says it should.
+- **Product is wrong (ticket open) — the case correctly fails** — the case is right, the **product**
+  is wrong, and a ticket is open for it. **Automate these and expect a red result** until the fix
+  lands; do not raise a new ticket, and do not treat the case as faulty.
+- **Waiting on the product owner** — a product question is unanswered, so what the case should expect
+  could still change. Automating now risks locking in the wrong behaviour. Both of these say **"DO NOT
+  AUTOMATE YET"** on the case itself.
+- **Not built yet** — the feature does not exist in the product yet. Each of these cases tells the
+  tester to mark it **blocked**, not failed.
+- **Cannot be set up in this test environment** — nothing to do with tools. The starting conditions
+  cannot be created here (a clock change that has not happened, or a shared setting nobody has
+  authorised changing). These cases tell the tester to mark them blocked.
+- **Manual tester can run it; needs a tool only for automated checking** — **a manual tester can run
+  these today on the machine they already have; nothing needs installing.** The tool is the browser's
+  built-in developer tools (F12), used to force a small screen width, heavy load, or dark mode.
+- **Ready to automate** — what is left once the two skip groups are set aside (waiting on the product
+  owner, and cannot be set up here). **The "product is wrong" column is NOT subtracted** — those cases
+  are automated and are expected to come out red.
+
+**Every row adds up.** Working + product-is-wrong + waiting + not built + cannot-be-set-up equals the
+case count on every single line, and 138 + 19 + 2 + 4 + 2 = 165. The last two columns overlap the
+others on purpose: the three that need a browser tool all work correctly, and they are counted there
+too.
 
 **A manual tester CAN run all 165 of these cases today, with nothing but a browser** — including the
-19 that are currently broken (they are *supposed* to fail, so a red result is information rather than
+19 where the product is wrong (they are *supposed* to fail, so a red result is information rather than
 noise) and the 4 on features that are not built yet (each one tells the tester to mark it
 **blocked**, not failed).
 
-**Of the 19 broken cases, 15 name the exact ticket number on the case itself, with a link.** The
-other **4** say plainly that there is no ticket yet and tell the tester not to raise one without
+**Of the 19 product-is-wrong cases, 15 name the exact ticket number on the case itself, with a
+link.** The other **4** say plainly that there is no ticket yet and tell the tester not to raise one without
 asking — three of those are deliberate (they are questions for the product owner rather than code
 faults, and the reasons are written down), and **one of them needs a ticket and does not have one**;
 see the outstanding list.
@@ -98,8 +149,9 @@ seven and a half hours short, and nobody noticed until the whole week was compar
 That shift has been put back.
 
 **Everything else — 161 cases — is ready to automate today.** The 19 that currently fail should still
-be automated: they are correct, they are what the app is supposed to do, and 15 of them already carry
-their ticket number.
+be automated: **the cases are correct — it is the product that is wrong** — they describe what the app
+is supposed to do, and 15 of them already carry their ticket number. **A red result on those 19 is the
+expected result, not a faulty test.**
 
 **One thing that will make automation much easier, and it is very good news:** the developers have put
 **166 stable test handles** on this feature — every toolbar button, every toggle in both menus, every
@@ -117,8 +169,8 @@ guess at a single selector.** The grid itself is FullCalendar, which is well doc
    the app at all, so testing cannot settle it — **only he can**. **This has been open since 22 July
    and the question has still not been sent to him** — that is the single oldest item on this project.
 2. **Two of the twelve tickets another QA raised today argue against Branko's own earlier rulings.**
-   **SV-8835** says the hover summary should hide the VIN when the switch is off; Branko ruled on
-   31 July that it is always visible. **SV-8829** says the shift window should show labor and total
+   **[SV-8835](https://shopview.atlassian.net/browse/SV-8835)** says the hover summary should hide the VIN when the switch is off; Branko ruled on
+   31 July that it is always visible. **[SV-8829](https://shopview.atlassian.net/browse/SV-8829)** says the shift window should show labor and total
    figures; Branko ruled on 22 July that no money is shown anywhere on the Schedule. Our cases follow
    his rulings, and we changed nothing on either side. He needs to confirm which stands — **and the
    specification needs correcting either way, because the sentences those tickets were read from are
@@ -134,7 +186,7 @@ guess at a single selector.** The grid itself is FullCalendar, which is well doc
 ## What is blocked on the developers
 
 **Ten tickets were raised today from this pass**, all at priority **Low**, all hanging off epic
-**SV-8685** with the owning story linked. Every one was read back from Jira afterwards to confirm it
+**[SV-8685](https://shopview.atlassian.net/browse/SV-8685)** with the owning story linked. Every one was read back from Jira afterwards to confirm it
 saved correctly:
 
 | Ticket | What is wrong | Test cases affected |
@@ -150,10 +202,10 @@ saved correctly:
 | [SV-8856](https://shopview.atlassian.net/browse/SV-8856) | Dragging a job sideways in Day view jumps a whole hour instead of a quarter of an hour. | 1 |
 | [SV-8857](https://shopview.atlassian.net/browse/SV-8857) | The sidebar filters have no "Clear all" and no count of how many are on. | 1 |
 
-**Six of the twelve tickets another QA raised today were independently confirmed** — SV-8826,
-SV-8831, SV-8837, SV-8839, SV-8840 and SV-8841. **Two do not reproduce as written** and are questions
-back to their author rather than code changes: **SV-8830** (a weekend shift IS flagged, but only for a
-technician who actually has working hours saved — the steps used one who has none) and **SV-8827**
+**Six of the twelve tickets another QA raised today were independently confirmed** — [SV-8826](https://shopview.atlassian.net/browse/SV-8826),
+[SV-8831](https://shopview.atlassian.net/browse/SV-8831), [SV-8837](https://shopview.atlassian.net/browse/SV-8837), [SV-8839](https://shopview.atlassian.net/browse/SV-8839), [SV-8840](https://shopview.atlassian.net/browse/SV-8840) and [SV-8841](https://shopview.atlassian.net/browse/SV-8841). **Two do not reproduce as written** and are questions
+back to their author rather than code changes: **[SV-8830](https://shopview.atlassian.net/browse/SV-8830)** (a weekend shift IS flagged, but only for a
+technician who actually has working hours saved — the steps used one who has none) and **[SV-8827](https://shopview.atlassian.net/browse/SV-8827)**
 (the Business Hours half is real, the Tech Hours half is not — Tech Hours already defaults off). None
 of their tickets was touched.
 
@@ -161,14 +213,14 @@ of their tickets was touched.
 
 1. **Send Branko the shop-closure question.** Two cases stay frozen and unautomatable until he
    answers, and this has been waiting since 22 July.
-2. **Rule on the two tickets that clash with his earlier answers** (SV-8835 and SV-8829). Our cases
+2. **Rule on the two tickets that clash with his earlier answers** ([SV-8835](https://shopview.atlassian.net/browse/SV-8835) and [SV-8829](https://shopview.atlassian.net/browse/SV-8829)). Our cases
    follow his rulings; another QA's tickets say the opposite. Nothing was changed on either side.
 3. **Say whether you want a ticket for the one API-only finding.** It is written up and waiting in
    `build/schedule/viu-2026-08-04/API-ASK.md` and has NOT been filed, because an API-only defect is
    never raised without your explicit say-so — even inside a batch you have already approved.
 4. **Say whether you want an eleventh ticket for a real fault we found and did not raise.** The shift
    window's "time logged" bar showed a job as **fully worked when nothing had been clocked against
-   it** — it looks like it is showing the estimate twice. It is the only broken case with no ticket
+   it** — it looks like it is showing the estimate twice. It is the only product-is-wrong case with no ticket
    and no stated reason, and it affects one case (SCH-MODAL-03 =
    [C30010](https://shopview.testrail.io/index.php?/cases/view/30010)).
 5. **Authorise one new test case.** Another QA found a hole we had no case for: nothing checks that a
@@ -187,4 +239,5 @@ of their tickets was touched.
 **Yes — start tomorrow, with 161 of the 165 cases, and start with the shift window, the toolbar, the
 sidebar and permissions; leave the 8 drag cases for last and skip the 4 named above.** The one thing
 to keep in mind is that the answers are today's answers: the branch is not finished, so expect some
-of the 19 known failures to start passing, and re-check rather than assume.
+of the 19 product-is-wrong cases to start passing as tickets are fixed, and re-check rather than
+assume.
