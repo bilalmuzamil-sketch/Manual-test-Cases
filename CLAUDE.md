@@ -48,8 +48,11 @@
 >   yields PROVISIONAL findings only, so every finding is queued with its BUILD MARKER and no suite
 >   may be called VIU-complete while a queue is OPEN. Re-run the queue when the build is declared
 >   final or the app-version marker changes. **THREE QUEUES ARE OPEN NOW (2026-08-04):**
->   `build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md` (Report Suite QA branch `sv8582`, build
->   `v3.4.1-0ed4433`) · `build/filters/recheck-2026-08-05/RECHECK-QUEUE.md` (Filters QA branch `sv8785`, build
+>   `build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md` (Report Suite QA branch `sv8582` — **the
+>   TRIGGER FIRED AGAIN 2026-08-05: the branch redeployed `v3.4.1-3d03023` → `v3.5-16cf83f`, a
+>   minor-version jump, and the queue COULD NOT be re-run because the deploy killed the sign-in
+>   (401 `sso_required`). NOT ONE ROW has been re-verified against `v3.5-16cf83f`; all 473 verdicts are
+>   PROVISIONAL and a fresh sign-in is the one thing needed**) · `build/filters/recheck-2026-08-05/RECHECK-QUEUE.md` (Filters QA branch `sv8785`, build
 >   **`v3.4.2-d00239b`** — **RE-RUN IN FULL 2026-08-05: 110/110 rows, 91 CONFIRMED / 19 CHANGED**;
 >   still OPEN only because the branch is not declared final) · **`build/schedule/recheck-2026-08-05/RECHECK-QUEUE.md`** (Schedule QA branch
 >   `sv8685` — **THE LIVE QUEUE, re-armed 2026-08-05; the 2026-08-04 file is now the RECORD only and is
@@ -1234,7 +1237,62 @@ deliver the 7-tab management report.
    **CANONICAL STATE DOC (read first for resume):** `build/report-suite/PROJECT-STATE.md`
    — single authoritative snapshot (per-report spec inventory + readiness snapshot,
    TestRail structure, open questions OQ-1..7, how-to-resume).
-   **STATUS 2026-07-28 (LATEST): AUTHORIZED FULL TESTRAIL PUSH EXECUTED ("Push ALL") — 459
+   **STATUS 2026-08-05 (LATEST — CHRIS'S ANSWERS APPLIED + 4 NEW CASES + 3 DEFECT TICKETS; resume
+   `build/report-suite/approved-writes-2026-08-05/` — read `THE-46-EXECUTED.md` first, then
+   `TASK-A-UNSUPPORTED-FREEZE-LINE.md`, `TASK-B-NEW-CASES.md`, `TASK-C-TICKETS-FILED.md`,
+   `API-SPLIT.md`):** all four QA-lead authorisations executed. **TALLY: 473 ACTIVE OURS** (469 + 4 new;
+   live under group 4281 = **478** incl. **5 foreign** by Vladimir Tomovic C38919–C38923, proven
+   byte-identical incl. `updated_on`/`updated_by`, Rule 38). **56 TestRail ops total, ALL HTTP 200, 30
+   fields compared each, 0 mismatch, 0 add-beyond-the-4 / 0 delete / 0 section / 0 run writes.**
+   **(a) The 46 staged Chris-answer edits EXECUTED + 4 corrections = 50 ops** — **ops for C30470/C30485/
+   C30500 were RE-DERIVED, not pushed as staged: they invented a "then plate" fallback and `plate`
+   appears 0 times in the live WIP spec v6** (fetched live; the spec specifies PLACEHOLDERS `"(no unit
+   #)"` / `"— no VIN —"`), so as staged they would have failed a correct build; C30516's provenance
+   likewise corrected (S9-E1 AGREES). **The 4 WIP identifier cases carry the HONEST divergence** — spec
+   + build agree and it is Chris's **29 July** answer that differs (given against a question that
+   mis-described the report); **inventing a spec conflict is itself a defect**. **C30525 WIP-VIS-07 never
+   entered the write set** (hard assertion; `updated_on` unchanged) — it was right all along and
+   contradicted 4 of our cases for 7 days. Also corrected: **PV-COL-02 C30352** (an EIGHTH live-and-wrong
+   location case the manifest missed), **WIP-COL-01 C30466 precondition 4**, and **3 TITLES** (C30470/
+   C30500/C30485) that still asserted the plate against their own corrected bodies. **C30134 keeps its
+   plate — ratified SBC v13 S8-R9.** Held **47→16**: the **11 genuinely blocked** now cite the live
+   `rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx` (4 of them were LIVE and
+   unwarned and deliberately GAINED a hold); the other 5 keep their old hold correctly. The manifest
+   would also have dropped the `---` separator from 39 cases (all 469 live carried it) — restored.
+   **(b) 4 NEW CASES pushed: SBC-COL-04 = C43550** (single-ACCESS user never sees Location in the column
+   list — real coverage the release would have shipped without) **· WIP-PERS-05 = C43551 · TU-EXP-10 =
+   C43552** (two TU spreadsheet downloads) **· SBC-EXP-17 = C43553** (a logo SET BUT FAILING TO LOAD —
+   a branch no case tested). **All 4 `AUTOMATION: HOLD`, none live-verified.** **N2 NOT AUTHORED —
+   Chris's answer says both yes and no about the same person (gap U1).**
+   **(c) TASK A: the unsupported waiting-on-PO line REMOVED from C30440/C30491 (replaced with an accurate
+   developer-blocker line — neither has a ticket yet) and C30564 (already names SV-8820). C30186
+   NOT TOUCHED — removal not provably correct; a real product question sits behind it that was never
+   asked.** **(d) 3 DEFECT TICKETS FILED — SV-8879** (location chooser shown to a single-location user,
+   all six reports; screenshot proven to render inline) **· SV-8880** (SBR Summary spreadsheet missing 4
+   columns) **· SV-8881** (TU download menu wording) — all Bug/priority **Low**/parent **SV-8582**/owning
+   story linked **Relates**/Product Area Reports & Dashboards; every field read back, 11 checks each ALL
+   PASS; 7/7 sections; 0 barred phrases. **B4 NOT FILED (blocked on Chris's contradiction) · B5 NOT FILED
+   — NO LIVE EVIDENCE: the no-logo state was never produced** (*"the PDF logo fallback could not be
+   exercised because this organisation has an uploaded logo"*). **Rule 51 checked item by item: none of
+   the 5 is API-only.** **PROVEN READY-TO-AUTOMATE = 432** (401 + 35 released − 4 newly held;
+   cross-checked 473 − 16 − 14 − 6 − 1 − 4). ⚠️ **`READINESS-2026-08-04-POST-DEPLOY.md` still says 401 —
+   owned by another worker, NOT edited.** **Four counts reconcile 473/473/473/473 set-equal both ways;
+   id-map 0 blanks; import header sha256 == all 5 peers; shredding guard PASSED.** **Run 359 PROVEN
+   UNTOUCHED** — 469 tests, case_id sets equal both ways, all **532** results present BY ID; 3 differ in
+   **`case_title` ONLY**, a DERIVED read-time echo of the case title on the 2 cases we were authorised to
+   retitle (**new declared normalisation, recorded in APP-ACTIONS-PLAYBOOK §J**); every real result field
+   byte-identical on all 532. **OUR OWN DEFECT, OWNED: `SBC-COL-03` was a RETIRED id (merged 2026-07-28)
+   that the new-case pass reused, and the resync overwrote the retired record — restored byte-for-byte
+   from git, the new case renamed `SBC-COL-04`; no TestRail write needed, C43550 unchanged.**
+   ⚠️ **BUILD REDEPLOYED AGAIN: `v3.4.1-3d03023` → `v3.5-16cf83f`** (last-modified Wed 05 Aug 06:40:32
+   GMT, etag `177c59546701e7810b894492dabc1423`; identical at start and end of the pass). **The sign-in
+   died with it (401 `sso_required`) so NO application was opened — the Rule-49 queue
+   `viu-2026-08-03/RECHECK-QUEUE.md` is OPEN with the 2026-08-05 trigger recorded, and all 473 verdicts
+   are PROVISIONAL.** **OUTSTANDING: one sentence from Chris on the location column (unblocks 11 cases +
+   N2 + ticket B4) · which automation marker to standardise on (16 `DO NOT AUTOMATE` vs 4 `AUTOMATION:
+   HOLD`) · the readiness file needs 432 folded in · a line on the CLAUDE.md cross-project identifier rule
+   (NOT touched) · a live logo check before B5 · fresh QA-branch sign-in.**
+   **PRIOR STATUS 2026-07-28: AUTHORIZED FULL TESTRAIL PUSH EXECUTED ("Push ALL") — 459
    ACTIVE cases (515 − 57 deletes + SBC-EXP-16 = C38856; video edits + 9 sense-check repairs +
    41-group merge consolidation all live, 70 update / 1 add / 57 delete, ALL 200 + verified, 0
    failures; run R359 515→458 documented, never written; live count under group 4281 = 459 ==

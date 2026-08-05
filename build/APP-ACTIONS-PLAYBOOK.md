@@ -350,6 +350,16 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 - **`add_case` REQUIRES `custom_atmstatus:3` + `custom_automation_type:0`** (non-API cases). Place any
   case with API content in a section whose title includes "API" (Rule 4).
 - **Result statuses:** 1 Passed · 2 Blocked · 3 Untested · 4 Retest · 5 Failed.
+- **⚠️ DECLARED NORMALISATION #2 — `get_results_for_run` ECHOES THE CASE'S *CURRENT* TITLE (proven live
+  2026-08-05, Report Suite).** Historical result records carry a **`case_title`** field that TestRail
+  fills in **at read time from the case as it stands now**, not from the title the case had when the
+  result was graded. **So retitling a case makes its old result records read back differently with NO
+  run write whatsoever.** Proven: 3 of run 359's 532 result records differed pre-versus-post a
+  `update_case` batch, the ONLY differing field across all 532 was `case_title`, the 3 belonged to
+  exactly the 2 cases retitled, and `status_id` · `comment` · `created_on` · `created_by` · `elapsed`
+  · `defects` · `version` · `test_id` · `id` were **byte-identical on all 532**. **CONSEQUENCE for
+  Standing Rules 34/47/50: verify a run untouched on those fields and treat `case_title` as DERIVED —
+  a raw whole-record compare will otherwise report a false "results changed" and stop a clean batch.**
 - **Known runs — do NOT write without permission:** Custom Roles run **312**, section **3527**;
   Simple Flow / F&D / Schedule / Report Suite run **325** (and R359 Reports). Section IDs per project
   in CLAUDE.md.

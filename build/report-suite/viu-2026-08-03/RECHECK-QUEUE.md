@@ -1,5 +1,33 @@
 # RE-CHECK QUEUE — Report Suite VIU on the QA branch `sv8582`
 
+## 🔴 THE TRIGGER HAS FIRED AGAIN — A THIRD BUILD LANDED ON 2026-08-05 AND HAS **NOT** BEEN OBSERVED
+
+> **Read this before the 2026-08-04 block below.** The branch redeployed again overnight and
+> **every row in this queue is due once more**. The 2026-08-05 pass could **not** re-run it: the deploy
+> invalidated the sign-in (`GET /api/auth/me` → **HTTP 401 `sso_required`**), so **no application was
+> opened at all that day** and **not one row was re-verified against this build**.
+>
+> | Marker | 2026-08-04 re-check | **The build now live, UNOBSERVED** |
+> |---|---|---|
+> | App version | `v3.4.1-3d03023` | **`v3.5-16cf83f`** — a minor-version jump, not a rebuild |
+> | `ETag` | `9875201c58ba78d9851c37f7039c16e1` | **`177c59546701e7810b894492dabc1423`** |
+> | `Last-Modified` | `Tue, 04 Aug 2026 10:41:58 GMT` | **`Wed, 05 Aug 2026 06:40:32 GMT`** |
+>
+> The marker was read at the **start and the end** of the 2026-08-05 pass and was **identical both
+> times**, so nothing redeployed underneath that pass — but it is two builds on from the observations
+> every verdict in this file rests on.
+>
+> **What that means, plainly:** every one of the 473 cases stays **PROVISIONAL**, the three developer
+> tickets filed on 2026-08-05 (**SV-8879**, **SV-8880**, **SV-8881**) rest on 3 August observations and
+> each names the build it was seen on, and **nothing in this project may be described as
+> VIU-complete.** **The one thing needed to clear it is a fresh sign-in.**
+>
+> **Also queued by the 2026-08-05 pass (documents only — no build observation):** the 50 case edits
+> recorded in `build/report-suite/approved-writes-2026-08-05/THE-46-EXECUTED.md`, the 4 new cases
+> C43550–C43553, and the 3 cases whose waiting-on-the-product-owner line was corrected in
+> `TASK-A-UNSUPPORTED-FREEZE-LINE.md`. **All of them carry expectations that have never been checked
+> on any build.**
+
 ## ✅ THE QUEUE WAS RE-RUN ON 2026-08-04 AGAINST `v3.4.1-3d03023` — AND IT STAYS OPEN
 
 > **The trigger fired and has now been actioned.** The build moved at **2026-08-04 10:41:58 UTC**
