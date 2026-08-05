@@ -49,8 +49,9 @@
 >   may be called VIU-complete while a queue is OPEN. Re-run the queue when the build is declared
 >   final or the app-version marker changes. **THREE QUEUES ARE OPEN NOW (2026-08-04):**
 >   `build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md` (Report Suite QA branch `sv8582`, build
->   `v3.4.1-0ed4433`) · `build/filters/viu-2026-08-04/RECHECK-QUEUE.md` (Filters QA branch `sv8785`,
->   build `v3.4.2-4f8211c`) · `build/schedule/viu-2026-08-04/RECHECK-QUEUE.md` (Schedule QA branch
+>   `v3.4.1-0ed4433`) · `build/filters/recheck-2026-08-05/RECHECK-QUEUE.md` (Filters QA branch `sv8785`, build
+>   **`v3.4.2-d00239b`** — **RE-RUN IN FULL 2026-08-05: 110/110 rows, 91 CONFIRMED / 19 CHANGED**;
+>   still OPEN only because the branch is not declared final) · `build/schedule/viu-2026-08-04/RECHECK-QUEUE.md` (Schedule QA branch
 >   `sv8685`, build `v3.5-4873abe`, 165 rows). **None of the three branches has been declared final,
 >   so every finding on all three is PROVISIONAL.**
 > - **OUTSTANDING-ITEMS REGISTER (Standing Rule 36) — the single cross-project list of everything we
@@ -789,6 +790,59 @@ deliver the 7-tab management report.
    Branko PRD/answers → SPEC-RELEVANCE-RECONCILIATION + build-accurate wording + live
    VIU on the 43 new cases → authorized add_case push. Canonical resume doc:
    build/filters/PROJECT-STATE.md (2026-07-27 header).
+   **STATUS 2026-08-05 (LATEST — FULL RULE-49 RE-CHECK AGAINST THE REBUILT BRANCH; resume
+   `build/filters/recheck-2026-08-05/` then `build/filters/PROJECT-STATE.md` §0-RECHECK-2026-08-05):**
+   the `sv8785` branch redeployed overnight (`v3.4.2-4f8211c` → **`v3.4.2-d00239b`**, last-modified
+   Tue 04 Aug 22:51:02 GMT, etag `b9ab1d41…`; marker read at start/mid/end — **identical all three, no
+   redeploy under us**), so the queue was re-run **IN FULL: 110 of 110 rows, no sampling — 91 CONFIRMED
+   / 19 CHANGED.** **110 × `update_case`, every one HTTP 200 + byte-verified MATCH, 28 fields compared
+   each** (Rule 50); **0 add / 0 delete / 0 section / 0 run writes**. **All 110 provenance lines
+   re-stamped to `v3.4.2-d00239b` + 8/5/2026, exactly once each** (0 name the old build, 0 doubled).
+   **Run 352 PROVEN UNTOUCHED both times** — 110 tests, **425 result records**, case_id sets equal both
+   ways, **every prior result present BY ID and byte-identical field by field**; **Ahtasham Amjad's 30
+   results (23 Passed / 7 Failed) exactly as he left them.** **THE 19 CHANGES:** **SV-8824 IS FIXED**
+   (dropdown now stays open — proven on all five chips, 2nd + 3rd values tickable without reopening;
+   Jira independently **Ready for QA**) → the false known-issue line removed from **12 cases**
+   (STAT-03/04/05, CUST-03/05/07, TECH-03/05, ADV-03/05, ASSET-05, CHIP-01) — **our judgement call
+   applying the QA lead's own rule, flagged for retrospective confirmation**; **SV-8844 IS FIXED** (no
+   `search` key in the saved pref, no PUT sent, fresh browser returns the full 30 rows) → line
+   **DELETED** from PSRCH-10/11/12 per his decision 1; **SV-8843 + SV-8847 STILL REPRODUCE
+   byte-identically** → the 5 cases (BAR-01, COLL-02, EMPTY-01, EMPTY-02, PSRCH-09) carry his
+   accepted-behaviour wording, **and the defence register records plainly that SV-8843 was closed as
+   "Not Reproducible Anymore" while the build contradicts that reason**; **FLT-RPTS-23 = C38882**
+   (id-map name; the ask said FLT-RPTS-13) NOTBUILT → **PASS**, rewritten scope-conditionally (Rule 42)
+   to spec **Confluence v18** — the Reports date filter IS built and matches: opens on "Date Range: This
+   month", offers 11 ready-made periods + Custom + Clear Selection, a period applies on selection
+   (`?range=today`), a custom range applies **only on the 2nd date** (From 07/01/2026 alone fired no
+   request; adding To 07/31/2026 gave `?range=custom&range=2026-07-01&range=2026-07-31`);
+   **FLT-PERS-01 → DEVIATION** on a **NEW defect [SV-8871](https://shopview.atlassian.net/browse/SV-8871)**
+   (Bug, **Low**, parent SV-8785, Product Area Work Orders, linked SV-8792 + SV-8795, Open, duplicate
+   search run first) — a restored **Customer / Lead Technician / Service Advisor** button comes back
+   blue but **WITHOUT its value name** on all four restore routes (nav-away, reload, fresh browser,
+   shared link) while **Status and Asset on Site keep theirs**; breaches **S7-R1** *"…and displays the
+   selected value(s)"* + **S10-R1** *"restored exactly as they were left"*; **honestly NOT callable a
+   regression** — the 4 Aug pass tested persistence only with the two unaffected filters;
+   **FLT-PERS-04 → DEVIATION: OUR 4 AUGUST PASS WAS WRONG AND AHTASHAM WAS RIGHT** — seeded properly
+   (throwaway *ZZAUTOTEST Filters Recheck* + *Lastone Construction*, deleted while off-page) the
+   dropdown hides the deleted customer but the URL **and** the request still carry it = his open
+   **SV-8832**; **FLT-URL-02** keeps DEVIATION with a **second** reason (desktop label loss, SV-8871).
+   **NEW TALLY: PASS 74 / DEVIATION 19 / HELD 8 / NOTBUILT 8 / second-sign-in 1 = 110** (was
+   60/32/8/9/1); **ready to automate 89** (was 88). **SV-8825 (mobile Apply button) STILL UNANSWERED**
+   — Open, **0 comments** — so the 8 mobile cases keep DO-NOT-AUTOMATE. **Nothing new shipped on
+   Parts/Reports filter bars** (observations byte-identical). **Spec = Confluence v18** (2026-08-04T18:19:21Z,
+   Branko: *"Date-range filter: reflect current in-app default range and standard predefined ranges"*),
+   128 requirements unchanged — **and the page BODY still reads "Version: 1.6", the exact Rule-31(a)
+   trap; go by the Confluence number.** **Deliverables:** local source **re-synced FROM live BEFORE
+   regenerating** (114 fields), shredding guard **PASSED**, and the generator's gotcha fired again — it
+   blanks the id-map C-ids **and drops the `refs` column** every rerun, so both were re-merged from live
+   (110 rows, 0 blanks, refs 110/110); **all four counts = 110, set-equal BOTH directions**; import
+   header **sha256 identical to all 4 peer imports**. **Readiness recounted —
+   `build/filters/READINESS-2026-08-05.md`, EVERY row and the total now ADD UP** (the 4 Aug file is kept
+   but marked SUPERSEDED); the 4-cases-in-two-columns / 1-case-in-none overlaps are stated in the open,
+   and the 4 Aug note that named **FLT-MOB-10** as the double-counted phone case is corrected to
+   **FLT-MOB-09**. Env clean: throwaway customer deleted + **proven absent two ways**, filters cleared,
+   Reports range back to This month, one sign-in reused. **⚠️ Rule-49 queue STILL OPEN — the branch has
+   NOT been declared final, so all 110 verdicts remain PROVISIONAL.**
    **STATUS 2026-08-04 (LATEST — STANDING RULE 54 PROVENANCE RETROFIT EXECUTED, user-authorized;
    resume `build/filters/provenance-2026-08-04/`):** all **110/110** cases now end their Expected
    Results with a plain provenance sentence naming **epic SV-8785** (see the epic entry above) + the
