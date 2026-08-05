@@ -1145,7 +1145,7 @@ deliver the 7-tab management report.
    **CANONICAL STATE DOC (read first for resume):** `build/schedule/PROJECT-STATE.md`
    — single authoritative snapshot (status, spec-ingest facts, authoring-readiness
    assessment §0.6, deliverables index, open questions, env/access TBD, how-to-resume).
-   **STATUS 2026-07-27 (LATEST — EPIC SV-8685 BACKFILL + DESIGN/JIRA DELTAS + NEW-SCOPE, LOCAL
+   **STATUS 2026-07-27 (SUPERSEDED — EPIC SV-8685 BACKFILL + DESIGN/JIRA DELTAS + NEW-SCOPE, LOCAL
    ONLY, NO TestRail writes; resume `build/schedule/PROJECT-STATE.md` §0.0-EPIC):** epic = **SV-8685**
    / 15 stories SV-8686..SV-8700 **(+ SV-8812 since 2026-08-04 = 16 children — a Task,
    "Set up a dedicated QA environment for testing", Board Backlog; NOT a testable requirement,
@@ -1175,8 +1175,64 @@ deliver the 7-tab management report.
    transient HTTP 000). Audit `testrail-execution-log-epic-2026-07-27.md`; manifest header = EXECUTED.**
    Scripts: `epic-sv8685/backfill_refs.py`, `epic-sv8685/patch_edits.py`. Design-pinned ≠
    VIU-Verified (Rule 12); live VIU still pending QA branch (OQ-3).
-   **STATUS 2026-08-05 ~14:15 UTC (LATEST — FINAL VIU PASS: THE QA LEAD'S "EXPECTED BEHAVIOUR IS NOT THE
-   BUILD" CORRECTION AUDITED ACROSS ALL 165 AND REPAIRED; resume `build/schedule/expected-behaviour-audit-2026-08-05.md`
+   **STATUS 2026-08-05 ~17:30 UTC (LATEST — THE SUITE IS 168 CASES, READY TO AUTOMATE 160; three coverage
+   gaps authored, run 357 union-synced, and all 165 provenance lines re-worded off the build. Resume
+   `build/schedule/PROJECT-STATE.md` §0-PROVENANCE-REWORD-2026-08-05 → `build/schedule/provenance-reword-2026-08-05/`
+   {`SOURCE-CURRENCY`,`testrail-execution-log`,`NEW-CASES`,`RECHECK-QUEUE`}`.md` → `build/schedule/READINESS-2026-08-05.md`
+   (banner + the RECOUNT section at its end)):** **THE BUILD MOVED A THIRD TIME IN TWO DAYS —
+   `v3.5-be42149` → `v3.5-d122eef`**, last-modified Wed 05 Aug 2026 **15:35:43** GMT, etag
+   `dd1c57e2fb4beba9758b62a29afdeaab`, read at 17:11:48Z and 17:29:54Z with `index.html` **sha256 identical
+   both times**. Engineering will **not** declare the branch final before release, so an **OPEN Rule-49 queue is
+   this project's normal steady state**, and the LIVE queue is now
+   `provenance-reword-2026-08-05/RECHECK-QUEUE.md`. **THE THREE COVERAGE GAPS THAT THE 14:15 PASS LEFT
+   UNAUTHORED ARE NOW AUTHORED** (QA-lead authorised: *"Yes authorized for Scheduling three coverage gaps."*),
+   **all three reproducing live on `v3.5-d122eef`, each with a CONTROL that rules out a harness artefact**:
+   **SCH-NAV-08 = [C43554](https://shopview.testrail.io/index.php?/cases/view/43554)**
+   ([SV-8863](https://shopview.atlassian.net/browse/SV-8863) — which view the module opens on; `Week` carries
+   `aria-pressed="true"` on arrival while `Day` is false — **and the requirement is story SV-8686's acceptance
+   criterion, NOT the specification, which is SILENT on the default view**, so the case says so rather than
+   inventing an anchor) · **SCH-DND-09 = [C43555](https://shopview.testrail.io/index.php?/cases/view/43555)**
+   ([SV-8870](https://shopview.atlassian.net/browse/SV-8870) — Month-view drag-create does nothing, **zero
+   requests sent**, while the identical drag in Week view opens the scope picker; **HELD, because §4.1 names no
+   view and story SV-8688 names only Week — the Month-view question was NOT resolved from the build, it is
+   Branko's to answer**) · **SCH-REAS-07 = [C43556](https://shopview.testrail.io/index.php?/cases/view/43556)**
+   ([SV-8867](https://shopview.atlassian.net/browse/SV-8867) — a series block snaps back with no confirmation
+   while an ordinary shift between the **same two lanes** raises *"Move this shift to MQ Test Tech Qamar?"*).
+   **Their internal IDs were checked THREE ways** (not in the 195 bodies · not on the 27-case retired list ·
+   not in the id-map) because another project reused a retired ID today and its resync **overwrote the retired
+   record**. **No API case among them** (Rule 51 — the QA lead ruled *"No test cases for API only findings
+   please"*). **ALL 165 PROVENANCE LINES RE-WORDED so no case credits the build for its expected behaviour**
+   (Rule 54 as amended: sentence 1 names only documents, sentence 2 records neutrally the build the case was
+   last checked against — the two must never merge): **165 distinct cases · 241 `update_case` ops · every one
+   HTTP 200 + byte-verified MATCH, 28 fields compared each · 0 collateral changes**, and because all three text
+   fields were sent on every payload **TestRail's omit-field re-render never fired — 0 of 168 carry raw markup
+   or CRLF**. **Two defects in our own text removed, both findings:** 8 cases said the expectation was
+   *"verified against the build"* (**two of those 8 are EXPECT-FAIL cases that fail on that very build**, so the
+   line contradicted the case's own body) and **157 named `v3.5-be42149` as the build the branch "has since been
+   rebuilt to" — true when written, false within hours**. **HONEST PER-CASE SPLIT: only 8 were ever re-observed
+   on the newer build** (`Last checked against build v3.5-be42149 on 8/5/2026`); the other **157 carry
+   `v3.5-4873abe` / 8/4/2026** — and **only 3 of the 168 (the new cases) were observed on `v3.5-d122eef`**.
+   **RUN 357 UNION-SYNCED 165 → 168** — `include_all` is **false**, so adding cases had frozen the run out of
+   date; `update_run` HTTP 200 with the **FULL union of 168**, `case_id` sets **equal in both directions**, all
+   165 prior tests present **by id** (0 lost, 0 rebound), **all 429 prior result records present BY ID with 0
+   graded-field changes and 0 echo movement**, 0 new results, only `untested_count`/`updated_on` moved on the run
+   record. Executor `tools/run_sync_357_only.py` = the proven executor with `SCOPE` **cut to run 357 alone**, so
+   runs 359 and 352 (other workers live) could not be touched; the unsafe 2026-07-31 script was not used.
+   **THE GATE — RE-VERIFIED LIVE 2026-08-05 ~19:30Z: cases 168 − 3 waiting on the PO − 2 un-settable − 3 not
+   built = READY TO AUTOMATE 160, and the live markers are READY 137 + READY-EXPECT-FAIL 23 = 160, HOLD 8 =
+   3 PO + 2 un-settable + 3 not built. 168 markers on 168 cases, EXACTLY ONE EACH, 0 unmarked, 0 doubled.
+   THE GATE PASSES.** The figure moved **158 → 160**. **FOUR COUNTS: live 168 · local active 168 (195 bodies −
+   27 retired) · id-map 168 · import 168, set-equal in EVERY direction**; id-map **0 blanks, refs 168/168**;
+   **shredding guard PASSED (0 of 168)**; import header sha256 **`f2d76051d8a42e62`, identical to all five
+   peers**. **ENVIRONMENT, HONESTLY: nothing seeded, but ONE all-day event was reassigned by an imprecisely
+   targeted early drag and was restored through the interface and proven byte-identical** — 366 shifts / 33
+   events / 7 series, 0 added, 0 removed, 0 changed, id sets equal both ways (recorded in full in
+   `NEW-CASES.md` rather than glossed). No role changed. **0 Jira issues created.** **⚠️ THE BRANCH IS STILL
+   NOT DECLARED FINAL — every verdict remains PROVISIONAL, and 165 of the 168 have NOT been re-observed on the
+   build running now.**
+   **PRIOR STATUS 2026-08-05 ~14:15 UTC (FINAL VIU PASS: THE QA LEAD'S "EXPECTED BEHAVIOUR IS NOT THE
+   BUILD" CORRECTION AUDITED ACROSS ALL 165 AND REPAIRED — its figures below are AS AT 14:15 and describe the
+   165-case suite BEFORE the three coverage-gap cases above were authored; resume `build/schedule/expected-behaviour-audit-2026-08-05.md`
    → `build/schedule/final-viu-2026-08-05/FINDINGS.md` → `build/schedule/READINESS-2026-08-05.md` →
    `build/schedule/PROJECT-STATE.md` §0-FINAL-VIU-2026-08-05):** cookies arrived, the branch was reachable,
    build **`v3.5-be42149`** read at **13:24:01Z / 13:49:34Z / 14:11:22Z — `index.html` byte-identical all
@@ -1239,7 +1295,9 @@ deliver the 7-tab management report.
    and the 27 July-retired internal IDs are listed as **never-reuse** after another project lost a retired
    record to ID reuse today. **3 CANDIDATE COVERAGE GAPS deliberately NOT AUTHORED** (SV-8863 default view ·
    SV-8870 Month-view drag-create · SV-8867 reassigning a series member); IDs reserved `SCH-NAV-08`,
-   `SCH-DND-09`, `SCH-REAS-07`. **SPEC DEFECT REPORTED NOT FIXED: §7 says the cell menu opens on left-click
+   `SCH-DND-09`, `SCH-REAS-07`. **⚠️ NO LONGER TRUE — all three WERE authored later the same day as
+   C43554/C43555/C43556 (see the LATEST block above); this sentence is kept only as the record of where the
+   14:15 pass stopped.** **SPEC DEFECT REPORTED NOT FIXED: §7 says the cell menu opens on left-click
    while §14.1/§14.2 twice call it a right-click menu.** **PROOFS: run 357 untouched** — 165 tests, **429**
    results, all present BY ID, **0 new, 0 fields changed on any of the 429** (not even `case_title` — nothing
    was retitled); **no result logged anywhere**. **Nothing seeded, nothing to restore** — 34 shifts / 9 events
@@ -1269,7 +1327,7 @@ deliver the 7-tab management report.
    estate) **and 23 were NOT** (19 `READY - EXPECT FAIL (SV-88xx)` + 4 "not built"). **All ten defect
    tickets SV-8848…SV-8857 were read live and are STILL Open**, so the 19 probably still reproduce — but
    probably is not observed.
-   **STATUS 2026-08-05 (LATEST — THE RULE-49 RE-CHECK WAS ATTEMPTED AND COULD NOT RUN; resume
+   **STATUS 2026-08-05 ~12:10 UTC (SUPERSEDED — THE RULE-49 RE-CHECK WAS ATTEMPTED AND COULD NOT RUN; resume
    `build/schedule/PROJECT-STATE.md` §0-RECHECK-ATTEMPT-2026-08-05 then
    `build/schedule/recheck-2026-08-05/`):** the branch redeployed at **08:09 UTC** (`v3.5-4873abe` →
    **`v3.5-be42149`**, last-modified Wed 05 Aug 08:09:19 GMT, etag `70e496609e155994b93f515db32d0289`;
