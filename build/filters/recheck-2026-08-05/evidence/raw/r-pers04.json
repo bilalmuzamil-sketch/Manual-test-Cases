@@ -1,0 +1,62 @@
+{
+ "build": "v3.4.2-d00239b",
+ "when": "2026-08-05T04:23:06.059Z",
+ "probeEmpty": {
+  "status": 400,
+  "body": "{\"errors\":[{\"error\":\"Name is missing.\"}]}"
+ },
+ "create": {
+  "status": 201,
+  "body": "{\"data\":{\"company_id\":\"805c112d-cd94-4783-9507-c3cfab137a6e\"}}"
+ },
+ "zzVisibleInList": [
+  "ZZAUTOTEST Filters Recheck"
+ ],
+ "zzOptionTestId": "filter_option_company_id_805c112d-cd94-4783-9507-c3cfab137a6e",
+ "bothSelected": {
+  "chips": [
+   {
+    "t": "Customer: ZZAUTOTEST Filters Recheck, Last...",
+    "active": true
+   }
+  ],
+  "url": "https://sv8785.qa.shopview.com/workorders?company_id=805c112d-cd94-4783-9507-c3cfab137a6e&company_id=54d98c61-217d-44ad-89bb-79005c902fff&tab=all",
+  "rows": 30
+ },
+ "prefWithBoth": "{\"data\":{\"pageKey\":\"work-orders-list\",\"value\":{\"tab\":\"all\",\"sortBy\":\"vehicle\",\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":false,\"progress\":true,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"invoicedDate\":false,\"serviceAdvisor\":true,\"partRequestsCount\":false,\"clockedInTechnicians\":true,\"partReturnRequestsCount\":false,\"unreceivedPartRequestsCount\":false},\"filters\":{\"company_id\":[\"805c112d-cd94-4783-9507-c3cfab137a6e\",\"54d98c61-217d-44ad-89bb-79005c902fff\"]},\"collapsed\":false,\"descending\":false},\"updatedAt\":\"2026-08-05T04:24:06Z\"}}",
+ "delete": {
+  "status": 201,
+  "body": "{\"data\":{\"company_id\":\"805c112d-cd94-4783-9507-c3cfab137a6e\"}}"
+ },
+ "afterDelete": {
+  "url": "https://sv8785.qa.shopview.com/workorders?company_id=805c112d-cd94-4783-9507-c3cfab137a6e&company_id=54d98c61-217d-44ad-89bb-79005c902fff&tab=all",
+  "chips": [
+   {
+    "t": "Customer",
+    "active": true
+   }
+  ],
+  "rows": 30,
+  "bodyHasError": false,
+  "toast": []
+ },
+ "openCustomerAfter": {
+  "ok": true,
+  "attempt": 1
+ },
+ "panelAfterDelete": {
+  "tags": [
+   "Lastone Construction"
+  ],
+  "tickedLabels": [
+   "Lastone Construction"
+  ],
+  "listHasZZ": false
+ },
+ "listCallAfterDelete": [
+  {
+   "status": 200,
+   "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vehicle&pagination[descending]=false&filters[0][field]=company_id&filters[0][value]=805c112d-cd94-4783-9507-c3cfab137a6e&filters[1][field]=company_id&filters[1][value]=54d98c61-217d-44ad-89bb-79005c902fff&search=&showMyWorkOrders=0"
+  }
+ ]
+}

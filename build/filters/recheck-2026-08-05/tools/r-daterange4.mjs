@@ -1,0 +1,34 @@
+import * as H from './h.mjs';
+import {boot,APP} from './boot.mjs';
+import fs from 'fs';
+const R={build:'v3.4.2-d00239b',when:new Date().toISOString()};
+const S=n=>{fs.writeFileSync('/tmp/frc/obs/r-daterange-custom2.json',JSON.stringify(R,null,1));console.log('..'+n);};
+const {browser,page,netlog}=await boot();
+const chip=async()=>page.evaluate(()=>{const b=document.querySelector('[data-test-id="filter_chip_range"]');return b?b.innerText.trim().replace(/\n/g,'|'):null;});
+const rc=()=>netlog.filter(x=>x.phase==='res'&&/reporting/.test(x.url)).map(x=>x.url.replace(/^https:\/\/[^/]+/,'').slice(0,140));
+await page.goto(APP+'/reports/punch-clock-activities',{waitUntil:'domcontentloaded',timeout:90000});
+await page.waitForTimeout(13000);
+await page.locator('[data-test-id="filter_chip_range"]').first().click({timeout:20000});
+await page.waitForTimeout(2200);
+await page.locator('[data-test-id="filter_preset_range_custom"]').first().click({timeout:15000});
+await page.waitForTimeout(3000);
+R.inputsPresent=await page.evaluate(()=>[...document.querySelectorAll('[data-test-id^="date_input_range_"]')].map(i=>({id:i.getAttribute('data-test-id'),ph:i.placeholder,val:i.value,label:(i.closest('.q-field')||{}).innerText})));
+let n0=rc().length;
+await page.locator('[data-test-id="date_input_range_start"]').first().fill('2026-07-01');
+await page.keyboard.press('Enter'); await page.waitForTimeout(4500);
+R.afterStartOnly={chip:await chip(),url:page.url(),rows:(await H.rows(page)).n,newReportCalls:rc().slice(n0)};
+await H.shot(page,'dr-08-start-only'); S('start');
+let n1=rc().length;
+await page.locator('[data-test-id="date_input_range_end"]').first().fill('2026-07-31');
+await page.keyboard.press('Enter'); await page.waitForTimeout(5500);
+R.afterEnd={chip:await chip(),url:page.url(),rows:(await H.rows(page)).n,newReportCalls:rc().slice(n1),
+  panelOpen:await page.evaluate(()=>[...document.querySelectorAll('.q-menu')].some(e=>getComputedStyle(e).display!=='none'))};
+await H.shot(page,'dr-09-both-dates'); S('end');
+// restore
+await page.goto(APP+'/reports/punch-clock-activities',{waitUntil:'domcontentloaded',timeout:60000});
+await page.waitForTimeout(8000);
+await page.locator('[data-test-id="filter_chip_range"]').first().click({timeout:20000}); await page.waitForTimeout(2000);
+await page.locator('[data-test-id="filter_preset_range_this_month"]').first().click({timeout:12000}).catch(()=>{});
+await page.waitForTimeout(3500);
+R.restored={chip:await chip(),url:page.url()};
+S('restored'); await browser.close();

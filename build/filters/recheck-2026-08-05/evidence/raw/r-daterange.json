@@ -1,0 +1,96 @@
+{
+ "build": "v3.4.2-d00239b",
+ "when": "2026-08-05T04:25:56.545Z",
+ "onLoad": {
+  "url": "https://sv8785.qa.shopview.com/reports/punch-clock-activities",
+  "chips": [
+   {
+    "t": "Date Range: This month|keyboard_arrow_down",
+    "testid": "filter_chip_range",
+    "active": true
+   },
+   {
+    "t": "Filter by Staff|keyboard_arrow_down",
+    "testid": "filter_chip_staffId",
+    "active": false
+   }
+  ],
+  "rows": 0
+ },
+ "panel": {
+  "text": "Today\nYesterday\nThis week\nLast week\nThis month\ncheck\nLast month\nThis quarter\nLast quarter\nThis year\nLast year\nCustom\nClear Selection",
+  "cls": "q-menu q-position-engine scroll",
+  "testIds": [
+   "filter_preset_range_today",
+   "filter_preset_range_yesterday",
+   "filter_preset_range_this_week",
+   "filter_preset_range_last_week",
+   "filter_preset_range_this_month",
+   "filter_preset_range_last_month",
+   "filter_preset_range_this_quarter",
+   "filter_preset_range_last_quarter",
+   "filter_preset_range_this_year",
+   "filter_preset_range_last_year",
+   "filter_preset_range_custom",
+   "filter_clear_selection_range"
+  ],
+  "buttons": [
+   "Today",
+   "Yesterday",
+   "This week",
+   "Last week",
+   "This month\ncheck",
+   "Last month",
+   "This quarter",
+   "Last quarter",
+   "This year",
+   "Last year",
+   "Custom",
+   "Clear Selection"
+  ],
+  "inputs": [],
+  "hasCalendar": false
+ },
+ "presetsSeen": [
+  "Today",
+  "Yesterday",
+  "This week",
+  "Last week",
+  "This month\ncheck",
+  "Last month",
+  "This quarter",
+  "Last quarter",
+  "This year",
+  "Last year",
+  "Custom",
+  "Clear Selection"
+ ],
+ "presetPicked": "Today",
+ "afterPreset": {
+  "url": "https://sv8785.qa.shopview.com/reports/punch-clock-activities?range=today",
+  "chip": "Date Range: Today|keyboard_arrow_down",
+  "rows": 0,
+  "panelStillOpen": false,
+  "calls": [
+   {
+    "s": 200,
+    "u": "/api/reporting/punch-clock-activities/today?pagination%5Bpage%5D=1&pagination%5BrowsPerPage%5D=30&pagination%5BsortBy%5D=&pagination%5Bdescending%5D=f"
+   },
+   {
+    "s": 200,
+    "u": "/api/users/me/preferences/report-timesheet-activities"
+   }
+  ]
+ },
+ "customPanel": {
+  "text": null,
+  "hasCalendar": false,
+  "testIds": [],
+  "days": []
+ },
+ "dayButtons": 0,
+ "restored": {
+  "url": "https://sv8785.qa.shopview.com/reports/punch-clock-activities",
+  "chip": "Date Range: This month|keyboard_arrow_down"
+ }
+}

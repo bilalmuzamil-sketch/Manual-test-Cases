@@ -1,0 +1,46 @@
+{
+ "build": "v3.4.2-d00239b",
+ "when": "2026-08-05T04:27:42.339Z",
+ "beforeCustom": {
+  "url": "https://sv8785.qa.shopview.com/reports/punch-clock-activities",
+  "menus": [
+   {
+    "cls": "q-menu q-position-engine scroll",
+    "vis": false,
+    "txt": "Today\nYesterday\nThis week\nLast week\nThis month\ncheck\nLast month\nThis quarter\nLast quarter\nThis year\nLast year\nCustom\nCle"
+   }
+  ]
+ },
+ "afterCustomClick": {
+  "url": "https://sv8785.qa.shopview.com/reports/punch-clock-activities",
+  "chip": "Date Range: This month|keyboard_arrow_down",
+  "menus": [
+   {
+    "cls": "q-menu q-position-engine scroll",
+    "vis": false,
+    "txt": "Today\nYesterday\nThis week\nLast week\nThis month\nLast month\nThis quarter\nLast quarter\nThis year\nLast year\nCustom\ncheck\nevent\nFrom\nevent\nTo\nClear Selection"
+   }
+  ],
+  "allDatePickers": [],
+  "visibleTestIds": [
+   "filter_chip_range",
+   "filter_preset_range_today",
+   "filter_preset_range_yesterday",
+   "filter_preset_range_this_week",
+   "filter_preset_range_last_week",
+   "filter_preset_range_this_month",
+   "filter_preset_range_last_month",
+   "filter_preset_range_this_quarter",
+   "filter_preset_range_last_quarter",
+   "filter_preset_range_this_year",
+   "filter_preset_range_last_year",
+   "filter_preset_range_custom",
+   "date_icon_range_start",
+   "date_input_range_start",
+   "date_icon_range_end",
+   "date_input_range_end",
+   "filter_clear_selection_range"
+  ],
+  "rows": 0
+ }
+}
