@@ -1,3 +1,60 @@
+# PROJECT-STATE — Report Suite
+
+## §0-FULL-VIU-2026-08-05 (LATEST) — 32 of 476 driven live; the observation gap is NARROWED, not closed
+
+Resume: `build/report-suite/full-viu-2026-08-05/RESUME.md` -> `FINDINGS.md` -> `testrail-execution-log.md`
+-> `DELIBERATE-DECISIONS.md` -> `FILED.md` -> `API-ASK.md` -> `RECHECK-QUEUE.md`.
+
+**Build `v3.5-16cf83f`** (last-mod 05 Aug 06:40:32 GMT, etag `177c595…`), read 19:51:00Z and 19:56:39Z,
+byte-identical — no redeploy. **Specs SBC 15 · SBR 17 · PV 5 · TU 6 · WIP 9 · IV 4**, none moved.
+
+**THE HONEST NUMBER: 32 of 476 observed live, 444 not.** Every one of the 476 is listed with its tier in
+FINDINGS.md. The pass captured a broad live evidence base for all six reports (headers, column selectors,
+Location matrix, export matrix, presets, tooltips) but a captured artifact was NOT counted as an
+adjudicated case.
+
+**FIVE STALE HOLDS CORRECTED** — C30191 (server sort), C30592 (full-set export), C30506 + C38859
+(Column Selection), C30442 (TU Location filter) all said *"not built yet"* and all are BUILT. Markers
+HOLD -> READY. Census now **READY 424 · EXPECT-FAIL 27 · HOLD 25 = 476**.
+
+**FIVE DEFECT CLUSTERS RE-DRIVEN, ALL STILL REPRODUCE:** SV-8818 (PDF 500 above the cap on PV, IV, SBC
+while the same view's CSV succeeds — and the CSV path DOES refuse gracefully, so the cap exists on CSV
+and is missing on PDF) · **SV-8907 WORSE THAN RECORDED — replaying the product's own request gives HTTP
+500 for BOTH formats on ALL FOUR tabs, and unlike the other five reports WIP's CSV fails too** ·
+SV-8820 (As-of one day after the range end: range to 07-15 -> *"As of: 2026-07-16"*) · SV-8823 (IV money
+as `$`-text and CSV column order differs) · SV-8908 (shared unit **854** on **Euwood Paving** confirmed —
+two WOs, VINs `1HTKTSWK4RH442544` and `5SHFE4730MB001604`, the only such unit among 115 rows).
+
+**NEW UNTICKETED, USER-FACING:** the SBC and SBR CSVs emit `$1,979.40`, `100.0%`, `Jul 31 2026` where
+**SBC S14-R9/R10/R11 and SBR S14-R17 require plain numbers and mm-dd-yyyy**. SV-8823 names Inventory
+Value only. **Not filed — recommended for filing (FILED.md).**
+
+**THE LOCATION COLUMN IS IMPLEMENTED THREE WAYS OUT OF SIX.** With one location selected it is SHOWN on
+SBC/WIP/IV and HIDDEN on SBR/PV/TU; it is offered in the column selector on **IV only**. All six specs
+still state it both ways, so per **Rule 58** the 12 held cases STAY HELD and the question goes back to
+Chris Ward with these facts.
+
+**⚠️ `updated_on` IS NOT A RELIABLE PROOF OF "UNTOUCHED".** 14 cases we never wrote (C30341 C30392 C30451
+C30456 C30457 C30460 C30487 C30490 C30491 C30493 C30519 C30522 C30526 C30528) changed all three text
+fields from plain text to raw `<ol>`/`<li>` between the 19:53Z snapshot and the post-write read, **with
+`updated_on` and `updated_by` frozen at their earlier 17:40–18:14Z values**. This project renders markup
+literally to the tester. **Reported, not fixed** (42 field writes, needs a go-ahead), and it belongs in
+`APP-ACTIONS-PLAYBOOK.md` §J — not edited from this worker.
+
+**PROOFS:** 32 `update_case`, all HTTP 200, 30 fields each, 0 mismatches, 0 collateral beyond
+`custom_expected`; **all three text fields sent on every op**. **Run 359 untouched** — `include_all` false,
+476 tests, **535 results all present BY ID, 0 field changes, 0 echoes, 0 new**, counters 6 passed / 470
+untested. **Foreign C38919–C38923 byte-identical incl. `updated_on`/`updated_by`.** Four counts
+**476/476/476 set-equal both ways**, id-map 0 blanks + refs 476/476, import header sha256
+`a45eae40ec73b8ac` identical to all five peers, **shredding signature 0 rows**. Deliverables were
+**deliberately NOT regenerated** — the counts already reconcile and a rerun blanks the id-map C-ids and
+drops `refs`; the import is one column stale on 32 rows. **Nothing seeded, nothing to restore, app
+read-only. `quick-login` never called.**
+
+**OUTSTANDING:** Chris Ward's one sentence on the Location column (12 cases) · file the SBC/SBR export
+formatting defect · a go-ahead to repair the 14 markup cases · the QA lead's ruling on C30096/C30310/
+C30315/C43551 · the picker-reachability check behind API-ASK item 1 · **444 cases still to observe**.
+
 # Report Suite — PROJECT-STATE (canonical resume doc)
 
 ## §0-CHRIS-NEWREQS-2026-08-05 — the suite-wide link-permission rule now has cases, and two real defects came out of the pass
