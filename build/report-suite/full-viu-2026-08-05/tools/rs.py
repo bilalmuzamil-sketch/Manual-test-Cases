@@ -16,7 +16,7 @@ def cookie():
     return open(CK).read().strip()
 
 def _curl(args, out):
-    r = subprocess.run(['curl','-s','-o',out,'-w','%{http_code}|%{size_download}',
+    r = subprocess.run(['curl','-s','-g','-o',out,'-w','%{http_code}|%{size_download}',
                         '--max-time','120']+args, capture_output=True, text=True)
     code,size = (r.stdout.strip().split('|')+['0'])[:2]
     return int(code or 0), int(size or 0)
