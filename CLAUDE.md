@@ -3850,6 +3850,25 @@ regression / bug-fix re-testing.
   without the plain next-step. Bake this into every generator/workbook going forward.
   (User instruction 2026-07-24: "in such cases you always need to use simple words to
   tell me what needs to be done.") Ties to Standing Rules 7 and 8.
+- **JIRA QA-RESULT COMMENT FORMAT — every ticket we test, without exception (QA-lead ruling
+  2026-08-05):** the comment is written in exactly this order. **(1) THE VERY FIRST LINE IS THE
+  OVERALL QA STATUS** — `OVERALL QA STATUS: PASSED` or `... FAILED` — so a reader knows the verdict
+  before anything else; put it in a success/error panel and follow it with one sentence naming the
+  environment + build marker and the checks-passed count. **(2) THEN EVERYTHING THAT WAS TESTED**, as
+  a **table** (`#` · Test · Status) or bullets, **one row per required check with its own PASSED /
+  FAILED**, covering the whole of what completing that ticket requires — the dev's QA handoff /
+  Powertools test plan is the checklist to mirror when one exists, so ASK FOR IT before testing.
+  Add a final row for any known/out-of-scope issue reproduced, marked as such. **(3) INLINE IMAGES AS
+  EVIDENCE — MANDATORY**, captioned one per check, proving the test was really run on the build.
+  **(4) THEN A LINE BREAK (`rule` node) AND "Technical details for developers" LAST** — build marker,
+  raw API responses, endpoints exercised, object ids, quantified findings, test data, and any false
+  alarms of our own. **HOW TO GET IMAGES IN (proven 2026-08-05):** the Atlassian MCP has **no
+  attachment upload**, so commit the screenshots to this repo and embed them as **ADF external
+  media** — `contentFormat:"adf"` with
+  `{"type":"mediaSingle","attrs":{"layout":"full-width"},"content":[{"type":"media","attrs":{"type":"external","url":"https://raw.githubusercontent.com/<owner>/<repo>/<branch>/<path>.png"}}]}`.
+  **This repo is PUBLIC, so raw.githubusercontent.com returns 200** — verify with `curl` before
+  posting. Comments are updatable via `commentId`, so a wrong post is corrected in place rather than
+  duplicated. Canonical example: SV-8781 comment `74580`.
 - **Concise TestRail case TITLES (all projects):** TestRail case titles MUST be concise
   enough to display fully on the TestRail case page (no truncation) — keep to ≤ ~80
   characters; put the full detail in Steps/Expected/Preconditions, never rely on a long
