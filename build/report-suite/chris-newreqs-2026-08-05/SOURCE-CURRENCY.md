@@ -10,7 +10,7 @@ Read live from Confluence with `GET /wiki/api/v2/pages/{id}?body-format=storage`
 number recorded is the CONFLUENCE version, never the in-body "Version" field** — the in-body field is
 the Rule-31(a) trap.
 
-| Report | Page id | Version at **18:34:08Z** (pass start) | Version at **20:0x Z** (immediately before writing) | Saved at | Change-log message | Verdict |
+| Report | Page id | Version at **18:34:08Z** (pass start) | Version at **19:06:53Z** (immediately before writing) | Saved at | Change-log message | Verdict |
 |---|---|---|---|---|---|---|
 | Sales By Customer | 577634305 | **15** | **15** | 2026-08-05T17:53:06Z | "Parth WIP review + suite-wide link-permission rule (2026-08-05)" | **CURRENT** |
 | Sales By Representative | 585629698 | **17** | **17** | 2026-08-05T17:53:08Z | same | **CURRENT** |
@@ -20,7 +20,7 @@ the Rule-31(a) trap.
 | Inventory Value | 720142338 | **4** | **4** | 2026-08-05T13:33:13Z | same | **CURRENT** |
 
 **Nothing moved during this pass.** All six versions equal the last known reads of 17:54Z, and the
-second read (recorded in `specs-prewrite/_summary.json`) is byte-identical to the first by
+second read (recorded in `specs-prewrite/_summary.json`, taken at **19:06:53Z**) is byte-identical to the first by
 `body_sha256` on all six pages.
 
 ## The build
