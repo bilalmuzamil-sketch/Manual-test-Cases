@@ -1,0 +1,157 @@
+# The location chooser is shown to people who can only see one location, on all six reports
+
+**Summary line for Jira:** `Location chooser is shown to a user who has access to only one location, on all six new reports`
+
+| Field | Value |
+|---|---|
+| Type | Bug |
+| Priority | **Low** |
+| Severity | Low |
+| Product Area | Reports & Dashboards |
+| Parent | **SV-8582** (the epic) |
+| Links | **Relates** → SV-8603 (Sales By Customer, the location filter story) |
+| Labels | `reports-suite`, `qa-found` |
+
+---
+
+## 1 · Description
+
+Each of the six new reports has a **Location** chooser in its toolbar, so a person can pick which
+branch or branches the report covers.
+
+If somebody only has access to **one** branch, that chooser has nothing to choose. There is only ever
+one answer. The product owner has decided the chooser should simply not be shown to that person.
+
+Right now it **is** shown — on **all six** reports. The person sees a control reading
+*"Location — All locations"*, with a clear button and a dropdown arrow, that cannot change anything
+about what they see.
+
+**Why it matters:** it is a control that does nothing, offered to the people least able to make sense
+of it. It reads as though there is more data available somewhere and they have filtered it out, which
+prompts support questions. It is also the one place in the six reports where the product disagrees
+with the product owner's decision about who sees the location controls at all.
+
+---
+
+## 2 · Branch / Environment
+
+| | |
+|---|---|
+| Application | `https://sv8582.qa.shopview.com` |
+| API host | `https://sv8582api.qa.shopview.com` |
+| Build marker (`<meta name="app-version">`) | **`v3.4.1-0ed4433`** |
+| Observed at | **2026-08-03, 18:59:19 UTC** |
+| Organisation | Staging Foothills Group Inc |
+| Location used | **Staging Lethbridge - 4310** (workplace id `f8a8b802-7780-4b16-bf10-343caeb616b2`) |
+| Signed in as | `wesley.mcclure@staging.shopview.local` (staff id `33c930dd-7a9c-462c-9400-d5e30fbfe0f3`) |
+| Role during the test | **Sales Representative** (8 permissions) |
+| Role restored afterwards | **Technician** — restored and confirmed back to the original |
+
+---
+
+## 3 · Steps to reproduce
+
+1. Sign in as an administrator at `https://sv8582.qa.shopview.com`.
+2. Go to **Administration → Staff** and open **Wesley McClure**
+   (`wesley.mcclure@staging.shopview.local`).
+3. Set that person's role to **Sales Representative** and give them access to exactly **one**
+   location — **Staging Lethbridge - 4310**. Save. *(Write down what their role and location were
+   first, so you can put them back at the end — they were **Technician** at **Staging Lethbridge -
+   4310**.)*
+4. Sign out, and sign in as **Wesley McClure**.
+5. Open **Reports** from the top navigation.
+6. Open **Sales By Customer** and look along the toolbar at the top right of the report, past the
+   date range, **Product Type** and **Customer** controls.
+7. Do the same on **Sales By Representative**, **Parts Velocity**, **Technician Utilization**,
+   **Work In Progress** and **Inventory Value**.
+8. Put Wesley McClure's role and location access back to **Technician** at **Staging Lethbridge -
+   4310**.
+
+**Date range used:** each report's own default — **This Month** on Sales By Customer, Sales By
+Representative, Work In Progress and Inventory Value; **This Year** on Parts Velocity. The chooser is
+present on every one of them regardless, so the date range is not a factor.
+
+**What was tried and ruled out:**
+
+| Tried | Result |
+|---|---|
+| An administrator with access to **several** locations | Chooser shown — **correct**, this is the normal case |
+| Wesley McClure with access to **one** location | Chooser **still shown** on all six — the defect |
+| Narrowing the selection to one location while still *having* access to several | Chooser shown — also correct; this is a **different** situation and is not what this ticket is about |
+| All six reports | Same result on all six, so it is not one report's toolbar |
+
+---
+
+## 4 · Expected behaviour
+
+For a person who has access to only one location, the **Location** chooser is **not shown at all** on
+any of the six reports. The report simply shows that one location's data.
+
+This is the product owner's decision, given on **2026-08-05**. He was shown what the product does
+today and asked which he wanted, and he chose:
+
+> "Change the product to match your ruling - hide it."
+
+---
+
+## 5 · Current behaviour
+
+The **Location** chooser is present on **all six** reports for that person. It reads
+**"Location — All locations"** and carries a clear (×) button and a dropdown arrow. Opening it offers
+the single location they can reach.
+
+The per-row **Location column** behaves correctly for the same person on five of the six reports — it
+is properly absent, because only one location is in view. So this is specifically about the
+**chooser**, not the column.
+
+---
+
+## 6 · Images
+
+`sales-by-customer-single-location-chooser.png` — Sales By Customer, signed in as Wesley McClure at
+**Staging Lethbridge - 4310** (see the account button at the top right). The **Location** control
+reading **"All locations"** is on screen at the far right of the toolbar. The table headers correctly
+carry **no** Location column.
+
+---
+
+## 7 · Technical details for developers
+
+**Evidence file:** `build/report-suite/viu-2026-08-03/evidence/singleloc-matrix.json` —
+`buildMarker: "v3.4.1-0ed4433"`, `capturedAt: "2026-08-03T18:59:19.110Z"`.
+
+**Subject, as recorded in that file:**
+
+```
+subject:      { email: "wesley.mcclure@staging.shopview.local",
+                staff_id: "33c930dd-7a9c-462c-9400-d5e30fbfe0f3",
+                origRoleId: "475d69b3-3596-4dc0-8fa2-ae7890f6f697",
+                origWorkplace: "f8a8b802-7780-4b16-bf10-343caeb616b2" }
+impersonated: { slug: "sales_representative", atomCount: 8,
+                accessibleWorkplaces: ["Staging Lethbridge - 4310"], accessibleCount: 1 }
+restoreVerify:{ role_label: "Technician",
+                workplace_id: "f8a8b802-7780-4b16-bf10-343caeb616b2", matchesOriginal: true }
+```
+
+**Per-report result, single-location subject (`singleLoc` block of that file):**
+
+| Report | `hasLocationControl` | Location column in headers |
+|---|---|---|
+| sales-by-customer | **true** | false |
+| sales-by-representative | **true** | false |
+| parts-velocity | **true** | false |
+| technician-utilization | **true** | false |
+| work-in-progress | **true** | false |
+| inventory-value | **true** | **true** |
+
+The control's captured text on each report is `Location|All locations|close|arrow_drop_down`.
+
+**A separate matter, noted here only so it is not lost:** Inventory Value keeps the Location
+**column** at single-location scope where the other five drop it. That is a different defect about the
+column rather than the chooser, and it is being held until a related product question is answered.
+
+**Specification position.** The six descriptions currently say the opposite of the decision above —
+for example the Sales By Representative text reads *"A single-location user still sees the filter with
+one selectable location; behavior is unchanged from single-location use."* The product owner has said
+the descriptions will be corrected and that his decision is the one to build to. So the product
+change is the one to make; the documents are his to update.
