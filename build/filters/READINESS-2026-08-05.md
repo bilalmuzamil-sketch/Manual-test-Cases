@@ -1,5 +1,35 @@
 # Filters — is it ready for automation? (5 August 2026)
 
+> ## ➕ ADDENDUM — 5 August, 17:22 UTC: all 110 provenance lines re-stamped. FIGURES UNCHANGED.
+>
+> **The ready-to-automate figure is still 100 of 110 and no verdict or marker moved.** The QA lead
+> ruled that a provenance line may never present an expectation as *"as per the build tested on
+> <date>"* — the build can be wrong, so crediting it confuses the tester and invites leadership to
+> conclude our expectations are reverse-engineered from whatever shipped.
+>
+> **86 of the 110 lines carried that barred phrasing** (and 4 more named the build as corroboration
+> inside their trailing note). All 110 now carry the Rule-54 two-sentence form: **sentence 1 names
+> only documents** — epic SV-8785 and the Filters specification at Confluence version 18 with the
+> requirement anchor — and **sentence 2 names the build only as what the case was last checked
+> against**: *"Last checked on 8/5/2026 against build ShopView v3.4.2-d00239b on the Filters QA
+> branch."*
+>
+> **The word "passed" was deliberately not written.** He permits it, but only **29 of the 110** were
+> driven live today (the other 81 carry forward from the 04:20–04:53Z re-check on the **same build
+> marker**), and the branch is not declared final — so *"last checked against"* is the most this
+> pass can stand behind.
+>
+> **110 × `update_case`, every one HTTP 200 + byte-verified, 28 fields each, 0 mismatches.** Markers
+> read back live: **READY 82 + EXPECT FAIL 18 + HOLD 10 = 110, gate 82+18 = 100** ✓. Run 352 proven
+> undamaged — all **443** prior results present by ID with **0** field changes; the **1** new record
+> is Ahtasham's own (user 7, 17:21:04Z, Passed).
+>
+> **⚠️ STILL WRONG AND NOT FIXED: all 110 `refs` values still pin `[spec v1.6 2026-07-28]`** — the
+> in-body trap number, eight Confluence versions stale. The tester-facing line now says version 18
+> while the metadata still says 1.6, so the two halves of each case disagree about which
+> specification it was written against, and Rule 42's version-pin mechanism cannot fire. **Needs one
+> authorised pass over the `refs` field.** Detail: `provenance-restamp-2026-08-05/FINDINGS.md`.
+>
 > ## ⚠️ SUPERSEDED LATER THE SAME DAY — 5 August, 14:25 UTC. READ THIS BANNER FIRST.
 >
 > **A fresh QA sign-in arrived, the eight phone cases were finally observed on the running app, and the

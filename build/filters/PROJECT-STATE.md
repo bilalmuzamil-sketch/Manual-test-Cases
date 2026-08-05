@@ -4,6 +4,104 @@
 ---
 
 
+## §0-PROVENANCE-RESTAMP-2026-08-05 — all 110 provenance lines re-stamped; the build is no longer named as a source
+
+**Paper: `build/filters/provenance-restamp-2026-08-05/` — read `FINDINGS.md`, then
+`testrail-execution-log.md`.** Pre-write snapshot committed in **55ba6f6** before the first write;
+execution in **3e34d4e**.
+
+**THE RULING.** The QA lead barred the old template: a provenance line may never say an expectation
+is *"as per the build tested on <date>"*, because *"the build can be wrong too"* and the phrasing
+*"can raise a serious concern of the higher ups that how can something be considered as the expected
+behavior if it is happening on the build."* He permits the build's name for recording that a test
+passed on a date. Rule 54 was amended to the **two-sentence form**.
+
+**WHAT WAS WRONG, MEASURED: 86 of 110** lines opened *"as per the build tested on 8/5/2026 (...),
+epic SV-8785 and the Filters specification ..."* — **the build named first, as the source**. **Four
+more named the build as corroboration inside their trailing note** (C29558, C29559, C29609, C29610 —
+*"the build matches the specification, so this test follows the specification **and the build**"*),
+which a keyword sweep for *"as per the build"* would have missed. **0 cases carried a second
+provenance line**, so C29613's earlier double line has not recurred.
+
+**THE FORM NOW ON ALL 110** — two sentences that never merge:
+
+1. *"This is the expected behaviour as per epic SV-8785 and the Filters specification at Confluence
+   version 18 (published 4 August 2026) (S1-R1)."* — **documents only**.
+2. *"Last checked on 8/5/2026 against build ShopView v3.4.2-d00239b on the Filters QA branch."* —
+   **the build only as what it was checked against**.
+
+**"PASSED" WAS DELIBERATELY NOT WRITTEN.** Only **29 of the 110** were driven live today; the other
+**81** carry forward from the 04:20–04:53Z re-check **on the same build marker**, so the date and
+marker are accurate for all 110 but a verdict claim is not something this pass observed (Rule 12),
+and the branch is not final so all verdicts are PROVISIONAL. **Where dropping a clause would have
+lost information it was kept:** the **16** deviation cases keep *"; the build does not behave this
+way yet"* — **5 of them (C38879, C38896, C38883, C38884, C38898) have no body deviation note at
+all**, so that clause was their only record of the failure — and the **8** not-built cases keep
+*"the controls this test needs were looked for and were not found"*, moved out of sentence 1.
+
+**WRITES: 110 × `update_case`, every one HTTP 200 + byte-verified MATCH, 28 fields compared each, 0
+mismatches, one write per case. 0 add / 0 delete / 0 section / 0 run writes; no result logged
+anywhere.** `refs` **not sent on any operation** and proven byte-identical on all 110. **All three
+text fields sent on every payload** per playbook §J normalisation #3 — **the omit-field re-render did
+NOT fire (0 of 110)**, which is the expected result of sending them and is *not* evidence the
+normalisation has gone away.
+
+**PROVEN AFTER:** exactly **one** provenance line per case (110/110) · **0** barred phrasings
+anywhere in the 110 provenance paragraphs · every case **body byte-identical** · **markers
+untouched — READY 82 + EXPECT FAIL 18 + HOLD 10 = 110, ARITHMETIC GATE 82+18 = 100** ✓ · marker
+still the last line with a blank line before it on 110/110 · **C29624's Rule-56 divergence paragraph
+intact and still the only one** — none invented · **0** other fields moved.
+
+**RUN 352 PROVEN UNDAMAGED WHILE AHTASHAM WAS GRADING.** `include_all` still false, 110 tests,
+test-id **and** case_id sets equal **both directions**, run case_ids **== our 110 live cases both
+directions** (no sync needed). **443 result records before, 444 after — all 443 prior present BY ID,
+and 0 of them had ANY field change, not even the declared `case_title`/`case_refs` echoes** (nothing
+to echo: no title or refs was written). **The 1 new record is his** — result **397789**, user **7**,
+**2026-08-05T17:21:04 UTC**, **Passed**, test 1762333, logged after our write phase closed at
+17:20:21Z; his Passed count **41 → 42**.
+
+**SOURCES.** Build **`v3.4.2-d00239b`** read at **17:11:10Z, 17:17:26Z and 17:22:06Z** —
+`index.html` **byte-identical all three** (sha256 `d4845701337c6836…`), etag `b9ab1d41…`, so nothing
+redeployed under this pass. Spec re-fetched live **at pass start AND again at write start (Rule 59):
+Confluence version 18 both times**, live body **byte-identical** to our mirror (56983 bytes, md5
+`a8d6dda9cc8a7afa6c3c08cfa51c45dc`). **Rule-59 second-read verdict: UNCHANGED.** **The Rule-31(a)
+trap confirmed a third time — the page body still reads "Version: 1.6" while the Confluence version
+is 18**, which is exactly why the lines name the Confluence number.
+
+**⚠️ FOUND AND NOT FIXED — THE `refs` FIELD ON ALL 110 STILL PINS `[spec v1.6 2026-07-28]`.** That is
+the **trap number**, eight Confluence versions stale. So each case's **tester-facing line now says
+version 18 while its metadata still says 1.6** — the two halves disagree about which specification
+the case was written against — and **Rule 42's version-pin mechanism cannot fire when it is pinned to
+a number that never advances**. Out of scope here (a separate 110-write pass on a different field,
+and `refs` was left unsent precisely so it could be proven untouched). **Needs one authorised pass.**
+The id-map's `refs` column reads 1.6 for the same reason: it was re-merged **from live**, so it
+mirrors the stale value faithfully rather than inventing a fresh one.
+
+**Whole-case sweep, otherwise clean:** **0** raw-markup cases, **0** titles over 80 chars (longest
+exactly 80), **0** dead `blob/main` links (10 correct `blob/HEAD`), **0** wrong-owner
+`bmuzamil-shopview` links, **0** cases claiming a fault has no ticket, **0** empty `refs`, longest
+`refs` **241** chars (inside the 248 limit). **C29618 describes SV-8845 correctly** as *"reported,
+and closed without a fix"*, so the older note that two cases still call it open no longer applies.
+
+**DELIVERABLES.** Local source re-synced **FROM LIVE first** — exactly **110 `expected` fields moved,
+0 steps, 0 preconditions**, corroborating that the writes touched only `expected`. **Shredding guard
+RAN and PASSED (0 shredded)** and independently re-checked: **0** import rows carry the signature.
+**`gen_import.py` blanked all 110 id-map C-ids and DROPPED the `refs` column again** — both re-merged
+from live: **110 rows, 0 blanks, refs 110/110, header byte-identical to the committed predecessor,
+refs and titles byte-equal to live 110/110**. **Four counts reconcile 110/110/110/110, set-equal BOTH
+directions.** Import header **sha256 identical to all five peers**. **0 deletions**; the 27 retired
+and 9 Global-Search-owned palette bodies were **not resurrected** (146 local bodies − 36 retired =
+110 active).
+
+**LAYER STATEMENT (Rule 60(a)):** this pass changed only the **build-independent** layer — the
+Rule-54 source sentence. **Layers 1–3 (labels, verdicts, build-fact markers) were not re-derived**
+and carry their last recorded check. **All 110 verdicts remain PROVISIONAL and the Rule-49 queue
+`final-viu-2026-08-05/RECHECK-QUEUE.md` stays OPEN** — under Rule 60 that is the normal steady state,
+not a shortfall.
+
+---
+
+
 ## §0-RUN-SYNC-2026-08-05 — run 352 checked and ALREADY COMPLETE; nothing was written
 
 **Paper: `build/testrail-run-sync-2026-08-05/`.**
