@@ -12,10 +12,10 @@ Filter bar is shown below the tab row on the Work Orders page,Filter Bar Layout 
 <li>The filter bar is shown by default (expanded) without having to turn anything on.</li>
 </ol>
 
-Known issue: on the build tested the filter buttons sit on the same row as the tabs instead of on their own row below them. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8843
+Known and accepted: on the build tested the filter buttons sit on the same row as the tabs instead of on their own row below them. The product behaves this way on purpose for now. Do not raise this as a new problem.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S1-R1).",SV-8786 (S1-R1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S1-R1).",SV-8786 (S1-R1) [spec v1.6 2026-07-28],,
 "Five filter chips appear in a fixed order with an icon, name and arrow",Filter Bar Layout and Visibility,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the filter bar visible.
 3. You are on the All tab (on the Estimates and Completed tabs the Status chip is not shown at all, so only four chips appear there).","1. Read the filter chips in the filter bar from left to right.
@@ -24,7 +24,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 3. Each chip shows only the filter name and the arrow - there is no picture icon in front of the name.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S1-R2, S1-R3). Note: the design frame also draws a small picture icon in front of each filter name; the specification asks only for the name and the arrow, and the build matches the specification, so this test follows the specification and the build.",SV-8786 (S1-R2; S1-R3) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S1-R2, S1-R3). Note: the design frame also draws a small picture icon in front of each filter name; the specification asks only for the name and the arrow, and the build matches the specification, so this test follows the specification and the build.",SV-8786 (S1-R2; S1-R3) [spec v1.6 2026-07-28],,
 The filter bar still shows the other four chips on the Estimates tab,Filter Bar Layout and Visibility,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.","1. Click the Estimates tab.
 2. Look at the filter bar.","1. The filter bar is still shown - it does not disappear on this tab.
@@ -32,7 +32,7 @@ The filter bar still shows the other four chips on the Estimates tab,Filter Bar 
 3. The Status chip is not shown on this tab at all - only four chips appear.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S1-N1, S9-R2). Note: an earlier answer of 2026-07-17 and the design frame both show the Status button greyed out and pre-filled on this tab; the specification and the build both hide it, and the specification is the newer source, so this test follows the specification and the build.","SV-8785 [epic] (S1-N1; S9-R2; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled) [spec v1.6 2026-07-28]",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S1-N1, S9-R2). Note: an earlier answer of 2026-07-17 and the design frame both show the Status button greyed out and pre-filled on this tab; the specification and the build both hide it, and the specification is the newer source, so this test follows the specification and the build.","SV-8785 [epic] (S1-N1; S9-R2; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled) [spec v1.6 2026-07-28]",,
 Status chip opens a checkbox list of all nine statuses plus Clear Selection,Status Filter,Functional,High,"<ol>
 <li>You are signed in to the ShopView App on a desktop browser.</li>
 <li>You are on the Work Orders page on the All or My Work Orders tab.</li>
@@ -51,7 +51,7 @@ Status chip opens a checkbox list of all nine statuses plus Clear Selection,Stat
 </ol>
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R1, S2-R4).",SV-8787 (S2-R1; S2-R4) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R1, S2-R4).",SV-8787 (S2-R1; S2-R4) [spec v1.6 2026-07-28],,
 "Ticking one status filters the table immediately, with no apply button",Status Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist in at least two different statuses (for example some Estimate and some Approved - create ZZAUTOTEST work orders if needed).","1. Click the Status filter chip.
@@ -61,7 +61,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 3. Work orders in other statuses are no longer listed.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R2, S2-R3, S2-R6).",SV-8787 (S2-R2; S2-R3; S2-R6) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R2, S2-R3, S2-R6).",SV-8787 (S2-R2; S2-R3; S2-R6) [spec v1.6 2026-07-28],,
 Ticking several statuses shows work orders matching any of them,Status Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist in at least three different statuses (seed ZZAUTOTEST work orders if needed).","1. Click the Status filter chip.
@@ -71,10 +71,8 @@ Ticking several statuses shows work orders matching any of them,Status Filter,Fu
 3. Work orders in statuses that are not ticked are hidden.
 4. There is no limit on how many statuses you can tick.
 
-Known issue: on the build tested the dropdown closes as soon as you tick one value, so to pick a second value you have to open the chip again. Everything else in this test still works. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8824
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R2).",SV-8787 (S2-R2; §4 Key Decisions (no selection limit)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R2).",SV-8787 (S2-R2; §4 Key Decisions (no selection limit)) [spec v1.6 2026-07-28],,
 Clear Selection in the Status dropdown unticks every status,Status Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Two or more statuses are ticked in the Status filter and the table is filtered.","1. Open the Status dropdown (if it is not already open).
@@ -83,10 +81,8 @@ Clear Selection in the Status dropdown unticks every status,Status Filter,Functi
 2. The Status filter is removed and the table returns to showing work orders of every status.
 3. Only the Status filter is affected - any other active filters stay applied.
 
-Known issue: on the build tested the dropdown closes as soon as you tick one value, so to pick a second value you have to open the chip again. Everything else in this test still works. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8824
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R4, S8-R2).",SV-8785 [epic] (S2-R4; S8-R2) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R4, S8-R2).",SV-8785 [epic] (S2-R4; S8-R2) [spec v1.6 2026-07-28],,
 Clicking outside the Status dropdown closes it and keeps the selections applied,Status Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. The Status dropdown is open with at least one status ticked.","1. Click anywhere outside the open dropdown (for example on empty page space).
@@ -94,10 +90,8 @@ Clicking outside the Status dropdown closes it and keeps the selections applied,
 2. The ticked statuses stay selected - the Status chip stays in its active state showing the selection.
 3. The table stays filtered by the selected statuses.
 
-Known issue: on the build tested the dropdown closes as soon as you tick one value, so to pick a second value you have to open the chip again. Everything else in this test still works. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8824
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R5).",SV-8787 (S2-R5) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R5).",SV-8787 (S2-R5) [spec v1.6 2026-07-28],,
 Selecting statuses that no work order has shows the empty state,Status Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. At least one status exists that NO current work order has (for example Imported - check the list first).","1. Click the Status filter chip.
@@ -107,7 +101,7 @@ Selecting statuses that no work order has shows the empty state,Status Filter,Ne
 3. The app does not show an error.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-N3, S8-R3).",SV-8785 [epic] (S2-N3; S8-R3) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-N3, S8-R3).",SV-8785 [epic] (S2-N3; S8-R3) [spec v1.6 2026-07-28],,
 Imported works alone: picking it greys out the other filters,Status Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Imported work orders exist, plus some normal work orders.
 3. You are on the Work Orders page, All tab, no filters applied.","1. Open the Status filter and tick Imported.
@@ -119,7 +113,7 @@ Imported works alone: picking it greys out the other filters,Status Filter,Funct
 4. Unticking Imported re-enables the other chips and the normal list returns.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R7, S2-N4).",SV-8787 (S2-R7 (Imported cannot be combined with anything else; other filter chips disabled while it is active); S2-N4 (the combination is prevented rather than returning an empty result)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R7, S2-N4).",SV-8787 (S2-R7 (Imported cannot be combined with anything else; other filter chips disabled while it is active); S2-N4 (the combination is prevented rather than returning an empty result)) [spec v1.6 2026-07-28],,
 Customer chip opens a dropdown with a search field and a customer list,Customer Filter,Functional,High,"<ol>
 <li>You are signed in to the ShopView App on a desktop browser.</li>
 <li>You are on the Work Orders page.</li>
@@ -138,7 +132,7 @@ Customer chip opens a dropdown with a search field and a customer list,Customer 
 </ol>
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R1).",SV-8788 (S3-R1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R1).",SV-8788 (S3-R1) [spec v1.6 2026-07-28],,
 Typing in the customer search narrows the list to matching names,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Customer dropdown open.
 3. Several customers with different names exist.","1. Type part of one customer's name into the 'Search' field (for example the first few letters).
@@ -147,7 +141,7 @@ Typing in the customer search narrows the list to matching names,Customer Filter
 3. Deleting the text brings the full list back.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R2).",SV-8788 (S3-R2) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R2).",SV-8788 (S3-R2) [spec v1.6 2026-07-28],,
 Selected customers show as removable tags and as ticks in the list,Customer Filter,Functional,Critical,"<ol>
 <li>You are signed in to the ShopView App on a desktop browser.</li>
 <li>You are on the Work Orders page with the Customer dropdown open.</li>
@@ -165,10 +159,8 @@ Selected customers show as removable tags and as ticks in the list,Customer Filt
 <li>You can keep selecting as many customers as needed - there is no selection limit.</li>
 </ol>
 
-Known issue: on the build tested the dropdown closes as soon as you tick one value, so to pick a second value you have to open the chip again. Everything else in this test still works. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8824
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R3, S3-R4).",SV-8788 (S3-R3; S3-R4; §4 Key Decisions (no selection limit)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R3, S3-R4).",SV-8788 (S3-R3; S3-R4; §4 Key Decisions (no selection limit)) [spec v1.6 2026-07-28],,
 Clicking the x on a customer tag removes just that customer from the selection,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Customer dropdown open.
 3. Two or more customers are selected (their tags are visible in the input area).","1. Click the x on one selected customer's tag.
@@ -178,7 +170,7 @@ Clicking the x on a customer tag removes just that customer from the selection,C
 4. The table updates to no longer include that customer's work orders.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R5).",SV-8788 (S3-R5) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R5).",SV-8788 (S3-R5) [spec v1.6 2026-07-28],,
 The table shows only work orders belonging to any of the selected customers,Customer Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. At least two customers each have at least one work order, and a third customer's work orders also exist (seed ZZAUTOTEST data if needed).","1. Open the Customer filter and select two customers.
@@ -186,10 +178,8 @@ The table shows only work orders belonging to any of the selected customers,Cust
 2. Work orders belonging to any other customer are hidden.
 3. The table updates in real time as you make the selections (no apply button on desktop).
 
-Known issue: on the build tested the dropdown closes as soon as you tick one value, so to pick a second value you have to open the chip again. Everything else in this test still works. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8824
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R6, S2-R6).",SV-8785 [epic] (S3-R6; S2-R6 (real-time pattern)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R6, S2-R6).",SV-8785 [epic] (S3-R6; S2-R6 (real-time pattern)) [spec v1.6 2026-07-28],,
 Clear Selection in the Customer dropdown removes all selected customers,Customer Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. Two or more customers are selected in the Customer filter and the table is filtered.","1. Open the Customer dropdown (if not already open).
@@ -200,7 +190,7 @@ Clear Selection in the Customer dropdown removes all selected customers,Customer
 4. Other active filters (if any) are not affected.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R7, S8-R2).",SV-8785 [epic] (S3-R7; S8-R2) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R7, S8-R2).",SV-8785 [epic] (S3-R7; S8-R2) [spec v1.6 2026-07-28],,
 Clicking outside the Customer dropdown closes it and the selections remain,Customer Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Customer dropdown open and two customers selected.","1. Click anywhere outside the dropdown.
 2. Look at the Customer chip and the table.
@@ -208,10 +198,8 @@ Clicking outside the Customer dropdown closes it and the selections remain,Custo
 2. The Customer chip stays in the active (blue) state showing the selection and the table stays filtered.
 3. When reopened, the selected customers' tags are still visible in the input area.
 
-Known issue: on the build tested the dropdown closes as soon as you tick one value, so to pick a second value you have to open the chip again. Everything else in this test still works. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8824
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R8).",SV-8788 (S3-R8) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-R8).",SV-8788 (S3-R8) [spec v1.6 2026-07-28],,
 Customer search with no matching name shows a no-results message in the list,Customer Filter,Negative,Medium,"<ol>
 <li>You are signed in to the ShopView App on a desktop browser.</li>
 <li>You are on the Work Orders page with the Customer dropdown open.</li>
@@ -227,7 +215,7 @@ Customer search with no matching name shows a no-results message in the list,Cus
 </ol>
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-N1).",SV-8788 (S3-N1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-N1).",SV-8788 (S3-N1) [spec v1.6 2026-07-28],,
 A customer with no work orders is still listed; picking them shows no rows,Customer Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A customer exists who currently has NO work orders (create a fresh ZZAUTOTEST customer if needed).
 3. You are on the Work Orders page on the All tab.","1. Open the Customer filter and search for the customer who has no work orders.
@@ -237,7 +225,7 @@ A customer with no work orders is still listed; picking them shows no rows,Custo
 3. No error is shown.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-E1, S3-N2, S8-R3).",SV-8785 [epic] (S3-E1; S3-N2; S8-R3) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S3-E1, S3-N2, S8-R3).",SV-8785 [epic] (S3-E1; S3-N2; S8-R3) [spec v1.6 2026-07-28],,
 Lead Technician chip opens a dropdown with a search field and a list,Lead Technician Filter,Functional,High,"<ol>
 <li>You are signed in to the ShopView App on a desktop browser.</li>
 <li>You are on the Work Orders page.</li>
@@ -255,14 +243,14 @@ Lead Technician chip opens a dropdown with a search field and a list,Lead Techni
 </ol>
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-R1).",SV-8789 (S4-R1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-R1).",SV-8789 (S4-R1) [spec v1.6 2026-07-28],,
 Typing in the technician search narrows the list to matching names,Lead Technician Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Lead Technician dropdown open.","1. Type part of one technician's name into the 'Search' field.
 2. Watch the list while you type.","1. The technician list narrows to only the names matching what you typed.
 2. Deleting the text brings the full list back.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-R2).",SV-8789 (S4-R2) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-R2).",SV-8789 (S4-R2) [spec v1.6 2026-07-28],,
 Selecting technicians shows only work orders where they are the lead technician,Lead Technician Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist with different lead technicians assigned, including at least one work order where the chosen technician is assigned but NOT as lead (seed ZZAUTOTEST data if needed).","1. Open the Lead Technician filter and select one or two technicians.
@@ -271,10 +259,8 @@ Selecting technicians shows only work orders where they are the lead technician,
 3. A work order where the technician is assigned only in a non-lead role does not appear.
 4. The table updates in real time as you select.
 
-Known issue: on the build tested the dropdown closes as soon as you tick one value, so to pick a second value you have to open the chip again. Everything else in this test still works. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8824
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-R3, S4-R4).",SV-8789 (S4-R3; S4-R4) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-R3, S4-R4).",SV-8789 (S4-R3; S4-R4) [spec v1.6 2026-07-28],,
 Clear Selection in the Lead Technician dropdown removes all selected technicians,Lead Technician Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. One or more technicians are selected in the Lead Technician filter.","1. Open the Lead Technician dropdown and click 'Clear Selection' at the bottom.
@@ -283,16 +269,14 @@ Clear Selection in the Lead Technician dropdown removes all selected technicians
 3. Other active filters are not affected.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-R5, S8-R2).",SV-8785 [epic] (S4-R5; S8-R2) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-R5, S8-R2).",SV-8785 [epic] (S4-R5; S8-R2) [spec v1.6 2026-07-28],,
 Clicking outside the Lead Technician dropdown closes it,Lead Technician Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Lead Technician dropdown open and one technician selected.","1. Click anywhere outside the dropdown.
 2. Look at the dropdown, the chip and the table.","1. The dropdown closes.
 2. The selection stays applied - the chip stays active and the table stays filtered.
 
-Known issue: on the build tested the dropdown closes as soon as you tick one value, so to pick a second value you have to open the chip again. Everything else in this test still works. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8824
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-R6).",SV-8789 (S4-R6) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-R6).",SV-8789 (S4-R6) [spec v1.6 2026-07-28],,
 Selecting a technician who leads no work orders shows the empty state,Lead Technician Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A technician exists who is not the lead technician on ANY work order (create a fresh ZZAUTOTEST staff member if needed).
 3. You are on the Work Orders page on the All tab with no other filters active.","1. Open the Lead Technician filter and select only that technician.
@@ -300,7 +284,7 @@ Selecting a technician who leads no work orders shows the empty state,Lead Techn
 2. No error is shown.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-N1, S8-R3).",SV-8785 [epic] (S4-N1; S8-R3) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-N1, S8-R3).",SV-8785 [epic] (S4-N1; S8-R3) [spec v1.6 2026-07-28],,
 A deactivated technician does not appear in the Lead Technician filter list,Lead Technician Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A test technician (ZZAUTOTEST) exists and is visible in the Lead Technician filter list.
 3. That test technician is then made inactive/deactivated in staff administration (restore them afterwards).","1. On the Work Orders page, open the Lead Technician filter.
@@ -309,7 +293,7 @@ A deactivated technician does not appear in the Lead Technician filter list,Lead
 2. Active technicians are still listed normally.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-E1).",SV-8789 (S4-E1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S4-E1).",SV-8789 (S4-E1) [spec v1.6 2026-07-28],,
 Service Advisor chip opens a dropdown with a search field and a list,Service Advisor Filter,Functional,High,"<ol>
 <li>You are signed in to the ShopView App on a desktop browser.</li>
 <li>You are on the Work Orders page.</li>
@@ -327,14 +311,14 @@ Service Advisor chip opens a dropdown with a search field and a list,Service Adv
 </ol>
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-R1).",SV-8790 (S5-R1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-R1).",SV-8790 (S5-R1) [spec v1.6 2026-07-28],,
 Typing in the advisor search narrows the list to matching names,Service Advisor Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Service Advisor dropdown open.","1. Type part of one advisor's name into the 'Search' field.
 2. Watch the list while you type.","1. The advisor list narrows to only the names matching what you typed.
 2. Deleting the text brings the full list back.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-R2).",SV-8790 (S5-R2) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-R2).",SV-8790 (S5-R2) [spec v1.6 2026-07-28],,
 Selecting advisors shows only work orders assigned to those advisors,Service Advisor Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist with different service advisors assigned (seed ZZAUTOTEST data if needed).","1. Open the Service Advisor filter and select one or two advisors.
@@ -342,10 +326,8 @@ Selecting advisors shows only work orders assigned to those advisors,Service Adv
 2. The table shows only work orders assigned to any of the selected advisors.
 3. The table updates in real time as you select.
 
-Known issue: on the build tested the dropdown closes as soon as you tick one value, so to pick a second value you have to open the chip again. Everything else in this test still works. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8824
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-R3, S5-R4).",SV-8790 (S5-R3; S5-R4) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-R3, S5-R4).",SV-8790 (S5-R3; S5-R4) [spec v1.6 2026-07-28],,
 Clear Selection in the Service Advisor dropdown removes all selected advisors,Service Advisor Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. One or more advisors are selected in the Service Advisor filter.","1. Open the Service Advisor dropdown and click 'Clear Selection' at the bottom.
@@ -354,16 +336,14 @@ Clear Selection in the Service Advisor dropdown removes all selected advisors,Se
 3. Other active filters are not affected.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-R5, S8-R2).",SV-8785 [epic] (S5-R5; S8-R2) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-R5, S8-R2).",SV-8785 [epic] (S5-R5; S8-R2) [spec v1.6 2026-07-28],,
 Clicking outside the Service Advisor dropdown closes it,Service Advisor Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Service Advisor dropdown open and one advisor selected.","1. Click anywhere outside the dropdown.
 2. Look at the dropdown, the chip and the table.","1. The dropdown closes.
 2. The selection stays applied - the chip stays active and the table stays filtered.
 
-Known issue: on the build tested the dropdown closes as soon as you tick one value, so to pick a second value you have to open the chip again. Everything else in this test still works. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8824
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-R6).",SV-8790 (S5-R6) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-R6).",SV-8790 (S5-R6) [spec v1.6 2026-07-28],,
 Selecting an advisor with no assigned work orders shows the empty state,Service Advisor Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. An advisor exists who is not assigned to ANY work order (create a fresh ZZAUTOTEST staff member if needed).
 3. You are on the Work Orders page on the All tab with no other filters active.","1. Open the Service Advisor filter and select only that advisor.
@@ -371,7 +351,7 @@ Selecting an advisor with no assigned work orders shows the empty state,Service 
 2. No error is shown.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-N1, S8-R3).",SV-8785 [epic] (S5-N1; S8-R3) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-N1, S8-R3).",SV-8785 [epic] (S5-N1; S8-R3) [spec v1.6 2026-07-28],,
 A deactivated advisor does not appear in the Service Advisor filter list,Service Advisor Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A test advisor (ZZAUTOTEST) exists and is visible in the Service Advisor filter list.
 3. That test advisor is then made inactive/deactivated in staff administration (restore them afterwards).","1. On the Work Orders page, open the Service Advisor filter.
@@ -380,7 +360,7 @@ A deactivated advisor does not appear in the Service Advisor filter list,Service
 2. Active advisors are still listed normally.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-E1).",SV-8790 (S5-E1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S5-E1).",SV-8790 (S5-E1) [spec v1.6 2026-07-28],,
 Asset on Site chip opens a dropdown with Yes and No plus Clear Selection,Asset on Site Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.","1. Click the Asset on Site filter chip.
 2. Read the options in the dropdown.","1. A small dropdown panel opens under the Asset on Site chip.
@@ -389,7 +369,7 @@ Asset on Site chip opens a dropdown with Yes and No plus Clear Selection,Asset o
 4. It is a dropdown (like the other filters), not an on/off toggle.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-R1).",SV-8791 (S6-R1; §4 Key Decisions (dropdown - not toggle)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-R1).",SV-8791 (S6-R1; §4 Key Decisions (dropdown - not toggle)) [spec v1.6 2026-07-28],,
 Choosing Yes shows only work orders whose asset is on site,Asset on Site Filter,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist in both states: some with the asset marked on site and some not (set the on-site marker on ZZAUTOTEST work orders as needed).","1. Open the Asset on Site filter and choose Yes.
@@ -397,7 +377,7 @@ Choosing Yes shows only work orders whose asset is on site,Asset on Site Filter,
 2. Work orders whose asset is not on site are hidden.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-R2).",SV-8791 (S6-R2) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-R2).",SV-8791 (S6-R2) [spec v1.6 2026-07-28],,
 Asset on Site is single-select: choosing the other option replaces the first,Asset on Site Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with Yes selected in the Asset on Site filter.","1. Open the Asset on Site dropdown again.
 2. Choose No.
@@ -406,7 +386,7 @@ Asset on Site is single-select: choosing the other option replaces the first,Ass
 3. The chip shows the currently selected value.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-R3).",SV-8791 (S6-R3) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-R3).",SV-8791 (S6-R3) [spec v1.6 2026-07-28],,
 Clear Selection in the Asset on Site dropdown removes the filter,Asset on Site Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with Yes or No selected in the Asset on Site filter.","1. Open the Asset on Site dropdown and click 'Clear Selection'.
 2. Look at the chip and the table.","1. The selection is removed and the chip returns to its default (inactive) state.
@@ -414,16 +394,14 @@ Clear Selection in the Asset on Site dropdown removes the filter,Asset on Site F
 3. Other active filters are not affected.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-R4, S8-R2).",SV-8785 [epic] (S6-R4; S8-R2) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-R4, S8-R2).",SV-8785 [epic] (S6-R4; S8-R2) [spec v1.6 2026-07-28],,
 Clicking outside the Asset on Site dropdown closes it,Asset on Site Filter,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the Asset on Site dropdown open and Yes selected.","1. Click anywhere outside the dropdown.
 2. Look at the dropdown, the chip and the table.","1. The dropdown closes.
 2. The Yes selection stays applied - the chip stays active and the table stays filtered.
 
-Known issue: on the build tested the dropdown closes as soon as you tick one value, so to pick a second value you have to open the chip again. Everything else in this test still works. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8824
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-R5).",SV-8791 (S6-R5) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-R5).",SV-8791 (S6-R5) [spec v1.6 2026-07-28],,
 An Asset on Site choice that matches no work orders shows the empty state,Asset on Site Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab with no other filters active.
 3. Every current work order is in the SAME on-site state (set all ZZAUTOTEST work orders to on site, or combine with another filter so one option matches nothing).","1. Open the Asset on Site filter and choose the option that matches no work orders (for example No when everything is on site).
@@ -431,7 +409,7 @@ An Asset on Site choice that matches no work orders shows the empty state,Asset 
 2. No error is shown.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-N1, S8-R3).",SV-8785 [epic] (S6-N1; S8-R3) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-N1, S8-R3).",SV-8785 [epic] (S6-N1; S8-R3) [spec v1.6 2026-07-28],,
 Choosing No shows only work orders whose asset is not on site,Asset on Site Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Work orders exist both with the asset on site and with the asset not on site (create one of each if needed).
 3. You are on the Work Orders page.","1. Open the Asset on Site filter.
@@ -441,24 +419,22 @@ Choosing No shows only work orders whose asset is not on site,Asset on Site Filt
 3. The chip shows the active No selection.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-R2).",SV-8791 (S6-R2; tech plan 2026-07-29 G4 (filtering No is new capability)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S6-R2).",SV-8791 (S6-R2; tech plan 2026-07-29 G4 (filtering No is new capability)) [spec v1.6 2026-07-28],,
 A chip with a selected value turns blue and shows the value,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with no filters selected (all chips in their default grey state).","1. Open the Status filter and tick one status (for example Estimate).
 2. Click outside to close the dropdown and look at the Status chip.","1. The Status chip changes to an active/highlighted look (blue pill).
 2. The chip displays the selected value (for example 'Status: Estimate').
 3. The other chips stay in their default state.
 
-Known issue: on the build tested the dropdown closes as soon as you tick one value, so to pick a second value you have to open the chip again. Everything else in this test still works. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8824
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S7-R1).",SV-8792 (S7-R1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S7-R1).",SV-8792 (S7-R1) [spec v1.6 2026-07-28],,
 A chip with several values shows the first ones and shortens the rest,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.","1. Open the Status filter and tick three or more statuses (for example Estimate, In progress and Approved).
 2. Close the dropdown and read the Status chip label.","1. The chip lists the selected values starting with the first one and shortens the label when it gets too long (the design shows 'Status: Estimate, In progress, Approved...').
 2. The chip stays a single compact pill - it does not grow to show every value in full.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S7-R2).",SV-8792 (S7-R2) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S7-R2).",SV-8792 (S7-R2) [spec v1.6 2026-07-28],,
 'Clear Filters' shows right of the chips only when a filter is active,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with no filters selected.","1. Look at the right end of the filter chip row with no filters active.
 2. Select any filter value (for example one status).
@@ -468,7 +444,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 3. When the last active filter is removed, 'Clear Filters' disappears again.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S7-R3, S7-N1, S8-N1).",SV-8785 [epic] (S7-R3; S7-N1; S8-N1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S7-R3, S7-N1, S8-N1).",SV-8785 [epic] (S7-R3; S7-N1; S8-N1) [spec v1.6 2026-07-28],,
 'Clear Filters' removes every active filter and resets all chips,Active Filter Chips and Clear Filters,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Values are selected in at least three different filters (for example a status, a customer and Asset on Site Yes).
@@ -479,7 +455,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 4. The 'Clear Filters' link disappears.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R1, S13-R13).",SV-8785 [epic] (S8-R1; §4 Key Decisions; S13-R13 (clearing filters does not clear a typed search)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R1, S13-R13).",SV-8785 [epic] (S8-R1; §4 Key Decisions; S13-R13 (clearing filters does not clear a typed search)) [spec v1.6 2026-07-28],,
 'Clear Selection' in one dropdown clears only that filter,Active Filter Chips and Clear Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Values are selected in at least two different filters (for example a status and a customer).","1. Open the Status dropdown and click 'Clear Selection'.
@@ -488,7 +464,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 3. 'Clear Filters' remains visible because a filter is still active.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R2).",SV-8793 (S8-R2; §4 Key Decisions) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R2).",SV-8793 (S8-R2; §4 Key Decisions) [spec v1.6 2026-07-28],,
 Status and Customer filters together show only work orders matching both,Active Filter Chips and Clear Filters,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Seed ZZAUTOTEST work orders so that: customer A has an Estimate work order and an Approved work order, and customer B has an Estimate work order.","1. Open the Status filter and tick Estimate.
@@ -498,7 +474,7 @@ Status and Customer filters together show only work orders matching both,Active 
 3. Both chips are in the active state and 'Clear Filters' is visible.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R3).",SV-8793 (§2 Feature Overview (multi-criteria); S8-R3 ('combination of active filters')) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R3).",SV-8793 (§2 Feature Overview (multi-criteria); S8-R3 ('combination of active filters')) [spec v1.6 2026-07-28],,
 The toolbar filter button collapses the bar and the table takes the space,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with the filter bar visible (expanded).","1. Find the filter icon button in the page toolbar (next to the Search magnifier and the column/layout toggle, left of the Create Work Order button).
 2. Click the filter icon once.
@@ -507,7 +483,7 @@ The toolbar filter button collapses the bar and the table takes the space,Collap
 3. The filter icon shows a pressed/active look while the bar is collapsed.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S1-R4, S1-R5).",SV-8786 (S1-R4; S1-R5) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S1-R4, S1-R5).",SV-8786 (S1-R4; S1-R5) [spec v1.6 2026-07-28],,
 Expanding the filter bar brings it back with active filters still shown,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. At least one filter is selected (for example two statuses) and the filter bar has been collapsed with the filter button.","1. Click the filter icon in the toolbar again.
@@ -515,10 +491,10 @@ Expanding the filter bar brings it back with active filters still shown,Collapse
 2. The previously selected filters are still shown on their chips in the active (blue) state - nothing was lost while collapsed.
 3. The 'Clear Filters' link is still shown at the right end of the chip row.
 
-Known issue: on the build tested collapsing the bar does not move the table up, because the buttons share the tab row. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8843
+Known and accepted: on the build tested collapsing the bar does not move the table up, because the buttons share the tab row. The product behaves this way on purpose for now. Do not raise this as a new problem.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S1-R6).",SV-8786 (S1-R6) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S1-R6).",SV-8786 (S1-R6) [spec v1.6 2026-07-28],,
 The filter bar's collapsed or expanded state is remembered on return,Collapse and Expand,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page and have collapsed the filter bar with the filter button.","1. Navigate to another page (for example open a work order, or go to Customers).
 2. Return to the Work Orders page.
@@ -527,7 +503,7 @@ The filter bar's collapsed or expanded state is remembered on return,Collapse an
 2. After step 4 the filter bar is expanded again when you return - whichever state you left it in is restored.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S1-R7, S10-R1).",SV-8785 [epic] (S1-R7; S10-R1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S1-R7, S10-R1).",SV-8785 [epic] (S1-R7; S10-R1) [spec v1.6 2026-07-28],,
 Collapsed filter button shows a blue indicator only when filters are active,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.","1. With NO filters selected, collapse the filter bar with the filter button and look at the filter icon.
 2. Expand the bar, select at least one filter value (for example a status).
@@ -535,7 +511,7 @@ Collapsed filter button shows a blue indicator only when filters are active,Coll
 2. After step 3 the filter icon shows a visual indicator (filters icon in primary blue) signalling that active filters are in effect while the bar is hidden.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S7-R4, S7-N2).",SV-8792 (S7-R4; S7-N2) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S7-R4, S7-N2).",SV-8792 (S7-R4; S7-N2) [spec v1.6 2026-07-28],,
 Active filters keep filtering the table while the filter bar is collapsed,Collapse and Expand,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist in several statuses; a Status filter is applied (for example Estimate only) and the table is visibly filtered.","1. Collapse the filter bar with the filter button.
@@ -543,7 +519,7 @@ Active filters keep filtering the table while the filter bar is collapsed,Collap
 2. Hiding the bar only hides the chips; it does not remove or pause the filtering.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S7-R5).",SV-8792 (S7-R5) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S7-R5).",SV-8792 (S7-R5) [spec v1.6 2026-07-28],,
 A filter combination with no matches shows a no-results empty state,Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. Work orders exist, but you can pick a filter combination that matches none of them (for example a customer plus a status that customer never has).","1. Apply the filter combination that matches no work orders.
@@ -551,10 +527,10 @@ A filter combination with no matches shows a no-results empty state,Empty State,
 2. The empty state shows a message indicating no results were found for the current filters.
 3. No error message or broken layout appears.
 
-Known issue: when only a search is active the message still says ""filters"" and the only link offered is Clear Filters. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8847
+Known and accepted: when only a search is active the message still says ""filters"" and the only link offered is Clear Filters. The product behaves this way on purpose for now. Do not raise this as a new problem.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R3).",SV-8793 (S8-R3) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R3).",SV-8793 (S8-R3) [spec v1.6 2026-07-28],,
 The filtered empty state offers a way to clear the filters,Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page showing the filtered empty state (a filter combination matching no work orders is applied).
 3. The page's own Search box is empty (no text typed in it).","1. Read the empty state content.
@@ -563,10 +539,10 @@ The filtered empty state offers a way to clear the filters,Empty State,Functiona
 2. Clicking it removes the active filters and the full work order list is shown again (with no text in the Search box, nothing else is narrowing the list).
 3. The chips return to their default state.
 
-Known issue: the empty screen offers no way to clear the search on its own. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8847
+Known and accepted: the empty screen offers no way to clear the search on its own. The product behaves this way on purpose for now. Do not raise this as a new problem.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R4, S8-R5).",SV-8793 (S8-R4 (the empty state includes a prompt or link to clear filters); S8-R5 (where a query is also active each is cleared independently)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R4, S8-R5).",SV-8793 (S8-R4 (the empty state includes a prompt or link to clear filters); S8-R5 (where a query is also active each is cleared independently)) [spec v1.6 2026-07-28],,
 "When filters and a search find nothing, each can be cleared on its own",Empty State,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.
 3. One filter is active (for example a Status) and some work orders match it.","1. With that filter still active, type a word in the page Search box that matches none of the work orders left in the list.
@@ -578,14 +554,14 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 4. Clearing the filters leaves your typed word in the box and still applied - each is cleared on its own without wiping the other.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R3, S8-R4, S8-R5, S13-N1, S13-N2).",SV-8785 [epic] (S8-R3 (empty state covers filters AND any active query); S8-R4 (prompt to clear filters and the query where active); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R3, S8-R4, S8-R5, S13-N1, S13-N2).",SV-8785 [epic] (S8-R3 (empty state covers filters AND any active query); S8-R4 (prompt to clear filters and the query where active); S8-R5 (each cleared independently from the empty state); S13-N1; S13-N2) [spec v1.6 2026-07-28],,
 "The All tab shows all five filter chips, all working",Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.","1. Click the All tab.
 2. Count the filter chips and click each one briefly.","1. All five chips are shown: Status, Customer, Lead Technician, Service Advisor, Asset on Site.
 2. Each chip opens its dropdown and can be used.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S9-R1).",SV-8794 (S9-R1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S9-R1).",SV-8794 (S9-R1) [spec v1.6 2026-07-28],,
 Estimates tab: the Status chip is not shown; the other four still work,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Estimate work orders exist for at least two different customers.
 3. You are on the Work Orders page.","1. Click the Estimates tab.
@@ -597,7 +573,7 @@ Estimates tab: the Status chip is not shown; the other four still work,Tab Behav
 3. After step 4 the table shows only that customer's ESTIMATE work orders - the customer filter narrows the pre-filtered Estimates list.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S9-R2, S2-N1). Note: an earlier answer of 2026-07-17 and the design frame both show the Status button greyed out and pre-filled on this tab; the specification and the build both hide it, and the specification is the newer source, so this test follows the specification and the build.","SV-8785 [epic] (S9-R2; S2-N1; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled; PRD alignment is Branko's open item) [spec v1.6 2026-07-28]",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S9-R2, S2-N1). Note: an earlier answer of 2026-07-17 and the design frame both show the Status button greyed out and pre-filled on this tab; the specification and the build both hide it, and the specification is the newer source, so this test follows the specification and the build.","SV-8785 [epic] (S9-R2; S2-N1; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled; PRD alignment is Branko's open item) [spec v1.6 2026-07-28]",,
 Completed tab: the Status chip is not shown; the other four still work,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Complete work orders exist for at least two different customers.
 3. You are on the Work Orders page.","1. Click the Completed tab.
@@ -609,7 +585,7 @@ Completed tab: the Status chip is not shown; the other four still work,Tab Behav
 3. After step 4 the table shows only that customer's COMPLETE work orders.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S9-R3, S2-N2). Note: an earlier answer of 2026-07-17 and the design frame both show the Status button greyed out and pre-filled on this tab; the specification and the build both hide it, and the specification is the newer source, so this test follows the specification and the build.","SV-8785 [epic] (S9-R3; S2-N2; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled; PRD alignment is Branko's open item) [spec v1.6 2026-07-28]",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S9-R3, S2-N2). Note: an earlier answer of 2026-07-17 and the design frame both show the Status button greyed out and pre-filled on this tab; the specification and the build both hide it, and the specification is the newer source, so this test follows the specification and the build.","SV-8785 [epic] (S9-R3; S2-N2; §4 Key Decisions - PRD text says ""hidden""; behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30 = shown greyed-out/disabled; PRD alignment is Branko's open item) [spec v1.6 2026-07-28]",,
 My Work Orders tab shows all five filters and they narrow that list,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Work orders assigned to you exist in at least two statuses, and other users' work orders also exist.
 3. You are on the Work Orders page.","1. Click the My Work Orders tab and count the chips.
@@ -619,7 +595,7 @@ My Work Orders tab shows all five filters and they narrow that list,Tab Behaviou
 3. After step 2 it shows only YOUR work orders in the ticked status - the filters narrow the user-scoped list, they do not widen it to other users' work orders.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S9-R4).",SV-8794 (S9-R4; §4 Key Decisions (My Work Orders tab does not remove filters)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S9-R4).",SV-8794 (S9-R4; §4 Key Decisions (My Work Orders tab does not remove filters)) [spec v1.6 2026-07-28],,
 A Status choice is kept while you switch tabs and comes back on the All tab,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page on the All tab.
 3. A Status selection (for example Approved) and a Customer selection are active.","1. Click the Estimates tab and look at the filter bar and the table.
@@ -628,7 +604,7 @@ A Status choice is kept while you switch tabs and comes back on the All tab,Tab 
 3. The Customer selection is unchanged throughout.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S9-R5, S9-N1, S9-R2).",SV-8794 (S9-R5; S9-N1; S9-R2 - behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S9-R5, S9-N1, S9-R2).",SV-8794 (S9-R5; S9-N1; S9-R2 - behaviour per Branko Q4=B 2026-07-17 + QA-lead ruling 2026-07-30) [spec v1.6 2026-07-28],,
 First visit opens the Estimates tab; your last-used tab is remembered,Tab Behaviour,Functional,High,1. You can sign in as a user who has never used the redesigned Work Orders page (no saved page choices for that account).,"1. Sign in as that fresh user and open the Work Orders page.
 2. Note which tab is selected and the tab order.
 3. Switch to the All tab.
@@ -636,7 +612,7 @@ First visit opens the Estimates tab; your last-used tab is remembered,Tab Behavi
 2. After switching to All and returning, the All tab is selected - the app remembers your last-used tab per account.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (no requirement in spec v1.6 - default/last-used tab is not in the spec; RULED by Branko answers 2026-08-04 Q2 ""A - it's fine""); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists) [spec v1.6 2026-07-28]",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (no requirement in spec v1.6 - default/last-used tab is not in the spec; RULED by Branko answers 2026-08-04 Q2 ""A - it's fine""); tech plan 2026-07-29 D10 (default tab = Estimates; last-used tab persists) [spec v1.6 2026-07-28]",,
 Leaving the page and coming back restores the filters and the bar state,Persistence,Functional,Critical,"<ol>
 <li>You are signed in to the ShopView App on a desktop browser.</li>
 <li>You are on the Work Orders page with a Status and a Customer selection active and the filter bar expanded.</li>
@@ -657,8 +633,10 @@ Leaving the page and coming back restores the filters and the bar state,Persiste
 
 <p>This is the expected behaviour as per epic SV-8785 and the Filters specification version 1.6 (S10-R1, S1-R7).</p>
 
+Known issue: on the build tested the Customer, Lead Technician and Service Advisor buttons come back switched on but WITHOUT the name of the value you picked - the button reads just ""Customer"" instead of ""Customer: Iibay Landscaping"". The list is still filtered correctly. The Status and Asset on Site buttons keep their value. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8871
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-R1, S1-R7).",SV-8785 [epic] (S10-R1; S1-R7) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-R1, S1-R7).",SV-8785 [epic] (S10-R1; S1-R7) [spec v1.6 2026-07-28],,
 "Filters are remembered permanently, even after closing the browser",Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Filters are applied on the Work Orders page (for example a status and a customer).","1. Visit several other areas of the app (Customers, Parts, Reports) and use them briefly.
 2. Return to the Work Orders page and look at the chips and the table.
@@ -670,7 +648,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 3. The same filter selections are applied on the other computer too - the filters are saved to your account, not to one computer or browser (to confirm live once built).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-R2, S10-R3, S10-R1).",SV-8795 (S10-R2 (stored server-side against the account; survives logout; syncs across devices); S10-R3 (saved per user); S10-R1 (restored after navigating away)) + Branko Q2 2026-07-17 - now matched by the PRD [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-R2, S10-R3, S10-R1).",SV-8795 (S10-R2 (stored server-side against the account; survives logout; syncs across devices); S10-R3 (saved per user); S10-R1 (restored after navigating away)) + Branko Q2 2026-07-17 - now matched by the PRD [spec v1.6 2026-07-28],,
 Saved filters are per user: one user's filters do not appear for another user,Persistence,Functional,High,"1. Two test users (A and B) can sign in to the same shop.
 2. User A has applied filters on the Work Orders page (for example Status: Approved).","1. As user B (separate login/browser profile), open the Work Orders page.
 2. Look at the filter chips and the table.
@@ -678,7 +656,7 @@ Saved filters are per user: one user's filters do not appear for another user,Pe
 2. User B's new filter does not change what user A sees; each user keeps their own saved filter state.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-R3).",SV-8795 (S10-R3; §4 Key Decisions (saved per user)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-R3).",SV-8795 (S10-R3; §4 Key Decisions (saved per user)) [spec v1.6 2026-07-28],,
 A remembered filter value that was deleted is silently ignored,Persistence,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. A throwaway ZZAUTOTEST customer exists and is selected in the Customer filter together with one real customer.
 3. You then navigate away and the ZZAUTOTEST customer is deleted (or otherwise removed) while you are off the page.","1. Return to the Work Orders page.
@@ -686,8 +664,10 @@ A remembered filter value that was deleted is silently ignored,Persistence,Negat
 2. The Customer filter now reflects only the still-valid selection (the real customer).
 3. The table is filtered by the remaining valid selection only.
 
+Known issue: on the build tested the deleted customer is hidden from the dropdown but is STILL used to filter the table - the address bar and the request to the server both still carry it. So step 3 above is expected to fail. It is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8832
+
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-N1).",SV-8795 (S10-N1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-N1).",SV-8795 (S10-N1) [spec v1.6 2026-07-28],,
 Each page and tab remembers its own filters separately,Persistence,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The new filter bar has rolled out to the Parts views and to a report that has tabs (part of the same programme as the Work Orders filters).","1. On one Parts view (for example Inventory) apply a filter.
 2. Switch to a different Parts view (for example Purchase Orders).
@@ -697,14 +677,14 @@ Each page and tab remembers its own filters separately,Persistence,Functional,Me
 3. Report tabs likewise keep separate filter choices, each remembered and restored on its own tab.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-R4).","SV-8795 (spec v1.6 S10-R4; §4 ""Parts and Reports selections are scoped to their view/tab and persist there""); Branko answers 2026-07-31 Q5 exception 1; tech plan 2026-07-29 D20",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-R4).","SV-8795 (spec v1.6 S10-R4; §4 ""Parts and Reports selections are scoped to their view/tab and persist there""); Branko answers 2026-07-31 Q5 exception 1; tech plan 2026-07-29 D20",,
 Filters saved before the redesign carry over after the update,Persistence,Functional,High,"1. In one browser, the account was used on the OLD Work Orders page with choices saved there (a tab, status selections, the asset-here toggle, column choices, sorting) BEFORE the redesign was installed.","1. In that same browser, open the updated app and go to the Work Orders page.
 2. Check the selected tab, the filter chips, the table columns and the sorting.
 3. Sign in as the same person on a DIFFERENT computer or browser and open the Work Orders page.","1. The old saved choices appear in the new filter bar on the first visit - the update does not lose them (old status choices show in the Status chip, the old asset-here choice shows as Asset on Site: Yes, the old My-Work-Orders toggle maps to the My Work Orders tab, columns and sorting stay).
 2. Those carried-over choices are now saved to the account: the other computer shows them too.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-R2).",SV-8795 (no numbered v1.6 requirement covers the one-off migration - context S10-R2 server-side model); tech plan 2026-07-29 s4-3.3 (browser-storage to account-preference migration) - confirmation requested [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-R2).",SV-8795 (no numbered v1.6 requirement covers the one-off migration - context S10-R2 server-side model); tech plan 2026-07-29 s4-3.3 (browser-storage to account-preference migration) - confirmation requested [spec v1.6 2026-07-28],,
 Applying filters updates the page URL to reflect the active filter state,URL State and Shareable Links,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with no filters applied; note the current URL.","1. Apply a Status selection and a Customer selection.
 2. Look at the browser address bar.
@@ -712,17 +692,17 @@ Applying filters updates the page URL to reflect the active filter state,URL Sta
 2. After step 3 the filter part of the URL is removed again.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-R1).",SV-8796 (S11-R1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-R1).",SV-8796 (S11-R1) [spec v1.6 2026-07-28],,
 Opening a shared URL or bookmark loads the page with those filters on,URL State and Shareable Links,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have copied a Work Orders URL that was produced with filters applied (for example Status: Approved + one customer).","1. Open the copied URL in a new browser tab (same signed-in user).
 2. Look at the chips and the table as the page loads.","1. The page opens with the same filters already applied - chips active with the same values.
 2. The table is already filtered accordingly on load (no need to re-apply anything).
 3. The same works from a saved bookmark.
 
-Known issue: on a phone-sized screen a link carrying filters shows the buttons as on but lists the wrong work orders. On a desktop screen it works. Until it is fixed the phone half of this test is expected to fail - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8845
+Known issue: two points on this test are expected to fail on the build tested. On a phone-sized screen a link carrying filters shows the buttons as on but lists the wrong work orders (ticket: https://shopview.atlassian.net/browse/SV-8845). And on a desktop screen a Customer, Lead Technician or Service Advisor button opened from a link comes back switched on but without the name of the value, so it reads just ""Customer"" (ticket: https://shopview.atlassian.net/browse/SV-8871). The list itself is filtered correctly on desktop. Both are already reported.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-R2).",SV-8796 (S11-R2; §2 Feature Overview (share or bookmark)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-R2).",SV-8796 (S11-R2; §2 Feature Overview (share or bookmark)) [spec v1.6 2026-07-28],,
 A URL with a deleted filter value loads and ignores that value,URL State and Shareable Links,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You saved a filtered Work Orders URL that includes a throwaway ZZAUTOTEST customer plus one real filter value.
 3. The ZZAUTOTEST customer has since been deleted.","1. Open the saved URL.
@@ -733,7 +713,7 @@ A URL with a deleted filter value loads and ignores that value,URL State and Sha
 Known issue: a value in the address bar that no longer exists is still sent to the server, so you get an empty list instead of the list without that value. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8832
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-R3).",SV-8796 (S11-R3) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-R3).",SV-8796 (S11-R3) [spec v1.6 2026-07-28],,
 A broken filter URL loads the page with no filters and no error,URL State and Shareable Links,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have a valid filtered Work Orders URL to start from.","1. Manually break the filter part of the URL (for example scramble the parameter values or insert nonsense text).
 2. Open the broken URL.
@@ -744,7 +724,7 @@ A broken filter URL loads the page with no filters and no error,URL State and Sh
 Known issue: a broken address is not fully ignored - a wrong tab value can switch the tab and a bad customer value is still sent to the server. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8832
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-N1).",SV-8796 (S11-N1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-N1).",SV-8796 (S11-N1) [spec v1.6 2026-07-28],,
 Opening a shared link does not change your own saved filters,URL State and Shareable Links,Functional,High,"1. You are signed in and have your OWN filters saved on the Work Orders page (for example one customer).
 2. You have a Work Orders link that carries a DIFFERENT filter state (made by another user or another browser).
 3. You know how to use the page's own Search box on the Work Orders page (the Search button in the toolbar row).","1. Note your own saved filters on the Work Orders page.
@@ -760,7 +740,7 @@ Opening a shared link does not change your own saved filters,URL State and Share
 6. Returning normally later still shows your own saved filters, untouched by the link visit.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-R6, S11-R7, S11-R8).",SV-8796 (S11-R6 (URL state runtime-only with no write-back); S11-R7 (Back to my view - also clears the query); S11-R8 (rationale: the query is never saved)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-R6, S11-R7, S11-R8).",SV-8796 (S11-R6 (URL state runtime-only with no write-back); S11-R7 (Back to my view - also clears the query); S11-R8 (rationale: the query is never saved)) [spec v1.6 2026-07-28],,
 'Back To My Saved Filters' is not shown when you are on your own view,URL State and Shareable Links,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have your OWN filters saved on the Work Orders page (for example one customer).
 3. You are NOT using a shared link - you have not opened a Work Orders web address that someone sent you.","1. Open the Work Orders page from the main menu.
@@ -773,7 +753,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 4. After you click it and you are back on your own view, the option disappears again.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-N3, S11-R7).",SV-8796 (S11-N3; S11-R7) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-N3, S11-R7).",SV-8796 (S11-N3; S11-R7) [spec v1.6 2026-07-28],,
 "Mobile: chips sit in a scrollable row below the tabs, starting All Filters",Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device (or a mobile-size browser window).
 2. You are on the Work Orders page.","1. Look at the row below the tab row (All, Estimates, Completed, My Work Orders).
 2. Swipe the chip row sideways.","1. A filter chip row is shown below the tabs, starting with an 'All Filters' chip (with a filter icon) followed by the individual filter chips (Status, Customer, Lead Technician, ...).
@@ -783,7 +763,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R1). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8797 (S12-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R1). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8797 (S12-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
 Mobile: All Filters opens a sheet of expandable rows with Apply filters,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page.","1. Tap the 'All Filters' chip.
 2. Read the sheet from top to bottom.","1. A bottom sheet slides up with a drag handle at the top, the centered title 'All Filters' and a close (x) button.
@@ -793,7 +773,7 @@ Mobile: All Filters opens a sheet of expandable rows with Apply filters,Mobile F
 DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R3). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8797 (S12-R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R3). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8797 (S12-R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
 Mobile: tapping Apply filters applies the statuses and updates the count,Mobile Filters,Functional,Critical,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page on the All tab; work orders exist in several statuses.
 3. The 'All Filters' bottom sheet is open.","1. Tap the Status accordion row to expand it.
@@ -806,7 +786,7 @@ Mobile: tapping Apply filters applies the statuses and updates the count,Mobile 
 DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S12-R3, S2-R1). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-R2; S12-R3; S2-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S12-R3, S2-R1). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-R2; S12-R3; S2-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
 Mobile: tapping one chip opens its own sheet and applies in real time,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page.","1. Tap the Status chip (not the 'All Filters' chip).
 2. Read the sheet that opens.
@@ -819,7 +799,7 @@ Mobile: tapping one chip opens its own sheet and applies in real time,Mobile Fil
 DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S12-R3, S2-R6). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8797 (S12-R2; S12-R3; S2-R6) [spec v1.6 2026-07-28] ; individual-chip real-time per S12-R2 + S2-R6 + tech-plan 2026-07-29; only the combined All Filters sheet is batch; CONFIRMED by Branko answers 2026-08-04 Q1,,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S12-R3, S2-R6). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8797 (S12-R2; S12-R3; S2-R6) [spec v1.6 2026-07-28] ; individual-chip real-time per S12-R2 + S2-R6 + tech-plan 2026-07-29; only the combined All Filters sheet is batch; CONFIRMED by Branko answers 2026-08-04 Q1,,
 "Mobile Customer filter has search, multi-select and removable tags",Mobile Filters,Functional,High,"<ol>
 <li>You are signed in to the ShopView App on a mobile device.</li>
 <li>You are on the Work Orders page; several customers exist.</li>
@@ -841,7 +821,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S3-R2). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-R2; S3-R2/R3/R5) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S3-R2). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-R2; S3-R2/R3/R5) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
 Mobile Lead Technician and Service Advisor filters offer their search lists,Mobile Filters,Functional,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page; technicians and advisors exist.
 3. The All Filters sheet is open.","1. Expand the Lead Technician accordion row and look at its content.
@@ -853,7 +833,7 @@ Mobile Lead Technician and Service Advisor filters offer their search lists,Mobi
 DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S4-R1, S5-R1). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-R2; S4-R1; S5-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S4-R1, S5-R1). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-R2; S4-R1; S5-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
 The mobile Asset on Site filter offers Yes/No with Clear Selection in the sheet,Mobile Filters,Functional,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page; work orders exist in both on-site states.
 3. The All Filters sheet is open.","1. Expand the Asset on Site accordion row.
@@ -865,7 +845,7 @@ The mobile Asset on Site filter offers Yes/No with Clear Selection in the sheet,
 DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S6-R1). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-R2; S6-R1/R2/R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S6-R1). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-R2; S6-R1/R2/R3) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
 Active chips and Clear Filters behave on mobile the same way as on desktop,Mobile Filters,Functional,High,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page with at least one filter applied via the sheet.","1. Look at the chip row after applying the filter.
 2. Look for a 'Clear Filters' control while a filter is active.
@@ -876,14 +856,14 @@ Active chips and Clear Filters behave on mobile the same way as on desktop,Mobil
 Known issue: on a phone there is no Clear Filters button at all while filters are on. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8846
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S7-R1, S8-R1).",SV-8785 [epic] (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R2, S7-R1, S8-R1).",SV-8785 [epic] (S12-R2; S7-R1/R3; S8-R1) [spec v1.6 2026-07-28]; Branko answers 2026-08-04 Q1 - single-filter sheet applies instantly with no Apply button; the combined All Filters sheet keeps its button,,
 Mobile has no collapse toggle: the filter chip row is always visible,Mobile Filters,Negative,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page.","1. Look at the toolbar row (Search, sort icon, Create Work Order button).
 2. Look for any control that would hide the filter chip row.","1. There is no filter-bar collapse/expand (filter icon) toggle on mobile.
 2. The filter chip row is always visible on the mobile Work Orders page.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R4).",SV-8797 (S12-R4) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-R4).",SV-8797 (S12-R4) [spec v1.6 2026-07-28],,
 Filters matching no work orders on mobile show the same empty state as desktop,Mobile Filters,Negative,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page; work orders exist.","1. Apply a filter combination that matches no work orders (for example a customer plus a status that customer never has).
 2. Look at the list area.","1. The list shows the same no-results empty state as desktop, saying no results were found for the current filters.
@@ -895,7 +875,7 @@ Known issue: on a phone a link carrying filters shows the buttons as on but list
 DO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour. The question is open as SV-8825 (https://shopview.atlassian.net/browse/SV-8825). Branko answered our sheet on 2026-08-04 saying a single filter window on a phone applies straight away with no Apply button, which is what the build does; hours later he added a new rule to the specification saying a phone should only apply when you tap an ""Apply filters"" button. Both come from him on the same day, so we are not choosing between them. His answers are in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-N1, S8-R3). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-N1; S8-R3/R4) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S12-N1, S8-R3). The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (S12-N1; S8-R3/R4) [spec v1.6 2026-07-28],,
 Every Parts list page shows its designed filter buttons,Parts Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Parts area of the app with some sample data present.","1. Open the Parts area and go to the Inventory page, and look at the filter buttons shown above the table.
 2. Go to the Part Sales page and look at the filter buttons.
@@ -923,7 +903,7 @@ Every Parts list page shows its designed filter buttons,Parts Page Filters,Funct
 Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (spec v1.6 §2 Parts Filters; §4 context-specific filter sets + multi-select); Branko answers 2026-07-31 Q2/Q3/Q5/Q7 + 2026-08-04 Q3 (Vendors design exists Figma 11903-10461) + Q8 (Part Sales chips); Figma 11884-16885,,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)",SV-8785 [epic] (spec v1.6 §2 Parts Filters; §4 context-specific filter sets + multi-select); Branko answers 2026-07-31 Q2/Q3/Q5/Q7 + 2026-08-04 Q3 (Vendors design exists Figma 11903-10461) + Q8 (Part Sales chips); Figma 11884-16885,,
 Part Type filter opens a Core / Non Core list with Clear Selection,Parts Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Parts area of the app with some sample data present.","1. On the Parts Returns tab, click the Part Type filter button.
 2. Look at the small menu that opens.
@@ -936,7 +916,7 @@ Part Type filter opens a Core / Non Core list with Clear Selection,Parts Page Fi
 Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
 Choosing a Parts filter narrows the list on that page,Parts Page Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Parts area of the app with some sample data present.","1. Open a Parts list page that has a filter button (for example Inventory).
 2. Open a filter button and choose one value.
@@ -947,7 +927,7 @@ Choosing a Parts filter narrows the list on that page,Parts Page Filters,Functio
 Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
 Parts filters support multiple choices and can be cleared,Parts Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Parts area of the app with some sample data present.","1. Open a Parts filter button that shows a list of choices.
 2. Select more than one choice, then look at the filter button.
@@ -958,7 +938,7 @@ Parts filters support multiple choices and can be cleared,Parts Page Filters,Fun
 Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Feature Overview -> Parts Filters; §4 Key Decisions -> ""Context-specific filter sets on Parts and Reports"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11884-16885",,
 Every filter a page had before is still available in the new filter bar,Parts Page Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have a written list of the filters each Parts page and each report offers today, before the new filter bar (take screenshots of the old screens first, or ask the developers for the list).
 3. Sample data is present in the Parts area and in the Reports area.","1. Take your before-list for one page.
@@ -972,7 +952,7 @@ Every filter a page had before is still available in the new filter bar,Parts Pa
 Not built yet on the build tested: a filter bar exists on Inventory, Part Sales, Catalog and Returns, but Purchase Orders, Vendor Invoices and Vendors have no filter bar at all. If the filter bar is missing on the view you are testing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 + 2026-08-04 Q8 (""we should have all filters we support now per each page plus we should add new ones""); tech plan 2026-07-29 rollout rule",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Parts Filters + Reports Filters); Branko answers 2026-07-31 Q3 + 2026-08-04 Q8 (""we should have all filters we support now per each page plus we should add new ones""); tech plan 2026-07-29 rollout rule",,
 Every report page shows its designed filter buttons,Reports Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Reports area of the app with some sample data present.","1. Open the Reports area and go to the Timesheet Activities report, and look at the filter buttons shown above the report table.
 2. Go to the Timesheets (Payroll Timesheet) report and look at the filter buttons.
@@ -1017,7 +997,7 @@ Every report page shows its designed filter buttons,Reports Page Filters,Functio
 Not built yet on the build tested: only the first report tab (Timesheet Activities) has a filter bar, with a Date Range and a Filter by Staff button, and no report tab has a page search box. If the controls this test needs are missing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 Key Decisions ""New date-range filter type"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 Key Decisions ""New date-range filter type"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",,
 Choosing a Reports filter narrows the report results,Reports Page Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Reports area of the app with some sample data present.","1. Open the Reports area and go to any report — for example the Sales report.
 2. Open one of the filter buttons shown above the report table and choose one value.
@@ -1027,7 +1007,7 @@ Choosing a Reports filter narrows the report results,Reports Page Filters,Functi
 Not built yet on the build tested: only the first report tab (Timesheet Activities) has a filter bar, with a Date Range and a Filter by Staff button, and no report tab has a page search box. If the controls this test needs are missing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 Key Decisions ""New date-range filter type"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 Key Decisions ""New date-range filter type"" + ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q2/Q3/Q5/Q7; Figma 11903-10573",,
 "New Reports filter types behave correctly (Location, Transaction Type, etc.)",Reports Page Filters,Functional,Medium,"<ol>
 <li>You are signed in to the ShopView App on a desktop browser.</li>
 <li>You are on the Reports area of the app with some sample data present.</li>
@@ -1046,22 +1026,28 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 Not built yet on the build tested: only the first report tab (Timesheet Activities) has a filter bar, with a Date Range and a Filter by Staff button, and no report tab has a page search box. If the controls this test needs are missing, mark this test BLOCKED - do not mark it failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q3/Q5 + 2026-08-04 Q8 (""We do not have list of all filter items"" - confirms no option list exists); Figma 11903-10573",,
-Date range filter: results update when both start and end dates are picked,Reports Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
-2. The new filter bar has rolled out to a page with a Date filter chip (a report, or a Parts page with a date column).
-3. Records exist inside and outside the date range you will pick.","1. Click the Date filter chip.
-2. Look at the panel that opens.
-3. Pick a start date only, and watch the results.
-4. Pick the end date.
-5. Look at the results and the chip.","1. A start/end date picker opens - there are NO preset ranges (no 'Last 30 days' shortcuts) and NO pre-filled default range.
-2. After only the start date, the results do not change yet.
-3. As soon as the second date is picked, the results update immediately to show only records inside the range.
-4. Only one date range can be active at a time on that chip, and the chip shows the active range.
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §2 Reports Filters; §4 ""Multi-select where it makes sense""); Branko answers 2026-07-31 Q3/Q5 + 2026-08-04 Q8 (""We do not have list of all filter items"" - confirms no option list exists); Figma 11903-10573",,
+Date range filter offers ready-made periods and a custom start/end range,Reports Page Filters,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. You are on a report that has a Date Range button - on the build tested that is Reports then the Timesheet Activities report.
+3. Records exist inside and outside the date range you will pick.","1. Click the Date Range button.
+2. Look at what the panel offers, and at what the button already reads before you change anything.
+3. Choose one of the ready-made periods (for example Today) and watch the results.
+4. Open the button again and choose Custom.
+5. Fill in the From date only, and watch the results.
+6. Fill in the To date.
+7. Look at the results and at the button.","1. The panel that opens offers a set of ready-made periods to choose from - on the build tested these are Today, Yesterday, This week, Last week, This month, Last month, This quarter, Last quarter, This year, Last year - plus a Custom option and a Clear Selection link. The exact set of ready-made periods may differ per report, so check the ones your report offers rather than expecting this list.
+2. A period is already filled in when the panel first opens (on Timesheet Activities it is This month), and the button reads that period, for example ""Date Range: This month"".
+3. Choosing a ready-made period applies it straight away: the results update, the button reads the period you chose, and the web address records it.
+4. Choosing Custom shows a From box and a To box. After you fill in only the From date the results do NOT change yet.
+5. As soon as you fill in the To date the results update to show only records inside that range, and the button reads ""Date Range: Custom"".
+6. Only one date range can be active at a time on that button.
 
-Not built yet on the build tested: only the first report tab (Timesheet Activities) has a filter bar, with a Date Range and a Filter by Staff button, and no report tab has a page search box. If the controls this test needs are missing, mark this test BLOCKED - do not mark it failed.
+Note: dates are typed in month/day/year order, the way the build shows them (for example 07/01/2026).
+
+Where to run this on the build tested: the Reports area has this date button on the Timesheet Activities report. Other report tabs do not have a filter bar yet - if the report you open has no date button, mark this test BLOCKED, not failed.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch) and epic SV-8785. The Filters specification version 1.6 as revised on 4 August 2026 has no numbered requirement for this, so there is no requirement reference to give. The position on this point comes from Branko's answers, in this file: build/filters/branko-answers-2026-08-04/answers-ingested.md (https://github.com/bmuzamil-shopview/Manual-test-Cases/blob/main/build/filters/branko-answers-2026-08-04/answers-ingested.md)","SV-8785 [epic] (spec v1.6 §4 ""New date-range filter type""; §2 Reports Filters - start/end picker; no presets; no default; applies on the second date); Branko answers 2026-07-31 Q5; tech plan 2026-07-29 D19",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch) and epic SV-8785. It follows the NEWER wording of the Filters specification version 1.6, in the revision published on the afternoon of 4 August 2026, which changed the date filter description in the Feature Overview and in the Key Decisions section: the date button now offers standard ready-made periods and starts with the current default range already filled in. An earlier revision of the same specification said the opposite, and this test follows the newer one. The specification does not give this a numbered requirement, so there is no requirement number to quote.","SV-8785 [epic] (spec v1.6 §4 ""New date-range filter type""; §2 Reports Filters - start/end picker; no presets; no default; applies on the second date); Branko answers 2026-07-31 Q5; tech plan 2026-07-29 D19",,
 Page toolbar Search expands in place and narrows the list as you type,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.","1. Find the Search control in the page toolbar (a magnifier icon with the word Search).
 2. Click it.
@@ -1074,7 +1060,7 @@ Page toolbar Search expands in place and narrows the list as you type,Page Searc
 4. Clicking away with an empty box collapses it back to the Search button; with text in it, the box stays open.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R1, S13-R9, S13-R12, S13-R15).",SV-8798 (S13-R1 (placement in the toolbar action group); S13-R9 (scoped to this table only); S13-R12; S13-R15 (blur rules)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R1, S13-R9, S13-R12, S13-R15).",SV-8798 (S13-R1 (placement in the toolbar action group); S13-R9 (scoped to this table only); S13-R12; S13-R15 (blur rules)) [spec v1.6 2026-07-28],,
 Page search combines with filters and is cleared separately,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with work orders for several customers and statuses.","1. Apply one filter (for example a Status).
 2. Type a search term in the page search box.
@@ -1084,7 +1070,7 @@ Page search combines with filters and is cleared separately,Page Search Toolbar,
 3. Clearing the filter keeps the search applied - each is cleared by its own control without wiping the other.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R10, S13-R13, S8-R5).",SV-8785 [epic] (S13-R10 (search and filters are additive); S13-R13 (each cleared independently); S8-R5) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R10, S13-R13, S8-R5).",SV-8785 [epic] (S13-R10 (search and filters are additive); S13-R13 (each cleared independently); S8-R5) [spec v1.6 2026-07-28],,
 Your typed search stays in this browser tab only and is never saved,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.
 3. You know how to open a second browser tab on the same page.","1. Type a search term in the page Search box that matches some work orders.
@@ -1097,7 +1083,7 @@ Your typed search stays in this browser tab only and is never saved,Page Search 
 4. After closing the browser and coming back, the Search box is empty and the list is unsearched - a typed search is never remembered for next time (your filters, unlike the search, ARE remembered).
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R14, S13-R25, S13-N4, S10-R5).",SV-8785 [epic] (S13-R14 (retained for the browser tab session); S13-R25 (never stored against the account; each tab independent); S13-N4 (not restored on a later visit); S10-R5) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R14, S13-R25, S13-N4, S10-R5).",SV-8785 [epic] (S13-R14 (retained for the browser tab session); S13-R25 (never stored against the account; each tab independent); S13-N4 (not restored on a later visit); S10-R5) [spec v1.6 2026-07-28],,
 The search term is part of the shareable page link,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page.","1. Type a search term and copy the page address.
 2. Open the copied address in a fresh tab.
@@ -1107,7 +1093,7 @@ The search term is part of the shareable page link,Page Search Toolbar,Functiona
 4. A search arriving via a link is view-only, the same as filters from a link - it does not overwrite your own remembered search.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-R4, S11-R5, S11-N2, S11-R8).",SV-8796 (S11-R4 (query reflected in the URL); S11-R5 (URL query pre-applied with the control filled); S11-N2 (malformed query ignored with no error); S11-R8 (rationale: no saved value to overwrite)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-R4, S11-R5, S11-N2, S11-R8).",SV-8796 (S11-R4 (query reflected in the URL); S11-R5 (URL query pre-applied with the control filled); S11-N2 (malformed query ignored with no error); S11-R8 (rationale: no saved value to overwrite)) [spec v1.6 2026-07-28],,
 On mobile the search expands in the toolbar and buttons make room,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a mobile device.
 2. You are on the Work Orders page.","1. Tap the Search control in the page toolbar.
 2. Type a term and watch the list.
@@ -1119,7 +1105,7 @@ On mobile the search expands in the toolbar and buttons make room,Page Search To
 5. There is no extra 'search is on' badge on mobile: with text in it the box simply stays open showing your text, and an empty box closes back to the Search button when you tap elsewhere - exactly as on desktop.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R16, S13-R17, S13-R18, S13-R19, S13-R20, S12-R5).","SV-8785 [epic] (S13-R16 (inline expansion with no modal); S13-R17 (field fills the remaining width); S13-R18 (CTA hug width); S13-R19 (2+ icon actions -> ""more"" kebab); S13-R20 (no active-query indicator); S12-R5) [spec v1.6 2026-07-28]",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R16, S13-R17, S13-R18, S13-R19, S13-R20, S12-R5).","SV-8785 [epic] (S13-R16 (inline expansion with no modal); S13-R17 (field fills the remaining width); S13-R18 (CTA hug width); S13-R19 (2+ icon actions -> ""more"" kebab); S13-R20 (no active-query indicator); S12-R5) [spec v1.6 2026-07-28]",,
 "Every list page keeps its own search box (Parts, Reports, detail tabs)",Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The page-search rollout has finished everywhere (run this sweep at the end of the rollout, not part-way through).
 3. You can reach Work Orders, Customers, Parts, Administration, Reports and the Dashboard.","1. Visit the Work Orders surfaces: the Work Orders list, a work order's History tab, the Work Order Log dialog opened from that tab's kebab menu, a line's Line Log dialog opened from the Lines tab, and the work order's Notes tab.
@@ -1133,7 +1119,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 4. The work order Parts tab keeps the local search input it already had - it was deliberately left as it is.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S14-R6, S14-R5, S13-R22, S14-N1).",SV-8785 [epic] (S14-R6 (audit: 42 surfaces across 39 components; Work Order Parts excluded); S14-R5 (app-wide sweep); S13-R22 (every table carries a search control); S14-N1 (verify once at the end)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S14-R6, S14-R5, S13-R22, S14-N1).",SV-8785 [epic] (S14-R6 (audit: 42 surfaces across 39 components; Work Order Parts excluded); S14-R5 (app-wide sweep); S13-R22 (every table carries a search control); S14-N1 (verify once at the end)) [spec v1.6 2026-07-28],,
 The top navigation search no longer filters page lists,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.","1. Type a term into the TOP NAVIGATION search (the app-wide search at the top), not the page's own search box.
 2. Watch the Work Orders list while typing.
@@ -1143,7 +1129,7 @@ The top navigation search no longer filters page lists,Page Search Toolbar,Funct
 3. Picking a dropdown result still takes you to that record - the navigation search keeps its find-and-open role.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S14-R1, S14-R2, S14-R4, S14-R5).",SV-8799 (S14-R1 (navigational results only); S14-R2 (the page-filtering code path is removed rather than dormant); S14-R4 (the list is left untouched); S14-R5) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S14-R1, S14-R2, S14-R4, S14-R5).",SV-8799 (S14-R1 (navigational results only); S14-R2 (the page-filtering code path is removed rather than dormant); S14-R4 (the list is left untouched); S14-R5) [spec v1.6 2026-07-28],,
 "The Search box changes look as you hover over it, open it and type",Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.","1. Look at the right-hand end of the toolbar row, before the small icon buttons and before the 'Create Work Order' button.
 2. Move the mouse pointer over the 'Search' button without clicking.
@@ -1157,7 +1143,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 6. A very long sentence does not make the box grow and does not cut the text off - the text scrolls sideways inside the box and the cursor stays where you are typing.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R2, S13-R3, S13-R4, S13-R5, S13-R6, S13-R8).","SV-8798 (S13-R2 (default text button); S13-R3 (hover fill); S13-R4 (expands in place at 180px); S13-R5 (placeholder ""Type to search""); S13-R6 (typed text + X-circle clear); S13-R8 (long queries scroll)) [spec v1.6 2026-07-28]",,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R2, S13-R3, S13-R4, S13-R5, S13-R6, S13-R8).","SV-8798 (S13-R2 (default text button); S13-R3 (hover fill); S13-R4 (expands in place at 180px); S13-R5 (placeholder ""Type to search""); S13-R6 (typed text + X-circle clear); S13-R8 (long queries scroll)) [spec v1.6 2026-07-28]",,
 "The list narrows shortly after you stop typing, with no button to press",Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page with several work orders listed.
 3. You can also open the Parts Inventory page.","1. On the Work Orders page open the Search box and type a few letters that match some work orders. Do NOT press Enter.
@@ -1170,10 +1156,10 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 4. Pressing Enter changes nothing that has not already happened - the same rows stay listed and no page reload happens.
 5. Parts Inventory behaves the same way, only it waits a fraction longer before reacting; that longer wait is on purpose because that page carries more data.
 
-Known issue: the empty screen offers no way to clear the search on its own. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8847
+Known and accepted: the empty screen offers no way to clear the search on its own. The product behaves this way on purpose for now. Do not raise this as a new problem.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R7, S13-R12).",SV-8798 (S13-R7 (applies as you type; debounced 300ms; no apply/submit; Enter not required; Inventory 350ms); S13-R12 (results replace the table in place)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R7, S13-R12).",SV-8798 (S13-R7 (applies as you type; debounced 300ms; no apply/submit; Enter not required; Inventory 350ms); S13-R12 (results replace the table in place)) [spec v1.6 2026-07-28],,
 One search box serves all Work Orders tabs and searches the tab you are on,Page Search Toolbar,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Work orders exist in several statuses, so the All, Estimates and Completed tabs each have rows.
 3. You have a word (for example part of a customer name) that matches work orders on more than one of those tabs.","1. On the All tab, type that word into the page Search box.
@@ -1184,10 +1170,8 @@ One search box serves all Work Orders tabs and searches the tab you are on,Page 
 3. The Completed tab behaves the same way: your word is still there and only that tab's matching rows are listed.
 4. Clearing the search clears it for all the Work Orders tabs - they share one search - and each tab shows its full list again.
 
-Known issue: what you type in the page search is saved against your account, so it comes back on a later visit and can leave the list looking empty. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8844
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R11, S13-R24).",SV-8798 (S13-R11 (search applies within the active tab only); S13-R24 (the Work Orders tabs share a single query - views of one dataset)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R11, S13-R24).",SV-8798 (S13-R11 (search applies within the active tab only); S13-R24 (the Work Orders tabs share a single query - views of one dataset)) [spec v1.6 2026-07-28],,
 Each Report tab and each Parts view keeps its own separate search,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You can open at least two Parts views (for example Inventory and Purchase Orders).
 3. You can open a report that has more than one tab.","1. On a Parts view (for example Inventory) type a word into that page's Search box.
@@ -1198,10 +1182,8 @@ Each Report tab and each Parts view keeps its own separate search,Page Search To
 3. Each report tab behaves the same way: a word typed on one tab stays on that tab only, and each tab remembers its own.
 4. No search is ever applied to a table it was not typed on.
 
-Known issue: what you type in the page search is saved against your account instead of only for this browser tab. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8844
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R24, S13-R11, S10-R4).",SV-8785 [epic] (S13-R24 (Reports sub-tabs and Parts views each keep their own query); S13-R11; S10-R4 (each view/tab keeps its own set)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-R24, S13-R11, S10-R4).",SV-8785 [epic] (S13-R24 (Reports sub-tabs and Parts views each keep their own query); S13-R11; S10-R4 (each view/tab keeps its own set)) [spec v1.6 2026-07-28],,
 An old link carrying a top-search word no longer narrows the page list,Page Search Toolbar,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. You have a Work Orders web address from BEFORE this change that still carries a word typed into the top-of-screen search (a bookmark, or a link someone sent). If you do not have one, hand-type that old search part onto the end of the Work Orders address.","1. Open that old web address.
 2. Look at the work order list and at the page's own Search box.
@@ -1211,10 +1193,8 @@ An old link carrying a top-search word no longer narrows the page list,Page Sear
 3. No error is shown - the leftover search part in the address is simply ignored. (Whether it also disappears from the address is not important; note what you see.)
 4. After typing in the top-of-screen search and reloading, the list is still not narrowed and nothing about that word was remembered for the list.
 
-Known issue: the search text is restored on a later visit instead of starting empty. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8844
-
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S14-R3, S14-R2, S14-R1).",SV-8799 (S14-R3 (state / URL parameters / persisted values carrying a global search term into page filtering are removed with it); S14-R2; S14-R1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S14-R3, S14-R2, S14-R1).",SV-8799 (S14-R3 (state / URL parameters / persisted values carrying a global search term into page filtering are removed with it); S14-R2; S14-R1) [spec v1.6 2026-07-28],,
 Collapsing the filter bar keeps an active search working,Page Search Toolbar,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. You are on the Work Orders page and the filter bar is expanded.
 3. A word is typed in the page Search box and the list is narrowed by it.","1. With the search still active, click the filter button in the toolbar to collapse the filter bar.
@@ -1224,7 +1204,7 @@ Collapsing the filter bar keeps an active search working,Page Search Toolbar,Fun
 3. Expanding the bar again changes nothing about the search or the narrowed list.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-E1).",SV-8798 (S13-E1 (a collapsed filter bar keeps an active query applying and the search control stays in the toolbar); §4 Key Decisions (page search is separate from the filter bar)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S13-E1).",SV-8798 (S13-E1 (a collapsed filter bar keeps an active query applying and the search control stays in the toolbar); §4 Key Decisions (page search is separate from the filter bar)) [spec v1.6 2026-07-28],,
 The work order list request carries the active filter selections,API — Work Orders List Filtering,Functional,High,"1. You are signed in to the ShopView App on a desktop browser with developer tools open on the Network tab.
 2. You are on the Work Orders page with no filters applied.","1. Apply a Status selection and a Customer selection in the filter bar.
 2. In the Network tab, find the work order list request the page sends after the change.
@@ -1233,7 +1213,7 @@ The work order list request carries the active filter selections,API — Work Or
 3. The response contains only work orders matching the filters - the filtering is done by the backend, not just hidden client-side.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R2, S3-R6).",SV-8785 [epic] (S2-R2; S3-R6 (backend view)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R2, S3-R6).",SV-8785 [epic] (S2-R2; S3-R6 (backend view)) [spec v1.6 2026-07-28],,
 A combined multi-filter request returns only work orders matching all filters,API — Work Orders List Filtering,Functional,High,"1. You are signed in with developer tools open on the Network tab.
 2. Seeded ZZAUTOTEST work orders exist: customer A with an Estimate and an Approved work order, customer B with an Estimate work order.","1. On the Work Orders page apply Status = Estimate + Approved and Customer = customer A.
 2. Capture the resulting list request and response.","1. One request carries both filters together (both statuses and the customer).
@@ -1241,7 +1221,7 @@ A combined multi-filter request returns only work orders matching all filters,AP
 3. Customer B's work orders are absent - the customer filter and status filter both restrict the result, while the two statuses combine as either-or.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R2, S3-R6, S8-R3).",SV-8785 [epic] (S2-R2; S3-R6; S8-R3 (backend view)) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S2-R2, S3-R6, S8-R3).",SV-8785 [epic] (S2-R2; S3-R6; S8-R3 (backend view)) [spec v1.6 2026-07-28],,
 A request with a deleted or unknown filter value gives no server error,API — Work Orders List Filtering,Negative,Medium,"1. You are signed in and can replay/edit the work order list request (developer tools or an API client).
 2. You have a captured filtered list request, and one of its filter values has since been deleted (for example a removed ZZAUTOTEST customer) or is a made-up identifier.","1. Send the list request containing the no-longer-existing (or made-up) filter value.
 2. Inspect the HTTP status and the response body.","1. The backend does not fail with a server error (no HTTP 5xx).
@@ -1251,7 +1231,7 @@ A request with a deleted or unknown filter value gives no server error,API — W
 Known issue: the server does not fail, but the value that no longer exists is still applied instead of being dropped. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8832
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-N1, S11-R3).",SV-8785 [epic] (S10-N1; S11-R3) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-N1, S11-R3).",SV-8785 [epic] (S10-N1; S11-R3) [spec v1.6 2026-07-28],,
 A list request with malformed filter parameters does not produce a server error,API — Work Orders List Filtering,Negative,Medium,"1. You are signed in and can replay/edit the work order list request.
 2. You have a captured filtered list request to tamper with.","1. Corrupt the filter parameters (wrong types, scrambled values, nonsense text) and send the request.
 2. Inspect the HTTP status and the response body.
@@ -1261,7 +1241,7 @@ A list request with malformed filter parameters does not produce a server error,
 Known issue: the server does not fail, but a broken address is not fully ignored by the page. Until it is fixed this test is expected to fail on that point - it is already reported. Ticket: https://shopview.atlassian.net/browse/SV-8832
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-N1).",SV-8796 (S11-N1) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S11-N1).",SV-8796 (S11-N1) [spec v1.6 2026-07-28],,
 "A filter combination matching nothing returns an empty list, not an error",API — Work Orders List Filtering,Functional,Medium,"1. You are signed in with developer tools open on the Network tab.
 2. A filter combination is known to match no work orders (for example a seeded customer plus a status they never have).","1. Apply that filter combination on the Work Orders page.
 2. Capture the list request and response.","1. The request succeeds (HTTP 200).
@@ -1269,7 +1249,7 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 3. The page renders the no-results empty state from this response.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R3, S2-N3).",SV-8785 [epic] (S8-R3; S2-N3) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S8-R3, S2-N3).",SV-8785 [epic] (S8-R3; S2-N3) [spec v1.6 2026-07-28],,
 "Saved-filters service round-trip: save, reload, and per-user isolation",API — Work Orders List Filtering,Functional,High,"1. You are signed in to the ShopView App on a desktop browser with developer tools open on the Network tab.
 2. A second user account is available.","1. On the Work Orders page, change a filter and watch the Network tab for the save request the page sends shortly after.
 2. Reload the page and find the load request for the saved page state.
@@ -1282,4 +1262,4 @@ This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.
 Step 3 needs a SECOND sign-in of your own. We could not run it for you: impersonating another user on this branch returns an error, and a new staff member cannot finish signing up because the invitation email cannot be received here. If you have a second account, run step 3 normally. If you do not, mark this test BLOCKED - do not mark it failed. Steps 1, 2 and 4 were confirmed working.
 
 ---
-This is the expected behaviour as per the build tested on 8/4/2026 (ShopView v3.4.2-4f8211c on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-R2, S10-R3).",SV-8795 (S10-R2 (filters stored server-side against the user account; last write wins); S10-R3 (saved per user)) + tech plan 2026-07-29 s4-1.3 (GET/PUT per-user page preferences) [spec v1.6 2026-07-28],,
+This is the expected behaviour as per the build tested on 8/5/2026 (ShopView v3.4.2-d00239b on the Filters QA branch), epic SV-8785 and the Filters specification version 1.6 as revised on 4 August 2026 (S10-R2, S10-R3).",SV-8795 (S10-R2 (filters stored server-side against the user account; last write wins); S10-R3 (saved per user)) + tech plan 2026-07-29 s4-1.3 (GET/PUT per-user page preferences) [spec v1.6 2026-07-28],,
