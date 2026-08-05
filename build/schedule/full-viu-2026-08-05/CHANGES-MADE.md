@@ -79,6 +79,16 @@ with real data.
 Guerrero on 26 November 2026 and on Ayesha Khan on 11 November 2026 was created
 deliberately by this test pass. They are not real scheduling problems.**
 
+## 3b. Items I ALTERED where the BEFORE value matters (batch 4)
+
+| Item | BEFORE | AFTER | Restored? |
+|---|---|---|---|
+| Shift `b07bf2e7-b192-47f3-823b-e9fafb83ea47` (**mine**, S-15875 Vuchester Retail, Brittany Anderson, 25 Nov 2026) | `2026-11-25T15:00:00Z` → `16:00:00Z`, 60 min | `2026-11-25T14:30:00Z` → `17:45:00Z`, **195 min** | **No** — deliberately left moved and resized. It is a shift I created, so there is no original real value to lose. |
+| Work-order line estimate — **S-15732** Xiriver Apparel, line "Auxiliary compressor - Top up compressor oil" (`7b237135-89c5-48ac-ab88-b579e2f463c7`) | **0.3 h (18m)** | set to **2.75 h**, then **set back to 0.3 h** | **YES** — verified: the modal reads "18m / 18m" again. This is real work-order data, so it was put back even though teardown is no longer required. |
+| Shift `844a5ce1…`, the 5 Colleen Guerrero shifts, and the Kellie Ayers 10h shift | did not exist | created | **No** — left in place, listed above |
+| A **note** on shift `45055358…` (S-15732) | none | added "ZZAUTOTEST note one", edited to "…EDITED", then **deleted** | **YES** — deleted; the modal shows an empty Notes section |
+| **Event** `ac95c9e3-e880-45d2-a9e7-6dcb2a094ef9` "**ZZAUTOTEST Team meeting**", Brittany Anderson, 25 Nov 2026 16:00–18:00Z, colour `#f0f0f1` | did not exist | created | **No** — left in place |
+
 ## 4. Settings, roles, staff, customers, assets
 
 **NONE CHANGED SO FAR.** Specifically:
@@ -87,7 +97,8 @@ deliberately by this test pass. They are not real scheduling problems.**
   permission-dependent case had been observed yet. The Rule-26 reset still applies to
   the Permissions batch and its before/after will be recorded here.
 * **No staff member** was created, edited or reassigned.
-* **No customer, asset or work order** was created, edited or deleted. Work-order line
+* **No customer, asset or work order** was created or deleted. **One work-order line
+  ESTIMATE was edited and put back** — recorded in section 3b. Work-order line
   **rosters** did change as a side effect of creating and deleting shifts — that is the
   product's own behaviour, not a separate edit — and they were verified byte-identical
   afterwards.
