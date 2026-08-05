@@ -1,0 +1,140 @@
+{
+ "customerPositive": {
+  "chip": "Customer: Ceview Builders",
+  "url": "https://sv8785.qa.shopview.com/workorders?company_id=275af4eb-e926-47bb-b43a-679476c05023&tab=all",
+  "lastListUrl": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vin&pagination[descending]=true&filters[0][field]=company_id&filters[0][value]=275af4eb-e926-47bb-b43a-679476c05023&search=&showMyWorkOrders=0",
+  "rows": 31,
+  "customerCol": {
+   "col": "Customer",
+   "idx": 3,
+   "distinct": [
+    "Ceview Builders",
+    null
+   ],
+   "n": 31
+  }
+ },
+ "leadTechPositive": {
+  "chip": "Lead Technician: Colleen Guerrero",
+  "url": "https://sv8785.qa.shopview.com/workorders?tech_assigned_id=16469a2e-c167-4797-b16e-a17bdc5f32e9&tab=all",
+  "lastListUrl": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vin&pagination[descending]=true&filters[0][field]=tech_assigned_id&filters[0][value]=16469a2e-c167-4797-b16e-a17bdc5f32e9&search=&showMyWorkOrders=0",
+  "rows": 31,
+  "techCol": {
+   "col": "Lead Technician",
+   "idx": 9,
+   "distinct": [
+    "Colleen Guerrero",
+    null
+   ],
+   "n": 31
+  }
+ },
+ "advisorPositive": {
+  "chip": "Service Advisor: Lauren Knight",
+  "url": "https://sv8785.qa.shopview.com/workorders?service_advisor_id=6e2fbce3-c278-4095-8f79-ad1931519409&tab=all",
+  "lastListUrl": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vin&pagination[descending]=true&filters[0][field]=service_advisor_id&filters[0][value]=6e2fbce3-c278-4095-8f79-ad1931519409&search=&showMyWorkOrders=0",
+  "rows": 31,
+  "advCol": {
+   "col": "Service Advisor",
+   "idx": 8,
+   "distinct": [
+    "Lauren Knight",
+    null
+   ],
+   "n": 31
+  }
+ },
+ "statusPlusCustomer": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=invoiced&company_id=275af4eb-e926-47bb-b43a-679476c05023&tab=all",
+  "lastListUrl": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=invoicedDate&pagination[descending]=true&filters[0][field]=status&filters[0][value]=invoiced&filters[1][field]=company_id&filters[1][value]=275af4eb-e926-47bb-b43a-679476c05023&search=&showMyWorkOrders=0",
+  "rows": 0,
+  "statusCol": {
+   "col": "Status",
+   "idx": 1,
+   "distinct": [],
+   "n": 0
+  },
+  "customerCol": {
+   "col": "Customer",
+   "idx": 3,
+   "distinct": [],
+   "n": 0
+  },
+  "chips": [
+   "Status: Invoiced",
+   "Customer: Ceview Builders"
+  ]
+ },
+ "chipAppearance": {
+  "inactive": {
+   "text": "Statuskeyboard_arrow_down",
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(97, 97, 97)",
+   "border": "rgb(224, 224, 224)",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip"
+  },
+  "active": {
+   "text": "Status: Declinedkeyboard_arrow_down",
+   "bg": "rgb(227, 242, 253)",
+   "color": "rgb(56, 116, 255)",
+   "border": "rgb(56, 116, 255)",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active"
+  },
+  "manyValues": {
+   "text": "Status: Declined, Paid, Invoiced, Comple...",
+   "title": null
+  }
+ },
+ "clearSelectionScoped": {
+  "before": [
+   "Status: Declined",
+   "Asset on Site: Yes"
+  ],
+  "after": [
+   "Status",
+   "Asset on Site: Yes"
+  ],
+  "url": "https://sv8785.qa.shopview.com/workorders?vehicleHere=1&tab=all",
+  "lastListUrl": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vin&pagination[descending]=true&filters[0][field]=vehicleHere&filters[0][value]=1&search=&showMyWorkOrders=0",
+  "rows": 31
+ },
+ "assetFull": {
+  "panel": {
+   "absent": true
+  },
+  "yes": {
+   "chip": "Asset on Site: Yes",
+   "url": "https://sv8785.qa.shopview.com/workorders?vehicleHere=1&tab=all",
+   "rows": 31,
+   "onSiteCol": {
+    "col": "On Site",
+    "idx": 0,
+    "distinct": [
+     "location_on",
+     ""
+    ],
+    "n": 31
+   }
+  },
+  "no": {
+   "chip": "Asset on Site: No",
+   "url": "https://sv8785.qa.shopview.com/workorders?vehicleHere=0&tab=all",
+   "rows": 31,
+   "onSiteCol": {
+    "col": "On Site",
+    "idx": 0,
+    "distinct": [
+     "location_on",
+     ""
+    ],
+    "n": 31
+   }
+  },
+  "cleared": {
+   "chip": "Asset on Site",
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+   "rows": 31
+  },
+  "panelOpenAfterOutside": false
+ }
+}
