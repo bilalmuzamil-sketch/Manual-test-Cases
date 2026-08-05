@@ -3,6 +3,111 @@
 
 ---
 
+## §0-FULL-LIVE-VIU-2026-08-05 — ALL 110 CASES OBSERVED LIVE. The observation gap is closed.
+
+**Paper: `build/filters/full-viu-2026-08-05/` — read `RESUME.md`, then `SOURCE-CURRENCY.md`,
+`FINDINGS.md` (all 110 rows), `../READINESS-2026-08-05-FULL-LIVE.md`, `DELIBERATE-DECISIONS.md`,
+`CHANGES-MADE.md`, `FILED.md`, `API-ASK.md`, `RECHECK-QUEUE.md`.** Pre-write snapshot committed in
+**a4f8b87** before the first write; execution in **da8ab26**.
+
+**The mandate was to close the live-observation gap: only 29 of 110 had been driven live earlier
+that day. All 110 were driven live in this pass, and none is carried forward.** Build
+**`v3.4.2-d00239b`**, `index.html` **byte-identical by sha256 at 19:53Z, 21:00Z and 21:34Z** — no
+redeploy under the pass. Spec **CURRENT at Confluence version 18** (the in-body field reads `1.6`,
+the known trap). Epic **SV-8785 now has 23 children**, up from 20, verified two ways with equal key
+sets; the three additions are SV-8901, SV-8904 and SV-8906, none of which changes a requirement.
+
+**VERDICTS: PASS 81 · DEVIATION 14 · HOLD 15 = 110.** Every PASS rests on a positive assertion
+captured this run — the filtered column's distinct values, a pixel measurement, a request count, a
+computed colour, a set comparison — never on "no error appeared". **MARKERS: READY 81 ·
+READY-EXPECT-FAIL 14 · HOLD 15 → READY TO AUTOMATE 95, and the arithmetic gate passes both ways
+(81+14 = 95 = 110−15).** The figure fell from 100 because HOLD rose 10→15, and each of the five is
+named in the readiness report — **a lower honest figure is the point.**
+
+**FIVE MARKERS CLAIMED A FAILURE THAT NO LONGER HAPPENS — a defect in our own suite.** **SV-8828 is
+FIXED** (saved filters auto-restore in a fresh browser context without touching Back To My Saved
+Filters; a shared-link visit leaves your own saved filters byte-identical), so **C38879** and
+**C38896** stopped expecting one; and **C38883, C38884 and C38898** turned out to **pass in full**
+when actually driven — the search box measures **exactly the 180px** the design asks for, grows
+leftward, and its neighbouring buttons do not move. **SV-8824 and SV-8844 are also genuinely fixed**
+(the dropdown stays open across two ticks; no `search` key is written to the saved preference at
+all). One case moved the other way: **C38897** asserts the empty state names both the filters and
+the search and offers a separate way to clear the search, and neither happens.
+
+**THE PARTS AND REPORTS FILTER BARS ARE BUILT — nine of our cases said "the feature is not in the
+product yet", which was FALSE.** Parts carries **Bin Location, Category and Supply** chips plus a
+collapse toggle, Clear Filters and a page search; Reports carries **Date Range: This month** and
+**Filter by Staff**. They stay on **HOLD** because the blocker is not absent product but an absent
+**SOURCE** — Branko's Parts/Reports write-up has never arrived, so nothing documents what they
+should do (Rule 58: hold and ask, never resolve from the build). **No new Parts/Reports coverage was
+authored**, per the QA lead's standing *"lets wait for Brankos PRD"*.
+
+**SV-8845 REPRODUCES AND IS WORSE THAN "IGNORED":** on a phone `?status=declined`, `?status=paid`
+and `?status=imported` **all sent `filters[0][value]=estimate`** to the server while the chip read
+*"Status (1)"*, 30 cards each time — and the same links are **correct on desktop**. **SV-8843 and
+SV-8847 also still reproduce despite being closed OBSOLETE** (the bar measured beside the tabs as
+flex siblings in one row; the empty-state message is always *"No work orders match your filters"*
+and never mentions the search, even when a search is the only thing narrowing). **Neither was
+reopened by us — that is the QA lead's call, and SV-8847 is the one worth it.**
+
+**ALL 110 `refs` MOVED OFF THE STALE TRAP NUMBER** — every entry now pins **`[spec v18
+2026-08-04]`** instead of `[spec v1.6 2026-07-28]`, so Rule 42's version-pin mechanism can finally
+fire; no entry exceeds the 248-character limit. **The ten cases still showing raw `<ol>`/`<li>`
+markup to the tester are repaired — raw markup is now 0 of 110** (they were in the pre-write
+snapshot, so they predate this pass).
+
+**WRITES: 110 × `update_case`, every one HTTP 200 + byte-verified MATCH, 30 fields compared each, 0
+mismatches, 0 collateral changes**, with **all four fields on every payload** (`custom_preconds`,
+`custom_steps`, `custom_expected`, `refs`) because TestRail re-renders any omitted text field. **0
+add / 0 delete / 0 section / 0 run writes; no result logged anywhere.** **Run 352 PROVEN UNDAMAGED**
+— include_all still false, 110 tests, test-id and case-id sets equal both directions, **all 458
+result records present BY ID with 0 graded fields changed and 0 new results during the write
+window**; the **458 moved `case_refs` values are the declared read-time echo** of the refs edit.
+**Rule 59 satisfied: sources read at pass start 19:53Z and RE-READ at write start 21:34Z, verdict
+UNCHANGED.**
+
+**ONE TICKET FILED: [SV-8912](https://shopview.atlassian.net/browse/SV-8912)** — Story Defect ·
+parent **SV-8798** (the owning story) · priority **Low** · `relates to` SV-8798 · Product Area not
+sent · 11 field checks read back, all PASS · duplicate-searched with four JQL queries first. **On a
+phone there is no page search at all**: the magnifier opens the app-wide search, typing left the
+address bar unchanged and the list at 33 cards, and Create Work Order stays 332px of a 390px
+viewport instead of the 144px hug width S13-R18 requires.
+
+**THREE COVERAGE GAPS found from outside our own work, deliberately NOT authored** (needs
+authorisation): **SV-8903** where the funnel toggle sits (S13-R1), **SV-8904** chip leading icons,
+**SV-8906** empty-state consistency across Parts and Reports. **We also record a documented
+disagreement with SV-8906**, which ticks the Work Orders empty state as matching S8-R3/R4 while our
+live evidence says it does not — S8-R3 requires the message to name *"the current filters and
+search"* and it never mentions the search.
+
+**ENV: nothing created, nothing deleted, no role touched** (the Filters suite has no permission
+cases, so no Rule-26 reset was owed, and the shared org's roles are exactly as found — nothing here
+can corrupt the sibling Schedule pass). **Two saved preference objects were changed and both carry
+their BEFORE value in `CHANGES-MADE.md`:** the Work Orders filter state, found dirty at
+`{"status":["declined"]}` set 19:14:50Z by another actor and **left empty**; and
+`parts-inventory`, whose `supply` went **`over-supplied` → `all`** while its pre-existing
+**Category: COCtest** filter was left untouched — that filter is leftover state on a shared
+account, not a product default.
+
+**DELIVERABLES: four counts reconcile 110 live / 110 local active / 110 id-map / 110 import,
+set-equal BOTH directions** (146 local bodies − 36 retired; **0 deletions, 0 retirements, and the 36
+retired were not resurrected**); id-map re-merged from live after the generator blanked all 110
+C-ids and dropped `refs` again — **0 blanks, refs 110/110, header correct**; **shredding guard
+PASSED (0 rows)**; import header sha256 `a45eae40ec73b8ac` **identical to all six peers**.
+
+**⚠️ Rule-49 queue `full-viu-2026-08-05/RECHECK-QUEUE.md` is OPEN and now the normal steady state
+(Rule 60) — engineering will not declare the branch final, so all 110 verdicts are PROVISIONAL. That
+is about durability, not rigour: 110 of 110 were observed on the marker above, and each case records
+on itself when it was last checked.**
+
+**OUTSTANDING: Branko's Parts/Reports write-up (blocks 10 cases on shipped, untested behaviour) ·
+reopen SV-8847? (recommended) and SV-8845 already reopened · a second test login (blocks C29615 and
+C38895) · the page-search rollout finishing (blocks C38891 and C38901) · authorisation to author the
+three outside-in gaps · a ruling on the one API-only finding in `API-ASK.md` · the playbook's
+`vehicleHere` line is wrong and needs correcting by whoever owns that file.**
+
+---
+
 
 ## §0-PROVENANCE-RESTAMP-2026-08-05 — all 110 provenance lines re-stamped; the build is no longer named as a source
 
