@@ -1,0 +1,175 @@
+{
+ "mobileLayout": {
+  "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+  "allFiltersChip": true,
+  "chipIds": [
+   "filter_chip_all_filters",
+   "filter_chip_status",
+   "filter_chip_company_id",
+   "filter_chip_tech_assigned_id",
+   "filter_chip_service_advisor_id",
+   "filter_chip_vehicleHere"
+  ],
+  "chipTexts": [
+   "tuneAll Filters",
+   "Status",
+   "Customer",
+   "Lead Technician",
+   "Service Advisor",
+   "Asset on Site"
+  ],
+  "toggleBar": false,
+  "clearFilters": false,
+  "applyBtn": false,
+  "geometry": {
+   "chipRow": {
+    "x": 10,
+    "y": 239,
+    "w": 370
+   },
+   "tabs": {
+    "x": 24,
+    "y": 78,
+    "w": 342
+   },
+   "overflowX": "auto",
+   "scrollW": 878,
+   "clientW": 370,
+   "scrollable": true
+  },
+  "cards": 30
+ },
+ "allFiltersSheet_deferredApply": {
+  "sheet": {
+   "present": true,
+   "applyBtn": {
+    "text": "Apply Filters",
+    "testid": "apply_filters"
+   },
+   "rows": [
+    "Status|keyboard_arrow_down",
+    "Status|keyboard_arrow_down",
+    "keyboard_arrow_down",
+    "EstimateApprovedIn progressReviewCompleteInvoicedPaidDecline",
+    "Customer|keyboard_arrow_down",
+    "Customer|keyboard_arrow_down",
+    "keyboard_arrow_down",
+    "searchIibay LandscapingZecrest TechnologyTeton ApparelXobroo"
+   ],
+   "text": "Apply Filters"
+  },
+  "applyButtonExactLabel": "Apply Filters",
+  "listRequests": {
+   "onLoad": 2,
+   "afterOpeningSheet": 2,
+   "afterTickingTwo": 2,
+   "afterApply": 3
+  },
+  "requestsFiredWhileTicking": 0,
+  "requestsFiredByApply": 1,
+  "urlBeforeTicking": "https://sv8785.qa.shopview.com/workorders?tab=all",
+  "urlWhileTicking": "https://sv8785.qa.shopview.com/workorders?tab=all",
+  "urlAfterApply": "https://sv8785.qa.shopview.com/workorders?status=declined&status=paid&tab=all",
+  "urlChangedWhileTicking": false,
+  "ticked": [
+   "Paid",
+   "Declined"
+  ],
+  "state": {
+   "url": "https://sv8785.qa.shopview.com/workorders?status=declined&status=paid&tab=all",
+   "allFiltersChip": true,
+   "chipIds": [
+    "filter_chip_all_filters",
+    "filter_chip_status",
+    "filter_chip_company_id",
+    "filter_chip_tech_assigned_id",
+    "filter_chip_service_advisor_id",
+    "filter_chip_vehicleHere"
+   ],
+   "chipTexts": [
+    "tuneAll Filters (1)",
+    "Status (2)",
+    "Customer",
+    "Lead Technician",
+    "Service Advisor",
+    "Asset on Site"
+   ],
+   "toggleBar": false,
+   "clearFilters": false,
+   "applyBtn": false
+  },
+  "cards": 30
+ },
+ "singleChipSheet_SV8875": {
+  "chipOpened": "filter_chip_status",
+  "applyButtonPresentInSingleSheet": false,
+  "controlIdsInSheet": [
+   "filter_option_status_estimate",
+   "filter_option_status_approved",
+   "filter_option_status_in_progress",
+   "filter_option_status_ready_for_review",
+   "filter_option_status_complete",
+   "filter_option_status_invoiced",
+   "filter_option_status_paid",
+   "filter_option_status_declined",
+   "filter_option_status_imported",
+   "filter_clear_selection_status"
+  ],
+  "requestsFiredByOneTap": 1,
+  "urlBefore": "https://sv8785.qa.shopview.com/workorders?tab=all",
+  "urlAfter": "https://sv8785.qa.shopview.com/workorders?status=paid&tab=all",
+  "urlChangedOnTap": true,
+  "sheetStillOpenAfterTap": false,
+  "cards": 30
+ },
+ "sharedLinkOnPhone_SV8845": {
+  "declined": {
+   "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+   "chipTexts": [
+    "tuneAll Filters (1)",
+    "Status (1)",
+    "Customer",
+    "Lead Technician",
+    "Service Advisor",
+    "Asset on Site"
+   ],
+   "filterValuesSentToServer": [
+    "estimate"
+   ],
+   "lastRequest": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=&pagination[descending]=false&filters[0][field]=status&filters[0][value]=estimate&search=&showMyWorkOrders=0",
+   "cards": 30
+  },
+  "paid": {
+   "url": "https://sv8785.qa.shopview.com/workorders?status=paid&tab=all",
+   "chipTexts": [
+    "tuneAll Filters (1)",
+    "Status (1)",
+    "Customer",
+    "Lead Technician",
+    "Service Advisor",
+    "Asset on Site"
+   ],
+   "filterValuesSentToServer": [
+    "estimate"
+   ],
+   "lastRequest": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=&pagination[descending]=false&filters[0][field]=status&filters[0][value]=estimate&search=&showMyWorkOrders=0",
+   "cards": 30
+  },
+  "imported": {
+   "url": "https://sv8785.qa.shopview.com/workorders?status=imported&tab=all",
+   "chipTexts": [
+    "tuneAll Filters (1)",
+    "Status (1)",
+    "Customer",
+    "Lead Technician",
+    "Service Advisor",
+    "Asset on Site"
+   ],
+   "filterValuesSentToServer": [
+    "estimate"
+   ],
+   "lastRequest": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=&pagination[descending]=false&filters[0][field]=status&filters[0][value]=estimate&search=&showMyWorkOrders=0",
+   "cards": 30
+  }
+ }
+}
