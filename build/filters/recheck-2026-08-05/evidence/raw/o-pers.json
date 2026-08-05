@@ -1,0 +1,678 @@
+{
+ "setup": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=invoiced&vehicleHere=1&tab=all",
+  "chips": [
+   {
+    "text": "Status: Invoiced|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "disabled": false,
+    "bg": "rgb(227, 242, 253)",
+    "fg": "rgb(56, 116, 255)",
+    "x": 452,
+    "y": 86,
+    "w": 149,
+    "h": 30,
+    "testid": "filter_chip_status"
+   },
+   {
+    "text": "Customer|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 619,
+    "y": 86,
+    "w": 113,
+    "h": 30,
+    "testid": "filter_chip_company_id"
+   },
+   {
+    "text": "Lead Technician|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 751,
+    "y": 86,
+    "w": 150,
+    "h": 30,
+    "testid": "filter_chip_tech_assigned_id"
+   },
+   {
+    "text": "Service Advisor|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 919,
+    "y": 86,
+    "w": 148,
+    "h": 30,
+    "testid": "filter_chip_service_advisor_id"
+   },
+   {
+    "text": "Asset on Site: Yes|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "disabled": false,
+    "bg": "rgb(227, 242, 253)",
+    "fg": "rgb(56, 116, 255)",
+    "x": 1085,
+    "y": 86,
+    "w": 161,
+    "h": 30,
+    "testid": "filter_chip_vehicleHere"
+   }
+  ],
+  "rows": 16
+ },
+ "prefGET": {
+  "status": 200,
+  "body": "{\"data\":{\"pageKey\":\"work-orders-list\",\"value\":{\"tab\":\"all\",\"sortBy\":\"invoicedDate\",\"columns\":{\"vin\":true,\"vehicle\":true,\"daysOpen\":false,\"progress\":true,\"startDate\":true,\"linesCount\":true,\"technician\":true,\"totalPrice\":true,\"invoicedDate\":false,\"serviceAdvisor\":true,\"partRequestsCount\":false,\"clockedInTechnicians\":true,\"partReturnRequestsCount\":false,\"unreceivedPartRequestsCount\":false},\"filters\":{\"status\":[\"invoiced\"],\"vehicleHere\":[\"1\"],\"tech_assigned_id\":[],\"service_advisor_id\":[]},\"collapsed\":false,\"descending\":true},\"updatedAt\":\"2026-08-05T03:50:16Z\"}}"
+ },
+ "navAwayAndBack": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=invoiced&vehicleHere=1&tab=all",
+  "chips": [
+   {
+    "text": "Status: Invoiced|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "disabled": false,
+    "bg": "rgb(227, 242, 253)",
+    "fg": "rgb(56, 116, 255)",
+    "x": 452,
+    "y": 86,
+    "w": 149,
+    "h": 30,
+    "testid": "filter_chip_status"
+   },
+   {
+    "text": "Customer|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 619,
+    "y": 86,
+    "w": 113,
+    "h": 30,
+    "testid": "filter_chip_company_id"
+   },
+   {
+    "text": "Lead Technician|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 751,
+    "y": 86,
+    "w": 150,
+    "h": 30,
+    "testid": "filter_chip_tech_assigned_id"
+   },
+   {
+    "text": "Service Advisor|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 919,
+    "y": 86,
+    "w": 148,
+    "h": 30,
+    "testid": "filter_chip_service_advisor_id"
+   },
+   {
+    "text": "Asset on Site: Yes|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "disabled": false,
+    "bg": "rgb(227, 242, 253)",
+    "fg": "rgb(56, 116, 255)",
+    "x": 1085,
+    "y": 86,
+    "w": 161,
+    "h": 30,
+    "testid": "filter_chip_vehicleHere"
+   }
+  ],
+  "rows": 16,
+  "backBtn": []
+ },
+ "reloadPage": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=invoiced&vehicleHere=1&tab=all",
+  "chips": [
+   {
+    "text": "Status: Invoiced|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "disabled": false,
+    "bg": "rgb(227, 242, 253)",
+    "fg": "rgb(56, 116, 255)",
+    "x": 452,
+    "y": 86,
+    "w": 149,
+    "h": 30,
+    "testid": "filter_chip_status"
+   },
+   {
+    "text": "Customer|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 619,
+    "y": 86,
+    "w": 113,
+    "h": 30,
+    "testid": "filter_chip_company_id"
+   },
+   {
+    "text": "Lead Technician|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 751,
+    "y": 86,
+    "w": 150,
+    "h": 30,
+    "testid": "filter_chip_tech_assigned_id"
+   },
+   {
+    "text": "Service Advisor|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 919,
+    "y": 86,
+    "w": 148,
+    "h": 30,
+    "testid": "filter_chip_service_advisor_id"
+   },
+   {
+    "text": "Asset on Site: Yes|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "disabled": false,
+    "bg": "rgb(227, 242, 253)",
+    "fg": "rgb(56, 116, 255)",
+    "x": 1085,
+    "y": 86,
+    "w": 161,
+    "h": 30,
+    "testid": "filter_chip_vehicleHere"
+   }
+  ],
+  "rows": 16,
+  "backBtn": []
+ },
+ "freshContext": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=invoiced&vehicleHere=1&tab=all",
+  "chips": [
+   {
+    "text": "Status: Invoiced|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "disabled": false,
+    "bg": "rgb(227, 242, 253)",
+    "fg": "rgb(56, 116, 255)",
+    "x": 452,
+    "y": 86,
+    "w": 149,
+    "h": 30,
+    "testid": "filter_chip_status"
+   },
+   {
+    "text": "Customer|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 619,
+    "y": 86,
+    "w": 113,
+    "h": 30,
+    "testid": "filter_chip_company_id"
+   },
+   {
+    "text": "Lead Technician|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 751,
+    "y": 86,
+    "w": 150,
+    "h": 30,
+    "testid": "filter_chip_tech_assigned_id"
+   },
+   {
+    "text": "Service Advisor|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 919,
+    "y": 86,
+    "w": 148,
+    "h": 30,
+    "testid": "filter_chip_service_advisor_id"
+   },
+   {
+    "text": "Asset on Site: Yes|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "disabled": false,
+    "bg": "rgb(227, 242, 253)",
+    "fg": "rgb(56, 116, 255)",
+    "x": 1085,
+    "y": 86,
+    "w": 161,
+    "h": 30,
+    "testid": "filter_chip_vehicleHere"
+   }
+  ],
+  "rows": 16,
+  "backBtn": [],
+  "bodyTop": "Skip to main content\nWork Orders\nSchedule\nCustomers\nParts\nReports\nSearch\nCtrl+K\ntimer\nClock In\nnotifications\nStaging Heavy Duty - 9919\nAS\nAll\nEstimates\nCompleted\nMy Work Orders\nfilter_list\nStatus: Invoiced\nkeyboard_arrow_down\nCustomer\nkeyboard_arrow_down\nLead Technician\nkeyboard_arrow_down\nService Advisor\nkeyboard_arrow_down\nAsset on Site: Yes\nkeyboard_arrow_down\nClear Filters\nsearch\nSearch\nwidth_normal\nCreate Work Order\nOn Sitearrow_drop_up\tStatusarrow_drop_up\tNumberarrow_drop_up\tCustomerarrow_drop_up\tAssetarrow_drop_up\tUnitarrow_drop_up\tVIN/Serial #arrow_drop_up\tProgress\tService Advisorarrow"
+ },
+ "urlDriven": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+  "chips": [
+   {
+    "text": "Status: Declined|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "disabled": false,
+    "bg": "rgb(227, 242, 253)",
+    "fg": "rgb(56, 116, 255)",
+    "x": 686,
+    "y": 86,
+    "w": 153,
+    "h": 30,
+    "testid": "filter_chip_status"
+   },
+   {
+    "text": "Customer|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 857,
+    "y": 86,
+    "w": 113,
+    "h": 30,
+    "testid": "filter_chip_company_id"
+   },
+   {
+    "text": "Lead Technician|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 988,
+    "y": 86,
+    "w": 150,
+    "h": 30,
+    "testid": "filter_chip_tech_assigned_id"
+   },
+   {
+    "text": "Service Advisor|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 1156,
+    "y": 86,
+    "w": 148,
+    "h": 30,
+    "testid": "filter_chip_service_advisor_id"
+   },
+   {
+    "text": "Asset on Site|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 1322,
+    "y": 86,
+    "w": 134,
+    "h": 30,
+    "testid": "filter_chip_vehicleHere"
+   }
+  ],
+  "rows": {
+   "n": 7,
+   "statuses": [
+    "Declined"
+   ],
+   "numbers": [
+    "S2-13872",
+    "S2-8045",
+    "S2-14101",
+    "S2-14308",
+    "S2-15602",
+    "S2-10191",
+    "S2-13485"
+   ],
+   "customers": [
+    "Yiharbor Builders",
+    "Holand Concrete",
+    "Iecastle Energy",
+    "Brabay Maintenance",
+    "Daland Builders",
+    "Vishore Excavating",
+    "Fuline Enterprises"
+   ],
+   "advisors": [
+    "Unassigned",
+    "Kimberly Barnes"
+   ],
+   "techs": [
+    "Joel Parker",
+    "Unassigned",
+    "Mark Morris",
+    "Jennifer Lyons"
+   ],
+   "onsite": [
+    "rgb(33, 186, 69)",
+    "rgb(33, 186, 69)",
+    "rgb(193, 0, 21)",
+    "rgb(33, 186, 69)",
+    "rgb(33, 186, 69)",
+    "rgb(33, 186, 69)",
+    "rgb(33, 186, 69)"
+   ],
+   "emptyText": null
+  },
+  "backBtn": [
+   {
+    "t": "undo\nBack To My Saved Filters",
+    "testid": "back_to_saved_filters",
+    "vis": true
+   }
+  ],
+  "prefCalls": [
+   {
+    "status": 200,
+    "method": "GET",
+    "url": "/api/users/me/preferences/work-orders-list"
+   }
+  ],
+  "afterBack": {
+   "url": "https://sv8785.qa.shopview.com/workorders?status=invoiced&vehicleHere=1&tab=all",
+   "chips": [
+    {
+     "text": "Status: Invoiced|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+     "disabled": false,
+     "bg": "rgb(227, 242, 253)",
+     "fg": "rgb(56, 116, 255)",
+     "x": 452,
+     "y": 86,
+     "w": 149,
+     "h": 30,
+     "testid": "filter_chip_status"
+    },
+    {
+     "text": "Customer|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 619,
+     "y": 86,
+     "w": 113,
+     "h": 30,
+     "testid": "filter_chip_company_id"
+    },
+    {
+     "text": "Lead Technician|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 751,
+     "y": 86,
+     "w": 150,
+     "h": 30,
+     "testid": "filter_chip_tech_assigned_id"
+    },
+    {
+     "text": "Service Advisor|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+     "disabled": false,
+     "bg": "rgba(0, 0, 0, 0)",
+     "fg": "rgb(97, 97, 97)",
+     "x": 919,
+     "y": 86,
+     "w": 148,
+     "h": 30,
+     "testid": "filter_chip_service_advisor_id"
+    },
+    {
+     "text": "Asset on Site: Yes|keyboard_arrow_down",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+     "disabled": false,
+     "bg": "rgb(227, 242, 253)",
+     "fg": "rgb(56, 116, 255)",
+     "x": 1085,
+     "y": 86,
+     "w": 161,
+     "h": 30,
+     "testid": "filter_chip_vehicleHere"
+    }
+   ],
+   "rows": 16,
+   "backBtnStill": 0
+  }
+ },
+ "malformedUrl": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=%%%&company_id=not-a-uuid&tab=zzz&vehicleHere=banana",
+  "chips": [
+   {
+    "text": "Customer|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "disabled": false,
+    "bg": "rgb(227, 242, 253)",
+    "fg": "rgb(56, 116, 255)",
+    "x": 686,
+    "y": 86,
+    "w": 113,
+    "h": 30,
+    "testid": "filter_chip_company_id"
+   },
+   {
+    "text": "Lead Technician|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 817,
+    "y": 86,
+    "w": 150,
+    "h": 30,
+    "testid": "filter_chip_tech_assigned_id"
+   },
+   {
+    "text": "Service Advisor|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 985,
+    "y": 86,
+    "w": 148,
+    "h": 30,
+    "testid": "filter_chip_service_advisor_id"
+   },
+   {
+    "text": "Asset on Site|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 1151,
+    "y": 86,
+    "w": 134,
+    "h": 30,
+    "testid": "filter_chip_vehicleHere"
+   }
+  ],
+  "rows": 0,
+  "listCalls": [
+   {
+    "status": 200,
+    "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=invoicedDate&pagination[descending]=true&filters[0][field]=status&filters[0][value]=estimate&filters[1][field]=company_id&filters[1][value]=not-a-uuid&search=&showMyWorkOrders=0"
+   }
+  ],
+  "err": null,
+  "tabs": [
+   {
+    "t": "All",
+    "sel": true
+   },
+   {
+    "t": "Estimates",
+    "sel": true
+   },
+   {
+    "t": "Completed",
+    "sel": true
+   },
+   {
+    "t": "My Work Orders",
+    "sel": true
+   }
+  ]
+ },
+ "unknownIdUrl": {
+  "url": "https://sv8785.qa.shopview.com/workorders?company_id=00000000-0000-4000-8000-000000000000&status=paid&tab=all",
+  "chips": [
+   {
+    "text": "Status: Paid|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "disabled": false,
+    "bg": "rgb(227, 242, 253)",
+    "fg": "rgb(56, 116, 255)",
+    "x": 686,
+    "y": 86,
+    "w": 126,
+    "h": 30,
+    "testid": "filter_chip_status"
+   },
+   {
+    "text": "Customer|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+    "disabled": false,
+    "bg": "rgb(227, 242, 253)",
+    "fg": "rgb(56, 116, 255)",
+    "x": 830,
+    "y": 86,
+    "w": 113,
+    "h": 30,
+    "testid": "filter_chip_company_id"
+   },
+   {
+    "text": "Lead Technician|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 962,
+    "y": 86,
+    "w": 150,
+    "h": 30,
+    "testid": "filter_chip_tech_assigned_id"
+   },
+   {
+    "text": "Service Advisor|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 1130,
+    "y": 86,
+    "w": 148,
+    "h": 30,
+    "testid": "filter_chip_service_advisor_id"
+   },
+   {
+    "text": "Asset on Site|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 1296,
+    "y": 86,
+    "w": 134,
+    "h": 30,
+    "testid": "filter_chip_vehicleHere"
+   }
+  ],
+  "rows": 0,
+  "listCalls": [
+   {
+    "status": 200,
+    "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=invoicedDate&pagination[descending]=true&filters[0][field]=status&filters[0][value]=paid&filters[1][field]=company_id&filters[1][value]=00000000-0000-4000-8000-000000000000&search=&showMyWorkOrders=0"
+   }
+  ],
+  "err": null
+ },
+ "estimatesUrlRoundTrip": {
+  "urlOnEstimates": "https://sv8785.qa.shopview.com/workorders",
+  "reopenedUrl": "https://sv8785.qa.shopview.com/workorders",
+  "selectedTab": "Estimates",
+  "chips": [
+   {
+    "text": "Customer|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 452,
+    "y": 90,
+    "w": 113,
+    "h": 30,
+    "testid": "filter_chip_company_id"
+   },
+   {
+    "text": "Lead Technician|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 584,
+    "y": 90,
+    "w": 150,
+    "h": 30,
+    "testid": "filter_chip_tech_assigned_id"
+   },
+   {
+    "text": "Service Advisor|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 752,
+    "y": 90,
+    "w": 148,
+    "h": 30,
+    "testid": "filter_chip_service_advisor_id"
+   },
+   {
+    "text": "Asset on Site|keyboard_arrow_down",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "disabled": false,
+    "bg": "rgba(0, 0, 0, 0)",
+    "fg": "rgb(97, 97, 97)",
+    "x": 918,
+    "y": 90,
+    "w": 134,
+    "h": 30,
+    "testid": "filter_chip_vehicleHere"
+   }
+  ],
+  "rows": 30,
+  "statuses": [
+   "Estimate",
+   "Estimate 14",
+   "Estimate 1",
+   "Estimate 5"
+  ]
+ }
+}

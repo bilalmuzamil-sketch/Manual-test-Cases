@@ -1,0 +1,221 @@
+{
+ "info": {
+  "tabs": [
+   "All",
+   "Estimates",
+   "Completed",
+   "My Work Orders"
+  ],
+  "chips": [
+   {
+    "name": "Status",
+    "tag": "BUTTON",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "text": "Status|keyboard_arrow_down",
+    "x": 452,
+    "y": 90,
+    "w": 94,
+    "h": 30,
+    "icons": [
+     "keyboard_arrow_down"
+    ]
+   },
+   {
+    "name": "Customer",
+    "tag": "BUTTON",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "text": "Customer|keyboard_arrow_down",
+    "x": 564,
+    "y": 90,
+    "w": 113,
+    "h": 30,
+    "icons": [
+     "keyboard_arrow_down"
+    ]
+   },
+   {
+    "name": "Lead Technician",
+    "tag": "BUTTON",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "text": "Lead Technician|keyboard_arrow_down",
+    "x": 696,
+    "y": 90,
+    "w": 150,
+    "h": 30,
+    "icons": [
+     "keyboard_arrow_down"
+    ]
+   },
+   {
+    "name": "Service Advisor",
+    "tag": "BUTTON",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "text": "Service Advisor|keyboard_arrow_down",
+    "x": 864,
+    "y": 90,
+    "w": 148,
+    "h": 30,
+    "icons": [
+     "keyboard_arrow_down"
+    ]
+   },
+   {
+    "name": "Asset on Site",
+    "tag": "BUTTON",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+    "text": "Asset on Site|keyboard_arrow_down",
+    "x": 1030,
+    "y": 90,
+    "w": 134,
+    "h": 30,
+    "icons": [
+     "keyboard_arrow_down"
+    ]
+   }
+  ],
+  "tabPos": [
+   {
+    "t": "All",
+    "x": 35,
+    "y": 85,
+    "h": 40
+   },
+   {
+    "t": "Estimates",
+    "x": 95,
+    "y": 85,
+    "h": 40
+   },
+   {
+    "t": "Completed",
+    "x": 177,
+    "y": 85,
+    "h": 40
+   },
+   {
+    "t": "My Work Orders",
+    "x": 266,
+    "y": 85,
+    "h": 40
+   }
+  ],
+  "iconBtns": [
+   {
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text-grey-8 q-btn--act",
+    "icon": "filter_list",
+    "aria": null,
+    "title": null,
+    "x": 412,
+    "y": 94,
+    "w": 23
+   },
+   {
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn-",
+    "icon": "width_normal",
+    "aria": "Column Selection",
+    "title": null,
+    "x": 1441,
+    "y": 90,
+    "w": 55
+   }
+  ],
+  "headers": [
+   "On Sitearrow_drop_up",
+   "Statusarrow_drop_up",
+   "Numberarrow_drop_up",
+   "Customerarrow_drop_up",
+   "Assetarrow_drop_up",
+   "Unitarrow_drop_up",
+   "VIN/Serial #arrow_drop_up",
+   "Progress",
+   "Service Advisorarrow_drop_up",
+   "Lead Technicianarrow_drop_up",
+   "Clocked Inarrow_drop_up",
+   "Linesarrow_drop_up",
+   "Total Pricearrow_drop_up",
+   "Created Onarrow_drop_up"
+  ],
+  "rows": 33,
+  "search": []
+ },
+ "net": [
+  {
+   "phase": "res",
+   "status": 200,
+   "method": "GET",
+   "url": "https://sv8785api.qa.shopview.com/api/organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f"
+  },
+  {
+   "phase": "res",
+   "status": 200,
+   "method": "GET",
+   "url": "https://sv8785api.qa.shopview.com/api/work-orders/statuses"
+  },
+  {
+   "phase": "res",
+   "status": 200,
+   "method": "GET",
+   "url": "https://sv8785api.qa.shopview.com/api/users/me/preferences/work-orders-list"
+  },
+  {
+   "phase": "res",
+   "status": 200,
+   "method": "GET",
+   "url": "https://sv8785api.qa.shopview.com/api/organization/feature-flags?organization_id=d55bc308-e61a-438d-b5f1-c7a73c89d49f"
+  },
+  {
+   "phase": "res",
+   "status": 200,
+   "method": "GET",
+   "url": "https://sv8785api.qa.shopview.com/api/staff/my-workplaces"
+  },
+  {
+   "phase": "res",
+   "status": 200,
+   "method": "GET",
+   "url": "https://sv8785api.qa.shopview.com/api/technician-tasks/my-current-task"
+  },
+  {
+   "phase": "res",
+   "status": 200,
+   "method": "GET",
+   "url": "https://sv8785api.qa.shopview.com/api/iam/view-profile/"
+  },
+  {
+   "phase": "res",
+   "status": 200,
+   "method": "GET",
+   "url": "https://sv8785api.qa.shopview.com/api/notes?mention_id=0eabf741-019e-4b02-84ce-66097c140b3a&is_read=false"
+  },
+  {
+   "phase": "res",
+   "status": 200,
+   "method": "GET",
+   "url": "https://sv8785api.qa.shopview.com/api/notifications/subscribe-token"
+  },
+  {
+   "phase": "res",
+   "status": 200,
+   "method": "GET",
+   "url": "https://sv8785api.qa.shopview.com/api/reporting/individual-punch-clock/today?range=today"
+  },
+  {
+   "phase": "res",
+   "status": 200,
+   "method": "GET",
+   "url": "https://sv8785api.qa.shopview.com/api/work-orders?pagination%5BrowsPerPage%5D=30&pagination%5Bpage%5D=1&pagination%5BsortBy%5D=vehicle&pagination%5Bdescending%5D=false&search=&showMyWorkOrders=0"
+  },
+  {
+   "phase": "res",
+   "status": 200,
+   "method": "GET",
+   "url": "https://sv8785api.qa.shopview.com/api/reporting/individual-punch-clock/today?range=today"
+  },
+  {
+   "phase": "res",
+   "status": 200,
+   "method": "GET",
+   "url": "https://sv8785api.qa.shopview.com/api/global-search/fetch"
+  }
+ ]
+}
