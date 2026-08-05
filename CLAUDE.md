@@ -1689,8 +1689,10 @@ deliver the 7-tab management report.
     sampling, and each write re-GET and byte-compared against the intended payload with untouched
     fields proven byte-identical**) →
     **STAMP OR REFRESH EACH CASE'S PROVENANCE LINE as part of that same push (Standing Rule 54) — a
-    live-verified case's line must name the build and the date it was tested; a push that corrects
-    wording but leaves a stale (or absent) provenance line is not complete** →
+    live-verified case's line must name the build and the date it was checked against IN RULE 54's
+    SENTENCE 2 ("Last checked against build … on …"), NEVER in sentence 1, which names DOCUMENTS ONLY;
+    the barred single-sentence "as per the build tested on …" form must never be reconstructed. A push
+    that corrects wording but leaves a stale (or absent) provenance line is not complete** →
     regenerate deliverables (Blockers Tracker + Results workbook + import, with
     TestRail Case ID + Link columns) → report each area tester-ready and **ALWAYS
     state the TestRail update status explicitly.** This is the default meaning of
@@ -2863,7 +2865,11 @@ deliver the 7-tab management report.
     build marker and the date. A future reader must not mistake a provisional label for a confirmed
     one. **THE MECHANISM FOR THIS IS STANDING RULE 54 (added 2026-08-04): the case's PROVENANCE LINE
     under Expected Results IS where the build marker lives on the case** (this project has no Notes
-    field), and **re-stamping that line is part of re-running the queue** below — a row re-checked
+    field) — and **since Rule 54's 2026-08-05 amendment it lives SPECIFICALLY IN SENTENCE 2 ("Last
+    checked against build … on …"), NEVER IN SENTENCE 1, which names DOCUMENTS ONLY: a non-final build
+    is only ever a RECORD OF WHAT WAS CHECKED, never a source of the expectation (Rules 54/57), so a
+    provisional observation must not be written as though the build supplied the requirement** — and
+    **re-stamping that line is part of re-running the queue** below — a row re-checked
     without its provenance line re-stamped is not re-checked.
     **(4) NEVER CLAIM COMPLETENESS.** No suite, report, deliverable, tally or status line may be
     described as **VIU-complete / verified / current** on a non-final build **without stating that the
@@ -2876,6 +2882,9 @@ deliver the 7-tab management report.
     early — cookies on these estates die at ~24h **or on deploy**), or the QA lead asks. Re-check each
     row against the new build, **flip it to CONFIRMED or CHANGED with fresh evidence**, and only close
     the queue when **100% of rows are re-verified** (Rule 17 — no sampling, no "the important ones").
+    **AN OPEN QUEUE IS THEREFORE THE NORMAL STEADY STATE of an active project, not a failure —
+    Rule 60(c) explains WHY this close condition will rarely be met on branches that are never declared
+    final; it does NOT lower it, and Rule 60 may never be cited to close a queue with rows unverified.**
     **A row that flips to CHANGED is a finding in its own right** and is reported, not quietly
     corrected.
     **RATIONALE, 2026-08-03:** the Report Suite got its first QA branch (`sv8582`,
@@ -3121,6 +3130,8 @@ deliver the 7-tab management report.
     the change — reading it correctly is the other half of the job) and 51/52.
 54. **EVERY TEST CASE STATES WHAT ITS EXPECTATION IS BASED ON — a provenance line under Expected
     Results, kept current (all projects).**
+    **⚠️ DO NOT COPY THE EXAMPLE SENTENCE INSIDE THE QUOTE BELOW — IT WAS SUPERSEDED 2026-08-05: the
+    build may NEVER be named as the source of an expectation. Use the TWO-SENTENCE form set out below.**
     USER DIRECTIVE (2026-08-04, verbatim): *"This is the expected behaviour as per the build tested on
     8/4/2026, and as per the Sales By Customer report specification version 13 (S4-R13). yes make it a
     permanent rule whenever you create the test cases, when there is only the Epic and Specs mention
