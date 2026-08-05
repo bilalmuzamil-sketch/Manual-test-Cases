@@ -3869,6 +3869,25 @@ regression / bug-fix re-testing.
   **This repo is PUBLIC, so raw.githubusercontent.com returns 200** — verify with `curl` before
   posting. Comments are updatable via `commentId`, so a wrong post is corrected in place rather than
   duplicated. Canonical example: SV-8781 comment `74580`.
+- **A SEPARATE FINDING GETS ITS OWN TICKET — created, linked, and fully specified (QA-lead ruling
+  2026-08-05):** when testing a ticket surfaces an issue that is **not** what that ticket is about
+  (a pre-existing bug, an out-of-scope defect, a side observation), **CREATE THE NEW TICKET** — do not
+  merely "suggest a follow-up" in the comment. **(1) LINK IT to the ticket being tested as `Relates`**
+  (the link type list is fixed — see Rule 52; never invent one). Priority **Low** (Rule 53); parent =
+  the epic where one exists (Rule 52) — where the tested ticket is itself parentless, match it and say
+  so. **(2) THE NEW TICKET MUST BE COMPLETE ENOUGH FOR A DEVELOPER TO ACT WITHOUT ASKING:** what
+  happens now vs what should happen, **numbered steps of reproduction naming the EXACT test data**
+  (Rule 50), the environment + build marker, the quantified impact, the technical detail (endpoints,
+  object ids, raw response), and scope notes. **(3) INLINE *ANNOTATED* SCREENSHOTS — boxes, arrows and
+  captions drawn ON the image** pointing at the actual wrong values, never a bare screenshot the reader
+  has to interpret. **HOW TO ANNOTATE (proven 2026-08-05):** take the element's real bounding boxes from
+  Playwright (`getBoundingClientRect`), screenshot, then draw with **PIL** (`pip install pillow`; fonts
+  at `/usr/share/fonts/truetype/dejavu/`) — boxes on the offending cells, arrows from a white-backed
+  caption, extra canvas at the bottom for the explanation, and **place captions so they never cover the
+  values being evidenced**. Commit the annotated PNGs and embed them as ADF external media (see the
+  comment-format rule). **(4) THE COMMENT ON THE TESTED TICKET SAYS a separate issue was raised, names
+  its key and gives its one-line summary** — so the reader never has to wonder what happened to it.
+  Canonical example: SV-8781 → separate ticket for the duplicated vendor-invoice total.
 - **Concise TestRail case TITLES (all projects):** TestRail case titles MUST be concise
   enough to display fully on the TestRail case page (no truncation) — keep to ≤ ~80
   characters; put the full detail in Steps/Expected/Preconditions, never rely on a long
