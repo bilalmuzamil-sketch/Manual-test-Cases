@@ -1,0 +1,134 @@
+{
+ "geom": {
+  "tabs": {
+   "x": 35,
+   "y": 85,
+   "w": 356,
+   "h": 40
+  },
+  "tabsText": "All|Estimates|Completed|My Work Orders",
+  "bar": {
+   "x": 407,
+   "y": 90,
+   "w": 763,
+   "h": 30
+  },
+  "chip": {
+   "x": 452,
+   "y": 90,
+   "w": 94,
+   "h": 30
+  },
+  "table": {
+   "x": 30,
+   "y": 192,
+   "w": 1620,
+   "h": 0
+  },
+  "sameRow": true
+ },
+ "chips": [
+  {
+   "id": "filter_chip_status",
+   "present": true,
+   "x": 452,
+   "text": "Status|keyboard_arrow_down",
+   "html": "<span class=\"q-focus-helper\"></span><span class=\"q-btn__content text-center col items-center q-anchor--skip justify-center row\"><!----><span data-v-02e3f81b=\"\" class=\"filter-chip__label\">Status</span><i data-v-02e3f81b=\""
+  },
+  {
+   "id": "filter_chip_company_id",
+   "present": true,
+   "x": 564,
+   "text": "Customer|keyboard_arrow_down",
+   "html": "<span class=\"q-focus-helper\"></span><span class=\"q-btn__content text-center col items-center q-anchor--skip justify-center row\"><!----><span data-v-02e3f81b=\"\" class=\"filter-chip__label\">Customer</span><i data-v-02e3f81b"
+  },
+  {
+   "id": "filter_chip_tech_assigned_id",
+   "present": true,
+   "x": 696,
+   "text": "Lead Technician|keyboard_arrow_down",
+   "html": "<span class=\"q-focus-helper\"></span><span class=\"q-btn__content text-center col items-center q-anchor--skip justify-center row\"><!----><span data-v-02e3f81b=\"\" class=\"filter-chip__label\">Lead Technician</span><i data-v-0"
+  },
+  {
+   "id": "filter_chip_service_advisor_id",
+   "present": true,
+   "x": 864,
+   "text": "Service Advisor|keyboard_arrow_down",
+   "html": "<span class=\"q-focus-helper\"></span><span class=\"q-btn__content text-center col items-center q-anchor--skip justify-center row\"><!----><span data-v-02e3f81b=\"\" class=\"filter-chip__label\">Service Advisor</span><i data-v-0"
+  },
+  {
+   "id": "filter_chip_vehicleHere",
+   "present": true,
+   "x": 1030,
+   "text": "Asset on Site|keyboard_arrow_down",
+   "html": "<span class=\"q-focus-helper\"></span><span class=\"q-btn__content text-center col items-center q-anchor--skip justify-center row\"><!----><span data-v-02e3f81b=\"\" class=\"filter-chip__label\">Asset on Site</span><i data-v-02e"
+  }
+ ],
+ "toggleIcon": {
+  "text": "filter_list",
+  "title": null,
+  "aria": null
+ },
+ "statusPanel": {
+  "present": true,
+  "count": 9,
+  "opts": [
+   {
+    "label": "Estimate",
+    "checked": "false",
+    "tid": "filter_option_status_estimate"
+   },
+   {
+    "label": "Approved",
+    "checked": "false",
+    "tid": "filter_option_status_approved"
+   },
+   {
+    "label": "In progress",
+    "checked": "false",
+    "tid": "filter_option_status_in_progress"
+   },
+   {
+    "label": "Review",
+    "checked": "false",
+    "tid": "filter_option_status_ready_for_review"
+   },
+   {
+    "label": "Complete",
+    "checked": "false",
+    "tid": "filter_option_status_complete"
+   },
+   {
+    "label": "Invoiced",
+    "checked": "false",
+    "tid": "filter_option_status_invoiced"
+   },
+   {
+    "label": "Paid",
+    "checked": "false",
+    "tid": "filter_option_status_paid"
+   },
+   {
+    "label": "Declined",
+    "checked": "false",
+    "tid": "filter_option_status_declined"
+   },
+   {
+    "label": "Imported",
+    "checked": "false",
+    "tid": "filter_option_status_imported"
+   }
+  ],
+  "text": "Estimate|Approved|In progress|Review|Complete|Invoiced|Paid|Declined|Imported|Clear Selection",
+  "hasClearSelection": true,
+  "applyBtn": false
+ },
+ "tickOne": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+  "rows": 10,
+  "chip": "Status: Declined|keyboard_arrow_down",
+  "panelOpen": true,
+  "listCallsAfter": 1,
+  "lastListUrl": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vin&pagination[descending]=true&filters[0][field]=status&filters[0][value]=declined&search=&showMyWorkOrders=0"
+ }
+}

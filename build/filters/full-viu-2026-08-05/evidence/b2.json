@@ -1,0 +1,125 @@
+{
+ "filterOnlyEmpty": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=in_progress&tab=all",
+  "rows": 2,
+  "emptyClear": true,
+  "toolbarClear": true,
+  "searchClearBtn": false,
+  "searchVal": null,
+  "emptyText": "d Technicianarrow_drop_up\tClocked Inarrow_drop_up\tLinesarrow_drop_up\tTotal Pricearrow_drop_up\tCreated Onarrow_drop_up|No work orders match your filters|Clear Filters",
+  "chips": [
+   "Status: In progress",
+   "Customer",
+   "Lead Technician",
+   "Service Advisor",
+   "Asset on Site"
+  ]
+ },
+ "emptyStateClearClick": {
+  "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+  "rows": 33,
+  "emptyClear": false,
+  "toolbarClear": false,
+  "searchClearBtn": false,
+  "searchVal": null,
+  "emptyText": null,
+  "chips": [
+   "Status",
+   "Customer",
+   "Lead Technician",
+   "Service Advisor",
+   "Asset on Site"
+  ]
+ },
+ "filterPlusSearchEmpty": {
+  "beforeSearch": {
+   "rows": 10,
+   "chips": [
+    "Status: Declined",
+    "Customer",
+    "Lead Technician",
+    "Service Advisor",
+    "Asset on Site"
+   ]
+  },
+  "afterSearch": {
+   "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all&search=zzzznomatchzzzz",
+   "rows": 2,
+   "emptyClear": true,
+   "toolbarClear": true,
+   "searchClearBtn": true,
+   "searchVal": "zzzznomatchzzzz",
+   "emptyText": "d Technicianarrow_drop_up\tClocked Inarrow_drop_up\tLinesarrow_drop_up\tTotal Pricearrow_drop_up\tCreated Onarrow_drop_up|No work orders match your filters|Clear Filters",
+   "chips": [
+    "Status: Declined",
+    "Customer",
+    "Lead Technician",
+    "Service Advisor",
+    "Asset on Site"
+   ]
+  },
+  "mentionsSearch": false
+ },
+ "clearSearchOnlyFromEmpty": {
+  "availableIds": [
+   "select_global_search",
+   "clear_filters",
+   "page_search_input",
+   "page_search_clear",
+   "empty_state_clear_filters"
+  ],
+  "clicked": "page_search_clear",
+  "after": {
+   "url": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+   "rows": 10,
+   "emptyClear": false,
+   "toolbarClear": true,
+   "searchClearBtn": false,
+   "searchVal": "",
+   "emptyText": null,
+   "chips": [
+    "Status: Declined",
+    "Customer",
+    "Lead Technician",
+    "Service Advisor",
+    "Asset on Site"
+   ]
+  }
+ },
+ "clearFiltersVisibility": {
+  "noFilter": {
+   "toolbarClear": false
+  },
+  "withFilter": {
+   "present": true,
+   "text": "Clear Filters",
+   "x": 1475,
+   "rightOfChips": true
+  }
+ },
+ "clearFiltersAction": {
+  "before": {
+   "rows": 9,
+   "chips": [
+    "Status: Declined",
+    "Customer",
+    "Lead Technician",
+    "Service Advisor",
+    "Asset on Site: Yes"
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?status=declined&vehicleHere=1&tab=all"
+  },
+  "after": {
+   "rows": 33,
+   "chips": [
+    "Status",
+    "Customer",
+    "Lead Technician",
+    "Service Advisor",
+    "Asset on Site"
+   ],
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+   "toolbarClear": false
+  }
+ }
+}

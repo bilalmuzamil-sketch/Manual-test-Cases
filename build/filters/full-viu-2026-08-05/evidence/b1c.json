@@ -1,0 +1,142 @@
+{
+ "estimatesTab": {
+  "url": "https://sv8785.qa.shopview.com/workorders",
+  "chipsPresent": [
+   "filter_chip_company_id",
+   "filter_chip_tech_assigned_id",
+   "filter_chip_service_advisor_id",
+   "filter_chip_vehicleHere"
+  ],
+  "statusPresent": false,
+  "statusDisabledAttr": null,
+  "statusAriaDisabled": null,
+  "statusClass": null,
+  "barVisible": true,
+  "lastListUrl": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vin&pagination[descending]=true&filters[0][field]=status&filters[0][value]=estimate&search=&showMyWorkOrders=0"
+ },
+ "completedTab": {
+  "url": "https://sv8785.qa.shopview.com/workorders?tab=complete",
+  "chipsPresent": [
+   "filter_chip_company_id",
+   "filter_chip_tech_assigned_id",
+   "filter_chip_service_advisor_id",
+   "filter_chip_vehicleHere"
+  ],
+  "statusPresent": false
+ },
+ "multiSelectOR": {
+  "panelOpenAfterFirstTick": true,
+  "panelOpenAfterSecond": true,
+  "listCalls": 1,
+  "lastUrl": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vin&pagination[descending]=true&filters[0][field]=status&filters[0][value]=declined&filters[1][field]=status&filters[1][value]=paid&search=&showMyWorkOrders=0",
+  "pageUrl": "https://sv8785.qa.shopview.com/workorders?status=declined&status=paid&tab=all",
+  "rows": 33,
+  "chip": "Status: Declined, Paid|keyboard_arrow_down",
+  "checked": [
+   "Paid",
+   "Declined"
+  ],
+  "tableStatuses": [
+   "Paid"
+  ]
+ },
+ "clearSelection": {
+  "checkedCount": 0,
+  "panelOpen": true,
+  "chip": "Status|keyboard_arrow_down",
+  "pageUrl": "https://sv8785.qa.shopview.com/workorders?tab=all",
+  "lastUrl": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vin&pagination[descending]=true&search=&showMyWorkOrders=0",
+  "rows": 33
+ },
+ "clickOutside": {
+  "panelOpen": false,
+  "chip": "Status: Declined|keyboard_arrow_down",
+  "pageUrl": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+  "rows": 10
+ },
+ "emptyStateCombo": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=declined&status=imported&vehicleHere=1&tab=all",
+  "rows": 2,
+  "text": "Skip to main content|Work Orders|Schedule|Customers|Parts|Reports|Search|Ctrl+K|timer|Clock In|notifications|Staging Heavy Duty - 9919|AS|All|Estimates|Completed|My Work Orders|filter_list|undo|Back To My Saved Filters|Status: Imported|keyboard_arrow_down|Customer|keyboard_arrow_down|Lead Technician|keyboard_arrow_down|Service Advisor|keyboard_arrow_down|Asset on Site: Yes|keyboard_arrow_down|Clear Filters|search|Search|width_normal|Create Work Order|On Sitearrow_drop_up\tStatusarrow_drop_up\tNumberarrow_drop_up\tCustomerarrow_drop_up\tAssetarrow_drop_up\tUnitarrow_drop_up\tVIN/Serial #arrow_drop_up\tProgress\tService Advisorarrow_drop_up\tLead Technicianarrow_drop_up\tClocked Inarrow_drop_up\tLinesarr",
+  "hasEmptyClear": true,
+  "hasToolbarClear": true
+ },
+ "importedAlone": {
+  "otherChips": [
+   {
+    "i": "filter_chip_company_id",
+    "disabled": "",
+    "aria": "true",
+    "cls": "has-disabled-class"
+   },
+   {
+    "i": "filter_chip_tech_assigned_id",
+    "disabled": "",
+    "aria": "true",
+    "cls": "has-disabled-class"
+   },
+   {
+    "i": "filter_chip_service_advisor_id",
+    "disabled": "",
+    "aria": "true",
+    "cls": "has-disabled-class"
+   },
+   {
+    "i": "filter_chip_vehicleHere",
+    "disabled": "",
+    "aria": "true",
+    "cls": "has-disabled-class"
+   }
+  ],
+  "statusOptions": [
+   {
+    "l": "Estimate",
+    "dis": null,
+    "chk": "false"
+   },
+   {
+    "l": "Approved",
+    "dis": null,
+    "chk": "false"
+   },
+   {
+    "l": "In progress",
+    "dis": null,
+    "chk": "false"
+   },
+   {
+    "l": "Review",
+    "dis": null,
+    "chk": "false"
+   },
+   {
+    "l": "Complete",
+    "dis": null,
+    "chk": "false"
+   },
+   {
+    "l": "Invoiced",
+    "dis": null,
+    "chk": "false"
+   },
+   {
+    "l": "Paid",
+    "dis": null,
+    "chk": "false"
+   },
+   {
+    "l": "Declined",
+    "dis": null,
+    "chk": "false"
+   },
+   {
+    "l": "Imported",
+    "dis": null,
+    "chk": "true"
+   }
+  ],
+  "lastUrl": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vin&pagination[descending]=true&search=&showMyWorkOrders=0",
+  "pageUrl": "https://sv8785.qa.shopview.com/workorders?status=imported&tab=all",
+  "rows": 2
+ }
+}
