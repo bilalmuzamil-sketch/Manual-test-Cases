@@ -26,8 +26,9 @@ re-measured and re-added up; nothing has been carried over.)*
 | **Fixed** | The filter dropdown no longer closes when you tick one value, so you can pick several without reopening it (12 cases now pass). And text typed in the page search is no longer remembered forever (3 cases now pass). |
 | **Still there, and accepted** | The filter buttons still share the tab row, and the "nothing found" screen still only offers Clear Filters. Both tickets were closed by the QA lead, so these 5 cases now say "known and accepted — do not raise this again". |
 | **We were wrong** | One case we had passed — a deleted customer being ignored — actually fails. The tester who marked it Failed was right. |
-| **New problem** | A saved Customer, Lead Technician or Service Advisor filter comes back without its name on the button. Raised as SV-8871. |
+| **New problem** | A saved Customer, Lead Technician or Service Advisor filter comes back without its name on the button. Raised as [SV-8871](https://shopview.atlassian.net/browse/SV-8871). |
 | **Specification moved** | The date filter rule was reversed by the product owner on 4 August, and the build already matched the new wording, so one Reports case was rewritten — and it now passes. |
+| **Ready-figure rule now written out in full** | **The figure is still 89 — nothing was recounted and no case changed.** What is new is that the rule behind it is now spelled out in the same words every readiness report uses, and the **8 not-built cases it leaves out are named individually** with their case numbers so the automation engineer can pick them up when those features land. The Schedule report was counting its not-built cases as ready and has been corrected to match. |
 
 **Cases whose answer changed: 19 of 110. The other 91 came out exactly the same.**
 
@@ -49,13 +50,16 @@ needs adding up in your head.
 - **Waiting on the product owner** — the correct answer could still go either way, so do not
   automate these yet; a decision would change what "pass" means.
 - **Not built yet** — the screen or control is not in this build at all, so there is nothing to
-  test. A tester marks these **blocked**, not failed.
+  test. A tester marks these **blocked**, not failed. **These are NOT counted as ready to automate**,
+  because the feature is not in the product yet, so an automated test for it could only fail. They are
+  named individually further down.
 - **Held for a second sign-in** — one case needs a second test account to prove one person's saved
-  filters do not leak to another. A manual tester with two accounts runs it in a minute.
+  filters do not leak to another. A manual tester with two accounts runs it in a minute. **This is the
+  same column the Schedule report calls "could not be set up on this test system"** — the starting
+  conditions cannot be created here.
 - **Ready to automate** — the automation engineer can start on these today. It is **not** a sum of
-  the other columns: it is the Test cases figure **minus** the ones waiting on the product owner,
-  the ones not built yet, the one held for a second sign-in, and the ones needing the browser tool.
-  Cases that currently fail **are** included, on purpose.
+  the other columns; it is worked out by the formula written out under the table. Cases that currently
+  fail **are** included, on purpose.
 - **Also needs a browser tool** — the last column is a **flag, not an outcome**, so it is
   deliberately **not** part of the sum. These cases check exact colours, fonts and widths, which
   needs the inspector that is already built into every browser. A manual tester **can** run them;
@@ -94,24 +98,94 @@ is the same information, just now shown honestly:
   is why the last column is not part of the sum. *(The 4 August note about this named FLT-MOB-10 as
   the double-counted phone case; the case actually double-counted was FLT-MOB-09. The count of 4 was
   right, the name was not. Corrected here.)*
-- **1 case used to sit in no column at all.** FLT-API-06 is held for a second sign-in. It now has
-  its **own column** instead of falling between the others, so it is counted exactly once like
+- **1 case used to sit in no column at all.** FLT-API-06 =
+  [C38895](https://shopview.testrail.io/index.php?/cases/view/38895) is held for a second sign-in. It
+  now has its **own column** instead of falling between the others, so it is counted exactly once like
   everything else.
+
+**How the "Ready to automate" figure is worked out — the same formula every readiness report now
+uses:**
+
+> **Ready to automate = cases − waiting on the product owner − could not be set up on this test
+> system − not built yet.**
+
+In this report, "could not be set up on this test system" is the column called **"Held for a second
+sign-in"** — the same thing under a more specific name. Applying that shared formula to the whole
+suite: **110 − 8 − 1 − 8 = 93.**
+
+**Filters then takes out 4 more, and the figure you see is 89.** The 4 are the pixel-measurement cases
+that need the browser's own measuring tool — they check exact font names, hex colours and widths, and
+the build already uses different values from the written design, so those numbers are likely to move.
+**93 − 4 = 89.**
+
+**This is the one remaining difference between this report and the Schedule report, and it has not
+been quietly aligned:** Schedule does **not** take its 3 flagged cases out of its ready figure,
+because forcing a narrow window or a dark theme is something an automated test does for itself. If the
+two reports should treat flagged cases the same way as well, that is a decision for the QA lead, and
+it is listed in the outstanding section below. **The not-built rule, which is what actually mattered,
+is now identical in both.**
+
+**Why not-built cases are left out.** **The feature is not in the product yet, so an automated test for
+it could only fail.** An engineer who wrote these eight would find nothing to test, get eight red
+results, and spend time investigating a fault that does not exist. They stay counted as test cases —
+they are still in the 110 and still in the "Not built yet" column — they are simply not counted as
+automatable. **Pick them up when the features land.**
+
+**The eight cases left out of 89, named in full so they can be picked up later:**
+
+| Case | C-id | Link | What is missing from the product |
+|---|---|---|---|
+| FLT-PARTS-01 | C38904 | https://shopview.testrail.io/index.php?/cases/view/38904 | The Parts list pages have no filter bar on this build |
+| FLT-PARTS-09 | C38905 | https://shopview.testrail.io/index.php?/cases/view/38905 | There is no Part Type filter (Core / Non Core) to open |
+| FLT-PARTS-11 | C38906 | https://shopview.testrail.io/index.php?/cases/view/38906 | No Parts filter exists to choose, so nothing can narrow the list |
+| FLT-PARTS-12 | C38907 | https://shopview.testrail.io/index.php?/cases/view/38907 | No Parts filter exists, so multiple choices and clearing cannot be tested |
+| FLT-PARTS-13 | C38908 | https://shopview.testrail.io/index.php?/cases/view/38908 | There is no new Parts filter bar to compare the old filters against |
+| FLT-RPTS-01 | C38909 | https://shopview.testrail.io/index.php?/cases/view/38909 | The report pages do not show the designed filter buttons |
+| FLT-RPTS-21 | C38910 | https://shopview.testrail.io/index.php?/cases/view/38910 | No Reports filter exists to choose, so nothing can narrow the results |
+| FLT-RPTS-22 | C38911 | https://shopview.testrail.io/index.php?/cases/view/38911 | The new Reports filter types are not on the build yet |
+
+**One of these came back on to the list of automatable cases today:** FLT-RPTS-23 =
+[C38882](https://shopview.testrail.io/index.php?/cases/view/38882) was "not built" on 4 August, but the
+Reports date filter turned out to be built and working, so it is now a passing, automatable case. That
+is why this list has eight cases and not nine.
 
 ## What the automation engineer should SKIP, and why
 
-1. **The 8 phone cases** — FLT-MOB-01 to FLT-MOB-07 and FLT-MOB-10. The product owner has told us
+1. **The 8 phone cases** — FLT-MOB-01 = [C29621](https://shopview.testrail.io/index.php?/cases/view/29621),
+   FLT-MOB-02 = [C29622](https://shopview.testrail.io/index.php?/cases/view/29622), FLT-MOB-03 =
+   [C29623](https://shopview.testrail.io/index.php?/cases/view/29623), FLT-MOB-04 =
+   [C29624](https://shopview.testrail.io/index.php?/cases/view/29624), FLT-MOB-05 =
+   [C29625](https://shopview.testrail.io/index.php?/cases/view/29625), FLT-MOB-06 =
+   [C29626](https://shopview.testrail.io/index.php?/cases/view/29626), FLT-MOB-07 =
+   [C29627](https://shopview.testrail.io/index.php?/cases/view/29627) and FLT-MOB-10 =
+   [C29630](https://shopview.testrail.io/index.php?/cases/view/29630). The product owner has told us
    two different things about phones on the same day and the question is still open, so automating
    now could lock in the wrong behaviour. Each of these cases says, in the case itself:
    *"DO NOT AUTOMATE YET."*
-2. **The 8 Parts and Reports cases** — FLT-PARTS-01, FLT-PARTS-09, FLT-PARTS-11, FLT-PARTS-12,
-   FLT-PARTS-13, FLT-RPTS-01, FLT-RPTS-21, FLT-RPTS-22. Those filter bars do not exist on the build
-   yet. **This is one fewer than on 4 August**, because the Reports date filter turned out to be
-   built and working — FLT-RPTS-23 is now a passing, automatable case.
-3. **The 4 pixel-measurement cases** — FLT-MOB-09, FLT-PSRCH-01, FLT-PSRCH-02, FLT-PSRCH-08. These
+2. **The 8 Parts and Reports cases, because those features are not built** — FLT-PARTS-01 =
+   [C38904](https://shopview.testrail.io/index.php?/cases/view/38904), FLT-PARTS-09 =
+   [C38905](https://shopview.testrail.io/index.php?/cases/view/38905), FLT-PARTS-11 =
+   [C38906](https://shopview.testrail.io/index.php?/cases/view/38906), FLT-PARTS-12 =
+   [C38907](https://shopview.testrail.io/index.php?/cases/view/38907), FLT-PARTS-13 =
+   [C38908](https://shopview.testrail.io/index.php?/cases/view/38908), FLT-RPTS-01 =
+   [C38909](https://shopview.testrail.io/index.php?/cases/view/38909), FLT-RPTS-21 =
+   [C38910](https://shopview.testrail.io/index.php?/cases/view/38910) and FLT-RPTS-22 =
+   [C38911](https://shopview.testrail.io/index.php?/cases/view/38911). Those filter bars do not exist
+   on the build at all, so an automated test for them could only fail. **They are OUTSIDE the 89** —
+   pick them up when the features land. **This is one fewer than on 4 August**, because the Reports
+   date filter turned out to be built and working — FLT-RPTS-23 =
+   [C38882](https://shopview.testrail.io/index.php?/cases/view/38882) is now a passing, automatable
+   case.
+3. **The 4 pixel-measurement cases** — FLT-MOB-09 =
+   [C29629](https://shopview.testrail.io/index.php?/cases/view/29629), FLT-PSRCH-01 =
+   [C38883](https://shopview.testrail.io/index.php?/cases/view/38883), FLT-PSRCH-02 =
+   [C38884](https://shopview.testrail.io/index.php?/cases/view/38884) and FLT-PSRCH-08 =
+   [C38898](https://shopview.testrail.io/index.php?/cases/view/38898). These
    check font names, hex colours and exact widths. Automate them LAST: the build uses different
-   values from the written design and those numbers are likely to move.
-4. **FLT-API-06 step 3** — the second-account check. Automate steps 1, 2 and 4 now; step 3 needs a
+   values from the written design and those numbers are likely to move. **These 4 are the only thing
+   this report takes out that the Schedule report does not** — see the note under the table.
+4. **FLT-API-06 = [C38895](https://shopview.testrail.io/index.php?/cases/view/38895), step 3** — the
+   second-account check. Automate steps 1, 2 and 4 now; step 3 needs a
    second test login to be provided.
 
 **Everything else — 89 cases — is ready to automate today**, one more than on 4 August. The 19 that
@@ -186,9 +260,11 @@ have already given him stable test handles for every control he needs.
    him what he saw on FLT-PERS-02** — we could not reproduce a failure of what that case asks for.
    None of his results were touched.
 2. **Confirm one judgement call of mine.** You told me to delete the known-issue line where the
-   defect is fixed. I applied the same rule to the **12** cases carrying the SV-8824 line, because
+   defect is fixed. I applied the same rule to the **12** cases carrying the
+   [SV-8824](https://shopview.atlassian.net/browse/SV-8824) line, because
    that defect is fixed too. If you would rather they kept the line, say so and it goes back.
-3. **Branko's answer on the phone Apply button (SV-8825).** Until it comes, 8 phone cases cannot be
+3. **Branko's answer on the phone Apply button
+   ([SV-8825](https://shopview.atlassian.net/browse/SV-8825)).** Until it comes, 8 phone cases cannot be
    automated and cannot be given a pass or a fail.
 4. **Your word on the one API-only issue** above — raise a ticket for it, or leave it. Nothing is
    filed either way until you say so.
@@ -198,5 +274,11 @@ have already given him stable test handles for every control he needs.
    it settles.
 7. **A decision on the 19 dropdown merges** left over from the July audit. They were waiting for a
    live build to confirm the filter dropdowns share one component. They do.
+8. **One small rule difference between this report and the Schedule report, for you to settle.** Both
+   reports now leave **not-built** cases out of the ready figure — that was the important one and it is
+   fixed. What is still different is **flagged cases**: this report takes its 4 pixel-measurement cases
+   out of the 89, and the Schedule report leaves its 3 flagged cases inside its 157. Nothing has been
+   changed to hide it. If they should match, say which way: Filters would become 93, or Schedule would
+   become 154.
 
 Nothing else is outstanding.
