@@ -207,3 +207,31 @@ exactly **C29609 and C29610**, the only two cases whose `refs` we edited. `case_
 at the pre-write snapshot and at the post-write snapshot alike. Nine results had arrived between the
 coordinator's 12:25Z reading and our 13:23Z snapshot; none arrived after.
 
+
+## Environment left clean — and proven, not asserted
+
+**Nothing was seeded.** No customer, work order, part, asset or role was created. A live search for
+`ZZAUTOTEST` customers returned **0**. The whole pass was reads plus filter selections, which are UI
+state rather than data.
+
+**One thing WAS changed and has been put back: the signed-in user's saved filter state.** Filter
+selections on this product are stored **server-side against the user account** (S10-R2), so ticking a
+filter to observe it is a persistent change.
+
+| Moment | Saved state on a fresh load |
+|---|---|
+| **At the start of the pass** (pre-existing residue, **not ours**) | `?status=estimate&status=approved&status=in_progress&status=ready_for_review&company_id=00122246…&company_id=003a361e…&tab=complete` |
+| **After the pass, before cleanup** | `?company_id=00122246…&company_id=0029b928…&company_id=003a361e…&tab=my` — the third `company_id` came from the mobile Customer sheet test |
+| **After cleanup, proven on two fresh loads** | `?tab=all` — no filter parameters, no Clear Filters control, tab **All**, 30 rows |
+
+**Honest note:** the end state is **cleaner than the start state**, not byte-identical to it. The state
+we found was itself leftover residue from an earlier pass (four statuses and two customers on the
+Completed tab), and restoring that would mean re-applying somebody else's stray filters. **Cleared to no
+filters instead, and said so** rather than claiming a byte-identical restore we did not perform.
+
+**Why the chips looked clean while filters were still active:** the restored Customer chip comes back
+**without its value name** — that is [SV-8871](https://shopview.atlassian.net/browse/SV-8871), our own
+open defect, reproducing during our own cleanup. The URL and the Clear Filters control were the reliable
+signals, not the chips.
+
+Tooling: `tools/cleanup.mjs` and `tools/cleanup2.mjs`.
