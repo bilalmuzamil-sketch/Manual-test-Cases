@@ -38,8 +38,16 @@ were still being misread — and one of them was still misleading in exactly the
 | Parts Velocity | 71 | 68 | 2 | 4 | 0 | 5 | **67 of 71** |
 | Technician Utilization | 59 | 59 | 1 | 5 | 0 | 9 | **54 of 59** |
 | Work In Progress | 76 | 76 | 0 | 11 | 4 | 6 | **61 of 76** |
-| Inventory Value | 68 | 67 | 9 | 9 | 2 | 7 | **57 of 68** |
-| **TOTAL** | **469** | **451** | **18** | **47** | **20** | **51** | **402 of 469** |
+| Inventory Value | 68 | 67 | 9 † | 9 † | 2 | 7 | **57 of 68** |
+| **TOTAL** | **469** | **451** | **18 †** | **47 †** | **20** | **51** | **402 of 469** |
+
+**† One test is deliberately counted in BOTH of those two columns, and that is correct, not a
+mistake.** It is [C30588](https://shopview.testrail.io/index.php?/cases/view/30588) (Inventory
+Value): the product **is** wrong for it and a ticket is open, **and** it still carries an unanswered
+question for Chris Ward. The two columns answer two different questions — *"will it come out red?"*
+and *"is it safe to automate yet?"* — so a test can honestly be a yes to both. **No total is
+inflated by it:** the **402** subtracts it exactly **once**, through the waiting-on-Chris-Ward
+column. It is one of the **2** referred to in the legend below as *"also waiting on Chris Ward"*.
 
 ## LEGEND — what every column above means, in plain words
 
@@ -84,9 +92,16 @@ Column by column:
   on Chris Ward, and the ones that cannot be run on this test system). **The "product is wrong"
   column is NOT subtracted** — those tests are automated and expected to come out red.
 
-**468 of the 469 tests can be run by a manual QA tester with free or built-in tools. Only one
-cannot — the QuickBooks test — because that one needs a company whose QuickBooks account is
-actually connected, and we do not have one.**
+**On the question of TOOLS — and this sentence is ONLY about tools: 468 of the 469 tests need
+nothing a tester would not already have on their machine. Exactly one does — the QuickBooks test —
+because it needs a company whose QuickBooks account is actually connected, and we do not have one.**
+
+**That is a SEPARATE question from the 20 tests in the "Cannot be run on this test system" column.**
+Those 20 are held up by **data and environment on this particular test system** — a state that cannot
+be created here, or a value no screen reads back — **not by any missing tool**. **Read the two
+figures together, not against each other: on tools, 468 of 469 are fine; separately, 20 cannot be set
+up on this system.** The same test can sit in both counts — needing no special tool, and still being
+impossible to set up here — so neither figure contradicts the other.
 
 **Why these numbers differ from this morning's.** Two reasons, and the second one is an
 embarrassment we are not going to dress up. First, four tests moved into the product-is-wrong column

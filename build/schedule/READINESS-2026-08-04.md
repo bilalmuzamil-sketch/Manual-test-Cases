@@ -39,7 +39,7 @@ being misread.**
 | Dragging a job onto a technician | 8 | 6 | 1 | 0 | 1 | 0 | 0 | **8** |
 | The two toolbar menus | 8 | 6 | 2 | 0 | 0 | 0 | 0 | **8** |
 | The shift window | 8 | 4 | 4 | 0 | 0 | 0 | 0 | **8** |
-| Odd situations and small screens | 7 | 4 | 1 | 1 | 0 | 1 | 3 | **5** |
+| Odd situations and small screens † | 7 | 4 | 1 | 1 | 0 | 1 | 3 † | **5** |
 | Events (meetings, time off) | 7 | 6 | 0 | 0 | 1 | 0 | 0 | **7** |
 | Start times and the Unassigned row | 7 | 6 | 0 | 0 | 0 | 1 | 0 | **6** |
 | Clash warnings | 6 | 6 | 0 | 0 | 0 | 0 | 0 | **6** |
@@ -62,7 +62,14 @@ being misread.**
 | Keyboard | 3 | 1 | 2 | 0 | 0 | 0 | 0 | **3** |
 | Moving a job to another technician | 3 | 3 | 0 | 0 | 0 | 0 | 0 | **3** |
 | What a block on the board says | 3 | 3 | 0 | 0 | 0 | 0 | 0 | **3** |
-| **TOTAL** | **165** | **138** | **19** | **2** | **4** | **2** | **3** | **161** |
+| **TOTAL** | **165** | **138** | **19** | **2** | **4** | **2** | **3 †** | **161** |
+
+**† This one row's columns deliberately overlap, and it is the ONLY row in the table where that
+happens.** The **3** needs-a-tool cases on the "Odd situations and small screens" row are also counted
+among that row's **4** work-correctly cases — they do work, you just need the browser's own developer
+tools to see it. **So adding straight across that one row gives more than its 7 cases, and that is
+correct rather than an error.** Every other row's columns are separate, and no column total is
+affected.
 
 ## LEGEND — what every column above means, in plain words
 
