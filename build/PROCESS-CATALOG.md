@@ -79,6 +79,39 @@
 > Where a case follows a **later product decision** over the spec text (Rule 32), the line **says so**
 > — a stamp asserting a source that does not support the expectation is **worse than none**.
 >
+> **Divergence-disclosure qualifier (Standing Rule 56, added 2026-08-05) — applies to EVERY process row
+> below that AUTHORS or UPDATES test cases (the same rows as the Rule-54 qualifier).** Latest
+> authoritative information is the authentic one (Rule 32) — and **latest-wins may no longer happen
+> SILENTLY.** Where a case's expected behaviour follows a **LATER decision INSTEAD OF an earlier source**
+> (an earlier spec version, a design, or **an earlier ruling by the same PO**), the **Expected Results
+> carry, after a line break, one plain sentence** saying **(1) where the PO asked for this behaviour**
+> (file/message + link + date), **(2) where it DIFFERS** from the earlier source and what that source
+> said, and **(3) that we have taken the latest information as prevailing** — in layman words, so a
+> tester who half-remembers the old behaviour does not raise a false bug. It sits **with the Rule-54
+> provenance material**, and the **automation marker still goes last** (blank line before and after).
+> **RE-STAMPED whenever the sources move** — a divergence note naming a superseded source is itself
+> stale, and a stale note is a **finding**. **HONESTY HALF, as firm as the requirement: NO divergence
+> sentence where there is NO divergence** — adding one where nothing earlier contradicted the decision
+> **manufactures a conflict and is itself a defect**; a later source that merely AGREES is cited as a
+> **confirmation** under Rule 54, not disclosed as a difference.
+>
+> **PO-questionnaire qualifier (Standing Rule 55, added 2026-08-05) — applies to EVERY process row below
+> whose deliverable includes a PO/stakeholder QUESTION SHEET (rows 2, 3, 4, 11, 12 and any future
+> reconciliation / audit / gap-hunt pass that ends in an open question).** **ASK AGAIN whenever an answer
+> is unclear, partial, or something we are INTERPRETING rather than reading — an interpreted answer is
+> not an answer** — and sweep **all** open ambiguities onto **ONE sheet** rather than drip separate asks
+> (each logged in the Outstanding register, Rule 36). **EVERY question ROW names its PROJECT and its
+> FEATURE/REPORT, not just the header**, because a PO answers row by row and **one PO owns more than one
+> thing** (Chris Ward = Report Suite **and** Fees & Discounts; Branko = Filters, Schedule **and** Global
+> Search), so *"the date filter"* is genuinely ambiguous and a mis-scoped answer costs a whole round
+> trip. **EXTREMELY SIMPLIFIED** — *"what happens now"* + the question + simple **A/B** options + a blank
+> for the answer; **if it cannot be made simple it is two questions, so split it**; no case IDs, spec
+> anchors, HTTP terms or internal names in anything he reads (Rule 7). **Story/epic references included
+> in plain form ONLY where they help him place the question** — a judgement call, stated as such. The
+> question→case mapping stays on a **QA-only tab** (Rule 8), and the sheet mirrors the established format
+> 1:1 (Rule 16) — canonical example
+> `build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx`.
+>
 > **Two-session note:** this workspace is worked by more than one Claude session in parallel.
 > This catalog + `CLAUDE.md` + the `build/*-PROCESS.md`/`*-METHOD.md`/`*-RECIPE.md` docs are the
 > **shared brain** — both sessions read and update them, so any process is callable from either.

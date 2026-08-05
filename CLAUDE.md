@@ -2728,6 +2728,117 @@ deliver the 7-tab management report.
     invalidates it), 43 (a spec-version bump re-stamps every affected case), 46 (a documented basis is
     what stops a deliberate decision looking like a miss) and 49 (the build marker + the re-check
     queue).
+55. **A PO QUESTIONNAIRE NAMES THE PROJECT AND THE FEATURE ON EVERY ROW, IS ANSWERABLE BY A
+    NON-TECHNICAL READER, AND GOES BACK OUT WHENEVER AN ANSWER IS UNCLEAR (all projects).**
+    USER DIRECTIVE (2026-08-05, verbatim): *"Anything which is not clear we need to ask him again.
+    Make sure that thre is a possibility that one PO is handling more than one project/feature so
+    whenever you create a questionnaire for them do mention for them the project name/feature name,
+    and the questions should be extremely simplified for a non technical PO to understand and answer
+    and use the references from stories/epic too if needed."*
+    **(1) ASK AGAIN — AN INTERPRETED ANSWER IS NOT AN ANSWER.** Whenever a PO's answer is
+    **unclear, partial, answers a neighbouring question, or is something we find ourselves
+    INTERPRETING rather than READING**, it goes **straight back to him as a follow-up question**. We
+    do **not** convert an ambiguity into a case and hope; we do **not** record *"we read this as
+    meaning X"* and move on (Rule 12 — never fill a gap with inference). **Do NOT let ambiguities
+    stack up across days either:** sweep **every** open one onto **ONE sheet** so he answers in a
+    single sitting rather than a drip of separate asks — and log each of them in the
+    **OUTSTANDING-ITEMS REGISTER** until answered (Rule 36).
+    **(2) NAME THE PROJECT AND THE FEATURE/REPORT ON EVERY QUESTION ROW — NOT JUST IN A HEADER.**
+    A PO answers **row by row**, often days later, often on a phone, and **one PO owns more than one
+    thing**: **Chris Ward owns BOTH the Report Suite AND Fees & Discounts**; **Branko owns Filters,
+    Schedule AND Global Search**. So *"the date filter"* or *"the export"* is **genuinely ambiguous
+    to him**, and a mis-scoped answer costs a **whole round trip** — days, on a source we are
+    blocked on. Every row therefore carries its own **project name + feature/report name** in plain
+    words, so a row read in isolation is still unambiguous.
+    **(3) EXTREMELY SIMPLIFIED — PLAINER THAN FEELS NECESSARY.** Each question = **"What happens
+    now"** + **the question** + **simple A/B options** + **a blank for the answer**. **If a question
+    cannot be made simple, it is probably TWO questions — split it.** **Nothing the PO reads may
+    contain** case IDs, spec anchors, HTTP terms, endpoint names, enum/internal names, bug codes, or
+    the word "VIU". This **restates and strengthens Standing Rule 7** — read that rule for the full
+    wording bar; this rule adds the per-row scoping and the split-it test.
+    **(4) USE STORY / EPIC REFERENCES WHERE THEY ORIENT THE READER — AND LEAVE THEM OUT WHERE THEY
+    ARE NOISE.** Where naming the piece of work helps the PO **place** the question (*"the story
+    about saving your filters"*, and the key alongside it), include it **in plain form**; where it
+    adds nothing, omit it. **This is a judgement call and is stated as such** — the test is whether
+    the reference helps HIM find the question's context, never whether it looks rigorous to us.
+    **(5) THE INTERNAL MAPPING STAYS OFF THE READER-FACING VIEW.** The question→case mapping
+    (internal ID + C-id + link per Rule 8) lives on a **separate QA-only tab**, exactly as the
+    established sheets do — never in the columns the PO reads.
+    **(6) MIRROR THE ESTABLISHED SHEET FORMAT 1:1 (Rule 16).** Canonical example:
+    `build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx`;
+    today's follow-up sheet is
+    `build/report-suite/rulings-2026-08-05/Follow-up-Question-for-Chris-Ward_2026-08-05.xlsx`.
+    Human-readable filename naming the PO and the date (Rule 19).
+    **RATIONALE, 2026-08-05:** the QA lead gave this directive while we were carrying **unclear
+    items from Chris Ward's answer sheet that we had begun to INTERPRET** rather than re-ask, and he
+    pointed out the ownership overlap explicitly. It is the cheapest failure to prevent and the most
+    expensive to discover: **a PO answering the wrong feature's question in good faith produces a
+    confidently-wrong test case**, and nothing downstream catches it, because the answer file itself
+    then reads as authority (the false-authority failure mode of Rules 46 and 54). Ties to Standing
+    Rules 1 (never proceed without the complete input set — an unclear answer IS a missing input), 7
+    (plain layman wording — this rule extends it), 11 (ask which process on new inputs), 16 (mirror
+    the established format), 19 (human-readable filenames), 20 (the QA-only mapping preserves
+    traceability without leaking it), 23 (the spec is still checked; a question never substitutes for
+    reading it), 31 (source currency — a PO answer is a source), 32 (the newest answer wins, so it
+    had better be unambiguous), 36 (every unanswered ask is an OUTSTANDING item) and 43 (an
+    unanswered question leaves a requirement row un-verdicted, and that must be visible).
+56. **WHERE A CASE FOLLOWS A LATER DECISION THAT DIFFERS FROM AN EARLIER SOURCE, THE CASE MUST SAY
+    SO — in plain words, in the Expected Results (all projects).**
+    USER DIRECTIVE (2026-08-05, verbatim): *"COnsider the latest piece of information as the
+    authentic one and do mention in the expected behavior after a line break about where the PO asked
+    for this behaviour and where it differes and we have taken the last information as the prevailing
+    one."*
+    **THE LATEST AUTHORITATIVE INFORMATION IS THE AUTHENTIC ONE — that half is Standing Rule 32 and
+    is not restated here.** **Rule 56 is about the TESTER-FACING DISCLOSURE that Rule 32's outcome
+    now requires**: latest-wins is no longer allowed to happen **silently**.
+    **THE REQUIREMENT.** Where a case's expected behaviour **follows a LATER decision INSTEAD OF an
+    earlier source** — an earlier spec version, a design, or **an earlier ruling by the same PO** —
+    the **Expected Results MUST carry, after a line break, a plain-English sentence stating THREE
+    things**: **(1) WHERE the PO asked for this behaviour** — the file or message, **with its link
+    and its date**; **(2) WHERE IT DIFFERS from the earlier source** — naming that source and what it
+    said, **briefly and plainly**; **(3) THAT WE HAVE TAKEN THE LATEST INFORMATION AS PREVAILING.**
+    All three, every time — a note giving only the new source leaves the tester with no idea what
+    changed.
+    **PLAIN LAYMAN WORDS (Rule 7).** The point is that a **non-technical tester can see WHY the case
+    says what it says**, so **a tester who half-remembers the old behaviour does not raise a false
+    bug** — which is exactly the cost this sentence buys off.
+    **NO DIVERGENCE SENTENCE WHERE THERE IS NO DIVERGENCE — the honesty half, and it is as firm as
+    the requirement.** If **nothing earlier contradicted** the decision, adding this sentence
+    **MANUFACTURES A CONFLICT THAT DOES NOT EXIST** and is **itself a defect** — it teaches the
+    tester to distrust a settled expectation and it misrepresents the sources. A confirmation is
+    **not** a divergence: where the later source merely **agrees** with the spec, it is cited as a
+    **confirmation** under Rule 54, not disclosed as a difference.
+    **PLACEMENT.** It sits **WITH the Rule-54 provenance material at the END of Expected Results**;
+    the **automation marker still goes LAST**, after a blank line (the QA lead's placement
+    instruction: markers at the end of Expected Results with a blank line before and after — see
+    "Deliverable conventions the user likes").
+    **KEEP IT CURRENT — RE-STAMPED LIKE THE PROVENANCE LINE.** Whenever the sources move, the
+    divergence note is **re-written along with the provenance line** (Rule 54's keep-it-current half;
+    Rule 31's currency logic). **A divergence note naming a source that has since been superseded is
+    ITSELF STALE, and a stale note is a FINDING** — reported, not quietly overwritten.
+    **WORKED EXAMPLE (the one that produced the rule).** **Chris Ward ruled on 2026-07-29** that the
+    asset-identifier chain **VIN → Unit # → plate** is the standard **everywhere**, verbatim: *"Not
+    just for these specs though -- really good to keep this in mind for all actions moving forward"*
+    (`build/report-suite/chris-update-2026-07-29/wip-identifier-answer-2026-07-29.md`). His
+    **2026-08-05 answer sheet** then says the **Work In Progress report keeps the UNIT NUMBER first**
+    (`build/report-suite/chris-answers-2026-08-05/`). **Latest wins for that report**, so those cases
+    **follow unit-number-first AND say plainly** that his earlier cross-project instruction said
+    otherwise and that we are following his most recent word — with the file and date, so he can
+    re-read his own two answers side by side and correct us in one line if we have it backwards.
+    **RATIONALE, 2026-08-05:** a case that silently follows the newer of two conflicting sources is
+    **indistinguishable, to a tester and to a reviewer, from a case that is simply wrong against the
+    spec** — the same failure mode Rules 46 and 54 exist to prevent. Disclosing the divergence turns
+    a **latent argument** into a **visible, dated, checkable decision**: the tester does not raise a
+    false bug, a reviewer's challenge starts from evidence instead of guesswork (Rules 39/44), and if
+    the PO changes his mind again the affected cases are **findable by their own text**. Ties to
+    Standing Rules 7 (plain layman wording), 9 (build-accurate, tester-readable wording), 12 (never
+    assert a source you did not read), 20 (traceability — `refs` remains the metadata layer, this is
+    its tester-visible twin), 25 (cite the source, verbatim, with its date), 31 (source currency — a
+    stale note is a stale source), 32 (latest authoritative information wins — this is its disclosure
+    obligation), 33 (authority precedence decides WHICH source is later-and-authoritative), 41 (touch
+    a case → re-verify it whole and re-stamp), 43 (a spec/answer delta re-stamps every affected case),
+    46 (an undocumented deliberate decision is indistinguishable from a miss) and 54 (the provenance
+    line this sentence sits with).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
@@ -2904,6 +3015,25 @@ regression / bug-fix re-testing.
   **Re-stamped on every spec/epic/build re-check** — a stale stamp is a finding. Never the word
   "VIU", never a flag name; the requirement reference in parentheses is an authorised exception to
   the no-anchors-in-tester-text guidance.
+- **A DIVERGENCE SENTENCE follows the provenance line where — and ONLY where — the case follows a
+  later decision that differs from an earlier source (Standing Rule 56):** after a line break, one
+  plain sentence saying **where the PO asked for this behaviour** (file/message + link + date),
+  **where it differs** from the earlier spec/design/earlier ruling and what that said, and **that we
+  have taken the latest information as prevailing**. **Never added where nothing earlier
+  contradicted the decision** — that manufactures a conflict and is itself a defect.
+- **AUTOMATION MARKER — the LAST thing in Expected Results, exactly one of three strings:**
+  `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <short
+  plain reason>`. Placed **at the VERY END of Expected Results, AFTER the Rule-54 provenance line,
+  with a BLANK LINE BEFORE AND AFTER IT** (QA lead's exact instruction: *"put these markers below
+  the Expected behavior column at the end after a line break and there should be a line breake
+  before this marker and after this marker"*). **Purpose:** the automation engineer automates with
+  Claude and needs **one machine-findable string per case** — so the marker is a fixed literal, never
+  reworded, never abbreviated, exactly one per case. **A TOOL FLAG DOES NOT MAKE A CASE HOLD (QA lead's
+  ruling):** devtools, DOM/network inspection, reading a PDF or a CSV, seeded data states, theme
+  toggles and viewport sizes are **all automatable** and stay `READY`; only a **genuinely
+  unobtainable thing** — a real physical device, an external account we do not have — justifies
+  `HOLD`. **NOT-BUILT cases are EXCLUDED from any "ready to automate" figure** (they are not a
+  readiness shortfall, they are absent product).
 - Excel workbooks: a **separate tab per result status** + a **Summary** tab.
 - Provide **GitHub raw download links** for deliverables.
 - **Per-case audit logs** for any TestRail edits.
