@@ -1,0 +1,123 @@
+{
+ "allTabFive": {
+  "chipCount": 5,
+  "chips": [
+   {
+    "tid": "filter_chip_status",
+    "dis": null,
+    "txt": "Status"
+   },
+   {
+    "tid": "filter_chip_company_id",
+    "dis": null,
+    "txt": "Customer"
+   },
+   {
+    "tid": "filter_chip_tech_assigned_id",
+    "dis": null,
+    "txt": "Lead Technician"
+   },
+   {
+    "tid": "filter_chip_service_advisor_id",
+    "dis": null,
+    "txt": "Service Advisor"
+   },
+   {
+    "tid": "filter_chip_vehicleHere",
+    "dis": null,
+    "txt": "Asset on Site"
+   }
+  ],
+  "opens": {
+   "filter_chip_status": {
+    "open": true,
+    "items": 9,
+    "clearSel": true
+   },
+   "filter_chip_company_id": {
+    "open": true,
+    "items": 4728,
+    "clearSel": true
+   },
+   "filter_chip_tech_assigned_id": {
+    "open": true,
+    "items": 43,
+    "clearSel": true
+   },
+   "filter_chip_service_advisor_id": {
+    "open": true,
+    "items": 56,
+    "clearSel": true
+   },
+   "filter_chip_vehicleHere": {
+    "open": false
+   }
+  }
+ },
+ "myWorkOrdersTab": {
+  "chipCount": 5,
+  "chips": [
+   "filter_chip_status",
+   "filter_chip_company_id",
+   "filter_chip_tech_assigned_id",
+   "filter_chip_service_advisor_id",
+   "filter_chip_vehicleHere"
+  ],
+  "rowsBefore": 2,
+  "rowsAfter": 0,
+  "listUrlBefore": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vin&pagination[descending]=true&search=&showMyWorkOrders=1",
+  "listUrlAfter": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=invoicedDate&pagination[descending]=true&filters[0][field]=status&filters[0][value]=invoiced&search=&showMyWorkOrders=1",
+  "myFlagBefore": true,
+  "myFlagAfter": true,
+  "statusInReq": true,
+  "url": "https://sv8785.qa.shopview.com/workorders?status=invoiced&tab=my"
+ },
+ "collapsePersistClean": {
+  "chipsBefore": 5,
+  "chipsAfterCollapse": 0,
+  "savedCollapsedAfterToggle": true,
+  "chipsAfterNavBack": 0,
+  "savedCollapsedAtEnd": false
+ },
+ "customerSelectionKeptOnOutsideClick": {
+  "panelOpen": false,
+  "chip": "Customer: Ceview Builders",
+  "url": "https://sv8785.qa.shopview.com/workorders?company_id=275af4eb-e926-47bb-b43a-679476c05023&tab=all",
+  "rows": 31
+ },
+ "assetSingleSelect": {
+  "afterYes": {
+   "chip": "Asset on Site: Yes",
+   "url": "https://sv8785.qa.shopview.com/workorders?vehicleHere=1&tab=all"
+  },
+  "afterNo": {
+   "chip": "Asset on Site: No",
+   "url": "https://sv8785.qa.shopview.com/workorders?vehicleHere=0&tab=all",
+   "bothInUrl": false,
+   "reqValues": 1
+  }
+ },
+ "statusPlusCustomerPositive": {
+  "customerStatusDistribution": {
+   "complete": 1,
+   "approved": 3,
+   "paid": 85,
+   "estimate": 1
+  },
+  "chosenStatus": "paid",
+  "expectedCount": 85,
+  "cols": {
+   "status": [
+    "Paid",
+    "$83,452.49"
+   ],
+   "customer": [
+    "Ceview Builders",
+    null
+   ],
+   "n": 31
+  },
+  "url": "https://sv8785.qa.shopview.com/workorders?status=paid&company_id=275af4eb-e926-47bb-b43a-679476c05023&tab=all",
+  "lastListUrl": "https://sv8785api.qa.shopview.com/api/work-orders?pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=vin&pagination[descending]=true&filters[0][field]=status&filters[0][value]=paid&filters[1][field]=company_id&filters[1][value]=275af4eb-e926-47bb-b43a-679476c05023&search=&showMyWorkOrders=0"
+ }
+}
