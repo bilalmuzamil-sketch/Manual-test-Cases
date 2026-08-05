@@ -89,6 +89,24 @@ deliberately by this test pass. They are not real scheduling problems.**
 | A **note** on shift `45055358…` (S-15732) | none | added "ZZAUTOTEST note one", edited to "…EDITED", then **deleted** | **YES** — deleted; the modal shows an empty Notes section |
 | **Event** `ac95c9e3-e880-45d2-a9e7-6dcb2a094ef9` "**ZZAUTOTEST Team meeting**", Brittany Anderson, 25 Nov 2026 16:00–18:00Z, colour `#f0f0f1` | did not exist | created | **No** — left in place |
 
+## 3c. Batch 5 — events and conflict/capacity seeding (all LEFT IN PLACE)
+
+| Item | Detail |
+|---|---|
+| Event `ac95c9e3-e880-45d2-a9e7-6dcb2a094ef9` **ZZAUTOTEST Team meeting** | Brittany Anderson, 25 Nov 2026 16:00–18:00Z, grey |
+| Event **ZZAUTOTEST Timed meeting** | created on **Colleen Guerrero 9 Dec**, then **DRAGGED to William Johns 11 Dec** (that move was the test), then **recoloured Grey → Teal** (`#f0f0f1` → `#e6f4d7`). It was also deleted and immediately re-created once, to measure the capacity bar with and without it |
+| Event **ZZAUTOTEST All day training** | Ayesha Khan, all day 10 Dec 2026 |
+| Event **ZZAUTOTEST Day view preview** | Ayesha Khan, 11 Dec 2026 10:00–11:00Z |
+| Shift `2ecf5d94…` | S-15807, **Ayesha Khan, Sunday 20 Dec** — deliberately on her non-working day, so it is **flagged "Not a working day" on purpose** |
+| Shift `35762814…` | S-15807, **William Johns, Sunday 20 Dec** — the control: he has weekend hours so it is correctly NOT flagged |
+| Shift `b0d4aee6…` | S-15807, Ayesha Khan, 21 Dec **4:00 AM** — deliberately **before hours** |
+| Shift `f4d83d8e…` | S-15807, Ayesha Khan, 21 Dec **10:00 PM** — deliberately **after hours** |
+| **17 shifts of 20 hours each, one per technician, all on Monday 28 December 2026** | S-15681. Created to push that day to **166% capacity (341h of 206h)** so the amber spill and the 100% tick could be observed. **Every one of the 17 is in overtime on purpose.** |
+| Shift `b07bf2e7…` (mine, from batch 4) | **DELETED** at the end of batch 5, to prove the conflict count falls from 7 to 5 |
+
+**Monday 28 December 2026 is deliberately, absurdly over-booked. Sunday 20 December and
+Monday 21 December carry deliberate working-hours conflicts. None of it is real.**
+
 ## 4. Settings, roles, staff, customers, assets
 
 **NONE CHANGED SO FAR.** Specifically:

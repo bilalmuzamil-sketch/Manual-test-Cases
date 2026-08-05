@@ -15,15 +15,15 @@ started with `NODE_USE_ENV_PROXY=1 node /tmp/schedule-viu/bridge.mjs`, port in
 | 2 | Line Drill-Down, Drag-and-Drop, Scope Picker, Shift Block Anatomy | 22 | **OBSERVED 22/22** |
 | 3 | Multi-Day Spread, Linked Series, Overlap/Lane Stacking | 18 | **OBSERVED 18/18** |
 | 4 | Day View Timeline, Shift Detail Modal, Hover Tooltips | 18 | **OBSERVED 18/18** |
-| 5 | Events, Conflict Detection, Capacity Bars | 17 | not started |
+| 5 | Events, Conflict Detection, Capacity Bars | 17 | **OBSERVED 17/17** |
 | 6 | Deletion/Series/Undo, Reassignment, Shift Start Times | 20 | not started |
 | 7 | Toolbar, Filter&Display/View Options, Colour, Keyboard, Working Hours | 22 | not started |
 | 8 | Permissions, Edge Cases | 20 | not started |
 | 9 | Cross-Module Regression, API | 9 | not started |
 
-**Observed so far: 80 of 168.** Next case: batch 5, SCH-EVT-01.
+**Observed so far: 97 of 168.** Next case: batch 6, SCH-DEL-01.
 
-**Verdicts so far:** PASS 56 · DEVIATION 23 · HELD 2 · one HOLD lifted · one EXPECT-FAIL now passing (see `evidence/batch*/VERDICTS.json`).
+**Verdicts so far:** PASS 69 · DEVIATION 26 · HELD 2 · **two HOLDs lifted** · one EXPECT-FAIL now passing (see `evidence/batch*/VERDICTS.json`).
 
 **Teardown is no longer required** (QA lead, 2026-08-05). Data is left in place and
 recorded in `CHANGES-MADE.md`.
