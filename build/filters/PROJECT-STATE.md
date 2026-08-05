@@ -344,10 +344,28 @@ carry the QA lead's accepted-behaviour wording; the 3 on SV-8844 lost their line
 
 ### New ticket filed: [SV-8871](https://shopview.atlassian.net/browse/SV-8871)
 
-Bug · priority **Low** · parent **SV-8785** · Product Area **Work Orders** · linked to SV-8792 and
-SV-8795 · **Open**. Duplicate search run first, none found; every field read back from Jira.
-**Not API-related** (fully visible on screen), so Rule 51 does not bite. **Honest limit: not
-callable a regression** — the previous pass tested persistence only with the two unaffected filters.
+**WHAT WE FILED (2026-08-04, byte-verified at filing):** Bug · priority **Low** · parent **SV-8785** ·
+Product Area **Work Orders** · linked to SV-8792 and SV-8795 · **Open**. Duplicate search run first,
+none found; every field read back from Jira. **Not API-related** (fully visible on screen), so Rule 51
+does not bite. **Honest limit: not callable a regression** — the previous pass tested persistence only
+with the two unaffected filters.
+
+**WHAT IT IS NOW (read live 2026-08-05) — the shape above is no longer current, and the change was not
+ours.** **Ahtasham Amjad** converted it via the Jira **"Change work type"** wizard at
+**2026-08-05T04:51:42-0500**. That single action changed the type **Bug → Story Defect** AND
+**atomically re-parented it SV-8785 → SV-8795** (the two changelog entries are 12 ms apart), and it
+**SILENTLY WIPED Product Area to empty**. Jira logged the type change and the parent move but records
+**NO Product Area changelog entry at all**, so the loss of **"Work Orders"** is provable **only from our
+byte-verification at filing time** — there is nothing in Jira's own history to show it. He also added
+label `FS-Filters` at 04:52:01.
+
+**LIVE NOW:** **Story Defect · parent SV-8795 (Filter Persistence) · Product Area NULL · priority Low ·
+status Open**, links to SV-8792 and SV-8795 intact.
+
+**NOT REVERSED, DELIBERATELY.** This is another author's considered triage, and **Rule 53's corollary
+forbids us "restoring" a field someone else changed**. Note also that the new shape is what **amended
+Rule 52** now requires (Story Defect on the owning story), so only the **Product Area loss** is a
+question — and re-instating it is the **QA lead's call**, not ours.
 
 ### Other answers this pass produced
 

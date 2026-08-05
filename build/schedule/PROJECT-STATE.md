@@ -293,7 +293,7 @@ cases exist in group 4254** (all 165 `created_by = 3`).
 |---|---|
 | **Spec** — Confluence `713031682` | **CURRENT at version 23**, and proven **exactly**: the live page body was fetched and word-diffed against our mirror — **0 runs of 6+ words exist live and are missing from ours**. The page's **in-body "Version" field reads `1.0`** — the Rule-31(a) trap, confirmed live. |
 | **Epic SV-8685** | **CURRENT.** 26 direct children, verified two ways (`parent=` and `"Epic Link"=`) with **equal key sets both directions**. Changelog's last entry is 2026-08-04T07:07 (Stefan Vukovic, Severity + QA Test Plan) — administrative only. |
-| **Our 10 tickets SV-8848…SV-8857** | **All still Open**, priority Low, parent the epic, story linked. **Not one is fixed.** Only change: Mudassir Qamar added label `FS-Schedule` to all ten. |
+| **Our 10 tickets SV-8848…SV-8857** | **All still Open**, priority Low. **Not one is fixed.** ⚠️ **The "parent the epic, story linked" half of this row is NO LONGER TRUE** — later on 2026-08-05 Mudassir Qamar converted nine of them (SV-8849…SV-8857) to `Story Defect`s re-parented onto their owning stories, and removed SV-8848's parent entirely. See the "AND NINE OF THE TEN HAVE SINCE BEEN CHANGED BY SOMEONE ELSE" block below for the live shape, the timestamps and the unlogged Product Area wipe. |
 | **Story defects** | **STALE — now refreshed. 22, not 12.** Ten arrived after our ingest: 7 from Ayesha Khan (SV-8863/8864/8865/8867/8868/8869/8870) and 3 from Mudassir Qamar today (SV-8873/8874/8877). |
 | **Designs / tech plan / PO answers** | CURRENT; no Rule-35 queue open for Schedule. |
 | **The build** | **MOVED, and not observable.** |
@@ -429,9 +429,34 @@ against the live systems and finished the remainder. **Nothing was lost.**
 - **0 titles over 80 characters** (longest exactly 80) · **0 cases carrying API content outside the
   API-titled section**.
 
-**10 defects filed: SV-8848 … SV-8857** — all **type `Bug`, priority `Low`, `parent` SV-8685, owning
-story linked, status Open**, each read back from Jira. **All ten are now named on their case** with a
-link (the recovery fixed eight cases that still said *"has no developer ticket yet"*).
+**10 defects filed: SV-8848 … SV-8857** — **as filed on 2026-08-04**, all **type `Bug`, priority `Low`,
+`parent` SV-8685, owning story linked, status Open**, each read back from Jira. **All ten are now named
+on their case** with a link (the recovery fixed eight cases that still said *"has no developer ticket
+yet"*). **⚠️ That is the PRE-2026-08-05 `Bug`-on-the-EPIC convention — correct for its date, but NOT the
+shape required now: Rule 52 was AMENDED 2026-08-05 to require a `Story Defect` parented to the OWNING
+STORY. Read the line above as the historical filing record and Rule 52 for today's shape.**
+
+**AND NINE OF THE TEN HAVE SINCE BEEN CHANGED BY SOMEONE ELSE (re-read LIVE 2026-08-05):**
+
+- **SV-8849 … SV-8857 are now `Story Defect`s parented to their owning stories, with Product Area
+  NULL.** **Mudassir Qamar** converted them one at a time via the Jira **"Change work type"** wizard
+  between **09:15:03 and 09:23:07 -0500**. Each conversion changed the type **and atomically
+  re-parented** off the epic (the two changelog entries are ~15 ms apart): SV-8849→SV-8692 ·
+  SV-8850→SV-8693 · SV-8851→SV-8700 · SV-8852→SV-8697 · SV-8853→SV-8700 · SV-8854→SV-8687 ·
+  SV-8855→SV-8691 · SV-8856→SV-8694 · SV-8857→SV-8687. **The wizard also SILENTLY WIPED Product Area
+  on all nine — Jira records NO Product Area changelog entry on any of them**, so the loss is provable
+  **only from our byte-verification at filing time**. This new shape is what amended Rule 52 requires,
+  so only the Product Area loss is a question.
+- **SV-8848 is the exception, and it is the one shape Rule 52 FORBIDS: it now has NO PARENT AT ALL.**
+  It was never converted — it is still a `Bug` and it still holds **Product Area Schedule** (which
+  confirms the wipe is a side effect of the conversion wizard, not of re-parenting) — but **Mudassir
+  Qamar removed its parent outright at 2026-08-05T09:21:39-0500 (SV-8685 → None)**. Rule 52 states
+  plainly that **no ticket we create is standalone**, so a parentless defect breaches it.
+  **WE DID NOT AND WILL NOT RE-PARENT IT:** it was Mudassir's deliberate action, and **Rule 53's
+  corollary forbids us reversing another person's triage** — re-parenting SV-8848 is the **QA lead's
+  call**, not ours. Recorded here so the breach is visible rather than silently carried.
+- **All ten remain status Open, priority Low.** The only other change is the label `FS-Schedule` that
+  Mudassir added to all ten.
 
 **The epic is now 28 children** — the 15 stories all `Ready for QA`, **SV-8812 Done** (it is this
 branch), and **12 `Bug` tickets SV-8826…SV-8841 raised 2026-08-04 by Mudassir Qamar**: 6 confirmed

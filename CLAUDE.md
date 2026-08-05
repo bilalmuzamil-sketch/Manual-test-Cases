@@ -1023,8 +1023,16 @@ deliver the 7-tab management report.
    (`?range=today`), a custom range applies **only on the 2nd date** (From 07/01/2026 alone fired no
    request; adding To 07/31/2026 gave `?range=custom&range=2026-07-01&range=2026-07-31`);
    **FLT-PERS-01 → DEVIATION** on a **NEW defect [SV-8871](https://shopview.atlassian.net/browse/SV-8871)**
-   (Bug, **Low**, parent SV-8785, Product Area Work Orders, linked SV-8792 + SV-8795, Open, duplicate
-   search run first) — a restored **Customer / Lead Technician / Service Advisor** button comes back
+   (**filed by us** as a **Bug, Low, parent SV-8785, Product Area Work Orders**, linked SV-8792 + SV-8795,
+   Open, duplicate search run first — **that was byte-verified at filing and was the correct shape on
+   2026-08-04, but it is NOT its shape now: Ahtasham Amjad converted it via the Jira "Change work type"
+   wizard on 2026-08-05T04:51:42-0500, which changed the type Bug → Story Defect AND atomically
+   re-parented it SV-8785 → SV-8795 (12 ms apart in the changelog), and the same conversion SILENTLY
+   WIPED Product Area to empty. Jira logged the type and the parent move but records NO Product Area
+   changelog entry at all, so the loss of "Work Orders" is provable ONLY from our byte-verification at
+   filing time. LIVE NOW (read 2026-08-05): Story Defect · parent SV-8795 · Product Area NULL · Low ·
+   Open. Do NOT reverse it — it is another author's deliberate triage (Rule 53's corollary); re-instating
+   Product Area is the QA lead's call**) — a restored **Customer / Lead Technician / Service Advisor** button comes back
    blue but **WITHOUT its value name** on all four restore routes (nav-away, reload, fresh browser,
    shared link) while **Status and Asset on Site keep theirs**; breaches **S7-R1** *"…and displays the
    selected value(s)"* + **S10-R1** *"restored exactly as they were left"*; **honestly NOT callable a
@@ -1543,7 +1551,10 @@ deliver the 7-tab management report.
    all six reports; screenshot proven to render inline) **· SV-8880** (SBR Summary spreadsheet missing 4
    columns) **· SV-8881** (TU download menu wording) — all Bug/priority **Low**/parent **SV-8582**/owning
    story linked **Relates**/Product Area Reports & Dashboards; every field read back, 11 checks each ALL
-   PASS; 7/7 sections; 0 barred phrases. **B4 NOT FILED (blocked on Chris's contradiction) · B5 NOT FILED
+   PASS; 7/7 sections; 0 barred phrases. **⚠️ THAT IS THE PRE-2026-08-05 `Bug`-on-the-EPIC CONVENTION —
+   correct for its date, and all three tickets STILL CARRY EXACTLY THIS SHAPE LIVE (re-read 2026-08-05:
+   Bug · parent SV-8582 · Product Area Reports & Dashboards · Low · Open, none converted). It is NOT the
+   shape required for NEW tickets: see amended Rule 52 (a `Story Defect` parented to the OWNING STORY).** **B4 NOT FILED (blocked on Chris's contradiction) · B5 NOT FILED
    — NO LIVE EVIDENCE: the no-logo state was never produced** (*"the PDF logo fallback could not be
    exercised because this organisation has an uploaded logo"*). **Rule 51 checked item by item: none of
    the 5 is API-only.** **PROVEN READY-TO-AUTOMATE = 432** (401 + 35 released − 4 newly held;
@@ -3098,8 +3109,12 @@ deliver the 7-tab management report.
     is hierarchy level 0, so an Epic is the only parent it can take and a Story cannot parent a Bug at
     all. **The tickets filed under it are therefore RIGHT FOR THEIR DATE, not errors:** **SV-8879,
     SV-8880, SV-8881** (Report Suite) and the earlier **SV-8818, SV-8819, SV-8820, SV-8823** and
-    **SV-8848** are all `Bug`s on an epic parent. **Do not "fix" them on our own initiative — see the
-    conversion facts below.**
+    **SV-8848** were all filed as `Bug`s on an epic parent. **Do not "fix" them on our own initiative — see the
+    conversion facts below.** **STATUS OF THAT LIST, RE-READ LIVE 2026-08-05:** SV-8879/8880/8881 still hold
+    that exact shape (Bug · parent SV-8582 · Product Area Reports & Dashboards) · SV-8818/8819/8820/8823 are
+    still `Bug`s on parent SV-8582 · **but SV-8848 NO LONGER HAS A PARENT AT ALL** — Mudassir Qamar removed
+    it (SV-8685 → None) at **2026-08-05T09:21:39 −0500**, so it is now the one shape this rule forbids.
+    **NOT re-parented by us:** his action, Rule 53's corollary, and the QA lead's call.
     **NO STANDALONE TICKETS — EVERY ticket we create HAS A PARENT (his 2026-08-04 clarification, still in
     force), INCLUDING a defect we found during our testing whose UNDERLYING CAUSE SITS IN ANOTHER TEAM'S
     AREA.** "It is not really a reporting bug" is **NOT** a reason to leave a ticket parentless: we found
