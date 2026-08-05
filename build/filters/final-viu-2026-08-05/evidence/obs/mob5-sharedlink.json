@@ -1,0 +1,89 @@
+{
+ "build": "v3.4.2-d00239b",
+ "when": "2026-08-05T14:02:47.223Z",
+ "tests": [
+  {
+   "link": "?status=declined&tab=all",
+   "finalUrl": "https://sv8785.qa.shopview.com/workorders?status=declined&tab=all",
+   "chips": [
+    "tune|All Filters (1)",
+    "Status (1)|keyboard_arrow_down",
+    "Customer|keyboard_arrow_down",
+    "Lead Technician|keyboard_arrow_down",
+    "Service Advisor|keyboard_arrow_down",
+    "Asset on Site|keyboard_arrow_down"
+   ],
+   "cards": {
+    "statusCounts": {
+     "Estimate": 30
+    },
+    "n": 30,
+    "emptyText": null
+   },
+   "apiCalls": [
+    "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=&pagination[descending]=false&filters[0][field]=status&filters[0][value]=estimate&search=&showMyWorkOrders=0"
+   ]
+  },
+  {
+   "link": "?status=paid&tab=all",
+   "finalUrl": "https://sv8785.qa.shopview.com/workorders?status=paid&tab=all",
+   "chips": [
+    "tune|All Filters (1)",
+    "Status (1)|keyboard_arrow_down",
+    "Customer|keyboard_arrow_down",
+    "Lead Technician|keyboard_arrow_down",
+    "Service Advisor|keyboard_arrow_down",
+    "Asset on Site|keyboard_arrow_down"
+   ],
+   "cards": {
+    "statusCounts": {
+     "Estimate": 30
+    },
+    "n": 30,
+    "emptyText": null
+   },
+   "apiCalls": [
+    "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=&pagination[descending]=false&filters[0][field]=status&filters[0][value]=estimate&search=&showMyWorkOrders=0"
+   ]
+  },
+  {
+   "link": "?status=imported&tab=all",
+   "finalUrl": "https://sv8785.qa.shopview.com/workorders?status=imported&tab=all",
+   "chips": [
+    "tune|All Filters (1)",
+    "Status (1)|keyboard_arrow_down",
+    "Customer|keyboard_arrow_down",
+    "Lead Technician|keyboard_arrow_down",
+    "Service Advisor|keyboard_arrow_down",
+    "Asset on Site|keyboard_arrow_down"
+   ],
+   "cards": {
+    "statusCounts": {
+     "Estimate": 30
+    },
+    "n": 30,
+    "emptyText": null
+   },
+   "apiCalls": [
+    "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=&pagination[descending]=false&filters[0][field]=status&filters[0][value]=estimate&search=&showMyWorkOrders=0"
+   ]
+  }
+ ],
+ "desktopControl": {
+  "link": "?status=declined&tab=all",
+  "n": 7,
+  "statuses": [
+   "Declined"
+  ],
+  "chips": [
+   "Status: Declined|keyboard_arrow_down",
+   "Customer|keyboard_arrow_down",
+   "Lead Technician|keyboard_arrow_down",
+   "Service Advisor|keyboard_arrow_down",
+   "Asset on Site|keyboard_arrow_down"
+  ],
+  "api": [
+   "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=serviceAdvisor&pagination[descending]=true&filters[0][field]=status&filters[0][value]=declined&search=&showMyWorkOrders=0"
+  ]
+ }
+}

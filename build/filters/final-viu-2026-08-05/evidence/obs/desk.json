@@ -1,0 +1,524 @@
+{
+ "build": "v3.4.2-d00239b",
+ "when": "2026-08-05T14:07:01.304Z",
+ "barGeometry": {
+  "tabs": [
+   {
+    "t": "All",
+    "y": 81,
+    "bottom": 121
+   },
+   {
+    "t": "Estimates",
+    "y": 81,
+    "bottom": 121
+   },
+   {
+    "t": "Completed",
+    "y": 81,
+    "bottom": 121
+   },
+   {
+    "t": "My Work Orders",
+    "y": 81,
+    "bottom": 121
+   }
+  ],
+  "chips": [
+   {
+    "t": "Status|keyboard_arrow_down",
+    "y": 86,
+    "x": 686,
+    "testid": "filter_chip_status"
+   },
+   {
+    "t": "Customer|keyboard_arrow_down",
+    "y": 86,
+    "x": 798,
+    "testid": "filter_chip_company_id"
+   },
+   {
+    "t": "Lead Technician|keyboard_arrow_down",
+    "y": 86,
+    "x": 929,
+    "testid": "filter_chip_tech_assigned_id"
+   },
+   {
+    "t": "Service Advisor|keyboard_arrow_down",
+    "y": 86,
+    "x": 1097,
+    "testid": "filter_chip_service_advisor_id"
+   },
+   {
+    "t": "Asset on Site|keyboard_arrow_down",
+    "y": 86,
+    "x": 1264,
+    "testid": "filter_chip_vehicleHere"
+   }
+  ],
+  "tableTop": 184,
+  "toolbarIcons": [
+   "select_global_search",
+   "toggle_filter_bar",
+   "page_search_toggle",
+   "button_column_selection"
+  ],
+  "SAME_ROW": true,
+  "tabsY": 81,
+  "chipsY": 86
+ },
+ "status": {
+  "panel": {
+   "cls": "q-menu q-position-engine scroll",
+   "text": "Estimate\nApproved\nIn progress\nReview\nComplete\nInvoiced\nPaid\nDeclined\nImported\nClear Selection",
+   "y": 122,
+   "h": 449,
+   "w": 200,
+   "options": [
+    {
+     "label": "Estimate",
+     "checked": "false",
+     "testid": "filter_option_status_estimate",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Approved",
+     "checked": "false",
+     "testid": "filter_option_status_approved",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "In progress",
+     "checked": "false",
+     "testid": "filter_option_status_in_progress",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Review",
+     "checked": "false",
+     "testid": "filter_option_status_ready_for_review",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Complete",
+     "checked": "false",
+     "testid": "filter_option_status_complete",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Invoiced",
+     "checked": "false",
+     "testid": "filter_option_status_invoiced",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Paid",
+     "checked": "false",
+     "testid": "filter_option_status_paid",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Declined",
+     "checked": "false",
+     "testid": "filter_option_status_declined",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    },
+    {
+     "label": "Imported",
+     "checked": "false",
+     "testid": "filter_option_status_imported",
+     "cls": "q-checkbox cursor-pointer no-outline row inline no-wrap items-center filter-option-list-pa",
+     "icons": []
+    }
+   ],
+   "tags": [],
+   "inputs": [],
+   "buttons": [
+    {
+     "t": "Clear Selection",
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl",
+     "testid": "filter_clear_selection_status"
+    }
+   ],
+   "footerText": "Clear Selection",
+   "allTestIds": [
+    "filter_option_status_estimate",
+    "filter_option_status_approved",
+    "filter_option_status_in_progress",
+    "filter_option_status_ready_for_review",
+    "filter_option_status_complete",
+    "filter_option_status_invoiced",
+    "filter_option_status_paid",
+    "filter_option_status_declined",
+    "filter_option_status_imported",
+    "filter_clear_selection_status"
+   ]
+  },
+  "optionLabels": [
+   "Estimate",
+   "Approved",
+   "In progress",
+   "Review",
+   "Complete",
+   "Invoiced",
+   "Paid",
+   "Declined",
+   "Imported"
+  ],
+  "clearSelection": [
+   {
+    "t": "Clear Selection",
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangl",
+    "testid": "filter_clear_selection_status"
+   }
+  ]
+ },
+ "stat02": {
+  "url": "https://sv8785.qa.shopview.com/workorders?status=paid&tab=all",
+  "applied": true,
+  "calls": 1,
+  "applyBtn": [],
+  "rows": {
+   "n": 30,
+   "statuses": [
+    "Paid"
+   ],
+   "numbers": [
+    "S2-12848",
+    "S2-13898",
+    "S2-14059",
+    "S2-11644",
+    "S2-13128",
+    "S2-9376",
+    "S2-12713",
+    "S2-13982",
+    "S2-14084",
+    "S2-10438",
+    "S2-9917",
+    "S2-10197",
+    "S2-9868",
+    "S2-9932",
+    "S2-10143",
+    "S2-9901",
+    "S2-9679",
+    "S2-9554",
+    "S2-9942",
+    "S2-10205",
+    "S2-10149",
+    "S2-10196",
+    "S2-10107",
+    "S2-9712",
+    "S2-9591",
+    "S2-10180",
+    "S2-10470",
+    "S2-9464",
+    "S2-10540",
+    "S2-10056"
+   ],
+   "customers": [
+    "Bahampton Holdings",
+    "Juharbor Forestry",
+    "Yashore Paving",
+    "Taside Fabrication",
+    "Euwood Distributors",
+    "Buspring Holdings",
+    "Fuline Enterprises",
+    "Zehall Concrete",
+    "Jemoor Electrical",
+    "Ragate Consulting",
+    "Ceview Builders",
+    "Cogate Electrical",
+    "Holand Concrete",
+    "Ieson Industries",
+    "Roford Oilfield Services",
+    "Eifalls Media",
+    "Euwood Paving",
+    "Xamont Holdings"
+   ],
+   "advisors": [
+    "Stephanie Cain",
+    "Shane Patrick"
+   ],
+   "techs": [
+    "Andrew Wade",
+    "William Johns",
+    "Joel Parker",
+    "Unassigned",
+    "Thomas Jones",
+    "Brittany Anderson",
+    "Colleen Guerrero",
+    "Margaret Garcia",
+    "Regina Gibson",
+    "Veronica Miller"
+   ],
+   "onsite": [
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(33, 186, 69)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(33, 186, 69)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(33, 186, 69)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(33, 186, 69)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)"
+   ],
+   "emptyText": null
+  },
+  "panelStillOpen": true
+ },
+ "stat03": {
+  "ok": true,
+  "url": "https://sv8785.qa.shopview.com/workorders?status=paid&status=declined&tab=all",
+  "rows": {
+   "n": 30,
+   "statuses": [
+    "Paid"
+   ],
+   "numbers": [
+    "S2-12848",
+    "S2-13898",
+    "S2-14059",
+    "S2-11644",
+    "S2-13128",
+    "S2-9376",
+    "S2-12713",
+    "S2-13982",
+    "S2-14084",
+    "S2-10438",
+    "S2-9917",
+    "S2-10197",
+    "S2-9868",
+    "S2-9932",
+    "S2-10143",
+    "S2-9901",
+    "S2-9679",
+    "S2-9554",
+    "S2-9942",
+    "S2-10205",
+    "S2-10149",
+    "S2-10196",
+    "S2-10107",
+    "S2-9712",
+    "S2-9591",
+    "S2-10180",
+    "S2-10470",
+    "S2-9464",
+    "S2-10540",
+    "S2-10056"
+   ],
+   "customers": [
+    "Bahampton Holdings",
+    "Juharbor Forestry",
+    "Yashore Paving",
+    "Taside Fabrication",
+    "Euwood Distributors",
+    "Buspring Holdings",
+    "Fuline Enterprises",
+    "Zehall Concrete",
+    "Jemoor Electrical",
+    "Ragate Consulting",
+    "Ceview Builders",
+    "Cogate Electrical",
+    "Holand Concrete",
+    "Ieson Industries",
+    "Roford Oilfield Services",
+    "Eifalls Media",
+    "Euwood Paving",
+    "Xamont Holdings"
+   ],
+   "advisors": [
+    "Stephanie Cain",
+    "Shane Patrick"
+   ],
+   "techs": [
+    "Andrew Wade",
+    "William Johns",
+    "Joel Parker",
+    "Unassigned",
+    "Thomas Jones",
+    "Brittany Anderson",
+    "Colleen Guerrero",
+    "Margaret Garcia",
+    "Regina Gibson",
+    "Veronica Miller"
+   ],
+   "onsite": [
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(33, 186, 69)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(33, 186, 69)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(33, 186, 69)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(33, 186, 69)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)",
+    "rgb(193, 0, 21)"
+   ],
+   "emptyText": null
+  },
+  "chips": [
+   "Status: Paid, Declined|keyboard_arrow_down",
+   "Customer|keyboard_arrow_down",
+   "Lead Technician|keyboard_arrow_down",
+   "Service Advisor|keyboard_arrow_down",
+   "Asset on Site|keyboard_arrow_down"
+  ]
+ },
+ "chipsActive": [
+  {
+   "text": "Status: Paid, Declined|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+   "disabled": false,
+   "bg": "rgb(227, 242, 253)",
+   "fg": "rgb(56, 116, 255)",
+   "x": 686,
+   "y": 86,
+   "w": 185,
+   "h": 30,
+   "testid": "filter_chip_status"
+  },
+  {
+   "text": "Customer|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 889,
+   "y": 86,
+   "w": 113,
+   "h": 30,
+   "testid": "filter_chip_company_id"
+  },
+  {
+   "text": "Lead Technician|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 1020,
+   "y": 86,
+   "w": 150,
+   "h": 30,
+   "testid": "filter_chip_tech_assigned_id"
+  },
+  {
+   "text": "Service Advisor|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 1188,
+   "y": 86,
+   "w": 148,
+   "h": 30,
+   "testid": "filter_chip_service_advisor_id"
+  },
+  {
+   "text": "Asset on Site|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 1354,
+   "y": 86,
+   "w": 134,
+   "h": 30,
+   "testid": "filter_chip_vehicleHere"
+  }
+ ],
+ "clearFiltersPresent": {
+  "present": true,
+  "text": "Clear Filters",
+  "x": 1507,
+  "y": 87,
+  "rightOfChips": true
+ },
+ "collapse": {
+  "before": {
+   "tableTop": 184,
+   "chipsVisible": 5,
+   "rows": 30,
+   "url": "https://sv8785.qa.shopview.com/workorders?status=paid&status=declined&tab=all"
+  },
+  "togglePresent": 0,
+  "after": {
+   "tableTop": 184,
+   "chipsVisible": 5,
+   "rows": 30,
+   "url": "https://sv8785.qa.shopview.com/workorders?status=paid&status=declined&tab=all"
+  },
+  "TABLE_MOVED_UP": false,
+  "FILTERS_STILL_APPLIED": true,
+  "indicator": null,
+  "reexpanded": {
+   "chipsVisible": 5,
+   "chips": [
+    "Status: Paid, Declined|keyboard_arrow_down",
+    "Customer|keyboard_arrow_down",
+    "Lead Technician|keyboard_arrow_down",
+    "Service Advisor|keyboard_arrow_down",
+    "Asset on Site|keyboard_arrow_down"
+   ],
+   "clearFilters": true
+  }
+ },
+ "searchOnlyEmpty": {
+  "searchBtnPresent": 0,
+  "inputPresent": 0,
+  "state": {
+   "rows": 30,
+   "emptyBlock": null,
+   "clearLinks": [],
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all"
+  }
+ }
+}

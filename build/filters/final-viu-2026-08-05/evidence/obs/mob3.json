@@ -1,0 +1,364 @@
+{
+ "build": "v3.4.2-d00239b",
+ "viewport": "390x844 touch",
+ "when": "2026-08-05T13:53:56.289Z",
+ "cleanUrl": "https://sv8785.qa.shopview.com/workorders?tab=all",
+ "cleanChips": [
+  {
+   "t": "tune|All Filters",
+   "testid": "filter_chip_all_filters",
+   "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+   "t": "Status|keyboard_arrow_down",
+   "testid": "filter_chip_status",
+   "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+   "t": "Customer|keyboard_arrow_down",
+   "testid": "filter_chip_company_id",
+   "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+   "t": "Lead Technician|keyboard_arrow_down",
+   "testid": "filter_chip_tech_assigned_id",
+   "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+   "t": "Service Advisor|keyboard_arrow_down",
+   "testid": "filter_chip_service_advisor_id",
+   "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+   "t": "Asset on Site|keyboard_arrow_down",
+   "testid": "filter_chip_vehicleHere",
+   "bg": "rgba(0, 0, 0, 0)"
+  }
+ ],
+ "cleanCards": {
+  "statusCounts": {
+   "Estimate": 30
+  },
+  "ids": [
+   "S2-15017",
+   "S2-14846",
+   "S2-13145",
+   "S2-12888",
+   "S2-11498",
+   "S2-15365",
+   "S2-13665",
+   "S2-15668",
+   "S2-13930",
+   "S2-15740",
+   "S2-15601",
+   "S2-15536"
+  ],
+  "n": 30,
+  "emptyText": null
+ },
+ "clearFilters_whenNoFilterActive": {
+  "byTestId": false,
+  "byTestIdVisible": false,
+  "byTextCount": 0,
+  "byTextSamples": []
+ },
+ "singleSheet": {
+  "onOpen": {
+   "title": "Status",
+   "h": 502,
+   "text": "Status\nclose\nEstimate\nApproved\nIn progress\nReview\nComplete\nInvoiced\nPaid\nDeclined\nImported\nClear Selection",
+   "applyInSheet": [],
+   "clear": [
+    {
+     "t": "Clear Selection",
+     "testid": "filter_clear_selection_status"
+    }
+   ],
+   "checked": [
+    {
+     "t": "Estimate",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_estimate"
+    },
+    {
+     "t": "Approved",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_approved"
+    },
+    {
+     "t": "In progress",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_in_progress"
+    },
+    {
+     "t": "Review",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_ready_for_review"
+    },
+    {
+     "t": "Complete",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_complete"
+    },
+    {
+     "t": "Invoiced",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_invoiced"
+    },
+    {
+     "t": "Paid",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_paid"
+    },
+    {
+     "t": "Declined",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_declined"
+    },
+    {
+     "t": "Imported",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_imported"
+    }
+   ],
+   "testIds": [
+    "mobile_filter_sheet_close",
+    "filter_option_status_estimate",
+    "filter_option_status_approved",
+    "filter_option_status_in_progress",
+    "filter_option_status_ready_for_review",
+    "filter_option_status_complete",
+    "filter_option_status_invoiced",
+    "filter_option_status_paid",
+    "filter_option_status_declined",
+    "filter_option_status_imported",
+    "filter_clear_selection_status"
+   ]
+  },
+  "applyAnywhereOnOpen": [],
+  "callsOnOpen": 0,
+  "urlBefore": "https://sv8785.qa.shopview.com/workorders?tab=all",
+  "cardsBefore": {
+   "statusCounts": {
+    "Estimate": 31,
+    "In progress": 1,
+    "Complete": 1,
+    "Paid": 1,
+    "Imported": 1
+   },
+   "ids": [
+    "S2-15017",
+    "S2-14846",
+    "S2-13145",
+    "S2-12888",
+    "S2-11498",
+    "S2-15365",
+    "S2-13665",
+    "S2-15668",
+    "S2-13930",
+    "S2-15740",
+    "S2-15601",
+    "S2-15536"
+   ],
+   "n": 30,
+   "emptyText": null
+  },
+  "at600ms": {
+   "url": "https://sv8785.qa.shopview.com/workorders?status=paid&tab=all",
+   "calls": 1,
+   "sheet": false
+  },
+  "at5s": {
+   "url": "https://sv8785.qa.shopview.com/workorders?status=paid&tab=all",
+   "calls": 1,
+   "sheetStillOpen": false,
+   "cards": {
+    "statusCounts": {
+     "Paid": 30
+    },
+    "ids": [
+     "S2-12848",
+     "S2-13898",
+     "S2-14059",
+     "S2-11644",
+     "S2-13128",
+     "S2-9376",
+     "S2-12713",
+     "S2-13982",
+     "S2-14084",
+     "S2-10438",
+     "S2-9917",
+     "S2-10197"
+    ],
+    "n": 30,
+    "emptyText": null
+   }
+  },
+  "sheetAfterTick": null,
+  "applyAnywhereAfterTick": [],
+  "APPLIED_ON_TAP": true,
+  "SHEET_CLOSED_ON_TAP": true,
+  "reopened": {
+   "title": "Status",
+   "h": 502,
+   "text": "Status\nclose\nEstimate\nApproved\nIn progress\nReview\nComplete\nInvoiced\nPaid\nDeclined\nImported\nClear Selection",
+   "applyInSheet": [],
+   "clear": [
+    {
+     "t": "Clear Selection",
+     "testid": "filter_clear_selection_status"
+    }
+   ],
+   "checked": [
+    {
+     "t": "Estimate",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_estimate"
+    },
+    {
+     "t": "Approved",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_approved"
+    },
+    {
+     "t": "In progress",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_in_progress"
+    },
+    {
+     "t": "Review",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_ready_for_review"
+    },
+    {
+     "t": "Complete",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_complete"
+    },
+    {
+     "t": "Invoiced",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_invoiced"
+    },
+    {
+     "t": "Paid",
+     "checked": "true",
+     "cls": "",
+     "testid": "filter_option_status_paid"
+    },
+    {
+     "t": "Declined",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_declined"
+    },
+    {
+     "t": "Imported",
+     "checked": "false",
+     "cls": "",
+     "testid": "filter_option_status_imported"
+    }
+   ],
+   "testIds": [
+    "mobile_filter_sheet_close",
+    "filter_option_status_estimate",
+    "filter_option_status_approved",
+    "filter_option_status_in_progress",
+    "filter_option_status_ready_for_review",
+    "filter_option_status_complete",
+    "filter_option_status_invoiced",
+    "filter_option_status_paid",
+    "filter_option_status_declined",
+    "filter_option_status_imported",
+    "filter_clear_selection_status"
+   ]
+  },
+  "reopened_checkedValues": [
+   "Paid"
+  ],
+  "secondValue": {
+   "ok": true,
+   "url": "https://sv8785.qa.shopview.com/workorders?status=paid&status=declined&tab=all",
+   "cards": {
+    "statusCounts": {
+     "Paid": 30
+    },
+    "ids": [
+     "S2-12848",
+     "S2-13898",
+     "S2-14059",
+     "S2-11644",
+     "S2-13128",
+     "S2-9376",
+     "S2-12713",
+     "S2-13982",
+     "S2-14084",
+     "S2-10438",
+     "S2-9917",
+     "S2-10197"
+    ],
+    "n": 30,
+    "emptyText": null
+   },
+   "sheetOpen": false
+  },
+  "afterSecond_checked": [
+   "Paid",
+   "Declined"
+  ],
+  "MULTISELECT_POSSIBLE": true
+ },
+ "clearFilters_whileActive": {
+  "byTestId": false,
+  "byTestIdVisible": false,
+  "byTextCount": 0,
+  "byTextSamples": []
+ },
+ "chipsWhileActive": [
+  {
+   "t": "tune|All Filters (1)",
+   "testid": "filter_chip_all_filters",
+   "bg": "rgb(227, 242, 253)"
+  },
+  {
+   "t": "Status (2)|keyboard_arrow_down",
+   "testid": "filter_chip_status",
+   "bg": "rgb(227, 242, 253)"
+  },
+  {
+   "t": "Customer|keyboard_arrow_down",
+   "testid": "filter_chip_company_id",
+   "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+   "t": "Lead Technician|keyboard_arrow_down",
+   "testid": "filter_chip_tech_assigned_id",
+   "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+   "t": "Service Advisor|keyboard_arrow_down",
+   "testid": "filter_chip_service_advisor_id",
+   "bg": "rgba(0, 0, 0, 0)"
+  },
+  {
+   "t": "Asset on Site|keyboard_arrow_down",
+   "testid": "filter_chip_vehicleHere",
+   "bg": "rgba(0, 0, 0, 0)"
+  }
+ ]
+}

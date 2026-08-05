@@ -1,0 +1,234 @@
+{
+ "build": "v3.4.2-d00239b",
+ "when": "2026-08-05T13:28:24.075Z",
+ "url0": "https://sv8785.qa.shopview.com/workorders?status=estimate&status=approved&status=in_progress&status=ready_for_review&company_id=00122246-ab6d-47ee-a885-3425c7bda754&company_id=003a361e-f1a5-47cc-84d5-243d31b0b7aa&tab=complete",
+ "chips0": [
+  {
+   "text": "Customer|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-blue-10 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip filter-chip--active",
+   "disabled": false,
+   "bg": "rgb(227, 242, 253)",
+   "fg": "rgb(56, 116, 255)",
+   "x": 452,
+   "y": 90,
+   "w": 113,
+   "h": 30,
+   "testid": "filter_chip_company_id"
+  },
+  {
+   "text": "Lead Technician|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 584,
+   "y": 90,
+   "w": 150,
+   "h": 30,
+   "testid": "filter_chip_tech_assigned_id"
+  },
+  {
+   "text": "Service Advisor|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 752,
+   "y": 90,
+   "w": 148,
+   "h": 30,
+   "testid": "filter_chip_service_advisor_id"
+  },
+  {
+   "text": "Asset on Site|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 918,
+   "y": 90,
+   "w": 134,
+   "h": 30,
+   "testid": "filter_chip_vehicleHere"
+  }
+ ],
+ "rows0": {
+  "n": 0,
+  "statuses": [],
+  "numbers": [],
+  "customers": [],
+  "advisors": [],
+  "techs": [],
+  "onsite": [],
+  "emptyText": ""
+ },
+ "tabs": [
+  {
+   "t": "All",
+   "active": true,
+   "testid": "tab_all"
+  },
+  {
+   "t": "Estimates",
+   "active": true,
+   "testid": "tab_estimates"
+  },
+  {
+   "t": "Completed",
+   "active": true,
+   "testid": "tab_completed"
+  },
+  {
+   "t": "My Work Orders",
+   "active": true,
+   "testid": "tab_my_work_orders"
+  }
+ ],
+ "prefCalls": [
+  {
+   "status": 200,
+   "method": "GET",
+   "url": "/api/users/me/preferences/work-orders-list"
+  }
+ ],
+ "listCalls": [
+  {
+   "status": 200,
+   "q": "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=serviceAdvisor&pagination[descending]=true&filters[0][field]=status&filters[0][value]=complete&filters[1][field]=company_id&filters[1][value]=00122246-ab6d-47ee-a885-3425c7bda754&filters[2][field]=company_id&filters[2][value]=003a361e-f1a5-47cc-84d5-243d31b0b7aa&search=&showMyWorkOrders=0"
+  }
+ ],
+ "clearFiltersPresent": 1,
+ "savedPref": {
+  "status": 405,
+  "body": {
+   "errors": [
+    {
+     "error": "No route found for \"GET http://sv8785api.qa.shopview.com/api/staff/preferences\": Method Not Allowed (Allow: DELETE)"
+    }
+   ]
+  },
+  "headers": {
+   "access-control-allow-credentials": "true",
+   "access-control-allow-origin": "https://sv8785.qa.shopview.com",
+   "cache-control": "max-age=0, must-revalidate, private",
+   "content-type": "application/problem+json",
+   "date": "Wed, 05 Aug 2026 13:28:24 GMT",
+   "expires": "Wed, 05 Aug 2026 13:28:24 GMT",
+   "server": "nginx/1.30.4",
+   "set-cookie": "<redacted>",
+   "transfer-encoding": "chunked",
+   "x-location-id": "",
+   "x-organization-id": "",
+   "x-powered-by": "PHP/8.5.7",
+   "x-request-id": "",
+   "x-user-id": ""
+  }
+ },
+ "cleared": true,
+ "chipsAfterClear": [
+  {
+   "text": "Customer|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 452,
+   "y": 90,
+   "w": 113,
+   "h": 30,
+   "testid": "filter_chip_company_id"
+  },
+  {
+   "text": "Lead Technician|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 584,
+   "y": 90,
+   "w": 150,
+   "h": 30,
+   "testid": "filter_chip_tech_assigned_id"
+  },
+  {
+   "text": "Service Advisor|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 752,
+   "y": 90,
+   "w": 148,
+   "h": 30,
+   "testid": "filter_chip_service_advisor_id"
+  },
+  {
+   "text": "Asset on Site|keyboard_arrow_down",
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-grey-8 q-btn--actionable q-focusable q-hoverable q-btn--no-uppercase q-btn--dense filter-chip",
+   "disabled": false,
+   "bg": "rgba(0, 0, 0, 0)",
+   "fg": "rgb(97, 97, 97)",
+   "x": 918,
+   "y": 90,
+   "w": 134,
+   "h": 30,
+   "testid": "filter_chip_vehicleHere"
+  }
+ ],
+ "rowsAfterClear": {
+  "n": 11,
+  "statuses": [
+   "Complete"
+  ],
+  "numbers": [
+   "S2-15459",
+   "S2-15545",
+   "S2-15856",
+   "S2-13274",
+   "S2-15019",
+   "S2-15733",
+   "S2-15543",
+   "S2-15221",
+   "S2-15806",
+   "S2-15781",
+   "S2-14434"
+  ],
+  "customers": [
+   "Pamill Paving",
+   "Joshore Farms",
+   "Gicastle Ventures",
+   "Oechester Mechanical",
+   "Brabay Maintenance",
+   "Vaspring Consulting",
+   "Ceview Builders",
+   "Ximarket Mechanical"
+  ],
+  "advisors": [
+   "Lauren Knight",
+   "Kimberly Barnes",
+   "Bonnie Jones"
+  ],
+  "techs": [
+   "Unassigned",
+   "Thomas Jones",
+   "Colleen Guerrero",
+   "Andrew Wade",
+   "William Johns"
+  ],
+  "onsite": [
+   "rgb(193, 0, 21)",
+   "rgb(193, 0, 21)",
+   "rgb(33, 186, 69)",
+   "rgb(193, 0, 21)",
+   "rgb(193, 0, 21)",
+   "rgb(193, 0, 21)",
+   "rgb(33, 186, 69)",
+   "rgb(193, 0, 21)",
+   "rgb(193, 0, 21)",
+   "rgb(33, 186, 69)",
+   "rgb(193, 0, 21)"
+  ],
+  "emptyText": null
+ },
+ "urlAfterClear": "https://sv8785.qa.shopview.com/workorders?tab=complete"
+}

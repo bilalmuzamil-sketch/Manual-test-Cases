@@ -1,0 +1,87 @@
+{
+ "build": "v3.4.2-d00239b",
+ "when": "2026-08-05T14:12:03.727Z",
+ "searchOnly": {
+  "inputPresent": 1,
+  "placeholder": "Type to search",
+  "at400ms": {
+   "calls": 0
+  },
+  "state": {
+   "rows": 0,
+   "emptyBlock": "_up\tCreated Onarrow_drop_up\n\n\nNo work orders match your filters\nClear Filters\n1",
+   "clearLinks": [
+    {
+     "t": "Clear Filters",
+     "testid": "empty_state_clear_filters"
+    }
+   ],
+   "searchVal": "ZZQQNOMATCHXX",
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=ZZQQNOMATCHXX"
+  },
+  "debounceCalls": [
+   "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=serviceAdvisor&pagination[descending]=true&search=ZZQQNOMATCHXX&showMyWorkOrders=0"
+  ]
+ },
+ "filterPlusSearch": {
+  "state": {
+   "rows": 0,
+   "emptyBlock": "_up\tCreated Onarrow_drop_up\n\n\nNo work orders match your filters\nClear Filters\n1",
+   "clearLinks": [
+    {
+     "t": "Clear Filters",
+     "testid": "clear_filters"
+    },
+    {
+     "t": "Clear Filters",
+     "testid": "empty_state_clear_filters"
+    }
+   ],
+   "searchVal": "ZZQQNOMATCHXX",
+   "url": "https://sv8785.qa.shopview.com/workorders?status=paid&tab=all&search=ZZQQNOMATCHXX"
+  },
+  "clearLinkTexts": [
+   "Clear Filters",
+   "Clear Filters"
+  ]
+ },
+ "afterClearFilters": {
+  "rows": 0,
+  "emptyBlock": "_up\tCreated Onarrow_drop_up\n\n\nNo work orders match your filters\nClear Filters\n1",
+  "clearLinks": [
+   {
+    "t": "Clear Filters",
+    "testid": "empty_state_clear_filters"
+   }
+  ],
+  "searchVal": "ZZQQNOMATCHXX",
+  "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=ZZQQNOMATCHXX"
+ },
+ "searchMatch": {
+  "state": {
+   "rows": 30,
+   "emptyBlock": null,
+   "clearLinks": [],
+   "searchVal": "Aagate",
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Aagate"
+  },
+  "rowsSample": [
+   "",
+   "location_on|\t|Paid|\tS2-10251\t|Aagate Landscaping|\t|Komatsu Pc138uslc-1",
+   "location_on|\t|Paid|\tS2-10112\t|Aagate Landscaping|\t|Komatsu Pc138uslc-1",
+   "location_on|\t|Paid|\tS2-12577\t|Aagate Landscaping|\t|Kubota KX080-4|\tE17"
+  ],
+  "applyBtn": [],
+  "calls": [
+   "pagination[rowsPerPage]=30&pagination[page]=1&pagination[sortBy]=serviceAdvisor&pagination[descending]=true&search=Aagate&showMyWorkOrders=0"
+  ],
+  "urlHasSearch": true
+ },
+ "afterEnter": {
+  "rows": 30,
+  "emptyBlock": null,
+  "clearLinks": [],
+  "searchVal": "Aagate",
+  "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=Aagate"
+ }
+}
