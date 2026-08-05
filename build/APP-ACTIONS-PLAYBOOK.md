@@ -2063,3 +2063,75 @@ and **`Clear Filters`** (capital second word) · in-dropdown placeholder is plai
 **`Create Work Order`** (the spec says "New Work Order") · **`Back To My Saved Filters`** (the spec
 says "Back to my view") · page-search placeholder **`Type to search`** · empty state
 **`No work orders match your filters`**.
+
+---
+
+## §P — Verify a FRONTEND fix from the DEPLOYED BUNDLE, with NO login (proven 2026-08-05, SV-7324)
+
+**Use this when** you must confirm a frontend fix is genuinely deployed on a QA branch but the estate
+is `401 sso_required` (no cookies), **or** the app repo is outside the session's GitHub scope so the PR
+diff cannot be read. The deployed bundle is **better evidence than the PR anyway** — it is what is
+actually running (Rule 12), and static assets are served **without auth** even when the API is walled.
+
+**Why it matters:** it turns "I couldn't check anything without cookies" into a real, exhaustive,
+byte-level verification of the shipped code — and it reads the *server-driven* parts of a fix, which is
+where silent failures hide.
+
+### The recipe
+
+```bash
+# 1. Build marker (Rule 49) — ALWAYS capture this first
+curl -sS -D - -o idx.html https://<env>.qa.shopview.com/ | grep -Ei 'last-modified|etag'
+grep -oE '<meta name="app-version"[^>]*>' idx.html && sha256sum idx.html
+
+# 2. Seed chunk list from the entry bundle named in index.html
+grep -oE '(src|href)="[^"]*\.js"' idx.html          # -> /js/index.<hash>.js
+curl -sS -o index.js https://<env>.qa.shopview.com/js/index.<hash>.js
+grep -oE '[A-Za-z0-9_-]+\.[A-Za-z0-9_-]{8}\.js' index.js | sort -u > chunks.txt
+
+# 3. TRANSITIVE CLOSURE — chunks reference further chunks; one pass is NOT enough
+#    (SV-7324: 120 -> 506 -> 541. Stopping at pass 1 would have missed the fix entirely.)
+while :; do
+  cat *.js | grep -oE '[A-Za-z0-9_-]+\.[A-Za-z0-9_-]{8}\.js' | sort -u > want.txt
+  ls -1 *.js | sort -u > have.txt; comm -23 want.txt have.txt > todo.txt
+  [ ! -s todo.txt ] && break
+  xargs -P 16 -I{} curl -sS --max-time 25 -o {} "https://<env>.qa.shopview.com/js/{}" < todo.txt
+done
+
+# 4. Now grep ALL of them (Rule 50 — exhaustive, no sampling)
+grep -l -i 'heic\|heif' *.js          # absence across ALL chunks is itself strong evidence
+grep -l 'some_data_test_id' *.js      # finds the component chunk by its data-test-id
+```
+
+**GOTCHAS, all hit for real:**
+- **`xargs -P 16` is required.** Serial download of ~500 chunks times out at 2 min. Parallel = seconds.
+- **Chunk names are content-hashed**, so they are also a precise build fingerprint — record them.
+- **Vite chunks are named after the component** (`GenericNotes.<hash>.js`), so the fastest way to the
+  right file is `grep -l` for a **`data-test-id`** or a user-facing string, not for the filename.
+- A `.map` sourcemap URL is often present at the tail of each chunk — check for it, it can make the
+  minified code trivially readable.
+
+### What this proves, and what it does NOT
+
+**PROVES:** the fix's files are deployed; hardcoded constants and limits; exact on-screen labels and
+`data-test-id`s (Rule 9 wording, straight from the build with no login); that *removed* code really is
+gone (`grep -l` returning nothing across every chunk).
+**DOES NOT PROVE:** anything the **server** supplies at runtime, and anything the **device/browser**
+does. Both must be labelled NOT VERIFIED (Rule 12).
+
+### The high-value move: trace the SERVER-DRIVEN inputs
+
+Read the fix's data flow to find where a runtime value can **override** a safe hardcoded default. On
+SV-7324 the file-picker `accept` list was `(serverList.length > 0 ? serverList : HARDCODED_15)` —
+so a server allow-list containing `image/heic` would silently defeat the whole fix while **every unit
+test still passed** (they assert the hardcoded list). That risk is invisible in the PR description and
+was only findable by reading the deployed code. **Always ask: which part of this fix is not in the
+bundle?**
+
+### Honest limit
+
+A physical-device behaviour (here: iOS transcoding HEIC→JPEG *inside* the photo picker, before the
+browser receives a file) is **not** reachable this way — nor by emulation, mobile viewport or UA
+spoofing. That is Rule 14's genuine-blocker exception; it needs a human with the device, and a
+`PENDING-LIVE-CHECK.md` queue (Rule 49). Canonical example:
+`build/sv7324-heic-2026-08-05/`.

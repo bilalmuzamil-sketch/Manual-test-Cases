@@ -30,7 +30,7 @@
 > stays hedged instead of asserted. A missing QA branch means **nothing is live-verified** and a
 > whole suite sits VIU-Pending.
 
-**Last updated:** 2026-08-05 (~17:05 UTC — the PO question-sheet pass)
+**Last updated:** 2026-08-05 (~18:20 UTC — the SV-7324 HEIC iPhone verification)
 **Active projects:** Report Suite · Schedule · Filters (user ruling 2026-07-27)
 **Predecessor snapshot (kept for the record):** `build/PROJECTS-NEEDS-2026-07-27.md`
 **Companion defensibility register (read before answering any QA challenge in a public channel):** `build/qa-preemptive-answers-2026-07-31/ANTICIPATED-QUESTIONS-AND-ANSWERS.md` / `.xlsx` — 65 rows of *what someone could say* → *the paste-ready answer* → *the evidence*, across the three active projects, with a TOP 10 and an open list of what we would genuinely have to concede.
@@ -57,7 +57,52 @@ else owes).
 
 ---
 
-## ⚠️⚠️⚠️ NEWEST — 2026-08-05, ~17:05 UTC, the PO QUESTION-SHEET pass. **THE TWO SHEETS ARE WRITTEN AND READY TO SEND. NOTHING NEW IS BLOCKED — WHAT CHANGES IS THAT 26 QUESTIONS NOW EXIST IN SENDABLE FORM, AND THREE PREVIOUS ROWS WERE WRONG.**
+## ⚠️⚠️⚠️⚠️ NEWEST — 2026-08-05, ~18:20 UTC, **SV-7324 (HEIC upload) — A SIDE BUG TICKET, NOT ONE OF THE THREE SUITES. THE FIX IS PROVEN DEPLOYED AND CORRECTLY BUILT; THE ONE CHECK THAT DECIDES THE TICKET NEEDS A REAL IPHONE AND CANNOT BE DONE FROM HERE.**
+
+**READ-ONLY PASS. No TestRail write, no Jira write, no comment posted on the ticket.**
+
+Ticket [SV-7324](https://shopview.atlassian.net/browse/SV-7324) · Bug · Medium · status **TESTING QA** ·
+assigned to Slavcho Mitrov · Stefan asked you to take it on 2026-08-04 and you agreed.
+Deliverables: `build/sv7324-heic-2026-08-05/{FINDINGS-2026-08-05.md,
+iPhone-Test-Script_SV-7324_2026-08-05.md, PENDING-LIVE-CHECK.md, evidence/}`.
+
+**What was proven, live, from the deployed build** (`sv7324.qa.shopview.com`, **`v3.4.2-fc52c44`**,
+541 JS chunks downloaded by transitive closure and all searched — no sampling): the `accept` list IS
+on the file picker, its hardcoded fallback **excludes** HEIC/HEIF, `heic`/`heif` appear **0 times** in
+the entire frontend (so the superseded client-side approach is genuinely gone), and both call sites
+exist. **The mechanism is in place and correctly built.**
+
+| # | Cat | What is missing | Who owes it | What it blocks | Since |
+|---|---|---|---|---|---|
+| **H1** | **ACCESS** | **A real iPhone, in a human's hand, to run the 4-check script** (~5 min). The conversion happens *inside the iOS photo picker* before the browser sees a file — unobservable by emulation, mobile viewport, UA spoofing or any automated test. The dev says so himself: *"the transcode happens inside the iOS picker, so no automated test can observe it."* This is Standing Rule 14's named genuine-blocker exception (a real physical device), not something we can seed around. | **You, or whoever Stefan nominates** | **The entire verification, and therefore the ticket.** It cannot go to Done on this pass. | 2026-08-05 |
+| **H2** | **ACCESS** | **Fresh `.qa.shopview.com` cookies** (`sv_sso_session`, `PHPSESSID`, `cf_clearance`) — same ask as **A2**, and the whole estate is 401 `sso_required`. | You | Confirming **Risk 1** in advance (below) + the drag-and-drop and store-retry items from the dev's own QA checklist. **Not** a blocker for the phone test. | 2026-08-05 |
+| **H3** | **DECISION** | **Whether this becomes a permanent TestRail case.** The PR notes say the HEIC UI test was *"deferred to backlog"* because CI has no libheif image. A manual case would carry `AUTOMATION: HOLD - needs a real iPhone; the conversion happens inside the iOS picker`. **Nothing authored or pushed** (Rule 6). | You | Nothing today. | 2026-08-05 |
+
+**TWO WAYS THE FIX CAN STILL FAIL ON A PHONE — found by reading the deployed code, neither observed,
+both written up so a failure is diagnosable in minutes:**
+
+- **Risk 1 — the accept list is SERVER-DRIVEN, not hardcoded.** `(list.length > 0 ? list : DEFAULT)` —
+  whatever `GET note/list-supported-mime-types` returns **replaces** the safe default. If this env's
+  server list contains `image/heic`, the picker advertises HEIC, **iOS does not transcode, and the fix
+  silently does nothing** while every unit test still passes. Not paranoia: the **superseded** PR #2313
+  deliberately made the backend accept/convert HEIC, which means adding it to exactly this list.
+  Unreadable here (401). The phone test settles it either way — a `.jpg` landing proves the list
+  excluded HEIC — so check this **first** only if the phone test fails.
+- **Risk 2 — a 300 ms cancel-detection window racing an on-device transcode.** The picker resolves with
+  **an empty file list** if the window regains focus and no `change` event arrives within 300 ms. On
+  desktop `change` is instant; on iOS the HEIC→JPEG conversion of a multi-megabyte photo happens after
+  the user taps Choose. If it outruns 300 ms the photo is **dropped with no error, no toast and no
+  spinner** — which reads as *"I picked a photo and nothing happened"*, uncomfortably close to the
+  original bug. The script deliberately includes a large photo and a 3-at-once select for this.
+
+**Also worth knowing:** the desktop `.heic` error you hit on 5 August is **expected, not a defect** —
+Slavcho confirmed at 12:58 that browsers cannot decode HEIC and it must be tested from an iPhone. And
+the PR carries a **deliberate trade-off**: a `.heic` picked via the **Files app** is filtered out;
+only the camera-roll route transcodes. The two are mutually exclusive, so that is not a bug to raise.
+
+---
+
+## ⚠️⚠️⚠️ 2026-08-05, ~17:05 UTC, the PO QUESTION-SHEET pass. **THE TWO SHEETS ARE WRITTEN AND READY TO SEND. NOTHING NEW IS BLOCKED — WHAT CHANGES IS THAT 26 QUESTIONS NOW EXIST IN SENDABLE FORM, AND THREE PREVIOUS ROWS WERE WRONG.**
 
 **DOCUMENTATION ONLY. No TestRail write, no Jira write, no case edit.** Both sheets are drafts for
 the QA lead to send, mirroring the established format 1:1 (Rule 16) with a QA-only tab that must not
