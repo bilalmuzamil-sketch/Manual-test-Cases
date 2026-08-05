@@ -152,12 +152,13 @@
   "expected": [
    "1. The destination page shows the application's standard access-denied state.",
    "2. Pressing back returns you to the Sales By Customer report.",
+   "3. Note for the tester: the written description now says two different things about this, so do not fail the test on what the invoice number LOOKS like. The part this test was written from says the person clicks the link and lands on a page telling them they are not allowed in. Another part, added on 5 August 2026, says that person is not given a link at all and simply sees the invoice number as ordinary plain text. Both are in the same description today. The product owner has been asked which he wants. Write down exactly what you saw — a link leading to a not-allowed page, or plain text with nothing to click — and carry on. The one thing that would be a real failure is that person actually SEEING the invoice they are not allowed to see.",
    "",
    "---",
-   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-N2).",
+   "This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-N2), which states that a user who lacks permission to open the destination invoice is shown the standard access-denied page and can press back to return to the report. The same version's S9-R1a, added on 5 August 2026, instead states that such a user is never given a link and sees the invoice number as plain text; the two have not been reconciled and the product owner has been asked which applies.",
    "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
    "",
-   "AUTOMATION: READY",
+   "AUTOMATION: HOLD - waiting on one answer from the product owner about whether this person is given a link at all",
    ""
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",

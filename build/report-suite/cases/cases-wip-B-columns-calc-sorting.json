@@ -780,5 +780,44 @@
   "notes": "REGRESSION GUARD: the old WIP report's clocked-time math DROPPED still-open clock records entirely (the engineering plan B1.2 warns the legacy sums lose open rows) — a still-clocked-in technician contributing $0.00 is exactly the failure to catch. The spec is silent on running clocks; the expectation (value running time up to now, capped at the quote) comes from the engineering plan — confirm live. | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false,
   "refs": "SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R15; §4 Terminology (Earned) — spec silent on running clocks; tech-plan-2026-07-29 B1.2 open-clock policy)"
+ },
+ {
+  "id": "WIP-COL-09",
+  "area": "WIP — Columns & Rows",
+  "title": "The WO # is plain text, not a link, without Work Order permission",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Two sign-ins: one that can open the target record and one that can see reports but cannot.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You need TWO sign-ins for this test: one person who can open work orders, and one person who can see reports but CANNOT open work orders. Ask whoever manages permissions to set the second one up for you, or set it up yourself in administration and put it back as you found it afterwards.",
+   "3. The Work In Progress report has at least one work order showing. If a tab looks empty, widen the date range."
+  ],
+  "steps": [
+   "1. Sign in as the person who CAN open work orders, open the Work In Progress report, and look at the WO # in the first column.",
+   "2. Sign in as the person who can see reports but CANNOT open work orders, and open the Work In Progress report again.",
+   "3. Look at the WO # in the first column, and try to click it.",
+   "4. Do the same on all four tabs.",
+   "5. If you are testing on a phone or tablet as well, repeat step 3 there."
+  ],
+  "expected": [
+   "1. For the person who CAN open work orders, the WO # is shown as a link.",
+   "2. For the person who CANNOT open work orders, the WO # is shown as ordinary plain text — it is not a link, there is nothing to click, and clicking it does nothing.",
+   "3. Nothing goes wrong: no page that says you are not allowed in, no blank page, and no error message. The report simply shows the number as text.",
+   "4. Everything else about the row is the same for both people — the work order still appears, with its status, customer, asset and money values.",
+   "5. The behaviour is the same on all four tabs.",
+   "6. Note for the tester: the point of this test is that a person who cannot open a work order should never be given a link that leads nowhere. If you find a link that takes you to a page saying you are not allowed in, that is a failure — report it.",
+   "",
+   "---",
+   "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R5), which states that the WO # is shown as a link only when the user has permission to access Work Orders and that a user without Work Order permission sees the WO # as plain text and not a link.",
+   "This has not yet been checked against a build.",
+   "",
+   "AUTOMATION: HOLD - needs a second sign-in that can see reports but cannot open work orders; no such account exists on this test system yet",
+   ""
+  ],
+  "design_ref": "none — design not yet available (spec-only authoring)",
+  "spec_ref": "SV-8660 (WIP spec v9 2026-08-05 Story 4 S4-R5 — the negative half: a person without Work Order permission sees the WO # as plain text and not a link)",
+  "viu_status": "VIU-Pending",
+  "notes": "Authored 2026-08-05 for the suite-wide link-permission rule Chris Ward published that day. The negative half could not be observed live: the front end would not accept this run's browser session and the one route that produces a signed-in browser was barred because it would have reset a sign-in shared with two other testers."
  }
 ]

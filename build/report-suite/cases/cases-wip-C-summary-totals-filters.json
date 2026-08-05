@@ -371,12 +371,14 @@
   "steps": [
    "1. Open the Advisor filter in the toolbar and read its options.",
    "2. Select one advisor and watch the rows.",
-   "3. Add a second advisor to the selection."
+   "3. Add a second advisor to the selection.",
+   "4. Scroll to the bottom of a busy tab, note an advisor who only appears down there, then open the filter again and check that advisor is offered."
   ],
   "expected": [
-   "1. The Advisor filter is a multi-select listing the advisors present in the loaded jobs.",
+   "1. The Advisor filter is a multi-select listing the advisors on every open job in what the report is currently showing you — not only the ones on the rows that happen to have loaded.",
    "2. Selecting one or more advisors narrows the visible jobs to those advisors instantly, on screen only — no reload and no loading indicator.",
    "3. With two advisors selected, jobs for either advisor are shown.",
+   "4. Pick an advisor whose jobs sit a long way down the list — scroll to the bottom of a busy tab to find one — and confirm every one of that advisor's jobs is still shown. You must never end up with only the part of the list that had loaded when you opened the filter.",
    "",
    "---",
    "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R1).",
@@ -386,7 +388,7 @@
    ""
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R1)",
+  "spec_ref": "SV-8663 (WIP spec v9 2026-08-05 Story 7 S7-R1 — the option list covers every open job in the current scope and not only the loaded rows)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false,
@@ -407,13 +409,15 @@
    "1. Read the Customer filter's label before selecting anything, and check whether a Clear action is offered.",
    "2. Open the filter and type part of a customer's name to narrow the list.",
    "3. Select one or more customers and watch the rows.",
-   "4. Use the \"Clear\" action."
+   "4. Use the \"Clear\" action.",
+   "5. Scroll to the bottom of a busy tab, note a customer who only appears down there, then type that customer's name into the filter and check they are offered."
   ],
   "expected": [
    "1. With no customer selected, the filter reads \"All customers\", every job is shown, and no Clear action is offered.",
-   "2. Typing narrows the option list (type-ahead); the options are the customers present in the loaded jobs.",
+   "2. Typing narrows the option list (type-ahead); the options are the customers on every open job in what the report is currently showing you — not only the ones on the rows that happen to have loaded.",
    "3. Selecting customers narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one customer is selected.",
    "4. Clear returns the filter to \"All customers\" and every job is shown again.",
+   "5. Pick a customer whose jobs sit a long way down the list — scroll to the bottom of a busy tab to find one — and confirm every one of that customer's jobs is still shown. You must never end up with only the part of the list that had loaded when you opened the filter.",
    "",
    "---",
    "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R2, S7-R3).",
@@ -423,7 +427,7 @@
    ""
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R2; S7-R3)",
+  "spec_ref": "SV-8663 (WIP spec v9 2026-08-05 Story 7 S7-R2 and S7-R3 — the option list covers every open job in the current scope and not only the loaded rows)",
   "viu_status": "VIU-Pending",
   "notes": "VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false,
@@ -444,24 +448,27 @@
    "1. Read the Asset filter's label before selecting anything.",
    "2. Open the filter and read how each option is presented.",
    "3. Type part of a VIN and check the matching options; clear and type part of a Unit # instead.",
-   "4. Select one or more assets and watch the rows; then use the \"Clear\" action."
+   "4. Scroll to the bottom of a busy tab, note an asset that only appears down there, then type its Unit # and then its VIN into the filter and check it is offered both ways.",
+   "5. Select one or more assets and watch the rows; then use the \"Clear\" action."
   ],
   "expected": [
    "1. With no asset selected, the filter reads \"All assets\" and every job is shown.",
-   "2. Each option shows both the asset's Unit # and its VIN.",
+   "2. The list offers every asset on every open job in what the report is currently showing you — not only the ones on the rows that happen to have loaded — and each option shows both the asset's Unit # and its VIN.",
    "3. Text you type matches against either the Unit # or the VIN - a match on either one brings the asset up.",
    "4. Selecting assets narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one asset is selected and returns the filter to \"All assets\".",
    "5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.",
+   "Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8908",
+   "That is about assets that share a Unit # with another asset: only one of them is offered, so typing the other one's VIN finds nothing. On today's test data six assets are affected. Everything else in this test works.",
    "",
    "---",
    "This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R4, S7-R5). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.",
    "Last checked against build v3.4.1-3d03023 on 8/4/2026.",
    "",
-   "AUTOMATION: READY",
+   "AUTOMATION: READY - EXPECT FAIL (SV-8908)",
    ""
   ],
   "design_ref": "none — design not yet available (spec-only authoring)",
-  "spec_ref": "SV-8663 (WIP spec Story 7 S7-R4; S7-R5 - option text + match fields RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [supersedes video P24])",
+  "spec_ref": "SV-8663 (WIP spec v9 2026-08-05 Story 7 S7-R4 and S7-R5 — the option list covers every asset on every open job in the current scope; option text and match fields per Chris Ward answer 2026-07-29)",
   "viu_status": "VIU-Pending",
   "notes": "RE-RULED 2026-07-29 per Chris Ward's answer A ('A is the correct answer'): the asset identifier is the VIN chain (VIN -> Unit # -> plate; standard for all reports going forward per his standing note), with the non-vehicle terminology caution carried as a plain tester note (label stays 'VIN' per Rule 9). Supersedes the video P24 serial ruling (pre-edit body in chris-update-2026-07-29/backup/WIP-FLT-03.json). Exact option text + matched fields unpinned - Chris's spec update is not hand-reviewed yet; confirm at VIU, do not invent (Rule 9). P12 LATEST INFO (latest-info user ruling 2026-07-28: update per latest info now, correct at VIU later): the Asset dropdown should MATCH THE NATIVE ShopView multi-select style, plus a possible toggle - video 15:49-16:04 Stefan: 'I would also add maybe a toggle or something... Just to have it, like, uniform throughout the app'; Chris 16:54: 'let's please do this. Happy to update the spec with that, too.' Exact interaction (close-on-pick vs toggle) = VIU-confirm - do not fail on stay-open vs close-per-pick until confirmed live. (No case asserted the stay-open behavior - verified by search.) | VIU 2026-08-03/04: observed live on the Report Suite QA branch sv8582, build v3.4.1-0ed4433 (index.html last-modified 2026-08-03 13:40:38 GMT). Engineering declared this branch NOT FINAL, so this observation is PROVISIONAL and must be re-confirmed when the build settles (Standing Rule 49). Re-check queue: build/report-suite/viu-2026-08-03/RECHECK-QUEUE.md",
   "api_related": false,

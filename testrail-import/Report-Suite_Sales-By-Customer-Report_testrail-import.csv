@@ -47,12 +47,13 @@ Opening an invoice you lack permission for shows access-denied; back works,SBC �
 2. Look at the destination page.
 3. Press the browser back button.","1. The destination page shows the application's standard access-denied state.
 2. Pressing back returns you to the Sales By Customer report.
+3. Note for the tester: the written description now says two different things about this, so do not fail the test on what the invoice number LOOKS like. The part this test was written from says the person clicks the link and lands on a page telling them they are not allowed in. Another part, added on 5 August 2026, says that person is not given a link at all and simply sees the invoice number as ordinary plain text. Both are in the same description today. The product owner has been asked which he wants. Write down exactly what you saw — a link leading to a not-allowed page, or plain text with nothing to click — and carry on. The one thing that would be a real failure is that person actually SEEING the invoice they are not allowed to see.
 
 ---
-This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-N2).
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15 (S9-N2), which states that a user who lacks permission to open the destination invoice is shown the standard access-denied page and can press back to return to the report. The same version's S9-R1a, added on 5 August 2026, instead states that such a user is never given a link and sees the invoice number as plain text; the two have not been reconciled and the product owner has been asked which applies.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: READY
+AUTOMATION: HOLD - waiting on one answer from the product owner about whether this person is given a link at all
 ",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-N2),,
 Location access enforced: no data from a location the user cannot access,SBC — Permissions,Negative,High,"1. The organization has at least two locations, each with invoices in the chosen date range (seed ZZAUTOTEST data if needed).
 2. A non-administrator test user is assigned to only ONE of the locations.
@@ -494,6 +495,23 @@ Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8607 (SBC spec v13 2026-07-31 Story 9 S9-N1),,
+You cannot reach an invoice you have no permission to open,SBC — Invoice Links & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You need TWO sign-ins: one person who can open work orders and part sales, and one person who can see reports but CANNOT open them. Ask whoever manages permissions to set the second one up, or set it up yourself in administration and put it back as you found it afterwards.
+3. On the Sales By Customer report you have expanded a customer and then an asset, so you can see the invoice rows underneath. You need one service invoice and one parts invoice — use a different customer for the second one if you have to.","1. Signed in as the person who CAN open them, click a service invoice's Invoice # and note where it takes you. Come back, then do the same for a parts invoice.
+2. Sign in as the person who CANNOT open them and open the Sales By Customer report again.
+3. Expand down to the same invoice rows and look carefully at the Invoice # values.
+4. Try to click one.
+5. Write down exactly what you see and what happens, in your own words.","1. For the person who CAN open them, each Invoice # is a link: a service invoice opens the work order's Finance tab, and a parts invoice opens the part sale's Part Requests tab, both in the same browser tab.
+2. For the person who CANNOT open them, the invoice's contents stay out of reach — they must not end up looking at a work order or a part sale they are not allowed to see.
+3. The report itself keeps working: the customer, asset and invoice rows are all still listed with their figures, and nothing on the page breaks.
+4. Note for the tester: what the Invoice # should LOOK like for that second person is an open question and you should not fail the test on it either way. The written description says two different things — in one place it says the number is shown as ordinary plain text with no link at all, and in another place it says the person clicks the link and lands on a page telling them they are not allowed in. The product owner has been asked which he wants. So write down exactly what you saw — plain text, or a link that leads to a not-allowed page — and carry on. Only report a failure if that person actually gets to SEE the work order or part sale.
+
+---
+This is the expected behaviour as per epic SV-8582 and the Sales By Customer report specification version 15. Two parts of that description disagree: S9-R1a says the invoice number is rendered as a link only when the user has permission to open the target and that a user without that permission sees it as plain text, while S9-N2 says that a user who lacks permission to open the destination invoice is shown the standard access-denied page and can press back. This case therefore asserts only what both of them require — that the person cannot reach the invoice — and the product owner has been asked to settle the rest.
+This has not yet been checked against a build.
+
+AUTOMATION: HOLD - waiting on one answer from the product owner about what the invoice number should look like, and it needs a second sign-in that cannot open work orders or part sales
+",SV-8607 (SBC spec v15 2026-08-05 Story 9 S9-R1a and S9-N2 — the two say different things about what the invoice number looks like; this case asserts only what both of them agree on),,
 "All columns sortable except chevron; text alphabetical, numbers by value",SBC — Sorting,Functional,High,"1. Several customers with differing values are in the current view.
 2. A customer with multiple assets and invoices is in the view.","1. Click each column header in turn (Customer, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal) and watch the order change.
 2. Try clicking the chevron column's header position.

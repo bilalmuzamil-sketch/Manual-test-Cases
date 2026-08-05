@@ -230,6 +230,25 @@ Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8660 (WIP spec v6 2026-07-29 Story 4 S4-R13),,
+"The WO # is plain text, not a link, without Work Order permission",WIP — Columns & Rows,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You need TWO sign-ins for this test: one person who can open work orders, and one person who can see reports but CANNOT open work orders. Ask whoever manages permissions to set the second one up for you, or set it up yourself in administration and put it back as you found it afterwards.
+3. The Work In Progress report has at least one work order showing. If a tab looks empty, widen the date range.","1. Sign in as the person who CAN open work orders, open the Work In Progress report, and look at the WO # in the first column.
+2. Sign in as the person who can see reports but CANNOT open work orders, and open the Work In Progress report again.
+3. Look at the WO # in the first column, and try to click it.
+4. Do the same on all four tabs.
+5. If you are testing on a phone or tablet as well, repeat step 3 there.","1. For the person who CAN open work orders, the WO # is shown as a link.
+2. For the person who CANNOT open work orders, the WO # is shown as ordinary plain text — it is not a link, there is nothing to click, and clicking it does nothing.
+3. Nothing goes wrong: no page that says you are not allowed in, no blank page, and no error message. The report simply shows the number as text.
+4. Everything else about the row is the same for both people — the work order still appears, with its status, customer, asset and money values.
+5. The behaviour is the same on all four tabs.
+6. Note for the tester: the point of this test is that a person who cannot open a work order should never be given a link that leads nowhere. If you find a link that takes you to a page saying you are not allowed in, that is a failure — report it.
+
+---
+This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S4-R5), which states that the WO # is shown as a link only when the user has permission to access Work Orders and that a user without Work Order permission sees the WO # as plain text and not a link.
+This has not yet been checked against a build.
+
+AUTOMATION: HOLD - needs a second sign-in that can see reports but cannot open work orders; no such account exists on this test system yet
+",SV-8660 (WIP spec v9 2026-08-05 Story 4 S4-R5 — the negative half: a person without Work Order permission sees the WO # as plain text and not a link),,
 Money columns show US dollars to two decimals with thousands separators,WIP — Earned & Remaining,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. All money columns (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) are turned on.
 3. The report shows rows with values over $1,000, a genuine zero value, and (if producible) a negative value.","1. Read a money value over one thousand dollars.
@@ -533,47 +552,54 @@ AUTOMATION: READY
 The Advisor filter lists the advisors in the loaded jobs; screen only,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs for at least two different advisors.","1. Open the Advisor filter in the toolbar and read its options.
 2. Select one advisor and watch the rows.
-3. Add a second advisor to the selection.","1. The Advisor filter is a multi-select listing the advisors present in the loaded jobs.
+3. Add a second advisor to the selection.
+4. Scroll to the bottom of a busy tab, note an advisor who only appears down there, then open the filter again and check that advisor is offered.","1. The Advisor filter is a multi-select listing the advisors on every open job in what the report is currently showing you — not only the ones on the rows that happen to have loaded.
 2. Selecting one or more advisors narrows the visible jobs to those advisors instantly, on screen only — no reload and no loading indicator.
 3. With two advisors selected, jobs for either advisor are shown.
+4. Pick an advisor whose jobs sit a long way down the list — scroll to the bottom of a busy tab to find one — and confirm every one of that advisor's jobs is still shown. You must never end up with only the part of the list that had loaded when you opened the filter.
 
 ---
 This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
-",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R1),,
+",SV-8663 (WIP spec v9 2026-08-05 Story 7 S7-R1 — the option list covers every open job in the current scope and not only the loaded rows),,
 "Customer filter is a type-ahead multi-select reading ""All customers""",WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs for at least two different customers.","1. Read the Customer filter's label before selecting anything, and check whether a Clear action is offered.
 2. Open the filter and type part of a customer's name to narrow the list.
 3. Select one or more customers and watch the rows.
-4. Use the ""Clear"" action.","1. With no customer selected, the filter reads ""All customers"", every job is shown, and no Clear action is offered.
-2. Typing narrows the option list (type-ahead); the options are the customers present in the loaded jobs.
+4. Use the ""Clear"" action.
+5. Scroll to the bottom of a busy tab, note a customer who only appears down there, then type that customer's name into the filter and check they are offered.","1. With no customer selected, the filter reads ""All customers"", every job is shown, and no Clear action is offered.
+2. Typing narrows the option list (type-ahead); the options are the customers on every open job in what the report is currently showing you — not only the ones on the rows that happen to have loaded.
 3. Selecting customers narrows the visible jobs on screen only (no reload); a single ""Clear"" action appears once at least one customer is selected.
 4. Clear returns the filter to ""All customers"" and every job is shown again.
+5. Pick a customer whose jobs sit a long way down the list — scroll to the bottom of a busy tab to find one — and confirm every one of that customer's jobs is still shown. You must never end up with only the part of the list that had loaded when you opened the filter.
 
 ---
 This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R2, S7-R3).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
-",SV-8663 (WIP spec v6 2026-07-29 Story 7 S7-R2; S7-R3),,
+",SV-8663 (WIP spec v9 2026-08-05 Story 7 S7-R2 and S7-R3 — the option list covers every open job in the current scope and not only the loaded rows),,
 Asset filter shows Unit # and VIN and matches text against either one,WIP — Filters,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report shows jobs for at least two assets whose VINs (and Unit #s or plates) you know.","1. Read the Asset filter's label before selecting anything.
 2. Open the filter and read how each option is presented.
 3. Type part of a VIN and check the matching options; clear and type part of a Unit # instead.
-4. Select one or more assets and watch the rows; then use the ""Clear"" action.","1. With no asset selected, the filter reads ""All assets"" and every job is shown.
-2. Each option shows both the asset's Unit # and its VIN.
+4. Scroll to the bottom of a busy tab, note an asset that only appears down there, then type its Unit # and then its VIN into the filter and check it is offered both ways.
+5. Select one or more assets and watch the rows; then use the ""Clear"" action.","1. With no asset selected, the filter reads ""All assets"" and every job is shown.
+2. The list offers every asset on every open job in what the report is currently showing you — not only the ones on the rows that happen to have loaded — and each option shows both the asset's Unit # and its VIN.
 3. Text you type matches against either the Unit # or the VIN - a match on either one brings the asset up.
 4. Selecting assets narrows the visible jobs on screen only (no reload); a single ""Clear"" action appears once at least one asset is selected and returns the filter to ""All assets"".
 5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8908
+That is about assets that share a Unit # with another asset: only one of them is offered, so typing the other one's VIN finds nothing. On today's test data six assets are affected. Everything else in this test works.
 
 ---
 This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S7-R4, S7-R5). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: READY
-",SV-8663 (WIP spec Story 7 S7-R4; S7-R5 - option text + match fields RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [supersedes video P24]),,
+AUTOMATION: READY - EXPECT FAIL (SV-8908)
+",SV-8663 (WIP spec v9 2026-08-05 Story 7 S7-R4 and S7-R5 — the option list covers every asset on every open job in the current scope; option text and match fields per Chris Ward answer 2026-07-29),,
 The date range offers the presets plus Custom; This Week default; no All Time,WIP — Filters,Functional,Critical,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).,"1. Open the Work In Progress report and read the date-range control's current value.
 2. Open the date-range control and read every option offered.","1. On a fresh visit the date range defaults to ""This Week"".
 2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no ""Today"", no ""Yesterday"" and no item called ""Custom"" - you build your own range on the calendar instead. There is no ""All Time"" option.
@@ -735,12 +761,14 @@ Work In Progress: a three-dot menu holds Download (PDF) and Download (CSV),WIP �
 2. Read the menu options.
 3. Choose ""Download (PDF)"", then repeat with ""Download (CSV)"".","1. The menu holds the download options ""Download (PDF)"" and ""Download (CSV)"".
 2. Each option downloads a file of the current tab in the chosen format.
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
+On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
 
 ---
 This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R1).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: READY
+AUTOMATION: READY - EXPECT FAIL (SV-8907)
 ",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R1),,
 "Downloads keep shown columns, honor filters, include the tab's Totals row",WIP — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report is open with a non-default column selection (for example, Inv. Hrs on and Advisor off), a chosen date range and location, and an advisor/customer/asset filter applied that hides some rows.","1. Download the current tab as a CSV and open it.
@@ -769,47 +797,55 @@ Downloaded money and Inv. Hrs values keep the on-screen formats,WIP — Exports,
 5. Repeat the format checks in the PDF.","1. Money values use the same ""$1,234.56"" / ""-$1,234.56"" format as on screen; Inv. Hrs uses the same signed one-decimal format.
 2. In the CSV, a money value containing a comma (a thousands separator) is enclosed in double-quotes per standard CSV rules.
 3. A value without a comma is written unquoted.
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
+On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
 
 ---
 This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R5, S9-R6).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: READY
+AUTOMATION: READY - EXPECT FAIL (SV-8907)
 ",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R5; S9-R6),,
 Inv. Hrs green/red coloring appears on screen and in the PDF; not the CSV,WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Inv. Hrs column is on and the current tab includes positive and negative Inv. Hrs values.","1. Download the current tab as a PDF and look at the Inv. Hrs values' coloring.
 2. Download the current tab as a CSV and inspect the Inv. Hrs values.","1. In the PDF, Inv. Hrs keeps the green (positive) / red (negative) coloring.
 2. In the CSV, the Inv. Hrs column is monochrome — plain signed numbers with no color or markup.
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
+On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
 
 ---
 This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R7).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: READY
+AUTOMATION: READY - EXPECT FAIL (SV-8907)
 ",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R7),,
 Days Open in a download is frozen at the moment the file is generated,WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The current tab shows rows with known creation dates and the Days Open column visible.","1. Note a row's on-screen Days Open value.
 2. Download the current tab as a CSV and read the same row's Days Open.
 3. Compare the two values.","1. In the download, Days Open is the whole number of days as of the moment the file is generated.
 2. Because the screen computes Days Open live while the file freezes it at generation time, the file can legitimately show a day count one higher than the screen it was generated from — that difference is EXPECTED, not a defect.
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
+On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
 
 ---
 This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R8).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: READY
+AUTOMATION: READY - EXPECT FAIL (SV-8907)
 ",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R8; Story 4 context note (Days Open live vs frozen)),,
 "The downloaded files are named ""wip-2-report.pdf"" and ""wip-2-report.csv""",WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with rows loaded.","1. Download the current tab as a PDF and read the saved file's name.
 2. Download the current tab as a CSV and read the saved file's name.","1. The PDF is named ""wip-2-report.pdf"".
 2. The CSV is named ""wip-2-report.csv"".
 3. These exact names (including the ""-2-"") are the specified current behavior.
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
+On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
 
 ---
 This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R9).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: READY
+AUTOMATION: READY - EXPECT FAIL (SV-8907)
 ","SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R9 — S9-R9 CLOSES both file names verbatim including the ""-2-"" segment; so the exact strings ARE the requirement)",,
 "Export headers read ""Unit"" and ""Branch"" — documented limitation, do not file",WIP — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Asset and Location columns are both turned on.","1. Read the two columns' headers on screen.
@@ -818,23 +854,27 @@ AUTOMATION: READY
 2. In BOTH the PDF and the CSV, the same two columns are headed ""Unit"" and ""Branch"".
 3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.
 4. The on-screen Asset cell leads with the Unit #, which is what the export header ""Unit"" already reflects - so no header change is expected here.
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
+On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
 
 ---
 This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-E1). Chris Ward confirmed it again on 5 August 2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It differs from an earlier answer he gave us on 29 July 2026, which we now know was given against a question that described this report incorrectly; we follow his latest word, which agrees with the written description.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: READY
+AUTOMATION: READY - EXPECT FAIL (SV-8907)
 ",SV-8665 (WIP spec Story 9 S9-E1; §2 Known Limitations (v1) - asset identifier RE-RULED to the VIN chain (VIN -> Unit # -> plate) by Chris Ward answer 2026-07-29 [newest-wins]; supersedes video P24 serial ruling; export header text unpinned),,
 The PDF shows the shop logo at the top when one is set,WIP — Exports,Functional,Low,"1. You are signed in to the ShopView App on a desktop browser.
 2. The shop has a logo set in its settings.","1. Download the current tab as a PDF and look at the top of the document.
 2. Download the current tab as a CSV and inspect the file.","1. The PDF shows the shop logo at the top.
 2. The CSV never includes a logo (plain data only).
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
+On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
 
 ---
 This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R10).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: READY
+AUTOMATION: READY - EXPECT FAIL (SV-8907)
 ",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R10),,
 "Export notifications: success caption, ""Empty export"" warning",WIP — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. The report can be put in three states: rows present, no rows visible (filters leave nothing), and (if simulatable) a failing download, for example by disconnecting the network before the download.
@@ -843,12 +883,14 @@ AUTOMATION: READY
 3. If simulatable, force a download failure (for example, drop the network) and read the notification.","1. On a successful download, a success notification shows with the caption ""Data exported successfully.""
 2. When a download yields no rows, a warning notification shows titled ""Empty export"" with the caption ""Export didn't yield any results"".
 3. When a download fails, an error notification shows: ""An error occurred while exporting the report. Please try again.""
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
+On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
 
 ---
 This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (S9-R11, S9-R12, S9-R13).
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: READY
+AUTOMATION: READY - EXPECT FAIL (SV-8907)
 ",SV-8665 (WIP spec v6 2026-07-29 Story 9 S9-R11; S9-R12; S9-R13; §7 User Feedback Summary),,
 An over-cap Work In Progress download is refused with the too-large message,WIP — Exports,Negative,Medium,"1. A filter combination exists whose work-order rows on one tab exceed 10,000 (widest date range, all locations, no advisor/customer/asset narrowing). If the environment cannot reach 10,000 rows even fully widened, record the maximum reachable and mark the case Blocked-Env with that reason.","1. With the over-cap filter set, download the tab as a CSV.
 2. Download the same tab as a PDF.
@@ -856,12 +898,14 @@ An over-cap Work In Progress download is refused with the too-large message,WIP 
 2. An error toast is shown each time, reading exactly: ""This report is too large to export. Narrow the date range or filters, then try again."" (dismissed by the user).
 3. Below the cap the download works normally.
 4. Note for the tester: on this environment the biggest single tab holds about 114 work orders, so you cannot make this message appear here. Record that and move on.
+Known issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8907
+On this build the Work In Progress download fails whenever the tab you are on has any rows in it — no file arrives and an error appears — so you cannot get far enough to check the things below. A download only succeeds on a tab with no rows at all.
 
 ---
 This is the expected behaviour as per epic SV-8582 and the Work In Progress report specification version 9 (Story 9); where the wording of that specification differs, the behaviour above follows Chris Ward's later decision, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true, which is the authority.
 Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
-AUTOMATION: READY
+AUTOMATION: READY - EXPECT FAIL (SV-8907)
 ",SV-8665 (WIP spec Story 9 — the 10; 000-row export cap applies to ALL SIX reports per Chris Ward answer 2026-07-31 Q3=A; the WIP spec page still has no cap line; his spec edit is pending),,
 Each tab uses an all-white table with no alternating row shading,WIP — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
 2. The Work In Progress report is open with several rows in each tab.","1. Look at the column headers and the data cells in each tab.

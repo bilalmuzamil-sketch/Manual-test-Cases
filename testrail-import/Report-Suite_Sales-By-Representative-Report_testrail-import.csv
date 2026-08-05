@@ -574,6 +574,24 @@ Last checked against build v3.4.1-3d03023 on 8/4/2026.
 
 AUTOMATION: READY
 ",SV-8629 (SBR spec v15 2026-07-29 Story 12 S12-N1; S12-N2),,
+Invoice # and customer name when you cannot open what they point at,SBR — Links & Navigation,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. You need TWO sign-ins: one person who can open work orders, part sales and customers, and one person who can see reports but CANNOT open them. Ask whoever manages permissions to set the second one up, or set it up yourself in administration and put it back as you found it afterwards.
+3. On the Sales By Representative report you have expanded a representative so you can see the invoice rows underneath, each showing an Invoice # and a customer name.","1. Signed in as the person who CAN open them, click an Invoice # and note where it goes; come back and click a customer name and note where that goes.
+2. Sign in as the person who CANNOT open them and open the Sales By Representative report again.
+3. Expand the same representative and look at the Invoice # values, then try clicking one.
+4. Now CLICK a customer name — do not judge this one by looking at it.
+5. Write down exactly what happened in each case.","1. For the person who CAN open them, the Invoice # takes you to the work order or the part sale, and the customer name takes you to the customer's record, both in the same browser tab.
+2. For the person who CANNOT open them, neither one takes them anywhere: the work order, the part sale and the customer record all stay out of reach.
+3. Nothing goes wrong on the way: no page saying you are not allowed in, no blank page, no error message. The report keeps showing all its rows and figures.
+4. Note for the tester: you have to CLICK the customer name rather than look at it. Even for someone who IS allowed to open it, the customer name is deliberately styled to look like ordinary text — same colour, no underline — so a name you can use and a name you cannot use look exactly the same. Clicking is the only way to tell.
+5. Note for the tester: what these two values should LOOK like for the second person is not fully settled, so do not fail the test on appearance. The report's description says they are shown as plain text when the person cannot open the target, but the numbered requirements underneath it still say the Invoice # and the customer name are always links. The product owner has been asked. Write down what you saw and carry on; only report a failure if that person actually reaches the work order, the part sale or the customer record.
+
+---
+This is the expected behaviour as per epic SV-8582 and the Sales By Representative report specification version 17, whose §2 describes each expanded row's invoice number as a clickable link to the underlying work order or parts sale rendered as a link only when the user has permission to open that target and otherwise plain text, and the customer name as non-interactive plain text when the user cannot open the customer. That report's numbered requirements S12-R1 and S12-R3 were not updated to match and still describe both as clickable links, so this case asserts only what both readings require — that the person cannot reach the target — and the product owner has been asked to settle the rest.
+This has not yet been checked against a build.
+
+AUTOMATION: HOLD - waiting on one answer from the product owner about what these two values should look like, and it needs a second sign-in that cannot open work orders, part sales or customers
+",SV-8629 (SBR spec v17 2026-08-05 §2 expanded rows — a link is rendered only with permission to open the target; note S12-R1 and S12-R3 still read as though the links are always there),,
 "Deactivate dialog: counted pluralized headline, reassurance, focus trap",SBR — Staff Deactivation,Functional,High,"1. ZZAUTOTEST rep ""A"" is active, toggle on, and assigned as sales representative to exactly 1 customer; ZZAUTOTEST rep ""B"" likewise to 3 customers.","1. Toggle rep B's active status off and read the dialog before confirming anything.
 2. Press Tab repeatedly and watch where focus goes; dismiss and watch where focus returns.
 3. Repeat step 1 for rep A (1 customer) and read the headline's noun.","1. A warning dialog titled ""Deactivate {Staff Name}?"" opens BEFORE any change is applied; the deactivation does not commit until confirmed.
