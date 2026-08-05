@@ -1,0 +1,988 @@
+[
+ {
+  "cid": 30102,
+  "iid": "SBC-DATE-01",
+  "title": "Date range picker offers eleven options in the specified order",
+  "item": "T2-5",
+  "kind": "basis-build",
+  "why": "Answer A: keep the product - nine periods plus a calendar",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "2. It offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.",
+    "2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option."
+   ],
+   [
+    "2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.",
+    "3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. A date range picker is visible in the report toolbar.\n2. It offers eleven options, in this order: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.\n3. There is no \"All Time\" option.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S2-R1, S2-R2).",
+  "after_expected": "1. A date range picker is visible in the report toolbar.\n3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.\n3. There is no \"All Time\" option.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Customer report specification version 13 (S2-R1, S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S2-R1, S2-R2).",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Customer report specification version 13 (S2-R1, S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30104,
+  "iid": "SBC-DATE-03",
+  "title": "Custom range opens a start/end date dialog and cannot exceed a 366-day span",
+  "item": "T2-5",
+  "kind": "basis-build",
+  "why": "Answer A: the body already matched the build; only the TITLE was wrong",
+  "new_title": "Building a custom range on the calendar cannot exceed a 366-day span",
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. The date range picker shows a month calendar inside it \u2014 that is how a custom start and end date are chosen on this build. There is no separate \"Custom\" item to choose.\n2. A range of 366 days or fewer applies normally.\n3. A range wider than 366 days cannot be applied \u2014 the report prevents the selection rather than loading the wider range.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S2-R3, S2-R4, S2-N2).",
+  "after_expected": "1. The date range picker shows a month calendar inside it \u2014 that is how a custom start and end date are chosen on this build. There is no separate \"Custom\" item to choose.\n2. A range of 366 days or fewer applies normally.\n3. A range wider than 366 days cannot be applied \u2014 the report prevents the selection rather than loading the wider range.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Customer report specification version 13 (S2-R3, S2-R4, S2-N2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S2-R3, S2-R4, S2-N2).",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Customer report specification version 13 (S2-R3, S2-R4, S2-N2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30109,
+  "iid": "SBC-LOC-01",
+  "title": "Location filter: rightmost, lists accessible locations, All locations on top",
+  "item": "T2-1",
+  "kind": "confirming",
+  "why": "Answer B keeps our wording; the product must change, not the test",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. The location filter is the rightmost filter in the toolbar.\n2. It lists the locations the signed-in user has access to.\n3. An \"All locations\" option is pinned to the top.\n4. Activating \"All locations\" selects every listed location at once; activating it again clears them all at once.\n5. For a user with access to only one location the Location filter is NOT shown at all \u2014 the report simply shows that one location's data.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S4-R1, S4-R2, S4-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. The location filter is the rightmost filter in the toolbar.\n2. It lists the locations the signed-in user has access to.\n3. An \"All locations\" option is pinned to the top.\n4. Activating \"All locations\" selects every listed location at once; activating it again clears them all at once.\n5. For a user with access to only one location the Location filter is NOT shown at all \u2014 the report simply shows that one location's data.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S4-R1, S4-R2, S4-R3). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S4-R1, S4-R2, S4-R3); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S4-R1, S4-R2, S4-R3). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30134,
+  "iid": "SBC-LBL-01",
+  "title": "Asset identified by VIN, falling back to Unit #, then plate",
+  "item": "T2-2",
+  "kind": "confirming",
+  "why": "Answer B is limited to Work In Progress, so this Sales By Customer case stands",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. Asset (a) is identified by its VIN.\n2. Asset (b) (no VIN) is identified by its Unit # instead.\n3. Asset (c) (no VIN or Unit #) is identified by its plate instead.\n4. For asset (d) (no VIN, Unit #, or plate), note what the label shows - what stands in when all three are missing is confirmed in the build (the older rule showed \"Unknown Asset\").\n5. Note whether the year/make/model text still appears anywhere in the row - the update says the VIN identifier REPLACES the year/make/model label; confirm the exact rendering in the build.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S8-R7, S8-R8, S8-R9, S8-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. Asset (a) is identified by its VIN.\n2. Asset (b) (no VIN) is identified by its Unit # instead.\n3. Asset (c) (no VIN or Unit #) is identified by its plate instead.\n4. For asset (d) (no VIN, Unit #, or plate), note what the label shows - what stands in when all three are missing is confirmed in the build (the older rule showed \"Unknown Asset\").\n5. Note whether the year/make/model text still appears anywhere in the row - the update says the VIN identifier REPLACES the year/make/model label; confirm the exact rendering in the build.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S8-R7, S8-R8, S8-R9, S8-R10). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S8-R7, S8-R8, S8-R9, S8-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S8-R7, S8-R8, S8-R9, S8-R10). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30160,
+  "iid": "SBC-EXP-02",
+  "title": "Download file names carry the version and the active date range",
+  "item": "T2-5",
+  "kind": "basis-build",
+  "why": "Answer A: the file-name map listed periods that do not exist (NOT frozen today)",
+  "new_title": null,
+  "dna_removed": false,
+  "edits": [
+   [
+    "2. {range} follows this map: Today \u2192 today; Yesterday \u2192 yesterday; This Week \u2192 this_week; Last Week \u2192 last_week; This Month \u2192 this_month; Last Month \u2192 last_month; This Year \u2192 this_year; Last Year \u2192 last_year; This Quarter \u2192 this_quarter; Last Quarter \u2192 last_quarter; Custom \u2192 custom.",
+    "2. {range} follows the period you picked, using the nine periods the chooser actually offers: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Record the exact word the file uses for each - the mapping is confirmed in the build."
+   ],
+   [
+    "3. For Custom the literal word \"custom\" is used \u2014 the actual start and end dates are not in the file name.",
+    "3. For a range you built yourself on the calendar, record what the file name uses in place of a period name - the exact wording is confirmed in the build."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. The Summary file name is sales-by-customer-summary-{range}.csv and the Expanded file name is sales-by-customer-expanded-{range}.csv \u2014 so the file says which version it is.\n2. {range} follows this map: Today \u2192 today; Yesterday \u2192 yesterday; This Week \u2192 this_week; Last Week \u2192 last_week; This Month \u2192 this_month; Last Month \u2192 last_month; This Year \u2192 this_year; Last Year \u2192 last_year; This Quarter \u2192 this_quarter; Last Quarter \u2192 last_quarter; Custom \u2192 custom.\n3. For Custom the literal word \"custom\" is used \u2014 the actual start and end dates are not in the file name.\n4. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet \u2014 not an .xlsx workbook and not a JSON file.\n5. The two PDF downloads follow the same names with a .pdf extension \u2014 for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S14-R14, S14-R15, S15-R6); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. The Summary file name is sales-by-customer-summary-{range}.csv and the Expanded file name is sales-by-customer-expanded-{range}.csv \u2014 so the file says which version it is.\n2. {range} follows the period you picked, using the nine periods the chooser actually offers: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Record the exact word the file uses for each - the mapping is confirmed in the build.\n3. For a range you built yourself on the calendar, record what the file name uses in place of a period name - the exact wording is confirmed in the build.\n4. The file is plain comma-separated text with a .csv extension that opens as rows and columns in a spreadsheet \u2014 not an .xlsx workbook and not a JSON file.\n5. The two PDF downloads follow the same names with a .pdf extension \u2014 for example, sales-by-customer-summary-this_month.pdf and sales-by-customer-expanded-custom.pdf.\n---\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Customer report specification version 13 (S14-R14, S14-R15, S15-R6) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S14-R14, S14-R15, S15-R6); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Customer report specification version 13 (S14-R14, S14-R15, S15-R6) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30168,
+  "iid": "SBC-EXP-10",
+  "title": "PDF logo is embedded, scales without distortion",
+  "item": "T3-4",
+  "kind": "basis-against",
+  "why": "His rule C: no logo uploaded means NO logo, not the bundled one",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "2. With no uploaded logo, the bundled ShopView logo is used.",
+    "2. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space."
+   ],
+   [
+    "3. When no logo is available at all, the logo column is not rendered and the text column fills the full width.",
+    "3. When no logo is printed, the logo column is not rendered and the text column fills the full width."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers."
+  ],
+  "before_expected": "1. With an uploaded logo, that logo appears pinned to the top-right, scaled to fit its area without distortion.\n2. With no uploaded logo, the bundled ShopView logo is used.\n3. When no logo is available at all, the logo column is not rendered and the text column fills the full width.\n4. The logo is embedded in the PDF (renders offline, not loaded from a network address).\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18).",
+  "after_expected": "1. With an uploaded logo, that logo appears pinned to the top-right, scaled to fit its area without distortion.\n2. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space.\n3. When no logo is printed, the logo column is not rendered and the text column fills the full width.\n4. The logo is embedded in the PDF (renders offline, not loaded from a network address).\nNote for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Customer report specification version 13 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Customer report specification version 13 (S15-R12, S15-R13, S15-R14, S15-R15, S15-R16, S15-R17, S15-R18) differs, his decision is the authority."
+ },
+ {
+  "cid": 30201,
+  "iid": "SBR-DATE-01",
+  "title": "Date range picker is in the toolbar and offers the standard presets plus Custom",
+  "item": "T2-5",
+  "kind": "basis-build",
+  "why": "Answer A: keep the product",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "2. The standard presets are offered: Today, Yesterday, This Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.",
+    "2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option."
+   ],
+   [
+    "3. There is no \"All Time\" option (removed by the 2026-07-16 spec round).",
+    "3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. A date range picker is visible in the report toolbar.\n2. The standard presets are offered: Today, Yesterday, This Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.\n3. There is no \"All Time\" option (removed by the 2026-07-16 spec round).\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S2-R1, S2-R2).",
+  "after_expected": "1. A date range picker is visible in the report toolbar.\n2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.\n3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Representative report specification version 15 (S2-R1, S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S2-R1, S2-R2).",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Representative report specification version 15 (S2-R1, S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30216,
+  "iid": "SBR-LOC-04",
+  "title": "Sales By Representative: Location filter hidden for a one-location user",
+  "item": "T2-1",
+  "kind": "confirming",
+  "why": "Answer B keeps our wording; the product must change, not the test",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. For the single-location user the Location filter is NOT shown at all \u2014 the report simply shows that one location's data.\n2. For the user with access to two or more locations the Location filter IS shown.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S21-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. For the single-location user the Location filter is NOT shown at all \u2014 the report simply shows that one location's data.\n2. For the user with access to two or more locations the Location filter IS shown.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S21-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S21-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S21-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30278,
+  "iid": "SBR-EXP-03",
+  "title": "Summary PDF: one rolled-up row per rep with a recomputed grand totals row",
+  "item": "T3-1 + T3-3",
+  "kind": "basis-unconfirmed",
+  "why": "Answer A confirms the export half; answer T3-3=A pins the Summary position",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "3. With a single location in scope the columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. When more than one location is in scope a Location column is added with the identifying columns ahead of Inv. Hrs, and a rep who spans more than one location reads \"Multiple\" (this file has no Status column for it to follow \u2014 confirm its exact position in the build).",
+    "3. With a single location in scope the columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. When more than one location is in scope a Location column is added immediately after the Representative name and before the money columns, and a rep who spans more than one location reads \"Multiple\"."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. The PDF is A4 portrait, edge-to-edge, with a header strip on the first page showing the workplace name and address, the organization logo, the report title \"Sales By Representative,\" and the selected date range.\n2. There is one rolled-up row per rep, in the report's currently-active order; a toggled-off contributor's name carries the \"(Inactive)\" tag.\n3. With a single location in scope the columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. When more than one location is in scope a Location column is added with the identifying columns ahead of Inv. Hrs, and a rep who spans more than one location reads \"Multiple\" (this file has no Status column for it to follow \u2014 confirm its exact position in the build).\n4. Subtotal is bolded across the header, the body rows, and the grand totals row; Inv. Hrs keeps its green/red/default coloring.\n5. The grand totals row reads \"Totals\" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin \u00f7 total Subtotal (shown \"\u2014\" when that Subtotal is zero or below), never the sum or average of the rows' percentages.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R3, S14-R5, S14-R20, S2-R5).",
+  "after_expected": "1. The PDF is A4 portrait, edge-to-edge, with a header strip on the first page showing the workplace name and address, the organization logo, the report title \"Sales By Representative,\" and the selected date range.\n2. There is one rolled-up row per rep, in the report's currently-active order; a toggled-off contributor's name carries the \"(Inactive)\" tag.\n3. With a single location in scope the columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal. When more than one location is in scope a Location column is added immediately after the Representative name and before the money columns, and a rep who spans more than one location reads \"Multiple\".\n4. Subtotal is bolded across the header, the body rows, and the grand totals row; Inv. Hrs keeps its green/red/default coloring.\n5. The grand totals row reads \"Totals\" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin \u00f7 total Subtotal (shown \"\u2014\" when that Subtotal is zero or below), never the sum or average of the rows' percentages.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. The Sales By Representative report specification version 15 (S14-R3, S14-R5, S14-R20, S2-R5) is silent on this point, and it has not yet been confirmed on a build.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R3, S14-R5, S14-R20, S2-R5).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. The Sales By Representative report specification version 15 (S14-R3, S14-R5, S14-R20, S2-R5) is silent on this point, and it has not yet been confirmed on a build."
+ },
+ {
+  "cid": 30279,
+  "iid": "SBR-EXP-04",
+  "title": "Expanded View PDF: one page-block per rep with its own totals; no grand",
+  "item": "T3-1",
+  "kind": "confirming",
+  "why": "Answer A confirms the newer instruction wins over the older fixed list",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. There is one page-block per rep, in the report's currently-active order, with a page break before each new rep after the first.\n2. Each block shows the header strip (workplace name and address, organization logo, title \"Sales By Representative,\" the selected date range), the rep's name, and a per-invoice table with columns: Date / Invoice / Customer / Status / (Location, only when more than one location is in scope, carrying that invoice's own location) / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.\n3. The Status column renders the same colored badge as on screen, vertically centered.\n4. Invoices are ordered newest first (the same order as the on-screen expansion: invoice date descending, numeric invoice-number tie-break).\n5. Each block ends with a per-rep totals row \u2014 \"Totals\" in the Date cell; Invoice/Customer/Status blank; each metric aggregated; Margin % recomputed.\n6. There is NO grand-totals row across all reps at the end of the document.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R6, S14-R8, S14-R20, S6-R9).",
+  "after_expected": "1. There is one page-block per rep, in the report's currently-active order, with a page break before each new rep after the first.\n2. Each block shows the header strip (workplace name and address, organization logo, title \"Sales By Representative,\" the selected date range), the rep's name, and a per-invoice table with columns: Date / Invoice / Customer / Status / (Location, only when more than one location is in scope, carrying that invoice's own location) / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.\n3. The Status column renders the same colored badge as on screen, vertically centered.\n4. Invoices are ordered newest first (the same order as the on-screen expansion: invoice date descending, numeric invoice-number tie-break).\n5. Each block ends with a per-rep totals row \u2014 \"Totals\" in the Date cell; Invoice/Customer/Status blank; each metric aggregated; Margin % recomputed.\n6. There is NO grand-totals row across all reps at the end of the document.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R6, S14-R8, S14-R20, S6-R9). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R6, S14-R8, S14-R20, S6-R9).",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R6, S14-R8, S14-R20, S6-R9). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30281,
+  "iid": "SBR-EXP-06",
+  "title": "PDF footer on every page, default-logo fallback, and deterministic PDF filenames",
+  "item": "T3-4",
+  "kind": "basis-against",
+  "why": "His rule C: line 3 asserts the bundled fallback (NOT frozen today)",
+  "new_title": null,
+  "dna_removed": false,
+  "edits": [
+   [
+    "3. With no configured logo, the logo region falls back to the default ShopView logo and the PDF still generates normally.",
+    "3. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The PDF still generates normally either way."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers."
+  ],
+  "before_expected": "1. The files are named exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\".\n2. A footer reading \"Software Powered by ShopView\" appears on EVERY page of both PDFs.\n3. With no configured logo, the logo region falls back to the default ShopView logo and the PDF still generates normally.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R3a, S14-R4, S14-R11).",
+  "after_expected": "1. The files are named exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\".\n2. A footer reading \"Software Powered by ShopView\" appears on EVERY page of both PDFs.\n3. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The PDF still generates normally either way.\n---\nNote for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Representative report specification version 15 (S14-R3a, S14-R4, S14-R11) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R3a, S14-R4, S14-R11).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Representative report specification version 15 (S14-R3a, S14-R4, S14-R11) differs, his decision is the authority."
+ },
+ {
+  "cid": 30285,
+  "iid": "SBR-EXP-10",
+  "title": "Summary CSV: file name, UTF-8 BOM, verbatim headers, one row per rep",
+  "item": "T2-3 + T2-4 + T3-3",
+  "kind": "basis-against",
+  "why": "Heading word accepted (T2-3=A); 13 columns kept (T2-4=A); Summary position pinned (T3-3=A)",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "2. With a single location in scope the headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
+    "2. With a single location in scope the headers, in order, are: Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. On this build only nine of them arrive - Representative, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal - because # Invoices, # Customers, Hrs Worked and Hrs Invoiced are missing by mistake. Record what you see; the four missing columns are with the developers."
+   ],
+   [
+    "6. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename \u2014 do not change the test.",
+    "6. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test for it."
+   ],
+   [
+    "7. When more than one location is in scope the file also carries a Location column, with the identifying columns ahead of the metric columns; a rep whose invoices span more than one location reads \"Multiple\". (This file has no Status column for it to follow \u2014 confirm its exact position in the build.)",
+    "7. When more than one location is in scope the file also carries a Location column, immediately after the Representative name and before the money columns; a rep whose invoices span more than one location reads \"Multiple\"."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. The file is named \"sales-by-representative-summary.csv\" and starts with a UTF-8 BOM.\n2. With a single location in scope the headers, in order, are exactly: Sales Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.\n3. There is one header row plus one row per rep in the current filtered view, in the report's currently-active order.\n4. \"# Invoices\" equals the on-screen (N); \"# Customers\" counts distinct customers across those invoices (de-duplicated across locations when several are selected).\n5. The CSV has NO totals row.\n6. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename \u2014 do not change the test.\n7. When more than one location is in scope the file also carries a Location column, with the identifying columns ahead of the metric columns; a rep whose invoices span more than one location reads \"Multiple\". (This file has no Status column for it to follow \u2014 confirm its exact position in the build.)\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R15, S14-R18, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. The file is named \"sales-by-representative-summary.csv\" and starts with a UTF-8 BOM.\n2. With a single location in scope the headers, in order, are: Representative, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal. On this build only nine of them arrive - Representative, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal - because # Invoices, # Customers, Hrs Worked and Hrs Invoiced are missing by mistake. Record what you see; the four missing columns are with the developers.\n3. There is one header row plus one row per rep in the current filtered view, in the report's currently-active order.\n4. \"# Invoices\" equals the on-screen (N); \"# Customers\" counts distinct customers across those invoices (de-duplicated across locations when several are selected).\n5. The CSV has NO totals row.\n6. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test for it.\n7. When more than one location is in scope the file also carries a Location column, immediately after the Representative name and before the money columns; a rep whose invoices span more than one location reads \"Multiple\".\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Representative report specification version 15 (S14-R15, S14-R18, S14-R20) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R15, S14-R18, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Representative report specification version 15 (S14-R15, S14-R18, S14-R20) differs, his decision is the authority."
+ },
+ {
+  "cid": 30286,
+  "iid": "SBR-EXP-11",
+  "title": "Expanded CSV: file name, verbatim headers, one row per invoice",
+  "item": "T2-3",
+  "kind": "basis-build",
+  "why": "Heading word accepted (T2-3=A)",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "2. With a single location in scope the headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
+    "2. With a single location in scope the headers, in order, are: Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal."
+   ],
+   [
+    "4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename \u2014 do not change the test.",
+    "4. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test for it."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. The file is named \"sales-by-representative-expanded.csv\" and starts with a UTF-8 BOM.\n2. With a single location in scope the headers, in order, are exactly: Sales Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.\n3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.\n4. Note for the tester: the product owner has ruled that the full word \"Sales Representative\" replaces the short \"Sales Rep\" everywhere. If the screen or file still shows \"Sales Rep\", mark this test Failed and report it as the pending rename \u2014 do not change the test.\n5. When more than one location is in scope the file also carries a Location column immediately after Status \u2014 the position it holds on screen \u2014 and every row shows that invoice's own exact location, never \"Multiple\".\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R16, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. The file is named \"sales-by-representative-expanded.csv\" and starts with a UTF-8 BOM.\n2. With a single location in scope the headers, in order, are: Representative, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.\n3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view.\n4. Note for the tester: the heading in this file reads simply \"Representative\". The product owner has confirmed that is correct and not slang, so do not fail the test for it.\n5. When more than one location is in scope the file also carries a Location column immediately after Status \u2014 the position it holds on screen \u2014 and every row shows that invoice's own exact location, never \"Multiple\".\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Representative report specification version 15 (S14-R16, S14-R20) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S14-R16, S14-R20); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Sales By Representative report specification version 15 (S14-R16, S14-R20) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30330,
+  "iid": "PV-FILT-03",
+  "title": "Date range selector offers exactly the eleven bounded options and no All Time",
+  "item": "T2-5",
+  "kind": "basis-build",
+  "why": "Answer A: keep the product",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.",
+    "1. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option."
+   ],
+   [
+    "2. There is NO 'All Time' option - the report always operates over a bounded date window (deliberate, per the spec's Out of Scope).",
+    "2. The report always operates over a bounded date window, which is why no All-Time period is offered."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. The options are exactly: Today, Yesterday, This Week, Last Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.\n2. There is NO 'All Time' option - the report always operates over a bounded date window (deliberate, per the spec's Out of Scope).\n3. Selecting a non-custom option immediately reloads the report data.\n4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R2).",
+  "after_expected": "1. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.\n2. The report always operates over a bounded date window, which is why no All-Time period is offered.\n3. Selecting a non-custom option immediately reloads the report data.\n4. The named ranges use the application's standard shared calendar boundaries (the same boundaries every report's date picker uses).\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Parts Velocity report specification version 4 (S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R2).",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Parts Velocity report specification version 4 (S2-R2) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30340,
+  "iid": "PV-FILT-13",
+  "title": "Parts Velocity: the Location filter is hidden for a one-location user",
+  "item": "T2-1",
+  "kind": "confirming",
+  "why": "Answer B keeps our wording; the product must change, not the test",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. For the single-location user the Location filter is NOT shown at all \u2014 the report simply shows that one location's data.\n2. For the user with access to two or more locations the Location filter IS shown.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-E4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. For the single-location user the Location filter is NOT shown at all \u2014 the report simply shows that one location's data.\n2. For the user with access to two or more locations the Location filter IS shown.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-E4). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-E4); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-E4). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30379,
+  "iid": "PV-EXP-05",
+  "title": "PDF: filename, A3 landscape, title, text truncation, and the shop logo",
+  "item": "T3-4",
+  "kind": "basis-against",
+  "why": "His rule C: line 5 asserts the bundled fallback",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "5. The shop logo shows at the top of the PDF when one is set. With no uploaded logo the PDF shows the bundled ShopView default logo instead of a blank space, the same as the other reports in this suite. The CSV never includes a logo.",
+    "5. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The CSV never includes a logo."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers."
+  ],
+  "before_expected": "1. The file downloads as velocity-report.pdf.\n2. The PDF is formatted for A3 landscape and titled Parts Velocity.\n3. Description, Category, and Vendor are truncated to 18 characters in the PDF.\n4. Part # is NOT truncated.\n5. The shop logo shows at the top of the PDF when one is set. With no uploaded logo the PDF shows the bundled ShopView default logo instead of a blank space, the same as the other reports in this suite. The CSV never includes a logo.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6).",
+  "after_expected": "1. The file downloads as velocity-report.pdf.\n2. The PDF is formatted for A3 landscape and titled Parts Velocity.\n3. Description, Category, and Vendor are truncated to 18 characters in the PDF.\n4. Part # is NOT truncated.\n5. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space. The CSV never includes a logo.\nNote for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Parts Velocity report specification version 4 (S6-R5, S6-R6) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Parts Velocity report specification version 4 (S6-R5, S6-R6) differs, his decision is the authority."
+ },
+ {
+  "cid": 30380,
+  "iid": "PV-EXP-06",
+  "title": "CSV is named velocity-report.csv and holds full untruncated text values",
+  "item": "T3-4",
+  "kind": "ordinary",
+  "why": "Released only - its only logo statement is about the spreadsheet, untouched",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. The file downloads as velocity-report.csv.\n2. The CSV carries the FULL, untruncated Description / Category / Vendor values (unlike the PDF's 18-character cut).\n3. Last Sale is a raw integer in the CSV (e.g. 42) - the 'N days' wording is PDF/on-screen only.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6, S6-R8).",
+  "after_expected": "1. The file downloads as velocity-report.csv.\n2. The CSV carries the FULL, untruncated Description / Category / Vendor values (unlike the PDF's 18-character cut).\n3. Last Sale is a raw integer in the CSV (e.g. 42) - the 'N days' wording is PDF/on-screen only.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6, S6-R8).\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6, S6-R8).",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S6-R5, S6-R6, S6-R8)."
+ },
+ {
+  "cid": 30401,
+  "iid": "TU-HRS-02",
+  "title": "Headers in fixed order; Total, WO and Internal Hours show clocked hours (2 dp)",
+  "item": "T1-1",
+  "kind": "basis-against",
+  "why": "His rule C2 - line 6 says the opposite (NOT frozen today)",
+  "new_title": null,
+  "dna_removed": false,
+  "edits": [
+   [
+    "6. When more than one location is in scope the automatic Location column also appears, leftmost before Technician \u2014 it is not in the Column Selection control and its presence is expected.",
+    "6. When more than one location is in scope the Location column also appears, leftmost before Technician. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers."
+  ],
+  "before_expected": "1. With a single location in scope the headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor.\n2. Total Hours = all time the technician was clocked in for the range.\n3. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.\n4. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.\n5. Hours show two decimal places with NO thousands separator (e.g. \"107.70\"), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 \u2192 0.01).\n6. When more than one location is in scope the automatic Location column also appears, leftmost before Technician \u2014 it is not in the Column Selection control and its presence is expected.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-R1, S2-R2, S2-R3, S2-R4, S2-R5, S9-R9).",
+  "after_expected": "1. With a single location in scope the headers appear in exactly this order: Technician, Total Hours, WO Hours, Internal Hours, Utilization %, Est. Lost Labor.\n2. Total Hours = all time the technician was clocked in for the range.\n3. WO Hours = time clocked directly to work orders; Internal Hours = time clocked to internal, non-billable activities.\n4. Internal Hours includes ALL internal time - including hours at a location with no configured labor rate.\n5. Hours show two decimal places with NO thousands separator (e.g. \"107.70\"), rounded from the unrounded hours using round-half-up (a tie rounds away from zero - 0.005 \u2192 0.01).\n6. When more than one location is in scope the Location column also appears, leftmost before Technician. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.\n---\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S2-R1, S2-R2, S2-R3, S2-R4, S2-R5, S9-R9) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S2-R1, S2-R2, S2-R3, S2-R4, S2-R5, S9-R9).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S2-R1, S2-R2, S2-R3, S2-R4, S2-R5, S9-R9) differs, his decision is the authority."
+ },
+ {
+  "cid": 30434,
+  "iid": "TU-EXP-01",
+  "title": "Three-dot menu is leftmost, then Column Selection; three download options",
+  "item": "T2-6",
+  "kind": "basis-against",
+  "why": "Answer B: the longer wording, brought into line with the other two reports",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "2. The menu holds: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", and \"Download (CSV)\".",
+    "2. The menu holds four items, worded exactly as they are on Sales By Customer and Sales By Representative: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\" and \"Download Expanded View (CSV)\"."
+   ],
+   [
+    "3. The labels match exactly - only the expanded option carries the word \"View\" (the shipped strings, documented as-is).",
+    "3. Note for the tester: on this build the four items are worded more briefly - \"Summary (PDF)\", \"Summary (CSV)\", \"Expanded (PDF)\" and \"Expanded (CSV)\" - without the word \"Download\". The product owner has decided they must match the other two reports, so record what you see; the change is with the developers."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. The three-dot download menu sits LEFTMOST in the toolbar's action cluster, with the Column Selection control immediately after it.\n2. The menu holds: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", and \"Download (CSV)\".\n3. The labels match exactly - only the expanded option carries the word \"View\" (the shipped strings, documented as-is).\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R1, S7-R2, S7-R3, S7-R4, S8-R2).",
+  "after_expected": "1. The three-dot download menu sits LEFTMOST in the toolbar's action cluster, with the Column Selection control immediately after it.\n2. The menu holds four items, worded exactly as they are on Sales By Customer and Sales By Representative: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\" and \"Download Expanded View (CSV)\".\n3. Note for the tester: on this build the four items are worded more briefly - \"Summary (PDF)\", \"Summary (CSV)\", \"Expanded (PDF)\" and \"Expanded (CSV)\" - without the word \"Download\". The product owner has decided they must match the other two reports, so record what you see; the change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S7-R1, S7-R2, S7-R3, S7-R4, S8-R2) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R1, S7-R2, S7-R3, S7-R4, S8-R2).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S7-R1, S7-R2, S7-R3, S7-R4, S8-R2) differs, his decision is the authority."
+ },
+ {
+  "cid": 30435,
+  "iid": "TU-EXP-02",
+  "title": "The Summary PDF holds the technician rows plus the Summary",
+  "item": "T2-6",
+  "kind": "ordinary",
+  "why": "Released only - the menu wording does not touch what the file contains",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. The Summary PDF shows the technician rows and the Summary row (no day rows); it downloads as \"Technician-Utilization-Summary.pdf\".\n2. The Expanded PDF shows the technician rows, EACH technician's per-day breakdown, and the Summary row; it downloads as \"Technician-Utilization-Expanded.pdf\".\n3. The PDF filenames are Title-Case as shipped.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R5, S7-R6, S7-R12).",
+  "after_expected": "1. The Summary PDF shows the technician rows and the Summary row (no day rows); it downloads as \"Technician-Utilization-Summary.pdf\".\n2. The Expanded PDF shows the technician rows, EACH technician's per-day breakdown, and the Summary row; it downloads as \"Technician-Utilization-Expanded.pdf\".\n3. The PDF filenames are Title-Case as shipped.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R5, S7-R6, S7-R12).\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R5, S7-R6, S7-R12).",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R5, S7-R6, S7-R12)."
+ },
+ {
+  "cid": 30437,
+  "iid": "TU-EXP-04",
+  "title": "Downloads cover only selected technicians, locations, and date range",
+  "item": "T1-1",
+  "kind": "basis-against",
+  "why": "His rule C2 - line 6 says the opposite (NOT frozen today)",
+  "new_title": null,
+  "dna_removed": false,
+  "edits": [
+   [
+    "6. Note for the tester: when you have more than one location in scope, the files also carry a Location column even though it is not in the Column Selection control. That is correct - it appears by itself. With a single location in scope there is no Location column, and that is also correct.",
+    "6. Note for the tester: when more than one location is in scope the files also carry a Location column. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. With a single location in scope there is no Location column in the files."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers."
+  ],
+  "before_expected": "1. Every download includes ONLY the technicians currently selected in the technician filter - the deselected technician is absent from all three files.\n2. Every download covers the location(s) currently selected in the location filter and the date range currently active on the report.\n3. With every technician selected, the download covers all technicians for the range at the selected location(s).\n4. Every download (each PDF and the CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).\n5. Every download also mirrors the columns currently shown on screen \u2014 a column hidden in the Column Selection control is absent from the files, and a re-shown column comes back.\n6. Note for the tester: when you have more than one location in scope, the files also carry a Location column even though it is not in the Column Selection control. That is correct - it appears by itself. With a single location in scope there is no Location column, and that is also correct.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R8, S7-R9, S7-R10, S7-R13, S7-E1, S9-R8).",
+  "after_expected": "1. Every download includes ONLY the technicians currently selected in the technician filter - the deselected technician is absent from all three files.\n2. Every download covers the location(s) currently selected in the location filter and the date range currently active on the report.\n3. With every technician selected, the download covers all technicians for the range at the selected location(s).\n4. Every download (each PDF and the CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).\n5. Every download also mirrors the columns currently shown on screen \u2014 a column hidden in the Column Selection control is absent from the files, and a re-shown column comes back.\n6. Note for the tester: when more than one location is in scope the files also carry a Location column. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. With a single location in scope there is no Location column in the files.\n---\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S7-R8, S7-R9, S7-R10, S7-R13, S7-E1, S9-R8) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R8, S7-R9, S7-R10, S7-R13, S7-E1, S9-R8).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S7-R8, S7-R9, S7-R10, S7-R13, S7-E1, S9-R8) differs, his decision is the authority."
+ },
+ {
+  "cid": 30439,
+  "iid": "TU-EXP-06",
+  "title": "PDF logo: the uploaded logo, else the bundled ShopView logo; CSV never",
+  "item": "T3-4",
+  "kind": "basis-against",
+  "why": "His rule C: the title and line 3 both assert the bundled fallback",
+  "new_title": "PDF logo follows the uploaded logo; the spreadsheet never carries one",
+  "dna_removed": true,
+  "edits": [
+   [
+    "3. With NO uploaded logo, the PDF views show the bundled ShopView logo instead \u2014 not a blank space and not an error.",
+    "3. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers."
+  ],
+  "before_expected": "1. With an uploaded logo, BOTH PDF views show that logo at the top of the report.\n2. The CSV never includes the logo.\n3. With NO uploaded logo, the PDF views show the bundled ShopView logo instead \u2014 not a blank space and not an error.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R11, S7-N2, S7-N3).",
+  "after_expected": "1. With an uploaded logo, BOTH PDF views show that logo at the top of the report.\n2. The CSV never includes the logo.\n3. With a logo uploaded, that logo appears. If a logo is set but fails to load, the built-in ShopView logo is used instead. If no logo is uploaded at all, NO logo is printed and the text fills the space.\nNote for the tester: on this build a report with no uploaded logo still prints the built-in ShopView logo. The product owner has decided it should print no logo at all, so record what you see; the change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S7-R11, S7-N2, S7-N3) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S7-R11, S7-N2, S7-N3).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S7-R11, S7-N2, S7-N3) differs, his decision is the authority."
+ },
+ {
+  "cid": 30446,
+  "iid": "TU-LOC-05",
+  "title": "Technician Utilization: Location filter hidden for a one-location user",
+  "item": "T2-1",
+  "kind": "confirming",
+  "why": "Answer B keeps our wording; the product must change, not the test",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. For the single-location user the Location filter is NOT shown at all \u2014 the report simply shows that one location's data.\n2. For the user with access to two or more locations the Location filter IS shown.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. For the single-location user the Location filter is NOT shown at all \u2014 the report simply shows that one location's data.\n2. For the user with access to two or more locations the Location filter IS shown.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30466,
+  "iid": "WIP-COL-01",
+  "title": "With all toggleable columns on, the fixed column order and alignment hold",
+  "item": "T1-1",
+  "kind": "confirming",
+  "why": "Order assertion only - his rule changes visibility, not position",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.\n2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.\n3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R1, S4-R3, S4-R4); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "after_expected": "1. The columns appear in this order: WO #, Status, Customer, Asset, VIN, Location, Advisor, Days Open, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Inv. Hrs, Total.\n2. WO #, Status, Customer, Asset, VIN, Location, and Advisor are left-aligned.\n3. Every other column (Days Open, Last Activity, and all money/number columns through Total) is right-aligned.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R1, S4-R3, S4-R4). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R1, S4-R3, S4-R4); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R1, S4-R3, S4-R4). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30467,
+  "iid": "WIP-COL-02",
+  "title": "First visit shows the default columns; the rest are in the column selector",
+  "item": "T1-1",
+  "kind": "basis-against",
+  "why": "His rule C1 - \"off by default\" is wrong when several locations are selected",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "3. Location IS offered in the column-selection control, between VIN and Advisor, and is off by default. Turning it on adds a Location column that names each job's location; turning it off removes it again.",
+    "3. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. When it is on, the Location column sits between VIN and Advisor and names each job's location."
+   ],
+   [
+    "4. Note for the tester: the Location column does NOT appear on its own when you have more than one location selected - you have to switch it on yourself. That is what the build does today.",
+    "4. Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. The visible columns on first visit are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, and Total.\n2. Every other column (VIN, Location, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default.\n3. Location IS offered in the column-selection control, between VIN and Advisor, and is off by default. Turning it on adds a Location column that names each job's location; turning it off removes it again.\n4. Note for the tester: the Location column does NOT appear on its own when you have more than one location selected - you have to switch it on yourself. That is what the build does today.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R2, S4-R3, S8-R3, S8-R4); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "after_expected": "1. The visible columns on first visit are: WO #, Status, Customer, Asset, Advisor, Days Open, Earned, Remaining, and Total.\n2. Every other column (VIN, Location, Last Activity, Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Inv. Hrs) is available in the column-selection control and off by default.\n3. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. When it is on, the Location column sits between VIN and Advisor and names each job's location.\n4. Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Work In Progress report specification version 6 (S4-R2, S4-R3, S8-R3, S8-R4) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R2, S4-R3, S8-R3, S8-R4); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Work In Progress report specification version 6 (S4-R2, S4-R3, S8-R3, S8-R4) differs, his decision is the authority."
+ },
+ {
+  "cid": 30470,
+  "iid": "WIP-COL-05",
+  "title": "Asset cell identifies the asset by VIN, falling back to Unit #, then plate",
+  "item": "T2-2",
+  "kind": "basis-build",
+  "why": "Answer B: the unit number leads on this report",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "1. The Asset cell identifies the asset by its VIN.",
+    "1. The Asset cell identifies the asset by its Unit # on the first line in bold, with the VIN underneath in a smaller, muted style."
+   ],
+   [
+    "2. When the asset has no VIN, the cell shows its Unit # instead; when it has no VIN or Unit #, it shows its plate instead.",
+    "2. When the asset has no Unit #, the cell shows its VIN instead; when it has neither, it shows its plate instead."
+   ],
+   [
+    "3. Note what the cell's second line shows now that the VIN is the main identifier (the older layout put the VIN on a muted second line) - the exact rendering is confirmed in the build; record what you see.",
+    "3. The product owner has confirmed this two-line layout is correct for this report and is already built, so the unit number leading is the expected result - do not raise it."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. The Asset cell identifies the asset by its VIN.\n2. When the asset has no VIN, the cell shows its Unit # instead; when it has no VIN or Unit #, it shows its plate instead.\n3. Note what the cell's second line shows now that the VIN is the main identifier (the older layout put the VIN on a muted second line) - the exact rendering is confirmed in the build; record what you see.\n4. The VIN column (off by default) shows the VIN on its own line as a separate, sortable column.\n5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R7, S4-R8, S4-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. The Asset cell identifies the asset by its Unit # on the first line in bold, with the VIN underneath in a smaller, muted style.\n2. When the asset has no Unit #, the cell shows its VIN instead; when it has neither, it shows its plate instead.\n3. The product owner has confirmed this two-line layout is correct for this report and is already built, so the unit number leading is the expected result - do not raise it.\n4. The VIN column (off by default) shows the VIN on its own line as a separate, sortable column.\n5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Work In Progress report specification version 6 (S4-R7, S4-R8, S4-R10) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R7, S4-R8, S4-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Work In Progress report specification version 6 (S4-R7, S4-R8, S4-R10) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30485,
+  "iid": "WIP-SORT-03",
+  "title": "Columns sort by underlying values; Asset sorts by the identifier shown",
+  "item": "T2-2",
+  "kind": "basis-build",
+  "why": "Answer B: sorting follows the unit number here",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "4. The Asset column sorts by the identifier it shows - the VIN, falling back to Unit #, then plate.",
+    "4. The Asset column sorts by the identifier it shows - the Unit #, falling back to the VIN, then plate."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 is treated as more than $900.00, not compared as text).\n2. Days Open sorts by its day count.\n3. Status sorts by its displayed label.\n4. The Asset column sorts by the identifier it shows - the VIN, falling back to Unit #, then plate.\n5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R27, S4-R9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 is treated as more than $900.00, not compared as text).\n2. Days Open sorts by its day count.\n3. Status sorts by its displayed label.\n4. The Asset column sorts by the identifier it shows - the Unit #, falling back to the VIN, then plate.\n5. WO #, Customer, Asset, VIN, Location, and Advisor sort as text.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Work In Progress report specification version 6 (S4-R27, S4-R9) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S4-R27, S4-R9); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Work In Progress report specification version 6 (S4-R27, S4-R9) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30500,
+  "iid": "WIP-FLT-03",
+  "title": "Asset filter matches VIN, Unit #, or plate; \"All assets\" when empty",
+  "item": "T2-2",
+  "kind": "basis-build",
+  "why": "Answer B: the asset filter identifies by unit number first here",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "2. Each option identifies the asset by its VIN, falling back to Unit #, then plate (the exact option text is confirmed in the build).",
+    "2. Each option identifies the asset by its Unit #, falling back to the VIN, then plate (the exact option text is confirmed in the build)."
+   ],
+   [
+    "3. The typed text matches against the asset's identifier - the VIN, and the Unit # where the asset has one (the exact fields matched are confirmed in the build).",
+    "3. The typed text matches against the asset's identifier - the Unit #, and the VIN where the asset has one (the exact fields matched are confirmed in the build)."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. With no asset selected, the filter reads \"All assets\" and every job is shown.\n2. Each option identifies the asset by its VIN, falling back to Unit #, then plate (the exact option text is confirmed in the build).\n3. The typed text matches against the asset's identifier - the VIN, and the Unit # where the asset has one (the exact fields matched are confirmed in the build).\n4. Selecting assets narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one asset is selected and returns the filter to \"All assets\".\n5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R4, S7-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. With no asset selected, the filter reads \"All assets\" and every job is shown.\n2. Each option identifies the asset by its Unit #, falling back to the VIN, then plate (the exact option text is confirmed in the build).\n3. The typed text matches against the asset's identifier - the Unit #, and the VIN where the asset has one (the exact fields matched are confirmed in the build).\n4. Selecting assets narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one asset is selected and returns the filter to \"All assets\".\n5. Note for the tester: the field is labelled VIN. For assets that are not vehicles (for example a generator), this is the unit's serial number.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Work In Progress report specification version 6 (S7-R4, S7-R5) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R4, S7-R5); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Work In Progress report specification version 6 (S7-R4, S7-R5) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30501,
+  "iid": "WIP-FLT-04",
+  "title": "The date range offers the presets plus Custom; This Week default; no All Time",
+  "item": "T2-5",
+  "kind": "basis-build",
+  "why": "Answer A: keep the product; the This Week default is unaffected",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "2. The options offered are: \"Today\", \"Yesterday\", \"This Week\", \"Last Week\", \"This Month\", \"Last Month\", \"This Year\", \"Last Year\", \"This Quarter\", \"Last Quarter\", and \"Custom\".",
+    "2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option."
+   ],
+   [
+    "3. \"All Time\" is NOT offered.",
+    "3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. On a fresh visit the date range defaults to \"This Week\".\n2. The options offered are: \"Today\", \"Yesterday\", \"This Week\", \"Last Week\", \"This Month\", \"Last Month\", \"This Year\", \"Last Year\", \"This Quarter\", \"Last Quarter\", and \"Custom\".\n3. \"All Time\" is NOT offered.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R6).",
+  "after_expected": "1. On a fresh visit the date range defaults to \"This Week\".\n2. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.\n3. The named periods use the application's standard shared calendar boundaries - this is one shared chooser used by all six reports.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Work In Progress report specification version 6 (S7-R6) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R6).",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Work In Progress report specification version 6 (S7-R6) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30503,
+  "iid": "WIP-FLT-06",
+  "title": "Location filter: rightmost multi-select with All locations, reloads on change",
+  "item": "T2-1",
+  "kind": "confirming",
+  "why": "Answer B keeps our wording; the product must change, not the test",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. The Location filter is the rightmost toolbar filter, a multi-select listing the locations the signed-in user can access, with an \"All locations\" / \"Clear all\" toggle.\n2. On a first visit it defaults to the user's currently active location.\n3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).\n4. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).\n5. For a user with access to only one location the Location filter is NOT shown at all \u2014 the report simply shows that one location's work orders.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R9, S7-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. The Location filter is the rightmost toolbar filter, a multi-select listing the locations the signed-in user can access, with an \"All locations\" / \"Clear all\" toggle.\n2. On a first visit it defaults to the user's currently active location.\n3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear).\n4. The page itself shows which location(s) the report is currently scoped to (the new on-screen scope indicator - exactly where and how it appears is confirmed in the build).\n5. For a user with access to only one location the Location filter is NOT shown at all \u2014 the report simply shows that one location's work orders.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R9, S7-R10). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R9, S7-R10); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R9, S7-R10). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30511,
+  "iid": "WIP-EXP-02",
+  "title": "Downloads keep shown columns, honor filters, include the tab's Totals row",
+  "item": "T1-1",
+  "kind": "basis-against",
+  "why": "His rule C1 - line 5 denies default-on (NOT frozen today)",
+  "new_title": null,
+  "dna_removed": false,
+  "edits": [
+   [
+    "5. Note for the tester: the file carries the location column only when you have switched Location ON in the column-selection control - it does not appear just because you have more than one location selected. In the file it is headed \"Branch\", not \"Location\", and the asset column is headed \"Unit\". Both of those names are correct.",
+    "5. Note for the tester: the file carries the Location column whenever it is showing on screen. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. In the file it is headed \"Branch\", not \"Location\"."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers."
+  ],
+  "before_expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Inv. Hrs on, the download is refused - that column cannot be exported yet.\n2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.\n3. Both downloads include a Totals row matching the on-screen Totals row for the tab.\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).\n5. Note for the tester: the file carries the location column only when you have switched Location ON in the column-selection control - it does not appear just because you have more than one location selected. In the file it is headed \"Branch\", not \"Location\", and the asset column is headed \"Unit\". Both of those names are correct.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1).",
+  "after_expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total last. One exception on this build: if you turn Inv. Hrs on, the download is refused - that column cannot be exported yet.\n2. Both downloads honor the current date range and location filter, and include only the jobs left visible by the advisor, customer, and asset filters.\n3. Both downloads include a Totals row matching the on-screen Totals row for the tab.\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).\n5. Note for the tester: the file carries the Location column whenever it is showing on screen. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. In the file it is headed \"Branch\", not \"Location\".\n---\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Work In Progress report specification version 6 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Work In Progress report specification version 6 (S9-R2, S9-R3, S9-R4, S9-R10a, S7-R13, S9-E1) differs, his decision is the authority."
+ },
+ {
+  "cid": 30516,
+  "iid": "WIP-EXP-07",
+  "title": "Export headers read \"Unit\" and \"Branch\" \u2014 documented limitation, do not file",
+  "item": "T2-2",
+  "kind": "basis-build",
+  "why": "Answer B: the export header note about VIN is no longer in play",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "4. Note: the on-screen Asset cell now identifies the asset by its VIN (falling back to Unit #, then plate); whether the export header text changes from \"Unit\" is confirmed in the build - record what it shows, do not file a bug either way.",
+    "4. The on-screen Asset cell leads with the Unit #, which is what the export header \"Unit\" already reflects - so no header change is expected here."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. On screen the headers read \"Asset\" and \"Location\".\n2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".\n3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.\n4. Note: the on-screen Asset cell now identifies the asset by its VIN (falling back to Unit #, then plate); whether the export header text changes from \"Unit\" is confirmed in the build - record what it shows, do not file a bug either way.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. On screen the headers read \"Asset\" and \"Location\".\n2. In BOTH the PDF and the CSV, the same two columns are headed \"Unit\" and \"Branch\".\n3. This on-screen-vs-export label difference is the EXPECTED, documented v1 behavior.\n4. The on-screen Asset cell leads with the Unit #, which is what the export header \"Unit\" already reflects - so no header change is expected here.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Work In Progress report specification version 6 (S9-E1) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S9-E1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Work In Progress report specification version 6 (S9-E1) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30551,
+  "iid": "IV-COL-01",
+  "title": "With every column on they appear in the fixed order with the set alignment",
+  "item": "T1-1",
+  "kind": "basis-against",
+  "why": "His rule C1/C3 - the default-on half is missing",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "4. Location is one of the columns in the column-selection control; when it is turned on the Location column appears between Vendor and Qty, left-aligned.",
+    "4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. When it is on, the Location column appears between Vendor and Qty, left-aligned."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers."
+  ],
+  "before_expected": "1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.\n2. Part #, Description, Category, and Vendor are left-aligned.\n3. Every other column is right-aligned.\n4. Location is one of the columns in the column-selection control; when it is turned on the Location column appears between Vendor and Qty, left-aligned.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R1, S3-R2, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "after_expected": "1. With a single location in scope the columns appear in this order: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.\n2. Part #, Description, Category, and Vendor are left-aligned.\n3. Every other column is right-aligned.\n4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. When it is on, the Location column appears between Vendor and Qty, left-aligned.\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S3-R1, S3-R2, S7-R6) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R1, S3-R2, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S3-R1, S3-R2, S7-R6) differs, his decision is the authority."
+ },
+ {
+  "cid": 30554,
+  "iid": "IV-COL-04",
+  "title": "On a first visit the default columns show and the rest stay available",
+  "item": "T1-1",
+  "kind": "basis-against",
+  "why": "His rule C1/C3 - the default-on half is missing",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "4. Location is one of the columns in the column-selection control; when it is turned on the Location column shows between Vendor and Qty.",
+    "4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. When it is on, the Location column shows between Vendor and Qty."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers."
+  ],
+  "before_expected": "1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin %, and Total Cost.\n2. The Margin and Total Sell columns are hidden by default.\n3. Both can be turned on from the column-selection control and then appear in their fixed positions.\n4. Location is one of the columns in the column-selection control; when it is turned on the Location column shows between Vendor and Qty.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R12, S3-R13, S8-R3, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "after_expected": "1. On first visit with a single location in scope the visible columns are: Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin %, and Total Cost.\n2. The Margin and Total Sell columns are hidden by default.\n3. Both can be turned on from the column-selection control and then appear in their fixed positions.\n4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. When it is on, the Location column shows between Vendor and Qty.\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S3-R12, S3-R13, S8-R3, S7-R6) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S3-R12, S3-R13, S8-R3, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S3-R12, S3-R13, S8-R3, S7-R6) differs, his decision is the authority."
+ },
+ {
+  "cid": 30561,
+  "iid": "IV-DATE-01",
+  "title": "Date range offers the standard presets plus Custom; no All Time option",
+  "item": "T2-5",
+  "kind": "basis-build",
+  "why": "Answer A: keep the product",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "1. The control offers the standard presets: \"Today\", \"Yesterday\", \"This Week\", \"Last Week\", \"This Month\", \"Last Month\", \"This Year\", \"Last Year\", \"This Quarter\", \"Last Quarter\", and \"Custom\".",
+    "1. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option."
+   ],
+   [
+    "2. \"All Time\" is NOT offered \u2014 because the report is valued as of a single date, an All-Time option would be meaningless; its absence is the documented v1 behavior.",
+    "2. Because the report is valued as of a single date, an All-Time period would be meaningless; its absence is the documented behaviour."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. The control offers the standard presets: \"Today\", \"Yesterday\", \"This Week\", \"Last Week\", \"This Month\", \"Last Month\", \"This Year\", \"Last Year\", \"This Quarter\", \"Last Quarter\", and \"Custom\".\n2. \"All Time\" is NOT offered \u2014 because the report is valued as of a single date, an All-Time option would be meaningless; its absence is the documented v1 behavior.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R1).",
+  "after_expected": "1. The chooser offers nine ready-made periods, in this order: Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week. Beside them it shows a month calendar you click dates on to build your own range, a live readout of how many days the range covers, and an Apply button. There is no \"Today\", no \"Yesterday\" and no item called \"Custom\" - you build your own range on the calendar instead. There is no \"All Time\" option.\n2. Because the report is valued as of a single date, an All-Time period would be meaningless; its absence is the documented behaviour.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Inventory Value report specification version 3 (S5-R1) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S5-R1).",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Inventory Value report specification version 3 (S5-R1) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30577,
+  "iid": "IV-LOC-04",
+  "title": "Inventory Value: the Location filter is hidden for a one-location user",
+  "item": "T2-1",
+  "kind": "confirming",
+  "why": "Answer B keeps our wording; the product must change, not the test",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. For the single-location user the Location filter is NOT shown at all \u2014 the report simply shows that one location's stock.\n2. For the user with access to two or more locations the Location filter IS shown.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "after_expected": "1. For the single-location user the Location filter is NOT shown at all \u2014 the report simply shows that one location's stock.\n2. For the user with access to two or more locations the Location filter IS shown.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-N1); where the wording of that specification differs, the behaviour above follows a later product decision, which is the authority.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-N1). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30580,
+  "iid": "IV-PERS-02",
+  "title": "Toggling columns never reorders them",
+  "item": "T1-1",
+  "kind": "confirming",
+  "why": "Order assertion only - his rule changes visibility, not position",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.\n2. Total Cost is always the last column.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "after_expected": "1. Whatever columns are shown, they appear in the fixed left-to-right order - with Location, when it is turned on in the column-selection control, between Vendor and Qty (Part #, Description, Category, Vendor, Qty, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) - toggling visibility never reorders columns.\n2. Total Cost is always the last column.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S8-R4, S3-R1, S7-R6). Chris Ward confirmed this on 8/5/2026 in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 30588,
+  "iid": "IV-EXP-02",
+  "title": "Downloads keep shown columns and order, honor filters, and include Totals",
+  "item": "T1-1",
+  "kind": "basis-against",
+  "why": "His rule C1 - line 5 denies default-on",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "5. Note for the tester: the files carry the Location column when Location is turned ON in the column-selection control (it sits between Vendor and Qty). It does not appear just because you have more than one location selected.",
+    "5. Note for the tester: the files carry the Location column whenever it is showing on screen (it sits between Vendor and Qty). Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers."
+  ],
+  "before_expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.\n2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.\n3. Both downloads include a totals row labeled \"Totals\" matching the on-screen totals (the full-filtered-set totals).\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).\n5. Note for the tester: the files carry the Location column when Location is turned ON in the column-selection control (it sits between Vendor and Qty). It does not appear just because you have more than one location selected.\nOn this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15).",
+  "after_expected": "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.\n2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.\n3. Both downloads include a totals row labeled \"Totals\" matching the on-screen totals (the full-filtered-set totals).\n4. Each download (PDF and CSV) carries a \"Locations:\" line naming the location(s) the report was scoped to (exact position in the file is confirmed in the build).\n5. Note for the tester: the files carry the Location column whenever it is showing on screen (it sits between Vendor and Qty). Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.\nOn this build the spreadsheet file ignores the columns you picked and puts them in a different order from the screen, so point 1 above will not match - record what you see and carry on.\nKnown issue: the product does not currently do this. It has been filed for a fix here: https://shopview.atlassian.net/browse/SV-8823\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S10-R3, S10-R4, S10-R5, S10-R6, S10-R15) differs, his decision is the authority."
+ },
+ {
+  "cid": 30590,
+  "iid": "IV-EXP-04",
+  "title": "PDF header shows report name; org; period and an as-of line; logo if set",
+  "item": "T2-7",
+  "kind": "basis-build",
+  "why": "Answer A: the as-of line belongs in the spreadsheet too",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [],
+  "before_expected": "1. The PDF header shows the report name \"Inventory Value\", the organization name, the selected period, and an \"as of\" line naming the day the values represent (or a message that no snapshot is available for the period).\n2. The PDF shows the shop logo at the top when one is set.\n3. The CSV never includes a logo.\n4. Note for the tester: the two files phrase the as-of line differently - the PDF reads \"As of 2026-08-04\", and in the spreadsheet it is one of the short summary lines that sit above the column headings, reading \"As of: 2026-08-04\" (with a colon). Both are correct; do not raise the difference, and do not count the summary lines - more of them may be added.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R8, S10-R9).",
+  "after_expected": "1. The PDF header shows the report name \"Inventory Value\", the organization name, the selected period, and an \"as of\" line naming the day the values represent (or a message that no snapshot is available for the period).\n2. The PDF shows the shop logo at the top when one is set.\n3. The CSV never includes a logo.\n4. Note for the tester: the two files phrase the as-of line differently - the PDF reads \"As of 2026-08-04\", and in the spreadsheet it is one of the short summary lines that sit above the column headings, reading \"As of: 2026-08-04\" (with a colon). Both are correct; do not raise the difference, and do not count the summary lines - more of them may be added.\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Inventory Value report specification version 3 (S10-R8, S10-R9) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S10-R8, S10-R9).",
+  "new_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023). Where the Inventory Value report specification version 3 (S10-R8, S10-R9) says something different, the behaviour above follows Chris Ward's decision of 8/5/2026 instead, which is the authority - that decision is recorded in his answers, in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true"
+ },
+ {
+  "cid": 38856,
+  "iid": "SBC-EXP-16",
+  "title": "Summary and Expanded View downloads exist for both PDF and CSV",
+  "item": "T3-3",
+  "kind": "basis-unconfirmed",
+  "why": "Answer A pins the position his description never gave",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal \u2014 no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added with the identifying columns, ahead of the money columns (the Summary files have no Date column for it to follow \u2014 confirm its exact position in the build).",
+    "5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal \u2014 no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added immediately after the Customer name and before the money columns."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. The menu offers exactly four items: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\".\n2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows.\n3. Each Expanded View file contains the full Customer, then Asset, then Invoice breakdown.\n4. All four files reflect exactly the filtered data shown on screen.\n5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal \u2014 no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added with the identifying columns, ahead of the money columns (the Summary files have no Date column for it to follow \u2014 confirm its exact position in the build).\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13).",
+  "after_expected": "1. The menu offers exactly four items: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", \"Download Expanded View (CSV)\".\n2. Each Summary file gives ONE row per customer, without the asset or invoice detail rows.\n3. Each Expanded View file contains the full Customer, then Asset, then Invoice breakdown.\n4. All four files reflect exactly the filtered data shown on screen.\n5. With a single location in scope the Summary files have these ten columns in this exact order: Customer, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal \u2014 no Asset, Invoice # or Date columns. When more than one location is in scope a Location column is added immediately after the Customer name and before the money columns.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. The Sales By Customer report specification version 13 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13) is silent on this point, and it has not yet been confirmed on a build.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. The Sales By Customer report specification version 13 (S14-R1, S14-R2, S14-R4, S15-R1, S15-R2, S15-R4, S15-R5, S4-R13) is silent on this point, and it has not yet been confirmed on a build."
+ },
+ {
+  "cid": 38912,
+  "iid": "SBC-LOC-04",
+  "title": "The Location column shows only with more than one location; Multiple on totals",
+  "item": "T1-1",
+  "kind": "basis-against",
+  "why": "His rule C2/C3: the column IS in the selector, conditionally",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "5. Location is NOT offered in the column selector \u2014 it appears and disappears on its own, following the location scope.",
+    "5. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers."
+  ],
+  "before_expected": "1. With more than one location in scope a Location column is shown, positioned immediately after the Date column.\n2. A customer or asset row whose invoices are all at one location shows that location's name.\n3. A customer or asset row whose invoices come from more than one location shows \"Multiple\".\n4. An invoice row always shows its own exact location \u2014 never \"Multiple\".\n5. Location is NOT offered in the column selector \u2014 it appears and disappears on its own, following the location scope.\n6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.\n7. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at one location, \"Multiple\" on a row that aggregates more than one, and the invoice's own location on an invoice row. (Exactly where the column sits inside each file is confirmed in the build.)\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S4-R12, S4-R12a, S4-R13, S20-R19).",
+  "after_expected": "1. With more than one location in scope a Location column is shown, positioned immediately after the Date column.\n2. A customer or asset row whose invoices are all at one location shows that location's name.\n3. A customer or asset row whose invoices come from more than one location shows \"Multiple\".\n4. An invoice row always shows its own exact location \u2014 never \"Multiple\".\n5. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.\n6. With a single location in scope the Location column is hidden and the surrounding columns close up with no gap.\n7. Every one of the four downloads also contains the Location column, in the same position it holds on screen, showing the same values you just read: a location name on a row whose invoices are all at one location, \"Multiple\" on a row that aggregates more than one, and the invoice's own location on an invoice row. (Exactly where the column sits inside each file is confirmed in the build.)\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Customer report specification version 13 (S4-R12, S4-R12a, S4-R13, S20-R19) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Customer report specification version 13 (S4-R12, S4-R12a, S4-R13, S20-R19).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Customer report specification version 13 (S4-R12, S4-R12a, S4-R13, S20-R19) differs, his decision is the authority."
+ },
+ {
+  "cid": 38913,
+  "iid": "SBR-LOC-05",
+  "title": "The Location column shows only with more than one location; rep rows Multiple",
+  "item": "T1-1",
+  "kind": "basis-against",
+  "why": "His rule C2/C3 adds the selector half this case never had",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [],
+  "appends": [
+   "Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.",
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers."
+  ],
+  "before_expected": "1. With more than one location in scope a Location column is shown, positioned immediately after the Status column and before Inv. Hrs.\n2. A rep summary row whose invoices are all at one location shows that location's name.\n3. A rep summary row whose invoices span more than one location shows \"Multiple\".\n4. An invoice detail row shows that invoice's own exact location \u2014 never \"Multiple\".\n5. The Unassigned summary row follows the same rule as any rep summary row.\n6. The pinned Subtotal column is still rightmost \u2014 the Location column never displaces it.\n7. With a single location in scope the Location column is hidden.\n8. All four downloads include the Location column in the same position it occupies on screen. In the Summary files a rep's row carries that rep's location and reads \"Multiple\" when the rep spans more than one location; in the Expanded View files each invoice row carries that invoice's own exact location.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S21-R7, S21-R8, S18-R13, S14-R20).",
+  "after_expected": "1. With more than one location in scope a Location column is shown, positioned immediately after the Status column and before Inv. Hrs.\n2. A rep summary row whose invoices are all at one location shows that location's name.\n3. A rep summary row whose invoices span more than one location shows \"Multiple\".\n4. An invoice detail row shows that invoice's own exact location \u2014 never \"Multiple\".\n5. The Unassigned summary row follows the same rule as any rep summary row.\n6. The pinned Subtotal column is still rightmost \u2014 the Location column never displaces it.\n7. With a single location in scope the Location column is hidden.\n8. All four downloads include the Location column in the same position it occupies on screen. In the Summary files a rep's row carries that rep's location and reads \"Multiple\" when the rep spans more than one location; in the Expanded View files each invoice row carries that invoice's own exact location.\nLocation is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Representative report specification version 15 (S21-R7, S21-R8, S18-R13, S14-R20) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Sales By Representative report specification version 15 (S21-R7, S21-R8, S18-R13, S14-R20).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Sales By Representative report specification version 15 (S21-R7, S21-R8, S18-R13, S14-R20) differs, his decision is the authority."
+ },
+ {
+  "cid": 38914,
+  "iid": "PV-FILT-14",
+  "title": "The Location column shows only with more than one location, leftmost before Type",
+  "item": "T1-1",
+  "kind": "basis-against",
+  "why": "His rule C2 - flatly contradicted by line 4 (NOT frozen today)",
+  "new_title": null,
+  "dna_removed": false,
+  "edits": [
+   [
+    "4. Location is NOT one of the 20 columns in the picker \u2014 it is managed by the location scope, not by you.",
+    "4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers."
+  ],
+  "before_expected": "1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Type.\n2. Each inventory row shows its own location's name (an inventory row is one part at one location).\n3. The merged Special Order row shows \"Multiple\", because it is summed across the selected locations.\n4. Location is NOT one of the 20 columns in the picker \u2014 it is managed by the location scope, not by you.\n5. With a single location in scope the Location column is hidden.\n6. Both downloads include the Location column in the same position it holds on screen (leftmost, before Type), with the same values \u2014 each inventory row's own location, and \"Multiple\" on the merged Special Order row.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R12, S3-R10, S7-R8, S6-R11).",
+  "after_expected": "1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Type.\n2. Each inventory row shows its own location's name (an inventory row is one part at one location).\n3. The merged Special Order row shows \"Multiple\", because it is summed across the selected locations.\n4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.\n5. With a single location in scope the Location column is hidden.\n6. Both downloads include the Location column in the same position it holds on screen (leftmost, before Type), with the same values \u2014 each inventory row's own location, and \"Multiple\" on the merged Special Order row.\n---\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Parts Velocity report specification version 4 (S2-R12, S3-R10, S7-R8, S6-R11) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Parts Velocity report specification version 4 (S2-R12, S3-R10, S7-R8, S6-R11).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Parts Velocity report specification version 4 (S2-R12, S3-R10, S7-R8, S6-R11) differs, his decision is the authority."
+ },
+ {
+  "cid": 38915,
+  "iid": "TU-LOC-06",
+  "title": "The Location column shows only with more than one location; Summary row blank",
+  "item": "T1-1",
+  "kind": "basis-against",
+  "why": "His rule C2 - flatly contradicted by line 6 (NOT frozen today)",
+  "new_title": null,
+  "dna_removed": false,
+  "edits": [
+   [
+    "6. Location is never listed in the Column Selection control \u2014 it follows the location scope on its own.",
+    "6. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers."
+  ],
+  "before_expected": "1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Technician.\n2. A technician whose hours were all clocked at one location shows that location's name.\n3. A technician whose hours span more than one selected location shows \"Multiple\".\n4. An expanded day row shows the exact location when that day's hours were all at one location, and \"Multiple\" when the day spans more than one.\n5. The Summary row leaves the Location cell blank.\n6. Location is never listed in the Column Selection control \u2014 it follows the location scope on its own.\n7. With a single location in scope the Location column is hidden.\n8. Every download \u2014 both PDF views and the CSV \u2014 includes the Location column in its on-screen leftmost position, carrying the same values you just read on screen.\n---\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-R9, S9-R10, S8-R15, S10-R4, S7-R13).",
+  "after_expected": "1. With more than one location in scope a Location column is shown as the LEFTMOST column, before Technician.\n2. A technician whose hours were all clocked at one location shows that location's name.\n3. A technician whose hours span more than one selected location shows \"Multiple\".\n4. An expanded day row shows the exact location when that day's hours were all at one location, and \"Multiple\" when the day spans more than one.\n5. The Summary row leaves the Location cell blank.\n6. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.\n7. With a single location in scope the Location column is hidden.\n8. Every download \u2014 both PDF views and the CSV \u2014 includes the Location column in its on-screen leftmost position, carrying the same values you just read on screen.\n---\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S9-R9, S9-R10, S8-R15, S10-R4, S7-R13) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Technician Utilization report specification version 5 (S9-R9, S9-R10, S8-R15, S10-R4, S7-R13).",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Technician Utilization report specification version 5 (S9-R9, S9-R10, S8-R15, S10-R4, S7-R13) differs, his decision is the authority."
+ },
+ {
+  "cid": 38916,
+  "iid": "WIP-FLT-09",
+  "title": "The Location column is automatic and never reads Multiple on a work-order row",
+  "item": "T1-1",
+  "kind": "basis-against",
+  "why": "His rule C1 - lines 1/4/5 assert toggle-only visibility",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "1. Location is offered in the column-selection control, between VIN and Advisor, and is off by default. Turning it on adds the Location column in that fixed position, left-aligned.",
+    "1. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. When it is on, the Location column sits between VIN and Advisor, left-aligned."
+   ],
+   [
+    "4. The column does not appear or disappear on its own when you change the location selection - it follows the column-selection toggle only.",
+    "4. Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers."
+   ]
+  ],
+  "appends": [],
+  "before_expected": "1. Location is offered in the column-selection control, between VIN and Advisor, and is off by default. Turning it on adds the Location column in that fixed position, left-aligned.\n2. Each row names its own work order's location.\n3. NO row ever shows \"Multiple\" \u2014 a work order belongs to exactly one location, and this report has no grouped or drill-down rows.\n4. The column does not appear or disappear on its own when you change the location selection - it follows the column-selection toggle only.\n5. With the toggle off the Location column is not shown, whatever the location selection is.\n6. In both downloads the column is headed \"Branch\" (a known naming difference from the screen \u2014 do not raise it as a bug).\n7. The Location filter control keeps the same width whichever label it shows \u2014 one location, several, or \"All locations\" \u2014 so the toolbar does not shift as you change the selection.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "after_expected": "1. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all. When it is on, the Location column sits between VIN and Advisor, left-aligned.\n2. Each row names its own work order's location.\n3. NO row ever shows \"Multiple\" \u2014 a work order belongs to exactly one location, and this report has no grouped or drill-down rows.\n4. Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n5. With the toggle off the Location column is not shown, whatever the location selection is.\n6. In both downloads the column is headed \"Branch\" (a known naming difference from the screen \u2014 do not raise it as a bug).\n7. The Location filter control keeps the same width whichever label it shows \u2014 one location, several, or \"All locations\" \u2014 so the toolbar does not shift as you change the selection.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Work In Progress report specification version 6 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Work In Progress report specification version 6 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Work In Progress report specification version 6 (S7-R13, S7-R14, S4-R3, S9-E1, S10-R5a) differs, his decision is the authority."
+ },
+ {
+  "cid": 38917,
+  "iid": "IV-LOC-06",
+  "title": "The Location column sits after Vendor and never reads Multiple",
+  "item": "T1-1",
+  "kind": "basis-against",
+  "why": "His rule C1 - line 4 says visibility follows the toggle only",
+  "new_title": null,
+  "dna_removed": true,
+  "edits": [
+   [
+    "4. Location IS one of the columns offered in the column-selection control - its visibility follows that toggle, not the location selection.",
+    "4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all."
+   ]
+  ],
+  "appends": [
+   "Note for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers."
+  ],
+  "before_expected": "1. With Location turned on in the column-selection control, a Location column is shown, inserted between Vendor and Qty.\n2. Each row names the location that row's stock is held at.\n3. NO row ever shows \"Multiple\" \u2014 each row is one part at one location.\n4. Location IS one of the columns offered in the column-selection control - its visibility follows that toggle, not the location selection.\n5. With the Location toggle off the column is not shown and the surrounding columns close up.\n6. The Location filter control keeps the same width whichever label it shows \u2014 one location, several, or \"All locations\" \u2014 so the toolbar does not shift as you change the selection.\n7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty), naming each row's own location.\n---\nDO NOT AUTOMATE YET: this behaviour is waiting on an answer from the product owner. Automating it now could lock in the wrong behaviour.\nThe open question is in: Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx \u2014 https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/report-suite/chris-consolidated-2026-08-04/Report-Suite_Questions-and-Decisions-for-Chris-Ward_2026-08-04.xlsx\n\nThis is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "after_expected": "1. With Location turned on in the column-selection control, a Location column is shown, inserted between Vendor and Qty.\n2. Each row names the location that row's stock is held at.\n3. NO row ever shows \"Multiple\" \u2014 each row is one part at one location.\n4. Location is one of the columns in the column-selection control, and with more than one location SELECTED it is already switched on for you - you do not have to turn it on. You can still switch it off. If the signed-in person only has access to ONE location, Location is not offered in the column-selection list at all.\n5. With the Location toggle off the column is not shown and the surrounding columns close up.\n6. The Location filter control keeps the same width whichever label it shows \u2014 one location, several, or \"All locations\" \u2014 so the toolbar does not shift as you change the selection.\n7. Both downloads include the Location column in the same position it holds on screen (between Vendor and Qty), naming each row's own location.\nNote for the tester: on this build the column does not yet behave this way - record what you see and carry on. The change is with the developers.\n\nThis is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15) differs, his decision is the authority.\n",
+  "old_prov": "This is the expected behaviour as per the build tested on 8/4/2026 (build v3.4.1-3d03023), and as per the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15); on this point that specification currently states otherwise and a product decision is still awaited, so treat the behaviour described above as what the build does today.",
+  "new_prov": "This is the expected behaviour as per Chris Ward's decision of 8/5/2026, recorded in his answers in this file: https://docs.google.com/spreadsheets/d/1x8cuYJlFsDHalVZZTh156_ZCq2gcOaGY/edit?usp=sharing&ouid=106388879401921597782&rtpof=true&sd=true. It does NOT match the build tested on 8/4/2026 (build v3.4.1-3d03023) - that change is with the developers - and where the Inventory Value report specification version 3 (S7-R6, S7-R7, S3-R1, S12-R10, S10-R15) differs, his decision is the authority."
+ }
+]
