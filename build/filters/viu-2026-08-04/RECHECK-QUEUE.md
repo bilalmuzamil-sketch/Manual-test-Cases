@@ -1,19 +1,54 @@
 # Filters — RE-CHECK QUEUE (Standing Rule 49)
 
-> ## STATUS: **OPEN**
+> ## STATUS: **OPEN — AND THE TRIGGER HAS NOW FIRED (2026-08-05)**
 >
-> The Filters QA branch has **not been declared final by engineering**, and it is a per-epic QA branch of the same kind that redeployed twice within hours on another project today. So **every finding below is PROVISIONAL**: it was observed live, with evidence, but its DURABILITY is limited, not its rigour.
+> **THE BRANCH WAS REDEPLOYED OVERNIGHT.** The app-version marker changed, which is exactly the
+> condition that forces this queue to be re-run. So **all 110 rows below are now stale**: they
+> record verdicts against a build that no longer exists, and **every case's provenance line still
+> names the old build**.
+>
+> | | Verdicts below were measured on | The branch is serving now |
+> |---|---|---|
+> | `<meta name="app-version">` | `v3.4.2-4f8211c` | **`v3.4.2-d00239b`** |
+> | `index.html` last-modified | Mon, 03 Aug 2026 20:09:32 GMT | **Tue, 04 Aug 2026 22:51:02 GMT** |
+> | `index.html` etag | `cf3ffbad546f569b2b86c36b53d87514` | **`b9ab1d41718b5e871432064ed914e2e7`** |
+>
+> **3 of the 110 rows have been re-checked on the new build so far** (the three dismissed-ticket
+> defects — see the dismissal block below). **107 have not.** A full re-run needs the QA lead's
+> go-ahead; it is logged as an outstanding item.
+>
+> The Filters QA branch has still **not been declared final by engineering**, so every finding here
+> remains **PROVISIONAL**: observed live, with evidence, but limited in DURABILITY, not in rigour.
+
+## THE QA LEAD'S DISMISSAL OF THREE TICKETS (2026-08-04) — what these rows now mean
+
+> **"Note for filters the following tickets are valid others can be ignored by you."** — links to
+> **SV-8845** and **SV-8846** only.
+
+So **SV-8843, SV-8844 and SV-8847 are dismissed**. The eight rows below that were "waiting for a
+fix" on those tickets are **no longer waiting for a fix**. Re-checked live on `v3.4.2-d00239b`:
+
+| Rows | Ticket | Re-checked live 2026-08-05 | What the row now means |
+|---|---|---|---|
+| 1 (FLT-BAR-01 [C29557](https://shopview.testrail.io/index.php?/cases/view/29557)), 48 (FLT-COLL-02 [C29602](https://shopview.testrail.io/index.php?/cases/view/29602)) | SV-8843 — **dismissed**, ticket OBSOLETE | **CONFIRMED still present** — chips still share the tab row; collapsing frees 0px | **ACCEPTED, not awaiting a fix.** Re-check only whether the layout itself changes |
+| 98 (FLT-PSRCH-10 [C38900](https://shopview.testrail.io/index.php?/cases/view/38900)), 99 (FLT-PSRCH-11 [C38901](https://shopview.testrail.io/index.php?/cases/view/38901)), 100 (FLT-PSRCH-12 [C38902](https://shopview.testrail.io/index.php?/cases/view/38902)) | SV-8844 — **dismissed**, ticket still Open + retitled | **CHANGED → the defect is FIXED.** The saved preference no longer stores a search term | **the deviation is resolved.** These three should become straight passes and lose their known-issue line |
+| 52 (FLT-EMPTY-01 [C29606](https://shopview.testrail.io/index.php?/cases/view/29606)), 53 (FLT-EMPTY-02 [C29607](https://shopview.testrail.io/index.php?/cases/view/29607)), 97 (FLT-PSRCH-09 [C38899](https://shopview.testrail.io/index.php?/cases/view/38899)) | SV-8847 — **dismissed**, ticket OBSOLETE | **CONFIRMED still present** — empty state names filters and offers only "Clear Filters" | **ACCEPTED, not awaiting a fix** |
+
+**SV-8845 and SV-8846 are VALID and unchanged**, so their rows keep waiting for a fix as before:
+FLT-URL-04 [C29618](https://shopview.testrail.io/index.php?/cases/view/29618), FLT-MOB-10
+[C29630](https://shopview.testrail.io/index.php?/cases/view/29630), FLT-MOB-08
+[C29628](https://shopview.testrail.io/index.php?/cases/view/29628).
 
 **BUILD MARKER — the thing that makes a re-check meaningful:**
 
-| Field | Value |
-|---|---|
-| branch | `sv8785.qa.shopview.com` |
-| API host | `sv8785api.qa.shopview.com` (verified live — previously only inferred from the naming pattern) |
-| `<meta name="app-version">` | **`v3.4.2-4f8211c`** |
-| `index.html` last-modified | Mon, 03 Aug 2026 20:09:32 GMT |
-| `index.html` etag | `cf3ffbad546f569b2b86c36b53d87514` |
-| observed | 2026-08-04, start / mid-run / end — **all three identical** |
+| Field | Value the rows below were measured on | Value now (2026-08-05) |
+|---|---|---|
+| branch | `sv8785.qa.shopview.com` | same |
+| API host | `sv8785api.qa.shopview.com` (verified live — previously only inferred from the naming pattern) | same, still answering |
+| `<meta name="app-version">` | **`v3.4.2-4f8211c`** | **`v3.4.2-d00239b`** |
+| `index.html` last-modified | Mon, 03 Aug 2026 20:09:32 GMT | Tue, 04 Aug 2026 22:51:02 GMT |
+| `index.html` etag | `cf3ffbad546f569b2b86c36b53d87514` | `b9ab1d41718b5e871432064ed914e2e7` |
+| observed | 2026-08-04, start / mid-run / end — **all three identical** | 2026-08-05, twice — identical |
 
 **RE-RUN THIS QUEUE** at every session start for Filters, before and after any Filters work, and immediately if the app-version marker changes, a deploy is detected, or engineering declares the branch final. A row that flips to CHANGED is a finding in its own right and is reported, not quietly corrected. The queue closes only when **100% of rows** are re-verified.
 

@@ -7,9 +7,50 @@ one of them had ever been checked against a build. Every case now has a definite
 **The build we tested:** ShopView **v3.4.2-4f8211c**, checked at the start, the middle and the
 end of the day — the same build all three times, so nothing changed under us.
 
+> ## ⚠️ READ THIS FIRST — two things changed after this report was written (5 August 2026)
+>
+> **1. The build below no longer exists.** The Filters QA branch was redeployed overnight to
+> **`v3.4.2-d00239b`**. Everything in the table was measured on **`v3.4.2-4f8211c`**. We have
+> re-checked **3** of the 110 cases against the new build and **107 not yet**, so **treat every
+> number below as describing the previous build** until a full re-check is authorised. One thing
+> already changed: the page-search problem is **fixed** on the new build.
+>
+> **2. Three of the five developer tickets were dismissed by the QA lead** on 4 August:
+> *"Note for filters the following tickets are valid others can be ignored by you"* — naming
+> **SV-8845** and **SV-8846** only. So **SV-8843, SV-8844 and SV-8847 are no longer being chased.**
+> The eight cases that pointed at them still describe the correct behaviour; they simply stop
+> telling a tester to expect a fix. **The counts below have deliberately NOT been re-added up**,
+> because doing that arithmetic on top of measurements from a build that has been replaced would
+> make this report look more current than it is. The re-count belongs with the re-check.
+>
+> What the dismissals mean for the numbers, when the re-count happens: **5 cases** move from
+> "product is wrong, ticket open" to "product is wrong, accepted — no ticket" (SV-8843 ×2,
+> SV-8847 ×3, both still present on the new build), and **3 cases** move to **working correctly**
+> (SV-8844 ×3 — fixed).
+
 ## The one table
 
-| Part of the feature | Test cases | Work correctly on the build | Broken on the build (a ticket is open) | Waiting on the product owner | Not built yet | Needs a measuring tool in the browser | **Ready to automate** |
+**How to read each column** — every column below counts TEST CASES, and the first six columns add
+up to the "Test cases" figure:
+
+- **Work correctly** — the product does what the case says. The case passes. Nothing to do.
+- **Product is wrong (ticket open) — the case correctly fails** — **the case is right and the
+  PRODUCT is wrong.** These cases are *supposed* to fail on this build, and a developer ticket is
+  open for each one. Automation should **expect a red result**, and that red is the case doing its
+  job. It does **not** mean the test case is broken.
+- **Waiting on the product owner** — the correct answer could still go either way, so do not
+  automate these yet; a decision would change what "pass" means.
+- **Not built yet** — the screen or control is not in this build at all, so there is nothing to
+  test. A tester marks these **blocked**, not failed.
+- **Needs a free tool built into the browser** — a manual tester **can** run these; they check exact
+  colours, fonts and widths, which needs the inspector that is already in every browser. Not a
+  limitation, just not a job for a non-technical tester.
+- **Ready to automate** — the automation engineer can start on these today. It is **not** a sum of
+  the other columns: it is the Test cases figure **minus** the ones waiting on the product owner,
+  the ones not built yet, and the ones needing the browser tool. Cases that currently fail **are**
+  included, on purpose.
+
+| Part of the feature | Test cases | Work correctly | Product is wrong (ticket open) — the case correctly fails | Waiting on the product owner | Not built yet | Needs a free tool built into the browser | **Ready to automate** |
 |---|---|---|---|---|---|---|---|
 | The filter bar and collapsing it | 8 | 6 | 2 | 0 | 0 | 0 | **8** |
 | The Status filter | 7 | 4 | 3 | 0 | 0 | 0 | **7** |
@@ -28,6 +69,30 @@ end of the day — the same build all three times, so nothing changed under us.
 | Parts pages | 5 | 0 | 0 | 0 | 5 | 0 | **0** |
 | Reports pages | 4 | 0 | 0 | 0 | 4 | 0 | **0** |
 | **TOTAL** | **110** | **60** | **32** | **8** | **9** | **4** | **88** |
+
+### Checking the arithmetic honestly (re-checked row by row, 5 August)
+
+The "Test cases" column adds to **110**, and 13 of the 16 rows add up exactly. **Three rows do not,
+and here is precisely why** — this is stated rather than smoothed over, because a reader who adds the
+columns gets 113 and deserves to know where the extra 3 comes from:
+
+| Row | Cases | Columns add to | Why |
+|---|---|---|---|
+| Phone screens | 10 | 11 | **FLT-MOB-10 is counted twice** — it is both waiting on the product owner *and* has a ticket (SV-8845) |
+| The search box on the page | 13 | 16 | **FLT-PSRCH-01, FLT-PSRCH-02 and FLT-PSRCH-08 are counted twice** — they fail on the build *and* need the browser tool |
+| Behind the scenes | 6 | 5 | **FLT-API-06 is in no column at all** — it is held for a second sign-in, explained below |
+
+So: **4 cases appear in two columns, 1 case appears in none, net +3** → 60 + 32 + 8 + 9 + 4 = 113
+against 110. **Ready to automate** = 110 − 8 (product owner) − 9 (not built) − 4 (browser tool) =
+**89**, shown as **88** because FLT-API-06 is held as well.
+
+**One honest correction the new column name forces.** Now that the column says *"ticket open"*, note
+that **3 of those 32 have no ticket**: FLT-PSRCH-01, FLT-PSRCH-02 and FLT-PSRCH-08 are the
+exact-colour-and-font differences we deliberately did **not** file, and reported to the QA lead as a
+single design item instead (see `viu-2026-08-04/DELIBERATE-DECISIONS.md` entry 8). They are still
+cases that correctly fail; they just have no ticket number to quote. And after the 4 August
+dismissals, **5 more** of the 32 have a ticket that is closed or abandoned rather than open
+(SV-8843 ×2, SV-8847 ×3).
 
 One more case is not in the "ready" column for a different reason: **FLT-API-06** needs a
 **second sign-in of your own** to prove one person's saved filters do not leak to another. A
@@ -90,15 +155,23 @@ at selectors.
 ## What is blocked on the developers
 
 Five new tickets were raised today, all at **Low** priority, all hanging off the Filters epic
-**SV-8785**, each linked to the story it belongs to:
+**SV-8785**, each linked to the story it belongs to. **The QA lead has since dismissed three of
+them** (his words: *"Note for filters the following tickets are valid others can be ignored by
+you"*, naming SV-8845 and SV-8846 only), and we re-tested all three on the newer build the next day:
 
-| Ticket | What is wrong | Test cases affected |
-|---|---|---|
-| [SV-8843](https://shopview.atlassian.net/browse/SV-8843) | The filter buttons sit on the same row as the tabs instead of on their own row below them, so collapsing the bar frees no space | 2 |
-| [SV-8844](https://shopview.atlassian.net/browse/SV-8844) | Text typed in the page search is saved to your account forever, so you come back later to a list that looks empty | 3 |
-| [SV-8845](https://shopview.atlassian.net/browse/SV-8845) | On a phone, a shared link with filters in it shows the buttons as switched on but lists completely different work orders | 2 |
-| [SV-8846](https://shopview.atlassian.net/browse/SV-8846) | On a phone there is no Clear Filters button at all, so you cannot clear everything in one tap | 1 |
-| [SV-8847](https://shopview.atlassian.net/browse/SV-8847) | When only a search is active, the empty screen says "no work orders match your filters" and offers Clear Filters, which does not help | 3 |
+| Ticket | What is wrong | Test cases affected | Where it stands now |
+|---|---|---|---|
+| [SV-8843](https://shopview.atlassian.net/browse/SV-8843) | The filter buttons sit on the same row as the tabs instead of on their own row below them, so collapsing the bar frees no space | 2 | **Dismissed** by the QA lead; ticket closed. **Still happens** on the newer build — so the two cases keep describing it, as a known accepted difference |
+| [SV-8844](https://shopview.atlassian.net/browse/SV-8844) | Text typed in the page search is saved to your account forever, so you come back later to a list that looks empty | 3 | **Dismissed** by the QA lead — **and since FIXED.** On the newer build nothing is remembered; these 3 cases should now simply pass |
+| [SV-8845](https://shopview.atlassian.net/browse/SV-8845) | On a phone, a shared link with filters in it shows the buttons as switched on but lists completely different work orders | 2 | **Valid — stands.** Still open, now assigned to a QA |
+| [SV-8846](https://shopview.atlassian.net/browse/SV-8846) | On a phone there is no Clear Filters button at all, so you cannot clear everything in one tap | 1 | **Valid — stands.** Still open, now assigned to a QA |
+| [SV-8847](https://shopview.atlassian.net/browse/SV-8847) | When only a search is active, the empty screen says "no work orders match your filters" and offers Clear Filters, which does not help | 3 | **Dismissed** by the QA lead; ticket closed. **Still happens** on the newer build — so the three cases keep describing it, as a known accepted difference |
+
+**One thing the QA lead should see.** SV-8843 was closed with the note *"Not Reproducible Anymore"*,
+but when we re-ran it on the newer build it **did** happen again: the buttons still share the tab row
+and collapsing the bar still frees nothing. Screenshot in
+`build/filters/ruling-2026-08-05/evidence/shots/q1-layout.png`. The dismissal stands — we are just
+not pretending the stated reason matches the build.
 
 Three more were already open before we started, raised by the tester working through the run.
 Our own testing agrees with two of them and could not reproduce the third:
@@ -143,5 +216,18 @@ stable test handles for every control he needs.**
    a live build to confirm that the filter dropdowns share one component. They do: every
    dropdown on Work Orders, Parts and Reports uses the same two panel types. The merge can go
    ahead on your word.
+6. **NEW 5 August — go-ahead to re-check all 110 cases against the new build.** The branch was
+   redeployed to **`v3.4.2-d00239b`** overnight, so every number in this report, and the line at
+   the bottom of every case saying which build it was tested on, now names a build that is gone.
+   We have re-checked 3 cases; **107 are waiting**.
+7. **NEW 5 August — confirm how to word the 8 cases tied to the three dismissed tickets.** For
+   SV-8843 and SV-8847 (5 cases) the difference is still real, so a "known and reviewed, please
+   do not re-report" note is right. For SV-8844 (3 cases) the problem has been **fixed**, so the
+   right action is to **delete** that note rather than reword it — a different action from the one
+   we were given, so it needs your word. Nothing has been changed in TestRail yet.
+8. **NEW 5 August — a decision on one Reports case the specification has overtaken.** The
+   specification changed on 4 August so the date filter now **has** ready-made periods to pick
+   from and starts with a period already filled in. Our case **FLT-RPTS-13** still says it has
+   neither. One of the two is wrong, and it is not ours to choose.
 
 Nothing else is outstanding.

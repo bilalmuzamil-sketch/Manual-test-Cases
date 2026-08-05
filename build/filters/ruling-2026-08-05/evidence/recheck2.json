@@ -1,0 +1,68 @@
+{
+ "build": {
+  "appVersion": "v3.4.2-d00239b"
+ },
+ "pref": {
+  "endpoints": [
+   "GET /api/users/me/preferences/work-orders-list"
+  ]
+ },
+ "d1": {
+  "chip": {
+   "top": 90,
+   "bottom": 120
+  },
+  "tab": {
+   "top": 85,
+   "bottom": 125
+  },
+  "table": {
+   "top": 144,
+   "bottom": 1680
+  },
+  "sameRow": true,
+  "afterCollapse": {
+   "tableTop": 144,
+   "chipStillVisible": false
+  },
+  "tableMovedUp": 0
+ },
+ "d2": {
+  "try1": {
+   "status": 404,
+   "hasTerm": false,
+   "body": "{\"errors\":[{\"error\":\"'resource' was not found.\"}]}"
+  },
+  "prefCalls": [
+   "GET /api/users/me/preferences/work-orders-list",
+   "PUT /api/users/me/preferences/work-orders-list"
+  ],
+  "freshVisit": {
+   "url": "https://sv8785.qa.shopview.com/workorders?tab=all",
+   "rowCount": 33,
+   "bodyHasTerm": false,
+   "inputs": []
+  }
+ },
+ "d3": {
+  "pageSearchToggleFound": true,
+  "pageSearchInputFound": true,
+  "url": "https://sv8785.qa.shopview.com/workorders?tab=all&search=ZZQQNOMATCHXX",
+  "state": {
+   "rowCount": 2,
+   "emptyMessage": "No work orders match your filters",
+   "mentionsFilters": true,
+   "clearControls": [
+    {
+     "id": "page_search_clear",
+     "text": "cancel"
+    },
+    {
+     "id": "empty_state_clear_filters",
+     "text": "Clear Filters"
+    }
+   ],
+   "hasClearSearchOption": true
+  }
+ }
+}

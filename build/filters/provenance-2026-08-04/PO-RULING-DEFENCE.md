@@ -521,6 +521,38 @@ answer.
 | **~~GO-AHEAD for the staged `update_case` operations~~** — **✅ CLEARED + EXECUTED 2026-08-04.** Authorised, then executed as **12 × `update_case`**, all HTTP 200 + byte-verified MATCH, run 352 untouched (110 tests / 396 result records, every prior result present by id). *"a product owner decision is still awaited"* now appears on **0 of 110** cases, and **12 carry his answer file's link** per the same ruling. | — | **Nothing.** | closed |
 | **NEW 2026-08-04 — OPTIONAL, not blocking:** one confirmation line asking Branko in his own words whether the **combined** All-Filters sheet keeps its Apply button. Drafted in `../branko-answers-2026-08-04/FOLLOW-UPS-2026-08-04.md` §1. | **QA lead** to decide whether to send | **Nothing.** Group A2's basis is already three agreeing sources; this would upgrade *"the option he chose named this model"* to *"he said so"*. **Marked optional deliberately** — no case is held for it. | **2026-08-04** |
 
-**Nothing in this register is live-verified.** All 110 Filters cases remain `VIU-Pending`; the QA
-branch `sv8785.qa.shopview.com` has never been observed, because the Filters VIU is reserved until
-Report Suite is complete. **Closing Group C removed a sourcing risk, not a verification risk.**
+**~~Nothing in this register is live-verified.~~** — **SUPERSEDED 2026-08-04 (later that day).** The
+Filters VIU **did** run against `sv8785.qa.shopview.com`; all 110 cases were observed live on build
+`v3.4.2-4f8211c`. **Closing Group C removed a sourcing risk, not a verification risk** — but the
+verification risk has since been addressed too, and then partly re-opened by a redeploy (see the
+next section).
+
+---
+
+# THE QA LEAD'S OWN RULINGS — cited, dated, and defensible (Standing Rule 48)
+
+A ruling is a source, and sources get cited. These are **his** decisions, not Branko's, and they are
+the authority behind positions our cases now take.
+
+## Ruling 1 — three of the five Filters defect tickets are dismissed (2026-08-04)
+
+**His words, verbatim:**
+
+> **"Note for filters the following tickets are valid others can be ignored by you."**
+
+— followed by links to **SV-8845** and **SV-8846** only.
+
+| Field | Detail |
+|---|---|
+| **What it decides** | [SV-8845](https://shopview.atlassian.net/browse/SV-8845) and [SV-8846](https://shopview.atlassian.net/browse/SV-8846) are **valid and stand**. [SV-8843](https://shopview.atlassian.net/browse/SV-8843), [SV-8844](https://shopview.atlassian.net/browse/SV-8844) and [SV-8847](https://shopview.atlassian.net/browse/SV-8847) are **dismissed** and we stop pursuing them. |
+| **When, and what question it answered** | 2026-08-04, in response to the five defect tickets we filed that day off the first live Filters VIU (`../viu-2026-08-04/FILED.md`). |
+| **What it affects** | **8 cases** stop pointing testers at a ticket nobody will action: FLT-BAR-01 ([C29557](https://shopview.testrail.io/index.php?/cases/view/29557)), FLT-COLL-02 ([C29602](https://shopview.testrail.io/index.php?/cases/view/29602)), FLT-EMPTY-01 ([C29606](https://shopview.testrail.io/index.php?/cases/view/29606)), FLT-EMPTY-02 ([C29607](https://shopview.testrail.io/index.php?/cases/view/29607)), FLT-PSRCH-09 ([C38899](https://shopview.testrail.io/index.php?/cases/view/38899)), FLT-PSRCH-10 ([C38900](https://shopview.testrail.io/index.php?/cases/view/38900)), FLT-PSRCH-11 ([C38901](https://shopview.testrail.io/index.php?/cases/view/38901)), FLT-PSRCH-12 ([C38902](https://shopview.testrail.io/index.php?/cases/view/38902)). **No assertion changes** — the cases observed the build correctly. |
+| **Why it was reasonable** | Two of the three were already closed in Jira as **OBSOLETE/Done** by him, one with the comment *"Not Reproducible Anymore"*. All five were filed at **Low** priority and are cosmetic-to-minor next to the two mobile defects he kept. Pointing a tester at a dead ticket is worse than saying nothing. |
+| **What has changed since — say this if challenged** | Re-tested live on the newer build `v3.4.2-d00239b` on 2026-08-05: **SV-8843 and SV-8847 still reproduce** (so the cases keep a known-and-reviewed note), and **SV-8844 has been fixed** (so those three cases should now simply pass). Also: **SV-8843's closing reason is contradicted by the build** — it was closed as "not reproducible" but it does reproduce, with a screenshot. He has been told. |
+| **Who can close it** | The QA lead — by confirming the per-ticket treatment, which now differs between the three. |
+| **Risk if challenged** | **MEDIUM.** Two real, still-present differences are being carried as accepted. The defence is his dated ruling above — **not** a claim by us that they are harmless. On SV-8844 the honest position is that its finding was **user-visible, not cosmetic** (a search silently remembered against the account, leaving the list looking empty later); it was dismissed by him on 2026-08-04 and has since been fixed independently. |
+
+**The line we will not cross:** we do not describe these as *"the product behaves this way on
+purpose"* unless somebody has actually said so. Nobody has. The cases say the difference is **known
+and has been reviewed and is not being treated as a problem** — which is exactly what the evidence
+supports.

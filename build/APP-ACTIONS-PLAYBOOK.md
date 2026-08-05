@@ -1891,7 +1891,19 @@ Running `build/report-suite/gen_import.py` **blanked all 469 C-ids** in
 **Hosts.** App `https://sv8785.qa.shopview.com` · API **`https://sv8785api.qa.shopview.com`** —
 **VERIFIED live** (this closes the §B note that called it inferred; the `sv<epic>api` pattern is now
 proven on two of three branches). Cookies `/tmp/filters-viu/cookies.json`. **Build marker:**
-`curl -s https://sv8785.qa.shopview.com/ | grep app-version` → `v3.4.2-4f8211c`.
+`curl -s https://sv8785.qa.shopview.com/ | grep app-version` → `v3.4.2-4f8211c` (2026-08-04),
+**`v3.4.2-d00239b`** (2026-08-05 — **the branch redeploys overnight; read the marker EVERY session
+before trusting any prior verdict**, Rule 49). Read it with headers in one shot:
+`curl -sS -D- -o /tmp/idx.html https://sv8785.qa.shopview.com/index.html | grep -iE 'last-modified|etag'`
+— `last-modified` + `etag` corroborate the version string and are what prove a deploy happened.
+
+**The same session survives a redeploy.** `/tmp/filters-viu/cookies.json` + the stored `PHPSESSID`
+still authenticated the day after the deploy — `POST /api/quick-login {"key":"admin"}` → **HTTP 200**
+on the first try. So a deploy invalidates *verdicts*, not necessarily *credentials*.
+
+**Navigation gotcha — never use `waitUntil:'networkidle'` on this SPA.** It never goes idle and the
+`goto` times out at 90 s. Use the established pattern from `tools/h.mjs`:
+`goto(..., {waitUntil:'domcontentloaded', timeout:90000})` then `waitForTimeout(12000)`.
 
 **Session.** The §N one-login rule applies unchanged: **call `POST /api/quick-login {"key":"admin"}`
 exactly ONCE**, keep the rotated `PHPSESSID`, and never call it again in the run. A raw-cookie read
@@ -1935,6 +1947,12 @@ the combined sheet adds `.mobile-all-filters-sheet__footer`.
   A bad `field` → **400**; a bad `value` → **200 with 0 rows**; a bad `vehicleHere` value → **200 UNFILTERED**.
 - **Saved state:** `GET`/`PUT /api/users/me/preferences/work-orders-list`, value =
   `{tab, search, sortBy, descending, columns{...}, filters{<field>:[values]}, collapsed}`.
+  **⚠️ BUILD-DEPENDENT: `search` is GONE from this payload as of `v3.4.2-d00239b` (2026-08-05).**
+  On `v3.4.2-4f8211c` typing in the page search wrote `"search":"<term>"` here and it came back on a
+  later visit (that was defect SV-8844); on `d00239b` **no `search` key is written at all** — before
+  typing, after typing, or after clearing — so the page search is now session-only. Verified live:
+  `build/filters/ruling-2026-08-05/evidence/recheck3.json`. **This is the cleanest probe for that
+  behaviour — read the preference rather than trying to infer it from the screen.**
   A never-saved key returns **200 with `value: null`**; a path-traversal key returns a clean **404**.
   **`PUT` this to reset a branch to a known state** — far faster and more reliable than clicking
   Clear Filters, and it is how to stop filter state leaking between runs.
