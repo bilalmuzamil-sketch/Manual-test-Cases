@@ -38,17 +38,23 @@ this exact bundle and a redeploy can move them.
 | 2 | Existing-note path: **⋮ → Attach files** → same result | real iPhone | **NOT OBSERVED** | screenshot + attachment file name |
 | 3 | A `.heic` in the Files app is not selectable (expected trade-off, not a bug) | real iPhone | **NOT OBSERVED** | screenshot |
 | 4 | Large photo + 3-at-once still attach (the 300 ms transcode race, Risk 2) | real iPhone | **NOT OBSERVED** | screenshot + photo size + iPhone model / iOS version |
-| 5 | Server MIME allow-list genuinely excludes `image/heic` / `image/heif` (Risk 1) | fresh `.qa.shopview.com` cookies | **NOT OBSERVED** | captured `GET /api/note/list-supported-mime-types` response |
-| 6 | Drag-and-drop of a `.heic` still hits the "Unsupported files" dialog | fresh cookies (desktop) | **NOT OBSERVED** | screenshot |
-| 7 | Blocked `list-supported-mime-types` request no longer poisons the session for its whole life | fresh cookies (desktop + devtools) | **NOT OBSERVED** | screenshot |
+| 5 | Server MIME allow-list genuinely excludes `image/heic` / `image/heif` (Risk 1) | ~~cookies~~ | ✅ **CLOSED 2026-08-05 18:32Z** — 15 types, no HEIC, byte-identical to the bundle fallback | `evidence/list-supported-mime-types.json` |
+| 6 | Drag-and-drop of a `.heic` is refused | ~~cookies~~ | ✅ **CLOSED 2026-08-05** — real `partitionAttachments` + real server list → rejected, reason `unsupported` | `evidence/race-test.mjs` test D |
+| 7 | Blocked `list-supported-mime-types` request no longer poisons the session for its whole life | a desktop session + devtools | **NOT OBSERVED** | screenshot |
+| 8 | `accept` on the live page, **both** call sites, byte-equal to the server list and free of HEIC | ~~cookies~~ | ✅ **CLOSED 2026-08-05** — `button_attach_files` and `menu_item_attach_files` both correct | `evidence/notes-page-live.png` |
+| 9 | **The 300 ms window discards a late-arriving file** | ~~cookies~~ | ⚠️ **CONFIRMED AS A REAL DEFECT RISK 2026-08-05** — 400 ms → 0 files, 100 ms → 1 file, against the real shipped module | `evidence/race-test.mjs` tests B + C |
 
-Rows 1–4: run `iPhone-Test-Script_SV-7324_2026-08-05.md`.
-Rows 5–7: need a live session on the environment; rows 6 and 7 come from the dev's own QA handoff
-checklist on the ticket.
+Rows 1–4: run `iPhone-Test-Script_SV-7324_2026-08-05.md`. **Row 4 is now the priority after row 1** —
+row 9 proved the trap it hunts is real in shipped code.
+Row 7: still needs a desktop session + devtools; it is a secondary item from the dev's own handoff
+checklist, not part of the ticket's core claim.
 
-**Row 5 is a diagnostic, not a prerequisite** — rows 1/2/4 settle the question either way. A `.jpg`
-landing proves the server list excluded HEIC. Row 5 only matters if the phone test fails, and then it
-is the first thing to check.
+**Rows 5, 6, 8 and 9 were closed on 2026-08-05** once a session became available — so **everything on
+our side of the wire is now settled** and only the on-phone behaviour is outstanding.
+
+**⚠️ Row 9 is a finding, not a pass.** It is confirmed that a file arriving more than 300 ms after the
+picker closes is **silently discarded**. What is unknown is whether an iPhone's HEIC→JPEG transcode is
+slow enough to trigger it. Rows 1 and 4 are what answer that.
 
 ---
 

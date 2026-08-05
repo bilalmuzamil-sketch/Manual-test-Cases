@@ -86,21 +86,27 @@ be had.
 
 ---
 
-## Check 4 — the big photo and the multi-select ⚠️ please don't skip this
+## Check 4 — the big photo and the multi-select 🔴 THE MOST IMPORTANT CHECK AFTER CHECK 1
+
+**Please do not skip this one.** We have now proven, by running the app's real code, that there is a
+timing trap in it: **if the photo takes longer than 0.3 seconds to arrive, the app throws it away
+silently** — no error, no message, no spinner. We proved the app loses the file when that happens. What
+we cannot know without a phone is whether the iPhone's photo conversion is slow enough to trigger it.
+**Big photos are the most likely to trigger it. That is what you are hunting here.**
 
 1. Tap **Attach Files** → **Photo Library**.
 2. Select **your largest photo**, attach it, and watch what happens.
 3. Then do it again selecting **3 photos at once**.
+4. If you can, try once more on the **oldest / slowest iPhone** you can get hold of.
 
 **Expected:** every photo attaches and appears, as `.jpg`.
 
-**⚠️ Watch for this specific failure:** you pick the photo(s), the picker closes, and then **nothing
+**🔴 Watch for exactly this failure:** you pick the photo(s), the picker closes, and then **nothing
 happens at all** — no photo attached, no error, no spinner, as if you had tapped Cancel.
 
-If you see that, **write down how big the photo was and which iPhone model** and stop. There is a
-possible timing problem in the code (a 300-millisecond window) where a slow on-phone conversion can
-cause the app to think you cancelled. It only shows up on a real phone with a big file, which is
-exactly why this check exists.
+If you see that: **write down the photo size, the iPhone model and the iOS version, and say so
+straight away.** That is a real defect, we already know the mechanism, and it means the fix is not
+finished — a bigger delay allowance would be needed before this can ship.
 
 ---
 
@@ -121,10 +127,15 @@ For each of the 4 checks, just: **worked / didn't work**, plus
 | What you saw | What it means |
 |---|---|
 | Photo shows in the note, file name ends `.jpg` | ✅ **The fix works.** This is what we want on checks 1, 2 and 4. |
-| Photo attaches but the file name ends `.heic` | ❌ The picker is still advertising HEIC, so the phone didn't convert. Likely cause is the server's allowed-file list — flagged as "Risk 1" in `FINDINGS-2026-08-05.md`. |
-| You pick a photo and nothing happens at all | ❌ Probably the 300-millisecond timing race — "Risk 2" in `FINDINGS-2026-08-05.md`. Note the photo size and phone model. |
+| Photo attaches but the file name ends `.heic` | ❌ The phone didn't convert. **We have already ruled out the most likely cause** — the server's allowed-file list was checked on 5 Aug and correctly excludes HEIC, and we confirmed on the real page that the picker does not advertise it. So if you see this, it is something we have not accounted for and needs a developer. |
+| You pick a photo and **nothing happens at all** | ❌ **The 300-millisecond timing trap.** This one is already **confirmed to exist in the code** — we proved a late-arriving photo is silently discarded. Your sighting would confirm the iPhone is slow enough to trigger it. Note the photo size, iPhone model and iOS version. |
 | `.heic` can't be picked from the Files app | ✅ Expected and intentional. Not a bug. |
 | Spinner spins forever | ❌ The original bug is back — this is the exact symptom the ticket was raised for. |
+
+**Already checked for you, so you don't need to:** the picker really does hide HEIC on the real page
+(both the **Attach Files** button and the **⋮ → Attach files** menu), the server's allowed-file list
+has no HEIC in it, and dragging a `.heic` onto a note is correctly refused. Details in
+`FINDINGS-2026-08-05.md`. **Your job is only the part that needs a phone.**
 
 ---
 
