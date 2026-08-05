@@ -843,3 +843,38 @@ is ambiguous because two builds existed that day.** Re-stamping needs a live ses
 - ~~**Are the counts 478 or 469?**~~ — **CLEARED.** Both were right, an hour apart, across the deletions. `478 − 469 = 9`.
 - ~~**Ruling 3: is SV-8823 good to stay closed?**~~ — **ANSWERED, both halves separately, and re-driven live on the new build.** The money **is** visible and correct (zero arithmetic failures across all 9,275 rows), so your condition is met; but it **does** land as text (55,656 of 55,656 money cells), and the spec requires the opposite in writing — so it stays closed **as an accepted deviation**, which is item 10.
 - ~~**The local case source was 57 bodies out of step**~~ — **CLEARED and it was a different, worse problem:** the 57 were already marked Retired; the real gap was the **9** from today's merges, **plus** a stale local source that reverted 63 rows of live content on regeneration.
+
+---
+
+## 2026-08-05 — Report Suite: the expected-behaviour correction, and what it left owing
+
+**Context.** The QA lead found that we had been treating **build behaviour as expected behaviour** and said
+so plainly: *"I am shocked to see that how come you considered the Build behavior as the expected
+behavior?"*, then clarified: *"the case should be matched to the build … meant that the test case should be
+VIU'd from the build"* — labels and steps from the build, **never the expectation**. Report Suite was audited
+in full (`build/report-suite/expected-behaviour-audit-2026-08-05.md`) and repaired. This section lists only
+what is still owed.
+
+### OUTSTANDING — what I need from you
+
+| # | What is missing | Who owes it | What it BLOCKS | Since |
+|---|---|---|---|---|
+| **1** | **One sentence from Chris Ward on the Location column** — is it in the column list and switchable, or automatic and never in the list? **Q1** of `build/report-suite/rulings-2026-08-05/FOLLOW-UP-QUESTIONS-ROUND-2-2026-08-05.md` | **Chris Ward** | **16 cases** carry `AUTOMATION: HOLD` and cannot be given a verdict. They are named with C-ids in `READINESS-2026-08-05.md` §4.1. Readiness goes **440 → 456** the moment he answers. | 2026-08-04, **re-asked 2026-08-05** |
+| **2** | **Chris to fix TWO self-contradictions he has just created.** (a) Sales By Customer **v14 S4-R12** says the Location column is switchable in the column list, while **S13-R4** says that list holds *"exactly nine"* columns and Location is not one of them. (b) The **same requirement is now specified two different ways across the six specs** — SBC v14 uses an *access* gate, the other five an *in-scope* gate, and both were republished today under the same version message. | **Chris Ward** | C30156 and C38912 contradict each other and **each has a live requirement on its side**. Neither can be settled by us. | **2026-08-05** |
+| **3** | **Chris to answer the other 6 round-2 questions** (Q3–Q7 + the S14-R14 date-label residue) | **Chris Ward** | 7 further cases; and **Q7 decides whether C43552 is deleted** | **2026-08-05** |
+| **4** | **A window on organisation `d55bc308…` with no other worker active**, so the missing-logo state can be seeded | **the QA lead** (scheduling) | **C43553** cannot get a verdict. **Not seeded deliberately:** the Filters and Schedule workers are in the same organisation right now and removing its logo would change what they see. Register entry 3 of `DELIBERATE-DECISIONS.md`. | **2026-08-05** |
+| **5** | **Authorisation to sync run 359 (union-only)** | **the QA lead** | **4 of our cases are not in the run** — C43550, C43551, C43552, C43553. `include_all` is `false`, so **the run will never pick them up on its own** and Nebojsa and Viktoria cannot execute them. This is the same false-coverage-gap that cost a review cycle on Filters. | 2026-08-04, **still open** |
+| **6** | **A yes/no on filing the date-range finding** | **the QA lead** | The server rejects `last_12_months` — the new **first** preset in v14 S2-R2 — and still accepts `today` and `yesterday`, which v14 deleted. **Asked, not filed** (`final-viu-2026-08-05/API-ASK.md` ASK 1): I did not drive the picker, and the requirement is six hours old. | **2026-08-05** |
+| **7** | **One live screen check of Inventory Value's page controls** | **me**, next live pass | IV **S1-R8** requires *"the reports suite's standard pagination control"*; a prior pass noted infinite scroll instead. **I did not observe it myself**, so no ticket was filed — filing on another pass's unverified note is exactly what got SV-8821 closed as not reproducible. | **2026-08-05** |
+| **8** | **Tell us when the `sv8582` branch is declared FINAL** | **Engineering**, relayed by you | The queue `build/report-suite/final-viu-2026-08-05/RECHECK-QUEUE.md` is **OPEN**, so **all 473 verdicts are PROVISIONAL** and nothing here may be called VIU-complete. The branch has now redeployed **three times** since 2026-08-03. | 2026-08-03 |
+
+### Things that CLEARED on 2026-08-05 — recorded so they are not re-asked
+
+| What | How it cleared |
+|---|---|
+| **The logo fallback rule** | **Chris ratified it into the spec today** — SBC **v14 S15-R17**: the ShopView logo stands in *"only when an uploaded logo is set but fails to load"*, and no logo at all when none is uploaded. Our four logo cases already expected exactly that; their provenance now cites the spec instead of his message. **Ticket B5 is therefore NOT a defect and stays unfiled.** |
+| **The permission model** | **Parts Velocity v5 S1-R4**, saved today: *"the single reports permission … there is no per-report permission."* The 25 "for now" hedges are gone and the cases cite the spec. **SV-8780 (`Ready to Fix`) is the build failing this now-documented requirement.** |
+| **The date-picker shape** | v14 **S2-R2** — nine presets, "Last 12 Months" first, no Today / Yesterday / "Custom" item. |
+| **Print in the export requirements** | Removed at v14 **S18-R7** and **S18-R10**. |
+| **Whether markers exist on Report Suite** | **473 of 473 now carry exactly one `AUTOMATION:` marker.** Before today, 453 carried none and two competing styles coexisted on the other 20. |
+| **Whether a VIU pass had rewritten expectations** | **Checked across all 41 commits that touched the case source: no pass ever changed a case's steps and its expectation body together, and the two pure VIU passes changed ZERO expectations.** The contamination came from an answer-ingest pass. Audit §10. |
